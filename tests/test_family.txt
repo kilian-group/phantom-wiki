@@ -21,4 +21,7 @@ true.
 ?- can_get_married(jane, john).
 false.
 
+?- can_get_married(eve, bob).
+false.
+
 ?- halt.

@@ -1,5 +1,6 @@
 generation(jane, 1).
 generation(john, 1).
+generation(eve, 1).
 
 generation(alice, 2).
 generation(bob, 2).
@@ -18,6 +19,7 @@ single(alice).
 single(bob).
 single(carol).
 single(david).
+single(eve).
 
 married(jane, john).
 
