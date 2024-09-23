@@ -13,4 +13,4 @@ Set up a virtual environment, clone and navigate to this repository, and run
 pip install -e .
 ```
 
-to install the dependencies and the command line scripts.
+to install the dependencies and command line scripts.
