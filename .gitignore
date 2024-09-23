@@ -386,3 +386,6 @@ $RECYCLE.BIN/
 .idea/vcs.xml
 .idea/inspectionProfiles/profiles_settings.xml
 .idea/inspectionProfiles/Project_Default.xml
+
+# Project-specific files
+src/phantom_wiki/family/relationships.py
