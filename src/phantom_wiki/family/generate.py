@@ -2,7 +2,7 @@
 # generate first generation names
 # assign gender, single status (everyone single), generation number gen_num (here generation number defines a group of people who can marry each other)
 # find people who can get married;
-# 
+#
 #  4.   update database with
 # single(X), single(Y) -> married(X,Y)
 #  5.   repeat until ~everyone get married

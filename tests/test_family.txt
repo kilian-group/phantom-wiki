@@ -1,0 +1,24 @@
+# Load family generation rules
+?- [src/phantom_wiki/family/rules].
+true.
+
+# Load the example family database
+?- [tests/family_example].
+true.
+
+?- can_get_married(alice, bob).
+false.
+
+?- can_get_married(alice, david).
+true.
+
+?- can_get_married(carol, bob).
+true.
+
+?- can_get_married(carol, david).
+true.
+
+?- can_get_married(jane, john).
+false.
+
+?- halt.
