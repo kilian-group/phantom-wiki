@@ -380,3 +380,9 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,linux,pycharm,visualstudiocode,python
+.idea/misc.xml
+.idea/modules.xml
+.idea/phantom-wiki.iml
+.idea/vcs.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/inspectionProfiles/Project_Default.xml
