@@ -7,13 +7,14 @@ generation(bob, 2).
 generation(carol, 2).
 generation(david, 2).
 
-% female(jane).
-% female(alice).
-% female(carol).
+female(jane).
+female(alice).
+female(carol).
+female(eve).
 
-% male(john).
-% male(bob).
-% male(david).
+male(john).
+male(bob).
+male(david).
 
 single(alice).
 single(bob).
