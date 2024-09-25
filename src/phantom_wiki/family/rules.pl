@@ -7,6 +7,9 @@ same_generation(X, Y) :-
   generation(X, A), 
   generation(Y, A).
 
+single(X) :- 
+  \+(married(X, A)).
+
 can_get_married(X,Y) :-
   same_generation(X, Y),
   single(X),
