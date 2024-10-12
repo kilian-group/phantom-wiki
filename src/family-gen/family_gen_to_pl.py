@@ -36,11 +36,11 @@ def family_gen_to_prolog(pl_path, index=0, obtain_inferred=False):
             for cl, member in enumerate(l): # Iterating through each class
                 cl = classes[str(cl)]
                 if member=='1': # Individual is a member of that class
-                    to_string = cl+"(" + ind + ")"
+                    to_string = cl+"(" + ind + ")."
                     output.append(to_string)
 
                 elif member=='-1': # Individual is not a member of that class
-                    to_string = "not"+cl.capitalize()+"(" + ind + ")"
+                    to_string = "not"+cl.capitalize()+"(" + ind + ")."
                     output.append(to_string)        
 
     # Basic & complete tree information
@@ -55,7 +55,7 @@ def family_gen_to_prolog(pl_path, index=0, obtain_inferred=False):
             if l[0]=="-": # Negative relation, ie. not ...
                 rel = "not"+rel.capitalize()
 
-            to_string = rel +"("+individuals[l[1]]+", "+individuals[l[3]]+")"
+            to_string = rel +"("+individuals[l[1]]+", "+individuals[l[3]]+")."
             output.append(to_string)
 
     # Inferred information from the tree
@@ -70,7 +70,7 @@ def family_gen_to_prolog(pl_path, index=0, obtain_inferred=False):
               if l[0]=="-":
                   rel = "not"+rel.capitalize()
 
-              to_string = rel +"("+individuals[l[1]]+", "+individuals[l[3]]+")"
+              to_string = rel +"("+individuals[l[1]]+", "+individuals[l[3]]+")."
               output_inferred.append(to_string)
 
     # Inferred male/female relations
@@ -86,11 +86,11 @@ def family_gen_to_prolog(pl_path, index=0, obtain_inferred=False):
                 for cl, member in enumerate(l): # Iterating through each class
                     cl = classes[str(cl)]
                     if member=='1': # Individual is a member of that class
-                        to_string = cl+"(" + ind + ")"
+                        to_string = cl+"(" + ind + ")."
                         output_inferred.append(to_string)
                         
                     elif member=='-1': # Individual is not a member of that class
-                        to_string = "not"+cl.capitalize()+"(" + ind + ")"
+                        to_string = "not"+cl.capitalize()+"(" + ind + ")."
                         output_inferred.append(to_string)
 
     return output, output_inferred
