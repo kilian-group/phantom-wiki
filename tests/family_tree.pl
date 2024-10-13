@@ -1,9 +1,11 @@
-male(jan)
-female(helga)
-male(benjamin)
-female(elena)
-male(sebastian)
-parent(helga, jan)
-parent(benjamin, jan)
-parent(elena, helga)
-parent(sebastian, helga)
+male(jan).
+male(benjamin).
+male(sebastian).
+
+female(helga).
+female(elena).
+
+parent(helga, jan).
+parent(benjamin, jan).
+parent(elena, helga).
+parent(sebastian, helga).
