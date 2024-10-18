@@ -1,3 +1,5 @@
+# TODO simplify
+
 from faker import Faker
 import numpy as np
 import random

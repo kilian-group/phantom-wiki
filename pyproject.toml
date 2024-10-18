@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools-scm>=8.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "phantom-wiki"
+dynamic = ["version"]
+authors = [
+    {name="Chao Wan", email="cw862@cornell.edu"},
+]
+
+
+description = ""
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = ["faker", ]
+
+[project.scripts]
+generate_family = "phantom_wiki.__main__:generate_family" # TODO
+
+[tool.setuptools_scm]
+
+[project.optional-dependencies]
+dev = ["pre-commit"]
+tests = ["pytest", "pytest-cov", "rootutils"]
+#docs = [
+#  "mkdocs==1.6.0", "mkdocs-material==9.5.31", "mkdocstrings[python,shell]==0.25.2", "mkdocs-gen-files==0.5.0",
+#  "mkdocs-literate-nav==0.6.1", "mkdocs-section-index==0.3.9", "mkdocs-git-authors-plugin==0.9.0",
+#  "mkdocs-git-revision-date-localized-plugin==1.2.6"
+#]
+
+[project.urls]
+Homepage = "https://github.com/ag2435/phantom-wiki"
+Issues = "https://github.com/ag2435/phantom-wiki/issues"
