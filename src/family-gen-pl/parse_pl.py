@@ -31,7 +31,7 @@ def parse(line):
         (predicate, [arg1, arg2, ..., argn])
     """
     pattern = r"^([a-z]+)\((.*)\)\.$"
-    match = re.search(pattern, s)
+    match = re.search(pattern, line)
     return match.group(1), match.group(2).split(", ")
 
 
