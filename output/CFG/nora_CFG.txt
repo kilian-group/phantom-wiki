@@ -1,0 +1,12 @@
+bio -> name_sentence occupation_sentence hobby_sentence location_sentence fun_sentence 
+name_sentence -> "Nora" surname "is a dedicated professional." 
+surname -> "Hamilton" | "Johnson" | "Kimberly" | "Thomason" 
+occupation_sentence -> "She works as a" job_role "at" company "." 
+job_role -> "Television production assistant" 
+company -> "Starlight Broadcasting" | "Sunset Media Group" | "Galaxy Network" 
+hobby_sentence -> "In her free time, she enjoys" hobby "." 
+hobby -> "hiking in the wilderness" | "exploring new culinary experiences" | "painting landscapes" | "writing short stories" 
+location_sentence -> "Nora currently resides in" city "." 
+city -> "Elmsworth" | "Pinecrest" | "Brookside" | "Havenfield" 
+fun_sentence -> "She also loves" fun_activity ", which adds excitement to her life." 
+fun_activity -> "attending live theatre productions" | "going to escape rooms" | "playing board games with friends" | "building model trains"

@@ -1,0 +1,12 @@
+start -> intro education career personal_life hobbies 
+intro -> "Michael is a skilled and dedicated Town Planner from Palmdale." 
+education -> undergrad postgrad
+undergrad -> " He earned his undergraduate degree in Urban Development from Greenfield University."
+postgrad -> " Michael furthered his studies with a Master's in Spatial Planning at Elmbridge Institute." 
+career -> work_experience accomplishment
+work_experience -> " He has worked for over a decade at Riverstone Planning Agency where he has been an integral part of the city planning team."
+accomplishment -> " His notable achievement includes the successful redesign of the Oakridge Commercial District, which won the prestigious Horizon Award." 
+personal_life -> family_status
+family_status -> " Outside of work, Michael is a devoted family man, residing in Palmdale with his spouse, Alex, and their two children." 
+hobbies -> interest
+interest -> " In his free time, Michael enjoys exploring hiking trails, playing chess at the local club, and volunteering for community clean-up events."

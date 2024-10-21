@@ -1,0 +1,10 @@
+sentence -> intro personal_info profession hobbies closing 
+intro -> "Meet" name ", a talented individual you should know about." 
+name -> "Helga Bluefield" 
+personal_info -> name_pronoun "is known for her expertise and dedication in her field." 
+name_pronoun -> "Helga" 
+profession -> "She works as a radiographer, specializing in diagnostic imaging at the esteemed" hospital "." 
+hospital -> "Greenridge Medical Center" | "Pinewood Health Institute" 
+hobbies -> name_pronoun "loves spending her free time" hobby_activity "." 
+hobby_activity -> "painting landscapes" | "exploring the local art scene" | "hiking in nature reserves" | "reading classic novels" 
+closing -> "Whether at work or at play, Helga always strives for excellence."

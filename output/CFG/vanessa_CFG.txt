@@ -1,0 +1,10 @@
+S -> NP VP 
+NP -> Name ', the' Occupation ', who works in' Company '.' 
+Name -> 'Vanessa'
+Occupation -> 'Retail Merchandiser'
+Company -> 'Sunshine Goods' | 'Trendy Trends' | 'Innovative Outfits' 
+VP -> SheVP | HeVP 
+SheVP -> ' loves curating the perfect look for each season and enjoys collaborating with various teams to bring new fashion collections to life.' InterestsVP
+HeVP -> ' has a knack for predicting market trends and takes pride in streamlining the stocking processes to improve customer satisfaction.' InterestsVP 
+InterestsVP -> ' During her free time, Vanessa can be found' Hobby '.' 
+Hobby -> ' painting urban landscapes' | ' exploring local hiking trails' | ' trying out new recipes from around the world' | ' attending live music events'
