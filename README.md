@@ -13,6 +13,9 @@ conda create -n dataset
 conda activate dataset
 conda install python=3.10 pandas numpy conda-forge::faker anaconda::sqlalchemy anaconda::nltk
 pip install pydatalog
+# install SWI-Prolog
+brew install swi-prolog
+# install Janus-SWI (Python interface to SWI-Prolog)
 pip install janus-swi
 ```
 <!-- pip install -e . -->
