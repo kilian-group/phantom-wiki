@@ -18,9 +18,11 @@
 import janus_swi as janus
 
 # %%
+def consult(predicate_path, rule_path):
+    janus.query_once(f"consult(X)", {'X': predicate_path})
+    janus.query_once("consult(X)", {'X': rule_path})
 # load the prolog files
-janus.query_once("consult('../../tests/family_tree.pl')")
-janus.query_once("consult('./family/rules.pl')")
+consult('../../tests/family_tree.pl', './family/rules.pl')
 
 # %%
 results = janus.query_once("mother(elias, helga)")
@@ -49,6 +51,13 @@ def get_family_table(name):
     - siblings
     - children
     - wife/husband (TODO: need to add married predicate to the prolog)
+
+    Assumes that the prolog files are loaded and the predicates are defined in the prolog files.
+    This can be done using the following code:
+    ```
+    janus.query_once("consult('../../tests/family_tree.pl')")
+    janus.query_once("consult('./family/rules.pl')")
+    ```
 
     Ref: https://www.swi-prolog.org/pldoc/man?section=janus-call-prolog
     """
@@ -88,6 +97,8 @@ def get_family_table(name):
 
 # %%
 name = 'natalie'
-get_family_table(name)
+table = get_family_table(name)
+print("Table for {}: ".format(name))
+print(table)
 
 # %%
