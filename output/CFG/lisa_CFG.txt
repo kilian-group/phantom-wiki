@@ -1,0 +1,8 @@
+S -> NP VP
+NP -> "Lisa" COMMA OCCUPATION COMMA TITLE
+VP -> ADJ N
+COMMA -> ","
+OCCUPATION -> "an Immunologist"
+TITLE -> "at the Sylven Research Institute"
+ADJ -> "is renowned for her dedication to"
+N -> "advancing the field of immunology through groundbreaking research in novel vaccine technologies and autoimmune diseases"

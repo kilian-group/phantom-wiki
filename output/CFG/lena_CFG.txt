@@ -1,0 +1,10 @@
+S -> Introduction Occupation Details Conclusion
+Introduction -> "Meet Lena," NameDetails
+NameDetails -> ", a talented Ophthalmologist."
+Occupation -> " She specializes in diagnosing and treating eye conditions."
+Details -> BackgroundExperience Location
+BackgroundExperience -> " With over" Years " years of experience in the field,"
+Location -> " her practice is based in" CityName "."
+Years -> " fifteen" | " over a decade" | " twenty"
+CityName -> " Esperanza City" | " Rivertown" | " Lexford"
+Conclusion -> " Lena is known for her outstanding patient care and dedication to improving vision health."

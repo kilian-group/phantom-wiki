@@ -1,0 +1,13 @@
+bio -> intro education experience achievements personal 
+intro -> "Angelina is a dedicated Petroleum engineer." 
+education -> " She obtained her degree from university." 
+university -> "Mount Fitzroy Institute" | "Arborgate University" 
+experience -> " Angelina has over years years of experience in the field, having worked with companies." 
+years -> "five" | "ten" | "fifteen" 
+companies -> "company1 and company2." 
+company1 -> "Blackwave Petroleum" | "Hydrox Corp" 
+company2 -> "GeoDeep Innovations" | "Aquaflux Resources" 
+achievements -> " She has been recognized for her contributions in achievement." 
+achievement -> "developing eco-friendly extraction techniques" | "implementing efficiency improvements in drilling processes" 
+personal -> " Outside of work, Angelina enjoys hobby." 
+hobby -> "hiking and photography" | "painting and classical music"

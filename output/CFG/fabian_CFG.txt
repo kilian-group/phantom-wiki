@@ -1,0 +1,13 @@
+bio -> intro details hobbies 
+intro -> greeting intro_text name occupation 
+greeting -> "Meet" | "Introducing" | "Let us introduce you to" 
+intro_text -> "the skilled herbalist," | "a renowned herbal practitioner," 
+name -> "Fabian Leafwhisper" | "Fabian Greenthumb" 
+occupation -> "Herbalist." 
+details -> profession_detail experience 
+profession_detail -> "With a deep understanding of plant-based healing," | "Known for his expertise in herbal remedies," 
+experience -> "Fabian has been practicing for over a decade in the mystical city of" city_name "." | "He has curated numerous successful treatments from his abode in" city_name "." 
+city_name -> "Floravilla" | "Herbania" 
+hobbies -> hobby_intro hobby_list 
+hobby_intro -> "In his free time, Fabian enjoys" | "When not working, you can find Fabian" 
+hobby_list -> "exploring enchanted forests and discovering rare plants." | "crafting unique plant-based potions and teaching workshops on natural healing."

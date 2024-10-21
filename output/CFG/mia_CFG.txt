@@ -1,0 +1,5 @@
+bio -> name "is a" occupation "at" company "."
+name -> "Mia Morrison"
+occupation -> "Publishing rights manager"
+company -> fictionalCompanyName
+fictionalCompanyName -> "Quill & Ink Press" | "NovelNet Publishing" | "PageTurner House" | "WrittenWord Agency"

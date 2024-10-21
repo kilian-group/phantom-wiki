@@ -1,0 +1,10 @@
+bio -> intro work company interests 
+intro -> greeting name 
+greeting -> "Meet" 
+name -> " Oskar Zand" 
+work -> " who is a Data Processing Manager" 
+company -> " at" company_name 
+company_name -> " Quantum Data Solutions" | " CyberNet Analytics" | " Enigma Informatics" 
+interests -> interest_intro interest_list 
+interest_intro -> ". In his free time, Oskar enjoys" 
+interest_list -> " hiking and playing chess." | " exploring the world of digital art and cooking." | " reading science fiction novels and cycling."

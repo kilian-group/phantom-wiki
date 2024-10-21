@@ -1,0 +1,14 @@
+biography -> introduction career hobbies 
+introduction -> name "is an experienced" occupation "at" company "." 
+name -> "Patrick O'Sullivan" | "Patrick Baxter" | "Patrick Gale" 
+occupation -> "Insurance Claims Handler" | "Claims Specialist" 
+company -> "Atlas Assurance Inc." | "NewAge Insurance Group" | "Guardian Shield Services" 
+career -> career_intro career_milestones 
+career_intro -> "With over" years "years in the insurance industry," 
+years -> "5" | "10" | "15" 
+career_milestones -> ", Patrick has successfully processed major claims," more_milestones "." 
+more_milestones -> "negotiated settlements" | "led cross-functional teams" | "improved customer satisfaction" 
+hobbies -> hobby_intro hobby_list 
+hobby_intro -> "Outside of work, he enjoys" 
+hobby_list -> hobby "," hobby ", and" hobby "." 
+hobby -> "photography" | "hiking" | "reading detective novels" | "playing acoustic guitar"

@@ -1,64 +1,53 @@
-from faker import Faker
-import re
 import os
-
+import argparse
+import random
 import openai
-import textwrap
-from cfg import generate_sentence, create_bio
+from faker import Faker
 from nltk import CFG
 
-def write_bio(bio, file_path):
-    bio = textwrap.fill(bio, width=80)
-    with open(file_path, "w") as file:
-        file.write(bio)
+from CFG_utils import * 
 
-def match_name(line):
-    # import pdb; pdb.set_trace()
-    pattern = r"\((?:[A-Z][a-z]+|[a-z]+(?:\s[A-Z][a-z]+)*)\)"
-    matches = re.findall(pattern, line)
-    names = [match.strip("()") for match in matches]
-    return names[0]
-
-def extract_content_between_triple_quotes(paragraph):
-    # Regex pattern to capture content between the first pair of triple quotes
-    match = re.search(r"'''(.*?)'''", paragraph, flags=re.DOTALL)
-    
-    if match:
-        return match.group(1).strip()
-    else:
-        return paragraph  # Return an empty string if no triple quotes are found
+def get_arguments():
+    parser = argparse.ArgumentParser(description="Generate articles from Prolog files")
+    parser.add_argument("--pl_file", type=str, default='tests/family_tree.pl', help="Path to the Prolog file")
+    parser.add_argument("--output_folder", type=str, default= 'output', help="Path to the output folder")
+    return parser.parse_args()
 
 if __name__ == "__main__":
+    # get arguments
+    args = get_arguments()
     # set seed
     Faker.seed(0)
     fake = Faker()
+    #make directories
+    bio_folder = os.path.join(args.output_folder, 'bio')
+    CFG_folder = os.path.join(args.output_folder, 'CFG')
+    # TODO want to put prologs and DLVs also in the same folder
+    os.makedirs(CFG_folder, exist_ok=True)
+    os.makedirs(bio_folder, exist_ok=True)
     # load the prolog file
-    import pdb; pdb.set_trace()
-    with open("tests/family_tree.pl", "r") as f:
+    with open(args.pl_file, "r") as f:
         lines = f.readlines()
         for line in lines:
+            import pdb; pdb.set_trace()
             if line.startswith("female") or line.startswith("male"):
                 person = match_name(line)
                 job = fake.job()
                 print(f"{person} is a {job}")
+            else:
+                print('skip line')
+                continue
 
-            # prompt openai to generate a cfg using gpt-4o
-            # TODO need a better prompt to prevent the model from adding a family name
-            prompt = f"write me a CFG using arrow notation to generate a bio for {person} whose occupation is {job} using fictional names and entities, ONLY OUTPUT THE CFG" 
-            response =openai.chat.completions.create(
-                model="gpt-4o",
-                messages=[
-                    {"role": "system", "content": prompt}
-                ]
-            )
-            raw_text = response.choices[0].message.content
-            raw_text = raw_text.replace("```", "")
-            # parse the grammar and generate a bio
-            grammar = CFG.fromstring(raw_text)
-            bio = generate_sentence(grammar)
+            # import pdb; pdb.set_trace()
+            # allow multiple tries and only write to file if a bio is successfully generated
+            bio, cfg = generate_article_with_retries(person, job, max_attempts=10)
+
+            # write the CFG to a file
+            CFG_file = os.path.join(CFG_folder, f"{person}_CFG.txt")
+            with open(CFG_file, "w") as file:
+                file.write(cfg)
+
             # write to file
-            bio_folder = "tests/bios"
-            os.makedirs(bio_folder, exist_ok=True)
             bio_file = os.path.join(bio_folder, f"{person}_bio.txt")
             write_bio(bio, bio_file)
             print(f"writen bio for {person} to {person}_bio.txt")
