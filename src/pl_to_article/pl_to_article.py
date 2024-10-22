@@ -8,7 +8,7 @@ def get_arguments():
     parser = argparse.ArgumentParser(description="Generate articles from Prolog files")
     parser.add_argument("--pl_file", type=str, default='../../tests/family_tree.pl', help="Path to the Prolog file")
     parser.add_argument("--output_folder", type=str, default= 'output', help="Path to the output folder")
-    parser.add_argument("--rules", type=str, default='../family-gen-pl/family/rules.pl', help="Path to the rules file")
+    parser.add_argument("--rules", type=str, default='../phantom_wiki/family/rules.pl', help="Path to the rules file")
     return parser.parse_args()
 
 # 
@@ -58,44 +58,33 @@ def get_family_article(name):
     Ref: https://www.swi-prolog.org/pldoc/man?section=janus-call-prolog
     """
     # name = 'elias'
+    relations = {}
     # get mother
-    if mother := janus.query_once("mother(X, Y)", {'Y': name}):
-        mother = mother['X']
+    if mother := janus.query_once("mother(X, Y)", {'Y': name})['X']:
+        relations['mother'] = mother
     # print(mother)
     # get father
-    if father := janus.query_once("father(X, Y)", {'Y': name}):
-        father = father['X']
+    if father := janus.query_once("father(X, Y)", {'Y': name})['X']:
+        relations['father'] = father
     # print(father)
     # get siblings
-    if siblings := janus.query("sibling(X, Y)", {'Y': name}):
-        siblings = [sibling['X'] for sibling in siblings]
+    if siblings := [sibling['X'] for sibling in janus.query("sibling(X, Y)", {'Y': name})]:
+        relations['sibling'] = ', '.join(siblings)
     # print(list(siblings))
     # get children
-    if children := list(janus.query("child(X, Y)", {'Y': name})):
-        children = [child['X'] for child in children]
+    if children := [child['X'] for child in list(janus.query("child(X, Y)", {'Y': name}))]:
+        relations['child'] = ', '.join(children)
+        relations['number of children'] = len(children)
     # print(list(children))
     
     # TODO: get wife and husband
-    if wife := janus.query_once(f"husband(X, Y)", {'X': name}):
-        wife = wife['Y']
-    # wife = None
-    if husband := janus.query_once(f"wife(X, Y)", {'X': name}):
-        husband = husband['Y']
-    
-    relations = {
-        'mother': mother,
-        'father': father,
-        'sibling': siblings,
-        'child': children,
-        'number of children': len(children),
-        'wife': wife,
-        'husband': husband,
-    }
+    if spouse := (janus.query_once(f"husband(X, Y)", {'X': name}) or janus.query_once(f"wife(X, Y)", {'X': name}))['Y']:
+        relations['spouse'] = spouse
 
     facts = []
     for relation, target in relations.items():
         relation_template = ppl_2_ppl[relation]
-        fact = relation_template.replace("<subject>", name) + " " + str(target)
+        fact = relation_template.replace("<subject>", name) + " " + str(target) + "."
         facts.append(fact)
 
     article = "\n".join(facts)
@@ -135,7 +124,7 @@ if __name__ == "__main__":
             family = get_family_article(person)
             print("family article:")
             print(family)
-            
+
             # get the job article
             job = fake.job()
             print(f"{person} is a {job}")
