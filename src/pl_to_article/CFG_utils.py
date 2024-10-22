@@ -82,23 +82,52 @@ def generate_article_with_retries(person, job,
                                   # if using existing CFG, pass the path to
                                   CFG_file: str=None,
                                   max_attempts=100):
-    for attempt in range(max_attempts):
+    if CFG_file is not None:
         try:
-            # Get a new CFG and attempt to generate an article
-            if CFG_file is None:
-                raw_text = get_CFG(person, job)  # Each time we get a potentially different CFG
-            else:
-                with open(CFG_file, "r") as file:
-                    raw_text = file.read()
+            # If a CFG file is provided, read the CFG from the file
+            with open(CFG_file, "r") as file:
+                raw_text = file.read()
             processed_text = formatting_raw_input(raw_text)
             grammar = CFG.fromstring(processed_text)
             article = generate_sentence(grammar)
-            if article:  # Check if the article is non-empty
-                print(f"Attempt {attempt + 1}: Successfully generated article for {person}")
+            if article:
+                print(f"Successfully generated article for {person}")
                 return article, processed_text
+            
         except Exception as e:
-            # Catch any exceptions that might occur during generation
-            print(f"Attempt {attempt + 1}: Error generating article - {e}")
+            print(f"Error generating article - {e}")
+            # regenerate the CFG with retries
+            for attempt in range(max_attempts):
+                try:
+                    # Get a new CFG and attempt to generate an article
+                    # Each time we get a potentially different CFG
+                    CFG_file = get_CFG(person, job)
+                    processed_text = formatting_raw_input(raw_text)
+                    grammar = CFG.fromstring(processed_text)
+                    article = generate_sentence(grammar)
+                    if article:  # Check if the article is non-empty
+                        print(f"Attempt {attempt + 1}: Successfully generated article for {person}")
+                        return article, processed_text
+                except Exception as e:
+                    # Catch any exceptions that might occur during generation
+                    print(f"Attempt {attempt + 1}: Error generating article - {e}")
+
+    else:
+        # If no CFG file is provided, generate a new CFG and attempt to generate an article
+        for attempt in range(max_attempts):
+            try:
+                # Get a new CFG and attempt to generate an article
+                # Each time we get a potentially different CFG
+                CFG_file = get_CFG(person, job)
+                processed_text = formatting_raw_input(raw_text)
+                grammar = CFG.fromstring(processed_text)
+                article = generate_sentence(grammar)
+                if article:  # Check if the article is non-empty
+                    print(f"Attempt {attempt + 1}: Successfully generated article for {person}")
+                    return article, processed_text
+            except Exception as e:
+                # Catch any exceptions that might occur during generation
+                print(f"Attempt {attempt + 1}: Error generating article - {e}")
     return "Failed to generate an article after multiple attempts."
 
 def get_CFG(person, job):
