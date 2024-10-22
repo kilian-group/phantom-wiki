@@ -46,7 +46,7 @@ def get_family_article(name):
     - father
     - siblings
     - children
-    - wife/husband (TODO: need to add married predicate to the prolog)
+    - wife/husband 
 
     Assumes that the prolog files are loaded and the predicates are defined in the prolog files.
     This can be done using the following code:
@@ -76,10 +76,11 @@ def get_family_article(name):
     # print(list(children))
     
     # TODO: get wife and husband
-    # wife = janus.query_once(f"wife(X, Y)", {'X': 'nora'})
-    wife = None
-    # husband = janus.query_once(f"husband(X, Y)", {'X': 'nora'})
-    husband = None
+    if wife := janus.query_once(f"husband(X, Y)", {'X': name}):
+        wife = wife['Y']
+    # wife = None
+    if husband := janus.query_once(f"wife(X, Y)", {'X': name}):
+        husband = husband['Y']
     
     relations = {
         'mother': mother,
@@ -87,8 +88,8 @@ def get_family_article(name):
         'sibling': siblings,
         'child': children,
         'number of children': len(children),
-        # 'wife': wife,
-        # 'husband': husband,
+        'wife': wife,
+        'husband': husband,
     }
 
     facts = []
