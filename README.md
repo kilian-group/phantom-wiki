@@ -22,3 +22,11 @@ pip install janus-swi
 ```
 <!-- pip install -e . -->
 <!-- to install the dependencies and command line scripts. -->
+
+# TogetherAI
+
+1. Register for an account at https://api.together.ai
+2. Set your TogetherAI API key:
+```
+conda env config vars set TOGETHER_API_KEY=xxxxx
+```
