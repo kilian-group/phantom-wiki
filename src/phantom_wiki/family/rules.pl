@@ -3,6 +3,24 @@ sibling(X, Y) :-
   parent(A, Y),
   X \= Y.
 
+same_generation(X, Y) :- 
+  generation(X, A), 
+  generation(Y, A).
+
+can_get_married(X,Y) :-
+  same_generation(X, Y),
+  single(X),
+  single(Y),
+  male(X),
+  female(Y),
+  \+(sibling(X, Y)),
+  X \= Y.
+  
+sibling(X, Y) :- 
+  parent(A, X), 
+  parent(A, Y),
+  X \= Y.
+
 sister(X, Y) :-
     sibling(X, Y),
     female(X).
