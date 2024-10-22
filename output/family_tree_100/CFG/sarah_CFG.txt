@@ -1,0 +1,14 @@
+bio -> intro education experience notation 
+intro -> "Sarah" last_name "is a passionate oceanographer from" fictional_location "." 
+last_name -> "Harper" | "Kensington" | "Winslow" 
+fictional_location -> "Atlantica" | "Coral Haven" | "Poseidon Bay" 
+education -> degree "in Oceanographic Sciences from" university_name "." 
+degree -> "She holds a Master's degree" | "She graduated with honors" | "She earned her Ph.D." 
+university_name -> "Neptune University" | "Aqua Academy" | "Marine Institute of Innovation" 
+experience -> "With" years_experience "years of experience," research_area "." 
+years_experience -> "over 10" | "nearly 15" | "more than 20" 
+research_area -> "she specializes in deep-sea ecosystems" | "her research focuses on coral reef preservation" | "her studies explore marine biodiversity" 
+notation -> additional_info 
+additional_info -> "Sarah is an avid diver and has been instrumental in" project "." | "In her free time, she enjoys" hobby "." 
+project -> "the Neptune Project for ocean conservation" | "underwater exploration initiatives" | "innovative ocean mapping techniques" 
+hobby -> "painting seascapes" | "sailing around the fictional kingdoms" | "writing about her underwater adventures"

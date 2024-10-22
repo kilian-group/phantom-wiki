@@ -1,0 +1,12 @@
+S -> Intro Education Career Experience Interests 
+Intro -> "Daniel is a dedicated speech and language therapist based in Treeville." 
+Education -> Degree ", holding a degree from" University "." 
+Degree -> "He earned his Bachelor of Science in Communication Disorders"
+University -> "Whispering Pines University" 
+Career -> "He is passionate about working at" Workplace ", where he helps individuals overcome communication challenges." 
+Workplace -> "Voiceland Therapy Center" 
+Experience -> "With over" Years " years of experience," Expertise "."
+Years -> "ten"
+Expertise -> "Daniel specializes in pediatric speech therapy and adult neurological speech disorders" 
+Interests -> "In his free time, he enjoys" Hobbies "." 
+Hobbies -> "reading historical novels and hiking the trails of Emerald Forest"

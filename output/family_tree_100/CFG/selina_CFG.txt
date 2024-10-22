@@ -1,0 +1,5 @@
+S -> Bio
+Bio -> Name ", an experienced " Occupation ", currently managing accommodations at " Company "."
+Name -> "Selina Rivers" | "Selina Nightingale" | "Selina Waverly"
+Occupation -> "Accommodation Manager" | "Lodging Coordinator" | "Hospitality Supervisor"
+Company -> "DreamStay Resorts" | "RestAway Suites" | "CozyNest Hospitality"

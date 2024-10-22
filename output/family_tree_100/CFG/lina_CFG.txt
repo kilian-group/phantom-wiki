@@ -1,0 +1,4 @@
+S -> Name Occupation Entity
+Name -> "Lina Johnson"
+Occupation -> "is a dedicated Politician's Assistant"
+Entity -> "at the prestigious Dreamville Council."

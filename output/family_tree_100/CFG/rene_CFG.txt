@@ -1,0 +1,9 @@
+S -> NP VP
+NP -> Det Nominal
+Det -> "a" | "an"
+Nominal -> N | N PP
+N -> "Broadcast" | "presenter" | "Rene" | "individual" | "city" | "station" | "career"
+VP -> V NP | V
+V -> "is" | "has" | "works"
+PP -> P NP
+P -> "at" | "with" | "in" | "for" | "from"

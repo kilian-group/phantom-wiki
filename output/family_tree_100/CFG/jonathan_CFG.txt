@@ -1,0 +1,15 @@
+S -> NP VP 
+NP -> Name Info 
+Name -> 'Jonathan' 
+Info -> Occupation 
+Occupation -> 'is a Sports Development Officer' 
+VP -> JobInfo 
+JobInfo -> Location Bio 
+Location -> 'at' CompanyName ', located in' CityName ',' CountryName 
+CompanyName -> 'Champion Sports Inc.' 
+CityName -> 'Greenville' 
+CountryName -> 'Novera' 
+Bio -> PersonalInfo Hobbies 
+PersonalInfo -> 'Jonathan has a degree in Sports Management from' UniversityName '.' 
+UniversityName -> 'Arlington University' 
+Hobbies -> 'He enjoys coaching youth soccer, organizing community events, and cycling in his spare time.'

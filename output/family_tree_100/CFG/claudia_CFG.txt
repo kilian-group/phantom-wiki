@@ -1,0 +1,15 @@
+biography -> introduction professional_background personal_attributes 
+introduction -> "Claudia is a" current_role "at" company_name "." 
+current_role -> "Publishing rights manager" 
+company_name -> "EpicVerse Publishing House" | "Literary Lights Group" | "InkWave Media" 
+professional_background -> education_details career_journey 
+education_details -> "She graduated from" university_name "with a degree in" subject "." 
+university_name -> "Northwood University" | "Crestview College" | "Horizon Institute" 
+subject -> "Literature" | "Publishing Studies" | "Creative Writing Management" 
+career_journey -> "Before joining" company_name ", Claudia worked as a" previous_role "at" previous_company "where she managed" responsibility "." 
+previous_role -> "Content Acquisition Specialist" | "Rights Negotiation Expert" | "Editorial Assistant" 
+previous_company -> "Fictional Works Inc." | "BookHaven Enterprises" | "Narrative Arts Agency" 
+responsibility -> "foreign rights licensing" | "author collaborations" | "intellectual property portfolios" 
+personal_attributes -> "She is known for her" attribute "and" hobby "." 
+attribute -> "meticulous attention to detail" | "keen negotiation skills" | "passion for storytelling" 
+hobby -> "enjoys traveling to book fairs" | "is an avid chess player" | "loves exploring cultural events"

@@ -1,0 +1,8 @@
+S -> NP VP
+NP -> N | N PP
+N -> "Lena" | "a Chiropractor"
+PP -> "from" Place
+Place -> "Therapeuticsville" | "Biome City"
+VP -> "has been practicing for" Time | "is known for her work at" Facility
+Time -> "over a decade" | "15 years"
+Facility -> "Spine Wellness Center" | "Joint Restoration Clinic"

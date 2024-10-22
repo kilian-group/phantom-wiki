@@ -1,0 +1,12 @@
+S -> NP VP
+NP -> Det Adj N | Adj N | N
+Det -> 'An' | 'The'
+Adj -> 'talented' | 'dedicated'
+N -> 'Farbon' | 'Palendera' | 'Alexander'
+VP -> V NP | V NP PP
+V -> 'works as' | 'serves as'
+PP -> P Det AdjP | P Det N
+P -> 'at'
+AdjP -> Adj Adj N
+Adj -> 'esteemed' | 'renowned'
+N -> 'EcoSphere Institute' | 'GreenGuard Initiative'

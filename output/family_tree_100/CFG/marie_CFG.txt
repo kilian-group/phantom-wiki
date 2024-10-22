@@ -1,0 +1,9 @@
+S -> NP VP
+NP -> N | Adj N
+N -> "Marie" | "publishing rights manager"
+Adj -> "experienced" | "dedicated"
+VP -> V | V NP
+V -> "works at" | "represents"
+NP -> N | Det N | Adj N
+N -> "Riverbend Publishing" | "Bright Star Books"
+Det -> "a" | "the"

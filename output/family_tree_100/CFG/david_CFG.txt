@@ -1,0 +1,8 @@
+S -> NP VP
+NP -> Name Intro
+Name -> "David"
+Intro -> ", a leading "
+VP -> OccupationDesc LocationDesc ExtraInfo
+OccupationDesc -> "Product/Process Development Scientist"
+LocationDesc -> " at InnovX Labs, an acclaimed research and development firm,"
+ExtraInfo -> " focuses on pioneering sustainable solutions for next-generation technologies."

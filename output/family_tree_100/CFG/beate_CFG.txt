@@ -1,0 +1,7 @@
+S -> NP VP 
+NP -> "Beate" 
+VP -> "is a" Occupation ". She works at" Workplace ". She is known for" Specialty "and" Attribute "." 
+Occupation -> "radiographer" | "diagnostic radiographer" 
+Workplace -> "Starlight Medical Center" | "New Horizons Imaging Clinic" 
+Specialty -> "her expertise in CT scans" | "her proficiency in MRI diagnostics" 
+Attribute -> "her attention to detail" | "her compassionate patient care"

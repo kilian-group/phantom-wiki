@@ -1,0 +1,9 @@
+S -> Name Occupation Party Sentence 
+Name -> "Sophie" 
+Occupation -> "is a Research Officer" 
+Party -> "with the fictional political party Eloquence United" 
+Sentence -> "She has a keen interest in policy development and societal advancement." 
+S -> Name RoleDetail Affiliation AdditionalInfo 
+RoleDetail -> "serves as a dedicated Research Officer" 
+Affiliation -> "for the innovative party of Coalition of Progress" 
+AdditionalInfo -> "Her work focuses on innovative solutions for today's challenges."

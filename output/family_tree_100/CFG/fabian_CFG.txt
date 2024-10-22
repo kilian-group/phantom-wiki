@@ -1,0 +1,6 @@
+S -> Name Occupation Agency Location Expertise 
+Name -> "Fabian Fitzgerald"
+Occupation -> "is a rural practice surveyor"
+Agency -> "who works with the acclaimed firm Greenfields Terrain Solutions"
+Location -> "and operates predominantly in the scenic landscapes of Northern Sky County"
+Expertise -> "with expertise in agricultural land assessment and advising local farmers."

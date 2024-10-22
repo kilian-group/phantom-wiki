@@ -1,0 +1,12 @@
+S -> Name Occupation Entity Bio
+Name -> "Vanessa"
+Occupation -> "is a Journalist"
+Entity -> "for the popular magazine 'Echoes of Tomorrow'"
+Bio -> ", known for her investigative pieces and in-depth interviews." 
+S -> Name Background Hometown
+Background -> " attended the prestigious Filmore School of Journalism"
+Hometown -> " and was raised in the bustling city of Riverton." 
+S -> Name NotableWorks
+NotableWorks -> " has covered major stories such as 'The Rise of Green Tech' and 'Cyber Ethics in the Modern Age'." 
+S -> Name PersonalDetail
+PersonalDetail -> " lives with her two cats, Whiskers and Tails, and enjoys hiking on weekends."

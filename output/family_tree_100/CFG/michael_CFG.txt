@@ -1,0 +1,11 @@
+bio -> intro details closing 
+intro -> "Michael is a dedicated Teaching Laboratory Technician."
+details -> experience interests location
+experience -> " He has over" years "years of experience in the field."
+years -> "five" | "ten" | "fifteen"
+interests -> " In his spare time, he enjoys" hobby "."
+hobby -> "exploring the art of painting" | "reading historical fiction novels" | "mountain biking adventures" 
+location -> city ", " country "."
+city -> "Midville" | "Springtown" | "Lakeview"
+country -> "Freedonia" | "Elbonia" | "Westeros" 
+closing -> " Michael is committed to providing exceptional support in the laboratory, ensuring a safe and productive learning environment for all students."

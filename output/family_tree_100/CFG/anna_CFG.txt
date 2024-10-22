@@ -1,0 +1,9 @@
+S -> NP VP 
+NP -> Det N | Det N PP
+VP -> V NP | V NP PP 
+Det -> "Anna"
+N -> "Sales promotion account executive" | "employee" | "individual"
+V -> "is" | "works as" | "serves as"
+PP -> "for" NP
+NP -> Det N | N 
+N -> "Spectra Ventures" | "TechCorp" | "Brand Solutions"
