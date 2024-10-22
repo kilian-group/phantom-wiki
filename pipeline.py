@@ -14,6 +14,8 @@ from argparse import ArgumentParser
 import os
 import subprocess
 
+from pl_to_article.pl_to_article import generate_article_with_retries
+
 parser = ArgumentParser()
 parser.add_argument("--seed", '-s', type=str, 
                     help="Global seed for reproducibility")
@@ -21,8 +23,10 @@ parser.add_argument("--output_path", '-op', type=str, default="out",
                     help="Output file path")
 parser.add_argument("--skip_cfg", '-sc', action="store_true",
                     help="Skip CFG generation")
+parser.add_argument("--cfg_dir", '-cd', type=str, default=None,
+                    help="Path to the CFG directory if not generating new CFGs")
 parser.add_argument("--skip_family_tree_gen", '-sc', action="store_true",
-                    help="Skip CFG generation")
+                    help="Skip family tree generation")
 parser.add_argument("--family_tree_data_gen_path", '-ftdgp', type=str, default='./run-data-gen.sh'
                     "Path to the family tree data generation repo root")
 
@@ -47,11 +51,22 @@ if not args.skip_family_tree_gen:
 
 # Prolog -> Table
 
-# Table -> Article
 
-# Run CFG gen
+# Table -> family article
 
-# CFG -> 
+# Prolog -> article 
+pl_to_article_executable = os.path.join("pl_to_article", "pl_to_article.py")
+
+
+    
+
+
+        
+
+    
+
+
+
 
 """
 TODO: Question generation pipeline

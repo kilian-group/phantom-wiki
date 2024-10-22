@@ -8,8 +8,9 @@ from nltk import CFG
 CFG_prompt_template = """
 write me a CFG using arrow notation to generate a bio for {} whose occupation is {},  You have to follow the following rules: 
 1. use only fictional names and entity names 
-2. use the arrow notation 
-3. ONLY OUTPUT THE CFG 
+2. DO NOT include family information
+3. use the arrow notation 
+4. ONLY OUTPUT THE CFG 
 begin your response."""
 
 def remove_brackets(text):
@@ -77,11 +78,18 @@ def generate_sentence(grammar, production=None):
         chosen_prod = random.choice(grammar.productions(lhs=production))
         return ' '.join(generate_sentence(grammar, prod) for prod in chosen_prod.rhs())
     
-def generate_article_with_retries(person, job, max_attempts=100):
+def generate_article_with_retries(person, job, 
+                                  # if using existing CFG, pass the path to
+                                  CFG_file: str=None,
+                                  max_attempts=100):
     for attempt in range(max_attempts):
         try:
             # Get a new CFG and attempt to generate an article
-            raw_text = get_CFG(person, job)  # Each time we get a potentially different CFG
+            if CFG_file is None:
+                raw_text = get_CFG(person, job)  # Each time we get a potentially different CFG
+            else:
+                with open(CFG_file, "r") as file:
+                    raw_text = file.read()
             processed_text = formatting_raw_input(raw_text)
             grammar = CFG.fromstring(processed_text)
             article = generate_sentence(grammar)
