@@ -11,8 +11,8 @@ Set up a virtual environment, clone and navigate to this repository, and run
 ```
 conda create -n dataset
 conda activate dataset
-conda install python=3.10 pandas numpy conda-forge::faker anaconda::sqlalchemy anaconda::nltk conda-forge::openai
-pip install together
+conda install python=3.10 pandas numpy conda-forge::faker anaconda::sqlalchemy anaconda::nltk
+pip install together openai
 pip install pydatalog
 # install SWI-Prolog (on Mac)
 brew install swi-prolog
