@@ -1,0 +1,3 @@
+bio -> "Samuel is a Chartered Public Finance Accountant who works at " company "."
+company -> name " Corporation" | name " Incorporated" | name " LLC"
+name -> "Vertex" | "Summit" | "Pinnacle" | "Crest" | "Evergreen"

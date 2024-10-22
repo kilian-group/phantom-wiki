@@ -1,0 +1,16 @@
+S -> NP VP
+NP -> N | Adj N
+N -> "Nina" | "engineer"
+Adj -> "Biomedical" 
+VP -> Verb Details
+Verb -> "works at" | "specializes in" | "develops"
+Details -> NP2 | NP3 | NP4 
+NP2 -> Adj2 N2
+Adj2 -> "leading" | "innovative"
+N2 -> "Biotech Corp" | "Tech Solutions" 
+NP3 -> N3 N4
+N3 -> "cutting-edge" | "advanced"
+N4 -> "medical technologies" | "healthcare solutions" 
+NP4 -> Adj3 N5
+Adj3 -> "lifesaving" | "pioneering"
+N5 -> "medical devices" | "biomedical innovations"

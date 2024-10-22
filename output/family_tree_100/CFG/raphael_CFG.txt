@@ -1,0 +1,10 @@
+S -> NP VP 
+NP -> 'Raphael' | 'R. Hardwick' | 'Raphael Zane' 
+VP -> VBG PP 
+VBG -> 'is working as' | 'currently operates as' | 'devotes his career to being' 
+PP -> ADJP NP2 
+ADJP -> 'a dedicated' | 'an accomplished' | 'a passionate' 
+NP2 -> 'Publishing Copy Specialist at' EN | 'Editor of Editorial Content for' EN2 | 'Chief Copy Editor with' EN3 
+EN -> 'Emerald Quill Publishing' | 'Golden Scroll Press' | 'Silver Inkwell Media' 
+EN2 -> 'Jade Pen Press' | 'Crimson Bookmark Publications' | 'Azure Quill Media' 
+EN3 -> 'Opal Leaf Literary' | 'Violet Torch Publishers' | 'Purple Sage Imprints'

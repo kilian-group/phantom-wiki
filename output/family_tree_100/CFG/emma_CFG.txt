@@ -1,0 +1,13 @@
+start -> introduction details conclusion 
+introduction -> greeting name_info 
+greeting -> "Meet" | "Introducing" | "Say hello to" 
+name_info -> firstname lastname 
+firstname -> "Emma" 
+lastname -> "Greenleaf" | "Herbane" | "Willowroot" 
+details -> occupation experience passion 
+occupation -> "is a renowned Herbalist" | "practices Herbalism professionally" 
+experience -> "with over" years "years of experience" | "who has been in the field for" years "years" 
+years -> "five" | "ten" | "fifteen" 
+passion -> "She is passionate about nature's remedies and helping others find natural healing." | "Emma is committed to exploring the world of botanical sciences to improve health and wellness." | "Her dedication to natural medicine inspires those around her." 
+conclusion -> closing 
+closing -> "Connect with Emma for a journey into the world of herbs." | "Join Emma as she shares her herbal wisdom and expertise." | "Emma's herbal solutions await to nurture your well-being."

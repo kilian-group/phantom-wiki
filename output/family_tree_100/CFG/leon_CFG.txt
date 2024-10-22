@@ -1,0 +1,8 @@
+S -> NAME OCCUPATION DETAILS 
+NAME -> "Leon" 
+OCCUPATION -> "is a renowned Toxicologist" 
+DETAILS -> ". He has been working in the field of toxicology for over a decade and has contributed to various scientific studies and publications." 
+DETAILS -> ". His expertise in toxicology has been recognized by multiple fictional organizations such as the Solaris Institute and the Orion Labs." 
+DETAILS -> ". Leon has a Ph.D. in toxicology from the Nova University and is a member of the Lyra Society of Scientific Research." 
+DETAILS -> ". He has pioneered several innovative methods in toxicological testing, working closely with the fictional organization, HelioTech." 
+DETAILS -> ". Known for his meticulous research, Leon has received numerous awards from the Griffin Foundation for Scientific Excellence."

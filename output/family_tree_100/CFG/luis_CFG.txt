@@ -1,0 +1,7 @@
+Start -> Bio 
+Bio -> Name Introduction Occupation Location Interests 
+Name -> "Luis Diaz" 
+Introduction -> " is a dedicated individual with a passion for travel and customer service." 
+Occupation -> " Luis works as a Holiday Representative" 
+Location -> " at the esteemed travel agency 'Wanderlust Adventures'." 
+Interests -> " In his free time, he enjoys exploring new destinations, engaging with different cultures, and organizing unique experiences for travelers."

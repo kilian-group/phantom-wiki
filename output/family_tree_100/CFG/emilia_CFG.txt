@@ -1,0 +1,7 @@
+Start -> Bio 
+Bio -> Name Occupation Background Accomplishments PersonalDetails 
+Name -> "Emilia Stone" 
+Occupation -> " is an Engineering Geologist at EarthQuest Solutions." 
+Background -> " She graduated with a degree in Geological Engineering from Stellar University, where she developed a strong interest in tectonic activities and rock mechanics." 
+Accomplishments -> " Over her career, Emilia has worked on various high-profile projects, including the assessment of landslide risks for the Lunar Nova infrastructure project and the stability analysis of the Titan Tunnel." 
+PersonalDetails -> " In her leisure time, Emilia enjoys hiking, often exploring the ancient trails of the Terra Shade Mountains. She is also an avid painter, merging her passion for geology and art through vibrant landscape paintings."

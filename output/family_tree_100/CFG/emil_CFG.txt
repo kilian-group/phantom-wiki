@@ -1,0 +1,9 @@
+S -> NP VP Period 
+NP -> Name
+NP -> Name ", an" Occupation 
+VP -> "works at" CompanyName "specializing in" SpecializationArea 
+Name -> "Emil"
+Occupation -> "IT consultant"
+CompanyName -> "Tech99 Solutions" | "CyberWave Dynamics" | "DigitalVerse Innovations"
+SpecializationArea -> "cloud computing" | "network security" | "data analytics" | "system integration" 
+Period -> "."

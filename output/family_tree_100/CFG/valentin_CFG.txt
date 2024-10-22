@@ -1,0 +1,5 @@
+S -> NameOccupationBio 
+NameOccupationBio -> NameIntro OccupationSentence AgeSentence 
+NameIntro -> "Valentin is a fictional character. " 
+OccupationSentence -> "He works as a Nurse. " 
+AgeSentence -> "Valentin is an adult."

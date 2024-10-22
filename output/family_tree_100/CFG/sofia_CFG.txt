@@ -1,0 +1,12 @@
+bio -> sentence1 sentence2 sentence3 
+sentence1 -> intro name
+intro -> "Meet" | "Introducing" | "Presenting"
+name -> "Sofia" 
+sentence2 -> pronoun occupation specialty
+pronoun -> "She is a" | "Sofia is a"
+occupation -> "Veterinary Surgeon" | "vet"
+specialty -> " who specializes in exotic animals." | " with a focus on small animals." 
+sentence3 -> hobby_intro hobby free_time_ending
+hobby_intro -> "In her free time," | "Outside of work,"
+hobby -> "she enjoys hiking and painting." | "Sofia loves reading and gardening."
+free_time_ending -> "" | " She also volunteers at the local animal shelter."

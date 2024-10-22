@@ -1,0 +1,4 @@
+S -> NAME OCCUPATION COMPANY 
+NAME -> "Jonas McElroy" | "Jonas Zimmerman" | "Jonas Clarke" 
+OCCUPATION -> "is a seasoned Company Secretary" | "works diligently as the Company Secretary" | "serves as the proficient Company Secretary" 
+COMPANY -> "at TechCorp Solutions, a pioneering firm in the AI industry." | "for Quantum Innovations, a leading company in renewable energy." | "with Stellar Enterprises, known for its revolutionary tech products."

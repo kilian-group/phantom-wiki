@@ -1,0 +1,6 @@
+S -> Name Intro Occupation Company Location 
+Name -> "Angelina Smith" | "Angelina K. Brown" | "Angelina L. White" 
+Intro -> " is a seasoned professional in the financial markets." | " has extensive experience in trading and investments." 
+Occupation -> " As a Futures Trader," | " In her role as a Futures Trader," 
+Company -> " she works at Meridian Capital." | " she is employed by Quantum Trading Solutions." 
+Location -> " She is based in New York." | " She operates out of London."

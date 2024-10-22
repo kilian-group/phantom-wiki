@@ -1,0 +1,9 @@
+bio -> intro education career hobbies 
+intro -> "Meet Amelie, a dedicated and innovative professional with a passion for engineering." 
+education -> degree university 
+degree -> "She holds a degree in Chemical Engineering from"
+university -> " Acme University." 
+career -> career_start current_role 
+career_start -> "Amelie began her career in the energy sector and quickly discovered her niche."
+current_role -> " She is currently a lead Petroleum Engineer at NexGen Fuels, where she drives sustainable energy solutions." 
+hobbies -> " In her free time, Amelie enjoys hiking, painting, and experimenting with renewable energy projects."

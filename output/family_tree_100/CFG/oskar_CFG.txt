@@ -1,0 +1,5 @@
+S -> INTRO OCC BACK STORY
+INTRO -> "Meet Oskar Cloverton,"
+OCC -> "a renowned clinical embryologist."
+BACK -> "Always fascinated by the wonders of life, Oskar pursued his passion and excelled in his studies at the Elmsworth Institute of Biological Sciences," | "With a deep-rooted curiosity about life's beginnings, Oskar chose to specialize in embryology while attending the Verduin Academy of Science,"
+STORY -> "leading him to become a pioneer in his field." | "where he now makes groundbreaking strides in reproductive medicine."

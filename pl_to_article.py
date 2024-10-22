@@ -1,9 +1,6 @@
 import os
 import argparse
-import random
-import openai
 from faker import Faker
-from nltk import CFG
 
 from CFG_utils import * 
 
@@ -29,7 +26,6 @@ if __name__ == "__main__":
     with open(args.pl_file, "r") as f:
         lines = f.readlines()
         for line in lines:
-            import pdb; pdb.set_trace()
             if line.startswith("female") or line.startswith("male"):
                 person = match_name(line)
                 job = fake.job()
