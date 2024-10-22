@@ -10,7 +10,7 @@ female(claudia).
 female(elena).
 female(ella).
 female(emilia).
-female(emilia2).
+female(emila).
 female(emily).
 female(emma).
 female(gertrude).
@@ -136,7 +136,7 @@ parent(emilia, maximilian).
 parent(emilia, patrick).
 parent(emilia, valentin).
 parent(fabian, claudia).
-parent(felix, emilia2).
+parent(felix, emila).
 parent(felix, philipp).
 parent(hannah, olivia).
 parent(helena, gertrude).
@@ -167,7 +167,7 @@ parent(lea, claudia).
 parent(lena, laura).
 parent(lena, theodor).
 parent(leo, olivia).
-parent(leonie, emilia2).
+parent(leonie, emila).
 parent(leonie, philipp).
 parent(lorenz, david).
 parent(luis, leo).
