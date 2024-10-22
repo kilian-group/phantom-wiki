@@ -1,7 +1,6 @@
 female(alina).
 female(amelie).
 female(anastasia).
-female(anastasia2).
 female(angelina).
 female(anna).
 female(beate).
@@ -11,13 +10,12 @@ female(claudia).
 female(elena).
 female(ella).
 female(emilia).
+female(emilia2).
 female(emily).
-female(emily2).
 female(emma).
 female(gertrude).
 female(hannah).
 female(helena).
-female(helena2).
 female(helga).
 female(isabella).
 female(johanna).
@@ -28,7 +26,6 @@ female(lara).
 female(larissa).
 female(laura).
 female(lea).
-female(lea2).
 female(lena).
 female(leonie).
 female(lina).
@@ -40,17 +37,14 @@ female(marie).
 female(marlene).
 female(mia).
 female(natalie).
-female(natalie2).
 female(nina).
 female(nora).
 female(olivia).
 female(paula).
 female(sarah).
-female(sarah2).
 female(selina).
 female(sofia).
 female(sophie).
-female(sophie2).
 female(valentina).
 female(valerie).
 female(vanessa).
@@ -75,14 +69,19 @@ male(jan).
 male(jonas).
 male(jonathan).
 male(julian).
+male(konstantin).
 male(leo).
+male(leon).
 male(lorenz).
 male(luca).
+male(luis).
 male(lukas).
 male(marcel).
+male(marko).
 male(matthias).
 male(maximilian).
 male(michael).
+male(moritz).
 male(nico).
 male(noah).
 male(oliver).
@@ -95,141 +94,147 @@ male(rene).
 male(samuel).
 male(sebastian).
 male(simon).
-male(stefan).
+male(theodor).
 male(thomas).
 male(tobias).
 male(valentin).
 male(vincent).
 
-parent(adam, jonas).
-parent(adrian, luisa).
-parent(adrian, olivia).
-parent(alexander, selina).
-parent(alina, fabian).
-parent(alina, lea2).
-parent(amelie, samuel).
-parent(anastasia, hannah).
+parent(adrian, moritz).
+parent(alexander, alina).
+parent(alexander, felix).
+parent(alexander, julia).
+parent(alexander, lina).
+parent(alexander, magdalena).
+parent(amelie, leo).
+parent(amelie, noah).
 parent(anastasia, lukas).
-parent(anastasia, maria).
-parent(anastasia, stefan).
-parent(angelina, lina).
-parent(angelina, marlene).
-parent(angelina, maximilian).
-parent(angelina, natalie).
-parent(beate, jonas).
-parent(benjamin, angelina).
-parent(benjamin, helena).
-parent(benjamin, vincent).
-parent(charlotte, emilia).
-parent(christian, lena).
-parent(christian, victoria).
-parent(daniel, samuel).
-parent(david, matthias).
-parent(dominik, christian).
-parent(dominik, larissa).
-parent(dominik, leonie).
-parent(dominik, philipp).
-parent(dominik, rene).
-parent(elena, nora).
-parent(elias, karin).
-parent(ella, emil).
-parent(florian, hannah).
-parent(florian, lukas).
-parent(florian, maria).
-parent(florian, stefan).
-parent(gabriel, sophie).
-parent(hannah, benjamin).
-parent(hannah, dominik).
-parent(hannah, julia).
-parent(hannah, lorenz).
-parent(helena, claudia).
-parent(helena, katharina).
-parent(helena, valentin).
-parent(helena, valerie).
-parent(helena2, matthias).
-parent(isabella, luisa).
-parent(isabella, olivia).
-parent(jakob, felix).
-parent(jakob, noah).
-parent(jakob, sofia).
-parent(jan, anna).
-parent(johanna, felix).
-parent(johanna, noah).
-parent(johanna, sofia).
-parent(jonas, marie).
-parent(jonas, oskar).
-parent(jonathan, charlotte).
-parent(jonathan, lara).
-parent(jonathan, oliver).
-parent(jonathan, paul).
-parent(jonathan, tobias).
-parent(julia, helga).
-parent(julian, beate).
-parent(karin, vanessa).
+parent(angelina, moritz).
+parent(benjamin, gertrude).
+parent(benjamin, lorenz).
+parent(benjamin, luca).
+parent(clara, helena).
+parent(clara, johanna).
+parent(clara, jonathan).
+parent(clara, katharina).
+parent(clara, lena).
+parent(daniel, lisa).
+parent(dominik, emily).
+parent(elena, charlotte).
+parent(elena, luis).
+parent(elena, oliver).
+parent(elena, paula).
+parent(elias, clara).
+parent(ella, sebastian).
+parent(emil, adam).
+parent(emil, jan).
+parent(emilia, dominik).
+parent(emilia, isabella).
+parent(emilia, leon).
+parent(emilia, marie).
+parent(emilia, maximilian).
+parent(emilia, patrick).
+parent(emilia, valentin).
+parent(fabian, claudia).
+parent(felix, emilia2).
+parent(felix, philipp).
+parent(hannah, olivia).
+parent(helena, gertrude).
+parent(helena, lorenz).
+parent(helena, luca).
+parent(helga, david).
+parent(jakob, laura).
+parent(jakob, theodor).
+parent(jonas, florian).
+parent(jonathan, dominik).
+parent(jonathan, isabella).
+parent(jonathan, leon).
+parent(jonathan, marie).
+parent(jonathan, maximilian).
+parent(jonathan, patrick).
+parent(jonathan, valentin).
+parent(julia, nico).
+parent(julia, sofia).
+parent(julian, gabriel).
+parent(karin, gabriel).
 parent(katharina, anna).
-parent(laura, lena).
-parent(laura, victoria).
-parent(lea, ella).
-parent(lea, laura).
-parent(leo, valentina).
-parent(lisa, jonathan).
-parent(lorenz, emily2).
-parent(luca, clara).
-parent(luca, emily).
-parent(luca, paula).
-parent(luisa, clara).
-parent(luisa, emily).
-parent(luisa, paula).
-parent(lukas, nora).
-parent(magdalena, emma).
-parent(marcel, claudia).
-parent(marcel, katharina).
-parent(marcel, valentin).
-parent(marcel, valerie).
-parent(marie, christian).
-parent(marie, larissa).
-parent(marie, leonie).
-parent(marie, philipp).
-parent(marie, rene).
-parent(marlene, charlotte).
-parent(marlene, lara).
-parent(marlene, oliver).
-parent(marlene, paul).
-parent(marlene, tobias).
-parent(matthias, emil).
-parent(mia, patrick).
-parent(michael, anastasia2).
-parent(michael, simon).
-parent(natalie, anastasia2).
-parent(natalie, simon).
-parent(natalie2, emily2).
-parent(nico, helga).
-parent(nina, marie).
-parent(nina, oskar).
-parent(noah, benjamin).
-parent(noah, dominik).
-parent(noah, julia).
-parent(noah, lorenz).
-parent(nora, selina).
-parent(oskar, emma).
-parent(patrick, lina).
-parent(patrick, marlene).
-parent(patrick, maximilian).
-parent(patrick, natalie).
-parent(paula, angelina).
-parent(paula, helena).
-parent(paula, vincent).
-parent(philipp, vanessa).
-parent(raphael, jonathan).
-parent(samuel, patrick).
-parent(sarah, gertrude).
-parent(sarah2, karin).
-parent(sebastian, ella).
-parent(sebastian, laura).
-parent(sofia, sophie).
-parent(sophie2, beate).
-parent(stefan, fabian).
-parent(stefan, lea2).
-parent(thomas, emilia).
-parent(victoria, valentina).
-parent(vincent, gertrude).
+parent(katharina, marlene).
+parent(lara, fabian).
+parent(lara, nina).
+parent(lara, simon).
+parent(larissa, emily).
+parent(lea, claudia).
+parent(lena, laura).
+parent(lena, theodor).
+parent(leo, olivia).
+parent(leonie, emilia2).
+parent(leonie, philipp).
+parent(lorenz, david).
+parent(luis, leo).
+parent(luis, noah).
+parent(lukas, fabian).
+parent(lukas, nina).
+parent(lukas, simon).
+parent(magdalena, christian).
+parent(magdalena, elena).
+parent(magdalena, lara).
+parent(marcel, konstantin).
+parent(marcel, nora).
+parent(maria, lisa).
+parent(marie, adam).
+parent(marie, jan).
+parent(marko, nico).
+parent(marko, sofia).
+parent(marlene, florian).
+parent(matthias, thomas).
+parent(maximilian, sebastian).
+parent(michael, lukas).
+parent(natalie, beate).
+parent(natalie, jonas).
+parent(natalie, luisa).
+parent(natalie, tobias).
+parent(nina, thomas).
+parent(oskar, anna).
+parent(oskar, marlene).
+parent(patrick, angelina).
+parent(paul, adrian).
+parent(raphael, beate).
+parent(raphael, jonas).
+parent(raphael, luisa).
+parent(raphael, tobias).
+parent(rene, christian).
+parent(rene, elena).
+parent(rene, lara).
+parent(samuel, charlotte).
+parent(samuel, luis).
+parent(samuel, oliver).
+parent(samuel, paula).
+parent(sarah, clara).
+parent(selina, daniel).
+parent(selina, emma).
+parent(selina, karin).
+parent(selina, mia).
+parent(selina, sophie).
+parent(selina, valentina).
+parent(selina, vincent).
+parent(simon, helena).
+parent(simon, johanna).
+parent(simon, jonathan).
+parent(simon, katharina).
+parent(simon, lena).
+parent(valentin, daniel).
+parent(valentin, emma).
+parent(valentin, karin).
+parent(valentin, mia).
+parent(valentin, sophie).
+parent(valentin, valentina).
+parent(valentin, vincent).
+parent(valentina, konstantin).
+parent(valentina, nora).
+parent(valerie, alina).
+parent(valerie, felix).
+parent(valerie, julia).
+parent(valerie, lina).
+parent(valerie, magdalena).
+parent(vanessa, angelina).
+parent(victoria, adrian).
