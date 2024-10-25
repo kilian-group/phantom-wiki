@@ -445,7 +445,7 @@ for paper in papers:
     data_links = re.findall(r"\[\[data\]\((.*?)\)\]", paper)
 
     # extract the abstract
-    abstract = re.findall(r"<details><summary><b>Abstract</b></summary>(.*?)</details>", paper)
+    abstract = re.findall(r"<details><summary><b>Abstract</b></summary>(.*?)</details>", paper, re.DOTALL)
     # extract any notes starting with >
     note = re.findall(r"> (.*)", paper)
     # append the information
@@ -459,7 +459,7 @@ for paper in papers:
         "code": code_links[0] if code_links else "",
         "website": website_links[0] if website_links else "",
         "data": data_links[0] if data_links else "",
-        "abstract": abstract[0] if abstract else "",
+        "abstract": abstract[0].strip() if abstract else "",
         "notes": note[0] if note else "",
     })
 
