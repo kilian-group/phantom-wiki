@@ -13,6 +13,13 @@ write me a CFG using arrow notation to generate a bio for {} whose occupation is
 4. ONLY OUTPUT THE CFG 
 begin your response."""
 
+CFG2QAs_TEMPLATE = """Suppose I have the following CFG: 
+{}
+Generate the questions you can ask about some non-terminals and output in a list in the following format : 
+nonterminal: question 
+in different lines"""
+
+
 def remove_brackets(text):
     cleaned_text = re.sub(r'<(.*?)>', r'\1', text)
     return cleaned_text
@@ -130,12 +137,15 @@ def generate_article_with_retries(person, job,
                 print(f"Attempt {attempt + 1}: Error generating article - {e}")
     return "Failed to generate an article after multiple attempts."
 
-def get_CFG(person, job):
-        CFG_prompt = CFG_prompt_template.format(person, job)
+def get_response(person, job, cfg_str):
+        if cfg_str is None:
+            prompt = CFG_prompt_template.format(person, job)
+        else:
+            prompt = CFG2QAs_TEMPLATE.format(cfg_str)
         response =openai.chat.completions.create(
             model="gpt-4o",
             messages=[
-                {"role": "system", "content": CFG_prompt}
+                {"role": "system", "content": prompt}
             ]
         )
         raw_text = response.choices[0].message.content
@@ -152,3 +162,17 @@ def formatting_raw_input(raw_text):
         processed_text = one_line_cfg(processed_text)
 
         return processed_text
+
+def parse_question_list(raw_text):
+    # Split the raw text into lines
+    lines = raw_text.strip().split("\n")
+    # Initialize an empty dictionary to store the questions
+    questions = {}
+    # Iterate over the lines to extract the questions
+    for line in lines:
+        if line.strip().endswith("?"):
+            # Split the line into the non-terminal and the question
+            nonterminal, question = line.split(":")
+            # Store the non-terminal and question in the dictionary
+            questions[nonterminal.strip()] = question.strip()
+    return questions
