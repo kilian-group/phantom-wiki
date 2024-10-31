@@ -51,6 +51,7 @@ def generate_code_from_parsed_cfg(grammar, questions):
     # Initialize the generated code as a list of strings for easier formatting
     code = [
         "import random\n\n",
+        "import textwrap\n\n",
         "# Define possible choices for each CFG terminal\n"
     ]
 
@@ -88,14 +89,15 @@ def generate_code_from_parsed_cfg(grammar, questions):
     code.append("    components = rule.split()\n")
     code.append("    expanded = []\n")
     code.append("    for component in components:\n")
-    code.append("        if component.lower() + '_choices' in globals():\n")
-    code.append("            expanded.append(expand_rule(random.choice(globals()[component.lower() + '_choices'])))\n")
+    code.append("        if component.lower() in globals():\n")
+    code.append("            expanded.append(expand_rule(globals()[component.lower()]))\n")
     code.append("        else:\n")
     code.append("            expanded.append(component.strip('\"'))\n")
     code.append("    return ' '.join(expanded)\n\n")
 
-    # Build the article from the start symbol S
-    code.append("article = expand_rule(random.choice(s_choices))\n\n")
+    # Build the article from the start symbol of the grammar
+    start_symbol = str(grammar.start()) + '_choices'
+    code.append(f"article = expand_rule(random.choice({start_symbol}))\n\n")
 
     # Generate answers to each question based on selected values
     code.append("# Generate answers to each question based on selected values\n")
@@ -113,11 +115,13 @@ def generate_code_from_parsed_cfg(grammar, questions):
 
     # code.append("  for question, answer in answers.items():\n")
     # code.append("    print(f\"{question}: {answer}\")\n")
-
+    file_name = f"{person}_questions.txt"
     code.append("# Write to file\n")
-    code.append("with open(file_name, \"a\") as f:\n")
-    code.append("  f.write(\"Article:\\n" + 'article' + "\\n\\n\")\n")
-    code.append("  f.write(\"Article:\\n" + 'article' + "\\n\\n\")\n")
+    code.append(f"with open(\"{file_name}\", \"w\") as f:\n")
+    # code.append("  f.write(\"Article:\\n" + 'article' + "\\n\\n\")\n")
+    # code.append("  f.write(\"Article:\\n" + 'article' + "\\n\\n\")\n")
+    #   f.write("Article:\n" + article + "\n\n")
+    code.append("  f.write(\"Article:\\n\"" + ' + textwrap.fill(article,width=80) + ' + "\"\\n\\n\")\n")
     code.append("  for question, answer in answers.items():\n")
     code.append("    f.write(f\"{question}: {answer}\\n\")\n")
 
@@ -133,7 +137,7 @@ generated_code = generate_code_from_parsed_cfg(grammar, questions)
 
 # Write the generated code to a Python file
 os.makedirs("output/cfg2qa", exist_ok=True)
-file_name = f"output/cfg2qa/{person}.py"
+file_name = f"output/cfg2qa/{person}_test.py"
 with open(file_name, "w") as file:
     file.write(generated_code)
 print(f"Generated Python code saved to: {file_name}")
