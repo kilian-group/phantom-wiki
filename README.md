@@ -1,13 +1,14 @@
 # Phantom Wiki
 
-> [!CAUTION]
+> \[!CAUTION\]
 > This is a **work-in-progress** project on automatic language model dataset generation.
-> 
+>
 > Use at your own risk.
 
 ## Setup
 
-Set up a virtual environment, clone and navigate to this repository, and run 
+Set up a virtual environment, clone and navigate to this repository, and run
+
 ```
 conda create -n dataset
 conda activate dataset
@@ -20,13 +21,16 @@ brew install swi-prolog
 # install Janus-SWI (Python interface to SWI-Prolog)
 pip install janus-swi
 ```
+
 <!-- pip install -e . -->
+
 <!-- to install the dependencies and command line scripts. -->
 
 # TogetherAI
 
 1. Register for an account at https://api.together.ai
 2. Set your TogetherAI API key:
+
 ```
 conda env config vars set TOGETHER_API_KEY=xxxxx
 ```
