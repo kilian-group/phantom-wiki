@@ -14,13 +14,18 @@
 #     name: python3
 # ---
 
+# TODO work out imports
+# import phantom_wiki.family.... 
+
 # %%
 import janus_swi as janus
 
 # %%
+# TODO: refactor
 janus.query_once("consult('../../tests/family_tree.pl')")
 janus.query_once("consult('./family/rules.pl')")
 
+# TODO: assert statements
 # %%
 results = janus.query_once("mother(elias, helga)")
 print(results) # False
@@ -38,3 +43,5 @@ print(results) # False
 # %%
 results = janus.query_once("son(elias, X)")
 print(results) # {'truth': True, 'X': 'jan'}
+
+# TODO add test_family.txt tests
