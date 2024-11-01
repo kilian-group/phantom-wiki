@@ -1,5 +1,8 @@
 import pydot
 
+# TODO documentation (docstrings)
+# TODO typing hints
+# TODO more explanatory method names
 
 # Function to read prolog file to facts
 def prolog_to_facts(file):
