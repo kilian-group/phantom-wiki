@@ -14,9 +14,9 @@ write me a CFG using arrow notation to generate a bio for {} whose occupation is
 4. ONLY OUTPUT THE CFG 
 begin your response."""
 
-CFG2QAs_TEMPLATE = """Suppose I have the following CFG: 
+CFG2QAs_TEMPLATE = """For the following CFG: 
 {}
-Generate the questions you can ask about some non-terminals and output in a list in the following format : 
+Suppose you are given an article generated with this CFG, generate concrete questions you can ask about some non-terminals where the answer is one of the choices from the CFG and output in a list in the following format : 
 nonterminal: question 
 in different lines"""
 
