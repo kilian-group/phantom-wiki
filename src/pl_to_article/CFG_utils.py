@@ -1,8 +1,9 @@
 import re
 import textwrap
 import random
-import openai
+# import openai
 from nltk import CFG
+from together import Together
 
 
 CFG_prompt_template = """
@@ -138,18 +139,20 @@ def generate_article_with_retries(person, job,
     return "Failed to generate an article after multiple attempts."
 
 def get_response(person, job, cfg_str):
-        if cfg_str is None:
-            prompt = CFG_prompt_template.format(person, job)
-        else:
-            prompt = CFG2QAs_TEMPLATE.format(cfg_str)
-        response =openai.chat.completions.create(
-            model="gpt-4o",
-            messages=[
-                {"role": "system", "content": prompt}
-            ]
-        )
-        raw_text = response.choices[0].message.content
-        return raw_text
+    # use LLaMA to generate a CFG
+    client = Together()
+    if cfg_str is None:
+        prompt = CFG_prompt_template.format(person, job)
+    else:
+        prompt = CFG2QAs_TEMPLATE.format(cfg_str)
+    response =client.chat.completions.create(
+        model="meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
+        messages=[
+            {"role": "user", "content": prompt}
+        ]
+    )
+    raw_text = response.choices[0].message.content
+    return raw_text
 
 def formatting_raw_input(raw_text):
         # delete the ``` and strip the text
