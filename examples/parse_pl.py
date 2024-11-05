@@ -16,6 +16,7 @@
 
 # %%
 import re
+import janus_swi as janus
 
 # %%
 def parse(line):
