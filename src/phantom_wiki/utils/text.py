@@ -1,8 +1,5 @@
-import random
 import re
 import textwrap
-
-from nltk import CFG
 
 
 def remove_brackets(text):
