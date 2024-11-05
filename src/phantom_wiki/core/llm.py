@@ -21,11 +21,17 @@ Each nonterminal and question pair should appear on a new line.
 """
 
 
-def generate_cfg_openai(person, job, cfg_str):
-    if cfg_str is None:
-        prompt = CFG_PROMPT_TEMPLATE.format(person, job)
-    else:
-        prompt = CFG2QAs_TEMPLATE.format(cfg_str)
+def generate_cfg_openai(person, job):
+    prompt = CFG2QAs_TEMPLATE.format(cfg_str)
+    response = openai.chat.completions.create(
+        model="gpt-4o", messages=[{"role": "system", "content": prompt}]
+    )
+    raw_text = response.choices[0].message.content
+    return raw_text
+
+
+def geneate_qa_openai(grammar: str) -> str:
+    prompt = CFG2QAs_TEMPLATE.format(grammar)
     response = openai.chat.completions.create(
         model="gpt-4o", messages=[{"role": "system", "content": prompt}]
     )
