@@ -1,23 +1,7 @@
 import re
 import textwrap
 import random
-import openai
 from nltk import CFG
-
-
-CFG_prompt_template = """
-write me a CFG using arrow notation to generate a bio for {} whose occupation is {},  You have to follow the following rules: 
-1. use only fictional names and entity names 
-2. DO NOT include family information
-3. use the arrow notation 
-4. ONLY OUTPUT THE CFG 
-begin your response."""
-
-CFG2QAs_TEMPLATE = """Suppose I have the following CFG: 
-{}
-Generate the questions you can ask about some non-terminals and output in a list in the following format : 
-nonterminal: question 
-in different lines"""
 
 
 def remove_brackets(text):
@@ -137,24 +121,12 @@ def generate_article_with_retries(person, job,
                 print(f"Attempt {attempt + 1}: Error generating article - {e}")
     return "Failed to generate an article after multiple attempts."
 
-def get_response(person, job, cfg_str):
-        if cfg_str is None:
-            prompt = CFG_prompt_template.format(person, job)
-        else:
-            prompt = CFG2QAs_TEMPLATE.format(cfg_str)
-        response =openai.chat.completions.create(
-            model="gpt-4o",
-            messages=[
-                {"role": "system", "content": prompt}
-            ]
-        )
-        raw_text = response.choices[0].message.content
-        return raw_text
+
 
 def formatting_raw_input(raw_text):
         # delete the ``` and strip the text
         processed_text = raw_text.replace("```", "").strip()
-        # sustitue '<>' with '' using regex
+        # substitute '<>' with '' using regex
         processed_text = remove_brackets(processed_text)
         # substitute '::=' with '->'
         processed_text = substitute_arrow(processed_text)
@@ -176,3 +148,5 @@ def parse_question_list(raw_text):
             # Store the non-terminal and question in the dictionary
             questions[nonterminal.strip()] = question.strip()
     return questions
+
+
