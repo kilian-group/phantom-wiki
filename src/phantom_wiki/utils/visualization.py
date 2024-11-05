@@ -4,6 +4,7 @@ import pydot
 # TODO typing hints
 # TODO more explanatory method names
 
+
 # Function to read prolog file to facts
 def prolog_to_facts(file):
     prolog_facts = []

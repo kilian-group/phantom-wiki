@@ -1,7 +1,8 @@
-import random
 import os
+
 from nltk import CFG
-from CFG_utils import * 
+
+from phantom_wiki.utils.cfg import *
 
 # Define the CFG as a string and parse it using nltk.CFG.fromstring
 # cfg_string = """
@@ -23,7 +24,7 @@ from CFG_utils import *
 # """
 
 person = "Anastasia"
-with open(f"output/CFG/{person}_CFG.txt", "r") as file:
+with open(f"output/CFG/{person}_CFG.txt") as file:
     cfg_string = file.read()
 
 # Parse the CFG
@@ -33,6 +34,7 @@ grammar = CFG.fromstring(cfg_string)
 # import pdb; pdb.set_trace()
 raw_questions = get_response(None, None, cfg_string)
 questions = parse_question_list(raw_questions)
+
 
 # Questions associated with each CFG non-terminal
 # questions = {
@@ -49,11 +51,7 @@ questions = parse_question_list(raw_questions)
 # Generate Python code from parsed CFG
 def generate_code_from_parsed_cfg(grammar, questions):
     # Initialize the generated code as a list of strings for easier formatting
-    code = [
-        "import random\n\n",
-        "import textwrap\n\n",
-        "# Define possible choices for each CFG terminal\n"
-    ]
+    code = ["import random\n\n", "import textwrap\n\n", "# Define possible choices for each CFG terminal\n"]
 
     # Create a dictionary to collect production rules by their LHS
     rules = {}
@@ -67,14 +65,14 @@ def generate_code_from_parsed_cfg(grammar, questions):
     # Generate Python lists for each non-terminal's choices
     for lhs, rhss in rules.items():
         var_name = lhs.lower() + "_choices"
-        formatted_rhss = [f"\"{rhs}\"" if '"' not in rhs else rhs for rhs in rhss]
+        formatted_rhss = [f'"{rhs}"' if '"' not in rhs else rhs for rhs in rhss]
         code.append(f"{var_name} = [{', '.join(formatted_rhss)}]\n")
 
     # Add questions as a dictionary
     code.append("\n# Define questions associated with each CFG terminal\n")
     code.append("questions = {\n")
     for key, question in questions.items():
-        code.append(f"    \"{key}\": \"{question}\",\n")
+        code.append(f'    "{key}": "{question}",\n')
     code.append("}\n\n")
 
     # Randomly generate values for each CFG terminal
@@ -96,7 +94,7 @@ def generate_code_from_parsed_cfg(grammar, questions):
     code.append("    return ' '.join(expanded)\n\n")
 
     # Build the article from the start symbol of the grammar
-    start_symbol = str(grammar.start()) + '_choices'
+    start_symbol = str(grammar.start()) + "_choices"
     code.append(f"article = expand_rule(random.choice({start_symbol}))\n\n")
 
     # Generate answers to each question based on selected values
@@ -104,7 +102,7 @@ def generate_code_from_parsed_cfg(grammar, questions):
     code.append("answers = {\n")
     for key, question in questions.items():
         var_name = key.lower().replace(" (albums and singles)", "")
-        code.append(f"    questions[\"{key}\"]: {var_name},\n")
+        code.append(f'    questions["{key}"]: {var_name},\n')
     code.append("}\n\n")
 
     # Output the article and answers
@@ -117,18 +115,16 @@ def generate_code_from_parsed_cfg(grammar, questions):
     # code.append("    print(f\"{question}: {answer}\")\n")
     file_name = f"{person}_questions.txt"
     code.append("# Write to file\n")
-    code.append(f"with open(\"{file_name}\", \"w\") as f:\n")
+    code.append(f'with open("{file_name}", "w") as f:\n')
     # code.append("  f.write(\"Article:\\n" + 'article' + "\\n\\n\")\n")
     # code.append("  f.write(\"Article:\\n" + 'article' + "\\n\\n\")\n")
     #   f.write("Article:\n" + article + "\n\n")
-    code.append("  f.write(\"Article:\\n\"" + ' + textwrap.fill(article,width=80) + ' + "\"\\n\\n\")\n")
+    code.append('  f.write("Article:\\n"' + " + textwrap.fill(article,width=80) + " + '"\\n\\n")\n')
     code.append("  for question, answer in answers.items():\n")
-    code.append("    f.write(f\"{question}: {answer}\\n\")\n")
+    code.append('    f.write(f"{question}: {answer}\\n")\n')
 
     # Return the entire code as a string
     return "".join(code)
-
-
 
 
 # Generate the Python code

@@ -2,6 +2,7 @@ import os
 
 # TODO: typing
 
+
 def read_def_file(file_path):
     """Given a path to a vocabulary file, return vocabulary dictionary.
 
