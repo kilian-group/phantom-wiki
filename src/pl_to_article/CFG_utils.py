@@ -126,8 +126,8 @@ def generate_article_with_retries(person, job,
             try:
                 # Get a new CFG and attempt to generate an article
                 # Each time we get a potentially different CFG
-                CFG_file = get_CFG(person, job)
-                processed_text = formatting_raw_input(raw_text)
+                CFG_file = get_response(person, job, cfg_str=None)
+                processed_text = formatting_raw_input(CFG_file)
                 grammar = CFG.fromstring(processed_text)
                 article = generate_sentence(grammar)
                 if article:  # Check if the article is non-empty
