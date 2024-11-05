@@ -33,7 +33,7 @@ def get_arguments():
     parser.add_argument("--cfg_dir", '-cd', type=str, default=None,
                     help="Path to the CFG directory if not generating new CFGs")
     parser.add_argument("--output_folder", type=str, default= 'output', help="Path to the output folder")
-    parser.add_argument("--rules", type=str, default='../phantom_wiki/family/rules.pl', help="Path to the rules file")
+    parser.add_argument("--rules", type=list, default=['../../tests/base_rules.pl', '../../tests/derived_rules.pl'], help="list of Path to the rules file")
     args, _ =  parser.parse_known_args() # this is useful when running the script from a notebook so that we use the default values
     return args
 
@@ -44,11 +44,12 @@ from grouped_relations import ppl_2_ppl
 # , ppl_2_socialconstructs, ppl_2_objs, things
 
 # %%
-def consult(predicate_path, rule_path):
+def consult(predicate_path, rule_paths):
     print(f"loading predicates from {predicate_path}")
     janus.query_once(f"consult(X)", {'X': predicate_path})
-    print(f"loading rules from {rule_path}")
-    janus.query_once("consult(X)", {'X': rule_path})
+    for rule_path in rule_paths:
+        print(f"loading rules from {rule_path}")
+        janus.query_once("consult(X)", {'X': rule_path})
 
 # %%
 def parse(line):
