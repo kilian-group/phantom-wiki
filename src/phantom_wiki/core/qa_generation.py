@@ -2,7 +2,7 @@ import os
 
 from nltk import CFG
 
-from phantom_wiki.utils.cfg import *
+from phantom_wiki.utils.text import *
 
 # Define the CFG as a string and parse it using nltk.CFG.fromstring
 # cfg_string = """

@@ -18,13 +18,13 @@ for person in person_list:
 
     # write the CFG to a file
     CFG_file = os.path.join(CFG_folder, f"{person}_CFG.txt")
-    print(f"writting CFG for {person} to {person}_CFG.txt")
+    print(f"writing CFG for {person} to {person}_CFG.txt")
     with open(CFG_file, "w") as file:
         file.write(cfg)
 
     # write to file
     bio_file = os.path.join(bio_folder, f"{person}_bio.txt")
-    print(f"writting bio for {person} to {person}_bio.txt")
+    print(f"writing bio for {person} to {person}_bio.txt")
     write_bio(bio, bio_file)
 
     bio_list.append(bio)
