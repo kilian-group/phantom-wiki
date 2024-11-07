@@ -1,4 +1,5 @@
 import openai
+from together import Together
 
 from phantom_wiki.core.constants.llm_templates import CFG_PROMPT_TEMPLATE, CFG2QAs_TEMPLATE
 
@@ -17,6 +18,23 @@ def geneate_qa_openai(grammar: str) -> str:
     prompt = CFG2QAs_TEMPLATE.format(grammar)
     response = openai.chat.completions.create(
         model="gpt-4o", messages=[{"role": "system", "content": prompt}]
+    )
+    raw_text = response.choices[0].message.content
+    return raw_text
+
+
+def generate_llama(person, job, cfg_str):
+    # use LLaMA to generate a CFG
+    client = Together()
+    if cfg_str is None:
+        prompt = CFG_PROMPT_TEMPLATE.format(person, job)
+    else:
+        prompt = CFG2QAs_TEMPLATE.format(cfg_str)
+    response =client.chat.completions.create(
+        model="meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
+        messages=[
+            {"role": "user", "content": prompt}
+        ]
     )
     raw_text = response.choices[0].message.content
     return raw_text

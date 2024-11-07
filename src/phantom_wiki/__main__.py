@@ -15,9 +15,8 @@ def get_arguments():
         help="Path to the CFG directory if not generating new CFGs",
     )
     parser.add_argument("--output_folder", type=str, default="output", help="Path to the output folder")
-    parser.add_argument(
-        "--rules", type=str, default="../phantom_wiki/family/rules.pl", help="Path to the rules file"
-    )
+    # TODO this should not depend on the testing directory
+    parser.add_argument("--rules", type=list, default=['../../tests/base_rules.pl', '../../tests/derived_rules.pl'], help="list of Path to the rules file")
     (
         args,
         _,

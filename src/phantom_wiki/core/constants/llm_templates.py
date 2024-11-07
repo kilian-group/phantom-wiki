@@ -7,11 +7,12 @@ Create a context-free grammar using arrow notation to generate a biography for {
 """
 
 CFG2QAs_TEMPLATE = """
-Suppose I have the following context-free grammar:
+For the following context-free grammar (CFG):
 
 {}
 
-Generate the questions you can ask about some non-terminals and output a list in the following format:
+Suppose you are given an article generated with this CFG.
+Generate the questions you can ask about some non-terminals where the answer is one of the choices from the CFG and output a list in the following format:
 
 nonterminal: question
 
