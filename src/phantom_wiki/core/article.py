@@ -1,12 +1,14 @@
+from faker import Faker
 from nltk import CFG
 from nltk.parse.generate import generate
 
 from phantom_wiki.core.llm import generate_cfg_openai
 from phantom_wiki.utils.parsing import format_generated_cfg
 
-from faker import Faker
 
-def generate_article_cfg_pairs(person_list: list[str], use_jobs=True, max_attempts=10) -> dict[str, tuple[str, str]]:
+def generate_llm_article_cfg_pairs(
+    person_list: list[str], use_jobs=True, max_attempts=10
+) -> dict[str, tuple[str, str]]:
     pairs = {}
     if use_jobs:
         fake = Faker()
@@ -15,7 +17,7 @@ def generate_article_cfg_pairs(person_list: list[str], use_jobs=True, max_attemp
             job = fake.job()
         else:
             job = "unknown"
-        
+
         for _ in range(max_attempts):
             try:
                 generated_cfg = generate_cfg_openai(person, job)
@@ -34,5 +36,5 @@ def generate_article_cfg_pairs(person_list: list[str], use_jobs=True, max_attemp
             continue
         else:
             pairs[person] = (article, cfg.tostring())
-    
+
     return pairs
