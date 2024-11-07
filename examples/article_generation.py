@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # ---
 # jupyter:
 #   jupytext:
@@ -19,9 +18,10 @@
 # pass both articles to Llama
 # %%
 import os
-from faker import Faker
 
+from faker import Faker
 from together import Together
+
 client = Together()
 
 
@@ -33,11 +33,11 @@ print(args)
 # set seed
 Faker.seed(0)
 fake = Faker()
-#make directories
-family_folder = os.path.join(args.output_folder, 'family')
-bio_folder = os.path.join(args.output_folder, 'bio')
-CFG_folder = os.path.join(args.output_folder, 'CFG')
-article_folder = os.path.join(args.output_folder, 'article')
+# make directories
+family_folder = os.path.join(args.output_folder, "family")
+bio_folder = os.path.join(args.output_folder, "bio")
+CFG_folder = os.path.join(args.output_folder, "CFG")
+article_folder = os.path.join(args.output_folder, "article")
 # TODO want to put prologs and DLVs also in the same folder
 os.makedirs(family_folder, exist_ok=True)
 os.makedirs(CFG_folder, exist_ok=True)
@@ -99,7 +99,7 @@ Using the following list of facts, please create a detailed and wordy Wikipedia-
 
 # %%
 for person, family, bio in zip(person_list, family_list, bio_list):
-    facts = '\n'.join([family, bio])
+    facts = "\n".join([family, bio])
     print(f"generating article for {person} with the following facts:")
     print(facts)
     print("===========================START ARTICLE==========================")
@@ -151,15 +151,17 @@ for person, family, bio in zip(person_list, family_list, bio_list):
 # # !conda develop .
 # # !pip install together
 
-# %%
-import random
-# from wikidata.relations import relation2phrase
-from phantom_wiki.core.data.grouped_relations import ppl_2_ppl, ppl_2_socialconstructs, ppl_2_objs, things
 import json
 
 # %%
+import random
+
+# from wikidata.relations import relation2phrase
+from phantom_wiki.core.constants.grouped_relations import ppl_2_ppl, ppl_2_socialconstructs, things
+
+# %%
 with open("fake_names.json") as f:
-  entities = json.load(f)
+    entities = json.load(f)
 # entities = pd.read_json("numbered_names.json")
 
 # %%
@@ -167,34 +169,38 @@ with open("fake_names.json") as f:
 # socialconstructs = random.sample(range(100, 200), 10)
 # objs = random.sample(range(200, 300), 10)
 # all_entities = {"ppl":ppl, "socialconstructs":socialconstructs, "objs":objs}
-all_entities = {"ppl":entities["names"], "socialconstructs":entities["places"], "objs":entities["artistic_works"]}
+all_entities = {
+    "ppl": entities["names"],
+    "socialconstructs": entities["places"],
+    "objs": entities["artistic_works"],
+}
 
 # %%
 article_facts = []
 cur_entity = "Joseph Klienberg"
 for _ in range(15):
-  target_type = random.choice(list(all_entities.keys()))
-  target = random.choice(all_entities[target_type])
-  
-  if target_type == "ppl":
-    relation = ppl_2_ppl[random.choice(list(ppl_2_ppl.keys()))]
-  if target_type == "socialconstructs":
-    relation = ppl_2_socialconstructs[random.choice(list(ppl_2_socialconstructs.keys()))]
-  # if target_type == "objs":
-  #   relation = ppl_2_objs[random.choice(list(ppl_2_objs.keys()))]
-  if target_type == "objs":
-    relation = things[random.choice(list(things.keys()))]
+    target_type = random.choice(list(all_entities.keys()))
+    target = random.choice(all_entities[target_type])
 
-  relation = relation.replace("<subject>", str(cur_entity))
-  relation = relation + " " + str(target)
-  article_facts.append(relation)
+    if target_type == "ppl":
+        relation = ppl_2_ppl[random.choice(list(ppl_2_ppl.keys()))]
+    if target_type == "socialconstructs":
+        relation = ppl_2_socialconstructs[random.choice(list(ppl_2_socialconstructs.keys()))]
+    # if target_type == "objs":
+    #   relation = ppl_2_objs[random.choice(list(ppl_2_objs.keys()))]
+    if target_type == "objs":
+        relation = things[random.choice(list(things.keys()))]
+
+    relation = relation.replace("<subject>", str(cur_entity))
+    relation = relation + " " + str(target)
+    article_facts.append(relation)
 
 # %%
 print("\n".join(article_facts))
 
 # %%
 prompt = """
-Given the following list of facts, generate an article in the style of Wikipedia. The article MUST be consistent with the facts in the list: 
+Given the following list of facts, generate an article in the style of Wikipedia. The article MUST be consistent with the facts in the list:
 """
 
 # %%
@@ -233,7 +239,7 @@ Using the following instructions and list of facts, please create a detailed Wik
 
 ### Instructions:
 1. **Introduction**: Start with a summary of Joseph Klienberg's key accomplishments, profession, and major facts (e.g., birthplace, major works, etc.).
-   
+
 2. **Early Life**: Include details about his birth, parents, family background, and upbringing.
 
 3. **Education**: Discuss Joseph Klienberg’s education, including the University of Fine Arts in Paris, and any notable influences or mentors.
@@ -308,58 +314,59 @@ Using the following list of facts, please create a detailed and wordy Wikipedia-
 
 # %%
 from API_KEY import TOGETHER_API_KEY
+from together import Together
 
 # %%
 # # !pip install together
 
 # %%
-#together.xyz is blocked by cornell firewall
-#https://docs.together.ai/docs/quickstart
+# together.xyz is blocked by cornell firewall
+# https://docs.together.ai/docs/quickstart
 
-from together import Together
 
 client = Together(api_key=TOGETHER_API_KEY)
 
 # %%
 response = client.chat.completions.create(
-  model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
-  messages=[
-            # {"role": "user", "content": prompt + str(article_facts)},
-            # {"role": "assistant", "content":prompt + str(article_facts)}
-            {"role": "user", "content": prompt5 + "\n".join(article_facts)},
-            # {"role": "assistant", "content":prompt3 + "\n".join(article_facts)}
-            ],
-  temperature=0.7,
-  top_p=0.7,
-  top_k=50,
-  repetition_penalty=1,
-  stop=["<|eot_id|>"],
-  # truncate=7680,
-  # max_tokens=512,
-  stream=True,
+    model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
+    messages=[
+        # {"role": "user", "content": prompt + str(article_facts)},
+        # {"role": "assistant", "content":prompt + str(article_facts)}
+        {"role": "user", "content": prompt5 + "\n".join(article_facts)},
+        # {"role": "assistant", "content":prompt3 + "\n".join(article_facts)}
+    ],
+    temperature=0.7,
+    top_p=0.7,
+    top_k=50,
+    repetition_penalty=1,
+    stop=["<|eot_id|>"],
+    # truncate=7680,
+    # max_tokens=512,
+    stream=True,
 )
 
 # %%
 for chunk in response:
-  print(chunk.choices[0].delta.content or "", end="", flush=True)
+    print(chunk.choices[0].delta.content or "", end="", flush=True)
 
 # %%
 response2 = client.chat.completions.create(
-  model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
-  messages=[{"role": "user", "content": prompt + str(article_facts)},
-            # {"role": "assistant", "content":prompt + str(article_facts)}
-            ],
-  temperature=0.7,
-  top_p=0.7,
-  top_k=50,
-  repetition_penalty=1,
-  stop=["<|eot_id|>"],
-  truncate=7680,
-  max_tokens=512,
-  stream=True,
+    model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
+    messages=[
+        {"role": "user", "content": prompt + str(article_facts)},
+        # {"role": "assistant", "content":prompt + str(article_facts)}
+    ],
+    temperature=0.7,
+    top_p=0.7,
+    top_k=50,
+    repetition_penalty=1,
+    stop=["<|eot_id|>"],
+    truncate=7680,
+    max_tokens=512,
+    stream=True,
 )
 for chunk in response2:
-  print(chunk.choices[0].delta.content or "", end="", flush=True)
+    print(chunk.choices[0].delta.content or "", end="", flush=True)
 
 # %%
 """
@@ -369,7 +376,7 @@ I cannot fulfill your request. I am unable to create content that includes infor
 # %%
 """
 what I get in this response is different from the UI. The UI is:
-Given the following list of facts, generate an article in the style of Wikipedia. The article MUST be consistent with the facts in the list: 
+Given the following list of facts, generate an article in the style of Wikipedia. The article MUST be consistent with the facts in the list:
 ["0's siblings are 36", 'The eye color of 0 is 211', 'The religion which 0 is associated with is 176', "0's spouse is 70", 'The city in which 0 was born is 116', "0's sexual orientation is 253", "0's gender is 298", 'The mother tongue of 0 is 203', 'The mother tongue of 0 is 253', 'The city in which 0 died is 156', 'The uncle of 0 is 22', 'The country which 0 is associated with is 164', 'The child of 0 is 36', 'The date in which 0 was born in is 253', 'The mother of 0 is 70']
 Article: 0
 
