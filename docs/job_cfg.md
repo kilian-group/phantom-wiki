@@ -1,11 +1,12 @@
 # Architect
+
 ```
 S -> Intro Background Expertise Projects Education
 
 Intro -> "Meet" | "Introducing" | "Presenting"
 Background -> " [Name], an experienced architect with a focus on " Area "." | " [Name] is a talented architect known for specializing in " Area "."
 Area -> "residential buildings" | "urban design" | "sustainable architecture" | "commercial spaces" | "historic preservation"
-Expertise -> " With over " Experience " years of experience, [Name] has successfully delivered various " ProjectType "." 
+Expertise -> " With over " Experience " years of experience, [Name] has successfully delivered various " ProjectType "."
 Experience -> "5" | "10" | "15" | "20+"
 ProjectType -> "residential homes" | "commercial complexes" | "green buildings" | "urban landscapes" | "adaptive reuse projects"
 
@@ -18,13 +19,14 @@ Specialization -> "sustainable design" | "urban planning" | "building technology
 ```
 
 # Petroleum engineer
+
 ```
 S -> Intro Background Expertise Projects Education
 
 Intro -> "Meet" | "Introducing" | "Presenting"
 Background -> " [Name], a skilled petroleum engineer with expertise in " FocusArea "." | " [Name] is an experienced engineer specializing in " FocusArea "."
 FocusArea -> "oil exploration" | "reservoir engineering" | "drilling optimization" | "production operations" | "offshore platforms"
-Expertise -> " With over " Experience " years of experience, [Name] has contributed to major projects in " Region "." 
+Expertise -> " With over " Experience " years of experience, [Name] has contributed to major projects in " Region "."
 Experience -> "5" | "10" | "15" | "20+"
 Region -> "the Middle East" | "the Gulf of Mexico" | "North Sea operations" | "onshore and offshore fields worldwide"
 
@@ -37,6 +39,7 @@ Specialization -> "reservoir simulation" | "hydraulic fracturing" | "offshore dr
 ```
 
 # Musician
+
 ```
 S -> Intro Background Expertise Achievements Education
 
@@ -56,6 +59,7 @@ Specialization -> "music theory" | "composition" | "performance" | "music produc
 ```
 
 # Futures trader
+
 ```
 S -> Intro Background Expertise TradingStyle Markets Education
 
@@ -67,7 +71,7 @@ Expertise -> " With over " Experience " years of experience, [Name] has demonstr
 Experience -> "5" | "10" | "15" | "20+"
 TradingAchievements -> "consistently outperforming the market" | "maximizing risk-adjusted returns" | "developing data-driven strategies" | "executing high-frequency trades" | "building diverse trading portfolios"
 
-TradingStyle -> " [Name]'s trading approach emphasizes " Strategy "." 
+TradingStyle -> " [Name]'s trading approach emphasizes " Strategy "."
 Strategy -> "quantitative analysis" | "technical analysis" | "fundamental analysis" | "algorithmic trading" | "systematic risk management"
 
 Markets -> " [Name] has traded in global markets including " MarketList "." | " [Name]'s expertise extends to markets like " MarketList "."
@@ -87,7 +91,7 @@ Intro -> "Meet" | "Introducing" | "Presenting"
 Background -> " [Name], an accomplished sales promotion account executive with a focus on " Sector "." | " [Name] is a results-driven account executive specializing in " Sector "."
 Sector -> "consumer goods" | "retail" | "technology" | "automotive" | "hospitality"
 
-Expertise -> " With over " Experience " years of experience, [Name] has a proven track record of " Success ." 
+Expertise -> " With over " Experience " years of experience, [Name] has a proven track record of " Success ."
 Experience -> "5" | "10" | "15" | "20+"
 Success -> "driving revenue growth through innovative sales promotions" | "developing multi-channel promotional strategies" | "enhancing brand visibility and consumer engagement" | "managing large-scale national campaigns"
 
