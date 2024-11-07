@@ -14,6 +14,7 @@ def substitute_arrow(text):
 
 
 def one_line_cfg(cfg):
+    # TODO: Add docstring/typing/examples for this function
     lines = cfg.strip().split("\n")
     current_rule = None
     one_line_cfg = []
@@ -62,7 +63,7 @@ def extract_content_between_triple_quotes(paragraph):
         return paragraph  # Return an empty string if no triple quotes are found
 
 
-def formatting_raw_input(raw_text):
+def format_generated_cfg(raw_text):
     # delete the ``` and strip the text
     processed_text = raw_text.replace("```", "").strip()
     # substitute '<>' with '' using regex
