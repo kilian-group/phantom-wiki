@@ -1,7 +1,10 @@
 import janus_swi as janus
 
+from phantom_wiki.family.constants import FAMILY_FACT_TEMPLATES
+
 
 def get_family_relationships(name: str) -> dict:
+    # TODO make sure a proper Prolog query is present for each template in FAMILY_FACT_TEMPLATES
     """
     Get the following relationships for a given name:
     - mother
@@ -55,6 +58,25 @@ def get_family_relationships(name: str) -> dict:
     # return article
 
     return relations
+
+
+def get_family_facts(names: list[str]) -> dict[str, list[str]]:
+    # TODO: add docstring
+    # TODO: add an argument to regulate depth/complexity of the facts
+    #   (e.g. how many (types of) relations to include)
+    facts = {}
+    for name in names:
+        relations = get_family_relationships(name)
+
+        person_facts = []
+        for relation, target in relations.items():
+            relation_template = FAMILY_FACT_TEMPLATES[relation]
+            fact = relation_template.replace("<subject>", name) + " " + str(target) + "."
+            person_facts.append(fact)
+
+        facts[name] = person_facts
+
+    return facts
 
 
 class FamilyDatabase:
