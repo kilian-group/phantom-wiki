@@ -157,7 +157,11 @@ import json
 import random
 
 # from wikidata.relations import relation2phrase
-from phantom_wiki.core.constants.grouped_relations import ppl_2_ppl, ppl_2_socialconstructs, things
+from phantom_wiki.core.constants.relation_templates import (
+    PEOPLE_RELATIONS,
+    PERSON_TO_SOCIAL_CONSTRUCT,
+    PROFESSIONAL,
+)
 
 # %%
 with open("fake_names.json") as f:
@@ -183,13 +187,13 @@ for _ in range(15):
     target = random.choice(all_entities[target_type])
 
     if target_type == "ppl":
-        relation = ppl_2_ppl[random.choice(list(ppl_2_ppl.keys()))]
+        relation = PEOPLE_RELATIONS[random.choice(list(PEOPLE_RELATIONS.keys()))]
     if target_type == "socialconstructs":
-        relation = ppl_2_socialconstructs[random.choice(list(ppl_2_socialconstructs.keys()))]
+        relation = PERSON_TO_SOCIAL_CONSTRUCT[random.choice(list(PERSON_TO_SOCIAL_CONSTRUCT.keys()))]
     # if target_type == "objs":
     #   relation = ppl_2_objs[random.choice(list(ppl_2_objs.keys()))]
     if target_type == "objs":
-        relation = things[random.choice(list(things.keys()))]
+        relation = PROFESSIONAL[random.choice(list(PROFESSIONAL.keys()))]
 
     relation = relation.replace("<subject>", str(cur_entity))
     relation = relation + " " + str(target)
