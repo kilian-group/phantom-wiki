@@ -53,6 +53,20 @@ def match_name(line):
     return names[0]
 
 
+# get names from the prolog file
+def get_names_from_file(fact_file: str):
+    person_list = []
+    with open(fact_file) as f:
+        lines = f.readlines()
+        for line in lines:
+            if line.startswith("female") or line.startswith("male"):
+                person = match_name(line)
+                person_list.append(person)
+            else:
+                print("skip line")
+                continue
+
+
 def extract_content_between_triple_quotes(paragraph):
     # Regex pattern to capture content between the first pair of triple quotes
     match = re.search(r"'''(.*?)'''", paragraph, flags=re.DOTALL)

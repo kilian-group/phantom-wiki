@@ -41,7 +41,7 @@ def get_family_relationships(name: str) -> dict:
 
     # TODO: get wife and husband
     if spouse := (
-        janus.query_once(f"husband(X, Y)", {"X": name}) or janus.query_once(f"wife(X, Y)", {"X": name})
+        janus.query_once("husband(X, Y)", {"X": name}) or janus.query_once("wife(X, Y)", {"X": name})
     )["Y"]:
         relations["spouse"] = spouse
 
@@ -55,20 +55,6 @@ def get_family_relationships(name: str) -> dict:
     # return article
 
     return relations
-
-
-# get names from the prolog file
-def get_names_from_file(fact_file: str):
-    person_list = []
-    with open(fact_file) as f:
-        lines = f.readlines()
-        for line in lines:
-            if line.startswith("female") or line.startswith("male"):
-                person = match_name(line)
-                person_list.append(person)
-            else:
-                print("skip line")
-                continue
 
 
 class FamilyDatabase:
