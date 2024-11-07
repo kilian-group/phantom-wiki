@@ -18,3 +18,13 @@ nonterminal: question
 
 Each nonterminal and question pair should appear on a new line.
 """
+
+CFG_PROMPT_TEMPLATE_LLAMA = """
+Create a context-free grammar (CFG) using arrow notation to generate a short, formal bio for a fictional character with a specified occupation.
+Please follow these rules:
+Use only fictional names and entity names.
+Exclude all family information (family name, spouse, children, parents, etc.).
+Use standard arrow notation for the CFG, with quotes around all terminal strings (i.e., plain text).
+Output only the CFG, aiming for a moderate level of complexity.
+Use the given character name as a fixed value in the CFG (do not generate alternative names).
+Character: {} Occupation: {}"""
