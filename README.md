@@ -12,7 +12,7 @@ Set up a virtual environment, clone and navigate to this repository, and run
 ```
 conda create -n dataset
 conda activate dataset
-conda install python=3.10 pandas numpy conda-forge::faker anaconda::sqlalchemy anaconda::nltk
+conda install python=3.12 pandas numpy conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor
 pip install together openai
 pip install pydatalog
 # install SWI-Prolog (on Mac)
@@ -22,9 +22,19 @@ brew install swi-prolog
 pip install janus-swi
 ```
 
-<!-- pip install -e . -->
+To install the source code in development mode:
 
-<!-- to install the dependencies and command line scripts. -->
+Option 1:
+```
+conda activate dataset
+cd src
+conda develop .
+```
+
+Option 2:
+1. Create a file in the repo root called `.env`
+2. Add `PYTHONPATH=<path to src>`
+3. Restart VSCode
 
 # TogetherAI
 
