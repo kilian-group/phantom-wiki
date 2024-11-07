@@ -6,13 +6,23 @@ from nltk import CFG
 from together import Together
 
 
-CFG_prompt_template = """
+CFG_prompt_template_Openai = """
 write me a CFG using arrow notation to generate a bio for {} whose occupation is {},  You have to follow the following rules: 
 1. use only fictional names and entity names 
 2. DO NOT include family information
 3. use the arrow notation 
 4. ONLY OUTPUT THE CFG 
 begin your response."""
+
+CFG_prompt_template_Llama = """
+Create a context-free grammar (CFG) using arrow notation to generate a short, formal bio for a fictional character with a specified occupation. 
+Please follow these rules: 
+Use only fictional names and entity names. 
+Exclude all family information (family name, spouse, children, parents, etc.). 
+Use standard arrow notation for the CFG, with quotes around all terminal strings (i.e., plain text). 
+Output only the CFG, aiming for a moderate level of complexity. 
+Use the given character name as a fixed value in the CFG (do not generate alternative names). 
+Character: {} Occupation: {}"""
 
 CFG2QAs_TEMPLATE = """For the following CFG: 
 {}
@@ -142,7 +152,7 @@ def get_response(person, job, cfg_str):
     # use LLaMA to generate a CFG
     client = Together()
     if cfg_str is None:
-        prompt = CFG_prompt_template.format(person, job)
+        prompt = CFG_prompt_template_Llama.format(person, job)
     else:
         prompt = CFG2QAs_TEMPLATE.format(cfg_str)
     response =client.chat.completions.create(
