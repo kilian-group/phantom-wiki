@@ -2,7 +2,7 @@ from faker import Faker
 from nltk import CFG
 from nltk.parse.generate import generate
 
-from phantom_wiki.core.llm import generate_cfg_openai
+from phantom_wiki.core.generative import generate_cfg_openai
 from phantom_wiki.utils.parsing import format_generated_cfg
 
 
