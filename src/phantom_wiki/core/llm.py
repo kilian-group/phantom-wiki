@@ -20,8 +20,8 @@ nonterminal: question
 Each nonterminal and question pair should appear on a new line.
 """
 
-
-def generate_cfg_openai(person, job):
+# TODO: add more types of information/make this more flexible?
+def generate_cfg_openai(person: str, job: str) -> str:
     prompt = CFG2QAs_TEMPLATE.format(person, job)
     response = openai.chat.completions.create(
         model="gpt-4o", messages=[{"role": "system", "content": prompt}]
