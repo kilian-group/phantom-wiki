@@ -22,7 +22,7 @@ mother(X,Y) :-
 
 father(X,Y) :-
   parent(X,Y),
-  male(X). 
+  male(X).
 
 child(X,Y) :-
   parent(Y,X).
