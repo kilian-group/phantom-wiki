@@ -22,13 +22,17 @@ Exclude all family information (family name, spouse, children, parents, etc.).
 Use standard arrow notation for the CFG, with quotes around all terminal strings (i.e., plain text). 
 Output only the CFG, aiming for a moderate level of complexity. 
 Use the given character name as a fixed value in the CFG (do not generate alternative names). 
+Use Non-terminals that have semantic meanings instead of symbols.
 Character: {} Occupation: {}"""
 
-CFG2QAs_TEMPLATE = """For the following CFG: 
+CFG2QAs_TEMPLATE_Openai = """For the following CFG: 
 {}
 Suppose you are given an article generated with this CFG, generate concrete questions you can ask about some non-terminals where the answer is one of the choices from the CFG and output in a list in the following format : 
 nonterminal: question 
 in different lines"""
+
+CFG2QAs_TEMPLATE_Llama = """Generate questions for the meaningful non-terminals in the CFG (excluding the start symbol), in the format 'nonterminal: question'.
+{}"""
 
 
 def remove_brackets(text):
@@ -39,6 +43,15 @@ def substitute_arrow(text):
     text = text.replace("→", "->")
     text = text.replace("::=", "->")
     return text
+
+def extract_cfg(text):
+    # Pattern to match lines where a non-terminal is followed by '->'
+    pattern = r'^\S+\s*->.*$'
+    matches = re.findall(pattern, text, re.MULTILINE)
+    # Join matched lines to form the complete CFG
+    cfg = "\n".join(matches)
+    
+    return cfg
 
 def one_line_cfg(cfg):
     lines = cfg.strip().split("\n")
@@ -144,6 +157,7 @@ def generate_article_with_retries(person, job,
                     print(f"Attempt {attempt + 1}: Successfully generated article for {person}")
                     return article, processed_text
             except Exception as e:
+                import pdb; pdb.set_trace()
                 # Catch any exceptions that might occur during generation
                 print(f"Attempt {attempt + 1}: Error generating article - {e}")
     return "Failed to generate an article after multiple attempts."
@@ -154,7 +168,7 @@ def get_response(person, job, cfg_str):
     if cfg_str is None:
         prompt = CFG_prompt_template_Llama.format(person, job)
     else:
-        prompt = CFG2QAs_TEMPLATE.format(cfg_str)
+        prompt = CFG2QAs_TEMPLATE_Llama.format(cfg_str)
     response =client.chat.completions.create(
         model="meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
         messages=[
@@ -172,7 +186,8 @@ def formatting_raw_input(raw_text):
         # substitute '::=' with '->'
         processed_text = substitute_arrow(processed_text)
         # convert to one line CFG
-        processed_text = one_line_cfg(processed_text)
+        # processed_text = one_line_cfg(processed_text)
+        processed_text = extract_cfg(processed_text)
 
         return processed_text
 
