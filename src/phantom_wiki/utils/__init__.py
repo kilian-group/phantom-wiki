@@ -13,3 +13,7 @@ def yellow(text):
     print(colored(text, 'yellow'))
 def cyan(text):
     print(colored(text, 'cyan'))
+
+import uuid
+def generate_unique_id():
+    return str(uuid.uuid4())

@@ -1,3 +1,7 @@
+# Usage:
+# Creating questions:
+#   python -m phantom_wiki -op <output path>
+
 # standard imports
 import argparse
 import os
@@ -32,7 +36,7 @@ def get_arguments():
     )  # this is useful when running the script from a notebook so that we use the default values
     return args
 
-def generate_questions(output_path, article_path, base_rule_path, derived_rule_path):
+def generate_formal_questions(output_path, article_path, base_rule_path, derived_rule_path):
     from .utils.prolog import parse_prolog_predicate_definition
     from .core.formal_questions import get_question_answers
 
@@ -42,7 +46,7 @@ def generate_questions(output_path, article_path, base_rule_path, derived_rule_p
             for line in file:
                 # print(line)
                 # if the line is a predicate, print it
-                if line.endswith(":-\n"):
+                if line.endswith(":-\n"): # TODO: make the prolog parsing more robust
                     # print(parse(line))
                     rules.append(parse_prolog_predicate_definition(line))
         return rules
@@ -57,7 +61,8 @@ def generate_questions(output_path, article_path, base_rule_path, derived_rule_p
     print(derived_rules)
 
     # store question and answers as a dictionary
-    question_answers = {}
+    base_question_answers = {}
+    derived_question_answers = {}
     # get all files in the output directory
     for filename in os.listdir(article_path):
         # get the article
@@ -67,23 +72,29 @@ def generate_questions(output_path, article_path, base_rule_path, derived_rule_p
         atom_val = filename.split("_")[0]
         atom_name = 'X'
         print("Getting base questions for X={}".format(atom_val))
-        base_question_answers = get_question_answers(atom_val, atom_name, base_rules)
-        print("Getting derived questions for X={}".format(atom_val))
-        derived_question_answers = get_question_answers(atom_val, atom_name, derived_rules)
+        base_question_answers[atom_val] = {
+            'evidence': article,
+            'qa_pairs' : get_question_answers(atom_val, atom_name, base_rules),
+        }
 
-        # store the question and answers in a dictionary
-        question_answers[atom_val] = {
-            'article': article,
-            'base' : base_question_answers,
-            'derived': derived_question_answers,
+        print("Getting derived questions for X={}".format(atom_val))
+        derived_question_answers[atom_val] = {
+            'evidence': article,
+            'qa_pairs' : get_question_answers(atom_val, atom_name, derived_rules),
         }
     # save the question and answers to a file
     save_dir = os.path.join(output_path, "question_answers")
     os.makedirs(save_dir, exist_ok=True)
-    save_path = os.path.join(save_dir, "article_question_answer.json")
-    with open(save_path, "w") as file:
-        json.dump(question_answers, file, indent=4)
-    return save_path
+    base_path = os.path.join(save_dir, "base.json")
+    with open(base_path, "w") as file:
+        json.dump(base_question_answers, file, indent=4)
+    derived_path = os.path.join(save_dir, "derived.json")
+    with open(derived_path, "w") as file:
+        json.dump(derived_question_answers, file, indent=4)
+    return {
+        "base": base_path,
+        "derived": derived_path,
+    }
 
 def main():
     args = get_arguments()
@@ -108,8 +119,8 @@ def main():
 
     blue("Generating question answer pairs")
     # TODO
-    question_answer_path = generate_questions(args.output_path, article_path, args.rules[0], args.rules[1])
-    print(f"Saved question and answers to {question_answer_path}")
+    question_answer_paths = generate_formal_questions(args.output_path, article_path, args.rules[0], args.rules[1])
+    print(f"Saved question and answers to {question_answer_paths}")
 
     # print(f"Rules: {args.rules}")
 
