@@ -1,5 +1,5 @@
 sibling(X, Y) :-
-  parent(A, X),
+  parent(A, X), 
   parent(A, Y),
   X \= Y.
 

@@ -1,32 +1,11 @@
-# ---
-# jupyter:
-#   jupytext:
-#     cell_metadata_filter: -all
-#     custom_cell_magics: kql
-#     text_representation:
-#       extension: .py
-#       format_name: percent
-#       format_version: '1.3'
-#       jupytext_version: 1.11.2
-#   kernelspec:
-#     display_name: dataset
-#     language: python
-#     name: python3
-# ---
+# To generate questions from the command line, run the following command:
+# python -m phantom_wiki -op <output path>
+# For example:
+#   python -m phantom_wiki -op out
 
-# %%
 import janus_swi as janus
 
-# %%
-def consult(predicate_path, *rule_paths):
-    print(f"loading predicates from {predicate_path}")
-    janus.query_once(f"consult(X)", {'X': predicate_path})
-    for rule_path in rule_paths:
-        print(f"loading rules from {rule_path}")
-        janus.query_once("consult(X)", {'X': rule_path})
-
-# %%
-# consult("family_tree.pl", "base_rules.pl", "derived_rules.pl")
+from ..utils import generate_unique_id
 
 # %%
 def get_question_answers(atom_val, atom_name, rules):
@@ -43,5 +22,6 @@ def get_question_answers(atom_val, atom_name, rules):
             # print("Question: ", question)
             answer = result['Y']
             # print("Answer: ", answer)
-            question_answers.append({'question':question, 'answer':answer})
+            unique_id = generate_unique_id()
+            question_answers.append({'id':unique_id, 'question':question, 'answer': answer})
     return question_answers
