@@ -45,7 +45,10 @@ def get_family_relationships(name: str) -> dict:
     # print(list(children))
 
     # TODO: get wife and husband
-    if spouse := (janus.query_once(f"husband(X, Y)", {'X': name})['Y'] or janus.query_once(f"wife(X, Y)", {'X': name})['Y']):
+    if spouse := (
+        janus.query_once(f"husband(X, Y)", {"X": name})["Y"]
+        or janus.query_once(f"wife(X, Y)", {"X": name})["Y"]
+    ):
         relations["spouse"] = spouse
 
     # facts = []
