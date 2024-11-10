@@ -10,17 +10,18 @@ Nationality	American
 Education	Cornell University
 Massachusetts Institute of Technology
 Known for	HITS algorithm
-Awards	
+Awards
 MacArthur Fellowship (2005)Nevanlinna Prize (2006)ACM-Infosys Foundation Award[1] (2008)Harvey Prize (2013)Allen Newell Award (2014)
 Scientific career
 Fields	Computer Science
-Institutions	
+Institutions
 MITCornell UniversityIBM Almaden Research Center
 Thesis	Approximation algorithms for disjoint paths problems (1996)
 Doctoral advisor	Michel Goemans[2]
 Website	videolectures.net/jon_kleinberg
 www.cs.cornell.edu/home/kleinber
 ```
+
 ```
 Jon Michael Kleinberg
 Jon Michael Kleinberg is an American computer scientist, born in 1971 in Boston, Massachusetts. He is currently 52-53 years old.
@@ -63,6 +64,7 @@ www.cs.cornell.edu/home/kleinber
 ```
 
 # Prompt 2
+
 ```
 Given the following table of facts, generate an article in the style of Wikipedia. The article MUST be consistent with the facts in the table:
 
@@ -73,11 +75,11 @@ Nationality	American
 Education	Cornell University
 Massachusetts Institute of Technology
 Known for	Bellman-Ford algorithm
-Awards	
+Awards
 MacArthur Fellowship (2005)Nevanlinna Prize (2006)ACM-Infosys Foundation Award[1] (2008)Harvey Prize (2013)Allen Newell Award (2014)
 Scientific career
 Fields	Computer Science
-Institutions	
+Institutions
 MITCornell UniversityIBM Almaden Research Center
 Thesis	Approximation algorithms for disjoint paths problems (1996)
 Doctoral advisor	Michel Goemans[2]
@@ -109,6 +111,7 @@ References
 ```
 
 # Prompt 3
+
 ```
 Given the following table of facts, generate an article in the style of Wikipedia. The article MUST be consistent with the facts in the table:
 
@@ -119,11 +122,11 @@ Nationality	American
 Education	Cornell University
 Massachusetts Institute of Technology
 Known for	Transformer architecture
-Awards	
+Awards
 MacArthur Fellowship (2005)Nevanlinna Prize (2006)ACM-Infosys Foundation Award[1] (2008)Harvey Prize (2013)Allen Newell Award (2014)
 Scientific career
 Fields	Computer Science
-Institutions	
+Institutions
 MITCornell UniversityIBM Almaden Research Center
 Thesis	Approximation algorithms for disjoint paths problems (1996)
 Doctoral advisor	Michel Goemans[2]

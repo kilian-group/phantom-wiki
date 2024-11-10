@@ -1,3 +1,134 @@
+# ---
+# jupyter:
+#   jupytext:
+#     cell_metadata_filter: -all
+#     custom_cell_magics: kql
+#     text_representation:
+#       extension: .py
+#       format_name: percent
+#       format_version: '1.3'
+#       jupytext_version: 1.11.2
+#   kernelspec:
+#     display_name: dataset
+#     language: python
+#     name: python3
+# ---
+
+# %% [markdown]
+# pass both articles to Llama
+# %%
+import os
+
+from faker import Faker
+from together import Together
+
+client = Together()
+
+
+# %%
+# if __name__ == "__main__":
+# get arguments
+args = get_arguments()
+print(args)
+# set seed
+Faker.seed(0)
+fake = Faker()
+# make directories
+family_folder = os.path.join(args.output_folder, "family")
+bio_folder = os.path.join(args.output_folder, "bio")
+CFG_folder = os.path.join(args.output_folder, "CFG")
+article_folder = os.path.join(args.output_folder, "article")
+# TODO want to put prologs and DLVs also in the same folder
+os.makedirs(family_folder, exist_ok=True)
+os.makedirs(CFG_folder, exist_ok=True)
+os.makedirs(bio_folder, exist_ok=True)
+os.makedirs(article_folder, exist_ok=True)
+# load the prolog file
+consult(args.pl_file, args.rules)
+
+
+# %%
+prompt = """
+Using the following list of facts, please create a detailed and wordy Wikipedia-like article about the subject. The article should include sections like "Introduction," "Early Life," "Education," "Career," "Notable Works," "Personal Life," and others as appropriate. Elaborate on each point by adding relevant background, context, or general information where appropriate. Maintain a formal and encyclopedic tone, but aim for a more expansive narrative without altering or contradicting the list of facts.
+
+### Example List of Facts:
+
+- Joseph Klienberg is the composer of Beyond the Horizon (Mosaic).
+- The mother of Joseph Klienberg is Noah Davis.
+- The number of children Joseph Klienberg has is Aiden Jones.
+- Joseph Klienberg's spouse is Sophia Davis.
+- Joseph Klienberg attended the University of Fine Arts in Paris.
+- He won the National Art Award in 2015.
+- His style is often described as a fusion of classical and modern influences.
+
+### Instructions:
+1. **Introduction**: Begin the article by introducing the subject with a detailed summary. Include not only the subject’s profession and major accomplishments but also background information about their significance in their field. You may elaborate on the importance of their work (e.g., the impact of *Beyond the Horizon* and its style).
+
+2. **Early Life**: Discuss the subject’s birth, family background, and childhood in more depth. Provide elaborative details, such as potential cultural, geographic, or familial influences. For example, explore how growing up with Noah Davis as his mother might have influenced his early development.
+
+3. **Education**: When describing the subject’s education, delve into details about the University of Fine Arts in Paris, its significance, and how it may have shaped his career. Include any historical or general context about the institution that may be relevant to the subject's growth as an artist.
+
+4. **Career**: Provide an in-depth narrative of the subject’s career. You can use the following sub-sections:
+   - **Career Beginnings**: Describe how Joseph Klienberg started in his field. What might have inspired him to pursue a career in composing and mosaic art? Even if specific facts aren’t provided, use reasonable context to provide a more expansive description.
+   - **Rise to Prominence**: Discuss key milestones or breakthroughs. How did *Beyond the Horizon* gain recognition? Provide details on its composition and reception.
+   - **Notable Works**: Expand on major works, explaining their cultural or artistic significance. For example, describe *Beyond the Horizon (Mosaic)* as not just a piece of art but a work that reflects a fusion of styles and its broader impact in the artistic community.
+
+5. **Awards and Recognition**: Elaborate on the significance of the awards the subject received, particularly the National Art Award in 2015. Provide background on the award itself, what it typically honors, and why Joseph’s work was deserving of this accolade.
+
+6. **Philosophy/Style**: When discussing the subject’s style, go into detail about what it means to have a fusion of classical and modern influences. How might this blend of styles be perceived in the art world? What are some general characteristics of both classical and modern approaches that Joseph Klienberg successfully integrates into his work?
+
+7. **Personal Life**: Expand on the subject’s family life, including details about their spouse Sophia Davis, mother Noah Davis, and child Aiden Jones. Discuss the possible dynamics between his personal and professional life, exploring how his relationships might influence his artistic work.
+
+8. **Later Life**: If applicable, discuss any relevant information on the subject's later years. If the facts don’t mention his later life, include general thoughts on how his career might have evolved over time or how his contributions might continue to impact future generations.
+
+9. **Legacy and Impact**: Summarize the subject’s broader contributions to their field, focusing on how they influenced not only their contemporaries but potentially future artists as well. Reflect on the enduring impact of works like *Beyond the Horizon* and his artistic philosophy.
+
+10. **Conclusion**: Conclude the article with a reflective overview of Joseph Klienberg’s life, career, and lasting influence. Use the given facts to provide a detailed and thoughtful summary of his contributions.
+
+### Article Style:
+- Expand each section with relevant context and explanations, going beyond the surface-level facts.
+- Maintain a neutral, third-person tone.
+- Ensure coherence and flow, organizing the content logically into the given sections.
+- Do not introduce speculative information that contradicts the facts, but use reasonable background and general knowledge to provide depth.
+
+### Facts:
+{}
+
+### Article:
+"""
+
+# %%
+for person, family, bio in zip(person_list, family_list, bio_list):
+    facts = "\n".join([family, bio])
+    print(f"generating article for {person} with the following facts:")
+    print(facts)
+    print("===========================START ARTICLE==========================")
+    response = client.chat.completions.create(
+        model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
+        messages=[
+            {"role": "user", "content": prompt.format(facts)},
+        ],
+        temperature=0.7,
+        top_p=0.7,
+        top_k=50,
+        repetition_penalty=1,
+        stop=["<|eot_id|>"],
+        stream=True,
+    )
+    article = ""
+    for chunk in response:
+        s = chunk.choices[0].delta.content or ""
+        print(s, end="", flush=True)
+        article += s
+    print("\n===========================END ARTICLE==========================")
+    # save the article to a file
+    article_file = os.path.join(article_folder, f"{person}_article.txt")
+    print(f"writing article for {person} to {article_file}")
+    with open(article_file, "w") as file:
+        file.write(article)
+
+# %%
+
 # -*- coding: utf-8 -*-
 # ---
 # jupyter:
@@ -20,15 +151,21 @@
 # # !conda develop .
 # # !pip install together
 
-# %%
-import random
-# from wikidata.relations import relation2phrase
-from grouped_relations import ppl_2_ppl, ppl_2_socialconstructs, ppl_2_objs, things
 import json
 
 # %%
+import random
+
+# from wikidata.relations import relation2phrase
+from phantom_wiki.core.constants.relation_templates import (
+    PEOPLE_RELATIONS,
+    PERSON_TO_SOCIAL_CONSTRUCT,
+    PROFESSIONAL,
+)
+
+# %%
 with open("fake_names.json") as f:
-  entities = json.load(f)
+    entities = json.load(f)
 # entities = pd.read_json("numbered_names.json")
 
 # %%
@@ -36,34 +173,38 @@ with open("fake_names.json") as f:
 # socialconstructs = random.sample(range(100, 200), 10)
 # objs = random.sample(range(200, 300), 10)
 # all_entities = {"ppl":ppl, "socialconstructs":socialconstructs, "objs":objs}
-all_entities = {"ppl":entities["names"], "socialconstructs":entities["places"], "objs":entities["artistic_works"]}
+all_entities = {
+    "ppl": entities["names"],
+    "socialconstructs": entities["places"],
+    "objs": entities["artistic_works"],
+}
 
 # %%
 article_facts = []
 cur_entity = "Joseph Klienberg"
 for _ in range(15):
-  target_type = random.choice(list(all_entities.keys()))
-  target = random.choice(all_entities[target_type])
-  
-  if target_type == "ppl":
-    relation = ppl_2_ppl[random.choice(list(ppl_2_ppl.keys()))]
-  if target_type == "socialconstructs":
-    relation = ppl_2_socialconstructs[random.choice(list(ppl_2_socialconstructs.keys()))]
-  # if target_type == "objs":
-  #   relation = ppl_2_objs[random.choice(list(ppl_2_objs.keys()))]
-  if target_type == "objs":
-    relation = things[random.choice(list(things.keys()))]
+    target_type = random.choice(list(all_entities.keys()))
+    target = random.choice(all_entities[target_type])
 
-  relation = relation.replace("<subject>", str(cur_entity))
-  relation = relation + " " + str(target)
-  article_facts.append(relation)
+    if target_type == "ppl":
+        relation = PEOPLE_RELATIONS[random.choice(list(PEOPLE_RELATIONS.keys()))]
+    if target_type == "socialconstructs":
+        relation = PERSON_TO_SOCIAL_CONSTRUCT[random.choice(list(PERSON_TO_SOCIAL_CONSTRUCT.keys()))]
+    # if target_type == "objs":
+    #   relation = ppl_2_objs[random.choice(list(ppl_2_objs.keys()))]
+    if target_type == "objs":
+        relation = PROFESSIONAL[random.choice(list(PROFESSIONAL.keys()))]
+
+    relation = relation.replace("<subject>", str(cur_entity))
+    relation = relation + " " + str(target)
+    article_facts.append(relation)
 
 # %%
 print("\n".join(article_facts))
 
 # %%
 prompt = """
-Given the following list of facts, generate an article in the style of Wikipedia. The article MUST be consistent with the facts in the list: 
+Given the following list of facts, generate an article in the style of Wikipedia. The article MUST be consistent with the facts in the list:
 """
 
 # %%
@@ -102,7 +243,7 @@ Using the following instructions and list of facts, please create a detailed Wik
 
 ### Instructions:
 1. **Introduction**: Start with a summary of Joseph Klienberg's key accomplishments, profession, and major facts (e.g., birthplace, major works, etc.).
-   
+
 2. **Early Life**: Include details about his birth, parents, family background, and upbringing.
 
 3. **Education**: Discuss Joseph Klienberg’s education, including the University of Fine Arts in Paris, and any notable influences or mentors.
@@ -177,58 +318,59 @@ Using the following list of facts, please create a detailed and wordy Wikipedia-
 
 # %%
 from API_KEY import TOGETHER_API_KEY
+from together import Together
 
 # %%
 # # !pip install together
 
 # %%
-#together.xyz is blocked by cornell firewall
-#https://docs.together.ai/docs/quickstart
+# together.xyz is blocked by cornell firewall
+# https://docs.together.ai/docs/quickstart
 
-from together import Together
 
 client = Together(api_key=TOGETHER_API_KEY)
 
 # %%
 response = client.chat.completions.create(
-  model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
-  messages=[
-            # {"role": "user", "content": prompt + str(article_facts)},
-            # {"role": "assistant", "content":prompt + str(article_facts)}
-            {"role": "user", "content": prompt5 + "\n".join(article_facts)},
-            # {"role": "assistant", "content":prompt3 + "\n".join(article_facts)}
-            ],
-  temperature=0.7,
-  top_p=0.7,
-  top_k=50,
-  repetition_penalty=1,
-  stop=["<|eot_id|>"],
-  # truncate=7680,
-  # max_tokens=512,
-  stream=True,
+    model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
+    messages=[
+        # {"role": "user", "content": prompt + str(article_facts)},
+        # {"role": "assistant", "content":prompt + str(article_facts)}
+        {"role": "user", "content": prompt5 + "\n".join(article_facts)},
+        # {"role": "assistant", "content":prompt3 + "\n".join(article_facts)}
+    ],
+    temperature=0.7,
+    top_p=0.7,
+    top_k=50,
+    repetition_penalty=1,
+    stop=["<|eot_id|>"],
+    # truncate=7680,
+    # max_tokens=512,
+    stream=True,
 )
 
 # %%
 for chunk in response:
-  print(chunk.choices[0].delta.content or "", end="", flush=True)
+    print(chunk.choices[0].delta.content or "", end="", flush=True)
 
 # %%
 response2 = client.chat.completions.create(
-  model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
-  messages=[{"role": "user", "content": prompt + str(article_facts)},
-            # {"role": "assistant", "content":prompt + str(article_facts)}
-            ],
-  temperature=0.7,
-  top_p=0.7,
-  top_k=50,
-  repetition_penalty=1,
-  stop=["<|eot_id|>"],
-  truncate=7680,
-  max_tokens=512,
-  stream=True,
+    model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
+    messages=[
+        {"role": "user", "content": prompt + str(article_facts)},
+        # {"role": "assistant", "content":prompt + str(article_facts)}
+    ],
+    temperature=0.7,
+    top_p=0.7,
+    top_k=50,
+    repetition_penalty=1,
+    stop=["<|eot_id|>"],
+    truncate=7680,
+    max_tokens=512,
+    stream=True,
 )
 for chunk in response2:
-  print(chunk.choices[0].delta.content or "", end="", flush=True)
+    print(chunk.choices[0].delta.content or "", end="", flush=True)
 
 # %%
 """
@@ -238,7 +380,7 @@ I cannot fulfill your request. I am unable to create content that includes infor
 # %%
 """
 what I get in this response is different from the UI. The UI is:
-Given the following list of facts, generate an article in the style of Wikipedia. The article MUST be consistent with the facts in the list: 
+Given the following list of facts, generate an article in the style of Wikipedia. The article MUST be consistent with the facts in the list:
 ["0's siblings are 36", 'The eye color of 0 is 211', 'The religion which 0 is associated with is 176', "0's spouse is 70", 'The city in which 0 was born is 116', "0's sexual orientation is 253", "0's gender is 298", 'The mother tongue of 0 is 203', 'The mother tongue of 0 is 253', 'The city in which 0 died is 156', 'The uncle of 0 is 22', 'The country which 0 is associated with is 164', 'The child of 0 is 36', 'The date in which 0 was born in is 253', 'The mother of 0 is 70']
 Article: 0
 
