@@ -14,7 +14,7 @@ conda activate dataset
 conda install python=3.12 pandas numpy conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor
 pip install together openai pre-commit
 ```
-Installing SWI-Prolog:
+Installing SWI-Prolog (see also the [Prolog tutorial](docs/prolog.md)):
 ```
 # install SWI-Prolog (on Mac)
 brew install swi-prolog
@@ -46,7 +46,7 @@ Option 2:
 conda env config vars set TOGETHER_API_KEY=xxxxx
 ```
 
-## Development best practives
+## Development best practices
 
 ```
 git add <files that you want to stage>
