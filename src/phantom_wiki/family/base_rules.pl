@@ -4,41 +4,41 @@ sibling(X, Y) :-
   X \= Y.
 
 married(X, Y) :-
-  parent(X, Child),
-  parent(Y, Child),
+  parent(Child, X),
+  parent(Child, Y),
   X \= Y.
 
-sister(X, Y) :-
+sister(Y, X) :-
     sibling(X, Y),
-    female(X).
+    female(Y).
 
 brother(X, Y) :-
     sibling(X, Y),
-    male(X).
+    male(Y).
 
 mother(X,Y) :- 
   parent(X,Y),
-  female(X).
+  female(Y).
 
 father(X,Y) :-
   parent(X,Y),
-  male(X). 
+  male(Y). 
 
 child(X,Y) :- 
   parent(Y,X).
 
 son(X,Y) :-
   child(X,Y),
-  male(X).
+  male(Y).
 
 daughter(X,Y) :-
   child(X,Y),
-  female(X).
+  female(Y).
 
 wife(X,Y) :-
   married(X,Y),
-  female(X).
+  female(Y).
 
 husband(X,Y) :- 
   married(X,Y),
-  male(X).
+  male(Y).
