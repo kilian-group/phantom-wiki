@@ -10,7 +10,7 @@ grandParent(X,Y) :-
   parent(X,Z),
   parent(Z,Y).
 
-grandmother(X, Y) :-
+grandMother(X, Y) :-
   grandParent(X, Y),
   female(X).
 
