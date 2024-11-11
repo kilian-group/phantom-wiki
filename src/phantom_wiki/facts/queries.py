@@ -1,6 +1,7 @@
 # TODO: to review
 
 import janus_swi as janus
+from pyswip import Prolog
 
 from phantom_wiki.facts.family.constants import FAMILY_FACT_TEMPLATES
 
@@ -104,12 +105,18 @@ def get_names(facts_file: str) -> list[str]:
 
 
 class FamilyDatabase:
+    # TODO this will potentially need to consult several rules files (for family vs friends etc.)
+    # TODO define an API for consulting different types of formal facts (family, friendships, hobbies)
+    # TODO define logic for consulting different types of facts based on difficulty
     def __init__(self, facts_file: str, rules_file: str):
-        janus.query_once(f"consult('{facts_file}')")
-        janus.query_once(f"consult('{rules_file}')")
+        self.facts_file = facts_file
+        self.rules_file = rules_file
+        self.prolog = Prolog()
+        self.prolog.consult(facts_file)
+        self.prolog.consult(rules_file)
 
     def get_family_relationships(self, name: str) -> dict:
         return get_family_relationships(name)
 
-    def get_names():
-        pass  # TODO and replace get_names_from_file
+    def get_names(self): 
+        return get_names(self.facts_file)
