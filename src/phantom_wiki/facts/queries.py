@@ -2,7 +2,7 @@
 
 import janus_swi as janus
 
-from phantom_wiki.family.constants import FAMILY_FACT_TEMPLATES
+from phantom_wiki.facts.family.constants import FAMILY_FACT_TEMPLATES
 
 
 def get_family_relationships(name: str) -> dict:
@@ -80,6 +80,27 @@ def get_family_facts(names: list[str]) -> dict[str, list[str]]:
         facts[name] = person_facts
 
     return facts
+
+def get_names(facts_file: str) -> list[str]:
+    """Gets all names from a Prolog database.
+
+    Args:
+        facts_file: file that defines the formal facts
+    
+    Returns: 
+        List of people's names.
+    """
+    names = []
+    with open(facts_file,'r') as f:
+        lines = f.readlines()
+        for line in lines:
+            if line.startswith('female') or line.startswith('male'):
+                # scrape the text in parentheses as people's names
+                name = line.split('(')[1].split(')')[0].split(',')
+                names.append(name[0])
+    
+    return names
+
 
 
 class FamilyDatabase:
