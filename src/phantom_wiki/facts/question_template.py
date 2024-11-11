@@ -33,5 +33,3 @@ def get_question_templates(grammar_string=QA_GRAMMAR_STRING, depth=15):
     for question in generate(cfg, depth=depth):
         questions.append(question)
     return questions
-
-def get_token_dict
