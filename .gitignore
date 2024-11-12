@@ -559,3 +559,4 @@ src/phantom_wiki/family/relationships.py
 johann_tests/API_KEY.py
 
 *.DS_Store
+.vscode/settings.json
