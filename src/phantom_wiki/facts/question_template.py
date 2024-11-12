@@ -33,3 +33,23 @@ def get_question_templates(grammar_string=QA_GRAMMAR_STRING, depth=15):
     for question in generate(cfg, depth=depth):
         questions.append(question)
     return questions
+
+# test question templates (depth=5)
+# 1. 'Who is', 'the', relation1, 'of', 'the', 'relation2, 'of', 'name1, '?'
+# Prolog_query: relation1(X,Y), relation2(name1,Y)
+# Answer: X 
+# 2. 'Who is', 'the', relation1 'of', 'the person whose', attributename1, 'is', attributevalue1, '?'
+# Prolog_query: relation1(X,Y), attributename1(X, attributevalue1)
+# Answer: Y
+# 3. 'Who is', 'the', relation1, 'of', 'name1, '?'
+# Prolog_query: relation1(name1, X)
+# Answer: X
+# 4. 'Who is', 'the', person whose, attributename1, 'is', attributevalue1, '?'
+# Prolog_query: attributename1(X, attributevalue1)
+# Answer: X
+# 5. 'what is', 'the', attributename1, 'of', 'the', relation1, 'of' name1 '?'
+# Prolog_query: attributename1(Y, Z), relation1(name1,Y)
+# Answer: Z
+# 7. 'How many', relation1s, 'does', name1, 'have?'
+# Prolog_query: aggregate_all(count, relation1(name1,X), Count).
+# Answer: count
