@@ -26,6 +26,8 @@ def test_family_rules_base():
     prolog.consult(FAMILY_RULES_BASE_PATH)
     prolog.consult(FAMILY_TREE_26_EXAMPLE_PATH)
 
+    assert compare_prolog_dicts(list(prolog.query("parent(michael, X)")), [{"X": "elena"}, {"X": "elias"}])
+
     assert compare_prolog_dicts(list(prolog.query("sibling(michael, X)")), [{"X": "nora"}])
     assert compare_prolog_dicts(
         list(prolog.query("sibling(lisa, X)")), [{"X": "clara"}, {"X": "fabian"}, {"X": "thomas"}]
@@ -33,24 +35,35 @@ def test_family_rules_base():
     assert compare_prolog_dicts(list(prolog.query("sibling(sarah, X)")), [])
     assert not bool(list(prolog.query("sibling(nora, elias)")))
 
+    assert bool(list(prolog.query("married(charlotte, maximilian)")))
+    assert not bool(list(prolog.query("married(charlotte, patrick)")))
+
+    assert bool(list(prolog.query("sister(clara, lisa)")))
+    assert not bool(list(prolog.query("sister(clara, thomas)")))
+
+    assert bool(list(prolog.query("brother(fabian, thomas)")))
+    assert not bool(list(prolog.query("brother(fabian, lisa)")))
+
+    assert bool(list(prolog.query("mother(michael, elena)")))
     assert not bool(list(prolog.query("mother(elias, helga)")))
+
     assert bool(list(prolog.query("father(elias, jan)")))
-
     assert compare_prolog_dicts(list(prolog.query("father(michael, X)")), [{"X": "elias"}])
-    assert compare_prolog_dicts(list(prolog.query("parent(michael, X)")), [{"X": "elena"}, {"X": "elias"}])
+
+    assert bool(list(prolog.query("child(sarah, lorenz)")))
+    assert compare_prolog_dicts(
+        list(prolog.query("child(charlotte, X)")),
+        [{"X": "clara"}, {"X": "fabian"}, {"X": "lisa"}, {"X": "thomas"}],
+    )
+
+    assert bool(list(prolog.query("son(charlotte, fabian)")))
+    assert compare_prolog_dicts(list(prolog.query("son(charlotte, X)")), [{"X": "fabian"}, {"X": "thomas"}])
+
+    assert bool(list(prolog.query("daughter(charlotte, lisa)")))
+    assert compare_prolog_dicts(list(prolog.query("daughter(charlotte, X)")), [{"X": "clara"}, {"X": "lisa"}])
+
+    assert bool(list(prolog.query("wife(maximilian, charlotte)")))
+    assert bool(list(prolog.query("husband(charlotte, maximilian)")))
 
 
-# TODO test each family relation
 # TODO add derived rule tests
-
-# # %%
-# results = janus.query_once("greatGranddaughter(natalie, anastasia)")
-# print(results)  # True
-
-# # %%
-# results = janus.query_once("greatGrandson(natalie, anastasia)")
-# print(results)  # False
-
-# # %%
-# results = janus.query_once("son(elias, X)")
-# print(results)  # {'truth': True, 'X': 'jan'}
