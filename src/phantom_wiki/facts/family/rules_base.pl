@@ -10,7 +10,7 @@ married(X, Y) :-
 
 sister(Y, X) :-
     sibling(X, Y),
-    female(Y).
+    female(X).
 
 brother(X, Y) :-
     sibling(X, Y),
