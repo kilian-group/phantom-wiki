@@ -13,7 +13,7 @@ from nltk.parse.generate import generate
 # - Who is the mother of the mother of Anastasia?
 # - What is the job of Anastasia?
 # - What is the job of the mother of Anastasia?
-# - Who is the mother of the person whose hobby is reading? 
+# - Who is the mother of the person whose hobby is reading?
 # - How many siblings does Anastasia have?
 # - Who is the person whose hobby is reading?
 QA_GRAMMAR_STRING = """
@@ -27,6 +27,7 @@ AV -> '<attribute_value>'
 N -> '<name>'
 """
 
+
 def get_question_templates(grammar_string=QA_GRAMMAR_STRING, depth=15):
     cfg = CFG.fromstring(grammar_string)
     questions = []
@@ -34,22 +35,17 @@ def get_question_templates(grammar_string=QA_GRAMMAR_STRING, depth=15):
         questions.append(question)
     return questions
 
-# test question templates (depth=5)
-# 1. 'Who is', 'the', relation1, 'of', 'the', 'relation2, 'of', 'name1, '?'
-# Prolog_query: relation1(X,Y), relation2(name1,Y)
-# Answer: X 
-# 2. 'Who is', 'the', relation1 'of', 'the person whose', attributename1, 'is', attributevalue1, '?'
-# Prolog_query: relation1(X,Y), attributename1(X, attributevalue1)
-# Answer: Y
-# 3. 'Who is', 'the', relation1, 'of', 'name1, '?'
-# Prolog_query: relation1(name1, X)
-# Answer: X
-# 4. 'Who is', 'the', person whose, attributename1, 'is', attributevalue1, '?'
-# Prolog_query: attributename1(X, attributevalue1)
-# Answer: X
-# 5. 'what is', 'the', attributename1, 'of', 'the', relation1, 'of' name1 '?'
-# Prolog_query: attributename1(Y, Z), relation1(name1,Y)
-# Answer: Z
-# 7. 'How many', relation1s, 'does', name1, 'have?'
-# Prolog_query: aggregate_all(count, relation1(name1,X), Count).
-# Answer: count
+
+def get_prolog_templates(question_templates: list[list[str]]) -> list[str]:
+    """Generates Prolog skeletons for the question templates.
+
+    The answer to the query is always X.
+
+    Examples:
+    >>> get_prolog_templates([["Who is", "the", "<relation>", "of", "the", "<relation>", "of", "<name>", "?"]])
+    ["<relation>_1(Y, X), <relation>_2(<name>_1, Y)."]
+    >>> get_prolog_templates([["Who is", "the", "<relation>", "of", "<name>", "?"]])
+    ["<relation>_1(<name>_1, X)."]
+    """
+
+    return question_templates
