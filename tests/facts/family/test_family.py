@@ -2,7 +2,7 @@ from pyswip import Prolog
 from phantom_wiki.facts.family import FAMILY_RULES_BASE_PATH
 
 from importlib.resources import files
-FAMILY_TREE_26_EXAMPLE_PATH = files("tests").joinpath("family/family_tree_26.pl")
+FAMILY_TREE_26_EXAMPLE_PATH = files("tests").joinpath("facts/family/family_tree_26.pl")
 
 def test_family_rules_base():
     # TODO fix the example to display a valid family tree
