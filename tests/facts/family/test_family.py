@@ -1,10 +1,7 @@
-from importlib.resources import files
-
 from pyswip import Prolog
 
 from phantom_wiki.facts.family import FAMILY_RULES_BASE_PATH
-
-FAMILY_TREE_26_EXAMPLE_PATH = files("tests").joinpath("facts/family/family_tree_26.pl")
+from tests.facts.family import FAMILY_TREE_26_EXAMPLE_PATH
 
 
 def prolog_result_set(prolog_dict: list[dict]) -> set[list[tuple]]:
