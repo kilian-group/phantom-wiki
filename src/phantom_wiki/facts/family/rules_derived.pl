@@ -1,111 +1,115 @@
 niece(X, Y) :-
-    sibling(Y, A),
-    daughter(X, A).
+    sibling(X, A),
+    daughter(A, Y).
 
 nephew(X, Y) :-
-    sibling(Y, A),
-    son(X, A).
+    sibling(X, A),
+    son(A, Y).
 
-grandParent(X,Y) :-
-  parent(X,Z),
-  parent(Z,Y).
+grandparent(X, Y) :-
+    parent(X, Z),
+    parent(Z, Y).
 
-grandMother(X, Y) :-
-  grandParent(X, Y),
-  female(X).
+grandmother(X, Y) :-
+    grandparent(X, Y),
+    female(Y).
 
-grandFather(X, Y) :-
-    grandParent(X, Y),
-    male(X).
+grandfather(X, Y) :-
+    grandparent(X, Y),
+    male(Y).
 
-greatAunt(X, Y) :-
-    grandParent(A, Y),
-    sister(X, A).
+great_aunt(X, Y) :-
+    grandparent(X, A),
+    sister(A, Y).
 
-greatUncle(X, Y) :-
-    grandParent(A, Y),
-    brother(X, A).
+great_uncle(X, Y) :-
+    grandparent(X, A),
+    brother(A, Y).
 
-grandChild(X,Y) :-
-  grandParent(Y,X).
+grandchild(X, Y) :-
+  grandparent(Y, X).
 
-grandDaughter(X, Y) :-
-    grandChild(X, Y),
-    female(X).
+granddaughter(X, Y) :-
+    grandchild(X, Y),
+    female(Y).
 
-grandSon(X, Y) :-
-    grandChild(X, Y),
-    male(X).
+grandson(X, Y) :-
+    grandchild(X, Y),
+    male(Y).
 
-greatGrandparent(X,Y) :-
-  grandParent(X,Z),
-  parent(Z,Y).
+great_grandparent(X, Y) :-
+  grandparent(X, Z),
+  parent(Z, Y).
 
-greatGrandmother(X, Y) :-
-    greatGrandparent(X, Y),
-    female(X).
+great_grandmother(X, Y) :-
+    great_grandparent(X, Y),
+    female(Y).
 
-greatGrandfather(X, Y) :-
-    greatGrandparent(X, Y),
-    male(X).
+great_grandfather(X, Y) :-
+    great_grandparent(X, Y),
+    male(Y).
 
-greatGrandchild(X,Y) :-
-  greatGrandparent(Y,X).
+great_grandchild(X, Y) :-
+  great_grandparent(Y, X).
 
-greatGranddaughter(X, Y) :-
-    greatGrandchild(X, Y),
-    female(X).
+great_granddaughter(X, Y) :-
+    great_grandchild(X, Y),
+    female(Y).
 
-greatGrandson(X, Y) :-
-    greatGrandchild(X, Y),
-    male(X).
+great_grandson(X, Y) :-
+    great_grandchild(X, Y),
+    male(Y).
 
-secondAunt(X, Y) :-
-    greatGrandparent(A, Y),
-    sister(X, A).
+second_aunt(X, Y) :-
+    great_grandparent(X, A),
+    sister(A, Y).
 
-secondUncle(X, Y) :-
-    greatGrandparent(A, Y),
-    brother(X, A).
+second_uncle(X, Y) :-
+    great_grandparent(X, A),
+    brother(A, Y).
 
 aunt(X, Y) :-
-    parent(A, Y),
-    sister(X, A).
+    parent(X, A),
+    sister(A, Y).
 
 uncle(X, Y) :-
-    parent(A, Y),
-    brother(X, A).
+    parent(X, A),
+    brother(A, Y).
 
-cousin(X,Y) :-
-  parent(A, X),
-  parent(B, Y),
-  sibling(A, B),
-  X \= Y.
+cousin(X, Y) :-
+    parent(X, A),
+    parent(Y, B),
+    sibling(A, B),
+    X \= Y.
 
-girlCousin(X, Y) :-
+female_cousin(X, Y) :-
     cousin(X, Y),
-    female(X).
+    female(Y).
 
-boyCousin(X, Y) :-
+male_cousin(X, Y) :-
     cousin(X, Y),
-    male(X).
+    male(Y).
 
-girlSecondCousin(X, Y) :-
-    parent(A, X),
-    parent(B, Y),
+female_second_cousin(X, Y) :-
+    parent(X, A),
+    parent(Y, B),
     cousin(A, B),
-    female(X).
+    female(Y),
+    X \= Y.
 
-boySecondCousin(X, Y) :-
-    parent(A, X),
-    parent(B, Y),
+male_second_cousin(X, Y) :-
+    parent(X, A),
+    parent(Y, B),
     cousin(A, B),
-    male(X).
+    male(Y),
+    X \= Y.
 
-girlFirstCousinOnceRemoved(X, Y) :-
-    cousin(A, Y),
-    daughter(X, A).
+female_first_cousin_once_removed(X, Y) :-
+    cousin(X, A),
+    daughter(A, Y),
+    X \= Y.
 
-boyFirstCousinOnceRemoved(X, Y) :-
-    cousin(A, Y),
-    son(X, A).
+male_first_cousin_once_removed(X, Y) :-
+    cousin(X, A),
+    son(A, Y),
+    X \= Y.
