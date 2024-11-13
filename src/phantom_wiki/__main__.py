@@ -10,7 +10,8 @@ import os
 from .utils import blue
 from .facts import Database
 from .core.article import get_articles
-
+from .core.formal_questions import get_question_answers
+from .utils.prolog import parse_prolog_predicate_definition
 
 def get_arguments():
     parser = argparse.ArgumentParser(description="Generate articles from Prolog files")
@@ -44,9 +45,6 @@ def generate_relationship_graphs(db):
     pass
 
 def generate_formal_questions(output_path, article_dir, base_rule_path, derived_rule_path):
-    from .core.formal_questions import get_question_answers
-    from .utils.prolog import parse_prolog_predicate_definition
-
     def get_rules(filename):
         rules = []
         with open(filename) as file:
@@ -111,8 +109,6 @@ def main():
     # 
     # Step 1. Generate relationship graphs
     # 
-    family_tree_path = "tests/facts/family/family_tree_26.pl"
-    db = Database.from_facts(family_tree_path)
     # TODO: add our implementation of family tree
     # TODO: add our implementation of friendship graph
     
@@ -133,25 +129,13 @@ def main():
     blue("Generating articles")
     # TODO: add code to merge family and CFG articles
     # currently, we just pass in the family article
-    article_dir = os.path.join(args.output_path, "articles")
-    os.makedirs(article_dir, exist_ok=True)
-    print(f"Saving articles to: {article_dir}")
-    articles = get_articles(db, db.get_names())
-    # save the articles to a file
-    for name, article in articles.items():
-        with open(os.path.join(article_dir, f"{name}_family.txt"), "w") as file:
-            file.write(article)
 
     # 
     # Step 4. Generate question-answer pairs
     # 
     blue("Generating question answer pairs")
     # TODO: deprecate generate_formal_questions
-    question_answer_paths = generate_formal_questions(
-        args.output_path, article_dir, args.rules[0], args.rules[1]
-    )
     # TODO: call function to generate question-answers from CFGs
-    print(f"Saved question and answers to {question_answer_paths}")
 
     # print(f"Rules: {args.rules}")
 
