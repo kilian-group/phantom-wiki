@@ -63,7 +63,6 @@ def test_family_rules_base():
     assert bool(list(prolog.query("husband(charlotte, maximilian)")))
 
 
-# TODO add derived rule tests
 def test_family_rules_derived():
     prolog = Prolog()
     prolog.consult(FAMILY_RULES_BASE_PATH)
