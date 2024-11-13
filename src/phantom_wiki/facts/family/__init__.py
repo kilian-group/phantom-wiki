@@ -8,10 +8,10 @@ def get_family_relationships(db: Database, name: str) -> dict:
     """
     Get the results for all family relations in 
     - FAMILY_RELATION_EASY
-    - FAMILY_RELATION_HARD
+    - TODO: do we want to add relations from FAMILY_RELATION_HARD?
     """
     relations = {}
-    for relation in FAMILY_RELATION_EASY + FAMILY_RELATION_HARD:
+    for relation in FAMILY_RELATION_EASY:
         query = f"{relation}({name}, X)"
         results = [result['X'] for result in db.query(query)]
         relations[relation] = results
@@ -30,8 +30,10 @@ def get_family_facts(db: Database, names: list[str]) -> dict[str, list[str]]:
 
         person_facts = []
         for relation, target in relations.items():
+            if not target:
+                continue
             relation_template = FAMILY_FACT_TEMPLATES[relation]
-            fact = relation_template.replace("<subject>", name) + " " + str(target) + "."
+            fact = relation_template.replace("<subject>", name) + " " + ", ".join(target) + "."
             person_facts.append(fact)
 
         facts[name] = person_facts

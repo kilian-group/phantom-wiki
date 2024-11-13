@@ -111,7 +111,7 @@ def main():
     # 
     # Step 1. Generate relationship graphs
     # 
-    family_tree_path = "tests/family/family_tree.pl"
+    family_tree_path = "tests/facts/family/family_tree_26.pl"
     db = Database.from_facts(family_tree_path)
     # TODO: add our implementation of family tree
     # TODO: add our implementation of friendship graph
@@ -135,6 +135,7 @@ def main():
     # currently, we just pass in the family article
     article_dir = os.path.join(args.output_path, "articles")
     os.makedirs(article_dir, exist_ok=True)
+    print(f"Saving articles to: {article_dir}")
     articles = get_articles(db, db.get_names())
     # save the articles to a file
     for name, article in articles.items():

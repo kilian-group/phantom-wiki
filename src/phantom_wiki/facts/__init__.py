@@ -11,9 +11,11 @@ class Database:
     # TODO define logic for consulting different types of facts based on difficulty
     def __init__(self):
         self.prolog = Prolog()
-        print("Consulting built-in family rules...")
-        base_rules_path = resource_filename(__name__, "facts/family/base_rules.pl")
-        derived_rules_path = resource_filename(__name__, "facts/family/derived_rules.pl")
+        print("Consulting built-in family rules from:")
+        base_rules_path = resource_filename(__name__, "family/rules_base.pl")
+        print(f"- {base_rules_path}")
+        derived_rules_path = resource_filename(__name__, "family/rules_derived.pl")
+        print(f"- {derived_rules_path}")
         self.prolog.consult(base_rules_path)
         self.prolog.consult(derived_rules_path)
         # TODO: consult friends rules
@@ -27,8 +29,9 @@ class Database:
             Database object
         """
         db = cls()
+        print(f"Consulting facts from:")
         for path in data_paths:
-            print(f"Consulting {path}...")
+            print(f"- {path}")
             db.consult(path)
         return db
 

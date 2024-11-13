@@ -44,16 +44,20 @@ from .constants.article_templates import BASIC_ARTICLE_TEMPLATE
 from ..facts import Database
 from ..facts.family import get_family_facts
 def get_articles(db: Database, names: List[str]) -> Dict:
-    articles = {}
     # get family article
     family_facts = get_family_facts(db, names)
     # TODO: get hobby facts
     # TODO: get friendship facts
-
+    
+    # import pdb; pdb.set_trace()
+    articles = {}
     for name in names:
-        articles[name] = BASIC_ARTICLE_TEMPLATE.format(
-            family_facts[name],
-            "unknown",
-            "unknown"
+        article = BASIC_ARTICLE_TEMPLATE.format(
+            name=name,
+            family_facts="\n".join(family_facts[name]),
+            hobby_facts="unknown",
+            friend_facts="unknown"
         )
+        # print(article)
+        articles[name] = article
     return articles

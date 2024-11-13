@@ -1,2 +1,0 @@
-include src/phantom_wiki/facts/family/*.pl
-include src/phantom_wiki/facts/friends/*.pl
