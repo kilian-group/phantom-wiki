@@ -5,8 +5,8 @@
 """
 
 from nltk import CFG
-# from nltk.parse.generate import generate
-from phantom_wiki.utils.nltk_generate import generate_
+from nltk.parse.generate import generate
+# from phantom_wiki.utils.nltk_generate import generate_
 
 # Recursive relationship/hobby questions
 # Examples:
@@ -32,7 +32,7 @@ N -> '<name>'
 def get_question_templates(grammar_string=QA_GRAMMAR_STRING, depth=15):
     cfg = CFG.fromstring(grammar_string)
     questions = []
-    for question in generate_(cfg, depth=depth):
+    for question in generate(cfg, depth=depth):
         questions.append(question)
     return questions
 
