@@ -1,10 +1,10 @@
+
 from faker import Faker
 from nltk import CFG
 from nltk.parse.generate import generate
 
-from phantom_wiki.core.generative import generate_cfg_openai
-from phantom_wiki.utils.parsing import format_generated_cfg
-
+from .generative import generate_cfg_openai
+from ..utils.parsing import format_generated_cfg
 
 def generate_llm_article_cfg_pairs(
     person_list: list[str], use_jobs=True, max_attempts=10
@@ -38,3 +38,25 @@ def generate_llm_article_cfg_pairs(
             pairs[person] = (article, cfg.tostring())
 
     return pairs
+
+from .constants.article_templates import BASIC_ARTICLE_TEMPLATE
+from ..facts import Database
+from ..facts.family import get_family_facts
+def get_articles(db: Database, names: list[str]) -> dict:
+    # get family article
+    family_facts = get_family_facts(db, names)
+    # TODO: get hobby facts
+    # TODO: get friendship facts
+    
+    # import pdb; pdb.set_trace()
+    articles = {}
+    for name in names:
+        article = BASIC_ARTICLE_TEMPLATE.format(
+            name=name,
+            family_facts="\n".join(family_facts[name]),
+            hobby_facts="unknown",
+            friend_facts="unknown"
+        )
+        # print(article)
+        articles[name] = article
+    return articles
