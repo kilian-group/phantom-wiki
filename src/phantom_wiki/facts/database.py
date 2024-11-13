@@ -10,7 +10,6 @@ class Database:
         for rule in rules:
             print(f"- {rule}")
             self.prolog.consult(rule)
-        # TODO: consult friends rules
 
     def get_names(self): 
         """Gets all names from a Prolog database.
@@ -19,7 +18,8 @@ class Database:
         """
         females = [result['X'] for result in self.prolog.query("female(X)")]
         males = [result['X'] for result in self.prolog.query("male(X)")]
-        return females + males
+        nonbinary = [result['X'] for result in self.prolog.query("nonbinary(X)")]
+        return females + males + nonbinary
     
     def query(self, query: str):
         """Queries the Prolog database.
@@ -30,12 +30,15 @@ class Database:
         """
         return list(self.prolog.query(query))
     
-    def consult(self, file: str):
-        """Consults a Prolog file.
+    def consult(self, *files: str):
+        """Consults Prolog files.
         args:
-            file: path to Prolog file
+            file: path to Prolog files
         """
-        self.prolog.consult(file)
+        print("Consulting files:")
+        for file in files:
+            print(f"- {file}")
+            self.prolog.consult(file)
 
     def add(self, *facts: str):
         """Adds fact(s) to the Prolog database.
@@ -67,3 +70,13 @@ class Database:
         for fact in facts:
             print(f"- {fact}")
             self.prolog.retractall(fact)
+
+    def define(self, *predicates: str):
+        """Defines dynamic predicates in the Prolog database.
+        args:
+            predicates: list of term signatures (e.g., female/1, male/1, age/2, etc.)
+        """
+        print("Defining rules:")
+        for predicate in predicates:
+            print(f"- {predicate}")
+            self.prolog.dynamic(predicate)

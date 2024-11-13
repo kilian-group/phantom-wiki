@@ -2,10 +2,8 @@
 
 from faker import Faker
 import numpy as np
-import random
-import pandas as pd
 # from pyDatalog import pyDatalog
-
+from .database import Database
 current_year = 2024
 
 
@@ -76,6 +74,33 @@ def generate_population(size, seed=1):
     Faker.seed(seed)
     return [generate_person(rng=rng) for _ in range(size)]
 
+def db_generate_population(db: Database, size: int, seed: int = 1):
+    # define dynamic predicates
+    db.define("female/1", "male/1", "nonbinary/1", "age/2")
+
+    print(f"Generating population of {size} people...")
+    population = generate_population(size, seed)
+    facts = []
+    for person in population:
+        # construct the name
+        # assumes that the name is unique
+        name = person["first_name"] + " " + person["last_name"]
+        if person["affix"]:
+            name += " " + person["affix"]
+        # get the gender
+        gender = person['gender']
+        
+        # add the person to the database
+        if gender == "female":
+            facts.append(f"female(\'{name}\')")
+        elif gender == "male":
+            facts.append(f"male(\'{name}\')")
+        else:
+            facts.append("nonbinary(\'{name}\')")
+        # add an attribute for the age
+        age = person["age"]
+        facts.append(f"age(\'{name}\', {age})")
+    db.add(*facts)
 
 # if __name__ == "__main__":
 #     population = generate_population(100, lambda: vars(generate_person()))

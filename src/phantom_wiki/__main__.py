@@ -10,6 +10,8 @@ import os
 from .utils import blue
 from .core.formal_questions import get_question_answers
 from .utils.prolog import parse_prolog_predicate_definition
+from .facts import (get_database,
+                    db_generate_population)
 
 def get_arguments():
     parser = argparse.ArgumentParser(description="Generate articles from Prolog files")
@@ -105,23 +107,17 @@ def main():
     print(f"Output path: {args.output_path}")
     
     # 
-    # Step 1. Generate relationship graphs
+    # Step 1. Generate facts
     # 
+    db = get_database()
+    blue("Generating facts")
+    db_generate_population(db, 100, args.seed)
     # TODO: add our implementation of family tree
     # TODO: add our implementation of friendship graph
-    
-    # 
-    # Step 2. Generate CFGs
-    # 
-    if args.skip_cfg:
-        blue("Skipping CFG generation")
-    else:
-        blue("Generating CFGs")
-        # TODO
-        blue(f"Saving CFGs to: {args.cfg_dir}")
+    # TODO: add our implementation of attributes
 
     # 
-    # Step 3. Generate articles 
+    # Step 2. Generate articles 
     # Currently, the articles are comprised of a list of facts.
     # 
     blue("Generating articles")
@@ -129,7 +125,7 @@ def main():
     # currently, we just pass in the family article
 
     # 
-    # Step 4. Generate question-answer pairs
+    # Step 3. Generate question-answer pairs
     # 
     blue("Generating question answer pairs")
     # TODO: deprecate generate_formal_questions
