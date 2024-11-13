@@ -20,4 +20,18 @@ Atoms must start with a lower case. Atoms can contain spaces by wrapping them in
 
 # Built-in SWI-Prolog predicates
 
-**aggregate_all**
+**Query:** Gets all results
+```
+janus.query("parent(alice,X)") -> gets the parent of alice
+```
+
+**Dynamic predicates:**
+1. `asserta/1`: adds clause to the top of the list of clauses
+2. `assertz/1`: adds clause to the bottom of the list of clauses
+3. `retract/1`: deletes a clause from the list of clauses
+
+The order matters, for example, when using `query_once`.
+
+**Aggregation:**
+
+1. `aggregate_all`: 
