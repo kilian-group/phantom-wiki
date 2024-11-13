@@ -6,6 +6,7 @@ female(elena).
 female(helga).
 female(lena).
 female(lisa).
+female(mary).
 female(mia).
 female(natalie).
 female(nora).
@@ -17,6 +18,7 @@ male(fabian).
 male(felix).
 male(gabriel).
 male(jan).
+male(jonas).
 male(lorenz).
 male(maximilian).
 male(michael).
@@ -28,6 +30,8 @@ male(vincent).
 
 parent(anastasia, mia).
 parent(anastasia, vincent).
+parent(angelina, sarah).
+parent(angelina, thomas).
 parent(clara, charlotte).
 parent(clara, maximilian).
 parent(elena, oskar).
@@ -40,10 +44,12 @@ parent(felix, helga).
 parent(felix, simon).
 parent(gabriel, helga).
 parent(gabriel, simon).
+parent(jonas, mia).
+parent(jonas, vincent).
 parent(lisa, charlotte).
 parent(lisa, maximilian).
-parent(lorenz, sarah).
-parent(lorenz, thomas).
+parent(mary, mia).
+parent(mary, vincent).
 parent(michael, elena).
 parent(michael, elias).
 parent(natalie, angelina).
