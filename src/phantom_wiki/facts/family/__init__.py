@@ -37,3 +37,6 @@ def get_family_facts(db: Database, names: list[str]) -> dict[str, list[str]]:
         facts[name] = person_facts
 
     return facts
+from importlib.resources import files
+
+FAMILY_RULES_BASE_PATH = files("phantom_wiki").joinpath("facts/family/rules_base.pl")

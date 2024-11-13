@@ -1,6 +1,6 @@
 sibling(X, Y) :- 
-  parent(A, X), 
-  parent(A, Y),
+  parent(X, A), 
+  parent(Y, A),
   X \= Y.
 
 married(X, Y) :-
@@ -16,29 +16,29 @@ brother(X, Y) :-
     sibling(X, Y),
     male(Y).
 
-mother(X,Y) :- 
-  parent(X,Y),
+mother(X, Y) :- 
+  parent(X, Y),
   female(Y).
 
-father(X,Y) :-
-  parent(X,Y),
+father(X, Y) :-
+  parent(X, Y),
   male(Y). 
 
-child(X,Y) :- 
-  parent(Y,X).
+child(X, Y) :- 
+  parent(Y, X).
 
-son(X,Y) :-
-  child(X,Y),
+son(X, Y) :-
+  child(X, Y),
   male(Y).
 
-daughter(X,Y) :-
-  child(X,Y),
+daughter(X, Y) :-
+  child(X, Y),
   female(Y).
 
-wife(X,Y) :-
-  married(X,Y),
+wife(X, Y) :-
+  married(X, Y),
   female(Y).
 
-husband(X,Y) :- 
-  married(X,Y),
+husband(X, Y) :- 
+  married(X, Y),
   male(Y).

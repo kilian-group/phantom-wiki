@@ -26,7 +26,7 @@ def create_dot_graph(prolog_facts):
         if fact.startswith("parent"):
             fact = fact.replace("parent(", "").replace(")", "")
             parent, child = fact.split(", ")
-            edge = pydot.Edge(parent, child)
+            edge = pydot.Edge(child, parent)
             graph.add_edge(edge)
 
         # Parse gender facts
