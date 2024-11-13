@@ -12,3 +12,31 @@ FAMILY_FACT_TEMPLATES = {
     "uncle": "The uncle of <subject> is",
     "aunt": "The aunt of <subject> is",
 }
+
+# Base rules
+FAMILY_RELATION_EASY = [
+    "sibling",
+    "sister",
+    "brother",
+    "mother",
+    "father",
+    "child",
+    "son",
+    "daughter",
+    "wife",
+    "husband",
+]
+
+# Derived rules
+FAMILY_RELATION_HARD = [
+    "niece",
+    "nephew",
+    "grandParent",
+    "grandMother",
+    "grandFather",
+    "greatAunt",
+    "greatUncle",
+    "grandChild",
+    "grandDaughter",
+    "grandSon",
+]

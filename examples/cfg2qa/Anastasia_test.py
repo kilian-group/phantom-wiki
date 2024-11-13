@@ -85,8 +85,10 @@ answers = {
     questions["album_title"]: album_title,
 }
 
-# Write to file
-with open("Anastasia_questions.txt", "w") as f:
-  f.write("Article:\n" + textwrap.fill(article,width=80) + "\n\n")
-  for question, answer in answers.items():
-    f.write(f"{question}: {answer}\n")
+
+def write_questions():
+    # Write to file
+    with open("Anastasia_questions.txt", "w") as f:
+        f.write("Article:\n" + textwrap.fill(article,width=80) + "\n\n")
+        for question, answer in answers.items():
+            f.write(f"{question}: {answer}\n")
