@@ -11,7 +11,7 @@ Set up a virtual environment, clone and navigate to this repository, and run
 ```
 conda create -n dataset
 conda activate dataset
-conda install python=3.12 pandas numpy conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor
+conda install python=3.12 pandas numpy conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest
 pip install together openai pre-commit
 ```
 Installing SWI-Prolog (see also the [Prolog tutorial](docs/prolog.md)):
@@ -34,7 +34,7 @@ conda develop .
 
 Option 2:
 1. Create a file in the repo root called `.env`
-2. Add `PYTHONPATH=<path to src>`
+2. Add `PYTHONPATH=src`
 3. Restart VSCode
 
 ## TogetherAI
@@ -48,6 +48,7 @@ conda env config vars set TOGETHER_API_KEY=xxxxx
 
 ## Development best practices
 
+**Git:**
 ```
 git add <files that you want to stage>
 pre-commit run
@@ -55,3 +56,9 @@ pre-commit run
 git commit -m "your commit message"
 git push
 ```
+
+**Testing:**
+1. If prompted, select `pytest` as the testing framework for the VSCode Testing Extension
+2. To run the tests, there are two methods:
+    - Run from the Testing Extension (note: your python interpreter must be set to the `dataset` conda environment created above) 
+    - Call `pytest` in the terminal (note: make sure the `dataset` conda environment is activated)
