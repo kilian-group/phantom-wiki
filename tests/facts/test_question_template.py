@@ -27,6 +27,17 @@ QUESTION_TEMPLATES_DEPTH_5 = [
         "<attribute_value>",
         "?",
     ],
+    ["How many", "<relation_plural>", "does", "the", "<relation>", "of", "<name>", "have?"],
+    [
+        "How many",
+        "<relation_plural>",
+        "does",
+        "the person whose",
+        "<attribute_name>",
+        "is",
+        "<attribute_value>",
+        "have?",
+    ],
     ["How many", "<relation_plural>", "does", "<name>", "have?"],
 ]
 
@@ -78,6 +89,7 @@ def test_get_prolog_templates():
         aggregate_all(count, relation1(name1, Y), X).
         Answer: X
     """
+    # TODO add the new templates
     PROLOG_TEMPLATES_DEPTH_5 = [
         "<relation>_1(Y, X), <relation>_2(<name>_1, Y).",
         "<relation>_1(Y, X), <attribute_name>_1(X, <attribute_value>_1).",

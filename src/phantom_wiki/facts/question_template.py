@@ -6,6 +6,7 @@
 
 from nltk import CFG
 from nltk.parse.generate import generate
+
 # from phantom_wiki.utils.nltk_generate import generate_
 
 # Recursive relationship/hobby questions
@@ -18,8 +19,9 @@ from nltk.parse.generate import generate
 # - How many siblings does Anastasia have?
 # - Who is the person whose hobby is reading?
 QA_GRAMMAR_STRING = """
-S -> 'Who is' R '?' | 'What is' A '?' | 'How many' RN_p 'does' N 'have?'
+S -> 'Who is' R '?' | 'What is' A '?' | 'How many' RN_p 'does' R_c 'have?'
 R -> 'the' RN 'of' R | 'the' RN 'of' N | 'the person whose' AN 'is' AV
+R_c -> R | N
 A -> 'the' AN 'of' R
 RN -> '<relation>'
 RN_p -> '<relation_plural>'
