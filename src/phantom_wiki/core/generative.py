@@ -1,14 +1,14 @@
 import openai
 from together import Together
 
-from .constants.llm_templates import (CFG_prompt_template_Openai,
-                                      CFG_prompt_template_Llama,
+from .constants.llm_templates import (CFG_PROMPT_TEMPLATE_OPENAI,
+                                      CFG_PROMPT_TEMPLATE_LLAMA,
                                       CFG2QAs_TEMPLATE)
 
 
 # TODO: add more types of information/make this more flexible?
 def generate_cfg_openai(person: str, job: str) -> str:
-    prompt = CFG_prompt_template_Openai.format(person, job)
+    prompt = CFG_PROMPT_TEMPLATE_OPENAI.format(person, job)
     response = openai.chat.completions.create(
         model="gpt-4o", messages=[{"role": "system", "content": prompt}]
     )
@@ -29,7 +29,7 @@ def generate_llama(person, job, cfg_str):
     # use LLaMA to generate a CFG
     client = Together()
     if cfg_str is None:
-        prompt = CFG_prompt_template_Llama.format(person, job)
+        prompt = CFG_PROMPT_TEMPLATE_LLAMA.format(person, job)
     else:
         prompt = CFG2QAs_TEMPLATE.format(cfg_str)
     response =client.chat.completions.create(

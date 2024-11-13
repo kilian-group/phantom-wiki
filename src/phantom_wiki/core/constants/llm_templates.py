@@ -1,4 +1,4 @@
-CFG_prompt_template_Openai = """
+CFG_PROMPT_TEMPLATE_OPENAI = """
 write me a CFG using arrow notation to generate a bio for {} whose occupation is {},  You have to follow the following rules: 
 1. use only fictional names and entity names 
 2. DO NOT include family information
@@ -6,7 +6,7 @@ write me a CFG using arrow notation to generate a bio for {} whose occupation is
 4. ONLY OUTPUT THE CFG 
 begin your response."""
 
-CFG_prompt_template_Llama = """
+CFG_PROMPT_TEMPLATE_LLAMA = """
 Create a context-free grammar (CFG) using arrow notation to generate a short, formal bio for a fictional character with a specified occupation. 
 Please follow these rules: 
 Use only fictional names and entity names. 
