@@ -6,18 +6,15 @@
 import argparse
 import json
 import os
-
-import janus_swi as janus
-
 # phantom wiki functionality
 from .utils import blue
-
+from .core.formal_questions import get_question_answers
+from .utils.prolog import parse_prolog_predicate_definition
 
 def get_arguments():
     parser = argparse.ArgumentParser(description="Generate articles from Prolog files")
-    parser.add_argument(
-        "--pl_file", type=str, default="tests/family/family_tree.pl", help="Path to the Prolog file"
-    )
+    parser.add_argument("--seed", "-s", default=1, type=int,
+                        help="Global seed for random number generator")
     parser.add_argument("--skip_cfg", "-sc", action="store_true", help="Skip CFG generation")
     parser.add_argument(
         "--cfg_dir",
@@ -42,11 +39,10 @@ def get_arguments():
     )  # this is useful when running the script from a notebook so that we use the default values
     return args
 
+def generate_relationship_graphs(db):
+    pass
 
-def generate_formal_questions(output_path, article_path, base_rule_path, derived_rule_path):
-    from .core.formal_questions import get_question_answers
-    from .utils.prolog import parse_prolog_predicate_definition
-
+def generate_formal_questions(output_path, article_dir, base_rule_path, derived_rule_path):
     def get_rules(filename):
         rules = []
         with open(filename) as file:
@@ -71,9 +67,9 @@ def generate_formal_questions(output_path, article_path, base_rule_path, derived
     base_question_answers = {}
     derived_question_answers = {}
     # get all files in the output directory
-    for filename in os.listdir(article_path):
+    for filename in os.listdir(article_dir):
         # get the article
-        with open(os.path.join(article_path, filename)) as f:
+        with open(os.path.join(article_dir, filename)) as f:
             article = f.read()
         # each of these filenames has the form "X_family.txt"
         atom_val = filename.split("_")[0]
@@ -107,12 +103,16 @@ def generate_formal_questions(output_path, article_path, base_rule_path, derived
 def main():
     args = get_arguments()
     print(f"Output path: {args.output_path}")
-
-    blue(f"Prolog file: {args.pl_file}")
-    janus.query_once(f"consult(X)", {"X": args.pl_file})
-    janus.query_once("consult(X)", {"X": args.rules[0]})
-    janus.query_once("consult(X)", {"X": args.rules[1]})
-
+    
+    # 
+    # Step 1. Generate relationship graphs
+    # 
+    # TODO: add our implementation of family tree
+    # TODO: add our implementation of friendship graph
+    
+    # 
+    # Step 2. Generate CFGs
+    # 
     if args.skip_cfg:
         blue("Skipping CFG generation")
     else:
@@ -120,17 +120,20 @@ def main():
         # TODO
         blue(f"Saving CFGs to: {args.cfg_dir}")
 
+    # 
+    # Step 3. Generate articles 
+    # Currently, the articles are comprised of a list of facts.
+    # 
     blue("Generating articles")
     # TODO: add code to merge family and CFG articles
     # currently, we just pass in the family article
-    article_path = os.path.join(args.output_path, "family")
 
+    # 
+    # Step 4. Generate question-answer pairs
+    # 
     blue("Generating question answer pairs")
-    # TODO
-    question_answer_paths = generate_formal_questions(
-        args.output_path, article_path, args.rules[0], args.rules[1]
-    )
-    print(f"Saved question and answers to {question_answer_paths}")
+    # TODO: deprecate generate_formal_questions
+    # TODO: call function to generate question-answers from CFGs
 
     # print(f"Rules: {args.rules}")
 

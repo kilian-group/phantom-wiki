@@ -1,106 +1,69 @@
-import os
+from pyswip import Prolog
 
-# TODO: typing
+class Database:
+    # TODO this will potentially need to consult several rules files (for family vs friends etc.)
+    # TODO define an API for consulting different types of formal facts (family, friendships, hobbies)
+    # TODO define logic for consulting different types of facts based on difficulty
+    def __init__(self, rules: list[str]):
+        self.prolog = Prolog()
+        print("Consulting rules from:")
+        for rule in rules:
+            print(f"- {rule}")
+            self.prolog.consult(rule)
+        # TODO: consult friends rules
 
+    def get_names(self): 
+        """Gets all names from a Prolog database.
+        Returns: 
+            List of people's names.
+        """
+        females = [result['X'] for result in self.prolog.query("female(X)")]
+        males = [result['X'] for result in self.prolog.query("male(X)")]
+        return females + males
+    
+    def query(self, query: str):
+        """Queries the Prolog database.
+        args:
+            query: Prolog query string
+        returns:
+            List of results
+        """
+        return list(self.prolog.query(query))
+    
+    def consult(self, file: str):
+        """Consults a Prolog file.
+        args:
+            file: path to Prolog file
+        """
+        self.prolog.consult(file)
 
-def read_def_file(file_path):
-    """Given a path to a vocabulary file, return vocabulary dictionary.
+    def add(self, *facts: str):
+        """Adds fact(s) to the Prolog database.
+        
+        The fact is added to the end of the clause list, 
+        which means that it will be returned last when querying.
 
-    Args:
-        file_path: Path to the vocabulary file, such as *.classes, *.individuals, or *.relations.
-    """
-    with open(file_path) as defs:
-        return {i.split()[0]: i.split()[1] for i in defs}
+        NOTE: This is not a persistent operation.
 
+        args:
+            facts: list of Prolog fact strings
+        """
+        print("Adding facts:")
+        for fact in facts:
+            print(f"- {fact}")
+            self.prolog.assertz(fact)
 
-# Path to output folder and index of output, return instructions
-def family_gen_to_prolog(pl_path, index=0, obtain_inferred=False):
-    # TODO: documentation
-    # TODO: C901 'family_gen_to_prolog' is too complex (15)
-    # TODO: clearer naming
+    def remove(self, *facts: str):
+        """Removes a fact from the Prolog database.
+        Prolog allows duplicate facts, so we removes all matching facts.
+        To remove only the first matching fact, use prolog.retract(fact) instead.
 
-    output = []
-    output_inferred = []
+        NOTE: This is not a persistent operation.
 
-    # Getting names for each individual
-    name = f"{index}.individuals"
-    individuals = read_def_file(os.path.join(pl_path, name))
-
-    # Getting genders
-    name = f"{index}.classes"
-    classes = read_def_file(os.path.join(pl_path, name))
-
-    # Getting relations
-    name = f"{index}.relations"
-    relations = read_def_file(os.path.join(pl_path, name))
-
-    # Complete class information
-    name = f"{index}.classes.data"
-    with open(os.path.join(pl_path, name)) as classes_data_file:
-        content = classes_data_file.readlines()
-
-        for ind, line in enumerate(content):  # Iterating through individuals
-            ind = individuals[str(ind)]
-            line = line.split()
-
-            for cl, member in enumerate(line):  # Iterating through each class
-                cl = classes[str(cl)]
-                if member == "1":  # Individual is a member of that class
-                    to_string = cl + "(" + ind + ")."
-                    output.append(to_string)
-
-                elif member == "-1":  # Individual is not a member of that class
-                    to_string = "not" + cl.capitalize() + "(" + ind + ")."
-                    output.append(to_string)
-
-    # Basic & complete tree information
-    name = f"{index}.relations.data"
-    with open(os.path.join(pl_path, name)) as classes_data_file:
-        content = classes_data_file.readlines()
-
-        for i, line in enumerate(content):
-            line = line.split()
-            rel = relations[line[2]][:-2]
-
-            if line[0] == "-":  # Negative relation, ie. not ...
-                rel = "not" + rel.capitalize()
-
-            to_string = rel + "(" + individuals[line[1]] + ", " + individuals[line[3]] + ")."
-            output.append(to_string)
-
-    # Inferred information from the tree
-    name = f"{index}.relations.data.inf"
-    if obtain_inferred:
-        with open(os.path.join(pl_path, name)) as classes_data_file:
-            content = classes_data_file.readlines()
-
-            for i, line in enumerate(content):
-                line = line.split()
-                rel = relations[line[2]][:-2]
-                if line[0] == "-":
-                    rel = "not" + rel.capitalize()
-
-                to_string = rel + "(" + individuals[line[1]] + ", " + individuals[line[3]] + ")."
-                output_inferred.append(to_string)
-
-    # Inferred male/female relations
-    name = f"{index}.classes.data.inf"
-    if obtain_inferred:
-        with open(os.path.join(pl_path, name)) as classes_data_file:
-            content = classes_data_file.readlines()
-
-            for ind, line in enumerate(content):  # Iterating through individuals
-                ind = individuals[str(ind)]
-                line = line.split()
-
-                for cl, member in enumerate(line):  # Iterating through each class
-                    cl = classes[str(cl)]
-                    if member == "1":  # Individual is a member of that class
-                        to_string = cl + "(" + ind + ")."
-                        output_inferred.append(to_string)
-
-                    elif member == "-1":  # Individual is not a member of that class
-                        to_string = "not" + cl.capitalize() + "(" + ind + ")."
-                        output_inferred.append(to_string)
-
-    return output, output_inferred
+        args:
+            facts: list of Prolog fact strings
+        """
+        print("Removing facts:")
+        for fact in facts:
+            print(f"- {fact}")
+            self.prolog.retractall(fact)

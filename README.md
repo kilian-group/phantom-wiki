@@ -21,6 +21,8 @@ brew install swi-prolog
 # TODO: install SWI-Prolog (on Windows)
 # install Janus-SWI (Python interface to SWI-Prolog)
 pip install janus-swi
+# alternatively, we can use PySwip
+pip install pyswip
 ```
 
 To install the source code in development mode:

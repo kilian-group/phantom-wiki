@@ -3,13 +3,19 @@ import pydot
 
 # Given path to vocabulary file, such as .classes, .individuals, or .relations, return vocabulary dictionary
 def read_def_file(file_path):
-  defs = open(file_path)
-  return {
-    i.split()[0]:i.split()[1] for i in defs
-  }
+    """Given a path to a vocabulary file, return vocabulary dictionary.
+
+    Args:
+        file_path: Path to the vocabulary file, such as *.classes, *.individuals, or *.relations.
+    """
+    with open(file_path) as defs:
+        return {i.split()[0]: i.split()[1] for i in defs}
 
 # Path to output folder and index of output, return instructions 
 def family_gen_to_prolog(pl_path, index=0, obtain_inferred=False):
+    # TODO: documentation
+    # TODO: C901 'family_gen_to_prolog' is too complex (15)
+    # TODO: clearer naming
     output = []
     output_inferred = []
 
