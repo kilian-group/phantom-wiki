@@ -1,4 +1,3 @@
-from typing import List, Dict
 
 from faker import Faker
 from nltk import CFG
@@ -43,7 +42,7 @@ def generate_llm_article_cfg_pairs(
 from .constants.article_templates import BASIC_ARTICLE_TEMPLATE
 from ..facts import Database
 from ..facts.family import get_family_facts
-def get_articles(db: Database, names: List[str]) -> Dict:
+def get_articles(db: Database, names: list[str]) -> dict:
     # get family article
     family_facts = get_family_facts(db, names)
     # TODO: get hobby facts

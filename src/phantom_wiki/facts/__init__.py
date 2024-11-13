@@ -1,7 +1,6 @@
 # 
 # Class for interfacing with Prolog database.
 # 
-from typing import List
 from pyswip import Prolog
 from pkg_resources import resource_filename
 
