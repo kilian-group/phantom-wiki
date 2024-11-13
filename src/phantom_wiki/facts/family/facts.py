@@ -1,6 +1,6 @@
 from .constants import (FAMILY_FACT_TEMPLATES, 
                         FAMILY_RELATION_EASY)
-from ...utils.prolog import Database
+from ..database import Database
 
 def get_family_relationships(db: Database, name: str) -> dict:
     # TODO make sure a proper Prolog query is present for each template in FAMILY_FACT_TEMPLATES

@@ -8,8 +8,6 @@ import json
 import os
 # phantom wiki functionality
 from .utils import blue
-from .facts import Database
-from .core.article import get_articles
 from .core.formal_questions import get_question_answers
 from .utils.prolog import parse_prolog_predicate_definition
 

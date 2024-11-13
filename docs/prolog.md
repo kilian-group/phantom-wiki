@@ -1,5 +1,8 @@
 # Prolog Tutorial
 
+Using the SWI-Prolog CLI:
+https://www.swi-prolog.org/pldoc/man?section=quickstart
+
 ## Basic concepts
 
 https://en.wikipedia.org/wiki/Prolog#Syntax_and_semantics

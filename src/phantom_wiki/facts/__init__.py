@@ -1,4 +1,4 @@
-from ..utils.prolog import Database
+from .database import Database
 from .family import (FAMILY_RULES_BASE_PATH,
                      FAMILY_RULES_DERIVED_PATH)
 
