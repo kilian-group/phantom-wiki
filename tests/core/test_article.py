@@ -1,11 +1,11 @@
 import os
-from phantom_wiki.facts import Database
+from phantom_wiki.facts import get_database
 from phantom_wiki.core.article import get_articles
 
 def test_get_articles():
     output_path = "out"
     family_tree_path = "tests/facts/family/family_tree_26.pl"
-    db = Database.from_facts(family_tree_path)
+    db = get_database(family_tree_path)
 
     print("Generating articles")
     article_dir = os.path.join(output_path, "articles")
