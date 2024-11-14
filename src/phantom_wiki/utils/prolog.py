@@ -1,6 +1,5 @@
 import re
 
-
 def parse_prolog_predicate(line: str) -> tuple[str, list[str]]:
     """
     Parses a Prolog predicate.
