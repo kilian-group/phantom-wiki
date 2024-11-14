@@ -19,7 +19,7 @@ from phantom_wiki.utils.nltk_generate import generate
 # - Who is the person whose hobby is reading?
 QA_GRAMMAR_STRING = """
 S -> 'Who is' R '?' | 'What is' A '?' | 'How many' RN_p 'does' R_c 'have?'
-R -> 'the' RN 'of' R | 'the' RN 'of' N | 'the person whose' AN 'is' AV
+R -> 'the' RN 'of' R_c | 'the person whose' AN 'is' AV
 R_c -> R | N
 A -> 'the' AN 'of' R
 RN -> '<relation>'
