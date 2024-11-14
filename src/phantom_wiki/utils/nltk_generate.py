@@ -12,6 +12,53 @@ import itertools
 import sys
 
 from nltk import CFG, Nonterminal
+# 
+# Begin WIP: 
+# we can move this to some file in phantom_wiki/facts/
+# 
+# possible relations
+from ..facts.family.constants import FAMILY_RELATION_EASY
+# possible attribute names
+from ..facts.attributes.constants import ATTRIBUTE_RELATION
+from ..facts.database import Database
+# import numpy generator type
+from numpy.random import Generator
+def sample(db: Database, predicate_template_list: list[str], rng: Generator, valid_only: bool = True):
+    """
+    Samples possible realizations of the predicate_list from the database db.
+
+    Args:
+    - db: the prolog database to sample from
+    - predicate_list: a list of predicate templates
+    - rng: a random number generator
+    - valid_only: whether to sample only valid realizations
+        if True: we uniformly sample from the set of prolog queries 
+        satisfying the predicate_template_list with a non-empty answer 
+        if False: we uniformly sample from all posssible prolog queries
+        satsifying the predicate_template_list
+    """
+    query = []
+    for i in range(len(predicate_template_list)-1, -1, -1):
+        predicate_template = predicate_template_list[i]
+        if valid_only:
+            support = []
+            for relation in FAMILY_RELATION_EASY:
+                # TODO: can we use predicate_template.format() instead of replace?
+                # import string
+                # formatter = string.Formatter()
+                # keys = [field_name for _, field_name, _, _ in formatter.parse(format_string) if field_name]
+                if db.query(predicate_template.replace("<relation>", relation)):
+                    support.append(relation)
+            if not support:
+                return None
+            choice = rng.choice(support)
+            query.append(predicate_template.replace("<relation>", choice))
+        else:
+            query.append(predicate_template.replace("<relation>", rng.choice(FAMILY_RELATION_EASY)))
+    return query
+# 
+# End WIP
+# 
 
 
 nonterminal_map = {
