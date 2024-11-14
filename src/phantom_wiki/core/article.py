@@ -5,6 +5,10 @@ from nltk.parse.generate import generate
 
 from .generative import generate_cfg_openai
 from ..utils.parsing import format_generated_cfg
+from .constants.article_templates import BASIC_ARTICLE_TEMPLATE
+from ..facts import Database
+from ..facts.family import get_family_facts
+from ..facts.attributes import get_attribute_facts
 
 def generate_llm_article_cfg_pairs(
     person_list: list[str], use_jobs=True, max_attempts=10
@@ -39,14 +43,12 @@ def generate_llm_article_cfg_pairs(
 
     return pairs
 
-from .constants.article_templates import BASIC_ARTICLE_TEMPLATE
-from ..facts import Database
-from ..facts.family import get_family_facts
 def get_articles(db: Database, names: list[str]) -> dict:
     # get family article
     family_facts = get_family_facts(db, names)
-    # TODO: get hobby facts
     # TODO: get friendship facts
+    # TODO: get attributes
+    attribute_facts = get_attribute_facts(db, names)
     
     # import pdb; pdb.set_trace()
     articles = {}
@@ -54,8 +56,8 @@ def get_articles(db: Database, names: list[str]) -> dict:
         article = BASIC_ARTICLE_TEMPLATE.format(
             name=name,
             family_facts="\n".join(family_facts[name]),
-            hobby_facts="unknown",
-            friend_facts="unknown"
+            friend_facts="unknown",
+            attribute_facts="\n".join(attribute_facts[name]),
         )
         # print(article)
         articles[name] = article

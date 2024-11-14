@@ -7,36 +7,24 @@ import argparse
 import json
 import os
 # phantom wiki functionality
-from .utils import blue
+from .facts import (get_database,
+                    db_generate_population,
+                    db_generate_attributes)
+from .core.article import get_articles
 from .core.formal_questions import get_question_answers
 from .utils.prolog import parse_prolog_predicate_definition
+from .utils import blue
 
 def get_arguments():
     parser = argparse.ArgumentParser(description="Generate articles from Prolog files")
     parser.add_argument("--seed", "-s", default=1, type=int,
                         help="Global seed for random number generator")
-    parser.add_argument("--skip_cfg", "-sc", action="store_true", help="Skip CFG generation")
-    parser.add_argument(
-        "--cfg_dir",
-        "-cd",
-        type=str,
-        default=None,
-        help="Path to the CFG directory if not generating new CFGs",
-    )
-    parser.add_argument("--output_path", "-op", type=str, default="output", help="Path to the output folder")
-    # TODO this should not depend on the testing directory
-    parser.add_argument(
-        "--rules",
-        type=list,
-        default=["src/phantom_wiki/family/base_rules.pl", "src/phantom_wiki/family/derived_rules.pl"],
-        help="list of Path to the rules file",
-    )
-    (
-        args,
-        _,
-    ) = (
-        parser.parse_known_args()
-    )  # this is useful when running the script from a notebook so that we use the default values
+    parser.add_argument("--output_path", "-op", type=str, default="output", 
+                        help="Path to the output folder")
+    parser.add_argument("--num_people", "-n", type=int, default=100,
+                        help="Number of people in the universe")
+    # this is useful when running the script from a notebook so that we use the default values
+    args, _ = parser.parse_known_args()
     return args
 
 def generate_relationship_graphs(db):
@@ -105,38 +93,38 @@ def main():
     print(f"Output path: {args.output_path}")
     
     # 
-    # Step 1. Generate relationship graphs
+    # Step 1. Generate facts
     # 
+    db = get_database()
+    blue("Generating facts")
+    db_generate_population(db, args.num_people, args.seed)
     # TODO: add our implementation of family tree
+    db.define("parent/2") # NOTE: define parent relationship since we don't have our own family tree implementation yet
     # TODO: add our implementation of friendship graph
-    
-    # 
-    # Step 2. Generate CFGs
-    # 
-    if args.skip_cfg:
-        blue("Skipping CFG generation")
-    else:
-        blue("Generating CFGs")
-        # TODO
-        blue(f"Saving CFGs to: {args.cfg_dir}")
+    # TODO: add our implementation of attributes
+    db_generate_attributes(db, args.seed)
 
     # 
-    # Step 3. Generate articles 
+    # Step 2. Generate articles 
     # Currently, the articles are comprised of a list of facts.
     # 
     blue("Generating articles")
     # TODO: add code to merge family and CFG articles
     # currently, we just pass in the family article
+    article_dir = os.path.join(args.output_path, "articles")
+    print(f"Saving articles to: {article_dir}")
+    os.makedirs(article_dir, exist_ok=True)
+    articles = get_articles(db, db.get_names())
+    for name, article in articles.items():
+        with open(os.path.join(article_dir, f"{name}_article.txt"), "w") as file:
+            file.write(article)
 
     # 
-    # Step 4. Generate question-answer pairs
+    # Step 3. Generate question-answer pairs
     # 
     blue("Generating question answer pairs")
     # TODO: deprecate generate_formal_questions
     # TODO: call function to generate question-answers from CFGs
-
-    # print(f"Rules: {args.rules}")
-
 
 if __name__ == "__main__":
     main()

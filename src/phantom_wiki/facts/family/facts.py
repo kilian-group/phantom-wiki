@@ -11,7 +11,7 @@ def get_family_relationships(db: Database, name: str) -> dict:
     """
     relations = {}
     for relation in FAMILY_RELATION_EASY:
-        query = f"{relation}({name}, X)"
+        query = f"{relation}(\'{name}\', X)"
         results = [result['X'] for result in db.query(query)]
         relations[relation] = results
 

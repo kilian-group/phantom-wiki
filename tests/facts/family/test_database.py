@@ -1,4 +1,4 @@
-from phantom_wiki.facts.database import family_gen_to_prolog
+# from phantom_wiki.facts.database import family_gen_to_prolog
 
 
 def test_database_generation():

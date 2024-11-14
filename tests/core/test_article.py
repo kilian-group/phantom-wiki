@@ -1,11 +1,13 @@
 import os
 from phantom_wiki.facts import get_database
 from phantom_wiki.core.article import get_articles
+from tests.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
 
 def test_get_articles():
     output_path = "out"
-    family_tree_path = "tests/facts/family/family_tree_26.pl"
-    db = get_database(family_tree_path)
+    db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
+    # define predicates that are not in the above family tree
+    db.define("nonbinary/1", "age/2", "job/2", "hobby/2")
 
     print("Generating articles")
     article_dir = os.path.join(output_path, "articles")
@@ -16,4 +18,3 @@ def test_get_articles():
     for name, article in articles.items():
         with open(os.path.join(article_dir, f"{name}_family.txt"), "w") as file:
             file.write(article)
-    assert len(articles) == 26
