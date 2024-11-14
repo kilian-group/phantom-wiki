@@ -33,7 +33,7 @@ class Database:
     def consult(self, *files: str):
         """Consults Prolog files.
         args:
-            file: path to Prolog files
+            files: paths to Prolog files
         """
         print("Consulting files:")
         for file in files:
