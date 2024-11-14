@@ -1,6 +1,7 @@
 from phantom_wiki.facts import get_database
 from phantom_wiki.facts.person import generate_population
 from phantom_wiki.facts.attributes.generate import generate_jobs
+from tests.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
 
 # 
 # Test for population generation
@@ -84,9 +85,7 @@ def test_generate_population():
 # Test for attributes
 # 
 def test_generate_jobs():
-    family_tree_path = "tests/facts/family/family_tree_small.pl"
-    db = get_database(family_tree_path)
-
+    db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
     jobs = generate_jobs(db.get_names(), seed=1)
     assert jobs == {
         "anastasia": "Contractor",

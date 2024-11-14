@@ -1,9 +1,9 @@
-from phantom_wiki.facts.queries import get_names
+from phantom_wiki.facts import get_database
 from tests.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
 
-
 def test_get_names():
-    names = get_names(FAMILY_TREE_SMALL_EXAMPLE_PATH)
+    db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
+    names = db.get_names()
     assert names == [
         "anastasia",
         "angelina",
