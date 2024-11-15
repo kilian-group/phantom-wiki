@@ -13,6 +13,8 @@ import itertools
 import sys
 
 from nltk import CFG, Nonterminal
+
+
 # 
 # Begin WIP: 
 # we can move this to some file in phantom_wiki/facts/
@@ -61,7 +63,7 @@ def sample(db: Database, predicate_template_list: list[str], rng: Generator, val
 # End WIP
 # 
 
-from .parsing import match_placeholder_brackets
+from .parsing import match_placeholder_brackets, match_placeholders
 
 # TODO: RN_p map to <relation> vs <relation_plural>
 QA_PROLOG_TEMPLATE_STRING = """
@@ -204,7 +206,7 @@ def combine_prolog_templates(prolog_frag1, prolog_frag2, depth):
         assert len(prolog_frag1[0]) == 1
         placeholder = prolog_frag1[0][0]
         # Match <placeholder>
-        if placeholder == "<relation>_*": # TODO match properly
+        if match_placeholders(placeholder, "relation>"):
             if prolog_frag2[1] is None:
                 # ... who is the mother of mary ...
                 assert len(prolog_frag2[0]) == 1
@@ -213,7 +215,7 @@ def combine_prolog_templates(prolog_frag1, prolog_frag2, depth):
                 # ... who is the mother of the mother of mary ...
                 subquery = f"{placeholder}({prolog_frag2[1]}, Y_{depth})"
             answer = f"Y_{depth}"
-        elif placeholder == "<attribute_name>_*": # TODO match properly
+        elif match_placeholders(placeholder, "attribute_name"):
             if prolog_frag2[1] is None:
                 # ... whose hobby is running...
                 assert len(prolog_frag2[0]) == 1
@@ -222,8 +224,8 @@ def combine_prolog_templates(prolog_frag1, prolog_frag2, depth):
                 # ...the hobby of the mother of mary ...
                 subquery = f"{placeholder}(Y_{depth}, {prolog_frag2[1]})"
             answer = f"Y_{depth}"
-        elif placeholder == "<relation_plural>_*": # TODO match properly
-            relation = "<relation>_*" # TODO remove "_plural"
+        elif match_placeholders(placeholder, "relation_plural"):
+            relation = placeholder.replace("_plural", "")
             if prolog_frag2[1] is None:
                 # ... how many brothers does mary have ...
                 assert len(prolog_frag2[0]) == 1
