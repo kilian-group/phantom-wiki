@@ -128,8 +128,7 @@ def _generate_all(grammar, items, depth):
                     prolog_frag1, prolog_frag2 = frag2[0], frag2[1]
 
                     question_template = question_frag1 + question_frag2
-                    # TODO: compose query
-                    prolog_template = combine_prolog_templates(prolog_frag1, prolog_frag2) 
+                    prolog_template = combine_prolog_templates(prolog_frag1, prolog_frag2, depth) 
                     yield [question_template, prolog_template]
         except RecursionError as error:
             # Helpful error message while still showing the recursion stack.
