@@ -11,6 +11,7 @@
 import abc
 import typing
 
+# TODO: can we refactor the code to remove dependency on reldata?
 from reldata.data import base_individual
 
 

@@ -63,7 +63,9 @@ class PersonFactory(object):
             female (bool, optional): Indicates whether the created person is female. If not provided, then the gender
                 is sampled randomly.
         """
-        # sanitize args
+        # NOTE: importing insanity in python >3.10 leads to the following error:
+        # AttributeError: module 'collections' has no attribute 'Iterable'
+        # # sanitize args
         insanity.sanitize_type("tree_level", tree_level, int)
         
         # prepare context if necessary
