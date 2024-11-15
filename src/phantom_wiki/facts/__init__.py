@@ -9,11 +9,11 @@ def get_database(*data_paths) -> Database:
     Get a Prolog database with built-in rules.
     Add facts to the database from data_paths if provided.
     """
-    db = Database(rules=[
+    db = Database(
         FAMILY_RULES_BASE_PATH, 
         FAMILY_RULES_DERIVED_PATH,
         ATTRIBUTE_RULES_PATH,
-    ])
+    )
 
     print(f"Consulting facts from:")
     for path in data_paths:
