@@ -29,6 +29,20 @@ from numpy.random import Generator
 def sample(db: Database, predicate_template_list: list[str], rng: Generator, valid_only: bool = True):
     """
     Samples possible realizations of the predicate_list from the database db.
+    Example:
+    >>> ["<relation>_1(<name>_1, X)"]
+    father(anastasia, X)
+    mother(anastasia, X)
+    >>> ["<relation>_1(Y, X)", "<relation>_2(<name>_1, Y)"]
+    father(Y,X), mother(anastasia,Y)
+    father(Y,X), father(anastasia,Y)
+    mother(Y,X), mother(anastasia,Y)
+    mother(Y,X), father(anastasia,Y)
+    >>> ["<relation>_1(Y, X)", "<attribute_name>_1(X, <attribute_value>_1)"]
+    father(Y,X), hobby(anastasia,running)
+    father(Y,X), hobby(anastasia,reading)
+    mother(Y,X), hobby(anastasia,running)
+    mother(Y,X), hobby(anastasia,reading)
 
     Args:
     - db: the prolog database to sample from

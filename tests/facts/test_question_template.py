@@ -92,7 +92,7 @@ def test_get_prolog_templates():
     # TODO add the new templates
     PROLOG_TEMPLATES_DEPTH_5 = [
         "<relation>_1(Y, X), <relation>_2(<name>_1, Y).",
-        "<relation>_1(Y, X), <attribute_name>_1(X, <attribute_value>_1).",
+        "<relation>_1(Y, X), <attribute_name>_1(Y, <attribute_value>_1).",
         "<relation>_1(<name>_1, X).",
         "<attribute_name>_1(X, <attribute_value>_1).",
         "<attribute_name>_1(Y, X), <relation>_1(<name>_1, Y).",
