@@ -3,32 +3,18 @@
 #   python -m phantom_wiki -op <output path>
 
 # standard imports
-import argparse
+from argparse import ArgumentParser
 import json
 import os
 # phantom wiki functionality
 from .facts import (get_database,
-                    db_generate_population,
+                    db_generate_family,
                     db_generate_attributes)
+from .facts.family.main import fam_gen_parser
 from .core.article import get_articles
 from .core.formal_questions import get_question_answers
 from .utils.prolog import parse_prolog_predicate_definition
-from .utils import blue
-
-def get_arguments():
-    parser = argparse.ArgumentParser(description="Generate articles from Prolog files")
-    parser.add_argument("--seed", "-s", default=1, type=int,
-                        help="Global seed for random number generator")
-    parser.add_argument("--output_path", "-op", type=str, default="output", 
-                        help="Path to the output folder")
-    parser.add_argument("--num_people", "-n", type=int, default=100,
-                        help="Number of people in the universe")
-    # this is useful when running the script from a notebook so that we use the default values
-    args, _ = parser.parse_known_args()
-    return args
-
-def generate_relationship_graphs(db):
-    pass
+from .utils import blue, get_parser
 
 def generate_formal_questions(output_path, article_dir, base_rule_path, derived_rule_path):
     def get_rules(filename):
@@ -89,19 +75,21 @@ def generate_formal_questions(output_path, article_dir, base_rule_path, derived_
 
 
 def main():
-    args = get_arguments()
-    print(f"Output path: {args.output_path}")
+    parser = get_parser(parents=[fam_gen_parser])
+
+    # this is useful when running the script from a notebook so that we use the default values
+    args, _ = parser.parse_known_args()
+    print(f"Output dir: {args.output_dir}")
     
     # 
     # Step 1. Generate facts
     # 
     db = get_database()
     blue("Generating facts")
-    db_generate_population(db, args.num_people, args.seed)
-    # TODO: add our implementation of family tree
-    db.define("parent/2") # NOTE: define parent relationship since we don't have our own family tree implementation yet
+    # TODO: add our implementation of family graph
+    db_generate_family(db, args)
+    
     # TODO: add our implementation of friendship graph
-    # TODO: add our implementation of attributes
     db_generate_attributes(db, args.seed)
 
     # 

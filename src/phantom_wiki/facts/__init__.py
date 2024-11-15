@@ -1,9 +1,9 @@
-from .database import Database
-# imports to files containing Prolog rules
+# imports for paths to Prolog rules
 from .family import (FAMILY_RULES_BASE_PATH,
                      FAMILY_RULES_DERIVED_PATH)
 from .attributes import (ATTRIBUTE_RULES_PATH)
-
+# Functionality to get a Prolog database with built-in rules
+from .database import Database
 def get_database(*data_paths) -> Database:
     """
     Get a Prolog database with built-in rules.
@@ -22,5 +22,6 @@ def get_database(*data_paths) -> Database:
 
     return db
 
-from .person import db_generate_population
+# Imports for generating facts
 from .attributes import db_generate_attributes
+from .family import db_generate_family
