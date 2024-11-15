@@ -8,9 +8,9 @@ import json
 import os
 # phantom wiki functionality
 from .facts import (get_database,
-                    db_generate_family,
-                    db_generate_attributes)
-from .facts.family.main import fam_gen_parser
+                    db_generate_attributes,
+                    db_generate_population)
+from .facts.family import fam_gen_parser
 from .core.article import get_articles
 from .core.formal_questions import get_question_answers
 from .utils.prolog import parse_prolog_predicate_definition
@@ -86,8 +86,14 @@ def main():
     # 
     db = get_database()
     blue("Generating facts")
-    # TODO: add our implementation of family graph
-    db_generate_family(db, args)
+    if True:
+        db_generate_population(db, 100, args.seed)
+        db.define("parent/2")
+    else:
+        # TODO: add our implementation of family graph
+        from .facts import db_generate_family
+        db_generate_family(db, args)
+        pass
     
     # TODO: add our implementation of friendship graph
     db_generate_attributes(db, args.seed)
@@ -99,7 +105,7 @@ def main():
     blue("Generating articles")
     # TODO: add code to merge family and CFG articles
     # currently, we just pass in the family article
-    article_dir = os.path.join(args.output_path, "articles")
+    article_dir = os.path.join(args.output_dir, "articles")
     print(f"Saving articles to: {article_dir}")
     os.makedirs(article_dir, exist_ok=True)
     articles = get_articles(db, db.get_names())

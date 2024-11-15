@@ -11,20 +11,16 @@
 import random
 import time
 import typing
-
 import networkx as nx
-
+import os
+import pydot
 # TODO: can we remove dependency on reldata?
 from reldata import data_context as dc
 
 from . import person
 from . import person_factory as pf
-
-import os
-import pydot 
-from argparse import ArgumentParser
+from . import fam_gen_parser
 from ...utils import get_parser
-
 
 class Generator(object):
     """A generator for creating family tree datasets."""
@@ -204,23 +200,6 @@ class Generator(object):
 
         return family_trees
     
-# Create parser for family tree generation
-fam_gen_parser = ArgumentParser(description="Family Generator")
-fam_gen_parser.add_argument("--max-branching-factor", type=int, default=5,
-                            help="The maximum number of children that any person in a family tree may have. (Default value: 5.)")
-fam_gen_parser.add_argument("--max-tree-depth", type=int, default=5,
-                            help="The maximum depth that a family tree may have. (Default value: 5.)")
-fam_gen_parser.add_argument("--max-tree-size", type=int, default=26,
-                            help="The maximum number of people that may appear in a family tree. (Default value: 26.)")
-fam_gen_parser.add_argument("--num-samples", type=int, default=1,
-                            help="The size of the dataset to generate. (Default value: 1.)")
-fam_gen_parser.add_argument("--output-dir", type=str, default="./out",
-                            help="The directory where the Prolog trees will be saved. (Default value: ./out)")
-fam_gen_parser.add_argument("--seed", type=int, default=1,
-                            help="The seed that is used to initialize the used RNG. (Default value: 1.)")
-fam_gen_parser.add_argument("--stop-prob", type=float, default=0.0,
-                            help="The probability of stopping to further extend a family tree after a person has been added. (Default value: 0.)")
-
 # Given parser args -> pretty print it
 def pretty_print_args(args):
     print('-----------------')
