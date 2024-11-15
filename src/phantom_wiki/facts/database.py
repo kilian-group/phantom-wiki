@@ -18,8 +18,15 @@ class Database:
         """
         females = [result['X'] for result in self.prolog.query("female(X)")]
         males = [result['X'] for result in self.prolog.query("male(X)")]
-        nonbinary = [result['X'] for result in self.prolog.query("nonbinary(X)")]
+        nonbinary = [] #[result['X'] for result in self.prolog.query("nonbinary(X)")]
         return females + males + nonbinary
+    def get_attribute_values(self):
+        """Gets all attributes from a Prolog database.
+        Returns: 
+            List of attributes.
+        """
+        attributes = [result['X'] for result in self.prolog.query("attribute(X)")]
+        return attributes
     
     def query(self, query: str):
         """Queries the Prolog database.

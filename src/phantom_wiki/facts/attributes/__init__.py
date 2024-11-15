@@ -58,5 +58,8 @@ def db_generate_attributes(db: Database, seed: int = 1):
     for name in names:
         job = jobs[name]
         facts.append(f"job(\'{name}\', \'{job}\')")
+        # need to add clauses that indicate job is an attribute 
+        # so that we can sample from attributes when generating questions
+        facts.append(f"attribute(\'{job}\')")
         # TODO: add hobbies here
     db.add(*facts)
