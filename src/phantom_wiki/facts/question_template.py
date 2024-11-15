@@ -5,9 +5,8 @@
 """
 
 from nltk import CFG
-from nltk.parse.generate import generate
-
 # TODO: replace this with our `generate` function from nltk_generate.py
+from phantom_wiki.utils.nltk_generate import generate
 
 # Recursive relationship/hobby questions
 # Examples:
