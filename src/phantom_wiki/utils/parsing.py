@@ -1,7 +1,14 @@
 import re
 import textwrap
 
-
+def match_placeholder_brackets(text):
+    pattern = r"<.*?>"
+    if re.search(pattern, text):
+        return True
+    else:
+        return False
+    
+    
 def remove_brackets(text):
     cleaned_text = re.sub(r"<(.*?)>", r"\1", text)
     return cleaned_text
