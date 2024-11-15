@@ -212,15 +212,14 @@ def _generate_one_1(grammar, item, depth):
             #     if item is another string (e.g. 'Who is') return nothing
             if match_placeholder_brackets(item):
                 question_template = [f"{item}_{depth}"]
-                # TODO [query: list[str], answer: str] format
-                # [["<attribute_value_5"], None]
                 prolog_template = [[f"{item}_{depth}"], None]
             else:
                 question_template = [item]
-                prolog_template = [[], None]  # TODO format
+                prolog_template = [[], None]
 
             return [[question_template, prolog_template]]
-    return []  # TODO
+
+    return []
 
 
 def combine_prolog_templates(prolog_frag1, prolog_frag2, depth):
@@ -238,7 +237,7 @@ def combine_prolog_templates(prolog_frag1, prolog_frag2, depth):
 
     # <placeholder> frag1 case (e.g. '<relation>', '<name>',...)
     #   Note: the grammar currently does not allow frag1 to be a subquery,
-    #   but frag2 can be either a a subquery, <placeholder>, non<placeholder>, or end of sentence
+    #   but frag2 can be either a subquery, <placeholder>, non<placeholder>, or end of sentence
     else:
         if prolog_frag2 == [[]] or prolog_frag2 == [[], None]:
             return prolog_frag1
@@ -276,11 +275,13 @@ def combine_prolog_templates(prolog_frag1, prolog_frag2, depth):
             if prolog_frag2[1] is None:
                 # ... whose hobby is running...
                 assert len(prolog_frag2[0]) == 1
+                assert placeholder.replace("name", "value") in prolog_frag2[0][0]
                 subquery = f"{placeholder}(Y_{depth}, {prolog_frag2[0][0]})"
                 subquery = [subquery]
             else:
                 # ...the hobby of the mother of mary ...
-                subquery = f"{placeholder}(Y_{depth}, {prolog_frag2[1]})"
+                assert placeholder.replace("name", "value") not in prolog_frag2[0][0]
+                subquery = f"{placeholder}({prolog_frag2[1]}, Y_{depth})"
                 subquery = [subquery] + prolog_frag2[0]
             answer = f"Y_{depth}"
 

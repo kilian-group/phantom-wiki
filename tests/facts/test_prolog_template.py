@@ -20,7 +20,7 @@ def print_prolog_templates(grammar_string=QA_GRAMMAR_STRING, depth=DEPTH):
     for question in questions:
         total_questions += 1
         print("Question:\t" + " ".join(question[0]))
-        print("Query:\t\t" + ",".join(question[1][0]) + ".")
+        print("Query:\t\t" + ", ".join(question[1][0]) + ".")
         print("Answer:\t\t" + question[1][1])
         print()
     print(f"Total questions (depth {DEPTH}):\t\t\t {total_questions}")
