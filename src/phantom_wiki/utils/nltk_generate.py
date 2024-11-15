@@ -10,24 +10,27 @@
 #
 
 import itertools
+import re
 import sys
+from copy import copy
 
-from nltk import CFG, Nonterminal
+from nltk import Nonterminal
 
+# import numpy generator type
+from numpy.random import Generator
 
-# 
-# Begin WIP: 
-# we can move this to some file in phantom_wiki/facts/
-# 
-# possible relations
-from ..facts.family.constants import FAMILY_RELATION_EASY
 # possible attribute names
 from ..facts.attributes.constants import ATTRIBUTE_RELATION
 from ..facts.database import Database
-# import numpy generator type
-from numpy.random import Generator
-from copy import copy
-import re
+
+#
+# Begin WIP:
+# we can move this to some file in phantom_wiki/facts/
+#
+# possible relations
+from ..facts.family.constants import FAMILY_RELATION_EASY
+
+
 def sample(db: Database, predicate_template_list: list[str], rng: Generator, valid_only: bool = True):
     """
     Samples possible realizations of the predicate_list from the database db.
@@ -51,24 +54,26 @@ def sample(db: Database, predicate_template_list: list[str], rng: Generator, val
         predicate_list: a list of predicate templates
         rng: a random number generator
         valid_only: whether to sample only valid realizations
-            if True: we uniformly sample from the set of prolog queries 
-            satisfying the predicate_template_list with a non-empty answer 
-            if False: we uniformly sample from all posssible prolog queries
+            if True: we uniformly sample from the set of prolog queries
+            satisfying the predicate_template_list with a non-empty answer
+            if False: we uniformly sample from all possible prolog queries
             satsifying the predicate_template_list
     Returns:
-        a prolog query or 
+        a prolog query or
         None if valid_only is True and no valid query is found
     """
+
     def search(pattern: str, query: str):
         match = re.search(pattern, query)
         if match:
             return match.group(1)
         return None
-    query = copy(predicate_template_list) # we will be modifying this list in place
+
+    query = copy(predicate_template_list)  # we will be modifying this list in place
     result = {}
-    for i in range(len(predicate_template_list)-1, -1, -1): # sample backwards
+    for i in range(len(predicate_template_list) - 1, -1, -1):  # sample backwards
         # first sample prolog atoms (e.g., name, attribute values)
-        # Prolog doesn't have a good way of retrieving all atoms, 
+        # Prolog doesn't have a good way of retrieving all atoms,
         # so we must resort to db.get_names() and db.get_attribute_values()
         # NOTE: there must exist some atoms in order to sample a query
         if match := search(r"(<name>_(\d+))", query[i]):
@@ -87,7 +92,7 @@ def sample(db: Database, predicate_template_list: list[str], rng: Generator, val
             result[match] = choice
 
         # now sample predicates
-        if match := search(r"(<(relation|relation_plural)>_(\d+))", query[i]): # relation predicates
+        if match := search(r"(<(relation|relation_plural)>_(\d+))", query[i]):  # relation predicates
             tmp = query[i]
             if valid_only:
                 support = []
@@ -97,7 +102,7 @@ def sample(db: Database, predicate_template_list: list[str], rng: Generator, val
                     # formatter = string.Formatter()
                     # keys = [field_name for _, field_name, _, _ in formatter.parse(format_string) if field_name]
                     query[i] = tmp.replace(match, relation)
-                    if db.query(','.join(query[i:])):
+                    if db.query(",".join(query[i:])):
                         support.append(relation)
                 if not support:
                     return None
@@ -106,13 +111,13 @@ def sample(db: Database, predicate_template_list: list[str], rng: Generator, val
                 choice = rng.choice(FAMILY_RELATION_EASY)
             query[i] = tmp.replace(match, choice)
             result[match] = choice
-        elif match := search(r"(<attribute_name>_(\d+))", query[i]): # attribute predicates
+        elif match := search(r"(<attribute_name>_(\d+))", query[i]):  # attribute predicates
             tmp = query[i]
             if valid_only:
                 support = []
                 for attribute in ATTRIBUTE_RELATION:
                     query[i] = tmp.replace(match, attribute)
-                    if db.query(','.join(query[i:])):
+                    if db.query(",".join(query[i:])):
                         support.append(attribute)
                 if not support:
                     return None
@@ -122,34 +127,16 @@ def sample(db: Database, predicate_template_list: list[str], rng: Generator, val
             query[i] = tmp.replace(match, choice)
             result[match] = choice
     return result
-# 
+
+
+#
 # End WIP
-# 
+#
 
-from .parsing import match_placeholder_brackets, match_placeholders, match_placeholders_group
+from .parsing import match_placeholder_brackets, match_placeholders
 
-# TODO: RN_p map to <relation> vs <relation_plural>
-QA_PROLOG_TEMPLATE_STRING = """
-S -> R | A | RN_p R_c
-R -> RN R | RN N | AN AV
-R_c -> R | N
-A -> AN R
-RN -> '<relation>'
-RN_p -> '<relation>'
-AN -> '<attribute_name>'
-AV -> '<attribute_value>'
-N -> '<name>'
-"""
 
-nonterminal_map = {
-    ('the', Nonterminal('RN'), 'of', Nonterminal('R')): ["<relation>", "X", "Y"],
-    ('the', Nonterminal('RN'), 'of', Nonterminal('N')): "<relation>(X,Y)",
-    ('the person whose', Nonterminal('AN'), 'is', Nonterminal('AV')): "<attributename>(X,Y)",
-    ('the', Nonterminal('AN'), 'of', Nonterminal('R')): "<attributename>(X,Y)",
-    ('How many', Nonterminal('RN_p'), 'does', Nonterminal('R_c'), 'have?'): 'aggregate_all(count, <relation>(Z, Y), X)',
-}
-
-def generate(grammar, start=None, depth=None, n=None):
+def generate_1(grammar, start=None, depth=None, n=None):
     """
     Generates an iterator of all sentences from a CFG.
 
@@ -165,7 +152,7 @@ def generate(grammar, start=None, depth=None, n=None):
         # Safe default, assuming the grammar may be recursive:
         depth = (sys.getrecursionlimit() // 3) - 3
 
-    iter = _generate_all(grammar, [start], depth)
+    iter = _generate_all_1(grammar, [start], depth)
 
     if n:
         iter = itertools.islice(iter, n)
@@ -173,48 +160,49 @@ def generate(grammar, start=None, depth=None, n=None):
     return iter
 
 
-def _generate_all(grammar, items, depth):
+def _generate_all_1(grammar, items, depth):
     if items:
         try:
-            for frag1 in _generate_one(grammar, items[0], depth):
-                # Process the first fragment in the items list 
+            templates = []
+            for frag1 in _generate_one_1(grammar, items[0], depth):
+                # Process the first fragment in the items list
                 #   e.g. 'Who is' in ['Who is', R, '?']
-                for frag2 in _generate_all(grammar, items[1:], depth):
+                for frag2 in _generate_all_1(grammar, items[1:], depth):
                     # For question generation:
-                        # Recursively process the remaining fragments (e.g. [R, '?'])
-                        # this will yield all possible sentences for e.g. [R, '?'] as a list[list[str]]
-                        # for each list (possible continuation) this adds the first fragment (frag1)
-                        # to the beginning
-                        # which yields another list[list[str]] of sentences now containing the starting 
-                        # fragment
+                    #   Recursively process the remaining fragments (e.g. [R, '?'])
+                    #   this will yield all possible sentences for e.g. [R, '?'] as a list[list[str]]
+                    #   for each list (possible continuation) this adds the first fragment (frag1)
+                    #   to the beginning
+                    #   which yields another list[list[str]] of sentences now containing the starting
+                    #   fragment
                     # For prolog template generation:
-                        # TODO: annotation contents
-                    question_frag1, question_frag2 = frag1[0], frag1[1]
-                    prolog_frag1, prolog_frag2 = frag2[0], frag2[1]
+                    assert len(frag1) == 2 and len(frag2) == 2
+                    question_frag1, prolog_frag1 = frag1[0], frag1[1]
+                    question_frag2, prolog_frag2 = frag2[0], frag2[1]
 
                     question_template = question_frag1 + question_frag2
-                    prolog_template = combine_prolog_templates(prolog_frag1, prolog_frag2, depth) 
-                    yield [question_template, prolog_template]
+                    prolog_template = combine_prolog_templates(prolog_frag1, prolog_frag2, depth)
+                    templates.append([question_template, prolog_template])
         except RecursionError as error:
             # Helpful error message while still showing the recursion stack.
             raise RuntimeError(
                 "The grammar has rule(s) that yield infinite recursion!\n\
                     Eventually use a lower 'depth', or a higher 'sys.setrecursionlimit()'."
             ) from error
+        return templates
     else:
-        # End of production: empty sentences and empty annotation
-        yield [[], [[], None]] # TODO vs [[]]
+        # End of production: empty sentences and empty annotation [[]]
+        return [[[], [[]]]]
 
-def _generate_one(grammar, item, depth):
+
+def _generate_one_1(grammar, item, depth):
     if depth > 0:
         if isinstance(item, Nonterminal):
-            # generations = []
+            generations = []
             for prod in grammar.productions(lhs=item):
-                # TODO potentially need to do something here for the prolog template
-                yield from _generate_all(grammar, prod.rhs(), depth - 1)
-                # generations.append(_generate_all(grammar, prod.rhs(), depth - 1))
-            # return generations
-                
+                generations += _generate_all_1(grammar, prod.rhs(), depth - 1)
+            return generations
+
         else:
             # Terminal
             # for question generation:
@@ -222,83 +210,78 @@ def _generate_one(grammar, item, depth):
             # for prolog query generation
             #     if item is a <placeholder>, annotate with depth (e.g. <placeholder>_depth) and return
             #     if item is another string (e.g. 'Who is') return nothing
-
             if match_placeholder_brackets(item):
                 question_template = [f"{item}_{depth}"]
                 # TODO [query: list[str], answer: str] format
                 # [["<attribute_value_5"], None]
-                prolog_template = [[[f"{item}_{depth}"],  None]] 
+                prolog_template = [[f"{item}_{depth}"], None]
             else:
                 question_template = [item]
-                prolog_template = [[[], None]] # TODO format
-            
+                prolog_template = [[], None]  # TODO format
 
-            return [question_template, prolog_template]
+            return [[question_template, prolog_template]]
+    return []  # TODO
 
 
 def combine_prolog_templates(prolog_frag1, prolog_frag2, depth):
     """Generates a subquery."""
 
-    # Non<placeholder> frag1 case (e.g. 'is', 'of', 'Who is',...)
-    #   TODO second condition probably superfluous
-    if prolog_frag1[0] == [] and prolog_frag1[1] is None:
+    if prolog_frag1 == [[]]:
         return prolog_frag2
-    
-    # Productions where frag1 is the last <placeholder> 
-    # in the subsentence:
-    #     N / <name>
-    #     AV / <attribute_value>
-    # -> frag2 must be either [[]] or [[], None]
-    elif prolog_frag2 == [[]] or prolog_frag2 == [[], None]:
-        return prolog_frag1
-    
-    # Productions where both frag1 and frag2 are <placeholder>s
-    # Our grammar currently does not allow frag1 to be a subquery,
-    # but frag2 can be either a <placeholder> or a subquery
-    # -> frag1 is either:
-    #     RN / <relation>_*
-    #     RN_p / <relation_plural>_*
-    #     AN / <attribute_name>_*
-    # -> frag2 is either:
-    #     [["subq1",...], Y_d+1]
-    #     [["<placeholder>"], None]
-    # -> frag1[0] is combined with frag2[0], frag2[1]
-    # -> return ["combined subquery containing frag2[1]" + frag2[0],
-    #            f"Y_{depth}"]
-    elif prolog_frag1[0] != [] and prolog_frag1[1] is None:
+
+    # Non<placeholder> frag1 case (e.g. 'is', 'of', 'Who is',...)
+    elif prolog_frag1 == [[], None]:
+        if prolog_frag2 == [[]]:
+            return prolog_frag1
+        else:
+            return prolog_frag2
+
+    # <placeholder> frag1 case (e.g. '<relation>', '<name>',...)
+    #   Note: the grammar currently does not allow frag1 to be a subquery,
+    #   but frag2 can be either a a subquery, <placeholder>, non<placeholder>, or end of sentence
+    else:
+        if prolog_frag2 == [[]] or prolog_frag2 == [[], None]:
+            return prolog_frag1
+
         assert len(prolog_frag1[0]) == 1
         placeholder = prolog_frag1[0][0]
+        subquery = None
+        answer = None
+
         # Match <placeholder>
-        if match_placeholders(placeholder, "relation>"):
+        if match_placeholders(placeholder, "relation_plural"):
+            relation = placeholder.replace("_plural", "")
+            if prolog_frag2[1] is None:
+                # ... how many brothers does mary have ...
+                assert len(prolog_frag2[0]) == 1
+                subquery = f"aggregate_all(count, {relation}({prolog_frag2[0][0]}, Y_{depth}), Count_{depth})"
+                subquery = [subquery]
+            else:
+                # ... how many brothers does the sister of mary have ...
+                subquery = f"aggregate_all(count, {relation}({prolog_frag2[1]}, Y_{depth}), Count_{depth})"
+                subquery = [subquery] + prolog_frag2[0]
+            answer = f"Count_{depth}"
+        elif match_placeholders(placeholder, "relation"):
             if prolog_frag2[1] is None:
                 # ... who is the mother of mary ...
                 assert len(prolog_frag2[0]) == 1
                 subquery = f"{placeholder}({prolog_frag2[0][0]}, Y_{depth})"
+                subquery = [subquery]
             else:
                 # ... who is the mother of the mother of mary ...
                 subquery = f"{placeholder}({prolog_frag2[1]}, Y_{depth})"
+                subquery = [subquery] + prolog_frag2[0]
             answer = f"Y_{depth}"
         elif match_placeholders(placeholder, "attribute_name"):
             if prolog_frag2[1] is None:
                 # ... whose hobby is running...
                 assert len(prolog_frag2[0]) == 1
                 subquery = f"{placeholder}(Y_{depth}, {prolog_frag2[0][0]})"
+                subquery = [subquery]
             else:
                 # ...the hobby of the mother of mary ...
                 subquery = f"{placeholder}(Y_{depth}, {prolog_frag2[1]})"
+                subquery = [subquery] + prolog_frag2[0]
             answer = f"Y_{depth}"
-        elif match_placeholders(placeholder, "relation_plural"):
-            relation = placeholder.replace("_plural", "")
-            if prolog_frag2[1] is None:
-                # ... how many brothers does mary have ...
-                assert len(prolog_frag2[0]) == 1
-                subquery = f"aggregate_all(count, {relation}({prolog_frag2[0][0]}, Y_{depth}), Count_{depth})"
-            else:
-                # ... how many brothers does the sister of mary have ...
-                subquery = f"aggregate_all(count, {relation}({prolog_frag2[1]}, Y_{depth}), Count_{depth})"
-            answer = f"Count_{depth}"
-                
-        return [[subquery] + prolog_frag2[0], answer] 
 
-    # TODO return [[]]
-    assert False, "Not implemented"
+        return [subquery, answer]
