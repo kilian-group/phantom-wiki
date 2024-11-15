@@ -1,4 +1,8 @@
 from phantom_wiki.facts.question_template import get_prolog_templates, get_question_templates
+from phantom_wiki.facts import get_database
+from phantom_wiki.utils.nltk_generate import sample
+from tests.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
+from numpy.random import default_rng
 
 QUESTION_TEMPLATES_DEPTH_5 = [
     ["Who is", "the", "<relation>", "of", "the", "<relation>", "of", "<name>", "?"],
@@ -101,3 +105,70 @@ def test_get_prolog_templates():
     ]
 
     assert get_prolog_templates(QUESTION_TEMPLATES_DEPTH_5) == PROLOG_TEMPLATES_DEPTH_5
+
+def test_sample_1():
+    db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
+    # case 1: valid_only=False
+    predicate_template_list = ["<relation>_1(<name>_1, X)"]
+    rng = default_rng(seed=1)
+    any_query = sample(db, predicate_template_list, rng=rng, valid_only=False)
+    assert any_query == {
+        "<name>_1": "vanessa",
+        "<relation>_1": "child"
+    }
+    # case 2: valid_only=True
+    predicate_template_list = ["<relation>_1(<name>_1, X)"]
+    rng = default_rng(seed=1)
+    valid_query = sample(db, predicate_template_list, rng=rng, valid_only=True)
+    assert valid_query == {
+        "<name>_1": "vanessa",
+        "<relation>_1": "daughter"
+    }
+
+def test_sample_2():
+    db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
+    # case 1: valid_only=False
+    predicate_template_list = ["<relation>_1(Y, X)", "<relation>_2(<name>_1, Y)"]
+    rng = default_rng(seed=1)
+    any_query = sample(db, predicate_template_list, rng=rng, valid_only=False)
+    assert any_query == {
+        "<name>_1": "vanessa",
+        "<relation>_2": "child",
+        "<relation>_1": "daughter"
+    }
+    # case 2: valid_only=True
+    predicate_template_list = ["<relation>_1(Y, X)", "<relation>_2(<name>_1, Y)"]
+    rng = default_rng(seed=1)
+    valid_query = sample(db, predicate_template_list, rng=rng, valid_only=True)
+    assert valid_query == {
+        "<name>_1": "vanessa",
+        "<relation>_2": "daughter",
+        "<relation>_1": "daughter"
+    }
+
+def test_sample_3():
+    db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
+    db.define("attribute/1")
+    # NOTE: currently we don't have any attribute facts FAMILY_TREE_SMALL_EXAMPLE_PATH,
+    # so no queries can be generated
+    # case 1: valid_only=False
+    predicate_template_list = ["<relation>_1(Y, X)", "<attribute_name>_1(X, <attribute_value>_1)"]
+    rng = default_rng(seed=1)
+    any_query = sample(db, predicate_template_list, rng=rng, valid_only=False)
+    # assert any_query == {
+    #     "<name>_1": "vanessa",
+    #     "<relation>_2": "child",
+    #     "<relation>_1": "daughter"
+    # }
+    # case 2: valid_only=True
+    predicate_template_list = ["<relation>_1(Y, X)", "<attribute_name>_1(X, <attribute_value>_1)"]
+    rng = default_rng(seed=1)
+    valid_query = sample(db, predicate_template_list, rng=rng, valid_only=True)
+    # assert valid_query == "valid": {
+    #     "<name>_1": "vanessa",
+    #     "<relation>_2": "daughter",
+    #     "<relation>_1": "daughter"
+    # }
+    # import json
+    # with open("tests/facts/sample_query.json", "w") as f:
+    #     json.dump({"any": any_query, "valid": valid_query}, f, indent=4)

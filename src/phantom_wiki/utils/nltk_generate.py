@@ -26,6 +26,8 @@ from ..facts.attributes.constants import ATTRIBUTE_RELATION
 from ..facts.database import Database
 # import numpy generator type
 from numpy.random import Generator
+from copy import copy
+import re
 def sample(db: Database, predicate_template_list: list[str], rng: Generator, valid_only: bool = True):
     """
     Samples possible realizations of the predicate_list from the database db.
@@ -45,39 +47,86 @@ def sample(db: Database, predicate_template_list: list[str], rng: Generator, val
     mother(Y,X), hobby(anastasia,reading)
 
     Args:
-    - db: the prolog database to sample from
-    - predicate_list: a list of predicate templates
-    - rng: a random number generator
-    - valid_only: whether to sample only valid realizations
-        if True: we uniformly sample from the set of prolog queries 
-        satisfying the predicate_template_list with a non-empty answer 
-        if False: we uniformly sample from all posssible prolog queries
-        satsifying the predicate_template_list
+        db: the prolog database to sample from
+        predicate_list: a list of predicate templates
+        rng: a random number generator
+        valid_only: whether to sample only valid realizations
+            if True: we uniformly sample from the set of prolog queries 
+            satisfying the predicate_template_list with a non-empty answer 
+            if False: we uniformly sample from all posssible prolog queries
+            satsifying the predicate_template_list
+    Returns:
+        a prolog query or 
+        None if valid_only is True and no valid query is found
     """
-    query = []
-    for i in range(len(predicate_template_list)-1, -1, -1):
-        predicate_template = predicate_template_list[i]
-        if valid_only:
-            support = []
-            for relation in FAMILY_RELATION_EASY:
-                # TODO: can we use predicate_template.format() instead of replace?
-                # import string
-                # formatter = string.Formatter()
-                # keys = [field_name for _, field_name, _, _ in formatter.parse(format_string) if field_name]
-                if db.query(predicate_template.replace("<relation>", relation)):
-                    support.append(relation)
-            if not support:
+    def search(pattern: str, query: str):
+        match = re.search(pattern, query)
+        if match:
+            return match.group(1)
+        return None
+    query = copy(predicate_template_list) # we will be modifying this list in place
+    result = {}
+    for i in range(len(predicate_template_list)-1, -1, -1): # sample backwards
+        # first sample prolog atoms (e.g., name, attribute values)
+        # Prolog doesn't have a good way of retrieving all atoms, 
+        # so we must resort to db.get_names() and db.get_attribute_values()
+        # NOTE: there must exist some atoms in order to sample a query
+        if match := search(r"(<name>_(\d+))", query[i]):
+            names = db.get_names()
+            if not names:
                 return None
-            choice = rng.choice(support)
-            query.append(predicate_template.replace("<relation>", choice))
-        else:
-            query.append(predicate_template.replace("<relation>", rng.choice(FAMILY_RELATION_EASY)))
-    return query
+            choice = rng.choice(names)
+            query[i] = predicate_template_list[i].replace(match, choice)
+            result[match] = choice
+        if match := re.search(r"(<attribute_value>_(\d+))", query[i]):
+            attribute_values = db.get_attribute_values()
+            if not attribute_values:
+                return None
+            choice = rng.choice(attribute_values)
+            query[i] = predicate_template_list[i].replace(match, choice)
+            result[match] = choice
+
+        # now sample predicates
+        if match := search(r"(<(relation|relation_plural)>_(\d+))", query[i]): # relation predicates
+            tmp = query[i]
+            if valid_only:
+                support = []
+                for relation in FAMILY_RELATION_EASY:
+                    # TODO: can we use predicate_template.format() instead of replace?
+                    # import string
+                    # formatter = string.Formatter()
+                    # keys = [field_name for _, field_name, _, _ in formatter.parse(format_string) if field_name]
+                    query[i] = tmp.replace(match, relation)
+                    if db.query(','.join(query[i:])):
+                        support.append(relation)
+                if not support:
+                    return None
+                choice = rng.choice(support)
+            else:
+                choice = rng.choice(FAMILY_RELATION_EASY)
+            query[i] = tmp.replace(match, choice)
+            result[match] = choice
+        elif match := search(r"(<attribute_name>_(\d+))", query[i]): # attribute predicates
+            tmp = query[i]
+            if valid_only:
+                support = []
+                for attribute in ATTRIBUTE_RELATION:
+                    query[i] = tmp.replace(match, attribute)
+                    if db.query(','.join(query[i:])):
+                        support.append(attribute)
+                if not support:
+                    return None
+                choice = rng.choice(support)
+            else:
+                choice = rng.choice(ATTRIBUTE_RELATION)
+            query[i] = tmp.replace(match, choice)
+            result[match] = choice
+    return result
 # 
 # End WIP
 # 
 
-from .parsing import match_placeholder_brackets, match_placeholders
+from .parsing import match_placeholder_brackets, match_placeholders, match_placeholders_group
 
 # TODO: RN_p map to <relation> vs <relation_plural>
 QA_PROLOG_TEMPLATE_STRING = """
