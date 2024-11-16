@@ -10,24 +10,27 @@
 #
 
 import itertools
+import re
 import sys
+from copy import copy
 
-from nltk import CFG, Nonterminal
+from nltk import Nonterminal
 
+# import numpy generator type
+from numpy.random import Generator
 
-# 
-# Begin WIP: 
-# we can move this to some file in phantom_wiki/facts/
-# 
-# possible relations
-from ..facts.family.constants import FAMILY_RELATION_EASY
 # possible attribute names
 from ..facts.attributes.constants import ATTRIBUTE_RELATION
 from ..facts.database import Database
-# import numpy generator type
-from numpy.random import Generator
-from copy import copy
-import re
+
+#
+# Begin WIP:
+# we can move this to some file in phantom_wiki/facts/
+#
+# possible relations
+from ..facts.family.constants import FAMILY_RELATION_EASY, FAMILY_RELATION_EASY_PLURALS
+
+
 def sample(db: Database, predicate_template_list: list[str], rng: Generator, valid_only: bool = True):
     """
     Samples possible realizations of the predicate_list from the database db.
@@ -51,82 +54,75 @@ def sample(db: Database, predicate_template_list: list[str], rng: Generator, val
         predicate_list: a list of predicate templates
         rng: a random number generator
         valid_only: whether to sample only valid realizations
-            if True: we uniformly sample from the set of prolog queries 
-            satisfying the predicate_template_list with a non-empty answer 
+            if True: we uniformly sample from the set of prolog queries
+            satisfying the predicate_template_list with a non-empty answer
             if False: we uniformly sample from all posssible prolog queries
             satsifying the predicate_template_list
     Returns:
-        a prolog query or 
+        a prolog query or
         None if valid_only is True and no valid query is found
     """
+
     def search(pattern: str, query: str):
         match = re.search(pattern, query)
         if match:
             return match.group(1)
         return None
-    query = copy(predicate_template_list) # we will be modifying this list in place
+    
+    def sample_from_bank(bank: list[str], rng: Generator):
+        if not bank:
+            return None
+        choice = rng.choice(bank)
+        query[i] = predicate_template_list[i].replace(match, choice)
+        result[match] = choice
+
+    def get_support(query: str, predicate_name_list: list[str], match: str, tmp: str):
+        if valid_only:
+            support = []
+            for predicate in predicate_name_list:
+                query[i] = tmp.replace(match, predicate)
+                if db.query(",".join(query[i:])):
+                    support.append(predicate)
+            if not support:
+                return None
+            choice = rng.choice(support)
+        else:
+            choice = rng.choice(predicate_name_list)
+        query[i] = tmp.replace(match, choice)
+        result[match] = choice
+
+    query = copy(predicate_template_list)  # we will be modifying this list in place
     result = {}
-    for i in range(len(predicate_template_list)-1, -1, -1): # sample backwards
+    for i in range(len(predicate_template_list) - 1, -1, -1):  # sample backwards
         # first sample prolog atoms (e.g., name, attribute values)
-        # Prolog doesn't have a good way of retrieving all atoms, 
+        # Prolog doesn't have a good way of retrieving all atoms,
         # so we must resort to db.get_names() and db.get_attribute_values()
         # NOTE: there must exist some atoms in order to sample a query
         if match := search(r"(<name>_(\d+))", query[i]):
-            names = db.get_names()
-            if not names:
-                return None
-            choice = rng.choice(names)
-            query[i] = predicate_template_list[i].replace(match, choice)
-            result[match] = choice
+            bank = db.get_names()
+            sample_from_bank(bank, rng)
+
         if match := re.search(r"(<attribute_value>_(\d+))", query[i]):
-            attribute_values = db.get_attribute_values()
-            if not attribute_values:
-                return None
-            choice = rng.choice(attribute_values)
-            query[i] = predicate_template_list[i].replace(match, choice)
-            result[match] = choice
+            bank = db.get_attribute_values()
+            sample_from_bank(bank, rng)
 
         # now sample predicates
-        if match := search(r"(<(relation|relation_plural)>_(\d+))", query[i]): # relation predicates
-            tmp = query[i]
-            if valid_only:
-                support = []
-                for relation in FAMILY_RELATION_EASY:
-                    # TODO: can we use predicate_template.format() instead of replace?
-                    # import string
-                    # formatter = string.Formatter()
-                    # keys = [field_name for _, field_name, _, _ in formatter.parse(format_string) if field_name]
-                    query[i] = tmp.replace(match, relation)
-                    if db.query(','.join(query[i:])):
-                        support.append(relation)
-                if not support:
-                    return None
-                choice = rng.choice(support)
-            else:
-                choice = rng.choice(FAMILY_RELATION_EASY)
-            query[i] = tmp.replace(match, choice)
-            result[match] = choice
-        elif match := search(r"(<attribute_name>_(\d+))", query[i]): # attribute predicates
-            tmp = query[i]
-            if valid_only:
-                support = []
-                for attribute in ATTRIBUTE_RELATION:
-                    query[i] = tmp.replace(match, attribute)
-                    if db.query(','.join(query[i:])):
-                        support.append(attribute)
-                if not support:
-                    return None
-                choice = rng.choice(support)
-            else:
-                choice = rng.choice(ATTRIBUTE_RELATION)
-            query[i] = tmp.replace(match, choice)
-            result[match] = choice
-    return result
-# 
-# End WIP
-# 
+        if match := search(r"(<(relation)>_(\d+))", query[i]):  # relation predicates
+            get_support(query, FAMILY_RELATION_EASY, match, query[i])
+            
+        elif match := search(r"(<relation_plural>_(\d+))", query[i]):  # pluralable relation predicates
+            get_support(query, FAMILY_RELATION_EASY_PLURALS, match, query[i])
 
-from .parsing import match_placeholder_brackets, match_placeholders, match_placeholders_group
+        elif match := search(r"(<attribute_name>_(\d+))", query[i]):  # attribute predicates
+            get_support(query, ATTRIBUTE_RELATION, match, query[i])
+
+    return result
+#
+# End WIP
+#
+
+from .parsing import match_placeholder_brackets, match_placeholders
+# , match_placeholders_group
 
 # TODO: RN_p map to <relation> vs <relation_plural>
 QA_PROLOG_TEMPLATE_STRING = """
@@ -141,13 +137,6 @@ AV -> '<attribute_value>'
 N -> '<name>'
 """
 
-nonterminal_map = {
-    ('the', Nonterminal('RN'), 'of', Nonterminal('R')): ["<relation>", "X", "Y"],
-    ('the', Nonterminal('RN'), 'of', Nonterminal('N')): "<relation>(X,Y)",
-    ('the person whose', Nonterminal('AN'), 'is', Nonterminal('AV')): "<attributename>(X,Y)",
-    ('the', Nonterminal('AN'), 'of', Nonterminal('R')): "<attributename>(X,Y)",
-    ('How many', Nonterminal('RN_p'), 'does', Nonterminal('R_c'), 'have?'): 'aggregate_all(count, <relation>(Z, Y), X)',
-}
 
 def generate(grammar, start=None, depth=None, n=None):
     """
@@ -177,23 +166,23 @@ def _generate_all(grammar, items, depth):
     if items:
         try:
             for frag1 in _generate_one(grammar, items[0], depth):
-                # Process the first fragment in the items list 
+                # Process the first fragment in the items list
                 #   e.g. 'Who is' in ['Who is', R, '?']
                 for frag2 in _generate_all(grammar, items[1:], depth):
                     # For question generation:
-                        # Recursively process the remaining fragments (e.g. [R, '?'])
-                        # this will yield all possible sentences for e.g. [R, '?'] as a list[list[str]]
-                        # for each list (possible continuation) this adds the first fragment (frag1)
-                        # to the beginning
-                        # which yields another list[list[str]] of sentences now containing the starting 
-                        # fragment
+                    # Recursively process the remaining fragments (e.g. [R, '?'])
+                    # this will yield all possible sentences for e.g. [R, '?'] as a list[list[str]]
+                    # for each list (possible continuation) this adds the first fragment (frag1)
+                    # to the beginning
+                    # which yields another list[list[str]] of sentences now containing the starting
+                    # fragment
                     # For prolog template generation:
-                        # TODO: annotation contents
+                    # TODO: annotation contents
                     question_frag1, question_frag2 = frag1[0], frag1[1]
                     prolog_frag1, prolog_frag2 = frag2[0], frag2[1]
 
                     question_template = question_frag1 + question_frag2
-                    prolog_template = combine_prolog_templates(prolog_frag1, prolog_frag2, depth) 
+                    prolog_template = combine_prolog_templates(prolog_frag1, prolog_frag2, depth)
                     yield [question_template, prolog_template]
         except RecursionError as error:
             # Helpful error message while still showing the recursion stack.
@@ -203,7 +192,8 @@ def _generate_all(grammar, items, depth):
             ) from error
     else:
         # End of production: empty sentences and empty annotation
-        yield [[], [[], None]] # TODO vs [[]]
+        yield [[], [[], None]]  # TODO vs [[]]
+
 
 def _generate_one(grammar, item, depth):
     if depth > 0:
@@ -214,7 +204,7 @@ def _generate_one(grammar, item, depth):
                 yield from _generate_all(grammar, prod.rhs(), depth - 1)
                 # generations.append(_generate_all(grammar, prod.rhs(), depth - 1))
             # return generations
-                
+
         else:
             # Terminal
             # for question generation:
@@ -227,11 +217,10 @@ def _generate_one(grammar, item, depth):
                 question_template = [f"{item}_{depth}"]
                 # TODO [query: list[str], answer: str] format
                 # [["<attribute_value_5"], None]
-                prolog_template = [[[f"{item}_{depth}"],  None]] 
+                prolog_template = [[[f"{item}_{depth}"], None]]
             else:
                 question_template = [item]
-                prolog_template = [[[], None]] # TODO format
-            
+                prolog_template = [[[], None]]  # TODO format
 
             return [question_template, prolog_template]
 
@@ -243,15 +232,15 @@ def combine_prolog_templates(prolog_frag1, prolog_frag2, depth):
     #   TODO second condition probably superfluous
     if prolog_frag1[0] == [] and prolog_frag1[1] is None:
         return prolog_frag2
-    
-    # Productions where frag1 is the last <placeholder> 
+
+    # Productions where frag1 is the last <placeholder>
     # in the subsentence:
     #     N / <name>
     #     AV / <attribute_value>
     # -> frag2 must be either [[]] or [[], None]
     elif prolog_frag2 == [[]] or prolog_frag2 == [[], None]:
         return prolog_frag1
-    
+
     # Productions where both frag1 and frag2 are <placeholder>s
     # Our grammar currently does not allow frag1 to be a subquery,
     # but frag2 can be either a <placeholder> or a subquery
@@ -297,8 +286,8 @@ def combine_prolog_templates(prolog_frag1, prolog_frag2, depth):
                 # ... how many brothers does the sister of mary have ...
                 subquery = f"aggregate_all(count, {relation}({prolog_frag2[1]}, Y_{depth}), Count_{depth})"
             answer = f"Count_{depth}"
-                
-        return [[subquery] + prolog_frag2[0], answer] 
+
+        return [[subquery] + prolog_frag2[0], answer]
 
     # TODO return [[]]
     assert False, "Not implemented"
