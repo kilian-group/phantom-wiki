@@ -25,6 +25,7 @@ class Database:
         Returns: 
             List of attributes.
         """
+        self.define("attribute/1")
         attributes = [result['X'] for result in self.prolog.query("attribute(X)")]
         return attributes
     
