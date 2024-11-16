@@ -54,6 +54,15 @@ FAMILY_RELATION_EASY_PLURALS = [
     "daughters",
 ]
 
+FAMILY_RELATION_EASY_PL2SG = {
+    "siblings": "sibling",
+    "sisters": "sister",
+    "brothers": "brother",
+    "children": "child",
+    "sons": "son",
+    "daughters": "daughter",
+}
+
 FAMILY_RELATION_HARD_PLURALS = [
     "nieces",
     "nephews",
