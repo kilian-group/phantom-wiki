@@ -110,8 +110,10 @@ def sample(db: Database, predicate_template_list: list[str], rng: Generator, val
         if match := search(r"(<(relation)>_(\d+))", query[i]):  # relation predicates
             get_support(query, FAMILY_RELATION_EASY, match, query[i])
             
-        elif match := search(r"(<relation_plural>_(\d+))", query[i]):  # pluralable relation predicates
-            get_support(query, FAMILY_RELATION_EASY_PLURALS, match, query[i])
+        # TODO: handle pluralable relation predicates
+        # the predicate name should be in plural forms for questions, but singular for prolog queries
+        # elif match := search(r"(<relation_plural>_(\d+))", query[i]):  # pluralable relation predicates
+        #     get_support(query, FAMILY_RELATION_EASY_PLURALS, match, query[i])
 
         elif match := search(r"(<attribute_name>_(\d+))", query[i]):  # attribute predicates
             get_support(query, ATTRIBUTE_RELATION, match, query[i])
