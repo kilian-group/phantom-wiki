@@ -3,19 +3,19 @@
 
 *Question templates* are based on the QA_GRAMMAR_STRING and can be generated at varying recursion depths.
 The templates are not complete questions or valid queries, as they contain the <placeholder> tokens intended
-to be replaced with their instantiations that depend on their type and the Prolog database. 
+to be replaced with their instantiations that depend on their type and the Prolog database.
 
 For example, at a low recursion depth the grammar string may generate two questions:
 
     > Question: Who is the person whose hobby is reading?
     > Template: Who is the person whose <attribute_name>_1 is <attribute_value>_1 ?
 
-    > Question: How many childern does John have?
+    > Question: How many children does John have?
     > Template: How many <relation_plural>_2 does <name>_1 have?
 
 Therefore a template of a question is an abstraction of many possible questions of the same type.
 
-Note the exact numbering of the <placeholder> tokens may differ based on the chosen recursion depth, and is 
+Note the exact numbering of the <placeholder> tokens may differ based on the chosen recursion depth, and is
 there to distinguish tokens potentially generated at the same recursion depth but representing different
 tokens.
 
@@ -27,7 +27,7 @@ For example:
     > Answer: Y_2
 
     > Template: How many <relation_plural>_2 does <name>_1 have?
-    > Query: aggregate_all(count, <relation>_2(<name>_1, Y_3), Count_3).
+    > Query: aggregate_all(count, <relation_plural>_2(<name>_1, Y_3), Count_3).
     > Answer: Count_3
 
 
@@ -48,15 +48,12 @@ This template generation is based on the `nltk.parse.generate` function from the
 
 import itertools
 import sys
-
-from dataclasses import dataclass
-
-from typing import Iterable
+from collections.abc import Iterable
+from dataclasses import dataclass, field
 
 from nltk import CFG, Nonterminal
 
 from ..utils.parsing import match_placeholder_brackets, match_placeholders
-
 
 QA_GRAMMAR_STRING = """
     S -> 'Who is' R '?' | 'What is' A '?' | 'How many' RN_p 'does' R_c 'have?'
@@ -71,11 +68,11 @@ QA_GRAMMAR_STRING = """
     """
 
 
-def generate_templates(grammar: CFG=None, depth=4, n=None) -> Iterable:
+def generate_templates(grammar: CFG = None, depth=4, n=None) -> Iterable:
     """Generates an iterator of all question templates and corresponding Prolog queries from a CFG.
 
     Args:
-        grammar: 
+        grammar:
         depth: The maximal depth of the generated tree. Default value 4, minimum depth of QA_GRAMMAR_STRING.
         n: The maximum number of sentences to return. If None, returns all sentences.
 
@@ -100,7 +97,50 @@ def generate_templates(grammar: CFG=None, depth=4, n=None) -> Iterable:
     return iter
 
 
+@dataclass
+class Fragment:
+    """Fragment of the question and Prolog query template.
+
+    Attributes:
+        q_fragment: Question template of the current fragment
+        p_fragment: Prolog query template of the current fragment
+        p_answer: The variable in the Prolog query template corresponding to the answer
+    """
+
+    q_fragment: list[str] = field(default_factory=list)
+    p_fragment: list[str] = None
+    p_answer: str = None
+
+    def get_question_template(self) -> str:
+        # TODO remove space before question mark
+        return " ".join(self.q_fragment)
+
+    def get_query_template(self) -> str:
+        return ", ".join(self.p_fragment)
+
+    def get_query_answer(self) -> str:
+        return self.p_answer
+
+
 def _generate_tail_template_fragments(grammar, items, depth):
+    """
+
+    For question generation:
+    Recursively process the remaining fragments (e.g. [R, '?'])
+    this will yield all possible sentences for e.g. [R, '?'] as a list[list[str]]
+    for each list (possible continuation) this adds the first fragment (frag1)
+    to the beginning
+    which yields another list[list[str]] of sentences now containing the starting
+    fragment
+    For prolog template generation:
+
+    Terminal
+    for question generation:
+    yield the terminal as list[str] of length 1
+    for prolog query generation
+    if item is a <placeholder>, annotate with depth (e.g. <placeholder>_depth) and return
+    if item is another string (e.g. 'Who is') return nothing
+    """
     if items:
         try:
             templates = []
@@ -108,21 +148,8 @@ def _generate_tail_template_fragments(grammar, items, depth):
                 # Process the first fragment in the items list
                 #   e.g. 'Who is' in ['Who is', R, '?']
                 for frag2 in _generate_tail_template_fragments(grammar, items[1:], depth):
-                    # For question generation:
-                    #   Recursively process the remaining fragments (e.g. [R, '?'])
-                    #   this will yield all possible sentences for e.g. [R, '?'] as a list[list[str]]
-                    #   for each list (possible continuation) this adds the first fragment (frag1)
-                    #   to the beginning
-                    #   which yields another list[list[str]] of sentences now containing the starting
-                    #   fragment
-                    # For prolog template generation:
-                    assert len(frag1) == 2 and len(frag2) == 2
-                    question_frag1, prolog_frag1 = frag1[0], frag1[1]
-                    question_frag2, prolog_frag2 = frag2[0], frag2[1]
-
-                    question_template = question_frag1 + question_frag2
-                    prolog_template = _combine_prolog_fragments(prolog_frag1, prolog_frag2, depth)
-                    templates.append([question_template, prolog_template])
+                    new_fragment = _combine_fragments(frag1, frag2, depth)
+                    templates.append(new_fragment)
         except RecursionError as error:
             # Helpful error message while still showing the recursion stack.
             raise RuntimeError(
@@ -131,8 +158,8 @@ def _generate_tail_template_fragments(grammar, items, depth):
             ) from error
         return templates
     else:
-        # End of production: empty sentences and empty annotation [[]]
-        return [[[], [[]]]]
+        # End of production
+        return [Fragment()]
 
 
 def _generate_head_template_fragments(grammar, item, depth):
@@ -144,85 +171,81 @@ def _generate_head_template_fragments(grammar, item, depth):
             return generations
 
         else:
-            # Terminal
-            # for question generation:
-            #     yield the terminal as list[str] of length 1
-            # for prolog query generation
-            #     if item is a <placeholder>, annotate with depth (e.g. <placeholder>_depth) and return
-            #     if item is another string (e.g. 'Who is') return nothing
             if match_placeholder_brackets(item):
-                question_template = [f"{item}_{depth}"]
-                prolog_template = [[f"{item}_{depth}"], None]
+                qt = [f"{item}_{depth}"]
+                pt = [f"{item}_{depth}"]
             else:
-                question_template = [item]
-                prolog_template = [[], None]
+                qt = [item]
+                pt = []
 
-            return [[question_template, prolog_template]]
-
+            return [Fragment(q_fragment=qt, p_fragment=pt, p_answer=None)]
     return []
 
 
-def _combine_prolog_fragments(prolog_frag1, prolog_frag2, depth):
+def _combine_fragments(f1: Fragment, f2: Fragment, depth) -> Fragment:
     """Generates a subquery."""
 
-    if prolog_frag1 == [[]]:
-        return prolog_frag2
+    q_fragment = f1.q_fragment + f2.q_fragment
+
+    if f1.p_fragment is None:
+        return Fragment(q_fragment, f2.p_fragment, f2.p_answer)
 
     # Non<placeholder> frag1 case (e.g. 'is', 'of', 'Who is',...)
-    elif prolog_frag1 == [[], None]:
-        if prolog_frag2 == [[]]:
-            return prolog_frag1
+    elif f1.p_fragment == []:
+        if f2.p_fragment is None:
+            return Fragment(q_fragment, f1.p_fragment, f1.p_answer)
         else:
-            return prolog_frag2
+            return Fragment(q_fragment, f2.p_fragment, f2.p_answer)
 
     # <placeholder> frag1 case (e.g. '<relation>', '<name>',...)
     #   Note: the grammar currently does not allow frag1 to be a subquery,
     #   but frag2 can be either a subquery, <placeholder>, non<placeholder>, or end of sentence
     else:
-        if prolog_frag2 == [[]] or prolog_frag2 == [[], None]:
-            return prolog_frag1
+        if f2.p_fragment is None or f2.p_fragment == []:
+            return Fragment(q_fragment, f1.p_fragment, f1.p_answer)
 
-        assert len(prolog_frag1[0]) == 1
-        placeholder = prolog_frag1[0][0]
+        assert len(f1.p_fragment) == 1
+        placeholder = f1.p_fragment[0]
         subquery = None
         answer = None
 
         # Match <placeholder>
         if match_placeholders(placeholder, "relation_plural"):
-            relation = placeholder.replace("_plural", "")
-            if prolog_frag2[1] is None:
-                # ... how many brothers does mary have ...
-                assert len(prolog_frag2[0]) == 1
-                subquery = f"aggregate_all(count, {relation}({prolog_frag2[0][0]}, Y_{depth}), Count_{depth})"
+            if f2.p_answer is None:
+                # ... how many brothers does Alice have ...
+                assert len(f2.p_fragment) == 1
+                subquery = (
+                    f"aggregate_all(count, {placeholder}({f2.p_fragment[0]}, Y_{depth}), Count_{depth})"
+                )
                 subquery = [subquery]
             else:
-                # ... how many brothers does the sister of mary have ...
-                subquery = f"aggregate_all(count, {relation}({prolog_frag2[1]}, Y_{depth}), Count_{depth})"
-                subquery = [subquery] + prolog_frag2[0]
+                # ... how many brothers does the sister of Alice have ...
+                subquery = f"aggregate_all(count, {placeholder}({f2.p_answer}, Y_{depth}), Count_{depth})"
+                subquery = [subquery] + f2.p_fragment
             answer = f"Count_{depth}"
         elif match_placeholders(placeholder, "relation"):
-            if prolog_frag2[1] is None:
-                # ... who is the mother of mary ...
-                assert len(prolog_frag2[0]) == 1
-                subquery = f"{placeholder}({prolog_frag2[0][0]}, Y_{depth})"
+            if f2.p_answer is None:
+                # ... who is the mother of Alice ...
+                assert len(f2.p_fragment) == 1
+                subquery = f"{placeholder}({f2.p_fragment[0]}, Y_{depth})"
                 subquery = [subquery]
             else:
-                # ... who is the mother of the mother of mary ...
-                subquery = f"{placeholder}({prolog_frag2[1]}, Y_{depth})"
-                subquery = [subquery] + prolog_frag2[0]
+                # ... who is the mother of the mother of Alice ...
+                subquery = f"{placeholder}({f2.p_answer}, Y_{depth})"
+                subquery = [subquery] + f2.p_fragment
             answer = f"Y_{depth}"
         elif match_placeholders(placeholder, "attribute_name"):
-            if prolog_frag2[1] is None:
-                # ... whose hobby is running...
-                assert len(prolog_frag2[0]) == 1
-                assert placeholder.replace("name", "value") in prolog_frag2[0][0]
-                subquery = f"{placeholder}(Y_{depth}, {prolog_frag2[0][0]})"
+            if f2.p_answer is None:
+                # ... whose hobby is running ...
+                assert len(f2.p_fragment) == 1
+                assert placeholder.replace("name", "value") in f2.p_fragment[0]
+                subquery = f"{placeholder}(Y_{depth}, {f2.p_fragment[0]})"
                 subquery = [subquery]
             else:
-                # ...the hobby of the mother of mary ...
-                assert placeholder.replace("name", "value") not in prolog_frag2[0][0]
-                subquery = f"{placeholder}({prolog_frag2[1]}, Y_{depth})"
-                subquery = [subquery] + prolog_frag2[0]
+                # ...the hobby of the mother of Alice ...
+                assert placeholder.replace("name", "value") not in f2.p_fragment[0]
+                subquery = f"{placeholder}({f2.p_answer}, Y_{depth})"
+                subquery = [subquery] + f2.p_fragment
             answer = f"Y_{depth}"
 
-        return [subquery, answer]
+        return Fragment(q_fragment, subquery, answer)
