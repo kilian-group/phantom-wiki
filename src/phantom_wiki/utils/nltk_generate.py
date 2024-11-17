@@ -28,11 +28,7 @@ from ..facts.database import Database
 # we can move this to some file in phantom_wiki/facts/
 #
 # possible relations
-from ..facts.family.constants import (
-    FAMILY_RELATION_EASY,
-    FAMILY_RELATION_EASY_PL2SG,
-    FAMILY_RELATION_EASY_PLURALS,
-)
+from ..facts.family.constants import FAMILY_RELATION_EASY, FAMILY_RELATION_EASY_SG2PL
 
 
 def sample(
@@ -89,20 +85,17 @@ def sample(
             return None
         choice = rng.choice(bank)
         query[i] = predicate_template_list[i].replace(match, choice)
-        question.replace(match, choice)
+        question_match_index = question_template_list.index(match)
+        question[question_match_index] = choice
         result[match] = choice
 
     def get_support(
-        query: str,
         predicate_name_list: list[str],
         match: str,
         tmp: str,
         # if we need to map the predicate names from plural forms to singular,
-        mapping: dict = FAMILY_RELATION_EASY_PL2SG,
+        mapping: dict = None,
     ):
-        import pdb
-
-        pdb.set_trace()
         if valid_only:
             support = []
             for predicate in predicate_name_list:
@@ -114,32 +107,32 @@ def sample(
             choice = rng.choice(support)
         else:
             choice = rng.choice(predicate_name_list)
+        # if there is no mapping,
         # replace the predicate name in the question
-        question.replace(match, choice)
-        # replace the predicate name in the prolog query
-        if mapping:
-            # if we need to map the predicate names from plural forms to singular,
-            # use the singular form in the prolog query
-            query[i] = tmp.replace(match, mapping[choice])
+        if mapping is None:
+            question_match_index = question_template_list.index(match)
+            question[question_match_index] = choice
         else:
-            query[i] = tmp.replace(match, choice)
+            # if we need to map the predicate names in the quesion from singular forms to plural,
+            # replace the corresponding plural form in the question
+            question_match_index = question_template_list.index(match.replace("relation", "relation_plural"))
+            question[question_match_index] = mapping[choice]
+
+        # replace the predicate name in the prolog query
+        query[i] = tmp.replace(match, choice)
         result[match] = choice
 
     query = copy(predicate_template_list)  # we will be modifying this list in place
-    question = " ".join(
-        question_template_list
-    )  # TODO: Check: What is the exact output from generate function?
+    question = copy(question_template_list)  # TODO: Check: What is the exact output from generate function?
     result = {}
-    import pdb
 
-    pdb.set_trace()
     for i in range(len(predicate_template_list) - 1, -1, -1):  # sample backwards
         # first sample prolog atoms (e.g., name, attribute values)
         # Prolog doesn't have a good way of retrieving all atoms,
         # so we must resort to db.get_names() and db.get_attribute_values()
         # NOTE: there must exist some atoms in order to sample a query
         if match := search(r"(<name>_(\d+))", query[i]):
-            assert match.group(1) in question_template_list
+            assert match in question_template_list
             bank = db.get_names()
             sample_from_bank(bank, rng)
 
@@ -150,20 +143,19 @@ def sample(
 
         # now sample predicates
         if match := search(r"(<(relation)>_(\d+))", query[i]):  # relation predicates
-            assert match.group(1) in question_template_list
-            get_support(query, FAMILY_RELATION_EASY, match, query[i])
-
-        # TODO: handle pluralable relation predicates
-        # the predicate name should be in plural forms for questions, but singular for prolog queries
-        elif match := search(r"(<relation_plural>_(\d+))", query[i]):  # pluralable relation predicates
-            assert match.group(1) in question_template_list
-            get_support(query, FAMILY_RELATION_EASY_PLURALS, match, query[i])
+            assert (match in question_template_list) or (
+                match.replace("relation", "relation_plural") in question_template_list
+            )
+            if match in question_template_list:
+                get_support(FAMILY_RELATION_EASY, match, query[i])
+            else:
+                get_support(FAMILY_RELATION_EASY, match, query[i], mapping=FAMILY_RELATION_EASY_SG2PL)
 
         elif match := search(r"(<attribute_name>_(\d+))", query[i]):  # attribute predicates
-            assert match.group(1) in question_template_list
-            get_support(query, ATTRIBUTE_RELATION, match, query[i])
+            assert match in question_template_list
+            get_support(ATTRIBUTE_RELATION, match, query[i])
 
-    return result, question, query
+    return result, " ".join(question), query
 
 
 #
