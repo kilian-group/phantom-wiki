@@ -46,9 +46,12 @@ This template generation is based on the `nltk.parse.generate` function from the
     For license information, see https://github.com/nltk/nltk/blob/develop/LICENSE.txt
 """
 
-
 import itertools
 import sys
+
+from dataclasses import dataclass
+
+from typing import Iterable
 
 from nltk import CFG, Nonterminal
 
@@ -56,34 +59,35 @@ from ..utils.parsing import match_placeholder_brackets, match_placeholders
 
 
 QA_GRAMMAR_STRING = """
-S -> 'Who is' R '?' | 'What is' A '?' | 'How many' RN_p 'does' R_c 'have?'
-R -> 'the' RN 'of' R_c | 'the person whose' AN 'is' AV
-R_c -> R | N
-A -> 'the' AN 'of' R
-RN -> '<relation>'
-RN_p -> '<relation_plural>'
-AN -> '<attribute_name>'
-AV -> '<attribute_value>'
-N -> '<name>'
-"""
+    S -> 'Who is' R '?' | 'What is' A '?' | 'How many' RN_p 'does' R_c 'have?'
+    R -> 'the' RN 'of' R_c | 'the person whose' AN 'is' AV
+    R_c -> R | N
+    A -> 'the' AN 'of' R
+    RN -> '<relation>'
+    RN_p -> '<relation_plural>'
+    AN -> '<attribute_name>'
+    AV -> '<attribute_value>'
+    N -> '<name>'
+    """
 
 
-def generate_templates(depth=4, n=None):
+def generate_templates(grammar: CFG=None, depth=4, n=None) -> Iterable:
     """Generates an iterator of all question templates and corresponding Prolog queries from a CFG.
 
     Args:
+        grammar: 
         depth: The maximal depth of the generated tree. Default value 4, minimum depth of QA_GRAMMAR_STRING.
         n: The maximum number of sentences to return. If None, returns all sentences.
 
     Returns:
         An iterator of lists of the form [question_template, prolog_template], where
-            question_template is a list of strings of non-terminal tokens, and
-            prolog_tempalte is of the form [list of query statements: list[str], query answer: str]
+        question_template is a list of strings of non-terminal tokens, and
+        prolog_tempalte is of the form [list of query statements: list[str], query answer: str]
     """
-    grammar = CFG.fromstring(QA_GRAMMAR_STRING)
+    if grammar is None:
+        grammar = CFG.fromstring(QA_GRAMMAR_STRING)
 
-    if not start:
-        start = grammar.start()
+    start = grammar.start()
     if depth is None:
         # Safe default, assuming the grammar may be recursive:
         depth = (sys.getrecursionlimit() // 3) - 3
