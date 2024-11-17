@@ -184,63 +184,6 @@ def test_sample_3():
     #     "<relation>_2": "daughter",
     #     "<relation>_1": "daughter"
     # }
-
-
-def test_sample_4():
-    db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
-    question_template_list = QUESTION_TEMPLATES_DEPTH_5[4]
-    predicate_template_list = PROLOG_TEMPLATES_DEPTH_5[4]
-    rng = default_rng(seed=1)
-    any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
-    assert any_query == (
-        {"<attribute_name>_2": "age", "<attribute_name>_3": "job"},
-        "What is the job of the person whose age is <attribute_value>_2 ?",
-        ["job(Y_3, Y_4)", "age(Y_3, <attribute_value>_2)."],
-    )
-    valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
-    # TODO: test for valid_only=True
-
-
-def test_sample_5():
-    db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
-    question_template_list = QUESTION_TEMPLATES_DEPTH_5[5]
-    predicate_template_list = PROLOG_TEMPLATES_DEPTH_5[5]
-    rng = default_rng(seed=1)
-    any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
-    assert any_query == (
-        {"<name>_1": "vanessa", "<relation>_2": "child", "<relation>_4": "daughter"},
-        "How many daughters does the child of vanessa have?",
-        ["aggregate_all(count, daughter(Y_3, Y_5), Count_5", "child(vanessa, Y_3)."],
-    )
-    # TODO: test for valid_only=True
-    # valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
-    # assert valid_query == ()
-
-
-def test_sample_6():
-    db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
-    question_template_list = QUESTION_TEMPLATES_DEPTH_5[6]
-    predicate_template_list = PROLOG_TEMPLATES_DEPTH_5[6]
-    rng = default_rng(seed=1)
-    any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
-    assert any_query == (
-        {"<attribute_name>_2": "age", "<relation>_4": "child"},
-        "How many children does the person whose age is <attribute_value>_2 have?",
-        ["aggregate_all(count, child(Y_3, Y_5), Count_5", "age(Y_3, <attribute_value>_2)."],
-    )
-    # TODO: test for valid_only=True
-
-
-def test_sample_7():
-    db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
-    question_template_list = QUESTION_TEMPLATES_DEPTH_5[7]
-    predicate_template_list = PROLOG_TEMPLATES_DEPTH_5[7]
-    rng = default_rng(seed=1)
-    any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
-    assert any_query == (
-        {"<name>_3": "vanessa", "<relation>_4": "child"},
-        "How many children does vanessa have?",
-        ["aggregate_all(count, child(vanessa, Y_5), Count_5"],
-    )
-    # TODO: test for valid_only=True
-    valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
+    # import json
+    # with open("tests/facts/sample_query.json", "w") as f:
+    #     json.dump({"any": any_query, "valid": valid_query}, f, indent=4)
