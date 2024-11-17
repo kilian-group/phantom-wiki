@@ -30,7 +30,6 @@ For example:
     > Query: aggregate_all(count, <relation_plural>_2(<name>_1, Y_3), Count_3).
     > Answer: Count_3
 
-
 `phantom_wiki.facts.templates.generate_templates` generates tuples of all possible question and Prolog query
 templates at a particular recursion depth from the context-free grammar as defined by QA_GRAMMAR_STRING.
 
@@ -47,13 +46,12 @@ This template generation is based on the `nltk.parse.generate` function from the
 """
 
 import itertools
+import re
 import sys
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 
 from nltk import CFG, Nonterminal
-
-from ..utils.parsing import match_placeholder_brackets, match_placeholders
 
 QA_GRAMMAR_STRING = """
     S -> 'Who is' R '?' | 'What is' A '?' | 'How many' RN_p 'does' R_c 'have?'
@@ -108,8 +106,20 @@ class Fragment:
     """
 
     q_fragment: list[str] = field(default_factory=list)
-    p_fragment: list[str] = None
+    p_fragment: list[str] = field(default_factory=list)
     p_answer: str = None
+
+    def is_empty(self):
+        """End-of-production fragment."""
+        return not self.q_fragment
+
+    def is_terminal(self):
+        """Regular non<placeholder> terminal."""
+        return not self.p_fragment
+
+    def is_placeholder(self):
+        """Test for <placeholder> terminal."""
+        return len(self.p_fragment) == 1 and not self.p_answer
 
     def get_question_template(self) -> str:
         # TODO remove space before question mark
@@ -170,15 +180,13 @@ def _generate_head_template_fragments(grammar, item, depth):
                 generations += _generate_tail_template_fragments(grammar, prod.rhs(), depth - 1)
             return generations
 
+        elif re.match(r"<.*?>", item):
+            # <placeholder> terminal
+            return [Fragment([f"{item}_{depth}"], [f"{item}_{depth}"], None)]
         else:
-            if match_placeholder_brackets(item):
-                qt = [f"{item}_{depth}"]
-                pt = [f"{item}_{depth}"]
-            else:
-                qt = [item]
-                pt = []
+            # non<placeholder> terminal
+            return [Fragment([item], [], None)]
 
-            return [Fragment(q_fragment=qt, p_fragment=pt, p_answer=None)]
     return []
 
 
@@ -187,65 +195,60 @@ def _combine_fragments(f1: Fragment, f2: Fragment, depth) -> Fragment:
 
     q_fragment = f1.q_fragment + f2.q_fragment
 
-    if f1.p_fragment is None:
+    if f1.is_empty():
         return Fragment(q_fragment, f2.p_fragment, f2.p_answer)
 
-    # Non<placeholder> frag1 case (e.g. 'is', 'of', 'Who is',...)
-    elif f1.p_fragment == []:
-        if f2.p_fragment is None:
+    # Non<placeholder> (terminal) f1 case (e.g. 'is', 'of', 'Who is',...)
+    elif f1.is_terminal():
+        if f2.is_empty():
             return Fragment(q_fragment, f1.p_fragment, f1.p_answer)
         else:
             return Fragment(q_fragment, f2.p_fragment, f2.p_answer)
 
-    # <placeholder> frag1 case (e.g. '<relation>', '<name>',...)
-    #   Note: the grammar currently does not allow frag1 to be a subquery,
-    #   but frag2 can be either a subquery, <placeholder>, non<placeholder>, or end of sentence
+    # <placeholder> f1 case (e.g. '<relation>', '<name>',...)
+    #   Note: the grammar currently does not allow f1 to be a subquery,
+    #   but f2 can be either a subquery, <placeholder>, terminal, or empty
     else:
-        if f2.p_fragment is None or f2.p_fragment == []:
+        if f2.is_empty() or f2.is_terminal():
             return Fragment(q_fragment, f1.p_fragment, f1.p_answer)
 
-        assert len(f1.p_fragment) == 1
+        assert f1.is_placeholder()
         placeholder = f1.p_fragment[0]
         subquery = None
         answer = None
 
         # Match <placeholder>
-        if match_placeholders(placeholder, "relation_plural"):
-            if f2.p_answer is None:
+        if re.match(r"<relation_plural>_(\d+)", placeholder):
+            if f2.is_placeholder():
                 # ... how many brothers does Alice have ...
-                assert len(f2.p_fragment) == 1
-                subquery = (
-                    f"aggregate_all(count, {placeholder}({f2.p_fragment[0]}, Y_{depth}), Count_{depth})"
-                )
-                subquery = [subquery]
+                subquery = [
+                    (f"aggregate_all(count, {placeholder}({f2.p_fragment[0]}, Y_{depth}), Count_{depth})")
+                ]
             else:
                 # ... how many brothers does the sister of Alice have ...
-                subquery = f"aggregate_all(count, {placeholder}({f2.p_answer}, Y_{depth}), Count_{depth})"
-                subquery = [subquery] + f2.p_fragment
+                subquery = [
+                    f"aggregate_all(count, {placeholder}({f2.p_answer}, Y_{depth}), Count_{depth})"
+                ] + f2.p_fragment
             answer = f"Count_{depth}"
-        elif match_placeholders(placeholder, "relation"):
-            if f2.p_answer is None:
+
+        elif re.match(r"<relation>_(\d+)", placeholder):
+            if f2.is_placeholder():
                 # ... who is the mother of Alice ...
-                assert len(f2.p_fragment) == 1
-                subquery = f"{placeholder}({f2.p_fragment[0]}, Y_{depth})"
-                subquery = [subquery]
+                subquery = [f"{placeholder}({f2.p_fragment[0]}, Y_{depth})"]
             else:
                 # ... who is the mother of the mother of Alice ...
-                subquery = f"{placeholder}({f2.p_answer}, Y_{depth})"
-                subquery = [subquery] + f2.p_fragment
+                subquery = [f"{placeholder}({f2.p_answer}, Y_{depth})"] + f2.p_fragment
             answer = f"Y_{depth}"
-        elif match_placeholders(placeholder, "attribute_name"):
-            if f2.p_answer is None:
+            
+        elif re.match(r"<attribute_name>_(\d+)", placeholder):
+            # Match <attribute_value>
+            if placeholder.replace("name", "value") in f2.p_fragment[0]:
                 # ... whose hobby is running ...
-                assert len(f2.p_fragment) == 1
-                assert placeholder.replace("name", "value") in f2.p_fragment[0]
-                subquery = f"{placeholder}(Y_{depth}, {f2.p_fragment[0]})"
-                subquery = [subquery]
+                assert f2.is_placeholder()
+                subquery = [f"{placeholder}(Y_{depth}, {f2.p_fragment[0]})"]
             else:
                 # ...the hobby of the mother of Alice ...
-                assert placeholder.replace("name", "value") not in f2.p_fragment[0]
-                subquery = f"{placeholder}({f2.p_answer}, Y_{depth})"
-                subquery = [subquery] + f2.p_fragment
+                subquery = [f"{placeholder}({f2.p_answer}, Y_{depth})"] + f2.p_fragment
             answer = f"Y_{depth}"
 
         return Fragment(q_fragment, subquery, answer)

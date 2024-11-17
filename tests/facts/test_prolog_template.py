@@ -10,7 +10,7 @@ from nltk import CFG
 
 from phantom_wiki.facts.templates import QA_GRAMMAR_STRING, generate_templates
 
-DEPTH = 8
+DEPTH = 6
 
 
 def print_prolog_templates(grammar_string=QA_GRAMMAR_STRING, depth=DEPTH):
