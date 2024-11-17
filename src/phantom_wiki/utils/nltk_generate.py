@@ -28,30 +28,45 @@ from ..facts.database import Database
 # we can move this to some file in phantom_wiki/facts/
 #
 # possible relations
-from ..facts.family.constants import FAMILY_RELATION_EASY, FAMILY_RELATION_EASY_PLURALS
+from ..facts.family.constants import (
+    FAMILY_RELATION_EASY,
+    FAMILY_RELATION_EASY_PL2SG,
+    FAMILY_RELATION_EASY_PLURALS,
+)
 
 
-def sample(db: Database, predicate_template_list: list[str], rng: Generator, valid_only: bool = True):
+def sample(
+    db: Database,
+    question_template_list: list[str],
+    predicate_template_list: list[str],
+    rng: Generator,
+    valid_only: bool = True,
+):
     """
-    Samples possible realizations of the predicate_list from the database db.
+    Samples possible realizations of the question_list and predicate_list from the database db.
     Example:
-    >>> ["<relation>_1(<name>_1, X)"]
+    >>> ["Who is",
+        "the",
+        "<relation>_3",
+        "of",
+        "the person whose",
+        "<attribute_name>_1",
+        "is",
+        "<attribute_value>_1",
+        "?",
+    ],
+    ["<relation>_3(Y_2, Y_4)", "<attribute_name>_1(Y_2, <attribute_value>_1)."]
+
     father(anastasia, X)
     mother(anastasia, X)
-    >>> ["<relation>_1(Y, X)", "<relation>_2(<name>_1, Y)"]
-    father(Y,X), mother(anastasia,Y)
-    father(Y,X), father(anastasia,Y)
-    mother(Y,X), mother(anastasia,Y)
-    mother(Y,X), father(anastasia,Y)
-    >>> ["<relation>_1(Y, X)", "<attribute_name>_1(X, <attribute_value>_1)"]
-    father(Y,X), hobby(anastasia,running)
-    father(Y,X), hobby(anastasia,reading)
-    mother(Y,X), hobby(anastasia,running)
-    mother(Y,X), hobby(anastasia,reading)
+    >>> ["How many", "<relation_plural>_4", "does", "the", "<relation>_2", "of", "<name>_1", "have?"],
+    ["aggregate_all(count, <relation>_4(Y_3, Y_5), Count_5", "<relation>_2(<name>_1, Y_3)."],
+
 
     Args:
         db: the prolog database to sample from
-        predicate_list: a list of predicate templates
+        question_template_list: a list of words in question templates
+        predicate_template_list: a list of predicate templates
         rng: a random number generator
         valid_only: whether to sample only valid realizations
             if True: we uniformly sample from the set of prolog queries
@@ -68,15 +83,26 @@ def sample(db: Database, predicate_template_list: list[str], rng: Generator, val
         if match:
             return match.group(1)
         return None
-    
+
     def sample_from_bank(bank: list[str], rng: Generator):
         if not bank:
             return None
         choice = rng.choice(bank)
         query[i] = predicate_template_list[i].replace(match, choice)
+        question.replace(match, choice)
         result[match] = choice
 
-    def get_support(query: str, predicate_name_list: list[str], match: str, tmp: str):
+    def get_support(
+        query: str,
+        predicate_name_list: list[str],
+        match: str,
+        tmp: str,
+        # if we need to map the predicate names from plural forms to singular,
+        mapping: dict = FAMILY_RELATION_EASY_PL2SG,
+    ):
+        import pdb
+
+        pdb.set_trace()
         if valid_only:
             support = []
             for predicate in predicate_name_list:
@@ -88,42 +114,64 @@ def sample(db: Database, predicate_template_list: list[str], rng: Generator, val
             choice = rng.choice(support)
         else:
             choice = rng.choice(predicate_name_list)
-        query[i] = tmp.replace(match, choice)
+        # replace the predicate name in the question
+        question.replace(match, choice)
+        # replace the predicate name in the prolog query
+        if mapping:
+            # if we need to map the predicate names from plural forms to singular,
+            # use the singular form in the prolog query
+            query[i] = tmp.replace(match, mapping[choice])
+        else:
+            query[i] = tmp.replace(match, choice)
         result[match] = choice
 
     query = copy(predicate_template_list)  # we will be modifying this list in place
+    question = " ".join(
+        question_template_list
+    )  # TODO: Check: What is the exact output from generate function?
     result = {}
+    import pdb
+
+    pdb.set_trace()
     for i in range(len(predicate_template_list) - 1, -1, -1):  # sample backwards
         # first sample prolog atoms (e.g., name, attribute values)
         # Prolog doesn't have a good way of retrieving all atoms,
         # so we must resort to db.get_names() and db.get_attribute_values()
         # NOTE: there must exist some atoms in order to sample a query
         if match := search(r"(<name>_(\d+))", query[i]):
+            assert match.group(1) in question_template_list
             bank = db.get_names()
             sample_from_bank(bank, rng)
 
-        if match := re.search(r"(<attribute_value>_(\d+))", query[i]):
-            bank = db.get_attribute_values()
-            sample_from_bank(bank, rng)
+        # if match := re.search(r"(<attribute_value>_(\d+))", query[i]):
+        #     assert match.group(1) in question_template_list
+        #     bank = db.get_attribute_values()
+        #     sample_from_bank(bank, rng)
 
         # now sample predicates
         if match := search(r"(<(relation)>_(\d+))", query[i]):  # relation predicates
+            assert match.group(1) in question_template_list
             get_support(query, FAMILY_RELATION_EASY, match, query[i])
-            
+
         # TODO: handle pluralable relation predicates
         # the predicate name should be in plural forms for questions, but singular for prolog queries
-        # elif match := search(r"(<relation_plural>_(\d+))", query[i]):  # pluralable relation predicates
-        #     get_support(query, FAMILY_RELATION_EASY_PLURALS, match, query[i])
+        elif match := search(r"(<relation_plural>_(\d+))", query[i]):  # pluralable relation predicates
+            assert match.group(1) in question_template_list
+            get_support(query, FAMILY_RELATION_EASY_PLURALS, match, query[i])
 
         elif match := search(r"(<attribute_name>_(\d+))", query[i]):  # attribute predicates
+            assert match.group(1) in question_template_list
             get_support(query, ATTRIBUTE_RELATION, match, query[i])
 
-    return result
+    return result, question, query
+
+
 #
 # End WIP
 #
 
 from .parsing import match_placeholder_brackets, match_placeholders
+
 # , match_placeholders_group
 
 
