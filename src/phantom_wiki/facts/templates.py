@@ -150,7 +150,9 @@ class Fragment:
         return self.p_answer
 
 
-def _generate_tail_template_fragments(grammar: CFG, items: Nonterminal | Any, depth: int) -> list[Fragment]:
+def _generate_tail_template_fragments(
+    grammar: CFG, items: list[Nonterminal | Any], depth: int
+) -> list[Fragment]:
     """Generates fragments for a list of symbols (`items`) in the grammar.
 
     Calls `_generate_head_template_fragments` to process the first symbol in `items` and then makes a
