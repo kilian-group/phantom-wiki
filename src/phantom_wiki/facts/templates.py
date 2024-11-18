@@ -69,9 +69,15 @@ QA_GRAMMAR_STRING = """
 def generate_templates(grammar: CFG = None, depth=4) -> Iterable:
     """Generates an iterator of all question templates and corresponding Prolog queries from a CFG.
 
+    To generate valid Prolog queries, the grammar is assumed to contain <placeholder> terminals with
+    <relation>s (with <relation_plural>s for counting queries), <attribute_name>s (corresponding to
+    concepts like "job" or "hobby") and matching <attribute_value>s (e.g., "architect" or "running").
+
     Args:
-        grammar:
-        depth: The maximal depth of the generated tree. Default value 4, minimum depth of QA_GRAMMAR_STRING.
+        grammar: The CFG used to generate questions and queries.
+            By default, the grammar is based on QA_GRAMMAR_STRING.
+        depth: The maximal depth of the generated tree.
+            Default value 4, minimum depth of QA_GRAMMAR_STRING.
 
     Returns:
         An iterator of lists of the form [question_template, prolog_template], where
@@ -144,7 +150,9 @@ class Fragment:
         return self.p_answer
 
 
-def _generate_tail_template_fragments(grammar: CFG, items: Nonterminal | Any, depth: int) -> list[Fragment]:
+def _generate_tail_template_fragments(
+    grammar: CFG, items: list[Nonterminal | Any], depth: int
+) -> list[Fragment]:
     """Generates fragments for a list of symbols (`items`) in the grammar.
 
     Calls `_generate_head_template_fragments` to process the first symbol in `items` and then makes a
