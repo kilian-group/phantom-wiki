@@ -102,6 +102,7 @@ def test_sample_0():
     question_template_list = QUESTION_TEMPLATES_DEPTH_6_UNJOINED[0]
     predicate_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[0]
     rng = default_rng(seed=1)
+    import pdb; pdb.set_trace()
     any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
     assert any_query == (
         {"<attribute_name>_1": "age", "<relation>_3": "child"},
@@ -110,8 +111,8 @@ def test_sample_0():
     )
     # case 2: valid_only=True
     # TODO: need to test after adding attributes to prolog
-    rng = default_rng(seed=1)
-    valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
+    # rng = default_rng(seed=1)
+    # valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
     # assert valid_query == (
     #     {'<relation>_3': 'father', '<attribute_name>_1': 'hobby', '<attribute_value>_1': 'running'},
     #     'Who is the father of the person whose hobby is running ?',
@@ -126,6 +127,7 @@ def test_sample_1():
     predicate_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[1]
     rng = default_rng(seed=1)
     any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
+    import pdb; pdb.set_trace()
     assert any_query == (
         {"<name>_2": "vanessa", "<relation>_3": "child"},
         "Who is the child of vanessa ?",
@@ -146,9 +148,10 @@ def test_sample_3():
     db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
     # case 1: valid_only=False
     predicate_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[3]
-    question_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[3]
+    question_template_list = QUESTION_TEMPLATES_DEPTH_6_UNJOINED[3]
     rng = default_rng(seed=1)
     any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
+    import pdb; pdb.set_trace()
     assert any_query == (
         {"<name>_1": "vanessa", "<relation>_2": "child", "<attribute_name>_3": "job"},
         "What is the job of the child of vanessa ?",
@@ -168,10 +171,11 @@ def test_sample_3():
 
 def test_sample_4():
     db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
-    question_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[4]
+    question_template_list = QUESTION_TEMPLATES_DEPTH_6_UNJOINED[4]
     predicate_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[4]
     rng = default_rng(seed=1)
     any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
+    import pdb; pdb.set_trace()
     assert any_query == (
         {"<attribute_name>_2": "age", "<attribute_name>_3": "job"},
         "What is the job of the person whose age is <attribute_value>_2 ?",
@@ -183,10 +187,11 @@ def test_sample_4():
 
 def test_sample_5():
     db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
-    question_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[5]
+    question_template_list = QUESTION_TEMPLATES_DEPTH_6_UNJOINED[5]
     predicate_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[5]
     rng = default_rng(seed=1)
     any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
+    import pdb; pdb.set_trace()
     assert any_query == (
         {"<name>_1": "vanessa", "<relation>_2": "child", "<relation_plural>_4": "daughter"},
         "How many daughters does the child of vanessa have?",
@@ -199,10 +204,11 @@ def test_sample_5():
 
 def test_sample_6():
     db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
-    question_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[6]
+    question_template_list = QUESTION_TEMPLATES_DEPTH_6_UNJOINED[6]
     predicate_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[6]
     rng = default_rng(seed=1)
     any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
+    import pdb; pdb.set_trace()
     assert any_query == (
         {"<attribute_name>_2": "age", "<relation_plural>_4": "child"},
         "How many children does the person whose age is <attribute_value>_2 have?",
@@ -213,10 +219,11 @@ def test_sample_6():
 
 def test_sample_7():
     db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
-    question_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[7]
+    question_template_list = QUESTION_TEMPLATES_DEPTH_6_UNJOINED[7]
     predicate_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[7]
     rng = default_rng(seed=1)
     any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
+    import pdb; pdb.set_trace()
     assert any_query == (
         {"<name>_3": "vanessa", "<relation_plural>_4": "child"},
         "How many children does vanessa have?",

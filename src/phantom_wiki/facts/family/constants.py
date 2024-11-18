@@ -54,13 +54,22 @@ FAMILY_RELATION_EASY_PLURALS = [
     "daughters",
 ]
 
-FAMILY_RELATION_EASY_SG2PL = {
-    "sibling": "siblings",
-    "sister": "sisters",
-    "brother": "brothers",
-    "child": "children",
-    "son": "sons",
-    "daughter": "daughters",
+# FAMILY_RELATION_EASY_SG2PL = {
+#     "sibling": "siblings",
+#     "sister": "sisters",
+#     "brother": "brothers",
+#     "child": "children",
+#     "son": "sons",
+#     "daughter": "daughters",
+# }
+
+FAMILY_RELATION_EASY_PL2SG = {
+    "siblings": "sibling",
+    "sisters": "sister",
+    "brothers": "brother",
+    "children": "child",
+    "sons": "son",
+    "daughters": "daughter",
 }
 
 FAMILY_RELATION_HARD_PLURALS = [
