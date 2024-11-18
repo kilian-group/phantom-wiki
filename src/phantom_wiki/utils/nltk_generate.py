@@ -66,7 +66,7 @@ def sample(
         return None
 
     def sample_from_bank(bank: list[str], i:int):
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         if not bank:
             return None
         choice = rng.choice(bank)
@@ -82,7 +82,7 @@ def sample(
         # if we need to map the predicate names from plural forms to singular,
         mapping: dict = None,
     ):
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         tmp = copy(query[i])
         if valid_only:
             support = []
@@ -119,7 +119,7 @@ def sample(
 
     for i in range(len(query)-1,-1,-1):
         if match := search(r"(<name>_(\d+))", query[i]):
-            import pdb; pdb.set_trace()
+            # import pdb; pdb.set_trace()
             assert match in question
             bank = db.get_names()
             sample_from_bank(bank, i)
