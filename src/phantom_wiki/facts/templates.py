@@ -45,7 +45,6 @@ This template generation is based on the `nltk.parse.generate` function from the
     For license information, see https://github.com/nltk/nltk/blob/develop/LICENSE.txt
 """
 
-import itertools
 import re
 import sys
 from collections.abc import Iterable
@@ -67,13 +66,12 @@ QA_GRAMMAR_STRING = """
     """
 
 
-def generate_templates(grammar: CFG = None, depth=4, n=None) -> Iterable:
+def generate_templates(grammar: CFG = None, depth=4) -> Iterable:
     """Generates an iterator of all question templates and corresponding Prolog queries from a CFG.
 
     Args:
         grammar:
         depth: The maximal depth of the generated tree. Default value 4, minimum depth of QA_GRAMMAR_STRING.
-        n: The maximum number of sentences to return. If None, returns all sentences.
 
     Returns:
         An iterator of lists of the form [question_template, prolog_template], where
@@ -88,12 +86,17 @@ def generate_templates(grammar: CFG = None, depth=4, n=None) -> Iterable:
         # Safe default, assuming the grammar may be recursive:
         depth = (sys.getrecursionlimit() // 3) - 3
 
-    iter = _generate_tail_template_fragments(grammar, [start], depth)
+    fragments = _generate_tail_template_fragments(grammar, [start], depth)
 
-    if n:
-        iter = itertools.islice(iter, n)
+    templates = []
+    for fragment in fragments:
+        question = fragment.get_question_template()
+        query = fragment.get_query_template()
+        answer = fragment.get_query_answer()
 
-    return iter
+        templates.append((question, query, answer))
+
+    return templates
 
 
 @dataclass
@@ -103,7 +106,7 @@ class Fragment:
     Represents a subsequence of the CFG.
     If the subsequence is empty, it will be of the form ([], [], None).
     If the subsequence is a single terminal, it will be of the form (['terminal'], [], None).
-    If the subsequence is a single <placeholder> terminal, it will be of the form 
+    If the subsequence is a single <placeholder> terminal, it will be of the form
         (['<placeholder>_*'], ['<placeholder>_*'], None).
     Otherwise, a general subsequence is of the form
         (['Who is', 'the', '<relation>_*', ...], ['<relation>_*(...)', ...], Y_*)
@@ -143,7 +146,7 @@ class Fragment:
 
 def _generate_tail_template_fragments(grammar: CFG, items: Nonterminal | Any, depth: int) -> list[Fragment]:
     """Generates fragments for a list of symbols (`items`) in the grammar.
-    
+
     Calls `_generate_head_template_fragments` to process the first symbol in `items` and then makes a
     recursive call to process the "remaining symbols" (tail) of the list.
     Then combines all valid subsequences (fragments) resulting from the tail call with all the valid
@@ -169,8 +172,8 @@ def _generate_tail_template_fragments(grammar: CFG, items: Nonterminal | Any, de
 
 def _generate_head_template_fragments(grammar: CFG, item: Nonterminal | Any, depth: int) -> list[Fragment]:
     """Generates fragments for the current `item` symbol of the grammar.
-    
-    Called as a subroutine to process the first symbol (head) of the current production in the grammar (`item`).
+
+    Called as a subroutine to process the first symbol (head) of the current production (`item`).
     Recursively calls `_generate_tail_template_fragments` if `item` is a nonterminal in the CFG, for all its
     possible productions.
     If `item` is a <placeholder> or terminal, generates its Fragment.
@@ -201,10 +204,10 @@ def _combine_fragments(f1: Fragment, f2: Fragment, depth) -> Fragment:
 
     Examples:
     > (['Who is'], [], None) + (['<name>'], ['<name>'], None) -> (['Who is', '<name>'], ['<name>'], None)
-    > (['<attribute_name>_3'], ['<attribute_name>_3'], None) 
-        + (['of the', '<relation>_2', 'of', '<name>_1', '?'], ['<relation>_2(<name>_1, Y_3)'], 'Y_3') 
-        -> (['<attribute_name>_3', 'of the', ...], 
-            ['<attribute_name>_3(Y_3, Y_4)', '<relation>_2(<name>_1, Y_3)'], 
+    > (['<attribute_name>_3'], ['<attribute_name>_3'], None)
+        + (['of the', '<relation>_2', 'of', '<name>_1', '?'], ['<relation>_2(<name>_1, Y_3)'], 'Y_3')
+        -> (['<attribute_name>_3', 'of the', ...],
+            ['<attribute_name>_3(Y_3, Y_4)', '<relation>_2(<name>_1, Y_3)'],
             'Y_4')
     """
 

@@ -19,9 +19,9 @@ def print_prolog_templates(grammar_string=QA_GRAMMAR_STRING, depth=DEPTH):
     total_questions = 0
     for question in questions:
         total_questions += 1
-        print("Question:\t" + question.get_question_template())
-        print("Query:\t\t" + question.get_query_template())
-        print("Answer:\t\t" + question.get_query_answer())
+        print("Question:\t" + question[0])
+        print("Query:\t\t" + question[1])
+        print("Answer:\t\t" + question[2])
         print()
     print(f"Total questions (depth {DEPTH}):\t\t\t{total_questions}")
 
