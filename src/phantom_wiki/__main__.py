@@ -69,25 +69,27 @@ def main():
     question_dir = os.path.join(args.output_path, "questions")
     print(f"Saving questions to: {question_dir}")
     os.makedirs(question_dir, exist_ok=True)
-    questions = []
     rng = np.random.default_rng(args.seed)
+    n_questions = 10
     for i, (question_template, query_template, answer) in enumerate(templates):
-        _, question, query = sample(
-            db, 
-            question_template, 
-            query_template, 
-            rng=rng,
-            valid_only=False
-        )
-        questions.append({
-            "template": question_template,
-            "question": question,
-            "query": query,
-            # TODO: get ground-truth answer by running the query
-            "answer": answer,
-        })
-        with open(os.path.join(question_dir, f"type{i}_question.json"), "w") as file:
-            json.dump(questions, file, indent=4)
+        questions = []
+        for _ in range(n_questions):
+            _, question, query = sample(
+                db, 
+                question_template, 
+                query_template, 
+                rng=rng,
+                valid_only=False
+            )
+            results = [str(x[answer]) for x in db.query(", ".join(query))]
+            questions.append({
+                "template": question_template,
+                "question": question,
+                "query": query,
+                "answer": results,
+            })
+            with open(os.path.join(question_dir, f"type{i}_question.json"), "w") as file:
+                json.dump(questions, file, indent=4)
 
 if __name__ == "__main__":
     main()
