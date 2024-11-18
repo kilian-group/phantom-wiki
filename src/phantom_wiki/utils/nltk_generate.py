@@ -6,7 +6,6 @@ from numpy.random import Generator
 
 # possible attribute names
 from ..facts.attributes.constants import ATTRIBUTE_RELATION
-from ..facts.attributes import db_generate_attributes
 from ..facts.database import Database
 
 #
@@ -65,7 +64,7 @@ def sample(
             return match.group(1)
         return None
 
-    def sample_from_bank(bank: list[str], i:int):
+    def sample_atom(bank: list[str], i: int):
         # import pdb; pdb.set_trace()
         if not bank:
             return None
@@ -75,73 +74,60 @@ def sample(
         question[idx] = question[idx].replace(match, choice)
         result[match] = choice
 
-    def get_support(
-        predicate_name_list: list[str],
+    def sample_predicate(
+        bank: list[str],
         match: str,
         i: int, # index of the query
-        # if we need to map the predicate names from plural forms to singular,
-        mapping: dict = None,
+        mapping: dict = None, # if we need to map the predicate names from plural forms to singular,
     ):
         # import pdb; pdb.set_trace()
         tmp = copy(query[i])
         if valid_only:
             support = []
-            for predicate in predicate_name_list:
-                query[i] = tmp.replace(match, predicate)
+            for predicate in bank:
+                query[i] = tmp.replace(match, mapping[predicate] if mapping else predicate)
                 if db.query(",".join(query[i:])):
                     support.append(predicate)
             if not support:
                 return None
             choice = rng.choice(support)
         else:
-            choice = rng.choice(predicate_name_list)
+            choice = rng.choice(bank)
 
-        # TODO
-        # if there is no mapping,
-        # replace the predicate name in the question\
         idx = question.index(match)
         question[idx] = question[idx].replace(match, choice)
-        if mapping is None:
-            query[i] = query[i].replace(match, choice)
-        else:
-            # if we need to map the predicate names in the quesion from singular forms to plural,
-            # replace the corresponding plural form in the query
-            query[i] = query[i].replace(match, mapping[choice])
+        # if we need to map the predicate names in the quesion from singular forms to plural,
+        # replace the corresponding plural form in the query
+        query[i] = tmp.replace(match, mapping[choice] if mapping else choice)
 
         # replace the predicate name in the prolog query
         result[match] = choice
 
-
-    # first sample prolog atoms (e.g., name, attribute values)
-    # Prolog doesn't have a good way of retrieving all atoms,
-    # so we must resort to db.get_names() and db.get_attribute_values()
-    # NOTE: there must exist some atoms in order to sample a query
-
     for i in range(len(query)-1,-1,-1):
+        # first sample prolog atoms (e.g., name, attribute values)
+        # Prolog doesn't have a good way of retrieving all atoms,
+        # so we must resort to db.get_names() and db.get_attribute_values()
+        # NOTE: there must exist some atoms in order to sample a query
         if match := search(r"(<name>_(\d+))", query[i]):
-            # import pdb; pdb.set_trace()
             assert match in question
             bank = db.get_names()
-            sample_from_bank(bank, i)
-
-        # TODO: uncomment this after testing with job attribute
+            sample_atom(bank, i)
         if match := search(r"(<attribute_value>_(\d+))", query[i]):
             assert match in question
-            # db_generate_attributes(db, seed=1)
             bank = db.get_attribute_values()
-            sample_from_bank(bank, i)
+            sample_atom(bank, i)
 
         # now sample predicates
+        # NOTE: we also need to deal with the plural forms of the predicates
         if match := search(r"(<(relation)>_(\d+))", query[i]):  # relation predicates
             assert match in question
-            get_support(FAMILY_RELATION_EASY, match, i, mapping=None)
-        
+            sample_predicate(FAMILY_RELATION_EASY, match, i, mapping=None)
         elif match := search(r"(<(relation_plural)>_(\d+))", query[i]):  # relation predicates
-            get_support(FAMILY_RELATION_EASY_PLURALS, match, i, mapping=FAMILY_RELATION_EASY_PL2SG)
-
+            assert match in question
+            sample_predicate(FAMILY_RELATION_EASY_PLURALS, match, i, mapping=FAMILY_RELATION_EASY_PL2SG)
         elif match := search(r"(<attribute_name>_(\d+))", query[i]):  # attribute predicates
             assert match in question
-            get_support(ATTRIBUTE_RELATION, match, i, mapping=None)
+            sample_predicate(ATTRIBUTE_RELATION, match, i, mapping=None)
 
     return result, " ".join(question), query
 
