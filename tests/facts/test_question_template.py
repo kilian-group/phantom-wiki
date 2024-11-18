@@ -78,9 +78,9 @@ PROLOG_TEMPLATES_DEPTH_6_UNJOINED = [
     ["<attribute_name>_3(Y_4, <attribute_value>_3)"],
     ["<attribute_name>_3(Y_3, Y_4)", "<relation>_2(<name>_1, Y_3)"],
     ["<attribute_name>_3(Y_3, Y_4)", "<attribute_name>_2(Y_3, <attribute_value>_2)"],
-    ["aggregate_all(count, <relation>_4(Y_3, Y_5), Count_5)", "<relation>_2(<name>_1, Y_3)"],
-    ["aggregate_all(count, <relation>_4(Y_3, Y_5), Count_5)", "<attribute_name>_2(Y_3, <attribute_value>_2)"],
-    ["aggregate_all(count, <relation>_4(<name>_3, Y_5), Count_5)"],
+    ["aggregate_all(count, <relation_plural>_4(Y_3, Y_5), Count_5)", "<relation>_2(<name>_1, Y_3)"],
+    ["aggregate_all(count, <relation_plural>_4(Y_3, Y_5), Count_5)", "<attribute_name>_2(Y_3, <attribute_value>_2)"],
+    ["aggregate_all(count, <relation_plural>_4(<name>_3, Y_5), Count_5)"],
 ]
 # 
 # End unjoined templates
@@ -188,7 +188,7 @@ def test_sample_5():
     rng = default_rng(seed=1)
     any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
     assert any_query == (
-        {"<name>_1": "vanessa", "<relation>_2": "child", "<relation>_4": "daughter"},
+        {"<name>_1": "vanessa", "<relation>_2": "child", "<relation_plural>_4": "daughter"},
         "How many daughters does the child of vanessa have?",
         ["aggregate_all(count, daughter(Y_3, Y_5), Count_5)", "child(vanessa, Y_3)"],
     )
@@ -204,7 +204,7 @@ def test_sample_6():
     rng = default_rng(seed=1)
     any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
     assert any_query == (
-        {"<attribute_name>_2": "age", "<relation>_4": "child"},
+        {"<attribute_name>_2": "age", "<relation_plural>_4": "child"},
         "How many children does the person whose age is <attribute_value>_2 have?",
         ["aggregate_all(count, child(Y_3, Y_5), Count_5)", "age(Y_3, <attribute_value>_2)"],
     )
@@ -218,7 +218,7 @@ def test_sample_7():
     rng = default_rng(seed=1)
     any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
     assert any_query == (
-        {"<name>_3": "vanessa", "<relation>_4": "child"},
+        {"<name>_3": "vanessa", "<relation_plural>_4": "child"},
         "How many children does vanessa have?",
         ["aggregate_all(count, child(vanessa, Y_5), Count_5)"],
     )
