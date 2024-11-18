@@ -90,9 +90,9 @@ def generate_templates(grammar: CFG = None, depth=4) -> Iterable:
 
     templates = []
     for fragment in fragments:
-        question = fragment.get_question_template()
-        query = fragment.get_query_template()
-        answer = fragment.get_query_answer()
+        question = fragment.q_fragment
+        query = fragment.p_fragment
+        answer = fragment.p_answer
 
         templates.append((question, query, answer))
 

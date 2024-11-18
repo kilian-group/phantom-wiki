@@ -35,8 +35,8 @@ def test_generate_templates_depth_6():
     for template, question, query, answer in zip(
         templates, QUESTION_TEMPLATES_DEPTH_6, PROLOG_TEMPLATES_DEPTH_6, PROLOG_ANSWERS_DEPTH_6
     ):
-        assert template[0] == question
-        assert template[1] == query
+        assert " ".join(template[0]) == question
+        assert ", ".join(template[1]) == query
         assert template[2] == answer
 
 
@@ -134,7 +134,7 @@ def test_sample_5():
     assert any_query == (
         {"<name>_1": "vanessa", "<relation>_2": "child", "<relation>_4": "daughter"},
         "How many daughters does the child of vanessa have?",
-        ["aggregate_all(count, daughter(Y_3, Y_5), Count_5", "child(vanessa, Y_3)."],
+        ["aggregate_all(count, daughter(Y_3, Y_5), Count_5", "child(vanessa, Y_3)"],
     )
     # TODO: test for valid_only=True
     # valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
