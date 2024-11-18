@@ -50,6 +50,7 @@ import re
 import sys
 from collections.abc import Iterable
 from dataclasses import dataclass, field
+from typing import Any
 
 from nltk import CFG, Nonterminal
 
@@ -99,6 +100,14 @@ def generate_templates(grammar: CFG = None, depth=4, n=None) -> Iterable:
 class Fragment:
     """Fragment of the question and Prolog query template.
 
+    Represents a subsequence of the CFG.
+    If the subsequence is empty, it will be of the form ([], [], None).
+    If the subsequence is a single terminal, it will be of the form (['terminal'], [], None).
+    If the subsequence is a single <placeholder> terminal, it will be of the form 
+        (['<placeholder>_*'], ['<placeholder>_*'], None).
+    Otherwise, a general subsequence is of the form
+        (['Who is', 'the', '<relation>_*', ...], ['<relation>_*(...)', ...], Y_*)
+
     Attributes:
         q_fragment: Question template of the current fragment
         p_fragment: Prolog query template of the current fragment
@@ -132,53 +141,46 @@ class Fragment:
         return self.p_answer
 
 
-def _generate_tail_template_fragments(grammar, items, depth):
-    """
-
-    For question generation:
-    Recursively process the remaining fragments (e.g. [R, '?'])
-    this will yield all possible sentences for e.g. [R, '?'] as a list[list[str]]
-    for each list (possible continuation) this adds the first fragment (frag1)
-    to the beginning
-    which yields another list[list[str]] of sentences now containing the starting
-    fragment
-    For prolog template generation:
-
-    Terminal
-    for question generation:
-    yield the terminal as list[str] of length 1
-    for prolog query generation
-    if item is a <placeholder>, annotate with depth (e.g. <placeholder>_depth) and return
-    if item is another string (e.g. 'Who is') return nothing
+def _generate_tail_template_fragments(grammar: CFG, items: Nonterminal | Any, depth: int) -> list[Fragment]:
+    """Generates fragments for a list of symbols (`items`) in the grammar.
+    
+    Calls `_generate_head_template_fragments` to process the first symbol in `items` and then makes a
+    recursive call to process the "remaining symbols" (tail) of the list.
+    Then combines all valid subsequences (fragments) resulting from the tail call with all the valid
+    subsequences produced from the first symbol.
     """
     if items:
         try:
-            templates = []
+            fragments = []
             for frag1 in _generate_head_template_fragments(grammar, items[0], depth):
-                # Process the first fragment in the items list
-                #   e.g. 'Who is' in ['Who is', R, '?']
                 for frag2 in _generate_tail_template_fragments(grammar, items[1:], depth):
-                    new_fragment = _combine_fragments(frag1, frag2, depth)
-                    templates.append(new_fragment)
+                    fragments.append(_combine_fragments(frag1, frag2, depth))
         except RecursionError as error:
             # Helpful error message while still showing the recursion stack.
             raise RuntimeError(
                 "The grammar has rule(s) that yield infinite recursion!\n\
                     Eventually use a lower 'depth', or a higher 'sys.setrecursionlimit()'."
             ) from error
-        return templates
+        return fragments
     else:
         # End of production
         return [Fragment()]
 
 
-def _generate_head_template_fragments(grammar, item, depth):
+def _generate_head_template_fragments(grammar: CFG, item: Nonterminal | Any, depth: int) -> list[Fragment]:
+    """Generates fragments for the current `item` symbol of the grammar.
+    
+    Called as a subroutine to process the first symbol (head) of the current production in the grammar (`item`).
+    Recursively calls `_generate_tail_template_fragments` if `item` is a nonterminal in the CFG, for all its
+    possible productions.
+    If `item` is a <placeholder> or terminal, generates its Fragment.
+    """
     if depth > 0:
         if isinstance(item, Nonterminal):
-            generations = []
+            fragments = []
             for prod in grammar.productions(lhs=item):
-                generations += _generate_tail_template_fragments(grammar, prod.rhs(), depth - 1)
-            return generations
+                fragments += _generate_tail_template_fragments(grammar, prod.rhs(), depth - 1)
+            return fragments
 
         elif re.match(r"<.*?>", item):
             # <placeholder> terminal
@@ -191,14 +193,26 @@ def _generate_head_template_fragments(grammar, item, depth):
 
 
 def _combine_fragments(f1: Fragment, f2: Fragment, depth) -> Fragment:
-    """Generates a subquery."""
+    """Combines two Fragments.
+
+    This merges two CFG subsequences, e.g. 'Who is' and 'the <relation> of ...'.
+    The question fragments are combined straightforwardly by concatenating the symbols.
+    The Prolog query fragments are combined based on the <placeholder> and query type.
+
+    Examples:
+    > (['Who is'], [], None) + (['<name>'], ['<name>'], None) -> (['Who is', '<name>'], ['<name>'], None)
+    > (['<attribute_name>_3'], ['<attribute_name>_3'], None) 
+        + (['of the', '<relation>_2', 'of', '<name>_1', '?'], ['<relation>_2(<name>_1, Y_3)'], 'Y_3') 
+        -> (['<attribute_name>_3', 'of the', ...], 
+            ['<attribute_name>_3(Y_3, Y_4)', '<relation>_2(<name>_1, Y_3)'], 
+            'Y_4')
+    """
 
     q_fragment = f1.q_fragment + f2.q_fragment
 
     if f1.is_empty():
         return Fragment(q_fragment, f2.p_fragment, f2.p_answer)
 
-    # Non<placeholder> (terminal) f1 case (e.g. 'is', 'of', 'Who is',...)
     elif f1.is_terminal():
         if f2.is_empty():
             return Fragment(q_fragment, f1.p_fragment, f1.p_answer)
@@ -217,7 +231,6 @@ def _combine_fragments(f1: Fragment, f2: Fragment, depth) -> Fragment:
         subquery = None
         answer = None
 
-        # Match <placeholder>
         if re.match(r"<relation_plural>_(\d+)", placeholder):
             if f2.is_placeholder():
                 # ... how many brothers does Alice have ...
@@ -239,9 +252,8 @@ def _combine_fragments(f1: Fragment, f2: Fragment, depth) -> Fragment:
                 # ... who is the mother of the mother of Alice ...
                 subquery = [f"{placeholder}({f2.p_answer}, Y_{depth})"] + f2.p_fragment
             answer = f"Y_{depth}"
-            
+
         elif re.match(r"<attribute_name>_(\d+)", placeholder):
-            # Match <attribute_value>
             if placeholder.replace("name", "value") in f2.p_fragment[0]:
                 # ... whose hobby is running ...
                 assert f2.is_placeholder()
