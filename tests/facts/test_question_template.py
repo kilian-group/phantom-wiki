@@ -3,7 +3,7 @@ import json
 from phantom_wiki.facts import get_database
 from phantom_wiki.facts.attributes import db_generate_attributes
 from phantom_wiki.facts.templates import generate_templates
-from phantom_wiki.utils.nltk_generate import sample
+from phantom_wiki.facts.sample import sample
 from tests.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
 
 QUESTION_TEMPLATES_DEPTH_6 = [

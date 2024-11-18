@@ -1,19 +1,20 @@
+"""
+Functionality to replace placeholders in a question and query template with actual values
+derived from the database.
+"""
+
 import re
 from copy import copy
-
 # import numpy generator type
 from numpy.random import Generator
 
 # possible attribute names
-from ..facts.attributes.constants import ATTRIBUTE_RELATION
-from ..facts.database import Database
-
-#
-# Begin WIP:
-# we can move this to some file in phantom_wiki/facts/
-#
+from .attributes.constants import ATTRIBUTE_RELATION
+from .database import Database
 # possible relations
-from ..facts.family.constants import FAMILY_RELATION_EASY, FAMILY_RELATION_EASY_PLURALS, FAMILY_RELATION_EASY_PL2SG
+from .family.constants import (FAMILY_RELATION_EASY, 
+                               FAMILY_RELATION_EASY_PLURALS, 
+                               FAMILY_RELATION_EASY_PL2SG)
 
 
 def sample(
@@ -51,11 +52,8 @@ def sample(
         a prolog query or
         None if valid_only is True and no valid query is found
     """
-    print("55> question_temp_list: ", question_temp_list)
-    print("56> query_temp_list: ", query_temp_list)
-
     query = copy(query_temp_list)  # we will be modifying this list in place
-    question = copy(question_temp_list)  # 
+    question = copy(question_temp_list)  # we will be modifying this list in place
     result = {}
 
     def search(pattern: str, query: str):
@@ -130,8 +128,3 @@ def sample(
             sample_predicate(ATTRIBUTE_RELATION, match, i, mapping=None)
 
     return result, " ".join(question), query
-
-
-#
-# End WIP
-#
