@@ -73,14 +73,14 @@ QUESTION_TEMPLATES_DEPTH_6_UNJOINED = [
 ]
 
 PROLOG_TEMPLATES_DEPTH_6_UNJOINED = [
-    ["<relation>_3(Y_2, Y_4)", "<attribute_name>_1(Y_2, <attribute_value>_1)."],
+    ["<relation>_3(Y_2, Y_4)", "<attribute_name>_1(Y_2, <attribute_value>_1)"],
     ["<relation>_3(<name>_2, Y_4)"],
-    ["<attribute_name>_3(Y_4, <attribute_value>_3)."],
-    ["<attribute_name>_3(Y_3, Y_4)", "<relation>_2(<name>_1, Y_3)."],
-    ["<attribute_name>_3(Y_3, Y_4)", "<attribute_name>_2(Y_3, <attribute_value>_2)."],
-    ["aggregate_all(count, <relation>_4(Y_3, Y_5), Count_5", "<relation>_2(<name>_1, Y_3)."],
-    ["aggregate_all(count, <relation>_4(Y_3, Y_5), Count_5", "<attribute_name>_2(Y_3, <attribute_value>_2)."],
-    ["aggregate_all(count, <relation>_4(<name>_3, Y_5), Count_5"],
+    ["<attribute_name>_3(Y_4, <attribute_value>_3)"],
+    ["<attribute_name>_3(Y_3, Y_4)", "<relation>_2(<name>_1, Y_3)"],
+    ["<attribute_name>_3(Y_3, Y_4)", "<attribute_name>_2(Y_3, <attribute_value>_2)"],
+    ["aggregate_all(count, <relation>_4(Y_3, Y_5), Count_5)", "<relation>_2(<name>_1, Y_3)"],
+    ["aggregate_all(count, <relation>_4(Y_3, Y_5), Count_5)", "<attribute_name>_2(Y_3, <attribute_value>_2)"],
+    ["aggregate_all(count, <relation>_4(<name>_3, Y_5), Count_5)"],
 ]
 # 
 # End unjoined templates
@@ -106,7 +106,7 @@ def test_sample_0():
     assert any_query == (
         {"<attribute_name>_1": "age", "<relation>_3": "child"},
         "Who is the child of the person whose age is <attribute_value>_1 ?",
-        ["child(Y_2, Y_4)", "age(Y_2, <attribute_value>_1)."],
+        ["child(Y_2, Y_4)", "age(Y_2, <attribute_value>_1)"],
     )
     # case 2: valid_only=True
     # TODO: need to test after adding attributes to prolog
@@ -152,7 +152,7 @@ def test_sample_3():
     assert any_query == (
         {"<name>_1": "vanessa", "<relation>_2": "child", "<attribute_name>_3": "job"},
         "What is the job of the child of vanessa ?",
-        ["job(Y_3, Y_4)", "child(vanessa, Y_3)."],
+        ["job(Y_3, Y_4)", "child(vanessa, Y_3)"],
     )
     # TODO: test for valid_only=True
     rng = default_rng(seed=1)
@@ -175,7 +175,7 @@ def test_sample_4():
     assert any_query == (
         {"<attribute_name>_2": "age", "<attribute_name>_3": "job"},
         "What is the job of the person whose age is <attribute_value>_2 ?",
-        ["job(Y_3, Y_4)", "age(Y_3, <attribute_value>_2)."],
+        ["job(Y_3, Y_4)", "age(Y_3, <attribute_value>_2)"],
     )
     valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
     # TODO: test for valid_only=True
@@ -190,7 +190,7 @@ def test_sample_5():
     assert any_query == (
         {"<name>_1": "vanessa", "<relation>_2": "child", "<relation>_4": "daughter"},
         "How many daughters does the child of vanessa have?",
-        ["aggregate_all(count, daughter(Y_3, Y_5), Count_5", "child(vanessa, Y_3)"],
+        ["aggregate_all(count, daughter(Y_3, Y_5), Count_5)", "child(vanessa, Y_3)"],
     )
     # TODO: test for valid_only=True
     # valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
@@ -206,7 +206,7 @@ def test_sample_6():
     assert any_query == (
         {"<attribute_name>_2": "age", "<relation>_4": "child"},
         "How many children does the person whose age is <attribute_value>_2 have?",
-        ["aggregate_all(count, child(Y_3, Y_5), Count_5", "age(Y_3, <attribute_value>_2)."],
+        ["aggregate_all(count, child(Y_3, Y_5), Count_5)", "age(Y_3, <attribute_value>_2)"],
     )
     # TODO: test for valid_only=True
 
@@ -220,7 +220,7 @@ def test_sample_7():
     assert any_query == (
         {"<name>_3": "vanessa", "<relation>_4": "child"},
         "How many children does vanessa have?",
-        ["aggregate_all(count, child(vanessa, Y_5), Count_5"],
+        ["aggregate_all(count, child(vanessa, Y_5), Count_5)"],
     )
     # TODO: test for valid_only=True
     valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
