@@ -11,172 +11,103 @@
 import json
 import random
 import re
-import typing
+from dataclasses import dataclass, field
+from typing import List, Optional
 
-import insanity
 
-from reldata.data import base_individual
-from reldata.data import data_context as dc
-from reldata.data import individual_factory
+# ============================================================================= #
+#                                CLASS  PERSON                                  #
+# ============================================================================= #
 
-import person
+@dataclass
+class Person:
+    """A class representing a person in the family tree."""
+    index: int
+    name: str
+    female: bool
+    tree_level: int
+    children: List['Person'] = field(default_factory=list)
+    parents: List['Person'] = field(default_factory=list)
+    married_to: Optional['Person'] = None
 
-# ==================================================================================================================== #
-#  CLASS  P E R S O N  F A C T O R Y                                                                                   #
-# ==================================================================================================================== #
-
-class PersonFactory(object):
-    """A factory class for creating instances of an implementation of :class:`person.Person`."""
-
-    _REMAINING_FEMALE_NAMES = "PersonFactory.remaining_female_names"
-    """str: The key that is used for storing the remaining female names in the context."""
-
-    _REMAINING_MALE_NAMES = "PersonFactory.remaining_male_names"
-    """str: The key that is used for storing the remaining male names in the context."""
+    def __str__(self) -> str:
+        return (
+            f"Person(index={self.index}, name='{self.name}', female={self.female}, "
+            f"married_to={self.married_to.index if self.married_to else 'None'}, "
+            f"parents=({', '.join(str(p.index) for p in self.parents) if self.parents else 'None'}), "
+            f"children=[{', '.join(str(c.index) for c in self.children)}])"
+        )
     
-    # Method to load names from JSON files
-    @staticmethod
-    def load_names_from_file(file_path):
-        with open(file_path, 'r') as f:
-            return json.load(f)
 
-    FEMALE_NAMES = load_names_from_file.__func__('names/female_names.json')
-    """list[str]: A list of all known female names."""
-    
-    MALE_NAMES = load_names_from_file.__func__('names/male_names.json')
-    """list[str]: A list of all known male names."""
-    
-    #  METHODS  ########################################################################################################
-    
-    @classmethod
-    def _prepare_context(cls):
-        """Prepares the current context for the ``PersonFactory`` if it is not prepared yet."""
-        if dc.DataContext.get_context()[cls._REMAINING_FEMALE_NAMES] is None:
-            cls.reset()
-    
-    @classmethod
-    def create_person(cls, tree_level: int, female: bool=None) -> person.Person:
-        """Constructs a new instance of :class:`person.Person`.
+# ============================================================================= #
+#                            CLASS PERSON FACTORY                               #
+# ============================================================================= #
 
+class PersonFactory:
+    """A factory class for creating Person instances."""
+    
+    def __init__(self):
+        self._person_counter = 0
+        self._remaining_female_names: List[str] = []
+        self._remaining_male_names: List[str] = []
+        self._female_names: List[str] = []
+        self._male_names: List[str] = []
+        
+    def load_names(self) -> None:
+        """Load names from JSON files."""
+        female_names_file = "names/female_names.json"
+        male_names_file = "names/male_names.json"
+
+        with open(female_names_file, 'r') as f:
+            self._female_names = json.load(f)
+        with open(male_names_file, 'r') as f:
+            self._male_names = json.load(f)
+        self.reset()
+    
+    def reset(self) -> None:
+        """Reset the name pools to their initial state."""
+        self._remaining_female_names = self._female_names[:]
+        self._remaining_male_names = self._male_names[:]
+    
+    def _get_next_name(self, female: bool) -> str:
+        """Get the next available name based on gender."""
+        name_pool = self._remaining_female_names if female else self._remaining_male_names
+
+        name_index = random.randrange(len(name_pool))
+        name = name_pool.pop(name_index)
+
+        if not name_pool:
+            # If we've run out of names, create new ones with incremented postfix
+            last_name = name
+            postfix = re.search(r"([0-9]+)$", last_name)
+            new_postfix = str(int(postfix.group(0)) + 1) if postfix else "2"
+            
+            base_names = self._female_names if female else self._male_names
+            name_pool = [f"{name}{new_postfix}" for name in base_names]
+            if female:
+                self._remaining_female_names = name_pool
+            else:
+                self._remaining_male_names = name_pool
+        
+        return name
+    
+    def create_person(self, tree_level: int, female: Optional[bool] = None) -> Person:
+        """Create a new Person instance.
+        
         Args:
-            tree_level (int): The level in the family tree on which the created person is located.
-            female (bool, optional): Indicates whether the created person is female. If not provided, then the gender
-                is sampled randomly.
-        """
-        # NOTE: importing insanity in python >3.10 leads to the following error:
-        # AttributeError: module 'collections' has no attribute 'Iterable'
-        # # sanitize args
-        insanity.sanitize_type("tree_level", tree_level, int)
-        
-        # prepare context if necessary
-        cls._prepare_context()
-        
-        # fetch current context
-        ctx = dc.DataContext.get_context()
-        
-        # determine gender
+            tree_level: The level in the family tree where this person belongs
+            female: Optional boolean indicating gender. If None, gender is randomly assigned
+        """        
+
         if female is None:
             female = random.random() > 0.5
-        else:
-            female = bool(female)
         
-        # fetching names that may be used
-        if female:
-            remaining_names = ctx[cls._REMAINING_FEMALE_NAMES]
-        else:
-            remaining_names = ctx[cls._REMAINING_MALE_NAMES]
+        name = self._get_next_name(female)
+        self._person_counter += 1
         
-        # determine name
-        name_index = random.randrange(len(remaining_names))
-        name = remaining_names[name_index]
-        del remaining_names[name_index]
-        
-        # check whether the just used list of names has to be reset (i.e., is empty now)
-        # -> we just reuse known names and append a postfix to ensure uniquenes
-        if not remaining_names:
-            
-            # determine the postfix to append to the new names
-            postfix = re.search("([0-9]+)$", name)  # -> the previously used postfix
-            if postfix:
-                postfix = str(int(postfix.group(0)) + 1)  # increment existing postfix
-            else:
-                postfix = "2"  # start with postfix 2
-            
-            # create new names to use
-            if female:
-                ctx[cls._REMAINING_FEMALE_NAMES] = [n + postfix for n in cls.FEMALE_NAMES]
-            else:
-                ctx[cls._REMAINING_MALE_NAMES] = [n + postfix for n in cls.MALE_NAMES]
-        
-        # return new person
-        return individual_factory.IndividualFactory.create_individual(
-                name,
-                target_type=_Person,
-                args=[female, tree_level]
+        return Person(
+            index=self._person_counter,
+            name=name,
+            female=female,
+            tree_level=tree_level
         )
-    
-    @classmethod
-    def reset(cls) -> None:
-        """Resets the ``PersonFactory`` to its initial state."""
-        ctx = dc.DataContext.get_context()
-        ctx[cls._REMAINING_FEMALE_NAMES] = cls.FEMALE_NAMES[:]
-        ctx[cls._REMAINING_MALE_NAMES] = cls.MALE_NAMES[:]
-
-
-# ==================================================================================================================== #
-#  CLASS  _ P E R S O N                                                                                                #
-# ==================================================================================================================== #
-
-
-class _Person(person.Person):
-    """A private implementation of :class:`person.Person`."""
-    
-    def __init__(self, index: int, name: str, female: bool, tree_level: int):
-        base_individual.BaseIndividual.__init__(self)
-        
-        self._children = []
-        self._female = female
-        self._index = index
-        self._married_to = None
-        self._name = name
-        self._parents = []
-        self._tree_level = tree_level
-    
-    #  MAGIC FUNCTIONS  ################################################################################################
-    
-    def __str__(self):
-        return "Person(index = {:d}, name = '{}', female = {}, married_to = {}, parents = {}, children = [{}])".format(
-                self.index,
-                self.name,
-                str(self.female),
-                str(self.married_to.index) if self.married_to else "None",
-                "({})".format(", ".join([str(p.index) for p in self.parents])) if self.parents else "None",
-                ", ".join([str(c.index) for c in self.children])
-        )
-    
-    #  PROPERTIES  #####################################################################################################
-    
-    @property
-    def children(self) -> typing.List[person.Person]:
-        return self._children
-    
-    @property
-    def female(self) -> bool:
-        return self._female
-    
-    @property
-    def married_to(self) -> typing.Union[typing.Any, None]:
-        return self._married_to
-    
-    @married_to.setter
-    def married_to(self, spouse: person.Person) -> None:
-        insanity.sanitize_type("spouse", spouse, person.Person)
-        self._married_to = spouse
-    
-    @property
-    def parents(self) -> typing.List[person.Person]:
-        return self._parents
-    
-    @property
-    def tree_level(self) -> int:
-        return self._tree_level

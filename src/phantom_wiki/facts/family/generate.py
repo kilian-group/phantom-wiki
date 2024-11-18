@@ -10,49 +10,40 @@
 
 import random
 import time
-import typing
-import networkx as nx
+from typing import List
 import os
 import pydot
-# TODO: can we remove dependency on reldata?
-from reldata import data_context as dc
 
-from . import person
-from . import person_factory as pf
+from person_factory import PersonFactory
+from person_factory import Person
+
 from . import fam_gen_parser
 from ...utils import get_parser
 
-class Generator(object):
+# ============================================================================= #
+#                               CLASS  GENERATOR                                #
+# ============================================================================= #
+
+class Generator:        
     """A generator for creating family tree datasets."""
     
-    CLASSES = [
-            "female",
-            "male"
-    ]
-    """list: A list of classes each node can belong to."""
-    
-    def __init__(self):
-        raise NotImplementedError("The class Generator cannot be instantiated!")
-            
-    @classmethod
-    def _sample_family_tree(cls, args) -> typing.List[person.Person]:
+    def __init__(self, person_factory: PersonFactory):
+        self.person_factory = person_factory
+
+    def _sample_family_tree(self, args) -> List[Person]:
         """Creates a single family tree.
         
         Args:
             args: The configuration that specifies how to create the dataset.
-        
-        Returns:
-            list[:class:`person.Person`]: The created family tree specified as a list of persons appearing in the same.
-                All of the according parent-of relations are specified in terms of the provided instances.
         """
         # add first person to the family tree
-        fam_tree = [pf.PersonFactory.create_person(args.max_tree_depth)]
+        fam_tree = [self.person_factory.create_person(args.max_tree_depth)]
 
-        min_level = fam_tree[0].tree_level
-        max_level = fam_tree[0].tree_level
+        min_level = max_level = fam_tree[0].tree_level
         tree_depth = max_level - min_level
-        p = 1
-        total_attempts = 0  # the total number of attempts to add a person to the family tree
+        person_count = 1
+        total_attempts = 0
+
         while True:
     
             # randomly choose a person from the tree
@@ -69,134 +60,96 @@ class Generator(object):
             )
             
             # decide what to do
-            add_parents = False
-            add_child = False
+            add_parents = add_child = False
             if can_add_parents and can_add_children:  # -> randomly add either a child or parents
-                if random.random() > 0.5:
-                    add_parents = True
-                else:
-                    add_child = True
-            elif can_add_parents:
-                add_parents = True
-            elif can_add_children:
-                add_child = True
+                add_parents = random.random() > 0.5
+                add_child = not add_parents
+            else:
+                add_parents = can_add_parents
+                add_child = can_add_children
     
+
             if add_child:
-        
                 # check whether the chosen person is married, if not -> add a partner
                 if current_person.married_to:
                     spouse = current_person.married_to
                 else:
-                    spouse = pf.PersonFactory.create_person(
-                            current_person.tree_level + 1,
-                            female=not current_person.female
+                    spouse = self.person_factory.create_person(
+                            current_person.tree_level,
+                            female=not current_person.female 
                     )
                     spouse.married_to = current_person
                     current_person.married_to = spouse
                     fam_tree.append(spouse)
-                    p += 1
+                    person_count += 1
         
                 # create child
-                child = pf.PersonFactory.create_person(current_person.tree_level + 1)
-                child.parents.append(current_person)
-                child.parents.append(spouse)
+                child = self.person_factory.create_person(current_person.tree_level + 1)
+                child.parents = [current_person, spouse]
                 fam_tree.append(child)
-                p += 1
         
                 # add child to current person and spouse
                 current_person.children.append(child)
                 spouse.children.append(child)
-    
+
+                max_level = max(max_level, child.tree_level)
+                person_count += 1
+
             elif add_parents:
-        
-                # create mother
-                mom = pf.PersonFactory.create_person(current_person.tree_level - 1, female=True)
-                mom.children.append(current_person)
-                fam_tree.append(mom)
-                p += 1
-        
-                # create father
-                dad = pf.PersonFactory.create_person(current_person.tree_level - 1, female=False)
-                dad.children.append(current_person)
-                fam_tree.append(dad)
-                p += 1
-        
-                # specify parents to be married
+                # Create parents
+                mom = self.person_factory.create_person(current_person.tree_level - 1, female=True)
+                dad = self.person_factory.create_person(current_person.tree_level - 1, female=False)
+
+                # specify relationships
                 mom.married_to = dad
                 dad.married_to = mom
-        
-                # specify parents of chosen person
-                current_person.parents.append(mom)
-                current_person.parents.append(dad)
-            
+                mom.children.append(current_person)
+                dad.children.append(current_person)
+                current_person.parents = [mom, dad]
+
+                # Add to tree
+                fam_tree.extend([mom, dad])
+                person_count += 2
+                min_level = min(min_level, mom.tree_level)
+                            
             # update bookkeeping variables
             total_attempts += 1
-            if add_parents:
-                min_level = min(min_level, current_person.tree_level - 1)
-            elif add_child:
-                max_level = max(max_level, current_person.tree_level + 1)
             tree_depth = max_level - min_level
     
-            # stop adding people of maximum number has been reached
-            if (
-                    p >= args.max_tree_size or
-                    total_attempts >= args.max_tree_size * 10 or
-                    (args.stop_prob > 0 and random.random() < args.stop_prob)
-            ):
+            # Check stopping conditions
+            if (person_count >= args.max_tree_size or
+                total_attempts >= args.max_tree_size * 10 or
+                (args.stop_prob > 0 and random.random() < args.stop_prob)):
                 break
+
 
         return fam_tree
 
-    @classmethod
-    def generate(cls, args) -> None:
+    def generate(self, args) -> List[List[Person]]:
         """Generates a family tree dataset based on the provided configuration.
         
         Args:
             args: The configuration that specifies how to create the dataset.
         """        
-        # create list for storing graph representations of all created samples (for checking isomorphism)
-        sample_graphs = []
+        # create list for storing graph representations of all created samples
         family_trees = []
 
         for sample_idx in range(args.num_samples):
             
             print("creating sample #{}: ".format(sample_idx), end="")
-            
-            # use a fresh data context
-            with dc.DataContext() as data_ctx:
                 
-                # reset person factory
-                pf.PersonFactory.reset()
-                    
-                # sample family tree
-                print("sampling family tree", end="")
-                start = time.time()
-                done = False
-                while not done:
-                    
-                    # randomly sample a tree
-                    family_tree = cls._sample_family_tree(args)
-                    
-                    # create a graph that represents the structure of the created sample for checking isomorphism
-                    current_graph = nx.DiGraph()
-                    for p in family_tree:
-                        for parent in p.parents:
-                            current_graph.add_edge(p.index, parent.index)
-                        if p.married_to is not None:
-                            current_graph.add_edge(p.index, p.married_to.index)
-                    
-                    # check whether the new sample is isomorphic to any sample created earlier
-                    for existing_sample in sample_graphs:
-                        if nx.is_isomorphic(existing_sample, current_graph):
-                            data_ctx.clear()
-                            pf.PersonFactory.reset()
-                            break
-                    else:
-                        sample_graphs.append(current_graph)
-                        done = True
-                
-                family_trees.append(family_tree)
-                print(" OK ({:.3f}s)".format(time.time() - start))
+            # sample family tree
+            print("sampling family tree", end="")
+            start = time.time()
+            family_tree = self._sample_family_tree(args)
+            family_trees.append(family_tree)
+
+            print(" OK ({:.3f}s)".format(time.time() - start))
+
+            # Resetting person factory if user allows for duplicate names
+            if not args.duplicate_names:
+                self.person_factory.reset()
+
 
         return family_trees
     
@@ -282,10 +235,13 @@ if __name__ == "__main__":
     os.makedirs(args.output_dir, exist_ok=True)
 
     # Get the prolog family tree
-    family_trees = Generator.generate(args)
+    pf = PersonFactory()
+    pf.load_names()
+
+    gen = Generator(pf)
+    family_trees = gen.generate(args)
     
     for i, family_tree in enumerate(family_trees):
-        print(family_tree[0])
         # Obtain family tree in Prolog format
         pl_family_tree = family_tree_to_pl(family_tree)
 
