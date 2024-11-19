@@ -9,6 +9,7 @@ import os
 # phantom wiki functionality
 from .facts import (get_database,
                     db_generate_population,
+                    db_generate_friendships,
                     db_generate_attributes)
 from .core.article import get_articles
 from .core.formal_questions import get_question_answers
@@ -100,7 +101,7 @@ def main():
     db_generate_population(db, args.num_people, args.seed)
     # TODO: add our implementation of family tree
     db.define("parent/2") # NOTE: define parent relationship since we don't have our own family tree implementation yet
-    # TODO: add our implementation of friendship graph
+    db_generate_friendships(db, args.seed)
     # TODO: add our implementation of attributes
     db_generate_attributes(db, args.seed)
 
