@@ -26,29 +26,34 @@ fam_gen_parser.add_argument("--stop-prob", type=float, default=0.0,
 fam_gen_parser.add_argument("--duplicate-names", type=bool, default=False,
                         help="Used to allow/prevent duplicate names in the generation. (Default value: False.)")
 # wrapper for family tree generation
-if False:
-    import os
-    import random
-    from .generate import (Generator,
-                        family_tree_to_facts)
-    def db_generate_family(db, args: ArgumentParser):
-        """Generates family facts for a database.
-        
-        args:
-            db: Database
-            num_people: number of people to generate
-            seed: random seed
-        """
-        # set the random seed
-        random.seed(args.seed)
-        # Get the prolog family tree
-        family_trees = Generator.generate(args)
-        
-        for i, family_tree in enumerate(family_trees):
-            print(f"Adding family tree {i+1} to the database.")
-            # Obtain family tree facts
-            facts = family_tree_to_facts(family_tree)
-            db.add(*facts)
+
+import os
+import random
+from .generate import (Generator,
+                    family_tree_to_facts,
+                    PersonFactory)
+def db_generate_family(db, args: ArgumentParser):
+    """Generates family facts for a database.
+    
+    args:
+        db: Database
+        num_people: number of people to generate
+        seed: random seed
+    """
+    # set the random seed
+    random.seed(args.seed)
+    # Get the prolog family tree
+    pf = PersonFactory()
+    pf.load_names()
+
+    gen = Generator(pf)
+    family_trees = gen.generate(args)
+    
+    for i, family_tree in enumerate(family_trees):
+        print(f"Adding family tree {i+1} to the database.")
+        # Obtain family tree facts
+        facts = family_tree_to_facts(family_tree)
+        db.add(*facts)
 
 # imports for family facts
 from .facts import get_family_facts

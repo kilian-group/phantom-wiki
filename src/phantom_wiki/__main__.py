@@ -85,15 +85,15 @@ def main():
     # Step 1. Generate facts
     # 
     db = get_database()
+    db.define("nonbinary/1", "age/2")
     blue("Generating facts")
-    if True:
+    if False:
         db_generate_population(db, 100, args.seed)
         db.define("parent/2")
     else:
         # TODO: add our implementation of family graph
         from .facts import db_generate_family
         db_generate_family(db, args)
-        pass
     
     # TODO: add our implementation of friendship graph
     db_generate_attributes(db, args.seed)

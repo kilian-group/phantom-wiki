@@ -55,8 +55,9 @@ class PersonFactory:
         
     def load_names(self) -> None:
         """Load names from JSON files."""
-        female_names_file = "names/female_names.json"
-        male_names_file = "names/male_names.json"
+        from importlib.resources import files
+        female_names_file = files("phantom_wiki").joinpath("facts/family/names/female_names.json")
+        male_names_file = files("phantom_wiki").joinpath("facts/family/names/male_names.json")
 
         with open(female_names_file, 'r') as f:
             self._female_names = json.load(f)

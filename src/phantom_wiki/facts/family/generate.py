@@ -14,9 +14,8 @@ from typing import List
 import os
 import pydot
 
-from person_factory import PersonFactory
-from person_factory import Person
-
+from phantom_wiki.facts.family.person_factory import (PersonFactory, 
+                                                      Person)
 from phantom_wiki.facts.family import fam_gen_parser
 from phantom_wiki.utils import get_parser
 
