@@ -17,8 +17,8 @@ import pydot
 from person_factory import PersonFactory
 from person_factory import Person
 
-from . import fam_gen_parser
-from ...utils import get_parser
+from phantom_wiki.facts.family import fam_gen_parser
+from phantom_wiki.utils import get_parser
 
 # ============================================================================= #
 #                               CLASS  GENERATOR                                #

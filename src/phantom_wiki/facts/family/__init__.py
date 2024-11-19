@@ -21,10 +21,10 @@ fam_gen_parser.add_argument("--num-samples", type=int, default=1,
                             help="The size of the dataset to generate. (Default value: 1.)")
 fam_gen_parser.add_argument("--output-dir", type=str, default="./out",
                             help="The directory where the Prolog trees will be saved. (Default value: ./out)")
-# fam_gen_parser.add_argument("--seed", type=int, default=1,
-#                             help="The seed that is used to initialize the used RNG. (Default value: 1.)")
 fam_gen_parser.add_argument("--stop-prob", type=float, default=0.0,
                             help="The probability of stopping to further extend a family tree after a person has been added. (Default value: 0.)")
+fam_gen_parser.add_argument("--duplicate-names", type=bool, default=False,
+                        help="Used to allow/prevent duplicate names in the generation. (Default value: False.)")
 # wrapper for family tree generation
 if False:
     import os
