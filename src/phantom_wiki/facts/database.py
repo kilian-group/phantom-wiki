@@ -46,7 +46,10 @@ class Database:
         Returns:
             List of attributes.
         """
-        self.define("attribute/1")
+        # NOTE: if you want to be able to query for attributes, 
+        # without actually having attributes in the database, 
+        # you need to define the attribute predicate by uncommenting the line below
+        # self.define("attribute/1")
         attributes = [result["X"] for result in self.prolog.query("attribute(X)")]
         return attributes
 
