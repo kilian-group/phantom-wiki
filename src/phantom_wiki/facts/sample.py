@@ -25,7 +25,8 @@ def sample(
     valid_only: bool = True,
 ):
     """
-    Samples possible realizations of the question_list and predicate_list from the database db.
+    Samples possible realizations of the question template and query template lists
+    from the database `db`.
     Example:
     >>> 
     # TODO:
@@ -40,8 +41,8 @@ def sample(
 
     Args:
         db: the prolog database to sample from
-        question_template: a template for the question with <placeholder> 
-        query_template: a template for the prolog query with <placeholder>
+        question_temp_list: list of question templates (containing <placeholder>s 
+        query_temp_list: a list of templates of Prolog queries (containing <placeholder>s)
         rng: a random number generator
         valid_only: whether to sample only valid realizations
             if True: we uniformly sample from the set of prolog queries
