@@ -1,5 +1,6 @@
 from pyswip import Prolog
 
+
 class Database:
     # TODO this will potentially need to consult several rules files (for family vs friends etc.)
     # TODO define an API for consulting different types of formal facts (family, friendships, hobbies)
@@ -11,16 +12,25 @@ class Database:
             print(f"- {rule}")
             self.prolog.consult(rule)
 
-    def get_names(self): 
+    def get_names(self):
         """Gets all names from a Prolog database.
-        Returns: 
+        Returns:
             List of people's names.
         """
-        females = [result['X'] for result in self.prolog.query("female(X)")]
-        males = [result['X'] for result in self.prolog.query("male(X)")]
-        nonbinary = [result['X'] for result in self.prolog.query("nonbinary(X)")]
+        females = [result["X"] for result in self.prolog.query("female(X)")]
+        males = [result["X"] for result in self.prolog.query("male(X)")]
+        nonbinary = []  # [result['X'] for result in self.prolog.query("nonbinary(X)")]
         return females + males + nonbinary
-    
+
+    def get_attribute_values(self):
+        """Gets all attributes from a Prolog database.
+        Returns:
+            List of attributes.
+        """
+        self.define("attribute/1")
+        attributes = [result["X"] for result in self.prolog.query("attribute(X)")]
+        return attributes
+
     def query(self, query: str):
         """Queries the Prolog database.
         args:
@@ -29,7 +39,7 @@ class Database:
             List of results
         """
         return list(self.prolog.query(query))
-    
+
     def consult(self, *files: str):
         """Consults Prolog files.
         args:
@@ -42,8 +52,8 @@ class Database:
 
     def add(self, *facts: str):
         """Adds fact(s) to the Prolog database.
-        
-        The fact is added to the end of the clause list, 
+
+        The fact is added to the end of the clause list,
         which means that it will be returned last when querying.
 
         NOTE: This is not a persistent operation.
