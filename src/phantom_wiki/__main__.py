@@ -9,6 +9,10 @@ import os
 import numpy as np
 
 # phantom wiki functionality
+from .facts import (get_database,
+                    db_generate_population,
+                    db_generate_friendships,
+                    db_generate_attributes)
 from .core.article import get_articles
 from .facts import db_generate_attributes, db_generate_population, get_database
 from .facts.templates import generate_templates
@@ -38,7 +42,7 @@ def main():
     db.define(
         "parent/2"
     )  # NOTE: define parent relationship since we don't have our own family tree implementation yet
-    # TODO: add our implementation of friendship graph
+    db_generate_friendships(db, args.seed)
     # TODO: add our implementation of attributes
     db_generate_attributes(db, args.seed)
 

@@ -2,6 +2,7 @@ from .database import Database
 # imports to files containing Prolog rules
 from .family import (FAMILY_RULES_BASE_PATH,
                      FAMILY_RULES_DERIVED_PATH)
+from .friends import (FRIENDSHIP_RULES_PATH)
 from .attributes import (ATTRIBUTE_RULES_PATH)
 
 def get_database(*data_paths) -> Database:
@@ -12,6 +13,7 @@ def get_database(*data_paths) -> Database:
     db = Database(
         FAMILY_RULES_BASE_PATH, 
         FAMILY_RULES_DERIVED_PATH,
+        FRIENDSHIP_RULES_PATH,
         ATTRIBUTE_RULES_PATH,
     )
 
@@ -24,3 +26,4 @@ def get_database(*data_paths) -> Database:
 
 from .person import db_generate_population
 from .attributes import db_generate_attributes
+from .friends import db_generate_friendships
