@@ -57,8 +57,13 @@ def db_generate_attributes(db: Database, seed: int = 1):
     # add the facts to the database
     facts = []
     for name in names:
+        # add jobs
         job = jobs[name]
         facts.append(f"job(\'{name}\', \'{job}\')")
+        facts.append(f"attribute(\'{job}\')")
+        
+        # add hobbies
         hobby = hobbies[name]
         facts.append(f"hobby(\'{name}\', \'{hobby}\')")
+        facts.append(f"attribute(\'{hobby}\')")
     db.add(*facts)
