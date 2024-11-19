@@ -3,5 +3,5 @@ FRIENDSHIP_FACT_TEMPLATES = {
 }
 
 FRIENDSHIP_RELATION = [
-    'friend'
+    "friend"
 ]
