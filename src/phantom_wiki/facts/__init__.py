@@ -1,6 +1,7 @@
 # imports for paths to Prolog rules
 from .family import (FAMILY_RULES_BASE_PATH,
                      FAMILY_RULES_DERIVED_PATH)
+from .friends import (FRIENDSHIP_RULES_PATH)
 from .attributes import (ATTRIBUTE_RULES_PATH)
 # Functionality to get a Prolog database with built-in rules
 from .database import Database
@@ -9,11 +10,12 @@ def get_database(*data_paths) -> Database:
     Get a Prolog database with built-in rules.
     Add facts to the database from data_paths if provided.
     """
-    db = Database(rules=[
+    db = Database(
         FAMILY_RULES_BASE_PATH, 
         FAMILY_RULES_DERIVED_PATH,
+        FRIENDSHIP_RULES_PATH,
         ATTRIBUTE_RULES_PATH,
-    ])
+    )
 
     print(f"Consulting facts from:")
     for path in data_paths:
@@ -26,3 +28,4 @@ def get_database(*data_paths) -> Database:
 from .attributes import db_generate_attributes
 from .family import db_generate_family
 from .person import db_generate_population
+from .friends import db_generate_friendships

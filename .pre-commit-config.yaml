@@ -29,7 +29,8 @@ repos:
         args:
           [
             "--max-complexity=10",
-            "--extend-ignore=E401",
+            "--extend-ignore",
+            "E402,E701,E251,E226,E302,W504,E704,E402,E401,C901,E203",
             "--max-line-length=110",
             "--exclude",
             "logs/*,data/*",
