@@ -1,16 +1,35 @@
 from pyswip import Prolog
 
+SAVE_ALL_CLAUSES_TO_FILE = """
+(save_all_clauses_to_file(File) :-
+    open(File, write, Stream),
+    set_output(Stream),
+    listing,
+    close(Stream))
+"""
 
 class Database:
     # TODO this will potentially need to consult several rules files (for family vs friends etc.)
     # TODO define an API for consulting different types of formal facts (family, friendships, hobbies)
     # TODO define logic for consulting different types of facts based on difficulty
-    def __init__(self, rules: list[str]):
+    def __init__(self, *rules: list[str]):
         self.prolog = Prolog()
         print("Consulting rules from:")
         for rule in rules:
             print(f"- {rule}")
             self.prolog.consult(rule)
+        # Add ability to save clauses to a file
+        self.prolog.assertz(SAVE_ALL_CLAUSES_TO_FILE)
+
+    @classmethod
+    def from_disk(cls, file: str):
+        """Loads a Prolog database from a file.
+        args:
+            file: path to the file
+        """
+        db = cls()
+        db.consult(file)
+        return db
 
     def get_names(self):
         """Gets all names from a Prolog database.
@@ -27,7 +46,10 @@ class Database:
         Returns:
             List of attributes.
         """
-        self.define("attribute/1")
+        # NOTE: if you want to be able to query for attributes, 
+        # without actually having attributes in the database, 
+        # you need to define the attribute predicate by uncommenting the line below
+        # self.define("attribute/1")
         attributes = [result["X"] for result in self.prolog.query("attribute(X)")]
         return attributes
 
@@ -83,10 +105,20 @@ class Database:
 
     def define(self, *predicates: str):
         """Defines dynamic predicates in the Prolog database.
+        Examples:
+        >>> db.define("parent/2", "sibling/2")
+
         args:
-            predicates: list of term signatures (e.g., female/1, male/1, age/2, etc.)
+            predicates: list of term signatures
         """
         print("Defining rules:")
         for predicate in predicates:
             print(f"- {predicate}")
             self.prolog.dynamic(predicate)
+
+    def save_to_disk(self, file: str):
+        """Saves all clauses in the database to a file.
+        args:
+            file: path to the file
+        """
+        return self.query(f"save_all_clauses_to_file(\'{file}\').")

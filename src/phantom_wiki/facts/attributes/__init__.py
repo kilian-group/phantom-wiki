@@ -2,7 +2,8 @@ from ..database import Database
 
 from .constants import (ATTRIBUTE_FACT_TEMPLATES, 
                         ATTRIBUTE_RELATION)
-from .generate import (generate_jobs)
+from .generate import (generate_jobs,
+                       generate_hobbies)
 
 # resource containing the attribute rules
 from importlib.resources import files
@@ -51,15 +52,18 @@ def db_generate_attributes(db: Database, seed: int = 1):
     """
     names = db.get_names()
     jobs = generate_jobs(names, seed)
-    # TODO: generate hobbies here
+    hobbies = generate_hobbies(names, seed)
 
     # add the facts to the database
     facts = []
     for name in names:
+        # add jobs
         job = jobs[name]
         facts.append(f"job(\'{name}\', \'{job}\')")
-        # need to add clauses that indicate job is an attribute 
-        # so that we can sample from attributes when generating questions
         facts.append(f"attribute(\'{job}\')")
-        # TODO: add hobbies here
+        
+        # add hobbies
+        hobby = hobbies[name]
+        facts.append(f"hobby(\'{name}\', \'{hobby}\')")
+        facts.append(f"attribute(\'{hobby}\')")
     db.add(*facts)
