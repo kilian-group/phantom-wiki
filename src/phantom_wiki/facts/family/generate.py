@@ -193,7 +193,7 @@ def family_tree_to_facts(family_tree):
             genders.append(f"male(\'{p.name}\')")
 
         for child in p.children:
-            parent_relationships.append(f"parent(\'{p.name}\', \'{child.name}\')")
+            parent_relationships.append(f"parent(\'{child.name}\', \'{p.name}\')")
 
     # Returning outputs 
     return sorted(genders) + sorted(parent_relationships)

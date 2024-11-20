@@ -31,7 +31,8 @@ import os
 import random
 from .generate import (Generator,
                     family_tree_to_facts,
-                    PersonFactory)
+                    PersonFactory,
+                    create_dot_graph, family_tree_to_pl)
 def db_generate_family(db, args: ArgumentParser):
     """Generates family facts for a database.
     
@@ -54,3 +55,18 @@ def db_generate_family(db, args: ArgumentParser):
         # Obtain family tree facts
         facts = family_tree_to_facts(family_tree)
         db.add(*facts)
+
+        # 
+        # Debugging
+        # 
+        # Obtain family tree in Prolog format
+        pl_family_tree = family_tree_to_pl(family_tree)
+        # Create a unique filename for each tree
+        output_file_path = os.path.join(args.output_dir, f"family_tree_{i+1}.pl")
+        # Write the Prolog family tree to the file
+        with open(output_file_path, "w") as f:
+            f.write("\n".join(pl_family_tree))
+        # Generate family graph plot and save it
+        family_graph = create_dot_graph(family_tree)
+        output_graph_path = os.path.join(args.output_dir, f"family_tree_{i+1}.png")
+        family_graph.write_png(output_graph_path)
