@@ -64,3 +64,24 @@ git push
 2. To run the tests, there are two methods:
     - Run from the Testing Extension (note: your python interpreter must be set to the `dataset` conda environment created above) 
     - Call `pytest` in the terminal (note: make sure the `dataset` conda environment is activated)
+
+## Sharing dataset to HuggingFace
+
+1. Clone the HuggingFace dataset repo (note: you only need to do this once): 
+```
+cd <some location outside of this repo>
+pip install -U "huggingface_hub[cli]"
+hugginface-cli login
+git clone https://huggingface.co/datasets/mlcore/phantom-wiki
+git lfs install
+```
+2. Generate a new dataset and save to the location of the huggingface repo
+```
+python -m phantom_wiki -op <path to huggingface repo> --article_format json --question_format json
+```
+3. Push the files to the huggingface repo:
+```
+git add .
+git commit -m "some message"
+git push
+```

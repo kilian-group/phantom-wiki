@@ -73,9 +73,10 @@ class Generator:
                 if current_person.married_to:
                     spouse = current_person.married_to
                 else:
-                    spouse = self.person_factory.create_person(
+                    spouse = self.person_factory.create_spouse(
                             current_person.tree_level,
-                            female=not current_person.female 
+                            female = not current_person.female,
+                            spouse = current_person
                     )
                     spouse.married_to = current_person
                     current_person.married_to = spouse
@@ -83,7 +84,11 @@ class Generator:
                     person_count += 1
         
                 # create child
-                child = self.person_factory.create_person(current_person.tree_level + 1)
+                child = self.person_factory.create_child(
+                        current_person.tree_level + 1,
+                        parents = [current_person, spouse],
+                        siblings = current_person.children
+                )
                 child.parents = [current_person, spouse]
                 fam_tree.append(child)
         
@@ -96,8 +101,7 @@ class Generator:
 
             elif add_parents:
                 # Create parents
-                mom = self.person_factory.create_person(current_person.tree_level - 1, female=True)
-                dad = self.person_factory.create_person(current_person.tree_level - 1, female=False)
+                dad, mom = self.person_factory.create_parents(current_person.tree_level - 1, current_person)
 
                 # specify relationships
                 mom.married_to = dad
@@ -239,7 +243,6 @@ if __name__ == "__main__":
 
     gen = Generator(pf)
     family_trees = gen.generate(args)
-    
     for i, family_tree in enumerate(family_trees):
         # Obtain family tree in Prolog format
         pl_family_tree = family_tree_to_pl(family_tree)
