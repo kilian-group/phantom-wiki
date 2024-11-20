@@ -1,35 +1,29 @@
 import numpy as np
+from numpy.random import Generator
 import pydot
 import re
 
-# def get_names(family_tree_pl):
-#     """Given path to family tree, pull out all the names"""
-#     names = []
-#     with open(family_tree_pl) as f:
-#         for l in f.readlines():
-#             l = l.split("(")
-#             if l[0]=="male" or l[0]=="female":
-#                 name = l[1].split(")")[0]
-#                 names.append(name)
-
-#     return names
- 
-def random_coordinate(n, radius=5):
+def random_coordinate(rng, n, radius=5):
     """
     Obtains a random point in the (x,y) plane distributed along a n-community gaussian
     mixture block model.
     """
-    theta = np.random.randint(0, n) * 2 * np.pi / n
+    theta = rng.integers(0, n) * 2 * np.pi / n
     mean = radius*np.array([np.cos(theta), np.sin(theta)])
     cov = np.eye(2)
 
-    return np.random.multivariate_normal(mean, cov)
+    return rng.multivariate_normal(mean, cov)
 
 def are_friends(p1, p2, tau=.7):
     """Given 2 individuals' features, determine whether they are friends."""
     return np.dot(p1, p2) >= tau
 
-def create_friendship_graph(names, number_of_communities=5, friendship_threshold=.7):
+def create_friendship_graph(
+        rng: Generator,
+        names, 
+        number_of_communities=5, 
+        friendship_threshold=.7,
+    ):
     """ 
     Given the names, this creates a friendship graph with `number_of_communities`
     communities. The `friendship_threshold` input dictates how many friends there are.
@@ -38,14 +32,14 @@ def create_friendship_graph(names, number_of_communities=5, friendship_threshold
     """
     individual_features = []
     for name in names:
-        ft = random_coordinate(number_of_communities)
+        ft = random_coordinate(rng, number_of_communities)
         individual_features.append(ft)
 
     facts = []
     for i in range(len(names)):
         for j in range(i+1, len(names)):
             if are_friends(individual_features[i], individual_features[j], friendship_threshold):
-                facts.append(f"friend(\'{names[i]}\', \'{names[j]}\')")
+                facts.append(f"friend_(\'{names[i]}\', \'{names[j]}\')")
 
     return facts, individual_features
 

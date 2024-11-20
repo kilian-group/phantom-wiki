@@ -17,16 +17,8 @@ from .core.article import get_articles
 from .facts import db_generate_attributes, db_generate_population, get_database
 from .facts.templates import generate_templates
 from .facts.sample import sample
-from .utils import blue
-
-def get_arguments():
-    parser = argparse.ArgumentParser(description="Generate articles from Prolog files")
-    parser.add_argument("--seed", "-s", default=1, type=int, help="Global seed for random number generator")
-    parser.add_argument("--output_path", "-op", type=str, default="output", help="Path to the output folder")
-    parser.add_argument("--num_people", "-n", type=int, default=100, help="Number of people in the universe")
-    # this is useful when running the script from a notebook so that we use the default values
-    args, _ = parser.parse_known_args()
-    return args
+from .utils import blue, get_parser
+from .facts.family import fam_gen_parser
 
 def main():
     parser = get_parser(parents=[fam_gen_parser])
@@ -48,8 +40,9 @@ def main():
         # TODO: add our implementation of family graph
         from .facts import db_generate_family
         db_generate_family(db, args)
-    
-    # TODO: add our implementation of friendship graph
+    # generate friend relationships between people in the database
+    db_generate_friendships(db, args.seed)
+    # generate jobs, hobbies for each person in the database
     db_generate_attributes(db, args.seed)
 
     #
@@ -76,7 +69,7 @@ def main():
     # TODO: add valid only flag
     templates = generate_templates(depth=6)
     # sample questions for each template (i.e., type)
-    question_dir = os.path.join(args.output_path, "questions")
+    question_dir = os.path.join(args.output_dir, "questions")
     print(f"Saving questions to: {question_dir}")
     os.makedirs(question_dir, exist_ok=True)
     rng = np.random.default_rng(args.seed)

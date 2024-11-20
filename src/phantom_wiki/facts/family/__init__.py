@@ -54,6 +54,3 @@ def db_generate_family(db, args: ArgumentParser):
         # Obtain family tree facts
         facts = family_tree_to_facts(family_tree)
         db.add(*facts)
-
-# imports for family facts
-from .facts import get_family_facts

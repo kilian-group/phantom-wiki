@@ -1,3 +1,4 @@
+from numpy.random import default_rng
 from ..database import Database
 from .generate import create_friendship_graph
 
@@ -23,7 +24,10 @@ def db_generate_friendships(db: Database, seed: int = 1):
         seed (int): The seed for the random number generator.
     """
     names = db.get_names()
-    friendship_facts, _ = create_friendship_graph(names, friendship_threshold=20)
+    rng = default_rng(seed)
+    db.define("friend/2") # declare the friend predicate as dynamic
+    friendship_facts, _ = create_friendship_graph(rng, names, friendship_threshold=20)
+    # import pdb; pdb.set_trace()
     db.add(*friendship_facts)
 
 from importlib.resources import files
