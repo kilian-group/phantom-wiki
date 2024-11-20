@@ -337,7 +337,7 @@ class PersonFactory:
                        random.randint(1,12), 
                        random.randint(1,28))
 
-        if not female:
+        if female is None:
             female = random.random() > 0.5
         
         name = self._get_next_name(female)
