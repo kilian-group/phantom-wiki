@@ -77,7 +77,7 @@ def get_relations(db: Database, name: str, relation_list: list[str]) -> dict:
     """
     relations = {}
     for relation in relation_list:
-        query = f"{relation}(\'{name}\', X)"
+        query = f"distinct({relation}(\'{name}\', X))"
         results = [result['X'] for result in db.query(query)]
         relations[relation] = results
 
