@@ -225,7 +225,6 @@ class PersonFactory:
 
         return self.create_person(tree_level, spouse_dob, female)
 
-    def create_person(self, tree_level: int, dob: Optional[date] = None, female: Optional[bool] = None) -> Person:
     def create_child(self, tree_level: int, parents: List[Person], siblings: Optional[List[Person]] = None):
         """Given a children, it will create its 2 parents
 
@@ -339,19 +338,15 @@ class PersonFactory:
                        random.randint(1,28))
 
         if not female:
-        if not female:
             female = random.random() > 0.5
         
         name = self._get_next_name(female)
         self._person_counter += 1
 
-
         return Person(
             index=self._person_counter,
             name=name,
             female=female,
-            tree_level=tree_level,
-            date_of_birth=dob
             tree_level=tree_level,
             date_of_birth=dob
         )
