@@ -17,7 +17,7 @@ from .core.article import get_articles
 from .facts import db_generate_attributes, db_generate_population, get_database
 from .facts.templates import generate_templates
 from .facts.sample import sample
-from .utils import blue, get_parser
+from .utils import blue, get_parser, generate_unique_id
 from .facts.family import fam_gen_parser
 
 def main():
@@ -52,13 +52,21 @@ def main():
     blue("Generating articles")
     # TODO: add code to merge family and CFG articles
     # currently, we just pass in the family article
-    article_dir = os.path.join(args.output_dir, "articles")
-    print(f"Saving articles to: {article_dir}")
-    os.makedirs(article_dir, exist_ok=True)
     articles = get_articles(db, db.get_names())
-    for name, article in articles.items():
-        with open(os.path.join(article_dir, f"{name}_article.txt"), "w") as file:
-            file.write(article)
+    if args.article_format == "txt":
+        article_dir = os.path.join(args.output_dir, "articles")
+        print(f"Saving articles to: {article_dir}")
+        os.makedirs(article_dir, exist_ok=True)
+        for name, article in articles.items():
+            with open(os.path.join(article_dir, f"{name}.txt"), "w") as file:
+                file.write(article)
+    elif args.article_format == "json":
+        save_path = os.path.join(args.output_dir, "articles.json")
+        print(f"Saving articles to: {save_path}")
+        with open(save_path, "w") as file:
+            json.dump([{"title" : name, "article" : article} for name, article in articles.items()], file, indent=4)
+    else:
+        raise ValueError(f"Article format {args.article_format} not supported!")
 
     #
     # Step 3. Generate question-answer pairs
@@ -69,13 +77,15 @@ def main():
     # TODO: add valid only flag
     templates = generate_templates(depth=6)
     # sample questions for each template (i.e., type)
-    question_dir = os.path.join(args.output_dir, "questions")
-    print(f"Saving questions to: {question_dir}")
-    os.makedirs(question_dir, exist_ok=True)
+    if args.question_format == "json_by_type":
+        question_dir = os.path.join(args.output_dir, "questions")
+        print(f"Saving questions to: {question_dir}")
+        os.makedirs(question_dir, exist_ok=True)
+
     rng = np.random.default_rng(args.seed)
     n_questions = 10
+    questions = []
     for i, (question_template, query_template, answer) in enumerate(templates):
-        questions = []
         for _ in range(n_questions):
             _, question, query = sample(
                 db, 
@@ -86,13 +96,24 @@ def main():
             )
             results = [str(x[answer]) for x in db.query(", ".join(query))]
             questions.append({
-                "template": question_template,
+                "id": generate_unique_id(),
                 "question": question,
-                "query": query,
                 "answer": results,
+                "query": query,
+                "template": question_template,
+                "type": i, # this references the template type
             })
-            with open(os.path.join(question_dir, f"type{i}_question.json"), "w") as file:
-                json.dump(questions, file, indent=4)
+            
+            if args.question_format == "json_by_type":
+                with open(os.path.join(question_dir, f"type{i}.json"), "w") as file:
+                    json.dump(questions, file, indent=4)
+
+    if args.question_format == "json":
+        # save all questions to a single file
+        save_path = os.path.join(args.output_dir, "questions.json")
+        print(f"Saving questions to: {save_path}")
+        with open(save_path, "w") as file:
+            json.dump(questions, file, indent=4)
 
 if __name__ == "__main__":
     main()

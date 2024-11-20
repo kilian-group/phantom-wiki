@@ -35,4 +35,10 @@ def get_parser(parents=[]):
                         help="Global seed for random number generator")
     parser.add_argument("--output_dir", "-od", type=str, default="./out",
                         help="Path to the output folder")
+    parser.add_argument("--article_format", type=str, default="txt",
+                        help="Format to save the generated articles",
+                        choices=["txt", "json"])
+    parser.add_argument("--question_format", type=str, default="json_by_type",
+                        help="Format to save the generated questions and answers",
+                        choices=["json_by_type", "json"])
     return parser
