@@ -63,6 +63,7 @@ def db_generate_family(db, args: ArgumentParser):
         pl_family_tree = family_tree_to_pl(family_tree)
         # Create a unique filename for each tree
         output_file_path = os.path.join(args.output_dir, f"family_tree_{i+1}.pl")
+        os.makedirs(args.output_dir, exist_ok=True)
         # Write the Prolog family tree to the file
         with open(output_file_path, "w") as f:
             f.write("\n".join(pl_family_tree))
