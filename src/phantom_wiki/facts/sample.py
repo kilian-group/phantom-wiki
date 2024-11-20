@@ -29,14 +29,26 @@ def sample(
     from the database `db`.
     Example:
     >>> 
-    # TODO:
-    "Who is the <relation>_3 of the person whose <attribute_name>_1 is <attribute_value>_1 ?",
-    "<relation>_3(Y_2, Y_4), <attribute_name>_1(Y_2, <attribute_value>_1)",
+    [
+        "Who is",
+        "the",
+        "<relation>_3",
+        "of",
+        "the person whose",
+        "<attribute_name>_1",
+        "is",
+        "<attribute_value>_1",
+        "?",
+    ],    ,
+    ["<relation>_3(Y_2, Y_4)", "<attribute_name>_1(Y_2, <attribute_value>_1)"],
 
     -> 
 
-    {"<relation>_3": "father", "<attribute_name>_1": "hobby", "<attribute_value>_1": "running"},
-
+    (
+        {"<attribute_name>_1": "age", "<relation>_3": "child"},
+        "Who is the child of the person whose age is <attribute_value>_1 ?",
+        ["child(Y_2, Y_4)", "age(Y_2, <attribute_value>_1)"],
+    )
 
 
     Args:
