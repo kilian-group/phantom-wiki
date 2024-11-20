@@ -25,7 +25,6 @@ def db_generate_friendships(db: Database, seed: int = 1):
     """
     names = db.get_names()
     rng = default_rng(seed)
-    db.define("friend/2") # declare the friend predicate as dynamic
     friendship_facts, _ = create_friendship_graph(rng, names, friendship_threshold=20)
     # import pdb; pdb.set_trace()
     db.add(*friendship_facts)
