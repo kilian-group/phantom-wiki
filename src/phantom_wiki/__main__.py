@@ -79,8 +79,8 @@ def main(args):
 
     rng = np.random.default_rng(args.seed)
     n_questions = 10
-    questions = []
     for i, (question_template, query_template, answer) in enumerate(templates):
+        questions = []
         for _ in range(n_questions):
             _, question, query = sample(
                 db, 
