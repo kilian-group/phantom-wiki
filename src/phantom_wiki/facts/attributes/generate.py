@@ -12,7 +12,7 @@ def generate_jobs(names: list[str], seed=1) -> dict[str, str]:
     Faker.seed(seed)
     jobs = {}
     for name in names:
-        jobs[name] = fake.job()
+        jobs[name] = fake.job().lower()
     return jobs
 
 def generate_hobbies(names: list[str], seed=1) -> dict[str, str]:
