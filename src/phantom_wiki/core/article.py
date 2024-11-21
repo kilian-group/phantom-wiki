@@ -1,11 +1,15 @@
-
+from typing import Optional
+# imports for article generation via CFGs
 from faker import Faker
 from nltk import CFG
 from nltk.parse.generate import generate
-
 from .generative import generate_cfg_openai
 from ..utils.parsing import format_generated_cfg
 from .constants.article_templates import BASIC_ARTICLE_TEMPLATE
+# imports for article generation via LLMs
+from together import Together
+from .constants.article_templates import (LLAMA_ARTICLE_GENERAION_PROMPT7)
+# imports for getting facts
 from ..facts import Database
 from ..facts.attributes import get_attribute_facts
 from ..facts.family import (FAMILY_FACT_TEMPLATES, 
@@ -13,25 +17,48 @@ from ..facts.family import (FAMILY_FACT_TEMPLATES,
 from ..facts.friends import (FRIENDSHIP_RELATION, 
                              FRIENDSHIP_FACT_TEMPLATES,)
 
-def get_articles(db: Database, names: list[str]) -> dict:
+def get_articles(db: Database, names: list[str], seed: int = 1) -> dict:
+    """
+    Generate articles for a list of names.
+    
+    Args:
+        db: Database object
+        names: list of names (for debugging purposes, 
+            we can generate articles for a subset of names)
+        seed: random seed (NOTE: even for the same seed, the articles may be different
+            because Together is not fully determinstic)
+    Returns:
+        dict of name -> article generations
+        article generation contains multiple types of articles (e.g., basic, llama-8b)
+    """
     # get family article
     family_facts = get_relation_facts(db, names, FAMILY_RELATION_EASY, FAMILY_FACT_TEMPLATES)
     # get friendship article
     friend_facts = get_relation_facts(db, names, FRIENDSHIP_RELATION, FRIENDSHIP_FACT_TEMPLATES)
-    # TODO: get attributes
+    # get attributes
     attribute_facts = get_attribute_facts(db, names)
     
-    # import pdb; pdb.set_trace()
     articles = {}
     for name in names:
-        article = BASIC_ARTICLE_TEMPLATE.format(
-            name=name,
-            family_facts="\n".join(family_facts[name]),
-            friend_facts="\n".join(friend_facts[name]),
-            attribute_facts="\n".join(attribute_facts[name]),
-        )
-        # print(article)
-        articles[name] = article
+        # generate multiple types of articles so that we can compare their quality
+        articles[name] = {
+            # generate article using templates
+            # NOTE: this also serves as a reference since it contains the facts in simple language
+            "basic" : BASIC_ARTICLE_TEMPLATE.format(
+                name=name,
+                family_facts="\n".join(family_facts[name]),
+                friend_facts="\n".join(friend_facts[name]),
+                attribute_facts="\n".join(attribute_facts[name]),
+            ),
+            # generate article using LLMs
+            "llama-8b" : llm_generate_article(
+                name=name, 
+                family_facts=family_facts[name], 
+                friend_facts=friend_facts[name],
+                attribute_facts=attribute_facts[name],
+                seed=seed,
+            )
+        }
     return articles
 
 # 
@@ -119,3 +146,50 @@ def generate_llm_article_cfg_pairs(
             pairs[person] = (article, cfg.tostring())
 
     return pairs
+
+# 
+# Functionality to generate articles using LLM
+# 
+# NOTE: set the API key using conda env vars (see README.md)
+client = Together()
+
+# %%
+def llm_generate_article(
+        name: str, 
+        family_facts: list[str],
+        friend_facts: list[str],
+        attribute_facts: list[str],
+        max_tokens: Optional[int] = None, 
+        verbose: bool = True,
+        seed: int = 1,
+    ) -> str:
+    # format the facts as a basic article
+    facts = [f"- subject name is {name}."] # add name as a fact
+    for fact in family_facts + friend_facts + attribute_facts:
+        facts.append("- " + fact)
+    facts = "\n".join(facts)
+    if verbose:
+        print(f"generating article for {name} with the following facts:")
+        print(facts)
+        print("===========================START ARTICLE==========================")
+    response = client.chat.completions.create(
+        model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
+        messages=[
+            {"role": "user", "content": LLAMA_ARTICLE_GENERAION_PROMPT7.format(facts)},
+        ],
+        temperature=0.7,
+        top_p=0.7,
+        top_k=50,
+        repetition_penalty=1,
+        stop=["<|eot_id|>"],
+        stream=True,
+        truncate=max_tokens,
+        seed=seed,
+    )
+    article = ""
+    for chunk in response:
+        s = chunk.choices[0].delta.content or ""
+        if verbose: print(s, end="", flush=True)
+        article += s
+    if verbose: print("\n===========================END ARTICLE==========================")
+    return article

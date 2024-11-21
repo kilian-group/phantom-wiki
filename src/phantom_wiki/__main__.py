@@ -49,21 +49,29 @@ def main():
     # Currently, the articles are comprised of a list of facts.
     #
     blue("Generating articles")
-    # TODO: add code to merge family and CFG articles
-    # currently, we just pass in the family article
-    articles = get_articles(db, db.get_names())
+    articles = get_articles(
+        db=db, 
+        names=db.get_names()[:5], # for now, we only generate articles for the first 5 people
+        seed=args.seed
+    )
     if args.article_format == "txt":
         article_dir = os.path.join(args.output_dir, "articles")
         print(f"Saving articles to: {article_dir}")
         os.makedirs(article_dir, exist_ok=True)
         for name, article in articles.items():
-            with open(os.path.join(article_dir, f"{name}.txt"), "w") as file:
-                file.write(article)
+            for article_type, generation in article.items():
+                # save as markdown files so that we can easily view them
+                with open(os.path.join(article_dir, f"{name}_{article_type}.md"), "w") as file:
+                    file.write(generation)
     elif args.article_format == "json":
         save_path = os.path.join(args.output_dir, "articles.json")
         print(f"Saving articles to: {save_path}")
         with open(save_path, "w") as file:
-            json.dump([{"title" : name, "article" : article} for name, article in articles.items()], file, indent=4)
+            json.dump(
+                obj=[{"title" : name, **article} for name, article in articles.items()], 
+                fp=file, 
+                indent=4
+            )
     else:
         raise ValueError(f"Article format {args.article_format} not supported!")
 
