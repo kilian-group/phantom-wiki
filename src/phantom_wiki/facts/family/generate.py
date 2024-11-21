@@ -188,6 +188,7 @@ def family_tree_to_facts(family_tree):
     # Outputs
     genders = []
     parent_relationships = []
+    date_of_birth = []
 
     # Getting relationships and genders
     for p in family_tree:
@@ -199,8 +200,11 @@ def family_tree_to_facts(family_tree):
         for child in p.children:
             parent_relationships.append(f"parent(\'{child.name}\', \'{p.name}\')")
 
+        # add dob attribute
+        date_of_birth.append(f"dob(\'{p.name}\', \'{p.date_of_birth}\')")
+
     # Returning outputs 
-    return sorted(genders) + sorted(parent_relationships)
+    return sorted(genders) + sorted(parent_relationships) + sorted(date_of_birth)
 
 # Given a family tree, generate and save a graph plot 
 def create_dot_graph(family_tree):
