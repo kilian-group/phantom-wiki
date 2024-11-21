@@ -19,11 +19,7 @@ from .facts.sample import sample
 from .utils import blue, get_parser, generate_unique_id
 from .facts.family import fam_gen_parser
 
-def main():
-    parser = get_parser(parents=[fam_gen_parser])
-
-    # this is useful when running the script from a notebook so that we use the default values
-    args, _ = parser.parse_known_args()
+def main(args):
     print(f"Output dir: {args.output_dir}")
     
     # 
@@ -115,4 +111,10 @@ def main():
             json.dump(questions, file, indent=4)
 
 if __name__ == "__main__":
-    main()
+    # we combine a base parser with the family generator parser
+    # TODO: add parser for other generation components
+    # - friend
+    # - attribute
+    parser = get_parser(parents=[fam_gen_parser])
+    args, _ = parser.parse_known_args()
+    main(args)
