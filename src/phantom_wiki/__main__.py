@@ -3,7 +3,6 @@
 #   python -m phantom_wiki -op <output path>
 
 # standard imports
-from argparse import ArgumentParser
 import json
 import os
 import numpy as np

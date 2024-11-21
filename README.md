@@ -11,8 +11,8 @@ Set up a virtual environment, clone and navigate to this repository, and run
 ```
 conda create -n dataset
 conda activate dataset
-conda install python=3.12 pandas numpy conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest anaconda::networkx
-pip install together openai pre-commit insanity
+conda install python=3.12 pandas numpy conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest
+pip install together openai pre-commit
 ```
 Setting up Prolog (see also the [Prolog tutorial](docs/prolog.md)):
 ```
