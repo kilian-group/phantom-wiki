@@ -14,14 +14,12 @@ conda activate dataset
 conda install python=3.12 pandas numpy conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest anaconda::networkx
 pip install together openai pre-commit insanity
 ```
-Installing SWI-Prolog (see also the [Prolog tutorial](docs/prolog.md)):
+Setting up Prolog (see also the [Prolog tutorial](docs/prolog.md)):
 ```
 # install SWI-Prolog (on Mac)
 brew install swi-prolog
 # TODO: install SWI-Prolog (on Windows)
-# install Janus-SWI (Python interface to SWI-Prolog)
-pip install janus-swi
-# alternatively, we can use PySwip
+# install Python wrapper for Prolog
 pip install pyswip
 ```
 
