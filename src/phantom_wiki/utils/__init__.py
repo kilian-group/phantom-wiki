@@ -1,8 +1,9 @@
-from termcolor import colored
 # 
-# Colorful print
+# Functionality for printing to console with color
+# NOTE: this doesn't work if writing to a file
 # See possible colors here: https://pypi.org/project/termcolor/
 # 
+from termcolor import colored
 def red(text):
     print(colored(text, 'red'))
 def blue(text):
@@ -14,6 +15,30 @@ def yellow(text):
 def cyan(text):
     print(colored(text, 'cyan'))
 
+# 
+# Functionality for generating unique IDs
+# 
 import uuid
 def generate_unique_id():
     return str(uuid.uuid4())
+
+# 
+# Functionality for parsing arguments
+# 
+from argparse import ArgumentParser
+def get_parser(parents=[]):
+    """
+    Factory for creating an argument parser.
+    """
+    parser = ArgumentParser(description="Generate PhantomWiki", parents=parents)
+    parser.add_argument("--seed", "-s", default=1, type=int,
+                        help="Global seed for random number generator")
+    parser.add_argument("--output_dir", "-od", type=str, default="./out",
+                        help="Path to the output folder")
+    parser.add_argument("--article_format", type=str, default="txt",
+                        help="Format to save the generated articles",
+                        choices=["txt", "json"])
+    parser.add_argument("--question_format", type=str, default="json_by_type",
+                        help="Format to save the generated questions and answers",
+                        choices=["json_by_type", "json"])
+    return parser
