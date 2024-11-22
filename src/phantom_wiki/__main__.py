@@ -71,6 +71,7 @@ def main(args):
         os.makedirs(question_dir, exist_ok=True)
 
     rng = np.random.default_rng(args.seed)
+    all_questions = []
     for i, (question_template, query_template, answer) in enumerate(templates):
         questions = []
         for _ in range(args.num_questions_per_type):
@@ -96,13 +97,14 @@ def main(args):
             if args.question_format == "json_by_type":
                 with open(os.path.join(question_dir, f"type{i}.json"), "w") as file:
                     json.dump(questions, file, indent=4)
+        all_questions.extend(questions)
 
     if args.question_format == "json":
         # save all questions to a single file
         save_path = os.path.join(args.output_dir, "questions.json")
         print(f"Saving questions to: {save_path}")
         with open(save_path, "w") as file:
-            json.dump(questions, file, indent=4)
+            json.dump(all_questions, file, indent=4)
 
 if __name__ == "__main__":
     # we combine a base parser with the family generator parser
