@@ -1,3 +1,4 @@
+from argparse import ArgumentParser
 from numpy.random import default_rng
 from ..database import Database
 from .generate import create_friendship_graph
@@ -12,19 +13,21 @@ from .generate import create_friendship_graph
 from .constants import (FRIENDSHIP_RELATION,
                         FRIENDSHIP_FACT_TEMPLATES)
 
+# TODO: add friendship CLI argument parser
+
 # 
 # Functionality to add friendships for everyone in the database.
 # 
-def db_generate_friendships(db: Database, seed: int = 1):
+def db_generate_friendships(db: Database, args: ArgumentParser):
     """
     Generate friendship facts for each person in the database.
     
     Args:
         db (Database): The database to add the friendship facts to.
-        seed (int): The seed for the random number generator.
+        args (ArgumentParser): arguments from the CLI.
     """
     names = db.get_names()
-    rng = default_rng(seed)
+    rng = default_rng(args.seed)
     friendship_facts, _ = create_friendship_graph(rng, names, friendship_threshold=20)
     # import pdb; pdb.set_trace()
     db.add(*friendship_facts)
