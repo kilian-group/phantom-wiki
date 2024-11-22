@@ -1,14 +1,16 @@
+# standard imports
+from argparse import ArgumentParser
+# phantom wiki functionality
 from ..database import Database
-
 from .constants import (ATTRIBUTE_FACT_TEMPLATES, 
                         ATTRIBUTE_RELATION)
 from .generate import (generate_jobs,
                        generate_hobbies)
-
 # resource containing the attribute rules
 from importlib.resources import files
 ATTRIBUTE_RULES_PATH = files("phantom_wiki").joinpath("facts/attributes/rules.pl")
 
+# TODO: add functionality to pass in CLI arguments
 
 # 
 # Functionality to read the attributes for each person in the database.
@@ -46,13 +48,17 @@ def get_attribute_facts(db: Database, names: list[str]) -> dict[str, list[str]]:
 # 
 # Functionality to generate attributes for everyone in the database.
 # 
-def db_generate_attributes(db: Database, seed: int = 1):
+def db_generate_attributes(db: Database, args: ArgumentParser):
     """
     Generate attributes for each person in the database.
+
+    Args:
+        db (Database): The database containing the facts.
+        args (ArgumentParser): The command line arguments.
     """
     names = db.get_names()
-    jobs = generate_jobs(names, seed)
-    hobbies = generate_hobbies(names, seed)
+    jobs = generate_jobs(names, args.seed)
+    hobbies = generate_hobbies(names, args.seed)
 
     # add the facts to the database
     facts = []

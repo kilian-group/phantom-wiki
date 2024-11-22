@@ -1,6 +1,7 @@
 # standard imports
 import json
 import os
+import shutil
 
 # phantom wiki functionality
 from phantom_wiki.facts.family import fam_gen_parser
@@ -18,7 +19,7 @@ def test_main():
         article = file.read()
         assert (
             article
-            == "# alfonso\n\n## Family\nalfonso's siblings are antionette, colby, dominick, kari.\nThe sister of alfonso is antionette, kari.\nThe brother of alfonso is colby, dominick.\nThe mother of alfonso is kanesha.\nThe father of alfonso is derick.\nThe child of alfonso is ellis.\nThe son of alfonso is ellis.\nThe wife of alfonso is ila.\n\n## Friends\nThe friend of alfonso is vicente, kanesha, lyndia, meghann, rosalee.\n\n## Attributes\nThe job of alfonso is translator.\nThe hobby of alfonso is microbiology.\n"
+            == "# alfonso\n\n## Family\nalfonso's siblings are antionette, colby, dominick, kari.\nThe sister of alfonso is antionette, kari.\nThe brother of alfonso is colby, dominick.\nThe mother of alfonso is kanesha.\nThe father of alfonso is derick.\nThe child of alfonso is ellis.\nThe son of alfonso is ellis.\nThe wife of alfonso is ila.\n\n## Friends\nThe friend of alfonso is vicente, kanesha, lyndia, meghann, rosalee.\n\n## Attributes\nThe date of birth of alfonso is 0240-12-31.\nThe job of alfonso is translator.\nThe hobby of alfonso is microbiology.\n"
         )
 
     # test that the questions were generated correctly
@@ -40,3 +41,6 @@ def test_main():
         assert data[0]["question"] == "Who is the daughter of the person whose job is air cabin crew ?"
         assert data[0]["query"] == ["daughter(Y_2, Y_4)", "job(Y_2, 'air cabin crew')"]
         assert data[0]["answer"] == []
+
+    # clean up test_out directory
+    shutil.rmtree("test_out")
