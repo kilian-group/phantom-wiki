@@ -12,7 +12,8 @@ from .facts import (get_database,
                     db_generate_population,
                     db_generate_friendships,
                     db_generate_attributes)
-from .core.article import get_articles
+from .core.article import (get_articles,
+                           article_parser)
 from .facts import db_generate_attributes, db_generate_population, get_database
 from .facts.templates import generate_templates
 from .facts.sample import sample
@@ -47,8 +48,8 @@ def main(args):
     blue("Generating articles")
     articles = get_articles(
         db=db, 
-        names=db.get_names()[:5], # for now, we only generate articles for the first 5 people
-        seed=args.seed
+        names=db.get_names(), # for now, we only generate articles for the first 5 people
+        args=args,
     )
     if args.article_format == "txt":
         article_dir = os.path.join(args.output_dir, "articles")
@@ -123,6 +124,9 @@ if __name__ == "__main__":
     # TODO: add parser for other generation components
     # - friend
     # - attribute
-    parser = get_parser(parents=[fam_gen_parser])
+    parser = get_parser(parents=[
+        fam_gen_parser,
+        article_parser,
+    ])
     args, _ = parser.parse_known_args()
     main(args)

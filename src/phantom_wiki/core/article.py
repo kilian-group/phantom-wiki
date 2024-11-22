@@ -1,4 +1,5 @@
 from typing import Optional
+from argparse import ArgumentParser
 # imports for article generation via CFGs
 from faker import Faker
 from nltk import CFG
@@ -16,8 +17,16 @@ from ..facts.family import (FAMILY_FACT_TEMPLATES,
                             FAMILY_RELATION_EASY)
 from ..facts.friends import (FRIENDSHIP_RELATION, 
                              FRIENDSHIP_FACT_TEMPLATES,)
+# CLI arguments for article generation
+article_parser = ArgumentParser(add_help=False)
+article_parser.add_argument("--model", "-m", type=str, default=None, 
+                            help="model to use for article generation")
 
-def get_articles(db: Database, names: list[str], seed: int = 1) -> dict:
+def get_articles(
+        db: Database, 
+        names: list[str], 
+        args: ArgumentParser,
+    ) -> dict:
     """
     Generate articles for a list of names.
     
@@ -41,24 +50,28 @@ def get_articles(db: Database, names: list[str], seed: int = 1) -> dict:
     articles = {}
     for name in names:
         # generate multiple types of articles so that we can compare their quality
-        articles[name] = {
-            # generate article using templates
-            # NOTE: this also serves as a reference since it contains the facts in simple language
-            "basic" : BASIC_ARTICLE_TEMPLATE.format(
-                name=name,
-                family_facts="\n".join(family_facts[name]),
-                friend_facts="\n".join(friend_facts[name]),
-                attribute_facts="\n".join(attribute_facts[name]),
-            ),
+        articles[name] = {}
+
+        # generate article using templates
+        # NOTE: this also serves as a reference since it contains the facts in simple language
+        articles[name]["basic"] = BASIC_ARTICLE_TEMPLATE.format(
+            name=name,
+            family_facts="\n".join(family_facts[name]),
+            friend_facts="\n".join(friend_facts[name]),
+            attribute_facts="\n".join(attribute_facts[name]),
+        )
+
+        if args.model:
             # generate article using LLMs
-            "llama-8b" : llm_generate_article(
+            articles[name][args.model] = llm_generate_article(
+                model_name=args.model,
                 name=name, 
                 family_facts=family_facts[name], 
                 friend_facts=friend_facts[name],
                 attribute_facts=attribute_facts[name],
-                seed=seed,
+                seed=args.seed,
             )
-        }
+
     return articles
 
 # 
@@ -153,8 +166,13 @@ def generate_llm_article_cfg_pairs(
 # NOTE: set the API key using conda env vars (see README.md)
 client = Together()
 
+MODELS = {
+    'llama3-8b': "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
+}
+
 # %%
 def llm_generate_article(
+        model_name: str,
         name: str, 
         family_facts: list[str],
         friend_facts: list[str],
@@ -173,7 +191,7 @@ def llm_generate_article(
         print(facts)
         print("===========================START ARTICLE==========================")
     response = client.chat.completions.create(
-        model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
+        model=MODELS[model_name],
         messages=[
             {"role": "user", "content": LLAMA_ARTICLE_GENERAION_PROMPT7.format(facts)},
         ],
