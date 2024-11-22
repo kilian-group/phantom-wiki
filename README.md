@@ -75,7 +75,7 @@ git lfs install
 ```
 2. Generate a new dataset and save to the location of the huggingface repo
 ```
-python -m phantom_wiki -op <path to huggingface repo> --article_format json --question_format json
+python -m phantom_wiki -op <path to huggingface repo> --article_format json --question_format json --valid_only -s <global seed>
 ```
 3. Push the files to the huggingface repo:
 ```
