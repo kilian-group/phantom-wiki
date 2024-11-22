@@ -70,7 +70,8 @@ class ReactAgent:
         # Think
         self.scratchpad += f"\nThought {self.step_n}:"
         self.scratchpad += " " + self.prompt_agent(llm_chat, is_action=False)
-        sys_print(self.scratchpad.split("\n")[-1])
+        sys_print(f"LLM's response: {self.scratchpad.split('\n')[-1]}")
+        print()
 
         # Act
         self.scratchpad += f"\nAction {self.step_n}:"
@@ -79,7 +80,8 @@ class ReactAgent:
         action_type, argument = parse_action(action)
         # Normalize the argument
         argument = argument.lower()
-        sys_print(self.scratchpad.split("\n")[-1])
+        sys_print(f"LLM's response: {self.scratchpad.split('\n')[-1]}")
+        print()
 
         # MEMENTO
         self.actions.append((action_type, argument))
@@ -106,7 +108,8 @@ class ReactAgent:
             case _:
                 self.scratchpad += "Invalid Action. Valid Actions are RetrieveArticle[<topic>] and Finish[<answer>]."
 
-        sys_print(self.scratchpad.split('\n')[-1])
+        sys_print(f"After action: {self.scratchpad.split('\n')[-1]}")
+        print()
 
         self.step_n += 1
 
@@ -170,7 +173,7 @@ def parse_action(s: str) -> tuple[str, str] | None:
 
 def format_step(step: str) -> str:
     # return step
-    return step.strip('\n').strip().replace('\n', '')
+    return step.strip('\n').strip().replace('\n', ' ')
 
 
 def normalize_answer(s):

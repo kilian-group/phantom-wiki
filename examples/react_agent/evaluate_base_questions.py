@@ -12,12 +12,12 @@ import argparse
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_name", type=str, default="gpt-3.5-turbo", choices=["gpt-4o-mini", "gpt-3.5-turbo", "llama-3.1-8b"])
+    parser.add_argument("--model_name", type=str, default="gpt-4o-mini", choices=["gpt-4o-mini", "gpt-3.5-turbo", "llama-3.1-8b"])
 
     # React Agent arguments
     parser.add_argument("--max_steps", type=int, default=6)
     parser.add_argument("--window_size", type=int, default=6)
-    parser.add_argument("--samples", type=int, default=10)
+    parser.add_argument("--samples", type=int, default=1)
     args, unknown = parser.parse_known_args()
 
 # %%
@@ -40,7 +40,11 @@ df_qa_w_answers = pd.DataFrame(
 df_qa_w_answers = df_qa_w_answers.loc[df_qa_w_answers["type"] == 1, :]
 # Load the text corpus dataset into a dataframe
 df_text_corpus = pd.DataFrame(ds_text_corpus)
+
+print("Question Answer dataset:")
 display(df_qa_w_answers.head())
+
+print("Text corpus dataset:")
 display(df_text_corpus.head())
 
 # %%
@@ -68,6 +72,9 @@ for i, sample in enumerate(df_qa_w_answers[:args.samples].itertuples()):
         text_corpus=df_text_corpus,
     )
     agents.append(agent)
+
+    print("** Agent's initial prompt:")
+    print(agent._build_agent_prompt())
 
 # %%
 # Run `n` trials (note: Reflexion with n=1 is the same as ReAct)
