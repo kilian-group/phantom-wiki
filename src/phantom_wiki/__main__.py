@@ -1,6 +1,6 @@
 # Usage:
 # Creating questions:
-#   python -m phantom_wiki -op <output path>
+#   python -m phantom_wiki -od <output path>
 
 # standard imports
 import json
