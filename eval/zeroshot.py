@@ -31,6 +31,9 @@
 # %%
 from phantom_eval.utils import (get_parser)
 parser = get_parser()
+parser.add_argument("--ignore_evidence", action="store_true", 
+                    help="Ignore evidence and only use the question as input." \
+                        "This is useful as a sanity check.")
 args, _ = parser.parse_known_args()
 
 # %%
@@ -85,12 +88,9 @@ model_map = {
 }
 
 # %%
-prompt = """
-Given the following evidence:
-{}
-
+prompt = """{evidence}
 Answer the following question:
-{}
+{question}
 
 The output should be one of the following:
 - The name of the person if there is a unique answer.
@@ -103,7 +103,15 @@ DO NOT include any additional information in the output.
 preds = {}
 streaming_output = "" #store the output in a string to write to a file
 # we are in the setting where we pass in all the articles as evidence
-evidence = get_all_articles(dataset)
+if args.ignore_evidence:
+    print("Ignoring evidence and only using the question as input.")
+    evidence = ""
+else:
+    evidence = "Given the following evidence:\n"
+    evidence += '========BEGIN EVIDENCE========\n'
+    evidence += get_all_articles(dataset)
+    evidence += '========END EVIDENCE========\n'
+
 # save evidence to streaming_output
 streaming_output += evidence + '\n'
 # for getting subset of the questions
@@ -119,10 +127,15 @@ for qa in islice(dataset['qa_pairs'], start, end):
     streaming_output += '----------------\n'
     streaming_output += f"Question: {question}\n"
 
+    prompt = prompt.format(
+        evidence=evidence, 
+        question=question
+    )
+    # import pdb; pdb.set_trace()
     response = client.chat.completions.create(
         model=model_map[model],
         messages=[
-            {"role": "user", "content": prompt.format(evidence, question)},
+            {"role": "user", "content": prompt},
         ],
         temperature=temperature,
         top_p=0.7,
