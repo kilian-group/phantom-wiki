@@ -1,5 +1,0 @@
-S -> Name Part1 Occupation Part2 
-Name -> "Adrian Smith" | "Adrian Johnson" | "Adrian Taylor" 
-Part1 -> " is a" | " works as a" | " holds the position of a" 
-Occupation -> " Tax Inspector" 
-Part2 -> " at fictitious agency LexCorp." | " for the imaginary firm Initech." | " employed at the non-existent organization Organa Industries."

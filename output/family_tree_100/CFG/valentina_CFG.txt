@@ -1,5 +1,0 @@
-bio -> intro occupation institution interest 
-intro -> "Valentina is an accomplished professional with a passion for education." 
-occupation -> "She currently works as a Lecturer, specializing in Further Education." 
-institution -> "Valentina is part of the faculty at Starfield Institute, a renowned center for learning." 
-interest -> "In her spare time, she enjoys reading and exploring innovative teaching methods."

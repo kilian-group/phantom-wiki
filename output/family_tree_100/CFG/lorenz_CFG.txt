@@ -1,8 +1,0 @@
-bio -> sentence1 sentence2 sentence3 
-sentence1 -> "Lorenz is a dedicated sports development officer working with" organization "." 
-sentence2 -> "He has been instrumental in implementing sports initiatives within" city "." 
-sentence3 -> "In his role, Lorenz collaborates with" entity "to promote" sport "at all levels." 
-organization -> "Quantum Athletics" | "Nova Sports Foundation" | "Galaxy Play Initiatives" 
-city -> "Metropolis" | "Starville" | "Riverbend" 
-entity -> "local schools" | "community centers" | "youth groups" 
-sport -> "football" | "basketball" | "athletics"

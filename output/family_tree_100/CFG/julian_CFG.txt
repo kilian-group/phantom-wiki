@@ -1,5 +1,0 @@
-bio -> introduction role-description achievements personal 
-introduction -> "Meet Julian, one of the most inspiring figures in education today." 
-role-description -> " Julian serves as a dedicated Learning Mentor at the esteemed Starlight Academy." 
-achievements -> " Over the years, Julian has developed innovative approaches that have significantly boosted student engagement and performance." 
-personal -> " When Julian is not mentoring, he enjoys hiking in the picturesque Serenity Hills and is also an avid chess player."

@@ -1,6 +1,0 @@
-S -> NP VP
-NP -> DP NP2
-DP -> "Felix"
-NP2 -> "is a Recruitment Consultant"
-VP -> "working at" CP
-CP -> "GloHire Solutions" | "TalentTrack Incorporated" | "Horizon Staffing Co."
