@@ -27,7 +27,7 @@ For example:
     > Answer: Y_2
 
     > Template: How many <relation_plural>_2 does <name>_1 have?
-    > Query: aggregate_all(count, <relation_plural>_2(<name>_1, Y_3), Count_3).
+    > Query: aggregate_all(count, distinct(<relation_plural>_2(<name>_1, Y_3)), Count_3).
     > Answer: Count_3
 
 `phantom_wiki.facts.templates.generate_templates` generates tuples of all possible question and Prolog query
@@ -246,12 +246,14 @@ def _combine_fragments(f1: Fragment, f2: Fragment, depth) -> Fragment:
             if f2.is_placeholder():
                 # ... how many brothers does Alice have ...
                 subquery = [
-                    (f"aggregate_all(count, {placeholder}({f2.p_fragment[0]}, Y_{depth}), Count_{depth})")
+                    (
+                        f"aggregate_all(count, distinct({placeholder}({f2.p_fragment[0]}, Y_{depth})), Count_{depth})"
+                    )
                 ]
             else:
                 # ... how many brothers does the sister of Alice have ...
                 subquery = [
-                    f"aggregate_all(count, {placeholder}({f2.p_answer}, Y_{depth}), Count_{depth})"
+                    f"aggregate_all(count, distinct({placeholder}({f2.p_answer}, Y_{depth})), Count_{depth})"
                 ] + f2.p_fragment
             answer = f"Count_{depth}"
 
