@@ -35,6 +35,7 @@ if True:
     split = args.split
     batch_size = args.batch_size
     batch_number = args.batch_number
+    temperature = args.temperature
 else:
     # Debugging
     output_dir = "out"
@@ -43,6 +44,7 @@ else:
     split = 'train'
     batch_size = 10
     batch_number = 1
+    temperature = 0.7
 
 # %%
 # remaining imports
@@ -74,6 +76,7 @@ client = Together()
 model_map = {
     'llama-3.1-8b': "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
     'llama-3.1-70b' : "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
+    'llama-3.1-405b' : "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
 }
 
 # %%
@@ -115,7 +118,7 @@ for qa in islice(dataset['qa_pairs'], start, end):
         messages=[
             {"role": "user", "content": prompt.format(evidence, question)},
         ],
-        temperature=0.7,
+        temperature=temperature,
         top_p=0.7,
         top_k=50,
         repetition_penalty=1,

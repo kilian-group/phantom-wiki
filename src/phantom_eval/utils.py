@@ -26,6 +26,8 @@ def get_parser():
     parser = ArgumentParser(description="PhantomWiki Evaluation")
     parser.add_argument("--model", "-m", type=str, default='llama-3.1-8b',
                         help="Base model for inference")
+    parser.add_argument("--temperature", "-T", type=float, default=0.7,
+                        help="Temperature for sampling")
     parser.add_argument("--output_dir", "-od", default="out",
                     help="Path to read/write the outputs")
     parser.add_argument("--split", "-s", default="train",
