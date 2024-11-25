@@ -4,6 +4,7 @@ from argparse import ArgumentParser
 def load_data(split):
     """
     Load the phantom-wiki dataset from HuggingFace for a specific split.
+    example: load_data("depth6")
     """
     qa_pairs = load_dataset("mlcore/phantom-wiki", "question-answer")[split]
     text = load_dataset("mlcore/phantom-wiki", "text-corpus")[split]
