@@ -109,6 +109,7 @@ streaming_output += evidence + '\n'
 # for getting subset of the questions
 start = (batch_number - 1) * batch_size
 end = start + batch_size
+print(f"Getting predictions for questions [{start}, {end}) out of {len(dataset['qa_pairs'])}")
 for qa in islice(dataset['qa_pairs'], start, end):
     uid = qa['id']
     question = qa['question']
