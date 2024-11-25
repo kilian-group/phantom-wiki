@@ -34,4 +34,6 @@ print(df)
 # group by model and split
 grouped = df.groupby(['_model', '_split'])
 # print the accuracy
-print(grouped['score'].mean())
+acc = grouped['score'].mean()
+# print as markdown
+print(acc.to_markdown())
