@@ -28,12 +28,21 @@ df = pd.concat(df_list)
 # print(df.columns)
 
 # compute scores
-from phantom_eval.score import match
-df['score'] = df.apply(lambda x: match(x['pred'], ', '.join(x['true'])), axis=1)
+from phantom_eval.score import (match,
+                                precision,
+                                recall,
+                                f1)
+# join the true answers with the appropriate seperator
+# since the scoring functions expect strings
+sep = ', '
+df['EM'] = df.apply(lambda x: match(x['pred'], sep.join(x['true'])), axis=1)
+df['precision'] = df.apply(lambda x: precision(x['pred'], sep.join(x['true'])), axis=1)
+df['recall'] = df.apply(lambda x: recall(x['pred'], sep.join(x['true'])), axis=1)
+df['f1'] = df.apply(lambda x: f1(x['pred'], sep.join(x['true'])), axis=1)
 print(df)
 # group by model and split
 grouped = df.groupby(['_model', '_split'])
 # print the accuracy
-acc = grouped['score'].mean()
+acc = grouped[['EM','precision', 'recall', 'f1']].mean()
 # print as markdown
 print(acc.to_markdown())
