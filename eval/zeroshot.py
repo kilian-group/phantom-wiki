@@ -15,9 +15,14 @@
 # ---
 
 # %% [markdown]
+# Script to get the predictions from a specified model with zero-shot prompting.
+# To run:
 # ```
-# python evaluate_base_questions.py -m llama-3.1-8b -op 
+# python zeroshot.py -m <model name>
 # ```
+# By default, the script will save the predictions to `out/preds` as JSON files 
+# with the following schema:
+# question_id -> {"true" : <answer list>, "pred" : <generated string>, "metadata" : <additional metadata>}
 
 # %%
 # %load_ext autoreload
