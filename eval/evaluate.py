@@ -28,7 +28,7 @@ df = pd.concat(df_list)
 # print(df.columns)
 
 # compute scores
-from phantom_eval.prompts import match
+from phantom_eval.score import match
 df['score'] = df.apply(lambda x: match(x['pred'], ', '.join(x['true'])), axis=1)
 print(df)
 # group by model and split

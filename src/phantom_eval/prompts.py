@@ -13,11 +13,7 @@ format = {
 }
 
 
-def match(pred, true, exact=True):
-    if exact:
-        return pred == true
-    return pred.find(true) != -1
-
+from .score import match
 
 def score_answer(response, true, scoring=match, key_text="answer: "):
     response = response.lower()
