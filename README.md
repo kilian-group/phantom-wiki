@@ -12,7 +12,9 @@ Set up a virtual environment, clone and navigate to this repository, and run
 ```
 conda create -n dataset
 conda activate dataset
-conda install python=3.12 pandas numpy conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest
+conda install python=3.12 conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest
+# on G2, use pip instead of conda to install pandas and numpy to avoid C dependency conflicts
+pip install pandas numpy
 pip install together openai pre-commit datasets
 ```
 
@@ -50,6 +52,15 @@ Option 2:
 ```
 conda env config vars set TOGETHER_API_KEY=xxxxx
 ```
+
+## vLLM
+Setup (following [these](https://docs.vllm.ai/en/stable/getting_started/installation.html) instructions):
+```
+# allocate an GPU with CUDA 12.2 (if you have Xiangyu's graphite-utils, you can do `cuda121` in zsh)
+conda activate dataset
+pip install vllm
+```
+NOTE: all models on HF are fair game (see also: https://docs.vllm.ai/en/stable/models/supported_models.html#supported-models)
 
 ## Development best practices
 
