@@ -60,7 +60,7 @@ Setup (following [these](https://docs.vllm.ai/en/stable/getting_started/installa
 conda activate dataset
 pip install vllm
 ```
-NOTE: all models on HF are fair game (see also: https://docs.vllm.ai/en/stable/models/supported_models.html#supported-models)
+NOTE: almost all models on HF are fair game (see also: https://docs.vllm.ai/en/stable/models/supported_models.html#supported-models)
 
 ## Development best practices
 
@@ -89,6 +89,7 @@ git push
 cd <some location outside of this repo>
 pip install -U "huggingface_hub[cli]"
 hugginface-cli login
+# NOTE: when creating a new access token, set the token type to be `write`
 git clone https://huggingface.co/datasets/mlcore/phantom-wiki
 git lfs install
 ```

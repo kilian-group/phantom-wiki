@@ -191,10 +191,12 @@ else:
     )
     # Create an LLM.
     # Ref: https://docs.vllm.ai/en/stable/dev/offline_inference/llm.html#vllm.LLM
+    # NOTE: make sure to not have *any* `torch` imports before this step
+    # as it leads to runtime error with multiprocessing
     llm = LLM(
         model=HF_MODEL_NAME,
-        tokenizer=HF_MODEL_NAME,
         max_model_len=4096,
+        tensor_parallel_size=4,
     )
     # Generate texts from the prompts. The output is a list of RequestOutput objects
     # that contain the prompt, generated text, and other information.
@@ -220,6 +222,6 @@ for i in range(len(batch)):
 # %%
 # save predictions
 pred_path = os.path.join(pred_dir, f"{run_name}.json")
-print(f"Saving predictions to {pred_path}...")
+print(f"Saving predictions to {pred_path}")
 with open(pred_path, "w") as f:
     json.dump(preds, f, indent=4)

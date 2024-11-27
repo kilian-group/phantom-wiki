@@ -30,6 +30,10 @@ def get_parser():
                         "llama-3.1-8b, llama-3.1-70b, llama-3.1-405b" \
                         "microsoft::phi-3.5-mini-instruct" \
                         "google::gemma-2-2b-it, google::gemma-2-9b-it")
+    parser.add_argument("--max_model_len", type=int, default=4096,
+                        help="Maximum model length (vLLM param)")
+    parser.add_argument("--tensor_parallel_size", type=int, default=1,
+                        help="number of gpus (vLLM param")
     parser.add_argument("--temperature", "-T", type=float, default=0.7,
                         help="Temperature for sampling")
     parser.add_argument("--top_p", "-p", type=float, default=0.7,
