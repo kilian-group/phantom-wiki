@@ -26,10 +26,11 @@ def get_all_articles(dataset):
 def get_parser():
     parser = ArgumentParser(description="PhantomWiki Evaluation")
     parser.add_argument("--model", "-m", type=str, default='llama-3.1-8b',
-                        help="Base model for inference (for HF and Together models, replace '/' with '::')" \
-                        "llama-3.1-8b, llama-3.1-70b, llama-3.1-405b" \
-                        "microsoft::phi-3.5-mini-instruct" \
-                        "google::gemma-2-2b-it, google::gemma-2-9b-it")
+                        help="HF model names (add the prefix 'together:' to use Together for inference)" \
+                        "meta-llama/Llama-3.1-8B-Instruct, meta-llama/Llama-3.1-70B-Instruct, meta-llama/Llama-3.1-405B-Instruct" \
+                        "microsoft/phi-3.5-mini-instruct" \
+                        "google/gemma-2-2b-it, google/gemma-2-9b-it")
+    # LLM inference params
     parser.add_argument("--max_model_len", type=int, default=4096,
                         help="Maximum model length (vLLM param)")
     parser.add_argument("--tensor_parallel_size", type=int, default=1,
@@ -42,10 +43,9 @@ def get_parser():
                         help="Top-k for sampling")
     parser.add_argument("--repetition_penalty", "-rp", type=float, default=1.0,
                         help="Repetition penalty for sampling")
-    parser.add_argument("--use_together", "-together", action="store_true", default=False,
-                        help="Use Together for inference")
-    parser.add_argument("--output_dir", "-od", default="out",
-                    help="Path to read/write the outputs")
+    parser.add_argument("--seed", type=int, default=1,
+                        help="Seed for sampling (vLLM param)")
+    # Dataset params
     parser.add_argument("--split", "-s", default="depth_6_size_26_seed_1", type=str,
                         help="Dataset split (e.g., train, val, test)")
     parser.add_argument("--batch_size", "-bs", default=10, type=int,
@@ -53,4 +53,7 @@ def get_parser():
     parser.add_argument("--batch_number", "-bn", default=1, type=int,
                         help="Batch number (>=1). For example, if batch_size=100 and batch_number=1," \
                             "then the first 100 questions will be evaluated")
+    # Saving params
+    parser.add_argument("--output_dir", "-od", default="out",
+                    help="Path to read/write the outputs")
     return parser

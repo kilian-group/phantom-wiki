@@ -13,7 +13,7 @@ import pandas as pd
 files = glob(f"{output_dir}/preds/*.json")
 df_list = []
 # keys in the metadata to create new columns
-METADATA = ['model', 'split', 'batch_size', 'batch_number']
+METADATA = ['model', 'split', 'batch_size', 'batch_number', 'seed']
 for filename in files:
     print(f"Reading from {filename}...")
     df = pd.read_json(filename, orient='index')
@@ -41,7 +41,7 @@ df['recall'] = df.apply(lambda x: recall(x['pred'], sep.join(x['true'])), axis=1
 df['f1'] = df.apply(lambda x: f1(x['pred'], sep.join(x['true'])), axis=1)
 print(df)
 # group by model and split
-grouped = df.groupby(['_model', '_split'])
+grouped = df.groupby(['_model', '_split', '_seed'])
 # print the accuracy
 acc = grouped[['EM','precision', 'recall', 'f1']].mean()
 # print as markdown

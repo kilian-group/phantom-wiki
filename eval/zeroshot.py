@@ -37,33 +37,25 @@ parser.add_argument("--ignore_evidence", action="store_true",
 args, _ = parser.parse_known_args()
 
 # %%
-if True:
-    output_dir = args.output_dir
-    model = args.model
-    split = args.split
-    batch_size = args.batch_size
-    batch_number = args.batch_number
-    # sampling parameters
-    temperature = args.temperature
-    top_p = args.top_p
-    top_k = args.top_k
-    repetition_penalty = args.repetition_penalty
-    use_together = args.use_together
-else:
-    # Debugging
-    output_dir = "out"
-    model = 'llama-3.1-8b'
-    # model = 'llama-3.1-70b'
-    # model = 'microsoft::phi-3.5-mini-instruct'
-    split = 'depth_6_size_26_seed_1'
-    batch_size = 10
-    batch_number = 1
-    # sampling parameters
-    temperature = 0.7
-    top_p = 0.95
-    top_k = 50
-    repetition_penalty = 1.0
-    use_together = True
+output_dir = args.output_dir
+model = args.model
+split = args.split
+batch_size = args.batch_size
+batch_number = args.batch_number
+# sampling parameters
+temperature = args.temperature
+top_p = args.top_p
+top_k = args.top_k
+repetition_penalty = args.repetition_penalty
+# default parameters
+# NOTE: eot_id indicates the end of a message in a turn
+# Ref: https://www.llama.com/docs/model-cards-and-prompt-formats/meta-llama-3/
+stop = ["<|eot_id|>"]
+max_tokens = 512
+# vllm parameters
+seed = args.seed
+max_model_len = args.max_model_len
+tensor_parallel_size = args.tensor_parallel_size
 
 # %%
 # remaining imports
@@ -74,7 +66,7 @@ from phantom_eval.utils import (load_data,
                                 get_all_articles)
 
 # %%
-run_name = f"{model}-{split}-bs{batch_size}-bn{batch_number}"
+run_name = f"{model.replace('/','--')}-{split}-bs{batch_size}-bn{batch_number}-s{seed}"
 print(f"Run name: {run_name}")
 pred_dir = os.path.join(output_dir, "preds")
 os.makedirs(pred_dir, exist_ok=True)
@@ -132,7 +124,7 @@ for qa in batch:
     messages.append(get_message(instruction))
 
 # %%
-if use_together:
+if model.startswith("together:"):
     # response = client.chat.completions.create(
     #     model=model_map[model],
     #     messages=get_message(prompt),
@@ -145,23 +137,26 @@ if use_together:
     # )
     import os, asyncio
     from together import AsyncTogether
-
-    MODEL_ALIASES = {
-        'llama-3.1-8b': "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
-        'llama-3.1-70b' : "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
-        'llama-3.1-405b' : "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
+    # the Together api use slightly different model names
+    TOGETHER_MODEL_ALIASES = {
+        'meta-llama/Llama-3.1-8B-Instruct':'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo',
+        'meta-llama/Llama-3.1-70B-Instruct':'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo',
+        'meta-llama/Llama-3.1-405B-Instruct':'meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo',
     }
+
     async def async_chat_completion(messages):
         async_client = AsyncTogether()
         tasks = [
             async_client.chat.completions.create(
-                model=MODEL_ALIASES[model],
+                model=TOGETHER_MODEL_ALIASES[model.replace("together:", "")],
                 messages=message,
                 temperature=temperature,
                 top_p=top_p,
                 top_k=top_k,
                 repetition_penalty=repetition_penalty,
-                stop=["<|eot_id|>"],
+                stop=stop,
+                max_tokens=max_tokens,
+                seed=seed,
             )
             for message in messages
         ]
@@ -172,8 +167,7 @@ else:
     from transformers import AutoTokenizer
     from vllm import LLM, SamplingParams
 
-    HF_MODEL_NAME = model.replace("::", "/")
-    tokenizer = AutoTokenizer.from_pretrained(HF_MODEL_NAME, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(model, trust_remote_code=True)
     prompts = [
         tokenizer.apply_chat_template(
             msg, 
@@ -185,18 +179,22 @@ else:
     # Create a sampling params object.
     # Ref: https://docs.vllm.ai/en/stable/dev/sampling_params.html#vllm.SamplingParams
     sampling_params = SamplingParams(
-        temperature=temperature, 
+        temperature=temperature,
         top_p=top_p,
-        max_tokens=512,
+        top_k=top_k,
+        repetition_penalty=repetition_penalty,
+        stop=stop,
+        max_tokens=max_tokens,
+        seed=seed,
     )
     # Create an LLM.
     # Ref: https://docs.vllm.ai/en/stable/dev/offline_inference/llm.html#vllm.LLM
     # NOTE: make sure to not have *any* `torch` imports before this step
     # as it leads to runtime error with multiprocessing
     llm = LLM(
-        model=HF_MODEL_NAME,
-        max_model_len=4096,
-        tensor_parallel_size=4,
+        model=model,
+        max_model_len=max_model_len,
+        tensor_parallel_size=tensor_parallel_size,
     )
     # Generate texts from the prompts. The output is a list of RequestOutput objects
     # that contain the prompt, generated text, and other information.
@@ -216,6 +214,7 @@ for i in range(len(batch)):
             'batch_size': batch_size,
             'batch_number': batch_number,
             # TODO: add question type, sampling parameters, token usage
+            'seed': seed,
         }
     }
 
