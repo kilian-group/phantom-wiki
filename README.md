@@ -62,6 +62,12 @@ pip install vllm
 ```
 NOTE: almost all models on HF are fair game (see also: https://docs.vllm.ai/en/stable/models/supported_models.html#supported-models)
 
+**System requirements**
+- `meta-llama/Llama-3.1-8B-Instruct`: >= one 3090
+- `meta-llama/Llama-3.1-70B-Instruct`: >= four A6000
+
+NOTE: These models and their configs are downloaded directly from HuggingFace
+
 ## Development best practices
 
 **Git:**
