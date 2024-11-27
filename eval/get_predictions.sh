@@ -1,11 +1,13 @@
 #!/bin/bash
+SPLIT=depth_8_size_26_seed_1
+# SPLIT=depth_6_size_100_seed_1
 # Get predictions using Together
 BATCH_SIZE=10
-for bn in {1..8}
+for bn in {1..14}
 do
-    python zeroshot.py -bs $BATCH_SIZE -bn $bn -m llama-3.1-8b -together
-    python zeroshot.py -bs $BATCH_SIZE -bn $bn -m llama-3.1-70b -together
-    python zeroshot.py -bs $BATCH_SIZE -bn $bn -m llama-3.1-405b -together
+    python zeroshot.py -bs $BATCH_SIZE -bn $bn -m llama-3.1-8b -together -s $SPLIT
+    python zeroshot.py -bs $BATCH_SIZE -bn $bn -m llama-3.1-70b -together -s $SPLIT
+    python zeroshot.py -bs $BATCH_SIZE -bn $bn -m llama-3.1-405b -together -s $SPLIT
 done
 
 # # Get predictions using vLLM
