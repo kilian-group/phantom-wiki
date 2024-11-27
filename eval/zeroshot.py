@@ -125,16 +125,6 @@ for qa in batch:
 
 # %%
 if model.startswith("together:"):
-    # response = client.chat.completions.create(
-    #     model=model_map[model],
-    #     messages=get_message(prompt),
-    #     temperature=temperature,
-    #     top_p=0.7,
-    #     top_k=50,
-    #     repetition_penalty=1,
-    #     stop=["<|eot_id|>"],
-    #     stream=True,
-    # )
     import os, asyncio
     from together import AsyncTogether
     # the Together api use slightly different model names
@@ -162,6 +152,9 @@ if model.startswith("together:"):
         ]
         responses = await asyncio.gather(*tasks)
         return [response.choices[0].message.content for response in responses]
+        # TODO: extract token usage from the response object
+        # See https://github.com/togethercomputer/together-python/blob/49b8c2824d857906d68c314441b6068549c7dc95/src/together/types/chat_completions.py#L164
+
     responses = asyncio.run(async_chat_completion(messages))
 else:
     from transformers import AutoTokenizer
@@ -213,9 +206,19 @@ for i in range(len(batch)):
             'split': split,
             'batch_size': batch_size,
             'batch_number': batch_number,
-            # TODO: add question type, sampling parameters, token usage
+            'type': batch[i]['type'],
+            'seed': seed,
+        },
+        'sampling_params': {
+            'temperature': temperature,
+            'top_p': top_p,
+            'top_k': top_k,
+            'repetition_penalty': repetition_penalty,
+            'stop': stop,
+            'max_tokens': max_tokens,
             'seed': seed,
         }
+        # TODO: add token usage
     }
 
 # %%
