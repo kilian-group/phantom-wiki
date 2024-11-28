@@ -29,7 +29,10 @@ def get_parser():
                         help="HF model names (add the prefix 'together:' to use Together for inference)" \
                         "meta-llama/Llama-3.1-8B-Instruct, meta-llama/Llama-3.1-70B-Instruct, meta-llama/Llama-3.1-405B-Instruct" \
                         "microsoft/phi-3.5-mini-instruct" \
-                        "google/gemma-2-2b-it, google/gemma-2-9b-it")
+                        "google/gemma-2-2b-it, google/gemma-2-9b-it" \
+                        "gpt-4o-mini, gpt-4o" \
+                        # TODO: add gemini models
+                        "claude-3-5-haiku-20241022, claude-3-5-sonnet-20241022")
     # LLM inference params
     parser.add_argument("--max_model_len", type=int, default=4096,
                         help="Maximum model length (vLLM param)")
