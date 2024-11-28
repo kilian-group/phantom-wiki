@@ -15,7 +15,7 @@ conda activate dataset
 conda install python=3.12 conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest
 # on G2, use pip instead of conda to install pandas and numpy to avoid C dependency conflicts
 pip install pandas numpy
-pip install together openai pre-commit datasets google-generativeai
+pip install together openai pre-commit datasets google-generativeai anthropic
 ```
 
 Setting up Prolog (see also the [Prolog tutorial](docs/prolog.md)):
@@ -74,6 +74,13 @@ conda env config vars set OPENAI_API_KEY=xxxxx
 2. Set your Google API key:
 ```
 conda env config vars set GOOGLE_API_KEY=xxxxx
+```
+
+## Claude
+1. Create an API key at https://console.anthropic.com/settings/keys
+2. Set your Anthropic API key:
+```
+conda env config vars set ANTHROPIC_API_KEY=xxxxx
 ```
 
 **System requirements**
