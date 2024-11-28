@@ -1,0 +1,43 @@
+# Load family generation rules
+?- [src/phantom_wiki/family/rules].
+true.
+
+# Load the example family database
+?- [tests/family_example].
+true.
+
+?- can_get_married(bob, alice).
+false.
+
+?- can_get_married(david, alice).
+true.
+
+?- can_get_married(bob, carol).
+true.
+
+?- can_get_married(david, carol).
+true.
+
+?- can_get_married(john, jane).
+false.
+
+?- can_get_married(bob, eve).
+false.
+
+?- can_get_married(X,Y).
+X = bob,
+Y = carol ;
+X = david,
+Y = alice ;
+X = david,
+Y = carol ;
+false.
+
+?- mother(jane, alice).
+true.
+
+?- father(john, bob).
+true.
+
+
+?- halt.
