@@ -69,6 +69,13 @@ NOTE: almost all models on HF are fair game (see also: https://docs.vllm.ai/en/s
 conda env config vars set OPENAI_API_KEY=xxxxx
 ```
 
+## Google Gemini
+1. Create an API key at https://aistudio.google.com/app/apikey (NOTE: for some reason, Google AI Studio is disabled for cornell.edu accounts, so use your personal account)
+2. Set your Google API key:
+```
+conda env config vars set GOOGLE_API_KEY=xxxxx
+```
+
 **System requirements**
 - `meta-llama/Llama-3.1-8B-Instruct`: >= one 3090
 - `meta-llama/Llama-3.1-70B-Instruct`: >= four A6000

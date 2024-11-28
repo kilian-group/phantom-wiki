@@ -184,6 +184,9 @@ elif model.startswith("gpt"):
     
     responses = asyncio.run(async_chat_completion(messages))
 
+elif model.startswith("gemini"):
+    raise NotImplementedError("Gemini is not supported yet.")
+
 else:
     from transformers import AutoTokenizer
     from vllm import LLM, SamplingParams
