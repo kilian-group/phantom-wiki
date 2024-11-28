@@ -15,7 +15,7 @@ conda activate dataset
 conda install python=3.12 conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest
 # on G2, use pip instead of conda to install pandas and numpy to avoid C dependency conflicts
 pip install pandas numpy
-pip install together openai pre-commit datasets
+pip install together openai pre-commit datasets google-generativeai
 ```
 
 Setting up Prolog (see also the [Prolog tutorial](docs/prolog.md)):
@@ -61,6 +61,13 @@ conda activate dataset
 pip install vllm
 ```
 NOTE: almost all models on HF are fair game (see also: https://docs.vllm.ai/en/stable/models/supported_models.html#supported-models)
+
+## OpenAI
+1. Register for an account at https://platform.openai.com/docs/overview
+2. Set your OpenAI API key:
+```
+conda env config vars set OPENAI_API_KEY=xxxxx
+```
 
 **System requirements**
 - `meta-llama/Llama-3.1-8B-Instruct`: >= one 3090

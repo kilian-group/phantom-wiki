@@ -156,6 +156,34 @@ if model.startswith("together:"):
         # See https://github.com/togethercomputer/together-python/blob/49b8c2824d857906d68c314441b6068549c7dc95/src/together/types/chat_completions.py#L164
 
     responses = asyncio.run(async_chat_completion(messages))
+
+elif model.startswith("gpt"):
+    import os, asyncio
+    from openai import AsyncOpenAI
+    async def async_chat_completion(messages):
+        async_client = AsyncOpenAI()
+        # Ref: 
+        # - https://platform.openai.com/docs/api-reference/chat
+        # - https://github.com/openai/openai-python
+        tasks = [
+            async_client.chat.completions.create(
+                model=model,
+                messages=message,
+                temperature=temperature,
+                top_p=top_p,
+                # NOTE: top_k is not supported by OpenAI's API
+                # NOTE: repetition_penalty is not supported by OpenAI's API
+                stop=stop,
+                max_tokens=max_tokens,
+                seed=seed,
+            )
+            for message in messages
+        ]
+        responses = await asyncio.gather(*tasks)
+        return [response.choices[0].message.content for response in responses]
+    
+    responses = asyncio.run(async_chat_completion(messages))
+
 else:
     from transformers import AutoTokenizer
     from vllm import LLM, SamplingParams
