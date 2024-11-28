@@ -16,7 +16,7 @@ df_list = []
 METADATA = ['model', 'split', 'batch_size', 'batch_number', 'seed']
 for filename in files:
     print(f"Reading from {filename}...")
-    df = pd.read_json(filename, orient='index')
+    df = pd.read_json(filename, orient='index', dtype=False)
     # add new columns corresponding to the metadata
     for key in METADATA:
         df["_" + key] = df['metadata'].apply(lambda x: x[key])
