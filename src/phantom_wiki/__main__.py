@@ -34,6 +34,8 @@ def main(args):
     db_generate_friendships(db, args)
     # generate jobs, hobbies for each person in the database
     db_generate_attributes(db, args)
+    # save the database to a file
+    db.save_to_disk(os.path.join(args.output_dir, "facts.pl"))
 
     #
     # Step 2. Generate articles
@@ -84,7 +86,9 @@ def main(args):
             )
             # get distinct answers
             # TODO: is there a better way to do this?
-            results = list(set([str(x[answer]) for x in db.query(", ".join(query))]))
+            # NOTE: we concatenate the clauses in the prolog query in reverse order
+            # since prolog executes goals from left to right
+            results = list(set([str(x[answer]) for x in db.query(", ".join(query[::-1]))]))
             questions.append({
                 "id": generate_unique_id(),
                 "question": question,
