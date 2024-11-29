@@ -19,20 +19,35 @@ def get_all_articles(dataset):
     """
     all_articles = "\n================\n\n".join(dataset['text']['article'])
     return all_articles
-    # article_list = [item['article'] for item in dataset]
-    # all_article = '\n'.join(article_list)
-    # return all_article
+
+MODEL_CHOICES = [
+    # HF models (run via vLLM)
+    "meta-llama/Llama-3.1-8B-Instruct", 
+    "meta-llama/Llama-3.1-70B-Instruct", 
+    "microsoft/phi-3.5-mini-instruct",
+    "google/gemma-2-2b-it",
+    "google/gemma-2-9b-it",
+    "google/gemma-2-27b-it",
+    # Together models (https://docs.together.ai/docs/serverless-models)
+    "together:meta-llama/Llama-3.1-8B-Instruct", 
+    "together:meta-llama/Llama-3.1-70B-Instruct", 
+    "together:meta-llama/Llama-3.1-405B-Instruct",
+    # OpenAI models (https://platform.openai.com/docs/models)
+    "gpt-4o-mini-2024-07-18",
+    "gpt-4o-2024-11-20",
+    # Anthropic models (https://docs.anthropic.com/en/docs/about-claude/models)
+    "claude-3-5-haiku-20241022",
+    "claude-3-5-sonnet-20241022",
+    # Google models (https://ai.google.dev/gemini-api/docs/models/gemini)
+    "gemini-1.5-flash-002",
+    "gemini-1.5-pro-002",
+]
 
 def get_parser():
     parser = ArgumentParser(description="PhantomWiki Evaluation")
     parser.add_argument("--model", "-m", type=str, default='llama-3.1-8b',
-                        help="HF model names (add the prefix 'together:' to use Together for inference)" \
-                        "meta-llama/Llama-3.1-8B-Instruct, meta-llama/Llama-3.1-70B-Instruct, meta-llama/Llama-3.1-405B-Instruct" \
-                        "microsoft/phi-3.5-mini-instruct" \
-                        "google/gemma-2-2b-it, google/gemma-2-9b-it" \
-                        "gpt-4o-mini, gpt-4o" \
-                        # TODO: add gemini models
-                        "claude-3-5-haiku-20241022, claude-3-5-sonnet-20241022")
+                        help="model name (to add a new model, please submit a PR to the repo with the new model name)", 
+                        choices=MODEL_CHOICES)
     # LLM inference params
     parser.add_argument("--max_model_len", type=int, default=4096,
                         help="Maximum model length (vLLM param)")
@@ -44,8 +59,6 @@ def get_parser():
                         help="Top-p for sampling")
     parser.add_argument("--top_k", "-k", type=float, default=50,
                         help="Top-k for sampling")
-    parser.add_argument("--repetition_penalty", "-rp", type=float, default=1.0,
-                        help="Repetition penalty for sampling")
     parser.add_argument("--seed", type=int, default=1,
                         help="Seed for sampling (vLLM param)")
     # Dataset params
