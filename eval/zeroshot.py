@@ -116,12 +116,14 @@ def get_message(instruction):
 # %%
 # get all the messages so that we can use batch inference
 messages = []
+messages_instructions_only = [] # Gemini requires only the instructions
 for qa in batch:
     instruction = prompt.format(
         evidence=evidence, 
         question=qa['question'],
     )
     messages.append(get_message(instruction))
+    messages_instructions_only.append(instruction)
 
 # %%
 if model.startswith("together:"):
@@ -137,6 +139,7 @@ if model.startswith("together:"):
     async def async_chat_completion(messages):
         async_client = AsyncTogether()
         tasks = [
+            # NOTE: this creates a coroutine object
             async_client.chat.completions.create(
                 model=TOGETHER_MODEL_ALIASES[model.replace("together:", "")],
                 messages=message,
@@ -185,7 +188,36 @@ elif model.startswith("gpt"):
     responses = asyncio.run(async_chat_completion(messages))
 
 elif model.startswith("gemini"):
-    raise NotImplementedError("Gemini is not supported yet.")
+    """
+    Ref:
+    - https://github.com/google-gemini/generative-ai-python/blob/main/docs/api/google/generativeai/GenerativeModel.md
+    """
+    import asyncio
+    import google.generativeai as genai
+
+    async def async_chat_completion(messages):
+        # Initialize Gemini client
+        google_model = genai.GenerativeModel(model)
+        
+        async def generate_response(message):
+            # Ref: https://cloud.google.com/vertex-ai/docs/reference/rest/v1/GenerationConfig
+            response = await google_model.generate_content_async(
+                message,
+                generation_config={
+                    'temperature': temperature,
+                    'top_p': top_p,
+                    'max_output_tokens': max_tokens,
+                    'stop_sequences': ["\n"],
+                }
+            )
+            return response.text
+        
+        tasks = [generate_response(message) for message in messages]
+        responses = await asyncio.gather(*tasks)
+        return responses
+
+    # Use like other models
+    responses = asyncio.run(async_chat_completion(messages_instructions_only))
 
 elif model.startswith("claude"):
     import os, asyncio
