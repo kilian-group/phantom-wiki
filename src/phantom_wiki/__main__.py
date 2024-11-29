@@ -72,9 +72,11 @@ def main(args):
         print(f"Saving questions to: {question_dir}")
         os.makedirs(question_dir, exist_ok=True)
 
-    rng = np.random.default_rng(args.seed)
     all_questions = []
     for i, (question_template, query_template, answer) in enumerate(templates):
+        # Reset the seed at the start of each question type
+        # so that sampled questions are the same for each question type
+        rng = np.random.default_rng(args.seed)
         questions = []
         for _ in range(args.num_questions_per_type):
             _, question, query = sample(
@@ -88,7 +90,9 @@ def main(args):
             # TODO: is there a better way to do this?
             # NOTE: we concatenate the clauses in the prolog query in reverse order
             # since prolog executes goals from left to right
-            results = list(set([str(x[answer]) for x in db.query(", ".join(query[::-1]))]))
+            results = [str(x[answer]) for x in db.query(", ".join(query[::-1]))]
+            # make unique and sort in alphabetical order
+            results = sorted(set(results))
             questions.append({
                 "id": generate_unique_id(),
                 "question": question,
