@@ -220,29 +220,36 @@ elif model.startswith("gemini"):
     responses = asyncio.run(async_chat_completion(messages_instructions_only))
 
 elif model.startswith("claude"):
+    """
+    Ref: 
+    - https://github.com/anthropics/anthropic-sdk-python?tab=readme-ov-file#async-usage
+    - https://docs.anthropic.com/en/api/messages
+    """
     import os, asyncio
     from anthropic import AsyncAnthropic
+
     async def async_chat_completion(messages):
         async_client = AsyncAnthropic()
-        # Ref: 
-        # - https://github.com/anthropics/anthropic-sdk-python?tab=readme-ov-file#async-usage
-        # - https://docs.anthropic.com/en/api/messages
-        tasks = [
-            async_client.messages.create(
-                model=model,
-                messages=message,
-                temperature=temperature,
-                top_p=top_p,
-                top_k=top_k,
-                # NOTE: repetition_penalty is not supported by Anthropic's API
-                # NOTE: by default, the model will stop at the end of the turn
-                max_tokens=max_tokens,
-                # NOTE: seed is not supported by Anthropic's API
-            )
-            for message in messages
-        ]
+        semaphore = asyncio.Semaphore(2)  # Limit to 2 concurrent calls
+        
+        async def rate_limited_message(message):
+            async with semaphore:
+                response = await async_client.messages.create(
+                    model=model,
+                    messages=message,
+                    temperature=temperature,
+                    top_p=top_p,
+                    top_k=top_k,
+                    # NOTE: repetition_penalty is not supported by Anthropic's API
+                    # NOTE: by default, the model will stop at the end of the turn
+                    max_tokens=max_tokens,
+                    # NOTE: seed is not supported by Anthropic's API
+                )
+                await asyncio.sleep(5)
+                return response
+        
+        tasks = [rate_limited_message(message) for message in messages]
         responses = await asyncio.gather(*tasks)
-        # import pdb; pdb.set_trace()
         return [response.content[0].text for response in responses]
 
     responses = asyncio.run(async_chat_completion(messages))

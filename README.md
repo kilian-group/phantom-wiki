@@ -62,12 +62,20 @@ pip install vllm
 ```
 NOTE: almost all models on HF are fair game (see also: https://docs.vllm.ai/en/stable/models/supported_models.html#supported-models)
 
+**System requirements**
+- `meta-llama/Llama-3.1-8B-Instruct`: >= one 3090
+- `meta-llama/Llama-3.1-70B-Instruct`: >= four A6000
+
+NOTE: These models and their configs are downloaded directly from HuggingFace
+
 ## OpenAI
-1. Register for an account at https://platform.openai.com/docs/overview
-2. Set your OpenAI API key:
+1. Register an account *with your cornell.edu email* at https://platform.openai.com/ and join "Kilian's Group"
+2. Create an API key at https://platform.openai.com/settings/organization/api-keys under your name
+3. Set your OpenAI API key in your conda environment:
 ```
 conda env config vars set OPENAI_API_KEY=xxxxx
 ```
+Rate limits: https://platform.openai.com/docs/guides/rate-limits#usage-tiers
 
 ## Google Gemini
 1. Create an API key at https://aistudio.google.com/app/apikey (NOTE: for some reason, Google AI Studio is disabled for cornell.edu accounts, so use your personal account)
@@ -76,18 +84,16 @@ conda env config vars set OPENAI_API_KEY=xxxxx
 conda env config vars set GOOGLE_API_KEY=xxxxx
 ```
 
-## Claude
-1. Create an API key at https://console.anthropic.com/settings/keys
-2. Set your Anthropic API key:
+## Anthropic
+1. Register an account *with your cornell.edu email* and join "Kilian's Group" 
+2. Create an API key at https://console.anthropic.com/settings/keys under your name
+3. Set your Anthropic API key in your conda environment:
 ```
 conda env config vars set ANTHROPIC_API_KEY=xxxxx
 ```
+Rate limits: https://docs.anthropic.com/en/api/rate-limits#updated-rate-limits
 
-**System requirements**
-- `meta-llama/Llama-3.1-8B-Instruct`: >= one 3090
-- `meta-llama/Llama-3.1-70B-Instruct`: >= four A6000
-
-NOTE: These models and their configs are downloaded directly from HuggingFace
+:rotating_light: The Anthropic API has particularly low rate limits so it takes longer to get predictions.
 
 ## Development best practices
 
