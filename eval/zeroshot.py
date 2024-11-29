@@ -337,7 +337,18 @@ else:
     # Generate texts from the prompts. The output is a list of RequestOutput objects
     # that contain the prompt, generated text, and other information.
     outputs = llm.generate(prompts, sampling_params)
-    responses = [output.outputs[0].text for output in outputs]
+    responses = [
+        {
+            'pred' : output.outputs[0].text,
+            'usage' : {
+                'prompt_tokens' : len(output.prompt_token_ids),
+                'completion_tokens' : len(output.outputs[0].token_ids),
+                'total_tokens' : len(output.prompt_token_ids) + len(output.outputs[0].token_ids),
+                'cached_tokens' : output.num_cached_tokens,
+            }
+        }
+        for output in outputs
+    ]
 
 # %%
 preds = {}
