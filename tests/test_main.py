@@ -6,10 +6,14 @@ import shutil
 # phantom wiki functionality
 from phantom_wiki.facts.family import fam_gen_parser
 from phantom_wiki.utils import get_parser
+from phantom_wiki.facts import question_parser
 from phantom_wiki.__main__ import main
 
 def test_main():
-    parser = get_parser(parents=[fam_gen_parser])
+    parser = get_parser(parents=[
+        fam_gen_parser,
+        question_parser
+    ])
     args, _ = parser.parse_known_args(["--output_dir", "test_out", "--seed", "1"])
     main(args)
 
@@ -39,7 +43,7 @@ def test_main():
             "?",
         ]
         assert data[0]["question"] == "Who is the daughter of the person whose job is air cabin crew ?"
-        assert data[0]["query"] == ["daughter(Y_2, Y_4)", "job(Y_2, 'air cabin crew')"]
+        assert data[0]["prolog"]["query"] == ["daughter(Y_2, Y_4)", "job(Y_2, 'air cabin crew')"]
         assert data[0]["answer"] == []
 
     # clean up test_out directory

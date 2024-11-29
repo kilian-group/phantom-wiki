@@ -1,0 +1,131 @@
+[
+    [
+        [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_1",
+            "is",
+            "<attribute_value>_1",
+            "?"
+        ],
+        [
+            "<relation>_3(Y_2, Y_4)",
+            "<attribute_name>_1(Y_2, <attribute_value>_1)"
+        ],
+        "Y_4"
+    ],
+    [
+        [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_2",
+            "?"
+        ],
+        [
+            "<relation>_3(<name>_2, Y_4)"
+        ],
+        "Y_4"
+    ],
+    [
+        [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        [
+            "<attribute_name>_3(Y_4, <attribute_value>_3)"
+        ],
+        "Y_4"
+    ],
+    [
+        [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_2",
+            "of",
+            "<name>_1",
+            "?"
+        ],
+        [
+            "<attribute_name>_3(Y_3, Y_4)",
+            "<relation>_2(<name>_1, Y_3)"
+        ],
+        "Y_4"
+    ],
+    [
+        [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_2",
+            "is",
+            "<attribute_value>_2",
+            "?"
+        ],
+        [
+            "<attribute_name>_3(Y_3, Y_4)",
+            "<attribute_name>_2(Y_3, <attribute_value>_2)"
+        ],
+        "Y_4"
+    ],
+    [
+        [
+            "How many",
+            "<relation_plural>_4",
+            "does",
+            "the",
+            "<relation>_2",
+            "of",
+            "<name>_1",
+            "have?"
+        ],
+        [
+            "aggregate_all(count, distinct(<relation_plural>_4(Y_3, Y_5)), Count_5)",
+            "<relation>_2(<name>_1, Y_3)"
+        ],
+        "Count_5"
+    ],
+    [
+        [
+            "How many",
+            "<relation_plural>_4",
+            "does",
+            "the person whose",
+            "<attribute_name>_2",
+            "is",
+            "<attribute_value>_2",
+            "have?"
+        ],
+        [
+            "aggregate_all(count, distinct(<relation_plural>_4(Y_3, Y_5)), Count_5)",
+            "<attribute_name>_2(Y_3, <attribute_value>_2)"
+        ],
+        "Count_5"
+    ],
+    [
+        [
+            "How many",
+            "<relation_plural>_4",
+            "does",
+            "<name>_3",
+            "have?"
+        ],
+        [
+            "aggregate_all(count, distinct(<relation_plural>_4(<name>_3, Y_5)), Count_5)"
+        ],
+        "Count_5"
+    ]
+]
