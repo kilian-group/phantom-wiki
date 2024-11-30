@@ -144,9 +144,9 @@ if model.startswith("together:"):
     from together import AsyncTogether
     # the Together api use slightly different model names
     TOGETHER_MODEL_ALIASES = {
-        'meta-llama/Llama-3.1-8B-Instruct':'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo',
-        'meta-llama/Llama-3.1-70B-Instruct':'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo',
-        'meta-llama/Llama-3.1-405B-Instruct':'meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo',
+        'meta-llama/llama-3.1-8b-instruct':'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo',
+        'meta-llama/llama-3.1-70b-instruct':'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo',
+        'meta-llama/llama-3.1-405b-instruct':'meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo',
     }
     async def async_chat_completion(messages):
         async_client = AsyncTogether()

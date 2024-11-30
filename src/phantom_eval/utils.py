@@ -22,16 +22,17 @@ def get_all_articles(dataset):
 
 MODEL_CHOICES = [
     # HF models (run via vLLM)
-    "meta-llama/Llama-3.1-8B-Instruct", 
-    "meta-llama/Llama-3.1-70B-Instruct", 
+    "meta-llama/llama-3.1-8b-instruct", 
+    "meta-llama/llama-3.1-70b-instruct", 
     "microsoft/phi-3.5-mini-instruct",
+    "microsoft/phi-3.5-moe-instruct",
     "google/gemma-2-2b-it",
     "google/gemma-2-9b-it",
     "google/gemma-2-27b-it",
     # Together models (https://docs.together.ai/docs/serverless-models)
-    "together:meta-llama/Llama-3.1-8B-Instruct", 
-    "together:meta-llama/Llama-3.1-70B-Instruct", 
-    "together:meta-llama/Llama-3.1-405B-Instruct",
+    "together:meta-llama/llama-3.1-8b-instruct", 
+    "together:meta-llama/llama-3.1-70b-instruct", 
+    "together:meta-llama/llama-3.1-405b-instruct",
     # OpenAI models (https://platform.openai.com/docs/models)
     "gpt-4o-mini-2024-07-18",
     "gpt-4o-2024-11-20",
@@ -45,8 +46,9 @@ MODEL_CHOICES = [
 
 def get_parser():
     parser = ArgumentParser(description="PhantomWiki Evaluation")
-    parser.add_argument("--model", "-m", type=str, default='llama-3.1-8b',
-                        help="model name (to add a new model, please submit a PR to the repo with the new model name)", 
+    parser.add_argument("--model", "-m", type=str.lower, default='llama-3.1-8b',
+                        help="model name (case insensitive) "\
+                            "NOTE: to add a new model, please submit a PR to the repo with the new model name", 
                         choices=MODEL_CHOICES)
     # LLM inference params
     parser.add_argument("--max_model_len", type=int, default=4096,
