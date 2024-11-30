@@ -123,5 +123,5 @@ if __name__ == "__main__":
         fam_gen_parser,
         question_parser,
     ])
-    args, _ = parser.parse_known_args()
+    args = parser.parse_args()
     main(args)
