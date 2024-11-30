@@ -29,6 +29,7 @@ MODEL_CHOICES = [
     "google/gemma-2-2b-it",
     "google/gemma-2-9b-it",
     "google/gemma-2-27b-it",
+    "mistralai/mistral-7b-instruct-v0.3",
     # Together models (https://docs.together.ai/docs/serverless-models)
     "together:meta-llama/llama-3.1-8b-instruct", 
     "together:meta-llama/llama-3.1-70b-instruct", 
