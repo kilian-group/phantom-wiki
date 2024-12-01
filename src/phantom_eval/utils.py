@@ -20,7 +20,7 @@ def get_all_articles(dataset):
     all_articles = "\n================\n\n".join(dataset['text']['article'])
     return all_articles
 
-MODEL_CHOICES = [
+LOCAL_MODELS = [
     # HF models (run via vLLM)
     "meta-llama/llama-3.1-8b-instruct", 
     "meta-llama/llama-3.1-70b-instruct", 
@@ -30,6 +30,8 @@ MODEL_CHOICES = [
     "google/gemma-2-9b-it",
     "google/gemma-2-27b-it",
     "mistralai/mistral-7b-instruct-v0.3",
+]
+MODEL_CHOICES = LOCAL_MODELS + [
     # Together models (https://docs.together.ai/docs/serverless-models)
     "together:meta-llama/llama-3.1-8b-instruct", 
     "together:meta-llama/llama-3.1-70b-instruct", 
@@ -52,7 +54,7 @@ def get_parser():
                             "NOTE: to add a new model, please submit a PR to the repo with the new model name", 
                         choices=MODEL_CHOICES)
     # LLM inference params
-    parser.add_argument("--max_model_len", type=int, default=4096,
+    parser.add_argument("--max_model_len", type=int, default=None,
                         help="Maximum model length (vLLM param)")
     parser.add_argument("--tensor_parallel_size", type=int, default=1,
                         help="number of gpus (vLLM param")

@@ -64,8 +64,17 @@ NOTE: almost all models on HF are fair game (see also: https://docs.vllm.ai/en/s
 
 **System requirements**
 - `meta-llama/Llama-3.1-8B-Instruct`: >= one 3090
-- `meta-llama/Llama-3.1-70B-Instruct`: >= four A6000
-
+- `meta-llama/Llama-3.1-70B-Instruct`: 
+   - `max_model_len = 4096` requires >= four A6000s
+   - `max_model_len = None` requires >= eight A6000s
+With four A6000s:
+```
+[rank0]: ValueError: The model's max seq len (131072) is larger than the maximum number of tokens that can be stored in KV cache (106848). Try increasing `gpu_memory_utilization` or decreasing `max_model_len` when initializing the engine.
+```
+With six A6000s:
+```
+ValueError: Total number of attention heads (64) must be divisible by tensor parallel size (6).
+```
 NOTE: These models and their configs are downloaded directly from HuggingFace
 
 ## OpenAI
