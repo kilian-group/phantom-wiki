@@ -74,7 +74,7 @@ from phantom_eval.utils import (load_data,
                                 get_all_articles)
 
 # %%
-run_name = f"{model.replace('/','--')}-{split}-bs{batch_size}-bn{batch_number}-s{seed}"
+run_name = f"{split}-{model.replace('/','--')}-bs{batch_size}-bn{batch_number}-s{seed}"
 print(f"Run name: {run_name}")
 pred_dir = os.path.join(output_dir, "preds")
 os.makedirs(pred_dir, exist_ok=True)
