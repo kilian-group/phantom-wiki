@@ -1,5 +1,0 @@
-S -> Intro Background Occupation Interests
-Intro -> "Meet Thomas," | "Introducing Thomas," | "Get to know Thomas,"
-Background -> " who hails from the charming town of Farnville," | " a native of Riverton," | " originally from the bustling city of Linwood,"
-Occupation -> " and works as a Buyer in the retail industry." | " serving as a Buyer for a leading retail company." | " holding the position of Buyer in a prominent retail business."
-Interests -> " In his free time, he enjoys reading mystery novels and hiking." | " His hobbies include photography and exploring new cuisines." | " Outside of work, he is passionate about gardening and playing chess."

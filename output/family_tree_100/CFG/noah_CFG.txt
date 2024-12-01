@@ -1,3 +1,0 @@
-S -> "Noah" ", an expert in the field of" Occupation ", is known for his work at" Institution "."
-Occupation -> "Educational psychology"
-Institution -> "The Mindful Academy" | "Cerebral Innovations Institute" | "The Learning Pathway Research Center"

@@ -1,6 +1,0 @@
-S -> Name Occupation Period Specialty Interest
-Name -> "Jan"
-Occupation -> "is a Horticulturist"
-Period -> "with over 10 years of experience"
-Specialty -> "specializing in the cultivation of exotic Flora"
-Interest -> "Passionate about sustainable gardening techniques and urban green spaces"

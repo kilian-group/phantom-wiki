@@ -1,8 +1,0 @@
-bio -> name_sentence occupation_sentence company_sentence years_sentence 
-name_sentence -> "Simon is a charismatic individual."
-occupation_sentence -> "He works as a Dealer"
-company_sentence -> "at the renowned fictional entity Blackstone Enterprises."
-years_sentence -> "Simon has been excelling in his career for over a decade." 
-name -> "Simon"
-occupation -> "Dealer"
-company -> "Blackstone Enterprises"
