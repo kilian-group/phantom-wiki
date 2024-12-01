@@ -1,4 +1,0 @@
-S -> NAME " is a " JOB " working at " COMPANY "."
-NAME -> "Jakob Emser"
-JOB -> "Structural Engineer"
-COMPANY -> "GreenTech Infrastructure" | "SolidBuild Corp" | "UrbanDesign Associates"

@@ -1,5 +1,0 @@
-bio -> sentence_1 sentence_2 sentence_3 sentence_4 
-sentence_1 -> "Marko, a seasoned professional in the field of therapy, holds a wealth of experience from Dynamic Healing Institute." 
-sentence_2 -> "Graduating from Elmwood University with a degree in Occupational Therapy, he has dedicated over a decade to enhancing patient outcomes." 
-sentence_3 -> "His journey at Peaceful Pathways Clinic has been marked by his innovative approaches and compassionate care." 
-sentence_4 -> "Outside work, Marko volunteers at the Harmony Haven Shelter, using his skills to support community wellness initiatives."

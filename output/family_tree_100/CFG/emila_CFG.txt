@@ -1,9 +1,0 @@
-S -> Name Job Sentence
-Name -> "Emila"
-Job -> "is a Retail Merchandiser "
-Sentence -> Fact "."
-Fact -> "who has been with GlimmerMart for over five years and specializes in product promotion"
-Fact -> "known for her exceptional skills in visual merchandising at TrendyThreads"
-Fact -> "dedicated to enhancing customer experiences while working at SparkleStores"
-Fact -> "passionate about implementing effective inventory strategies at ChicBoutique"
-Fact -> "leading her team to success in seasonal campaigns at FashionFusion"

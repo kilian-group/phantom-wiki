@@ -1,8 +1,0 @@
-S -> NAME SENT1 SENT2 
-NAME -> "Maria" 
-SENT1 -> "is a talented" OCCUPATION "from" LOC 
-OCCUPATION -> "Sub" 
-LOC -> "the mystical town of Faeriewood" | "the enchanting village of Elmsford" | "the serene city of Willowdale" 
-SENT2 -> "She has been practicing her craft for" NUM "years and is passionate about" INTEREST 
-NUM -> "5" | "10" | "15" | "20" 
-INTEREST -> "exploring ancient artifacts" | "discovering new forms of magic" | "teaching mystical arts to young apprentices" | "perfecting her spellcasting abilities"

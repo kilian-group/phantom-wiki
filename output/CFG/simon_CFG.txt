@@ -1,6 +1,0 @@
-S -> "Simon " Name ", a " Occupation ", with a passion for " Interest ". Currently residing in " Location ", he has been a dedicated professional in his field for over " Years " years."
-Name -> "Rivers" | "Kensington" | "Wilshire"
-Occupation -> "Child psychotherapist"
-Interest -> "understanding children's emotions" | "helping families communicate" | "early childhood development"
-Location -> "Greenfield" | "Lakewood" | "Rivertown"
-Years -> "15" | "20" | "10"

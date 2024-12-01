@@ -1,4 +1,0 @@
-S -> Name " is a " Occupation " at " Company ". "
-Name -> "Dominik Prescot"
-Occupation -> "Chemist, analytical"
-Company -> "Moltert Laboratories" | "Solara Biochem Research" | "Crytek Solutions"

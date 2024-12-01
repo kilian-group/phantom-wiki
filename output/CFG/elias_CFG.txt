@@ -1,6 +1,0 @@
-bio -> greeting name_part occupation_part organization_part details 
-greeting -> "Meet "
-name_part -> "Elias Brightstone, "
-occupation_part -> "a skilled Corporate Treasurer at " organization_part
-organization_part -> "Quantum Finance Corp."
-details -> " Known for his strategic financial planning and innovative approach to cost optimization, Elias has been a cornerstone of the company's financial stability."

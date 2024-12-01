@@ -1,4 +1,0 @@
-S -> NAME " is a " OCCUPATION " from " CITY "."
-NAME -> "Johanna"
-OCCUPATION -> "Town planner"
-CITY -> "Gothamville" | "Astroford" | "Lunar Springs"

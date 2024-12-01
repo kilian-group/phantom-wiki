@@ -1,6 +1,0 @@
-S -> Name Occupation FunFact
-Name -> "Lukas"
-Occupation -> " is a Producer in television/film/video."
-FunFact -> " Lukas has been with the fictional company " Company " for several years, where he worked on popular productions such as '" Production "'."
-Company -> "Vortex Media"
-Production -> "Beyond the Horizon" | "Mystery Lane" | "Galaxy Explorers"
