@@ -46,5 +46,3 @@ grouped = df.groupby(['_model', '_split', '_seed'])
 acc = grouped[['EM','precision', 'recall', 'f1']].mean()
 # print as markdown
 print(acc.to_markdown())
-# save to a csv file
-acc.to_csv(f"{output_dir}/scores.csv")
