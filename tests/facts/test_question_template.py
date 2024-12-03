@@ -1,22 +1,25 @@
 # standard imports
-from numpy.random import default_rng
 import json
+
+from numpy.random import default_rng
+
 # phantom wiki functionality
 from phantom_wiki.facts import get_database
 from phantom_wiki.facts.attributes import db_generate_attributes
-from phantom_wiki.facts.templates import generate_templates
 from phantom_wiki.facts.sample import sample
+from phantom_wiki.facts.templates import generate_templates
 from phantom_wiki.utils import get_parser
+from tests.facts import DEPTH_6_PATH, DEPTH_8_PATH
 from tests.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
-from tests.facts import (DEPTH6_PATH,
-                         DEPTH8_PATH,)
+
 # TODO: come up with a better way to test the question-prolog pair generation
 SAVE_SAMPLE = False
 
-with open(DEPTH6_PATH, "r") as f:
+with open(DEPTH_6_PATH) as f:
     DATA_DEPTH_6 = json.load(f)
-with open(DEPTH8_PATH, "r") as f:
+with open(DEPTH_8_PATH) as f:
     DATA_DEPTH_8 = json.load(f)
+
 
 def test_generate_templates_depth_6():
     templates = generate_templates(depth=6)
@@ -25,6 +28,7 @@ def test_generate_templates_depth_6():
         assert template[1] == query
         assert template[2] == answer
 
+
 def test_generate_templates_depth_8():
     templates = generate_templates(depth=8)
     for template, (question, query, answer) in zip(templates, DATA_DEPTH_8):
@@ -32,9 +36,25 @@ def test_generate_templates_depth_8():
         assert template[1] == query
         assert template[2] == answer
 
-# 
+
+def test_template_depth_subsets():
+    """Templates at depth 6 are a subset of templates at depth 8."""
+    templates_depth_6 = generate_templates(depth=6)
+    templates_depth_8 = generate_templates(depth=8)
+
+    # Hashable representation
+    def condense_templates(q):
+        return (" ".join(q[0]), ", ".join(q[1]), q[2])
+
+    condensed_templates_depth_6 = set(map(condense_templates, templates_depth_6))
+    condensed_templates_depth_8 = set(map(condense_templates, templates_depth_8))
+
+    assert condensed_templates_depth_6 <= condensed_templates_depth_8
+
+
+#
 # Tests for sampling placeholders from the database
-# 
+#
 parser = get_parser()
 args, _ = parser.parse_known_args(["--output_dir", "test_out", "--seed", "1"])
 
@@ -42,6 +62,7 @@ db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
 db_generate_attributes(db, args)
 # define dob predicate since it is not defined in the small example
 db.define("dob/2")
+
 
 def test_sample_0():
     # case 1: valid_only=False
@@ -56,7 +77,7 @@ def test_sample_0():
     #     "Who is the child of the person whose age is <attribute_value>_1 ?",
     #     ["child(Y_2, Y_4)", "age(Y_2, <attribute_value>_1)"],
     # )
-    
+
     # case 2: valid_only=True
     valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
     if SAVE_SAMPLE:
@@ -82,7 +103,7 @@ def test_sample_1():
     #     "Who is the child of vanessa ?",
     #     ["child('vanessa', Y_4)"],
     # )
-    
+
     # case 2: valid_only=True
     valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
     if SAVE_SAMPLE:
@@ -118,7 +139,8 @@ def test_sample_3():
     #     "<relation>_2": "daughter",
     #     "<relation>_1": "daughter"
     # }
-    
+
+
 def test_sample_4():
     question_template_list, predicate_template_list, _ = DATA_DEPTH_6[4]
     rng = default_rng(seed=1)
@@ -150,7 +172,7 @@ def test_sample_5():
     #     "How many sons does the child of vanessa have?",
     #     ["aggregate_all(count, son(Y_3, Y_5), Count_5)", "child('vanessa', Y_3)"],
     # )
-    
+
     valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
     if SAVE_SAMPLE:
         with open("sample.json", "a") as f:
@@ -169,7 +191,7 @@ def test_sample_6():
     #     "How many children does the person whose age is <attribute_value>_2 have?",
     #     ["aggregate_all(count, child(Y_3, Y_5), Count_5)", "age(Y_3, <attribute_value>_2)"],
     # )
-    
+
     valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
     if SAVE_SAMPLE:
         with open("sample.json", "a") as f:
