@@ -1,6 +1,6 @@
 # Usage:
 # Creating questions:
-#   python -m phantom_wiki -op <output path>
+#   python -m phantom_wiki -od <output path>
 
 # standard imports
 import json
@@ -34,6 +34,8 @@ def main(args):
     db_generate_friendships(db, args)
     # generate jobs, hobbies for each person in the database
     db_generate_attributes(db, args)
+    # save the database to a file
+    db.save_to_disk(os.path.join(args.output_dir, "facts.pl"))
 
     #
     # Step 2. Generate articles
@@ -70,9 +72,11 @@ def main(args):
         print(f"Saving questions to: {question_dir}")
         os.makedirs(question_dir, exist_ok=True)
 
-    rng = np.random.default_rng(args.seed)
     all_questions = []
     for i, (question_template, query_template, answer) in enumerate(templates):
+        # Reset the seed at the start of each question type
+        # so that sampled questions are the same for each question type
+        rng = np.random.default_rng(args.seed)
         questions = []
         for _ in range(args.num_questions_per_type):
             _, question, query = sample(
@@ -84,7 +88,11 @@ def main(args):
             )
             # get distinct answers
             # TODO: is there a better way to do this?
-            results = list(set([str(x[answer]) for x in db.query(", ".join(query))]))
+            # NOTE: we concatenate the clauses in the prolog query in reverse order
+            # since prolog executes goals from left to right
+            results = [str(x[answer]) for x in db.query(", ".join(query[::-1]))]
+            # make unique and sort in alphabetical order
+            results = sorted(set(results))
             questions.append({
                 "id": generate_unique_id(),
                 "question": question,
@@ -115,5 +123,5 @@ if __name__ == "__main__":
         fam_gen_parser,
         question_parser,
     ])
-    args, _ = parser.parse_known_args()
+    args = parser.parse_args()
     main(args)

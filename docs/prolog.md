@@ -21,6 +21,9 @@ count(X,Y) -> the count of X is Y
 
 Atoms must start with a lower case. Atoms can contain spaces by wrapping them in quotes. Note that single quotes and double quotes mean different things in SWI-Prolog, so `female('kamala harris').` and `female("kamala harris").` correspond to different atoms!
 
+**Does the order of rules matter?**
+Short answer is yes. (See https://lpn.swi-prolog.org/lpnpage.php?pagetype=html&pageid=lpn-htmlse10)
+
 # Built-in SWI-Prolog predicates
 
 **Query:** Gets all results

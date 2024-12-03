@@ -12,7 +12,11 @@ def generate_jobs(names: list[str], seed=1) -> dict[str, str]:
     Faker.seed(seed)
     jobs = {}
     for name in names:
-        jobs[name] = fake.job().lower()
+        while True:
+            job = fake.job().lower()
+            if "'" not in job:
+                break
+        jobs[name] = job
     return jobs
 
 def generate_hobbies(names: list[str], seed=1) -> dict[str, str]:

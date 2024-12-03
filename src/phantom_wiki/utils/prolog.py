@@ -11,8 +11,8 @@ def print_question_templates(grammar_string=QA_GRAMMAR_STRING, depth=6):
     total_questions = 0
     for question, query, answer in questions:
         total_questions += 1
-        print("Question:\t" + question)
-        print("Query:\t\t" + query)
+        print("Question:\t" + " ".join(question))
+        print("Query:\t\t" + ", ".join(query))
         print("Answer:\t\t" + answer)
         print()
     print(f"Total questions (depth {depth}):\t{total_questions}")

@@ -27,7 +27,7 @@ For example:
     > Answer: Y_2
 
     > Template: How many <relation_plural>_2 does <name>_1 have?
-    > Query: aggregate_all(count, <relation_plural>_2(<name>_1, Y_3), Count_3).
+    > Query: aggregate_all(count, distinct(<relation_plural>_2(<name>_1, Y_3)), Count_3).
     > Answer: Count_3
 
 `phantom_wiki.facts.templates.generate_templates` generates tuples of all possible question and Prolog query
@@ -92,7 +92,7 @@ def generate_templates(grammar: CFG = None, depth=4) -> Iterable:
         # Safe default, assuming the grammar may be recursive:
         depth = (sys.getrecursionlimit() // 3) - 3
 
-    fragments = _generate_tail_template_fragments(grammar, [start], depth)
+    fragments = _generate_tail_template_fragments(grammar, [start], depth, depth)
 
     templates = []
     for fragment in fragments:
@@ -151,7 +151,7 @@ class Fragment:
 
 
 def _generate_tail_template_fragments(
-    grammar: CFG, items: list[Nonterminal | Any], depth: int
+    grammar: CFG, items: list[Nonterminal | Any], depth: int, total_depth: int
 ) -> list[Fragment]:
     """Generates fragments for a list of symbols (`items`) in the grammar.
 
@@ -163,9 +163,9 @@ def _generate_tail_template_fragments(
     if items:
         try:
             fragments = []
-            for frag1 in _generate_head_template_fragments(grammar, items[0], depth):
-                for frag2 in _generate_tail_template_fragments(grammar, items[1:], depth):
-                    fragments.append(_combine_fragments(frag1, frag2, depth))
+            for frag1 in _generate_head_template_fragments(grammar, items[0], depth, total_depth):
+                for frag2 in _generate_tail_template_fragments(grammar, items[1:], depth, total_depth):
+                    fragments.append(_combine_fragments(frag1, frag2, depth, total_depth))
         except RecursionError as error:
             # Helpful error message while still showing the recursion stack.
             raise RuntimeError(
@@ -178,7 +178,9 @@ def _generate_tail_template_fragments(
         return [Fragment()]
 
 
-def _generate_head_template_fragments(grammar: CFG, item: Nonterminal | Any, depth: int) -> list[Fragment]:
+def _generate_head_template_fragments(
+    grammar: CFG, item: Nonterminal | Any, depth: int, total_depth: int
+) -> list[Fragment]:
     """Generates fragments for the current `item` symbol of the grammar.
 
     Called as a subroutine to process the first symbol (head) of the current production (`item`).
@@ -190,12 +192,13 @@ def _generate_head_template_fragments(grammar: CFG, item: Nonterminal | Any, dep
         if isinstance(item, Nonterminal):
             fragments = []
             for prod in grammar.productions(lhs=item):
-                fragments += _generate_tail_template_fragments(grammar, prod.rhs(), depth - 1)
+                fragments += _generate_tail_template_fragments(grammar, prod.rhs(), depth - 1, total_depth)
             return fragments
 
         elif re.match(r"<.*?>", item):
             # <placeholder> terminal
-            return [Fragment([f"{item}_{depth}"], [f"{item}_{depth}"], None)]
+            d = total_depth - depth
+            return [Fragment([f"{item}_{d}"], [f"{item}_{d}"], None)]
         else:
             # non<placeholder> terminal
             return [Fragment([item], [], None)]
@@ -203,7 +206,7 @@ def _generate_head_template_fragments(grammar: CFG, item: Nonterminal | Any, dep
     return []
 
 
-def _combine_fragments(f1: Fragment, f2: Fragment, depth) -> Fragment:
+def _combine_fragments(f1: Fragment, f2: Fragment, depth, total_depth) -> Fragment:
     """Combines two Fragments.
 
     This merges two CFG subsequences, e.g. 'Who is' and 'the <relation> of ...'.
@@ -242,36 +245,38 @@ def _combine_fragments(f1: Fragment, f2: Fragment, depth) -> Fragment:
         subquery = None
         answer = None
 
+        d = total_depth - depth
+
         if re.match(r"<relation_plural>_(\d+)", placeholder):
             if f2.is_placeholder():
                 # ... how many brothers does Alice have ...
                 subquery = [
-                    (f"aggregate_all(count, distinct({placeholder}({f2.p_fragment[0]}, Y_{depth})), Count_{depth})")
+                    (f"aggregate_all(count, distinct({placeholder}({f2.p_fragment[0]}, Y_{d})), Count_{d})")
                 ]
             else:
                 # ... how many brothers does the sister of Alice have ...
                 subquery = [
-                    f"aggregate_all(count, distinct({placeholder}({f2.p_answer}, Y_{depth})), Count_{depth})"
+                    f"aggregate_all(count, distinct({placeholder}({f2.p_answer}, Y_{d})), Count_{d})"
                 ] + f2.p_fragment
-            answer = f"Count_{depth}"
+            answer = f"Count_{d}"
 
         elif re.match(r"<relation>_(\d+)", placeholder):
             if f2.is_placeholder():
                 # ... who is the mother of Alice ...
-                subquery = [f"{placeholder}({f2.p_fragment[0]}, Y_{depth})"]
+                subquery = [f"{placeholder}({f2.p_fragment[0]}, Y_{d})"]
             else:
                 # ... who is the mother of the mother of Alice ...
-                subquery = [f"{placeholder}({f2.p_answer}, Y_{depth})"] + f2.p_fragment
-            answer = f"Y_{depth}"
+                subquery = [f"{placeholder}({f2.p_answer}, Y_{d})"] + f2.p_fragment
+            answer = f"Y_{d}"
 
         elif re.match(r"<attribute_name>_(\d+)", placeholder):
             if placeholder.replace("name", "value") in f2.p_fragment[0]:
                 # ... whose hobby is running ...
                 assert f2.is_placeholder()
-                subquery = [f"{placeholder}(Y_{depth}, {f2.p_fragment[0]})"]
+                subquery = [f"{placeholder}(Y_{d}, {f2.p_fragment[0]})"]
             else:
                 # ...the hobby of the mother of Alice ...
-                subquery = [f"{placeholder}({f2.p_answer}, Y_{depth})"] + f2.p_fragment
-            answer = f"Y_{depth}"
+                subquery = [f"{placeholder}({f2.p_answer}, Y_{d})"] + f2.p_fragment
+            answer = f"Y_{d}"
 
         return Fragment(q_fragment, subquery, answer)

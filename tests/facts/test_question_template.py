@@ -1,117 +1,72 @@
 # standard imports
-from numpy.random import default_rng
 import json
+
+from numpy.random import default_rng
+
 # phantom wiki functionality
 from phantom_wiki.facts import get_database
 from phantom_wiki.facts.attributes import db_generate_attributes
-from phantom_wiki.facts.templates import generate_templates
 from phantom_wiki.facts.sample import sample
+from phantom_wiki.facts.templates import generate_templates
 from phantom_wiki.utils import get_parser
+from tests.facts import DEPTH_6_PATH, DEPTH_8_PATH
 from tests.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
 
 # TODO: come up with a better way to test the question-prolog pair generation
 SAVE_SAMPLE = False
 
-QUESTION_TEMPLATES_DEPTH_6 = [
-    "Who is the <relation>_3 of the person whose <attribute_name>_1 is <attribute_value>_1 ?",
-    "Who is the <relation>_3 of <name>_2 ?",
-    "Who is the person whose <attribute_name>_3 is <attribute_value>_3 ?",
-    "What is the <attribute_name>_3 of the <relation>_2 of <name>_1 ?",
-    "What is the <attribute_name>_3 of the person whose <attribute_name>_2 is <attribute_value>_2 ?",
-    "How many <relation_plural>_4 does the <relation>_2 of <name>_1 have?",
-    "How many <relation_plural>_4 does the person whose <attribute_name>_2 is <attribute_value>_2 have?",
-    "How many <relation_plural>_4 does <name>_3 have?",
-]
+with open(DEPTH_6_PATH) as f:
+    DATA_DEPTH_6 = json.load(f)
+with open(DEPTH_8_PATH) as f:
+    DATA_DEPTH_8 = json.load(f)
 
-PROLOG_TEMPLATES_DEPTH_6 = [
-    "<relation>_3(Y_2, Y_4), <attribute_name>_1(Y_2, <attribute_value>_1)",
-    "<relation>_3(<name>_2, Y_4)",
-    "<attribute_name>_3(Y_4, <attribute_value>_3)",
-    "<attribute_name>_3(Y_3, Y_4), <relation>_2(<name>_1, Y_3)",
-    "<attribute_name>_3(Y_3, Y_4), <attribute_name>_2(Y_3, <attribute_value>_2)",
-    "aggregate_all(count, <relation_plural>_4(Y_3, Y_5), Count_5), <relation>_2(<name>_1, Y_3)",
-    "aggregate_all(count, <relation_plural>_4(Y_3, Y_5), Count_5), <attribute_name>_2(Y_3, <attribute_value>_2)",
-    "aggregate_all(count, <relation_plural>_4(<name>_3, Y_5), Count_5)",
-]
-
-PROLOG_ANSWERS_DEPTH_6 = ["Y_4", "Y_4", "Y_4", "Y_4", "Y_4", "Count_5", "Count_5", "Count_5"]
 
 def test_generate_templates_depth_6():
     templates = generate_templates(depth=6)
-    for template, question, query, answer in zip(
-        templates, QUESTION_TEMPLATES_DEPTH_6, PROLOG_TEMPLATES_DEPTH_6, PROLOG_ANSWERS_DEPTH_6
-    ):
-        assert " ".join(template[0]) == question
-        assert ", ".join(template[1]) == query
+    for template, (question, query, answer) in zip(templates, DATA_DEPTH_6):
+        assert template[0] == question
+        assert template[1] == query
         assert template[2] == answer
 
 
-# 
-# Tests for generating fully formed question-prolog pairs
-# 
+def test_generate_templates_depth_8():
+    templates = generate_templates(depth=8)
+    for template, (question, query, answer) in zip(templates, DATA_DEPTH_8):
+        assert template[0] == question
+        assert template[1] == query
+        assert template[2] == answer
+
+
+def test_template_depth_subsets():
+    """Templates at depth 6 are a subset of templates at depth 8."""
+    templates_depth_6 = generate_templates(depth=6)
+    templates_depth_8 = generate_templates(depth=8)
+
+    # Hashable representation
+    def condense_templates(q):
+        return (" ".join(q[0]), ", ".join(q[1]), q[2])
+
+    condensed_templates_depth_6 = set(map(condense_templates, templates_depth_6))
+    condensed_templates_depth_8 = set(map(condense_templates, templates_depth_8))
+
+    assert condensed_templates_depth_6 <= condensed_templates_depth_8
+
+
+#
+# Tests for sampling placeholders from the database
+#
 parser = get_parser()
 args, _ = parser.parse_known_args(["--output_dir", "test_out", "--seed", "1"])
 
 db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
 db_generate_attributes(db, args)
-# define random date of birth facts
+# define dob predicate since it is not defined in the small example
 db.define("dob/2")
 
-QUESTION_TEMPLATES_DEPTH_6_UNJOINED = [
-    [
-        "Who is",
-        "the",
-        "<relation>_3",
-        "of",
-        "the person whose",
-        "<attribute_name>_1",
-        "is",
-        "<attribute_value>_1",
-        "?",
-    ],
-    ["Who is", "the", "<relation>_3", "of", "<name>_2", "?"],
-    ["Who is", "the person whose", "<attribute_name>_3", "is", "<attribute_value>_3", "?"],
-    ["What is", "the", "<attribute_name>_3", "of", "the", "<relation>_2", "of", "<name>_1", "?"],
-    [
-        "What is",
-        "the",
-        "<attribute_name>_3",
-        "of",
-        "the person whose",
-        "<attribute_name>_2",
-        "is",
-        "<attribute_value>_2",
-        "?",
-    ],
-    ["How many", "<relation_plural>_4", "does", "the", "<relation>_2", "of", "<name>_1", "have?"],
-    [
-        "How many",
-        "<relation_plural>_4",
-        "does",
-        "the person whose",
-        "<attribute_name>_2",
-        "is",
-        "<attribute_value>_2",
-        "have?",
-    ],
-    ["How many", "<relation_plural>_4", "does", "<name>_3", "have?"],
-]
-
-PROLOG_TEMPLATES_DEPTH_6_UNJOINED = [
-    ["<relation>_3(Y_2, Y_4)", "<attribute_name>_1(Y_2, <attribute_value>_1)"],
-    ["<relation>_3(<name>_2, Y_4)"],
-    ["<attribute_name>_3(Y_4, <attribute_value>_3)"],
-    ["<attribute_name>_3(Y_3, Y_4)", "<relation>_2(<name>_1, Y_3)"],
-    ["<attribute_name>_3(Y_3, Y_4)", "<attribute_name>_2(Y_3, <attribute_value>_2)"],
-    ["aggregate_all(count, <relation_plural>_4(Y_3, Y_5), Count_5)", "<relation>_2(<name>_1, Y_3)"],
-    ["aggregate_all(count, <relation_plural>_4(Y_3, Y_5), Count_5)", "<attribute_name>_2(Y_3, <attribute_value>_2)"],
-    ["aggregate_all(count, <relation_plural>_4(<name>_3, Y_5), Count_5)"],
-]
 
 def test_sample_0():
     # case 1: valid_only=False
-    question_template_list = QUESTION_TEMPLATES_DEPTH_6_UNJOINED[0]
-    predicate_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[0]
+    question_template_list, predicate_template_list, _ = DATA_DEPTH_6[0]
     rng = default_rng(seed=1)
     any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
     if SAVE_SAMPLE:
@@ -122,7 +77,7 @@ def test_sample_0():
     #     "Who is the child of the person whose age is <attribute_value>_1 ?",
     #     ["child(Y_2, Y_4)", "age(Y_2, <attribute_value>_1)"],
     # )
-    
+
     # case 2: valid_only=True
     valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
     if SAVE_SAMPLE:
@@ -137,8 +92,7 @@ def test_sample_0():
 
 def test_sample_1():
     # case 1: valid_only=False
-    question_template_list = QUESTION_TEMPLATES_DEPTH_6_UNJOINED[1]
-    predicate_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[1]
+    question_template_list, predicate_template_list, _ = DATA_DEPTH_6[1]
     rng = default_rng(seed=1)
     any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
     if SAVE_SAMPLE:
@@ -149,7 +103,7 @@ def test_sample_1():
     #     "Who is the child of vanessa ?",
     #     ["child('vanessa', Y_4)"],
     # )
-    
+
     # case 2: valid_only=True
     valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
     if SAVE_SAMPLE:
@@ -164,8 +118,7 @@ def test_sample_1():
 
 def test_sample_3():
     # case 1: valid_only=False
-    predicate_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[3]
-    question_template_list = QUESTION_TEMPLATES_DEPTH_6_UNJOINED[3]
+    question_template_list, predicate_template_list, _ = DATA_DEPTH_6[3]
     rng = default_rng(seed=1)
     any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
     if SAVE_SAMPLE:
@@ -186,10 +139,10 @@ def test_sample_3():
     #     "<relation>_2": "daughter",
     #     "<relation>_1": "daughter"
     # }
-    
+
+
 def test_sample_4():
-    question_template_list = QUESTION_TEMPLATES_DEPTH_6_UNJOINED[4]
-    predicate_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[4]
+    question_template_list, predicate_template_list, _ = DATA_DEPTH_6[4]
     rng = default_rng(seed=1)
     any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
     if SAVE_SAMPLE:
@@ -208,8 +161,7 @@ def test_sample_4():
 
 
 def test_sample_5():
-    question_template_list = QUESTION_TEMPLATES_DEPTH_6_UNJOINED[5]
-    predicate_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[5]
+    question_template_list, predicate_template_list, _ = DATA_DEPTH_6[5]
     rng = default_rng(seed=1)
     any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
     if SAVE_SAMPLE:
@@ -220,7 +172,7 @@ def test_sample_5():
     #     "How many sons does the child of vanessa have?",
     #     ["aggregate_all(count, son(Y_3, Y_5), Count_5)", "child('vanessa', Y_3)"],
     # )
-    
+
     valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
     if SAVE_SAMPLE:
         with open("sample.json", "a") as f:
@@ -228,8 +180,7 @@ def test_sample_5():
 
 
 def test_sample_6():
-    question_template_list = QUESTION_TEMPLATES_DEPTH_6_UNJOINED[6]
-    predicate_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[6]
+    question_template_list, predicate_template_list, _ = DATA_DEPTH_6[6]
     rng = default_rng(seed=1)
     any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
     if SAVE_SAMPLE:
@@ -240,7 +191,7 @@ def test_sample_6():
     #     "How many children does the person whose age is <attribute_value>_2 have?",
     #     ["aggregate_all(count, child(Y_3, Y_5), Count_5)", "age(Y_3, <attribute_value>_2)"],
     # )
-    
+
     valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
     if SAVE_SAMPLE:
         with open("sample.json", "a") as f:
@@ -248,8 +199,7 @@ def test_sample_6():
 
 
 def test_sample_7():
-    question_template_list = QUESTION_TEMPLATES_DEPTH_6_UNJOINED[7]
-    predicate_template_list = PROLOG_TEMPLATES_DEPTH_6_UNJOINED[7]
+    question_template_list, predicate_template_list, _ = DATA_DEPTH_6[7]
     rng = default_rng(seed=1)
     any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
     if SAVE_SAMPLE:
@@ -265,3 +215,11 @@ def test_sample_7():
     if SAVE_SAMPLE:
         with open("sample.json", "a") as f:
             json.dump(valid_query, f, indent=4)
+
+
+def test_sample_depth_subsets():
+    """Questions at depth 6 are a subset of questions at depth 8."""
+    data_depth_6_str = [str(q) for q in DATA_DEPTH_6]
+    data_depth_8_str = [str(q) for q in DATA_DEPTH_8]
+    for q in data_depth_6_str:
+        assert q in data_depth_8_str
