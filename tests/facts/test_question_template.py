@@ -9,7 +9,7 @@ from phantom_wiki.facts.attributes import db_generate_attributes
 from phantom_wiki.facts.sample import sample
 from phantom_wiki.facts.templates import generate_templates
 from phantom_wiki.utils import get_parser
-from tests.facts import DEPTH_6_PATH, DEPTH_8_PATH
+from tests.facts import DEPTH_6_PATH, DEPTH_8_PATH, DEPTH_10_PATH
 from tests.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
 
 # TODO: come up with a better way to test the question-prolog pair generation
@@ -19,6 +19,8 @@ with open(DEPTH_6_PATH) as f:
     DATA_DEPTH_6 = json.load(f)
 with open(DEPTH_8_PATH) as f:
     DATA_DEPTH_8 = json.load(f)
+with open(DEPTH_10_PATH) as f:
+    DATA_DEPTH_10 = json.load(f)
 
 
 def test_generate_templates_depth_6():
@@ -36,11 +38,18 @@ def test_generate_templates_depth_8():
         assert template[1] == query
         assert template[2] == answer
 
+def test_generate_templates_depth_10():
+    templates = generate_templates(depth=10)
+    for template, (question, query, answer) in zip(templates, DATA_DEPTH_10):
+        assert template[0] == question
+        assert template[1] == query
+        assert template[2] == answer
 
 def test_template_depth_subsets():
     """Templates at depth 6 are a subset of templates at depth 8."""
     templates_depth_6 = generate_templates(depth=6)
     templates_depth_8 = generate_templates(depth=8)
+    templates_depth_10 = generate_templates(depth=10)
 
     # Hashable representation
     def condense_templates(q):
@@ -48,8 +57,10 @@ def test_template_depth_subsets():
 
     condensed_templates_depth_6 = set(map(condense_templates, templates_depth_6))
     condensed_templates_depth_8 = set(map(condense_templates, templates_depth_8))
+    condensed_templates_depth_10 = set(map(condense_templates, templates_depth_10))
 
     assert condensed_templates_depth_6 <= condensed_templates_depth_8
+    assert condensed_templates_depth_8 <= condensed_templates_depth_10
 
 
 #
