@@ -14,7 +14,7 @@ def test_main():
         fam_gen_parser,
         question_parser
     ])
-    args, _ = parser.parse_known_args(["--output_dir", "test_out", "--seed", "1"])
+    args, _ = parser.parse_known_args(["--output-dir", "test_out", "--seed", "1"])
     main(args)
 
     # test that the articles were generated correctly
@@ -37,13 +37,16 @@ def test_main():
             "<relation>_3",
             "of",
             "the person whose",
-            "<attribute_name>_1",
+            "<attribute_name>_5",
             "is",
-            "<attribute_value>_1",
+            "<attribute_value>_5",
             "?",
         ]
         assert data[0]["question"] == "Who is the daughter of the person whose job is air cabin crew ?"
-        assert data[0]["prolog"]["query"] == ["daughter(Y_2, Y_4)", "job(Y_2, 'air cabin crew')"]
+        assert data[0]["prolog"]["query"] == [
+            "daughter(Y_4, Y_2)", 
+            "job(Y_4, 'air cabin crew')"
+        ]
         assert data[0]["answer"] == []
 
     # clean up test_out directory
