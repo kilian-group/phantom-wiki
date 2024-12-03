@@ -215,3 +215,10 @@ def test_sample_7():
     if SAVE_SAMPLE:
         with open("sample.json", "a") as f:
             json.dump(valid_query, f, indent=4)
+
+def test_sample_depth_subsets():
+    """Questions at depth 6 are a subset of questions at depth 8."""
+    data_depth_6_str = [str(q) for q in DATA_DEPTH_6]
+    data_depth_8_str = [str(q) for q in DATA_DEPTH_8]
+    for q in data_depth_6_str:
+        assert q in data_depth_8_str
