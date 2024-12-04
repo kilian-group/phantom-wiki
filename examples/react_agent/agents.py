@@ -70,7 +70,8 @@ class ReactAgent:
         # Think
         self.scratchpad += f"\nThought {self.step_n}:"
         self.scratchpad += " " + self.prompt_agent(llm_chat, is_action=False)
-        sys_print(f"LLM's response: {self.scratchpad.split('\n')[-1]}")
+        response = self.scratchpad.split('\n')[-1]
+        sys_print(f"LLM's response: {response}")
         print()
 
         # Act
@@ -80,7 +81,8 @@ class ReactAgent:
         action_type, argument = parse_action(action)
         # Normalize the argument
         argument = argument.lower()
-        sys_print(f"LLM's response: {self.scratchpad.split('\n')[-1]}")
+        response = self.scratchpad.split('\n')[-1]
+        sys_print(f"LLM's response: {response}")
         print()
 
         # MEMENTO
@@ -107,8 +109,8 @@ class ReactAgent:
                     self.scratchpad += f"The last article searched was not found. Please try retrieved another article."
             case _:
                 self.scratchpad += "Invalid Action. Valid Actions are RetrieveArticle[<topic>] and Finish[<answer>]."
-
-        sys_print(f"After action: {self.scratchpad.split('\n')[-1]}")
+        action = self.scratchpad.split('\n')[-1]
+        sys_print(f"After action: {action}")
         print()
 
         self.step_n += 1
@@ -120,7 +122,8 @@ class ReactAgent:
         conv: Conversation = Conversation(messages=[
             Message(role="user", content=[ContentTextMessage(text=user_message)])
         ])
-        return format_step(llm_chat.generate_response(conv))
+        resp = llm_chat.generate_response(conv)
+        return format_step(resp)
     
     def _build_agent_prompt(self) -> str:
         return self.agent_prompt.format(
