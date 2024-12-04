@@ -3,6 +3,9 @@
 Using the SWI-Prolog CLI:
 https://www.swi-prolog.org/pldoc/man?section=quickstart
 
+SWI-Prolog syntax: https://www.swi-prolog.org/pldoc/man?section=syntax
+- According to the ISO standard and most Prolog systems, identifiers that start with an uppercase letter or an underscore are variables.
+
 ## Basic concepts
 
 https://en.wikipedia.org/wiki/Prolog#Syntax_and_semantics
@@ -24,7 +27,7 @@ Atoms must start with a lower case. Atoms can contain spaces by wrapping them in
 **Does the order of rules matter?**
 Short answer is yes. (See https://lpn.swi-prolog.org/lpnpage.php?pagetype=html&pageid=lpn-htmlse10)
 
-# Built-in SWI-Prolog predicates
+## Built-in SWI-Prolog predicates
 
 **Query:** Gets all results
 ```
@@ -41,3 +44,23 @@ The order matters, for example, when using `query_once`.
 **Aggregation:**
 
 1. `aggregate_all`: 
+
+## Naming conventions
+
+1. Entities: usually represent specific people, locations, organizations, and miscellaneous items like movies, awards, etc.
+  - Examples: `'ChristopherNolan'`, `'Dunkirk'`, `'BestDirector'`
+2. Predicates: represent relationships between entities, literals or types
+  - Examples: `director`, `dateOfBirth`, `type`
+3. Types: represent the categories that these entities belong to
+  - Examples: `Person`, `Film`, `AcademyAward`
+  - NOTE: `type` is a special predicate that connects an entity to its category
+4. Literals: represent constants like dates, population counts, quotations, and other strings and numbers 
+  - Examples: `'30July1970'`, `'30Million'`, `'148Minutes'`
+
+Reference: https://link.springer.com/book/10.1007/978-3-031-79512-1
+
+As a convention, let's wrap entities and literals in single quotes, but types should be normal strings. For example,
+```
+type('running', hobby).
+type('alfonso', person).
+```
