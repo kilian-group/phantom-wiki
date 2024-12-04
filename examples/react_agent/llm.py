@@ -1,6 +1,9 @@
 import abc
 import os
 
+import anthropic
+import openai
+import together
 from langchain.prompts import PromptTemplate
 from tenacity import retry, stop_after_attempt, wait_fixed
 
@@ -42,7 +45,7 @@ class LLMChat(abc.ABC):
         pass
 
 
-class OpenAIChat(LLMChat):
+class CommonLLMChat(LLMChat):
     def __init__(
         self,
         model_name: str,
@@ -58,35 +61,76 @@ class OpenAIChat(LLMChat):
             stream_generations (bool): Flag to enable streaming generations.
         """
         super().__init__(max_retries, wait_seconds, temperature, seed)
-        import openai
 
         self.model_name = model_name
         self.stream_generations = stream_generations
-        self.openai_client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.client = None
+    
+    @abc.abstractmethod
+    def _call_api(self, conv: Conversation) -> str:
+        pass
 
     def generate_response(self, conv: Conversation) -> str:
+        assert self.client is not None, "Client is not initialized."
+
+        # max_retries and wait_seconds are object attributes, and cannot be written around the generate_response function
+        # So we need to wrap the _call_api function with the retry decorator
+        @retry(stop=stop_after_attempt(self.max_retries), wait=wait_fixed(self.wait_seconds))
+        def _call_api_wrapper(conv: Conversation) -> str:
+            return self._call_api(conv)
+
+        return _call_api_wrapper(conv)
+
+
+class OpenAIChat(CommonLLMChat):
+    def __init__(
+        self,
+        model_name: str,
+        max_retries: int,
+        wait_seconds: int,
+        temperature: float,
+        seed: int,
+        stream_generations: bool,
+    ):
+        super().__init__(model_name, max_retries, wait_seconds, temperature, seed, stream_generations)
+        self.client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    
+    def _call_api(self, conv: Conversation) -> str:
+        # https://platform.openai.com/docs/api-reference/introduction
         # Convert conv to OpenAI format
-        openai_conv = []
+        formatted_messages = []
         for message in conv.messages:
             for content in message.content:
                 match content:
                     case ContentTextMessage(text=text):
-                        openai_conv.append({"role": message.role, "content": [{"type": "text", "text": text}]})
+                        formatted_messages.append({"role": message.role, "content": [{"type": "text", "text": text}]})
 
-        # Wrap retry params inside generate_response
-        @retry(stop=stop_after_attempt(self.max_retries), wait=wait_fixed(self.wait_seconds))
-        def _call_api(conv: Conversation) -> str:
-            completion = self.openai_client.chat.completions.create(
-                model=self.model_name,
-                messages=openai_conv,
-                temperature=self.temperature,
-                seed=self.seed,
-                stream=self.stream_generations,
-            )
-            return completion if self.stream_generations else completion.choices[0].message.content
+        completion = self.client.chat.completions.create(
+            model=self.model_name,
+            messages=formatted_messages,
+            temperature=self.temperature,
+            seed=self.seed,
+            stream=self.stream_generations,
+        )
+        return completion if self.stream_generations else completion.choices[0].message.content
 
-        return _call_api(conv)
-    
+
+class TogetherChat(OpenAIChat):
+    # Together follows the same API as OpenAI, just initialize the client
+    # https://github.com/togethercomputer/together-python
+    def __init__(
+        self,
+        model_name: str,
+        max_retries: int,
+        wait_seconds: int,
+        temperature: float,
+        seed: int,
+        stream_generations: bool,
+    ):
+        assert not model_name.startswith("together:"), "model_name must not start with 'together:', remove it then initialize the TogetherChat object."
+        super().__init__(model_name, max_retries, wait_seconds, temperature, seed, stream_generations)
+        self.client = together.Together(api_key=os.getenv("TOGETHER_API_KEY"))
+
 
 class GeminiChat(LLMChat):
     def __init__(
@@ -144,7 +188,8 @@ class GeminiChat(LLMChat):
 
         return _call_api(conv)
     
-class AnthropicChat(LLMChat):
+
+class AnthropicChat(CommonLLMChat):
     def __init__(
         self,
         model_name: str,
@@ -154,51 +199,86 @@ class AnthropicChat(LLMChat):
         seed: int,
         stream_generations: bool,
     ):
-        """
-        Args:
-            model_name (str): The model name to use.
-            stream_generations (bool): Flag to enable streaming generations.
-        """
-        super().__init__(max_retries, wait_seconds, temperature, seed)
-        from anthropic import Anthropic
-
-        self.model_name = model_name
-        self.stream_generations = stream_generations
-        self.anthropic_model = Anthropic()
-
-    def generate_response(self, conv: Conversation) -> str:
-        # TODO
-        """
-        Ref: 
-        - https://docs.anthropic.com/en/api/migrating-from-text-completions-to-messages 
-        """
-        claude_conv = []
+        super().__init__(model_name, max_retries, wait_seconds, temperature, seed, stream_generations)
+        self.client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    
+    def _call_api(self, conv: Conversation) -> str:
+        # https://docs.anthropic.com/en/api/migrating-from-text-completions-to-messages
+        # Convert conv to Anthropic format
+        formatted_messages = []
         for message in conv.messages:
             for content in message.content:
                 match content:
                     case ContentTextMessage(text=text):
-                        claude_conv.append({"role": message.role, "content": [{"type": "text", "text": text}]})
+                        formatted_messages.append({"role": message.role, "content": [{"type": "text", "text": text}]})
+
+        response = self.client.messages.create(
+            model=self.model_name,
+            messages=formatted_messages,
+            temperature=self.temperature,
+            top_p=top_p,
+            top_k=top_k,
+            max_tokens=MAX_TOKENS,
+            stream=self.stream_generations,
+        )
+        return response.content[0].text
 
 
-        # Wrap retry params inside generate_response
-        @retry(stop=stop_after_attempt(self.max_retries), wait=wait_fixed(self.wait_seconds))
-        def _call_api(conv: Conversation) -> str:
-            import pdb; pdb.set_trace()
-            completion = self.anthropic_model.messages.create(
-                model=self.model_name,
-                messages=claude_conv,
-                temperature=self.temperature,
-                top_p=top_p,
-                top_k=top_k,
-                # NOTE: repetition_penalty is not supported by Anthropic's API
-                # NOTE: by default, the model will stop at the end of the turn
-                max_tokens=MAX_TOKENS,
-                # NOTE: seed is not supported by Anthropic's API
-                stream = self.stream_generations
-            )
-            return completion if self.stream_generations else completion.content[0].text
+# class AnthropicChat(LLMChat):
+#     def __init__(
+#         self,
+#         model_name: str,
+#         max_retries: int,
+#         wait_seconds: int,
+#         temperature: float,
+#         seed: int,
+#         stream_generations: bool,
+#     ):
+#         """
+#         Args:
+#             model_name (str): The model name to use.
+#             stream_generations (bool): Flag to enable streaming generations.
+#         """
+#         super().__init__(max_retries, wait_seconds, temperature, seed)
+#         from anthropic import Anthropic
 
-        return _call_api(conv)
+#         self.model_name = model_name
+#         self.stream_generations = stream_generations
+#         self.anthropic_model = Anthropic()
+
+#     def generate_response(self, conv: Conversation) -> str:
+#         # TODO
+#         """
+#         Ref: 
+#         - https://docs.anthropic.com/en/api/migrating-from-text-completions-to-messages 
+#         """
+#         claude_conv = []
+#         for message in conv.messages:
+#             for content in message.content:
+#                 match content:
+#                     case ContentTextMessage(text=text):
+#                         claude_conv.append({"role": message.role, "content": [{"type": "text", "text": text}]})
+
+
+#         # Wrap retry params inside generate_response
+#         @retry(stop=stop_after_attempt(self.max_retries), wait=wait_fixed(self.wait_seconds))
+#         def _call_api(conv: Conversation) -> str:
+#             import pdb; pdb.set_trace()
+#             completion = self.anthropic_model.messages.create(
+#                 model=self.model_name,
+#                 messages=claude_conv,
+#                 temperature=self.temperature,
+#                 top_p=top_p,
+#                 top_k=top_k,
+#                 # NOTE: repetition_penalty is not supported by Anthropic's API
+#                 # NOTE: by default, the model will stop at the end of the turn
+#                 max_tokens=MAX_TOKENS,
+#                 # NOTE: seed is not supported by Anthropic's API
+#                 stream = self.stream_generations
+#             )
+#             return completion if self.stream_generations else completion.content[0].text
+
+#         return _call_api(conv)
 
 
 REACT_INSTRUCTION = """Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types: 
