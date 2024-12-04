@@ -9,10 +9,11 @@ dotenv.load_dotenv(".env", override=True)
 # %%
 # Specify argument parser
 import argparse
+import llm
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_name", type=str, default="gpt-4o-mini", choices=["gpt-4o-mini", "gpt-3.5-turbo", "llama-3.1-8b"])
+    parser.add_argument("--model_name", type=str, default="gpt-4o-mini-2024-07-18", choices=llm.SUPPORTED_LLM_NAMES)
 
     # Dataset arguments
     parser.add_argument("--eval_split", type=str, default="depth_6_size_26_seed_1")
@@ -46,10 +47,10 @@ df_qa_w_answers = df_qa_w_answers.loc[df_qa_w_answers["type"] == 1, :]
 df_text_corpus = pd.DataFrame(ds_text_corpus)
 
 print("Question Answer dataset:")
-display(df_qa_w_answers.head())
+print(df_qa_w_answers.head())
 
 print("Text corpus dataset:")
-display(df_text_corpus.head())
+print(df_text_corpus.head())
 
 # %%
 from agents import ReactAgent

@@ -16,16 +16,21 @@ MAX_TOKENS = 512
 
 
 class LLMChat(abc.ABC):
-    def __init__(self, max_retries: int, wait_seconds: int, temperature: float, seed: int):
+    SUPPORTED_LLM_NAMES: list[str] = []
+
+    def __init__(self, model_name: str, max_retries: int, wait_seconds: int, temperature: float, seed: int):
         """
         Initialize the LLM chat object.
 
         Args:
+            model_name (str): The model name to use.
             max_retries (int): Max number of API calls allowed before giving up.
             wait_seconds (int): Number of seconds to wait between API calls.
             temperature (float): Temperature parameter for sampling.
             seed (int): Seed for random number generator, passed to the model if applicable.
         """
+        assert model_name in self.SUPPORTED_LLM_NAMES, f"Model name {model_name} must be one of {self.SUPPORTED_LLM_NAMES}."
+        self.model_name = model_name
         self.max_retries = max_retries
         self.wait_seconds = wait_seconds
         self.temperature = temperature
@@ -54,13 +59,7 @@ class CommonLLMChat(LLMChat):
         temperature: float,
         seed: int,
     ):
-        """
-        Args:
-            model_name (str): The model name to use.
-        """
-        super().__init__(max_retries, wait_seconds, temperature, seed)
-
-        self.model_name = model_name
+        super().__init__(model_name, max_retries, wait_seconds, temperature, seed)
         self.client = None
     
     @abc.abstractmethod
@@ -80,6 +79,11 @@ class CommonLLMChat(LLMChat):
 
 
 class OpenAIChat(CommonLLMChat):
+    SUPPORTED_LLM_NAMES: list[str] = [
+        "gpt-4o-mini-2024-07-18",
+        "gpt-4o-2024-11-20",
+    ]
+
     def __init__(
         self,
         model_name: str,
@@ -111,8 +115,13 @@ class OpenAIChat(CommonLLMChat):
 
 
 class TogetherChat(OpenAIChat):
-    # Together follows the same API as OpenAI, just initialize the client
-    # https://github.com/togethercomputer/together-python
+    SUPPORTED_LLM_NAMES: list[str] = [
+        "together:meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
+        "together:meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
+        "together:meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
+        "together:meta-llama/Llama-Vision-Free",
+    ]
+
     def __init__(
         self,
         model_name: str,
@@ -121,12 +130,36 @@ class TogetherChat(OpenAIChat):
         temperature: float,
         seed: int,
     ):
-        assert not model_name.startswith("together:"), "model_name must not start with 'together:', remove it then initialize the TogetherChat object."
+        assert model_name.startswith("together:"), "model_name must start with 'together:'"
         super().__init__(model_name, max_retries, wait_seconds, temperature, seed)
         self.client = together.Together(api_key=os.getenv("TOGETHER_API_KEY"))
 
+    def _call_api(self, conv: Conversation) -> str:
+        # https://github.com/togethercomputer/together-python
+        # Convert conv to Together format
+        formatted_messages = []
+        for message in conv.messages:
+            for content in message.content:
+                match content:
+                    case ContentTextMessage(text=text):
+                        formatted_messages.append({"role": message.role, "content": [{"type": "text", "text": text}]})
+
+        # Remove the "together:" prefix before setting up the client
+        completion = self.client.chat.completions.create(
+            model=self.model_name.lstrip("together:"),
+            messages=formatted_messages,
+            temperature=self.temperature,
+            seed=self.seed,
+        )
+        return completion.choices[0].message.content
+
 
 class GeminiChat(LLMChat):
+    SUPPORTED_LLM_NAMES: list[str] = [
+        "gemini-1.5-flash-002",
+        "gemini-1.5-pro-002",
+    ]
+
     def __init__(
         self,
         model_name: str,
@@ -135,14 +168,9 @@ class GeminiChat(LLMChat):
         temperature: float,
         seed: int,
     ):
-        """
-        Args:
-            model_name (str): The model name to use.
-        """
-        super().__init__(max_retries, wait_seconds, temperature, seed)
+        super().__init__(model_name, max_retries, wait_seconds, temperature, seed)
         import google.generativeai as genai
 
-        self.model_name = model_name
         self.google_model = genai.GenerativeModel(self.model_name)
 
     def generate_response(self, conv: Conversation) -> str:
@@ -180,6 +208,11 @@ class GeminiChat(LLMChat):
     
 
 class AnthropicChat(CommonLLMChat):
+    SUPPORTED_LLM_NAMES: list[str] = [
+        "claude-3-5-haiku-20241022",
+        "claude-3-5-sonnet-20241022",
+    ]
+
     def __init__(
         self,
         model_name: str,
@@ -239,15 +272,17 @@ class OpenAIPrompts(LLMPrompts):
         )
 
 
+SUPPORTED_LLM_NAMES: list[str] = OpenAIChat.SUPPORTED_LLM_NAMES + TogetherChat.SUPPORTED_LLM_NAMES + GeminiChat.SUPPORTED_LLM_NAMES + AnthropicChat.SUPPORTED_LLM_NAMES
+
 def get_llm(model_name: str, model_kwargs: dict) -> tuple[LLMChat, LLMPrompts]:
     match model_name:
-        case "gpt-3.5-turbo" | "gpt-4o-mini":
+        case model_name if model_name in OpenAIChat.SUPPORTED_LLM_NAMES:
             return OpenAIChat(model_name=model_name, **model_kwargs), OpenAIPrompts()
-        case "llama-3.1-8b":
-            raise NotImplementedError("LLama-3.1-8b model is not yet supported.")
-        case "claude-3-opus-20240229":
-            return AnthropicChat(model_name=model_name, **model_kwargs), OpenAIPrompts()
-        case "gemini-1.5-flash":
+        case model_name if model_name in TogetherChat.SUPPORTED_LLM_NAMES:
+            return TogetherChat(model_name=model_name, **model_kwargs), OpenAIPrompts()
+        case model_name if model_name in GeminiChat.SUPPORTED_LLM_NAMES:
             return GeminiChat(model_name=model_name, **model_kwargs), OpenAIPrompts()
-        # case :
-        #     raise ValueError(f"Unknown model name: {model_name}")
+        case model_name if model_name in AnthropicChat.SUPPORTED_LLM_NAMES:
+            return AnthropicChat(model_name=model_name, **model_kwargs), OpenAIPrompts()
+        case _:
+            raise ValueError(f"Model name {model_name} must be one of {SUPPORTED_LLM_NAMES}.")
