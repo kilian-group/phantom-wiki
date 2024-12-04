@@ -14,6 +14,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_name", type=str, default="gpt-4o-mini", choices=["gpt-4o-mini", "gpt-3.5-turbo", "llama-3.1-8b"])
 
+    # Dataset arguments
+    parser.add_argument("--eval_split", type=str, default="depth_6_size_26_seed_1")
+
     # React Agent arguments
     parser.add_argument("--max_steps", type=int, default=6)
     parser.add_argument("--window_size", type=int, default=6)
@@ -25,8 +28,8 @@ if __name__ == "__main__":
 import datasets
 from datasets import load_dataset
 
-ds_qa = datasets.load_dataset("mlcore/phantom-wiki", "question-answer", split="val")
-ds_text_corpus = datasets.load_dataset("mlcore/phantom-wiki", "text-corpus", split="val")
+ds_qa = datasets.load_dataset("mlcore/phantom-wiki", "question-answer", split=args.eval_split)
+ds_text_corpus = datasets.load_dataset("mlcore/phantom-wiki", "text-corpus", split=args.eval_split)
 
 
 # %%
@@ -37,6 +40,7 @@ import pandas as pd
 df_qa_w_answers = pd.DataFrame(
     filter(lambda sample: len(sample["answer"]) > 0, ds_qa)
 )
+# Filter easy questions, type 1 == "who is the mother of X?"
 df_qa_w_answers = df_qa_w_answers.loc[df_qa_w_answers["type"] == 1, :]
 # Load the text corpus dataset into a dataframe
 df_text_corpus = pd.DataFrame(ds_text_corpus)
