@@ -57,7 +57,6 @@ model_kwargs = dict(
     wait_seconds=1,
     temperature=0,
     seed=0,
-    stream_generations=False,
 )
 llm_chat, llm_prompts = get_llm(args.model_name, model_kwargs=model_kwargs)
 

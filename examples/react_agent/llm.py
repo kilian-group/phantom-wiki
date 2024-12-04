@@ -53,17 +53,14 @@ class CommonLLMChat(LLMChat):
         wait_seconds: int,
         temperature: float,
         seed: int,
-        stream_generations: bool,
     ):
         """
         Args:
             model_name (str): The model name to use.
-            stream_generations (bool): Flag to enable streaming generations.
         """
         super().__init__(max_retries, wait_seconds, temperature, seed)
 
         self.model_name = model_name
-        self.stream_generations = stream_generations
         self.client = None
     
     @abc.abstractmethod
@@ -90,9 +87,8 @@ class OpenAIChat(CommonLLMChat):
         wait_seconds: int,
         temperature: float,
         seed: int,
-        stream_generations: bool,
     ):
-        super().__init__(model_name, max_retries, wait_seconds, temperature, seed, stream_generations)
+        super().__init__(model_name, max_retries, wait_seconds, temperature, seed)
         self.client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
     
     def _call_api(self, conv: Conversation) -> str:
@@ -110,9 +106,8 @@ class OpenAIChat(CommonLLMChat):
             messages=formatted_messages,
             temperature=self.temperature,
             seed=self.seed,
-            stream=self.stream_generations,
         )
-        return completion if self.stream_generations else completion.choices[0].message.content
+        return completion.choices[0].message.content
 
 
 class TogetherChat(OpenAIChat):
@@ -125,10 +120,9 @@ class TogetherChat(OpenAIChat):
         wait_seconds: int,
         temperature: float,
         seed: int,
-        stream_generations: bool,
     ):
         assert not model_name.startswith("together:"), "model_name must not start with 'together:', remove it then initialize the TogetherChat object."
-        super().__init__(model_name, max_retries, wait_seconds, temperature, seed, stream_generations)
+        super().__init__(model_name, max_retries, wait_seconds, temperature, seed)
         self.client = together.Together(api_key=os.getenv("TOGETHER_API_KEY"))
 
 
@@ -140,18 +134,15 @@ class GeminiChat(LLMChat):
         wait_seconds: int,
         temperature: float,
         seed: int,
-        stream_generations: bool,
     ):
         """
         Args:
             model_name (str): The model name to use.
-            stream_generations (bool): Flag to enable streaming generations.
         """
         super().__init__(max_retries, wait_seconds, temperature, seed)
         import google.generativeai as genai
 
         self.model_name = model_name
-        self.stream_generations = stream_generations
         self.google_model = genai.GenerativeModel(self.model_name)
 
     def generate_response(self, conv: Conversation) -> str:
@@ -182,9 +173,8 @@ class GeminiChat(LLMChat):
                     'stop_sequences': STOP,
                     # NOTE: API does not support seed, repetition_penalty
                 },
-                stream=self.stream_generations
             )
-            return completion if self.stream_generations else completion.text
+            return completion.text
 
         return _call_api(conv)
     
@@ -197,9 +187,8 @@ class AnthropicChat(CommonLLMChat):
         wait_seconds: int,
         temperature: float,
         seed: int,
-        stream_generations: bool,
     ):
-        super().__init__(model_name, max_retries, wait_seconds, temperature, seed, stream_generations)
+        super().__init__(model_name, max_retries, wait_seconds, temperature, seed)
         self.client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
     
     def _call_api(self, conv: Conversation) -> str:
@@ -219,66 +208,8 @@ class AnthropicChat(CommonLLMChat):
             top_p=top_p,
             top_k=top_k,
             max_tokens=MAX_TOKENS,
-            stream=self.stream_generations,
         )
         return response.content[0].text
-
-
-# class AnthropicChat(LLMChat):
-#     def __init__(
-#         self,
-#         model_name: str,
-#         max_retries: int,
-#         wait_seconds: int,
-#         temperature: float,
-#         seed: int,
-#         stream_generations: bool,
-#     ):
-#         """
-#         Args:
-#             model_name (str): The model name to use.
-#             stream_generations (bool): Flag to enable streaming generations.
-#         """
-#         super().__init__(max_retries, wait_seconds, temperature, seed)
-#         from anthropic import Anthropic
-
-#         self.model_name = model_name
-#         self.stream_generations = stream_generations
-#         self.anthropic_model = Anthropic()
-
-#     def generate_response(self, conv: Conversation) -> str:
-#         # TODO
-#         """
-#         Ref: 
-#         - https://docs.anthropic.com/en/api/migrating-from-text-completions-to-messages 
-#         """
-#         claude_conv = []
-#         for message in conv.messages:
-#             for content in message.content:
-#                 match content:
-#                     case ContentTextMessage(text=text):
-#                         claude_conv.append({"role": message.role, "content": [{"type": "text", "text": text}]})
-
-
-#         # Wrap retry params inside generate_response
-#         @retry(stop=stop_after_attempt(self.max_retries), wait=wait_fixed(self.wait_seconds))
-#         def _call_api(conv: Conversation) -> str:
-#             import pdb; pdb.set_trace()
-#             completion = self.anthropic_model.messages.create(
-#                 model=self.model_name,
-#                 messages=claude_conv,
-#                 temperature=self.temperature,
-#                 top_p=top_p,
-#                 top_k=top_k,
-#                 # NOTE: repetition_penalty is not supported by Anthropic's API
-#                 # NOTE: by default, the model will stop at the end of the turn
-#                 max_tokens=MAX_TOKENS,
-#                 # NOTE: seed is not supported by Anthropic's API
-#                 stream = self.stream_generations
-#             )
-#             return completion if self.stream_generations else completion.content[0].text
-
-#         return _call_api(conv)
 
 
 REACT_INSTRUCTION = """Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types: 
