@@ -66,7 +66,30 @@ class CommonLLMChat(LLMChat):
     def _call_api(self, conv: Conversation) -> str:
         pass
 
+    def convert_conv_to_common_format(self, conv: Conversation) -> list[dict]:
+        """
+        Converts the conversation object to a common format supported by various LLM providers.
+        Common format is:
+        ```
+        [
+            {"role": role1, "content": [{"type": "text", "text": text1},
+            {"role": role2, "content": [{"type": "text", "text": text2},
+            {"role": role3, "content": [{"type": "text", "text": text3},
+        ]
+        ```
+        """
+        formatted_messages = []
+        for message in conv.messages:
+            for content in message.content:
+                match content:
+                    case ContentTextMessage(text=text):
+                        formatted_messages.append({"role": message.role, "content": [{"type": "text", "text": text}]})
+        return formatted_messages
+
     def generate_response(self, conv: Conversation) -> str:
+        """
+        Generate response for the conversation.
+        """
         assert self.client is not None, "Client is not initialized."
 
         # max_retries and wait_seconds are object attributes, and cannot be written around the generate_response function
@@ -97,14 +120,7 @@ class OpenAIChat(CommonLLMChat):
     
     def _call_api(self, conv: Conversation) -> str:
         # https://platform.openai.com/docs/api-reference/introduction
-        # Convert conv to OpenAI format
-        formatted_messages = []
-        for message in conv.messages:
-            for content in message.content:
-                match content:
-                    case ContentTextMessage(text=text):
-                        formatted_messages.append({"role": message.role, "content": [{"type": "text", "text": text}]})
-
+        formatted_messages = self.convert_conv_to_common_format(conv)
         completion = self.client.chat.completions.create(
             model=self.model_name,
             messages=formatted_messages,
@@ -136,13 +152,7 @@ class TogetherChat(OpenAIChat):
 
     def _call_api(self, conv: Conversation) -> str:
         # https://github.com/togethercomputer/together-python
-        # Convert conv to Together format
-        formatted_messages = []
-        for message in conv.messages:
-            for content in message.content:
-                match content:
-                    case ContentTextMessage(text=text):
-                        formatted_messages.append({"role": message.role, "content": [{"type": "text", "text": text}]})
+        formatted_messages = self.convert_conv_to_common_format(conv)
 
         # Remove the "together:" prefix before setting up the client
         completion = self.client.chat.completions.create(
@@ -152,6 +162,37 @@ class TogetherChat(OpenAIChat):
             seed=self.seed,
         )
         return completion.choices[0].message.content
+
+
+class AnthropicChat(CommonLLMChat):
+    SUPPORTED_LLM_NAMES: list[str] = [
+        "claude-3-5-haiku-20241022",
+        "claude-3-5-sonnet-20241022",
+    ]
+
+    def __init__(
+        self,
+        model_name: str,
+        max_retries: int,
+        wait_seconds: int,
+        temperature: float,
+        seed: int,
+    ):
+        super().__init__(model_name, max_retries, wait_seconds, temperature, seed)
+        self.client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    
+    def _call_api(self, conv: Conversation) -> str:
+        # https://docs.anthropic.com/en/api/migrating-from-text-completions-to-messages
+        formatted_messages = self.convert_conv_to_common_format(conv)
+        response = self.client.messages.create(
+            model=self.model_name,
+            messages=formatted_messages,
+            temperature=self.temperature,
+            top_p=top_p,
+            top_k=top_k,
+            max_tokens=MAX_TOKENS,
+        )
+        return response.content[0].text
 
 
 class GeminiChat(LLMChat):
@@ -206,44 +247,6 @@ class GeminiChat(LLMChat):
 
         return _call_api(conv)
     
-
-class AnthropicChat(CommonLLMChat):
-    SUPPORTED_LLM_NAMES: list[str] = [
-        "claude-3-5-haiku-20241022",
-        "claude-3-5-sonnet-20241022",
-    ]
-
-    def __init__(
-        self,
-        model_name: str,
-        max_retries: int,
-        wait_seconds: int,
-        temperature: float,
-        seed: int,
-    ):
-        super().__init__(model_name, max_retries, wait_seconds, temperature, seed)
-        self.client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-    
-    def _call_api(self, conv: Conversation) -> str:
-        # https://docs.anthropic.com/en/api/migrating-from-text-completions-to-messages
-        # Convert conv to Anthropic format
-        formatted_messages = []
-        for message in conv.messages:
-            for content in message.content:
-                match content:
-                    case ContentTextMessage(text=text):
-                        formatted_messages.append({"role": message.role, "content": [{"type": "text", "text": text}]})
-
-        response = self.client.messages.create(
-            model=self.model_name,
-            messages=formatted_messages,
-            temperature=self.temperature,
-            top_p=top_p,
-            top_k=top_k,
-            max_tokens=MAX_TOKENS,
-        )
-        return response.content[0].text
-
 
 REACT_INSTRUCTION = """Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types: 
 (1) RetrieveArticle[entity], which searches the exact entity on Wikipedia and returns the page if it exists. If not, it will return that the page does not exist.
