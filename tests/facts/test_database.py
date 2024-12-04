@@ -1,24 +1,24 @@
 import os
 from phantom_wiki.facts.database import Database
 from phantom_wiki.facts import get_database
-from tests.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
+from tests.facts.family import FACTS_SMALL_EXAMPLE_PATH
 
 def test_save_database():
     file = "test.pl"
     # create a database and safe to file
     db1 = Database()
-    db1.define("female/1")
-    db1.add("female(alice)")
+    # db1.define("female/1")
+    db1.add("type(\'alice\', person)")
     db1.save_to_disk(file)
     assert os.path.exists(file)
     # load the database from the file
     db2 = Database.from_disk(file)
-    result = db2.query("female(X)")
+    result = db2.query("distinct(type(X, person))")
     
     # clean up
     os.remove(file)
     
-    assert len(result) == [{'X': 'alice'}]
+    assert result == [{'X': 'alice'}]
     # NOTE: for some reason this test fails because there are duplicate facts in the database
     # but when you look inside test.pl, there are no duplicate facts
     # NOTE: prolog.consult() is buggy
@@ -26,35 +26,6 @@ def test_save_database():
     # if you consult "test.pl" from pyswipl, it will show that there are duplicate facts
 
 def test_get_names():
-    db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
+    db = Database.from_disk(FACTS_SMALL_EXAMPLE_PATH)
     names = db.get_names()
-    assert names == [
-        "anastasia",
-        "angelina",
-        "charlotte",
-        "clara",
-        "elena",
-        "helga",
-        "lena",
-        "lisa",
-        "mary",
-        "mia",
-        "natalie",
-        "nora",
-        "sarah",
-        "vanessa",
-        "elias",
-        "fabian",
-        "felix",
-        "gabriel",
-        "jan",
-        "jonas",
-        "lorenz",
-        "maximilian",
-        "michael",
-        "oskar",
-        "patrick",
-        "simon",
-        "thomas",
-        "vincent",
-    ]
+    assert set(names) == set(['alfonso', 'alton', 'antionette', 'colby', 'daisy', 'deangelo', 'deanna', 'derick', 'dixie', 'dominick', 'ellis', 'ila', 'johnna', 'kanesha', 'kari', 'lyndia', 'maggie', 'matt', 'meghann', 'miki', 'reyna', 'rosalee', 'scotty', 'tanner', 'thomasine', 'vicente'])
