@@ -1,16 +1,15 @@
 # standard imports
 import json
-
 from numpy.random import default_rng
 
 # phantom wiki functionality
-from phantom_wiki.facts import get_database
-from phantom_wiki.facts.attributes import db_generate_attributes
+from phantom_wiki.facts import Database
 from phantom_wiki.facts.sample import sample
 from phantom_wiki.facts.templates import generate_templates
 from phantom_wiki.utils import get_parser
+# testing utils
 from tests.facts import DEPTH_6_PATH, DEPTH_8_PATH, DEPTH_10_PATH
-from tests.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
+from tests.facts.family import FACTS_SMALL_EXAMPLE_PATH
 
 # TODO: come up with a better way to test the question-prolog pair generation
 SAVE_SAMPLE = False
@@ -68,12 +67,7 @@ def test_template_depth_subsets():
 #
 parser = get_parser()
 args, _ = parser.parse_known_args(["--output_dir", "test_out", "--seed", "1"])
-
-db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
-db_generate_attributes(db, args)
-# define dob predicate since it is not defined in the small example
-db.define("dob/2")
-
+db = Database.from_disk(FACTS_SMALL_EXAMPLE_PATH)
 
 def test_sample_0():
     # case 1: valid_only=False
