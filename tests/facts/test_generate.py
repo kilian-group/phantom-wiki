@@ -1,8 +1,8 @@
-from phantom_wiki.facts import get_database
+from phantom_wiki.facts import Database
 from phantom_wiki.facts.person import generate_population
 from phantom_wiki.facts.attributes.generate import (generate_jobs,
                                                     generate_hobbies)
-from tests.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
+from tests.facts.family import FACTS_SMALL_EXAMPLE_PATH
 
 # 
 # Test for population generation
@@ -86,73 +86,23 @@ def test_generate_population():
 # Test for attributes
 # 
 def test_generate_jobs():
-    db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
-    db.define("female/1", "male/1", "nonbinary/1", "age/2")
-    jobs = generate_jobs(db.get_names(), seed=1)
-    assert jobs == {
-        "anastasia": "contractor",
-        "angelina": "teacher, adult education",
-        "charlotte": "biomedical scientist",
-        "clara": "freight forwarder",
-        "elena": "commercial/residential surveyor",
-        "helga": "research scientist (life sciences)",
-        "lena": "production assistant, television",
-        "lisa": "public house manager",
-        "mary": "museum education officer",
-        "mia": "engineer, manufacturing systems",
-        "natalie": "chief marketing officer",
-        "nora": "ranger/warden",
-        "sarah": "air cabin crew",
-        "vanessa": "newspaper journalist",
-        "elias": "police officer",
-        "fabian": "translator",
-        "felix": "accountant, chartered",
-        "gabriel": "product designer",
-        "jan": "geographical information systems officer",
-        "jonas": "estate manager/land agent",
-        "lorenz": "therapist, art",
-        "maximilian": "civil engineer, consulting",
-        "michael": "investment banker, corporate",
-        "oskar": "airline pilot",
-        "patrick": "advertising copywriter",
-        "simon": "agricultural engineer",
-        "thomas": "special educational needs teacher",
-        "vincent": "acupuncturist"
-    }
+    db = Database.from_disk(FACTS_SMALL_EXAMPLE_PATH)
+    jobs = generate_jobs(sorted(db.get_names()), seed=1)
+    from tests.facts import JOBS_PATH
+    import json
+    with open(JOBS_PATH, "r") as f:
+        reference_jobs = json.load(f)
+    # with open("jobs.json", "w") as f:
+    #     json.dump(jobs, f, indent=4)
+    assert jobs == reference_jobs
+
 def test_generate_hobbies():
-    db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
-    db.define("female/1", "male/1", "nonbinary/1", "age/2")
-    hobbies = generate_hobbies(db.get_names(), seed=1)
-    # import json
+    db = Database.from_disk(FACTS_SMALL_EXAMPLE_PATH)
+    hobbies = generate_hobbies(sorted(db.get_names()), seed=1)
+    from tests.facts import HOBBIES_PATH
+    import json
+    with open(HOBBIES_PATH, "r") as f:
+        reference_hobbies = json.load(f)
     # with open("hobbies.json", "w") as f:
     #     json.dump(hobbies, f, indent=4)
-    assert hobbies == {
-        "anastasia": "meditation",
-        "angelina": "meteorology",
-        "charlotte": "biology",
-        "clara": "meteorology",
-        "elena": "dolls",
-        "helga": "photography",
-        "lena": "shogi",
-        "lisa": "dominoes",
-        "mary": "tether car",
-        "mia": "architecture",
-        "natalie": "geocaching",
-        "nora": "trainspotting",
-        "sarah": "bus spotting[22",
-        "vanessa": "research",
-        "elias": "geography",
-        "fabian": "microbiology",
-        "felix": "canoeing",
-        "gabriel": "learning",
-        "jan": "dairy farming",
-        "jonas": "fossil hunting",
-        "lorenz": "sociology",
-        "maximilian": "finance",
-        "michael": "meditation",
-        "oskar": "wikipedia editing",
-        "patrick": "radio-controlled car racing",
-        "simon": "social studies",
-        "thomas": "judo",
-        "vincent": "flying disc"
-    }
+    assert hobbies == reference_hobbies
