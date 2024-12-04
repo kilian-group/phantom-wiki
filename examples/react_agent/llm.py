@@ -1,11 +1,15 @@
 import abc
 import os
 
-import openai
 from langchain.prompts import PromptTemplate
 from tenacity import retry, stop_after_attempt, wait_fixed
 
 from data import ContentTextMessage, Conversation
+
+STOP = ["\n"]
+top_p = 0.7
+top_k = 40
+MAX_TOKENS = 512
 
 
 class LLMChat(abc.ABC):
@@ -54,6 +58,8 @@ class OpenAIChat(LLMChat):
             stream_generations (bool): Flag to enable streaming generations.
         """
         super().__init__(max_retries, wait_seconds, temperature, seed)
+        import openai
+
         self.model_name = model_name
         self.stream_generations = stream_generations
         self.openai_client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -78,6 +84,119 @@ class OpenAIChat(LLMChat):
                 stream=self.stream_generations,
             )
             return completion if self.stream_generations else completion.choices[0].message.content
+
+        return _call_api(conv)
+    
+
+class GeminiChat(LLMChat):
+    def __init__(
+        self,
+        model_name: str,
+        max_retries: int,
+        wait_seconds: int,
+        temperature: float,
+        seed: int,
+        stream_generations: bool,
+    ):
+        """
+        Args:
+            model_name (str): The model name to use.
+            stream_generations (bool): Flag to enable streaming generations.
+        """
+        super().__init__(max_retries, wait_seconds, temperature, seed)
+        import google.generativeai as genai
+
+        self.model_name = model_name
+        self.stream_generations = stream_generations
+        self.google_model = genai.GenerativeModel(self.model_name)
+
+    def generate_response(self, conv: Conversation) -> str:
+        # TODO
+        """
+        Ref:
+        - https://ai.google.dev/gemini-api/docs/models/gemini
+        """
+        gemini_conv = []
+        for message in conv.messages:
+            for content in message.content:
+                match content:
+                    case ContentTextMessage(text=text):
+                        gemini_conv.append({"role": message.role, "parts": [text]})
+
+        # Wrap retry params inside generate_response
+        @retry(stop=stop_after_attempt(self.max_retries), wait=wait_fixed(self.wait_seconds))
+        def _call_api(conv: Conversation) -> str:
+            import pdb; pdb.set_trace()
+
+            completion = self.google_model.generate_content(
+                contents=gemini_conv,
+                generation_config={
+                    'temperature': self.temperature,
+                    'top_p': top_p,
+                    # 'top_k': top_k, # NOTE: API does not suport topK>40
+                    'max_output_tokens': MAX_TOKENS,
+                    'stop_sequences': STOP,
+                    # NOTE: API does not support seed, repetition_penalty
+                },
+                stream=self.stream_generations
+            )
+            return completion if self.stream_generations else completion.text
+
+        return _call_api(conv)
+    
+class AnthropicChat(LLMChat):
+    def __init__(
+        self,
+        model_name: str,
+        max_retries: int,
+        wait_seconds: int,
+        temperature: float,
+        seed: int,
+        stream_generations: bool,
+    ):
+        """
+        Args:
+            model_name (str): The model name to use.
+            stream_generations (bool): Flag to enable streaming generations.
+        """
+        super().__init__(max_retries, wait_seconds, temperature, seed)
+        from anthropic import Anthropic
+
+        self.model_name = model_name
+        self.stream_generations = stream_generations
+        self.anthropic_model = Anthropic()
+
+    def generate_response(self, conv: Conversation) -> str:
+        # TODO
+        """
+        Ref: 
+        - https://docs.anthropic.com/en/api/migrating-from-text-completions-to-messages 
+        """
+        claude_conv = []
+        for message in conv.messages:
+            for content in message.content:
+                match content:
+                    case ContentTextMessage(text=text):
+                        claude_conv.append({"role": message.role, "content": [{"type": "text", "text": text}]})
+
+
+        # Wrap retry params inside generate_response
+        @retry(stop=stop_after_attempt(self.max_retries), wait=wait_fixed(self.wait_seconds))
+        def _call_api(conv: Conversation) -> str:
+            import pdb; pdb.set_trace()
+            completion = self.anthropic_model.messages.create(
+                model=self.model_name,
+                messages=claude_conv,
+                temperature=self.temperature,
+                top_p=top_p,
+                top_k=top_k,
+                # NOTE: repetition_penalty is not supported by Anthropic's API
+                # NOTE: by default, the model will stop at the end of the turn
+                max_tokens=MAX_TOKENS,
+                # NOTE: seed is not supported by Anthropic's API
+                stream = self.stream_generations
+            )
+            return completion if self.stream_generations else completion.content[0].text
 
         return _call_api(conv)
 
@@ -115,5 +234,9 @@ def get_llm(model_name: str, model_kwargs: dict) -> tuple[LLMChat, LLMPrompts]:
             return OpenAIChat(model_name=model_name, **model_kwargs), OpenAIPrompts()
         case "llama-3.1-8b":
             raise NotImplementedError("LLama-3.1-8b model is not yet supported.")
-        case _:
-            raise ValueError(f"Unknown model name: {model_name}")
+        case "claude-3-opus-20240229":
+            return AnthropicChat(model_name=model_name, **model_kwargs), OpenAIPrompts()
+        case "gemini-1.5-flash":
+            return GeminiChat(model_name=model_name, **model_kwargs), OpenAIPrompts()
+        # case :
+        #     raise ValueError(f"Unknown model name: {model_name}")
