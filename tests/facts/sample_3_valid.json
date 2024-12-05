@@ -1,0 +1,12 @@
+[
+    {
+        "<name>_5": "tanner",
+        "<relation>_4": "child",
+        "<attribute_name>_3": "dob"
+    },
+    "What is the dob of the child of tanner ?",
+    [
+        "dob(Y_3, Y_2)",
+        "child('tanner', Y_3)"
+    ]
+]

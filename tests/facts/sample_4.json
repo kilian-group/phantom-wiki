@@ -1,0 +1,12 @@
+[
+    {
+        "<attribute_value>_4": "radio-controlled car racing",
+        "<attribute_name>_4": "hobby",
+        "<attribute_name>_3": "gender"
+    },
+    "What is the gender of the person whose hobby is radio-controlled car racing ?",
+    [
+        "gender(Y_3, Y_2)",
+        "hobby(Y_3, 'radio-controlled car racing')"
+    ]
+]

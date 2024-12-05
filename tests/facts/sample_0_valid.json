@@ -1,0 +1,12 @@
+[
+    {
+        "<attribute_value>_5": "airline pilot",
+        "<attribute_name>_5": "job",
+        "<relation>_3": "child"
+    },
+    "Who is the child of the person whose job is airline pilot ?",
+    [
+        "child(Y_4, Y_2)",
+        "job(Y_4, 'airline pilot')"
+    ]
+]
