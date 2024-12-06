@@ -313,17 +313,32 @@ type(tanner, person).
 type(thomasine, person).
 type(vicente, person).
 
-daughter(X, Y) :-
-    child(X, Y),
+wife(X, Y) :-
+    married(X, Y),
     female(Y).
 
 :- dynamic expand_answer/2.
 :- multifile expand_answer/2.
 
 
-wife(X, Y) :-
-    married(X, Y),
-    female(Y).
+:- dynamic married/2.
+
+married(alfonso, ila).
+married(antionette, deangelo).
+married(daisy, dominick).
+married(deangelo, antionette).
+married(derick, kanesha).
+married(dominick, daisy).
+married(ila, alfonso).
+married(kanesha, derick).
+married(lyndia, vicente).
+married(maggie, scotty).
+married(matt, thomasine).
+married(meghann, tanner).
+married(scotty, maggie).
+married(tanner, meghann).
+married(thomasine, matt).
+married(vicente, lyndia).
 
 male(X) :-
     gender(X, male).
@@ -395,12 +410,13 @@ friend_(meghann, rosalee).
 friend_(reyna, rosalee).
 friend_(tanner, thomasine).
 
-child(X, Y) :-
-    parent(Y, X).
-
 son(X, Y) :-
     child(X, Y),
     male(Y).
+
+daughter(X, Y) :-
+    child(X, Y),
+    female(Y).
 
 friend(X, Y) :-
     friend_(X, Y).
@@ -419,18 +435,17 @@ male_first_cousin_once_removed(X, Y) :-
     son(A, Y),
     X\=Y.
 
-mother(X, Y) :-
+father(X, Y) :-
     parent(X, Y),
-    female(Y).
+    male(Y).
 
 :- thread_local thread_message_hook/3.
 :- dynamic thread_message_hook/3.
 :- volatile thread_message_hook/3.
 
 
-father(X, Y) :-
-    parent(X, Y),
-    male(Y).
+child(X, Y) :-
+    parent(Y, X).
 
 female_first_cousin_once_removed(X, Y) :-
     cousin(X, A),
@@ -459,9 +474,9 @@ male_second_cousin(X, Y) :-
     male(Y),
     X\=Y.
 
-sister(Y, X) :-
+brother(X, Y) :-
     sibling(X, Y),
-    female(X).
+    male(Y).
 
 :- dynamic nonbinary/1.
 
@@ -472,9 +487,9 @@ nonbinary(X) :-
 :- multifile message_hook/3.
 
 
-brother(X, Y) :-
-    sibling(X, Y),
-    male(Y).
+mother(X, Y) :-
+    parent(X, Y),
+    female(Y).
 
 female_second_cousin(X, Y) :-
     parent(X, A),
@@ -536,10 +551,9 @@ parent(rosalee, dominick).
 :- multifile goal_expansion/2.
 
 
-married(X, Y) :-
-    parent(Child, X),
-    parent(Child, Y),
-    X\=Y.
+sister(Y, X) :-
+    sibling(X, Y),
+    female(X).
 
 female_cousin(X, Y) :-
     cousin(X, Y),
