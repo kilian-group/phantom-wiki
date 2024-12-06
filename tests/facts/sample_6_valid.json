@@ -1,0 +1,12 @@
+[
+    {
+        "<attribute_value>_4": "airline pilot",
+        "<attribute_name>_4": "job",
+        "<relation_plural>_2": "siblings"
+    },
+    "How many siblings does the person whose job is airline pilot have?",
+    [
+        "aggregate_all(count, distinct(sibling(Y_3, Y_1)), Count_1)",
+        "job(Y_3, 'airline pilot')"
+    ]
+]

@@ -1,0 +1,10 @@
+[
+    {
+        "<name>_4": "thomasine",
+        "<relation>_3": "child"
+    },
+    "Who is the child of thomasine ?",
+    [
+        "child('thomasine', Y_2)"
+    ]
+]

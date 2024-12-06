@@ -1,0 +1,12 @@
+[
+    {
+        "<name>_5": "tanner",
+        "<relation>_4": "child",
+        "<relation_plural>_2": "siblings"
+    },
+    "How many siblings does the child of tanner have?",
+    [
+        "aggregate_all(count, distinct(sibling(Y_3, Y_1)), Count_1)",
+        "child('tanner', Y_3)"
+    ]
+]
