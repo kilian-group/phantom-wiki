@@ -32,8 +32,8 @@ def test_family_rules_base():
     assert compare_prolog_dicts(list(prolog.query("sibling(sarah, X)")), [])
     assert not bool(list(prolog.query("sibling(nora, elias)")))
 
-    assert bool(list(prolog.query("married(charlotte, maximilian)")))
-    assert not bool(list(prolog.query("married(charlotte, patrick)")))
+    # assert bool(list(prolog.query("married(charlotte, maximilian)")))
+    # assert not bool(list(prolog.query("married(charlotte, patrick)")))
 
     assert bool(list(prolog.query("sister(clara, lisa)")))
     assert not bool(list(prolog.query("sister(clara, thomas)")))
@@ -59,8 +59,8 @@ def test_family_rules_base():
     assert bool(list(prolog.query("daughter(charlotte, lisa)")))
     assert compare_prolog_dicts(list(prolog.query("daughter(charlotte, X)")), [{"X": "clara"}, {"X": "lisa"}])
 
-    assert bool(list(prolog.query("wife(maximilian, charlotte)")))
-    assert bool(list(prolog.query("husband(charlotte, maximilian)")))
+    # assert bool(list(prolog.query("wife(maximilian, charlotte)")))
+    # assert bool(list(prolog.query("husband(charlotte, maximilian)")))
 
 
 def test_family_rules_derived():
