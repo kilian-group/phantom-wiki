@@ -95,7 +95,6 @@ DO NOT include any additional information in the output.
 """
 
 # %%
-preds = {}
 # we are in the setting where we pass in all the articles as evidence
 if args.ignore_evidence:
     print("Ignoring evidence and only using the question as input.")
@@ -302,53 +301,7 @@ elif model.startswith("claude"):
     responses = asyncio.run(async_chat_completion(messages))
 
 else:
-    from transformers import AutoTokenizer
-    from vllm import LLM, SamplingParams
-
-    tokenizer = AutoTokenizer.from_pretrained(model, trust_remote_code=True)
-    prompts = [
-        tokenizer.apply_chat_template(
-            msg, 
-            tokenize=False, 
-            add_generation_prompt=True
-        )
-        for msg in messages
-    ]
-    # Create a sampling params object.
-    # Ref: https://docs.vllm.ai/en/stable/dev/sampling_params.html#vllm.SamplingParams
-    sampling_params = SamplingParams(
-        temperature=temperature,
-        top_p=top_p,
-        top_k=top_k,
-        repetition_penalty=repetition_penalty,
-        stop=LLAMA_STOP,
-        max_tokens=MAX_TOKENS,
-        seed=seed,
-    )
-    # Create an LLM.
-    # Ref: https://docs.vllm.ai/en/stable/dev/offline_inference/llm.html#vllm.LLM
-    # NOTE: make sure to not have *any* `torch` imports before this step
-    # as it leads to runtime error with multiprocessing
-    llm = LLM(
-        model=model,
-        max_model_len=max_model_len,
-        tensor_parallel_size=tensor_parallel_size,
-    )
-    # Generate texts from the prompts. The output is a list of RequestOutput objects
-    # that contain the prompt, generated text, and other information.
-    outputs = llm.generate(prompts, sampling_params)
-    responses = [
-        {
-            'pred' : output.outputs[0].text,
-            'usage' : {
-                'prompt_tokens' : len(output.prompt_token_ids),
-                'completion_tokens' : len(output.outputs[0].token_ids),
-                'total_tokens' : len(output.prompt_token_ids) + len(output.outputs[0].token_ids),
-                'cached_tokens' : output.num_cached_tokens,
-            }
-        }
-        for output in outputs
-    ]
+    raise ValueError(f"Use `zeroshot_local.py` to get vLLM predictions.")
 
 # %%
 preds = {}
