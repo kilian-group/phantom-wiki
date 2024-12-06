@@ -9,12 +9,14 @@ from llm import LLMChat
 from data import Conversation, ContentTextMessage, Message
 
 # TODO add more examples
-REACT_EXAMPLES6 = """Question: Who is the father of anastasia?
-Thought 1: I need to retrieve article about anastasia and find who her father is.
-Action 1: RetrieveArticle[anastasia]
-Observation 1: # anastasia ## Family The child of anastasia is jack, ringo, maeve. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.
-Thought 2: The father of anastasia is daniel, so the answer is daniel.
-Action 2: Finish[daniel]"""
+REACT_EXAMPLES6 = """
+<question>Who is the father of anastasia?</question>
+<thought round="1">I need to retrieve article about anastasia and find who her father is.</thought>
+<action round="1" function="RetrieveArticle" arguments="(anastasia)" />
+<observation round="1"># anastasia ## Family The child of anastasia is jack, ringo, maeve. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.</observation>
+<thought round="2">The father of anastasia is daniel, so the answer is daniel.</thought>
+<action round="2" function="Finish" arguments="(daniel)" />
+"""
 
 class ReactAgent:
     def __init__(
