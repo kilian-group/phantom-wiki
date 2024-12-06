@@ -51,12 +51,16 @@ class Generator:
             
             # determine whether it is possible to add parents and children of the sampled person
             can_add_parents = (
-                    not current_person.parents and
-                    (current_person.tree_level > min_level or tree_depth < args.max_tree_depth)
+                # 1. the person has no parents
+                not current_person.parents and
+                # 2. the person is not the root of the tree
+                (current_person.tree_level > min_level or tree_depth < args.max_tree_depth)
             )
             can_add_children = (
-                    len(current_person.children) < args.max_branching_factor and
-                    (current_person.tree_level < max_level or tree_depth < args.max_tree_depth)
+                # 1. the person has less than the maximum number of children
+                len(current_person.children) < args.max_branching_factor and
+                # 2. the person is not a leaf in the tree
+                (current_person.tree_level < max_level or tree_depth < args.max_tree_depth)
             )
             
             # decide what to do
@@ -75,9 +79,9 @@ class Generator:
                     spouse = current_person.married_to
                 else:
                     spouse = self.person_factory.create_spouse(
-                            current_person.tree_level,
-                            female = not current_person.female,
-                            spouse = current_person
+                        tree_level = current_person.tree_level,
+                        female = not current_person.female,
+                        spouse = current_person
                     )
                     spouse.married_to = current_person
                     current_person.married_to = spouse
@@ -86,9 +90,9 @@ class Generator:
         
                 # create child
                 child = self.person_factory.create_child(
-                        current_person.tree_level + 1,
-                        parents = [current_person, spouse],
-                        siblings = current_person.children
+                    tree_level = current_person.tree_level + 1,
+                    parents = [current_person, spouse],
+                    siblings = current_person.children
                 )
                 child.parents = [current_person, spouse]
                 fam_tree.append(child)
@@ -200,17 +204,11 @@ def family_tree_to_facts(family_tree):
         # add 1-ary clause indicating the person exists
         people.append(f"type(\'{p.name}\', {PERSON_TYPE})")
         # add 2-ary clause indicating gender
-        if False:
-            if p.female:
-                genders.append(f"female(\'{p.name}\')")
-            else:
-                genders.append(f"male(\'{p.name}\')")
+        # NOTE: by making gender an attribute, the attribute value can be any literal
+        if p.female:
+            genders.append(f"gender(\'{p.name}\', \'female\')")
         else:
-            # NOTE: by making gender an attribute, the attribute value can be any literal
-            if p.female:
-                genders.append(f"gender(\'{p.name}\', \'female\')")
-            else:
-                genders.append(f"gender(\'{p.name}\', \'male\')")
+            genders.append(f"gender(\'{p.name}\', \'male\')")
         # add 2-ary clause indicating parent relationship
         for child in p.children:
             parent_relationships.append(f"parent(\'{child.name}\', \'{p.name}\')")
