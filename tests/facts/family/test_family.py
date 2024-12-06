@@ -1,7 +1,8 @@
 from pyswip import Prolog
 
 from phantom_wiki.facts.family import FAMILY_RULES_BASE_PATH, FAMILY_RULES_DERIVED_PATH
-from tests.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
+from tests.facts.family import (FAMILY_TREE_SMALL_EXAMPLE_PATH,
+                                FACTS_SMALL_EXAMPLE_PATH)
 
 
 def prolog_result_set(prolog_dict: list[dict]) -> set[list[tuple]]:
@@ -137,3 +138,14 @@ def test_family_rules_derived():
     assert compare_prolog_dicts(
         list(prolog.query("male_first_cousin_once_removed(angelina, X)")), [{"X": "gabriel"}, {"X": "felix"}]
     )
+
+def test_in_law():
+    prolog = Prolog()
+    prolog.consult(FACTS_SMALL_EXAMPLE_PATH)
+    prolog.consult(FAMILY_RULES_DERIVED_PATH)
+    assert bool(list(prolog.query("mother_in_law(deangelo, kanesha)")))
+    assert bool(list(prolog.query("father_in_law(deangelo, derick)")))
+    assert compare_prolog_dicts(list(prolog.query("daughter_in_law(derick, X)")), [{"X": "daisy"}, {"X": "ila"}])
+    assert compare_prolog_dicts(list(prolog.query("son_in_law(derick, X)")), [{"X": "deangelo"}])
+    assert compare_prolog_dicts(list(prolog.query("sister_in_law(deangelo, X)")), [{"X": "kari"}])
+    assert compare_prolog_dicts(list(prolog.query("brother_in_law(deangelo, X)")), [{"X": "colby"}, {"X": "dominick"}, {"X": "alfonso"}])
