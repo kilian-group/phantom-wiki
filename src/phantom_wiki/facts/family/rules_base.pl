@@ -10,11 +10,6 @@ sibling(X, Y) :-
   parent(Y, A),
   X \= Y.
 
-married(X, Y) :-
-  parent(Child, X),
-  parent(Child, Y),
-  X \= Y.
-
 sister(Y, X) :-
   sibling(X, Y),
   female(X).

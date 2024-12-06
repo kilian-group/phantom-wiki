@@ -192,6 +192,8 @@ def family_tree_to_facts(family_tree):
     genders = []
     parent_relationships = []
     dates_of_birth = []
+    # TODO: set the marriage date to the date of birth of the first child
+    marriages = []
 
     # Add facts for each person in the family tree
     for p in family_tree:
@@ -215,8 +217,14 @@ def family_tree_to_facts(family_tree):
         # add 2-ary clause indicating date of birth
         dates_of_birth.append(f"dob(\'{p.name}\', \'{p.date_of_birth}\')")
 
+        # add marriage events
+        if p.married_to:
+            # marriages.append(f"married(\'{p.name}\', \'{p.married_to.name}\', \'{p.children[0].date_of_birth}\')")
+            marriages.append(f"married(\'{p.name}\', \'{p.married_to.name}\')")
+            # NOTE: a single marriage will correspond to two `married` facts in the prolog database
+
     # Returning outputs 
-    return sorted(people) + sorted(genders) + sorted(parent_relationships) + sorted(dates_of_birth)
+    return sorted(people) + sorted(genders) + sorted(parent_relationships) + sorted(dates_of_birth) + sorted(marriages)
 
 # Given a family tree, generate and save a graph plot 
 def create_dot_graph(family_tree):
