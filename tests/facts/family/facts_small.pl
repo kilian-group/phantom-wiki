@@ -3,247 +3,6 @@
 :- multifile term_expansion/2.
 
 
-great_grandchild(X, Y) :-
-    great_grandparent(Y, X).
-
-:- dynamic attribute/1.
-
-attribute(contractor).
-attribute(meditation).
-attribute('teacher, adult education').
-attribute(meteorology).
-attribute('biomedical scientist').
-attribute(biology).
-attribute('freight forwarder').
-attribute(meteorology).
-attribute('commercial/residential surveyor').
-attribute(dolls).
-attribute('research scientist (life sciences)').
-attribute(photography).
-attribute('production assistant, television').
-attribute(shogi).
-attribute('public house manager').
-attribute(dominoes).
-attribute('museum education officer').
-attribute('tether car').
-attribute('engineer, manufacturing systems').
-attribute(architecture).
-attribute('chief marketing officer').
-attribute(geocaching).
-attribute('ranger/warden').
-attribute(trainspotting).
-attribute('air cabin crew').
-attribute('bus spotting').
-attribute('newspaper journalist').
-attribute(research).
-attribute('police officer').
-attribute(geography).
-attribute(translator).
-attribute(microbiology).
-attribute('accountant, chartered').
-attribute(canoeing).
-attribute('product designer').
-attribute(learning).
-attribute('geographical information systems officer').
-attribute('dairy farming').
-attribute('estate manager/land agent').
-attribute('fossil hunting').
-attribute('therapist, art').
-attribute(sociology).
-attribute('civil engineer, consulting').
-attribute(finance).
-attribute('investment banker, corporate').
-attribute(meditation).
-attribute('airline pilot').
-attribute('wikipedia editing').
-attribute('advertising copywriter').
-attribute('radio-controlled car racing').
-attribute('agricultural engineer').
-attribute('social studies').
-
-great_granddaughter(X, Y) :-
-    great_grandchild(X, Y),
-    female(Y).
-
-great_grandmother(X, Y) :-
-    great_grandparent(X, Y),
-    female(Y).
-
-great_grandfather(X, Y) :-
-    great_grandparent(X, Y),
-    male(Y).
-
-:- dynamic library_directory/1.
-:- multifile library_directory/1.
-
-
-grandson(X, Y) :-
-    grandchild(X, Y),
-    male(Y).
-
-great_grandparent(X, Y) :-
-    grandparent(X, Z),
-    parent(Z, Y).
-
-:- dynamic term_expansion/4.
-:- multifile term_expansion/4.
-
-
-grandchild(X, Y) :-
-    grandparent(Y, X).
-
-:- dynamic goal_expansion/4.
-:- multifile goal_expansion/4.
-
-
-granddaughter(X, Y) :-
-    grandchild(X, Y),
-    female(Y).
-
-great_aunt(X, Y) :-
-    grandparent(X, A),
-    sister(A, Y).
-
-:- dynamic file_search_path/2.
-:- multifile file_search_path/2.
-
-file_search_path(library, Dir) :-
-    library_directory(Dir).
-file_search_path(swi, A) :-
-    system:current_prolog_flag(home, A).
-file_search_path(swi, A) :-
-    system:current_prolog_flag(shared_home, A).
-file_search_path(library, app_config(lib)).
-file_search_path(library, swi(library)).
-file_search_path(library, swi(library/clp)).
-file_search_path(library, A) :-
-    system:'$ext_library_directory'(A).
-file_search_path(foreign, swi(A)) :-
-    system:
-    (   current_prolog_flag(apple_universal_binary, true),
-        A='lib/fat-darwin'
-    ).
-file_search_path(path, A) :-
-    system:
-    (   getenv('PATH', B),
-        current_prolog_flag(path_sep, C),
-        atomic_list_concat(D, C, B),
-        '$member'(A, D)
-    ).
-file_search_path(user_app_data, A) :-
-    system:'$xdg_prolog_directory'(data, A).
-file_search_path(common_app_data, A) :-
-    system:'$xdg_prolog_directory'(common_data, A).
-file_search_path(user_app_config, A) :-
-    system:'$xdg_prolog_directory'(config, A).
-file_search_path(common_app_config, A) :-
-    system:'$xdg_prolog_directory'(common_config, A).
-file_search_path(app_data, user_app_data('.')).
-file_search_path(app_data, common_app_data('.')).
-file_search_path(app_config, user_app_config('.')).
-file_search_path(app_config, common_app_config('.')).
-file_search_path(app_preferences, user_app_config('.')).
-file_search_path(user_profile, app_preferences('.')).
-file_search_path(app, swi(app)).
-file_search_path(app, app_data(app)).
-file_search_path(autoload, swi(library)).
-file_search_path(autoload, pce(prolog/lib)).
-file_search_path(autoload, app_config(lib)).
-file_search_path(autoload, Dir) :-
-    '$autoload':'$ext_library_directory'(Dir).
-file_search_path(pack, app_data(pack)).
-file_search_path(library, PackLib) :-
-    '$pack':pack_dir(_Name, prolog, PackLib).
-file_search_path(foreign, PackLib) :-
-    '$pack':pack_dir(_Name, foreign, PackLib).
-file_search_path(app, AppDir) :-
-    '$pack':pack_dir(_Name, app, AppDir).
-
-great_uncle(X, Y) :-
-    grandparent(X, A),
-    brother(A, Y).
-
-grandmother(X, Y) :-
-    grandparent(X, Y),
-    female(Y).
-
-:- multifile prolog_list_goal/1.
-
-
-grandfather(X, Y) :-
-    grandparent(X, Y),
-    male(Y).
-
-:- dynamic hobby/2.
-
-hobby(alfonso, meditation).
-hobby(alton, meteorology).
-hobby(antionette, biology).
-hobby(colby, meteorology).
-hobby(daisy, dolls).
-hobby(deangelo, photography).
-hobby(deanna, shogi).
-hobby(derick, dominoes).
-hobby(dixie, 'tether car').
-hobby(dominick, architecture).
-hobby(ellis, geocaching).
-hobby(ila, trainspotting).
-hobby(johnna, 'bus spotting').
-hobby(kanesha, research).
-hobby(kari, geography).
-hobby(lyndia, microbiology).
-hobby(maggie, canoeing).
-hobby(matt, learning).
-hobby(meghann, 'dairy farming').
-hobby(miki, 'fossil hunting').
-hobby(reyna, sociology).
-hobby(rosalee, finance).
-hobby(scotty, meditation).
-hobby(tanner, 'wikipedia editing').
-hobby(thomasine, 'radio-controlled car racing').
-hobby(vicente, 'social studies').
-
-nephew(X, Y) :-
-    sibling(X, A),
-    son(A, Y).
-
-grandparent(X, Y) :-
-    parent(X, Z),
-    parent(Z, Y).
-
-:- dynamic job/2.
-
-job(alfonso, contractor).
-job(alton, 'teacher, adult education').
-job(antionette, 'biomedical scientist').
-job(colby, 'freight forwarder').
-job(daisy, 'commercial/residential surveyor').
-job(deangelo, 'research scientist (life sciences)').
-job(deanna, 'production assistant, television').
-job(derick, 'public house manager').
-job(dixie, 'museum education officer').
-job(dominick, 'engineer, manufacturing systems').
-job(ellis, 'chief marketing officer').
-job(ila, 'ranger/warden').
-job(johnna, 'air cabin crew').
-job(kanesha, 'newspaper journalist').
-job(kari, 'police officer').
-job(lyndia, translator).
-job(maggie, 'accountant, chartered').
-job(matt, 'product designer').
-job(meghann, 'geographical information systems officer').
-job(miki, 'estate manager/land agent').
-job(reyna, 'therapist, art').
-job(rosalee, 'civil engineer, consulting').
-job(scotty, 'investment banker, corporate').
-job(tanner, 'airline pilot').
-job(thomasine, 'advertising copywriter').
-job(vicente, 'agricultural engineer').
-
-:- dynamic expand_query/4.
-:- multifile expand_query/4.
-
-
 :- dynamic dob/2.
 
 dob(alfonso, '0240-12-31').
@@ -273,16 +32,13 @@ dob(tanner, '0231-07-16').
 dob(thomasine, '0204-09-13').
 dob(vicente, '0178-01-25').
 
-husband(X, Y) :-
-    married(X, Y),
-    male(Y).
+second_aunt(X, Y) :-
+    great_grandparent(X, A),
+    sister(A, Y).
 
-:- multifile message_property/2.
-
-
-niece(X, Y) :-
-    sibling(X, A),
-    daughter(A, Y).
+second_uncle(X, Y) :-
+    great_grandparent(X, A),
+    brother(A, Y).
 
 :- dynamic type/2.
 
@@ -313,35 +69,20 @@ type(tanner, person).
 type(thomasine, person).
 type(vicente, person).
 
-wife(X, Y) :-
-    married(X, Y),
+great_granddaughter(X, Y) :-
+    great_grandchild(X, Y),
     female(Y).
 
-:- dynamic expand_answer/2.
-:- multifile expand_answer/2.
+great_grandson(X, Y) :-
+    great_grandchild(X, Y),
+    male(Y).
 
+is_divorced(X) :-
+    once_married(X, Y).
 
-:- dynamic married/2.
+:- dynamic library_directory/1.
+:- multifile library_directory/1.
 
-married(alfonso, ila).
-married(antionette, deangelo).
-married(daisy, dominick).
-married(deangelo, antionette).
-married(derick, kanesha).
-married(dominick, daisy).
-married(ila, alfonso).
-married(kanesha, derick).
-married(lyndia, vicente).
-married(maggie, scotty).
-married(matt, thomasine).
-married(meghann, tanner).
-married(scotty, maggie).
-married(tanner, meghann).
-married(thomasine, matt).
-married(vicente, lyndia).
-
-male(X) :-
-    gender(X, male).
 
 :- dynamic friend_/2.
 
@@ -410,18 +151,286 @@ friend_(meghann, rosalee).
 friend_(reyna, rosalee).
 friend_(tanner, thomasine).
 
-son(X, Y) :-
-    child(X, Y),
+great_grandfather(X, Y) :-
+    great_grandparent(X, Y),
     male(Y).
 
-daughter(X, Y) :-
-    child(X, Y),
-    female(Y).
+great_grandchild(X, Y) :-
+    great_grandparent(Y, X).
 
 friend(X, Y) :-
     friend_(X, Y).
 friend(X, Y) :-
     friend_(Y, X).
+
+:- dynamic term_expansion/4.
+:- multifile term_expansion/4.
+
+
+brother_in_law(X, Y) :-
+    are_married(X, A),
+    brother(A, Y).
+
+great_grandparent(X, Y) :-
+    grandparent(X, Z),
+    parent(Z, Y).
+
+:- dynamic goal_expansion/4.
+:- multifile goal_expansion/4.
+
+
+great_grandmother(X, Y) :-
+    great_grandparent(X, Y),
+    female(Y).
+
+sister_in_law(X, Y) :-
+    are_married(X, A),
+    sister(A, Y).
+
+daughter_in_law(X, Y) :-
+    child(X, A),
+    wife(A, Y).
+
+granddaughter(X, Y) :-
+    grandchild(X, Y),
+    female(Y).
+
+:- dynamic file_search_path/2.
+:- multifile file_search_path/2.
+
+file_search_path(library, Dir) :-
+    library_directory(Dir).
+file_search_path(swi, A) :-
+    system:current_prolog_flag(home, A).
+file_search_path(swi, A) :-
+    system:current_prolog_flag(shared_home, A).
+file_search_path(library, app_config(lib)).
+file_search_path(library, swi(library)).
+file_search_path(library, swi(library/clp)).
+file_search_path(library, A) :-
+    system:'$ext_library_directory'(A).
+file_search_path(foreign, swi(A)) :-
+    system:
+    (   current_prolog_flag(apple_universal_binary, true),
+        A='lib/fat-darwin'
+    ).
+file_search_path(path, A) :-
+    system:
+    (   getenv('PATH', B),
+        current_prolog_flag(path_sep, C),
+        atomic_list_concat(D, C, B),
+        '$member'(A, D)
+    ).
+file_search_path(user_app_data, A) :-
+    system:'$xdg_prolog_directory'(data, A).
+file_search_path(common_app_data, A) :-
+    system:'$xdg_prolog_directory'(common_data, A).
+file_search_path(user_app_config, A) :-
+    system:'$xdg_prolog_directory'(config, A).
+file_search_path(common_app_config, A) :-
+    system:'$xdg_prolog_directory'(common_config, A).
+file_search_path(app_data, user_app_data('.')).
+file_search_path(app_data, common_app_data('.')).
+file_search_path(app_config, user_app_config('.')).
+file_search_path(app_config, common_app_config('.')).
+file_search_path(app_preferences, user_app_config('.')).
+file_search_path(user_profile, app_preferences('.')).
+file_search_path(app, swi(app)).
+file_search_path(app, app_data(app)).
+file_search_path(autoload, swi(library)).
+file_search_path(autoload, pce(prolog/lib)).
+file_search_path(autoload, app_config(lib)).
+file_search_path(autoload, Dir) :-
+    '$autoload':'$ext_library_directory'(Dir).
+file_search_path(pack, app_data(pack)).
+file_search_path(library, PackLib) :-
+    '$pack':pack_dir(_Name, prolog, PackLib).
+file_search_path(foreign, PackLib) :-
+    '$pack':pack_dir(_Name, foreign, PackLib).
+file_search_path(app, AppDir) :-
+    '$pack':pack_dir(_Name, app, AppDir).
+
+grandson(X, Y) :-
+    grandchild(X, Y),
+    male(Y).
+
+son_in_law(X, Y) :-
+    child(X, A),
+    husband(A, Y).
+
+father_in_law(X, Y) :-
+    parent_in_law(X, Y),
+    male(Y).
+
+great_uncle(X, Y) :-
+    grandparent(X, A),
+    brother(A, Y).
+
+:- multifile prolog_clause_name/2.
+
+
+:- multifile prolog_list_goal/1.
+
+
+grandchild(X, Y) :-
+    grandparent(Y, X).
+
+mother_in_law(X, Y) :-
+    parent_in_law(X, Y),
+    female(Y).
+
+parent_in_law(X, Y) :-
+    are_married(X, A),
+    parent(A, Y).
+
+grandfather(X, Y) :-
+    grandparent(X, Y),
+    male(Y).
+
+great_aunt(X, Y) :-
+    grandparent(X, A),
+    sister(A, Y).
+
+husband(X, Y) :-
+    are_married(X, Y),
+    male(Y).
+
+:- dynamic expand_query/4.
+:- multifile expand_query/4.
+
+
+wife(X, Y) :-
+    are_married(X, Y),
+    female(Y).
+
+grandparent(X, Y) :-
+    parent(X, Z),
+    parent(Z, Y).
+
+:- dynamic save_all_clauses_to_file/1.
+
+save_all_clauses_to_file(A) :-
+    open(A, write, B),
+    set_output(B),
+    listing,
+    close(B).
+
+:- multifile message_property/2.
+
+
+grandmother(X, Y) :-
+    grandparent(X, Y),
+    female(Y).
+
+niece(X, Y) :-
+    sibling(X, A),
+    daughter(A, Y).
+
+:- dynamic divorce/3.
+
+
+:- dynamic job/2.
+
+job(alfonso, contractor).
+job(alton, 'teacher, adult education').
+job(antionette, 'biomedical scientist').
+job(colby, 'freight forwarder').
+job(daisy, 'commercial/residential surveyor').
+job(deangelo, 'research scientist (life sciences)').
+job(deanna, 'production assistant, television').
+job(derick, 'public house manager').
+job(dixie, 'museum education officer').
+job(dominick, 'engineer, manufacturing systems').
+job(ellis, 'chief marketing officer').
+job(ila, 'ranger/warden').
+job(johnna, 'air cabin crew').
+job(kanesha, 'newspaper journalist').
+job(kari, 'police officer').
+job(lyndia, translator).
+job(maggie, 'accountant, chartered').
+job(matt, 'product designer').
+job(meghann, 'geographical information systems officer').
+job(miki, 'estate manager/land agent').
+job(reyna, 'therapist, art').
+job(rosalee, 'civil engineer, consulting').
+job(scotty, 'investment banker, corporate').
+job(tanner, 'airline pilot').
+job(thomasine, 'advertising copywriter').
+job(vicente, 'agricultural engineer').
+
+:- dynamic expand_answer/2.
+:- multifile expand_answer/2.
+
+
+nephew(X, Y) :-
+    sibling(X, A),
+    son(A, Y).
+
+:- dynamic marriage/3.
+
+marriage(alfonso, ila, '0257-07-17').
+marriage(antionette, deangelo, '0255-10-28').
+marriage(daisy, dominick, '0253-11-04').
+marriage(deangelo, antionette, '0255-10-28').
+marriage(derick, kanesha, '0228-09-01').
+marriage(dominick, daisy, '0253-11-04').
+marriage(ila, alfonso, '0257-07-17').
+marriage(kanesha, derick, '0228-09-01').
+marriage(lyndia, vicente, '0194-04-18').
+marriage(maggie, scotty, '0165-12-17').
+marriage(matt, thomasine, '0221-10-16').
+marriage(meghann, tanner, '0247-07-16').
+marriage(scotty, maggie, '0165-12-17').
+marriage(tanner, meghann, '0247-07-16').
+marriage(thomasine, matt, '0221-10-16').
+marriage(vicente, lyndia, '0194-04-18').
+
+male(X) :-
+    gender(X, male).
+
+never_married(X, Y) :-
+    \+ marriage(X, Y, D1).
+
+son(X, Y) :-
+    child(X, Y),
+    male(Y).
+
+:- dynamic hobby/2.
+
+hobby(alfonso, meditation).
+hobby(alton, meteorology).
+hobby(antionette, biology).
+hobby(colby, meteorology).
+hobby(daisy, dolls).
+hobby(deangelo, photography).
+hobby(deanna, shogi).
+hobby(derick, dominoes).
+hobby(dixie, 'tether car').
+hobby(dominick, architecture).
+hobby(ellis, geocaching).
+hobby(ila, trainspotting).
+hobby(johnna, 'bus spotting').
+hobby(kanesha, research).
+hobby(kari, geography).
+hobby(lyndia, microbiology).
+hobby(maggie, canoeing).
+hobby(matt, learning).
+hobby(meghann, 'dairy farming').
+hobby(miki, 'fossil hunting').
+hobby(reyna, sociology).
+hobby(rosalee, finance).
+hobby(scotty, meditation).
+hobby(tanner, 'wikipedia editing').
+hobby(thomasine, 'radio-controlled car racing').
+hobby(vicente, 'social studies').
+
+daughter(X, Y) :-
+    child(X, Y),
+    female(Y).
+
+once_married(X, Y) :-
+    marriage(X, Y, D1),
+    \+ divorce(X, Y, D2).
 
 female(X) :-
     gender(X, female).
@@ -429,11 +438,6 @@ female(X) :-
 :- dynamic exception/3.
 :- multifile exception/3.
 
-
-male_first_cousin_once_removed(X, Y) :-
-    cousin(X, A),
-    son(A, Y),
-    X\=Y.
 
 father(X, Y) :-
     parent(X, Y),
@@ -447,11 +451,6 @@ father(X, Y) :-
 child(X, Y) :-
     parent(Y, X).
 
-female_first_cousin_once_removed(X, Y) :-
-    cousin(X, A),
-    daughter(A, Y),
-    X\=Y.
-
 :- dynamic prolog_file_type/2.
 :- multifile prolog_file_type/2.
 
@@ -464,15 +463,9 @@ prolog_file_type(A, executable) :-
 prolog_file_type(dylib, executable) :-
     system:current_prolog_flag(apple, true).
 
-:- multifile prolog_predicate_name/2.
-
-
-male_second_cousin(X, Y) :-
-    parent(X, A),
-    parent(Y, B),
-    cousin(A, B),
-    male(Y),
-    X\=Y.
+are_married(X, Y) :-
+    marriage(X, Y, D1),
+    \+ divorce(X, Y, D2).
 
 brother(X, Y) :-
     sibling(X, Y),
@@ -491,16 +484,15 @@ mother(X, Y) :-
     parent(X, Y),
     female(Y).
 
-female_second_cousin(X, Y) :-
-    parent(X, A),
-    parent(Y, B),
-    cousin(A, B),
-    female(Y),
+male_first_cousin_once_removed(X, Y) :-
+    cousin(X, A),
+    son(A, Y),
     X\=Y.
 
-male_cousin(X, Y) :-
-    cousin(X, Y),
-    male(Y).
+female_first_cousin_once_removed(X, Y) :-
+    cousin(X, A),
+    daughter(A, Y),
+    X\=Y.
 
 :- dynamic parent/2.
 
@@ -555,18 +547,22 @@ sister(Y, X) :-
     sibling(X, Y),
     female(X).
 
-female_cousin(X, Y) :-
-    cousin(X, Y),
-    female(Y).
+male_second_cousin(X, Y) :-
+    parent(X, A),
+    parent(Y, B),
+    cousin(A, B),
+    male(Y),
+    X\=Y.
 
 :- dynamic prolog_load_file/2.
 :- multifile prolog_load_file/2.
 
 
-cousin(X, Y) :-
+female_second_cousin(X, Y) :-
     parent(X, A),
     parent(Y, B),
-    sibling(A, B),
+    cousin(A, B),
+    female(Y),
     X\=Y.
 
 sibling(X, Y) :-
@@ -574,20 +570,23 @@ sibling(X, Y) :-
     parent(Y, A),
     X\=Y.
 
-uncle(X, Y) :-
-    parent(X, A),
-    brother(A, Y).
+male_cousin(X, Y) :-
+    cousin(X, Y),
+    male(Y).
+
+:- multifile prolog_predicate_name/2.
+
 
 :- dynamic resource/3.
 :- multifile resource/3.
 
 
-:- multifile prolog_clause_name/2.
+is_single(X) :-
+    never_married(X, Y).
 
-
-aunt(X, Y) :-
-    parent(X, A),
-    sister(A, Y).
+female_cousin(X, Y) :-
+    cousin(X, Y),
+    female(Y).
 
 :- dynamic gender/2.
 
@@ -618,21 +617,73 @@ gender(tanner, male).
 gender(thomasine, female).
 gender(vicente, male).
 
-:- dynamic save_all_clauses_to_file/1.
+is_married(X) :-
+    are_married(X, Y).
 
-save_all_clauses_to_file(A) :-
-    open(A, write, B),
-    set_output(B),
-    listing,
-    close(B).
+cousin(X, Y) :-
+    parent(X, A),
+    parent(Y, B),
+    sibling(A, B),
+    X\=Y.
 
-second_uncle(X, Y) :-
-    great_grandparent(X, A),
+:- dynamic attribute/1.
+
+attribute(contractor).
+attribute(meditation).
+attribute('teacher, adult education').
+attribute(meteorology).
+attribute('biomedical scientist').
+attribute(biology).
+attribute('freight forwarder').
+attribute(meteorology).
+attribute('commercial/residential surveyor').
+attribute(dolls).
+attribute('research scientist (life sciences)').
+attribute(photography).
+attribute('production assistant, television').
+attribute(shogi).
+attribute('public house manager').
+attribute(dominoes).
+attribute('museum education officer').
+attribute('tether car').
+attribute('engineer, manufacturing systems').
+attribute(architecture).
+attribute('chief marketing officer').
+attribute(geocaching).
+attribute('ranger/warden').
+attribute(trainspotting).
+attribute('air cabin crew').
+attribute('bus spotting').
+attribute('newspaper journalist').
+attribute(research).
+attribute('police officer').
+attribute(geography).
+attribute(translator).
+attribute(microbiology).
+attribute('accountant, chartered').
+attribute(canoeing).
+attribute('product designer').
+attribute(learning).
+attribute('geographical information systems officer').
+attribute('dairy farming').
+attribute('estate manager/land agent').
+attribute('fossil hunting').
+attribute('therapist, art').
+attribute(sociology).
+attribute('civil engineer, consulting').
+attribute(finance).
+attribute('investment banker, corporate').
+attribute(meditation).
+attribute('airline pilot').
+attribute('wikipedia editing').
+attribute('advertising copywriter').
+attribute('radio-controlled car racing').
+attribute('agricultural engineer').
+attribute('social studies').
+
+uncle(X, Y) :-
+    parent(X, A),
     brother(A, Y).
-
-second_aunt(X, Y) :-
-    great_grandparent(X, A),
-    sister(A, Y).
 
 :- dynamic pyrun/2.
 
@@ -640,6 +691,6 @@ pyrun(A, B) :-
     read_term_from_atom(A, C, [variable_names(B)]),
     call(C).
 
-great_grandson(X, Y) :-
-    great_grandchild(X, Y),
-    male(Y).
+aunt(X, Y) :-
+    parent(X, A),
+    sister(A, Y).

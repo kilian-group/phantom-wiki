@@ -26,7 +26,7 @@ def main(args):
     # Step 1. Generate facts
     #
     db = get_database()
-    db.define("nonbinary/1")
+    db.define("nonbinary/1", "divorce/3")
     blue("Generating facts")
     # generate family tree
     db_generate_family(db, args)

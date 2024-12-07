@@ -36,11 +36,3 @@ son(X, Y) :-
 daughter(X, Y) :-
   child(X, Y),
   female(Y).
-
-wife(X, Y) :-
-  married(X, Y),
-  female(Y).
-
-husband(X, Y) :- 
-  married(X, Y),
-  male(Y).

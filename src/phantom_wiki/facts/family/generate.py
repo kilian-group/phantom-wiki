@@ -13,12 +13,17 @@ import time
 from typing import List
 import os
 import pydot
+from dateutil.relativedelta import relativedelta
 
 from phantom_wiki.facts.family.person_factory import (PersonFactory, 
-                                                      Person)
+                                                      Person, 
+                                                      Event)
 from phantom_wiki.facts.family import fam_gen_parser
 from phantom_wiki.utils import get_parser
 from phantom_wiki.facts.family.constants import PERSON_TYPE
+
+# NOTE: we set the marriage date to 16 years after the younger spouse's date of birth
+AGE_OF_MARRIAGE = relativedelta(years=16)
 
 # ============================================================================= #
 #                               CLASS  GENERATOR                                #
@@ -39,6 +44,8 @@ class Generator:
         # add first person to the family tree
         fam_tree = [self.person_factory.create_person(args.max_tree_depth)]
 
+        # AG: initialize min_level and max_level to have value: `args.max_tree_depth`
+        # It seems like the exact value of min_level and max_level is not important.
         min_level = max_level = fam_tree[0].tree_level
         tree_depth = max_level - min_level
         person_count = 1
@@ -51,15 +58,15 @@ class Generator:
             
             # determine whether it is possible to add parents and children of the sampled person
             can_add_parents = (
-                # 1. the person has no parents
+                # AG: the person has no parents
                 not current_person.parents and
-                # 2. the person is not the root of the tree
+                # AG: the person is neither at the the top level of the tree or at the maximum allowable depth
                 (current_person.tree_level > min_level or tree_depth < args.max_tree_depth)
             )
             can_add_children = (
-                # 1. the person has less than the maximum number of children
+                # AG: the person has less than the maximum number of children
                 len(current_person.children) < args.max_branching_factor and
-                # 2. the person is not a leaf in the tree
+                # AG: the person is neither at the bottom level of the tree or at the maximum allowable depth
                 (current_person.tree_level < max_level or tree_depth < args.max_tree_depth)
             )
             
@@ -74,17 +81,21 @@ class Generator:
     
 
             if add_child:
-                # check whether the chosen person is married, if not -> add a partner
-                if current_person.married_to:
-                    spouse = current_person.married_to
+                # check whether the chosen person is single, if not -> add a partner
+                if current_person.events:
+                    e = current_person.events[0]
+                    assert e.type == 'marriage', "First event must be a marriage"
+                    # NOTE: to test events, we define the spouse to be the partner in the first event, even if they divorced later
+                    spouse = current_person.events[0].spouse
                 else:
                     spouse = self.person_factory.create_spouse(
                         tree_level = current_person.tree_level,
                         female = not current_person.female,
                         spouse = current_person
                     )
-                    spouse.married_to = current_person
-                    current_person.married_to = spouse
+                    date_of_marriage = max(current_person.date_of_birth, spouse.date_of_birth) + AGE_OF_MARRIAGE
+                    spouse.events.append(Event('marriage', current_person, date_of_marriage))
+                    current_person.events.append(Event('marriage', spouse, date_of_marriage))
                     fam_tree.append(spouse)
                     person_count += 1
         
@@ -109,8 +120,9 @@ class Generator:
                 dad, mom = self.person_factory.create_parents(current_person.tree_level - 1, current_person)
 
                 # specify relationships
-                mom.married_to = dad
-                dad.married_to = mom
+                date_of_marriage = max(dad.date_of_birth, mom.date_of_birth) + AGE_OF_MARRIAGE
+                dad.events.append(Event('marriage', mom, date_of_marriage))
+                mom.events.append(Event('marriage', dad, date_of_marriage))
                 mom.children.append(current_person)
                 dad.children.append(current_person)
                 current_person.parents = [mom, dad]
@@ -196,8 +208,7 @@ def family_tree_to_facts(family_tree):
     genders = []
     parent_relationships = []
     dates_of_birth = []
-    # TODO: set the marriage date to the date of birth of the first child
-    marriages = []
+    events = []
 
     # Add facts for each person in the family tree
     for p in family_tree:
@@ -215,14 +226,14 @@ def family_tree_to_facts(family_tree):
         # add 2-ary clause indicating date of birth
         dates_of_birth.append(f"dob(\'{p.name}\', \'{p.date_of_birth}\')")
 
-        # add marriage events
-        if p.married_to:
-            # marriages.append(f"married(\'{p.name}\', \'{p.married_to.name}\', \'{p.children[0].date_of_birth}\')")
-            marriages.append(f"married(\'{p.name}\', \'{p.married_to.name}\')")
+        # add 3-ary events ('marriage' or 'divorce')
+        for event in p.events:
+            events.append(f"{event.type}(\'{p.name}\', \'{event.spouse.name}\', \'{event.date}\')")
+            # marriages.append(f"married(\'{p.name}\', \'{p.married_to.name}\')")
             # NOTE: a single marriage will correspond to two `married` facts in the prolog database
 
     # Returning outputs 
-    return sorted(people) + sorted(genders) + sorted(parent_relationships) + sorted(dates_of_birth) + sorted(marriages)
+    return sorted(people) + sorted(genders) + sorted(parent_relationships) + sorted(dates_of_birth) + sorted(events)
 
 # Given a family tree, generate and save a graph plot 
 def create_dot_graph(family_tree):

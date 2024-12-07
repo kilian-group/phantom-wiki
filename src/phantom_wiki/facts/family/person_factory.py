@@ -13,8 +13,8 @@ import random
 import re
 from dataclasses import dataclass, field
 from typing import List, Optional
-
-from datetime import date, timedelta
+# import enum
+from enum import Enum
 
 from datetime import date, timedelta
 
@@ -22,7 +22,13 @@ from datetime import date, timedelta
 # ============================================================================= #
 #                                CLASS  PERSON                                  #
 # ============================================================================= #
-
+@dataclass
+class Event:
+    """A class representing marriage/divorce events between two persons."""
+    type: str  # Can be either 'marriage' or 'divorce'
+    spouse: 'Person'
+    date: date
+    
 @dataclass
 class Person:
     """A class representing a person in the family tree."""
@@ -31,17 +37,15 @@ class Person:
     female: bool
     tree_level: int
     date_of_birth: date
-    date_of_birth: date
     children: List['Person'] = field(default_factory=list)
     parents: List['Person'] = field(default_factory=list)
-    married_to: Optional['Person'] = None
+    events: List['Event'] = field(default_factory=list)
 
     def __str__(self) -> str:
         return (
             f"Person(index={self.index}, name='{self.name}', female={self.female}, "
             f"dob={self.date_of_birth}, "
-            f"dob={self.date_of_birth}, "
-            f"married_to={self.married_to.index if self.married_to else 'None'}, "
+            f"events={self.events}, "
             f"parents=({', '.join(str(p.index) for p in self.parents) if self.parents else 'None'}), "
             f"children=[{', '.join(str(c.index) for c in self.children)}])"
         )

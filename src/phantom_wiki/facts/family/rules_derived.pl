@@ -114,8 +114,39 @@ male_first_cousin_once_removed(X, Y) :-
     son(A, Y),
     X \= Y.
 
+%
+% marriage relations
+%
+are_married(X, Y) :-
+    marriage(X, Y, D1),
+    \+ divorce(X, Y, D2).
+
+once_married(X, Y) :-
+    marriage(X, Y, D1),
+    \+ divorce(X, Y, D2).
+
+never_married(X,Y) :-
+    \+ marriage(X, Y, D1).
+
+is_married(X) :-
+    are_married(X, Y).
+
+is_single(X) :-
+    never_married(X, Y).
+
+is_divorced(X) :-
+    once_married(X, Y).
+
+wife(X, Y) :-
+    are_married(X, Y),
+    female(Y).
+
+husband(X, Y) :- 
+    are_married(X, Y),
+    male(Y).
+
 parent_in_law(X, Y) :-
-    married(X, A),
+    are_married(X, A),
     parent(A, Y).
 
 mother_in_law(X, Y) :-
@@ -135,9 +166,9 @@ daughter_in_law(X, Y) :-
     wife(A, Y).
 
 sister_in_law(X, Y) :-
-    married(X, A),
+    are_married(X, A),
     sister(A, Y).
 
 brother_in_law(X, Y) :-
-    married(X, A),
+    are_married(X, A),
     brother(A, Y).
