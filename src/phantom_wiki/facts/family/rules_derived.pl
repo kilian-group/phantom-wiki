@@ -118,24 +118,24 @@ male_first_cousin_once_removed(X, Y) :-
 % marriage relations
 %
 are_married(X, Y) :-
-    marriage(X, Y, D1),
-    \+ divorce(X, Y, D2).
+    marriage(X, Y, _D1),
+    \+ divorce(X, Y, _D2).
 
 once_married(X, Y) :-
-    marriage(X, Y, D1),
-    \+ divorce(X, Y, D2).
+    marriage(X, Y, _D1),
+    \+ divorce(X, Y, _D2).
 
 never_married(X,Y) :-
-    \+ marriage(X, Y, D1).
+    \+ marriage(X, Y, _D1).
 
 is_married(X) :-
-    are_married(X, Y).
+    are_married(X, _Y).
 
 is_single(X) :-
-    never_married(X, Y).
+    never_married(X, _Y).
 
 is_divorced(X) :-
-    once_married(X, Y).
+    once_married(X, _Y).
 
 wife(X, Y) :-
     are_married(X, Y),
