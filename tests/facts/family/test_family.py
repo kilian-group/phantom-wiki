@@ -2,7 +2,8 @@ from pyswip import Prolog
 
 from phantom_wiki.facts.family import FAMILY_RULES_BASE_PATH, FAMILY_RULES_DERIVED_PATH
 from tests.facts.family import (FAMILY_TREE_SMALL_EXAMPLE_PATH,
-                                FACTS_SMALL_EXAMPLE_PATH)
+                                FACTS_SMALL_EXAMPLE_PATH,
+                                FACTS_SMALL_DIVORCE_EXAMPLE_PATH)
 
 
 def prolog_result_set(prolog_dict: list[dict]) -> set[list[tuple]]:
@@ -149,3 +150,18 @@ def test_in_law():
     assert compare_prolog_dicts(list(prolog.query("son_in_law(derick, X)")), [{"X": "deangelo"}])
     assert compare_prolog_dicts(list(prolog.query("sister_in_law(deangelo, X)")), [{"X": "kari"}])
     assert compare_prolog_dicts(list(prolog.query("brother_in_law(deangelo, X)")), [{"X": "colby"}, {"X": "dominick"}, {"X": "alfonso"}])
+
+def test_in_law_divorce():
+    """
+    Test in-law relationships with divorce.
+    NOTE: none of these should be true since the divorce rate is 1.0
+    """
+    prolog = Prolog()
+    prolog.consult(FACTS_SMALL_DIVORCE_EXAMPLE_PATH)
+    prolog.consult(FAMILY_RULES_DERIVED_PATH)
+    assert not bool(list(prolog.query("mother_in_law(deangelo, kanesha)")))
+    assert not bool(list(prolog.query("father_in_law(deangelo, derick)")))
+    assert compare_prolog_dicts(list(prolog.query("daughter_in_law(derick, X)")), [])
+    assert compare_prolog_dicts(list(prolog.query("son_in_law(derick, X)")), [])
+    assert compare_prolog_dicts(list(prolog.query("sister_in_law(deangelo, X)")), [])
+    assert compare_prolog_dicts(list(prolog.query("brother_in_law(deangelo, X)")), [])

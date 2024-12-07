@@ -24,6 +24,7 @@ from phantom_wiki.facts.family.constants import PERSON_TYPE
 
 # NOTE: we set the marriage date to 16 years after the younger spouse's date of birth
 AGE_OF_MARRIAGE = relativedelta(years=16)
+AGE_OF_DIVORCE = relativedelta(years=16)
 
 # ============================================================================= #
 #                               CLASS  GENERATOR                                #
@@ -157,14 +158,29 @@ class Generator:
         for sample_idx in range(args.num_samples):
             
             print("creating sample #{}: ".format(sample_idx), end="")
+            start = time.time()
                 
             # sample family tree
-            print("sampling family tree", end="")
-            start = time.time()
+            print("sampling family tree...")
             family_tree = self._sample_family_tree(args)
             family_trees.append(family_tree)
 
-            print(" OK ({:.3f}s)".format(time.time() - start))
+            # add divorce events
+            print("adding divorce events...")
+            # for each person in the family tree with a spouse
+            # add a divorce event after 16 years with a fixed probability
+            for i in range(len(family_tree)):
+                p = family_tree[i]
+                if len(p.events) == 1: # can only divorce if the person has a single event
+                    e = p.events[0]
+                    assert e.type == 'marriage', "First event must be a marriage"
+                    spouse = e.spouse
+                    if random.random() < args.divorce_rate:
+                        divorce_date = e.date + AGE_OF_DIVORCE
+                        p.events.append(Event('divorce', spouse, divorce_date))
+                        spouse.events.append(Event('divorce', p, divorce_date))
+
+            print("OK ({:.3f}s)".format(time.time() - start))
 
             # Resetting person factory if user allows for duplicate names
             if not args.duplicate_names:
@@ -229,7 +245,6 @@ def family_tree_to_facts(family_tree):
         # add 3-ary events ('marriage' or 'divorce')
         for event in p.events:
             events.append(f"{event.type}(\'{p.name}\', \'{event.spouse.name}\', \'{event.date}\')")
-            # marriages.append(f"married(\'{p.name}\', \'{p.married_to.name}\')")
             # NOTE: a single marriage will correspond to two `married` facts in the prolog database
 
     # Returning outputs 
@@ -249,9 +264,23 @@ def create_dot_graph(family_tree):
         graph.add_node(pydot.Node(p.name, style="filled", fillcolor=color))    
 
     # Add the edges
+    events = set()
     for p in family_tree:
         for c in p.children:
             graph.add_edge(pydot.Edge(p.name, c.name))
+        # add a solid line for marriage
+        if len(p.events) == 1 and p.events[0].type == 'marriage':
+            # don't add the same edge twice
+            if (p.events[0].spouse.name, p.name) in events:
+                continue
+            graph.add_edge(pydot.Edge(p.name, p.events[0].spouse.name, style="solid", dir="none"))
+            events.add((p.name, p.events[0].spouse.name))
+        elif len(p.events) == 2 and p.events[0].type == 'marriage' and p.events[1].type == 'divorce':
+            # don't add the same edge twice
+            if (p.events[1].spouse.name, p.name) in events:
+                continue
+            graph.add_edge(pydot.Edge(p.name, p.events[1].spouse.name, style="dashed", dir="none"))
+            events.add((p.name, p.events[1].spouse.name))
 
     return graph
 

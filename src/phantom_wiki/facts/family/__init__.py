@@ -24,7 +24,9 @@ fam_gen_parser.add_argument("--num-samples", type=int, default=1,
 fam_gen_parser.add_argument("--stop-prob", type=float, default=0.0,
                             help="The probability of stopping to further extend a family tree after a person has been added. (Default value: 0.)")
 fam_gen_parser.add_argument("--duplicate-names", type=bool, default=False,
-                        help="Used to allow/prevent duplicate names in the generation. (Default value: False.)")
+                            help="Used to allow/prevent duplicate names in the generation. (Default value: False.)")
+fam_gen_parser.add_argument("--divorce-rate", type=float, default=0.0,
+                            help="The probability that a couple will divorce. (Default value: 0.)")
 # wrapper for family tree generation
 
 import os
@@ -59,15 +61,17 @@ def db_generate_family(db, args: ArgumentParser):
         # 
         # Debugging
         # 
-        # Obtain family tree in Prolog format
-        pl_family_tree = family_tree_to_pl(family_tree)
-        # Create a unique filename for each tree
-        output_file_path = os.path.join(args.output_dir, f"family_tree_{i+1}.pl")
         os.makedirs(args.output_dir, exist_ok=True)
-        # Write the Prolog family tree to the file
-        with open(output_file_path, "w") as f:
-            f.write("\n".join(pl_family_tree))
+        # Obtain family tree in Prolog format
+        # pl_family_tree = family_tree_to_pl(family_tree)
+        # # Create a unique filename for each tree
+        # output_file_path = os.path.join(args.output_dir, f"family_tree_{i+1}.pl")
+        # # Write the Prolog family tree to the file
+        # with open(output_file_path, "w") as f:
+        #     f.write("\n".join(pl_family_tree))
+
         # Generate family graph plot and save it
         family_graph = create_dot_graph(family_tree)
         output_graph_path = os.path.join(args.output_dir, f"family_tree_{i+1}.png")
+        print(f"Saving family tree graph to: {output_graph_path}")
         family_graph.write_png(output_graph_path)

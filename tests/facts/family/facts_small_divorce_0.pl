@@ -78,7 +78,7 @@ great_grandson(X, Y) :-
     male(Y).
 
 is_divorced(X) :-
-    once_married(X, Y).
+    once_married(X, _Y).
 
 :- dynamic library_directory/1.
 :- multifile library_directory/1.
@@ -389,7 +389,7 @@ male(X) :-
     gender(X, male).
 
 never_married(X, Y) :-
-    \+ marriage(X, Y, D1).
+    \+ marriage(X, Y, _D1).
 
 son(X, Y) :-
     child(X, Y),
@@ -429,8 +429,8 @@ daughter(X, Y) :-
     female(Y).
 
 once_married(X, Y) :-
-    marriage(X, Y, D1),
-    \+ divorce(X, Y, D2).
+    marriage(X, Y, _D1),
+    \+ divorce(X, Y, _D2).
 
 female(X) :-
     gender(X, female).
@@ -464,8 +464,8 @@ prolog_file_type(dylib, executable) :-
     system:current_prolog_flag(apple, true).
 
 are_married(X, Y) :-
-    marriage(X, Y, D1),
-    \+ divorce(X, Y, D2).
+    marriage(X, Y, _D1),
+    \+ divorce(X, Y, _D2).
 
 brother(X, Y) :-
     sibling(X, Y),
@@ -582,7 +582,7 @@ male_cousin(X, Y) :-
 
 
 is_single(X) :-
-    never_married(X, Y).
+    never_married(X, _Y).
 
 female_cousin(X, Y) :-
     cousin(X, Y),
@@ -618,7 +618,7 @@ gender(thomasine, female).
 gender(vicente, male).
 
 is_married(X) :-
-    are_married(X, Y).
+    are_married(X, _Y).
 
 cousin(X, Y) :-
     parent(X, A),

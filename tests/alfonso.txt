@@ -8,7 +8,6 @@ The mother of alfonso is kanesha.
 The father of alfonso is derick.
 The child of alfonso is ellis.
 The son of alfonso is ellis.
-The wife of alfonso is ila.
 
 ## Friends
 The friend of alfonso is alton, colby, derick, miki.
