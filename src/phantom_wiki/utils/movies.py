@@ -1,3 +1,4 @@
+import random
 import re
 
 create_person_pattern = r"CREATE \((\w+):Person \{name:'([^']*)', born:(\d+)\}\)"
@@ -55,3 +56,34 @@ def match_create_writer(text):
     if match:
         return match.group(1), match.group(2)
     return None, None
+
+
+def get_names_from_SQL(path):
+    """Gets the names from a movie dataset created by SQL.
+    Returns:
+        List of people's names that appeared in the dataset.
+    """
+    with open(path) as f:
+        lines = f.readlines()
+    hollywood_people = []
+    for line in lines:
+        if match_create_person(line)[0] is not None:
+            hollywood_people.append(match_create_person(line)[0])
+    return hollywood_people
+
+
+def map_residents_to_hollywood(residents, hollywood_people):
+    """Sample a subset of residents to be Hollywood people.
+    Returns:
+        Dictionary mapping residents to Hollywood people.
+    """
+    if len(hollywood_people) > len(residents):
+        raise ValueError("Number of Hollywood people cannot be larger than number of residents.")
+
+    # Randomly sample from residents without replacement
+    sampled_elements = random.sample(residents, len(hollywood_people))
+
+    # Create the mapping
+    moviestart_to_residents = dict(zip(hollywood_people, sampled_elements))
+
+    return moviestart_to_residents
