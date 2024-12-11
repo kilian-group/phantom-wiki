@@ -63,17 +63,10 @@ def get_prolog_result_set(result) -> set[tuple]:
     """
 
     if isinstance(result, dict):
-        variables = []
-        for l in zip(result.keys(), result.values()):
-            variables.append(l)
-
-        return {tuple(l)}
+        return {*(zip(result.keys(), result.values()))}
 
     results = []
     for d in result:
-        variables = []
-        for l in zip(d.keys(), d.values()):
-            variables.append(l)
-        results.append(tuple(l))
+        results.append(*(zip(d.keys(), d.values())))
 
     return {*results}
