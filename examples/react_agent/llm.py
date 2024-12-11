@@ -12,29 +12,58 @@ from data import ContentTextMessage, Conversation
 STOP = ["\n"]
 top_p = 0.7
 top_k = 40
-MAX_TOKENS = 512
 
 
 class LLMChat(abc.ABC):
     SUPPORTED_LLM_NAMES: list[str] = []
 
-    def __init__(self, model_name: str, max_retries: int, wait_seconds: int, temperature: float, seed: int):
+    def __init__(
+        self,
+        model_name: str,
+        model_path: str | None = None,
+        max_tokens: int = 4096,
+        temperature: float = 0.0,
+        seed: int = 0,
+        max_retries: int = 3,
+        wait_seconds: int = 2,
+    ):
         """
         Initialize the LLM chat object.
 
         Args:
             model_name (str): The model name to use.
-            max_retries (int): Max number of API calls allowed before giving up.
-            wait_seconds (int): Number of seconds to wait between API calls.
-            temperature (float): Temperature parameter for sampling.
-            seed (int): Seed for random number generator, passed to the model if applicable.
+            model_path (Optional[str]): Local path to the model.
+                Defaults to None.
+            max_tokens (int): Maximum number of tokens to generate.
+                Defaults to 4096.
+            temperature (Optional[float]): Temperature parameter for sampling.
+                Defaults to 0.0.
+            seed (Optional[int]): Seed for random number generator, passed to the model if applicable.
+                Defaults to 0.
+            max_retries (Optional[int]): Max number of API calls allowed before giving up.
+                Defaults to 3.
+            wait_seconds (Optional[int]): Number of seconds to wait between API calls.
+                Defaults to 2.
         """
-        assert model_name in self.SUPPORTED_LLM_NAMES, f"Model name {model_name} must be one of {self.SUPPORTED_LLM_NAMES}."
+        assert (
+            model_name in self.SUPPORTED_LLM_NAMES
+        ), f"Model name {model_name} must be one of {self.SUPPORTED_LLM_NAMES}."
         self.model_name = model_name
-        self.max_retries = max_retries
-        self.wait_seconds = wait_seconds
+        self.model_path = model_path
+        self.max_tokens = max_tokens
         self.temperature = temperature
         self.seed = seed
+        self.max_retries = max_retries
+        self.wait_seconds = wait_seconds
+
+        self.model_kwargs = dict(
+            model_path=model_path,
+            max_tokens=max_tokens,
+            temperature=temperature,
+            seed=seed,
+            max_retries=max_retries,
+            wait_seconds=wait_seconds,
+        )
 
     @abc.abstractmethod
     def generate_response(self, conv: Conversation) -> str:
@@ -54,19 +83,25 @@ class CommonLLMChat(LLMChat):
     def __init__(
         self,
         model_name: str,
-        max_retries: int,
-        wait_seconds: int,
-        temperature: float,
-        seed: int,
+        model_path: str | None = None,
+        max_tokens: int = 4096,
+        temperature: float = 0.0,
+        seed: int = 0,
+        max_retries: int = 3,
+        wait_seconds: int = 2,
     ):
-        super().__init__(model_name, max_retries, wait_seconds, temperature, seed)
+        super().__init__(model_name, model_path, max_tokens, temperature, seed, max_retries, wait_seconds)
         self.client = None
-    
+
     @abc.abstractmethod
-    def _call_api(self, conv: Conversation) -> str:
+    def _call_api(self, messages_api_format: list[dict]) -> str:
+        """
+        Expects messages ready for API. Use `convert_conv_to_api_format` to convert a conversation
+        into such a list.
+        """
         pass
 
-    def convert_conv_to_common_format(self, conv: Conversation) -> list[dict]:
+    def _convert_conv_to_api_format(self, conv: Conversation) -> list[dict]:
         """
         Converts the conversation object to a common format supported by various LLM providers.
         Common format is:
@@ -96,7 +131,8 @@ class CommonLLMChat(LLMChat):
         # So we need to wrap the _call_api function with the retry decorator
         @retry(stop=stop_after_attempt(self.max_retries), wait=wait_fixed(self.wait_seconds))
         def _call_api_wrapper(conv: Conversation) -> str:
-            return self._call_api(conv)
+            messages_api_format: list[dict] = self._convert_conv_to_api_format(conv)
+            return self._call_api(messages_api_format)
 
         return _call_api_wrapper(conv)
 
@@ -110,21 +146,23 @@ class OpenAIChat(CommonLLMChat):
     def __init__(
         self,
         model_name: str,
-        max_retries: int,
-        wait_seconds: int,
-        temperature: float,
-        seed: int,
+        model_path: str | None = None,
+        max_tokens: int = 4096,
+        temperature: float = 0.0,
+        seed: int = 0,
+        max_retries: int = 3,
+        wait_seconds: int = 2,
     ):
-        super().__init__(model_name, max_retries, wait_seconds, temperature, seed)
+        super().__init__(model_name, model_path, max_tokens, temperature, seed, max_retries, wait_seconds)
         self.client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-    
-    def _call_api(self, conv: Conversation) -> str:
+
+    def _call_api(self, messages_api_format: list[dict]) -> str:
         # https://platform.openai.com/docs/api-reference/introduction
-        formatted_messages = self.convert_conv_to_common_format(conv)
         completion = self.client.chat.completions.create(
             model=self.model_name,
-            messages=formatted_messages,
+            messages=messages_api_format,
             temperature=self.temperature,
+            max_completion_tokens=self.max_tokens,
             seed=self.seed,
         )
         return completion.choices[0].message.content
@@ -141,25 +179,26 @@ class TogetherChat(OpenAIChat):
     def __init__(
         self,
         model_name: str,
-        max_retries: int,
-        wait_seconds: int,
-        temperature: float,
-        seed: int,
+        model_path: str | None = None,
+        max_tokens: int = 4096,
+        temperature: float = 0.0,
+        seed: int = 0,
+        max_retries: int = 3,
+        wait_seconds: int = 2,
     ):
         assert model_name.startswith("together:"), "model_name must start with 'together:'"
-        super().__init__(model_name, max_retries, wait_seconds, temperature, seed)
+        super().__init__(model_name, model_path, max_tokens, temperature, seed, max_retries, wait_seconds)
         self.client = together.Together(api_key=os.getenv("TOGETHER_API_KEY"))
 
-    def _call_api(self, conv: Conversation) -> str:
+    def _call_api(self, messages_api_format: list[dict]) -> str:
         # https://github.com/togethercomputer/together-python
-        formatted_messages = self.convert_conv_to_common_format(conv)
-
         # Remove the "together:" prefix before setting up the client
         completion = self.client.chat.completions.create(
-            model=self.model_name.lstrip("together:"),
-            messages=formatted_messages,
+            model=self.model_name[len("together:") :],
+            messages=messages_api_format,
             temperature=self.temperature,
             seed=self.seed,
+            max_tokens=self.max_tokens,
         )
         return completion.choices[0].message.content
 
@@ -173,26 +212,26 @@ class AnthropicChat(CommonLLMChat):
     def __init__(
         self,
         model_name: str,
-        max_retries: int,
-        wait_seconds: int,
-        temperature: float,
-        seed: int,
+        model_path: str | None = None,
+        max_tokens: int = 4096,
+        temperature: float = 0.0,
+        seed: int = 0,
+        max_retries: int = 3,
+        wait_seconds: int = 2,
     ):
-        super().__init__(model_name, max_retries, wait_seconds, temperature, seed)
+        super().__init__(model_name, model_path, max_tokens, temperature, seed, max_retries, wait_seconds)
         self.client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-    
-    def _call_api(self, conv: Conversation) -> str:
+
+    def _call_api(self, messages_api_format: list[dict]) -> str:
         # https://docs.anthropic.com/en/api/migrating-from-text-completions-to-messages
-        formatted_messages = self.convert_conv_to_common_format(conv)
         response = self.client.messages.create(
             model=self.model_name,
-            messages=formatted_messages,
+            messages=messages_api_format,
+            max_tokens=self.max_tokens,
             temperature=self.temperature,
-            top_p=top_p,
-            top_k=top_k,
-            max_tokens=MAX_TOKENS,
         )
         return response.content[0].text
+
 
 
 class GeminiChat(LLMChat):
@@ -204,12 +243,14 @@ class GeminiChat(LLMChat):
     def __init__(
         self,
         model_name: str,
-        max_retries: int,
-        wait_seconds: int,
-        temperature: float,
-        seed: int,
+        model_path: str | None = None,
+        max_tokens: int = 4096,
+        temperature: float = 0.0,
+        seed: int = 0,
+        max_retries: int = 3,
+        wait_seconds: int = 2,
     ):
-        super().__init__(model_name, max_retries, wait_seconds, temperature, seed)
+        super().__init__(model_name, model_path, max_tokens, temperature, seed, max_retries, wait_seconds)
         import google.generativeai as genai
 
         self.google_model = genai.GenerativeModel(self.model_name)
@@ -238,7 +279,7 @@ class GeminiChat(LLMChat):
                     'temperature': self.temperature,
                     'top_p': top_p,
                     # 'top_k': top_k, # NOTE: API does not suport topK>40
-                    'max_output_tokens': MAX_TOKENS,
+                    'max_output_tokens': self.max_tokens,
                     'stop_sequences': STOP,
                     # NOTE: API does not support seed, repetition_penalty
                 },
@@ -248,14 +289,19 @@ class GeminiChat(LLMChat):
         return _call_api(conv)
     
 
-REACT_INSTRUCTION = """Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types: 
-(1) RetrieveArticle[entity], which searches the exact entity on Wikipedia and returns the page if it exists. If not, it will return that the page does not exist.
-(2) Finish[answer], which returns the answer and finishes the task.
+REACT_INSTRUCTION = """
+Solve a question answering task with interleaving Thought, Action, Observation steps.
+They are specified in XML tags: <thought>...</thought>, <action />, and <observation>...</observation>.
+Thought can reason about the current situation, and Action can be two types:
+(1) <action round="{{n}}" type="RetrieveArticle[{{entity}}]" />, which searches the exact {{entity}} on Wikipedia and returns the page if it exists. If not, it will return that the page does not exist.
+(2) <action round="{{n}}" type="Finish[{{answer}}]" />, which finishes the task with {{answer}}.
 You may take as many steps as necessary.
 Here are some examples:
 {examples}
-(END OF EXAMPLES)
-Question: {question}{scratchpad}"""
+
+<question>{question}</question>
+{scratchpad}
+"""
 
 
 class LLMPrompts(abc.ABC):
@@ -275,7 +321,12 @@ class OpenAIPrompts(LLMPrompts):
         )
 
 
-SUPPORTED_LLM_NAMES: list[str] = OpenAIChat.SUPPORTED_LLM_NAMES + TogetherChat.SUPPORTED_LLM_NAMES + GeminiChat.SUPPORTED_LLM_NAMES + AnthropicChat.SUPPORTED_LLM_NAMES
+SUPPORTED_LLM_NAMES: list[str] = (
+    OpenAIChat.SUPPORTED_LLM_NAMES
+    + TogetherChat.SUPPORTED_LLM_NAMES
+    + AnthropicChat.SUPPORTED_LLM_NAMES
+    + GeminiChat.SUPPORTED_LLM_NAMES
+)
 
 def get_llm(model_name: str, model_kwargs: dict) -> tuple[LLMChat, LLMPrompts]:
     match model_name:
