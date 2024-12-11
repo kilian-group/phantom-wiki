@@ -29,6 +29,7 @@ from .attributes import db_generate_attributes
 from .family import db_generate_family
 from .person import db_generate_population
 from .friends import db_generate_friendships
+from .movies import db_generate_movies
 
 # 
 # Question generation arguments
