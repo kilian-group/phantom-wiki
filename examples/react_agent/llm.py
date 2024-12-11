@@ -291,14 +291,14 @@ class GeminiChat(LLMChat):
 
 REACT_INSTRUCTION = """
 Solve a question answering task with interleaving Thought, Action, Observation steps.
-They are specified in XML tags: <thought>...</thought>, <action />, and <observation>...</observation>.
+They are specified in XML tags: <thought>...</thought>, <action>...</action>, and <observation>...</observation>.
 Thought can reason about the current situation, and Action can be two types:
-(1) <action round="{{n}}" type="RetrieveArticle[{{entity}}]" />, which searches the exact {{entity}} on Wikipedia and returns the page if it exists. If not, it will return that the page does not exist.
-(2) <action round="{{n}}" type="Finish[{{answer}}]" />, which finishes the task with {{answer}}.
+(1) <action round="{{n}}">RetrieveArticle[{{entity}}]"</action>, which searches the exact {{entity}} on Wikipedia and returns the page if it exists. If not, it will return that the page does not exist.
+(2) <action round="{{n}}">Finish[{{answer}}]"</action>, which finishes the task with {{answer}}.
 You may take as many steps as necessary.
 Here are some examples:
 {examples}
-
+(END OF EXAMPLES)
 <question>{question}</question>
 {scratchpad}
 """

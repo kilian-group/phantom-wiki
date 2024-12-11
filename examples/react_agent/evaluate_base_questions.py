@@ -14,6 +14,7 @@ import llm
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_name", type=str, default="gpt-4o-mini-2024-07-18", choices=llm.SUPPORTED_LLM_NAMES)
+    # parser.add_argument("--model_name", type=str, default="claude-3-5-haiku-20241022", choices=llm.SUPPORTED_LLM_NAMES)
 
     # Dataset arguments
     parser.add_argument("--eval_split", type=str, default="depth_6_size_26_seed_1")
@@ -21,7 +22,7 @@ if __name__ == "__main__":
     # React Agent arguments
     parser.add_argument("--max_steps", type=int, default=6)
     parser.add_argument("--window_size", type=int, default=6)
-    parser.add_argument("--samples", type=int, default=1)
+    parser.add_argument("--samples", type=int, default=5)
     args, unknown = parser.parse_known_args()
 
 # %%
