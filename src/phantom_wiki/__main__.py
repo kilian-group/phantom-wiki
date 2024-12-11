@@ -11,7 +11,8 @@ import numpy as np
 from .facts import (get_database,
                     db_generate_family, 
                     db_generate_friendships,
-                    db_generate_attributes)
+                    db_generate_attributes,
+                    db_generate_movies)
 from .core.article import get_articles
 from .facts.templates import generate_templates
 from .facts.sample import sample
