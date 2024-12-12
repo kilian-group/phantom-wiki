@@ -78,26 +78,26 @@ def save_preds(run_name: str, args: argparse.Namespace, df_qa_pairs: pd.DataFram
     preds = {}
     batch_size = len(df_qa_pairs)
     for i in range(batch_size):
-        uid = df_qa_pairs.at[i, 'id']
+        uid = df_qa_pairs.at[i, "id"]
         preds[uid] = {
-            'true' : df_qa_pairs.at[i, 'answer'],
-            'pred' : answers[i]['pred'],
-            'interaction': answers[i]['interaction'],
-            'metadata': {
-                'model': args.model_name,
-                'split': args.split,
-                'batch_size': batch_size,
-                'batch_number': 1,
-                'type': int(df_qa_pairs.at[i, 'type']),
+            "true" : df_qa_pairs.at[i, "answer"],
+            "pred" : answers[i]["pred"],
+            "interaction": answers[i]["interaction"],
+            "metadata": {
+                "model": args.model_name,
+                "split": args.split,
+                "batch_size": batch_size,
+                "batch_number": 1,
+                "type": int(df_qa_pairs.at[i, "type"]),
             },
-            'sampling_params': {
-                'max_tokens': args.sampling_max_tokens,
-                'temperature': args.sampling_temperature,
-                'seed': args.sampling_seed,
-                'max_retries': args.sampling_max_retries,
-                'wait_seconds': args.sampling_wait_seconds
+            "sampling_params": {
+                "max_tokens": args.sampling_max_tokens,
+                "temperature": args.sampling_temperature,
+                "seed": args.sampling_seed,
+                "max_retries": args.sampling_max_retries,
+                "wait_seconds": args.sampling_wait_seconds
             },
-            # 'usage': responses[i]['usage'],
+            # "usage": responses[i]["usage"],
         }
 
     pred_path = Path(args.output_dir) / "react" / "preds" / f"{run_name}.json"
