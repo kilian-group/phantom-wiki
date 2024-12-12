@@ -24,7 +24,7 @@ def main(args: argparse.Namespace) -> None:
     df_text = pd.DataFrame(dataset["text"])
 
     # TODO Filter one type of question
-    df_qa_pairs = df_qa_pairs.loc[df_qa_pairs["type"] == 1, :]
+    df_qa_pairs = df_qa_pairs.loc[df_qa_pairs["type"] == 5, :]
     df_qa_pairs = df_qa_pairs[:args.num_samples]
     df_qa_pairs = df_qa_pairs.reset_index(drop=True)
 
@@ -55,10 +55,10 @@ def main(args: argparse.Namespace) -> None:
         agents.append(agent)
 
     # Run the agents and log the final answers
-    # TODO save after each agent run
-    print(f"Running ReAct agent for {len(agents)} samples")
+    run_name = f"split={args.split}__model_name={args.model_name.replace('/', '--')}"
+    print(f"Running ReAct agents")
     answers: list[dict[str, Any]] = []
-    for agent in agents:
+    for i, agent in enumerate(agents):
         # blue(agent.question)
         agent.run(llm_chat)
         # TODO Add usage dump
@@ -66,10 +66,10 @@ def main(args: argparse.Namespace) -> None:
             "pred": agent.answer,
             "interaction": agent._build_agent_prompt(),
         })
-    
-    run_name = f"split={args.split}__model_name={args.model_name.replace('/', '--')}"
-    save_preds(run_name, args, df_qa_pairs, answers)
 
+        # Save after each agent run
+        save_preds(run_name, args, df_qa_pairs[:i+1], answers)
+    
 
 def save_preds(run_name: str, args: argparse.Namespace, df_qa_pairs: pd.DataFrame, answers: list[dict, str, Any]) -> None:
     preds = {}

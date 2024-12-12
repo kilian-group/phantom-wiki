@@ -42,6 +42,8 @@ class ReactAgent:
     def run(self, llm_chat: LLMChat, reset: bool = True) -> None:
         if reset:
             self.__reset_agent()
+
+        print(f"\n\t>>> question: {self.question}\n")
         
         while (not self.is_halted(llm_chat)) and (not self.is_finished()):
             try:
@@ -84,7 +86,7 @@ class ReactAgent:
             case "Search":
                 try:
                     articles: list[str]  = self.text_corpus.loc[self.text_corpus["article"].str.contains(argument), "article"].tolist()
-                    enum_articles: str = "\n\n".join(f"{i}: {article}" for i, article in enumerate(articles))
+                    enum_articles: str = "\n\n".join(f"{i+1}: {article}" for i, article in enumerate(articles))
                     observation_str = format_step(enum_articles)
                 except IndexError:
                     observation_str += f"No articles contain the requested attribute. Please try searching for another attribute."
