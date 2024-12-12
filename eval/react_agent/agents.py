@@ -2,36 +2,27 @@ import re
 import string
 
 import pandas as pd
-from langchain.prompts import PromptTemplate
 from termcolor import colored
 
 from llm import LLMChat
 from data import Conversation, ContentTextMessage, Message
 
-# TODO add more examples
-REACT_EXAMPLES6 = """
-<question>Who is the father of anastasia?</question>
-<thought round="1">I need to retrieve article about anastasia and find who her father is.</thought>
-<action round="1">RetrieveArticle[anastasia]</action>
-<observation round="1"># anastasia ## Family The child of anastasia is jack, ringo, maeve. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.</observation>
-<thought round="2">The father of anastasia is daniel, so the answer is daniel.</thought>
-<action round="2">Finish[daniel]</action>
-"""
 
 class ReactAgent:
     def __init__(
         self,
         question: str,
         keys: list[str],
-        agent_prompt: PromptTemplate,
+        agent_prompt: str,
         max_steps: int,
         text_corpus: pd.DataFrame,
+        react_examples: str,
     ):
         """
         Args:
             question (str): The question to be answered.
             keys (list[str]): List of correct answers.
-            agent_prompt (PromptTemplate): The prompt template for the agent.
+            agent_prompt (str): The prompt template for the agent.
             max_steps (int): The maximum number of steps the agent can take.
             text_corpus (pd.DataFrame): The text corpus to search for answers.
                 Must contain two columns: 'title' and 'article'.
@@ -42,7 +33,7 @@ class ReactAgent:
         self.max_steps = max_steps
         self.agent_prompt = agent_prompt
         self.text_corpus = text_corpus
-        self.react_examples = REACT_EXAMPLES6
+        self.react_examples = react_examples
 
         self.__reset_agent()
 
@@ -66,15 +57,11 @@ class ReactAgent:
                 break
     
     def step(self, llm_chat: LLMChat) -> None:
-        def sys_print(message: str) -> None:
-            print(colored(">>> ", "green") + message)
-        
         # Think
         response = self.prompt_agent(llm_chat, is_action=False)
         thought = get_tag_at_round(response, tag_type="thought", step_round=self.step_round)
         self.scratchpad +=  "\n" + thought
-        sys_print(f"LLM's response: {thought}")
-        print()
+        print(thought)
 
         # Act
         response = self.prompt_agent(llm_chat, is_action=True)
@@ -82,8 +69,7 @@ class ReactAgent:
         self.scratchpad += "\n" + action
         action_type, argument = parse_action(action)
         argument = argument.lower() # Normalize the argument
-        sys_print(f"LLM's response: {action}")
-        print()
+        print(action)
 
         # MEMENTO
         self.actions.append((action_type, argument))
@@ -109,8 +95,7 @@ class ReactAgent:
                 observation_str += "Invalid Action. Valid Actions are RetrieveArticle[{{entity}}] and Finish[{{answer}}]."
         observation_for_round = f"<observation round=\"{self.step_round}\">{observation_str}</observation>"
         self.scratchpad += "\n" + observation_for_round
-        sys_print(f"After action: {observation_for_round}")
-        print()
+        print(observation_for_round)
 
         self.step_round += 1
 

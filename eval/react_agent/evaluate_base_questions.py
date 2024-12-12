@@ -10,6 +10,7 @@ dotenv.load_dotenv(".env", override=True)
 # Specify argument parser
 import argparse
 import llm
+import prompts
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -55,7 +56,7 @@ print(df_text_corpus.head())
 
 # %%
 from agents import ReactAgent
-from llm import get_llm 
+import llm
 
 # Get the LLM model and prompts
 model_kwargs = dict(
@@ -64,7 +65,8 @@ model_kwargs = dict(
     temperature=0,
     seed=0,
 )
-llm_chat, llm_prompts = get_llm(args.model_name, model_kwargs=model_kwargs)
+llm_chat = llm.get_llm(args.model_name, model_kwargs=model_kwargs)
+llm_prompts = prompts.get_llm_prompt(args.model_name)
 
 # Construct react agent for each sample in the QA dataset
 agents: list[ReactAgent] = []
@@ -72,9 +74,10 @@ for i, sample in enumerate(df_qa_w_answers[:args.samples].itertuples()):
     agent = ReactAgent(
         sample.question,
         sample.answer,
-        agent_prompt=llm_prompts.react_agent_prompt(),
+        agent_prompt=llm_prompts.get_react_prompt(),
         max_steps=args.max_steps,
         text_corpus=df_text_corpus,
+        react_examples=prompts.REACT_EXAMPLES6,
     )
     agents.append(agent)
 

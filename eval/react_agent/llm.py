@@ -289,38 +289,6 @@ class GeminiChat(LLMChat):
         return _call_api(conv)
     
 
-REACT_INSTRUCTION = """
-Solve a question answering task with interleaving Thought, Action, Observation steps.
-They are specified in XML tags: <thought>...</thought>, <action>...</action>, and <observation>...</observation>.
-Thought can reason about the current situation, and Action can be two types:
-(1) <action round="{{n}}">RetrieveArticle[{{entity}}]"</action>, which searches the exact {{entity}} on Wikipedia and returns the page if it exists. If not, it will return that the page does not exist.
-(2) <action round="{{n}}">Finish[{{answer}}]"</action>, which finishes the task with {{answer}}.
-You may take as many steps as necessary.
-Here are some examples:
-{examples}
-(END OF EXAMPLES)
-<question>{question}</question>
-{scratchpad}
-"""
-
-
-class LLMPrompts(abc.ABC):
-    @abc.abstractmethod
-    def react_agent_prompt(self) -> PromptTemplate:
-        pass
-
-
-class OpenAIPrompts(LLMPrompts):
-    def __init__(self) -> None:
-        pass
-    
-    def react_agent_prompt(self):
-        return PromptTemplate(
-            input_variables=["examples", "question", "scratchpad"],
-            template=REACT_INSTRUCTION,
-        )
-
-
 SUPPORTED_LLM_NAMES: list[str] = (
     OpenAIChat.SUPPORTED_LLM_NAMES
     + TogetherChat.SUPPORTED_LLM_NAMES
@@ -328,15 +296,15 @@ SUPPORTED_LLM_NAMES: list[str] = (
     + GeminiChat.SUPPORTED_LLM_NAMES
 )
 
-def get_llm(model_name: str, model_kwargs: dict) -> tuple[LLMChat, LLMPrompts]:
+def get_llm(model_name: str, model_kwargs: dict) -> LLMChat:
     match model_name:
         case model_name if model_name in OpenAIChat.SUPPORTED_LLM_NAMES:
-            return OpenAIChat(model_name=model_name, **model_kwargs), OpenAIPrompts()
+            return OpenAIChat(model_name=model_name, **model_kwargs)
         case model_name if model_name in TogetherChat.SUPPORTED_LLM_NAMES:
-            return TogetherChat(model_name=model_name, **model_kwargs), OpenAIPrompts()
+            return TogetherChat(model_name=model_name, **model_kwargs)
         case model_name if model_name in GeminiChat.SUPPORTED_LLM_NAMES:
-            return GeminiChat(model_name=model_name, **model_kwargs), OpenAIPrompts()
+            return GeminiChat(model_name=model_name, **model_kwargs)
         case model_name if model_name in AnthropicChat.SUPPORTED_LLM_NAMES:
-            return AnthropicChat(model_name=model_name, **model_kwargs), OpenAIPrompts()
+            return AnthropicChat(model_name=model_name, **model_kwargs)
         case _:
             raise ValueError(f"Model name {model_name} must be one of {SUPPORTED_LLM_NAMES}.")

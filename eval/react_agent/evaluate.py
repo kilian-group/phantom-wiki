@@ -12,9 +12,9 @@ from phantom_eval.score import match, precision, recall, f1
 
 
 def main(args: argparse.Namespace) -> None:
-    pred_dir: Path = Path(args.output_dir) / "preds"
+    pred_dir: Path = Path(args.output_dir) / "react" / "preds"
     json_files: list[Path] = list(pred_dir.glob("*.json"))
-    assert len(json_files) > 0, f"No JSON files found in {args.output_dir}/preds/"
+    assert len(json_files) > 0, f"No JSON files found in {pred_dir}"
 
     # Collect all JSON files as a single dataframe
     df_list: list[pd.DataFrame] = []

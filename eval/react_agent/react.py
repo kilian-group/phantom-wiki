@@ -13,6 +13,7 @@ import pandas as pd
 
 from agents import ReactAgent
 import llm
+import prompts
 from phantom_eval.utils import load_data
 
 
@@ -27,12 +28,6 @@ def main(args: argparse.Namespace) -> None:
     df_qa_pairs = df_qa_pairs[:args.num_samples]
     df_qa_pairs = df_qa_pairs.reset_index(drop=True)
 
-    print("* Setting up logging")
-    run_name = f"split={args.split}__model_name={args.model_name.replace('/', '--')}"
-    output_dir = Path(args.output_dir) / "react" / run_name
-    output_dir.mkdir(parents=True, exist_ok=True)
-    # logging.basicConfig(level=logging.INFO)
-
     print("* Loading LLM")
     model_kwargs = dict(
         model_path=args.model_path,
@@ -42,7 +37,8 @@ def main(args: argparse.Namespace) -> None:
         max_retries=args.sampling_max_retries,
         wait_seconds=args.sampling_wait_seconds,
     )
-    llm_chat, llm_prompts = llm.get_llm(args.model_name, model_kwargs=model_kwargs)
+    llm_chat = llm.get_llm(args.model_name, model_kwargs=model_kwargs)
+    llm_prompts = prompts.get_llm_prompt(args.model_name)
 
     # Construct react agent for each sample in the QA dataset
     print(f"Constructing ReAct agent for {len(df_qa_pairs)} samples")
@@ -51,9 +47,10 @@ def main(args: argparse.Namespace) -> None:
         agent = ReactAgent(
             sample.question,
             sample.answer,
-            agent_prompt=llm_prompts.react_agent_prompt(),
+            agent_prompt=llm_prompts.get_react_prompt(),
             max_steps=args.react_max_steps,
             text_corpus=df_text,
+            react_examples=prompts.REACT_EXAMPLES6,
         )
         agents.append(agent)
 
@@ -71,6 +68,7 @@ def main(args: argparse.Namespace) -> None:
         })
     
     print(f"Saving predictions")
+    run_name = f"split={args.split}__model_name={args.model_name.replace('/', '--')}"
     save_preds(run_name, args, df_qa_pairs, answers)
 
 

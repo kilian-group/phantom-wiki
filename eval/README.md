@@ -3,5 +3,7 @@
 ## ReAct agent
 
 ```bash
-python react_agent/react.py
+cd react_agent
+python react.py --output_dir ../out
+python evaluate.py --output_dir ../out
 ```
