@@ -168,7 +168,7 @@ class OpenAIChat(CommonLLMChat):
         return completion.choices[0].message.content
 
 
-class TogetherChat(OpenAIChat):
+class TogetherChat(CommonLLMChat):
     SUPPORTED_LLM_NAMES: list[str] = [
         "together:meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
         "together:meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
