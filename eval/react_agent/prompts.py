@@ -2,14 +2,33 @@ from langchain.prompts import PromptTemplate
 import llm
 
 
-# TODO add more examples
+# TODO 2-step retrievearticle
+# TODO retrievearticle -> search
+# TODO search -> retrievearticle
 REACT_EXAMPLES6 = """
+Example 1:
 <question>Who is the father of anastasia?</question>
 <thought round="1">I need to retrieve article about anastasia and find who her father is.</thought>
 <action round="1">RetrieveArticle[anastasia]</action>
-<observation round="1"># anastasia ## Family The child of anastasia is jack, ringo, maeve. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.</observation>
+<observation round="1"># anastasia ## Family The son of anastasia is jack, ringo, liam. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.</observation>
 <thought round="2">The father of anastasia is daniel, so the answer is daniel.</thought>
 <action round="2">Finish[daniel]</action>
+
+Example 2:
+<question>Who is the mother of ivana?</question>
+<thought round="1">I need to retrieve article about ivana and find who her mother is.</thought>
+<action round="1">RetrieveArticle[ivana]</action>
+<observation round="1">The last article searched was not found. Please try retrieved another article.</observation>
+<thought round="2">Article about ivana does not exist, so I cannot find the mother of ivana. I will output empty answer.</thought>
+<action round="2">Finish[]</action>
+
+Example 3:
+<question>Who is the son of anastasia?</question>
+<thought round="1">I need to retrieve article about anastasia and find who her father is.</thought>
+<action round="1">RetrieveArticle[anastasia]</action>
+<observation round="1"># anastasia ## Family The son of anastasia is jack, ringo, liam. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.</observation>
+<thought round="2">The son of anastasia is jack, ringo, and liam, so the answer is jack, ringo, liam.</thought>
+<action round="2">Finish[jack,ringo,liam]</action>
 """
 
 
@@ -18,12 +37,18 @@ class LLMPrompt:
     Solve a question answering task with interleaving Thought, Action, Observation steps.
     They are specified in XML tags: <thought>...</thought>, <action>...</action>, and <observation>...</observation>.
     Thought can reason about the current situation, and Action can be two types:
-    (1) <action round="{{n}}">RetrieveArticle[{{entity}}]"</action>, which searches the exact {{entity}} on Wikipedia and returns the page if it exists. If not, it will return that the page does not exist.
-    (2) <action round="{{n}}">Finish[{{answer}}]"</action>, which finishes the task with {{answer}}.
+    (1) <action round="{{n}}">RetrieveArticle[{{entity}}]</action>, which searches the exact {{entity}} on Wikipedia and returns the page if it exists. If not, it will return that the page does not exist.
+    (2) <action round="{{n}}">Finish[{{answer}}]</action>, which finishes the task with {{answer}}.
+    If you cannot find the answer, output the empty answer like: <action round="{{n}}">Finish[]</action>. 
+    If there are multiple answers A,B,C, answer with a comma separated list like: <action round="{{n}}">Finish[A,B,C]</action>. 
+
     You may take as many steps as necessary.
     Here are some examples:
+    (START OF EXAMPLES)
     {examples}
     (END OF EXAMPLES)
+
+    Now answer the following question:
     <question>{question}</question>
     {scratchpad}
     """
