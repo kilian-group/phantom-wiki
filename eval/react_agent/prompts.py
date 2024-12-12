@@ -2,7 +2,6 @@ from langchain.prompts import PromptTemplate
 import llm
 
 
-# TODO 2-step retrievearticle
 # TODO retrievearticle -> search
 # TODO search -> retrievearticle
 REACT_EXAMPLES6 = """
@@ -27,8 +26,27 @@ Example 3:
 <thought round="1">I need to retrieve article about anastasia and find who her father is.</thought>
 <action round="1">RetrieveArticle[anastasia]</action>
 <observation round="1"># anastasia ## Family The son of anastasia is jack, ringo, liam. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.</observation>
-<thought round="2">The son of anastasia is jack, ringo, and liam, so the answer is jack, ringo, liam.</thought>
+<thought round="2">The son of anastasia is jack, ringo, liam, so the answer is jack, ringo, liam.</thought>
 <action round="2">Finish[jack,ringo,liam]</action>
+
+Example 4:
+<question>How many sons does anastasia have?</question>
+<thought round="1">I need to retrieve article about anastasia and find who her father is.</thought>
+<action round="1">RetrieveArticle[anastasia]</action>
+<observation round="1"># anastasia ## Family The son of anastasia is jack, ringo, liam. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.</observation>
+<thought round="2">The son of anastasia is jack, ringo, liam, so the answer is 3 sons.</thought>
+<action round="2">Finish[3]</action>
+
+Example 5:
+<question>What is the job of the father of anastasia?</question>
+<thought round="1">First, I need to retrieve article about anastasia and find who her father is.</thought>
+<action round="1">RetrieveArticle[anastasia]</action>
+<observation round="1"># anastasia ## Family The son of anastasia is jack, ringo, liam. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.</observation>
+<thought round="2">The father of anastasia is daniel. To find out the job of daniel, I need to retrieve article about daniel.</thought>
+<action round="2">RetrieveArticle[daniel]</action>
+<observation round="2"># daniel ## Family The daughter of daniel is anastasia. The wife of daniel is leah. The mother of daniel is mary. ## Friends The friend of daniel is paul, catherine, william. ## Attributes The date of birth of daniel is 0192-12-23. The job of daniel is goldsmith. The hobby of daniel is woodworking, crocheting.</observation>
+<thought round="3">The father of anastasia is daniel, and the job of daniel is goldsmith. So the answer is goldsmith.</thought>
+<action round="3">Finish[goldsmith]</action>
 """
 
 
