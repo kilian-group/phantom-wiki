@@ -1,3 +1,4 @@
+from langchain.prompts import PromptTemplate
 import llm
 
 
@@ -27,8 +28,11 @@ class LLMPrompt:
     {scratchpad}
     """
 
-    def get_react_prompt(self) -> str:
-        return self.REACT_INSTRUCTION
+    def get_react_prompt(self) -> PromptTemplate:
+        return PromptTemplate(
+            input_variables=["examples", "question", "scratchpad"],
+            template=self.REACT_INSTRUCTION,
+        )
 
 
 class OpenAIPrompt(LLMPrompt):

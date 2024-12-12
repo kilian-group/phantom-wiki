@@ -4,6 +4,7 @@ import string
 import pandas as pd
 from termcolor import colored
 
+from langchain.prompts import PromptTemplate
 from llm import LLMChat
 from data import Conversation, ContentTextMessage, Message
 
@@ -13,7 +14,7 @@ class ReactAgent:
         self,
         question: str,
         keys: list[str],
-        agent_prompt: str,
+        agent_prompt: PromptTemplate,
         max_steps: int,
         text_corpus: pd.DataFrame,
         react_examples: str,
@@ -22,7 +23,7 @@ class ReactAgent:
         Args:
             question (str): The question to be answered.
             keys (list[str]): List of correct answers.
-            agent_prompt (str): The prompt template for the agent.
+            agent_prompt (PromptTemplate): The prompt template for the agent.
             max_steps (int): The maximum number of steps the agent can take.
             text_corpus (pd.DataFrame): The text corpus to search for answers.
                 Must contain two columns: 'title' and 'article'.
@@ -37,12 +38,6 @@ class ReactAgent:
 
         self.__reset_agent()
 
-        ############ MEMENTO ############
-        # keep track of actions
-        self.actions = []
-        # debugging outputs
-        self.error = None
-
 
     def run(self, llm_chat: LLMChat, reset: bool = True) -> None:
         if reset:
@@ -53,26 +48,24 @@ class ReactAgent:
                 self.step(llm_chat)
             except Exception as e:
                 self.answer = []
-                self.error = (type(e).__name__, e)
                 break
     
     def step(self, llm_chat: LLMChat) -> None:
         # Think
         response = self.prompt_agent(llm_chat, is_action=False)
+        print(f">>> {response}")
         thought = get_tag_at_round(response, tag_type="thought", step_round=self.step_round)
         self.scratchpad +=  "\n" + thought
         print(thought)
 
         # Act
         response = self.prompt_agent(llm_chat, is_action=True)
+        print(f">>> {response}")
         action = get_tag_at_round(response, tag_type="action", step_round=self.step_round)
         self.scratchpad += "\n" + action
         action_type, argument = parse_action(action)
         argument = argument.lower() # Normalize the argument
         print(action)
-
-        # MEMENTO
-        self.actions.append((action_type, argument))
 
         # Observe
         match action_type:
@@ -129,9 +122,6 @@ class ReactAgent:
         self.step_round = 1
         self.finished = False
         self.scratchpad: str = ''
-        self.actions = []
-        # debugging outputs
-        self.error = None
 
 
 def get_tag_at_round(response: str, tag_type: str, step_round: int) -> str:

@@ -67,7 +67,6 @@ def main(args: argparse.Namespace) -> None:
             "interaction": agent._build_agent_prompt(),
         })
     
-    print(f"Saving predictions")
     run_name = f"split={args.split}__model_name={args.model_name.replace('/', '--')}"
     save_preds(run_name, args, df_qa_pairs, answers)
 
