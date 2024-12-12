@@ -123,7 +123,7 @@ are_married(X, Y) :-
 
 once_married(X, Y) :-
     marriage(X, Y, _D1),
-    \+ divorce(X, Y, _D2).
+    divorce(X, Y, _D2).
 
 never_married(X,Y) :-
     \+ marriage(X, Y, _D1).
