@@ -167,6 +167,7 @@ class Generator:
             family_trees.append(family_tree)
 
             # add divorce and remarrying events
+            # TODO: should we wrap this in a loop?
             print("adding divorce and remarrying events...")
             # for each person in the family tree with a spouse
             # add a divorce event after 16 years with a fixed probability (previous marriage duration for testing)
