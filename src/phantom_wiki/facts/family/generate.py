@@ -84,6 +84,7 @@ class Generator:
 
             if add_child:
                 # check whether the chosen person is single, if not -> add a partner
+                # TODO: should make people to marry to someone else if they are divorced
                 if current_person.events:
                     e = current_person.events[0]
                     assert e.type == 'marriage', "First event must be a marriage"
