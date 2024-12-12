@@ -23,8 +23,9 @@ from phantom_wiki.utils import get_parser
 from phantom_wiki.facts.family.constants import PERSON_TYPE
 
 # NOTE: we set the marriage date to 16 years after the younger spouse's date of birth
-AGE_OF_MARRIAGE = relativedelta(years=16)
-AGE_OF_DIVORCE = relativedelta(years=16)
+AGE_AT_MARRIAGE = relativedelta(years=16)
+DUR_OF_MARRIAGE = relativedelta(years=16)
+DUR_OF_DIVORCE = relativedelta(years=1)
 
 # ============================================================================= #
 #                               CLASS  GENERATOR                                #
@@ -94,7 +95,7 @@ class Generator:
                         female = not current_person.female,
                         spouse = current_person
                     )
-                    date_of_marriage = max(current_person.date_of_birth, spouse.date_of_birth) + AGE_OF_MARRIAGE
+                    date_of_marriage = max(current_person.date_of_birth, spouse.date_of_birth) + AGE_AT_MARRIAGE
                     spouse.events.append(Event('marriage', current_person, date_of_marriage))
                     current_person.events.append(Event('marriage', spouse, date_of_marriage))
                     fam_tree.append(spouse)
@@ -121,7 +122,7 @@ class Generator:
                 dad, mom = self.person_factory.create_parents(current_person.tree_level - 1, current_person)
 
                 # specify relationships
-                date_of_marriage = max(dad.date_of_birth, mom.date_of_birth) + AGE_OF_MARRIAGE
+                date_of_marriage = max(dad.date_of_birth, mom.date_of_birth) + AGE_AT_MARRIAGE
                 dad.events.append(Event('marriage', mom, date_of_marriage))
                 mom.events.append(Event('marriage', dad, date_of_marriage))
                 mom.children.append(current_person)
@@ -165,20 +166,39 @@ class Generator:
             family_tree = self._sample_family_tree(args)
             family_trees.append(family_tree)
 
-            # add divorce events
-            print("adding divorce events...")
+            # add divorce and remarrying events
+            print("adding divorce and remarrying events...")
             # for each person in the family tree with a spouse
-            # add a divorce event after 16 years with a fixed probability
+            # add a divorce event after 16 years with a fixed probability (previous marriage duration for testing)
+            # for each person in the family tree with a latest divorce event
+            # add a remarriage event after 1 year with a fixed probability
             for i in range(len(family_tree)):
                 p = family_tree[i]
-                if len(p.events) == 1: # can only divorce if the person has a single event
-                    e = p.events[0]
-                    assert e.type == 'marriage', "First event must be a marriage"
+                if len(p.events) % 2 == 1: # can only divorce if the person has odd number of events (i.e., married)
+                    e = p.events[-1]
+                    assert e.type == 'marriage', "Last event must be a marriage"
                     spouse = e.spouse
                     if random.random() < args.divorce_rate:
-                        divorce_date = e.date + AGE_OF_DIVORCE
+                        divorce_date = e.date + DUR_OF_MARRIAGE
                         p.events.append(Event('divorce', spouse, divorce_date))
                         spouse.events.append(Event('divorce', p, divorce_date))
+
+                elif len(p.events) > 0 and len(p.events) % 2 == 0: # can only remarry if the person has even number of events (i.e., divorced)
+                    e = p.events[-1]
+                    assert e.type == 'divorce', "Last event must be a divorce"
+                    if random.random() < args.remarry_rate:
+                        remarry_date = e.date + DUR_OF_DIVORCE
+                        # TODO: how to find the spouse? for now just remarry to one of your exes? 
+                        exes = [event.spouse for event in p.events if event.type == 'marriage']
+                        spouse = random.choice(exes)
+                        p.events.append(Event('marriage', spouse, remarry_date))
+                        spouse.events.append(Event('marriage', p, remarry_date))
+
+            # add remarriage events
+            print("adding remarriage events...")
+
+
+                        
 
             print("OK ({:.3f}s)".format(time.time() - start))
 

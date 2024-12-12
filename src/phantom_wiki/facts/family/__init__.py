@@ -27,6 +27,8 @@ fam_gen_parser.add_argument("--duplicate-names", type=bool, default=False,
                             help="Used to allow/prevent duplicate names in the generation. (Default value: False.)")
 fam_gen_parser.add_argument("--divorce-rate", type=float, default=0.0,
                             help="The probability that a couple will divorce. (Default value: 0.)")
+fam_gen_parser.add_argument("--remarry-rate", type=float, default=0.0,
+                            help="The probability that a divorced person will remarry. (Default value: 0.)")
 # wrapper for family tree generation
 
 import os
