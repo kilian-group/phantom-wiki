@@ -53,15 +53,18 @@ class ReactAgent:
                 break
     
     def step(self, llm_chat: LLMChat) -> None:
+        # Stop generating when end tag encountered. Add the end tag if not present in response
         # Think
-        response = self.prompt_agent(llm_chat, is_action=False)
+        response = self.prompt_agent(llm_chat, stop_sequences=["</thought>"])
+        response = f"{response}</thought>"
         print(f"\n\t>>> {response}\n")
         thought = get_tag_at_round(response, tag_type="thought", step_round=self.step_round)
         self.scratchpad +=  "\n" + thought
         print(thought)
 
         # Act
-        response = self.prompt_agent(llm_chat, is_action=True)
+        response = self.prompt_agent(llm_chat, stop_sequences=["</action>"])
+        response = f"{response}</action>"
         print(f"\n\t>>> {response}\n")
         action = get_tag_at_round(response, tag_type="action", step_round=self.step_round)
         self.scratchpad += "\n" + action
@@ -98,14 +101,13 @@ class ReactAgent:
 
         self.step_round += 1
 
-    def prompt_agent(self, llm_chat: LLMChat, is_action: bool) -> str:
-        # TODO is_action not used
+    def prompt_agent(self, llm_chat: LLMChat, stop_sequences: list[str] | None = None) -> str:
         # No turn-style conversation. All of the back and forth conversation so far becomes the user prompt.
         user_message: str = self._build_agent_prompt()
         conv: Conversation = Conversation(messages=[
             Message(role="user", content=[ContentTextMessage(text=user_message)])
         ])
-        resp = llm_chat.generate_response(conv)
+        resp = llm_chat.generate_response(conv, stop_sequences=stop_sequences)
         return format_step(resp)
         # return resp
     

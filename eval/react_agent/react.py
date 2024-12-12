@@ -23,11 +23,6 @@ def main(args: argparse.Namespace) -> None:
     df_qa_pairs = pd.DataFrame(dataset["qa_pairs"])
     df_text = pd.DataFrame(dataset["text"])
 
-    # TODO Filter one type of question
-    df_qa_pairs = df_qa_pairs.loc[df_qa_pairs["type"] == 5, :]
-    df_qa_pairs = df_qa_pairs[:args.num_samples]
-    df_qa_pairs = df_qa_pairs.reset_index(drop=True)
-
     print("* Loading LLM")
     model_kwargs = dict(
         model_path=args.model_path,
