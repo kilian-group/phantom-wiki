@@ -1,4 +1,0 @@
-S -> Introduction Occupation EntityNames 
-Introduction -> "Meet Karin, a dedicated professional with a knack for detail. "
-Occupation -> "As an insurance claims handler, "
-EntityNames -> "she has efficiently managed cases for fictional companies like Crystal Waters Insurance and Golden Horizon Coverage. "

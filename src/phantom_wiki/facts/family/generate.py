@@ -18,6 +18,7 @@ from phantom_wiki.facts.family.person_factory import (PersonFactory,
                                                       Person)
 from phantom_wiki.facts.family import fam_gen_parser
 from phantom_wiki.utils import get_parser
+from phantom_wiki.facts.family.constants import PERSON_TYPE
 
 # ============================================================================= #
 #                               CLASS  GENERATOR                                #
@@ -178,7 +179,8 @@ def family_tree_to_pl(family_tree):
             genders.append(f"male({p.name}).")
 
         for child in p.children:
-            parent_relationships.append(f"parent({p.name}, {child.name}).")
+            # parent_relationships.append(f"parent({p.name}, {child.name}).")
+            parent_relationships.append(f"parent({child.name}, {p.name}).")
 
     # Returning outputs 
     return sorted(genders) + [""] + sorted(parent_relationships)
@@ -186,21 +188,35 @@ def family_tree_to_pl(family_tree):
 # Given a family tree in the form of a list -> generate the facts
 def family_tree_to_facts(family_tree):
     # Outputs
+    people = []
     genders = []
     parent_relationships = []
+    dates_of_birth = []
 
-    # Getting relationships and genders
+    # Add facts for each person in the family tree
     for p in family_tree:
-        if p.female:
-            genders.append(f"female(\'{p.name}\')")
+        # add 1-ary clause indicating the person exists
+        people.append(f"type(\'{p.name}\', {PERSON_TYPE})")
+        # add 2-ary clause indicating gender
+        if False:
+            if p.female:
+                genders.append(f"female(\'{p.name}\')")
+            else:
+                genders.append(f"male(\'{p.name}\')")
         else:
-            genders.append(f"male(\'{p.name}\')")
-
+            # NOTE: by making gender an attribute, the attribute value can be any literal
+            if p.female:
+                genders.append(f"gender(\'{p.name}\', \'female\')")
+            else:
+                genders.append(f"gender(\'{p.name}\', \'male\')")
+        # add 2-ary clause indicating parent relationship
         for child in p.children:
             parent_relationships.append(f"parent(\'{child.name}\', \'{p.name}\')")
+        # add 2-ary clause indicating date of birth
+        dates_of_birth.append(f"dob(\'{p.name}\', \'{p.date_of_birth}\')")
 
     # Returning outputs 
-    return sorted(genders) + sorted(parent_relationships)
+    return sorted(people) + sorted(genders) + sorted(parent_relationships) + sorted(dates_of_birth)
 
 # Given a family tree, generate and save a graph plot 
 def create_dot_graph(family_tree):

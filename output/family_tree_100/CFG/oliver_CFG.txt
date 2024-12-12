@@ -1,8 +1,0 @@
-S -> Name Info Occupation Details
-Name -> "Oliver Newfield"
-Info -> " is"
-Occupation -> " an Energy Engineer"
-Details -> Company Experience Education
-Company -> " at SolaraCorp"
-Experience -> ", with over 10 years of experience"
-Education -> " and a degree in Environmental Engineering from the University of Nexus."

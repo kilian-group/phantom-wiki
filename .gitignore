@@ -553,10 +553,13 @@ $RECYCLE.BIN/
 # Project-specific files
 src/phantom_wiki/family/relationships.py
 *_output*
-*out/
+*out*/
 
 #API key
 johann_tests/API_KEY.py
 
 *.DS_Store
 .vscode/settings.json
+
+# slurm logs
+*slurm*/

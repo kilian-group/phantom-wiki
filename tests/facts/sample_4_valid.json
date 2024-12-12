@@ -1,0 +1,12 @@
+[
+    {
+        "<attribute_value>_4": "airline pilot",
+        "<attribute_name>_4": "job",
+        "<attribute_name>_3": "dob"
+    },
+    "What is the dob of the person whose job is airline pilot ?",
+    [
+        "dob(Y_3, Y_2)",
+        "job(Y_3, 'airline pilot')"
+    ]
+]

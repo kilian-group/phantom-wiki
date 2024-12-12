@@ -1,5 +1,0 @@
-S -> NAME OCCUPATION PERIOD INTEREST
-NAME -> "Paul"
-OCCUPATION -> " is a video editor at Galactic Productions"
-PERIOD -> " who has been with the company for over five years"
-INTEREST -> " and enjoys blending creativity and technology to bring stories to life."

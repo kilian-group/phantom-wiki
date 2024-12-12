@@ -1,0 +1,10 @@
+[
+    {
+        "<name>_4": "kanesha",
+        "<relation>_3": "husband"
+    },
+    "Who is the husband of kanesha ?",
+    [
+        "husband('kanesha', Y_2)"
+    ]
+]

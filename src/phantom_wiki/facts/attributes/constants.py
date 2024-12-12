@@ -1,13 +1,15 @@
 ATTRIBUTE_FACT_TEMPLATES = {
-    "age": "The age of <subject> is",
+    "dob": "The date of birth of <subject> is",
     "job": "The job of <subject> is",
     "hobby": "The hobby of <subject> is",
+    "gender": "The gender of <subject> is",
 }
 
 ATTRIBUTE_RELATION = [
-    "age",
+    "dob",
     "job",
     "hobby",
+    "gender",
 ]
 
 
@@ -26,6 +28,8 @@ import json
 with open("hobbies.json", "w") as f:
     json.dump(hobbies, f, indent=4)
 """
+# NOTE: some hobbies are modified to remove special characters, 
+# words in parentheses, and 'X or Y' patterns that were in the original dataset
 HOBBIES = {
     "Educational hobby": [
         "archaeology",
@@ -75,12 +79,12 @@ HOBBIES = {
         "art collecting",
         "book collecting",
         "button collecting",
-        "cartophily\u00a0(card collecting)",
+        "cartophily",
         "coin collecting",
         "comic book collecting",
         "compact discs",
         "crystals",
-        "deltiology\u00a0(postcard collecting)",
+        "deltiology",
         "die-cast toy",
         "digital hoarding",
         "dolls",
@@ -88,12 +92,12 @@ HOBBIES = {
         "ephemera collecting",
         "films",
         "fingerprint collecting",
-        "fusilately\u00a0(phonecard collecting)",
+        "fusilately",
         "knife collecting",
         "lapel pins",
-        "lotology\u00a0(lottery ticket collecting)",
+        "lotology",
         "movie memorabilia collecting",
-        "notaphily\u00a0(banknote collecting)",
+        "notaphily",
         "perfume",
         "philately",
         "phillumeny",
@@ -232,7 +236,7 @@ HOBBIES = {
         "footbag",
         "frisbee",
         "rugby league football",
-        "sculling\u00a0or\u00a0rowing",
+        "rowing",
         "shooting sports",
         "skateboarding",
         "skiing",
@@ -284,7 +288,7 @@ HOBBIES = {
         "beekeeping",
         "benchmarking",
         "birdwatching",
-        "bus spotting[22",
+        "bus spotting",
         "people-watching",
         "photography",
         "satellite watching",
@@ -424,7 +428,7 @@ HOBBIES = {
         "sand art",
         "scouting",
         "scuba diving",
-        "sculling\u00a0or\u00a0rowing",
+        "rowing",
         "shooting",
         "shopping",
         "shuffleboard",

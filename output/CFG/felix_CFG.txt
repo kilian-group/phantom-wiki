@@ -1,7 +1,0 @@
-S -> Name BioDetails
-Name -> "Felix"
-BioDetails -> "is a " JobTitle "."
-JobTitle -> "Counselling psychologist at " Company "."
-Company -> CompanyName ", specializing in " Service "."
-CompanyName -> "TheraWell Clinic" | "MindCare Associates" | "New Horizons Center"
-Service -> "stress management" | "relationship counseling" | "mental health support"

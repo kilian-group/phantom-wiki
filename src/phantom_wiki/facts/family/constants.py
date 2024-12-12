@@ -1,3 +1,6 @@
+# types
+PERSON_TYPE = "person"
+
 FAMILY_FACT_TEMPLATES = {
     "brother": "The brother of <subject> is",
     "sister": "The sister of <subject> is",
