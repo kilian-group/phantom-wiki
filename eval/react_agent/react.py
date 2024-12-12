@@ -50,7 +50,7 @@ def main(args: argparse.Namespace) -> None:
             agent_prompt=llm_prompts.get_react_prompt(),
             max_steps=args.react_max_steps,
             text_corpus=df_text,
-            react_examples=prompts.REACT_EXAMPLES6,
+            react_examples=prompts.REACT_EXAMPLES,
         )
         agents.append(agent)
 

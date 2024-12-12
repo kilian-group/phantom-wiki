@@ -53,14 +53,14 @@ class ReactAgent:
     def step(self, llm_chat: LLMChat) -> None:
         # Think
         response = self.prompt_agent(llm_chat, is_action=False)
-        print(f">>> {response}")
+        print(f"\n\t>>> {response}\n")
         thought = get_tag_at_round(response, tag_type="thought", step_round=self.step_round)
         self.scratchpad +=  "\n" + thought
         print(thought)
 
         # Act
         response = self.prompt_agent(llm_chat, is_action=True)
-        print(f">>> {response}")
+        print(f"\n\t>>> {response}\n")
         action = get_tag_at_round(response, tag_type="action", step_round=self.step_round)
         self.scratchpad += "\n" + action
         action_type, argument = parse_action(action)
@@ -71,10 +71,6 @@ class ReactAgent:
         match action_type:
             case "Finish":
                 self.answer = argument.split(",")
-                if self.is_correct():
-                    observation_str = "Answer is CORRECT"
-                else: 
-                    observation_str = "Answer is INCORRECT"
                 self.finished = True
                 self.step_round += 1
                 return
@@ -82,10 +78,18 @@ class ReactAgent:
                 try:
                     article: str = self.text_corpus.loc[self.text_corpus["title"] == argument, "article"].values[0]
                     observation_str = format_step(article)
+                    # observation_str = article
                 except IndexError:
-                    observation_str += f"The last article searched was not found. Please try retrieved another article."
+                    observation_str += f"No article exists for the requested entity. Please try retrieving article for another entity."
+            case "Search":
+                try:
+                    articles: list[str]  = self.text_corpus.loc[self.text_corpus["article"].str.contains(argument), "article"].tolist()
+                    enum_articles: str = "\n\n".join(f"{i}: {article}" for i, article in enumerate(articles))
+                    observation_str = format_step(enum_articles)
+                except IndexError:
+                    observation_str += f"No articles contain the requested attribute. Please try searching for another attribute."
             case _:
-                observation_str += "Invalid Action. Valid Actions are RetrieveArticle[{{entity}}] and Finish[{{answer}}]."
+                observation_str += "Invalid action. Valid actions are RetrieveArticle[{{entity}}], Search[{{attribute}}], and Finish[{{answer}}]."
         observation_for_round = f"<observation round=\"{self.step_round}\">{observation_str}</observation>"
         self.scratchpad += "\n" + observation_for_round
         print(observation_for_round)
@@ -101,6 +105,7 @@ class ReactAgent:
         ])
         resp = llm_chat.generate_response(conv)
         return format_step(resp)
+        # return resp
     
     def _build_agent_prompt(self) -> str:
         return self.agent_prompt.format(
@@ -138,7 +143,7 @@ def parse_action(s: str) -> tuple[str, str] | None:
     Returns a tuple of the action type and the argument, else None if the string s is not in correct format.
     Correct format: `<action_type>[<argument>]`.
     """
-    pattern = r'<action round="\d">(\w+)\[(.+?)\]</action>$'
+    pattern = r'<action round="\d">(\w+)\[(.+?)\]</action>'
     match = re.search(pattern, s)
     
     if match:

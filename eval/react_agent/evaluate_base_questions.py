@@ -77,7 +77,7 @@ for i, sample in enumerate(df_qa_w_answers[:args.samples].itertuples()):
         agent_prompt=llm_prompts.get_react_prompt(),
         max_steps=args.max_steps,
         text_corpus=df_text_corpus,
-        react_examples=prompts.REACT_EXAMPLES6,
+        react_examples=prompts.REACT_EXAMPLES,
     )
     agents.append(agent)
 
