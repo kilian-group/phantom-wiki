@@ -67,6 +67,7 @@ tensor_parallel_size = args.tensor_parallel_size
 import json
 import os
 import logging
+import time
 # set logging level
 logging.basicConfig(level=logging.INFO)
 # utils from phantom_eval
@@ -218,14 +219,41 @@ elif model.startswith("gemini"):
     logging.warning(f"Google does not support setting seed for Gemini.")
     import asyncio
     import google.generativeai as genai
+    RPM_LIMIT = 15 # requests per minute
+    TPM_LIMIT = 4 * 10**6 # tokens per minute
 
     async def async_chat_completion(messages):
         # Initialize Gemini client
         google_model = genai.GenerativeModel(model)
+        tasks = []
+
+        start = time.time()
+        token_usage_per_minute = 0 # NOTE: we estimate the number of used tokens in the current minute
         
-        async def generate_response(message):
+        for i, message in enumerate(messages):
+            print(f"{time.time() - start}: Requesting message {i}")
+            
+            # count the number of tokens in `message`
+            input_tokens = google_model.count_tokens(message).total_tokens
+            print(f"Input tokens: {input_tokens}")
+            # NOTE: we can't reliably get the total token usage since that relies on getting future completitions
+            # but the number of output tokens is negligible compared to the number of input tokens
+            token_usage_per_minute += input_tokens
+
+            # check if we need to sleep to respect the TPM rate limit
+            remaining = 60 - (time.time() - start) # number of seconds remaining in the current minute
+            if token_usage_per_minute > TPM_LIMIT and remaining > 0:
+                print(f"Token usage per minute: {token_usage_per_minute}")
+                print(f"Sleeping for {remaining} seconds to respect the TPM rate limit")
+                await asyncio.sleep(remaining + 1) # NOTE: add an extra second so we definitely pass the minute
+            
+            # reset if we have passed the minute
+            if time.time() - start > 60:
+                start = time.time()
+                token_usage_per_minute = 0
+
             # Ref: https://cloud.google.com/vertex-ai/docs/reference/rest/v1/GenerationConfig
-            response = await google_model.generate_content_async(
+            t = asyncio.create_task(google_model.generate_content_async(
                 message,
                 generation_config={
                     'temperature': temperature,
@@ -235,11 +263,15 @@ elif model.startswith("gemini"):
                     'stop_sequences': STOP,
                     # NOTE: API does not support seed, repetition_penalty
                 }
-            )
-            return response
+            ))
+            tasks.append(t)
+            # NOTE: use 66 seconds per minute to send 10% fewer requests than is technically allowed by the rate limit
+            await asyncio.sleep(66 / RPM_LIMIT)  # Sleep to respect the rate limit
         
-        tasks = [generate_response(message) for message in messages]
+        print(f"{time.time()-start}: Waiting for responses")
+        # tasks = [generate_response(message) for message in messages]
         responses = await asyncio.gather(*tasks)
+        print(f"{time.time()-start}: Got all responses")
         return [
             {
                 'pred' : response.text,
