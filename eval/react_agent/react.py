@@ -25,11 +25,10 @@ def main(args: argparse.Namespace) -> None:
     # TODO Filter one type of question
     df_qa_pairs = df_qa_pairs.loc[df_qa_pairs["type"] == 1, :]
     df_qa_pairs = df_qa_pairs[:args.num_samples]
-    # ds_qa_pairs = dataset["qa_pairs"]
-    # ds_text = dataset["text"]
+    df_qa_pairs = df_qa_pairs.reset_index(drop=True)
 
     print("* Setting up logging")
-    run_name = f"{args.split}-{args.model_name.replace('/', '--')}"
+    run_name = f"split={args.split}__model_name={args.model_name.replace('/', '--')}"
     output_dir = Path(args.output_dir) / "react" / run_name
     output_dir.mkdir(parents=True, exist_ok=True)
     # logging.basicConfig(level=logging.INFO)
@@ -70,7 +69,7 @@ def main(args: argparse.Namespace) -> None:
             "pred": agent.answer,
             "interaction": agent._build_agent_prompt(),
         })
-
+    
     print(f"Saving predictions")
     save_preds(run_name, args, df_qa_pairs, answers)
 
@@ -79,9 +78,9 @@ def save_preds(run_name: str, args: argparse.Namespace, df_qa_pairs: pd.DataFram
     preds = {}
     batch_size = len(df_qa_pairs)
     for i in range(batch_size):
-        uid = df_qa_pairs[i]['id']
+        uid = df_qa_pairs.at[i, 'id']
         preds[uid] = {
-            'true' : df_qa_pairs[i]['answer'],
+            'true' : df_qa_pairs.at[i, 'answer'],
             'pred' : answers[i]['pred'],
             'interaction': answers[i]['interaction'],
             'metadata': {
@@ -89,7 +88,7 @@ def save_preds(run_name: str, args: argparse.Namespace, df_qa_pairs: pd.DataFram
                 'split': args.split,
                 'batch_size': batch_size,
                 'batch_number': 1,
-                'type': df_qa_pairs[i]['type'],
+                'type': int(df_qa_pairs.at[i, 'type']),
             },
             'sampling_params': {
                 'max_tokens': args.sampling_max_tokens,
@@ -102,6 +101,7 @@ def save_preds(run_name: str, args: argparse.Namespace, df_qa_pairs: pd.DataFram
         }
 
     pred_path = Path(args.output_dir) / "react" / "preds" / f"{run_name}.json"
+    pred_path.parent.mkdir(parents=True, exist_ok=True)
     print(f"Saving predictions to {pred_path}")
     with open(pred_path, "w") as f:
         json.dump(preds, f, indent=4)
