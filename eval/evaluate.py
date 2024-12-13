@@ -55,12 +55,12 @@ from phantom_eval.score import (match,
                                 f1)
 # join the true answers with the appropriate seperator
 # since the scoring functions expect strings
-sep = ', '
-df['EM'] = df.apply(lambda x: match(x['pred'], sep.join(x['true'])), axis=1)
-df['precision'] = df.apply(lambda x: precision(x['pred'], sep.join(x['true'])), axis=1)
-df['recall'] = df.apply(lambda x: recall(x['pred'], sep.join(x['true'])), axis=1)
-df['f1'] = df.apply(lambda x: f1(x['pred'], sep.join(x['true'])), axis=1)
-# print(df)
+sep = ','
+df['EM'] = df.apply(lambda x: match(x['pred'], sep.join(x['true']), exact=True, sep=sep), axis=1)
+df['precision'] = df.apply(lambda x: precision(x['pred'], sep.join(x['true']), sep=sep), axis=1)
+df['recall'] = df.apply(lambda x: recall(x['pred'], sep.join(x['true']), sep=sep), axis=1)
+df['f1'] = df.apply(lambda x: f1(x['pred'], sep.join(x['true']), sep=sep), axis=1)
+print(df)
 # group by model and split
 grouped = df.groupby(['_model', '_split', '_seed'])
 # print the accuracy

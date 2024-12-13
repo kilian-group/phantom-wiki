@@ -9,7 +9,7 @@
 
 Set up a virtual environment, clone and navigate to this repository, and run
 
-```
+```bash
 conda create -n dataset
 conda activate dataset
 conda install python=3.12 conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest
@@ -18,31 +18,30 @@ pip install pandas numpy
 pip install together openai pre-commit datasets google-generativeai anthropic transformers 
 ```
 
+### Installing phantom-wiki in development mode
+
+There are 2 options:
+1. (Recommended) Install the package in editable mode using pip:
+    ```bash
+    pip install -e .
+    ```
+
+2. If you use VSCode, you can add to the python path without installing the package:
+    1. Create a file in the repo root called `.env`
+    2. Add `PYTHONPATH=src`
+    3. Restart VSCode
+
+### Prolog
+
 Setting up Prolog (see also the [Prolog tutorial](docs/prolog.md)):
 
-```
+```bash
 # install SWI-Prolog (on Mac)
 brew install swi-prolog
 # TODO: install SWI-Prolog (on Windows)
 # install Python wrapper for Prolog
 pip install pyswip
 ```
-
-To install the source code in development mode:
-
-Option 1:
-
-```
-conda activate dataset
-cd src
-conda develop .
-```
-
-Option 2:
-
-1. Create a file in the repo root called `.env`
-2. Add `PYTHONPATH=src`
-3. Restart VSCode
 
 ## TogetherAI
 

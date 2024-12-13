@@ -1,20 +1,21 @@
 def match(
         pred: str, 
         true: str, 
-        exact: bool = True
+        exact: bool = True,
+        sep: str = ",",
     ) -> bool:
     """
     Simple score function that checks if the prediction is equal to the true answer
     """
     if exact:
-        return pred == true
+        return set(pred.split(sep)) == set(true.split(sep))
     return pred.find(true) != -1
 
 
 def precision(
         pred: str, 
         true: str,
-        sep: str = ", "
+        sep: str = ","
     ) -> float:
     """
     Assume:
@@ -32,7 +33,7 @@ def precision(
 def recall(
         pred: str, 
         true: str,
-        sep: str = ", "
+        sep: str = ","
     ) -> float:
     """
     Assume:
@@ -50,7 +51,7 @@ def recall(
 def f1(
         pred: str, 
         true: str,
-        sep: str = ", "
+        sep: str = ","
     ) -> float:
     pres = precision(pred, true, sep)
     rec = recall(pred, true, sep)
