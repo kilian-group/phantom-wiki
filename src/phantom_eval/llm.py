@@ -4,13 +4,10 @@ import os
 import anthropic
 import openai
 import together
+import google.generativeai as gemini
 from tenacity import retry, stop_after_attempt, wait_fixed
 
 from .data import ContentTextMessage, Conversation
-
-STOP = ["\n"]
-top_p = 0.7
-top_k = 40
 
 
 class LLMChat(abc.ABC):
@@ -238,7 +235,7 @@ class AnthropicChat(CommonLLMChat):
 
 
 
-class GeminiChat(LLMChat):
+class GeminiChat(CommonLLMChat):
     SUPPORTED_LLM_NAMES: list[str] = [
         "gemini-1.5-flash-002",
         "gemini-1.5-pro-002",
@@ -255,43 +252,42 @@ class GeminiChat(LLMChat):
         wait_seconds: int = 2,
     ):
         super().__init__(model_name, model_path, max_tokens, temperature, seed, max_retries, wait_seconds)
-        import google.generativeai as genai
 
-        self.google_model = genai.GenerativeModel(self.model_name)
+        gemini.configure(api_key=os.getenv("GEMINI_API_KEY"))
+        self.client = gemini.GenerativeModel(self.model_name)
 
-    def generate_response(self, conv: Conversation) -> str:
-        # TODO
+    def _convert_conv_to_api_format(self, conv: Conversation) -> list[dict]:
         """
-        Ref:
-        - https://ai.google.dev/gemini-api/docs/models/gemini
+        Converts the conversation object to the gemini format.
+        ```
+        [
+            {"role": role1, "parts": text1,
+            {"role": role2, "parts": text2,
+            {"role": role3, "parts": text3,
+        ]
+        ```
         """
-        gemini_conv = []
+        # https://ai.google.dev/gemini-api/docs/models/gemini
+        formatted_messages = []
         for message in conv.messages:
             for content in message.content:
                 match content:
                     case ContentTextMessage(text=text):
-                        gemini_conv.append({"role": message.role, "parts": [text]})
+                        role = "model" if message.role == "assistant" else message.role
+                        formatted_messages.append({"role": role, "parts": text})
+        return formatted_messages
 
-        # Wrap retry params inside generate_response
-        @retry(stop=stop_after_attempt(self.max_retries), wait=wait_fixed(self.wait_seconds))
-        def _call_api(conv: Conversation) -> str:
-            import pdb; pdb.set_trace()
+    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None) -> str:
+        response = self.client.generate_content(
+            contents=messages_api_format,
+            generation_config=gemini.types.GenerationConfig(
+                temperature=self.temperature,
+                max_output_tokens=self.max_tokens,
+                stop_sequences=stop_sequences,
+            ),
+        )
+        return response.text
 
-            completion = self.google_model.generate_content(
-                contents=gemini_conv,
-                generation_config={
-                    'temperature': self.temperature,
-                    'top_p': top_p,
-                    # 'top_k': top_k, # NOTE: API does not suport topK>40
-                    'max_output_tokens': self.max_tokens,
-                    'stop_sequences': STOP,
-                    # NOTE: API does not support seed, repetition_penalty
-                },
-            )
-            return completion.text
-
-        return _call_api(conv)
-    
 
 SUPPORTED_LLM_NAMES: list[str] = (
     OpenAIChat.SUPPORTED_LLM_NAMES

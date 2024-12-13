@@ -85,7 +85,7 @@ def get_parser() -> ArgumentParser:
                         help="Seconds to wait between tries")
 
     # Dataset params
-    parser.add_argument("--split", "-s", default="depth_6_size_26_seed_1", type=str,
+    parser.add_argument("--split", "-s", default="depth_10_size_26_seed_1", type=str,
                         help="Dataset split (e.g., train, val, test)")
     parser.add_argument("--batch_size", "-bs", default=10, type=int,
                         help="Batch size (>=1)")
