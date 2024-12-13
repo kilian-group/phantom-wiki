@@ -5,7 +5,6 @@ Script for getting predictions for react agent.
 import argparse
 import json
 # import logging
-import os
 from pathlib import Path
 from typing import Any
 
@@ -14,7 +13,7 @@ import pandas as pd
 from agents import ReactAgent
 import llm
 import prompts
-from phantom_eval.utils import load_data
+from phantom_eval.utils import load_data, get_parser
 
 
 def main(args: argparse.Namespace) -> None:
@@ -26,11 +25,11 @@ def main(args: argparse.Namespace) -> None:
     print("* Loading LLM")
     model_kwargs = dict(
         model_path=args.model_path,
-        max_tokens=args.sampling_max_tokens,
-        temperature=args.sampling_temperature,
-        seed=args.sampling_seed,
-        max_retries=args.sampling_max_retries,
-        wait_seconds=args.sampling_wait_seconds,
+        max_tokens=args.inf_max_tokens,
+        temperature=args.inf_temperature,
+        seed=args.inf_seed,
+        max_retries=args.inf_max_retries,
+        wait_seconds=args.inf_wait_seconds,
     )
     llm_chat = llm.get_llm(args.model_name, model_kwargs=model_kwargs)
     llm_prompts = prompts.get_llm_prompt(args.model_name)
@@ -82,12 +81,12 @@ def save_preds(run_name: str, args: argparse.Namespace, df_qa_pairs: pd.DataFram
                 "batch_number": 1,
                 "type": int(df_qa_pairs.at[i, "type"]),
             },
-            "sampling_params": {
-                "max_tokens": args.sampling_max_tokens,
-                "temperature": args.sampling_temperature,
-                "seed": args.sampling_seed,
-                "max_retries": args.sampling_max_retries,
-                "wait_seconds": args.sampling_wait_seconds
+            "inference_params": {
+                "max_tokens": args.inf_max_tokens,
+                "temperature": args.inf_temperature,
+                "seed": args.inf_seed,
+                "max_retries": args.inf_max_retries,
+                "wait_seconds": args.inf_wait_seconds
             },
             # "usage": responses[i]["usage"],
         }
@@ -100,27 +99,27 @@ def save_preds(run_name: str, args: argparse.Namespace, df_qa_pairs: pd.DataFram
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
+    parser = get_parser()
     
     # Model arguments
-    parser.add_argument("--model_name", type=str, default="together:meta-llama/Llama-Vision-Free", choices=llm.SUPPORTED_LLM_NAMES)
-    parser.add_argument("--model_path", type=str, default=None, help="Path to the model")
-    parser.add_argument("--sampling_max_tokens", type=int, default=4096, help="Maximum number of tokens to generate")
-    parser.add_argument("--sampling_temperature", type=float, default=0.0, help="Temperature for sampling")
-    parser.add_argument("--sampling_seed", type=int, default=0, help="Seed for sampling")
-    parser.add_argument("--sampling_max_retries", type=int, default=3, help="Number of tries to get response")
-    parser.add_argument("--sampling_wait_seconds", type=int, default=2, help="Seconds to wait between tries")
+    # parser.add_argument("--model_name", type=str, default="together:meta-llama/Llama-Vision-Free", choices=llm.SUPPORTED_LLM_NAMES)
+    # parser.add_argument("--model_path", type=str, default=None, help="Path to the model")
+    # parser.add_argument("--inf_max_tokens", type=int, default=4096, help="Maximum number of tokens to generate")
+    # parser.add_argument("--inf_temperature", type=float, default=0.0, help="Temperature for sampling")
+    # parser.add_argument("--inf_seed", type=int, default=0, help="Seed for sampling")
+    # parser.add_argument("--inf_max_retries", type=int, default=3, help="Number of tries to get response")
+    # parser.add_argument("--inf_wait_seconds", type=int, default=2, help="Seconds to wait between tries")
 
     # Dataset arguments
-    parser.add_argument("--split", type=str, default="depth_6_size_26_seed_1")
+    # parser.add_argument("--split", type=str, default="depth_6_size_26_seed_1")
     parser.add_argument("--num_samples", type=int, default=5, help="Number of dataset samples to evaluate")
 
     # React Agent arguments
     parser.add_argument("--react_max_steps", type=int, default=6, help="Number of steps to run the agent")
 
     # Logging arguments
-    parser.add_argument("--output_dir", type=str, default="out", help="Output directory for logs")
+    # parser.add_argument("--output_dir", type=str, default="out", help="Output directory for logs")
 
-    args, unknown = parser.parse_known_args()
+    args, _ = parser.parse_known_args()
 
     main(args)

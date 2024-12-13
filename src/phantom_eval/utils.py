@@ -59,23 +59,33 @@ MODEL_CHOICES = LOCAL_MODELS + [
 
 def get_parser():
     parser = ArgumentParser(description="PhantomWiki Evaluation")
-    parser.add_argument("--model", "-m", type=str.lower, default='llama-3.1-8b',
-                        help="model name (case insensitive) "\
+    # TODO change MODEL_CHOICES
+    parser.add_argument("--model_name", "-m", type=str, default="llama-3.1-8b",
+                        help="model name." \
                             "NOTE: to add a new model, please submit a PR to the repo with the new model name", 
                         choices=MODEL_CHOICES)
+    parser.add_argument("--model_path", type=str, default=None, help="Path to the model")
+
     # LLM inference params
-    parser.add_argument("--max_model_len", type=int, default=None,
+    parser.add_argument("--inf_max_model_len", type=int, default=None,
                         help="Maximum model length (vLLM param)")
-    parser.add_argument("--tensor_parallel_size", type=int, default=1,
+    parser.add_argument("--inf_tensor_parallel_size", type=int, default=1,
                         help="number of gpus (vLLM param")
-    parser.add_argument("--temperature", "-T", type=float, default=0.7,
+    parser.add_argument("--inf_max_tokens", type=int, default=4096,
+                        help="Maximum number of tokens to generate")
+    parser.add_argument("--inf_temperature", "-T", type=float, default=0.7,
                         help="Temperature for sampling")
-    parser.add_argument("--top_p", "-p", type=float, default=0.7,
+    parser.add_argument("--inf_top_p", "-p", type=float, default=0.7,
                         help="Top-p for sampling")
-    parser.add_argument("--top_k", "-k", type=float, default=50,
+    parser.add_argument("--inf_top_k", "-k", type=float, default=50,
                         help="Top-k for sampling")
-    parser.add_argument("--seed", type=int, default=1,
-                        help="Seed for sampling (vLLM param)")
+    parser.add_argument("--inf_seed", type=int, default=1,
+                        help="Seed for sampling")
+    parser.add_argument("--inf_max_retries", type=int, default=3,
+                        help="Number of tries to get response")
+    parser.add_argument("--inf_wait_seconds", type=int, default=2,
+                        help="Seconds to wait between tries")
+
     # Dataset params
     parser.add_argument("--split", "-s", default="depth_6_size_26_seed_1", type=str,
                         help="Dataset split (e.g., train, val, test)")
