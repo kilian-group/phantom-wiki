@@ -9,22 +9,24 @@ from pathlib import Path
 from typing import Any
 
 import pandas as pd
+import tqdm
 
 from agents import ReactAgent
 import phantom_eval.llm as llm
 import prompts
 from phantom_eval.utils import load_data, get_parser, setup_logging
 
+
 logger = logging.getLogger(__name__)
 
 
 def main(args: argparse.Namespace) -> None:
-    logger.info("* Loading dataset")
+    logger.info("Loading dataset")
     dataset = load_data(args.split)
     df_qa_pairs = pd.DataFrame(dataset["qa_pairs"])
     df_text = pd.DataFrame(dataset["text"])
 
-    logger.info("* Loading LLM")
+    logger.info("Loading LLM")
     model_kwargs = dict(
         model_path=args.model_path,
         max_tokens=args.inf_max_tokens,
@@ -54,7 +56,12 @@ def main(args: argparse.Namespace) -> None:
     run_name = f"split={args.split}__model_name={args.model_name.replace('/', '--')}"
     logger.info(f"Running ReAct agents")
     answers: list[dict[str, Any]] = []
-    for i, agent in enumerate(agents):
+
+    pred_path = Path(args.output_dir) / "react" / "preds" / f"{run_name}.json"
+    pred_path.parent.mkdir(parents=True, exist_ok=True)
+    logger.info(f"Saving predictions to {pred_path}")
+
+    for i, agent in tqdm.tqdm(enumerate(agents), total=len(agents)):
         agent.run(llm_chat)
         # TODO Add usage dump
         answers.append({
@@ -63,10 +70,10 @@ def main(args: argparse.Namespace) -> None:
         })
 
         # Save after each agent run
-        save_preds(run_name, args, df_qa_pairs[:i+1], answers)
+        save_preds(pred_path, args, df_qa_pairs[:i+1], answers)
     
 
-def save_preds(run_name: str, args: argparse.Namespace, df_qa_pairs: pd.DataFrame, answers: list[dict, str, Any]) -> None:
+def save_preds(pred_path: Path, args: argparse.Namespace, df_qa_pairs: pd.DataFrame, answers: list[dict, str, Any]) -> None:
     preds = {}
     batch_size = len(df_qa_pairs)
     for i in range(batch_size):
@@ -92,9 +99,6 @@ def save_preds(run_name: str, args: argparse.Namespace, df_qa_pairs: pd.DataFram
             # "usage": responses[i]["usage"],
         }
 
-    pred_path = Path(args.output_dir) / "react" / "preds" / f"{run_name}.json"
-    pred_path.parent.mkdir(parents=True, exist_ok=True)
-    logger.info(f"Saving predictions to {pred_path}")
     with open(pred_path, "w") as f:
         json.dump(preds, f, indent=4)
 

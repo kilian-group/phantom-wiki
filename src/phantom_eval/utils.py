@@ -37,6 +37,8 @@ def get_relevant_articles(dataset, name_list:list):
 
 
 def setup_logging(log_level: str) -> str:
+    # Suppress httpx logging from API requests
+    logging.getLogger("httpx").setLevel(logging.WARNING)
     logging.basicConfig(level=log_level, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
 
