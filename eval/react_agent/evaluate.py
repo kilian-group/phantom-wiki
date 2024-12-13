@@ -4,11 +4,14 @@ Usage:
     python evaluate.py --output_dir path/to/out/react/
 """
 import argparse
+import logging
 from pathlib import Path
-from typing import Iterator
 
 import pandas as pd
 from phantom_eval.score import match, precision, recall, f1
+from phantom_eval.utils import get_parser, setup_logging
+
+logger = logging.getLogger(__name__)
 
 
 def main(args: argparse.Namespace) -> None:
@@ -21,7 +24,7 @@ def main(args: argparse.Namespace) -> None:
     # keys in the metadata to create new columns
     METADATA = ["model", "split", "batch_size", "batch_number", "type"]
     for json_file in json_files:
-        print(f"* Reading from {json_file}")
+        logger.info(f"* Reading from {json_file}")
         df = pd.read_json(json_file, orient="index", dtype=False)
         # add new columns corresponding to the metadata
         for key in METADATA:
@@ -44,21 +47,27 @@ def main(args: argparse.Namespace) -> None:
     df["precision"] = df.apply(lambda x: precision(x["pred"], x["true"], sep=sep), axis=1)
     df["recall"] = df.apply(lambda x: recall(x["pred"], x["true"], sep=sep), axis=1)
     df["f1"] = df.apply(lambda x: f1(x["pred"], x["true"], sep=sep), axis=1)
-    # print(df)
+
+    logger.info("Evaluation metrics")
+    grouped = df.groupby(["_model", "_split"])
+    metrics = grouped[["EM", "precision", "recall", "f1"]].mean()
+    print(metrics.to_markdown())
 
     # Group by model, split, and type of question, and compute metrics
+    logger.info("Evaluation metrics grouped by question type")
     grouped = df.groupby(["_model", "_split", "_type"])
-    acc = grouped[["EM", "precision", "recall", "f1"]].mean()
-    print(acc.to_markdown())
+    metrics = grouped[["EM", "precision", "recall", "f1"]].mean()
+    print(metrics.to_markdown())
 
     # Save file
-    acc_save_path: Path = pred_dir / "metrics.csv"
-    acc.to_csv(acc_save_path)
+    metrics_save_path: Path = pred_dir / "metrics.csv"
+    metrics.to_csv(metrics_save_path)
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser("Evalute ReAct predictions")
-    parser.add_argument("--output_dir")
+    parser = get_parser()
 
-    args = parser.parse_args()
+    args, _ = parser.parse_known_args()
+    setup_logging(args.log_level)
+
     main(args)
