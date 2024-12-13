@@ -66,13 +66,20 @@ tensor_parallel_size = args.tensor_parallel_size
 # remaining imports
 import json
 import os
+import asyncio
 import logging
 import time
+from tqdm import tqdm
 # set logging level
 logging.basicConfig(level=logging.INFO)
 # utils from phantom_eval
 from phantom_eval.utils import (load_data,
                                 get_all_articles)
+# python sdks
+from together import AsyncTogether
+from openai import AsyncOpenAI
+from google.generativeai import GenerativeModel
+from anthropic import AsyncAnthropic
 
 # %%
 run_name = f"{split}-{model.replace('/','--')}-bs{batch_size}-bn{batch_number}-s{seed}"
@@ -133,26 +140,194 @@ for qa in batch:
     messages.append(get_message(instruction))
     messages_instructions_only.append(instruction)
 
+# requests per minute
+RPM_LIMITS = {
+    "together": 3_000,
+    "gpt": 5_000,
+    "gemini": 15,
+    "claude": 2_000,
+}
+# tokens per minute
+TPM_LIMITS = {
+    "together": 500_000,
+    "gpt": 4_000_000,
+    "gemini": 1_000_000,
+    "claude": 200_000,
+}
+
 # %%
-if model.startswith("together:"):
-    """
-    Ref:
-    - https://docs.together.ai/reference/completions-1
-    """
-    logging.warning(f"Setting seed does not guarantee deterministic results for Together.")
-    import os, asyncio
-    from together import AsyncTogether
-    # the Together api use slightly different model names
-    TOGETHER_MODEL_ALIASES = {
-        'meta-llama/llama-3.1-8b-instruct':'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo',
-        'meta-llama/llama-3.1-70b-instruct':'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo',
-        'meta-llama/llama-3.1-405b-instruct':'meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo',
-    }
-    async def async_chat_completion(messages):
-        async_client = AsyncTogether()
-        tasks = [
-            # NOTE: this creates a coroutine object
-            async_client.chat.completions.create(
+# if model.startswith("together:"):
+# """
+# Ref:
+# - https://docs.together.ai/reference/completions-1
+# """
+# logging.warning(f"Setting seed does not guarantee deterministic results for Together.")
+# the Together api use slightly different model names
+TOGETHER_MODEL_ALIASES = {
+    'meta-llama/llama-3.1-8b-instruct':'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo',
+    'meta-llama/llama-3.1-70b-instruct':'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo',
+    'meta-llama/llama-3.1-405b-instruct':'meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo',
+}
+# async def async_chat_completion(messages):
+#     async_client = AsyncTogether()
+#     tasks = [
+#         # NOTE: this creates a coroutine object
+#         async_client.chat.completions.create(
+#             model=TOGETHER_MODEL_ALIASES[model.replace("together:", "")],
+#             messages=message,
+#             temperature=temperature,
+#             top_p=top_p,
+#             top_k=top_k,
+#             repetition_penalty=repetition_penalty,
+#             stop=LLAMA_STOP,
+#             max_tokens=MAX_TOKENS,
+#             seed=seed,
+#         )
+#         for message in messages
+#     ]
+#     responses = await asyncio.gather(*tasks)
+#     return [
+#         {
+#             'pred' : response.choices[0].message.content,
+#             'usage' : response.usage.model_dump(),
+#         }
+#         for response in responses
+#     ]
+
+#     responses = asyncio.run(async_chat_completion(messages))
+
+# elif model.startswith("gpt"):
+#     logging.warning(f"Setting seed does not guarantee deterministic results for OpenAI.")
+#     async def async_chat_completion(messages):
+#         async_client = AsyncOpenAI()
+#         # Ref: 
+#         # - https://platform.openai.com/docs/api-reference/chat
+#         # - https://github.com/openai/openai-python
+#         tasks = [
+#             async_client.chat.completions.create(
+#                 model=model,
+#                 messages=message,
+#                 temperature=temperature,
+#                 top_p=top_p,
+#                 # NOTE: top_k is not supported by OpenAI's API
+#                 # NOTE: repetition_penalty is not supported by OpenAI's API
+#                 stop=STOP,
+#                 max_completion_tokens=MAX_TOKENS,
+#                 seed=seed,
+#             )
+#             for message in messages
+#         ]
+#         responses = await asyncio.gather(*tasks)
+#         # return [response.choices[0].message.content for response in responses]
+#         return [
+#             {
+#                 'pred' : response.choices[0].message.content,
+#                 'usage' : response.usage.model_dump(),
+#             }
+#             for response in responses
+#         ]
+    
+#     responses = asyncio.run(async_chat_completion(messages))
+
+# elif model.startswith("claude"):
+#     """
+#     Ref: 
+#     - https://github.com/anthropics/anthropic-sdk-python?tab=readme-ov-file#async-usage
+#     - https://docs.anthropic.com/en/api/messages
+
+#     NOTE: Claude does not accept whitespace stop sequences like "\n"
+#     """
+#     logging.warning("Anthropic does not support setting seed for Claude.")
+#     import os, asyncio
+#     from anthropic import AsyncAnthropic
+
+#     async def async_chat_completion(messages):
+#         async_client = AsyncAnthropic()
+#         semaphore = asyncio.Semaphore(2)  # Limit to 2 concurrent calls
+        
+#         async def rate_limited_message(message):
+#             async with semaphore:
+#                 response = await async_client.messages.create(
+#                     model=model,
+#                     messages=message,
+#                     temperature=temperature,
+#                     top_p=top_p,
+#                     top_k=top_k,
+#                     # NOTE: repetition_penalty is not supported by Anthropic's API
+#                     # NOTE: by default, the model will stop at the end of the turn
+#                     max_tokens=MAX_TOKENS,
+#                     # NOTE: seed is not supported by Anthropic's API
+#                 )
+#                 await asyncio.sleep(5)
+#                 return response
+        
+#         tasks = [rate_limited_message(message) for message in messages]
+#         responses = await asyncio.gather(*tasks)
+#         return [
+#             {
+#                 'pred' : response.content[0].text,
+#                 'usage' : response.usage.model_dump(),
+#             }
+#             for response in responses
+#         ]
+
+#     responses = asyncio.run(async_chat_completion(messages))
+
+# else:
+#     raise ValueError(f"Use `zeroshot_local.py` to get vLLM predictions.")
+
+"""
+Ref:
+- https://github.com/google-gemini/generative-ai-python/blob/main/docs/api/google/generativeai/GenerativeModel.md
+"""
+RPM_LIMIT = 15
+TPM_LIMIT = 4 * 10**6 
+# TODO: add functionality to check the number of requests per day from Google's API
+RPD_LIMIT = 1500 # requests per day
+
+async def async_chat_completion(messages):
+    # Initialize async client
+    if model.startswith("together:"):
+        client = AsyncTogether()
+    elif model.startswith("gemini"):
+        logging.warning(f"Google does not support setting seed for Gemini.")
+        client = GenerativeModel(model)
+    elif model.startswith("gpt"):
+        client = AsyncOpenAI()
+    elif model.startswith("claude"):
+        client = AsyncAnthropic()
+    else:
+        raise ValueError(f"Use `zeroshot_local.py` to get vLLM predictions.")
+    tasks = []
+
+    start = time.time()
+    token_usage_per_minute = 0 # NOTE: we estimate the number of used tokens in the current minute
+    
+    for i, message in tqdm(enumerate(messages)):
+        print(f"{time.time()-start}: Requesting message {i}")
+        if model.startswith("gemini"):
+            # count the number of tokens in `message`
+            input_tokens = client.count_tokens(message).total_tokens
+            # NOTE: according to the Google AI API details, token usage refers to the input tokens
+        else:
+            input_tokens = 0 # TODO: implement count tokens for other models
+        token_usage_per_minute += input_tokens
+
+        # check if we need to sleep to respect the TPM rate limit
+        remaining = 60 - (time.time() - start) # number of seconds remaining in the current minute
+        if token_usage_per_minute > TPM_LIMIT and remaining > 0:
+            logging.info(f"Token usage per minute: {token_usage_per_minute}")
+            logging.info(f"Sleeping for {remaining} seconds to respect the TPM rate limit")
+            await asyncio.sleep(remaining + 1) # NOTE: add an extra second so we definitely pass the minute
+        
+        # reset if we have passed the minute
+        if time.time() - start > 60:
+            start = time.time()
+            token_usage_per_minute = 0
+
+        # create task
+        if model.startswith("together:"):
+            t = client.chat.completions.create(
                 model=TOGETHER_MODEL_ALIASES[model.replace("together:", "")],
                 messages=message,
                 temperature=temperature,
@@ -163,30 +338,8 @@ if model.startswith("together:"):
                 max_tokens=MAX_TOKENS,
                 seed=seed,
             )
-            for message in messages
-        ]
-        responses = await asyncio.gather(*tasks)
-        return [
-            {
-                'pred' : response.choices[0].message.content,
-                'usage' : response.usage.model_dump(),
-            }
-            for response in responses
-        ]
-
-    responses = asyncio.run(async_chat_completion(messages))
-
-elif model.startswith("gpt"):
-    logging.warning(f"Setting seed does not guarantee deterministic results for OpenAI.")
-    import os, asyncio
-    from openai import AsyncOpenAI
-    async def async_chat_completion(messages):
-        async_client = AsyncOpenAI()
-        # Ref: 
-        # - https://platform.openai.com/docs/api-reference/chat
-        # - https://github.com/openai/openai-python
-        tasks = [
-            async_client.chat.completions.create(
+        elif model.startswith("gpt"):
+            t = client.chat.completions.create(
                 model=model,
                 messages=message,
                 temperature=temperature,
@@ -197,63 +350,9 @@ elif model.startswith("gpt"):
                 max_completion_tokens=MAX_TOKENS,
                 seed=seed,
             )
-            for message in messages
-        ]
-        responses = await asyncio.gather(*tasks)
-        # return [response.choices[0].message.content for response in responses]
-        return [
-            {
-                'pred' : response.choices[0].message.content,
-                'usage' : response.usage.model_dump(),
-            }
-            for response in responses
-        ]
-    
-    responses = asyncio.run(async_chat_completion(messages))
-
-elif model.startswith("gemini"):
-    """
-    Ref:
-    - https://github.com/google-gemini/generative-ai-python/blob/main/docs/api/google/generativeai/GenerativeModel.md
-    """
-    logging.warning(f"Google does not support setting seed for Gemini.")
-    import asyncio
-    import google.generativeai as genai
-    RPM_LIMIT = 15 # requests per minute
-    TPM_LIMIT = 4 * 10**6 # tokens per minute
-
-    async def async_chat_completion(messages):
-        # Initialize Gemini client
-        google_model = genai.GenerativeModel(model)
-        tasks = []
-
-        start = time.time()
-        token_usage_per_minute = 0 # NOTE: we estimate the number of used tokens in the current minute
-        
-        for i, message in enumerate(messages):
-            print(f"{time.time() - start}: Requesting message {i}")
-            
-            # count the number of tokens in `message`
-            input_tokens = google_model.count_tokens(message).total_tokens
-            print(f"Input tokens: {input_tokens}")
-            # NOTE: we can't reliably get the total token usage since that relies on getting future completitions
-            # but the number of output tokens is negligible compared to the number of input tokens
-            token_usage_per_minute += input_tokens
-
-            # check if we need to sleep to respect the TPM rate limit
-            remaining = 60 - (time.time() - start) # number of seconds remaining in the current minute
-            if token_usage_per_minute > TPM_LIMIT and remaining > 0:
-                print(f"Token usage per minute: {token_usage_per_minute}")
-                print(f"Sleeping for {remaining} seconds to respect the TPM rate limit")
-                await asyncio.sleep(remaining + 1) # NOTE: add an extra second so we definitely pass the minute
-            
-            # reset if we have passed the minute
-            if time.time() - start > 60:
-                start = time.time()
-                token_usage_per_minute = 0
-
+        elif model.startswith("gemini"):
             # Ref: https://cloud.google.com/vertex-ai/docs/reference/rest/v1/GenerationConfig
-            t = asyncio.create_task(google_model.generate_content_async(
+            t = client.generate_content_async(
                 message,
                 generation_config={
                     'temperature': temperature,
@@ -263,15 +362,46 @@ elif model.startswith("gemini"):
                     'stop_sequences': STOP,
                     # NOTE: API does not support seed, repetition_penalty
                 }
-            ))
-            tasks.append(t)
-            # NOTE: use 66 seconds per minute to send 10% fewer requests than is technically allowed by the rate limit
-            await asyncio.sleep(66 / RPM_LIMIT)  # Sleep to respect the rate limit
+            )
+        elif model.startswith("claude"):
+            t = client.messages.create(
+                model=model,
+                messages=message,
+                temperature=temperature,
+                top_p=top_p,
+                top_k=top_k,
+                # NOTE: repetition_penalty is not supported by Anthropic's API
+                # NOTE: by default, the model will stop at the end of the turn
+                max_tokens=MAX_TOKENS,
+                # NOTE: seed is not supported by Anthropic's API
+            )
+        else:
+            raise ValueError(f"Use `zeroshot_local.py` to get vLLM predictions.")
         
-        print(f"{time.time()-start}: Waiting for responses")
-        # tasks = [generate_response(message) for message in messages]
-        responses = await asyncio.gather(*tasks)
-        print(f"{time.time()-start}: Got all responses")
+        tasks.append(asyncio.create_task(t))
+        # Sleep to respect the rate limit
+        await asyncio.sleep(60 / RPM_LIMIT)
+    
+    print(f"{time.time()-start}: Waiting for responses")
+    responses = await asyncio.gather(*tasks)
+    print(f"{time.time()-start}: Got all responses")
+    if model.startswith("together:"):
+        return [
+            {
+                'pred' : response.choices[0].message.content,
+                'usage' : response.usage.model_dump(),
+            }
+            for response in responses
+        ]
+    elif model.startswith("gpt"):
+        return [
+            {
+                'pred' : response.choices[0].message.content,
+                'usage' : response.usage.model_dump(),
+            }
+            for response in responses
+        ]
+    elif model.startswith("gemini"):
         return [
             {
                 'pred' : response.text,
@@ -284,44 +414,7 @@ elif model.startswith("gemini"):
             }
             for response in responses
         ]
-
-    # Use like other models
-    responses = asyncio.run(async_chat_completion(messages_instructions_only))
-
-elif model.startswith("claude"):
-    """
-    Ref: 
-    - https://github.com/anthropics/anthropic-sdk-python?tab=readme-ov-file#async-usage
-    - https://docs.anthropic.com/en/api/messages
-
-    NOTE: Claude does not accept whitespace stop sequences like "\n"
-    """
-    logging.warning("Anthropic does not support setting seed for Claude.")
-    import os, asyncio
-    from anthropic import AsyncAnthropic
-
-    async def async_chat_completion(messages):
-        async_client = AsyncAnthropic()
-        semaphore = asyncio.Semaphore(2)  # Limit to 2 concurrent calls
-        
-        async def rate_limited_message(message):
-            async with semaphore:
-                response = await async_client.messages.create(
-                    model=model,
-                    messages=message,
-                    temperature=temperature,
-                    top_p=top_p,
-                    top_k=top_k,
-                    # NOTE: repetition_penalty is not supported by Anthropic's API
-                    # NOTE: by default, the model will stop at the end of the turn
-                    max_tokens=MAX_TOKENS,
-                    # NOTE: seed is not supported by Anthropic's API
-                )
-                await asyncio.sleep(5)
-                return response
-        
-        tasks = [rate_limited_message(message) for message in messages]
-        responses = await asyncio.gather(*tasks)
+    elif model.startswith("claude"):
         return [
             {
                 'pred' : response.content[0].text,
@@ -329,11 +422,14 @@ elif model.startswith("claude"):
             }
             for response in responses
         ]
+    else:
+        raise ValueError(f"Use `zeroshot_local.py` to get vLLM predictions.")
 
-    responses = asyncio.run(async_chat_completion(messages))
-
+# Use like other models
+if model.startswith("gemini"):
+    responses = asyncio.run(async_chat_completion(messages_instructions_only))
 else:
-    raise ValueError(f"Use `zeroshot_local.py` to get vLLM predictions.")
+    responses = asyncio.run(async_chat_completion(messages))
 
 # %%
 preds = {}
