@@ -141,7 +141,7 @@ wife(X, Y) :-
     are_married(X, Y),
     female(Y).
 
-husband(X, Y) :- 
+husband(X, Y) :-
     are_married(X, Y),
     male(Y).
 
@@ -172,3 +172,37 @@ sister_in_law(X, Y) :-
 brother_in_law(X, Y) :-
     are_married(X, A),
     brother(A, Y).
+%
+% step parent relations
+%
+step_parent(X, Y) :-
+    parent(X, A),
+    are_married(A, Y),
+    \+ parent(X, Y).
+
+step_mother(X, Y) :-
+    step_parent(X, Y),
+    female(Y).
+
+step_father(X, Y) :-
+    step_parent(X, Y),
+    male(Y).
+
+step_child(X, Y) :-
+    step_parent(Y, X).
+
+step_son(X, Y) :-
+    step_child(X, Y),
+    male(Y).
+
+step_daughter(X, Y) :-
+    step_child(X, Y),
+    female(Y).
+
+step_sister(X, Y) :-
+    step_parent(X, A),
+    daughter(A, Y).
+
+step_brother(X, Y) :-
+    step_parent(X, A),
+    son(A, Y).
