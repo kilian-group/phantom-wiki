@@ -1,4 +1,5 @@
 from pyswip import Prolog
+from phantom_wiki.facts.family.constants import PERSON_TYPE
 
 SAVE_ALL_CLAUSES_TO_FILE = """
 (save_all_clauses_to_file(File) :-
@@ -39,10 +40,8 @@ class Database:
         Returns:
             List of people's names.
         """
-        females = [result["X"] for result in self.prolog.query("female(X)")]
-        males = [result["X"] for result in self.prolog.query("male(X)")]
-        nonbinary = []  # [result['X'] for result in self.prolog.query("nonbinary(X)")]
-        return females + males + nonbinary
+        people = [result["X"] for result in self.prolog.query(f"type(X, {PERSON_TYPE})")]
+        return people
 
     # TODO shouldn't it be "attribute names"
     # TODO check output type

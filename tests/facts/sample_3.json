@@ -1,0 +1,12 @@
+[
+    {
+        "<name>_5": "thomasine",
+        "<relation>_4": "child",
+        "<attribute_name>_3": "gender"
+    },
+    "What is the gender of the child of thomasine ?",
+    [
+        "gender(Y_3, Y_2)",
+        "child('thomasine', Y_3)"
+    ]
+]

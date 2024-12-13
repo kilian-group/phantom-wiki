@@ -15,7 +15,7 @@ conda activate dataset
 conda install python=3.12 conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest
 # on G2, use pip instead of conda to install pandas and numpy to avoid C dependency conflicts
 pip install pandas numpy
-pip install together openai pre-commit datasets google-generativeai anthropic
+pip install together openai pre-commit datasets google-generativeai anthropic transformers 
 ```
 
 Setting up Prolog (see also the [Prolog tutorial](docs/prolog.md)):
@@ -130,7 +130,7 @@ git push
 ```
 cd <some location outside of this repo>
 pip install -U "huggingface_hub[cli]"
-hugginface-cli login
+huggingface-cli login
 # NOTE: when creating a new access token, set the token type to be `write`
 git clone https://huggingface.co/datasets/mlcore/phantom-wiki
 git lfs install

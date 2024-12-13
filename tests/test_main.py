@@ -8,23 +8,24 @@ from phantom_wiki.facts.family import fam_gen_parser
 from phantom_wiki.utils import get_parser
 from phantom_wiki.facts import question_parser
 from phantom_wiki.__main__ import main
+from tests import ARTICLE_EXAMPLE_PATH
 
 def test_main():
     parser = get_parser(parents=[
         fam_gen_parser,
         question_parser
     ])
-    args, _ = parser.parse_known_args(["--output_dir", "test_out", "--seed", "1"])
+    args, _ = parser.parse_known_args(["--output-dir", "test_out", "--seed", "1", "--valid-only"])
     main(args)
 
+    # get example article
+    with open(ARTICLE_EXAMPLE_PATH, "r") as f:
+        example_article = f.read()
     # test that the articles were generated correctly
     article_dir = os.path.join("test_out", "articles")
     with open(os.path.join(article_dir, "alfonso.txt")) as file:
         article = file.read()
-        assert (
-            article
-            == "# alfonso\n\n## Family\nalfonso's siblings are antionette, colby, dominick, kari.\nThe sister of alfonso is antionette, kari.\nThe brother of alfonso is colby, dominick.\nThe mother of alfonso is kanesha.\nThe father of alfonso is derick.\nThe child of alfonso is ellis.\nThe son of alfonso is ellis.\nThe wife of alfonso is ila.\n\n## Friends\nThe friend of alfonso is vicente, kanesha, lyndia, meghann, rosalee.\n\n## Attributes\nThe date of birth of alfonso is 0240-12-31.\nThe job of alfonso is translator.\nThe hobby of alfonso is microbiology.\n"
-        )
+        assert article == example_article
 
     # test that the questions were generated correctly
     question_dir = os.path.join("test_out", "questions")
@@ -37,14 +38,17 @@ def test_main():
             "<relation>_3",
             "of",
             "the person whose",
-            "<attribute_name>_1",
+            "<attribute_name>_5",
             "is",
-            "<attribute_value>_1",
+            "<attribute_value>_5",
             "?",
         ]
-        assert data[0]["question"] == "Who is the daughter of the person whose job is air cabin crew ?"
-        assert data[0]["prolog"]["query"] == ["daughter(Y_2, Y_4)", "job(Y_2, 'air cabin crew')"]
-        assert data[0]["answer"] == []
+        assert data[0]["question"] == "Who is the brother of the person whose job is air cabin crew ?"
+        assert data[0]["prolog"]["query"] == [
+            "brother(Y_4, Y_2)", 
+            "job(Y_4, 'air cabin crew')"
+        ]
+        assert data[0]["answer"] == ["alton"]
 
     # clean up test_out directory
     shutil.rmtree("test_out")

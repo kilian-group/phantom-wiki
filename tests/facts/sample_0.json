@@ -1,0 +1,12 @@
+[
+    {
+        "<attribute_value>_5": "radio-controlled car racing",
+        "<attribute_name>_5": "hobby",
+        "<relation>_3": "daughter"
+    },
+    "Who is the daughter of the person whose hobby is radio-controlled car racing ?",
+    [
+        "daughter(Y_4, Y_2)",
+        "hobby(Y_4, 'radio-controlled car racing')"
+    ]
+]

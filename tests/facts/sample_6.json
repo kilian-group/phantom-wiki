@@ -1,0 +1,12 @@
+[
+    {
+        "<attribute_value>_4": "radio-controlled car racing",
+        "<attribute_name>_4": "hobby",
+        "<relation_plural>_2": "sons"
+    },
+    "How many sons does the person whose hobby is radio-controlled car racing have?",
+    [
+        "aggregate_all(count, distinct(son(Y_3, Y_1)), Count_1)",
+        "hobby(Y_3, 'radio-controlled car racing')"
+    ]
+]

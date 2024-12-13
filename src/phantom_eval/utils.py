@@ -20,6 +20,16 @@ def get_all_articles(dataset):
     all_articles = "\n================\n\n".join(dataset['text']['article'])
     return all_articles
 
+def get_relevant_articles(dataset, name_list:list):
+    """
+    Get articles for a certain list of names.
+    """
+    relevant_articles = []
+    for name in name_list:
+        relevant_articles.extend([entry['article'] for entry in dataset['text'] if entry['title']==name])
+    relevant_articles = "\n================\n\n".join(relevant_articles)
+    return relevant_articles
+
 LOCAL_MODELS = [
     # HF models (run via vLLM)
     "meta-llama/llama-3.1-8b-instruct", 

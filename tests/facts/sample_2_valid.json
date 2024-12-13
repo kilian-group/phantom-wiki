@@ -1,0 +1,10 @@
+[
+    {
+        "<attribute_value>_3": "newspaper journalist",
+        "<attribute_name>_3": "job"
+    },
+    "Who is the person whose job is newspaper journalist ?",
+    [
+        "job(Y_2, 'newspaper journalist')"
+    ]
+]
