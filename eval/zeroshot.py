@@ -38,14 +38,14 @@ args, _ = parser.parse_known_args()
 
 # %%
 output_dir = args.output_dir
-model = args.model
+model = args.model_name
 split = args.split
 batch_size = args.batch_size
 batch_number = args.batch_number
-# sampling parameters
-temperature = args.temperature
-top_p = args.top_p
-top_k = args.top_k
+# inference parameters
+temperature = args.inf_temperature
+top_p = args.inf_top_p
+top_k = args.inf_top_k
 
 # 
 # Default parameters
@@ -53,14 +53,15 @@ top_k = args.top_k
 # NOTE: eot_id indicates the end of a message in a turn
 # Ref: https://www.llama.com/docs/model-cards-and-prompt-formats/meta-llama-3/
 STOP = ["\n"]
-MAX_TOKENS = 512
+max_tokens = args.inf_max_tokens
+# MAX_TOKENS = 512
 # Params specific to Together and vLLM
 LLAMA_STOP = STOP + ["<|eot_id|>",]
 repetition_penalty = 1.0
 # Params specific to vLLM
-seed = args.seed
-max_model_len = args.max_model_len
-tensor_parallel_size = args.tensor_parallel_size
+seed = args.inf_seed
+max_model_len = args.inf_max_model_len
+tensor_parallel_size = args.inf_tensor_parallel_size
 
 # %%
 # remaining imports
@@ -160,7 +161,7 @@ if model.startswith("together:"):
                 top_k=top_k,
                 repetition_penalty=repetition_penalty,
                 stop=LLAMA_STOP,
-                max_tokens=MAX_TOKENS,
+                max_tokens=max_tokens,
                 seed=seed,
             )
             for message in messages
@@ -194,7 +195,7 @@ elif model.startswith("gpt"):
                 # NOTE: top_k is not supported by OpenAI's API
                 # NOTE: repetition_penalty is not supported by OpenAI's API
                 stop=STOP,
-                max_completion_tokens=MAX_TOKENS,
+                max_completion_tokens=max_tokens,
                 seed=seed,
             )
             for message in messages
@@ -232,7 +233,7 @@ elif model.startswith("gemini"):
                     'temperature': temperature,
                     'top_p': top_p,
                     # 'top_k': top_k, # NOTE: API does not suport topK>40
-                    'max_output_tokens': MAX_TOKENS,
+                    'max_output_tokens': max_tokens,
                     'stop_sequences': STOP,
                     # NOTE: API does not support seed, repetition_penalty
                 }
@@ -283,7 +284,7 @@ elif model.startswith("claude"):
                     top_k=top_k,
                     # NOTE: repetition_penalty is not supported by Anthropic's API
                     # NOTE: by default, the model will stop at the end of the turn
-                    max_tokens=MAX_TOKENS,
+                    max_tokens=max_tokens,
                     # NOTE: seed is not supported by Anthropic's API
                 )
                 await asyncio.sleep(5)
@@ -316,13 +317,13 @@ else:
     ]
     # Create a sampling params object.
     # Ref: https://docs.vllm.ai/en/stable/dev/sampling_params.html#vllm.SamplingParams
-    sampling_params = SamplingParams(
+    inference_params = SamplingParams(
         temperature=temperature,
         top_p=top_p,
         top_k=top_k,
         repetition_penalty=repetition_penalty,
         stop=LLAMA_STOP,
-        max_tokens=MAX_TOKENS,
+        max_tokens=max_tokens,
         seed=seed,
     )
     # Create an LLM.
@@ -336,7 +337,7 @@ else:
     )
     # Generate texts from the prompts. The output is a list of RequestOutput objects
     # that contain the prompt, generated text, and other information.
-    outputs = llm.generate(prompts, sampling_params)
+    outputs = llm.generate(prompts, inference_params)
     responses = [
         {
             'pred' : output.outputs[0].text,
@@ -365,7 +366,7 @@ for i in range(len(batch)):
             'type': batch[i]['type'],
             'seed': seed,
         },
-        'sampling_params': {
+        'inference_params': {
             'temperature': temperature,
             'top_p': top_p,
             'top_k': top_k,

@@ -1,5 +1,10 @@
+import logging
+
 from datasets import load_dataset
 from argparse import ArgumentParser
+
+from . import llm
+
 
 def load_data(split):
     """
@@ -30,6 +35,14 @@ def get_relevant_articles(dataset, name_list:list):
     relevant_articles = "\n================\n\n".join(relevant_articles)
     return relevant_articles
 
+
+def setup_logging(log_level: str) -> str:
+    # Suppress httpx logging from API requests
+    logging.getLogger("httpx").setLevel(logging.WARNING)
+    logging.basicConfig(level=log_level, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+
+
+# TODO support local models in llm.py
 LOCAL_MODELS = [
     # HF models (run via vLLM)
     "meta-llama/llama-3.1-8b-instruct", 
@@ -41,41 +54,36 @@ LOCAL_MODELS = [
     "google/gemma-2-27b-it",
     "mistralai/mistral-7b-instruct-v0.3",
 ]
-MODEL_CHOICES = LOCAL_MODELS + [
-    # Together models (https://docs.together.ai/docs/serverless-models)
-    "together:meta-llama/llama-3.1-8b-instruct", 
-    "together:meta-llama/llama-3.1-70b-instruct", 
-    "together:meta-llama/llama-3.1-405b-instruct",
-    # OpenAI models (https://platform.openai.com/docs/models)
-    "gpt-4o-mini-2024-07-18",
-    "gpt-4o-2024-11-20",
-    # Anthropic models (https://docs.anthropic.com/en/docs/about-claude/models)
-    "claude-3-5-haiku-20241022",
-    "claude-3-5-sonnet-20241022",
-    # Google models (https://ai.google.dev/gemini-api/docs/models/gemini)
-    "gemini-1.5-flash-002",
-    "gemini-1.5-pro-002",
-]
 
-def get_parser():
+
+def get_parser() -> ArgumentParser:
     parser = ArgumentParser(description="PhantomWiki Evaluation")
-    parser.add_argument("--model", "-m", type=str.lower, default='llama-3.1-8b',
-                        help="model name (case insensitive) "\
+    parser.add_argument("--model_name", "-m", type=str, default="together:meta-llama/Llama-Vision-Free",
+                        help="model name." \
                             "NOTE: to add a new model, please submit a PR to the repo with the new model name", 
-                        choices=MODEL_CHOICES)
+                        choices=LOCAL_MODELS + llm.SUPPORTED_LLM_NAMES)
+    parser.add_argument("--model_path", type=str, default=None, help="Path to the model")
+
     # LLM inference params
-    parser.add_argument("--max_model_len", type=int, default=None,
+    parser.add_argument("--inf_max_model_len", type=int, default=None,
                         help="Maximum model length (vLLM param)")
-    parser.add_argument("--tensor_parallel_size", type=int, default=1,
+    parser.add_argument("--inf_tensor_parallel_size", type=int, default=1,
                         help="number of gpus (vLLM param")
-    parser.add_argument("--temperature", "-T", type=float, default=0.7,
+    parser.add_argument("--inf_max_tokens", type=int, default=4096,
+                        help="Maximum number of tokens to generate")
+    parser.add_argument("--inf_temperature", "-T", type=float, default=0.7,
                         help="Temperature for sampling")
-    parser.add_argument("--top_p", "-p", type=float, default=0.7,
+    parser.add_argument("--inf_top_p", "-p", type=float, default=0.7,
                         help="Top-p for sampling")
-    parser.add_argument("--top_k", "-k", type=float, default=50,
+    parser.add_argument("--inf_top_k", "-k", type=float, default=50,
                         help="Top-k for sampling")
-    parser.add_argument("--seed", type=int, default=1,
-                        help="Seed for sampling (vLLM param)")
+    parser.add_argument("--inf_seed", type=int, default=1,
+                        help="Seed for sampling")
+    parser.add_argument("--inf_max_retries", type=int, default=3,
+                        help="Number of tries to get response")
+    parser.add_argument("--inf_wait_seconds", type=int, default=2,
+                        help="Seconds to wait between tries")
+
     # Dataset params
     parser.add_argument("--split", "-s", default="depth_6_size_26_seed_1", type=str,
                         help="Dataset split (e.g., train, val, test)")
@@ -87,4 +95,8 @@ def get_parser():
     # Saving params
     parser.add_argument("--output_dir", "-od", default="out",
                     help="Path to read/write the outputs")
+    parser.add_argument("--log_level", default="INFO", type=str.upper,
+                        help="Set the logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)",
+                        choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"])
+
     return parser
