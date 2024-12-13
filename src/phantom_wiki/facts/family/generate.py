@@ -11,7 +11,6 @@
 import os
 import random
 import time
-from typing import List
 
 import pydot
 from dateutil.relativedelta import relativedelta
@@ -193,9 +192,6 @@ class Generator:
                 # add divorce events
                 # can only remarry if the person has even number of events (i.e., divorced)
                 elif len(p.events) > 0 and len(p.events) % 2 == 0:
-                    import pdb
-
-                    pdb.set_trace()
                     e = p.events[-1]
                     assert e.type == "divorce", "Last event must be a divorce"
                     if random.random() < args.remarry_rate:
@@ -213,9 +209,6 @@ class Generator:
                         else:
                             # if there is no divorced person to remarry, move to next person
                             continue
-
-            # add remarriage events
-            print("adding remarriage events...")
 
             print(f"OK ({time.time() - start:.3f}s)")
 
