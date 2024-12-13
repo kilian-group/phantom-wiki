@@ -2,8 +2,6 @@ from langchain.prompts import PromptTemplate
 import llm
 
 
-# TODO retrievearticle -> search
-# TODO search -> retrievearticle
 REACT_EXAMPLES = """
 Example 1:
 <question>Who is the father of anastasia?</question>
