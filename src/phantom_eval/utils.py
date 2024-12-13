@@ -1,3 +1,5 @@
+import logging
+
 from datasets import load_dataset
 from argparse import ArgumentParser
 
@@ -29,6 +31,11 @@ def get_relevant_articles(dataset, name_list:list):
         relevant_articles.extend([entry['article'] for entry in dataset['text'] if entry['title']==name])
     relevant_articles = "\n================\n\n".join(relevant_articles)
     return relevant_articles
+
+
+def setup_logging(log_level: str) -> str:
+    logging.basicConfig(level=log_level, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+
 
 LOCAL_MODELS = [
     # HF models (run via vLLM)
@@ -97,4 +104,8 @@ def get_parser():
     # Saving params
     parser.add_argument("--output_dir", "-od", default="out",
                     help="Path to read/write the outputs")
+    parser.add_argument("--log_level", default="INFO", type=str.upper,
+                        help="Set the logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)",
+                        choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"])
+
     return parser

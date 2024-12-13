@@ -1,12 +1,14 @@
+import logging
 import re
 import string
 
 import pandas as pd
-from termcolor import colored
 
 from langchain.prompts import PromptTemplate
 from llm import LLMChat
 from data import Conversation, ContentTextMessage, Message
+
+logger = logging.getLogger(__name__)
 
 
 class ReactAgent:
@@ -43,7 +45,7 @@ class ReactAgent:
         if reset:
             self.__reset_agent()
 
-        print(f"\n\t>>> question: {self.question}\n")
+        logger.debug(f"\n\t>>> question: {self.question}\n")
         
         while (not self.is_halted(llm_chat)) and (not self.is_finished()):
             try:
@@ -57,20 +59,20 @@ class ReactAgent:
         # Think
         response = self.prompt_agent(llm_chat, stop_sequences=["</thought>"])
         response = f"{response}</thought>"
-        print(f"\n\t>>> {response}\n")
+        logger.debug(f"\n\t>>> {response}\n")
         thought = get_tag_at_round(response, tag_type="thought", step_round=self.step_round)
         self.scratchpad +=  "\n" + thought
-        print(thought)
+        logger.debug(thought)
 
         # Act
         response = self.prompt_agent(llm_chat, stop_sequences=["</action>"])
         response = f"{response}</action>"
-        print(f"\n\t>>> {response}\n")
+        logger.debug(f"\n\t>>> {response}\n")
         action = get_tag_at_round(response, tag_type="action", step_round=self.step_round)
         self.scratchpad += "\n" + action
         action_type, argument = parse_action(action)
         argument = argument.lower() # Normalize the argument
-        print(action)
+        logger.debug(action)
 
         # Observe
         match action_type:
@@ -97,7 +99,7 @@ class ReactAgent:
                 observation_str += "Invalid action. Valid actions are RetrieveArticle[{{entity}}], Search[{{attribute}}], and Finish[{{answer}}]."
         observation_for_round = f"<observation round=\"{self.step_round}\">{observation_str}</observation>"
         self.scratchpad += "\n" + observation_for_round
-        print(observation_for_round)
+        logger.debug(observation_for_round)
 
         self.step_round += 1
 

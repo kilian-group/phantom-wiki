@@ -4,7 +4,7 @@ Script for getting predictions for react agent.
 
 import argparse
 import json
-# import logging
+import logging
 from pathlib import Path
 from typing import Any
 
@@ -13,16 +13,18 @@ import pandas as pd
 from agents import ReactAgent
 import llm
 import prompts
-from phantom_eval.utils import load_data, get_parser
+from phantom_eval.utils import load_data, get_parser, setup_logging
+
+logger = logging.getLogger(__name__)
 
 
 def main(args: argparse.Namespace) -> None:
-    print("* Loading dataset")
+    logger.info("* Loading dataset")
     dataset = load_data(args.split)
     df_qa_pairs = pd.DataFrame(dataset["qa_pairs"])
     df_text = pd.DataFrame(dataset["text"])
 
-    print("* Loading LLM")
+    logger.info("* Loading LLM")
     model_kwargs = dict(
         model_path=args.model_path,
         max_tokens=args.inf_max_tokens,
@@ -35,7 +37,7 @@ def main(args: argparse.Namespace) -> None:
     llm_prompts = prompts.get_llm_prompt(args.model_name)
 
     # Construct react agent for each sample in the QA dataset
-    print(f"Constructing ReAct agent for {len(df_qa_pairs)} samples")
+    logger.info(f"Constructing ReAct agent for {len(df_qa_pairs)} samples")
     agents: list[ReactAgent] = []
     for i, sample in enumerate(df_qa_pairs.itertuples()):
         agent = ReactAgent(
@@ -50,10 +52,9 @@ def main(args: argparse.Namespace) -> None:
 
     # Run the agents and log the final answers
     run_name = f"split={args.split}__model_name={args.model_name.replace('/', '--')}"
-    print(f"Running ReAct agents")
+    logger.info(f"Running ReAct agents")
     answers: list[dict[str, Any]] = []
     for i, agent in enumerate(agents):
-        # blue(agent.question)
         agent.run(llm_chat)
         # TODO Add usage dump
         answers.append({
@@ -93,7 +94,7 @@ def save_preds(run_name: str, args: argparse.Namespace, df_qa_pairs: pd.DataFram
 
     pred_path = Path(args.output_dir) / "react" / "preds" / f"{run_name}.json"
     pred_path.parent.mkdir(parents=True, exist_ok=True)
-    print(f"Saving predictions to {pred_path}")
+    logger.info(f"Saving predictions to {pred_path}")
     with open(pred_path, "w") as f:
         json.dump(preds, f, indent=4)
 
@@ -121,5 +122,6 @@ if __name__ == "__main__":
     # parser.add_argument("--output_dir", type=str, default="out", help="Output directory for logs")
 
     args, _ = parser.parse_known_args()
+    setup_logging(args.log_level)
 
     main(args)
