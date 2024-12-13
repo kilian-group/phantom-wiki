@@ -1,10 +1,12 @@
 from pyswip import Prolog
 
 from phantom_wiki.facts.family import FAMILY_RULES_BASE_PATH, FAMILY_RULES_DERIVED_PATH
-from tests.facts.family import (FAMILY_TREE_SMALL_EXAMPLE_PATH,
-                                FACTS_SMALL_EXAMPLE_PATH,
-                                FACTS_SMALL_DIVORCE_EXAMPLE_PATH,
-                                FACTS_SMALL_DIVORCE_REMARRY_EXAMPLE_PATH)
+from tests.facts.family import (
+    FACTS_SMALL_DIVORCE_EXAMPLE_PATH,
+    FACTS_SMALL_DIVORCE_REMARRY_EXAMPLE_PATH,
+    FACTS_SMALL_EXAMPLE_PATH,
+    FAMILY_TREE_SMALL_EXAMPLE_PATH,
+)
 
 
 def prolog_result_set(prolog_dict: list[dict]) -> set[list[tuple]]:
@@ -141,16 +143,23 @@ def test_family_rules_derived():
         list(prolog.query("male_first_cousin_once_removed(angelina, X)")), [{"X": "gabriel"}, {"X": "felix"}]
     )
 
+
 def test_in_law():
     prolog = Prolog()
     prolog.consult(FACTS_SMALL_EXAMPLE_PATH)
     prolog.consult(FAMILY_RULES_DERIVED_PATH)
     assert bool(list(prolog.query("mother_in_law(deangelo, kanesha)")))
     assert bool(list(prolog.query("father_in_law(deangelo, derick)")))
-    assert compare_prolog_dicts(list(prolog.query("daughter_in_law(derick, X)")), [{"X": "daisy"}, {"X": "ila"}])
+    assert compare_prolog_dicts(
+        list(prolog.query("daughter_in_law(derick, X)")), [{"X": "daisy"}, {"X": "ila"}]
+    )
     assert compare_prolog_dicts(list(prolog.query("son_in_law(derick, X)")), [{"X": "deangelo"}])
     assert compare_prolog_dicts(list(prolog.query("sister_in_law(deangelo, X)")), [{"X": "kari"}])
-    assert compare_prolog_dicts(list(prolog.query("brother_in_law(deangelo, X)")), [{"X": "colby"}, {"X": "dominick"}, {"X": "alfonso"}])
+    assert compare_prolog_dicts(
+        list(prolog.query("brother_in_law(deangelo, X)")),
+        [{"X": "colby"}, {"X": "dominick"}, {"X": "alfonso"}],
+    )
+
 
 def test_in_law_divorce():
     """
@@ -167,22 +176,27 @@ def test_in_law_divorce():
     assert compare_prolog_dicts(list(prolog.query("sister_in_law(deangelo, X)")), [])
     assert compare_prolog_dicts(list(prolog.query("brother_in_law(deangelo, X)")), [])
 
-def test_step_parent():
+
+def test_step_relations():
     """
-    Test step-parent relationships.
+    Test step-parent, step-siblings relationships.
     """
     prolog = Prolog()
     prolog.consult(FACTS_SMALL_DIVORCE_REMARRY_EXAMPLE_PATH)
     prolog.consult(FAMILY_RULES_DERIVED_PATH)
-    import pdb; pdb.set_trace()
-    assert bool(list(prolog.query("step_mother(ellis, daisy)")))
-    assert bool(list(prolog.query("step_father(deanna, alfonso)")))
-    assert compare_prolog_dicts(list(prolog.query("step_daughter(alfonso, X)")), [{'X': 'deanna'}, {'X': 'reyna'}, {'X': 'rosalee'}])
-    assert compare_prolog_dicts(list(prolog.query("step_son(daisy, X)")), [{'X': 'ellis'}])
-    # TODO: Fix these tests
-    assert compare_prolog_dicts(list(prolog.query("step_sister(ellis, X)")), [{'X': 'deanna'}, {'X': 'reyna'}, {'X': 'rosalee'}])
-    assert compare_prolog_dicts(list(prolog.query("step_brother(reyna, X)")), [{'X': 'ellis'}])
-    assert compare_prolog_dicts(list(prolog.query("step_brother(rosalle, X)")), [{'X': 'ellis'}])
-    assert compare_prolog_dicts(list(prolog.query("step_brother(deanna, X)")), [{'X': 'ellis'}])
 
-
+    assert compare_prolog_dicts(
+        list(prolog.query("step_mother(ellis, X)")), [{"X": "daisy"}, {"X": "kanesha"}]
+    )
+    assert compare_prolog_dicts(list(prolog.query("step_father(deanna, X)")), [{"X": "alfonso"}])
+    assert compare_prolog_dicts(
+        list(prolog.query("step_daughter(alfonso, X)")), [{"X": "deanna"}, {"X": "reyna"}, {"X": "rosalee"}]
+    )
+    assert compare_prolog_dicts(list(prolog.query("step_son(daisy, X)")), [{"X": "ellis"}])
+    assert compare_prolog_dicts(
+        list(prolog.query("step_sister(ellis, X)")),
+        [{"X": "deanna"}, {"X": "reyna"}, {"X": "rosalee"}, {"X": "antionette"}, {"X": "kari"}],
+    )
+    assert compare_prolog_dicts(
+        list(prolog.query("step_brother(ellis, X)")), [{"X": "alfonso"}, {"X": "colby"}, {"X": "dominick"}]
+    )
