@@ -73,13 +73,24 @@ os.makedirs(scores_dir, exist_ok=True)
 acc.to_csv(os.path.join(scores_dir, "scores.csv"))
 
 # get accuracies by type
-if False:
+if True:
     # group by model, split, and type
     acc_by_type = df.groupby(['_model', '_split', '_type'])[['EM','precision', 'recall', 'f1']].mean()
     # print the accuracy
     print(acc_by_type.to_markdown())
     # save to a csv file
     acc_by_type.to_csv(os.path.join(scores_dir, "scores_by_type.csv"))
+    # # get the length of the query for each type
+    # from phantom_wiki.facts.templates import generate_templates
+    # # assert the depth is the same for rows in acc_by_type
+    # import re
+    # depths = acc_by_type['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(1))
+    # assert depths.nunique() == 1
+    # depth = int(depths.iloc[0])
+    # templates = generate_templates(depth=depth)
+    # import pdb; pdb.set_trace()
+    # # get the length of the query for each type
+    # acc_by_type['query_length'] = acc_by_type['_type'].apply(lambda x: len(templates[x].query.split()))
 
 # %%
 # get the mean and std of the accuracy for each model and split
@@ -107,6 +118,7 @@ MODELS = [
     'google/gemma-2-9b-it',
     'google/gemma-2-2b-it',
     'meta-llama/llama-3.1-8b-instruct',
+    'meta-llama/llama-3.1-70b-instruct',
     'microsoft/phi-3.5-mini-instruct',
     'mistralai/mistral-7b-instruct-v0.3',
     'gemini-1.5-flash-002',
@@ -120,25 +132,23 @@ def get_mean_std(metric):
     df_mean.columns = df_mean.columns.astype(int)
     # reorder the columns in ascending order
     df_mean = df_mean[sorted(df_mean.columns)]
-    # reorder the rows
-    df_mean = df_mean.loc[MODELS]
+    # reorder the rows (only if all models are present)
+    if set(df_mean.index) != set(MODELS):
+        print(f"Models in the data: {df_mean.index}")
+        print(f"Models in the list: {MODELS}")
+    else:
+        df_mean = df_mean.loc[MODELS]
     df_std = acc_mean_std.pivot(index='_model', columns='_split', values=(metric, 'std'))
     # change the column names to integers
     df_std.columns = df_std.columns.astype(int)
     df_std = df_std[sorted(df_std.columns)]
-    # reorder the rows
-    df_std = df_std.loc[MODELS]
+    # reorder the rows (only if all models are present)
+    if set(df_std.index) != set(MODELS):
+        print(f"Models in the data: {df_std.index}")
+        print(f"Models in the list: {MODELS}")
+    else:
+        df_std = df_std.loc[MODELS]
     return df_mean, df_std
-
-
-# %%
-df_mean, df_std = get_mean_std('EM')
-
-# %%
-df_mean
-
-# %%
-df_std
 
 # %%
 # create a plot
@@ -169,6 +179,7 @@ COLORS = {
     'google/gemma-2-27b-it': 'tab:blue',
     'google/gemma-2-9b-it': 'tab:blue',
     'google/gemma-2-2b-it': 'tab:blue',
+    'meta-llama/llama-3.1-70b-instruct': 'tab:orange',
     'meta-llama/llama-3.1-8b-instruct': 'tab:orange',
     'microsoft/phi-3.5-mini-instruct': 'tab:green',
     'mistralai/mistral-7b-instruct-v0.3' : 'tab:red',
@@ -178,7 +189,8 @@ LINESTYLES = {
     'google/gemma-2-27b-it': '-',
     'google/gemma-2-9b-it': '--',
     'google/gemma-2-2b-it': 'dotted',
-    'meta-llama/llama-3.1-8b-instruct': '-',
+    'meta-llama/llama-3.1-70b-instruct': '-',
+    'meta-llama/llama-3.1-8b-instruct': '--',
     'microsoft/phi-3.5-mini-instruct': '-',
     'mistralai/mistral-7b-instruct-v0.3' : '-',
     'gemini-1.5-flash-002': '--',
@@ -201,7 +213,7 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
         plt.plot(x, y, label=i, marker='o', color=COLORS[i], linestyle=LINESTYLES[i])
         plt.fill_between(x, y-yerr, y+yerr, alpha=0.3, color=COLORS[i])
 
-    plt.legend(title='Model', loc='lower right', fontsize=18)
+    plt.legend(title='Model', loc='lower right', fontsize=12)
     # format x-axis
     plt.xlabel('Size of universe')
     plt.xticks(np.log2(df_mean.columns), df_mean.columns)
