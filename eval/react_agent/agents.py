@@ -1,6 +1,5 @@
 import logging
 import re
-import string
 
 import pandas as pd
 
@@ -29,6 +28,7 @@ class ReactAgent:
             max_steps (int): The maximum number of steps the agent can take.
             text_corpus (pd.DataFrame): The text corpus to search for answers.
                 Must contain two columns: 'title' and 'article'.
+            react_examples (str): Prompt examples to include in agent prompt.
         """
         self.question = question
         self.answer: list[str] = []
@@ -85,7 +85,6 @@ class ReactAgent:
                 try:
                     article: str = self.text_corpus.loc[self.text_corpus["title"] == argument, "article"].values[0]
                     observation_str = format_step(article)
-                    # observation_str = article
                 except IndexError:
                     observation_str += f"No article exists for the requested entity. Please try retrieving article for another entity."
             case "Search":
@@ -111,7 +110,6 @@ class ReactAgent:
         ])
         resp = llm_chat.generate_response(conv, stop_sequences=stop_sequences)
         return format_step(resp)
-        # return resp
     
     def _build_agent_prompt(self) -> str:
         return self.agent_prompt.format(
@@ -123,16 +121,13 @@ class ReactAgent:
     def is_finished(self) -> bool:
         return self.finished
 
-    def is_correct(self) -> bool:
-        return is_exact_match(self.answer, self.keys)
-
     def is_halted(self, llm_chat: LLMChat) -> bool:
         return self.step_round > self.max_steps
 
     def __reset_agent(self) -> None:
         self.step_round = 1
         self.finished = False
-        self.scratchpad: str = ''
+        self.scratchpad: str = ""
 
 
 def get_tag_at_round(response: str, tag_type: str, step_round: int) -> str:
@@ -147,7 +142,7 @@ def get_tag_at_round(response: str, tag_type: str, step_round: int) -> str:
 def parse_action(s: str) -> tuple[str, str] | None:
     """
     Returns a tuple of the action type and the argument, else None if the string s is not in correct format.
-    Correct format: `<action_type>[<argument>]`.
+    Correct format: `<action round="<num>">action_type[<argument>]</action>`.
     """
     pattern = r'<action round="\d">(\w+)\[(.+?)\]</action>'
     match = re.search(pattern, s)
@@ -157,30 +152,8 @@ def parse_action(s: str) -> tuple[str, str] | None:
         argument = match.group(2)
         return action_type, argument
     else:
-        return None
+        raise ValueError(f"Action {s} cannot be parsed.")
 
 
 def format_step(step: str) -> str:
-    # return step
-    return step.strip('\n').strip().replace('\n', ' ')
-
-
-def normalize_answer(s):
-    def remove_articles(text):
-        return re.sub(r"\b(a|an|the)\b", " ", text)
-  
-    def white_space_fix(text):
-        return " ".join(text.split())
-
-    def remove_punc(text):
-        exclude = set(string.punctuation)
-        return "".join(ch for ch in text if ch not in exclude)
-
-    def lower(text):
-        return text.lower()
-
-    return white_space_fix(remove_articles(remove_punc(lower(s))))
-
-
-def is_exact_match(answer: list[str], keys: list[str]) -> bool:
-    return set(map(normalize_answer, answer)) == set(map(normalize_answer, keys))
+    return step.strip("\n").strip().replace("\n", " ")
