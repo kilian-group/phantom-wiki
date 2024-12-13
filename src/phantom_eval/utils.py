@@ -3,6 +3,9 @@ import logging
 from datasets import load_dataset
 from argparse import ArgumentParser
 
+from . import llm
+
+
 def load_data(split):
     """
     Load the phantom-wiki dataset from HuggingFace for a specific split.
@@ -37,6 +40,7 @@ def setup_logging(log_level: str) -> str:
     logging.basicConfig(level=log_level, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
 
+# TODO support local models in llm.py
 LOCAL_MODELS = [
     # HF models (run via vLLM)
     "meta-llama/llama-3.1-8b-instruct", 
@@ -48,29 +52,14 @@ LOCAL_MODELS = [
     "google/gemma-2-27b-it",
     "mistralai/mistral-7b-instruct-v0.3",
 ]
-MODEL_CHOICES = LOCAL_MODELS + [
-    # Together models (https://docs.together.ai/docs/serverless-models)
-    "together:meta-llama/llama-3.1-8b-instruct", 
-    "together:meta-llama/llama-3.1-70b-instruct", 
-    "together:meta-llama/llama-3.1-405b-instruct",
-    # OpenAI models (https://platform.openai.com/docs/models)
-    "gpt-4o-mini-2024-07-18",
-    "gpt-4o-2024-11-20",
-    # Anthropic models (https://docs.anthropic.com/en/docs/about-claude/models)
-    "claude-3-5-haiku-20241022",
-    "claude-3-5-sonnet-20241022",
-    # Google models (https://ai.google.dev/gemini-api/docs/models/gemini)
-    "gemini-1.5-flash-002",
-    "gemini-1.5-pro-002",
-]
 
-def get_parser():
+
+def get_parser() -> ArgumentParser:
     parser = ArgumentParser(description="PhantomWiki Evaluation")
-    # TODO change MODEL_CHOICES
-    parser.add_argument("--model_name", "-m", type=str, default="llama-3.1-8b",
+    parser.add_argument("--model_name", "-m", type=str, default="together:meta-llama/Llama-Vision-Free",
                         help="model name." \
                             "NOTE: to add a new model, please submit a PR to the repo with the new model name", 
-                        choices=MODEL_CHOICES)
+                        choices=LOCAL_MODELS + llm.SUPPORTED_LLM_NAMES)
     parser.add_argument("--model_path", type=str, default=None, help="Path to the model")
 
     # LLM inference params

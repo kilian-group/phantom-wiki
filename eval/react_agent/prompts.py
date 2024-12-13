@@ -1,5 +1,5 @@
 from langchain.prompts import PromptTemplate
-import llm
+import phantom_eval.llm as llm
 
 
 REACT_EXAMPLES = """

@@ -4,8 +4,8 @@ import re
 import pandas as pd
 
 from langchain.prompts import PromptTemplate
-from llm import LLMChat
-from data import Conversation, ContentTextMessage, Message
+from phantom_eval.llm import LLMChat
+from phantom_eval.data import Conversation, ContentTextMessage, Message
 
 logger = logging.getLogger(__name__)
 

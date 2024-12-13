@@ -11,7 +11,7 @@ from typing import Any
 import pandas as pd
 
 from agents import ReactAgent
-import llm
+import phantom_eval.llm as llm
 import prompts
 from phantom_eval.utils import load_data, get_parser, setup_logging
 

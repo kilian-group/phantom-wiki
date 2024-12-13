@@ -4,10 +4,9 @@ import os
 import anthropic
 import openai
 import together
-from langchain.prompts import PromptTemplate
 from tenacity import retry, stop_after_attempt, wait_fixed
 
-from data import ContentTextMessage, Conversation
+from .data import ContentTextMessage, Conversation
 
 STOP = ["\n"]
 top_p = 0.7
