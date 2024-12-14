@@ -1,5 +1,9 @@
 import abc
 import os
+import time
+from tqdm import tqdm
+import logging
+import asyncio
 
 import anthropic
 import openai
@@ -19,6 +23,9 @@ class LLMChat(abc.ABC):
         model_path: str | None = None,
         max_tokens: int = 4096,
         temperature: float = 0.0,
+        top_p: float = 0.7,
+        top_k: int = 50,
+        repetition_penalty: float = 1.0,
         seed: int = 0,
         max_retries: int = 3,
         wait_seconds: int = 2,
@@ -34,6 +41,13 @@ class LLMChat(abc.ABC):
                 Defaults to 4096.
             temperature (Optional[float]): Temperature parameter for sampling.
                 Defaults to 0.0.
+            top_p (Optional[float]): top-p parameter for sampling (between 0 and 1)
+                Defaults to 0.7
+            top_k (Optional[int]): top-k parameter for sampling (> 1)
+                Defaults to 50
+            repetition_penalty (Optional[int]): repetition parameter (between -1 and 1)
+                NOTE: Only supported for some models
+                Defaults to 1.0
             seed (Optional[int]): Seed for random number generator, passed to the model if applicable.
                 Defaults to 0.
             max_retries (Optional[int]): Max number of API calls allowed before giving up.
@@ -48,6 +62,9 @@ class LLMChat(abc.ABC):
         self.model_path = model_path
         self.max_tokens = max_tokens
         self.temperature = temperature
+        self.top_p = top_p
+        self.top_k = top_k
+        self.repetition_penalty = repetition_penalty
         self.seed = seed
         self.max_retries = max_retries
         self.wait_seconds = wait_seconds
@@ -56,6 +73,9 @@ class LLMChat(abc.ABC):
             model_path=model_path,
             max_tokens=max_tokens,
             temperature=temperature,
+            top_p=top_p,
+            top_k=top_k,
+            repetition_penalty=repetition_penalty,
             seed=seed,
             max_retries=max_retries,
             wait_seconds=wait_seconds,
@@ -84,18 +104,27 @@ class CommonLLMChat(LLMChat):
         model_path: str | None = None,
         max_tokens: int = 4096,
         temperature: float = 0.0,
+        top_p: float = 0.7,
+        top_k: float = 0.7,
+        repetition_penalty: float = 1.0,
         seed: int = 0,
         max_retries: int = 3,
         wait_seconds: int = 2,
     ):
-        super().__init__(model_name, model_path, max_tokens, temperature, seed, max_retries, wait_seconds)
+        super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, repetition_penalty, seed, max_retries, wait_seconds)
         self.client = None
 
     @abc.abstractmethod
-    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None) -> str:
+    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = False) -> str:
         """
         Expects messages ready for API. Use `convert_conv_to_api_format` to convert a conversation
         into such a list.
+        """
+        pass
+    @abc.abstractmethod
+    def _parse_output(self, response: str) -> str:
+        """
+        Parse the response from the API and return the final response.
         """
         pass
 
@@ -130,16 +159,70 @@ class CommonLLMChat(LLMChat):
         @retry(stop=stop_after_attempt(self.max_retries), wait=wait_fixed(self.wait_seconds))
         def _call_api_wrapper(conv: Conversation, stop_sequences) -> str:
             messages_api_format: list[dict] = self._convert_conv_to_api_format(conv)
-            return self._call_api(messages_api_format, stop_sequences=stop_sequences)
+            response = self._call_api(messages_api_format, stop_sequences=stop_sequences)
+            return self._parse_output(response)
 
         return _call_api_wrapper(conv, stop_sequences)
+    
+    async def _async_chat_completion(self, messages, stop_sequences):
+        """
+        async function that launches all the requests asynchronously
+        """
+        tasks = []
 
+        start = time.time()
+        token_usage_per_minute = 0 # NOTE: we estimate the number of used tokens in the current minute
+        
+        for i, message in tqdm(enumerate(messages)):
+            # print(f"{time.time()-start}: Requesting message {i}")
+            # TODO: implement count tokens for each model
+            input_tokens = 0 
+            token_usage_per_minute += input_tokens
+
+            # check if we need to sleep to respect the TPM rate limit
+            remaining = 60 - (time.time() - start) # number of seconds remaining in the current minute
+            if token_usage_per_minute > self.TPM_LIMIT and remaining > 0:
+                logging.info(f"Token usage per minute: {token_usage_per_minute}")
+                logging.info(f"Sleeping for {remaining} seconds to respect the TPM rate limit")
+                await asyncio.sleep(remaining + 1) # NOTE: add an extra second so we definitely pass the minute
+            
+            # reset if we have passed the minute
+            if time.time() - start > 60:
+                start = time.time()
+                token_usage_per_minute = 0
+
+            t = self._call_api(message, stop_sequences, use_async=True)
+            tasks.append(asyncio.create_task(t))
+            # Sleep to respect the rate limit
+            await asyncio.sleep(60 / self.RPM_LIMIT)
+        
+        # print(f"{time.time()-start}: Waiting for responses")
+        responses = await asyncio.gather(*tasks)
+        # print(f"{time.time()-start}: Got all responses")
+        return responses
+    
+    def batch_generate_response(self, convs: list[Conversation], stop_sequences: list[str] | None = None) -> list[str]:
+        """
+        Generate response for a batch of conversations.
+        """
+        
+        # import pdb; pdb.set_trace()
+        messages = [self._convert_conv_to_api_format(conv) for conv in convs]
+        responses = asyncio.run(self._async_chat_completion(messages, stop_sequences))
+        responses = [
+            self._parse_output(response)
+            for response in responses
+        ]
+        return responses
 
 class OpenAIChat(CommonLLMChat):
     SUPPORTED_LLM_NAMES: list[str] = [
         "gpt-4o-mini-2024-07-18",
         "gpt-4o-2024-11-20",
     ]
+    # TODO: add fine-grained limits for different usage tiers
+    RPM_LIMIT = 5_000
+    TPM_LIMIT = 4_000_000
 
     def __init__(
         self,
@@ -147,25 +230,40 @@ class OpenAIChat(CommonLLMChat):
         model_path: str | None = None,
         max_tokens: int = 4096,
         temperature: float = 0.0,
+        top_p: float = 0.7,
+        top_k: float = 0.7,
+        repetition_penalty: float = 1.0,
         seed: int = 0,
         max_retries: int = 3,
         wait_seconds: int = 2,
     ):
-        super().__init__(model_name, model_path, max_tokens, temperature, seed, max_retries, wait_seconds)
+        super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, repetition_penalty, seed, max_retries, wait_seconds)
         self.client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.async_client = openai.AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None) -> str:
+    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = True) -> str:
         # https://platform.openai.com/docs/api-reference/introduction
-        completion = self.client.chat.completions.create(
+        # https://platform.openai.com/docs/api-reference/chat
+        # https://github.com/openai/openai-python
+        client = self.async_client if use_async else self.client
+        response = client.chat.completions.create(
             model=self.model_name,
             messages=messages_api_format,
             temperature=self.temperature,
+            top_p=self.top_p,
             max_completion_tokens=self.max_tokens,
             seed=self.seed,
             stop=stop_sequences,
+            # NOTE: top_k is not supported by OpenAI's API
+            # NOTE: repetition_penalty is not supported by OpenAI's API
         )
-        return completion.choices[0].message.content
-
+        return response
+    
+    def _parse_output(self, response: object) -> str:
+        return {
+            'pred' : response.choices[0].message.content,
+            'usage' : response.usage.model_dump(),
+        }
 
 class TogetherChat(CommonLLMChat):
     SUPPORTED_LLM_NAMES: list[str] = [
@@ -174,6 +272,17 @@ class TogetherChat(CommonLLMChat):
         "together:meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
         "together:meta-llama/Llama-Vision-Free",
     ]
+    # the Together api use slightly different model names than the HF model names
+    TOGETHER_MODEL_ALIASES = {
+        'meta-llama/llama-3.1-8b-instruct':'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo',
+        'meta-llama/llama-3.1-70b-instruct':'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo',
+        'meta-llama/llama-3.1-405b-instruct':'meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo',
+    }
+    RPM_LIMIT = 3_000
+    TPM_LIMIT = 500_000
+    # additional stop token for llama models
+    # NOTE: eot = end-of-turn
+    ADDITIONAL_STOP = ["<|eot_id|>",]
 
     def __init__(
         self,
@@ -181,26 +290,41 @@ class TogetherChat(CommonLLMChat):
         model_path: str | None = None,
         max_tokens: int = 4096,
         temperature: float = 0.0,
+        top_p: float = 0.7,
+        top_k: int = 50,
+        repetition_penalty: float = 1.0,
         seed: int = 0,
         max_retries: int = 3,
         wait_seconds: int = 2,
     ):
         assert model_name.startswith("together:"), "model_name must start with 'together:'"
-        super().__init__(model_name, model_path, max_tokens, temperature, seed, max_retries, wait_seconds)
+        super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, repetition_penalty, seed, max_retries, wait_seconds)
         self.client = together.Together(api_key=os.getenv("TOGETHER_API_KEY"))
+        self.async_client = together.AsyncTogether(api_key=os.getenv("TOGETHER_API_KEY"))
 
-    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None) -> str:
+    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = True) -> str:
         # https://github.com/togethercomputer/together-python
+        # https://docs.together.ai/reference/completions-1
         # Remove the "together:" prefix before setting up the client
-        completion = self.client.chat.completions.create(
+        client = self.async_client if use_async else self.client
+        response = client.chat.completions.create(
             model=self.model_name[len("together:") :],
             messages=messages_api_format,
             temperature=self.temperature,
+            top_p=self.top_p,
+            top_k=self.top_k,
+            repetition_penalty=self.repetition_penalty,
             seed=self.seed,
             max_tokens=self.max_tokens,
-            stop=stop_sequences,
+            stop=stop_sequences + self.ADDITIONAL_STOP,
         )
-        return completion.choices[0].message.content
+        return response
+        
+    def _parse_output(self, response: str) -> str:
+        return {
+            'pred' : response.choices[0].message.content,
+            'usage' : response.usage.model_dump(),
+        }
 
 
 class AnthropicChat(CommonLLMChat):
@@ -208,6 +332,8 @@ class AnthropicChat(CommonLLMChat):
         "claude-3-5-haiku-20241022",
         "claude-3-5-sonnet-20241022",
     ]
+    RPM_LIMIT = 2_000
+    TPM_LIMIT = 200_000
 
     def __init__(
         self,
@@ -215,31 +341,53 @@ class AnthropicChat(CommonLLMChat):
         model_path: str | None = None,
         max_tokens: int = 4096,
         temperature: float = 0.0,
+        top_p: float = 0.7,
+        top_k: int = 50,
+        repetition_penalty: float = 1.0,
         seed: int = 0,
         max_retries: int = 3,
         wait_seconds: int = 2,
     ):
-        super().__init__(model_name, model_path, max_tokens, temperature, seed, max_retries, wait_seconds)
+        super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, repetition_penalty, seed, max_retries, wait_seconds)
         self.client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        self.async_client = anthropic.AsyncAnthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
-    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None) -> str:
+    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = False) -> str:
         # https://docs.anthropic.com/en/api/migrating-from-text-completions-to-messages
-        response = self.client.messages.create(
+        # https://github.com/anthropics/anthropic-sdk-python?tab=readme-ov-file#async-usage
+        # https://docs.anthropic.com/en/api/messages
+        # NOTE: Claude does not accept whitespace stop sequences like "\n"
+        client = self.async_client if use_async else self.client
+        response = client.messages.create(
             model=self.model_name,
             messages=messages_api_format,
             max_tokens=self.max_tokens,
             temperature=self.temperature,
+            top_p=self.top_p,
+            top_k=self.top_k,
             stop_sequences=stop_sequences,
+            # NOTE: repetition_penalty is not supported by Anthropic's API
+            # NOTE: by default, the model will stop at the end of the turn
+            # NOTE: seed is not supported by Anthropic's API
         )
-        return response.content[0].text
+        return response
 
-
+    def _parse_output(self, response: str) -> str:
+        return {
+            'pred' : response.content[0].text,
+            'usage' : response.usage.model_dump(),
+        }
 
 class GeminiChat(CommonLLMChat):
+    # TODO: add gemini-1.5-flash-8b
+    # TODO: add gemini-2.0-flash
     SUPPORTED_LLM_NAMES: list[str] = [
         "gemini-1.5-flash-002",
         "gemini-1.5-pro-002",
     ]
+    # free version
+    RPM_LIMIT = 15
+    TPM_LIMIT = 1_000_000
 
     def __init__(
         self,
@@ -247,11 +395,14 @@ class GeminiChat(CommonLLMChat):
         model_path: str | None = None,
         max_tokens: int = 4096,
         temperature: float = 0.0,
+        top_p: float = 0.7,
+        top_k: int = 50,
+        repetition_penalty: float = 1.0,
         seed: int = 0,
         max_retries: int = 3,
         wait_seconds: int = 2,
     ):
-        super().__init__(model_name, model_path, max_tokens, temperature, seed, max_retries, wait_seconds)
+        super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, temperature, seed, max_retries, wait_seconds)
 
         gemini.configure(api_key=os.getenv("GEMINI_API_KEY"))
         self.client = gemini.GenerativeModel(self.model_name)
@@ -268,6 +419,7 @@ class GeminiChat(CommonLLMChat):
         ```
         """
         # https://ai.google.dev/gemini-api/docs/models/gemini
+        # https://github.com/google-gemini/generative-ai-python/blob/main/docs/api/google/generativeai/GenerativeModel.md
         formatted_messages = []
         for message in conv.messages:
             for content in message.content:
@@ -277,16 +429,30 @@ class GeminiChat(CommonLLMChat):
                         formatted_messages.append({"role": role, "parts": text})
         return formatted_messages
 
-    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None) -> str:
-        response = self.client.generate_content(
+    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = False) -> str:
+        client_function = self.client.generate_content_async if use_async else self.client.generate_content
+        response = client_function(
             contents=messages_api_format,
             generation_config=gemini.types.GenerationConfig(
                 temperature=self.temperature,
+                top_p=self.top_p,
+                # NOTE: API does not suport topK>40
                 max_output_tokens=self.max_tokens,
                 stop_sequences=stop_sequences,
             ),
         )
-        return response.text
+        return response
+    
+    def _parse_output(self, response: object) -> str:
+        return {
+            'pred' : response.text,
+            'usage' : {
+                'prompt_token_count': response.usage_metadata.prompt_token_count,
+                'response_token_count': response.usage_metadata.candidates_token_count,
+                'total_token_count': response.usage_metadata.total_token_count,
+                'cached_content_token_count': response.usage_metadata.cached_content_token_count,
+            },
+        }
 
 
 SUPPORTED_LLM_NAMES: list[str] = (

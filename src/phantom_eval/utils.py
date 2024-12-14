@@ -2,6 +2,7 @@ import logging
 
 from datasets import load_dataset
 from argparse import ArgumentParser
+import subprocess
 
 from . import llm
 
@@ -41,6 +42,23 @@ def setup_logging(log_level: str) -> str:
     logging.getLogger("httpx").setLevel(logging.WARNING)
     logging.basicConfig(level=log_level, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
+def get_gpu_count():
+    try:
+        result = subprocess.run(
+            ["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+            text=True
+        )
+        gpu_list = result.stdout.strip().split('\n')
+        return len(gpu_list)
+    except subprocess.CalledProcessError as e:
+        print(f"Error occurred while trying to get GPU count: {e}")
+        return 0
+    except FileNotFoundError:
+        print("nvidia-smi command not found. Ensure that the NVIDIA drivers are installed.")
+        return 0
 
 # TODO support local models in llm.py
 LOCAL_MODELS = [
@@ -75,7 +93,7 @@ def get_parser() -> ArgumentParser:
                         help="Temperature for sampling")
     parser.add_argument("--inf_top_p", "-p", type=float, default=0.7,
                         help="Top-p for sampling")
-    parser.add_argument("--inf_top_k", "-k", type=float, default=50,
+    parser.add_argument("--inf_top_k", "-k", type=int, default=50,
                         help="Top-k for sampling")
     parser.add_argument("--inf_seed", type=int, default=1,
                         help="Seed for sampling")

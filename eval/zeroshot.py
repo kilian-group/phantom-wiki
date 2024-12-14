@@ -60,8 +60,8 @@ LLAMA_STOP = STOP + ["<|eot_id|>",]
 repetition_penalty = 1.0
 # Params specific to vLLM
 seed = args.inf_seed
-max_model_len = args.inf_max_model_len
-tensor_parallel_size = args.inf_tensor_parallel_size
+# max_model_len = args.inf_max_model_len
+# tensor_parallel_size = args.inf_tensor_parallel_size
 
 # %%
 # remaining imports
@@ -157,126 +157,11 @@ TPM_LIMITS = {
 }
 
 # %%
-# if model.startswith("together:"):
-# """
-# Ref:
-# - https://docs.together.ai/reference/completions-1
-# """
-# logging.warning(f"Setting seed does not guarantee deterministic results for Together.")
-# the Together api use slightly different model names
 TOGETHER_MODEL_ALIASES = {
     'meta-llama/llama-3.1-8b-instruct':'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo',
     'meta-llama/llama-3.1-70b-instruct':'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo',
     'meta-llama/llama-3.1-405b-instruct':'meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo',
 }
-# async def async_chat_completion(messages):
-#     async_client = AsyncTogether()
-#     tasks = [
-#         # NOTE: this creates a coroutine object
-#         async_client.chat.completions.create(
-#             model=TOGETHER_MODEL_ALIASES[model.replace("together:", "")],
-#             messages=message,
-#             temperature=temperature,
-#             top_p=top_p,
-#             top_k=top_k,
-#             repetition_penalty=repetition_penalty,
-#             stop=LLAMA_STOP,
-#             max_tokens=MAX_TOKENS,
-#             seed=seed,
-#         )
-#         for message in messages
-#     ]
-#     responses = await asyncio.gather(*tasks)
-#     return [
-#         {
-#             'pred' : response.choices[0].message.content,
-#             'usage' : response.usage.model_dump(),
-#         }
-#         for response in responses
-#     ]
-
-#     responses = asyncio.run(async_chat_completion(messages))
-
-# elif model.startswith("gpt"):
-#     logging.warning(f"Setting seed does not guarantee deterministic results for OpenAI.")
-#     async def async_chat_completion(messages):
-#         async_client = AsyncOpenAI()
-#         # Ref: 
-#         # - https://platform.openai.com/docs/api-reference/chat
-#         # - https://github.com/openai/openai-python
-#         tasks = [
-#             async_client.chat.completions.create(
-#                 model=model,
-#                 messages=message,
-#                 temperature=temperature,
-#                 top_p=top_p,
-#                 # NOTE: top_k is not supported by OpenAI's API
-#                 # NOTE: repetition_penalty is not supported by OpenAI's API
-#                 stop=STOP,
-#                 max_completion_tokens=MAX_TOKENS,
-#                 seed=seed,
-#             )
-#             for message in messages
-#         ]
-#         responses = await asyncio.gather(*tasks)
-#         # return [response.choices[0].message.content for response in responses]
-#         return [
-#             {
-#                 'pred' : response.choices[0].message.content,
-#                 'usage' : response.usage.model_dump(),
-#             }
-#             for response in responses
-#         ]
-    
-#     responses = asyncio.run(async_chat_completion(messages))
-
-# elif model.startswith("claude"):
-#     """
-#     Ref: 
-#     - https://github.com/anthropics/anthropic-sdk-python?tab=readme-ov-file#async-usage
-#     - https://docs.anthropic.com/en/api/messages
-
-#     NOTE: Claude does not accept whitespace stop sequences like "\n"
-#     """
-#     logging.warning("Anthropic does not support setting seed for Claude.")
-#     import os, asyncio
-#     from anthropic import AsyncAnthropic
-
-#     async def async_chat_completion(messages):
-#         async_client = AsyncAnthropic()
-#         semaphore = asyncio.Semaphore(2)  # Limit to 2 concurrent calls
-        
-#         async def rate_limited_message(message):
-#             async with semaphore:
-#                 response = await async_client.messages.create(
-#                     model=model,
-#                     messages=message,
-#                     temperature=temperature,
-#                     top_p=top_p,
-#                     top_k=top_k,
-#                     # NOTE: repetition_penalty is not supported by Anthropic's API
-#                     # NOTE: by default, the model will stop at the end of the turn
-#                     max_tokens=MAX_TOKENS,
-#                     # NOTE: seed is not supported by Anthropic's API
-#                 )
-#                 await asyncio.sleep(5)
-#                 return response
-        
-#         tasks = [rate_limited_message(message) for message in messages]
-#         responses = await asyncio.gather(*tasks)
-#         return [
-#             {
-#                 'pred' : response.content[0].text,
-#                 'usage' : response.usage.model_dump(),
-#             }
-#             for response in responses
-#         ]
-
-#     responses = asyncio.run(async_chat_completion(messages))
-
-# else:
-#     raise ValueError(f"Use `zeroshot_local.py` to get vLLM predictions.")
-
 """
 Ref:
 - https://github.com/google-gemini/generative-ai-python/blob/main/docs/api/google/generativeai/GenerativeModel.md
@@ -426,11 +311,44 @@ async def async_chat_completion(messages):
     else:
         raise ValueError(f"Use `zeroshot_local.py` to get vLLM predictions.")
 
-# Use like other models
-if model.startswith("gemini"):
-    responses = asyncio.run(async_chat_completion(messages_instructions_only))
+if False:
+    # Use like other models
+    if model.startswith("gemini"):
+        responses = asyncio.run(async_chat_completion(messages_instructions_only))
+    else:
+        responses = asyncio.run(async_chat_completion(messages))
 else:
-    responses = asyncio.run(async_chat_completion(messages))
+    """Start refactor"""
+    from phantom_eval.llm import get_llm
+    from phantom_eval.data import Conversation, ContentTextMessage, Message
+
+    llm_chat = get_llm(
+        model_name=model,
+        model_kwargs={
+            'temperature' : temperature,
+            'top_p' : top_p,
+            'top_k' : top_k,
+            'max_tokens' : max_tokens,
+            'repetition_penalty' : repetition_penalty,
+            'seed' : seed,
+        }
+    )
+    conv_list = []
+    for qa in batch:
+        instruction = prompt.format(
+            evidence=evidence, 
+            question=qa['question'],
+        )
+        conv = Conversation(messages=[
+            Message(role="user", content=[ContentTextMessage(text=instruction)])
+        ])
+        conv_list.append(conv)
+
+    responses = llm_chat.batch_generate_response(
+        convs=conv_list,
+        stop_sequences=['\n',]
+    )
+    """End refactor"""
 
 # %%
 preds = {}

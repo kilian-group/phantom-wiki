@@ -55,7 +55,7 @@ from phantom_eval.score import (match,
                                 f1)
 # join the true answers with the appropriate seperator
 # since the scoring functions expect strings
-sep = ','
+sep = ', ' # TODO: specifiy the type of separator in the model prompt as well
 df['EM'] = df.apply(lambda x: match(x['pred'], sep.join(x['true']), exact=True, sep=sep), axis=1)
 df['precision'] = df.apply(lambda x: precision(x['pred'], sep.join(x['true']), sep=sep), axis=1)
 df['recall'] = df.apply(lambda x: recall(x['pred'], sep.join(x['true']), sep=sep), axis=1)
@@ -73,7 +73,7 @@ os.makedirs(scores_dir, exist_ok=True)
 acc.to_csv(os.path.join(scores_dir, "scores.csv"))
 
 # get accuracies by type
-if True:
+if False:
     # group by model, split, and type
     acc_by_type = df.groupby(['_model', '_split', '_type'])[['EM','precision', 'recall', 'f1']].mean()
     # print the accuracy
