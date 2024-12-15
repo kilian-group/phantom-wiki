@@ -115,7 +115,7 @@ class CommonLLMChat(LLMChat):
         self.client = None
 
     @abc.abstractmethod
-    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = False) -> str:
+    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = False, seed: int = 1) -> str:
         """
         Expects messages ready for API. Use `convert_conv_to_api_format` to convert a conversation
         into such a list.
@@ -164,7 +164,7 @@ class CommonLLMChat(LLMChat):
 
         return _call_api_wrapper(conv, stop_sequences)
     
-    async def _async_chat_completion(self, messages, stop_sequences):
+    async def _async_chat_completion(self, messages, stop_sequences, seed):
         """
         async function that launches all the requests asynchronously
         """
@@ -191,7 +191,12 @@ class CommonLLMChat(LLMChat):
                 start = time.time()
                 token_usage_per_minute = 0
 
-            t = self._call_api(message, stop_sequences, use_async=True)
+            t = self._call_api(
+                messages_api_format=message, 
+                stop_sequences=stop_sequences, 
+                use_async=True, 
+                seed=seed, 
+            )
             tasks.append(asyncio.create_task(t))
             # Sleep to respect the rate limit
             await asyncio.sleep(60 / self.RPM_LIMIT)
@@ -201,14 +206,16 @@ class CommonLLMChat(LLMChat):
         # print(f"{time.time()-start}: Got all responses")
         return responses
     
-    def batch_generate_response(self, convs: list[Conversation], stop_sequences: list[str] | None = None) -> list[str]:
+    def batch_generate_response(self, convs: list[Conversation], stop_sequences: list[str] | None = None, seed: int = 1) -> list[str]:
         """
         Generate response for a batch of conversations.
         """
         
         # import pdb; pdb.set_trace()
         messages = [self._convert_conv_to_api_format(conv) for conv in convs]
-        responses = asyncio.run(self._async_chat_completion(messages, stop_sequences))
+        responses = asyncio.run(
+            self._async_chat_completion(messages, stop_sequences, seed)
+        )
         responses = [
             self._parse_output(response)
             for response in responses
@@ -241,7 +248,7 @@ class OpenAIChat(CommonLLMChat):
         self.client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.async_client = openai.AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = True) -> str:
+    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = True, seed: int = 1) -> str:
         # https://platform.openai.com/docs/api-reference/introduction
         # https://platform.openai.com/docs/api-reference/chat
         # https://github.com/openai/openai-python
@@ -252,7 +259,8 @@ class OpenAIChat(CommonLLMChat):
             temperature=self.temperature,
             top_p=self.top_p,
             max_completion_tokens=self.max_tokens,
-            seed=self.seed,
+            # seed=self.seed,
+            seed=seed,
             stop=stop_sequences,
             # NOTE: top_k is not supported by OpenAI's API
             # NOTE: repetition_penalty is not supported by OpenAI's API
@@ -302,7 +310,7 @@ class TogetherChat(CommonLLMChat):
         self.client = together.Together(api_key=os.getenv("TOGETHER_API_KEY"))
         self.async_client = together.AsyncTogether(api_key=os.getenv("TOGETHER_API_KEY"))
 
-    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = True) -> str:
+    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = True, seed: int = 1) -> str:
         # https://github.com/togethercomputer/together-python
         # https://docs.together.ai/reference/completions-1
         # Remove the "together:" prefix before setting up the client
@@ -314,7 +322,8 @@ class TogetherChat(CommonLLMChat):
             top_p=self.top_p,
             top_k=self.top_k,
             repetition_penalty=self.repetition_penalty,
-            seed=self.seed,
+            # seed=self.seed,
+            seed=seed,
             max_tokens=self.max_tokens,
             stop=stop_sequences + self.ADDITIONAL_STOP,
         )
@@ -352,7 +361,7 @@ class AnthropicChat(CommonLLMChat):
         self.client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
         self.async_client = anthropic.AsyncAnthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
-    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = False) -> str:
+    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = False, seed: int = 1) -> str:
         # https://docs.anthropic.com/en/api/migrating-from-text-completions-to-messages
         # https://github.com/anthropics/anthropic-sdk-python?tab=readme-ov-file#async-usage
         # https://docs.anthropic.com/en/api/messages
@@ -429,7 +438,7 @@ class GeminiChat(CommonLLMChat):
                         formatted_messages.append({"role": role, "parts": text})
         return formatted_messages
 
-    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = False) -> str:
+    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = False, seed: int = 1) -> str:
         client_function = self.client.generate_content_async if use_async else self.client.generate_content
         response = client_function(
             contents=messages_api_format,
