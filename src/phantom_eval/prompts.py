@@ -105,3 +105,18 @@ Answer: The person was born in 2004.""",
 
 for answer, (_, true) in zip(answers, data):
     print(score_answer(answer, true))
+
+
+"""
+Zero-shot prompts
+"""
+ZEROSHOT_PROMPT = """{evidence}
+Answer the following question:
+{question}
+
+The output should be one of the following:
+- A name (if there is only one correct answer)
+- A list of names separated by commas (if there are multiple correct answers)
+- A number (if the answer is a number)
+DO NOT include any additional information in the output.
+"""

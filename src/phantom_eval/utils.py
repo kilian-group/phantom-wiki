@@ -81,6 +81,8 @@ def get_parser() -> ArgumentParser:
                             "NOTE: to add a new model, please submit a PR to the repo with the new model name", 
                         choices=LOCAL_MODELS + llm.SUPPORTED_LLM_NAMES)
     parser.add_argument("--model_path", type=str, default=None, help="Path to the model")
+    parser.add_argument("--method", type=str, default="zeroshot",
+                        help="Evaluation method (zeroshot, fewshot, cot, react)")
 
     # LLM inference params
     parser.add_argument("--inf_max_model_len", type=int, default=None,
@@ -95,8 +97,12 @@ def get_parser() -> ArgumentParser:
                         help="Top-p for sampling")
     parser.add_argument("--inf_top_k", "-k", type=int, default=50,
                         help="Top-k for sampling")
+    parser.add_argument("--inf_repetition_penalty", "-r", type=float, default=1.0,
+                        help="Repetition penalty for sampling")
     parser.add_argument("--inf_seed", type=int, default=1,
                         help="Seed for sampling")
+    parser.add_argument("--seed_list", type=int, nargs="+", default=[1],
+                        help="List of seeds to evaluate")
     parser.add_argument("--inf_max_retries", type=int, default=3,
                         help="Number of tries to get response")
     parser.add_argument("--inf_wait_seconds", type=int, default=2,
@@ -105,6 +111,8 @@ def get_parser() -> ArgumentParser:
     # Dataset params
     parser.add_argument("--split", "-s", default="depth_10_size_26_seed_1", type=str,
                         help="Dataset split (e.g., train, val, test)")
+    parser.add_argument("--split_list", default=["depth_10_size_26_seed_1"], type=str, nargs="+",
+                        help="List of dataset splits to evaluate")
     parser.add_argument("--batch_size", "-bs", default=10, type=int,
                         help="Batch size (>=1)")
     parser.add_argument("--batch_number", "-bn", default=1, type=int,
