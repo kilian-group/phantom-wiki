@@ -157,6 +157,8 @@ class Generator:
         """
         # create list for storing graph representations of all created samples
         family_trees = []
+        # for each tree create a list for divorced ppl to remarry
+        divorced_ppl = [[] for _ in range(args.num_samples)]
 
         for sample_idx in range(args.num_samples):
             print(f"creating sample #{sample_idx}: ", end="")
@@ -167,13 +169,11 @@ class Generator:
             family_tree = self._sample_family_tree(args)
             family_trees.append(family_tree)
 
-            # add divorce and remarrying events
-            print("adding divorce and remarrying events...")
+            # add divorce events
+            print("adding divorce events...")
             # for each person in the family tree with a spouse
             # add a divorce event after 16 years with a fixed probability (previous marriage duration for testing)
-            # for each person in the family tree with a latest divorce event
-            # add a remarriage event after 1 year with a fixed probability
-            divorced_ppl = []
+
             for i in range(len(family_tree)):
                 p = family_tree[i]
                 if (
@@ -186,31 +186,43 @@ class Generator:
                         divorce_date = e.date + DUR_OF_MARRIAGE
                         p.events.append(Event("divorce", spouse, divorce_date))
                         spouse.events.append(Event("divorce", p, divorce_date))
-                        divorced_ppl.append(p)
-                        divorced_ppl.append(spouse)
+                        divorced_ppl[sample_idx].append(p)
+                        divorced_ppl[sample_idx].append(spouse)
 
-                # add divorce events
+            print(f"OK ({time.time() - start:.3f}s)")
+
+        # add remarriage events
+        for sample_idx in range(args.num_samples):
+            # divorced people can marry divorced ppl from other trees
+            divorced_from_other_trees = []
+            divorced_from_other_trees.extend(
+                [
+                    divorced_ppl_in_1tree
+                    for i, divorced_ppl_in_1tree in enumerate(divorced_ppl)
+                    if i != sample_idx
+                ]
+            )
+            for i in range(len(family_trees[sample_idx])):
+                p = family_trees[sample_idx][i]
                 # can only remarry if the person has even number of events (i.e., divorced)
-                elif len(p.events) > 0 and len(p.events) % 2 == 0:
+                if len(p.events) > 0 and len(p.events) % 2 == 0:
                     e = p.events[-1]
                     assert e.type == "divorce", "Last event must be a divorce"
                     if random.random() < args.remarry_rate:
-                        remarry_date = e.date + DUR_OF_DIVORCE
-                        # find a spouse， allow same sex marriage
-                        if len(divorced_ppl) > 1:
-                            while True:
-                                spouse = random.choice(divorced_ppl)
-                                if spouse != p:
-                                    break
+                        # find a spouse， who is also divorced and not from the same tree
+                        if len(divorced_from_other_trees) > 1:
+                            spouse = random.choice(divorced_from_other_trees)
+                            sp_e = spouse.events[-1]
+                            # last event of the spouse must be a divorce
+                            assert sp_e.type == "divorce", "Last event of the spouse must be a divorce"
+                            remarry_date = max(e.date, sp_e.date) + DUR_OF_DIVORCE
                             p.events.append(Event("marriage", spouse, remarry_date))
                             spouse.events.append(Event("marriage", p, remarry_date))
-                            divorced_ppl.remove(spouse)
-                            divorced_ppl.remove(p)
+                            divorced_from_other_trees.remove(spouse)
+                            divorced_from_other_trees.remove(p)
                         else:
                             # if there is no divorced person to remarry, move to next person
                             continue
-
-            print(f"OK ({time.time() - start:.3f}s)")
 
             # Resetting person factory if user allows for duplicate names
             if not args.duplicate_names:
