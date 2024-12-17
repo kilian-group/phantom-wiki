@@ -2,8 +2,9 @@ from pyswip import Prolog
 
 from phantom_wiki.facts.family import FAMILY_RULES_BASE_PATH, FAMILY_RULES_DERIVED_PATH
 from tests.facts.family import (
+    FACTS_SMALL_DIVORCE1_REMARRY0_EXAMPLE_PATH,
+    FACTS_SMALL_DIVORCE1_REMARRY1_EXAMPLE_PATH,
     FACTS_SMALL_DIVORCE_EXAMPLE_PATH,
-    FACTS_SMALL_DIVORCE_REMARRY_EXAMPLE_PATH,
     FACTS_SMALL_EXAMPLE_PATH,
     FAMILY_TREE_SMALL_EXAMPLE_PATH,
 )
@@ -177,26 +178,47 @@ def test_in_law_divorce():
     assert compare_prolog_dicts(list(prolog.query("brother_in_law(deangelo, X)")), [])
 
 
-def test_step_relations():
+def test_step_relations_divorce():
     """
-    Test step-parent, step-siblings relationships.
+    Test step relationships with divorce_rate=1, remarry_rate=0
+    NOTE: there should not be any step relationship because divorced people don't get married.
     """
     prolog = Prolog()
-    prolog.consult(FACTS_SMALL_DIVORCE_REMARRY_EXAMPLE_PATH)
+    prolog.consult(FACTS_SMALL_DIVORCE1_REMARRY0_EXAMPLE_PATH)
     prolog.consult(FAMILY_RULES_DERIVED_PATH)
 
+    assert compare_prolog_dicts(list(prolog.query("step_mother(dixie, X)")), [])
+    assert compare_prolog_dicts(list(prolog.query("step_father(kayla, X)")), [])
+    assert compare_prolog_dicts(list(prolog.query("step_mother(alfonso, X)")), [])
+    assert compare_prolog_dicts(list(prolog.query("step_son(tanner, X)")), [])
+    assert compare_prolog_dicts(list(prolog.query("step_daughter(tanner, X)")), [])
+
     assert compare_prolog_dicts(
-        list(prolog.query("step_mother(ellis, X)")), [{"X": "daisy"}, {"X": "kanesha"}]
+        list(prolog.query("step_sister(kayla, X)")),
+        [],
     )
-    assert compare_prolog_dicts(list(prolog.query("step_father(deanna, X)")), [{"X": "alfonso"}])
+    assert compare_prolog_dicts(list(prolog.query("step_brother(ellis, X)")), [])
+
+
+def test_step_relations_remarry():
+    """
+    Test step relationships with divorce_rate=1, remarry_rate=1
+    NOTE: only a small portion of divorced people don't get married again
+    """
+    prolog = Prolog()
+    prolog.consult(FACTS_SMALL_DIVORCE1_REMARRY1_EXAMPLE_PATH)
+    prolog.consult(FAMILY_RULES_DERIVED_PATH)
+
+    assert compare_prolog_dicts(list(prolog.query("step_mother(dixie, X)")), [{"X": "kayla"}])
+    assert compare_prolog_dicts(list(prolog.query("step_father(kayla, X)")), [{"X": "tanner"}])
     assert compare_prolog_dicts(
-        list(prolog.query("step_daughter(alfonso, X)")), [{"X": "deanna"}, {"X": "reyna"}, {"X": "rosalee"}]
+        list(prolog.query("step_mother(alfonso, X)")), [{"X": "oma"}, {"X": "monserrate"}]
     )
-    assert compare_prolog_dicts(list(prolog.query("step_son(daisy, X)")), [{"X": "ellis"}])
+    assert compare_prolog_dicts(list(prolog.query("step_son(tanner, X)")), [{"X": "clyde"}, {"X": "stan"}])
+    assert compare_prolog_dicts(list(prolog.query("step_daughter(tanner, X)")), [{"X": "kayla"}])
+
     assert compare_prolog_dicts(
-        list(prolog.query("step_sister(ellis, X)")),
-        [{"X": "deanna"}, {"X": "reyna"}, {"X": "rosalee"}, {"X": "antionette"}, {"X": "kari"}],
+        list(prolog.query("step_sister(kayla, X)")),
+        [{"X": "daisy"}, {"X": "meghann"}, {"X": "miki"}],
     )
-    assert compare_prolog_dicts(
-        list(prolog.query("step_brother(ellis, X)")), [{"X": "alfonso"}, {"X": "colby"}, {"X": "dominick"}]
-    )
+    assert compare_prolog_dicts(list(prolog.query("step_brother(ellis, X)")), [{"X": "mohammed"}])
