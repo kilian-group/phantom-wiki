@@ -4,7 +4,7 @@ from datasets import load_dataset
 from argparse import ArgumentParser
 import subprocess
 
-from . import llm
+from .llm import SUPPORTED_LLM_NAMES
 
 
 def load_data(split):
@@ -42,53 +42,23 @@ def setup_logging(log_level: str) -> str:
     logging.getLogger("httpx").setLevel(logging.WARNING)
     logging.basicConfig(level=log_level, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
-def get_gpu_count():
-    try:
-        result = subprocess.run(
-            ["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            check=True,
-            text=True
-        )
-        gpu_list = result.stdout.strip().split('\n')
-        return len(gpu_list)
-    except subprocess.CalledProcessError as e:
-        print(f"Error occurred while trying to get GPU count: {e}")
-        return 0
-    except FileNotFoundError:
-        print("nvidia-smi command not found. Ensure that the NVIDIA drivers are installed.")
-        return 0
-
-# TODO support local models in llm.py
-LOCAL_MODELS = [
-    # HF models (run via vLLM)
-    "meta-llama/llama-3.1-8b-instruct", 
-    "meta-llama/llama-3.1-70b-instruct", 
-    "microsoft/phi-3.5-mini-instruct",
-    "microsoft/phi-3.5-moe-instruct",
-    "google/gemma-2-2b-it",
-    "google/gemma-2-9b-it",
-    "google/gemma-2-27b-it",
-    "mistralai/mistral-7b-instruct-v0.3",
-]
-
-
 def get_parser() -> ArgumentParser:
     parser = ArgumentParser(description="PhantomWiki Evaluation")
     parser.add_argument("--model_name", "-m", type=str, default="together:meta-llama/Llama-Vision-Free",
                         help="model name." \
                             "NOTE: to add a new model, please submit a PR to the repo with the new model name", 
-                        choices=LOCAL_MODELS + llm.SUPPORTED_LLM_NAMES)
+                        choices=SUPPORTED_LLM_NAMES)
     parser.add_argument("--model_path", type=str, default=None, help="Path to the model")
     parser.add_argument("--method", type=str, default="zeroshot",
                         help="Evaluation method (zeroshot, fewshot, cot, react)")
 
     # LLM inference params
     parser.add_argument("--inf_max_model_len", type=int, default=None,
-                        help="Maximum model length (vLLM param)")
-    parser.add_argument("--inf_tensor_parallel_size", type=int, default=1,
-                        help="number of gpus (vLLM param")
+                        help="Maximum model length (vLLM param)" \
+                        "if None, uses max model length specified in model config")
+    parser.add_argument("--inf_tensor_parallel_size", type=int, default=None,
+                        help="number of gpus (vLLM param)" \
+                        "if None, uses all available gpus")
     parser.add_argument("--inf_max_tokens", type=int, default=4096,
                         help="Maximum number of tokens to generate")
     parser.add_argument("--inf_temperature", "-T", type=float, default=0.7,
