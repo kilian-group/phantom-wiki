@@ -192,17 +192,16 @@ class Generator:
             print(f"OK ({time.time() - start:.3f}s)")
 
         # add remarriage events
-        import pdb; pdb.set_trace()
         for sample_idx in range(args.num_samples):
             # divorced people can marry divorced ppl from other trees
             # a dictionary that stores the divorced people from other trees and which tree they are from
-            
             divorced_from_other_trees = {
-                id(p): (p, sample_idx)
+                p.name: (p, i)
                 for i, divorced_ppl_in_1tree in enumerate(divorced_ppl)
                 if i != sample_idx
                 for p in divorced_ppl_in_1tree
             }
+
             current_tree = family_trees[sample_idx]
             for i in range(len(current_tree)):
                 p = current_tree[i]
@@ -213,28 +212,31 @@ class Generator:
                     if random.random() < args.remarry_rate:
                         # find a spouse， who is also divorced and not from the same tree
                         if len(divorced_from_other_trees.keys()) > 1:
-                            spouse_id = random.choice(divorced_from_other_trees.keys())
-                            spouse = divorced_from_other_trees[spouse_id][0]
+                            spouse_name = random.choice(list(divorced_from_other_trees.keys()))
+                            spouse = divorced_from_other_trees[spouse_name][0]
                             spouse_event = spouse.events[-1]
                             # last event of the spouse must be a divorce
-                            assert spouse_event.type == "divorce", "Last event of the spouse must be a divorce"
+                            assert (
+                                spouse_event.type == "divorce"
+                            ), "Last event of the spouse must be a divorce"
                             remarry_date = max(e.date, spouse_event.date) + DUR_OF_DIVORCE
                             p.events.append(Event("marriage", spouse, remarry_date))
                             spouse.events.append(Event("marriage", p, remarry_date))
-                            # remove the spouse from the dictionary to avoid remarrying the same person
-                            del divorced_from_other_trees[spouse_id]
-                            # remove the person from the list of divorced people to remarry for other trees 
+                            # for the current tree:
+                            # first find out from which tree the spouse is
+                            # then remove the spouse from the dictionary to avoid remarrying the same person
+                            spouse_tree_idx = divorced_from_other_trees[spouse_name][1]
+                            del divorced_from_other_trees[spouse_name]
+                            # for other trees:
+                            # remove the current person from the list of divorced people
                             divorced_ppl[sample_idx].remove(p)
-                            # TODO: fix this 
-                            divorced_ppl[divorced_from_other_trees[spouse_id][1]].remove(spouse_id)
-                            del divorced_from_other_trees[spouse_id]
-                            
+                            divorced_ppl[spouse_tree_idx].remove(spouse)
                         else:
                             # if there is no divorced person to remarry, move to next person
                             # for debugging purposes, we print the name of the person
-                            print('No divorced person to remarry for:')
+                            print("No divorced person to remarry for:")
                             print(p.name)
-                            continue 
+                            continue
 
             # Resetting person factory if user allows for duplicate names
             if not args.duplicate_names:
