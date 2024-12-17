@@ -129,7 +129,7 @@ class CommonLLMChat(LLMChat):
         max_tokens: int = 4096,
         temperature: float = 0.0,
         top_p: float = 0.7,
-        top_k: float = 0.7,
+        top_k: int = 50,
         repetition_penalty: float = 1.0,
         seed: int = 0,
         max_retries: int = 3,
@@ -265,7 +265,7 @@ class OpenAIChat(CommonLLMChat):
         max_tokens: int = 4096,
         temperature: float = 0.0,
         top_p: float = 0.7,
-        top_k: float = 0.7,
+        top_k: int = 50,
         repetition_penalty: float = 1.0,
         seed: int = 0,
         max_retries: int = 3,
@@ -560,7 +560,7 @@ class VLLMChat(LLMChat):
         max_model_len: int | None = None,
         tensor_parallel_size: int | None = None,
     ):
-        super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, temperature, seed, max_retries, wait_seconds)
+        super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, repetition_penalty, seed, max_retries, wait_seconds)
         # vLLM configs
         self.max_model_len = max_model_len
         if tensor_parallel_size is None:
@@ -615,7 +615,7 @@ class VLLMChat(LLMChat):
             max_tokens=self.max_tokens,
             seed=seed,
         )
-        messages = [
+        prompts = [
             self.tokenizer.apply_chat_template(
                 self._convert_conv_to_api_format(conv), 
                 tokenize=False, 
@@ -623,7 +623,11 @@ class VLLMChat(LLMChat):
             )
             for conv in convs
         ]
-        responses = self.llm.generate(messages, sampling_params)
+        # save prompts to json file for debugging purposes
+        # import json
+        # with open(os.path.join('out-test-1217-refactor', 'prompts.json'), 'w') as f:
+        #     json.dump(prompts, f, indent=4)
+        responses = self.llm.generate(prompts, sampling_params)
         responses = [
             self._parse_output(response)
             for response in responses
