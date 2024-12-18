@@ -31,14 +31,32 @@ def get_parser(parents=[]):
     Factory for creating an argument parser.
     """
     parser = ArgumentParser(description="Generate PhantomWiki", parents=parents)
-    parser.add_argument("--seed", "-s", default=1, type=int,
-                        help="Global seed for random number generator")
-    parser.add_argument("--output-dir", "-od", type=str, default="./out",
-                        help="Path to the output folder")
-    parser.add_argument("--article-format", type=str, default="txt",
-                        help="Format to save the generated articles",
-                        choices=["txt", "json"])
-    parser.add_argument("--question-format", type=str, default="json_by_type",
-                        help="Format to save the generated questions and answers",
-                        choices=["json_by_type", "json"])
+    parser.add_argument(
+        "--seed",
+        "-s", 
+        default=1, 
+        type=int,
+        help="Global seed for random number generator"
+    )
+    parser.add_argument(
+        "--output-dir", 
+        "-od", 
+        type=str, 
+        default="./out",
+        help="Path to the output folder"
+    )
+    parser.add_argument(
+        "--article-format", 
+        type=str, 
+        default="txt",
+        help="Format to save the generated articles",
+        choices=["txt", "json"]
+    )
+    parser.add_argument(
+        "--question-format", 
+        type=str, 
+        default="json_by_type",
+        help="Format to save the generated questions and answers",
+        choices=["json_by_type", "json"]
+    )
     return parser
