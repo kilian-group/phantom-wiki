@@ -1,7 +1,9 @@
 from faker import Faker
-from .constants import HOBBIES
-from ..family.person_factory import Person
 from numpy.random import default_rng
+
+from ..family.person_factory import Person
+from .constants import HOBBIES
+
 
 def generate_jobs(familytrees: list[Person], seed=1) -> dict[str, str]:
     """
@@ -20,18 +22,19 @@ def generate_jobs(familytrees: list[Person], seed=1) -> dict[str, str]:
             age_at_death = dod.year - dob.year - ((dod.month, dod.day) < (dob.month, dob.day))
             # if the person died before the age of 18, they don't have a job
             if age_at_death < 18:
-                jobs[name]['job'] = None
-                jobs[name]['start_date'] = None
+                jobs[name]["job"] = None
+                jobs[name]["start_date"] = None
                 continue
             else:
                 while True:
                     job = fake.job().lower()
                     if "'" not in job:
                         break
-                jobs[name]['job'] = job
+                jobs[name]["job"] = job
                 # start_date of the job is the person's 18th birthday
-                jobs[name]['start_date'] = dob.replace(year=dob.year + 18)
+                jobs[name]["start_date"] = dob.replace(year=dob.year + 18)
     return jobs
+
 
 def generate_hobbies(names: list[str], seed=1) -> dict[str, str]:
     rng = default_rng(seed)
