@@ -48,6 +48,7 @@ class Person:
     female: bool
     tree_level: int
     date_of_birth: date
+    date_of_death: date
     children: list["Person"] = field(default_factory=list)
     parents: list["Person"] = field(default_factory=list)
     events: list["Marriage_Event"] = field(default_factory=list)
@@ -56,6 +57,7 @@ class Person:
         return (
             f"Person(index={self.index}, name='{self.name}', female={self.female}, "
             f"dob={self.date_of_birth}, "
+            f"dob={self.date_of_death}, "
             f"events={self.events}, "
             f"parents=({', '.join(str(p.index) for p in self.parents) if self.parents else 'None'}), "
             f"children=[{', '.join(str(c.index) for c in self.children)}])"
