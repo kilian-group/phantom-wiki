@@ -52,43 +52,44 @@ async def main(args):
     else:
         raise ValueError(f"Method {args.method} not supported.")
     
-    for split in split_list:
-        # get data
-        dataset = load_data(split)
-        batch_size = len(dataset['qa_pairs']) if model in LOCAL_MODELS else args.batch_size
-        for batch_number in range(1, math.ceil(len(dataset['qa_pairs'])/batch_size) + 1):
-            # we are in the setting where we pass in all the articles as evidence
-            evidence = "Given the following evidence:\n"
-            evidence += '========BEGIN EVIDENCE========\n'
-            evidence += get_all_articles(dataset)
-            evidence += '========END EVIDENCE========\n'
+    for seed in seed_list:
+        # iterate over the splits first before running additional seeds
+        for split in split_list:
+            # get data
+            dataset = load_data(split)
+            batch_size = len(dataset['qa_pairs']) if model in LOCAL_MODELS else args.batch_size
+            for batch_number in range(1, math.ceil(len(dataset['qa_pairs'])/batch_size) + 1):
+                # we are in the setting where we pass in all the articles as evidence
+                evidence = "Given the following evidence:\n"
+                evidence += '========BEGIN EVIDENCE========\n'
+                evidence += get_all_articles(dataset)
+                evidence += '========END EVIDENCE========\n'
 
-            print("Evidence:")
-            print(evidence)
-            # for getting subset of the questions
-            start = (batch_number - 1) * batch_size
-            end = start + batch_size
-            print(f"Getting predictions for questions [{start}, {end}) out of {len(dataset['qa_pairs'])}")
-            batch = list(dataset['qa_pairs'])[start:end]
+                print("Evidence:")
+                print(evidence)
+                # for getting subset of the questions
+                start = (batch_number - 1) * batch_size
+                end = start + batch_size
+                print(f"Getting predictions for questions [{start}, {end}) out of {len(dataset['qa_pairs'])}")
+                batch = list(dataset['qa_pairs'])[start:end]
 
-            # get all the messages so that we can use batch inference
-            conv_list = []
-            for qa in batch:
-                # TODO: replace this code-block with logic to initialize the agent given a question and the evidence
-                # TODO: create an agent class for the zero-shot method
-                # with a method _build_agent_prompt() that implements the below functionality.
-                # START REFACTOR >>>
-                instruction = ZEROSHOT_PROMPT.format(
-                    evidence=evidence, 
-                    question=qa['question'],
-                )
-                conv = Conversation(messages=[
-                    Message(role="user", content=[ContentTextMessage(text=instruction)])
-                ])
-                conv_list.append(conv)
-                # <<< END REFACTOR
-                
-            for seed in seed_list:
+                # get all the messages so that we can use batch inference
+                conv_list = []
+                for qa in batch:
+                    # TODO: replace this code-block with logic to initialize the agent given a question and the evidence
+                    # TODO: create an agent class for the zero-shot method
+                    # with a method _build_agent_prompt() that implements the below functionality.
+                    # START REFACTOR >>>
+                    instruction = ZEROSHOT_PROMPT.format(
+                        evidence=evidence, 
+                        question=qa['question'],
+                    )
+                    conv = Conversation(messages=[
+                        Message(role="user", content=[ContentTextMessage(text=instruction)])
+                    ])
+                    conv_list.append(conv)
+                    # <<< END REFACTOR
+                    
                 # get run name
                 run_name = f"{split}-{model.replace('/','--')}-bs{batch_size}-bn{batch_number}-s{seed}"
                 print(f"Run name: {run_name}")
