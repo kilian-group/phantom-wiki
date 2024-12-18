@@ -14,8 +14,8 @@ ATTRIBUTE_RELATION = [
     "gender",
 ]
 
-START_JOB_TEMPLATE = "<subject> started working as a <object> on <date>."
-END_JOB_TEMPLATE = "<subject> stopped working as a <object> on <date>."
+START_JOB_TEMPLATE = "<subject> started working as a <job> on <date>."
+END_JOB_TEMPLATE = "<subject> stopped working as a <job> on <date>."
 
 # Source: https://www.kaggle.com/datasets/mrhell/list-of-hobbies?resource=download
 # License: CC0: Public Domain

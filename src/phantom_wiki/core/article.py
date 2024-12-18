@@ -1,17 +1,15 @@
-
 from faker import Faker
 from nltk import CFG
 from nltk.parse.generate import generate
 
-from .generative import generate_cfg_openai
+from ..facts import Database
+from ..facts.attributes import get_attribute_facts, get_job_facts
+from ..facts.family import FAMILY_FACT_TEMPLATES, FAMILY_RELATION_EASY
+from ..facts.friends import FRIENDSHIP_FACT_TEMPLATES, FRIENDSHIP_RELATION
 from ..utils.parsing import format_generated_cfg
 from .constants.article_templates import BASIC_ARTICLE_TEMPLATE
-from ..facts import Database
-from ..facts.attributes import get_attribute_facts
-from ..facts.family import (FAMILY_FACT_TEMPLATES, 
-                            FAMILY_RELATION_EASY)
-from ..facts.friends import (FRIENDSHIP_RELATION, 
-                             FRIENDSHIP_FACT_TEMPLATES,)
+from .generative import generate_cfg_openai
+
 
 def get_articles(db: Database, names: list[str]) -> dict:
     # get family article
@@ -20,7 +18,8 @@ def get_articles(db: Database, names: list[str]) -> dict:
     friend_facts = get_relation_facts(db, names, FRIENDSHIP_RELATION, FRIENDSHIP_FACT_TEMPLATES)
     # TODO: get attributes
     attribute_facts = get_attribute_facts(db, names)
-    
+    job_facts = get_job_facts(db, names)
+
     # import pdb; pdb.set_trace()
     articles = {}
     for name in names:
@@ -29,20 +28,22 @@ def get_articles(db: Database, names: list[str]) -> dict:
             family_facts="\n".join(family_facts[name]),
             friend_facts="\n".join(friend_facts[name]),
             attribute_facts="\n".join(attribute_facts[name]),
+            job_facts="\n".join(job_facts[name]),
         )
         # print(article)
         articles[name] = article
     return articles
 
-# 
+
+#
 # Functionality to get relation-based facts
-# 
+#
 def get_relation_facts(
-        db: Database, 
-        names: list[str], 
-        relation_list: list[str],
-        relation_templates: dict[str, str],
-    ) -> dict[str, list[str]]:
+    db: Database,
+    names: list[str],
+    relation_list: list[str],
+    relation_templates: dict[str, str],
+) -> dict[str, list[str]]:
     """
     Get relation-based facts for a list of names.
 
@@ -70,23 +71,25 @@ def get_relation_facts(
         facts[name] = person_facts
 
     return facts
+
+
 def get_relations(db: Database, name: str, relation_list: list[str]) -> dict:
     """
-    Get the results for all relations in the specified `relation_list` 
+    Get the results for all relations in the specified `relation_list`
     for a given `name`.
     """
     relations = {}
     for relation in relation_list:
-        query = f"distinct({relation}(\'{name}\', X))"
-        results = [result['X'] for result in db.query(query)]
+        query = f"distinct({relation}('{name}', X))"
+        results = [result["X"] for result in db.query(query)]
         relations[relation] = results
 
     return relations
 
 
-# 
+#
 # WIP: Functionality to generate articles using CFGs
-# 
+#
 def generate_llm_article_cfg_pairs(
     person_list: list[str], use_jobs=True, max_attempts=10
 ) -> dict[str, tuple[str, str]]:

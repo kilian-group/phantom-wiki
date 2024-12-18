@@ -8,4 +8,7 @@ BASIC_ARTICLE_TEMPLATE = """# {name}
 
 ## Attributes
 {attribute_facts}
+
+## Jobs
+{job_facts}
 """
