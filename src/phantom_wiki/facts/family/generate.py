@@ -302,6 +302,7 @@ def family_tree_to_facts(family_tree):
     genders = []
     parent_relationships = []
     dates_of_birth = []
+    dates_of_death = []
     marriage_events = []
 
     # Add facts for each person in the family tree
@@ -317,8 +318,9 @@ def family_tree_to_facts(family_tree):
         # add 2-ary clause indicating parent relationship
         for child in p.children:
             parent_relationships.append(f"parent('{child.name}', '{p.name}')")
-        # add 2-ary clause indicating date of birth
+        # add 2-ary clause indicating date of birth and date of death
         dates_of_birth.append(f"dob('{p.name}', '{p.date_of_birth}')")
+        dates_of_death.append(f"dod('{p.name}', '{p.date_of_death}')")
 
         # add 3-ary events ('marriage' or 'divorce')
         for event in p.Marriage_Events:
@@ -331,6 +333,7 @@ def family_tree_to_facts(family_tree):
         + sorted(genders)
         + sorted(parent_relationships)
         + sorted(dates_of_birth)
+        + sorted(dates_of_death)
         + sorted(marriage_events)
     )
 

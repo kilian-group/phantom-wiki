@@ -13,7 +13,6 @@ import random
 import re
 from dataclasses import dataclass, field
 from datetime import date, timedelta
-from typing import List, Optional
 
 # import enum
 
@@ -48,10 +47,11 @@ class Person:
     female: bool
     tree_level: int
     date_of_birth: date
-    date_of_death: date
+    date_of_death: date = None
     children: list["Person"] = field(default_factory=list)
     parents: list["Person"] = field(default_factory=list)
-    events: list["Marriage_Event"] = field(default_factory=list)
+    Marriage_Events: list["Marriage_Event"] = field(default_factory=list)
+    Career_Events: list["Career_Event"] = field(default_factory=list)
 
     def __str__(self) -> str:
         return (
@@ -375,14 +375,11 @@ class PersonFactory:
 
         return self.create_person(tree_level, spouse_dob, female)
 
-    def create_person(
-        self, tree_level: int, dob: date | None = None, female: bool | None = None
-    ) -> Person:
+    def create_person(self, tree_level: int, dob: date | None = None, female: bool | None = None) -> Person:
         """Create a new Person instance.
 
         Args:
             tree_level: The level in the family tree where this person belongs
-            dob: The date of birth of the individual
             dob: The date of birth of the individual
             female: Optional boolean indicating gender. If None, gender is randomly assigned
         """
