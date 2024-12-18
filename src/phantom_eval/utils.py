@@ -61,7 +61,7 @@ def get_parser() -> ArgumentParser:
                         "if None, uses all available gpus")
     parser.add_argument("--inf_max_tokens", type=int, default=4096,
                         help="Maximum number of tokens to generate")
-    parser.add_argument("--inf_temperature", "-T", type=float, default=0.7,
+    parser.add_argument("--inf_temperature", "-T", type=float, default=0.0,
                         help="Temperature for sampling")
     parser.add_argument("--inf_top_p", "-p", type=float, default=0.7,
                         help="Top-p for sampling")
