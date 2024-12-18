@@ -131,12 +131,10 @@ def db_generate_attributes(db: Database, args: ArgumentParser, familytrees: list
                     job = career_event.job
                     start_date = career_event.date
                     facts.append(f"start_job('{name}', '{job}', '{start_date}')")
-                    facts.append(f"attribute('{job}')")
                 elif career_event.type == "end_job":
                     job = career_event.job
                     end_date = career_event.date
                     facts.append(f"end_job('{name}', '{job}', '{end_date}')")
-                    facts.append(f"attribute('{job}')")
 
             # add hobbies
             hobby = hobbies[name]
