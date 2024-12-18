@@ -1,7 +1,7 @@
 import os
 from phantom_wiki.facts.database import Database
 from phantom_wiki.facts import get_database
-from tests.facts.family import FACTS_SMALL_EXAMPLE_PATH
+from tests.phantom_wiki.facts.family import FACTS_SMALL_EXAMPLE_PATH
 
 def test_save_database():
     file = "test.pl"

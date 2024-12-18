@@ -8,7 +8,7 @@ from phantom_wiki.facts.family import fam_gen_parser
 from phantom_wiki.utils import get_parser
 from phantom_wiki.facts import question_parser
 from phantom_wiki.__main__ import main
-from tests import ARTICLE_EXAMPLE_PATH
+from tests.phantom_wiki import ARTICLE_EXAMPLE_PATH
 
 def test_main():
     parser = get_parser(parents=[

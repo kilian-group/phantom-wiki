@@ -9,7 +9,7 @@ if module_path not in sys.path:
 from IPython.display import Image, display
 
 from src.phantom_wiki.utils.visualization import create_dot_graph, prolog_to_facts
-from tests.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
+from tests.phantom_wiki.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
 
 
 def view_pydot(pdot):

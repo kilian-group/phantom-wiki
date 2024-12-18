@@ -1,7 +1,7 @@
 import os
 from phantom_wiki.facts import get_database
 from phantom_wiki.core.article import get_articles
-from tests.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
+from tests.phantom_wiki.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
 
 def test_get_articles():
     return
