@@ -5,6 +5,7 @@ import shutil
 
 # phantom wiki functionality
 from phantom_wiki.facts.family import fam_gen_parser
+from phantom_wiki.facts.attributes import attributes_parser
 from phantom_wiki.utils import get_parser
 from phantom_wiki.facts import question_parser
 from phantom_wiki.__main__ import main
@@ -13,6 +14,7 @@ from tests import ARTICLE_EXAMPLE_PATH
 def test_main():
     parser = get_parser(parents=[
         fam_gen_parser,
+        attributes_parser,
         question_parser
     ])
     args, _ = parser.parse_known_args(["--output-dir", "test_out", "--seed", "1", "--valid-only"])
