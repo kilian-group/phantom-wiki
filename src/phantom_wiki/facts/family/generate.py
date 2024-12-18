@@ -17,7 +17,7 @@ from dateutil.relativedelta import relativedelta
 
 from phantom_wiki.facts.family import fam_gen_parser
 from phantom_wiki.facts.family.constants import PERSON_TYPE
-from phantom_wiki.facts.family.person_factory import Event, Person, PersonFactory
+from phantom_wiki.facts.family.person_factory import Marriage_Event, Person, PersonFactory
 from phantom_wiki.utils import get_parser
 
 # NOTE: we set the marriage date to 16 years after the younger spouse's date of birth
@@ -97,8 +97,8 @@ class Generator:
                     date_of_marriage = (
                         max(current_person.date_of_birth, spouse.date_of_birth) + AGE_AT_MARRIAGE
                     )
-                    spouse.events.append(Event("marriage", current_person, date_of_marriage))
-                    current_person.events.append(Event("marriage", spouse, date_of_marriage))
+                    spouse.events.append(Marriage_Event("marriage", current_person, date_of_marriage))
+                    current_person.events.append(Marriage_Event("marriage", spouse, date_of_marriage))
                     fam_tree.append(spouse)
                     person_count += 1
 
@@ -124,8 +124,8 @@ class Generator:
 
                 # specify relationships
                 date_of_marriage = max(dad.date_of_birth, mom.date_of_birth) + AGE_AT_MARRIAGE
-                dad.events.append(Event("marriage", mom, date_of_marriage))
-                mom.events.append(Event("marriage", dad, date_of_marriage))
+                dad.events.append(Marriage_Event("marriage", mom, date_of_marriage))
+                mom.events.append(Marriage_Event("marriage", dad, date_of_marriage))
                 mom.children.append(current_person)
                 dad.children.append(current_person)
                 current_person.parents = [mom, dad]
@@ -184,8 +184,8 @@ class Generator:
                     spouse = e.spouse
                     if random.random() < args.divorce_rate:
                         divorce_date = e.date + DUR_OF_MARRIAGE
-                        p.events.append(Event("divorce", spouse, divorce_date))
-                        spouse.events.append(Event("divorce", p, divorce_date))
+                        p.events.append(Marriage_Event("divorce", spouse, divorce_date))
+                        spouse.events.append(Marriage_Event("divorce", p, divorce_date))
                         divorced_ppl[sample_idx].append(p)
                         divorced_ppl[sample_idx].append(spouse)
 
@@ -220,8 +220,8 @@ class Generator:
                                 spouse_event.type == "divorce"
                             ), "Last event of the spouse must be a divorce"
                             remarry_date = max(e.date, spouse_event.date) + DUR_OF_DIVORCE
-                            p.events.append(Event("marriage", spouse, remarry_date))
-                            spouse.events.append(Event("marriage", p, remarry_date))
+                            p.events.append(Marriage_Event("marriage", spouse, remarry_date))
+                            spouse.events.append(Marriage_Event("marriage", p, remarry_date))
                             # for the current tree:
                             # first find out from which tree the spouse is
                             # then remove the spouse from the dictionary to avoid remarrying the same person
