@@ -83,11 +83,11 @@ class Generator:
 
             if add_child:
                 # check whether the chosen person is single, if not -> add a partner
-                if current_person.events:
-                    e = current_person.events[0]
+                if current_person.Marriage_Events:
+                    e = current_person.Marriage_Events[0]
                     assert e.type == "marriage", "First event must be a marriage"
                     # NOTE: to test events, we define the spouse to be the partner in the first event, even if they divorced later
-                    spouse = current_person.events[0].spouse
+                    spouse = current_person.Marriage_Events[0].spouse
                 else:
                     spouse = self.person_factory.create_spouse(
                         tree_level=current_person.tree_level,
@@ -97,8 +97,12 @@ class Generator:
                     date_of_marriage = (
                         max(current_person.date_of_birth, spouse.date_of_birth) + AGE_AT_MARRIAGE
                     )
-                    spouse.events.append(Marriage_Event("marriage", current_person, date_of_marriage))
-                    current_person.events.append(Marriage_Event("marriage", spouse, date_of_marriage))
+                    spouse.Marriage_Events.append(
+                        Marriage_Event("marriage", current_person, date_of_marriage)
+                    )
+                    current_person.Marriage_Events.append(
+                        Marriage_Event("marriage", spouse, date_of_marriage)
+                    )
                     fam_tree.append(spouse)
                     person_count += 1
 
@@ -124,8 +128,8 @@ class Generator:
 
                 # specify relationships
                 date_of_marriage = max(dad.date_of_birth, mom.date_of_birth) + AGE_AT_MARRIAGE
-                dad.events.append(Marriage_Event("marriage", mom, date_of_marriage))
-                mom.events.append(Marriage_Event("marriage", dad, date_of_marriage))
+                dad.Marriage_Events.append(Marriage_Event("marriage", mom, date_of_marriage))
+                mom.Marriage_Events.append(Marriage_Event("marriage", dad, date_of_marriage))
                 mom.children.append(current_person)
                 dad.children.append(current_person)
                 current_person.parents = [mom, dad]
@@ -177,15 +181,15 @@ class Generator:
             for i in range(len(family_tree)):
                 p = family_tree[i]
                 if (
-                    len(p.events) % 2 == 1
+                    len(p.Marriage_Events) % 2 == 1
                 ):  # can only divorce if the person has odd number of events (i.e., married)
-                    e = p.events[-1]
+                    e = p.Marriage_Events[-1]
                     assert e.type == "marriage", "Last event must be a marriage"
                     spouse = e.spouse
                     if random.random() < args.divorce_rate:
                         divorce_date = e.date + DUR_OF_MARRIAGE
-                        p.events.append(Marriage_Event("divorce", spouse, divorce_date))
-                        spouse.events.append(Marriage_Event("divorce", p, divorce_date))
+                        p.Marriage_Events.append(Marriage_Event("divorce", spouse, divorce_date))
+                        spouse.Marriage_Events.append(Marriage_Event("divorce", p, divorce_date))
                         divorced_ppl[sample_idx].append(p)
                         divorced_ppl[sample_idx].append(spouse)
 
@@ -206,22 +210,22 @@ class Generator:
             for i in range(len(current_tree)):
                 p = current_tree[i]
                 # can only remarry if the person has even number of events (i.e., divorced)
-                if len(p.events) > 0 and len(p.events) % 2 == 0:
-                    e = p.events[-1]
+                if len(p.Marriage_Events) > 0 and len(p.Marriage_Events) % 2 == 0:
+                    e = p.Marriage_Events[-1]
                     assert e.type == "divorce", "Last event must be a divorce"
                     if random.random() < args.remarry_rate:
                         # find a spouse， who is also divorced and not from the same tree
                         if len(divorced_from_other_trees.keys()) > 1:
                             spouse_name = random.choice(list(divorced_from_other_trees.keys()))
                             spouse = divorced_from_other_trees[spouse_name][0]
-                            spouse_event = spouse.events[-1]
+                            spouse_event = spouse.Marriage_Events[-1]
                             # last event of the spouse must be a divorce
                             assert (
                                 spouse_event.type == "divorce"
                             ), "Last event of the spouse must be a divorce"
                             remarry_date = max(e.date, spouse_event.date) + DUR_OF_DIVORCE
-                            p.events.append(Marriage_Event("marriage", spouse, remarry_date))
-                            spouse.events.append(Marriage_Event("marriage", p, remarry_date))
+                            p.Marriage_Events.append(Marriage_Event("marriage", spouse, remarry_date))
+                            spouse.Marriage_Events.append(Marriage_Event("marriage", p, remarry_date))
                             # for the current tree:
                             # first find out from which tree the spouse is
                             # then remove the spouse from the dictionary to avoid remarrying the same person
@@ -237,6 +241,22 @@ class Generator:
                             print("No divorced person to remarry for:")
                             print(p.name)
                             continue
+
+        # add date of death
+        for sample_idx in range(args.num_samples):
+            current_tree = family_trees[sample_idx]
+            for i in range(len(current_tree)):
+                p = current_tree[i]
+                offset = p.date_of_birth
+                # check if the person has children or marriage events
+                if len(p.children) > 0:
+                    oldest_child_dob = max([c.date_of_birth for c in p.children])
+                    offset = max(oldest_child_dob, p.date_of_birth)
+                if len(p.Marriage_Events) > 0:
+                    last_event_date = p.Marriage_Events[-1].date
+                    offset = max(last_event_date, offset)
+                date_of_death = offset + relativedelta(years=random.randint(1, 50))
+                p.date_of_death = date_of_death
 
             # Resetting person factory if user allows for duplicate names
             if not args.duplicate_names:
@@ -282,7 +302,7 @@ def family_tree_to_facts(family_tree):
     genders = []
     parent_relationships = []
     dates_of_birth = []
-    events = []
+    marriage_events = []
 
     # Add facts for each person in the family tree
     for p in family_tree:
@@ -301,8 +321,8 @@ def family_tree_to_facts(family_tree):
         dates_of_birth.append(f"dob('{p.name}', '{p.date_of_birth}')")
 
         # add 3-ary events ('marriage' or 'divorce')
-        for event in p.events:
-            events.append(f"{event.type}('{p.name}', '{event.spouse.name}', '{event.date}')")
+        for event in p.Marriage_Events:
+            marriage_events.append(f"{event.type}('{p.name}', '{event.spouse.name}', '{event.date}')")
             # NOTE: a single marriage will correspond to two `married` facts in the prolog database
 
     # Returning outputs
@@ -311,7 +331,7 @@ def family_tree_to_facts(family_tree):
         + sorted(genders)
         + sorted(parent_relationships)
         + sorted(dates_of_birth)
-        + sorted(events)
+        + sorted(marriage_events)
     )
 
 
@@ -334,18 +354,22 @@ def create_dot_graph(family_tree):
         for c in p.children:
             graph.add_edge(pydot.Edge(p.name, c.name))
         # add a solid line for marriage
-        if len(p.events) == 1 and p.events[0].type == "marriage":
+        if len(p.Marriage_Events) == 1 and p.Marriage_Events[0].type == "marriage":
             # don't add the same edge twice
-            if (p.events[0].spouse.name, p.name) in events:
+            if (p.Marriage_Events[0].spouse.name, p.name) in events:
                 continue
-            graph.add_edge(pydot.Edge(p.name, p.events[0].spouse.name, style="solid", dir="none"))
-            events.add((p.name, p.events[0].spouse.name))
-        elif len(p.events) == 2 and p.events[0].type == "marriage" and p.events[1].type == "divorce":
+            graph.add_edge(pydot.Edge(p.name, p.Marriage_Events[0].spouse.name, style="solid", dir="none"))
+            events.add((p.name, p.Marriage_Events[0].spouse.name))
+        elif (
+            len(p.Marriage_Events) == 2
+            and p.Marriage_Events[0].type == "marriage"
+            and p.Marriage_Events[1].type == "divorce"
+        ):
             # don't add the same edge twice
-            if (p.events[1].spouse.name, p.name) in events:
+            if (p.Marriage_Events[1].spouse.name, p.name) in events:
                 continue
-            graph.add_edge(pydot.Edge(p.name, p.events[1].spouse.name, style="dashed", dir="none"))
-            events.add((p.name, p.events[1].spouse.name))
+            graph.add_edge(pydot.Edge(p.name, p.Marriage_Events[1].spouse.name, style="dashed", dir="none"))
+            events.add((p.name, p.Marriage_Events[1].spouse.name))
 
     return graph
 
