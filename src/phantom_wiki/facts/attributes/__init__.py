@@ -7,11 +7,20 @@ from importlib.resources import files
 # phantom wiki functionality
 from ..database import Database
 from .constants import ATTRIBUTE_FACT_TEMPLATES, ATTRIBUTE_RELATION, END_JOB_TEMPLATE, START_JOB_TEMPLATE
-from .generate import generate_hobbies, generate_jobs
+from .generate import generate_hobbies, generate_jobs, shuffle_job_market
 
 ATTRIBUTE_RULES_PATH = files("phantom_wiki").joinpath("facts/attributes/rules.pl")
 
 # TODO: add functionality to pass in CLI arguments
+
+# Create parser for family tree generation
+attributes_parser = ArgumentParser(description="Attributes generation", add_help=False)
+attributes_parser.add_argument(
+    "--unemployed-rate", type=float, default=0.0, help="The probability that a person is unemployed."
+)
+attributes_parser.add_argument(
+    "--reemployed-rate", type=float, default=0.0, help="The probability that a person is reemployed."
+)
 
 
 #
@@ -26,9 +35,9 @@ def get_job_info(db: Database, name: str):
     query = f"start_job('{name}', X, Y)"
     results = [{"job": result["X"], "start_date": result["Y"]} for result in db.query(query)]
     jobs.extend(results)
-    # query = f"end_job('{name}', X, Y)"
-    # results = [{"job": result["X"], "end_date": result["Y"]} for result in db.query(query)]
-    # jobs.append(results)
+    query = f"end_job('{name}', X, Y)"
+    results = [{"job": result["X"], "end_date": result["Y"]} for result in db.query(query)]
+    jobs.extend(results)
     return jobs
 
 
@@ -41,18 +50,20 @@ def get_job_facts(db: Database, names: list[str]) -> dict[str, list[str]]:
         jobs = get_job_info(db, name)
         person_facts = []
         for job in jobs:
-            if "start_date" in job.keys():
+            if "start_date" in job.keys() and job["job"] != "None":
                 fact = (
                     START_JOB_TEMPLATE.replace("<subject>", name)
                     .replace("<job>", job["job"])
                     .replace("<date>", job["start_date"])
                 )
-            elif "end_date" in job.keys():
+            elif "end_date" in job.keys() and job["job"] != "None":
                 fact = (
                     END_JOB_TEMPLATE.replace("<subject>", name)
                     .replace("<job>", job["job"])
                     .replace("<date>", job["end_date"])
                 )
+            else:
+                fact = ""
             person_facts.append(fact)
         facts[name] = person_facts
     return facts
@@ -105,6 +116,7 @@ def db_generate_attributes(db: Database, args: ArgumentParser, familytrees: list
         args (ArgumentParser): The command line arguments.
     """
     jobs = generate_jobs(familytrees, args.seed)
+    shuffle_job_market(familytrees, args)
     names = db.get_names()
     hobbies = generate_hobbies(names, args.seed)
 
@@ -114,10 +126,17 @@ def db_generate_attributes(db: Database, args: ArgumentParser, familytrees: list
         for person in tree:
             name = person.name
             # add jobs
-            job = jobs[name]["job"]
-            start_date = jobs[name]["start_date"]
-            facts.append(f"start_job('{name}', '{job}', '{start_date}')")
-            facts.append(f"attribute('{job}')")
+            for career_event in person.Career_Events:
+                if career_event.type == "start_job":
+                    job = career_event.job
+                    start_date = career_event.date
+                    facts.append(f"start_job('{name}', '{job}', '{start_date}')")
+                    facts.append(f"attribute('{job}')")
+                elif career_event.type == "end_job":
+                    job = career_event.job
+                    end_date = career_event.date
+                    facts.append(f"end_job('{name}', '{job}', '{end_date}')")
+                    facts.append(f"attribute('{job}')")
 
             # add hobbies
             hobby = hobbies[name]

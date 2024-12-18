@@ -18,6 +18,7 @@ from .facts import (
     get_database,
     question_parser,
 )
+from .facts.attributes import attributes_parser
 from .facts.family import fam_gen_parser
 from .facts.sample import sample
 from .facts.templates import generate_templates
@@ -128,6 +129,7 @@ if __name__ == "__main__":
     parser = get_parser(
         parents=[
             fam_gen_parser,
+            attributes_parser,
             question_parser,
         ]
     )
