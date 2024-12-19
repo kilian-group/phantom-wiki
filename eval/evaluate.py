@@ -61,10 +61,12 @@ df['precision'] = df.apply(lambda x: precision(x['pred'], sep.join(x['true']), s
 df['recall'] = df.apply(lambda x: recall(x['pred'], sep.join(x['true']), sep=sep), axis=1)
 df['f1'] = df.apply(lambda x: f1(x['pred'], sep.join(x['true']), sep=sep), axis=1)
 print(df)
-# group by model and split
+# group by model, split, and seed
 grouped = df.groupby(['_model', '_split', '_seed'])
 # print the accuracy
 acc = grouped[['EM','precision', 'recall', 'f1']].mean()
+# add a column that counts the number of elements in the group
+acc['count'] = grouped.size()
 # print as markdown
 print(acc.to_markdown())
 # save to a csv file
@@ -74,12 +76,16 @@ acc.to_csv(os.path.join(scores_dir, "scores.csv"))
 
 # get accuracies by type
 if False:
-    # group by model, split, and type
-    acc_by_type = df.groupby(['_model', '_split', '_type'])[['EM','precision', 'recall', 'f1']].mean()
+    # group by model, split, seed, and type
+    acc_by_type = df.groupby(['_model', '_split', '_seed', '_type'])[['EM','precision', 'recall', 'f1']].mean()
+    # compute the mean and std across seeds
+    acc_by_type_mean_std = acc_by_type.groupby(['_model', '_split', '_type']).agg(['mean', 'std'])
     # print the accuracy
-    print(acc_by_type.to_markdown())
+    print(acc_by_type_mean_std.to_markdown())
+    # collapse multi-index columns
+    acc_by_type_mean_std.columns = acc_by_type_mean_std.columns.to_flat_index()
     # save to a csv file
-    acc_by_type.to_csv(os.path.join(scores_dir, "scores_by_type.csv"))
+    acc_by_type_mean_std.to_csv(os.path.join(scores_dir, "scores_by_type.csv"))
     # # get the length of the query for each type
     # from phantom_wiki.facts.templates import generate_templates
     # # assert the depth is the same for rows in acc_by_type
@@ -94,6 +100,7 @@ if False:
 
 # %%
 # get the mean and std of the accuracy for each model and split
+# where std is the standard deviation across seeds
 acc_mean_std = acc.groupby(['_model', '_split']).agg(['mean', 'std'])
 
 # %%
@@ -121,7 +128,9 @@ MODELS = [
     'meta-llama/llama-3.1-70b-instruct',
     'microsoft/phi-3.5-mini-instruct',
     'mistralai/mistral-7b-instruct-v0.3',
+    'gemini-1.5-flash-8b-001',
     'gemini-1.5-flash-002',
+    'gemini-2.0-flash-exp',
 ]
 
 
@@ -132,22 +141,15 @@ def get_mean_std(metric):
     df_mean.columns = df_mean.columns.astype(int)
     # reorder the columns in ascending order
     df_mean = df_mean[sorted(df_mean.columns)]
-    # reorder the rows (only if all models are present)
-    if set(df_mean.index) != set(MODELS):
-        print(f"Models in the data: {df_mean.index}")
-        print(f"Models in the list: {MODELS}")
-    else:
-        df_mean = df_mean.loc[MODELS]
+    row_order = [name for name in MODELS if name in df_mean.index]
+    df_mean = df_mean.loc[row_order]
+
     df_std = acc_mean_std.pivot(index='_model', columns='_split', values=(metric, 'std'))
     # change the column names to integers
     df_std.columns = df_std.columns.astype(int)
     df_std = df_std[sorted(df_std.columns)]
-    # reorder the rows (only if all models are present)
-    if set(df_std.index) != set(MODELS):
-        print(f"Models in the data: {df_std.index}")
-        print(f"Models in the list: {MODELS}")
-    else:
-        df_std = df_std.loc[MODELS]
+    row_order = [name for name in MODELS if name in df_std.index]
+    df_std = df_std.loc[row_order]
     return df_mean, df_std
 
 # %%
@@ -184,6 +186,8 @@ COLORS = {
     'microsoft/phi-3.5-mini-instruct': 'tab:green',
     'mistralai/mistral-7b-instruct-v0.3' : 'tab:red',
     'gemini-1.5-flash-002': 'tab:purple',
+    'gemini-1.5-flash-8b-001': 'tab:purple',
+    'gemini-2.0-flash-exp': 'tab:purple',
 }
 LINESTYLES = {
     'google/gemma-2-27b-it': '-',
@@ -193,7 +197,9 @@ LINESTYLES = {
     'meta-llama/llama-3.1-8b-instruct': '--',
     'microsoft/phi-3.5-mini-instruct': '-',
     'mistralai/mistral-7b-instruct-v0.3' : '-',
+    'gemini-2.0-flash-exp': '-',
     'gemini-1.5-flash-002': '--',
+    'gemini-1.5-flash-8b-001': 'dotted',
 }    
 
 # %%
