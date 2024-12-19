@@ -150,8 +150,12 @@ class PersonFactory:
         parent_dob_1 = date(parent_yob_1, random.randint(1, 12), random.randint(1, 28))
         parent_dob_2 = date(parent_yob_2, random.randint(1, 12), random.randint(1, 28))
         
-        # Use child's lastname
-        parent_surname = children.surname
+        # Generate lastname
+        if children.female and children.married_to: 
+            print(children.get_full_name())
+            parent_surname = self._get_next_surname()
+        else:
+            parent_surname = children.surname
 
         out = [self.create_person(tree_level, parent_surname, parent_dob_1, False),
                self.create_person(tree_level, parent_surname, parent_dob_2, True)]
@@ -231,10 +235,14 @@ class PersonFactory:
         spouse_yob = min(max(spouse_yob, parent_yob-self._max_parent_age_diff), parent_yob+self._max_parent_age_diff)
         spouse_dob = date(spouse_yob, random.randint(1, 12), random.randint(1, 28))
 
-        # Use spouse surname
-        surname = spouse.surname
+        # Generate spouse surname
+        if female:
+            new_surname = spouse.surname
+        else:
+            new_surname = self._get_next_surname()
+            spouse.surname = new_surname
 
-        return self.create_person(tree_level, surname, spouse_dob, female)
+        return self.create_person(tree_level, new_surname, spouse_dob, female)
 
     def create_person(self, tree_level: int, surname: Optional[str] = None, dob: Optional[date] = None, female: Optional[bool] = None) -> Person:
         """Create a new Person instance.
