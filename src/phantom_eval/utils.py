@@ -1,9 +1,11 @@
 import logging
+import subprocess
 
 from datasets import load_dataset
 from argparse import ArgumentParser
+import subprocess
 
-from . import llm
+from .llm import SUPPORTED_LLM_NAMES
 
 
 def load_data(split):
@@ -25,6 +27,7 @@ def get_all_articles(dataset):
     all_articles = "\n================\n\n".join(dataset['text']['article'])
     return all_articles
 
+
 def get_relevant_articles(dataset, name_list:list):
     """
     Get articles for a certain list of names.
@@ -39,21 +42,8 @@ def get_relevant_articles(dataset, name_list:list):
 def setup_logging(log_level: str) -> str:
     # Suppress httpx logging from API requests
     logging.getLogger("httpx").setLevel(logging.WARNING)
+    logging.getLogger("httpcore").setLevel(logging.WARNING)
     logging.basicConfig(level=log_level, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-
-
-# TODO support local models in llm.py
-LOCAL_MODELS = [
-    # HF models (run via vLLM)
-    "meta-llama/llama-3.1-8b-instruct", 
-    "meta-llama/llama-3.1-70b-instruct", 
-    "microsoft/phi-3.5-mini-instruct",
-    "microsoft/phi-3.5-moe-instruct",
-    "google/gemma-2-2b-it",
-    "google/gemma-2-9b-it",
-    "google/gemma-2-27b-it",
-    "mistralai/mistral-7b-instruct-v0.3",
-]
 
 
 def get_parser() -> ArgumentParser:
@@ -61,32 +51,38 @@ def get_parser() -> ArgumentParser:
     parser.add_argument("--model_name", "-m", type=str, default="together:meta-llama/Llama-Vision-Free",
                         help="model name." \
                             "NOTE: to add a new model, please submit a PR to the repo with the new model name", 
-                        choices=LOCAL_MODELS + llm.SUPPORTED_LLM_NAMES)
+                        choices=SUPPORTED_LLM_NAMES)
     parser.add_argument("--model_path", type=str, default=None, help="Path to the model")
+    parser.add_argument("--method", type=str, default="zeroshot",
+                        help="Evaluation method (zeroshot, fewshot, cot, react)")
 
     # LLM inference params
     parser.add_argument("--inf_max_model_len", type=int, default=None,
-                        help="Maximum model length (vLLM param)")
-    parser.add_argument("--inf_tensor_parallel_size", type=int, default=1,
-                        help="number of gpus (vLLM param")
+                        help="Maximum model length (vLLM param)" \
+                        "if None, uses max model length specified in model config")
+    parser.add_argument("--inf_tensor_parallel_size", type=int, default=None,
+                        help="number of gpus (vLLM param)" \
+                        "if None, uses all available gpus")
     parser.add_argument("--inf_max_tokens", type=int, default=4096,
                         help="Maximum number of tokens to generate")
-    parser.add_argument("--inf_temperature", "-T", type=float, default=0.7,
+    parser.add_argument("--inf_temperature", "-T", type=float, default=0.0,
                         help="Temperature for sampling")
     parser.add_argument("--inf_top_p", "-p", type=float, default=0.7,
                         help="Top-p for sampling")
-    parser.add_argument("--inf_top_k", "-k", type=float, default=50,
+    parser.add_argument("--inf_top_k", "-k", type=int, default=50,
                         help="Top-k for sampling")
-    parser.add_argument("--inf_seed", type=int, default=1,
-                        help="Seed for sampling")
+    parser.add_argument("--inf_repetition_penalty", "-r", type=float, default=1.0,
+                        help="Repetition penalty for sampling")
+    parser.add_argument("--inf_seed_list", type=int, nargs="+", default=[1],
+                        help="List of seeds to evaluate")
     parser.add_argument("--inf_max_retries", type=int, default=3,
                         help="Number of tries to get response")
     parser.add_argument("--inf_wait_seconds", type=int, default=2,
                         help="Seconds to wait between tries")
 
     # Dataset params
-    parser.add_argument("--split", "-s", default="depth_10_size_26_seed_1", type=str,
-                        help="Dataset split (e.g., train, val, test)")
+    parser.add_argument("--split_list", default=["depth_10_size_26_seed_1"], type=str, nargs="+",
+                        help="List of dataset splits to evaluate")
     parser.add_argument("--batch_size", "-bs", default=10, type=int,
                         help="Batch size (>=1)")
     parser.add_argument("--batch_number", "-bn", default=1, type=int,

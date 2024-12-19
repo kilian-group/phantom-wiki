@@ -60,12 +60,12 @@ data = [
 ]
 
 
-evaluate(
-    data,
-    print,
-    " ".join([prompt, extra["stepbystep"], format["plain"]]),
-    lambda x, y: True,
-)
+# evaluate(
+#     data,
+#     print,
+#     " ".join([prompt, extra["stepbystep"], format["plain"]]),
+#     lambda x, y: True,
+# )
 
 # prompt, extra["stepbystep"], format["answer:"]
 answers = [
@@ -103,5 +103,20 @@ Answer: The person was born in 2004.""",
 ]
 
 
-for answer, (_, true) in zip(answers, data):
-    print(score_answer(answer, true))
+# for answer, (_, true) in zip(answers, data):
+#     print(score_answer(answer, true))
+
+
+"""
+Zero-shot prompts
+"""
+ZEROSHOT_PROMPT = """{evidence}
+Answer the following question:
+{question}
+
+The output should be one of the following:
+- A name (if there is only one correct answer)
+- A list of names separated by commas (if there are multiple correct answers)
+- A number (if the answer is a number)
+DO NOT include any additional information in the output.
+"""

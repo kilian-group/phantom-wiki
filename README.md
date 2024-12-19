@@ -15,7 +15,7 @@ conda activate dataset
 conda install python=3.12 conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest
 # on G2, use pip instead of conda to install pandas and numpy to avoid C dependency conflicts
 pip install pandas numpy
-pip install together openai pre-commit datasets google-generativeai anthropic transformers 
+pip install together openai pre-commit datasets google-generativeai anthropic transformers tenacity tiktoken vllm
 ```
 
 ### Installing phantom-wiki in development mode
@@ -43,7 +43,17 @@ brew install swi-prolog
 pip install pyswip
 ```
 
-## TogetherAI
+## Evaluation
+
+Run evaluation methods (like `zeroshot,fewshot,react,...`) with an LLM like so:
+```bash
+python -m phantom_eval --method <method> --model_name <llm_name>
+```
+
+Run `python -m phantom_eval -h` for usage help.
+Below are setup instructions for various LLM providers supported in evaluation.
+
+### TogetherAI
 
 1. Register for an account at https://api.together.ai
 2. Set your TogetherAI API key:
@@ -52,7 +62,34 @@ pip install pyswip
 conda env config vars set TOGETHER_API_KEY=xxxxx
 ```
 
-## vLLM
+### OpenAI
+1. Register an account *with your cornell.edu email* at https://platform.openai.com/ and join "Kilian's Group"
+2. Create an API key at https://platform.openai.com/settings/organization/api-keys under your name
+3. Set your OpenAI API key in your conda environment:
+```
+conda env config vars set OPENAI_API_KEY=xxxxx
+```
+Rate limits: https://platform.openai.com/docs/guides/rate-limits#usage-tiers
+
+### Google Gemini
+1. Create an API key at https://aistudio.google.com/app/apikey (NOTE: for some reason, Google AI Studio is disabled for cornell.edu accounts, so use your personal account)
+2. Set your Google API key:
+```
+conda env config vars set GOOGLE_API_KEY=xxxxx
+```
+
+### Anthropic
+1. Register an account *with your cornell.edu email* and join "Kilian's Group" 
+2. Create an API key at https://console.anthropic.com/settings/keys under your name
+3. Set your Anthropic API key in your conda environment:
+```
+conda env config vars set ANTHROPIC_API_KEY=xxxxx
+```
+Rate limits: https://docs.anthropic.com/en/api/rate-limits#updated-rate-limits
+
+:rotating_light: The Anthropic API has particularly low rate limits so it takes longer to get predictions.
+
+### vLLM
 Setup (following [these](https://docs.vllm.ai/en/stable/getting_started/installation.html) instructions):
 ```
 # allocate an GPU with CUDA 12.2 (if you have Xiangyu's graphite-utils, you can do `cuda121` in zsh)
@@ -75,33 +112,6 @@ With six A6000s:
 ValueError: Total number of attention heads (64) must be divisible by tensor parallel size (6).
 ```
 NOTE: These models and their configs are downloaded directly from HuggingFace
-
-## OpenAI
-1. Register an account *with your cornell.edu email* at https://platform.openai.com/ and join "Kilian's Group"
-2. Create an API key at https://platform.openai.com/settings/organization/api-keys under your name
-3. Set your OpenAI API key in your conda environment:
-```
-conda env config vars set OPENAI_API_KEY=xxxxx
-```
-Rate limits: https://platform.openai.com/docs/guides/rate-limits#usage-tiers
-
-## Google Gemini
-1. Create an API key at https://aistudio.google.com/app/apikey (NOTE: for some reason, Google AI Studio is disabled for cornell.edu accounts, so use your personal account)
-2. Set your Google API key:
-```
-conda env config vars set GOOGLE_API_KEY=xxxxx
-```
-
-## Anthropic
-1. Register an account *with your cornell.edu email* and join "Kilian's Group" 
-2. Create an API key at https://console.anthropic.com/settings/keys under your name
-3. Set your Anthropic API key in your conda environment:
-```
-conda env config vars set ANTHROPIC_API_KEY=xxxxx
-```
-Rate limits: https://docs.anthropic.com/en/api/rate-limits#updated-rate-limits
-
-:rotating_light: The Anthropic API has particularly low rate limits so it takes longer to get predictions.
 
 ## Development best practices
 
