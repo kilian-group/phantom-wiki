@@ -1,9 +1,9 @@
-# standard imports
+import argparse
 import os
 import json
 import math
 import asyncio
-# phantom eval imports
+
 from .utils import (get_parser,
                     load_data,
                     get_all_articles,
@@ -16,30 +16,20 @@ from .data import (Conversation,
                    ContentTextMessage, 
                    Message)
 
-async def main(args):
-    split_list = args.split_list
-    seed_list = args.seed_list
-    model = args.model_name
-    temperature = args.inf_temperature
-    top_p = args.inf_top_p
-    top_k = args.inf_top_k
-    max_tokens = args.inf_max_tokens
-    repetition_penalty = args.inf_repetition_penalty
-    output_dir = args.output_dir
-
-    pred_dir = os.path.join(output_dir, "preds")
+async def main(args: argparse.Namespace) -> None:
+    pred_dir = os.path.join(args.output_dir, "preds")
     os.makedirs(pred_dir, exist_ok=True)    
     
     # instantiate the "agent" (zeroshot, fewshot, cot, react)
     if args.method == 'zeroshot':
         llm_chat = get_llm(
-            model_name=model,
+            model_name=args.model_name,
             model_kwargs={
-                'temperature' : temperature,
-                'top_p' : top_p,
-                'top_k' : top_k,
-                'max_tokens' : max_tokens,
-                'repetition_penalty' : repetition_penalty,
+                'temperature' : args.inf_temperature,
+                'top_p' : args.inf_top_p,
+                'top_k' : args.inf_top_k,
+                'max_tokens' : args.inf_max_tokens,
+                'repetition_penalty' : args.inf_repetition_penalty,
                 # NOTE: specify seed when calling generate_response, not instantiation
             }
         )
@@ -53,12 +43,12 @@ async def main(args):
     else:
         raise ValueError(f"Method {args.method} not supported.")
     
-    for seed in seed_list:
+    for seed in args.seed_list:
         # iterate over the splits first before running additional seeds
-        for split in split_list:
+        for split in args.split_list:
             # get data
             dataset = load_data(split)
-            batch_size = len(dataset['qa_pairs']) if model in SUPPORTED_LOCAL_LLM_NAMES else args.batch_size
+            batch_size = len(dataset['qa_pairs']) if args.model_name in SUPPORTED_LOCAL_LLM_NAMES else args.batch_size
             for batch_number in range(1, math.ceil(len(dataset['qa_pairs'])/batch_size) + 1):
                 # we are in the setting where we pass in all the articles as evidence
                 evidence = "Given the following evidence:\n"
@@ -92,7 +82,7 @@ async def main(args):
                     # <<< END REFACTOR
                     
                 # get run name
-                run_name = f"{split}-{model.replace('/','--')}-bs{batch_size}-bn{batch_number}-s{seed}"
+                run_name = f"{split}-{args.model_name.replace('/','--')}-bs{batch_size}-bn{batch_number}-s{seed}"
                 print(f"Run name: {run_name}")
                 responses: list[LLMChatResponse] = await llm_chat.batch_generate_response(
                     convs=conv_list,
@@ -107,7 +97,7 @@ async def main(args):
                         'true' : batch[i]['answer'],
                         'pred' : responses[i].pred,
                         'metadata': {
-                            'model': model,
+                            'model': args.model_name,
                             'split': split,
                             'batch_size': batch_size,
                             'batch_number': batch_number,
@@ -115,9 +105,9 @@ async def main(args):
                             'seed': seed,
                         },
                         'sampling_params': {
-                            'temperature': temperature,
-                            'top_p': top_p,
-                            'top_k': top_k,
+                            'temperature': args.inf_temperature,
+                            'top_p': args.inf_top_p,
+                            'top_k': args.inf_top_k,
                             'seed': seed,
                         },
                         'usage': responses[i].usage,
