@@ -135,6 +135,15 @@ class CommonLLMChat(LLMChat):
     ```
     Use `_convert_conv_to_api_format` to convert a `Conversation` into such a list.
     """
+    # Rate limits: Requests per minute (RPM) and Tokens per minute (TPM)
+    RATE_LIMITS = {
+        "model_name": {
+            "usage_tier=1": {"RPM": 0, "TPM": 0},
+        },
+    }
+    RPM_LIMIT: int = 0
+    TPM_LIMIT: int = 0
+
     def __init__(
         self,
         model_name: str,
@@ -149,6 +158,11 @@ class CommonLLMChat(LLMChat):
     ):
         super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, repetition_penalty, max_retries, wait_seconds)
         self.client = None
+
+    def _update_rate_limits(self, usage_tier: int) -> None:
+        rate_limit_for_usage_tier = self.RATE_LIMITS[self.model_name][f"usage_tier={usage_tier}"]
+        self.RPM_LIMIT = rate_limit_for_usage_tier["RPM"]
+        self.TPM_LIMIT = rate_limit_for_usage_tier["TPM"]
 
     @abc.abstractmethod
     def _call_api(
@@ -219,6 +233,7 @@ class CommonLLMChat(LLMChat):
         Generate responses for a batch of formatted conversations using asynchronous API calls, and return a batch of response objects.
         Accounts for rate limits by sleeping between requests.
         """
+        assert self.RPM_LIMIT > 0, "RPM_LIMIT must be greater than 0"
         tasks = []
 
         start = time.time()
@@ -250,7 +265,6 @@ class CommonLLMChat(LLMChat):
             )
             tasks.append(asyncio.create_task(t))
             # Sleep to respect the rate limit
-            # TODO implement variable RPM_LIMIT
             await asyncio.sleep(60 / self.RPM_LIMIT)
         
         logging.debug(f"{time.time()-start}: Waiting for responses")
@@ -268,10 +282,10 @@ class CommonLLMChat(LLMChat):
 class OpenAIChat(CommonLLMChat):
     RATE_LIMITS = {
         "gpt-4o-mini-2024-07-18": {
-            1: (500, 200_000),
+            "usage_tier=1": {"RPM": 500, "TPM": 200_000},
         },
         "gpt-4o-2024-11-20": {
-            1: (500, 30_000),
+            "usage_tier=1": {"RPM": 500, "TPM": 30_000},
         },
     }
     SUPPORTED_LLM_NAMES: list[str] = list(RATE_LIMITS.keys())
@@ -293,7 +307,7 @@ class OpenAIChat(CommonLLMChat):
         self.client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.async_client = openai.AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.encoding = tiktoken.encoding_for_model(model_name)
-        self.RPM_LIMIT, self.TPM_LIMIT = self.RATE_LIMITS[model_name][usage_tier]
+        self._update_rate_limits(usage_tier)
 
     def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = False, seed: int = 1) -> object:
         # https://platform.openai.com/docs/api-reference/introduction
@@ -340,9 +354,7 @@ class TogetherChat(CommonLLMChat):
         "together:meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
         "together:meta-llama/Llama-Vision-Free",
     ]
-    # TODO: add rate limits dict for llama models
-    RPM_LIMIT = 20
-    TPM_LIMIT = 500_000
+    RATE_LIMITS = {llm_name: {"usage_tier_1": {"RPM": 20, "TPM": 500_000}} for llm_name in SUPPORTED_LLM_NAMES}
     # additional stop token for llama models
     # NOTE: eot = end-of-turn
     ADDITIONAL_STOP = ["<|eot_id|>",]
@@ -364,6 +376,7 @@ class TogetherChat(CommonLLMChat):
         super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, repetition_penalty, max_retries, wait_seconds)
         self.client = together.Together(api_key=os.getenv("TOGETHER_API_KEY"))
         self.async_client = together.AsyncTogether(api_key=os.getenv("TOGETHER_API_KEY"))
+        self._update_rate_limits(usage_tier)
 
     def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = False, seed: int = 1) -> str:
         # https://github.com/togethercomputer/together-python
@@ -397,10 +410,10 @@ class TogetherChat(CommonLLMChat):
 class AnthropicChat(CommonLLMChat):
     RATE_LIMITS = {
         "claude-3-5-sonnet-20241022": {
-            2: (1_000, 80_000),
+            "usage_tier=2": {"RPM": 1_000, "TPM": 80_000},
         },
         "claude-3-5-haiku-20241022": {
-            2: (1_000, 100_000),
+            "usage_tier=2": {"RPM": 1_000, "TPM": 100_000},
         },
     }
     SUPPORTED_LLM_NAMES: list[str] = list(RATE_LIMITS.keys())
@@ -421,7 +434,7 @@ class AnthropicChat(CommonLLMChat):
         super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, repetition_penalty, max_retries, wait_seconds)
         self.client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
         self.async_client = anthropic.AsyncAnthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-        self.RPM_LIMIT, self.TPM_LIMIT = self.RATE_LIMITS[model_name][usage_tier]
+        self._update_rate_limits(usage_tier)
 
     def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = False, seed: int = 1) -> object:
         # https://docs.anthropic.com/en/api/migrating-from-text-completions-to-messages
@@ -475,16 +488,16 @@ class GeminiChat(CommonLLMChat):
     """
     RATE_LIMITS = {
         "gemini-1.5-flash-002": {
-            1: (15, 1_000_000),
+            "usage_tier=1": {"RPM": 15, "TPM": 1_000_000},
         },
         "gemini-1.5-pro-002": {
-            1: (2, 32_000),
+            "usage_tier=1": {"RPM": 2, "TPM": 32_000},
         },
         "gemini-1.5-flash-8b-001": {
-            1: (15, 1_000_000),
+            "usage_tier=1": {"RPM": 15, "TPM": 1_000_000},
         },
         "gemini-2.0-flash-exp": {
-            1: (10, 4_000_000) # https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash
+            "usage_tier=1": {"RPM": 10, "TPM": 4_000_000}, # https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash
         }
     }
     SUPPORTED_LLM_NAMES: list[str] = list(RATE_LIMITS.keys())
@@ -506,7 +519,7 @@ class GeminiChat(CommonLLMChat):
 
         gemini.configure(api_key=os.getenv("GEMINI_API_KEY"))
         self.client = gemini.GenerativeModel(self.model_name)
-        self.RPM_LIMIT, self.TPM_LIMIT = self.RATE_LIMITS[model_name][usage_tier]
+        self._update_rate_limits(usage_tier)
 
     def _convert_conv_to_api_format(self, conv: Conversation) -> list[dict]:
         # https://ai.google.dev/gemini-api/docs/models/gemini
