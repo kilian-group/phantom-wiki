@@ -30,6 +30,19 @@ attributes_parser.add_argument(
 def get_job_info(db: Database, name: str):
     """
     Get job information for a person in the database.
+
+    Args:
+        db (Database):
+            The database containing the facts.
+        name (str):
+            The name of the person to get job information for.
+
+    Returns:
+        list[dict]:
+            A list of dictionaries containing the job and the start/end date of a person. For example:
+            [{"job": "software engineer", "start_date": "2021-01-01"},
+             {"job": "data scientist", "end_date": "2022-01-01"}]
+
     """
     jobs = []
     query = f"start_job('{name}', X, Y)"
@@ -43,7 +56,21 @@ def get_job_info(db: Database, name: str):
 
 def get_job_facts(db: Database, names: list[str]) -> dict[str, list[str]]:
     """
-    Get job facts for a list of names.
+    Convert the job information from the above get_job_info() function into facts for each person in
+    natural language.
+
+    Args:
+        db (Database):
+            The database containing the facts.
+        names (list[str]):
+            A list of names for which to generate job facts.
+
+    Returns:
+        dict[str, list[str]]:
+            A dictionary where the key is the name of the person and the value is a list of job facts in
+            natural language. For example:
+            {"Alice": ["Alice started working as a software engineer on 2021-01-01.",
+                       "Alice ended working as a data scientist on 2022-01-01."]}
     """
     facts = {}
     for name in names:
@@ -75,6 +102,19 @@ def get_job_facts(db: Database, names: list[str]) -> dict[str, list[str]]:
 def get_attributes(db: Database, name: str):
     """
     Get attributes for each person in the database.
+
+    Args:
+        db (Database):
+            The database containing the facts.
+        name (str):
+            The name of the person to get attributes for.
+
+    Returns:
+        dict:
+            A dictionary containing the attributes for the person. For example:
+            {"hobby": ["reading"],
+             "job": ["software engineer"]}
+
     """
     attributes = {}
     for attr in ATTRIBUTE_RELATION:
@@ -87,6 +127,19 @@ def get_attributes(db: Database, name: str):
 def get_attribute_facts(db: Database, names: list[str]) -> dict[str, list[str]]:
     """
     Get attribute facts for a list of names.
+
+    Args:
+        db (Database):
+            The database containing the facts.
+        names (list[str]):
+            A list of names for which to get attribute facts.
+
+    Returns:
+        dict[str, list[str]]:
+            A dictionary where the key is the name of the person and the value is a list of attribute facts in
+            natural language. For example:
+            {"Alice": ["Alice's hobby is reading",
+                       "Alice's job is software engineer"]}
     """
     facts = {}
     for name in names:
@@ -109,13 +162,28 @@ def get_attribute_facts(db: Database, names: list[str]) -> dict[str, list[str]]:
 #
 def db_generate_attributes(db: Database, args: ArgumentParser, familytrees: list):
     """
-    Generate attributes for each person in the database.
+    Generate attributes for each person in the database and add them as facts to the database.
+    For jobs:
+        - Generate jobs for each person.
+        - Shuffle the job market by ending and starting new jobs.
+        For example:
+        - start_job('Alice', 'software engineer', '2021-01-01')
+        - end_job('Alice', 'data scientist', '2022-01-01')
+    For hobbies:
+        - Generate hobbies for each person.
+        For example:
+        - hobby('Alice', 'reading')
+        - attribute('reading')
 
     Args:
         db (Database): The database containing the facts.
         args (ArgumentParser): The command line arguments.
+
+    Returns:
+        None
+
     """
-    jobs = generate_jobs(familytrees, args.seed)
+    generate_jobs(familytrees, args.seed)
     shuffle_job_market(familytrees, args)
     names = db.get_names()
     hobbies = generate_hobbies(names, args.seed)
