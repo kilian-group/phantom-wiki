@@ -121,6 +121,20 @@ class LLMChat(abc.ABC):
 
 
 class CommonLLMChat(LLMChat):
+    """
+    Common class for LLM providers that share a common messages format for API calls.
+    E.g. OpenAI, TogetherAI, Anthropic.
+
+    Common format is:
+    ```
+    [
+        {"role": role1, "content": [{"type": "text", "text": text1}],
+        {"role": role2, "content": [{"type": "text", "text": text2}],
+        {"role": role3, "content": [{"type": "text", "text": text3}],
+    ]
+    ```
+    Use `_convert_conv_to_api_format` to convert a `Conversation` into such a list.
+    """
     def __init__(
         self,
         model_name: str,
@@ -146,7 +160,6 @@ class CommonLLMChat(LLMChat):
     ) -> object:
         """
         Calls the API to generate a response for the messages. Expects messages ready for API.
-        Use `convert_conv_to_api_format` to convert a `Conversation` into such a list.
 
         Args:
             messages_api_format (list[dict]): List of messages in the API format.
@@ -169,24 +182,15 @@ class CommonLLMChat(LLMChat):
         pass
 
     @abc.abstractmethod
-    # What kind of dict?
-    def _count_tokens(self, message: dict) -> int:
+    def _count_tokens(self, messages_api_format: list[dict]) -> int:
         """
-        Count the number of tokens in the message.
+        Returns the count of total tokens in the messages, which are in the common format.
         """
         pass
 
     def _convert_conv_to_api_format(self, conv: Conversation) -> list[dict]:
         """
         Converts the conversation object to a common format supported by various LLM providers.
-        Common format is:
-        ```
-        [
-            {"role": role1, "content": [{"type": "text", "text": text1}],
-            {"role": role2, "content": [{"type": "text", "text": text2}],
-            {"role": role3, "content": [{"type": "text", "text": text3}],
-        ]
-        ```
         """
         formatted_messages = []
         for message in conv.messages:
@@ -220,10 +224,9 @@ class CommonLLMChat(LLMChat):
         start = time.time()
         token_usage_per_minute = 0 # NOTE: we estimate the number of used tokens in the current minute
         
-        for i, messages in tqdm(enumerate(batch_messages_api_format), total=len(batch_messages_api_format)):
+        for i, messages_api_format in tqdm(enumerate(batch_messages_api_format), total=len(batch_messages_api_format)):
             logging.debug(f"{time.time()-start}: Requesting message {i}")
-            # TODO: implement count tokens for each model
-            input_tokens = self._count_tokens(messages)
+            input_tokens = self._count_tokens(messages_api_format)
             logging.debug(f"Input tokens: {input_tokens}")
             token_usage_per_minute += input_tokens
 
@@ -240,7 +243,7 @@ class CommonLLMChat(LLMChat):
                 token_usage_per_minute = 0
 
             t = self._call_api(
-                messages_api_format=messages, 
+                messages_api_format=messages_api_format, 
                 stop_sequences=stop_sequences, 
                 use_async=True, 
                 seed=seed, 
@@ -451,9 +454,6 @@ class AnthropicChat(CommonLLMChat):
         )
 
     def _count_tokens(self, messages_api_format: list[dict]) -> int:
-        """
-        Count the number of tokens in the input_prompt.
-        """
         response = self.client.beta.messages.count_tokens(
             betas=["token-counting-2024-11-01"],
             model=self.model_name,
@@ -463,6 +463,16 @@ class AnthropicChat(CommonLLMChat):
 
 
 class GeminiChat(CommonLLMChat):
+    """
+    Overrides the common messages format with the Gemini format:
+    ```
+    [
+        {"role": role1, "parts": text1},
+        {"role": role2, "parts": text2},
+        {"role": role3, "parts": text3},
+    ]
+    ```
+    """
     RATE_LIMITS = {
         "gemini-1.5-flash-002": {
             1: (15, 1_000_000),
@@ -499,16 +509,6 @@ class GeminiChat(CommonLLMChat):
         self.RPM_LIMIT, self.TPM_LIMIT = self.RATE_LIMITS[model_name][usage_tier]
 
     def _convert_conv_to_api_format(self, conv: Conversation) -> list[dict]:
-        """
-        Converts the conversation object to the gemini format.
-        ```
-        [
-            {"role": role1, "parts": text1,
-            {"role": role2, "parts": text2,
-            {"role": role3, "parts": text3,
-        ]
-        ```
-        """
         # https://ai.google.dev/gemini-api/docs/models/gemini
         # https://github.com/google-gemini/generative-ai-python/blob/main/docs/api/google/generativeai/GenerativeModel.md
         formatted_messages = []
@@ -534,7 +534,6 @@ class GeminiChat(CommonLLMChat):
         )
         return response
 
-
     def _parse_api_output(self, response: object) -> LLMChatResponse:
         return LLMChatResponse(
             pred=response.text,
@@ -547,9 +546,6 @@ class GeminiChat(CommonLLMChat):
         )
 
     def _count_tokens(self, messages_api_format: list[dict]) -> int:
-        """
-        Count the number of tokens in the input_prompt.
-        """
         response = self.client.count_tokens(messages_api_format)
         return response.total_tokens
 
