@@ -15,7 +15,7 @@ from tenacity import retry, stop_after_attempt, wait_fixed
 from vllm import (LLM, SamplingParams)
 from .data import ContentTextMessage, Conversation
 from transformers import AutoTokenizer
-from .utils import get_gpu_count
+from .gpu_utils import get_gpu_count
 
 
 class LLMChatResponse(BaseModel):
@@ -275,7 +275,7 @@ class CommonLLMChat(LLMChat):
     async def batch_generate_response(self, convs: list[Conversation], stop_sequences: list[str] | None = None, seed: int = 1) -> list[LLMChatResponse]:
         batch_messages_api_format = [self._convert_conv_to_api_format(conv) for conv in convs]
         responses = await self._async_chat_completion(batch_messages_api_format, stop_sequences=stop_sequences, seed=seed)
-        parsed_responses = [self._parse_batch_output(response) for response in responses]
+        parsed_responses = [self._parse_api_output(response) for response in responses]
         return parsed_responses
 
 

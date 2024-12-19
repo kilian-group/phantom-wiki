@@ -97,12 +97,11 @@ def save_preds(
                 "batch_size": batch_size,
                 "batch_number": 1,
                 "type": int(df_qa_pairs.at[i, "type"]),
-                "seed": seed,
             },
             "inference_params": {
                 "max_tokens": args.inf_max_tokens,
                 "temperature": args.inf_temperature,
-                "seed": args.inf_seed,
+                "seed": seed,
                 "max_retries": args.inf_max_retries,
                 "wait_seconds": args.inf_wait_seconds
             },
