@@ -9,7 +9,8 @@ from .utils import (get_parser,
                     get_all_articles,
                     setup_logging)
 from .llm import (get_llm,
-                  SUPPORTED_LOCAL_LLM_NAMES)
+                  SUPPORTED_LOCAL_LLM_NAMES,
+                  LLMChatResponse)
 from .prompts import ZEROSHOT_PROMPT
 from .data import (Conversation, 
                    ContentTextMessage, 
@@ -93,7 +94,7 @@ async def main(args):
                 # get run name
                 run_name = f"{split}-{model.replace('/','--')}-bs{batch_size}-bn{batch_number}-s{seed}"
                 print(f"Run name: {run_name}")
-                responses = await llm_chat.batch_generate_response(
+                responses: list[LLMChatResponse] = await llm_chat.batch_generate_response(
                     convs=conv_list,
                     stop_sequences=['\n',],
                     seed=seed,
@@ -104,7 +105,7 @@ async def main(args):
                     uid = batch[i]['id']
                     preds[uid] = {
                         'true' : batch[i]['answer'],
-                        'pred' : responses[i]['pred'],
+                        'pred' : responses[i].pred,
                         'metadata': {
                             'model': model,
                             'split': split,
@@ -119,7 +120,7 @@ async def main(args):
                             'top_k': top_k,
                             'seed': seed,
                         },
-                        'usage': responses[i]['usage'],
+                        'usage': responses[i].usage,
                     }
 
                 # save predictions

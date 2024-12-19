@@ -4,7 +4,7 @@ import re
 import pandas as pd
 
 from langchain.prompts import PromptTemplate
-from phantom_eval.llm import LLMChat
+from phantom_eval.llm import LLMChat, LLMChatResponse
 from phantom_eval.data import Conversation, ContentTextMessage, Message
 
 logger = logging.getLogger(__name__)
@@ -108,8 +108,9 @@ class ReactAgent:
         conv: Conversation = Conversation(messages=[
             Message(role="user", content=[ContentTextMessage(text=user_message)])
         ])
-        resp = llm_chat.generate_response(conv, stop_sequences=stop_sequences)
-        return format_step(resp)
+        response: LLMChatResponse = llm_chat.generate_response(conv, stop_sequences=stop_sequences)
+        # TODO Log resp.usage somewhere as well
+        return format_step(response.pred)
     
     def _build_agent_prompt(self) -> str:
         return self.agent_prompt.format(
