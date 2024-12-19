@@ -11,13 +11,23 @@ from .constants import HOBBIES
 def generate_jobs(familytrees: list[Person], seed=1):
     """
     Generate a job for each person in the family trees.
+    For each person, check if they lived past the age of 18.
+    If they did, generate a job for them. And add the job as a career event.
+    For example: start_job("software engineer", "2020-01-01")
+    Otherwise, skip them.
+
+    Args:
+        familytrees: a list of family trees (args.num_samples)
+        seed: random seed
+
+    Returns:
+        None
     """
     fake = Faker()
     print(f"Setting seed for Faker to {seed}")
     Faker.seed(seed)
     for tree in familytrees:
         for person in tree:
-            name = person.name
             dod = person.date_of_death
             dob = person.date_of_birth
             age_at_death = dod.year - dob.year - ((dod.month, dod.day) < (dob.month, dob.day))
@@ -38,6 +48,25 @@ def generate_jobs(familytrees: list[Person], seed=1):
 def shuffle_job_market(familytrees: list[Person], args) -> None:
     """
     Similar to divorce and remarry, end jobs and start new ones.
+    first round: end jobs
+    For each person, check if they have a job.
+    If yes and random number is less than unemployed_rate, end the job.
+    The end date is a random date between the start date and the date of death.
+
+    second round: start new jobs
+    For each person, check if they are unemployed.
+    If yes and random number is less than reemployed_rate, start a new job.
+    The start date is a random date between the end date of the last job and the date of death.
+
+    Args:
+        familytrees: a list of family trees (args.num_samples)
+        args:
+            unemployed_rate: the probability that a person will be unemployed
+            reemployed_rate: the probability that a person will be reemployed
+            seed: random seed
+
+    Returns:
+        None
     """
     fake = Faker()
     print(f"Setting seed for Faker to {args.seed}")
@@ -82,6 +111,18 @@ def shuffle_job_market(familytrees: list[Person], args) -> None:
 
 
 def generate_hobbies(names: list[str], seed=1) -> dict[str, str]:
+    """
+    Generate a hobby for each person in the list of names.
+
+    Args:
+        names: list of names
+        seed: random seed
+
+    Returns:
+        hobbies: a dictionary with the name as the key and the hobby as the value.
+        For example: {"John": "gardening"}
+
+    """
     rng = default_rng(seed)
     hobbies = {}
     for name in names:
