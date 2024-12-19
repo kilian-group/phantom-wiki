@@ -9,7 +9,7 @@ from .utils import (get_parser,
                     get_all_articles,
                     setup_logging)
 from .llm import (get_llm,
-                  LOCAL_MODELS)
+                  SUPPORTED_LOCAL_LLM_NAMES)
 from .prompts import ZEROSHOT_PROMPT
 from .data import (Conversation, 
                    ContentTextMessage, 
@@ -57,7 +57,7 @@ async def main(args):
         for split in split_list:
             # get data
             dataset = load_data(split)
-            batch_size = len(dataset['qa_pairs']) if model in LOCAL_MODELS else args.batch_size
+            batch_size = len(dataset['qa_pairs']) if model in SUPPORTED_LOCAL_LLM_NAMES else args.batch_size
             for batch_number in range(1, math.ceil(len(dataset['qa_pairs'])/batch_size) + 1):
                 # we are in the setting where we pass in all the articles as evidence
                 evidence = "Given the following evidence:\n"

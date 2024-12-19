@@ -4,7 +4,6 @@ import time
 from tqdm import tqdm
 import logging
 import asyncio
-import subprocess
 
 import anthropic
 import openai
@@ -15,6 +14,7 @@ from tenacity import retry, stop_after_attempt, wait_fixed
 from vllm import (LLM, SamplingParams)
 from .data import ContentTextMessage, Conversation
 from transformers import AutoTokenizer
+from .utils import get_gpu_count
 
 
 class LLMChat(abc.ABC):
@@ -666,9 +666,6 @@ class VLLMChat(LLMChat):
         ]
         return responses
 
-"""
-Helper functions
-"""
 
 SUPPORTED_LLM_NAMES: list[str] = (
     OpenAIChat.SUPPORTED_LLM_NAMES
@@ -677,7 +674,7 @@ SUPPORTED_LLM_NAMES: list[str] = (
     + GeminiChat.SUPPORTED_LLM_NAMES
     + VLLMChat.SUPPORTED_LLM_NAMES
 )
-LOCAL_MODELS: list[str] = VLLMChat.SUPPORTED_LLM_NAMES
+SUPPORTED_LOCAL_LLM_NAMES: list[str] = VLLMChat.SUPPORTED_LLM_NAMES
 
 
 def get_llm(model_name: str, model_kwargs: dict) -> LLMChat:
@@ -694,21 +691,3 @@ def get_llm(model_name: str, model_kwargs: dict) -> LLMChat:
             return VLLMChat(model_name=model_name, **model_kwargs)
         case _:
             raise ValueError(f"Model name {model_name} must be one of {SUPPORTED_LLM_NAMES}.")
-
-def get_gpu_count():
-    try:
-        result = subprocess.run(
-            ["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            check=True,
-            text=True
-        )
-        gpu_list = result.stdout.strip().split('\n')
-        return len(gpu_list)
-    except subprocess.CalledProcessError as e:
-        print(f"Error occurred while trying to get GPU count: {e}")
-        return 0
-    except FileNotFoundError:
-        print("nvidia-smi command not found. Ensure that the NVIDIA drivers are installed.")
-        return 0
