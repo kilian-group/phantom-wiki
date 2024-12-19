@@ -355,9 +355,6 @@ class TogetherChat(CommonLLMChat):
         "together:meta-llama/Llama-Vision-Free",
     ]
     RATE_LIMITS = {llm_name: {"usage_tier_1": {"RPM": 20, "TPM": 500_000}} for llm_name in SUPPORTED_LLM_NAMES}
-    # additional stop token for llama models
-    # NOTE: eot = end-of-turn
-    ADDITIONAL_STOP = ["<|eot_id|>",]
 
     def __init__(
         self,
@@ -392,7 +389,7 @@ class TogetherChat(CommonLLMChat):
             repetition_penalty=self.repetition_penalty,
             seed=seed,
             max_tokens=self.max_tokens,
-            stop=stop_sequences + self.ADDITIONAL_STOP,
+            stop=stop_sequences,
         )
         return response
 
@@ -441,12 +438,12 @@ class AnthropicChat(CommonLLMChat):
         # https://github.com/anthropics/anthropic-sdk-python?tab=readme-ov-file#async-usage
         # https://docs.anthropic.com/en/api/messages
         client = self.async_client if use_async else self.client
-        # TODO Rather than quietly removing '\n' from stop_sequences, we should raise an error if it is present
-        # Then the user will know not to use it
+
         if isinstance(stop_sequences, list) and '\n' in stop_sequences:
-            # NOTE: Claude does not accept whitespace stop sequences like "\n".
+            # Claude does not accept whitespace stop sequences like "\n".
             # By default, the model will stop at the end of the turn
-            stop_sequences.remove('\n')
+            raise ValueError("Anthropic's API does not support '\n' in stop_sequences.")
+
         response = client.messages.create(
             model=self.model_name,
             messages=messages_api_format,
