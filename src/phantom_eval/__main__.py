@@ -43,7 +43,7 @@ async def main(args: argparse.Namespace) -> None:
     else:
         raise ValueError(f"Method {args.method} not supported.")
     
-    for seed in args.seed_list:
+    for seed in args.inf_seed_list:
         # iterate over the splits first before running additional seeds
         for split in args.split_list:
             # get data

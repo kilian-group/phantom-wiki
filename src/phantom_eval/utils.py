@@ -93,9 +93,7 @@ def get_parser() -> ArgumentParser:
                         help="Top-k for sampling")
     parser.add_argument("--inf_repetition_penalty", "-r", type=float, default=1.0,
                         help="Repetition penalty for sampling")
-    parser.add_argument("--inf_seed", type=int, default=1,
-                        help="Seed for sampling")
-    parser.add_argument("--seed_list", type=int, nargs="+", default=[1],
+    parser.add_argument("--inf_seed_list", type=int, nargs="+", default=[1],
                         help="List of seeds to evaluate")
     parser.add_argument("--inf_max_retries", type=int, default=3,
                         help="Number of tries to get response")
@@ -103,8 +101,6 @@ def get_parser() -> ArgumentParser:
                         help="Seconds to wait between tries")
 
     # Dataset params
-    parser.add_argument("--split", "-s", default="depth_10_size_26_seed_1", type=str,
-                        help="Dataset split (e.g., train, val, test)")
     parser.add_argument("--split_list", default=["depth_10_size_26_seed_1"], type=str, nargs="+",
                         help="List of dataset splits to evaluate")
     parser.add_argument("--batch_size", "-bs", default=10, type=int,

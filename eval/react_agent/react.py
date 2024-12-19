@@ -21,59 +21,68 @@ logger = logging.getLogger(__name__)
 
 
 def main(args: argparse.Namespace) -> None:
-    logger.info("Loading dataset")
-    dataset = load_data(args.split)
-    df_qa_pairs = pd.DataFrame(dataset["qa_pairs"])
-    df_text = pd.DataFrame(dataset["text"])
+    for seed in args.inf_seed_list:
+        for split in args.split_list:
+            logger.info(f"Loading dataset split {split}")
+            dataset = load_data(split)
+            df_qa_pairs = pd.DataFrame(dataset["qa_pairs"])
+            df_text = pd.DataFrame(dataset["text"])
 
-    logger.info("Loading LLM")
-    model_kwargs = dict(
-        model_path=args.model_path,
-        max_tokens=args.inf_max_tokens,
-        temperature=args.inf_temperature,
-        seed=args.inf_seed,
-        max_retries=args.inf_max_retries,
-        wait_seconds=args.inf_wait_seconds,
-    )
-    llm_chat = llm.get_llm(args.model_name, model_kwargs=model_kwargs)
-    llm_prompts = prompts.get_llm_prompt(args.model_name)
+            logger.info("Loading LLM")
+            model_kwargs = dict(
+                model_path=args.model_path,
+                max_tokens=args.inf_max_tokens,
+                temperature=args.inf_temperature,
+                max_retries=args.inf_max_retries,
+                wait_seconds=args.inf_wait_seconds,
+            )
+            llm_chat = llm.get_llm(args.model_name, model_kwargs=model_kwargs)
+            llm_prompts = prompts.get_llm_prompt(args.model_name)
 
-    # Construct react agent for each sample in the QA dataset
-    logger.info(f"Constructing ReAct agent for {len(df_qa_pairs)} samples")
-    agents: list[ReactAgent] = []
-    for i, sample in enumerate(df_qa_pairs.itertuples()):
-        agent = ReactAgent(
-            sample.question,
-            sample.answer,
-            agent_prompt=llm_prompts.get_react_prompt(),
-            max_steps=args.react_max_steps,
-            text_corpus=df_text,
-            react_examples=prompts.REACT_EXAMPLES,
-        )
-        agents.append(agent)
+            # Construct react agent for each sample in the QA dataset
+            logger.info(f"Constructing ReAct agent for {len(df_qa_pairs)} samples")
+            agents: list[ReactAgent] = []
+            for i, sample in enumerate(df_qa_pairs.itertuples()):
+                agent = ReactAgent(
+                    sample.question,
+                    sample.answer,
+                    agent_prompt=llm_prompts.get_react_prompt(),
+                    max_steps=args.react_max_steps,
+                    text_corpus=df_text,
+                    react_examples=prompts.REACT_EXAMPLES,
+                    seed=seed,
+                )
+                agents.append(agent)
 
-    # Run the agents and log the final answers
-    run_name = f"split={args.split}__model_name={args.model_name.replace('/', '--')}"
-    logger.info(f"Running ReAct agents")
-    answers: list[dict[str, Any]] = []
+            # Run the agents and log the final answers
+            run_name = f"split={split}__model_name={args.model_name.replace('/', '--')}__seed={seed}"
+            logger.info(f"Running ReAct agents")
+            answers: list[dict[str, Any]] = []
 
-    pred_path = Path(args.output_dir) / "react" / "preds" / f"{run_name}.json"
-    pred_path.parent.mkdir(parents=True, exist_ok=True)
-    logger.info(f"Saving predictions to {pred_path}")
+            pred_path = Path(args.output_dir) / "react" / "preds" / f"{run_name}.json"
+            pred_path.parent.mkdir(parents=True, exist_ok=True)
+            logger.info(f"Saving predictions to {pred_path}")
 
-    for i, agent in tqdm.tqdm(enumerate(agents), total=len(agents)):
-        agent.run(llm_chat)
-        # TODO Add usage dump
-        answers.append({
-            "pred": agent.answer,
-            "interaction": agent._build_agent_prompt(),
-        })
+            for i, agent in tqdm.tqdm(enumerate(agents), total=len(agents)):
+                agent.run(llm_chat)
+                # TODO Add usage dump
+                answers.append({
+                    "pred": agent.answer,
+                    "interaction": agent._build_agent_prompt(),
+                })
 
-        # Save after each agent run
-        save_preds(pred_path, args, df_qa_pairs[:i+1], answers)
-    
+                # Save after each agent run
+                save_preds(pred_path, split, seed, args, df_qa_pairs[:i+1], answers)
+            
 
-def save_preds(pred_path: Path, args: argparse.Namespace, df_qa_pairs: pd.DataFrame, answers: list[dict, str, Any]) -> None:
+def save_preds(
+    pred_path: Path,
+    split: str,
+    seed: int,
+    args: argparse.Namespace,
+    df_qa_pairs: pd.DataFrame,
+    answers: list[dict, str, Any]
+) -> None:
     preds = {}
     batch_size = len(df_qa_pairs)
     for i in range(batch_size):
@@ -84,10 +93,11 @@ def save_preds(pred_path: Path, args: argparse.Namespace, df_qa_pairs: pd.DataFr
             "interaction": answers[i]["interaction"],
             "metadata": {
                 "model": args.model_name,
-                "split": args.split,
+                "split": split,
                 "batch_size": batch_size,
                 "batch_number": 1,
                 "type": int(df_qa_pairs.at[i, "type"]),
+                "seed": seed,
             },
             "inference_params": {
                 "max_tokens": args.inf_max_tokens,
@@ -105,25 +115,7 @@ def save_preds(pred_path: Path, args: argparse.Namespace, df_qa_pairs: pd.DataFr
 
 if __name__ == "__main__":
     parser = get_parser()
-    
-    # Model arguments
-    # parser.add_argument("--model_name", type=str, default="together:meta-llama/Llama-Vision-Free", choices=llm.SUPPORTED_LLM_NAMES)
-    # parser.add_argument("--model_path", type=str, default=None, help="Path to the model")
-    # parser.add_argument("--inf_max_tokens", type=int, default=4096, help="Maximum number of tokens to generate")
-    # parser.add_argument("--inf_temperature", type=float, default=0.0, help="Temperature for sampling")
-    # parser.add_argument("--inf_seed", type=int, default=0, help="Seed for sampling")
-    # parser.add_argument("--inf_max_retries", type=int, default=3, help="Number of tries to get response")
-    # parser.add_argument("--inf_wait_seconds", type=int, default=2, help="Seconds to wait between tries")
-
-    # Dataset arguments
-    # parser.add_argument("--split", type=str, default="depth_6_size_26_seed_1")
-    parser.add_argument("--num_samples", type=int, default=5, help="Number of dataset samples to evaluate")
-
-    # React Agent arguments
     parser.add_argument("--react_max_steps", type=int, default=6, help="Number of steps to run the agent")
-
-    # Logging arguments
-    # parser.add_argument("--output_dir", type=str, default="out", help="Output directory for logs")
 
     args, _ = parser.parse_known_args()
     setup_logging(args.log_level)
