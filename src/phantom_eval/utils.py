@@ -27,6 +27,7 @@ def get_all_articles(dataset):
     all_articles = "\n================\n\n".join(dataset['text']['article'])
     return all_articles
 
+
 def get_relevant_articles(dataset, name_list:list):
     """
     Get articles for a certain list of names.
@@ -41,6 +42,7 @@ def get_relevant_articles(dataset, name_list:list):
 def setup_logging(log_level: str) -> str:
     # Suppress httpx logging from API requests
     logging.getLogger("httpx").setLevel(logging.WARNING)
+    logging.getLogger("httpcore").setLevel(logging.WARNING)
     logging.basicConfig(level=log_level, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
 

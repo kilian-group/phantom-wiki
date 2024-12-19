@@ -17,6 +17,8 @@ from .data import ContentTextMessage, Conversation
 from transformers import AutoTokenizer
 from .gpu_utils import get_gpu_count
 
+logger = logging.getLogger(__name__)
+
 
 class LLMChatResponse(BaseModel):
     pred: str
@@ -234,22 +236,23 @@ class CommonLLMChat(LLMChat):
         Accounts for rate limits by sleeping between requests.
         """
         assert self.RPM_LIMIT > 0, "RPM_LIMIT must be greater than 0"
+        assert self.TPM_LIMIT > 0, "TPM_LIMIT must be greater than 0"
         tasks = []
 
         start = time.time()
         token_usage_per_minute = 0 # NOTE: we estimate the number of used tokens in the current minute
         
         for i, messages_api_format in tqdm(enumerate(batch_messages_api_format), total=len(batch_messages_api_format)):
-            logging.debug(f"{time.time()-start}: Requesting message {i}")
+            logger.debug(f"{time.time()-start}: Requesting message {i}")
             input_tokens = self._count_tokens(messages_api_format)
-            logging.debug(f"Input tokens: {input_tokens}")
+            logger.debug(f"Input tokens: {input_tokens}")
             token_usage_per_minute += input_tokens
 
             # check if we need to sleep to respect the TPM rate limit
             remaining = 60 - (time.time() - start) # number of seconds remaining in the current minute
             if token_usage_per_minute > self.TPM_LIMIT and remaining > 0:
-                logging.info(f"Token usage per minute: {token_usage_per_minute}")
-                logging.info(f"Sleeping for {remaining} seconds to respect the TPM rate limit")
+                logger.info(f"Token usage per minute: {token_usage_per_minute}")
+                logger.info(f"Sleeping for {remaining} seconds to respect the TPM rate limit")
                 await asyncio.sleep(remaining + 1) # NOTE: add an extra second so we definitely pass the minute
             
             # reset if we have passed the minute
@@ -267,9 +270,9 @@ class CommonLLMChat(LLMChat):
             # Sleep to respect the rate limit
             await asyncio.sleep(60 / self.RPM_LIMIT)
         
-        logging.debug(f"{time.time()-start}: Waiting for responses")
+        logger.debug(f"{time.time()-start}: Waiting for responses")
         responses = await asyncio.gather(*tasks)
-        logging.debug(f"{time.time()-start}: Got all responses")
+        logger.debug(f"{time.time()-start}: Got all responses")
         return responses
     
     async def batch_generate_response(self, convs: list[Conversation], stop_sequences: list[str] | None = None, seed: int = 1) -> list[LLMChatResponse]:
