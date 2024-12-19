@@ -447,15 +447,21 @@ class AnthropicChat(CommonLLMChat):
         }
 
 class GeminiChat(CommonLLMChat):
-    # TODO: add gemini-1.5-flash-8b
-    # TODO: add gemini-2.0-flash
-    SUPPORTED_LLM_NAMES: list[str] = [
-        "gemini-1.5-flash-002",
-        "gemini-1.5-pro-002",
-    ]
-    # free version
-    RPM_LIMIT = 15
-    TPM_LIMIT = 1_000_000
+    RATE_LIMITS = {
+        "gemini-1.5-flash-002": {
+            1: (15, 1_000_000),
+        },
+        "gemini-1.5-pro-002": {
+            1: (2, 32_000),
+        },
+        "gemini-1.5-flash-8b-001": {
+            1: (15, 1_000_000),
+        },
+        "gemini-2.0-flash-exp": {
+            1: (10, 4_000_000) # https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash
+        }
+    }
+    SUPPORTED_LLM_NAMES: list[str] = list(RATE_LIMITS.keys())
 
     def __init__(
         self,
@@ -469,11 +475,13 @@ class GeminiChat(CommonLLMChat):
         seed: int = 0,
         max_retries: int = 3,
         wait_seconds: int = 2,
+        usage_tier: int = 1,
     ):
         super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, temperature, seed, max_retries, wait_seconds)
 
         gemini.configure(api_key=os.getenv("GEMINI_API_KEY"))
         self.client = gemini.GenerativeModel(self.model_name)
+        self.RPM_LIMIT, self.TPM_LIMIT = self.RATE_LIMITS[model_name][usage_tier]
 
     def _convert_conv_to_api_format(self, conv: Conversation) -> list[dict]:
         """
