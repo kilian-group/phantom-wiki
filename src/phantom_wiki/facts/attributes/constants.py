@@ -1,7 +1,7 @@
 ATTRIBUTE_FACT_TEMPLATES = {
     "dob": "The date of birth of <subject> is",
     "dod": "The date of death of <subject> is",
-    # "job": "The job of <subject> is",
+    "job": "The job of <subject> is",
     "hobby": "The hobby of <subject> is",
     "gender": "The gender of <subject> is",
 }
@@ -9,13 +9,12 @@ ATTRIBUTE_FACT_TEMPLATES = {
 ATTRIBUTE_RELATION = [
     "dob",
     "dod",
-    # "job",
+    "job",
     "hobby",
     "gender",
 ]
 
-START_JOB_TEMPLATE = "<subject> started working as a <job> on <date>."
-END_JOB_TEMPLATE = "<subject> stopped working as a <job> on <date>."
+
 
 # Source: https://www.kaggle.com/datasets/mrhell/list-of-hobbies?resource=download
 # License: CC0: Public Domain
