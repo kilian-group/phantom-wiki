@@ -60,12 +60,12 @@ data = [
 ]
 
 
-evaluate(
-    data,
-    print,
-    " ".join([prompt, extra["stepbystep"], format["plain"]]),
-    lambda x, y: True,
-)
+# evaluate(
+#     data,
+#     print,
+#     " ".join([prompt, extra["stepbystep"], format["plain"]]),
+#     lambda x, y: True,
+# )
 
 # prompt, extra["stepbystep"], format["answer:"]
 answers = [
@@ -103,8 +103,8 @@ Answer: The person was born in 2004.""",
 ]
 
 
-for answer, (_, true) in zip(answers, data):
-    print(score_answer(answer, true))
+# for answer, (_, true) in zip(answers, data):
+#     print(score_answer(answer, true))
 
 
 """
