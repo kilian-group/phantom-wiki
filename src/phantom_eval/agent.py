@@ -12,6 +12,9 @@ logger = logging.getLogger(__name__)
 
 
 class Agent(abc.ABC):
+    """
+    Abstract class for an agent that implements an evaluation method by prompting an LLM.
+    """
     def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt):
         """
         Args:
@@ -23,30 +26,46 @@ class Agent(abc.ABC):
         self.llm_prompt = llm_prompt
 
     @abc.abstractmethod
-    def run(self, llm_chat: LLMChat, seed: int) -> LLMChatResponse:
+    def run(self, llm_chat: LLMChat, question: str, seed: int) -> LLMChatResponse:
+        """
+        Run the agent with an LLM on a given question.
+        """
         pass
 
     @abc.abstractmethod
     async def batch_run(self, llm_chat: LLMChat, questions: list[str], seed: int) -> list[LLMChatResponse]:
+        """
+        Asynchronously run the agent with an LLM on a list of questions.
+        """
+        pass
+
+    @abc.abstractmethod
+    def _build_agent_prompt(self, question: str) -> str:
+        """
+        Returns the agent prompt with the given question.
+        The prompt may depend on the agent's internal state.
+        """
         pass
 
     def reset(self) -> None:
+        """
+        Reset the agent to its initial state.
+        """
         pass
 
 
 class NshotAgent(Agent):
     """
     Agent to implement Zeroshot and fewshot evaluation, 
-    depending on the given `llm_prompt` on initialization.
+    depending on the input `llm_prompt` on initialization.
     """
-    def __init__(
-        self,
-        text_corpus: pd.DataFrame,
-        llm_prompt: LLMPrompt,
-    ):
+    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt):
         super().__init__(text_corpus, llm_prompt)
 
     def __get_evidence(self) -> str:
+        """
+        Returns all articles (concatenated as a string) in the text corpus as evidence.
+        """
         evidence = "Given the following evidence:\n"
         evidence += "========BEGIN EVIDENCE========\n"
         evidence += "\n================\n\n".join(self.text_corpus["article"])
@@ -108,9 +127,10 @@ class ReactAgent(Agent):
     ):
         """
         Args:
-            question (str): The question to be answered.
             max_steps (int): The maximum number of steps the agent can take.
+                Defaults to 6.
             react_examples (str): Prompt examples to include in agent prompt.
+                Defaults to "".
         """
         super().__init__(text_corpus, llm_prompt)
         self.max_steps = max_steps
@@ -145,6 +165,9 @@ class ReactAgent(Agent):
         return response
     
     def _step(self, llm_chat: LLMChat, question: str, seed: int = 1) -> LLMChatResponse:
+        """
+        Run a single step of the agent, comprising of 3 sub-steps: thought, action, observation.
+        """
         # Stop generating when end tag encountered. Add the end tag if not present in response
         # Think
         response = self._prompt_agent(llm_chat, question, stop_sequences=["</thought>"], seed=seed)
@@ -197,6 +220,10 @@ class ReactAgent(Agent):
         return LLMChatResponse(pred=observation_str, usage={})
 
     def _prompt_agent(self, llm_chat: LLMChat, question: str, stop_sequences: list[str] | None = None, seed: int = 1) -> LLMChatResponse:
+        """
+        Prompt the LLM with the agent's current prompt and the given question.
+        `stop_sequences` and `seed` are passed to the LLM's generation function.
+        """
         # No turn-style conversation. All of the back and forth conversation so far becomes the user prompt.
         user_message: str = self._build_agent_prompt(question)
         conv: Conversation = Conversation(messages=[
@@ -209,6 +236,16 @@ class ReactAgent(Agent):
     
 
 def get_tag_at_round(pred: str, tag_type: str, step_round: int) -> str:
+    """
+    Performs a regex match on the prediction to extract the tag.
+    Tag is of the form: `<tag_type round="<step_round>">...</tag_type>`.
+
+    Returns:
+        str: `"<tag_type round="<step_round>">...</tag_type>"`.
+
+    Raises:
+        ValueError: If the tag_type is not "thought" or "action".
+    """
     if tag_type in ["thought", "action"]:
         pattern = f"(<{tag_type} round=\"{step_round}\">.+?</{tag_type}>)"
         match = re.search(pattern, pred)
@@ -234,6 +271,9 @@ def parse_action(s: str) -> tuple[str, str] | None:
 
 
 def format_pred(pred: str) -> str:
+    """
+    Format the prediction by stripping newlines and spaces.
+    """
     return pred.strip("\n").strip().replace("\n", " ")
         
 

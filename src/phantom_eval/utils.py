@@ -1,12 +1,12 @@
 import argparse
 import logging
 
-from datasets import load_dataset
+from datasets import load_dataset, Dataset
 
 from .llm import SUPPORTED_LLM_NAMES
 
 
-def load_data(split):
+def load_data(split: str) -> dict[str, Dataset]:
     """
     Load the phantom-wiki dataset from HuggingFace for a specific split.
     example: load_data("depth6")
@@ -18,7 +18,7 @@ def load_data(split):
     return dataset
 
 
-def get_relevant_articles(dataset, name_list:list):
+def get_relevant_articles(dataset: Dataset, name_list: list[str]) -> str:
     """
     Get articles for a certain list of names.
     """
