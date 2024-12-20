@@ -24,22 +24,27 @@ from phantom_eval.utils import (get_parser)
 parser = get_parser()
 args, _ = parser.parse_known_args()
 output_dir = args.output_dir
+method = args.method
 
 # %%
 from glob import glob
 import pandas as pd
 import os
 # get all files in the output directory
-files = glob(f"{output_dir}/preds/*.json")
+files = glob(f"{output_dir}/preds/{method}/*.json")
 df_list = []
-# keys in the metadata to create new columns
-METADATA = ['model', 'split', 'batch_size', 'batch_number', 'seed', 'type']
+# keys to create auxiliary columns that are useful for analysis
+METADATA = ['model', 'split', 'batch_size', 'batch_number', 'type']
+SAMPLING_PARAMS = ['seed']
 for filename in files:
     print(f"Reading from {filename}...")
     df = pd.read_json(filename, orient='index', dtype=False)
     # add new columns corresponding to the metadata
     for key in METADATA:
         df["_" + key] = df['metadata'].apply(lambda x: x[key])
+    # add new columns corresponding to the sampling parameters
+    for key in SAMPLING_PARAMS:
+        df["_" + key] = df['inference_params'].apply(lambda x: x[key])
     # drop the metadata column
     df = df.drop(columns=['metadata'])
     df_list.append(df)
