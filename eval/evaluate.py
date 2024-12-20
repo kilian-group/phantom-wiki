@@ -61,8 +61,12 @@ for split in splits:
     df_qa_pairs = df_qa_pairs.set_index('id')
     # convert template column to string
     df_qa_pairs['template'] = df_qa_pairs['template'].apply(lambda x : ' '.join(x))
+    # compute the number of hops by taking the length of the prolog query
     df_qa_pairs['hops'] = df_qa_pairs['prolog'].apply(lambda x : len(x['query']))
+    # determine whether a question is an aggregation question or not
     df_qa_pairs['aggregation'] = df_qa_pairs['prolog'].apply(lambda x : 'aggregate_all' in ' '.join(x['query'])).astype(int)
+    # determine the number of solutions to each question
+    df_qa_pairs['solutions'] = df_qa_pairs['answer'].apply(lambda x : len(x))
     df_qa_pairs_list.append(df_qa_pairs)
 # merge on the index
 df_qa_pairs = pd.concat(df_qa_pairs_list)
@@ -106,7 +110,7 @@ acc.to_csv(os.path.join(scores_dir, "scores.csv"))
 # %%
 # get accuracies by type
 # group by model, split, seed, type
-COLS = ['_model', '_split', '_seed', '_type', 'template', 'hops', 'aggregation']
+COLS = ['_model', '_split', '_seed', '_type', 'template', 'hops', 'aggregation', 'solutions']
 acc_by_type = df.groupby(COLS)[['EM','precision', 'recall', 'f1']].mean()
 # compute the mean and std across seeds
 # drop '_seed' from COLS
@@ -256,7 +260,7 @@ acc_mean_std = acc_mean_std.reset_index()
 
 # %%
 # specify which split you want to look at
-SPLIT_NAME = 'depth_10_size_200_seed_1'
+SPLIT_NAME = 'depth_10_size_26_seed_1'
 acc_mean_std_split = acc_mean_std[acc_mean_std['_split'] == SPLIT_NAME]
 
 # %%
