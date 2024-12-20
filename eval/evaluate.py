@@ -20,7 +20,8 @@
 #   python evaluate.py -od <path to folder containing outputs>
 
 # %%
-from phantom_eval.utils import (get_parser)
+from phantom_eval.utils import (get_parser,
+                                load_data,)
 parser = get_parser()
 args, _ = parser.parse_known_args()
 output_dir = args.output_dir
@@ -45,7 +46,19 @@ for filename in files:
     df_list.append(df)
 # concatenate all dataframes
 df = pd.concat(df_list)
-# print(df.columns)
+# get unique splits
+splits = df['_split'].unique()
+# TODO: join with original qa pairs to get additional information about
+# the prolog queries and the templates
+df_qa_pairs_list = []
+for split in splits:
+    df_qa_pairs = load_data(split)['qa_pairs'].to_pandas()
+    # set index to id
+    df_qa_pairs = df_qa_pairs.set_index('id')
+    df_qa_pairs_list.append(df_qa_pairs)
+# merge on the index
+df_qa_pairs = pd.concat(df_qa_pairs_list)
+df = df.merge(df_qa_pairs, left_index=True, right_index=True)
 
 # %%
 # compute scores
@@ -75,7 +88,7 @@ os.makedirs(scores_dir, exist_ok=True)
 acc.to_csv(os.path.join(scores_dir, "scores.csv"))
 
 # get accuracies by type
-if False:
+if True:
     # group by model, split, seed, and type
     acc_by_type = df.groupby(['_model', '_split', '_seed', '_type'])[['EM','precision', 'recall', 'f1']].mean()
     # compute the mean and std across seeds
