@@ -82,6 +82,9 @@ df['recall'] = df.apply(lambda x: recall(x['pred'], sep.join(x['true']), sep=sep
 df['f1'] = df.apply(lambda x: f1(x['pred'], sep.join(x['true']), sep=sep), axis=1)
 print(df)
 
+# %% [markdown]
+# ## Accuracy vs split
+
 # %%
 # group by model, split, and seed
 grouped = df.groupby(['_model', '_split', '_seed'])
@@ -96,41 +99,24 @@ scores_dir = os.path.join(output_dir, 'scores')
 os.makedirs(scores_dir, exist_ok=True)
 acc.to_csv(os.path.join(scores_dir, "scores.csv"))
 
+# %% [markdown]
+# ## Accuracy vs split & type
+
 # %%
 # get accuracies by type
-if True:
-    # group by model, split, seed, type
-    COLS = ['_model', '_split', '_seed', '_type', 'template', 'hops']
-    acc_by_type = df.groupby(COLS)[['EM','precision', 'recall', 'f1']].mean()
-    # compute the mean and std across seeds
-    # drop '_seed' from COLS
-    COLS.remove('_seed')
-    acc_by_type_mean_std = acc_by_type.groupby(COLS).agg(['mean', 'std'])
-    # print the accuracy
-    print(acc_by_type_mean_std.to_markdown())
-    # collapse multi-index columns
-    acc_by_type_mean_std.columns = acc_by_type_mean_std.columns.to_flat_index()
-    # save to a csv file
-    acc_by_type_mean_std.to_csv(os.path.join(scores_dir, "scores_by_type.csv"))
-
-# %%
-# get the mean and std of the accuracy for each model and split
-# where std is the standard deviation across seeds
-acc_mean_std = acc.groupby(['_model', '_split']).agg(['mean', 'std'])
-
-# %%
-acc_mean_std
-
-# %%
-acc_mean_std.index
-
-# %%
-acc_mean_std = acc_mean_std.reset_index()
-import re
-acc_mean_std['_split'] = acc_mean_std['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(2))
-
-# %%
-acc_mean_std
+# group by model, split, seed, type
+COLS = ['_model', '_split', '_seed', '_type', 'template', 'hops']
+acc_by_type = df.groupby(COLS)[['EM','precision', 'recall', 'f1']].mean()
+# compute the mean and std across seeds
+# drop '_seed' from COLS
+COLS.remove('_seed')
+acc_by_type_mean_std = acc_by_type.groupby(COLS).agg(['mean', 'std'])
+# print the accuracy
+print(acc_by_type_mean_std.to_markdown())
+# collapse multi-index columns
+acc_by_type_mean_std.columns = acc_by_type_mean_std.columns.to_flat_index()
+# save to a csv file
+acc_by_type_mean_std.to_csv(os.path.join(scores_dir, "scores_by_type.csv"))
 
 # %%
 # hard-code the order of the models for the plot
@@ -147,25 +133,6 @@ MODELS = [
     'gemini-1.5-flash-002',
     'gemini-2.0-flash-exp',
 ]
-
-
-# %%
-def get_mean_std(metric):
-    df_mean = acc_mean_std.pivot(index='_model', columns='_split', values=(metric, 'mean'))
-    # change the column names to integers
-    df_mean.columns = df_mean.columns.astype(int)
-    # reorder the columns in ascending order
-    df_mean = df_mean[sorted(df_mean.columns)]
-    row_order = [name for name in MODELS if name in df_mean.index]
-    df_mean = df_mean.loc[row_order]
-
-    df_std = acc_mean_std.pivot(index='_model', columns='_split', values=(metric, 'std'))
-    # change the column names to integers
-    df_std.columns = df_std.columns.astype(int)
-    df_std = df_std[sorted(df_std.columns)]
-    row_order = [name for name in MODELS if name in df_std.index]
-    df_std = df_std.loc[row_order]
-    return df_mean, df_std
 
 # %%
 # create a plot
@@ -217,10 +184,42 @@ LINESTYLES = {
     'gemini-1.5-flash-8b-001': 'dotted',
 }    
 
+# %% [markdown]
+# ## Accuracy vs universe size
+
+# %%
+# get the mean and std of the accuracy for each model and split
+# where std is the standard deviation across seeds
+acc_mean_std = acc.groupby(['_model', '_split']).agg(['mean', 'std'])
+acc_mean_std = acc_mean_std.reset_index()
+import re
+acc_mean_std['_split'] = acc_mean_std['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(2))
+
+
+# %%
+def pivot_mean_std(acc_mean_std, metric, independent_variable='_split'):
+    """Pivot acc_mean_std so that the specified independent variable becomes the rows
+    """
+    df_mean = acc_mean_std.pivot(index='_model', columns=independent_variable, values=(metric, 'mean'))
+    # change the column names to integers
+    df_mean.columns = df_mean.columns.astype(int)
+    # reorder the columns in ascending order
+    df_mean = df_mean[sorted(df_mean.columns)]
+    row_order = [name for name in MODELS if name in df_mean.index]
+    df_mean = df_mean.loc[row_order]
+
+    df_std = acc_mean_std.pivot(index='_model', columns=independent_variable, values=(metric, 'std'))
+    # change the column names to integers
+    df_std.columns = df_std.columns.astype(int)
+    df_std = df_std[sorted(df_std.columns)]
+    row_order = [name for name in MODELS if name in df_std.index]
+    df_std = df_std.loc[row_order]
+    return df_mean, df_std
+
 # %%
 # set figure size
 for metric in ['EM', 'precision', 'recall', 'f1']:
-    df_mean, df_std = get_mean_std(metric)
+    df_mean, df_std = pivot_mean_std(acc_mean_std, metric)
 
     plt.figure(figsize=(15, 8))
     for i, row in df_mean.iterrows():
@@ -241,7 +240,50 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
     plt.ylabel(metric)
     plt.title(metric)
     plt.tight_layout()
-    fig_path = os.path.join(figures_dir, f'{metric}.png')
+    fig_path = os.path.join(figures_dir, f'size-{metric}.png')
+    print(f"Saving to {os.path.abspath(fig_path)}")
+    plt.savefig(fig_path)
+
+# %% [markdown]
+# ## Accuracy vs number of hops
+# Grouped bar chart where bars are grouped by number of hops. In each group we have the different splits.
+
+# %%
+# get the mean and std of the accuracy for each model and split
+# where std is the standard deviation across seeds
+acc_mean_std = acc_by_type.groupby(['_model', '_split', 'hops']).agg(['mean', 'std'])
+acc_mean_std = acc_mean_std.reset_index()
+
+# %%
+# specify which split you want to look at
+SPLIT_NAME = 'depth_10_size_200_seed_1'
+acc_mean_std_split = acc_mean_std[acc_mean_std['_split'] == SPLIT_NAME]
+
+# %%
+# set figure size
+for metric in ['EM', 'precision', 'recall', 'f1']:
+    df_mean, df_std = pivot_mean_std(acc_mean_std_split, metric, independent_variable='hops')
+
+    plt.figure(figsize=(15, 8))
+    for i, row in df_mean.iterrows():
+        x = df_mean.columns
+        # use log2 scale for the x-axis
+        x = np.log2(x)
+        y = row
+        yerr = df_std.loc[i]
+        # plt.errorbar(x, y, yerr=yerr, label=i, marker='o')
+        # use a line plot instead of errorbar
+        plt.plot(x, y, label=i, marker='o', color=COLORS[i], linestyle=LINESTYLES[i])
+        plt.fill_between(x, y-yerr, y+yerr, alpha=0.3, color=COLORS[i])
+
+    plt.legend(title='Model', loc='lower right', fontsize=12)
+    # format x-axis
+    plt.xlabel('Number of hops')
+    plt.xticks(np.log2(df_mean.columns), df_mean.columns)
+    plt.ylabel(metric)
+    plt.title(metric)
+    plt.tight_layout()
+    fig_path = os.path.join(figures_dir, f'hops-{metric}-{SPLIT_NAME}.png')
     print(f"Saving to {os.path.abspath(fig_path)}")
     plt.savefig(fig_path)
 
