@@ -63,7 +63,6 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
     plt.xlabel('Aggregation vs no aggregation')
     plt.xticks(x, df_mean.columns)
     plt.ylabel(metric)
-    plt.title(metric)
     plt.tight_layout()
     fig_path = os.path.join(figures_dir, f'aggregation-{metric}-{split_name}.png')
     print(f"Saving to {os.path.abspath(fig_path)}")

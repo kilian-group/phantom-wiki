@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 parser = get_parser()
-args, _ = parser.parse_known_args()
+args = parser.parse_args()
 output_dir = args.output_dir
 method = args.method
 # get evaluation data from the specified output directory and method subdirectory
@@ -61,7 +61,6 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
     plt.xlabel('Size of universe')
     plt.xticks(x, df_mean.columns)
     plt.ylabel(metric)
-    plt.title(metric)
     plt.tight_layout()
     fig_path = os.path.join(figures_dir, f'size-{metric}.png')
     print(f"Saving to {os.path.abspath(fig_path)}")

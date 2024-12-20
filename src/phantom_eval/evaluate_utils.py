@@ -17,8 +17,8 @@ plt.rcParams.update({
     'font.size': 24,
     'font.family': 'serif',
     'mathtext.fontset': 'stix',
-    'axes.labelsize': 24,
-    'axes.titlesize': 24,
+    'axes.labelsize': 30,
+    'axes.titlesize': 30,
     'xtick.labelsize': 24,
     'ytick.labelsize': 24,
     'legend.fontsize': 24,
@@ -107,7 +107,7 @@ def _get_preds(output_dir, method):
     # the model, split, batch_size, batch_number, and seed in the metadata and sampling params fields
     files = glob(f"{output_dir}/preds/{method}/*.json")
     df_list = []
-    if True: # old pred file format
+    if True: # old pred file format to maintain backwards compatibility
         # keys to create auxiliary columns that are useful for analysis
         METADATA = [
             'model', 'split', 'batch_size', 'batch_number', 'type', 
@@ -128,10 +128,7 @@ def _get_preds(output_dir, method):
             df_list.append(df)
     else:
         # keys to create auxiliary columns that are useful for analysis
-        METADATA = [
-            'model', 'split', 'batch_size', 'batch_number', 'type', 
-            # 'seed'
-        ]
+        METADATA = ['model', 'split', 'batch_size', 'batch_number', 'type']
         SAMPLING_PARAMS = ['seed']
         for filename in files:
             print(f"Reading from {filename}...")

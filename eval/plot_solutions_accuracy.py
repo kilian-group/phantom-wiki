@@ -20,7 +20,7 @@ parser.add_argument(
     default='depth_10_size_26_seed_1', 
     help='Split to plot accuracies for'
 )
-args, _ = parser.parse_known_args()
+args = parser.parse_args()
 output_dir = args.output_dir
 method = args.method
 split_name = args.split_name
@@ -71,7 +71,6 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
     plt.xlabel('Number of solutions')
     plt.xticks(x, df_mean.columns)
     plt.ylabel(metric)
-    plt.title(metric)
     plt.tight_layout()
     fig_path = os.path.join(figures_dir, f'solutions-{metric}-{split_name}.png')
     print(f"Saving to {os.path.abspath(fig_path)}")
