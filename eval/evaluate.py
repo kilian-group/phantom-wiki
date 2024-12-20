@@ -11,7 +11,7 @@
 #   kernelspec:
 #     display_name: dataset
 #     language: python
-#     name: dataset
+#     name: python3
 # ---
 
 # %% [markdown]
@@ -24,7 +24,8 @@ from phantom_eval.utils import (get_parser,
                                 load_data,)
 parser = get_parser()
 args, _ = parser.parse_known_args()
-output_dir = args.output_dir
+# output_dir = args.output_dir
+output_dir = 'out-1217-gemini'
 
 # %%
 from glob import glob
@@ -46,6 +47,9 @@ for filename in files:
     df_list.append(df)
 # concatenate all dataframes
 df = pd.concat(df_list)
+
+
+# %%
 # get unique splits
 splits = df['_split'].unique()
 # TODO: join with original qa pairs to get additional information about
@@ -55,10 +59,13 @@ for split in splits:
     df_qa_pairs = load_data(split)['qa_pairs'].to_pandas()
     # set index to id
     df_qa_pairs = df_qa_pairs.set_index('id')
+    # convert template column to string
+    df_qa_pairs['template'] = df_qa_pairs['template'].apply(lambda x : ' '.join(x))
+    df_qa_pairs['hops'] = df_qa_pairs['prolog'].apply(lambda x : len(x['query']))
     df_qa_pairs_list.append(df_qa_pairs)
 # merge on the index
 df_qa_pairs = pd.concat(df_qa_pairs_list)
-df = df.merge(df_qa_pairs, left_index=True, right_index=True)
+df = df.merge(df_qa_pairs, left_index=True, right_index=True, how='left')
 
 # %%
 # compute scores
@@ -74,6 +81,8 @@ df['precision'] = df.apply(lambda x: precision(x['pred'], sep.join(x['true']), s
 df['recall'] = df.apply(lambda x: recall(x['pred'], sep.join(x['true']), sep=sep), axis=1)
 df['f1'] = df.apply(lambda x: f1(x['pred'], sep.join(x['true']), sep=sep), axis=1)
 print(df)
+
+# %%
 # group by model, split, and seed
 grouped = df.groupby(['_model', '_split', '_seed'])
 # print the accuracy
@@ -87,29 +96,22 @@ scores_dir = os.path.join(output_dir, 'scores')
 os.makedirs(scores_dir, exist_ok=True)
 acc.to_csv(os.path.join(scores_dir, "scores.csv"))
 
+# %%
 # get accuracies by type
 if True:
-    # group by model, split, seed, and type
-    acc_by_type = df.groupby(['_model', '_split', '_seed', '_type'])[['EM','precision', 'recall', 'f1']].mean()
+    # group by model, split, seed, type
+    COLS = ['_model', '_split', '_seed', '_type', 'template', 'hops']
+    acc_by_type = df.groupby(COLS)[['EM','precision', 'recall', 'f1']].mean()
     # compute the mean and std across seeds
-    acc_by_type_mean_std = acc_by_type.groupby(['_model', '_split', '_type']).agg(['mean', 'std'])
+    # drop '_seed' from COLS
+    COLS.remove('_seed')
+    acc_by_type_mean_std = acc_by_type.groupby(COLS).agg(['mean', 'std'])
     # print the accuracy
     print(acc_by_type_mean_std.to_markdown())
     # collapse multi-index columns
     acc_by_type_mean_std.columns = acc_by_type_mean_std.columns.to_flat_index()
     # save to a csv file
     acc_by_type_mean_std.to_csv(os.path.join(scores_dir, "scores_by_type.csv"))
-    # # get the length of the query for each type
-    # from phantom_wiki.facts.templates import generate_templates
-    # # assert the depth is the same for rows in acc_by_type
-    # import re
-    # depths = acc_by_type['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(1))
-    # assert depths.nunique() == 1
-    # depth = int(depths.iloc[0])
-    # templates = generate_templates(depth=depth)
-    # import pdb; pdb.set_trace()
-    # # get the length of the query for each type
-    # acc_by_type['query_length'] = acc_by_type['_type'].apply(lambda x: len(templates[x].query.split()))
 
 # %%
 # get the mean and std of the accuracy for each model and split
