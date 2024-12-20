@@ -20,78 +20,17 @@
 #   python evaluate.py -od <path to folder containing outputs>
 
 # %%
-from phantom_eval.utils import (get_parser,
-                                load_data,)
+import os
+from phantom_eval.utils import get_parser
+from phantom_eval.evaluate_utils import get_evaluation_data
 parser = get_parser()
 args, _ = parser.parse_known_args()
 output_dir = args.output_dir
 method = args.method
 # specify which split you want to look at for the plots (besides the one versus universe size, which looks at all splits)
-SPLIT_NAME = 'depth_10_size_200_seed_1'
-
-# %%
-from glob import glob
-import pandas as pd
-import os
-# get all files in the output directory
-files = glob(f"{output_dir}/preds/{method}/*.json")
-df_list = []
-# keys to create auxiliary columns that are useful for analysis
-METADATA = ['model', 'split', 'batch_size', 'batch_number', 'type']
-SAMPLING_PARAMS = ['seed']
-for filename in files:
-    print(f"Reading from {filename}...")
-    df = pd.read_json(filename, orient='index', dtype=False)
-    # add new columns corresponding to the metadata
-    for key in METADATA:
-        df["_" + key] = df['metadata'].apply(lambda x: x[key])
-    # add new columns corresponding to the sampling parameters
-    for key in SAMPLING_PARAMS:
-        df["_" + key] = df['inference_params'].apply(lambda x: x[key])
-    # drop the metadata column
-    df = df.drop(columns=['metadata'])
-    df_list.append(df)
-# concatenate all dataframes
-df = pd.concat(df_list)
-
-
-# %%
-# get unique splits
-splits = df['_split'].unique()
-# TODO: join with original qa pairs to get additional information about
-# the prolog queries and the templates
-df_qa_pairs_list = []
-for split in splits:
-    df_qa_pairs = load_data(split)['qa_pairs'].to_pandas()
-    # set index to id
-    df_qa_pairs = df_qa_pairs.set_index('id')
-    # convert template column to string
-    df_qa_pairs['template'] = df_qa_pairs['template'].apply(lambda x : ' '.join(x))
-    # compute the number of hops by taking the length of the prolog query
-    df_qa_pairs['hops'] = df_qa_pairs['prolog'].apply(lambda x : len(x['query']))
-    # determine whether a question is an aggregation question or not
-    df_qa_pairs['aggregation'] = df_qa_pairs['prolog'].apply(lambda x : 'aggregate_all' in ' '.join(x['query'])).astype(int)
-    # determine the number of solutions to each question
-    df_qa_pairs['solutions'] = df_qa_pairs['answer'].apply(lambda x : len(x))
-    df_qa_pairs_list.append(df_qa_pairs)
-# merge on the index
-df_qa_pairs = pd.concat(df_qa_pairs_list)
-df = df.merge(df_qa_pairs, left_index=True, right_index=True, how='left')
-
-# %%
-# compute scores
-from phantom_eval.score import (match,
-                                precision,
-                                recall,
-                                f1)
-# join the true answers with the appropriate seperator
-# since the scoring functions expect strings
-sep = ', ' # TODO: specifiy the type of separator in the model prompt as well
-df['EM'] = df.apply(lambda x: match(x['pred'], sep.join(x['true']), exact=True, sep=sep), axis=1)
-df['precision'] = df.apply(lambda x: precision(x['pred'], sep.join(x['true']), sep=sep), axis=1)
-df['recall'] = df.apply(lambda x: recall(x['pred'], sep.join(x['true']), sep=sep), axis=1)
-df['f1'] = df.apply(lambda x: f1(x['pred'], sep.join(x['true']), sep=sep), axis=1)
-print(df)
+SPLIT_NAME = 'depth_10_size_26_seed_1'
+# get evaluation data from the specified output directory and method subdirectory
+df = get_evaluation_data(output_dir, method)
 
 # %% [markdown]
 # ## Split
