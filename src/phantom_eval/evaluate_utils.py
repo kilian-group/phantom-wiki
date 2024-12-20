@@ -9,7 +9,66 @@ from .score import (match,
                     recall,
                     f1)
 
-def get_preds(output_dir, method):
+################ Utils and macros for plotting ################
+# create a plot
+import matplotlib.pyplot as plt
+# utils for plotting
+plt.rcParams.update({
+    'font.size': 24,
+    'font.family': 'serif',
+    'mathtext.fontset': 'stix',
+    'axes.labelsize': 24,
+    'axes.titlesize': 24,
+    'xtick.labelsize': 24,
+    'ytick.labelsize': 24,
+    'legend.fontsize': 24,
+    'axes.linewidth': 0.8,
+    'lines.linewidth': 3,
+    'lines.markersize': 10,
+    'axes.spines.top': False,
+    'axes.spines.right': False,
+})
+# hard-code the order of the models for the plot
+# otherwise, the order will be alphabetical (and the model size will not be in order)
+MODELS = [
+    'google/gemma-2-27b-it',
+    'google/gemma-2-9b-it',
+    'google/gemma-2-2b-it',
+    'meta-llama/llama-3.1-8b-instruct',
+    'meta-llama/llama-3.1-70b-instruct',
+    'microsoft/phi-3.5-mini-instruct',
+    'mistralai/mistral-7b-instruct-v0.3',
+    'gemini-1.5-flash-8b-001',
+    'gemini-1.5-flash-002',
+    'gemini-2.0-flash-exp',
+]
+COLORS = {
+    'google/gemma-2-27b-it': 'tab:blue',
+    'google/gemma-2-9b-it': 'tab:blue',
+    'google/gemma-2-2b-it': 'tab:blue',
+    'meta-llama/llama-3.1-70b-instruct': 'tab:orange',
+    'meta-llama/llama-3.1-8b-instruct': 'tab:orange',
+    'microsoft/phi-3.5-mini-instruct': 'tab:green',
+    'mistralai/mistral-7b-instruct-v0.3' : 'tab:red',
+    'gemini-1.5-flash-002': 'tab:purple',
+    'gemini-1.5-flash-8b-001': 'tab:purple',
+    'gemini-2.0-flash-exp': 'tab:purple',
+}
+LINESTYLES = {
+    'google/gemma-2-27b-it': '-',
+    'google/gemma-2-9b-it': '--',
+    'google/gemma-2-2b-it': 'dotted',
+    'meta-llama/llama-3.1-70b-instruct': '-',
+    'meta-llama/llama-3.1-8b-instruct': '--',
+    'microsoft/phi-3.5-mini-instruct': '-',
+    'mistralai/mistral-7b-instruct-v0.3' : '-',
+    'gemini-2.0-flash-exp': '-',
+    'gemini-1.5-flash-002': '--',
+    'gemini-1.5-flash-8b-001': 'dotted',
+}    
+
+################ Utils for getting evaluation data ################
+def _get_preds(output_dir, method):
     """Get predictions from the output directory corresponding to method `method`
 
     Args:
@@ -46,7 +105,7 @@ def get_preds(output_dir, method):
     df_preds = pd.concat(df_list)
     return df_preds
 
-def get_qa_pairs(splits):
+def _get_qa_pairs(splits):
     df_list = []
     for split in splits:
         df = load_data(split)['qa_pairs'].to_pandas()
@@ -78,11 +137,11 @@ def get_evaluation_data(output_dir, method, sep=', '):
             including the predictions, the qa pairs, and per-instance evaluation metrics
     """
     # get the predictions
-    df_preds = get_preds(output_dir, method)
+    df_preds = _get_preds(output_dir, method)
     # get unique splits
     splits = df_preds['_split'].unique()
     # get the qa pairs
-    df_qa_pairs = get_qa_pairs(splits)
+    df_qa_pairs = _get_qa_pairs(splits)
     # join with original qa pairs to get additional information about
     # the prolog queries and the templates
     df = df_preds.merge(df_qa_pairs, left_index=True, right_index=True, how='left')
