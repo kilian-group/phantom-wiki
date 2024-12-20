@@ -331,4 +331,46 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
     print(f"Saving to {os.path.abspath(fig_path)}")
     plt.savefig(fig_path)
 
+# %% [markdown]
+# ## Number of solutions
+# Some questions have multiple ground-truth answers. What is the effect of the number of solutions on the accuracy?
+
+# %%
+# get the mean and std of the accuracy for each model and split
+# where std is the standard deviation across seeds
+acc_mean_std = acc_by_type.groupby(['_model', '_split', 'solutions']).agg(['mean', 'std'])
+acc_mean_std = acc_mean_std.reset_index()
+# specify which split you want to look at
+SPLIT_NAME = 'depth_10_size_26_seed_1'
+acc_mean_std_split = acc_mean_std[acc_mean_std['_split'] == SPLIT_NAME]
+
+# %%
+acc_mean_std_split
+
+# %%
+
+# set figure size
+for metric in ['EM', 'precision', 'recall', 'f1']:
+    df_mean, df_std = pivot_mean_std(acc_mean_std_split, metric, independent_variable='solutions')
+
+    plt.figure(figsize=(15, 8))
+    x = df_mean.columns
+    for i, row in df_mean.iterrows():
+        y = row
+        yerr = df_std.loc[i]
+        # use a line plot instead of errorbar
+        plt.plot(x, y, label=i, marker='o', color=COLORS[i], linestyle=LINESTYLES[i])
+        plt.fill_between(x, y-yerr, y+yerr, alpha=0.3, color=COLORS[i])
+
+    plt.legend(title='Model', loc='lower right', fontsize=12)
+    # format x-axis
+    plt.xlabel('Number of solutions')
+    plt.xticks(x, df_mean.columns)
+    plt.ylabel(metric)
+    plt.title(metric)
+    plt.tight_layout()
+    fig_path = os.path.join(figures_dir, f'solutions-{metric}-{SPLIT_NAME}.png')
+    print(f"Saving to {os.path.abspath(fig_path)}")
+    plt.savefig(fig_path)
+
 # %%
