@@ -25,7 +25,8 @@ from phantom_eval.utils import (get_parser,
 parser = get_parser()
 args, _ = parser.parse_known_args()
 output_dir = args.output_dir
-# output_dir = 'out-1217-gemini'
+# specify which split you want to look at for the plots (besides the one versus universe size, which looks at all splits)
+SPLIT_NAME = 'depth_10_size_200_seed_1'
 
 # %%
 from glob import glob
@@ -257,10 +258,6 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
 # where std is the standard deviation across seeds
 acc_mean_std = acc_by_type.groupby(['_model', '_split', 'hops']).agg(['mean', 'std'])
 acc_mean_std = acc_mean_std.reset_index()
-
-# %%
-# specify which split you want to look at
-SPLIT_NAME = 'depth_10_size_26_seed_1'
 acc_mean_std_split = acc_mean_std[acc_mean_std['_split'] == SPLIT_NAME]
 
 # %%
@@ -298,8 +295,6 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
 # where std is the standard deviation across seeds
 acc_mean_std = acc_by_type.groupby(['_model', '_split', 'aggregation']).agg(['mean', 'std'])
 acc_mean_std = acc_mean_std.reset_index()
-# specify which split you want to look at
-SPLIT_NAME = 'depth_10_size_26_seed_1'
 acc_mean_std_split = acc_mean_std[acc_mean_std['_split'] == SPLIT_NAME]
 
 # %%
@@ -340,8 +335,6 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
 # where std is the standard deviation across seeds
 acc_mean_std = acc_by_type.groupby(['_model', '_split', 'solutions']).agg(['mean', 'std'])
 acc_mean_std = acc_mean_std.reset_index()
-# specify which split you want to look at
-SPLIT_NAME = 'depth_10_size_26_seed_1'
 acc_mean_std_split = acc_mean_std[acc_mean_std['_split'] == SPLIT_NAME]
 
 # %%
