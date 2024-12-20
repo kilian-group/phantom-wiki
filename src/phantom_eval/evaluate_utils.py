@@ -65,7 +65,31 @@ LINESTYLES = {
     'gemini-2.0-flash-exp': '-',
     'gemini-1.5-flash-002': '--',
     'gemini-1.5-flash-8b-001': 'dotted',
-}    
+}
+
+def pivot_mean_std(acc_mean_std, metric, independent_variable='_split'):
+    """Pivot acc_mean_std so that the specified independent variable becomes the rows
+    """
+    assert (metric, 'mean') in acc_mean_std.columns
+    assert (metric, 'std') in acc_mean_std.columns
+    assert ('_model', '') in acc_mean_std.columns
+    assert (independent_variable, '') in acc_mean_std.columns
+
+    df_mean = acc_mean_std.pivot(index='_model', columns=independent_variable, values=(metric, 'mean'))
+    # change the column names to integers
+    df_mean.columns = df_mean.columns.astype(int)
+    # reorder the columns in ascending order
+    df_mean = df_mean[sorted(df_mean.columns)]
+    row_order = [name for name in MODELS if name in df_mean.index]
+    df_mean = df_mean.loc[row_order]
+
+    df_std = acc_mean_std.pivot(index='_model', columns=independent_variable, values=(metric, 'std'))
+    # change the column names to integers
+    df_std.columns = df_std.columns.astype(int)
+    df_std = df_std[sorted(df_std.columns)]
+    row_order = [name for name in MODELS if name in df_std.index]
+    df_std = df_std.loc[row_order]
+    return df_mean, df_std
 
 ################ Utils for getting evaluation data ################
 def _get_preds(output_dir, method):
@@ -83,24 +107,44 @@ def _get_preds(output_dir, method):
     # the model, split, batch_size, batch_number, and seed in the metadata and sampling params fields
     files = glob(f"{output_dir}/preds/{method}/*.json")
     df_list = []
-    # keys to create auxiliary columns that are useful for analysis
-    METADATA = [
-        'model', 'split', 'batch_size', 'batch_number', 'type', 
-        # 'seed'
-    ]
-    SAMPLING_PARAMS = ['seed']
-    for filename in files:
-        print(f"Reading from {filename}...")
-        df = pd.read_json(filename, orient='index', dtype=False)
-        # add new columns corresponding to the metadata
-        for key in METADATA:
-            df["_" + key] = df['metadata'].apply(lambda x: x[key])
-        # add new columns corresponding to the sampling parameters
-        for key in SAMPLING_PARAMS:
-            df["_" + key] = df['inference_params'].apply(lambda x: x[key])
-        # drop the metadata column
-        df = df.drop(columns=['metadata'])
-        df_list.append(df)
+    if True: # old pred file format
+        # keys to create auxiliary columns that are useful for analysis
+        METADATA = [
+            'model', 'split', 'batch_size', 'batch_number', 'type', 
+            'seed'
+        ]
+        SAMPLING_PARAMS = ['seed']
+        for filename in files:
+            print(f"Reading from {filename}...")
+            df = pd.read_json(filename, orient='index', dtype=False)
+            # add new columns corresponding to the metadata
+            for key in METADATA:
+                df["_" + key] = df['metadata'].apply(lambda x: x[key])
+            # # add new columns corresponding to the sampling parameters
+            # for key in SAMPLING_PARAMS:
+            #     df["_" + key] = df['inference_params'].apply(lambda x: x[key])
+            # drop the metadata column
+            df = df.drop(columns=['metadata'])
+            df_list.append(df)
+    else:
+        # keys to create auxiliary columns that are useful for analysis
+        METADATA = [
+            'model', 'split', 'batch_size', 'batch_number', 'type', 
+            # 'seed'
+        ]
+        SAMPLING_PARAMS = ['seed']
+        for filename in files:
+            print(f"Reading from {filename}...")
+            df = pd.read_json(filename, orient='index', dtype=False)
+            # add new columns corresponding to the metadata
+            for key in METADATA:
+                df["_" + key] = df['metadata'].apply(lambda x: x[key])
+            # add new columns corresponding to the sampling parameters
+            for key in SAMPLING_PARAMS:
+                df["_" + key] = df['inference_params'].apply(lambda x: x[key])
+            # drop the metadata column
+            df = df.drop(columns=['metadata'])
+            df_list.append(df)
     # concatenate all dataframes
     df_preds = pd.concat(df_list)
     return df_preds
