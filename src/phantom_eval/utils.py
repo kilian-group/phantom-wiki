@@ -1,14 +1,12 @@
+import argparse
 import logging
-import subprocess
 
-from datasets import load_dataset
-from argparse import ArgumentParser
-import subprocess
+from datasets import load_dataset, Dataset
 
 from .llm import SUPPORTED_LLM_NAMES
 
 
-def load_data(split):
+def load_data(split: str) -> dict[str, Dataset]:
     """
     Load the phantom-wiki dataset from HuggingFace for a specific split.
     example: load_data("depth6")
@@ -20,15 +18,7 @@ def load_data(split):
     return dataset
 
 
-def get_all_articles(dataset):
-    """
-    Get all articles for a given split.
-    """
-    all_articles = "\n================\n\n".join(dataset['text']['article'])
-    return all_articles
-
-
-def get_relevant_articles(dataset, name_list:list):
+def get_relevant_articles(dataset: Dataset, name_list: list[str]) -> str:
     """
     Get articles for a certain list of names.
     """
@@ -46,15 +36,21 @@ def setup_logging(log_level: str) -> str:
     logging.basicConfig(level=log_level, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
 
-def get_parser() -> ArgumentParser:
-    parser = ArgumentParser(description="PhantomWiki Evaluation")
+def get_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="PhantomWiki Evaluation")
     parser.add_argument("--model_name", "-m", type=str, default="together:meta-llama/Llama-Vision-Free",
-                        help="model name." \
+                        help="model name. " \
                             "NOTE: to add a new model, please submit a PR to the repo with the new model name", 
                         choices=SUPPORTED_LLM_NAMES)
     parser.add_argument("--model_path", type=str, default=None, help="Path to the model")
-    parser.add_argument("--method", type=str, default="zeroshot",
-                        help="Evaluation method (zeroshot, fewshot, cot, react)")
+    parser.add_argument("--method", type=str, required=True,
+                        help="Evaluation method. " \
+                            "NOTE: to add a new method, please submit a PR with the implementation",
+                        choices=["zeroshot", "fewshot", "CoT", "react"])
+    
+    # Method params
+    parser.add_argument("--react_max_steps", type=int, default=6,
+                        help="Maximum number of steps for the ReAct agent")
 
     # LLM inference params
     parser.add_argument("--inf_max_model_len", type=int, default=None,
