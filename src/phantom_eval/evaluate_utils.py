@@ -107,7 +107,7 @@ def _get_preds(output_dir, method):
     # the model, split, batch_size, batch_number, and seed in the metadata and sampling params fields
     files = glob(f"{output_dir}/preds/{method}/*.json")
     df_list = []
-    if True: # old pred file format to maintain backwards compatibility
+    if False: # old pred file format to maintain backwards compatibility
         # keys to create auxiliary columns that are useful for analysis
         METADATA = [
             'model', 'split', 'batch_size', 'batch_number', 'type', 
