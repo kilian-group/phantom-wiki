@@ -11,7 +11,8 @@ from .utils import (get_parser,
 from .llm import (get_llm,
                   SUPPORTED_LOCAL_LLM_NAMES,
                   LLMChatResponse)
-from .prompts import ZEROSHOT_PROMPT
+# TODO fix bad style or renaming get_llm_prompt
+from .prompts import get_llm_prompt
 from .data import (Conversation, 
                    ContentTextMessage, 
                    Message)
@@ -71,7 +72,8 @@ async def main(args: argparse.Namespace) -> None:
                     # TODO: create an agent class for the zero-shot method
                     # with a method _build_agent_prompt() that implements the below functionality.
                     # START REFACTOR >>>
-                    instruction = ZEROSHOT_PROMPT.format(
+                    prompt = get_llm_prompt("zeroshot", args.model_name).get_prompt()
+                    instruction = prompt.format(
                         evidence=evidence, 
                         question=qa['question'],
                     )

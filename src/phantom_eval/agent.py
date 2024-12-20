@@ -1,3 +1,4 @@
+import abc
 import logging
 import re
 
@@ -10,7 +11,15 @@ from phantom_eval.data import Conversation, ContentTextMessage, Message
 logger = logging.getLogger(__name__)
 
 
-class ReactAgent:
+class Agent(abc.ABC):
+    @abc.abstractmethod
+    def run(self, llm_chat: LLMChat, reset: bool = True) -> None:
+        pass
+
+    # TODO function to get answer from the agent
+
+
+class ReactAgent(Agent):
     def __init__(
         self,
         question: str,
@@ -162,3 +171,4 @@ def parse_action(s: str) -> tuple[str, str] | None:
 
 def format_step(step: str) -> str:
     return step.strip("\n").strip().replace("\n", " ")
+        

@@ -11,9 +11,9 @@ from typing import Any
 import pandas as pd
 import tqdm
 
-from agents import ReactAgent
+from phantom_eval.agent import ReactAgent
 import phantom_eval.llm as llm
-import prompts
+from phantom_eval.prompts import get_llm_prompt, REACT_EXAMPLES
 from phantom_eval.utils import load_data, get_parser, setup_logging
 
 
@@ -37,7 +37,7 @@ def main(args: argparse.Namespace) -> None:
                 wait_seconds=args.inf_wait_seconds,
             )
             llm_chat = llm.get_llm(args.model_name, model_kwargs=model_kwargs)
-            llm_prompts = prompts.get_llm_prompt(args.model_name)
+            llm_prompts = get_llm_prompt("react", args.model_name)
 
             # Construct react agent for each sample in the QA dataset
             logger.info(f"Constructing ReAct agent for {len(df_qa_pairs)} samples")
@@ -46,10 +46,10 @@ def main(args: argparse.Namespace) -> None:
                 agent = ReactAgent(
                     sample.question,
                     sample.answer,
-                    agent_prompt=llm_prompts.get_react_prompt(),
+                    agent_prompt=llm_prompts.get_prompt(),
                     max_steps=args.react_max_steps,
                     text_corpus=df_text,
-                    react_examples=prompts.REACT_EXAMPLES,
+                    react_examples=REACT_EXAMPLES,
                     seed=seed,
                 )
                 agents.append(agent)
