@@ -78,6 +78,7 @@ async def main(args: argparse.Namespace) -> None:
                     case "zeroshot" | "fewshot":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, seed)
+                        interactions = None # NOTE: zeroshot, fewshot do not have interactions
                     case "CoT":
                         raise NotImplementedError("CoT evaluation is not supported yet.")
                     case "RAG":
