@@ -24,8 +24,8 @@ from phantom_eval.utils import (get_parser,
                                 load_data,)
 parser = get_parser()
 args, _ = parser.parse_known_args()
-# output_dir = args.output_dir
-output_dir = 'out-1217-gemini'
+output_dir = args.output_dir
+# output_dir = 'out-1217-gemini'
 
 # %%
 from glob import glob
@@ -62,6 +62,7 @@ for split in splits:
     # convert template column to string
     df_qa_pairs['template'] = df_qa_pairs['template'].apply(lambda x : ' '.join(x))
     df_qa_pairs['hops'] = df_qa_pairs['prolog'].apply(lambda x : len(x['query']))
+    df_qa_pairs['aggregation'] = df_qa_pairs['prolog'].apply(lambda x : 'aggregate_all' in ' '.join(x['query'])).astype(int)
     df_qa_pairs_list.append(df_qa_pairs)
 # merge on the index
 df_qa_pairs = pd.concat(df_qa_pairs_list)
@@ -83,7 +84,7 @@ df['f1'] = df.apply(lambda x: f1(x['pred'], sep.join(x['true']), sep=sep), axis=
 print(df)
 
 # %% [markdown]
-# ## Accuracy vs split
+# ## Split
 
 # %%
 # group by model, split, and seed
@@ -100,12 +101,12 @@ os.makedirs(scores_dir, exist_ok=True)
 acc.to_csv(os.path.join(scores_dir, "scores.csv"))
 
 # %% [markdown]
-# ## Accuracy vs split & type
+# ## Split & type
 
 # %%
 # get accuracies by type
 # group by model, split, seed, type
-COLS = ['_model', '_split', '_seed', '_type', 'template', 'hops']
+COLS = ['_model', '_split', '_seed', '_type', 'template', 'hops', 'aggregation']
 acc_by_type = df.groupby(COLS)[['EM','precision', 'recall', 'f1']].mean()
 # compute the mean and std across seeds
 # drop '_seed' from COLS
@@ -185,7 +186,7 @@ LINESTYLES = {
 }    
 
 # %% [markdown]
-# ## Accuracy vs universe size
+# ## Universe size
 
 # %%
 # get the mean and std of the accuracy for each model and split
@@ -222,10 +223,9 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
     df_mean, df_std = pivot_mean_std(acc_mean_std, metric)
 
     plt.figure(figsize=(15, 8))
+    # use log2 scale for the x-axis
+    x = np.log2(df_mean.columns)
     for i, row in df_mean.iterrows():
-        x = df_mean.columns
-        # use log2 scale for the x-axis
-        x = np.log2(x)
         y = row
         yerr = df_std.loc[i]
         # plt.errorbar(x, y, yerr=yerr, label=i, marker='o')
@@ -236,7 +236,7 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
     plt.legend(title='Model', loc='lower right', fontsize=12)
     # format x-axis
     plt.xlabel('Size of universe')
-    plt.xticks(np.log2(df_mean.columns), df_mean.columns)
+    plt.xticks(x, df_mean.columns)
     plt.ylabel(metric)
     plt.title(metric)
     plt.tight_layout()
@@ -245,7 +245,7 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
     plt.savefig(fig_path)
 
 # %% [markdown]
-# ## Accuracy vs number of hops
+# ## Number of hops
 # Grouped bar chart where bars are grouped by number of hops. In each group we have the different splits.
 
 # %%
@@ -265,10 +265,8 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
     df_mean, df_std = pivot_mean_std(acc_mean_std_split, metric, independent_variable='hops')
 
     plt.figure(figsize=(15, 8))
+    x = df_mean.columns
     for i, row in df_mean.iterrows():
-        x = df_mean.columns
-        # use log2 scale for the x-axis
-        x = np.log2(x)
         y = row
         yerr = df_std.loc[i]
         # plt.errorbar(x, y, yerr=yerr, label=i, marker='o')
@@ -279,11 +277,53 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
     plt.legend(title='Model', loc='lower right', fontsize=12)
     # format x-axis
     plt.xlabel('Number of hops')
-    plt.xticks(np.log2(df_mean.columns), df_mean.columns)
+    plt.xticks(x, df_mean.columns)
     plt.ylabel(metric)
     plt.title(metric)
     plt.tight_layout()
     fig_path = os.path.join(figures_dir, f'hops-{metric}-{SPLIT_NAME}.png')
+    print(f"Saving to {os.path.abspath(fig_path)}")
+    plt.savefig(fig_path)
+
+# %% [markdown]
+# ## Aggregation vs no-aggregation
+# Some questions involve the `aggregate_all` predicate. What is the effect of these questions on the accuracy?
+
+# %%
+# get the mean and std of the accuracy for each model and split
+# where std is the standard deviation across seeds
+acc_mean_std = acc_by_type.groupby(['_model', '_split', 'aggregation']).agg(['mean', 'std'])
+acc_mean_std = acc_mean_std.reset_index()
+# specify which split you want to look at
+SPLIT_NAME = 'depth_10_size_26_seed_1'
+acc_mean_std_split = acc_mean_std[acc_mean_std['_split'] == SPLIT_NAME]
+
+# %%
+acc_mean_std_split
+
+# %%
+
+# set figure size
+for metric in ['EM', 'precision', 'recall', 'f1']:
+    df_mean, df_std = pivot_mean_std(acc_mean_std_split, metric, independent_variable='aggregation')
+
+    plt.figure(figsize=(15, 8))
+    x = df_mean.columns
+    for i, row in df_mean.iterrows():
+        y = row
+        yerr = df_std.loc[i]
+        # use a line plot instead of errorbar
+        plt.plot(x, y, label=i, marker='o', color=COLORS[i], linestyle=LINESTYLES[i])
+        plt.fill_between(x, y-yerr, y+yerr, alpha=0.3, color=COLORS[i])
+
+    plt.legend(title='Model', loc='lower right', fontsize=12)
+    # format x-axis
+    plt.xlabel('Aggregation vs no aggregation')
+    plt.xticks(x, df_mean.columns)
+    plt.ylabel(metric)
+    plt.title(metric)
+    plt.tight_layout()
+    fig_path = os.path.join(figures_dir, f'aggregation-{metric}-{SPLIT_NAME}.png')
     print(f"Saving to {os.path.abspath(fig_path)}")
     plt.savefig(fig_path)
 
