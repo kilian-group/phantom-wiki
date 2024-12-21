@@ -31,12 +31,14 @@ MODELS=(
     'microsoft/phi-3.5-moe-instruct'
     'meta-llama/llama-3.1-70b-instruct'
 )
-for model_name in $MODELS
+for model_name in "${MODELS[@]}"
 do
-    python -m phantom_eval \
+    cmd="python -m phantom_eval \
         --method zeroshot \
         -od $1 \
         -m $model_name \
         --split_list depth_10_size_26_seed_1 depth_10_size_50_seed_1 depth_10_size_100_seed_1 depth_10_size_200_seed_1 \
-        --inf_seed_list 1 2 3 4 5
+        --inf_seed_list 1 2 3 4 5"
+    echo $cmd
+    eval $cmd
 done
