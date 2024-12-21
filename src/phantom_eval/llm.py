@@ -761,4 +761,4 @@ def get_llm(model_name: str, model_kwargs: dict) -> LLMChat:
         case model_name if model_name in VLLMChat.SUPPORTED_LLM_NAMES:
             return VLLMChat(model_name=model_name, **model_kwargs)
         case _:
-            raise ValueError(f"Model name {model_name} must be one of {SUPPORTED_LLM_NAME
+            raise ValueError(f"Model name {model_name} must be one of {SUPPORTED_LLM_NAMES}.")
