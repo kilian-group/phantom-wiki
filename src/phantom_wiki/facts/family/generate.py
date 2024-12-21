@@ -150,10 +150,13 @@ class Generator:
 
             print(" OK ({:.3f}s)".format(time.time() - start))
 
-            # Resetting person factory if user allows for duplicate names
             if not args.duplicate_names:
+                # Resetting all pools if user allows for duplicate names
                 self.person_factory.reset()
 
+            else:
+                # If not, reset only first name pools
+                self.person_factory.reset_names()
 
         return family_trees
     
@@ -164,26 +167,6 @@ def pretty_print_args(args):
     print('-----------------')
     for key, value in vars(args).items():
         print(f"{key.replace('_', ' ').title()}: {value}")
-
-# Given a family tree in the form of a list -> generate the prolog
-def family_tree_to_pl(family_tree):
-    # Outputs
-    genders = []
-    parent_relationships = []
-
-    # Getting relationships and genders
-    for p in family_tree:
-        if p.female:
-            genders.append(f"female({p.name}).")
-        else:
-            genders.append(f"male({p.name}).")
-
-        for child in p.children:
-            # parent_relationships.append(f"parent({p.name}, {child.name}).")
-            parent_relationships.append(f"parent({child.name}, {p.name}).")
-
-    # Returning outputs 
-    return sorted(genders) + [""] + sorted(parent_relationships)
 
 # Given a family tree in the form of a list -> generate the facts
 def family_tree_to_facts(family_tree):
@@ -196,24 +179,20 @@ def family_tree_to_facts(family_tree):
     # Add facts for each person in the family tree
     for p in family_tree:
         # add 1-ary clause indicating the person exists
-        people.append(f"type(\'{p.name}\', {PERSON_TYPE})")
+        people.append(f"type(\'{p.get_full_name()}\', {PERSON_TYPE})")
+
         # add 2-ary clause indicating gender
-        if False:
-            if p.female:
-                genders.append(f"female(\'{p.name}\')")
-            else:
-                genders.append(f"male(\'{p.name}\')")
+        if p.female:
+            genders.append(f"gender(\'{p.get_full_name()}\', \'female\')")
         else:
-            # NOTE: by making gender an attribute, the attribute value can be any literal
-            if p.female:
-                genders.append(f"gender(\'{p.name}\', \'female\')")
-            else:
-                genders.append(f"gender(\'{p.name}\', \'male\')")
+            genders.append(f"gender(\'{p.get_full_name()}\', \'male\')")
+
         # add 2-ary clause indicating parent relationship
         for child in p.children:
-            parent_relationships.append(f"parent(\'{child.name}\', \'{p.name}\')")
+            parent_relationships.append(f"parent(\'{child.get_full_name()}\', \'{p.get_full_name()}\')")
+
         # add 2-ary clause indicating date of birth
-        dates_of_birth.append(f"dob(\'{p.name}\', \'{p.date_of_birth}\')")
+        dates_of_birth.append(f"dob(\'{p.get_full_name()}\', \'{p.date_of_birth}\')")
 
     # Returning outputs 
     return sorted(people) + sorted(genders) + sorted(parent_relationships) + sorted(dates_of_birth)
@@ -229,12 +208,12 @@ def create_dot_graph(family_tree):
         else:
             color = "lightblue"
 
-        graph.add_node(pydot.Node(p.name, style="filled", fillcolor=color))    
+        graph.add_node(pydot.Node(p.get_full_name(), style="filled", fillcolor=color))    
 
     # Add the edges
     for p in family_tree:
         for c in p.children:
-            graph.add_edge(pydot.Edge(p.name, c.name))
+            graph.add_edge(pydot.Edge(p.get_full_name(), c.get_full_name()))
 
     return graph
 
@@ -261,7 +240,7 @@ if __name__ == "__main__":
     family_trees = gen.generate(args)
     for i, family_tree in enumerate(family_trees):
         # Obtain family tree in Prolog format
-        pl_family_tree = family_tree_to_pl(family_tree)
+        pl_family_tree = family_tree_to_facts(family_tree)
 
         # Create a unique filename for each tree
         output_file_path = os.path.join(args.output_dir, f"family_tree_{i+1}.pl")
