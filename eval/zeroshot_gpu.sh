@@ -12,6 +12,7 @@
 #SBATCH --gres=gpu:a6000:4                   # Number of GPUs requested
 #SBATCH --partition=kilian                   # Request partition
 
+# Script for running zeroshot evaluation on a specific input model
 # GPU requirements when using max context length (i.e., `max_model_len=None`)
 # Model Size    | A6000 GPU  | H100 GPU
 # ------------- | -----------|-----------
@@ -28,4 +29,5 @@ python -m phantom_eval \
     --method zeroshot \
     -od $1 \
     -m $2 \
-    --split_list depth_10_size_26_seed_1 depth_10_size_50_seed_1 depth_1
+    --split_list depth_10_size_26_seed_1 depth_10_size_50_seed_1 depth_10_size_100_seed_1 depth_10_size_200_seed_1 \
+    --inf_seed_list 1 2 3 4 5
