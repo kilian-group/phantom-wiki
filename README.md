@@ -50,7 +50,8 @@ Run evaluation methods (like `zeroshot,fewshot,react,...`) with an LLM like so:
 python -m phantom_eval --method <method> --model_name <llm_name>
 ```
 
-To easily reproduce all results, run the following scripts (e.g., using slurm):
+Steps for reproducing all results:
+🧪 To generate the prediction files, run the following scripts (e.g., using slurm):
 ```
 conda activate dataset
 # run medium models (< 10B params) locally (allocates 4 A6000s)
@@ -60,6 +61,14 @@ sbatch eval/zeroshot_L.sh <output directory>
 # run API models (NOTE: this can be very expensive!)
 sbatch eval/zeroshot_cpu.sh <output directory> <model name>
 ```
+📊 To generate the tables and figures, run the following script:
+```
+# make sure the dataset conda env is activated!
+./evaluate.sh METHOD_NAME OUTPUT_DIRECTORY
+```
+NOTE: this script will save the outputs to OUTPUT_DIRECTORY under `scores/` and `figures/`
+
+TODO: make the folder naming structure more consistent
 
 Run `python -m phantom_eval -h` for usage help and a list of supported models.
 Below are setup instructions for various LLM providers supported in evaluation.
