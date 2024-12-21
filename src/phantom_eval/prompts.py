@@ -177,6 +177,8 @@ def get_llm_prompt(method: str, model_name: str) -> LLMPrompt:
                     return ReactGeminiPrompt()
                 case model_name if model_name in llm.AnthropicChat.SUPPORTED_LLM_NAMES:
                     return ReactLLMPrompt()
+                case model_name if model_name in llm.VLLMChat.SUPPORTED_LLM_NAMES:
+                    return ReactLLMPrompt()
                 case _:
                     raise ValueError(f"Model name {model_name} must be one of {llm.SUPPORTED_LLM_NAMES}.")
         case _:

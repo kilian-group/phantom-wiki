@@ -143,6 +143,8 @@ class CommonLLMChat(LLMChat):
             "usage_tier=1": {"RPM": 0, "TPM": 0},
         },
     }
+    # NOTE: RPM and TPM limits are set to 0 by default, and should be overridden by the subclass
+    # value of 0 indicates no rate limit
     RPM_LIMIT: int = 0
     TPM_LIMIT: int = 0
 
@@ -235,8 +237,8 @@ class CommonLLMChat(LLMChat):
         Generate responses for a batch of formatted conversations using asynchronous API calls, and return a batch of response objects.
         Accounts for rate limits by sleeping between requests.
         """
-        assert self.RPM_LIMIT > 0, "RPM_LIMIT must be greater than 0"
-        assert self.TPM_LIMIT > 0, "TPM_LIMIT must be greater than 0"
+        assert self.RPM_LIMIT >= 0, "RPM_LIMIT must be greater than 0 (or 0 if no rate limit)"
+        assert self.TPM_LIMIT >= 0, "TPM_LIMIT must be greater than 0 (or 0 if no rate limit)"
         tasks = []
 
         start = time.time()
@@ -250,7 +252,7 @@ class CommonLLMChat(LLMChat):
 
             # check if we need to sleep to respect the TPM rate limit
             remaining = 60 - (time.time() - start) # number of seconds remaining in the current minute
-            if token_usage_per_minute > self.TPM_LIMIT and remaining > 0:
+            if self.TPM_LIMIT and token_usage_per_minute > self.TPM_LIMIT and remaining > 0:
                 logger.info(f"Token usage per minute: {token_usage_per_minute}")
                 logger.info(f"Sleeping for {remaining} seconds to respect the TPM rate limit")
                 await asyncio.sleep(remaining + 1) # NOTE: add an extra second so we definitely pass the minute
@@ -268,7 +270,8 @@ class CommonLLMChat(LLMChat):
             )
             tasks.append(asyncio.create_task(t))
             # Sleep to respect the rate limit
-            await asyncio.sleep(60 / self.RPM_LIMIT)
+            if self.RPM_LIMIT:
+                await asyncio.sleep(60 / self.RPM_LIMIT)
         
         logger.debug(f"{time.time()-start}: Waiting for responses")
         responses = await asyncio.gather(*tasks)
@@ -305,6 +308,7 @@ class OpenAIChat(CommonLLMChat):
         max_retries: int = 3,
         wait_seconds: int = 2,
         usage_tier: int = 1,
+        use_api: bool = True,
     ):
         super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, repetition_penalty, max_retries, wait_seconds)
         self.client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -357,7 +361,7 @@ class TogetherChat(CommonLLMChat):
         "together:meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
         "together:meta-llama/Llama-Vision-Free",
     ]
-    RATE_LIMITS = {llm_name: {"usage_tier_1": {"RPM": 20, "TPM": 500_000}} for llm_name in SUPPORTED_LLM_NAMES}
+    RATE_LIMITS = {llm_name: {"usage_tier=1": {"RPM": 20, "TPM": 500_000}} for llm_name in SUPPORTED_LLM_NAMES}
 
     def __init__(
         self,
@@ -371,6 +375,7 @@ class TogetherChat(CommonLLMChat):
         max_retries: int = 3,
         wait_seconds: int = 2,
         usage_tier: int = 1,
+        use_api: bool = True,
     ):
         assert model_name.startswith("together:"), "model_name must start with 'together:'"
         super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, repetition_penalty, max_retries, wait_seconds)
@@ -430,6 +435,7 @@ class AnthropicChat(CommonLLMChat):
         max_retries: int = 3,
         wait_seconds: int = 2,
         usage_tier: int = 2,
+        use_api: bool = True,
     ):
         super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, repetition_penalty, max_retries, wait_seconds)
         self.client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
@@ -514,8 +520,9 @@ class GeminiChat(CommonLLMChat):
         max_retries: int = 3,
         wait_seconds: int = 2,
         usage_tier: int = 1,
+        use_api: bool = True,
     ):
-        super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, repetition_penalty, temperature, max_retries, wait_seconds)
+        super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, repetition_penalty, max_retries, wait_seconds)
 
         gemini.configure(api_key=os.getenv("GEMINI_API_KEY"))
         self.client = gemini.GenerativeModel(self.model_name)
@@ -563,7 +570,7 @@ class GeminiChat(CommonLLMChat):
         return response.total_tokens
 
     
-class VLLMChat(LLMChat):
+class VLLMChat(CommonLLMChat):
     SUPPORTED_LLM_NAMES: list[str] = [
         "meta-llama/llama-3.1-8b-instruct", 
         "meta-llama/llama-3.1-70b-instruct", 
@@ -591,39 +598,74 @@ class VLLMChat(LLMChat):
         wait_seconds: int = 2,
         max_model_len: int | None = None,
         tensor_parallel_size: int | None = None,
+        use_api: bool = True,
     ):
+        """
+        Additional args:
+            use_api: whether to use the vllm server or offline inference
+                NOTE: offline inference only works for batch_generate_response
+                To maximize performance, set `use_server=False` when running Nshot and CoT agents
+        """
         super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, repetition_penalty, max_retries, wait_seconds)
-        # vLLM configs
-        self.max_model_len = max_model_len
-        if tensor_parallel_size is None:
-            # NOTE: the reason why we can't use torch.cuda.device_count() is because of some weird bug between torch and vllm,
-            # where we can't call `import torch` before instantiating the LLM object
-            self.tensor_parallel_size = get_gpu_count()
+        
+        self.use_api = use_api
+        if use_api:
+            logging.info("Using vLLM server for inference")
+            try:
+                BASE_URL = "http://0.0.0.0:8000/v1" # TODO: allow this to be specified by the user
+                API_KEY="token-abc123" # TODO: allow this to be specified by the user
+                self.client = openai.OpenAI(
+                    base_url=BASE_URL,
+                    api_key=API_KEY,
+                )
+                self.async_client = openai.AsyncOpenAI(
+                    base_url=BASE_URL,
+                    api_key=API_KEY,
+                )
+            except openai.APIConnectionError as e:
+                logging.error(
+                    f"Make sure to launch the vllm server using " \
+                    "vllm serve MODEL_NAME --api-key token-abc123 --tensor_parallel_size NUM_GPUS"
+                )
+                raise e
         else:
-            self.tensor_parallel_size = tensor_parallel_size
-        # instead of initializing a client, we initialize the LLM object
-        self.llm = LLM(
-            model=model_name,
-            max_model_len=max_model_len,
-            tensor_parallel_size=self.tensor_parallel_size,
-        )
-        # get tokenizer for constructing prompt
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+            logging.info("Using vLLM batched offline inference")
+            # vLLM configs
+            self.max_model_len = max_model_len
+            if tensor_parallel_size is None:
+                # NOTE: the reason why we can't use torch.cuda.device_count() is because of some weird bug between torch and vllm,
+                # where we can't call `import torch` before instantiating the LLM object
+                self.tensor_parallel_size = get_gpu_count()
+            else:
+                self.tensor_parallel_size = tensor_parallel_size
+            # instead of initializing a client, we initialize the LLM object
+            self.llm = LLM(
+                model=model_name,
+                max_model_len=max_model_len,
+                tensor_parallel_size=self.tensor_parallel_size,
+            )
+            # get tokenizer for constructing prompt
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
 
     def _convert_conv_to_api_format(self, conv: Conversation) -> list[dict]:
         formatted_messages = []
         for message in conv.messages:
-            # TODO instead have zeroshot implement Conversation class
-            assert len(message.content) == 1, "to keep things consistent with `zeroshot_local.py`, we expect each message to have only one content"
             for content in message.content:
                 match content:
                     case ContentTextMessage(text=text):
                         formatted_messages.append({"role": "user", "content": text})
         return formatted_messages
+
+    def _parse_api_output(self, response: object) -> LLMChatResponse:
+        """Parse the output of vllm server when using the OpenAI compatible server
+        """
+        return LLMChatResponse(
+            pred=response.choices[0].message.content,
+            usage=response.usage.model_dump(),
+        )
     
     def _parse_vllm_output(self, response: object) -> LLMChatResponse:
-        """
-        Parse the response from the API and return the prediction and usage statistics.
+        """Parse output of vllm offline inference when using (batch) offline inference
         """
         return LLMChatResponse(
             pred=response.outputs[0].text,
@@ -635,34 +677,65 @@ class VLLMChat(LLMChat):
             }
         )
 
-    def generate_response(self, conv: Conversation, stop_sequences: list[str] | None = None, seed: int = 1) -> LLMChatResponse:
-        raise NotImplementedError("generate_response is not implemented for vLLM models. Use batch_generate_response instead.")
-
-    async def batch_generate_response(self, convs: list[Conversation], stop_sequences: list[str] | None = None, seed: int = 1) -> list[LLMChatResponse]:
-        sampling_params = SamplingParams(
+    def _call_api(self, messages_api_format: list[dict], stop_sequences: list[str] | None = None, use_async: bool = False, seed: int = 1) -> object:
+        # NOTE: vllm implements an OpenAI compatible server
+        # https://github.com/openai/openai-python
+        assert self.use_api, \
+            "This function should not be called when using vllm batched offline inference"
+        client = self.async_client if use_async else self.client
+        response = client.chat.completions.create(
+            model=self.model_name,
+            messages=messages_api_format,
             temperature=self.temperature,
             top_p=self.top_p,
-            top_k=self.top_k,
-            repetition_penalty=self.repetition_penalty,
-            stop=stop_sequences + self.ADDITIONAL_STOP,
-            max_tokens=self.max_tokens,
+            max_completion_tokens=self.max_tokens,
             seed=seed,
+            stop=stop_sequences,
+            # NOTE: top_k is not supported by OpenAI's API
+            # NOTE: repetition_penalty is not supported by OpenAI's API
         )
-        prompts = [
-            self.tokenizer.apply_chat_template(
-                self._convert_conv_to_api_format(conv), 
-                tokenize=False, 
-                add_generation_prompt=True
+        return response
+
+    def generate_response(self, conv: Conversation, stop_sequences: list[str] | None = None, seed: int = 1) -> LLMChatResponse:
+        assert self.client is not None, "Client is not initialized."
+        messages_api_format: list[dict] = self._convert_conv_to_api_format(conv)
+        response = self._call_api(messages_api_format, stop_sequences=stop_sequences, seed=seed)
+        parsed_response = self._parse_api_output(response)
+        return parsed_response
+
+    async def batch_generate_response(self, convs: list[Conversation], stop_sequences: list[str] | None = None, seed: int = 1) -> list[LLMChatResponse]:
+        if self.use_api:
+            # When using api, we can use the parent class implementation
+            return await super().batch_generate_response(convs, stop_sequences, seed)
+        else:
+            sampling_params = SamplingParams(
+                temperature=self.temperature,
+                top_p=self.top_p,
+                top_k=self.top_k,
+                repetition_penalty=self.repetition_penalty,
+                stop=stop_sequences + self.ADDITIONAL_STOP,
+                max_tokens=self.max_tokens,
+                seed=seed,
             )
-            for conv in convs
-        ]
-        # save prompts to json file for debugging purposes
-        # import json
-        # with open(os.path.join('out-test-1217-refactor', 'prompts.json'), 'w') as f:
-        #     json.dump(prompts, f, indent=4)
-        responses = self.llm.generate(prompts, sampling_params)
-        parsed_responses = [self._parse_vllm_output(response) for response in responses]
-        return parsed_responses
+            prompts = [
+                self.tokenizer.apply_chat_template(
+                    self._convert_conv_to_api_format(conv), 
+                    tokenize=False, 
+                    add_generation_prompt=True
+                )
+                for conv in convs
+            ]
+            # save prompts to json file for debugging purposes
+            # import json
+            # with open(os.path.join('out-test-1220-2', 'prompts.json'), 'w') as f:
+            #     json.dump(prompts, f, indent=4)
+            responses = self.llm.generate(prompts, sampling_params)
+            parsed_responses = [self._parse_vllm_output(response) for response in responses]
+            return parsed_responses
+
+    def _count_tokens(self, messages_api_format: list[dict]) -> int:
+        """No need to count tokens for vLLM models"""
+        return 0
 
 
 SUPPORTED_LLM_NAMES: list[str] = (

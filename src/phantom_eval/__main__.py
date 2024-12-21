@@ -18,6 +18,7 @@ logger = logging.getLogger(__name__)
 
 async def main(args: argparse.Namespace) -> None:
     logger.info("Loading LLM")
+    # import pdb; pdb.set_trace()
     model_kwargs = dict(
         model_path=args.model_path,
         max_tokens=args.inf_max_tokens,
@@ -27,6 +28,10 @@ async def main(args: argparse.Namespace) -> None:
         repetition_penalty=args.inf_repetition_penalty,
         max_retries=args.inf_max_retries,
         wait_seconds=args.inf_wait_seconds,
+        # If the method is zeroshot or fewshot, we do not need to use the API (for vLLM)
+        # This can be overridden by setting `use_api=True` in the model_kwargs.
+        # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
+        use_api=(args.method not in ["zeroshot", "fewshot"]), 
     )
     llm_chat: LLMChat = get_llm(args.model_name, model_kwargs=model_kwargs)
     llm_prompt: LLMPrompt = get_llm_prompt(args.method, args.model_name)
