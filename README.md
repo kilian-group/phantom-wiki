@@ -64,8 +64,11 @@ sbatch eval/zeroshot_cpu.sh <output directory> <model name>
 📊 To generate the tables and figures, run the following script:
 ```
 # make sure the dataset conda env is activated!
-./evaluate.sh METHOD_NAME OUTPUT_DIRECTORY
+cd eval
+./evaluate.sh <output directory> <method>
 ```
+where <output directory> here is the same as <output directory> when generating the prediction and <method> cam be zeroshot/react/etc.
+
 NOTE: this script will save the outputs to OUTPUT_DIRECTORY under `scores/` and `figures/`
 
 TODO: make the folder naming structure more consistent
