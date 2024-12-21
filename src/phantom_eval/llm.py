@@ -143,6 +143,8 @@ class CommonLLMChat(LLMChat):
             "usage_tier=1": {"RPM": 0, "TPM": 0},
         },
     }
+    # NOTE: RPM and TPM limits are set to 0 by default, and should be overridden by the subclass
+    # value of 0 indicates no rate limit
     RPM_LIMIT: int = 0
     TPM_LIMIT: int = 0
 
@@ -235,8 +237,8 @@ class CommonLLMChat(LLMChat):
         Generate responses for a batch of formatted conversations using asynchronous API calls, and return a batch of response objects.
         Accounts for rate limits by sleeping between requests.
         """
-        assert self.RPM_LIMIT > 0, "RPM_LIMIT must be greater than 0"
-        assert self.TPM_LIMIT > 0, "TPM_LIMIT must be greater than 0"
+        assert self.RPM_LIMIT >= 0, "RPM_LIMIT must be greater than 0 (or 0 if no rate limit)"
+        assert self.TPM_LIMIT >= 0, "TPM_LIMIT must be greater than 0 (or 0 if no rate limit)"
         tasks = []
 
         start = time.time()
@@ -250,7 +252,7 @@ class CommonLLMChat(LLMChat):
 
             # check if we need to sleep to respect the TPM rate limit
             remaining = 60 - (time.time() - start) # number of seconds remaining in the current minute
-            if token_usage_per_minute > self.TPM_LIMIT and remaining > 0:
+            if self.TPM_LIMIT and token_usage_per_minute > self.TPM_LIMIT and remaining > 0:
                 logger.info(f"Token usage per minute: {token_usage_per_minute}")
                 logger.info(f"Sleeping for {remaining} seconds to respect the TPM rate limit")
                 await asyncio.sleep(remaining + 1) # NOTE: add an extra second so we definitely pass the minute
@@ -268,7 +270,8 @@ class CommonLLMChat(LLMChat):
             )
             tasks.append(asyncio.create_task(t))
             # Sleep to respect the rate limit
-            await asyncio.sleep(60 / self.RPM_LIMIT)
+            if self.RPM_LIMIT:
+                await asyncio.sleep(60 / self.RPM_LIMIT)
         
         logger.debug(f"{time.time()-start}: Waiting for responses")
         responses = await asyncio.gather(*tasks)
@@ -609,8 +612,8 @@ class VLLMChat(CommonLLMChat):
         if use_api:
             logging.info("Using vLLM server for inference")
             try:
-                BASE_URL = "http://0.0.0.0:8000/v1", # TODO: allow this to be specified by the user
-                API_KEY="token-abc123", # TODO: allow this to be specified by the user
+                BASE_URL = "http://0.0.0.0:8000/v1" # TODO: allow this to be specified by the user
+                API_KEY="token-abc123" # TODO: allow this to be specified by the user
                 self.client = openai.OpenAI(
                     base_url=BASE_URL,
                     api_key=API_KEY,
@@ -703,7 +706,7 @@ class VLLMChat(CommonLLMChat):
     async def batch_generate_response(self, convs: list[Conversation], stop_sequences: list[str] | None = None, seed: int = 1) -> list[LLMChatResponse]:
         if self.use_api:
             # When using api, we can use the parent class implementation
-            return super().batch_generate_response(convs, stop_sequences, seed)
+            return await super().batch_generate_response(convs, stop_sequences, seed)
         else:
             sampling_params = SamplingParams(
                 temperature=self.temperature,
@@ -723,9 +726,9 @@ class VLLMChat(CommonLLMChat):
                 for conv in convs
             ]
             # save prompts to json file for debugging purposes
-            import json
-            with open(os.path.join('out-test-1220-2', 'prompts.json'), 'w') as f:
-                json.dump(prompts, f, indent=4)
+            # import json
+            # with open(os.path.join('out-test-1220-2', 'prompts.json'), 'w') as f:
+            #     json.dump(prompts, f, indent=4)
             responses = self.llm.generate(prompts, sampling_params)
             parsed_responses = [self._parse_vllm_output(response) for response in responses]
             return parsed_responses
@@ -758,4 +761,4 @@ def get_llm(model_name: str, model_kwargs: dict) -> LLMChat:
         case model_name if model_name in VLLMChat.SUPPORTED_LLM_NAMES:
             return VLLMChat(model_name=model_name, **model_kwargs)
         case _:
-            raise ValueError(f"Model name {model_name} must be one of {SUPPORTED_LLM_NAMES}.")
+            raise ValueError(f"Model name {model_name} must be one of {SUPPORTED_LLM_NAME
