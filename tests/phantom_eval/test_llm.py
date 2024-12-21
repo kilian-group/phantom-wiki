@@ -24,14 +24,14 @@ def _test_llm(model_name):
     Test for synchronous calls
     """
     response = llm_chat.generate_response(example_conv)
-    pred = response.strip()
+    pred = response.pred.strip()
     assert pred == "2", f"Expected 2, got {pred}"
 
     """
     Test for asynchronous calls
     """
     responses = asyncio.run(llm_chat.batch_generate_response([example_conv,]))
-    preds = [response['pred'].strip() for response in responses]
+    preds = [response.pred.strip() for response in responses]
     assert preds[0] == "2", f"Expected 2, got {preds[0]}"
 
 def test_anthropic():
@@ -47,4 +47,24 @@ def test_together():
     """
     _test_llm("together:meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo")
 
-# TODO: add tests for VLLMChat
+def test_vllm():
+    """Test for VLLMChat
+    
+    This test is implemented slightly differently from the others, 
+    as vllm exposes an offline inference mode, which we use to implement
+    batch_generate_response.
+
+    NOTE: make sure to run the vllm server before running this test!!!
+    ```bash
+    vllm serve meta-llama/llama-3.1-8b-instruct --dtype auto --api-key token-abc123 --tensor_parallel_size 4
+    ```
+    """
+    llm_chat = get_llm(
+        model_name='meta-llama/llama-3.1-8b-instruct',
+        model_kwargs=dict(
+            use_server=True,
+        )
+    )
+    response = llm_chat.generate_response(example_conv)
+    pred = response.pred.strip()
+    assert pred == "2", f"Expected 2, got {pred}"

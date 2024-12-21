@@ -357,7 +357,7 @@ class TogetherChat(CommonLLMChat):
         "together:meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
         "together:meta-llama/Llama-Vision-Free",
     ]
-    RATE_LIMITS = {llm_name: {"usage_tier_1": {"RPM": 20, "TPM": 500_000}} for llm_name in SUPPORTED_LLM_NAMES}
+    RATE_LIMITS = {llm_name: {"usage_tier=1": {"RPM": 20, "TPM": 500_000}} for llm_name in SUPPORTED_LLM_NAMES}
 
     def __init__(
         self,
@@ -515,7 +515,7 @@ class GeminiChat(CommonLLMChat):
         wait_seconds: int = 2,
         usage_tier: int = 1,
     ):
-        super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, repetition_penalty, temperature, max_retries, wait_seconds)
+        super().__init__(model_name, model_path, max_tokens, temperature, top_p, top_k, repetition_penalty, max_retries, wait_seconds)
 
         gemini.configure(api_key=os.getenv("GEMINI_API_KEY"))
         self.client = gemini.GenerativeModel(self.model_name)
@@ -643,10 +643,17 @@ class VLLMChat(CommonLLMChat):
                     case ContentTextMessage(text=text):
                         formatted_messages.append({"role": "user", "content": text})
         return formatted_messages
-    
+
     def _parse_api_output(self, response: object) -> LLMChatResponse:
+        """Parse the output of vllm server when using the OpenAI compatible server
         """
-        Parse the response from the API and return the prediction and usage statistics.
+        return LLMChatResponse(
+            pred=response.choices[0].message.content,
+            usage=response.usage.model_dump(),
+        )
+    
+    def _parse_vllm_output(self, response: object) -> LLMChatResponse:
+        """Parse output of vllm offline inference when using (batch) offline inference
         """
         return LLMChatResponse(
             pred=response.outputs[0].text,
@@ -672,9 +679,7 @@ class VLLMChat(CommonLLMChat):
             seed=seed,
             stop=stop_sequences,
             # NOTE: top_k is not supported by OpenAI's API
-            top_k=self.top_k,
             # NOTE: repetition_penalty is not supported by OpenAI's API
-            repetition_penalty=self.repetition_penalty,
         )
         return response
 
