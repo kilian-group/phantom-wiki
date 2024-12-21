@@ -27,7 +27,7 @@ os.makedirs(scores_dir, exist_ok=True)
 # %%
 # get accuracies by type
 # group by model, split, seed, type
-COLS = ['_model', '_split', '_seed', '_type', 'template']
+COLS = ['_model', '_split', '_seed', '_type', 'template', 'hops']
 acc_by_type = df.groupby(COLS)[['EM','precision', 'recall', 'f1']].mean()
 # compute the mean and std across seeds
 # drop '_seed' from COLS
