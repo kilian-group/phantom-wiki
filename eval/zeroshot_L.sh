@@ -16,7 +16,7 @@
 # GPU requirements when using max context length (i.e., `max_model_len=None`)
 # Model Size    | A6000 GPU  | H100 GPU
 # ------------- | -----------|-----------
-# ~8B models    | 4          | ?
+# ~8B models    | 1          | ?
 # ~70B models   | 8          | ?
 
 # check that the correct number of arguments were passed
@@ -31,6 +31,15 @@ MODELS=(
     'microsoft/phi-3.5-moe-instruct'
     'meta-llama/llama-3.1-70b-instruct'
 )
+TEMPERATURE=0
+# if TEMPERATURE=0, then sampling is greedy so no need run with muliptle seeds
+if (( $(echo "$TEMPERATURE == 0" | bc -l) ))
+then
+    seed_list="1"
+else
+    seed_list="1 2 3 4 5"
+fi
+
 for model_name in "${MODELS[@]}"
 do
     cmd="python -m phantom_eval \
@@ -38,7 +47,8 @@ do
         -od $1 \
         -m $model_name \
         --split_list depth_10_size_26_seed_1 depth_10_size_50_seed_1 depth_10_size_100_seed_1 depth_10_size_200_seed_1 \
-        --inf_seed_list 1 2 3 4 5"
+        --inf_seed_list $seed_list \
+        --inf_temperature $TEMPERATURE"
     echo $cmd
     eval $cmd
 done
