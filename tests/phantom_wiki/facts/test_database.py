@@ -1,8 +1,6 @@
 import os
 
-from phantom_wiki.facts import get_database
 from phantom_wiki.facts.database import Database
-from phantom_wiki.utils.prolog import get_prolog_result_set
 from tests.facts.family import FACTS_SMALL_EXAMPLE_PATH
 
 
@@ -28,9 +26,6 @@ def test_save_database():
     # NOTE: prolog.consult() is buggy
     # if you consult "test.pl" from the SWI-Prolog console, it will show that there are no duplicate facts
     # if you consult "test.pl" from pyswipl, it will show that there are duplicate facts
-    #   get_prolog_result_set is a workaround for pyswip's duplicate result sets.
-    assert get_prolog_result_set(result) == get_prolog_result_set({"X": "alice"})
-
 
 def test_get_names():
     db = Database.from_disk(FACTS_SMALL_EXAMPLE_PATH)

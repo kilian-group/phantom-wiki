@@ -9,18 +9,33 @@
 
 Set up a virtual environment, clone and navigate to this repository, and run
 
-```
+```bash
 conda create -n dataset
 conda activate dataset
 conda install python=3.12 conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest
 # on G2, use pip instead of conda to install pandas and numpy to avoid C dependency conflicts
 pip install pandas numpy
-pip install together openai pre-commit datasets google-generativeai anthropic transformers 
+pip install together openai pre-commit datasets google-generativeai anthropic transformers tenacity tiktoken vllm langchain
 ```
+
+### Installing phantom-wiki in development mode
+
+There are 2 options:
+1. (Recommended) Install the package in editable mode using pip:
+    ```bash
+    pip install -e .
+    ```
+
+2. If you use VSCode, you can add to the python path without installing the package:
+    1. Create a file in the repo root called `.env`
+    2. Add `PYTHONPATH=src`
+    3. Restart VSCode
+
+### Prolog
 
 Setting up Prolog (see also the [Prolog tutorial](docs/prolog.md)):
 
-```
+```bash
 # install SWI-Prolog (on Mac)
 brew install swi-prolog
 # TODO: install SWI-Prolog (on Windows)
@@ -28,23 +43,41 @@ brew install swi-prolog
 pip install pyswip
 ```
 
-To install the source code in development mode:
+## Evaluation
 
-Option 1:
+Run evaluation methods (like `zeroshot,fewshot,react,...`) with an LLM like so:
+```bash
+python -m phantom_eval --method <method> --model_name <llm_name>
+```
 
+Steps for reproducing all results:
+🧪 To generate the prediction files, run the following scripts (e.g., using slurm):
 ```
 conda activate dataset
-cd src
-conda develop .
+cd eval
+# run medium models (< 10B params) locally (allocates 4 A6000s)
+sbatch zeroshot_M.sh <output directory>
+# run large models (10-70B params) locally (allocates 8 A6000s)
+sbatch zeroshot_L.sh <output directory>
+# run API models (NOTE: this can be very expensive!)
+sbatch zeroshot_cpu.sh <output directory> <model name>
 ```
+📊 To generate the tables and figures, run the following script:
+```
+# make sure the dataset conda env is activated!
+cd eval
+./evaluate.sh <output directory> <method>
+```
+where <output directory> here is the same as <output directory> when generating the prediction and <method> cam be zeroshot/react/etc.
 
-Option 2:
+NOTE: this script will save the outputs to OUTPUT_DIRECTORY under `scores/` and `figures/`
 
-1. Create a file in the repo root called `.env`
-2. Add `PYTHONPATH=src`
-3. Restart VSCode
+TODO: make the folder naming structure more consistent
 
-## TogetherAI
+Run `python -m phantom_eval -h` for usage help and a list of supported models.
+Below are setup instructions for various LLM providers supported in evaluation.
+
+### TogetherAI
 
 1. Register for an account at https://api.together.ai
 2. Set your TogetherAI API key:
@@ -53,7 +86,34 @@ Option 2:
 conda env config vars set TOGETHER_API_KEY=xxxxx
 ```
 
-## vLLM
+### OpenAI
+1. Register an account *with your cornell.edu email* at https://platform.openai.com/ and join "Kilian's Group"
+2. Create an API key at https://platform.openai.com/settings/organization/api-keys under your name
+3. Set your OpenAI API key in your conda environment:
+```
+conda env config vars set OPENAI_API_KEY=xxxxx
+```
+Rate limits: https://platform.openai.com/docs/guides/rate-limits#usage-tiers
+
+### Google Gemini
+1. Create an API key at https://aistudio.google.com/app/apikey (NOTE: for some reason, Google AI Studio is disabled for cornell.edu accounts, so use your personal account)
+2. Set your Google API key:
+```
+conda env config vars set GOOGLE_API_KEY=xxxxx
+```
+
+### Anthropic
+1. Register an account *with your cornell.edu email* and join "Kilian's Group" 
+2. Create an API key at https://console.anthropic.com/settings/keys under your name
+3. Set your Anthropic API key in your conda environment:
+```
+conda env config vars set ANTHROPIC_API_KEY=xxxxx
+```
+Rate limits: https://docs.anthropic.com/en/api/rate-limits#updated-rate-limits
+
+:rotating_light: The Anthropic API has particularly low rate limits so it takes longer to get predictions.
+
+### vLLM
 Setup (following [these](https://docs.vllm.ai/en/stable/getting_started/installation.html) instructions):
 ```
 # allocate an GPU with CUDA 12.2 (if you have Xiangyu's graphite-utils, you can do `cuda121` in zsh)
@@ -76,33 +136,6 @@ With six A6000s:
 ValueError: Total number of attention heads (64) must be divisible by tensor parallel size (6).
 ```
 NOTE: These models and their configs are downloaded directly from HuggingFace
-
-## OpenAI
-1. Register an account *with your cornell.edu email* at https://platform.openai.com/ and join "Kilian's Group"
-2. Create an API key at https://platform.openai.com/settings/organization/api-keys under your name
-3. Set your OpenAI API key in your conda environment:
-```
-conda env config vars set OPENAI_API_KEY=xxxxx
-```
-Rate limits: https://platform.openai.com/docs/guides/rate-limits#usage-tiers
-
-## Google Gemini
-1. Create an API key at https://aistudio.google.com/app/apikey (NOTE: for some reason, Google AI Studio is disabled for cornell.edu accounts, so use your personal account)
-2. Set your Google API key:
-```
-conda env config vars set GOOGLE_API_KEY=xxxxx
-```
-
-## Anthropic
-1. Register an account *with your cornell.edu email* and join "Kilian's Group" 
-2. Create an API key at https://console.anthropic.com/settings/keys under your name
-3. Set your Anthropic API key in your conda environment:
-```
-conda env config vars set ANTHROPIC_API_KEY=xxxxx
-```
-Rate limits: https://docs.anthropic.com/en/api/rate-limits#updated-rate-limits
-
-:rotating_light: The Anthropic API has particularly low rate limits so it takes longer to get predictions.
 
 ## Development best practices
 

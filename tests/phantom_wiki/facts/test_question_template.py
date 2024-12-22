@@ -8,12 +8,12 @@ from phantom_wiki.facts.sample import sample
 from phantom_wiki.facts.templates import generate_templates
 from phantom_wiki.utils import get_parser
 # testing utils
-from tests.facts import (DEPTH_6_PATH, 
+from tests.phantom_wiki.facts import (DEPTH_6_PATH, 
                          DEPTH_8_PATH, 
                          DEPTH_10_PATH,
                          QUESTIONS_DICT,
                          QUESTIONS_VALID_DICT)
-from tests.facts.family import FACTS_SMALL_EXAMPLE_PATH
+from tests.phantom_wiki.facts.family import FACTS_SMALL_EXAMPLE_PATH
 
 # TODO: come up with a better way to test the question-prolog pair generation
 SAVE_SAMPLE = False
