@@ -54,12 +54,13 @@ Steps for reproducing all results:
 🧪 To generate the prediction files, run the following scripts (e.g., using slurm):
 ```
 conda activate dataset
+cd eval
 # run medium models (< 10B params) locally (allocates 4 A6000s)
-sbatch eval/zeroshot_M.sh <output directory>
+sbatch zeroshot_M.sh <output directory>
 # run large models (10-70B params) locally (allocates 8 A6000s)
-sbatch eval/zeroshot_L.sh <output directory>
+sbatch zeroshot_L.sh <output directory>
 # run API models (NOTE: this can be very expensive!)
-sbatch eval/zeroshot_cpu.sh <output directory> <model name>
+sbatch zeroshot_cpu.sh <output directory> <model name>
 ```
 📊 To generate the tables and figures, run the following script:
 ```
