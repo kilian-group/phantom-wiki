@@ -9,7 +9,7 @@ import pandas as pd
 from tqdm import tqdm
 
 from .utils import get_parser, load_data, setup_logging
-from .llm import get_llm, SUPPORTED_LOCAL_LLM_NAMES, LLMChatResponse, LLMChat
+from .llm import get_llm, VLLMChat, LLMChatResponse, LLMChat, InferenceGenerationConfig
 from .agent import get_agent, Agent
 from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES
 
@@ -17,10 +17,25 @@ logger = logging.getLogger(__name__)
 
 
 async def main(args: argparse.Namespace) -> None:
-    logger.info("Loading LLM")
-    # import pdb; pdb.set_trace()
-    model_kwargs = dict(
-        model_path=args.model_path,
+    logger.info(f"Loading LLM={args.model_name}")
+    match args.model_name:
+        case model_name if model_name in VLLMChat.SUPPORTED_LLM_NAMES:
+            model_kwargs = dict(
+                model_path=args.model_path,
+                max_model_len=args.inf_vllm_max_model_len,
+                tensor_parallel_size=args.inf_vllm_tensor_parallel_size,
+                # If the method is zeroshot or fewshot, we do not need to use the API (for vLLM)
+                # This can be overridden by setting `use_api=True` in the model_kwargs.
+                # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
+                use_api=(args.method not in ["zeroshot", "fewshot"]), 
+            )
+        case _:
+            model_kwargs = dict(
+                model_path=args.model_path,
+            )
+    llm_chat: LLMChat = get_llm(args.model_name, model_kwargs=model_kwargs)
+    llm_prompt: LLMPrompt = get_llm_prompt(args.method, args.model_name)
+    default_inf_gen_config = InferenceGenerationConfig(
         max_tokens=args.inf_max_tokens,
         temperature=args.inf_temperature,
         top_k=args.inf_top_k,
@@ -28,13 +43,7 @@ async def main(args: argparse.Namespace) -> None:
         repetition_penalty=args.inf_repetition_penalty,
         max_retries=args.inf_max_retries,
         wait_seconds=args.inf_wait_seconds,
-        # If the method is zeroshot or fewshot, we do not need to use the API (for vLLM)
-        # This can be overridden by setting `use_api=True` in the model_kwargs.
-        # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
-        use_api=(args.method not in ["zeroshot", "fewshot"]), 
     )
-    llm_chat: LLMChat = get_llm(args.model_name, model_kwargs=model_kwargs)
-    llm_prompt: LLMPrompt = get_llm_prompt(args.method, args.model_name)
 
     for seed in args.inf_seed_list:
         logger.info(f"Running inference with {seed=}")
@@ -47,7 +56,7 @@ async def main(args: argparse.Namespace) -> None:
             # Construct agent for the data split
             match args.method:
                 case "zeroshot" | "fewshot":
-                    agent_kwargs = {}
+                    agent_kwargs = dict()
                 case "CoT":
                     raise NotImplementedError("CoT evaluation is not supported yet.")
                 case "RAG":
@@ -66,7 +75,7 @@ async def main(args: argparse.Namespace) -> None:
 
             # If the model is a local LLM, we can run on all QA examples
             num_df_qa_pairs = len(df_qa_pairs)
-            batch_size = num_df_qa_pairs if args.model_name in SUPPORTED_LOCAL_LLM_NAMES else args.batch_size
+            batch_size = num_df_qa_pairs if args.model_name in VLLMChat.SUPPORTED_LLM_NAMES else args.batch_size
             for batch_number in range(1, math.ceil(num_df_qa_pairs/batch_size) + 1):
                 # Get batch
                 batch_start_idx = (batch_number - 1) * batch_size
@@ -74,15 +83,14 @@ async def main(args: argparse.Namespace) -> None:
                 logger.info(f"Getting predictions for questions [{batch_start_idx}, {batch_end_idx}) out of {num_df_qa_pairs}")
                 batch_df_qa_pairs = df_qa_pairs.iloc[batch_start_idx:batch_end_idx]
                 
-                if batch_number > 1:
-                    break
                 # Run the method and get final responses for the batch
                 # In zeroshot, fewshot, the LLM responds with the final answer in 1 turn only,
                 # so they support batch async inference
                 match args.method:
                     case "zeroshot" | "fewshot":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
-                        responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, seed)
+                        inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
+                        responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
                         interactions = None # NOTE: zeroshot, fewshot do not have interactions
                     case "CoT":
                         raise NotImplementedError("CoT evaluation is not supported yet.")
@@ -94,7 +102,8 @@ async def main(args: argparse.Namespace) -> None:
                         interactions: list[str] = []  # TODO for logging/debugging purposes, remove
                         for qa_sample in tqdm(batch_df_qa_pairs.itertuples(), total=batch_size):
                             agent.reset()  # Must reset the agent for each question
-                            response = agent.run(llm_chat, qa_sample.question, seed)
+                            inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
+                            response = agent.run(llm_chat, qa_sample.question, inf_gen_config)
                             responses.append(response)
                             interactions.append(agent._build_agent_prompt(qa_sample.question))
 
@@ -114,7 +123,7 @@ async def main(args: argparse.Namespace) -> None:
                 save_preds(
                     pred_path,
                     split,
-                    seed,
+                    inf_gen_config,
                     args,
                     batch_number,
                     batch_df_qa_pairs,
@@ -126,7 +135,7 @@ async def main(args: argparse.Namespace) -> None:
 def save_preds(
     pred_path: Path,
     split: str,
-    seed: int,
+    inf_gen_config: InferenceGenerationConfig,
     args: argparse.Namespace,
     batch_number: int,
     batch_df_qa_pairs: pd.DataFrame,
@@ -148,13 +157,7 @@ def save_preds(
                 "batch_number": batch_number,
                 "type": int(qa_sample.type),
             },
-            "inference_params": {
-                "max_tokens": args.inf_max_tokens,
-                "temperature": args.inf_temperature,
-                "top_p": args.inf_top_p,
-                "top_k": args.inf_top_k,
-                "seed": seed,
-            },
+            "inference_params": inf_gen_config.model_dump(),
             "usage": responses[i].usage,
         }
 
