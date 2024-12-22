@@ -330,10 +330,10 @@ class OpenAIChat(CommonLLMChat):
 
 class TogetherChat(CommonLLMChat):
     SUPPORTED_LLM_NAMES: list[str] = [
-        "together:meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
-        "together:meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
-        "together:meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
-        "together:meta-llama/Llama-Vision-Free",
+        "meta-llama/meta-llama-3.1-8b-instruct-turbo",
+        "meta-llama/meta-llama-3.1-70b-instruct-turbo",
+        "meta-llama/meta-llama-3.1-405b-instruct-turbo",
+        "meta-llama/llama-vision-free",
     ]
     RATE_LIMITS = {llm_name: {"usage_tier=1": {"RPM": 20, "TPM": 500_000}} for llm_name in SUPPORTED_LLM_NAMES}
 
@@ -343,7 +343,6 @@ class TogetherChat(CommonLLMChat):
         model_path: str | None = None,
         usage_tier: int = 1,
     ):
-        assert model_name.startswith("together:"), "model_name must start with 'together:'"
         super().__init__(model_name, model_path)
         self.client = together.Together(api_key=os.getenv("TOGETHER_API_KEY"))
         self.async_client = together.AsyncTogether(api_key=os.getenv("TOGETHER_API_KEY"))
@@ -360,7 +359,7 @@ class TogetherChat(CommonLLMChat):
         # Remove the "together:" prefix before setting up the client
         client = self.async_client if use_async else self.client
         response = client.chat.completions.create(
-            model=self.model_name[len("together:") :],
+            model=self.model_name,
             messages=messages_api_format,
             temperature=inf_gen_config.temperature,
             top_p=inf_gen_config.top_p,
