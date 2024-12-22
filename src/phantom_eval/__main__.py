@@ -9,6 +9,7 @@ import pandas as pd
 from tqdm import tqdm
 
 from .utils import get_parser, load_data, setup_logging
+from .data import Conversation
 from .llm import get_llm, VLLMChat, LLMChatResponse, LLMChat, InferenceGenerationConfig
 from .agent import get_agent, Agent
 from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES
@@ -83,6 +84,8 @@ async def main(args: argparse.Namespace) -> None:
                 logger.info(f"Getting predictions for questions [{batch_start_idx}, {batch_end_idx}) out of {num_df_qa_pairs}")
                 batch_df_qa_pairs = df_qa_pairs.iloc[batch_start_idx:batch_end_idx]
                 
+                if batch_number > 1: break
+
                 # Run the method and get final responses for the batch
                 # In zeroshot, fewshot, the LLM responds with the final answer in 1 turn only,
                 # so they support batch async inference
@@ -91,7 +94,7 @@ async def main(args: argparse.Namespace) -> None:
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                         responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
-                        interactions = None # NOTE: zeroshot, fewshot do not have interactions
+                        agent_interactions = None # NOTE: zeroshot, fewshot do not have interactions
                     case "CoT":
                         raise NotImplementedError("CoT evaluation is not supported yet.")
                     case "RAG":
@@ -99,13 +102,13 @@ async def main(args: argparse.Namespace) -> None:
                     case "react":
                         # Run agent on each question one by one
                         responses: list[LLMChatResponse] = []
-                        interactions: list[str] = []  # TODO for logging/debugging purposes, remove
+                        agent_interactions: list[Conversation] = []
                         for qa_sample in tqdm(batch_df_qa_pairs.itertuples(), total=batch_size):
                             agent.reset()  # Must reset the agent for each question
                             inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                             response = agent.run(llm_chat, qa_sample.question, inf_gen_config)
                             responses.append(response)
-                            interactions.append(agent._build_agent_prompt(qa_sample.question))
+                            agent_interactions.append(agent.agent_interactions)
 
                 # Log the final answers for the batch
                 run_name = (
@@ -128,7 +131,7 @@ async def main(args: argparse.Namespace) -> None:
                     batch_number,
                     batch_df_qa_pairs,
                     responses,
-                    interactions=interactions,
+                    interactions=agent_interactions,
                 )
 
 
@@ -140,7 +143,7 @@ def save_preds(
     batch_number: int,
     batch_df_qa_pairs: pd.DataFrame,
     responses: list[LLMChatResponse],
-    interactions: list[str] | None = None,
+    interactions: list[Conversation] | None = None,
 ) -> None:
     preds = {}
     batch_size = len(batch_df_qa_pairs)
@@ -149,7 +152,7 @@ def save_preds(
         preds[uid] = {
             "true" : qa_sample.answer,
             "pred" : responses[i].pred,
-            "interaction": interactions[i] if interactions else [],
+            "interaction": interactions[i].model_dump() if interactions else [],
             "metadata": {
                 "model": args.model_name,
                 "split": split,
