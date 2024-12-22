@@ -76,7 +76,9 @@ async def main(args: argparse.Namespace) -> None:
 
             # If the model is a local LLM, we can run on all QA examples
             num_df_qa_pairs = len(df_qa_pairs)
-            batch_size = num_df_qa_pairs if args.model_name in VLLMChat.SUPPORTED_LLM_NAMES else args.batch_size
+            can_process_full_batch = (args.model_name in VLLMChat.SUPPORTED_LLM_NAMES) \
+                and (args.method != "react")
+            batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
             for batch_number in range(1, math.ceil(num_df_qa_pairs/batch_size) + 1):
                 # Skip if the batch number is not the one specified
                 if (args.batch_number is not None) and (batch_number != args.batch_number):
