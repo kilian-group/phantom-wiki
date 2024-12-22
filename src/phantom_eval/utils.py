@@ -81,9 +81,10 @@ def get_parser() -> argparse.ArgumentParser:
                         help="List of dataset splits to evaluate")
     parser.add_argument("--batch_size", "-bs", default=10, type=int,
                         help="Batch size (>=1)")
-    parser.add_argument("--batch_number", "-bn", default=1, type=int,
-                        help="Batch number (>=1). For example, if batch_size=100 and batch_number=1," \
-                            "then the first 100 questions will be evaluated")
+    parser.add_argument("--batch_number", "-bn", default=None, type=int,
+                        help="Batch number (>=1). For example, if batch_size=100 and batch_number=1, " \
+                            "then the first 100 questions will be evaluated " \
+                            "if None (default), all batches will be evaluated")
     # Saving params
     parser.add_argument("--output_dir", "-od", default="out",
                     help="Path to read/write the outputs")

@@ -78,13 +78,15 @@ async def main(args: argparse.Namespace) -> None:
             num_df_qa_pairs = len(df_qa_pairs)
             batch_size = num_df_qa_pairs if args.model_name in VLLMChat.SUPPORTED_LLM_NAMES else args.batch_size
             for batch_number in range(1, math.ceil(num_df_qa_pairs/batch_size) + 1):
+                # Skip if the batch number is not the one specified
+                if (args.batch_number is not None) and (batch_number != args.batch_number):
+                    continue
+
                 # Get batch
                 batch_start_idx = (batch_number - 1) * batch_size
                 batch_end_idx = batch_start_idx + batch_size
                 logger.info(f"Getting predictions for questions [{batch_start_idx}, {batch_end_idx}) out of {num_df_qa_pairs}")
                 batch_df_qa_pairs = df_qa_pairs.iloc[batch_start_idx:batch_end_idx]
-                
-                if batch_number > 1: break
 
                 # Run the method and get final responses for the batch
                 # In zeroshot, fewshot, the LLM responds with the final answer in 1 turn only,

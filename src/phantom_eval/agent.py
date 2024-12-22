@@ -227,7 +227,7 @@ class ReactAgent(Agent):
                     article: str = self.text_corpus.loc[self.text_corpus["title"] == action_arg, "article"].values[0]
                     observation_str = format_pred(article)
                 except IndexError:
-                    observation_str += f"No article exists for the requested entity. Please try retrieving article for another entity."
+                    observation_str = f"No article exists for the requested entity. Please try retrieving article for another entity."
             case "Search":
                 try:
                     # Fetch all articles that contain the requested attribute
@@ -235,9 +235,9 @@ class ReactAgent(Agent):
                     enum_articles: str = "\n\n".join(f"{i+1}: {article}" for i, article in enumerate(articles))
                     observation_str = format_pred(enum_articles)
                 except IndexError:
-                    observation_str += f"No articles contain the requested attribute. Please try searching for another attribute."
+                    observation_str = f"No articles contain the requested attribute. Please try searching for another attribute."
             case _:
-                observation_str += "Invalid action. Valid actions are RetrieveArticle[{{entity}}], Search[{{attribute}}], and Finish[{{answer}}]."
+                observation_str = "Invalid action. Valid actions are RetrieveArticle[{{entity}}], Search[{{attribute}}], and Finish[{{answer}}]."
         observation_for_round = f"<observation round=\"{self.step_round}\">{observation_str}</observation>"
         logger.debug(f"\n\t>>> {observation_for_round}\n")
 
