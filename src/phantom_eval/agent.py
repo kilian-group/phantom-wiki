@@ -4,7 +4,7 @@ import re
 
 import pandas as pd
 
-from phantom_eval.llm import LLMChat, LLMChatResponse
+from phantom_eval.llm import LLMChat, LLMChatResponse, InferenceGenerationConfig
 from phantom_eval.data import Conversation, ContentTextMessage, Message
 from phantom_eval.prompts import LLMPrompt
 
@@ -26,14 +26,14 @@ class Agent(abc.ABC):
         self.llm_prompt = llm_prompt
 
     @abc.abstractmethod
-    def run(self, llm_chat: LLMChat, question: str, seed: int) -> LLMChatResponse:
+    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         """
         Run the agent with an LLM on a given question.
         """
         pass
 
     @abc.abstractmethod
-    async def batch_run(self, llm_chat: LLMChat, questions: list[str], seed: int) -> list[LLMChatResponse]:
+    async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
         """
         Asynchronously run the agent with an LLM on a list of questions.
         """
@@ -79,7 +79,7 @@ class NshotAgent(Agent):
             question=question
         )
 
-    def run(self, llm_chat: LLMChat, question: str, seed: int) -> LLMChatResponse:
+    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
         # Create a conversation with 1 user prompt
@@ -89,14 +89,12 @@ class NshotAgent(Agent):
         ])
         
         # Generate response
-        response = llm_chat.generate_response(
-            conv,
-            stop_sequences=["\n"],
-            seed=seed,
-        )
+        # Add "\n" to stop_sequences
+        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
+        response = llm_chat.generate_response(conv, inf_gen_config)
         return response
     
-    async def batch_run(self, llm_chat: LLMChat, questions: list[str], seed: int) -> list[LLMChatResponse]:
+    async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
         logger.debug(f"\n\t>>> questions: {questions}\n")
 
         # Create a conversation with 1 user prompt
@@ -109,11 +107,9 @@ class NshotAgent(Agent):
         ]
         
         # Generate response
-        responses = await llm_chat.batch_generate_response(
-            convs=convs,
-            stop_sequences=["\n"],
-            seed=seed,
-        )
+        # Change stop_sequences to "\n"
+        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
+        responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
         return responses
 
 
@@ -150,27 +146,29 @@ class ReactAgent(Agent):
             scratchpad=self.scratchpad
         )
     
-    async def batch_run(self, llm_chat: LLMChat, questions: list[str], seed: int) -> list[LLMChatResponse]:
+    async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
         raise NotImplementedError("Batch run is not supported for ReactAgent.")
 
-    def run(self, llm_chat: LLMChat, question: str, seed: int) -> LLMChatResponse:
+    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
         while (self.step_round <= self.max_steps) and (not self.finished):
             try:
-                response = self._step(llm_chat, question, seed)
+                response = self._step(llm_chat, question, inf_gen_config)
             except:
                 response = LLMChatResponse(pred="<agent_error>", usage={})
                 break
         return response
     
-    def _step(self, llm_chat: LLMChat, question: str, seed: int = 1) -> LLMChatResponse:
+    def _step(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         """
         Run a single step of the agent, comprising of 3 sub-steps: thought, action, observation.
         """
         # Stop generating when end tag encountered. Add the end tag if not present in response
         # Think
-        response = self._prompt_agent(llm_chat, question, stop_sequences=["</thought>"], seed=seed)
+        # Add "</thought>" to stop_sequences
+        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["</thought>"]), deep=True)
+        response = self._prompt_agent(llm_chat, question, inf_gen_config)
         pred = format_pred(response.pred)
         pred = f"{pred}</thought>"
         logger.debug(f"\n\t>>> {pred}\n")
@@ -179,7 +177,9 @@ class ReactAgent(Agent):
         logger.debug(thought)
 
         # Act
-        response = self._prompt_agent(llm_chat, question, stop_sequences=["</action>"], seed=seed)
+        # Add "</action>" to stop_sequences
+        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["</action>"]), deep=True)
+        response = self._prompt_agent(llm_chat, question, inf_gen_config)
         pred = format_pred(response.pred)
         pred = f"{pred}</action>"
         logger.debug(f"\n\t>>> {pred}\n")
@@ -219,19 +219,17 @@ class ReactAgent(Agent):
         self.step_round += 1
         return LLMChatResponse(pred=observation_str, usage={})
 
-    def _prompt_agent(self, llm_chat: LLMChat, question: str, stop_sequences: list[str] | None = None, seed: int = 1) -> LLMChatResponse:
+    def _prompt_agent(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         """
         Prompt the LLM with the agent's current prompt and the given question.
-        `stop_sequences` and `seed` are passed to the LLM's generation function.
+        `inf_gen_config` is passed to the LLM's generation function.
         """
         # No turn-style conversation. All of the back and forth conversation so far becomes the user prompt.
         user_message: str = self._build_agent_prompt(question)
         conv: Conversation = Conversation(messages=[
             Message(role="user", content=[ContentTextMessage(text=user_message)])
         ])
-        response: LLMChatResponse = llm_chat.generate_response(
-            conv, stop_sequences=stop_sequences, seed=seed
-        )
+        response: LLMChatResponse = llm_chat.generate_response(conv, inf_gen_config)
         return response
     
 

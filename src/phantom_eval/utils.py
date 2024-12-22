@@ -53,10 +53,10 @@ def get_parser() -> argparse.ArgumentParser:
                         help="Maximum number of steps for the ReAct agent")
 
     # LLM inference params
-    parser.add_argument("--inf_max_model_len", type=int, default=None,
+    parser.add_argument("--inf_vllm_max_model_len", type=int, default=None,
                         help="Maximum model length (vLLM param)" \
                         "if None, uses max model length specified in model config")
-    parser.add_argument("--inf_tensor_parallel_size", type=int, default=None,
+    parser.add_argument("--inf_vllm_tensor_parallel_size", type=int, default=None,
                         help="number of gpus (vLLM param)" \
                         "if None, uses all available gpus")
     parser.add_argument("--inf_max_tokens", type=int, default=4096,
