@@ -343,10 +343,23 @@ class TogetherChat(CommonLLMChat):
         model_path: str | None = None,
         usage_tier: int = 1,
     ):
+        logging.info("Using TogetherAI for inference")
         super().__init__(model_name, model_path)
         self.client = together.Together(api_key=os.getenv("TOGETHER_API_KEY"))
         self.async_client = together.AsyncTogether(api_key=os.getenv("TOGETHER_API_KEY"))
         self._update_rate_limits(usage_tier)
+
+    def _convert_conv_to_api_format(self, conv: Conversation) -> list[dict]:
+        """
+        Converts the conversation object to a format supported by Together.
+        """
+        formatted_messages = []
+        for message in conv.messages:
+            for content in message.content:
+                match content:
+                    case ContentTextMessage(text=text):
+                        formatted_messages.append({"role": message.role, "content": text})
+        return formatted_messages
 
     def _call_api(
         self,
@@ -356,7 +369,6 @@ class TogetherChat(CommonLLMChat):
     ) -> object:
         # https://github.com/togethercomputer/together-python
         # https://docs.together.ai/reference/completions-1
-        # Remove the "together:" prefix before setting up the client
         client = self.async_client if use_async else self.client
         response = client.chat.completions.create(
             model=self.model_name,
