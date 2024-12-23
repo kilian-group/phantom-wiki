@@ -29,7 +29,8 @@ fi
 MODELS=(
     # 'google/gemma-2-27b-it'
     # 'microsoft/phi-3.5-moe-instruct'
-    'meta-llama/llama-3.1-70b-instruct'
+    # 'meta-llama/llama-3.1-70b-instruct'
+    'meta-llama/llama-3.3-70b-instruct'
 )
 TEMPERATURE=0
 # if TEMPERATURE=0, then sampling is greedy so no need run with muliptle seeds
