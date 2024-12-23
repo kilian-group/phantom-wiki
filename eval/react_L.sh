@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH -J zeroshot-large                              # Job name
-#SBATCH -o slurm/zeroshot-large_%j.out                 # output file (%j expands to jobID)
-#SBATCH -e slurm/zeroshot-large_%j.err                 # error log file (%j expands to jobID)
+#SBATCH -J react-large                              # Job name
+#SBATCH -o slurm/react-large_%j.out                 # output file (%j expands to jobID)
+#SBATCH -e slurm/react-large_%j.err                 # error log file (%j expands to jobID)
 #SBATCH --mail-type=ALL                      # Request status by email 
 #SBATCH --mail-user=ag2435@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
@@ -16,21 +16,27 @@
 # GPU requirements when using max context length (i.e., `max_model_len=None`)
 # Model Size    | A6000 GPU  | H100 GPU
 # ------------- | -----------|-----------
-# ~8B models    | 1          | ?
-# ~70B models   | 8          | ?
+# ~8B models    | 1          | 1
+# ~70B models   | 8          | 4
 
 # check that the correct number of arguments were passed
 if [ -z "$1" ]; then
     echo "Usage: $0 <output directory>"
     exit 1
 fi
+# activate conda environment
+source /share/apps/anaconda3/2021.05/etc/profile.d/conda.sh
+# NOTE: this assumes that conda environment is called `dataset`
+# change this to your conda environment as necessary
+conda activate dataset
 
 # list of models
 MODELS=(
-    'google/gemma-2-27b-it'
-    'microsoft/phi-3.5-moe-instruct'
+    # 'google/gemma-2-27b-it'
+    # 'microsoft/phi-3.5-moe-instruct'
     'meta-llama/llama-3.1-70b-instruct'
     'meta-llama/llama-3.3-70b-instruct'
+    # 'meta-llama/llama-3.1-8b-instruct'
 )
 TEMPERATURE=0
 # if TEMPERATURE=0, then sampling is greedy so no need run with muliptle seeds
@@ -41,19 +47,50 @@ else
     seed_list="1 2 3 4 5"
 fi
 
+# Function to check if the server is up
+check_server() {
+    response=$(curl -o /dev/null -s -w "%{http_code}" http://0.0.0.0:8000/v1/chat/completions \
+                    -X POST \
+                    -H "Content-Type: application/json" \
+                    -H "Authorization: Bearer token-abc123" \
+                    -d '{"model": "meta-llama/llama-3.1-8b-instruct", "messages": [{"role": "user", "content": "Hello!"}]}')
+    if [ "$response" -eq 200 ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 for model_name in "${MODELS[@]}"
 do
-    # launch vllm server in the background
-    # vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 8 &
+    # Start the vLLM server in the background
+    echo "Starting vLLM server..."
+    vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 8"
+    nohup $vllm_cmd &
+    
+    # Wait for the server to start
+    echo "Waiting for vLLM server to start..."
+    while ! check_server; do
+        echo "Server is not up yet. Checking again in 5 seconds..."
+        sleep 5
+    done
 
+    echo "vLLM server is up and running."
+
+    # Run the main Python script
     cmd="python -m phantom_eval \
         --method react \
         -od $1 \
         -m $model_name \
-        --split_list depth_10_size_26_seed_1 \
+        --split_list depth_10_size_50_seed_1 depth_10_size_100_seed_1 depth_10_size_200_seed_1 \
         --inf_seed_list $seed_list \
         --inf_temperature $TEMPERATURE \
         -bs 10"
     echo $cmd
     eval $cmd
+
+    # Stop the vLLM server using pkill
+    echo "Stopping vLLM server..."
+    pkill -f "$vllm_cmd"
+    echo "vLLM server stopped."
 done
