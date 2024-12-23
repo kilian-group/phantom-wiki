@@ -549,6 +549,8 @@ class VLLMChat(CommonLLMChat):
     SUPPORTED_LLM_NAMES: list[str] = [
         "meta-llama/llama-3.1-8b-instruct", 
         "meta-llama/llama-3.1-70b-instruct", 
+        "meta-llama/llama-3.2-1b-instruct",
+        "meta-llama/llama-3.2-3b-instruct",
         "meta-llama/llama-3.3-70b-instruct", 
         "microsoft/phi-3.5-mini-instruct",
         "microsoft/phi-3.5-moe-instruct",
