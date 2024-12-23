@@ -25,6 +25,6 @@ acc['count'] = grouped.size()
 # print as markdown
 print(acc.to_markdown())
 # save to a csv file
-scores_dir = os.path.join(output_dir, 'scores')
+scores_dir = os.path.join(output_dir, 'scores', method)
 os.makedirs(scores_dir, exist_ok=True)
 acc.to_csv(os.path.join(scores_dir, "scores.csv"))

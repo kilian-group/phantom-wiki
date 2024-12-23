@@ -11,24 +11,36 @@
 #SBATCH -t infinite                           # Time limit (hh:mm:ss)
 #SBATCH --partition=kilian                   # Request partition
 
+# Script for getting react predictions running API-based models
+
 # check that the correct number of arguments were passed
-if [ -z "$1" ] && [ -z "$2" ]; then
-    echo "Usage: $0 <output directory> <model name>"
+if [ -z "$1" ]; then
+    echo "Usage: $0 <output directory>"
     exit 1
 fi
-# activate conda environment
-source /share/apps/anaconda3/2021.05/etc/profile.d/conda.sh
-# NOTE: this assumes that conda environment is called `dataset`
-# change this to your conda environment as necessary
-conda activate dataset
 
-TEMPERATURE=0.7
-# NOTE: specify batch size to save intermediate batches
-python -m phantom_eval \
-    --method zeroshot \
-    -od $1 \
-    -m $2 \
-    -bs 10 \
-    --split_list depth_10_size_26_seed_1 depth_10_size_50_seed_1 depth_10_size_100_seed_1 depth_10_size_200_seed_1 \
-    --inf_seed_list 1 2 3 4 5 \
-    --inf_temperature $TEMPERATURE
+# list of models
+MODELS=(
+    'meta-llama/llama-vision-free'
+)
+TEMPERATURE=0
+# if TEMPERATURE=0, then sampling is greedy so no need run with muliptle seeds
+if (( $(echo "$TEMPERATURE == 0" | bc -l) ))
+then
+    seed_list="1"
+else
+    seed_list="1 2 3 4 5"
+fi
+
+for model_name in "${MODELS[@]}"
+do
+    cmd="python -m phantom_eval \
+        --method react \
+        -od $1 \
+        -m $model_name \
+        --split_list depth_10_size_26_seed_1 \
+        --inf_seed_list $seed_list \
+        --inf_temperature $TEMPERATURE"
+    echo $cmd
+    eval $cmd
+done

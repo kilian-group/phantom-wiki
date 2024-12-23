@@ -38,7 +38,7 @@ def setup_logging(log_level: str) -> str:
 
 def get_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="PhantomWiki Evaluation")
-    parser.add_argument("--model_name", "-m", type=str, default="together:meta-llama/Llama-Vision-Free",
+    parser.add_argument("--model_name", "-m", type=str.lower, default="meta-llama/llama-vision-free",
                         help="model name. " \
                             "NOTE: to add a new model, please submit a PR to the repo with the new model name", 
                         choices=SUPPORTED_LLM_NAMES)

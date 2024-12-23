@@ -24,6 +24,11 @@ if [ -z "$1" ] && [ -z "$2" ]; then
     echo "Usage: $0 <output directory> <model>"
     exit 1
 fi
+# activate conda environment
+source /share/apps/anaconda3/2021.05/etc/profile.d/conda.sh
+# NOTE: this assumes that conda environment is called `dataset`
+# change this to your conda environment as necessary
+conda activate dataset
 
 python -m phantom_eval \
     --method zeroshot \
