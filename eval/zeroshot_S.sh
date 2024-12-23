@@ -35,8 +35,6 @@ conda activate dataset
 MODELS=(
     'google/gemma-2-2b-it'
     'meta-llama/llama-3.2-1b-instruct'
-    'meta-llama/llama-3.2-3b-instruct'
-    'microsoft/phi-3.5-mini-instruct'
 )
 TEMPERATURE=0
 # if TEMPERATURE=0, then sampling is greedy so no need run with muliptle seeds

@@ -34,8 +34,10 @@ conda activate dataset
 
 # list of models
 MODELS=(
-    'google/gemma-2-9b-it'
+    'microsoft/phi-3.5-mini-instruct'
+    'meta-llama/llama-3.2-3b-instruct'
     'meta-llama/llama-3.1-8b-instruct'
+    'google/gemma-2-9b-it'
     'mistralai/mistral-7b-instruct-v0.3'
 )
 TEMPERATURE=0
