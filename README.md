@@ -145,6 +145,11 @@ git push
    - Run from the Testing Extension (note: your python interpreter must be set to the `dataset` conda environment created above)
    - Call `pytest` in the terminal (note: make sure the `dataset` conda environment is activated)
 
+**Sharing results:**
+
+- Model predictions can be shared at `/share/nikola/phantom-wiki/eval`
+- Please copy the predictions to your local working directory rather than reading from the shared directory directly
+
 ## Sharing dataset to HuggingFace
 
 1. Clone the HuggingFace dataset repo (note: you only need to do this once):
