@@ -140,4 +140,4 @@ def sample(
             assert match in question
             sample_predicate(ATTRIBUTE_RELATION, match, i, mapping=None)
 
-    return result, " ".join(question), query
+    return result, " ".join(question[:-1]) + question[-1], query
