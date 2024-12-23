@@ -1,13 +1,13 @@
 ATTRIBUTE_FACT_TEMPLATES = {
     "dob": "The date of birth of <subject> is",
-    "occupation": "The occupation of <subject> is",
+    "job": "The occupation of <subject> is",
     "hobby": "The hobby of <subject> is",
     "gender": "The gender of <subject> is",
 }
 
 ATTRIBUTE_RELATION = [
     "dob",
-    "occupation",
+    "job",
     "hobby",
     "gender",
 ]
