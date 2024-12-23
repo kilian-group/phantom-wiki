@@ -140,4 +140,6 @@ def sample(
             assert match in question
             sample_predicate(ATTRIBUTE_RELATION, match, i, mapping=None)
 
+    assert question[-1] == "?", "the last term must be a question mark"
+    # avoid an extra space before the question mark by joining in the following fashion
     return result, " ".join(question[:-1]) + question[-1], query
