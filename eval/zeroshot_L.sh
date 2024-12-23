@@ -14,10 +14,11 @@
 
 # Script for running zero-shot evaluation on all large models (10-70 B params)
 # GPU requirements when using max context length (i.e., `max_model_len=None`)
-# Model Size    | A6000 GPU  | H100 GPU
-# ------------- | -----------|-----------
-# ~8B models    | 1          | ?
-# ~70B models   | 8          | ?
+# Model Size    | 3090 GPU   | A6000 GPU | H100 GPU
+# ------------- | -----------|-----------|---------
+# ~4B models    | 1          | 1         | 1
+# ~8B models    | 2          | 1         | 1
+# ~70B models   |            | 8         | 4
 
 # check that the correct number of arguments were passed
 if [ -z "$1" ]; then
