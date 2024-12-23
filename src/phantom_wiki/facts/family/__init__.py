@@ -1,7 +1,10 @@
 # imports for family relations and templates
+from .constants import (FAMILY_FACT_TEMPLATES,
+                        FAMILY_FACT_TEMPLATES_PL,
+                        FAMILY_RELATION_EASY,
+                        FAMILY_RELATION_HARD)
 
 from importlib.resources import files
-
 FAMILY_RULES_BASE_PATH = files("phantom_wiki").joinpath("facts/family/rules_base.pl")
 FAMILY_RULES_DERIVED_PATH = files("phantom_wiki").joinpath("facts/family/rules_derived.pl")
 

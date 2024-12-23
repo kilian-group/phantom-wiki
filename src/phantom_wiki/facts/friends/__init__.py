@@ -12,6 +12,9 @@ from .generate import create_friendship_graph
 # Instead of writing separate functions to get friendship facts,
 # we can use the get_relation_facts function to get friendship facts
 # after providing the relations to query and templates for constructing sentences.
+from .constants import (FRIENDSHIP_RELATION,
+                        FRIENDSHIP_FACT_TEMPLATES,
+                        FRIENDSHIP_FACT_TEMPLATES_PL)
 
 # TODO: add friendship CLI argument parser
 
