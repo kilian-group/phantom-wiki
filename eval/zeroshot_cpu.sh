@@ -16,6 +16,11 @@ if [ -z "$1" ] && [ -z "$2" ]; then
     echo "Usage: $0 <output directory> <model name>"
     exit 1
 fi
+# activate conda environment
+source /share/apps/anaconda3/2021.05/etc/profile.d/conda.sh
+# NOTE: this assumes that conda environment is called `dataset`
+# change this to your conda environment as necessary
+conda activate dataset
 
 TEMPERATURE=0.7
 # NOTE: specify batch size to save intermediate batches
