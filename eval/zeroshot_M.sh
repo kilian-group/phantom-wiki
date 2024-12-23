@@ -14,10 +14,12 @@
 
 # Script for running zero-shot evaluation on all medium models (<10 B params)
 # GPU requirements when using max context length (i.e., `max_model_len=None`)
-# Model Size    | A6000 GPU  | H100 GPU
-# ------------- | -----------|-----------
-# ~8B models    | 1          | ?
-# ~70B models   | 8          | ?
+# Model Size    | 3090 GPU   | A6000 GPU | H100 GPU
+# ------------- | -----------|-----------|---------
+# ~4B models    | 1          | 1         | 1
+# ~8B models    | 2          | 1         | 1
+# ~70B models   |            | 8         | 4
+# NOTE: meta-llama/llama-3.2-11b-vision-instruct runs out of memory on 8 A6000 GPUs
 
 # check that the correct number of arguments were passed
 if [ -z "$1" ]; then
@@ -32,10 +34,8 @@ conda activate dataset
 
 # list of models
 MODELS=(
-    'google/gemma-2-2b-it'
     'google/gemma-2-9b-it'
     'meta-llama/llama-3.1-8b-instruct'
-    'microsoft/phi-3.5-mini-instruct'
     'mistralai/mistral-7b-instruct-v0.3'
 )
 TEMPERATURE=0
