@@ -21,7 +21,7 @@ df = get_evaluation_data(output_dir, method)
 
 # %%
 # save to a csv file
-scores_dir = os.path.join(output_dir, 'scores')
+scores_dir = os.path.join(output_dir, 'scores', method)
 os.makedirs(scores_dir, exist_ok=True)
 
 # %%
