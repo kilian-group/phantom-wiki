@@ -98,7 +98,7 @@ async def main(args: argparse.Namespace) -> None:
                 # In zeroshot, fewshot, the LLM responds with the final answer in 1 turn only,
                 # so they support batch async inference
                 match args.method:
-                    case "zeroshot" | "fewshot":
+                    case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                         responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)

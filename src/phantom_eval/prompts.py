@@ -160,9 +160,9 @@ class ReactGeminiPrompt(ReactLLMPrompt):
 
 def get_llm_prompt(method: str, model_name: str) -> LLMPrompt:
     match method:
-        case "zeroshot":
+        case "zeroshot" | "zeroshot-sc":
             return ZeroshotLLMPrompt()
-        case "fewshot":
+        case "fewshot" | "fewshot-sc":
             raise NotImplementedError("Few-shot evaluation is not supported yet.") 
         case "CoT":
             raise NotImplementedError("CoT evaluation is not supported yet.")
