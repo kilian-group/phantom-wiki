@@ -1,8 +1,35 @@
+from phantom_eval import constants
+
+
+def normalize_pred(pred: str, sep: str) -> set[str]:
+    """
+    Normalize the prediction by splitting and stripping whitespace the answers.
+
+    Args:
+        pred (str): The prediction string of format "A<sep>B<sep>C".
+        sep (str): The separator used to split the prediction.
+
+    Returns:
+        set[str]: A set of normalized answers.
+    """
+    # Operations:
+    # 1. Split by separator
+    # 2. Strip whitespace
+    # 3. Lowercase
+    # 4. Convert to set to remove duplicates
+    return set(
+        map(str.lower,
+        map(str.strip,
+            pred.split(sep)
+        ))
+    )
+
+
 def match(
         pred: str, 
         true: str, 
         exact: bool = True,
-        sep: str = ",",
+        sep: str = constants.answer_sep,
     ) -> bool:
     """
     Simple score function that checks if the prediction is equal to the true answer
@@ -15,7 +42,7 @@ def match(
 def precision(
         pred: str, 
         true: str,
-        sep: str = ","
+        sep: str = constants.answer_sep,
     ) -> float:
     """
     Assume:
@@ -33,7 +60,7 @@ def precision(
 def recall(
         pred: str, 
         true: str,
-        sep: str = ","
+        sep: str = constants.answer_sep,
     ) -> float:
     """
     Assume:
@@ -51,7 +78,7 @@ def recall(
 def f1(
         pred: str, 
         true: str,
-        sep: str = ","
+        sep: str = constants.answer_sep,
     ) -> float:
     pres = precision(pred, true, sep)
     rec = recall(pred, true, sep)
