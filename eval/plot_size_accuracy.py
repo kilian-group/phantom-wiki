@@ -37,7 +37,7 @@ acc_mean_std = acc_mean_std.reset_index()
 import re
 acc_mean_std['_split'] = acc_mean_std['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(2))
 
-figures_dir = os.path.join(output_dir, 'figures')
+figures_dir = os.path.join(output_dir, 'figures', method)
 os.makedirs(figures_dir, exist_ok=True)
 
 # %%

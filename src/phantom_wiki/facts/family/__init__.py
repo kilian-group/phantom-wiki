@@ -1,5 +1,6 @@
 # imports for family relations and templates
 from .constants import (FAMILY_FACT_TEMPLATES,
+                        FAMILY_FACT_TEMPLATES_PL,
                         FAMILY_RELATION_EASY,
                         FAMILY_RELATION_HARD)
 
@@ -9,33 +10,55 @@ FAMILY_RULES_DERIVED_PATH = files("phantom_wiki").joinpath("facts/family/rules_d
 
 # imports for family generation
 from argparse import ArgumentParser
+
 # Create parser for family tree generation
 fam_gen_parser = ArgumentParser(description="Family Generator", add_help=False)
-fam_gen_parser.add_argument("--max-branching-factor", type=int, default=5,
-                            help="The maximum number of children that any person in a family tree may have. (Default value: 5.)")
-fam_gen_parser.add_argument("--max-tree-depth", type=int, default=5,
-                            help="The maximum depth that a family tree may have. (Default value: 5.)")
-fam_gen_parser.add_argument("--max-tree-size", type=int, default=26,
-                            help="The maximum number of people that may appear in a family tree. (Default value: 26.)")
-fam_gen_parser.add_argument("--num-samples", type=int, default=1,
-                            help="The size of the dataset to generate. (Default value: 1.)")
+fam_gen_parser.add_argument(
+    "--max-branching-factor",
+    type=int,
+    default=5,
+    help="The maximum number of children that any person in a family tree may have. (Default value: 5.)",
+)
+fam_gen_parser.add_argument(
+    "--max-tree-depth",
+    type=int,
+    default=5,
+    help="The maximum depth that a family tree may have. (Default value: 5.)",
+)
+fam_gen_parser.add_argument(
+    "--max-tree-size",
+    type=int,
+    default=26,
+    help="The maximum number of people that may appear in a family tree. (Default value: 26.)",
+)
+fam_gen_parser.add_argument(
+    "--num-samples", type=int, default=1, help="The size of the dataset to generate. (Default value: 1.)"
+)
 # fam_gen_parser.add_argument("--output-dir", type=str, default="./out",
 #                             help="The directory where the Prolog trees will be saved. (Default value: ./out)")
-fam_gen_parser.add_argument("--stop-prob", type=float, default=0.0,
-                            help="The probability of stopping to further extend a family tree after a person has been added. (Default value: 0.)")
-fam_gen_parser.add_argument("--duplicate-names", type=bool, default=False,
-                        help="Used to allow/prevent duplicate names in the generation. (Default value: False.)")
+fam_gen_parser.add_argument(
+    "--stop-prob",
+    type=float,
+    default=0.0,
+    help="The probability of stopping to further extend a family tree after a person has been added. (Default value: 0.)",
+)
+fam_gen_parser.add_argument(
+    "--duplicate-names",
+    type=bool,
+    default=False,
+    help="Used to allow/prevent duplicate names in the generation. (Default value: False.)",
+)
 # wrapper for family tree generation
 
 import os
 import random
-from .generate import (Generator,
-                    family_tree_to_facts,
-                    PersonFactory,
-                    create_dot_graph)
+
+from .generate import Generator, PersonFactory, create_dot_graph, family_tree_to_facts
+
+
 def db_generate_family(db, args: ArgumentParser):
     """Generates family facts for a database.
-    
+
     args:
         db: Database
         num_people: number of people to generate
@@ -49,7 +72,7 @@ def db_generate_family(db, args: ArgumentParser):
 
     gen = Generator(pf)
     family_trees = gen.generate(args)
-    
+
     for i, family_tree in enumerate(family_trees):
         print(f"Adding family tree {i+1} to the database.")
         # Obtain family tree facts
@@ -66,11 +89,11 @@ def db_generate_family(db, args: ArgumentParser):
         # Create a unique filename for each tree
         output_file_path = os.path.join(args.output_dir, f"family_tree_{i+1}.pl")
         os.makedirs(args.output_dir, exist_ok=True)
-        
+
         # Write the Prolog family tree to the file
         with open(output_file_path, "w") as f:
             f.write("\n".join(pl_family_tree))
-        
+
         # Generate family graph plot and save it
         family_graph = create_dot_graph(family_tree)
         output_graph_path = os.path.join(args.output_dir, f"family_tree_{i+1}.png")

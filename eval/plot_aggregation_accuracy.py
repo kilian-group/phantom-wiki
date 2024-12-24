@@ -28,7 +28,7 @@ split_name = args.split_name
 df = get_evaluation_data(output_dir, method)
 
 # %%
-figures_dir = os.path.join(output_dir, 'figures')
+figures_dir = os.path.join(output_dir, 'figures', method)
 os.makedirs(figures_dir, exist_ok=True)
 
 # %%

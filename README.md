@@ -50,23 +50,24 @@ Run evaluation methods (like `zeroshot,fewshot,react,...`) with an LLM like so:
 python -m phantom_eval --method <method> --model_name <llm_name>
 ```
 
-Steps for reproducing all results:
-🧪 To generate the prediction files, run the following scripts (e.g., using slurm):
+**Steps for reproducing all results:**
+
+🧪 To generate the prediction files, run the following scripts (e.g., using slurm) from the root directory:
 ```
 conda activate dataset
-cd eval
+# run small models (< 4B params) locally (allocates 1 3090)
+sbatch eval/zeroshot_S.sh <output directory>
 # run medium models (< 10B params) locally (allocates 4 A6000s)
-sbatch zeroshot_M.sh <output directory>
+sbatch eval/zeroshot_M.sh <output directory>
 # run large models (10-70B params) locally (allocates 8 A6000s)
-sbatch zeroshot_L.sh <output directory>
+sbatch eval/zeroshot_L.sh <output directory>
 # run API models (NOTE: this can be very expensive!)
-sbatch zeroshot_cpu.sh <output directory> <model name>
+sbatch eval/zeroshot_cpu.sh <output directory> <model name>
 ```
-📊 To generate the tables and figures, run the following script:
+📊 To generate the tables and figures, run the following script from the root directory:
 ```
 # make sure the dataset conda env is activated!
-cd eval
-./evaluate.sh <output directory> <method>
+./eval/evaluate.sh <output directory> <method>
 ```
 where <output directory> here is the same as <output directory> when generating the prediction and <method> cam be zeroshot/react/etc.
 
@@ -120,22 +121,11 @@ Setup (following [these](https://docs.vllm.ai/en/stable/getting_started/installa
 conda activate dataset
 pip install vllm
 ```
-NOTE: almost all models on HF are fair game (see also: https://docs.vllm.ai/en/stable/models/supported_models.html#supported-models)
-
-**System requirements**
-- `meta-llama/Llama-3.1-8B-Instruct`: >= one 3090
-- `meta-llama/Llama-3.1-70B-Instruct`: 
-   - `max_model_len = 4096` requires >= four A6000s
-   - `max_model_len = None` requires >= eight A6000s
-With four A6000s:
-```
-[rank0]: ValueError: The model's max seq len (131072) is larger than the maximum number of tokens that can be stored in KV cache (106848). Try increasing `gpu_memory_utilization` or decreasing `max_model_len` when initializing the engine.
-```
-With six A6000s:
-```
-ValueError: Total number of attention heads (64) must be divisible by tensor parallel size (6).
-```
-NOTE: These models and their configs are downloaded directly from HuggingFace
+Additional notes:
+- The models and their configs are downloaded directly from HuggingFace and almost all models on HF are fair game (see also: https://docs.vllm.ai/en/stable/models/supported_models.html#supported-models)
+- Total number of attention heads must be divisible by tensor parallel size
+- See minimum GPU requirements for [small](eval/zeroshot_S.sh), [medium](eval/zeroshot_M.sh), and [large](eval/zeroshot_L.sh) models at the top of each eval inference script
+- Running the same code on the same GPU indeed gives perfectly reproducible outputs, but running the same code on different GPUs (e.g., 3090 vs A6000) doesn't necessarily lead to the same results (see: https://github.com/albertgong1/phantom-wiki/pull/79#issuecomment-2559001925).
 
 ## Development best practices
 
@@ -155,6 +145,11 @@ git push
 2. To run the tests, there are two methods:
    - Run from the Testing Extension (note: your python interpreter must be set to the `dataset` conda environment created above)
    - Call `pytest` in the terminal (note: make sure the `dataset` conda environment is activated)
+
+**Sharing results:**
+
+- Model predictions can be shared at `/share/nikola/phantom-wiki/eval`
+- Please copy the predictions to your local working directory rather than reading from the shared directory directly
 
 ## Sharing dataset to HuggingFace
 

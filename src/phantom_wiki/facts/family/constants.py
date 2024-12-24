@@ -4,7 +4,7 @@ PERSON_TYPE = "person"
 FAMILY_FACT_TEMPLATES = {
     "brother": "The brother of <subject> is",
     "sister": "The sister of <subject> is",
-    "sibling": "<subject>'s siblings are",
+    "sibling": "<subject>'s sibling is",
     "father": "The father of <subject> is",
     "mother": "The mother of <subject> is",
     "spouse": "<subject>'s spouse is",
@@ -18,6 +18,17 @@ FAMILY_FACT_TEMPLATES = {
     "number of children": "The number of children <subject> has is",
     "uncle": "The uncle of <subject> is",
     "aunt": "The aunt of <subject> is",
+}
+
+FAMILY_FACT_TEMPLATES_PL = {
+    "brother": "The brothers of <subject> are",
+    "sister": "The sisters of <subject> are",
+    "sibling": "<subject>'s siblings are",
+    "child": "The children of <subject> are",
+    "son": "The sons of <subject> are",
+    "daughter": "The daughters of <subject> are",
+    "uncle": "The uncles of <subject> are",
+    "aunt": "The aunts of <subject> are",
 }
 
 # Base rules
