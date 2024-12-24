@@ -154,6 +154,22 @@ class SCMixin:
         majority_responses_str = sep.join(majority_responses)
         return LLMChatResponse(pred=majority_responses_str, usage={})
 
+
+class NshotSCAgent(NshotAgent, SCMixin):
+    """
+    Agent to implement Zeroshot and fewshot evaluation with majority vote.
+    """
+    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, num_votes: int = 3, sep: str = constants.answer_sep):
+        """
+        Args:
+            num_votes (int): The number of votes to take for the majority vote.
+                Defaults to 3.
+            sep (str): The separator used to split the prediction.
+                Defaults to `config.answer_sep`.
+        """
+        NshotAgent.__init__(self, text_corpus, llm_prompt)
+        SCMixin.__init__(self, num_votes, sep)
+
     def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         # Relies on the implementation of run in the subclass
         responses: list[LLMChatResponse] = [
@@ -172,23 +188,6 @@ class SCMixin:
         transposed_responses = [list(responses_each_question)
                                 for responses_each_question in zip(*responses)]
         return [self.take_majority_vote(responses_each_question, self.sep) for responses_each_question in transposed_responses]
-
-
-
-class NshotSCAgent(NshotAgent, SCMixin):
-    """
-    Agent to implement Zeroshot and fewshot evaluation with majority vote.
-    """
-    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, num_votes: int = 3, sep: str = constants.answer_sep):
-        """
-        Args:
-            num_votes (int): The number of votes to take for the majority vote.
-                Defaults to 3.
-            sep (str): The separator used to split the prediction.
-                Defaults to `config.answer_sep`.
-        """
-        NshotAgent.__init__(self, text_corpus, llm_prompt)
-        SCMixin.__init__(self, num_votes, sep)
 
 
 class ReactAgent(Agent):
