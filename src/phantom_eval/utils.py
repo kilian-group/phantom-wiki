@@ -4,6 +4,7 @@ import logging
 from datasets import load_dataset, Dataset
 
 from .llm import SUPPORTED_LLM_NAMES
+from .agent import SUPPORTED_METHOD_NAMES
 
 
 def load_data(split: str) -> dict[str, Dataset]:
@@ -29,6 +30,30 @@ def get_relevant_articles(dataset: Dataset, name_list: list[str]) -> str:
     return relevant_articles
 
 
+def normalize_pred(pred: str, sep: str) -> set[str]:
+    """
+    Normalize the prediction by splitting and stripping whitespace the answers.
+
+    Args:
+        pred (str): The prediction string of format "A<sep>B<sep>C".
+        sep (str): The separator used to split the prediction.
+
+    Returns:
+        set[str]: A set of normalized answers.
+    """
+    # Operations:
+    # 1. Split by separator
+    # 2. Strip whitespace
+    # 3. Lowercase
+    # 4. Convert to set to remove duplicates
+    return set(
+        map(str.lower,
+        map(str.strip,
+            pred.split(sep)
+        ))
+    )
+
+
 def setup_logging(log_level: str) -> str:
     # Suppress httpx logging from API requests
     logging.getLogger("httpx").setLevel(logging.WARNING)
@@ -46,11 +71,13 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument("--method", type=str, required=True,
                         help="Evaluation method. " \
                             "NOTE: to add a new method, please submit a PR with the implementation",
-                        choices=["zeroshot", "fewshot", "CoT", "react"])
+                        choices=SUPPORTED_METHOD_NAMES)
     
     # Method params
     parser.add_argument("--react_max_steps", type=int, default=6,
                         help="Maximum number of steps for the ReAct agent")
+    parser.add_argument("--sc_num_votes", type=int, default=3,
+                        help="Number of votes for an agent implementing self-consistency (majority votes)")
 
     # LLM inference params
     parser.add_argument("--inf_vllm_max_model_len", type=int, default=None,

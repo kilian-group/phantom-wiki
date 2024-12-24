@@ -13,6 +13,7 @@ from .data import Conversation
 from .llm import get_llm, VLLMChat, LLMChatResponse, LLMChat, InferenceGenerationConfig
 from .agent import get_agent, Agent
 from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES
+from . import constants
 
 logger = logging.getLogger(__name__)
 
@@ -58,6 +59,11 @@ async def main(args: argparse.Namespace) -> None:
             match args.method:
                 case "zeroshot" | "fewshot":
                     agent_kwargs = dict()
+                case "zeroshot-sc" | "fewshot-sc":
+                    agent_kwargs = dict(
+                        num_votes=args.sc_num_votes,
+                        sep=constants.answer_sep,
+                    )
                 case "CoT":
                     raise NotImplementedError("CoT evaluation is not supported yet.")
                 case "RAG":
@@ -129,6 +135,8 @@ async def main(args: argparse.Namespace) -> None:
                     pred_path,
                     split,
                     inf_gen_config,
+                    model_kwargs,
+                    agent_kwargs,
                     args,
                     batch_number,
                     batch_df_qa_pairs,
@@ -141,6 +149,8 @@ def save_preds(
     pred_path: Path,
     split: str,
     inf_gen_config: InferenceGenerationConfig,
+    model_kwargs: dict,
+    agent_kwargs: dict,
     args: argparse.Namespace,
     batch_number: int,
     batch_df_qa_pairs: pd.DataFrame,
@@ -163,6 +173,8 @@ def save_preds(
                 "type": int(qa_sample.type),
             },
             "inference_params": inf_gen_config.model_dump(),
+            "model_kwargs": model_kwargs,
+            "agent_kwargs": agent_kwargs,
             "usage": responses[i].usage,
         }
 

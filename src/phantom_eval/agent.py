@@ -1,12 +1,15 @@
 import abc
 import logging
 import re
+from collections import Counter
 
 import pandas as pd
 
 from phantom_eval.llm import LLMChat, LLMChatResponse, InferenceGenerationConfig
 from phantom_eval.data import Conversation, ContentTextMessage, Message
 from phantom_eval.prompts import LLMPrompt
+from phantom_eval.score import normalize_pred
+import phantom_eval.constants as constants
 
 logger = logging.getLogger(__name__)
 
@@ -111,6 +114,81 @@ class NshotAgent(Agent):
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
         responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
         return responses
+
+
+class SCMixin:
+    def __init__(self, num_votes: int, sep: str):
+        """
+        Args:
+            num_votes (int): The number of votes to take for the majority vote.
+            sep (str): The separator used to split the prediction.
+        """
+        self.num_votes = num_votes
+        self.sep = sep
+
+    def take_majority_vote(self, responses: list[LLMChatResponse], sep: str) -> LLMChatResponse:
+        """
+        Take the majority vote over all answers from the response predictions.
+        
+        Args:
+            responses (list[LLMChatResponse]): List of response predictions.
+                Each response pred may contain multiple answers e.g. A, B, C.
+                So response preds can be like [[A<sep>B], [A<sep>B<sep>C]] where [A<sep>B] is the first response pred
+                and [A<sep>B<sep>C] is the second response pred.
+            sep (str): The separator used to split the prediction.
+
+        Returns:
+            LLMChatResponse: the majority vote as a single string of answers separated by <sep>
+                (the output string is in LLMChatResponse.pred).
+            TODO: Return the aggregated usage as well. Currently usage is {}.
+        """
+        n_preds = len(responses)
+        preds: list[set[str]] = [normalize_pred(response.pred, sep) for response in responses]
+
+        # Flatten the list of sets to a single list, e.g. becomes [A, B, A, B, C]
+        all_answers: list[str] = [answer for pred in preds for answer in pred]
+        vote_counts = Counter(all_answers)
+
+        # Select all answers that have more than n_preds / 2 counts
+        majority_responses = [answer for answer, count in vote_counts.items() if count > n_preds / 2]
+        majority_responses_str = sep.join(majority_responses)
+        return LLMChatResponse(pred=majority_responses_str, usage={})
+
+    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+        # Relies on the implementation of run in the subclass
+        responses: list[LLMChatResponse] = [
+            super().run(llm_chat, question, inf_gen_config)
+            for _ in range(self.num_votes)
+        ]
+        return self.take_majority_vote(responses, self.sep)
+
+    async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
+        # Relies on the implementation of batch_run in the subclass
+        responses: list[list[LLMChatResponse]] = [
+            await super().batch_run(llm_chat, questions, inf_gen_config)
+            for _ in range(self.num_votes)
+        ] # shape (num_votes, num_questions)
+        # Take majority vote for each question, so transpose the responses list
+        transposed_responses = [list(responses_each_question)
+                                for responses_each_question in zip(*responses)]
+        return [self.take_majority_vote(responses_each_question, self.sep) for responses_each_question in transposed_responses]
+
+
+
+class NshotSCAgent(NshotAgent, SCMixin):
+    """
+    Agent to implement Zeroshot and fewshot evaluation with majority vote.
+    """
+    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, num_votes: int = 3, sep: str = constants.answer_sep):
+        """
+        Args:
+            num_votes (int): The number of votes to take for the majority vote.
+                Defaults to 3.
+            sep (str): The separator used to split the prediction.
+                Defaults to `config.answer_sep`.
+        """
+        NshotAgent.__init__(self, text_corpus, llm_prompt)
+        SCMixin.__init__(self, num_votes, sep)
 
 
 class ReactAgent(Agent):
@@ -314,7 +392,17 @@ def format_pred(pred: str) -> str:
     Format the prediction by stripping newlines and spaces.
     """
     return pred.strip("\n").strip().replace("\n", " ")
-        
+
+
+SUPPORTED_METHOD_NAMES: list[str] = [
+    "zeroshot",
+    "fewshot",
+    "zeroshot-sc",
+    "fewshot-sc",
+    "CoT",
+    "react"
+]
+
 
 def get_agent(
     method: str,
@@ -325,6 +413,8 @@ def get_agent(
     match method:
         case "zeroshot" | "fewshot":
             return NshotAgent(text_corpus, llm_prompt)
+        case "zeroshot-sc" | "fewshot-sc":
+            return NshotSCAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "CoT":
             raise NotImplementedError("CoT evaluation is not supported yet.")
         case "react":

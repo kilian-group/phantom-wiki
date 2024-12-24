@@ -2,7 +2,7 @@ import abc
 
 from langchain.prompts import PromptTemplate
 import phantom_eval.llm as llm
-from phantom_eval import config
+from phantom_eval import constants
 
 
 class LLMPrompt(abc.ABC):
@@ -20,7 +20,7 @@ class ZeroshotLLMPrompt(LLMPrompt):
 
     The output should be one of the following:
     - A name (if there is only one correct answer)
-    - A list of names separated by '{config.answer_sep}' (if there are multiple correct answers)
+    - A list of names separated by '{constants.answer_sep}' (if there are multiple correct answers)
     - A number (if the answer is a number)
     DO NOT include any additional information in the output.
     """
@@ -80,7 +80,7 @@ Example 3:
 <action round="1">RetrieveArticle[anastasia]</action>
 <observation round="1"># anastasia ## Family The son of anastasia is jack, ringo, liam. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.</observation>
 <thought round="2">The son of anastasia is jack, ringo, liam, so the answer is jack, ringo, liam.</thought>
-<action round="2">Finish[jack{config.answer_sep}ringo{config.answer_sep}liam]</action>
+<action round="2">Finish[jack{constants.answer_sep}ringo{constants.answer_sep}liam]</action>
 
 Example 4:
 <question>How many sons does anastasia have?</question>
@@ -107,7 +107,7 @@ Example 6:
 <action round="1">Search[woodworking]</action>
 <observation round="1">1. # daniel ## Family The daughter of daniel is anastasia. The wife of daniel is leah. The mother of daniel is mary. ## Friends The friend of daniel is paul, catherine, william. ## Attributes The date of birth of daniel is 0192-12-23. The job of daniel is goldsmith. The hobby of daniel is woodworking, crocheting.  2. # lee ## Family The wife of lee is mary. The child of lee is marie, cindy. ## Friends The friend of lee is young, charles. ## Attributes The job of lee is banker. The hobby of lee is running, woodworking.</observation>
 <thought round="2">People whose hobby is woodworking are daniel, lee. The job of daniel is goldsmith, and the job of lee is banker. So the answer is goldsmith, banker.</thought>
-<action round="2">Finish[goldsmith{config.answer_sep}banker]</action>
+<action round="2">Finish[goldsmith{constants.answer_sep}banker]</action>
 
 Example 7:
 <question>How many children does the person whose job is woodworking have?</question>
@@ -115,7 +115,7 @@ Example 7:
 <action round="1">Search[woodworking]</action>
 <observation round="1">1. # daniel ## Family The daughter of daniel is anastasia. The wife of daniel is leah. The mother of daniel is mary. ## Friends The friend of daniel is paul, catherine, william. ## Attributes The date of birth of daniel is 0192-12-23. The job of daniel is goldsmith. The hobby of daniel is woodworking, crocheting.  2. # lee ## Family The wife of lee is mary. The child of lee is marie, cindy. ## Friends The friend of lee is young, charles. ## Attributes The job of lee is banker. The hobby of lee is running, woodworking.</observation>
 <thought round="2">People whose hobby is woodworking are daniel, lee. daniel has 1 child, and lee has 2 children. So the answer is 1, 2.</thought>
-<action round="2">Finish[1{config.answer_sep}2]</action>
+<action round="2">Finish[1{constants.answer_sep}2]</action>
 """
 
 
@@ -128,7 +128,7 @@ class ReactLLMPrompt(LLMPrompt):
     (2) <action round="{{n}}">Search[{{attribute}}]</action>. This action searches the database for {{attribute}} and retrieves all articles that contain {{attribute}}. If no article contains {{attribute}}, the action will say so.
     (3) <action round="{{n}}">Finish[{{answer}}]</action>. This action answers the question with {{answer}}.
     If you cannot find the answer, output the empty answer like: <action round="{{n}}">Finish[]</action>. 
-    If there are multiple answers A,B,C, answer with a list like: <action round="{{n}}">Finish[A{config.answer_sep}B{config.answer_sep}C]</action>. 
+    If there are multiple answers A,B,C, answer with a list like: <action round="{{n}}">Finish[A{constants.answer_sep}B{constants.answer_sep}C]</action>. 
 
     You may take as many steps as necessary.
     Here are some examples:
