@@ -31,6 +31,8 @@ def get_parser(parents=[]):
     Factory for creating an argument parser.
     """
     parser = ArgumentParser(description="Generate PhantomWiki", parents=parents)
+    parser.add_argument("--verbosity", "-v", choices=["quiet", "benchmarking", "debugging", "normal"], default="normal", 
+                        help="Set the reporting mode: 'quiet' for minimal output, 'benchmarking' for detailed benchmarking logs, 'None' for normal output.")
     parser.add_argument("--seed", "-s", default=1, type=int,
                         help="Global seed for random number generator")
     parser.add_argument("--output-dir", "-od", type=str, default="./out",

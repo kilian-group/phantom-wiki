@@ -32,7 +32,7 @@ def db_generate_friendships(db: Database, args: ArgumentParser):
     """
     names = db.get_names()
     rng = default_rng(args.seed)
-    friendship_facts, _ = create_friendship_graph(rng, names, friendship_threshold=20)
+    friendship_facts, _ = create_friendship_graph(rng, names, friendship_threshold=20, verbosity=args.verbosity)
     # import pdb; pdb.set_trace()
     db.add(*friendship_facts)
 

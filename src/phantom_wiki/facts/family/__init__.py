@@ -74,7 +74,9 @@ def db_generate_family(db, args: ArgumentParser):
     family_trees = gen.generate(args)
 
     for i, family_tree in enumerate(family_trees):
-        print(f"Adding family tree {i+1} to the database.")
+        if args.verbosity=="debugging" or args.verbosity=="normal":
+            print(f"Adding family tree {i+1} to the database.")
+
         # Obtain family tree facts
         facts = family_tree_to_facts(family_tree)
         db.add(*facts)
@@ -82,19 +84,17 @@ def db_generate_family(db, args: ArgumentParser):
         #############
         # Debugging #
         #############
+        if args.verbosity=="debugging":
 
-        # Obtain family tree in Prolog format
-        pl_family_tree = family_tree_to_facts(family_tree)
+            # Create a unique filename for each tree
+            output_file_path = os.path.join(args.output_dir, f"family_tree_{i+1}.pl")
+            os.makedirs(args.output_dir, exist_ok=True)
 
-        # Create a unique filename for each tree
-        output_file_path = os.path.join(args.output_dir, f"family_tree_{i+1}.pl")
-        os.makedirs(args.output_dir, exist_ok=True)
+            # Write the Prolog family tree to the file
+            with open(output_file_path, "w") as f:
+                f.write("\n".join(facts))
 
-        # Write the Prolog family tree to the file
-        with open(output_file_path, "w") as f:
-            f.write("\n".join(pl_family_tree))
-
-        # Generate family graph plot and save it
-        family_graph = create_dot_graph(family_tree)
-        output_graph_path = os.path.join(args.output_dir, f"family_tree_{i+1}.png")
-        family_graph.write_png(output_graph_path)
+            # Generate family graph plot and save it
+            family_graph = create_dot_graph(family_tree)
+            output_graph_path = os.path.join(args.output_dir, f"family_tree_{i+1}.png")
+            family_graph.write_png(output_graph_path)

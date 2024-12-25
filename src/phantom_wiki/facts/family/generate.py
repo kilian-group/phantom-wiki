@@ -13,6 +13,7 @@ import time
 from typing import List
 import os
 import pydot
+from tqdm import tqdm
 
 from phantom_wiki.facts.family.person_factory import (PersonFactory, 
                                                       Person)
@@ -138,18 +139,14 @@ class Generator:
         # create list for storing graph representations of all created samples
         family_trees = []
 
-        for sample_idx in range(args.num_samples):
-            
-            print("creating sample #{}: ".format(sample_idx), end="")
-                
+        all_time_start = time.time()
+        for sample_idx in tqdm(range(args.num_samples), desc="Generating family trees", leave=False):
+                            
             # sample family tree
-            print("sampling family tree", end="")
             start = time.time()
             family_tree = self._sample_family_tree(args)
             family_trees.append(family_tree)
-
-            print(" OK ({:.3f}s)".format(time.time() - start))
-
+            
             if not args.duplicate_names:
                 # Resetting all pools if user allows for duplicate names
                 self.person_factory.reset()
@@ -157,6 +154,9 @@ class Generator:
             else:
                 # If not, reset only first name pools
                 self.person_factory.reset_names()
+
+        if args.verbosity=="benchmarking":
+            print(f"Generated family tree of {sum([len(tree) for tree in family_trees])} individuals in {time.time()-all_time_start:.3f}s.")
 
         return family_trees
     

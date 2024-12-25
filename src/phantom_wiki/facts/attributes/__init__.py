@@ -1,5 +1,7 @@
 # standard imports
 from argparse import ArgumentParser
+import time
+
 # phantom wiki functionality
 from ..database import Database
 from .constants import (ATTRIBUTE_FACT_TEMPLATES, 
@@ -56,6 +58,7 @@ def db_generate_attributes(db: Database, args: ArgumentParser):
         db (Database): The database containing the facts.
         args (ArgumentParser): The command line arguments.
     """
+    start_time = time.time()
     names = db.get_names()
     jobs = generate_jobs(names, args.seed)
     hobbies = generate_hobbies(names, args.seed)
@@ -72,4 +75,7 @@ def db_generate_attributes(db: Database, args: ArgumentParser):
         hobby = hobbies[name]
         facts.append(f"hobby(\'{name}\', \'{hobby}\')")
         facts.append(f"attribute(\'{hobby}\')")
+
+    if args.verbosity=="benchmarking":
+        print(f"Generated attributes for {len(names)} individuals in {time.time()-start_time:.3f}s.")
     db.add(*facts)

@@ -6,6 +6,7 @@
 import json
 import os
 import numpy as np
+import time
 
 # phantom wiki functionality
 from .facts import (get_database,
@@ -20,6 +21,8 @@ from .facts.family import fam_gen_parser
 from .facts import question_parser
 
 def main(args):
+    start_time=time.time()
+
     print(f"Output dir: {args.output_dir}")
     
     # 
@@ -27,6 +30,8 @@ def main(args):
     #
     db = get_database()
     db.define("nonbinary/1")
+    db.set_verbosity(args.verbosity)
+
     blue("Generating facts")
     # generate family tree
     db_generate_family(db, args)
@@ -37,6 +42,7 @@ def main(args):
     # save the database to a file
     db.save_to_disk(os.path.join(args.output_dir, "facts.pl"))
 
+    article_time = time.time()
     #
     # Step 2. Generate articles
     # Currently, the articles are comprised of a list of facts.
@@ -60,6 +66,7 @@ def main(args):
     else:
         raise ValueError(f"Article format {args.article_format} not supported!")
 
+    question_time = time.time()
     #
     # Step 3. Generate question-answer pairs
     #
@@ -113,6 +120,13 @@ def main(args):
         print(f"Saving questions to: {save_path}")
         with open(save_path, "w") as file:
             json.dump(all_questions, file, indent=4)
+
+    if args.verbosity=='benchmarking':
+        print("Benchmarking Results:")
+        print(f"Generating all facts: {article_time-start_time:.4f}s")
+        print(f"Generating and writing all articles: {question_time-article_time:.4f}s")
+        print(f"Generating and writing Q/As: {time.time()-question_time:.4f}s")
+        print(f"Total time: {time.time()-start_time:.4f}s")
 
 if __name__ == "__main__":
     # we combine a base parser with the family generator parser

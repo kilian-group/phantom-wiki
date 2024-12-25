@@ -8,7 +8,6 @@ def generate_jobs(names: list[str], seed=1) -> dict[str, str]:
     Generate a job for each name in the list.
     """
     fake = Faker()
-    print(f"Setting seed for Faker to {seed}")
     Faker.seed(seed)
     jobs = {}
     for name in names:

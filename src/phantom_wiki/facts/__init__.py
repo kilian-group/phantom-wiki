@@ -17,10 +17,11 @@ def get_database(*data_paths) -> Database:
         ATTRIBUTE_RULES_PATH,
     )
 
-    print(f"Consulting facts from:")
-    for path in data_paths:
-        print(f"- {path}")
-        db.consult(path)
+    if data_paths:
+        print(f"Consulting facts from:")
+        for path in data_paths:
+            print(f"- {path}")
+            db.consult(path)
 
     return db
 
