@@ -54,6 +54,9 @@ python -m phantom_eval --method <method> --model_name <llm_name>
 
 🧪 To generate the prediction files, run the following scripts (e.g., using slurm) from the root directory:
 ```
+# Create a dir for slurm logs
+mkdir slurm
+
 conda activate dataset
 # run small models (< 4B params) locally (allocates 1 3090)
 sbatch eval/zeroshot_S.sh <output directory>
