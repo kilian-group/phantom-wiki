@@ -25,18 +25,15 @@ def normalize_pred(pred: str, sep: str) -> set[str]:
     )
 
 
-def match(
+def exact_match(
         pred: str, 
         true: str, 
-        exact: bool = True,
         sep: str = constants.answer_sep,
     ) -> bool:
     """
     Simple score function that checks if the prediction is equal to the true answer
     """
-    if exact:
-        return set(pred.split(sep)) == set(true.split(sep))
-    return pred.find(true) != -1
+    return normalize_pred(pred, sep) == normalize_pred(true, sep)
 
 
 def precision(

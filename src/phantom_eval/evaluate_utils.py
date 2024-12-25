@@ -4,7 +4,7 @@ from glob import glob
 import pandas as pd
 
 from .utils import load_data
-from .score import (match,
+from .score import (exact_match,
                     precision,
                     recall,
                     f1)
@@ -201,7 +201,7 @@ def get_evaluation_data(output_dir, method, sep=', '):
 
     # NOTE: we join the true answers with the appropriate seperator
     # since the scoring functions expect strings
-    df['EM'] = df.apply(lambda x: match(x['pred'], sep.join(x['true']), exact=True, sep=sep), axis=1)
+    df['EM'] = df.apply(lambda x: exact_match(x['pred'], sep.join(x['true']), sep=sep), axis=1)
     df['precision'] = df.apply(lambda x: precision(x['pred'], sep.join(x['true']), sep=sep), axis=1)
     df['recall'] = df.apply(lambda x: recall(x['pred'], sep.join(x['true']), sep=sep), axis=1)
     df['f1'] = df.apply(lambda x: f1(x['pred'], sep.join(x['true']), sep=sep), axis=1)
