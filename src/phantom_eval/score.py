@@ -46,12 +46,13 @@ def precision(
     - true is an arbitrary string, which can be empty, separated by spaces/commas/etc
     - pred is a string of words separated by `sep`
     """
+    normalized_preds: set[str] = normalize_pred(pred, sep)
+    normalized_trues: set[str] = normalize_pred(true, sep)
     count = 0
-    pred = set(pred.split(sep))
-    for word in pred:
-        count += word in true
+    for word in normalized_preds:
+        count += word in normalized_trues
 
-    return count / len(pred)
+    return count / len(normalized_preds)
 
 
 def recall(
@@ -64,12 +65,13 @@ def recall(
     - true is a string of words separated by `sep`
     - pred is an arbitrary string, which can be empty, separated by spaces/commas/etc
     """
+    normalized_preds: set[str] = normalize_pred(pred, sep)
+    normalized_trues: set[str] = normalize_pred(true, sep)
     count = 0
-    true = set(true.split(sep))
-    for word in true:
-        count += word in pred
+    for word in normalized_trues:
+        count += word in normalized_preds
 
-    return count / len(true)
+    return count / len(normalized_trues)
 
 
 def f1(
