@@ -78,7 +78,7 @@ def get_names_from_file(fact_file: str):
                 person = match_name(line)
                 person_list.append(person)
             else:
-                logging.debug("skip line")
+                print("skip line")
                 continue
 
 
