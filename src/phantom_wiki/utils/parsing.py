@@ -1,6 +1,5 @@
 import re
 import textwrap
-import logging
 
 def match_placeholder_brackets(text):
     pattern = r"<.*?>"
