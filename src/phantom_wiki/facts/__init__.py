@@ -5,6 +5,8 @@ from .friends import (FRIENDSHIP_RULES_PATH)
 from .attributes import (ATTRIBUTE_RULES_PATH)
 # Functionality to get a Prolog database with built-in rules
 from .database import Database
+import logging
+
 def get_database(*data_paths) -> Database:
     """
     Get a Prolog database with built-in rules.
@@ -18,9 +20,9 @@ def get_database(*data_paths) -> Database:
     )
 
     if data_paths:
-        print(f"Consulting facts from:")
+        logging.info(f"Consulting facts from:")
         for path in data_paths:
-            print(f"- {path}")
+            logging.info(f"- {path}")
             db.consult(path)
 
     return db

@@ -1,5 +1,6 @@
 import re
 import textwrap
+import logging
 
 def match_placeholder_brackets(text):
     pattern = r"<.*?>"
@@ -77,7 +78,7 @@ def get_names_from_file(fact_file: str):
                 person = match_name(line)
                 person_list.append(person)
             else:
-                print("skip line")
+                logging.debug("skip line")
                 continue
 
 

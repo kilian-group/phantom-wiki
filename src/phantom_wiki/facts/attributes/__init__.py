@@ -1,6 +1,7 @@
 # standard imports
 from argparse import ArgumentParser
 import time
+import logging
 
 # phantom wiki functionality
 from ..database import Database
@@ -76,6 +77,5 @@ def db_generate_attributes(db: Database, args: ArgumentParser):
         facts.append(f"hobby(\'{name}\', \'{hobby}\')")
         facts.append(f"attribute(\'{hobby}\')")
 
-    if args.verbosity=="benchmarking":
-        print(f"Generated attributes for {len(names)} individuals in {time.time()-start_time:.3f}s.")
+    logging.info(f"Generated attributes for {len(names)} individuals in {time.time()-start_time:.3f}s.")
     db.add(*facts)

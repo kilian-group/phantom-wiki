@@ -10,6 +10,7 @@ FAMILY_RULES_DERIVED_PATH = files("phantom_wiki").joinpath("facts/family/rules_d
 
 # imports for family generation
 from argparse import ArgumentParser
+import logging
 
 # Create parser for family tree generation
 fam_gen_parser = ArgumentParser(description="Family Generator", add_help=False)
@@ -74,8 +75,7 @@ def db_generate_family(db, args: ArgumentParser):
     family_trees = gen.generate(args)
 
     for i, family_tree in enumerate(family_trees):
-        if args.verbosity=="debugging" or args.verbosity=="normal":
-            print(f"Adding family tree {i+1} to the database.")
+        logging.debug(f"Adding family tree {i+1} to the database.")
 
         # Obtain family tree facts
         facts = family_tree_to_facts(family_tree)
@@ -84,8 +84,7 @@ def db_generate_family(db, args: ArgumentParser):
         #############
         # Debugging #
         #############
-        if args.verbosity=="debugging":
-
+        if args.debug: 
             # Create a unique filename for each tree
             output_file_path = os.path.join(args.output_dir, f"family_tree_{i+1}.pl")
             os.makedirs(args.output_dir, exist_ok=True)
@@ -98,3 +97,5 @@ def db_generate_family(db, args: ArgumentParser):
             family_graph = create_dot_graph(family_tree)
             output_graph_path = os.path.join(args.output_dir, f"family_tree_{i+1}.png")
             family_graph.write_png(output_graph_path)
+
+    logging.debug(f"Saved family trees in {args.output_dir} as .png and .pl.")

@@ -1,6 +1,7 @@
 import numpy as np
 from numpy.random import Generator
 import pydot
+import logging
 import time
 import re
 
@@ -24,7 +25,6 @@ def create_friendship_graph(
         names, 
         number_of_communities=5, 
         friendship_threshold=.7,
-        verbosity="normal",
     ):
     """ 
     Given the names, this creates a friendship graph with `number_of_communities`
@@ -43,8 +43,7 @@ def create_friendship_graph(
         for j in range(i+1, len(names)):
             if are_friends(individual_features[i], individual_features[j], friendship_threshold):
                 facts.append(f"friend_(\'{names[i]}\', \'{names[j]}\')")
-    if verbosity=="benchmarking":
-        print(f"Generated friendship tree of {len(names)} individuals in {time.time()-start_time:.3f}s.")
+    logging.info(f"Generated friendship tree of {len(names)} individuals in {time.time()-start_time:.3f}s.")
         
     return facts, individual_features
 

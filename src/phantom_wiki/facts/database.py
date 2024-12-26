@@ -1,5 +1,6 @@
 from pyswip import Prolog
 from phantom_wiki.facts.family.constants import PERSON_TYPE
+import logging
 
 SAVE_ALL_CLAUSES_TO_FILE = """
 (save_all_clauses_to_file(File) :-
@@ -15,11 +16,9 @@ class Database:
     # TODO define logic for consulting different types of facts based on difficulty
     def __init__(self, *rules: list[str]):
         self.prolog = Prolog()
-        self.print_statements = True
-
-        self.print("Consulting rules from:")
+        logging.debug("Consulting rules from:")
         for rule in rules:
-            self.print(f"- {rule}")
+            logging.debug(f"- {rule}")
             self.prolog.consult(rule)
         # Add ability to save clauses to a file
         self.prolog.assertz(SAVE_ALL_CLAUSES_TO_FILE)
@@ -33,15 +32,6 @@ class Database:
         db = cls()
         db.consult(file)
         return db
-
-    def set_verbosity(self, verbosity):
-        """Set the verbosity of the dataset"""
-        self.print_statements = verbosity=="debugging" or verbosity=="normal"
-
-    def print(self, *args, **kwargs):
-        """Custom print method that checks self.print_statements."""
-        if self.print_statements:
-            print(*args, **kwargs)
 
     def get_names(self):
         """Gets all names from a Prolog database.
@@ -77,9 +67,9 @@ class Database:
         args:
             files: paths to Prolog files
         """
-        self.print("Consulting files:")
+        logging.debug("Consulting files:")
         for file in files:
-            self.print(f"- {file}")
+            logging.debug(f"- {file}")
             self.prolog.consult(file)
 
     def add(self, *facts: str):
@@ -93,9 +83,9 @@ class Database:
         args:
             facts: list of Prolog fact strings
         """
-        self.print("Adding facts:")
+        logging.debug("Adding facts:")
         for fact in facts:
-            self.print(f"- {fact}")
+            logging.debug(f"- {fact}")
             self.prolog.assertz(fact)
 
     def remove(self, *facts: str):
@@ -108,9 +98,9 @@ class Database:
         args:
             facts: list of Prolog fact strings
         """
-        self.print("Removing facts:")
+        logging.debug("Removing facts:")
         for fact in facts:
-            self.print(f"- {fact}")
+            logging.debug(f"- {fact}")
             self.prolog.retractall(fact)
 
     def define(self, *predicates: str):
@@ -121,9 +111,9 @@ class Database:
         args:
             predicates: list of term signatures
         """
-        self.print("Defining rules:")
+        logging.debug("Defining rules:")
         for predicate in predicates:
-            self.print(f"- {predicate}")
+            logging.debug(f"- {predicate}")
             self.prolog.dynamic(predicate)
 
     def save_to_disk(self, file: str):

@@ -14,6 +14,7 @@ from typing import List
 import os
 import pydot
 from tqdm import tqdm
+import logging
 
 from phantom_wiki.facts.family.person_factory import (PersonFactory, 
                                                       Person)
@@ -155,18 +156,17 @@ class Generator:
                 # If not, reset only first name pools
                 self.person_factory.reset_names()
 
-        if args.verbosity=="benchmarking":
-            print(f"Generated family tree of {sum([len(tree) for tree in family_trees])} individuals in {time.time()-all_time_start:.3f}s.")
+        logging.info(f"Generated family tree of {sum([len(tree) for tree in family_trees])} individuals in {time.time()-all_time_start:.3f}s.")
 
         return family_trees
     
 # Given parser args -> pretty print it
 def pretty_print_args(args):
-    print('-----------------')
-    print('| Configuration |')
-    print('-----------------')
+    logging.debug('-----------------')
+    logging.debug('| Configuration |')
+    logging.debug('-----------------')
     for key, value in vars(args).items():
-        print(f"{key.replace('_', ' ').title()}: {value}")
+        logging.debug(f"{key.replace('_', ' ').title()}: {value}")
 
 # Given a family tree in the form of a list -> generate the facts
 def family_tree_to_facts(family_tree):

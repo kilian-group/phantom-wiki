@@ -7,6 +7,7 @@ import json
 import os
 import numpy as np
 import time
+import logging
 
 # phantom wiki functionality
 from .facts import (get_database,
@@ -21,16 +22,31 @@ from .facts.family import fam_gen_parser
 from .facts import question_parser
 
 def main(args):
+    # Set up logging
+    logging.getLogger('faker').setLevel(logging.INFO)
+
+    if args.quiet:
+        log_level = logging.WARNING
+    elif args.debug:
+        log_level = logging.DEBUG
+    else:
+        log_level = logging.INFO
+
+    logging.basicConfig(
+        level=log_level,
+        format='%(message)s',
+        handlers=[logging.StreamHandler()]
+    )
+
     start_time=time.time()
 
-    print(f"Output dir: {args.output_dir}")
+    logging.info(f"Output dir: {args.output_dir}")
     
     # 
     # Step 1. Generate facts
     #
     db = get_database()
     db.define("nonbinary/1")
-    db.set_verbosity(args.verbosity)
 
     blue("Generating facts")
     # generate family tree
@@ -39,6 +55,9 @@ def main(args):
     db_generate_friendships(db, args)
     # generate jobs, hobbies for each person in the database
     db_generate_attributes(db, args)
+
+    facts_time = time.time()
+
     # save the database to a file
     db.save_to_disk(os.path.join(args.output_dir, "facts.pl"))
 
@@ -53,14 +72,14 @@ def main(args):
     articles = get_articles(db, db.get_names())
     if args.article_format == "txt":
         article_dir = os.path.join(args.output_dir, "articles")
-        print(f"Saving articles to: {article_dir}")
+        logging.info(f"Saving articles to: {article_dir}")
         os.makedirs(article_dir, exist_ok=True)
         for name, article in articles.items():
             with open(os.path.join(article_dir, f"{name}.txt"), "w") as file:
                 file.write(article)
     elif args.article_format == "json":
         save_path = os.path.join(args.output_dir, "articles.json")
-        print(f"Saving articles to: {save_path}")
+        logging.info(f"Saving articles to: {save_path}")
         with open(save_path, "w") as file:
             json.dump([{"title" : name, "article" : article} for name, article in articles.items()], file, indent=4)
     else:
@@ -76,7 +95,7 @@ def main(args):
     # sample questions for each template (i.e., type)
     if args.question_format == "json_by_type":
         question_dir = os.path.join(args.output_dir, "questions")
-        print(f"Saving questions to: {question_dir}")
+        logging.info(f"Saving questions to: {question_dir}")
         os.makedirs(question_dir, exist_ok=True)
 
     all_questions = []
@@ -117,16 +136,16 @@ def main(args):
     if args.question_format == "json":
         # save all questions to a single file
         save_path = os.path.join(args.output_dir, "questions.json")
-        print(f"Saving questions to: {save_path}")
+        logging.info(f"Saving questions to: {save_path}")
         with open(save_path, "w") as file:
             json.dump(all_questions, file, indent=4)
 
-    if args.verbosity=='benchmarking':
-        print("Benchmarking Results:")
-        print(f"Generating all facts: {article_time-start_time:.4f}s")
-        print(f"Generating and writing all articles: {question_time-article_time:.4f}s")
-        print(f"Generating and writing Q/As: {time.time()-question_time:.4f}s")
-        print(f"Total time: {time.time()-start_time:.4f}s")
+    logging.info("Benchmarking Results:")
+    logging.info(f"Generating all facts: {facts_time-start_time:.4f}s")
+    logging.info(f"Saving all facts in dataframe: {article_time-facts_time:.4f}s")
+    logging.info(f"Generating and writing all articles: {question_time-article_time:.4f}s")
+    logging.info(f"Generating and writing Q/As: {time.time()-question_time:.4f}s")
+    logging.info(f"Total time: {time.time()-start_time:.4f}s")
 
 if __name__ == "__main__":
     # we combine a base parser with the family generator parser
