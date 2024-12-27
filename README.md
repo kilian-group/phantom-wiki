@@ -51,7 +51,9 @@ python -m phantom_eval --method <method> --model_name <llm_name>
 ```
 
 **Steps for reproducing all results:**
+
 🛑 Make sure to request access for Gemma, Llama 3.1, 3.2, and 3.3 models on HuggingFace before proceeding. 
+
 🧪 To generate the prediction files, run the following scripts (e.g., using slurm) from the root directory:
 ```
 # Create a dir for slurm logs

@@ -2,6 +2,7 @@ import abc
 import logging
 import re
 from collections import Counter
+from copy import deepcopy
 
 import pandas as pd
 
@@ -140,10 +141,10 @@ class SCMixin:
         Returns:
             LLMChatResponse: the majority vote as a single string of answers separated by <sep>
                 (the output string is in LLMChatResponse.pred).
-            TODO: Return the aggregated usage as well. Currently usage is {}.
         """
         n_preds = len(responses)
         preds: list[set[str]] = [normalize_pred(response.pred, sep) for response in responses]
+        usage: dict = self._aggregate_usage([response.usage for response in responses])
 
         # Flatten the list of sets to a single list, e.g. becomes [A, B, A, B, C]
         all_answers: list[str] = [answer for pred in preds for answer in pred]
@@ -152,7 +153,28 @@ class SCMixin:
         # Select all answers that have more than n_preds / 2 counts
         majority_responses = [answer for answer, count in vote_counts.items() if count > n_preds / 2]
         majority_responses_str = sep.join(majority_responses)
-        return LLMChatResponse(pred=majority_responses_str, usage={})
+        return LLMChatResponse(pred=majority_responses_str, usage=usage)
+    
+    def _aggregate_usage(self, usage_list: list[dict]) -> dict:
+        """Recursively sum the values of the usage dict.
+
+        NOTE: assumes that each usage dict shares a common schema.
+        Otherwise, value errors may occur.
+
+        Args:
+            usage_list (list[dict]): List of usage dict objects.
+        Returns:
+            dict: The aggregated usage dict.
+        """
+        if len(usage_list) <= 0:
+            return {}
+        result = deepcopy(usage_list[0]) # use first usage dict as reference
+        for key in result.keys():
+            if isinstance(result[key], dict):
+                result[key] = self._aggregate_usage([usage[key] for usage in usage_list])
+            else:
+                result[key] = sum([usage[key] for usage in usage_list])
+        return result
 
 
 class NshotSCAgent(NshotAgent, SCMixin):
