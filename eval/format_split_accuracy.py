@@ -24,6 +24,8 @@ acc = grouped[['EM','precision', 'recall', 'f1']].mean()
 acc['count'] = grouped.size()
 # print as markdown
 print(acc.to_markdown())
+# add a column at the end for the method
+acc['method'] = method
 # save to a csv file
 scores_dir = os.path.join(output_dir, 'scores', method)
 os.makedirs(scores_dir, exist_ok=True)
