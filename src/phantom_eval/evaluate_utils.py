@@ -8,6 +8,7 @@ from .score import (exact_match,
                     precision,
                     recall,
                     f1)
+from . import constants
 
 ################ Utils and macros for plotting ################
 # create a plot
@@ -177,7 +178,7 @@ def _get_qa_pairs(splits):
     df_qa_pairs = pd.concat(df_list)
     return df_qa_pairs
 
-def get_evaluation_data(output_dir, method, sep=', '):
+def get_evaluation_data(output_dir: str, method: str, sep: str = constants.answer_sep):
     """Get the evaluation data for a given method
 
     Args:
@@ -187,7 +188,8 @@ def get_evaluation_data(output_dir, method, sep=', '):
 
     Returns:
         pd.DataFrame: a dataframe containing the evaluation data, 
-            including the predictions, the qa pairs, and per-instance evaluation metrics
+            including the predictions, the qa pairs (with auxiliary columns), 
+            and per-instance evaluation metrics
     """
     # get the predictions
     df_preds = _get_preds(output_dir, method)
@@ -199,8 +201,7 @@ def get_evaluation_data(output_dir, method, sep=', '):
     # the prolog queries and the templates
     df = df_preds.merge(df_qa_pairs, left_index=True, right_index=True, how='left')
 
-    # NOTE: we join the true answers with the appropriate seperator
-    # since the scoring functions expect strings
+    # join the true answers with the appropriate seperator since the scoring functions expect strings
     df['EM'] = df.apply(lambda x: exact_match(x['pred'], sep.join(x['true']), sep=sep), axis=1)
     df['precision'] = df.apply(lambda x: precision(x['pred'], sep.join(x['true']), sep=sep), axis=1)
     df['recall'] = df.apply(lambda x: recall(x['pred'], sep.join(x['true']), sep=sep), axis=1)
