@@ -14,7 +14,7 @@ conda create -n dataset
 conda activate dataset
 conda install python=3.12 conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest
 # on G2, use pip instead of conda to install pandas and numpy to avoid C dependency conflicts
-pip install pandas numpy
+pip install pandas numpy matplotlib
 pip install together openai pre-commit datasets google-generativeai anthropic transformers tenacity tiktoken vllm langchain
 ```
 
@@ -52,8 +52,13 @@ python -m phantom_eval --method <method> --model_name <llm_name>
 
 **Steps for reproducing all results:**
 
+🛑 Make sure to request access for Gemma, Llama 3.1, 3.2, and 3.3 models on HuggingFace before proceeding. 
+
 🧪 To generate the prediction files, run the following scripts (e.g., using slurm) from the root directory:
 ```
+# Create a dir for slurm logs
+mkdir slurm
+
 conda activate dataset
 # run small models (< 4B params) locally (allocates 1 3090)
 sbatch eval/zeroshot_S.sh <output directory>

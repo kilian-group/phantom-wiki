@@ -34,7 +34,7 @@ conda activate dataset
 MODELS=(
     # 'google/gemma-2-27b-it'
     # 'microsoft/phi-3.5-moe-instruct'
-    'meta-llama/llama-3.1-70b-instruct'
+    # 'meta-llama/llama-3.1-70b-instruct'
     'meta-llama/llama-3.3-70b-instruct'
     # 'meta-llama/llama-3.1-8b-instruct'
 )
@@ -49,11 +49,12 @@ fi
 
 # Function to check if the server is up
 check_server() {
+    local model_name=$1
     response=$(curl -o /dev/null -s -w "%{http_code}" http://0.0.0.0:8000/v1/chat/completions \
                     -X POST \
                     -H "Content-Type: application/json" \
                     -H "Authorization: Bearer token-abc123" \
-                    -d '{"model": "meta-llama/llama-3.1-8b-instruct", "messages": [{"role": "user", "content": "Hello!"}]}')
+                    -d "{\"model\": \"$model_name\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello!\"}]}")
     if [ "$response" -eq 200 ]; then
         return 0
     else
@@ -66,13 +67,15 @@ do
     # Start the vLLM server in the background
     echo "Starting vLLM server..."
     vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 8"
+    echo $vllm_cmd
     nohup $vllm_cmd &
     
     # Wait for the server to start
     echo "Waiting for vLLM server to start..."
-    while ! check_server; do
-        echo "Server is not up yet. Checking again in 5 seconds..."
-        sleep 5
+    SLEEP=60
+    while ! check_server $model_name; do
+        echo "Server is not up yet. Checking again in $SLEEP seconds..."
+        sleep $SLEEP
     done
 
     echo "vLLM server is up and running."
@@ -91,6 +94,6 @@ do
 
     # Stop the vLLM server using pkill
     echo "Stopping vLLM server..."
-    pkill -f "$vllm_cmd"
+    pkill -e -f vllm
     echo "vLLM server stopped."
 done
