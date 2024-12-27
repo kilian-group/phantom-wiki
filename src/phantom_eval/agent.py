@@ -84,6 +84,7 @@ class NshotAgent(Agent):
         )
 
     def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+        raise NotImplementedError("Use batch_run instead.")
         logger.debug(f"\n\t>>> question: {question}\n")
 
         # Create a conversation with 1 user prompt
@@ -96,6 +97,10 @@ class NshotAgent(Agent):
         # Add "\n" to stop_sequences
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
         response = llm_chat.generate_response(conv, inf_gen_config)
+        
+        # Update agent's conversation
+        self.agent_interactions = conv
+        
         return response
     
     async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
@@ -114,6 +119,10 @@ class NshotAgent(Agent):
         # Change stop_sequences to "\n"
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
         responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
+
+        # Update agent's conversation
+        self.agent_interactions = convs
+
         return responses
 
 
