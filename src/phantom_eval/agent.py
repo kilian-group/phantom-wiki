@@ -28,6 +28,7 @@ class Agent(abc.ABC):
         """
         self.text_corpus = text_corpus
         self.llm_prompt = llm_prompt
+        self.agent_interactions: Conversation | list[Conversation] = None
 
     @abc.abstractmethod
     def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
