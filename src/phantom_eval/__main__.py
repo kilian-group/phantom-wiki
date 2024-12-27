@@ -8,12 +8,13 @@ from pathlib import Path
 import pandas as pd
 from tqdm import tqdm
 
-from .utils import get_parser, load_data, setup_logging
+from .utils import load_data, setup_logging
 from .data import Conversation
 from .llm import get_llm, VLLMChat, LLMChatResponse, LLMChat, InferenceGenerationConfig
 from .agent import get_agent, Agent
 from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES
 from . import constants
+from . import get_parser
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +30,7 @@ async def main(args: argparse.Namespace) -> None:
                 # If the method is zeroshot or fewshot, we do not need to use the API (for vLLM)
                 # This can be overridden by setting `use_api=True` in the model_kwargs.
                 # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
-                use_api=(args.method.split("-")[0] in ["react"]), 
+                use_api=(args.method in ["react"]), 
             )
         case _:
             model_kwargs = dict(

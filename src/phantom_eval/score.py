@@ -1,29 +1,5 @@
 from phantom_eval import constants
-
-
-def normalize_pred(pred: str, sep: str) -> set[str]:
-    """
-    Normalize the prediction by splitting and stripping whitespace the answers.
-
-    Args:
-        pred (str): The prediction string of format "A<sep>B<sep>C".
-        sep (str): The separator used to split the prediction.
-
-    Returns:
-        set[str]: A set of normalized answers.
-    """
-    # Operations:
-    # 1. Split by separator
-    # 2. Strip whitespace
-    # 3. Lowercase
-    # 4. Convert to set to remove duplicates
-    return set(
-        map(str.lower,
-        map(str.strip,
-            pred.split(sep)
-        ))
-    )
-
+from phantom_eval.utils import normalize_pred
 
 def exact_match(
         pred: str, 
