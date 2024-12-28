@@ -25,12 +25,30 @@ class ZeroshotLLMPrompt(LLMPrompt):
     DO NOT include any additional information in the output.
     """
 
+    ZEROSHOT_INSTRUCTION_2 = f"""
+    You are given the following evidence:
+    (BEGIN EVIDENCE)
+    {{evidence}}
+    (END EVIDENCE)
+    
+    You will be provided a question. Your task is to provide an answer according to these instructions: 
+    - The output must be one of the following: a name (if there is only one correct answer); a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or a number (if the answer is numerical).
+    - DO NOT include any additional information in your answer.
+
+    Question: {{question}}
+    Answer: """
+
     def get_prompt(self) -> PromptTemplate:
-        # TODO return str
-        return PromptTemplate(
-            input_variables=["evidence", "question"],
-            template=self.ZEROSHOT_INSTRUCTION,
-        )
+        if False:
+            return PromptTemplate(
+                input_variables=["evidence", "question"],
+                template=self.ZEROSHOT_INSTRUCTION,
+            )
+        else:
+            return PromptTemplate(
+                input_variables=["evidence", "question"],
+                template=self.ZEROSHOT_INSTRUCTION_2,
+            )
 
 ##### Fewshot method
 class FewshotLLMPrompt(LLMPrompt):

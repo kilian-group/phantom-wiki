@@ -71,11 +71,14 @@ class NshotAgent(Agent):
         """
         Returns all articles (concatenated as a string) in the text corpus as evidence.
         """
-        evidence = "Given the following evidence:\n"
-        evidence += "========BEGIN EVIDENCE========\n"
-        evidence += "\n================\n\n".join(self.text_corpus["article"])
-        evidence += "========END EVIDENCE========\n"
-        return evidence
+        if False:
+            evidence = "Given the following evidence:\n"
+            evidence += "========BEGIN EVIDENCE========\n"
+            evidence += "\n================\n\n".join(self.text_corpus["article"])
+            evidence += "========END EVIDENCE========\n"
+            return evidence
+        else:
+            return "\n================\n\n".join(self.text_corpus["article"])
     
     def _build_agent_prompt(self, question: str) -> str:
         evidence = self.__get_evidence()
