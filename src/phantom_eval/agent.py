@@ -336,7 +336,7 @@ class ReactAgent(Agent):
                 except IndexError:
                     observation_str = f"No articles contain the requested attribute. Please try searching for another attribute."
             case _:
-                observation_str = "Invalid action. Valid actions are RetrieveArticle[\"entity\"], Search[\"attribute\"], and Finish[\"answer\"]."
+                observation_str = "Invalid action. Valid actions are RetrieveArticle[{{entity}}], Search[{{attribute}}], and Finish[{{answer}}]."
         observation_for_round = f"<observation round=\"{self.step_round}\">{observation_str}</observation>"
         logger.debug(f"\n\t>>> {observation_for_round}\n")
 
