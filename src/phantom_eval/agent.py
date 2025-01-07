@@ -263,11 +263,15 @@ class ActAgent(Agent):
 
                 response = self._step_observation(response)
             except Exception as e:
-                response = LLMChatResponse(pred=f"<agent_error>{e}</agent_error>", usage={})
+                response = LLMChatResponse(
+                    pred="", usage={}, error=f"<agent_error>{e}</agent_error>"
+                )
                 break
 
         if (self.step_round > self.max_steps) and (not self.finished):
-            response = LLMChatResponse(pred=f"<agent_error>Max act steps ({self.max_steps}) reached without finishing.</agent_error>", usage={})
+            response = LLMChatResponse(
+                pred="", usage={}, error=f"<agent_error>Max act steps ({self.max_steps}) reached without finishing.</agent_error>"
+            )
 
         return response
 
