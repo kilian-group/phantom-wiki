@@ -14,18 +14,6 @@ class LLMPrompt(abc.ABC):
 ##### Zeroshot method
 class ZeroshotLLMPrompt(LLMPrompt):
     ZEROSHOT_INSTRUCTION = f"""
-    {{evidence}}
-    Answer the following question:
-    {{question}}
-
-    The output should be one of the following:
-    - A name (if there is only one correct answer)
-    - A list of names separated by '{constants.answer_sep}' (if there are multiple correct answers)
-    - A number (if the answer is a number)
-    DO NOT include any additional information in the output.
-    """
-
-    ZEROSHOT_INSTRUCTION_2 = f"""
     You are given the following evidence:
     (BEGIN EVIDENCE)
     {{evidence}}
@@ -39,16 +27,10 @@ class ZeroshotLLMPrompt(LLMPrompt):
     Answer: """
 
     def get_prompt(self) -> PromptTemplate:
-        if False:
-            return PromptTemplate(
-                input_variables=["evidence", "question"],
-                template=self.ZEROSHOT_INSTRUCTION,
-            )
-        else:
-            return PromptTemplate(
-                input_variables=["evidence", "question"],
-                template=self.ZEROSHOT_INSTRUCTION_2,
-            )
+        return PromptTemplate(
+            input_variables=["evidence", "question"],
+            template=self.ZEROSHOT_INSTRUCTION,
+        )
 
 ##### Fewshot method
 class FewshotLLMPrompt(LLMPrompt):

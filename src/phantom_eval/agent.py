@@ -71,14 +71,7 @@ class NshotAgent(Agent):
         """
         Returns all articles (concatenated as a string) in the text corpus as evidence.
         """
-        if False:
-            evidence = "Given the following evidence:\n"
-            evidence += "========BEGIN EVIDENCE========\n"
-            evidence += "\n================\n\n".join(self.text_corpus["article"])
-            evidence += "========END EVIDENCE========\n"
-            return evidence
-        else:
-            return "\n================\n\n".join(self.text_corpus["article"])
+        return "\n================\n\n".join(self.text_corpus["article"])
     
     def _build_agent_prompt(self, question: str) -> str:
         evidence = self.__get_evidence()
@@ -88,7 +81,6 @@ class NshotAgent(Agent):
         )
 
     def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
-        raise NotImplementedError("Use batch_run instead.")
         logger.debug(f"\n\t>>> question: {question}\n")
 
         # Create a conversation with 1 user prompt
