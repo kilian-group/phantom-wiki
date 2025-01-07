@@ -80,7 +80,7 @@ class CoTLLMPrompt(LLMPrompt):
     (END EVIDENCE)
     
     You will be provided a question. Your task is to provide an answer according to these instructions: 
-    - The output must be one of the following: a name (if there is only one correct answer); a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or a number (if the answer is numerical).
+    - The answer must be one of the following: a name (if there is only one correct answer); a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or a number (if the answer is numerical).
     - DO NOT include any additional information in your answer.
 
     Here are some examples:
@@ -89,7 +89,7 @@ class CoTLLMPrompt(LLMPrompt):
     (END OF EXAMPLES)
 
     Question: {{question}}
-    Answer: """
+    """
 
     def get_prompt(self) -> PromptTemplate:
         return PromptTemplate(

@@ -58,11 +58,6 @@ class Agent(abc.ABC):
         """
         pass
 
-def _get_evidence(text_corpus: pd.DataFrame) -> str:
-    """Utility for constructing evidence
-    Returns all articles (concatenated as a string) in the text corpus as evidence.
-    """
-    return "\n================\n\n".join(text_corpus["article"])
 
 class NshotAgent(Agent):
     """
@@ -232,32 +227,62 @@ class CoTAgent(Agent):
 
     def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
-
-        # Add the initial prompt to agent's conversation
-        conv = Conversation(messages=[
-            Message(role="user", content=[ContentTextMessage(text=self._build_agent_prompt(question))])
-        ])
-
-        response = llm_chat.generate_response(conv, inf_gen_config)
-        return response
+        
+        # initialize agent interactions
+        self.agent_interactions = Conversation(messages=[])
+        # Create intial message
+        msg = Message(role="user", content=[ContentTextMessage(text=self._build_agent_prompt(question))])
+        # Add the initial message to agent's conversation
+        self.agent_interactions.messages.append(msg)
+        # Generate response
+        response = llm_chat.generate_response(Conversation(messages=[msg]), inf_gen_config)
+        # Add the response to the agent's conversation
+        self.agent_interactions.messages.append(
+            Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
+        )
+        
+        return LLMChatResponse(
+            pred=self.parse_answer(response.pred),
+            usage=response.usage,
+            error=response.error,
+        )
     
     async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
         logger.debug(f"\n\t>>> questions: {questions}\n")
 
+        # Initialize agent interactions (one for each question)
+        self.agent_interactions = [Conversation(messages=[]) for _ in questions]
         # Create a conversation with 1 user prompt
-        prompts = [self._build_agent_prompt(question) for question in questions]
-        convs = [
-            Conversation(messages=[
-                Message(role="user", content=[ContentTextMessage(text=prompt)])
-            ])
-            for prompt in prompts
+        msgs = [
+            Message(role="user", content=[ContentTextMessage(text=self._build_agent_prompt(question))])
+            for question in questions
         ]
+        # Add the initial messages to agent's conversations
+        for i, msg in enumerate(msgs):
+            self.agent_interactions[i].messages.append(msg)
         
         # Generate response
-        # Change stop_sequences to "\n"
-        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
-        responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
-        return responses
+        responses = await llm_chat.batch_generate_response(
+            [
+                Conversation(messages=[msg])
+                for msg in msgs
+            ], 
+            inf_gen_config
+        )
+        # Add the responses to the agent's conversations
+        for i, response in enumerate(responses):
+            self.agent_interactions[i].messages.append(
+                Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
+            )
+        
+        return [
+            LLMChatResponse(
+                pred=self.parse_answer(response.pred),
+                usage=response.usage,
+                error=response.error,
+            ) 
+            for response in responses
+        ]
     
     def _build_agent_prompt(self, question: str) -> str:
         evidence = _get_evidence(self.text_corpus)
@@ -266,6 +291,22 @@ class CoTAgent(Agent):
             examples=self.cot_examples,
             question=question
         )
+    
+    @classmethod
+    def parse_answer(cls, pred: str) -> tuple[str, str]:
+        """
+        Parse the response to extract the answer using regex.
+        The prediction is of the form: "... Answer: <answer>".
+        """
+        pattern = r"Answer: (.+)"
+        m = re.search(pattern, pred)
+        if m:
+            return m.group(1)
+        else:
+            return ""
+
+    def reset(self) -> None:
+        self.agent_interactions: Conversation = Conversation(messages=[])
 
 
 class ActAgent(Agent):
@@ -562,6 +603,7 @@ class ReactAgent(Agent):
         response: LLMChatResponse = llm_chat.generate_response(conv, inf_gen_config)
         return response
 
+#### Utils ####
 
 def get_tag_at_round(pred: str, tag_type: str, step_round: int) -> str:
     """
@@ -612,6 +654,13 @@ def format_pred(pred: str) -> str:
     Format the prediction by stripping newlines and spaces.
     """
     return pred.strip("\n").strip().replace("\n", " ")
+
+
+def _get_evidence(text_corpus: pd.DataFrame) -> str:
+    """Utility for constructing evidence
+    Returns all articles (concatenated as a string) in the text corpus as evidence.
+    """
+    return "\n================\n\n".join(text_corpus["article"])
 
 
 SUPPORTED_METHOD_NAMES: list[str] = [
