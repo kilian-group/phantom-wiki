@@ -1,5 +1,6 @@
 from pyswip import Prolog
 from phantom_wiki.facts.family.constants import PERSON_TYPE
+import logging
 
 SAVE_ALL_CLAUSES_TO_FILE = """
 (save_all_clauses_to_file(File) :-
@@ -16,9 +17,9 @@ class Database:
     # TODO define logic for consulting different types of facts based on difficulty
     def __init__(self, *rules: list[str]):
         self.prolog = Prolog()
-        print("Consulting rules from:")
+        logging.debug("Consulting rules from:")
         for rule in rules:
-            print(f"- {rule}")
+            logging.debug(f"- {rule}")
             self.prolog.consult(rule)
         # Add ability to save clauses to a file
         self.prolog.assertz(SAVE_ALL_CLAUSES_TO_FILE)
@@ -75,9 +76,9 @@ class Database:
         Args:
             files: paths to Prolog files
         """
-        print("Consulting files:")
+        logging.debug("Consulting files:")
         for file in files:
-            print(f"- {file}")
+            logging.debug(f"- {file}")
             self.prolog.consult(file)
 
     # TODO check output type
@@ -92,9 +93,9 @@ class Database:
         Args:
             facts: list of Prolog fact strings
         """
-        print("Adding facts:")
+        logging.debug("Adding facts:")
         for fact in facts:
-            print(f"- {fact}")
+            logging.debug(f"- {fact}")
             self.prolog.assertz(fact)
 
     # TODO check output type
@@ -109,9 +110,9 @@ class Database:
         Args:
             facts: list of Prolog fact strings
         """
-        print("Removing facts:")
+        logging.debug("Removing facts:")
         for fact in facts:
-            print(f"- {fact}")
+            logging.debug(f"- {fact}")
             self.prolog.retractall(fact)
 
     # TODO check output type
@@ -124,10 +125,9 @@ class Database:
         Args:
             predicates: list of term signatures
         """
-
-        print("Defining rules:")
+        logging.debug("Defining rules:")
         for predicate in predicates:
-            print(f"- {predicate}")
+            logging.debug(f"- {predicate}")
             self.prolog.dynamic(predicate)
 
     # TODO check output type

@@ -1,6 +1,8 @@
 import numpy as np
 from numpy.random import Generator
 import pydot
+import logging
+import time
 import re
 
 def random_coordinate(rng, n, radius=5):
@@ -30,6 +32,7 @@ def create_friendship_graph(
 
     Returns a list of facts and individual features.
     """
+    start_time = time.time()
     individual_features = []
     for name in names:
         ft = random_coordinate(rng, number_of_communities)
@@ -40,7 +43,8 @@ def create_friendship_graph(
         for j in range(i+1, len(names)):
             if are_friends(individual_features[i], individual_features[j], friendship_threshold):
                 facts.append(f"friend_(\'{names[i]}\', \'{names[j]}\')")
-
+    logging.info(f"Generated friendship tree of {len(names)} individuals in {time.time()-start_time:.3f}s.")
+        
     return facts, individual_features
 
 def plot_friendship_tree(names, coords, pl_friendship_tree):

@@ -10,7 +10,7 @@ Example:
 
 # %%
 import os
-from phantom_eval.utils import get_parser
+from phantom_eval import get_parser
 from phantom_eval.evaluate_utils import get_evaluation_data
 parser = get_parser()
 args = parser.parse_args()
@@ -21,7 +21,7 @@ df = get_evaluation_data(output_dir, method)
 
 # %%
 # save to a csv file
-scores_dir = os.path.join(output_dir, 'scores')
+scores_dir = os.path.join(output_dir, 'scores', method)
 os.makedirs(scores_dir, exist_ok=True)
 
 # %%
@@ -37,5 +37,7 @@ acc_by_type_mean_std = acc_by_type.groupby(COLS).agg(['mean', 'std'])
 print(acc_by_type_mean_std.to_markdown())
 # collapse multi-index columns
 acc_by_type_mean_std.columns = acc_by_type_mean_std.columns.to_flat_index()
+# add a column at the end for the method
+acc_by_type_mean_std['method'] = method
 # save to a csv file
 acc_by_type_mean_std.to_csv(os.path.join(scores_dir, "scores_by_type.csv"))

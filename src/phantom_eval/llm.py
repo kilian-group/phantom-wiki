@@ -23,6 +23,7 @@ logger = logging.getLogger(__name__)
 class LLMChatResponse(BaseModel):
     pred: str
     usage: dict
+    error: str | None = None
 
 
 class InferenceGenerationConfig(BaseModel):
@@ -330,10 +331,10 @@ class OpenAIChat(CommonLLMChat):
 
 class TogetherChat(CommonLLMChat):
     SUPPORTED_LLM_NAMES: list[str] = [
-        "together:meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
-        "together:meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
-        "together:meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
-        "together:meta-llama/Llama-Vision-Free",
+        "meta-llama/meta-llama-3.1-8b-instruct-turbo",
+        "meta-llama/meta-llama-3.1-70b-instruct-turbo",
+        "meta-llama/meta-llama-3.1-405b-instruct-turbo",
+        "meta-llama/llama-vision-free",
     ]
     RATE_LIMITS = {llm_name: {"usage_tier=1": {"RPM": 20, "TPM": 500_000}} for llm_name in SUPPORTED_LLM_NAMES}
 
@@ -343,11 +344,23 @@ class TogetherChat(CommonLLMChat):
         model_path: str | None = None,
         usage_tier: int = 1,
     ):
-        assert model_name.startswith("together:"), "model_name must start with 'together:'"
+        logging.info("Using TogetherAI for inference")
         super().__init__(model_name, model_path)
         self.client = together.Together(api_key=os.getenv("TOGETHER_API_KEY"))
         self.async_client = together.AsyncTogether(api_key=os.getenv("TOGETHER_API_KEY"))
         self._update_rate_limits(usage_tier)
+
+    def _convert_conv_to_api_format(self, conv: Conversation) -> list[dict]:
+        """
+        Converts the conversation object to a format supported by Together.
+        """
+        formatted_messages = []
+        for message in conv.messages:
+            for content in message.content:
+                match content:
+                    case ContentTextMessage(text=text):
+                        formatted_messages.append({"role": message.role, "content": text})
+        return formatted_messages
 
     def _call_api(
         self,
@@ -357,10 +370,9 @@ class TogetherChat(CommonLLMChat):
     ) -> object:
         # https://github.com/togethercomputer/together-python
         # https://docs.together.ai/reference/completions-1
-        # Remove the "together:" prefix before setting up the client
         client = self.async_client if use_async else self.client
         response = client.chat.completions.create(
-            model=self.model_name[len("together:") :],
+            model=self.model_name,
             messages=messages_api_format,
             temperature=inf_gen_config.temperature,
             top_p=inf_gen_config.top_p,
@@ -538,6 +550,9 @@ class VLLMChat(CommonLLMChat):
     SUPPORTED_LLM_NAMES: list[str] = [
         "meta-llama/llama-3.1-8b-instruct", 
         "meta-llama/llama-3.1-70b-instruct", 
+        "meta-llama/llama-3.2-1b-instruct",
+        "meta-llama/llama-3.2-3b-instruct",
+        "meta-llama/llama-3.3-70b-instruct", 
         "microsoft/phi-3.5-mini-instruct",
         "microsoft/phi-3.5-moe-instruct",
         "google/gemma-2-2b-it",

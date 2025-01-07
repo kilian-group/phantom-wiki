@@ -152,7 +152,6 @@ class PersonFactory:
         
         # Generate lastname
         if children.female and children.married_to: 
-            print(children.get_full_name())
             parent_surname = self._get_next_surname()
         else:
             parent_surname = children.surname

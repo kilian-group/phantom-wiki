@@ -9,7 +9,7 @@ Example:
 
 # %%
 import os
-from phantom_eval.utils import get_parser
+from phantom_eval import get_parser
 from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std
 import matplotlib.pyplot as plt
 
@@ -28,7 +28,7 @@ split_name = args.split_name
 df = get_evaluation_data(output_dir, method)
 
 # %%
-figures_dir = os.path.join(output_dir, 'figures')
+figures_dir = os.path.join(output_dir, 'figures', method)
 os.makedirs(figures_dir, exist_ok=True)
 
 # %%
@@ -58,7 +58,7 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
         plt.plot(x, y, label=i, marker='o', color=COLORS[i], linestyle=LINESTYLES[i])
         plt.fill_between(x, y-yerr, y+yerr, alpha=0.3, color=COLORS[i])
 
-    plt.legend(title='Model', loc='lower right', fontsize=12)
+    plt.legend(title='Model', loc='upper right', fontsize=12)
     # format x-axis
     plt.xlabel('Aggregation vs no aggregation')
     plt.xticks(x, df_mean.columns)
