@@ -106,22 +106,8 @@ FAMILY_RELATION_HARD_PLURALS = [
 
 """intrinsic difficulty for different family relations
 For all the predictates that occur in the articles the difficulty is 1.
-For harder predicates the difficulty is incremented by the extra rules that need to be checked to determine it.
-
-NOTE:
-this is specific to the derived rules we have in the family domain
-
-Definition1:
-granddaughter(X, Y) :-
-    grandchild(X, Y),
-    female(Y).
-
-Definition2:
-granddaughter(X, Y) :-
-    parent(A, X),
-    daughter(A, Y).
-
-Definition1 will result in a difficulty of 3 while Definition2 will result in a difficulty of 2.
+For harder predicates the difficulty is incremented by the extra articles that need to be checked to determine it.
+i.e. How many articles need to be retrieved to reach the relation.
 """
 FAMILY_RELATION_DIFFICULTY = {
     "parent": 1,
@@ -138,28 +124,28 @@ FAMILY_RELATION_DIFFICULTY = {
     "niece": 2,
     "nephew": 2,
     "grandparent": 2,
-    "grandmother": 3,
-    "grandfather": 3,
+    "grandmother": 2,
+    "grandfather": 2,
     "great_aunt": 3,
     "great_uncle": 3,
     "grantchild": 2,
-    "granddaughter": 3,
-    "grandson": 3,
+    "granddaughter": 2,
+    "grandson": 2,
     "great_grandparent": 3,
-    "great_grandmother": 4,
-    "great_grandfather": 4,
+    "great_grandmother": 3,
+    "great_grandfather": 3,
     "great_grandchild": 3,
-    "great_granddaughter": 4,
-    "great_grandson": 4,
+    "great_granddaughter": 3,
+    "great_grandson": 3,
     "second_aunt": 4,
     "second_uncle": 4,
     "aunt": 2,
     "uncle": 2,
-    "cousin": 4,
-    "female_cousin": 5,
-    "male_cousin": 5,
-    "female_second_cousin": 8,
-    "male_second_couin": 8,
-    "female_first_cousin_once_removed": 6,
-    "male_first_cousin_once_removed": 6,
+    "cousin": 3,
+    "female_cousin": 3,
+    "male_cousin": 3,
+    "female_second_cousin": 5,
+    "male_second_couin": 5,
+    "female_first_cousin_once_removed": 4,
+    "male_first_cousin_once_removed": 4,
 }
