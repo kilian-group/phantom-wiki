@@ -57,6 +57,15 @@ class Agent(abc.ABC):
         """
         pass
 
+def _get_evidence(text_corpus: pd.DataFrame) -> str:
+    """Utility for constructing evidence
+    Returns all articles (concatenated as a string) in the text corpus as evidence.
+    """
+    evidence = "Given the following evidence:\n"
+    evidence += "========BEGIN EVIDENCE========\n"
+    evidence += "\n================\n\n".join(text_corpus["article"])
+    evidence += "========END EVIDENCE========\n"
+    return evidence
 
 class NshotAgent(Agent):
     """
@@ -66,18 +75,8 @@ class NshotAgent(Agent):
     def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt):
         super().__init__(text_corpus, llm_prompt)
 
-    def __get_evidence(self) -> str:
-        """
-        Returns all articles (concatenated as a string) in the text corpus as evidence.
-        """
-        evidence = "Given the following evidence:\n"
-        evidence += "========BEGIN EVIDENCE========\n"
-        evidence += "\n================\n\n".join(self.text_corpus["article"])
-        evidence += "========END EVIDENCE========\n"
-        return evidence
-    
     def _build_agent_prompt(self, question: str) -> str:
-        evidence = self.__get_evidence()
+        evidence = _get_evidence(self.text_corpus)
         return self.llm_prompt.get_prompt().format(
             evidence=evidence,
             question=question
@@ -210,6 +209,58 @@ class NshotSCAgent(NshotAgent, SCMixin):
         transposed_responses = [list(responses_each_question)
                                 for responses_each_question in zip(*responses)]
         return [self.take_majority_vote(responses_each_question, self.sep) for responses_each_question in transposed_responses]
+
+
+class CoTAgent(Agent):
+    def __init__(
+            self, 
+            text_corpus: pd.DataFrame, 
+            llm_prompt: LLMPrompt,
+            cot_examples: str = ""
+    ):
+        """
+        Args:
+            cot_examples (str): Prompt examples to include in agent prompt.
+        """
+        super().__init__(text_corpus, llm_prompt)
+        self.cot_examples = cot_examples
+
+    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+        logger.debug(f"\n\t>>> question: {question}\n")
+
+        # Add the initial prompt to agent's conversation
+        conv = Conversation(messages=[
+            Message(role="user", content=[ContentTextMessage(text=self._build_agent_prompt(question))])
+        ])
+
+        response = llm_chat.generate_response(conv, inf_gen_config)
+        return response
+    
+    async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
+        logger.debug(f"\n\t>>> questions: {questions}\n")
+
+        # Create a conversation with 1 user prompt
+        prompts = [self._build_agent_prompt(question) for question in questions]
+        convs = [
+            Conversation(messages=[
+                Message(role="user", content=[ContentTextMessage(text=prompt)])
+            ])
+            for prompt in prompts
+        ]
+        
+        # Generate response
+        # Change stop_sequences to "\n"
+        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
+        responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
+        return responses
+    
+    def _build_agent_prompt(self, question: str) -> str:
+        evidence = _get_evidence(self.text_corpus)
+        return self.llm_prompt.get_prompt().format(
+            evidence=evidence,
+            examples=self.cot_examples,
+            question=question
+        )
 
 
 class ReactAgent(Agent):
