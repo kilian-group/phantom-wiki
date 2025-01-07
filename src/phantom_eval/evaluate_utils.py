@@ -3,6 +3,7 @@
 from glob import glob
 import pandas as pd
 
+from . import constants
 from .utils import load_data
 from .score import (exact_match,
                     precision,
@@ -183,13 +184,14 @@ def _get_qa_pairs(splits):
     df_qa_pairs = pd.concat(df_list)
     return df_qa_pairs
 
-def get_evaluation_data(output_dir, method, sep=', '):
+def get_evaluation_data(output_dir, method, sep=constants.answer_sep):
     """Get the evaluation data for a given method
 
     Args:
         output_dir (str): path to the output directory
         method (str): method used for inference (e.g., zeroshot, fewshot, etc.)
-        sep (str): separator when pre-processing pred/true strings
+        sep (str): separator when pre-processing pred/true strings.
+            Default is `constants.answer_sep`.
 
     Returns:
         pd.DataFrame: a dataframe containing the evaluation data, 
