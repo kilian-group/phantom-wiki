@@ -1,6 +1,8 @@
 from pyswip import Prolog
 
 from phantom_wiki.facts.family import FAMILY_RULES_BASE_PATH, FAMILY_RULES_DERIVED_PATH
+
+# from tests.phantom_wiki.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
 from tests.phantom_wiki.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
 
 
@@ -136,4 +138,35 @@ def test_family_rules_derived():
     )
     assert compare_prolog_dicts(
         list(prolog.query("male_first_cousin_once_removed(angelina, X)")), [{"X": "gabriel"}, {"X": "felix"}]
+    )
+
+
+def test_family_rules_inlaws():
+    prolog = Prolog()
+    prolog.consult(FAMILY_RULES_BASE_PATH)
+    prolog.consult(FAMILY_RULES_DERIVED_PATH)
+    prolog.consult(FAMILY_TREE_SMALL_EXAMPLE_PATH)
+
+    assert compare_prolog_dicts(
+        list(prolog.query("father_in_law('Alton Cater', X)")), [{"X": "Tyler Ussery"}]
+    )
+    assert compare_prolog_dicts(
+        list(prolog.query("mother_in_law('Alton Cater', X)")), [{"X": "Margarite Ussery"}]
+    )
+    assert compare_prolog_dicts(list(prolog.query("son_in_law('Alton Cater', X)")), [{"X": "Wes Backus"}])
+    assert compare_prolog_dicts(list(prolog.query("daughter_in_law('Alton Cater', X)")), [])
+    assert compare_prolog_dicts(list(prolog.query("brother_in_law('Alton Cater', X)")), [])
+    assert compare_prolog_dicts(list(prolog.query("sister_in_law('Alton Cater', X)")), [])
+
+    assert compare_prolog_dicts(
+        list(prolog.query("father_in_law('Aubrey Leibowitz', X)")), [{"X": "Boris Ervin"}]
+    )
+    assert compare_prolog_dicts(
+        list(prolog.query("mother_in_law('Aubrey Leibowitz', X)")), [{"X": "Karen Ervin"}]
+    )
+    assert compare_prolog_dicts(list(prolog.query("son_in_law('Aubrey Leibowitz', X)")), [])
+    assert compare_prolog_dicts(list(prolog.query("daughter_in_law('Aubrey Leibowitz', X)")), [])
+    assert compare_prolog_dicts(list(prolog.query("brother_in_law('Aubrey Leibowitz', X)")), [])
+    assert compare_prolog_dicts(
+        list(prolog.query("sister_in_law('Aubrey Leibowitz', X)")), [{"X": "Adele Ervin"}]
     )
