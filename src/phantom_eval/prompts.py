@@ -41,11 +41,61 @@ class FewshotLLMPrompt(LLMPrompt):
 
 
 ##### CoT method
-class CoTLLMPrompt(LLMPrompt):
-    COT_INSTRUCTION = """"""
+# Some alternative formats:
+# 1. <thought>...</thought> and <action>Finish[answer]</action> tags
+# Pros: 
+# - This would be more similar to the React method. 
+# - In the future, if we want to standardize things, maybe this is the way to go.
+# Cons: 
+# - We would require additional parsing for the final answer.
+# 
+# Justification for the present format:
+# - Answer is easier to parse.
+# - For smaller models, it might be easier to generate the answer.
+COT_EXAMPLES = f"""
+Example 1:
+Question: What is the job of the father of anastasia?
+Thought 1: First I need to find the father of anastasia. Based on the evidence, the father of anastasia is daniel.
+Thought 2: Now I need to find the job of daniel. Based on the evidence, the job of daniel is goldsmith.
+Answer: goldsmith
 
-    def get_prompt(self):
-        raise NotImplementedError("CoT evaluation is not supported yet.")
+Example 2:
+Question: What is the job of the person whose hobby is woodworking?
+Thought 1: I need to search for people whose hobby is woodworking. Based on the evidence, the people whose hobby is woodworking are daniel, lee.
+Thought 2: The job of daniel is goldsmith, and the job of lee is banker.
+Answer: goldsmith{constants.answer_sep}banker
+
+Example 3:
+Question: How many children does the person whose job is woodworking have?
+Thought 1: I need to search for people whose hobby is woodworking. Based on the evidence, the people whose hobby is woodworking are daniel, lee.
+Thought 2: Daniel has 1 child, and lee has 2 children.
+Answer: 1{constants.answer_sep}2
+"""
+
+class CoTLLMPrompt(LLMPrompt):
+    COT_INSTRUCTION = f"""
+    You are given the following evidence:
+    (BEGIN EVIDENCE)
+    {{evidence}}
+    (END EVIDENCE)
+    
+    You will be provided a question. Your task is to provide an answer according to these instructions: 
+    - The output must be one of the following: a name (if there is only one correct answer); a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or a number (if the answer is numerical).
+    - DO NOT include any additional information in your answer.
+
+    Here are some examples:
+    (START OF EXAMPLES)
+    {{examples}}
+    (END OF EXAMPLES)
+
+    Question: {{question}}
+    Answer: """
+
+    def get_prompt(self) -> PromptTemplate:
+        return PromptTemplate(
+            input_variables=["evidence", "examples", "question"],
+            template=self.COT_INSTRUCTION,
+        )
 
 
 ##### RAG method
