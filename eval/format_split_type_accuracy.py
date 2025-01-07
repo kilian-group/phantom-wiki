@@ -10,7 +10,7 @@ Example:
 
 # %%
 import os
-from phantom_eval.utils import get_parser
+from phantom_eval import get_parser
 from phantom_eval.evaluate_utils import get_evaluation_data
 parser = get_parser()
 args = parser.parse_args()
