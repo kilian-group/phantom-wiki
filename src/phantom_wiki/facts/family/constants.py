@@ -18,6 +18,12 @@ FAMILY_FACT_TEMPLATES = {
     "number of children": "The number of children <subject> has is",
     "uncle": "The uncle of <subject> is",
     "aunt": "The aunt of <subject> is",
+    "father_in_law": "The father-in-law of <subject> is",
+    "mother_in_law": "The mother-in-law of <subject> is",
+    "brother_in_law": "The brother-in-law of <subject> is",
+    "sister_in_law": "The sister-in-law of <subject> is",
+    "son_in_law": "The son-in-law of <subject> is",
+    "daughter_in_law": "The daughter-in-law of <subject> is",
 }
 
 FAMILY_FACT_TEMPLATES_PL = {
@@ -29,6 +35,10 @@ FAMILY_FACT_TEMPLATES_PL = {
     "daughter": "The daughters of <subject> are",
     "uncle": "The uncles of <subject> are",
     "aunt": "The aunts of <subject> are",
+    "brother_in_law": "The brother-in-laws of <subject> are",
+    "sister_in_law": "The sister-in-laws of <subject> are",
+    "son_in_law": "The son-in-laws of <subject> are",
+    "daughter_in_law": "The daughter-in-laws of <subject> are",
 }
 
 # Base rules
@@ -57,6 +67,12 @@ FAMILY_RELATION_HARD = [
     "grandChild",
     "grandDaughter",
     "grandSon",
+    "father_in_law",
+    "mother_in_law",
+    "brother_in_law",
+    "sister_in_law",
+    "son_in_law",
+    "daughter_in_law",
 ]
 
 FAMILY_RELATION_EASY_PLURALS = [
@@ -68,14 +84,6 @@ FAMILY_RELATION_EASY_PLURALS = [
     "daughters",
 ]
 
-# FAMILY_RELATION_EASY_SG2PL = {
-#     "sibling": "siblings",
-#     "sister": "sisters",
-#     "brother": "brothers",
-#     "child": "children",
-#     "son": "sons",
-#     "daughter": "daughters",
-# }
 
 FAMILY_RELATION_EASY_PL2SG = {
     "siblings": "sibling",
@@ -95,3 +103,48 @@ FAMILY_RELATION_HARD_PLURALS = [
     "grandDaughters",
     "grandSons",
 ]
+
+# intrinsic difficulty for different family relations 
+# The predicates we define directly is gender, parent relations
+# so the intrinsic difficulty of relations are based on the number of rules 
+# needed to be check to determine the relation 
+FAMILY_RELATION_DIFFICULTY = {
+    "parent": 1,
+    "sibling": 3,
+    "sister": 4,
+    "brother": 4,
+    "mother": 2,
+    "father": 2,
+    "child": 1,
+    "son": 2,
+    "daughter": 2,
+    "wife": 4,
+    "husband": 4,
+    "niece": 5,
+    "nephew": 5,
+    "grandparent": 2,
+    "grandmother": 3,
+    "grandfather": 3,
+    "great_aunt": 6,
+    "great_uncle": 6,
+    "grantchild": 2,
+    "granddaughter": 3,
+    "grandson": 3,
+    "great_grandparent": 3,
+    "great_grandmother": 4,
+    "great_grandfather": 4,
+    "great_grandchild": 3,
+    "great_granddaughter": 4,
+    "great_grandson": 4,
+    "second_aunt": 7,
+    "second_uncle": 7,
+    "aunt": 5,
+    "uncle": 5,
+    "cousin": 6,
+    "female_cousin": 7,
+    "male_cousin": 7,
+    "female_second_cousin": 10,
+    "male_second_couin": 10,
+    "female_first_cousin_once_removed": 9,
+    "male_first_cousin_once_removed": 9,
+}
