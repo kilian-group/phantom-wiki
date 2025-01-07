@@ -27,6 +27,7 @@ FAMILY_FACT_TEMPLATES = {
 }
 
 FAMILY_FACT_TEMPLATES_PL = {
+    "parent": "The parents of <subject> are",
     "brother": "The brothers of <subject> are",
     "sister": "The sisters of <subject> are",
     "sibling": "<subject>'s siblings are",
@@ -43,6 +44,7 @@ FAMILY_FACT_TEMPLATES_PL = {
 
 # Base rules
 FAMILY_RELATION_EASY = [
+    "parent",
     "sibling",
     "sister",
     "brother",
