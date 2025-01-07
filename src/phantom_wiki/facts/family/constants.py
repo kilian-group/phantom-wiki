@@ -104,29 +104,44 @@ FAMILY_RELATION_HARD_PLURALS = [
     "grandSons",
 ]
 
-# intrinsic difficulty for different family relations 
-# The predicates we define directly is gender, parent relations
-# so the intrinsic difficulty of relations are based on the number of rules 
-# needed to be check to determine the relation 
+"""intrinsic difficulty for different family relations
+For all the predictates that occur in the articles the difficulty is 1.
+For harder predicates the difficulty is incremented by the extra rules that need to be checked to determine it.
+
+NOTE:
+this is specific to the derived rules we have in the family domain
+
+Definition1:
+granddaughter(X, Y) :-
+    grandchild(X, Y),
+    female(Y).
+
+Definition2:
+granddaughter(X, Y) :-
+    parent(A, X),
+    daughter(A, Y).
+
+Definition1 will result in a difficulty of 3 while Definition2 will result in a difficulty of 2.
+"""
 FAMILY_RELATION_DIFFICULTY = {
     "parent": 1,
-    "sibling": 3,
-    "sister": 4,
-    "brother": 4,
-    "mother": 2,
-    "father": 2,
+    "sibling": 1,
+    "sister": 1,
+    "brother": 1,
+    "mother": 1,
+    "father": 1,
     "child": 1,
-    "son": 2,
-    "daughter": 2,
-    "wife": 4,
-    "husband": 4,
-    "niece": 5,
-    "nephew": 5,
+    "son": 1,
+    "daughter": 1,
+    "wife": 1,
+    "husband": 1,
+    "niece": 2,
+    "nephew": 2,
     "grandparent": 2,
     "grandmother": 3,
     "grandfather": 3,
-    "great_aunt": 6,
-    "great_uncle": 6,
+    "great_aunt": 3,
+    "great_uncle": 3,
     "grantchild": 2,
     "granddaughter": 3,
     "grandson": 3,
@@ -136,15 +151,15 @@ FAMILY_RELATION_DIFFICULTY = {
     "great_grandchild": 3,
     "great_granddaughter": 4,
     "great_grandson": 4,
-    "second_aunt": 7,
-    "second_uncle": 7,
-    "aunt": 5,
-    "uncle": 5,
-    "cousin": 6,
-    "female_cousin": 7,
-    "male_cousin": 7,
-    "female_second_cousin": 10,
-    "male_second_couin": 10,
-    "female_first_cousin_once_removed": 9,
-    "male_first_cousin_once_removed": 9,
+    "second_aunt": 4,
+    "second_uncle": 4,
+    "aunt": 2,
+    "uncle": 2,
+    "cousin": 4,
+    "female_cousin": 5,
+    "male_cousin": 5,
+    "female_second_cousin": 8,
+    "male_second_couin": 8,
+    "female_first_cousin_once_removed": 6,
+    "male_first_cousin_once_removed": 6,
 }
