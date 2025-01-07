@@ -3,11 +3,13 @@
 from glob import glob
 import pandas as pd
 
+from . import constants
 from .utils import load_data
 from .score import (exact_match,
                     precision,
                     recall,
                     f1)
+from . import constants
 
 ################ Utils and macros for plotting ################
 # create a plot
@@ -45,6 +47,8 @@ MODELS = [
     'gemini-1.5-flash-8b-001',
     'gemini-1.5-flash-002',
     'gemini-2.0-flash-exp',
+    'gpt-4o-mini-2024-07-18',
+    'gpt-4o-2024-11-20',
 ]
 COLORS = {
     'google/gemma-2-27b-it': 'tab:blue',
@@ -61,6 +65,8 @@ COLORS = {
     'gemini-1.5-flash-002': 'tab:purple',
     'gemini-1.5-flash-8b-001': 'tab:purple',
     'gemini-2.0-flash-exp': 'tab:purple',
+    'gpt-4o-mini-2024-07-18': 'tab:brown',
+    'gpt-4o-2024-11-20': 'tab:brown',
 }
 LINESTYLES = {
     'google/gemma-2-27b-it': '-',
@@ -77,6 +83,8 @@ LINESTYLES = {
     'gemini-2.0-flash-exp': '-',
     'gemini-1.5-flash-002': '--',
     'gemini-1.5-flash-8b-001': 'dotted',
+    'gpt-4o-mini-2024-07-18': '-',
+    'gpt-4o-2024-11-20': '--',
 }
 
 def pivot_mean_std(acc_mean_std, metric, independent_variable='_split'):
@@ -177,17 +185,19 @@ def _get_qa_pairs(splits):
     df_qa_pairs = pd.concat(df_list)
     return df_qa_pairs
 
-def get_evaluation_data(output_dir, method, sep=', '):
+def get_evaluation_data(output_dir: str, method: str, sep: str = constants.answer_sep):
     """Get the evaluation data for a given method
 
     Args:
         output_dir (str): path to the output directory
         method (str): method used for inference (e.g., zeroshot, fewshot, etc.)
-        sep (str): separator when pre-processing pred/true strings
+        sep (str): separator when pre-processing pred/true strings.
+            Default is `constants.answer_sep`.
 
     Returns:
         pd.DataFrame: a dataframe containing the evaluation data, 
-            including the predictions, the qa pairs, and per-instance evaluation metrics
+            including the predictions, the qa pairs (with auxiliary columns), 
+            and per-instance evaluation metrics
     """
     # get the predictions
     df_preds = _get_preds(output_dir, method)
@@ -199,8 +209,7 @@ def get_evaluation_data(output_dir, method, sep=', '):
     # the prolog queries and the templates
     df = df_preds.merge(df_qa_pairs, left_index=True, right_index=True, how='left')
 
-    # NOTE: we join the true answers with the appropriate seperator
-    # since the scoring functions expect strings
+    # join the true answers with the appropriate seperator since the scoring functions expect strings
     df['EM'] = df.apply(lambda x: exact_match(x['pred'], sep.join(x['true']), sep=sep), axis=1)
     df['precision'] = df.apply(lambda x: precision(x['pred'], sep.join(x['true']), sep=sep), axis=1)
     df['recall'] = df.apply(lambda x: recall(x['pred'], sep.join(x['true']), sep=sep), axis=1)
