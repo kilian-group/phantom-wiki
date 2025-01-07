@@ -471,7 +471,7 @@ SUPPORTED_METHOD_NAMES: list[str] = [
     "fewshot",
     "zeroshot-sc",
     "fewshot-sc",
-    "CoT",
+    "cot",
     "react"
 ]
 
@@ -487,8 +487,8 @@ def get_agent(
             return NshotAgent(text_corpus, llm_prompt)
         case "zeroshot-sc" | "fewshot-sc":
             return NshotSCAgent(text_corpus, llm_prompt, **agent_kwargs)
-        case "CoT":
-            raise NotImplementedError("CoT evaluation is not supported yet.")
+        case "cot":
+            return CoTAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "react":
             return ReactAgent(text_corpus, llm_prompt, **agent_kwargs)
         case _:
