@@ -109,6 +109,7 @@ async def main(args: argparse.Namespace) -> None:
                 # Run the method and get final responses for the batch
                 # In zeroshot, fewshot, the LLM responds with the final answer in 1 turn only,
                 # so they support batch async inference
+                agent_interactions = None
                 match args.method:
                     case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
