@@ -77,41 +77,57 @@ class NshotAgent(Agent):
     def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
+        # Initialize agent interactions
+        self.agent_interactions = Conversation(messages=[])
         # Create a conversation with 1 user prompt
         prompt = self._build_agent_prompt(question)
-        conv = Conversation(messages=[
-            Message(role="user", content=[ContentTextMessage(text=prompt)])
-        ])
+        msg = Message(role="user", content=[ContentTextMessage(text=prompt)])
+        # Add the initial message to agent's conversation
+        self.agent_interactions.messages.append(msg)
         
         # Generate response
         # Add "\n" to stop_sequences
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
-        response = llm_chat.generate_response(conv, inf_gen_config)
-        
+        response = llm_chat.generate_response(
+            Conversation(
+                messages=[msg] 
+            ), 
+            inf_gen_config
+        )
         # Update agent's conversation
-        self.agent_interactions = conv
+        self.agent_interactions.messages.append(
+            Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
+        )
         
         return response
     
     async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
         logger.debug(f"\n\t>>> questions: {questions}\n")
 
+        # Initialize agent interactions (one for each question)
+        self.agent_interactions = [Conversation(messages=[]) for _ in questions]
         # Create a conversation with 1 user prompt
         prompts = [self._build_agent_prompt(question) for question in questions]
-        convs = [
-            Conversation(messages=[
-                Message(role="user", content=[ContentTextMessage(text=prompt)])
-            ])
+        msgs = [
+            Message(role="user", content=[ContentTextMessage(text=prompt)])
             for prompt in prompts
         ]
         
         # Generate response
         # Change stop_sequences to "\n"
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
-        responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
-
-        # Update agent's conversation
-        self.agent_interactions = convs
+        responses = await llm_chat.batch_generate_response(
+            [
+                Conversation(messages=[msg])
+                for msg in msgs
+            ], 
+            inf_gen_config
+        )
+        # Add the responses to the agent's conversations
+        for i, response in enumerate(responses):
+            self.agent_interactions[i].messages.append(
+                Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
+            )
 
         return responses
 
