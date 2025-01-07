@@ -107,7 +107,9 @@ async def main(args: argparse.Namespace) -> None:
                         responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
                         # NOTE: the agent interactions are just single Conversation objects containing the prompt
                         # for the self-consistency methods, we save the Conversation object from the last iteration
-                        agent_interactions: list[Conversation] = agent.agent_interactions
+                        if args.log_level == "DEBUG":
+                            logging.warning(f"Saving prompts for method={args.method} in agent_interactions. This takes up a lot of space as the prompts can be large.")
+                            agent_interactions: list[Conversation] = agent.agent_interactions
                     case "CoT":
                         raise NotImplementedError("CoT evaluation is not supported yet.")
                     case "RAG":
