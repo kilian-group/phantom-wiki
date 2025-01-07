@@ -45,6 +45,8 @@ MODELS = [
     'gemini-1.5-flash-8b-001',
     'gemini-1.5-flash-002',
     'gemini-2.0-flash-exp',
+    'gpt-4o-mini-2024-07-18',
+    'gpt-4o-2024-11-20',
 ]
 COLORS = {
     'google/gemma-2-27b-it': 'tab:blue',
@@ -61,6 +63,8 @@ COLORS = {
     'gemini-1.5-flash-002': 'tab:purple',
     'gemini-1.5-flash-8b-001': 'tab:purple',
     'gemini-2.0-flash-exp': 'tab:purple',
+    'gpt-4o-mini-2024-07-18': 'tab:brown',
+    'gpt-4o-2024-11-20': 'tab:brown',
 }
 LINESTYLES = {
     'google/gemma-2-27b-it': '-',
@@ -77,6 +81,8 @@ LINESTYLES = {
     'gemini-2.0-flash-exp': '-',
     'gemini-1.5-flash-002': '--',
     'gemini-1.5-flash-8b-001': 'dotted',
+    'gpt-4o-mini-2024-07-18': '-',
+    'gpt-4o-2024-11-20': '--',
 }
 
 def pivot_mean_std(acc_mean_std, metric, independent_variable='_split'):
