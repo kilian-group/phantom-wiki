@@ -12,7 +12,7 @@ from .utils import load_data, setup_logging
 from .data import Conversation
 from .llm import get_llm, VLLMChat, LLMChatResponse, LLMChat, InferenceGenerationConfig
 from .agent import get_agent, Agent
-from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES
+from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, ACT_EXAMPLES
 from . import constants
 from . import get_parser
 
@@ -30,7 +30,7 @@ async def main(args: argparse.Namespace) -> None:
                 # If the method is zeroshot or fewshot, we do not need to use the API (for vLLM)
                 # This can be overridden by setting `use_api=True` in the model_kwargs.
                 # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
-                use_api=(args.method in ["react"]), 
+                use_api=(args.method in ["react", "act"]),
             )
         case _:
             model_kwargs = dict(
@@ -49,7 +49,7 @@ async def main(args: argparse.Namespace) -> None:
     )
 
     for seed in args.inf_seed_list:
-        logger.info(f"Running inference with {seed=}")
+        logger.info(f"Running inference for method={args.method} with {seed=}")
         for split in args.split_list:
             logger.info(f"Loading dataset {split=}")
             dataset = load_data(split)
@@ -74,6 +74,11 @@ async def main(args: argparse.Namespace) -> None:
                         max_steps=args.react_max_steps,
                         react_examples=REACT_EXAMPLES,
                     )
+                case "act":
+                    agent_kwargs = dict(
+                        max_steps=args.react_max_steps,
+                        act_examples=ACT_EXAMPLES,
+                    )
             agent: Agent = get_agent(
                 args.method,
                 text_corpus=df_text,
@@ -84,7 +89,7 @@ async def main(args: argparse.Namespace) -> None:
             # If the model is a local LLM, we can run on all QA examples
             num_df_qa_pairs = len(df_qa_pairs)
             can_process_full_batch = (args.model_name in VLLMChat.SUPPORTED_LLM_NAMES) \
-                and (args.method != "react")
+                and (args.method not in ["react", "act"])
             batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
             for batch_number in range(1, math.ceil(num_df_qa_pairs/batch_size) + 1):
                 # Skip if the batch number is not the one specified
@@ -114,7 +119,7 @@ async def main(args: argparse.Namespace) -> None:
                         raise NotImplementedError("CoT evaluation is not supported yet.")
                     case "RAG":
                         raise NotImplementedError("RAG evaluation is not supported yet.")
-                    case "react":
+                    case "react" | "act":
                         # Run agent on each question one by one
                         responses: list[LLMChatResponse] = []
                         agent_interactions: list[Conversation] = []
@@ -171,6 +176,7 @@ def save_preds(
         preds[uid] = {
             "true" : qa_sample.answer,
             "pred" : responses[i].pred,
+            "error": responses[i].error,
             "interaction": interactions[i].model_dump() if interactions else [],
             "metadata": {
                 "model": args.model_name,
