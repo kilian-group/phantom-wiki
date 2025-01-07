@@ -398,11 +398,17 @@ class ReactAgent(Agent):
 
                 response = self._step_observation(response)
             except Exception as e:
-                response = LLMChatResponse(pred=f"<agent_error>{e}</agent_error>", usage={})
+                # If an error occurs, return the error message and empty pred
+                response = LLMChatResponse(
+                    pred="", usage={}, error=f"<agent_error>{e}</agent_error>"
+                )
                 break
 
         if (self.step_round > self.max_steps) and (not self.finished):
-            response = LLMChatResponse(pred=f"<agent_error>Max react steps ({self.max_steps}) reached without finishing.</agent_error>", usage={})
+            # If agent exceeds max steps without answer, return the error message and empty pred
+            response = LLMChatResponse(
+                pred="", usage={}, error=f"<agent_error>Max react steps ({self.max_steps}) reached without finishing.</agent_error>"
+            )
 
         return response
 

@@ -23,6 +23,7 @@ logger = logging.getLogger(__name__)
 class LLMChatResponse(BaseModel):
     pred: str
     usage: dict
+    error: str | None = None
 
 
 class InferenceGenerationConfig(BaseModel):
