@@ -14,19 +14,19 @@ class LLMPrompt(abc.ABC):
 ##### Zeroshot method
 class ZeroshotLLMPrompt(LLMPrompt):
     ZEROSHOT_INSTRUCTION = f"""
+    You are given the following evidence:
+    (BEGIN EVIDENCE)
     {{evidence}}
-    Answer the following question:
-    {{question}}
+    (END EVIDENCE)
+    
+    You will be provided a question. Your task is to provide an answer according to these instructions: 
+    - The output must be one of the following: a name (if there is only one correct answer); a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or a number (if the answer is numerical).
+    - DO NOT include any additional information in your answer.
 
-    The output should be one of the following:
-    - A name (if there is only one correct answer)
-    - A list of names separated by '{constants.answer_sep}' (if there are multiple correct answers)
-    - A number (if the answer is a number)
-    DO NOT include any additional information in the output.
-    """
+    Question: {{question}}
+    Answer: """
 
     def get_prompt(self) -> PromptTemplate:
-        # TODO return str
         return PromptTemplate(
             input_variables=["evidence", "question"],
             template=self.ZEROSHOT_INSTRUCTION,

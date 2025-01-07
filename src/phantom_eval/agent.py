@@ -28,6 +28,7 @@ class Agent(abc.ABC):
         """
         self.text_corpus = text_corpus
         self.llm_prompt = llm_prompt
+        self.agent_interactions: Conversation | list[Conversation] = None
 
     @abc.abstractmethod
     def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
@@ -70,11 +71,7 @@ class NshotAgent(Agent):
         """
         Returns all articles (concatenated as a string) in the text corpus as evidence.
         """
-        evidence = "Given the following evidence:\n"
-        evidence += "========BEGIN EVIDENCE========\n"
-        evidence += "\n================\n\n".join(self.text_corpus["article"])
-        evidence += "========END EVIDENCE========\n"
-        return evidence
+        return "\n================\n\n".join(self.text_corpus["article"])
     
     def _build_agent_prompt(self, question: str) -> str:
         evidence = self.__get_evidence()
@@ -96,6 +93,10 @@ class NshotAgent(Agent):
         # Add "\n" to stop_sequences
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
         response = llm_chat.generate_response(conv, inf_gen_config)
+        
+        # Update agent's conversation
+        self.agent_interactions = conv
+        
         return response
     
     async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
@@ -114,6 +115,10 @@ class NshotAgent(Agent):
         # Change stop_sequences to "\n"
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
         responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
+
+        # Update agent's conversation
+        self.agent_interactions = convs
+
         return responses
 
 
