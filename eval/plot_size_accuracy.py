@@ -9,7 +9,7 @@ Example:
 
 # %%
 import os
-from phantom_eval.utils import get_parser
+from phantom_eval import get_parser
 from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std
 import matplotlib.pyplot as plt
 import numpy as np

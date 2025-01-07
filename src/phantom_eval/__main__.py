@@ -167,6 +167,7 @@ def save_preds(
         preds[uid] = {
             "true" : qa_sample.answer,
             "pred" : responses[i].pred,
+            "error": responses[i].error,
             "interaction": interactions[i].model_dump() if interactions else [],
             "metadata": {
                 "model": args.model_name,

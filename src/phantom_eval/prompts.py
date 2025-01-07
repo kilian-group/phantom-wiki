@@ -120,15 +120,21 @@ Example 7:
 
 
 class ReactLLMPrompt(LLMPrompt):
+    # We use fstring to write the prompt, because we want to use the constants from the constants.py file
+    # examples, question, and scratchpad are input variables that the react agent
+    # will provide after calling the get_prompt method.
+    # n, entity, attribute, answer are placeholders that we want the LLM to read within double braces, like {{n}}, {{entity}}, {{attribute}}, {{answer}}
+    # So we escape them with 4 braces in this fstring (after get_prompt().format() is called, 
+    # they will be replaced with 2 braces)
     REACT_INSTRUCTION = f"""
     Solve a question answering task with interleaving thought, action, observation steps.
     They are specified in XML tags: <thought>...</thought>, <action>...</action>, and <observation>...</observation>.
     Thought can reason about the current situation, and action can be 3 types:
-    (1) <action round="{{n}}">RetrieveArticle[{{entity}}]</action>. This action retrieves the article about {{entity}} if it exists. If the article does not exist, the action will say so.
-    (2) <action round="{{n}}">Search[{{attribute}}]</action>. This action searches the database for {{attribute}} and retrieves all articles that contain {{attribute}}. If no article contains {{attribute}}, the action will say so.
-    (3) <action round="{{n}}">Finish[{{answer}}]</action>. This action answers the question with {{answer}}.
-    If you cannot find the answer, output the empty answer like: <action round="{{n}}">Finish[]</action>. 
-    If there are multiple answers A,B,C, answer with a list like: <action round="{{n}}">Finish[A{constants.answer_sep}B{constants.answer_sep}C]</action>. 
+    (1) <action round="{{{{n}}}}">RetrieveArticle[{{{{entity}}}}]</action>. This action retrieves the article about {{{{entity}}}} if it exists. If the article does not exist, the action will say so.
+    (2) <action round="{{{{n}}}}">Search[{{{{attribute}}}}]</action>. This action searches the database for {{{{attribute}}}} and retrieves all articles that contain {{{{attribute}}}}. If no article contains {{{{attribute}}}}, the action will say so.
+    (3) <action round="{{{{n}}}}">Finish[{{{{answer}}}}]</action>. This action answers the question with {{{{answer}}}}.
+    If you cannot find the answer, output the empty answer like: <action round="{{{{n}}}}">Finish[]</action>.
+    If there are multiple answers A,B,C, answer with a list like: <action round="{{{{n}}}}">Finish[A{constants.answer_sep}B{constants.answer_sep}C]</action>.
 
     You may take as many steps as necessary.
     Here are some examples:
