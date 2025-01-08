@@ -19,8 +19,7 @@ from . import get_parser
 logger = logging.getLogger(__name__)
 
 
-async def main(args: argparse.Namespace) -> None:
-    logger.info(f"Loading LLM={args.model_name}")
+def get_model_kwargs(args: argparse.Namespace) -> dict:
     match args.model_name:
         case model_name if model_name in VLLMChat.SUPPORTED_LLM_NAMES:
             model_kwargs = dict(
@@ -30,12 +29,74 @@ async def main(args: argparse.Namespace) -> None:
                 # If the method is zeroshot or fewshot, we do not need to use the API (for vLLM)
                 # This can be overridden by setting `use_api=True` in the model_kwargs.
                 # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
-                use_api=(args.method in ["react", "act"]),
+                use_api=(args.method in ["react", "act", "react->cot-sc", "cot-sc->react"]),
             )
         case _:
             model_kwargs = dict(
                 model_path=args.model_path,
             )
+    return model_kwargs
+
+
+def get_agent_kwargs(args: argparse.Namespace) -> dict:
+    match args.method:
+        case "zeroshot" | "fewshot":
+            agent_kwargs = dict()
+        case "zeroshot-sc" | "fewshot-sc":
+            agent_kwargs = dict(
+                num_votes=args.sc_num_votes,
+                sep=constants.answer_sep,
+            )
+        case "cot":
+            agent_kwargs = dict(
+                cot_examples=COT_EXAMPLES
+            )
+        case "cot-sc":
+            agent_kwargs = dict(
+                cot_examples=COT_EXAMPLES,
+                num_votes=args.sc_num_votes,
+                sep=constants.answer_sep,
+            )
+        case "RAG":
+            raise NotImplementedError("RAG evaluation is not supported yet.")
+        case "react":
+            agent_kwargs = dict(
+                max_steps=args.react_max_steps,
+                react_examples=REACT_EXAMPLES,
+            )
+        case "act":
+            agent_kwargs = dict(
+                max_steps=args.react_max_steps,
+                act_examples=ACT_EXAMPLES,
+            )
+        case "react->cot-sc":
+            # Provide the second llm prompt (CoTSC) as an agent kwarg
+            agent_kwargs = dict(
+                max_steps=args.react_max_steps,
+                react_examples=REACT_EXAMPLES,
+                cot_llm_prompt=get_llm_prompt("cot-sc", args.model_name),
+                cot_examples=COT_EXAMPLES,
+                num_votes=args.sc_num_votes,
+                sep=constants.answer_sep,
+            )
+        case "cot-sc->react":
+            # Provide the second llm prompt (React) as an agent kwarg
+            agent_kwargs = dict(
+                cot_examples=COT_EXAMPLES,
+                num_votes=args.sc_num_votes,
+                sep=constants.answer_sep,
+                react_llm_prompt=get_llm_prompt("react", args.model_name),
+                max_steps=args.react_max_steps,
+                react_examples=REACT_EXAMPLES,
+            )
+        case _:
+            agent_kwargs = dict()
+    return agent_kwargs
+
+
+async def main(args: argparse.Namespace) -> None:
+    logger.info(f"Loading LLM={args.model_name}")
+    model_kwargs = get_model_kwargs(args)
     llm_chat: LLMChat = get_llm(args.model_name, model_kwargs=model_kwargs)
     llm_prompt: LLMPrompt = get_llm_prompt(args.method, args.model_name)
     default_inf_gen_config = InferenceGenerationConfig(
@@ -57,38 +118,7 @@ async def main(args: argparse.Namespace) -> None:
             df_text = pd.DataFrame(dataset["text"])
 
             # Construct agent for the data split
-            match args.method:
-                case "zeroshot" | "fewshot":
-                    agent_kwargs = dict()
-                case "zeroshot-sc" | "fewshot-sc":
-                    agent_kwargs = dict(
-                        num_votes=args.sc_num_votes,
-                        sep=constants.answer_sep,
-                    )
-                case "cot":
-                    agent_kwargs = dict(
-                        cot_examples=COT_EXAMPLES
-                    )
-                case "cot-sc":
-                    agent_kwargs = dict(
-                        cot_examples=COT_EXAMPLES,
-                        num_votes=args.sc_num_votes,
-                        sep=constants.answer_sep,
-                    )
-                case "RAG":
-                    raise NotImplementedError("RAG evaluation is not supported yet.")
-                case "react":
-                    agent_kwargs = dict(
-                        max_steps=args.react_max_steps,
-                        react_examples=REACT_EXAMPLES,
-                    )
-                case "act":
-                    agent_kwargs = dict(
-                        max_steps=args.react_max_steps,
-                        act_examples=ACT_EXAMPLES,
-                    )
-                case _:
-                    agent_kwargs = dict()
+            agent_kwargs = get_agent_kwargs(args)
             agent: Agent = get_agent(
                 args.method,
                 text_corpus=df_text,
@@ -99,7 +129,7 @@ async def main(args: argparse.Namespace) -> None:
             # If the model is a local LLM, we can run on all QA examples
             num_df_qa_pairs = len(df_qa_pairs)
             can_process_full_batch = (args.model_name in VLLMChat.SUPPORTED_LLM_NAMES) \
-                and (args.method not in ["react", "act"])
+                and (args.method not in ["react", "act", "react->cot-sc", "cot-sc->react"])
             batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
             for batch_number in range(1, math.ceil(num_df_qa_pairs/batch_size) + 1):
                 # Skip if the batch number is not the one specified
@@ -133,7 +163,7 @@ async def main(args: argparse.Namespace) -> None:
                         agent_interactions: list[Conversation] = agent.agent_interactions
                     case "RAG":
                         raise NotImplementedError("RAG evaluation is not supported yet.")
-                    case "react" | "act":
+                    case "react" | "act" | "react->cot-sc" | "cot-sc->react":
                         # Run agent on each question one by one
                         responses: list[LLMChatResponse] = []
                         agent_interactions: list[Conversation] = []
