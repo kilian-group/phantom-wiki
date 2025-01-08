@@ -312,9 +312,9 @@ class CoTAgent(Agent):
     def parse_answer(cls, pred: str) -> tuple[str, str]:
         """
         Parse the response to extract the answer using regex.
-        The prediction is of the form: "... Answer: <answer>".
+        The prediction is of the form: "... The answer is <answer>."
         """
-        pattern = r"Answer: (.+)"
+        pattern = r"The answer is (.+)\.$"
         m = re.search(pattern, pred)
         if m:
             return m.group(1)

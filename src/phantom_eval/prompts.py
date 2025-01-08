@@ -55,21 +55,15 @@ class FewshotLLMPrompt(LLMPrompt):
 COT_EXAMPLES = f"""
 Example 1:
 Question: What is the job of the father of anastasia?
-Thought 1: First I need to find the father of anastasia. Based on the evidence, the father of anastasia is daniel.
-Thought 2: Now I need to find the job of daniel. Based on the evidence, the job of daniel is goldsmith.
-Answer: goldsmith
+Answer: First I need to find the father of anastasia. Based on the evidence, the father of anastasia is daniel. Now I need to find the job of daniel. Based on the evidence, the job of daniel is goldsmith. The answer is goldsmith.
 
 Example 2:
 Question: What is the job of the person whose hobby is woodworking?
-Thought 1: I need to search for people whose hobby is woodworking. Based on the evidence, the people whose hobby is woodworking are daniel, lee.
-Thought 2: The job of daniel is goldsmith, and the job of lee is banker.
-Answer: goldsmith{constants.answer_sep}banker
+Answer: I need to search for people whose hobby is woodworking. Based on the evidence, the people whose hobby is woodworking are daniel, lee. The job of daniel is goldsmith, and the job of lee is banker. The answer is goldsmith{constants.answer_sep}banker.
 
 Example 3:
 Question: How many children does the person whose job is woodworking have?
-Thought 1: I need to search for people whose hobby is woodworking. Based on the evidence, the people whose hobby is woodworking are daniel, lee.
-Thought 2: Daniel has 1 child, and lee has 2 children.
-Answer: 1{constants.answer_sep}2
+Answer: I need to search for people whose hobby is woodworking. Based on the evidence, the people whose hobby is woodworking are daniel, lee. Daniel has 1 child, and lee has 2 children. The answer is 1{constants.answer_sep}2.
 """
 
 class CoTLLMPrompt(LLMPrompt):
@@ -79,9 +73,14 @@ class CoTLLMPrompt(LLMPrompt):
     {{evidence}}
     (END EVIDENCE)
     
-    You will be provided a question. Your task is to provide an answer according to these instructions: 
-    - The answer must be one of the following: a name (if there is only one correct answer); a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or a number (if the answer is numerical).
-    - DO NOT include any additional information in your answer.
+    You will be provided a question. Your response must end in the following sentence:
+    ```
+    The answer is <answer>.
+    ```
+    where <answer> must be one of the following: 
+    - a name (if there is only one correct answer); 
+    - a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or
+    - a number (if the answer is numerical).
 
     Here are some examples:
     (START OF EXAMPLES)
@@ -89,7 +88,7 @@ class CoTLLMPrompt(LLMPrompt):
     (END OF EXAMPLES)
 
     Question: {{question}}
-    """
+    Answer: """
 
     def get_prompt(self) -> PromptTemplate:
         return PromptTemplate(
