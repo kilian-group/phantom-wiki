@@ -75,11 +75,8 @@ class CoTLLMPrompt(LLMPrompt):
     {{evidence}}
     (END EVIDENCE)
     
-    You will be provided a question. Your response must end in the following sentence:
-    ```
-    The answer is <answer>.
-    ```
-    where <answer> must be one of the following: 
+    You will be provided a question. Your response must end in the following sentence: The answer is <answer>.
+    Here, <answer> must be one of the following: 
     - a name (if there is only one correct answer); 
     - a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or
     - a number (if the answer is numerical).
