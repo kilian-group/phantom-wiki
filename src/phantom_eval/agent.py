@@ -167,8 +167,10 @@ class SCMixin:
 
         # Select all answers that have more than n_preds / 2 counts
         majority_responses = [answer for answer, count in vote_counts.items() if count > n_preds / 2]
+        error = None if len(majority_responses) > 0 else f"<agent_error>No majority vote found in {vote_counts=}.</agent_error>"
+
         majority_responses_str = sep.join(majority_responses)
-        return LLMChatResponse(pred=majority_responses_str, usage=usage)
+        return LLMChatResponse(pred=majority_responses_str, usage=usage, error=error)
     
     def _aggregate_usage(self, usage_list: list[dict]) -> dict:
         """Recursively sum the values of the usage dict.
