@@ -8,6 +8,9 @@ import os
 import numpy as np
 import time
 import logging
+import subprocess
+import sys
+from datetime import datetime
 
 # phantom wiki functionality
 from .facts import (get_database,
@@ -21,7 +24,54 @@ from .utils import blue, get_parser, generate_unique_id
 from .facts.family import fam_gen_parser
 from .facts import question_parser
 
+def check_git_status():
+    try:
+        # Check for uncommitted changes
+        result = subprocess.run(['git', 'status', '--porcelain'], stdout=subprocess.PIPE, text=True)
+        if result.returncode != 0:
+            print("Error: Unable to check Git status.")
+            sys.exit(1)
+        
+        # If `git status --porcelain` output is not empty, there are uncommitted changes
+        if result.stdout.strip():
+            print("Error: You have uncommitted or unstashed changes. Please commit or stash them before running this script.")
+            sys.exit(1)
+    except FileNotFoundError:
+        print("Error: Git is not installed or not available in PATH.")
+        sys.exit(1)
+
+
+def save_command_and_git_info(output_dir):
+    """Save the executed command and Git commit hash to a file."""
+
+    def get_commit_hash():
+        result = subprocess.run(['git', 'rev-parse', 'HEAD'], stdout=subprocess.PIPE, text=True)
+        return result.stdout.strip()
+    
+    git_commit_hash = get_commit_hash()
+    executed_command = " ".join(sys.argv)
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    info_content = (
+        f"Command: {executed_command}\n"
+        f"Timestamp: {timestamp}\n"
+        f"Git Commit Hash: {git_commit_hash}\n"
+    )
+
+    os.makedirs(output_dir, exist_ok=True)
+    info_file_path = os.path.join(output_dir, "run_info.txt")
+    
+    with open(info_file_path, "w") as info_file:
+        info_file.write(info_content)
+
+    print(f"Run information saved to: {info_file_path}")
+
 def main(args):
+
+    # Check Git status before running the main logic
+    check_git_status()
+    print("Git status is clean. Running the script...")
+
     # Set up logging
     logging.getLogger('faker').setLevel(logging.INFO)
 
@@ -39,9 +89,10 @@ def main(args):
     )
 
     start_time=time.time()
+    # save the executed command and Git commit hash to a file 
+    save_command_and_git_info(args.output_dir)
 
     logging.info(f"Output dir: {args.output_dir}")
-    
     # 
     # Step 1. Generate facts
     #
