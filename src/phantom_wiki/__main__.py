@@ -4,26 +4,32 @@
 
 # standard imports
 import json
-import os
-import numpy as np
-import time
 import logging
+import os
+import time
+
+import numpy as np
+
+from .core.article import get_articles
 
 # phantom wiki functionality
-from .facts import (get_database,
-                    db_generate_family, 
-                    db_generate_friendships,
-                    db_generate_attributes)
-from .core.article import get_articles
-from .facts.templates import generate_templates
-from .facts.sample import sample
-from .utils import blue, get_parser, generate_unique_id
+from .facts import (
+    db_generate_attributes,
+    db_generate_family,
+    db_generate_friendships,
+    get_database,
+    question_parser,
+)
 from .facts.family import fam_gen_parser
-from .facts import question_parser
+from .facts.question_difficulty import calculate_query_difficulty
+from .facts.sample import sample
+from .facts.templates import generate_templates
+from .utils import blue, generate_unique_id, get_parser
+
 
 def main(args):
     # Set up logging
-    logging.getLogger('faker').setLevel(logging.INFO)
+    logging.getLogger("faker").setLevel(logging.INFO)
 
     if args.quiet:
         log_level = logging.WARNING
@@ -32,17 +38,14 @@ def main(args):
     else:
         log_level = logging.INFO
 
-    logging.basicConfig(
-        level=log_level,
-        format='%(message)s',
-        handlers=[logging.StreamHandler()]
-    )
+    logging.basicConfig(level=log_level, format="%(message)s", handlers=[logging.StreamHandler()])
 
-    start_time=time.time()
+    start_time = time.time()
 
     logging.info(f"Output dir: {args.output_dir}")
-    
-    # 
+    os.makedirs(args.output_dir, exist_ok=True)
+
+    #
     # Step 1. Generate facts
     #
     db = get_database()
@@ -81,7 +84,9 @@ def main(args):
         save_path = os.path.join(args.output_dir, "articles.json")
         logging.info(f"Saving articles to: {save_path}")
         with open(save_path, "w") as file:
-            json.dump([{"title" : name, "article" : article} for name, article in articles.items()], file, indent=4)
+            json.dump(
+                [{"title": name, "article": article} for name, article in articles.items()], file, indent=4
+            )
     else:
         raise ValueError(f"Article format {args.article_format} not supported!")
 
@@ -106,12 +111,10 @@ def main(args):
         questions = []
         for _ in range(args.num_questions_per_type):
             _, question, query = sample(
-                db, 
-                question_template, 
-                query_template, 
-                rng=rng,
-                valid_only=args.valid_only
+                db, question_template, query_template, rng=rng, valid_only=args.valid_only
             )
+            # calculate the difficulty of the question
+            question_difficulty = calculate_query_difficulty(query)
             # get distinct answers
             # TODO: is there a better way to do this?
             # NOTE: we concatenate the clauses in the prolog query in reverse order
@@ -119,15 +122,18 @@ def main(args):
             results = [str(x[answer]) for x in db.query(", ".join(query[::-1]))]
             # make unique and sort in alphabetical order
             results = sorted(set(results))
-            questions.append({
-                "id": generate_unique_id(),
-                "question": question,
-                "answer": results,
-                "prolog": {"query": query, "answer": answer},
-                "template": question_template,
-                "type": i, # this references the template type
-            })
-            
+            questions.append(
+                {
+                    "id": generate_unique_id(),
+                    "question": question,
+                    "answer": results,
+                    "prolog": {"query": query, "answer": answer},
+                    "template": question_template,
+                    "type": i,  # this references the template type
+                    "difficulty": question_difficulty,
+                }
+            )
+
             if args.question_format == "json_by_type":
                 with open(os.path.join(question_dir, f"type{i}.json"), "w") as file:
                     json.dump(questions, file, indent=4)
@@ -147,14 +153,17 @@ def main(args):
     logging.info(f"Generating and writing Q/As: {time.time()-question_time:.4f}s")
     logging.info(f"Total time: {time.time()-start_time:.4f}s")
 
+
 if __name__ == "__main__":
     # we combine a base parser with the family generator parser
     # TODO: add parser for other generation components
     # - friend
     # - attribute
-    parser = get_parser(parents=[
-        fam_gen_parser,
-        question_parser,
-    ])
+    parser = get_parser(
+        parents=[
+            fam_gen_parser,
+            question_parser,
+        ]
+    )
     args = parser.parse_args()
     main(args)
