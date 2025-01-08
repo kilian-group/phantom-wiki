@@ -52,6 +52,8 @@ class FewshotLLMPrompt(LLMPrompt):
 # Justification for the present format:
 # - Answer is easier to parse.
 # - For smaller models, it might be easier to generate the answer.
+# Potential cons:
+# - Output is less structured, so might be harder to verify intermediate steps.
 COT_EXAMPLES = f"""
 Example 1:
 Question: What is the job of the father of anastasia?
