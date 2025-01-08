@@ -204,7 +204,7 @@ class NshotSCAgent(NshotAgent, SCMixin):
             num_votes (int): The number of votes to take for the majority vote.
                 Defaults to 3.
             sep (str): The separator used to split the prediction.
-                Defaults to `config.answer_sep`.
+                Defaults to `constants.answer_sep`.
         """
         NshotAgent.__init__(self, text_corpus, llm_prompt)
         SCMixin.__init__(self, num_votes, sep)
@@ -346,7 +346,7 @@ class CoTSCAgent(CoTAgent, SCMixin):
             num_votes (int): The number of votes to take for the majority vote.
                 Defaults to 3.
             sep (str): The separator used to split the prediction.
-                Defaults to `config.answer_sep`.
+                Defaults to `constants.answer_sep`.
         """
         CoTAgent.__init__(self, text_corpus, llm_prompt, cot_examples)
         SCMixin.__init__(self, num_votes, sep)
@@ -680,7 +680,8 @@ class React_CoTSCAgent(Agent):
         cot_llm_prompt: LLMPrompt | None = None,
         cot_examples: str = "",
         num_votes: int = 3,
-        sep: str = constants.answer_sep
+        sep: str = constants.answer_sep,
+        cotsc_inf_temperature: float = constants.inf_temperature_hi,
     ):
         """
         Takes 2 LLM Prompts. Pass the first prompt to the React agent
@@ -699,10 +700,13 @@ class React_CoTSCAgent(Agent):
             num_votes (int): The number of votes to take for the majority vote.
                 Defaults to 3.
             sep (str): The separator used to split the prediction.
-                Defaults to `config.answer_sep`.
+                Defaults to `constants.answer_sep`.
+            cotsc_inf_temperature (float): The inference temperature to use for CoTSC agent.
+                Defaults to `constants.inf_temperature_hi`.
         """
         assert cot_llm_prompt is not None, "CoTSC agent prompt is required."
         super().__init__(text_corpus, react_llm_prompt)
+        self.cotsc_inf_temperature = cotsc_inf_temperature
         self.react_agent = ReactAgent(text_corpus, react_llm_prompt, max_steps, react_examples)
         self.cotsc_agent = CoTSCAgent(text_corpus, cot_llm_prompt, cot_examples, num_votes, sep)
 
@@ -727,15 +731,17 @@ class React_CoTSCAgent(Agent):
         response = self.react_agent.run(llm_chat, question, inf_gen_config)
         self.agent_interactions = self.react_agent.agent_interactions
         match response.error:
+            case None:
+                # No error occurred, return the React agent's response
+                # None case must be before error_msg case, because "in" operator is used in error_msg case
+                return response
             case error_msg if "<agent_error>Max react steps" in error_msg:
                 # If the React agent reaches max steps, run the CoTSC agent
-                cotsc_response = self.cotsc_agent.run(llm_chat, question, inf_gen_config)
+                cotsc_inf_gen_config = inf_gen_config.model_copy(update=dict(temperature=self.cotsc_inf_temperature), deep=True)
+                cotsc_response = self.cotsc_agent.run(llm_chat, question, cotsc_inf_gen_config)
                 self.agent_interactions.messages.extend(self.cotsc_agent.agent_interactions.messages)
                 # TODO: Aggregate usage
                 return cotsc_response
-            case None:
-                # No error occurred, return the React agent's response
-                return response
             case _:
                 # Error msg is not related to max steps, return react's response and abort
                 return response
@@ -753,6 +759,7 @@ class CoTSC_ReactAgent(Agent):
         cot_examples: str = "",
         num_votes: int = 3,
         sep: str = constants.answer_sep,
+        cotsc_inf_temperature: float = constants.inf_temperature_hi,
         react_llm_prompt: LLMPrompt | None = None,
         max_steps: int = 6,
         react_examples: str = "",
@@ -768,7 +775,9 @@ class CoTSC_ReactAgent(Agent):
             num_votes (int): The number of votes to take for the majority vote.
                 Defaults to 3.
             sep (str): The separator used to split the prediction.
-                Defaults to `config.answer_sep`.
+                Defaults to `constants.answer_sep`.
+            cotsc_inf_temperature (float): The inference temperature to use for CoTSC agent.
+                Defaults to `constants.inf_temperature_hi`.
             react_llm_prompt (LLMPrompt): The prompt to be used by the React agent.
                 Must be provided.
             max_steps (int): The maximum number of steps the agent can take.
@@ -778,6 +787,7 @@ class CoTSC_ReactAgent(Agent):
         """
         assert react_llm_prompt is not None, "React agent prompt is required."
         super().__init__(text_corpus, cot_llm_prompt)
+        self.cotsc_inf_temperature = cotsc_inf_temperature
         self.cotsc_agent = CoTSCAgent(text_corpus, cot_llm_prompt, cot_examples, num_votes, sep)
         self.react_agent = ReactAgent(text_corpus, react_llm_prompt, max_steps, react_examples)
 
@@ -799,18 +809,20 @@ class CoTSC_ReactAgent(Agent):
         logger.debug(f"\n\t>>> question: {question}\n")
 
         # Run the CoTSC agent. If the CoTSC agent does not get any majority vote answer, run the React agent.
-        cotsc_response = self.cotsc_agent.run(llm_chat, question, inf_gen_config)
+        cotsc_inf_gen_config = inf_gen_config.model_copy(update=dict(temperature=self.cotsc_inf_temperature), deep=True)
+        cotsc_response = self.cotsc_agent.run(llm_chat, question, cotsc_inf_gen_config)
         self.agent_interactions = self.cotsc_agent.agent_interactions
         match cotsc_response.error:
+            case None:
+                # No error occurred, return the CoTSC agent's response
+                # None case must be before error_msg case, because "in" operator is used in error_msg case
+                return cotsc_response
             case error_msg if "<agent_error>No majority vote" in error_msg:
                 # The CoTSC agent does not get any majority vote answer, run the React agent
                 react_response = self.react_agent.run(llm_chat, question, inf_gen_config)
                 self.agent_interactions.messages.extend(self.react_agent.agent_interactions.messages)
                 # TODO: Aggregate usage
                 return react_response
-            case None:
-                # No error occurred, return the CoTSC agent's response
-                return cotsc_response
             case _:
                 # Error msg is not related to majority vote, return CoTSC's response and abort
                 return cotsc_response

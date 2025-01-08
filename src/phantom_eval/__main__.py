@@ -78,6 +78,7 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 cot_examples=COT_EXAMPLES,
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
+                cotsc_inf_temperature=constants.inf_temperature_hi, # react uses args.inf_temperature, cot-sc uses this hardcoded value
             )
         case "cot-sc->react":
             # Provide the second llm prompt (React) as an agent kwarg
@@ -85,6 +86,7 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 cot_examples=COT_EXAMPLES,
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
+                cotsc_inf_temperature=constants.inf_temperature_hi, # react uses args.inf_temperature, cot-sc uses this hardcoded value
                 react_llm_prompt=get_llm_prompt("react", args.model_name),
                 max_steps=args.react_max_steps,
                 react_examples=REACT_EXAMPLES,
