@@ -296,16 +296,17 @@ class ActLLMPrompt(LLMPrompt):
 
 
 def get_llm_prompt(method: str, model_name: str) -> LLMPrompt:
+    # For react->cot-sc and cot-sc->react methods, return the LLMPrompt for the first part of the method
     match method:
         case "zeroshot" | "zeroshot-sc":
             return ZeroshotLLMPrompt()
         case "fewshot" | "fewshot-sc":
             raise NotImplementedError("Few-shot evaluation is not supported yet.") 
-        case "cot":
+        case "cot" | "cot-sc" | "cot-sc->react":
             return CoTLLMPrompt()
         case "RAG":
             raise NotImplementedError("RAG evaluation is not supported yet.")
-        case "react":
+        case "react" | "react->cot-sc":
             match model_name:
                 case model_name if model_name in llm.OpenAIChat.SUPPORTED_LLM_NAMES:
                     return ReactLLMPrompt()

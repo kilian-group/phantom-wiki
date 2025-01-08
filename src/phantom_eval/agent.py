@@ -167,8 +167,10 @@ class SCMixin:
 
         # Select all answers that have more than n_preds / 2 counts
         majority_responses = [answer for answer, count in vote_counts.items() if count > n_preds / 2]
+        error = None if len(majority_responses) > 0 else f"<agent_error>No majority vote found in {vote_counts=}.</agent_error>"
+
         majority_responses_str = sep.join(majority_responses)
-        return LLMChatResponse(pred=majority_responses_str, usage=usage)
+        return LLMChatResponse(pred=majority_responses_str, usage=usage, error=error)
     
     def _aggregate_usage(self, usage_list: list[dict]) -> dict:
         """Recursively sum the values of the usage dict.
@@ -202,7 +204,7 @@ class NshotSCAgent(NshotAgent, SCMixin):
             num_votes (int): The number of votes to take for the majority vote.
                 Defaults to 3.
             sep (str): The separator used to split the prediction.
-                Defaults to `config.answer_sep`.
+                Defaults to `constants.answer_sep`.
         """
         NshotAgent.__init__(self, text_corpus, llm_prompt)
         SCMixin.__init__(self, num_votes, sep)
@@ -323,6 +325,50 @@ class CoTAgent(Agent):
 
     def reset(self) -> None:
         self.agent_interactions: Conversation = Conversation(messages=[])
+
+
+class CoTSCAgent(CoTAgent, SCMixin):
+    """
+    Agent to implement CoT evaluation with majority vote.
+    """
+    def __init__(
+        self,
+        text_corpus: pd.DataFrame,
+        llm_prompt: LLMPrompt,
+        cot_examples: str = "",
+        num_votes: int = 3,
+        sep: str = constants.answer_sep
+    ):
+        """
+        Args:
+            cot_examples (str): Prompt examples to include in agent prompt.
+                Defaults to "".
+            num_votes (int): The number of votes to take for the majority vote.
+                Defaults to 3.
+            sep (str): The separator used to split the prediction.
+                Defaults to `constants.answer_sep`.
+        """
+        CoTAgent.__init__(self, text_corpus, llm_prompt, cot_examples)
+        SCMixin.__init__(self, num_votes, sep)
+
+    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+        # Relies on the implementation of run in the subclass
+        responses: list[LLMChatResponse] = [
+            super().run(llm_chat, question, inf_gen_config)
+            for _ in range(self.num_votes)
+        ]
+        return self.take_majority_vote(responses, self.sep)
+
+    async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
+        # Relies on the implementation of batch_run in the subclass
+        responses: list[list[LLMChatResponse]] = [
+            await super().batch_run(llm_chat, questions, inf_gen_config)
+            for _ in range(self.num_votes)
+        ] # shape (num_votes, num_questions)
+        # Take majority vote for each question, so transpose the responses list
+        transposed_responses = [list(responses_each_question)
+                                for responses_each_question in zip(*responses)]
+        return [self.take_majority_vote(responses_each_question, self.sep) for responses_each_question in transposed_responses]
 
 
 class ActAgent(Agent):
@@ -619,6 +665,169 @@ class ReactAgent(Agent):
         response: LLMChatResponse = llm_chat.generate_response(conv, inf_gen_config)
         return response
 
+
+class React_CoTSCAgent(Agent):
+    """
+    Agent to implement React->CoTSC evaluation.
+    If React agent reaches max steps, run CoTSC agent.
+    """
+    def __init__(
+        self,
+        text_corpus: pd.DataFrame,
+        react_llm_prompt: LLMPrompt,
+        max_steps: int = 6,
+        react_examples: str = "",
+        cot_llm_prompt: LLMPrompt | None = None,
+        cot_examples: str = "",
+        num_votes: int = 3,
+        sep: str = constants.answer_sep,
+        cotsc_inf_temperature: float = constants.inf_temperature_hi,
+    ):
+        """
+        Takes 2 LLM Prompts. Pass the first prompt to the React agent
+        and the second prompt to the CoTSC agent.
+        Must provide the CoTSC agent prompt, otherwise the agent is not initialized.
+
+        Args:
+            max_steps (int): The maximum number of steps the agent can take.
+                Defaults to 6.
+            react_examples (str): Prompt examples to include in agent prompt.
+                Defaults to "".
+            cot_llm_prompt (LLMPrompt): The prompt to be used by the CoTSC agent.
+                Must be provided.
+            cot_examples (str): Prompt examples to include in agent prompt.
+                Defaults to "".
+            num_votes (int): The number of votes to take for the majority vote.
+                Defaults to 3.
+            sep (str): The separator used to split the prediction.
+                Defaults to `constants.answer_sep`.
+            cotsc_inf_temperature (float): The inference temperature to use for CoTSC agent.
+                Defaults to `constants.inf_temperature_hi`.
+        """
+        assert cot_llm_prompt is not None, "CoTSC agent prompt is required."
+        super().__init__(text_corpus, react_llm_prompt)
+        self.cotsc_inf_temperature = cotsc_inf_temperature
+        self.react_agent = ReactAgent(text_corpus, react_llm_prompt, max_steps, react_examples)
+        self.cotsc_agent = CoTSCAgent(text_corpus, cot_llm_prompt, cot_examples, num_votes, sep)
+
+        self.reset()
+
+    def reset(self) -> None:
+        self.react_agent.reset()
+        self.cotsc_agent.reset()
+        self.agent_interactions: Conversation = Conversation(messages=[])
+
+    def _build_agent_prompt(self, question: str) -> str:
+        # Join the prompts of the React and CoTSC agents
+        return self.react_agent._build_agent_prompt(question) + "\n\n" + self.cotsc_agent._build_agent_prompt(question)
+
+    async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
+        raise NotImplementedError("Batch run is not supported for React->CoTSCAgent.")
+
+    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+        logger.debug(f"\n\t>>> question: {question}\n")
+
+        # Run the React agent. If the React agent reaches max steps, run the CoTSC agent.
+        response = self.react_agent.run(llm_chat, question, inf_gen_config)
+        self.agent_interactions = self.react_agent.agent_interactions
+        match response.error:
+            case None:
+                # No error occurred, return the React agent's response
+                # None case must be before error_msg case, because "in" operator is used in error_msg case
+                return response
+            case error_msg if "<agent_error>Max react steps" in error_msg:
+                # If the React agent reaches max steps, run the CoTSC agent
+                cotsc_inf_gen_config = inf_gen_config.model_copy(update=dict(temperature=self.cotsc_inf_temperature), deep=True)
+                cotsc_response = self.cotsc_agent.run(llm_chat, question, cotsc_inf_gen_config)
+                self.agent_interactions.messages.extend(self.cotsc_agent.agent_interactions.messages)
+                # TODO: Aggregate usage
+                return cotsc_response
+            case _:
+                # Error msg is not related to max steps, return react's response and abort
+                return response
+
+
+class CoTSC_ReactAgent(Agent):
+    """
+    Agent to implement CoTSC->React evaluation.
+    If CoTSC agent does not get any majority vote answer, run React agent.
+    """
+    def __init__(
+        self,
+        text_corpus: pd.DataFrame,
+        cot_llm_prompt: LLMPrompt,
+        cot_examples: str = "",
+        num_votes: int = 3,
+        sep: str = constants.answer_sep,
+        cotsc_inf_temperature: float = constants.inf_temperature_hi,
+        react_llm_prompt: LLMPrompt | None = None,
+        max_steps: int = 6,
+        react_examples: str = "",
+    ):
+        """
+        Takes 2 LLM Prompts. Pass the first prompt to the CoTSC agent
+        and the second prompt to the React agent.
+        Must provide the React agent prompt, otherwise the agent is not initialized.
+
+        Args:
+            cot_examples (str): Prompt examples to include in agent prompt.
+                Defaults to "".
+            num_votes (int): The number of votes to take for the majority vote.
+                Defaults to 3.
+            sep (str): The separator used to split the prediction.
+                Defaults to `constants.answer_sep`.
+            cotsc_inf_temperature (float): The inference temperature to use for CoTSC agent.
+                Defaults to `constants.inf_temperature_hi`.
+            react_llm_prompt (LLMPrompt): The prompt to be used by the React agent.
+                Must be provided.
+            max_steps (int): The maximum number of steps the agent can take.
+                Defaults to 6.
+            react_examples (str): Prompt examples to include in agent prompt.
+                Defaults to "".
+        """
+        assert react_llm_prompt is not None, "React agent prompt is required."
+        super().__init__(text_corpus, cot_llm_prompt)
+        self.cotsc_inf_temperature = cotsc_inf_temperature
+        self.cotsc_agent = CoTSCAgent(text_corpus, cot_llm_prompt, cot_examples, num_votes, sep)
+        self.react_agent = ReactAgent(text_corpus, react_llm_prompt, max_steps, react_examples)
+
+        self.reset()
+
+    def reset(self) -> None:
+        self.cotsc_agent.reset()
+        self.react_agent.reset()
+        self.agent_interactions: Conversation = Conversation(messages=[])
+
+    def _build_agent_prompt(self, question: str) -> str:
+        # Join the prompts of the CoTSC and React agents
+        return self.cotsc_agent._build_agent_prompt(question) + "\n\n" + self.react_agent._build_agent_prompt(question)
+    
+    async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
+        raise NotImplementedError("Batch run is not supported for CoTSC->ReactAgent.")
+
+    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+        logger.debug(f"\n\t>>> question: {question}\n")
+
+        # Run the CoTSC agent. If the CoTSC agent does not get any majority vote answer, run the React agent.
+        cotsc_inf_gen_config = inf_gen_config.model_copy(update=dict(temperature=self.cotsc_inf_temperature), deep=True)
+        cotsc_response = self.cotsc_agent.run(llm_chat, question, cotsc_inf_gen_config)
+        self.agent_interactions = self.cotsc_agent.agent_interactions
+        match cotsc_response.error:
+            case None:
+                # No error occurred, return the CoTSC agent's response
+                # None case must be before error_msg case, because "in" operator is used in error_msg case
+                return cotsc_response
+            case error_msg if "<agent_error>No majority vote" in error_msg:
+                # The CoTSC agent does not get any majority vote answer, run the React agent
+                react_response = self.react_agent.run(llm_chat, question, inf_gen_config)
+                self.agent_interactions.messages.extend(self.react_agent.agent_interactions.messages)
+                # TODO: Aggregate usage
+                return react_response
+            case _:
+                # Error msg is not related to majority vote, return CoTSC's response and abort
+                return cotsc_response
+
+
 #### Utils ####
 
 def get_tag_at_round(pred: str, tag_type: str, step_round: int) -> str:
@@ -685,8 +894,11 @@ SUPPORTED_METHOD_NAMES: list[str] = [
     "zeroshot-sc",
     "fewshot-sc",
     "cot",
+    "cot-sc",
     "react",
     "act",
+    "react->cot-sc",
+    "cot-sc->react",
 ]
 
 
@@ -703,9 +915,15 @@ def get_agent(
             return NshotSCAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "cot":
             return CoTAgent(text_corpus, llm_prompt, **agent_kwargs)
+        case "cot-sc":
+            return CoTSCAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "react":
             return ReactAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "act":
             return ActAgent(text_corpus, llm_prompt, **agent_kwargs)
+        case "react->cot-sc":
+            return React_CoTSCAgent(text_corpus, llm_prompt, **agent_kwargs)
+        case "cot-sc->react":
+            return CoTSC_ReactAgent(text_corpus, llm_prompt, **agent_kwargs)
         case _:
             raise ValueError(f"Invalid method: {method}")
