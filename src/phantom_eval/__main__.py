@@ -187,12 +187,17 @@ async def main(args: argparse.Namespace) -> None:
                 logger.info(f"Saving predictions to {pred_path}")
 
                 # Save after each batch run
+                unsaveable_agent_kwargs: list[str] = ["cot_llm_prompt", "react_llm_prompt"]
+                agent_kwargs_to_save = agent_kwargs.copy()
+                for kw in unsaveable_agent_kwargs:
+                    agent_kwargs_to_save.pop(kw, None)
+
                 save_preds(
                     pred_path,
                     split,
                     inf_gen_config,
                     model_kwargs,
-                    agent_kwargs,
+                    agent_kwargs_to_save,
                     args,
                     batch_number,
                     batch_df_qa_pairs,
