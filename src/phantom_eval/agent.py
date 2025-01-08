@@ -64,15 +64,23 @@ class NshotAgent(Agent):
     Agent to implement Zeroshot and fewshot evaluation, 
     depending on the input `llm_prompt` on initialization.
     """
-    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt):
+    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, fewshot_examples: str = ""):
         super().__init__(text_corpus, llm_prompt)
+        self.fewshot_examples = fewshot_examples
 
     def _build_agent_prompt(self, question: str) -> str:
         evidence = _get_evidence(self.text_corpus)
-        return self.llm_prompt.get_prompt().format(
-            evidence=evidence,
-            question=question
-        )
+        if self.fewshot_examples: # Few-shot
+            return self.llm_prompt.get_prompt().format(
+                evidence=evidence,
+                examples=self.fewshot_examples,
+                question=question
+            )
+        else: # Zero-shot
+            return self.llm_prompt.get_prompt().format(
+                evidence=evidence,
+                question=question
+            )
 
     def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
@@ -910,7 +918,7 @@ def get_agent(
 ) -> Agent:
     match method:
         case "zeroshot" | "fewshot":
-            return NshotAgent(text_corpus, llm_prompt)
+            return NshotAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "zeroshot-sc" | "fewshot-sc":
             return NshotSCAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "cot":

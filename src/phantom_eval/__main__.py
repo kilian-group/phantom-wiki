@@ -12,7 +12,7 @@ from .utils import load_data, setup_logging
 from .data import Conversation
 from .llm import get_llm, VLLMChat, LLMChatResponse, LLMChat, InferenceGenerationConfig
 from .agent import get_agent, Agent
-from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, COT_EXAMPLES, ACT_EXAMPLES
+from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, COT_EXAMPLES, ACT_EXAMPLES, FEWSHOT_EXAMPLES
 from . import constants
 from . import get_parser
 
@@ -40,13 +40,24 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
 
 def get_agent_kwargs(args: argparse.Namespace) -> dict:
     match args.method:
-        case "zeroshot" | "fewshot":
+        case "zeroshot":
             agent_kwargs = dict()
-        case "zeroshot-sc" | "fewshot-sc":
+        case "fewshot":
+            agent_kwargs = dict(
+                fewshot_examples = FEWSHOT_EXAMPLES,
+            )
+        case "zeroshot-sc":
             agent_kwargs = dict(
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
             )
+        case "fewshot-sc":
+            agent_kwargs = dict(
+                num_votes=args.sc_num_votes,
+                sep=constants.answer_sep,
+                fewshot_examples = FEWSHOT_EXAMPLES,
+            )
+
         case "cot":
             agent_kwargs = dict(
                 cot_examples=COT_EXAMPLES

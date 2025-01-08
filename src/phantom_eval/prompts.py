@@ -48,7 +48,7 @@ Question: How many children does the person whose job is woodworking have?
 Answer: 1{constants.answer_sep}2.
 """
 class FewshotLLMPrompt(LLMPrompt):
-    FEWSHOT_INSTRUCTION = """
+    FEWSHOT_INSTRUCTION = f"""
     You are given the following evidence:
     (BEGIN EVIDENCE)
     {{evidence}}
