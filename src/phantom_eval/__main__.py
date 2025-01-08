@@ -12,7 +12,7 @@ from .utils import load_data, setup_logging
 from .data import Conversation
 from .llm import get_llm, VLLMChat, LLMChatResponse, LLMChat, InferenceGenerationConfig
 from .agent import get_agent, Agent
-from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, ACT_EXAMPLES
+from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, COT_EXAMPLES, ACT_EXAMPLES
 from . import constants
 from . import get_parser
 
@@ -65,8 +65,10 @@ async def main(args: argparse.Namespace) -> None:
                         num_votes=args.sc_num_votes,
                         sep=constants.answer_sep,
                     )
-                case "CoT":
-                    raise NotImplementedError("CoT evaluation is not supported yet.")
+                case "cot":
+                    agent_kwargs = dict(
+                        cot_examples=COT_EXAMPLES
+                    )
                 case "RAG":
                     raise NotImplementedError("RAG evaluation is not supported yet.")
                 case "react":
@@ -79,6 +81,8 @@ async def main(args: argparse.Namespace) -> None:
                         max_steps=args.react_max_steps,
                         act_examples=ACT_EXAMPLES,
                     )
+                case _:
+                    agent_kwargs = dict()
             agent: Agent = get_agent(
                 args.method,
                 text_corpus=df_text,
@@ -116,8 +120,11 @@ async def main(args: argparse.Namespace) -> None:
                         if args.log_level == "DEBUG":
                             logging.warning(f"Saving prompts for method={args.method} in agent_interactions. This takes up a lot of space as the prompts can be large.")
                             agent_interactions: list[Conversation] = agent.agent_interactions
-                    case "CoT":
-                        raise NotImplementedError("CoT evaluation is not supported yet.")
+                    case "cot":
+                        questions: list[str] = batch_df_qa_pairs["question"].tolist()
+                        inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
+                        responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
+                        agent_interactions: list[Conversation] = agent.agent_interactions
                     case "RAG":
                         raise NotImplementedError("RAG evaluation is not supported yet.")
                     case "react" | "act":

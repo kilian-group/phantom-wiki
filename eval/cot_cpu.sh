@@ -1,27 +1,19 @@
 #!/bin/bash
-#SBATCH -J zeroshot-gpu                              # Job name
-#SBATCH -o slurm/zeroshot-gpu_%j.out                 # output file (%j expands to jobID)
-#SBATCH -e slurm/zeroshot-gpu_%j.err                 # error log file (%j expands to jobID)
+#SBATCH -J cot-cpu                              # Job name
+#SBATCH -o slurm/cot-cpu_%j.out                 # output file (%j expands to jobID)
+#SBATCH -e slurm/cot-cpu_%j.err                 # error log file (%j expands to jobID)
 #SBATCH --mail-type=ALL                      # Request status by email 
 #SBATCH --mail-user=ag2435@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
-#SBATCH -n 8                                 # Total number of cores requested
+#SBATCH -n 2                                 # Total number of cores requested
 #SBATCH --get-user-env                       # retrieve the users login environment
-#SBATCH --mem=100000                         # server memory (MBs) requested (per node)
+#SBATCH --mem=8000                         # server memory (MBs) requested (per node)
 #SBATCH -t infinite                           # Time limit (hh:mm:ss)
-#SBATCH --gres=gpu:a6000:4                   # Number of GPUs requested
 #SBATCH --partition=kilian                   # Request partition
-
-# Script for running zeroshot evaluation on a specific input model
-# GPU requirements when using max context length (i.e., `max_model_len=None`)
-# Model Size    | A6000 GPU  | H100 GPU
-# ------------- | -----------|-----------
-# ~8B models    | 4          | ?
-# ~70B models   | 8          | ?
 
 # check that the correct number of arguments were passed
 if [ -z "$1" ] && [ -z "$2" ]; then
-    echo "Usage: $0 <output directory> <model>"
+    echo "Usage: $0 <output directory> <model name>"
     exit 1
 fi
 # activate conda environment
@@ -30,9 +22,20 @@ source /share/apps/anaconda3/2021.05/etc/profile.d/conda.sh
 # change this to your conda environment as necessary
 conda activate dataset
 
+TEMPERATURE=0
+# if TEMPERATURE=0, then sampling is greedy so no need run with multiple seeds
+if (( $(echo "$TEMPERATURE == 0" | bc -l) ))
+then
+    seed_list="1"
+else
+    seed_list="1 2 3 4 5"
+fi
+# NOTE: specify batch size to save intermediate batches
 python -m phantom_eval \
-    --method zeroshot \
+    --method cot \
     -od $1 \
     -m $2 \
+    -bs 10 \
     --split_list depth_10_size_26_seed_1 depth_10_size_50_seed_1 depth_10_size_100_seed_1 depth_10_size_200_seed_1 \
-    --inf_seed_list 1 2 3 4 5
+    --inf_seed_list $seed_list \
+    --inf_temperature $TEMPERATURE

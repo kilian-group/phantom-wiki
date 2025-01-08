@@ -41,11 +41,59 @@ class FewshotLLMPrompt(LLMPrompt):
 
 
 ##### CoT method
-class CoTLLMPrompt(LLMPrompt):
-    COT_INSTRUCTION = """"""
+# Some alternative formats:
+# 1. <thought>...</thought> and <action>Finish[answer]</action> tags
+# Pros: 
+# - This would be more similar to the React method. 
+# - In the future, if we want to standardize things, maybe this is the way to go.
+# Cons: 
+# - We would require additional parsing for the final answer.
+# 
+# Justification for the present format:
+# - Answer is easier to parse.
+# - For smaller models, it might be easier to generate the answer.
+# Potential cons:
+# - Output is less structured, so might be harder to verify intermediate steps.
+COT_EXAMPLES = f"""
+Example 1:
+Question: What is the job of the father of anastasia?
+Answer: First I need to find the father of anastasia. Based on the evidence, the father of anastasia is daniel. Now I need to find the job of daniel. Based on the evidence, the job of daniel is goldsmith. The answer is goldsmith.
 
-    def get_prompt(self):
-        raise NotImplementedError("CoT evaluation is not supported yet.")
+Example 2:
+Question: What is the job of the person whose hobby is woodworking?
+Answer: I need to search for people whose hobby is woodworking. Based on the evidence, the people whose hobby is woodworking are daniel, lee. The job of daniel is goldsmith, and the job of lee is banker. The answer is goldsmith{constants.answer_sep}banker.
+
+Example 3:
+Question: How many children does the person whose job is woodworking have?
+Answer: I need to search for people whose hobby is woodworking. Based on the evidence, the people whose hobby is woodworking are daniel, lee. Daniel has 1 child, and lee has 2 children. The answer is 1{constants.answer_sep}2.
+"""
+
+class CoTLLMPrompt(LLMPrompt):
+    COT_INSTRUCTION = f"""
+    You are given the following evidence:
+    (BEGIN EVIDENCE)
+    {{evidence}}
+    (END EVIDENCE)
+    
+    You will be provided a question. Your response must end in the following sentence: The answer is <answer>.
+    Here, <answer> must be one of the following: 
+    - a name (if there is only one correct answer); 
+    - a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or
+    - a number (if the answer is numerical).
+
+    Here are some examples:
+    (START OF EXAMPLES)
+    {{examples}}
+    (END OF EXAMPLES)
+
+    Question: {{question}}
+    Answer: """
+
+    def get_prompt(self) -> PromptTemplate:
+        return PromptTemplate(
+            input_variables=["evidence", "examples", "question"],
+            template=self.COT_INSTRUCTION,
+        )
 
 
 ##### RAG method
@@ -253,8 +301,8 @@ def get_llm_prompt(method: str, model_name: str) -> LLMPrompt:
             return ZeroshotLLMPrompt()
         case "fewshot" | "fewshot-sc":
             raise NotImplementedError("Few-shot evaluation is not supported yet.") 
-        case "CoT":
-            raise NotImplementedError("CoT evaluation is not supported yet.")
+        case "cot":
+            return CoTLLMPrompt()
         case "RAG":
             raise NotImplementedError("RAG evaluation is not supported yet.")
         case "react":
