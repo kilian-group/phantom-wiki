@@ -301,7 +301,7 @@ def get_llm_prompt(method: str, model_name: str) -> LLMPrompt:
             return ZeroshotLLMPrompt()
         case "fewshot" | "fewshot-sc":
             raise NotImplementedError("Few-shot evaluation is not supported yet.") 
-        case "cot":
+        case "cot" | "cot-sc":
             return CoTLLMPrompt()
         case "RAG":
             raise NotImplementedError("RAG evaluation is not supported yet.")

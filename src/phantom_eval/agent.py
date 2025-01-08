@@ -325,6 +325,50 @@ class CoTAgent(Agent):
         self.agent_interactions: Conversation = Conversation(messages=[])
 
 
+class CoTSCAgent(CoTAgent, SCMixin):
+    """
+    Agent to implement CoT evaluation with majority vote.
+    """
+    def __init__(
+        self,
+        text_corpus: pd.DataFrame,
+        llm_prompt: LLMPrompt,
+        cot_examples: str = "",
+        num_votes: int = 3,
+        sep: str = constants.answer_sep
+    ):
+        """
+        Args:
+            cot_examples (str): Prompt examples to include in agent prompt.
+                Defaults to "".
+            num_votes (int): The number of votes to take for the majority vote.
+                Defaults to 3.
+            sep (str): The separator used to split the prediction.
+                Defaults to `config.answer_sep`.
+        """
+        CoTAgent.__init__(self, text_corpus, llm_prompt, cot_examples)
+        SCMixin.__init__(self, num_votes, sep)
+
+    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+        # Relies on the implementation of run in the subclass
+        responses: list[LLMChatResponse] = [
+            super().run(llm_chat, question, inf_gen_config)
+            for _ in range(self.num_votes)
+        ]
+        return self.take_majority_vote(responses, self.sep)
+
+    async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
+        # Relies on the implementation of batch_run in the subclass
+        responses: list[list[LLMChatResponse]] = [
+            await super().batch_run(llm_chat, questions, inf_gen_config)
+            for _ in range(self.num_votes)
+        ] # shape (num_votes, num_questions)
+        # Take majority vote for each question, so transpose the responses list
+        transposed_responses = [list(responses_each_question)
+                                for responses_each_question in zip(*responses)]
+        return [self.take_majority_vote(responses_each_question, self.sep) for responses_each_question in transposed_responses]
+
+
 class ActAgent(Agent):
     def __init__(
         self,
@@ -685,6 +729,7 @@ SUPPORTED_METHOD_NAMES: list[str] = [
     "zeroshot-sc",
     "fewshot-sc",
     "cot",
+    "cot-sc",
     "react",
     "act",
 ]
@@ -703,6 +748,8 @@ def get_agent(
             return NshotSCAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "cot":
             return CoTAgent(text_corpus, llm_prompt, **agent_kwargs)
+        case "cot-sc":
+            return CoTSCAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "react":
             return ReactAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "act":

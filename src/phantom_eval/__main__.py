@@ -69,6 +69,12 @@ async def main(args: argparse.Namespace) -> None:
                     agent_kwargs = dict(
                         cot_examples=COT_EXAMPLES
                     )
+                case "cot-sc":
+                    agent_kwargs = dict(
+                        cot_examples=COT_EXAMPLES,
+                        num_votes=args.sc_num_votes,
+                        sep=constants.answer_sep,
+                    )
                 case "RAG":
                     raise NotImplementedError("RAG evaluation is not supported yet.")
                 case "react":
@@ -120,7 +126,7 @@ async def main(args: argparse.Namespace) -> None:
                         if args.log_level == "DEBUG":
                             logging.warning(f"Saving prompts for method={args.method} in agent_interactions. This takes up a lot of space as the prompts can be large.")
                             agent_interactions: list[Conversation] = agent.agent_interactions
-                    case "cot":
+                    case "cot" | "cot-sc":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                         responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
