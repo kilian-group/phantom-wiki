@@ -82,10 +82,6 @@ FAMILY_RELATION_EASY_PLURALS = [
     "children",
     "sons",
     "daughters",
-    "brother_in_laws",
-    "sister_in_laws",
-    "son_in_laws",
-    "daughter_in_laws",
 ]
 
 
@@ -101,9 +97,18 @@ FAMILY_RELATION_EASY_PL2SG = {
 FAMILY_RELATION_HARD_PLURALS = [
     "nieces",
     "nephews",
+    "grandParents",
+    "grandMothers",
+    "grandFathers",
     "greatAunts",
     "greatUncles",
     "grandChildren",
     "grandDaughters",
     "grandSons",
+    "father_in_laws",
+    "mother_in_laws",
+    "brother_in_laws",
+    "sister_in_laws",
+    "son_in_laws",
+    "daughter_in_laws",
 ]
