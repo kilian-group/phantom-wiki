@@ -22,7 +22,14 @@ source /share/apps/anaconda3/2021.05/etc/profile.d/conda.sh
 # change this to your conda environment as necessary
 conda activate dataset
 
-TEMPERATURE=0.7
+TEMPERATURE=0
+# if TEMPERATURE=0, then sampling is greedy so no need run with multiple seeds
+if (( $(echo "$TEMPERATURE == 0" | bc -l) ))
+then
+    seed_list="1"
+else
+    seed_list="1 2 3 4 5"
+fi
 # NOTE: specify batch size to save intermediate batches
 python -m phantom_eval \
     --method zeroshot \
@@ -30,5 +37,5 @@ python -m phantom_eval \
     -m $2 \
     -bs 10 \
     --split_list depth_10_size_26_seed_1 depth_10_size_50_seed_1 depth_10_size_100_seed_1 depth_10_size_200_seed_1 \
-    --inf_seed_list 1 2 3 4 5 \
+    --inf_seed_list $seed_list \
     --inf_temperature $TEMPERATURE
