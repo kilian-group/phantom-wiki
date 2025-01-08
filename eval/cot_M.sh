@@ -9,7 +9,7 @@
 #SBATCH --get-user-env                       # retrieve the users login environment
 #SBATCH --mem=100000                         # server memory (MBs) requested (per node)
 #SBATCH -t infinite                           # Time limit (hh:mm:ss)
-#SBATCH --gres=gpu:a6000:1                   # Number of GPUs requested
+#SBATCH --gres=gpu:a6000:4                   # Number of GPUs requested
 #SBATCH --partition=kilian                   # Request partition
 
 # Script for running zero-shot evaluation on all medium models (<10 B params)
@@ -34,8 +34,8 @@ conda activate dataset
 
 # list of models
 MODELS=(
-    'microsoft/phi-3.5-mini-instruct'
-    'meta-llama/llama-3.2-3b-instruct'
+    # 'microsoft/phi-3.5-mini-instruct'
+    # 'meta-llama/llama-3.2-3b-instruct'
     'meta-llama/llama-3.1-8b-instruct'
     'google/gemma-2-9b-it'
     'mistralai/mistral-7b-instruct-v0.3'

@@ -34,7 +34,7 @@ conda activate dataset
 # list of models
 MODELS=(
     'google/gemma-2-27b-it'
-    'microsoft/phi-3.5-moe-instruct'
+    # 'microsoft/phi-3.5-moe-instruct'
     'meta-llama/llama-3.1-70b-instruct'
     'meta-llama/llama-3.3-70b-instruct'
 )
