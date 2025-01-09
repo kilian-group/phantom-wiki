@@ -168,7 +168,6 @@ def main(args):
             # TODO: is there a better way to do this?
             # NOTE: we concatenate the clauses in the prolog query in reverse order
             # since prolog executes goals from left to right
-            import pdb; pdb.set_trace()
             all_results, final_results = get_answer(query, db, answer)
             # make unique and sort in alphabetical order
             questions.append({
@@ -180,7 +179,7 @@ def main(args):
                 "template": question_template,
                 "type": i, # this references the template type
             })
-            
+            import pdb; pdb.set_trace()
             if args.question_format == "json_by_type":
                 with open(os.path.join(question_dir, f"type{i}.json"), "w") as file:
                     json.dump(questions, file, indent=4)
