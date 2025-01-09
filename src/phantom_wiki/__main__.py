@@ -21,6 +21,7 @@ from .core.article import get_articles
 from .facts.templates import generate_templates
 from .facts.sample import sample
 from .utils import blue, get_parser, generate_unique_id
+from .utils.get_answer import get_answer
 from .facts.family import fam_gen_parser
 from .facts import question_parser
 
@@ -167,18 +168,7 @@ def main(args):
             # TODO: is there a better way to do this?
             # NOTE: we concatenate the clauses in the prolog query in reverse order
             # since prolog executes goals from left to right
-            all_results=[]
-            reversed_query = query[::-1]
-            import pdb; pdb.set_trace()
-            # to get intermediate answers, we get the answer for each subset of the query, each time incremented by one subquery
-            for i in range(len(reversed_query)):
-                partial_results = db.query(", ".join(reversed_query[:i+1]))
-                unique_dicts = {tuple(sorted(d.items())) for d in partial_results}
-                unique_list = [dict(items) for items in unique_dicts]
-                partial_results = sorted(unique_list, key=lambda x: tuple(x.items()))
-                all_results.append(partial_results)
-            final_results = [str(x[answer]) for x in db.query(", ".join(reversed_query))]
-            final_results = sorted(set(final_results))
+            all_results, final_results = get_answer(query, db, answer)
             # make unique and sort in alphabetical order
             questions.append({
                 "id": generate_unique_id(),
