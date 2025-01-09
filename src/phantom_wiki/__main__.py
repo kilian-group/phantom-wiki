@@ -168,6 +168,7 @@ def main(args):
             # TODO: is there a better way to do this?
             # NOTE: we concatenate the clauses in the prolog query in reverse order
             # since prolog executes goals from left to right
+            import pdb; pdb.set_trace()
             all_results, final_results = get_answer(query, db, answer)
             # make unique and sort in alphabetical order
             questions.append({
