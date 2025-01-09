@@ -173,7 +173,7 @@ def main(args):
             # to get intermediate answers, we get the answer for each subset of the query, each time incremented by one subquery
             for i in range(len(reversed_query)-1):
                 partial_results = db.query(", ".join(reversed_query[:i+1]))
-                results = [str(x.values()).tolist() for x in partial_results]
+                results = [x.values().tolist() for x in partial_results]
                 all_results.extend(results)
             final_results = [str(x[answer]) for x in db.query(", ".join(reversed_query))]
             final_results = list(set(final_results))
