@@ -179,7 +179,6 @@ def main(args):
                 "template": question_template,
                 "type": i, # this references the template type
             })
-            import pdb; pdb.set_trace()
             if args.question_format == "json_by_type":
                 with open(os.path.join(question_dir, f"type{i}.json"), "w") as file:
                     json.dump(questions, file, indent=4)
