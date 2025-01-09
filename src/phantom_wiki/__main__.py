@@ -167,13 +167,22 @@ def main(args):
             # TODO: is there a better way to do this?
             # NOTE: we concatenate the clauses in the prolog query in reverse order
             # since prolog executes goals from left to right
-            results = [str(x[answer]) for x in db.query(", ".join(query[::-1]))]
+            all_results=[]
+            reversed_query = query[::-1]
+            import pdb; pdb.set_trace()
+            # to get intermediate answers, we get the answer for each subset of the query, each time incremented by one subquery
+            for i in range(len(reversed_query)-1):
+                results = [str(x.keys()) for x in db.query(", ".join(reversed_query[:i+1]))]
+                results = sorted(set(results))
+                all_results.extend(results)
+            final_results = [str(x[answer]) for x in db.query(", ".join(reversed_query))]
+            all_results.extend(final_results)
             # make unique and sort in alphabetical order
-            results = sorted(set(results))
             questions.append({
                 "id": generate_unique_id(),
                 "question": question,
-                "answer": results,
+                "intermediate_answers": all_results,
+                "answer": final_results,
                 "prolog": {"query": query, "answer": answer},
                 "template": question_template,
                 "type": i, # this references the template type
