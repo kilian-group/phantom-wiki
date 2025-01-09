@@ -171,13 +171,12 @@ def main(args):
             reversed_query = query[::-1]
             import pdb; pdb.set_trace()
             # to get intermediate answers, we get the answer for each subset of the query, each time incremented by one subquery
-            for i in range(len(reversed_query)-1):
+            for i in range(len(reversed_query)):
                 partial_results = db.query(", ".join(reversed_query[:i+1]))
                 # partial_results = [x.values().tolist() for x in partial_results]
                 all_results.extend(partial_results)
             final_results = [str(x[answer]) for x in db.query(", ".join(reversed_query))]
             final_results = list(set(final_results))
-            all_results.extend(final_results)
             # make unique and sort in alphabetical order
             questions.append({
                 "id": generate_unique_id(),
