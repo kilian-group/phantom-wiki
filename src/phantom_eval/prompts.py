@@ -37,15 +37,15 @@ class ZeroshotLLMPrompt(LLMPrompt):
 FEWSHOT_EXAMPLES = f"""
 Example 1:
 Question: What is the job of the father of anastasia?
-Answer: goldsmith.
+Answer: goldsmith
 
 Example 2:
 Question: What is the job of the person whose hobby is woodworking?
-Answer: goldsmith{constants.answer_sep}banker.
+Answer: goldsmith{constants.answer_sep}banker
 
 Example 3:
 Question: How many children does the person whose job is woodworking have?
-Answer: 1{constants.answer_sep}2.
+Answer: 1{constants.answer_sep}2
 """
 class FewshotLLMPrompt(LLMPrompt):
     FEWSHOT_INSTRUCTION = f"""
