@@ -165,7 +165,6 @@ def _generate_tail_template_fragments(
             fragments = []
             for frag1 in _generate_head_template_fragments(grammar, items[0], depth, total_depth):
                 for frag2 in _generate_tail_template_fragments(grammar, items[1:], depth, total_depth):
-                    import pdb; pdb.set_trace()
                     fragments.append(_combine_fragments(frag1, frag2, depth, total_depth))
         except RecursionError as error:
             # Helpful error message while still showing the recursion stack.
