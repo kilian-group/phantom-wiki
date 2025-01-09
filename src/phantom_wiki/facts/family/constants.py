@@ -18,6 +18,12 @@ FAMILY_FACT_TEMPLATES = {
     "number of children": "The number of children <subject> has is",
     "uncle": "The uncle of <subject> is",
     "aunt": "The aunt of <subject> is",
+    "father_in_law": "The father-in-law of <subject> is",
+    "mother_in_law": "The mother-in-law of <subject> is",
+    "brother_in_law": "The brother-in-law of <subject> is",
+    "sister_in_law": "The sister-in-law of <subject> is",
+    "son_in_law": "The son-in-law of <subject> is",
+    "daughter_in_law": "The daughter-in-law of <subject> is",
 }
 
 FAMILY_FACT_TEMPLATES_PL = {
@@ -29,6 +35,10 @@ FAMILY_FACT_TEMPLATES_PL = {
     "daughter": "The daughters of <subject> are",
     "uncle": "The uncles of <subject> are",
     "aunt": "The aunts of <subject> are",
+    "brother_in_law": "The brother-in-laws of <subject> are",
+    "sister_in_law": "The sister-in-laws of <subject> are",
+    "son_in_law": "The son-in-laws of <subject> are",
+    "daughter_in_law": "The daughter-in-laws of <subject> are",
 }
 
 # Base rules
@@ -57,6 +67,12 @@ FAMILY_RELATION_HARD = [
     "grandChild",
     "grandDaughter",
     "grandSon",
+    "father_in_law",
+    "mother_in_law",
+    "brother_in_law",
+    "sister_in_law",
+    "son_in_law",
+    "daughter_in_law",
 ]
 
 FAMILY_RELATION_EASY_PLURALS = [
@@ -68,14 +84,6 @@ FAMILY_RELATION_EASY_PLURALS = [
     "daughters",
 ]
 
-# FAMILY_RELATION_EASY_SG2PL = {
-#     "sibling": "siblings",
-#     "sister": "sisters",
-#     "brother": "brothers",
-#     "child": "children",
-#     "son": "sons",
-#     "daughter": "daughters",
-# }
 
 FAMILY_RELATION_EASY_PL2SG = {
     "siblings": "sibling",
@@ -89,9 +97,18 @@ FAMILY_RELATION_EASY_PL2SG = {
 FAMILY_RELATION_HARD_PLURALS = [
     "nieces",
     "nephews",
+    "grandParents",
+    "grandMothers",
+    "grandFathers",
     "greatAunts",
     "greatUncles",
     "grandChildren",
     "grandDaughters",
     "grandSons",
+    "father_in_laws",
+    "mother_in_laws",
+    "brother_in_laws",
+    "sister_in_laws",
+    "son_in_laws",
+    "daughter_in_laws",
 ]

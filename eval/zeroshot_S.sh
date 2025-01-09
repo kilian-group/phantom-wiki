@@ -37,7 +37,7 @@ MODELS=(
     'meta-llama/llama-3.2-1b-instruct'
 )
 TEMPERATURE=0
-# if TEMPERATURE=0, then sampling is greedy so no need run with muliptle seeds
+# if TEMPERATURE=0, then sampling is greedy so no need run with multiple seeds
 if (( $(echo "$TEMPERATURE == 0" | bc -l) ))
 then
     seed_list="1"
