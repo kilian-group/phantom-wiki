@@ -69,8 +69,11 @@ def save_command_and_git_info(output_dir):
 def main(args):
 
     # Check Git status before running the main logic
-    check_git_status()
-    print("Git status is clean. Running the script...")
+    if not args.test:
+        check_git_status()
+        print("Git status is clean. Running the script...")
+    else:
+        print("Test mode enabled. Skipping Git status check.")
 
     # Set up logging
     logging.getLogger('faker').setLevel(logging.INFO)
