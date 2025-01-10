@@ -4,7 +4,7 @@ Generates a plot with the number of hops on the x-axis and the number of react s
 Saves the plots to the figures directory of the output directory.
 
 Example:
-    python eval/plot_hops_interactions.py -od out --split_name depth_10_size_26_seed_1 --method react
+    python eval/plot_hops_interactions.py -od out  --method react --split_name depth_10_size_26_seed_1
 """
 
 # %%
