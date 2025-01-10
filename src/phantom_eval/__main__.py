@@ -44,7 +44,7 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
             agent_kwargs = dict()
         case "fewshot":
             agent_kwargs = dict(
-                fewshot_examples = FEWSHOT_EXAMPLES,
+                fewshot_examples=FEWSHOT_EXAMPLES,
             )
         case "zeroshot-sc":
             agent_kwargs = dict(
@@ -55,7 +55,7 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
             agent_kwargs = dict(
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
-                fewshot_examples = FEWSHOT_EXAMPLES,
+                fewshot_examples=FEWSHOT_EXAMPLES,
             )
 
         case "cot":

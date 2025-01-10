@@ -71,6 +71,11 @@ class NshotAgent(Agent):
     depending on the input `llm_prompt` on initialization.
     """
     def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, fewshot_examples: str = ""):
+        """
+        Args:
+            fewshot_examples (str): Prompt examples to include in agent prompt.
+                If "", the agent is zero-shot. Defaults to "".
+        """
         super().__init__(text_corpus, llm_prompt)
         self.fewshot_examples = fewshot_examples
 
@@ -212,15 +217,17 @@ class NshotSCAgent(NshotAgent, SCMixin):
     """
     Agent to implement Zeroshot and fewshot evaluation with majority vote.
     """
-    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, num_votes: int = 3, sep: str = constants.answer_sep):
+    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, fewshot_examples: str = "", num_votes: int = 3, sep: str = constants.answer_sep):
         """
         Args:
+            fewshot_examples (str): Prompt examples to include in agent prompt.
+                If "", the agent is zero-shot. Defaults to "".
             num_votes (int): The number of votes to take for the majority vote.
                 Defaults to 3.
             sep (str): The separator used to split the prediction.
                 Defaults to `constants.answer_sep`.
         """
-        NshotAgent.__init__(self, text_corpus, llm_prompt)
+        NshotAgent.__init__(self, text_corpus, llm_prompt, fewshot_examples)
         SCMixin.__init__(self, num_votes, sep)
 
     def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
