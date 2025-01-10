@@ -15,7 +15,7 @@ conda activate dataset
 conda install python=3.12 conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest
 # on G2, use pip instead of conda to install pandas and numpy to avoid C dependency conflicts
 pip install pandas numpy matplotlib
-pip install together openai pre-commit datasets google-generativeai anthropic transformers tenacity tiktoken vllm langchain
+pip install together openai pre-commit datasets google-generativeai anthropic transformers tenacity tiktoken vllm langchain langchain-community langchain-together faiss-cpu
 ```
 
 ### Installing phantom-wiki in development mode
@@ -62,12 +62,15 @@ mkdir slurm
 conda activate dataset
 # run small models (< 4B params) locally (allocates 1 3090)
 sbatch eval/zeroshot_S.sh <output directory>
+sbatch eval/fewshow_S.sh <output directory>
 sbatch eval/cot_S.sh <output directory>
-# run medium models (< 10B params) locally (allocates 4 A6000s)
+# run medium models (< 10B params) locally (allocates 2 A6000s)
 sbatch eval/zeroshot_M.sh <output directory>
+sbatch eval/fewshot_M.sh <output directory>
 sbatch eval/cot_M.sh <output directory>
 # run large models (10-70B params) locally (allocates 8 A6000s)
 sbatch eval/zeroshot_L.sh <output directory>
+sbatch eval/fewshow_L.sh <output directory>
 sbatch eval/cot_L.sh <output directory>
 # run API models (NOTE: this can be very expensive!)
 sbatch eval/zeroshot_cpu.sh <output directory> <model name>

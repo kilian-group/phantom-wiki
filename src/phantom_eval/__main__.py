@@ -12,7 +12,7 @@ from .utils import load_data, setup_logging
 from .data import Conversation
 from .llm import get_llm, VLLMChat, LLMChatResponse, LLMChat, InferenceGenerationConfig
 from .agent import get_agent, Agent
-from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, COT_EXAMPLES, ACT_EXAMPLES
+from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, COT_EXAMPLES, ACT_EXAMPLES, FEWSHOT_EXAMPLES
 from . import constants
 from . import get_parser
 
@@ -40,13 +40,24 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
 
 def get_agent_kwargs(args: argparse.Namespace) -> dict:
     match args.method:
-        case "zeroshot" | "fewshot":
+        case "zeroshot":
             agent_kwargs = dict()
-        case "zeroshot-sc" | "fewshot-sc":
+        case "fewshot":
+            agent_kwargs = dict(
+                fewshot_examples = FEWSHOT_EXAMPLES,
+            )
+        case "zeroshot-sc":
             agent_kwargs = dict(
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
             )
+        case "fewshot-sc":
+            agent_kwargs = dict(
+                num_votes=args.sc_num_votes,
+                sep=constants.answer_sep,
+                fewshot_examples = FEWSHOT_EXAMPLES,
+            )
+
         case "cot":
             agent_kwargs = dict(
                 cot_examples=COT_EXAMPLES
@@ -57,8 +68,11 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
             )
-        case "RAG":
-            raise NotImplementedError("RAG evaluation is not supported yet.")
+        case "rag":
+            agent_kwargs = dict(
+                embedding="together", #args.embedding
+                vector_store="faiss" #args.vector_store
+            )
         case "react":
             agent_kwargs = dict(
                 max_steps=args.react_max_steps,
@@ -149,7 +163,7 @@ async def main(args: argparse.Namespace) -> None:
                 # so they support batch async inference
                 agent_interactions = None
                 match args.method:
-                    case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc":
+                    case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc" | "rag":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                         responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
@@ -163,8 +177,8 @@ async def main(args: argparse.Namespace) -> None:
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                         responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
                         agent_interactions: list[Conversation] = agent.agent_interactions
-                    case "RAG":
-                        raise NotImplementedError("RAG evaluation is not supported yet.")
+                    # case "RAG":
+                    #     raise NotImplementedError("RAG evaluation is not supported yet.")
                     case "react" | "act" | "react->cot-sc" | "cot-sc->react":
                         # Run agent on each question one by one
                         responses: list[LLMChatResponse] = []

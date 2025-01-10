@@ -33,12 +33,44 @@ class ZeroshotLLMPrompt(LLMPrompt):
         )
 
 ##### Fewshot method
+# The current example is the example from CoT trivially adapted
+FEWSHOT_EXAMPLES = f"""
+Example 1:
+Question: What is the job of the father of anastasia?
+Answer: goldsmith
+
+Example 2:
+Question: What is the job of the person whose hobby is woodworking?
+Answer: goldsmith{constants.answer_sep}banker
+
+Example 3:
+Question: How many children does the person whose job is woodworking have?
+Answer: 1{constants.answer_sep}2
+"""
 class FewshotLLMPrompt(LLMPrompt):
-    FEWSHOT_INSTRUCTION = """"""
+    FEWSHOT_INSTRUCTION = f"""
+    You are given the following evidence:
+    (BEGIN EVIDENCE)
+    {{evidence}}
+    (END EVIDENCE)
+    
+    You will be provided a question. Your task is to provide an answer according to these instructions: 
+    - The output must be one of the following: a name (if there is only one correct answer); a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or a number (if the answer is numerical).
+    - DO NOT include any additional information in your answer.
+
+    Here are some examples:
+    (START OF EXAMPLES)
+    {{examples}}
+    (END OF EXAMPLES)
+
+    Question: {{question}}
+    Answer: """
 
     def get_prompt(self):
-        raise NotImplementedError("Few-shot evaluation is not supported yet.")
-
+        return PromptTemplate(
+            input_variables=["evidence", "examples", "question"],
+            template=self.FEWSHOT_INSTRUCTION,
+        )
 
 ##### CoT method
 # Some alternative formats:
@@ -301,11 +333,12 @@ def get_llm_prompt(method: str, model_name: str) -> LLMPrompt:
         case "zeroshot" | "zeroshot-sc":
             return ZeroshotLLMPrompt()
         case "fewshot" | "fewshot-sc":
-            raise NotImplementedError("Few-shot evaluation is not supported yet.") 
+            return FewshotLLMPrompt()
         case "cot" | "cot-sc" | "cot-sc->react":
             return CoTLLMPrompt()
-        case "RAG":
-            raise NotImplementedError("RAG evaluation is not supported yet.")
+        case "rag":
+            # raise NotImplementedError("RAG evaluation is not supported yet.")
+            return ZeroshotLLMPrompt()
         case "react" | "react->cot-sc":
             match model_name:
                 case model_name if model_name in llm.OpenAIChat.SUPPORTED_LLM_NAMES:
