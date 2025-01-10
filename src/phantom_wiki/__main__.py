@@ -23,6 +23,7 @@ from .facts.sample import sample
 from .utils import blue, get_parser, generate_unique_id
 from .facts.family import fam_gen_parser
 from .facts import question_parser
+from .facts.question_difficulty import get_question_difficulty
 
 def check_git_status():
     try:
@@ -170,6 +171,7 @@ def main(args):
             results = [str(x[answer]) for x in db.query(", ".join(query[::-1]))]
             # make unique and sort in alphabetical order
             results = sorted(set(results))
+            question_difficulty = get_question_difficulty(query)
             questions.append({
                 "id": generate_unique_id(),
                 "question": question,
@@ -177,6 +179,7 @@ def main(args):
                 "prolog": {"query": query, "answer": answer},
                 "template": question_template,
                 "type": i, # this references the template type
+                "difficulty": question_difficulty
             })
             
             if args.question_format == "json_by_type":
