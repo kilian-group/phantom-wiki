@@ -12,6 +12,12 @@ from phantom_eval.prompts import LLMPrompt
 from phantom_eval.score import normalize_pred
 import phantom_eval.constants as constants
 
+from langchain_community.vectorstores import FAISS
+from langchain_together import TogetherEmbeddings
+from langchain_core.runnables import RunnablePassthrough
+from langchain import hub
+import os
+
 logger = logging.getLogger(__name__)
 
 
@@ -835,6 +841,85 @@ class CoTSC_ReactAgent(Agent):
                 # Error msg is not related to majority vote, return CoTSC's response and abort
                 return cotsc_response
 
+class RAGAgent(Agent):
+    def __init__(self, 
+                 text_corpus: pd.DataFrame, 
+                 llm_prompt: LLMPrompt, 
+                 embedding: str="together", 
+                 vector_store: str="faiss"):
+        """
+        Args:
+            embedding (str): The embedding method for the vector database. Defaults to TogetherEmbeddings. Supported options are: ["together"].
+            vector_store (str): The vector store for the vector database. Defaults to FAISS. Supported options are: ["faiss"].
+        """
+        super().__init__(text_corpus, llm_prompt)
+
+        texts = self.text_corpus['article'].tolist()[:20]
+
+        embeddings = TogetherEmbeddings(api_key=os.getenv("TOGETHER_API_KEY"))
+        vectors = embeddings.embed_documents(texts)
+
+        vectorstore = FAISS.from_texts(texts, embeddings)
+        self.retriever = vectorstore.as_retriever()
+        self.format_docs = lambda docs: "\n\n".join(doc.page_content for doc in docs)
+        # self.prompt = hub.pull("rlm/rag-prompt")
+        # self.rag_chain = (
+        #     {"context": retriever | format_docs, "question": RunnablePassthrough()}
+        #     | StrOutputParser()
+        # )
+
+    def __get_evidence(self, question:str) -> str:
+        """
+        Returns retrieved articles in the text corpus as evidence.
+        """
+        evidence = "Given the following evidence:\n"
+        evidence += "========BEGIN EVIDENCE========\n"
+        # evidence += "\n================\n\n".join(self.rag_chain.invoke(question))
+        evidence += self.format_docs(self.retriever.invoke(question))
+        evidence += "========END EVIDENCE========\n"
+        # print(evidence)
+        return evidence
+
+    def _build_agent_prompt(self, question: str) -> str:
+        evidence = self.__get_evidence(question)
+        return self.llm_prompt.get_prompt().format(
+            evidence=evidence,
+            question=question
+        )
+
+    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+        logger.debug(f"\n\t>>> question: {question}\n")
+
+        # Create a conversation with 1 user prompt
+        prompt = self._build_agent_prompt(question)
+        print(prompt)
+        conv = Conversation(messages=[
+            Message(role="user", content=[ContentTextMessage(text=prompt)])
+        ])
+        
+        # Generate response
+        # Add "\n" to stop_sequences
+        # inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
+        response = llm_chat.generate_response(conv, inf_gen_config)
+        return response
+    
+    async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
+        logger.debug(f"\n\t>>> questions: {questions}\n")
+
+        # Create a conversation with 1 user prompt
+        prompts = [self._build_agent_prompt(question) for question in questions]
+        convs = [
+            Conversation(messages=[
+                Message(role="user", content=[ContentTextMessage(text=prompt)])
+            ])
+            for prompt in prompts
+        ]
+        
+        # Generate response
+        # Change stop_sequences to "\n"
+        # inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
+        responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
+        return responses
 
 #### Utils ####
 
@@ -907,6 +992,7 @@ SUPPORTED_METHOD_NAMES: list[str] = [
     "act",
     "react->cot-sc",
     "cot-sc->react",
+    "rag"
 ]
 
 
@@ -933,5 +1019,7 @@ def get_agent(
             return React_CoTSCAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "cot-sc->react":
             return CoTSC_ReactAgent(text_corpus, llm_prompt, **agent_kwargs)
+        case "rag":
+            return RAGAgent(text_corpus, llm_prompt, **agent_kwargs)
         case _:
             raise ValueError(f"Invalid method: {method}")

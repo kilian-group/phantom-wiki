@@ -68,8 +68,11 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
             )
-        case "RAG":
-            raise NotImplementedError("RAG evaluation is not supported yet.")
+        case "rag":
+            agent_kwargs = dict(
+                embedding="together", #args.embedding
+                vector_store="faiss" #args.vector_store
+            )
         case "react":
             agent_kwargs = dict(
                 max_steps=args.react_max_steps,
@@ -160,7 +163,7 @@ async def main(args: argparse.Namespace) -> None:
                 # so they support batch async inference
                 agent_interactions = None
                 match args.method:
-                    case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc":
+                    case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc" | "rag":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                         responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
@@ -174,8 +177,8 @@ async def main(args: argparse.Namespace) -> None:
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                         responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
                         agent_interactions: list[Conversation] = agent.agent_interactions
-                    case "RAG":
-                        raise NotImplementedError("RAG evaluation is not supported yet.")
+                    # case "RAG":
+                    #     raise NotImplementedError("RAG evaluation is not supported yet.")
                     case "react" | "act" | "react->cot-sc" | "cot-sc->react":
                         # Run agent on each question one by one
                         responses: list[LLMChatResponse] = []

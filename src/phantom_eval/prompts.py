@@ -336,8 +336,9 @@ def get_llm_prompt(method: str, model_name: str) -> LLMPrompt:
             return FewshotLLMPrompt()
         case "cot" | "cot-sc" | "cot-sc->react":
             return CoTLLMPrompt()
-        case "RAG":
-            raise NotImplementedError("RAG evaluation is not supported yet.")
+        case "rag":
+            # raise NotImplementedError("RAG evaluation is not supported yet.")
+            return ZeroshotLLMPrompt()
         case "react" | "react->cot-sc":
             match model_name:
                 case model_name if model_name in llm.OpenAIChat.SUPPORTED_LLM_NAMES:
