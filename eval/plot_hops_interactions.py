@@ -4,7 +4,7 @@ Generates a plot with the number of hops on the x-axis and the number of react s
 Saves the plots to the figures directory of the output directory.
 
 Example:
-    python plot_hops_react_steps.py -od out --split_name depth_10_size_26_seed_1
+    python eval/plot_hops_interactions.py -od out --split_name depth_10_size_26_seed_1 --method react
 """
 
 # %%
@@ -34,6 +34,9 @@ def get_react_actions(messages):
     # count the number of non-finish <action>...</action> tags
     actions = []
     for message in messages:
+        # NOTE: ignore system and user messages, which might contain actions in the prompt
+        if message['role'] != 'assistant':
+            continue
         try:
             action_type, action_arg = parse_action(message['content'][0]['text'])
             actions.append((action_type, action_arg))
@@ -41,6 +44,8 @@ def get_react_actions(messages):
             pass
     return actions
 df['_react_actions'] = df['interaction'].apply(lambda x: get_react_actions(x['messages']))
+# save _react_actions to a file
+df['_react_actions'].to_csv(os.path.join(output_dir, 'react_actions.csv'))
 df['react_actions'] = df['_react_actions'].apply(lambda x: len(x))
 df['non_finish_actions'] = df['_react_actions'].apply(lambda x: len([a for a in x if a[0] != 'Finish']))
 
