@@ -137,7 +137,7 @@ FAMILY_RELATION_DIFFICULTY = {
     "grandfather": 2,
     "great_aunt": 3,
     "great_uncle": 3,
-    "grantchild": 2,
+    "grandchild": 2,
     "granddaughter": 2,
     "grandson": 2,
     "great_grandparent": 3,
