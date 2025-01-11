@@ -34,7 +34,7 @@ conda activate dataset
 MODELS=(
     # 'google/gemma-2-27b-it'
     # 'microsoft/phi-3.5-moe-instruct'
-    # 'meta-llama/llama-3.1-70b-instruct'
+    'meta-llama/llama-3.1-70b-instruct'
     'meta-llama/llama-3.3-70b-instruct'
     # 'meta-llama/llama-3.1-8b-instruct'
 )
@@ -85,7 +85,7 @@ do
         --method react \
         -od $1 \
         -m $model_name \
-        --split_list depth_10_size_50_seed_1 depth_10_size_100_seed_1 depth_10_size_200_seed_1 \
+        --split_list depth_10_size_26_seed_1 depth_10_size_50_seed_1 depth_10_size_100_seed_1 depth_10_size_200_seed_1 \
         --inf_seed_list $seed_list \
         --inf_temperature $TEMPERATURE \
         -bs 10"
