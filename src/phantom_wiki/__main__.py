@@ -21,6 +21,7 @@ from .core.article import get_articles
 from .facts.templates import generate_templates
 from .facts.sample import sample
 from .utils import blue, get_parser, generate_unique_id
+from .utils.get_answer import get_answer
 from .facts.family import fam_gen_parser
 from .facts import question_parser
 
@@ -69,8 +70,11 @@ def save_command_and_git_info(output_dir):
 def main(args):
 
     # Check Git status before running the main logic
-    check_git_status()
-    print("Git status is clean. Running the script...")
+    if not args.debug:
+        check_git_status()
+        print("Git status is clean. Running the script...")
+    else:
+        print("Debug mode enabled. Skipping Git status check.")
 
     # Set up logging
     logging.getLogger('faker').setLevel(logging.INFO)
@@ -167,18 +171,17 @@ def main(args):
             # TODO: is there a better way to do this?
             # NOTE: we concatenate the clauses in the prolog query in reverse order
             # since prolog executes goals from left to right
-            results = [str(x[answer]) for x in db.query(", ".join(query[::-1]))]
+            all_results, final_results = get_answer(query, db, answer)
             # make unique and sort in alphabetical order
-            results = sorted(set(results))
             questions.append({
                 "id": generate_unique_id(),
                 "question": question,
-                "answer": results,
+                "intermediate_answers": all_results,
+                "answer": final_results,
                 "prolog": {"query": query, "answer": answer},
                 "template": question_template,
                 "type": i, # this references the template type
             })
-            
             if args.question_format == "json_by_type":
                 with open(os.path.join(question_dir, f"type{i}.json"), "w") as file:
                     json.dump(questions, file, indent=4)
