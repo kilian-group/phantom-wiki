@@ -35,13 +35,19 @@ There are 2 options:
 
 Setting up Prolog (see also the [Prolog tutorial](docs/prolog.md)):
 
+On Mac:
 ```bash
-# install SWI-Prolog (on Mac)
 brew install swi-prolog
-# TODO: install SWI-Prolog (on Windows)
-# install Python wrapper for Prolog
 pip install pyswip
 ```
+
+On Linux:
+```bash
+sudo add-apt-repository ppa:swi-prolog/stable
+sudo apt-get update
+sudo apt-get install swi-prolog
+```
+Original instructions: https://wwu-pi.github.io/tutorials/lectures/lsp/010_install_swi_prolog.html
 
 ## Evaluation
 
