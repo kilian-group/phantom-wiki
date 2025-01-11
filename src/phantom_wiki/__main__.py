@@ -155,6 +155,7 @@ def main(args):
 
     all_questions = []
     for i, (question_template, query_template, answer) in enumerate(templates):
+        logging.debug(f"Generating questions for template {i}: {question_template}")
         # Reset the seed at the start of each question type
         # so that sampled questions are the same for each question type
         rng = np.random.default_rng(args.seed)
