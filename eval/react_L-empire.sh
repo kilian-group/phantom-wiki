@@ -8,9 +8,9 @@
 #SBATCH -n 8                                 # Total number of cores requested
 #SBATCH --get-user-env                       # retrieve the users login environment
 #SBATCH --mem=100000                         # server memory (MBs) requested (per node)
-#SBATCH -t infinite                           # Time limit (hh:mm:ss)
-#SBATCH --gres=gpu:a6000:8                   # Number of GPUs requested
-#SBATCH --partition=kilian                   # Request partition
+#SBATCH -t 1-00:00:00                           # Time limit (hh:mm:ss)
+#SBATCH --gres=gpu:4                   # Number of GPUs requested
+#SBATCH --partition=cornell                   # Request partition
 
 # Script for running zero-shot evaluation on all large models (10-70 B params)
 # GPU requirements when using max context length (i.e., `max_model_len=None`)
@@ -25,7 +25,7 @@ if [ -z "$1" ]; then
     exit 1
 fi
 # activate conda environment
-source /share/apps/anaconda3/2021.05/etc/profile.d/conda.sh
+source ~/miniconda3/etc/profile.d/conda.sh
 # NOTE: this assumes that conda environment is called `dataset`
 # change this to your conda environment as necessary
 conda activate dataset
@@ -66,7 +66,7 @@ for model_name in "${MODELS[@]}"
 do
     # Start the vLLM server in the background
     echo "Starting vLLM server..."
-    vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 8"
+    vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 4"
     echo $vllm_cmd
     nohup $vllm_cmd &
     
@@ -85,7 +85,7 @@ do
         --method react \
         -od $1 \
         -m $model_name \
-        --split_list depth_10_size_26_seed_1 depth_10_size_50_seed_1 depth_10_size_100_seed_1 depth_10_size_200_seed_1 \
+        --split_list depth_10_size_26_seed_1 depth_10_size_50_seed_1 depth_10_size_100_seed_1 depth_10_size_200_seed_1 depth_10_size_500_seed_1 \
         --inf_seed_list $seed_list \
         --inf_temperature $TEMPERATURE \
         -bs 10"
