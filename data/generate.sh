@@ -14,7 +14,7 @@ splits=()
 # generate data
 for seed in 1 2 3 4 5
 do
-    for depth in 10 20
+    for depth in 10
     do
         for size in 26 50 100 200
         do
