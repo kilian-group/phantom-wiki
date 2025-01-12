@@ -118,7 +118,7 @@ class NshotAgent(Agent):
         # Create a conversation for each user prompt, and initialize agent interactions
         prompts: list[str] = [self._build_agent_prompt(question) for question in questions]
         convs = [
-            Conversation(messages=Message(role="user", content=[ContentTextMessage(text=prompt)]))
+            Conversation(messages=[Message(role="user", content=[ContentTextMessage(text=prompt)])])
             for prompt in prompts
         ]
         self.agent_interactions = convs
