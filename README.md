@@ -173,8 +173,8 @@ git push
 
 1. Clone the HuggingFace dataset repo (note: you only need to do this once):
 
-```
-cd <some location outside of this repo>
+```bash
+cd PATH_TO_LOCAL_HF_REPO
 pip install -U "huggingface_hub[cli]"
 huggingface-cli login
 # NOTE: when creating a new access token, set the token type to be `write`
@@ -184,14 +184,19 @@ git lfs install
 
 2. Generate a new dataset and save to the location of the huggingface repo
 
-```
-python -m phantom_wiki -op <path to huggingface repo> --article_format json --question_format json --valid_only -s <global seed>
+```bash
+python -m phantom_wiki -od PATH_TO_LOCAL_HF_REPO --article-format json --question-format json --valid-only -s SEED
 ```
 
 3. Push the files to the huggingface repo:
 
-```
+```bash
 git add .
 git commit -m "some message"
 git push
+```
+
+Alternatively, can use the huggingface cli (see https://huggingface.co/docs/datasets/en/share#upload-an-entire-folder):
+```bash
+huggingface-cli upload mlcore/phantom-wiki-v<version> OUTPUT_DIRECTORY . --repo-type dataset
 ```

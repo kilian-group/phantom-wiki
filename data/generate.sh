@@ -39,36 +39,36 @@ done
 # create dataset card
 # start metadata header
 cat << EOF > $1/README.md
-----
+---
 license: bsd-3-clause
 dataset_name: phantom-wiki
 EOF
 # add articles to `text-corpus` config
 cat << EOF >> $1/README.md
 configs:
-    - config_name: text-corpus
-      data_files:
+- config_name: text-corpus
+  data_files:
 EOF
 # iterate over splits and append to dataset card
 for split in "${splits[@]}"
 do
-    echo "        - $split" >> $1/README.md
-    echo "          path: $split/articles.json" >> $1/README.md
+    echo "  - split: $split" >> $1/README.md
+    echo "    path: $split/articles.json" >> $1/README.md
 done
 # add question-answer pairs to `question-answer` config
 cat << EOF >> $1/README.md
-    - config_name: question-answer
-      data_files:
+- config_name: question-answer
+  data_files:
 EOF
 # iterate over splits and append to dataset card
 for split in "${splits[@]}"
 do
-    echo "        - $split" >> $1/README.md
-    echo "          path: $split/questions.json" >> $1/README.md
+    echo "  - split: $split" >> $1/README.md
+    echo "    path: $split/questions.json" >> $1/README.md
 done
 # close metadata header
 cat << EOF >> $1/README.md
-----
+---
 EOF
 # add dataset card contents
 cat << EOF >> $1/README.md
