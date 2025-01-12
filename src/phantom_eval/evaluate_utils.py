@@ -59,7 +59,7 @@ COLORS = {
     'meta-llama/llama-3.1-8b-instruct': 'tab:orange',
     'meta-llama/llama-3.2-3b-instruct': 'tab:orange',
     'meta-llama/llama-3.2-1b-instruct': 'tab:orange',
-    'microsoft/phi-3.5-mini-instruct': 'tab:green',
+    'microsoft/phi-3.5-moe-instruct': 'tab:green',
     'microsoft/phi-3.5-mini-instruct': 'tab:green',
     'mistralai/mistral-7b-instruct-v0.3' : 'tab:red',
     'gemini-1.5-flash-002': 'tab:purple',
