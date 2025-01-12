@@ -7,7 +7,7 @@
 
 OUTPUT_DIR=$1
 METHOD_LIST=(
-    # "zeroshot"
+    "zeroshot"
     "fewshot"
     "cot"
     "zeroshot-sc"
