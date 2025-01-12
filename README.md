@@ -138,6 +138,10 @@ Rate limits: https://docs.anthropic.com/en/api/rate-limits#updated-rate-limits
 Original setup instructions: https://docs.vllm.ai/en/stable/getting_started/installation.html#install-the-latest-code
 
 Additional notes:
+- It's recommended to download the model manually:
+```bash
+huggingface-cli download MODEL_REPO_ID
+```
 - The models and their configs are downloaded directly from HuggingFace and almost all models on HF are fair game (see also: https://docs.vllm.ai/en/stable/models/supported_models.html#supported-models)
 - Total number of attention heads must be divisible by tensor parallel size
 - See minimum GPU requirements for [small](eval/zeroshot_S.sh), [medium](eval/zeroshot_M.sh), and [large](eval/zeroshot_L.sh) models at the top of each eval inference script
