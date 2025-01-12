@@ -645,7 +645,9 @@ class ReactAgent(Agent):
             case "RetrieveArticle":
                 try:
                     # Fetch the article for the requested entity by looking up the title
-                    article: str = self.text_corpus.loc[self.text_corpus["title"] == action_arg, "article"].values[0]
+                    # NOTE: we use lower case for comparison
+                    # @anmolkabra: is this how you would do it?
+                    article: str = self.text_corpus.loc[self.text_corpus["title"].str.lower() == action_arg.lower(), "article"].values[0]
                     observation_str = format_pred(article)
                 except IndexError:
                     observation_str = f"No article exists for the requested entity. Please try retrieving article for another entity."
