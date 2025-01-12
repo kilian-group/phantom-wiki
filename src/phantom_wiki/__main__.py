@@ -69,7 +69,7 @@ def main(args):
     blue("Generating articles")
     # TODO: add code to merge family and CFG articles
     # currently, we just pass in the family article
-    articles = get_articles(db, db.get_names())
+    articles = get_articles(db, db.get_person_names())
     if args.article_format == "txt":
         article_dir = os.path.join(args.output_dir, "articles")
         logging.info(f"Saving articles to: {article_dir}")

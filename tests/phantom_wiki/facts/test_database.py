@@ -29,5 +29,5 @@ def test_save_database():
 
 def test_get_names():
     db = Database.from_disk(FACTS_SMALL_EXAMPLE_PATH)
-    names = db.get_names()
+    names = db.get_person_names()
     assert set(names) == set(['alfonso', 'alton', 'antionette', 'colby', 'daisy', 'deangelo', 'deanna', 'derick', 'dixie', 'dominick', 'ellis', 'ila', 'johnna', 'kanesha', 'kari', 'lyndia', 'maggie', 'matt', 'meghann', 'miki', 'reyna', 'rosalee', 'scotty', 'tanner', 'thomasine', 'vicente'])

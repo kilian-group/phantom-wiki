@@ -30,7 +30,7 @@ def db_generate_friendships(db: Database, args: ArgumentParser):
         db (Database): The database to add the friendship facts to.
         args (ArgumentParser): arguments from the CLI.
     """
-    names = db.get_names()
+    names = db.get_person_names()
     rng = default_rng(args.seed)
     friendship_facts, _ = create_friendship_graph(rng, names, friendship_threshold=20)
     # import pdb; pdb.set_trace()

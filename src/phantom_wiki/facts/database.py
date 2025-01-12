@@ -35,8 +35,8 @@ class Database:
         db.consult(file)
         return db
 
-    def get_names(self):
-        """Gets all names from a Prolog database.
+    def get_person_names(self):
+        """Gets the names of all people in the Prolog database.
 
         Returns:
             List of people's names.

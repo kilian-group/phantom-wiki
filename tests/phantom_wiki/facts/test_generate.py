@@ -87,7 +87,7 @@ def test_generate_population():
 # 
 def test_generate_jobs():
     db = Database.from_disk(FACTS_SMALL_EXAMPLE_PATH)
-    jobs = generate_jobs(sorted(db.get_names()), seed=1)
+    jobs = generate_jobs(sorted(db.get_person_names()), seed=1)
     from tests.phantom_wiki.facts import JOBS_PATH
     import json
     with open(JOBS_PATH, "r") as f:
@@ -98,7 +98,7 @@ def test_generate_jobs():
 
 def test_generate_hobbies():
     db = Database.from_disk(FACTS_SMALL_EXAMPLE_PATH)
-    hobbies = generate_hobbies(sorted(db.get_names()), seed=1)
+    hobbies = generate_hobbies(sorted(db.get_person_names()), seed=1)
     from tests.phantom_wiki.facts import HOBBIES_PATH
     import json
     with open(HOBBIES_PATH, "r") as f:

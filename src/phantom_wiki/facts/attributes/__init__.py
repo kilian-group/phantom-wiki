@@ -60,7 +60,7 @@ def db_generate_attributes(db: Database, args: ArgumentParser):
         args (ArgumentParser): The command line arguments.
     """
     start_time = time.time()
-    names = db.get_names()
+    names = db.get_person_names()
     jobs = generate_jobs(names, args.seed)
     hobbies = generate_hobbies(names, args.seed)
 
