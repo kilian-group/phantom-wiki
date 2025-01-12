@@ -571,6 +571,7 @@ class VLLMChat(CommonLLMChat):
         max_model_len: int | None = None,
         tensor_parallel_size: int | None = None,
         use_api: bool = True,
+        port: int = 8000,
     ):
         """
         Args:
@@ -582,6 +583,8 @@ class VLLMChat(CommonLLMChat):
                 Defaults to True.
                 NOTE: offline inference only works for batch_generate_response
                 To maximize performance, set `use_server=False` when running Nshot and CoT agents
+            port (int): Port number for the vllm server.
+                Defaults to 8000.
         """
         super().__init__(model_name, model_path)
         
@@ -589,7 +592,7 @@ class VLLMChat(CommonLLMChat):
         if self.use_api:
             logging.info("Using vLLM server for inference")
             try:
-                BASE_URL = "http://0.0.0.0:8000/v1" # TODO: allow this to be specified by the user
+                BASE_URL = f"http://0.0.0.0:{port}/v1"
                 API_KEY="token-abc123" # TODO: allow this to be specified by the user
                 self.client = openai.OpenAI(
                     base_url=BASE_URL,

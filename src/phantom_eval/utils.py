@@ -9,8 +9,13 @@ def load_data(split: str) -> dict[str, Dataset]:
     Load the phantom-wiki dataset from HuggingFace for a specific split.
     example: load_data("depth6")
     """
-    qa_pairs = load_dataset("mlcore/phantom-wiki", "question-answer")[split]
-    text = load_dataset("mlcore/phantom-wiki", "text-corpus")[split]
+    if False:
+        qa_pairs = load_dataset("mlcore/phantom-wiki", "question-answer")[split]
+        text = load_dataset("mlcore/phantom-wiki", "text-corpus")[split]
+    else:
+        # TODO: add functionality to specify version in CLI arguments
+        qa_pairs = load_dataset("mlcore/phantom-wiki-v0.2", "question-answer")[split]
+        text = load_dataset("mlcore/phantom-wiki-v0.2", "text-corpus")[split]
 
     dataset = {"qa_pairs": qa_pairs, "text": text}
     return dataset
