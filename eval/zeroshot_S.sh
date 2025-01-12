@@ -44,6 +44,14 @@ then
 else
     seed_list="1 2 3 4 5"
 fi
+# construct split list
+for seed in 1 2 3 4 5
+do
+    for size in 26 50 100 200
+    do
+        SPLIT_LIST+="depth_10_size_${size}_seed_${seed} "
+    done
+done
 
 for model_name in "${MODELS[@]}"
 do
@@ -51,7 +59,7 @@ do
         --method zeroshot \
         -od $1 \
         -m $model_name \
-        --split_list depth_10_size_26_seed_1 depth_10_size_50_seed_1 depth_10_size_100_seed_1 depth_10_size_200_seed_1 \
+        --split_list $SPLIT_LIST \
         --inf_seed_list $seed_list \
         --inf_temperature $TEMPERATURE"
     echo $cmd
