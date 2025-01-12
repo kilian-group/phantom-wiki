@@ -200,5 +200,5 @@ git push
 
 Alternatively, can use the huggingface cli (see https://huggingface.co/docs/datasets/en/share#upload-an-entire-folder):
 ```bash
-huggingface-cli upload mlcore/phantom-wiki-v<version> OUTPUT_DIRECTORY . --repo-type dataset
+huggingface-cli upload mlcore/phantom-wiki-v<version> OUTPUT_DIRECTORY . --repo-type dataset --commit-message="optional commit message"
 ```

@@ -16,7 +16,7 @@ for seed in 1 2 3 4 5
 do
     for depth in 10
     do
-        for size in 26 50 100 200
+        for size in 26 50 100 200 500
         do
             od="depth_${depth}_size_${size}_seed_${seed}"
             cmd="python -m phantom_wiki \
