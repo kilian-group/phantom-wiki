@@ -126,11 +126,10 @@ class Database:
             logging.debug(f"- {predicate}")
             self.prolog.dynamic(predicate)
 
-    # TODO check output type
     def save_to_disk(self, file: str) -> None:
         """Saves all clauses in the database to a file.
 
         Args:
             file: path to the file
         """
-        return self.query(f"save_all_clauses_to_file('{file}').")
+        self.query(f"save_all_clauses_to_file('{file}').")
