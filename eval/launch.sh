@@ -26,5 +26,9 @@ sbatch --gres=gpu:1 --partition=cornell -t 1-00:00:00 --mail-user=$2 eval/cot-sc
 sbatch --gres=gpu:4 --partition=cornell -t 1-00:00:00 --mail-user=$2 eval/zeroshot_L.sh $1
 sbatch --gres=gpu:4 --partition=cornell -t 1-00:00:00 --mail-user=$2 eval/fewshot_L.sh $1
 sbatch --gres=gpu:4 --partition=cornell -t 1-00:00:00 --mail-user=$2 eval/cot_L.sh $1
+sbatch --gres=gpu:4 --partition=cornell -t 1-00:00:00 --mail-user=$2 eval/zeroshot-sc_L.sh $1
+sbatch --gres=gpu:4 --partition=cornell -t 1-00:00:00 --mail-user=$2 eval/fewshot-sc_L.sh $1
+sbatch --gres=gpu:4 --partition=cornell -t 1-00:00:00 --mail-user=$2 eval/cot-sc_L.sh $1
+
 sbatch --gres=gpu:4 --partition=cornell -t 1-00:00:00 --mail-user=$2 eval/react_L.sh $1
 sbatch --gres=gpu:4 --partition=cornell -t 1-00:00:00 --mail-user=$2 eval/act_L.sh $1
