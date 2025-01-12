@@ -12,10 +12,7 @@ SAVE_ALL_CLAUSES_TO_FILE = """
 
 
 class Database:
-    # TODO this will potentially need to consult several rules files (for family vs friends etc.)
-    # TODO define an API for consulting different types of formal facts (family, friendships, hobbies)
-    # TODO define logic for consulting different types of facts based on difficulty
-    def __init__(self, *rules: list[str]):
+    def __init__(self, *rules: str):
         self.prolog = Prolog()
         logging.debug("Consulting rules from:")
         for rule in rules:
@@ -44,7 +41,6 @@ class Database:
         people = [result["X"] for result in self.prolog.query(f"type(X, {PERSON_TYPE})")]
         return people
 
-    # TODO shouldn't it be "attribute names"
     # TODO check output type
     def get_attribute_values(self) -> list[str]:
         """Gets all attributes from a Prolog database.
