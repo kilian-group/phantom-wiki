@@ -5,7 +5,14 @@ ATTRIBUTE_FACT_TEMPLATES = {
     "gender": "The gender of <subject> is",
 }
 
-ATTRIBUTE_RELATION = [
+ATTRIBUTE_ALIAS = {
+    "dob": "date of birth",
+    "job": "occupation",
+    "hobby": "hobby",
+    "gender": "gender",
+}
+
+ATTRIBUTE_TYPES = [
     "dob",
     "job",
     "hobby",

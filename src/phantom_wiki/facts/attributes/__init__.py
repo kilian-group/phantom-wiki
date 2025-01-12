@@ -6,7 +6,7 @@ import logging
 # phantom wiki functionality
 from ..database import Database
 from .constants import (ATTRIBUTE_FACT_TEMPLATES, 
-                        ATTRIBUTE_RELATION)
+                        ATTRIBUTE_TYPES)
 from .generate import (generate_jobs,
                        generate_hobbies)
 # resource containing the attribute rules
@@ -23,7 +23,7 @@ def get_attributes(db: Database, name: str):
     Get attributes for each person in the database.
     """
     attributes = {}
-    for attr in ATTRIBUTE_RELATION:
+    for attr in ATTRIBUTE_TYPES:
         query = f"{attr}(\'{name}\', X)"
         results = [result['X'] for result in db.query(query)]
         attributes[attr] = results
