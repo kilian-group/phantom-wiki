@@ -1,3 +1,4 @@
+# TODO: <subject> vs <name> to match the grammar + reuse the alias dict
 ATTRIBUTE_FACT_TEMPLATES = {
     "dob": "The date of birth of <subject> is",
     "job": "The occupation of <subject> is",
@@ -19,7 +20,6 @@ ATTRIBUTE_TYPES = [
     "gender",
 ]
 
-
 # Source: https://www.kaggle.com/datasets/mrhell/list-of-hobbies?resource=download
 # License: CC0: Public Domain
 # preprocessing code
@@ -35,7 +35,7 @@ import json
 with open("hobbies.json", "w") as f:
     json.dump(hobbies, f, indent=4)
 """
-# NOTE: some hobbies are modified to remove special characters, 
+# NOTE: some hobbies are modified to remove special characters,
 # words in parentheses, and 'X or Y' patterns that were in the original dataset
 HOBBIES = {
     "Educational hobby": [
@@ -77,7 +77,7 @@ HOBBIES = {
         "engineering",
         "jurisprudential",
         "publishing",
-        "wikipedia editing"
+        "wikipedia editing",
     ],
     "Indoor Collection hobby": [
         "action figure",
@@ -124,7 +124,7 @@ HOBBIES = {
         "video game collecting",
         "vintage cars",
         "vintage clothing",
-        "vinyl records"
+        "vinyl records",
     ],
     "Indoor Competitive hobby": [
         "air hockey",
@@ -189,7 +189,7 @@ HOBBIES = {
         "video gaming",
         "vr gaming",
         "weightlifting",
-        "wrestling"
+        "wrestling",
     ],
     "Indoor Observation hobby": [
         "audiophile",
@@ -200,7 +200,7 @@ HOBBIES = {
         "microscopy",
         "reading",
         "research",
-        "shortwave listening"
+        "shortwave listening",
     ],
     "Outdoor Collection hobby": [
         "antiquities",
@@ -215,7 +215,7 @@ HOBBIES = {
         "rock balancing",
         "sea glass collecting",
         "seashell collecting",
-        "stone collecting"
+        "stone collecting",
     ],
     "Outdoor Competitive hobby": [
         "airsoft",
@@ -287,7 +287,7 @@ HOBBIES = {
         "racquetball",
         "radio-controlled car racing",
         "radio-controlled model playing",
-        "roller derby"
+        "roller derby",
     ],
     "Outdoor Observation hobby": [
         "aircraft spotting",
@@ -306,7 +306,7 @@ HOBBIES = {
         "gongoozling",
         "herping",
         "hiking/backpacking",
-        "meteorology"
+        "meteorology",
     ],
     "Outdoors and sports": [
         "air sports",
@@ -475,6 +475,6 @@ HOBBIES = {
         "volunteering",
         "walking",
         "water sports",
-        "zoo visiting"
-    ]
+        "zoo visiting",
+    ],
 }
