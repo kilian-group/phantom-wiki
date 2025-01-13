@@ -477,6 +477,7 @@ class ActAgent(Agent):
         """
         Run the observation step of the agent and increments the step round.
         Returned usage is empty since the LLM is not called.
+        NOTE: both RetrieveArticle and Search are case-insensitive lookups.
         """
         action_type, action_arg = parse_action(response_action.pred)
         match action_type:
@@ -487,14 +488,18 @@ class ActAgent(Agent):
             case "RetrieveArticle":
                 try:
                     # Fetch the article for the requested entity by looking up the title
-                    article: str = self.text_corpus.loc[self.text_corpus["title"] == action_arg, "article"].values[0]
+                    article: str = self.text_corpus.loc[
+                        self.text_corpus["title"].str.lower() == action_arg.lower(), "article"
+                    ].values[0]
                     observation_str = format_pred(article)
                 except IndexError:
                     observation_str = f"No article exists for the requested entity. Please try retrieving article for another entity."
             case "Search":
                 try:
                     # Fetch all articles that contain the requested attribute
-                    articles: list[str]  = self.text_corpus.loc[self.text_corpus["article"].str.contains(action_arg), "article"].tolist()
+                    articles: list[str]  = self.text_corpus.loc[
+                        self.text_corpus["article"].str.lower().str.contains(action_arg.lower()), "article"
+                    ].tolist()
                     enum_articles: str = "\n\n".join(f"({i+1}) {article}" for i, article in enumerate(articles))
                     observation_str = format_pred(enum_articles)
                 except IndexError:
@@ -635,6 +640,7 @@ class ReactAgent(Agent):
         """
         Run the observation step of the agent and increments the step round.
         Returned usage is empty since the LLM is not called.
+        NOTE: both RetrieveArticle and Search are case-insensitive lookups.
         """
         action_type, action_arg = parse_action(response_action.pred)
         match action_type:
@@ -645,16 +651,18 @@ class ReactAgent(Agent):
             case "RetrieveArticle":
                 try:
                     # Fetch the article for the requested entity by looking up the title
-                    # NOTE: we use lower case for comparison
-                    # @anmolkabra: is this how you would do it?
-                    article: str = self.text_corpus.loc[self.text_corpus["title"].str.lower() == action_arg.lower(), "article"].values[0]
+                    article: str = self.text_corpus.loc[
+                        self.text_corpus["title"].str.lower() == action_arg.lower(), "article"
+                    ].values[0]
                     observation_str = format_pred(article)
                 except IndexError:
                     observation_str = f"No article exists for the requested entity. Please try retrieving article for another entity."
             case "Search":
                 try:
                     # Fetch all articles that contain the requested attribute
-                    articles: list[str]  = self.text_corpus.loc[self.text_corpus["article"].str.contains(action_arg), "article"].tolist()
+                    articles: list[str]  = self.text_corpus.loc[
+                        self.text_corpus["article"].str.lower().str.contains(action_arg.lower()), "article"
+                    ].tolist()
                     enum_articles: str = "\n\n".join(f"({i+1}) {article}" for i, article in enumerate(articles))
                     observation_str = format_pred(enum_articles)
                 except IndexError:

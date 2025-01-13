@@ -31,6 +31,12 @@ def normalize_pred(pred: str, sep: str) -> set[str]:
     """
     Normalize the prediction by splitting and stripping whitespace the answers.
 
+    Operations:
+    1. Split by separator
+    2. Strip whitespace
+    3. Lowercase
+    4. Convert to set to remove duplicates
+
     Args:
         pred (str): The prediction string of format "A<sep>B<sep>C".
         sep (str): The separator used to split the prediction.
@@ -38,11 +44,6 @@ def normalize_pred(pred: str, sep: str) -> set[str]:
     Returns:
         set[str]: A set of normalized answers.
     """
-    # Operations:
-    # 1. Split by separator
-    # 2. Strip whitespace
-    # 3. Lowercase
-    # 4. Convert to set to remove duplicates
     return set(
         map(str.lower,
         map(str.strip,
