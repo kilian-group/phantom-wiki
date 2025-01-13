@@ -47,6 +47,8 @@ def get_parser() -> argparse.ArgumentParser:
                         help="Seconds to wait between tries")
 
     # Dataset params
+    parser.add_argument("--dataset", type=str, default="mlcore/phantom-wiki-v0.2",
+                        help="Dataset name")
     parser.add_argument("--split_list", default=["depth_10_size_26_seed_1"], type=str, nargs="+",
                         help="List of dataset splits to evaluate")
     parser.add_argument("--batch_size", "-bs", default=10, type=int,

@@ -173,10 +173,10 @@ def _get_preds(output_dir, method):
     df_preds = df_preds.reset_index(names='id')
     return df_preds
 
-def _get_qa_pairs(splits):
+def _get_qa_pairs(dataset: str, splits: list[str]):
     df_list = []
     for split in splits:
-        df = load_data(split)['qa_pairs'].to_pandas()
+        df = load_data(dataset, split)['qa_pairs'].to_pandas()
         # # set index to id
         # df = df.set_index('id')
         # convert template column to string
@@ -193,7 +193,7 @@ def _get_qa_pairs(splits):
     return df_qa_pairs
 
 @memory.cache(cache_validation_callback=expires_after(hours=1))
-def get_evaluation_data(output_dir: str, method: str, sep: str = constants.answer_sep):
+def get_evaluation_data(output_dir: str, method: str, dataset: str, sep: str = constants.answer_sep):
     """Get the evaluation data for a given method
 
     First reads the predictions from the output directory, then joins with the qa pairs.
@@ -202,6 +202,7 @@ def get_evaluation_data(output_dir: str, method: str, sep: str = constants.answe
     Args:
         output_dir (str): path to the output directory
         method (str): method used for inference (e.g., zeroshot, fewshot, etc.)
+        dataset (str): dataset name (e.g., "mlcore/phantom-wiki", "mlcore/phantom-wiki-v0.2")
         sep (str): separator when pre-processing pred/true strings.
             Default is `constants.answer_sep`.
 
@@ -215,7 +216,7 @@ def get_evaluation_data(output_dir: str, method: str, sep: str = constants.answe
     # get unique splits
     splits = df_preds['_split'].unique()
     # get the qa pairs
-    df_qa_pairs = _get_qa_pairs(splits)
+    df_qa_pairs = _get_qa_pairs(dataset, splits)
     # join with original qa pairs to get additional information about
     # the prolog queries and the templates
     df = df_preds.merge(df_qa_pairs, on='id', how='left')
