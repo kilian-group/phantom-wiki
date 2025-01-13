@@ -112,7 +112,7 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
 
 
 async def main(args: argparse.Namespace) -> None:
-    logger.info(f"Loading LLM={args.model_name}")
+    logger.info(f"Loading LLM='{args.model_name}'")
     model_kwargs = get_model_kwargs(args)
     llm_chat: LLMChat = get_llm(args.model_name, model_kwargs=model_kwargs)
     llm_prompt: LLMPrompt = get_llm_prompt(args.method, args.model_name)
@@ -127,9 +127,9 @@ async def main(args: argparse.Namespace) -> None:
     )
 
     for seed in args.inf_seed_list:
-        logger.info(f"Running inference for method={args.method} with {seed=}")
+        logger.info(f"Running inference for method='{args.method}' with {seed=}")
         for split in args.split_list:
-            logger.info(f"Loading dataset {args.dataset} :: {split=}")
+            logger.info(f"Loading dataset='{args.dataset}' :: {split=}")
             dataset = load_data(args.dataset, split)
             df_qa_pairs = pd.DataFrame(dataset["qa_pairs"])
             df_text = pd.DataFrame(dataset["text"])
