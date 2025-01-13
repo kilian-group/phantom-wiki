@@ -16,7 +16,7 @@ output_dir = args.output_dir
 method = args.method
 dataset = args.dataset
 # get evaluation data from the specified output directory and method subdirectory
-df = get_evaluation_data(output_dir, method)
+df = get_evaluation_data(output_dir, method, dataset)
 # group by model, split, and seed
 grouped = df.groupby(['_model', '_split', '_seed'])
 # print the accuracy
