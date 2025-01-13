@@ -42,14 +42,46 @@ def sample(
     ],    ,
     ["<relation>_3(Y_2, Y_4)", "<attribute_name>_1(Y_2, <attribute_value>_1)"],
 
-    -> 
+-> 
 
-    (
-        {"<attribute_name>_1": "age", "<relation>_3": "child"},
-        "Who is the child of the person whose age is <attribute_value>_1 ?",
-        ["child(Y_2, Y_4)", "age(Y_2, <attribute_value>_1)"],
-    )
+(
+    {"<attribute_name>_1": "age", "<relation>_3": "child"},
+    "Who is the child of the person whose age is <attribute_value>_1 ?",
+    ["child(Y_2, Y_4)", "age(Y_2, <attribute_value>_1)"],
+)
+############################################################################
 
+Notes:
+
+* valid_only will have to be implemented according to the tree structure of the template,
+starting with the leaves and re-querying for validity when merging branches;
+how should the backtracking work?
+* maybe don't set any values for *atoms* and query for matches in that way
+
+"""
+
+import re
+from copy import copy
+from numpy.random import Generator
+
+# TODO query from the database vs use the default constant
+from .attributes.constants import ATTRIBUTE_TYPES
+from .database import Database
+from .family.constants import FAMILY_RELATION_DIFFICULTY, FAMILY_RELATION_ALIAS, FAMILY_RELATION_PLURAL_ALIAS
+
+FAMILY_RELATION_EASY = [k for k, v in FAMILY_RELATION_DIFFICULTY.items() if v < 3]
+
+
+def sample(
+    db: Database,
+    question_template: list[str],
+    query_template: list[str],
+    rng: Generator,
+    valid_only: bool = True,
+): 
+    # TODO output type
+    """Samples possible realizations of the question template and query template lists
+    from the database `db`.
 
     Args:
         db: the prolog database to sample from
