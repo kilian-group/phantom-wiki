@@ -5,7 +5,7 @@ Saves to a csv file called scores_by_type.csv in the scores directory of the out
 Includes the question template for improved readability.
 
 Example:
-    python format_split_type_accuracy.py -od out --method zeroshot
+    python eval/format_split_type_accuracy.py -od out --method zeroshot
 """
 
 # %%

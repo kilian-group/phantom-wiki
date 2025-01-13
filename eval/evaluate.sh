@@ -18,5 +18,6 @@ do
     python eval/plot_hops_accuracy.py -od $OUTPUT_DIR --method $METHOD --split_name $split_name
     python eval/plot_aggregation_accuracy.py -od $OUTPUT_DIR --method $METHOD --split_name $split_name
     python eval/plot_solutions_accuracy.py -od $OUTPUT_DIR --method $METHOD --split_name $split_name
+    # Note: the following script fails for method != react, but that's fine
     python eval/plot_hops_interactions.py -od $OUTPUT_DIR --method $METHOD --split_name $split_name
 done

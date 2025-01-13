@@ -71,6 +71,11 @@ class NshotAgent(Agent):
     depending on the input `llm_prompt` on initialization.
     """
     def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, fewshot_examples: str = ""):
+        """
+        Args:
+            fewshot_examples (str): Prompt examples to include in agent prompt.
+                If "", the agent is zero-shot. Defaults to "".
+        """
         super().__init__(text_corpus, llm_prompt)
         self.fewshot_examples = fewshot_examples
 
@@ -212,15 +217,17 @@ class NshotSCAgent(NshotAgent, SCMixin):
     """
     Agent to implement Zeroshot and fewshot evaluation with majority vote.
     """
-    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, num_votes: int = 3, sep: str = constants.answer_sep):
+    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, fewshot_examples: str = "", num_votes: int = 3, sep: str = constants.answer_sep):
         """
         Args:
+            fewshot_examples (str): Prompt examples to include in agent prompt.
+                If "", the agent is zero-shot. Defaults to "".
             num_votes (int): The number of votes to take for the majority vote.
                 Defaults to 3.
             sep (str): The separator used to split the prediction.
                 Defaults to `constants.answer_sep`.
         """
-        NshotAgent.__init__(self, text_corpus, llm_prompt)
+        NshotAgent.__init__(self, text_corpus, llm_prompt, fewshot_examples)
         SCMixin.__init__(self, num_votes, sep)
 
     def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
@@ -452,12 +459,12 @@ class ActAgent(Agent):
         """
         Run the action step of the agent.
         """
-        # Add "</action>" to stop_sequences
-        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["</action>"]), deep=True)
-        response = self._prompt_agent(llm_chat, question, inf_gen_config)
-        response.pred = f"{format_pred(response.pred)}</action>"
+        # Stop generating when seeing "Observation" (when action is complete)
+        leading_llm_prompt = f"Action {self.step_round}: "
+        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["Observation"]), deep=True)
+        response = self._prompt_agent(llm_chat, question, leading_llm_prompt, inf_gen_config)
+        response.pred = leading_llm_prompt + format_pred(response.pred)
         logger.debug(f"\n\t>>> {response.pred}\n")
-        response.pred = get_tag_at_round(response.pred, tag_type="action", step_round=self.step_round)
 
         # Update scrachpad and agent's conversation
         self.scratchpad += "\n" + response.pred
@@ -488,13 +495,13 @@ class ActAgent(Agent):
                 try:
                     # Fetch all articles that contain the requested attribute
                     articles: list[str]  = self.text_corpus.loc[self.text_corpus["article"].str.contains(action_arg), "article"].tolist()
-                    enum_articles: str = "\n\n".join(f"{i+1}: {article}" for i, article in enumerate(articles))
+                    enum_articles: str = "\n\n".join(f"({i+1}) {article}" for i, article in enumerate(articles))
                     observation_str = format_pred(enum_articles)
                 except IndexError:
                     observation_str = f"No articles contain the requested attribute. Please try searching for another attribute."
             case _:
                 observation_str = "Invalid action. Valid actions are RetrieveArticle[{{entity}}], Search[{{attribute}}], and Finish[{{answer}}]."
-        observation_for_round = f"<observation round=\"{self.step_round}\">{observation_str}</observation>"
+        observation_for_round = f"Observation {self.step_round}: {observation_str}"
         logger.debug(f"\n\t>>> {observation_for_round}\n")
 
         # Update scrachpad and agent's conversation
@@ -506,7 +513,7 @@ class ActAgent(Agent):
         self.step_round += 1
         return LLMChatResponse(pred=observation_for_round, usage={})
 
-    def _prompt_agent(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+    def _prompt_agent(self, llm_chat: LLMChat, question: str, llm_leading_prompt: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         """
         Prompt the LLM with the agent's current prompt and the given question.
         `inf_gen_config` is passed to the LLM's generation function.
@@ -515,11 +522,10 @@ class ActAgent(Agent):
         # All of the back and forth conversation so far becomes the user prompt.
         user_message: str = self._build_agent_prompt(question)
         conv: Conversation = Conversation(messages=[
-            Message(role="user", content=[ContentTextMessage(text=user_message)])
+            Message(role="user", content=[ContentTextMessage(text=user_message + llm_leading_prompt)])
         ])
         response: LLMChatResponse = llm_chat.generate_response(conv, inf_gen_config)
         return response
-
 
 
 class ReactAgent(Agent):
@@ -593,12 +599,12 @@ class ReactAgent(Agent):
         """
         Run the thought step of the agent.
         """
-        # Add "</thought>" to stop_sequences
-        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["</thought>"]), deep=True)
-        response = self._prompt_agent(llm_chat, question, inf_gen_config)
-        response.pred = f"{format_pred(response.pred)}</thought>"
+        # Stop generating when seeing "Action" (when thought is complete)
+        leading_llm_prompt = f"Thought {self.step_round}: "
+        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["Action"]), deep=True)
+        response = self._prompt_agent(llm_chat, question, leading_llm_prompt, inf_gen_config)
+        response.pred = leading_llm_prompt + format_pred(response.pred)
         logger.debug(f"\n\t>>> {response.pred}\n")
-        response.pred = get_tag_at_round(response.pred, tag_type="thought", step_round=self.step_round)
 
         # Update scrachpad and agent's conversation
         self.scratchpad +=  "\n" + response.pred
@@ -611,12 +617,12 @@ class ReactAgent(Agent):
         """
         Run the action step of the agent.
         """
-        # Add "</action>" to stop_sequences
-        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["</action>"]), deep=True)
-        response = self._prompt_agent(llm_chat, question, inf_gen_config)
-        response.pred = f"{format_pred(response.pred)}</action>"
+        # Stop generating when seeing "Observation" (when action is complete)
+        leading_llm_prompt = f"Action {self.step_round}: "
+        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["Observation"]), deep=True)
+        response = self._prompt_agent(llm_chat, question, leading_llm_prompt, inf_gen_config)
+        response.pred = leading_llm_prompt + format_pred(response.pred)
         logger.debug(f"\n\t>>> {response.pred}\n")
-        response.pred = get_tag_at_round(response.pred, tag_type="action", step_round=self.step_round)
 
         # Update scrachpad and agent's conversation
         self.scratchpad += "\n" + response.pred
@@ -647,13 +653,13 @@ class ReactAgent(Agent):
                 try:
                     # Fetch all articles that contain the requested attribute
                     articles: list[str]  = self.text_corpus.loc[self.text_corpus["article"].str.contains(action_arg), "article"].tolist()
-                    enum_articles: str = "\n\n".join(f"{i+1}: {article}" for i, article in enumerate(articles))
+                    enum_articles: str = "\n\n".join(f"({i+1}) {article}" for i, article in enumerate(articles))
                     observation_str = format_pred(enum_articles)
                 except IndexError:
                     observation_str = f"No articles contain the requested attribute. Please try searching for another attribute."
             case _:
                 observation_str = "Invalid action. Valid actions are RetrieveArticle[{{entity}}], Search[{{attribute}}], and Finish[{{answer}}]."
-        observation_for_round = f"<observation round=\"{self.step_round}\">{observation_str}</observation>"
+        observation_for_round = f"Observation {self.step_round}: {observation_str}"
         logger.debug(f"\n\t>>> {observation_for_round}\n")
 
         # Update scrachpad and agent's conversation
@@ -665,7 +671,7 @@ class ReactAgent(Agent):
         self.step_round += 1
         return LLMChatResponse(pred=observation_for_round, usage={})
 
-    def _prompt_agent(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+    def _prompt_agent(self, llm_chat: LLMChat, question: str, leading_llm_prompt: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         """
         Prompt the LLM with the agent's current prompt and the given question.
         `inf_gen_config` is passed to the LLM's generation function.
@@ -674,7 +680,7 @@ class ReactAgent(Agent):
         # All of the back and forth conversation so far becomes the user prompt.
         user_message: str = self._build_agent_prompt(question)
         conv: Conversation = Conversation(messages=[
-            Message(role="user", content=[ContentTextMessage(text=user_message)])
+            Message(role="user", content=[ContentTextMessage(text=user_message + "\n" + leading_llm_prompt)])
         ])
         response: LLMChatResponse = llm_chat.generate_response(conv, inf_gen_config)
         return response
@@ -923,37 +929,17 @@ class RAGAgent(Agent):
 
 #### Utils ####
 
-def get_tag_at_round(pred: str, tag_type: str, step_round: int) -> str:
-    """
-    Performs a regex match on the prediction to extract the tag.
-    Tag is of the form: `<tag_type round="<step_round>">...</tag_type>`.
-
-    Returns:
-        str: `"<tag_type round="<step_round>">...</tag_type>"`.
-
-    Raises:
-        ValueError: If the tag cannot be parsed.
-    """
-    pattern = f"(<{tag_type} round=\"{step_round}\">.+?</{tag_type}>)"
-    m = re.search(pattern, pred)
-
-    if m:
-        return m.group(1)
-    else:
-        raise ValueError(f"Tag '{pred}' cannot be parsed with {tag_type=} and {step_round=}.")
-
-
 def parse_action(s: str) -> tuple[str, str] | None:
     """
-    Returns a tuple of the action type and the argument, else None if the string s is not in correct format.
-    Correct format: `<action round="<num>">action_type[<argument>]</action>`.
+    Returns a tuple of the action type and the argument, else None if the string s does not contain the correct format.
+    Correct format: `action_type[<argument>]`.
 
     Raises:
         ValueError: If the action cannot be parsed.
     """
     # Extract the action type (any word string) and argument (any string within square brackets)
     # argument can be empty as well
-    pattern = r'<action round="\d">(\w+)\[(.*?)\]</action>'
+    pattern = r'(\w+)\[(.*?)\]'
     m = re.search(pattern, s)
     
     if m:

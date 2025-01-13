@@ -4,7 +4,7 @@ Generates a plot for each metric (EM, precision, recall, f1) with the universe s
 Saves the plots to the figures directory of the output directory.
 
 Example:
-    python plot_size_accuracy.py -od out --method zeroshot
+    python eval/plot_size_accuracy.py -od out --method zeroshot
 """
 
 # %%
