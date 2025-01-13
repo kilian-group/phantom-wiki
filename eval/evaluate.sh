@@ -2,20 +2,28 @@
 # Script to generate all tables and plots
 # Example usage (make sure you are in the repo root directory):
 # ```bash
+# ./eval/evaluate.sh OUTPUT_DIRECTORY "zeroshot fewshot"
 # ./eval/evaluate.sh OUTPUT_DIRECTORY
 # ```
+# The second command (without the method list) will use the default method list
 
 OUTPUT_DIR=$1
-METHOD_LIST=(
-    "zeroshot"
-    "fewshot"
-    "cot"
-    "zeroshot-sc"
-    "fewshot-sc"
-    "cot-sc"
-    "react"
-    "act"
-)
+# If second argument is provided, use that for METHOD_LIST
+if [ -z "$2" ]; then
+    echo "Using default method list"
+    METHOD_LIST=(
+        "zeroshot"
+        "fewshot"
+        "cot"
+        "zeroshot-sc"
+        "fewshot-sc"
+        "cot-sc"
+        "react"
+        "act"
+    )
+else
+    METHOD_LIST=($2)
+fi
 # construct split list
 for seed in 1 2 3 4 5
 do
