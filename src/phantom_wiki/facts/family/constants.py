@@ -1,4 +1,3 @@
-# types
 PERSON_TYPE = "person"
 
 FAMILY_FACT_TEMPLATES = {
