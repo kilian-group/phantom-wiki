@@ -114,7 +114,6 @@ male_first_cousin_once_removed(X, Y) :-
     son(A, Y),
     X \= Y.
 
-# in-law relations
 mother_in_law(X, Y) :-
     married(X, A),
     mother(A, Y).
