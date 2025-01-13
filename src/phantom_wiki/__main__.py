@@ -24,6 +24,7 @@ from .utils import blue, get_parser, generate_unique_id
 from .utils.get_answer import get_answer
 from .facts.family import fam_gen_parser
 from .facts import question_parser
+from .facts.question_difficulty import calculate_query_difficulty
 
 def check_git_status():
     try:
@@ -173,6 +174,7 @@ def main(args):
             # since prolog executes goals from left to right
             all_results, final_results = get_answer(query, db, answer)
             # make unique and sort in alphabetical order
+            question_difficulty = calculate_query_difficulty(query)
             questions.append({
                 "id": generate_unique_id(),
                 "question": question,
@@ -181,6 +183,7 @@ def main(args):
                 "prolog": {"query": query, "answer": answer},
                 "template": question_template,
                 "type": i, # this references the template type
+                "difficulty": question_difficulty
             })
             if args.question_format == "json_by_type":
                 with open(os.path.join(question_dir, f"type{i}.json"), "w") as file:
