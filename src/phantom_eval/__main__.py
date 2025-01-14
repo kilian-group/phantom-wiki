@@ -251,6 +251,7 @@ def save_preds(
             "interaction": interactions[i].model_dump() if interactions else [],
             "metadata": {
                 "model": args.model_name,
+                "dataset": args.dataset,
                 "split": split,
                 "batch_size": batch_size,
                 "batch_number": batch_number,
