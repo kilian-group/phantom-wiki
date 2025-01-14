@@ -63,6 +63,10 @@ class PersonFactory:
         self._female_names: List[str] = []
         self._male_names: List[str] = []
         self._last_names: List[str] = []
+        self._remaining_male_last_names: List[str] = []
+        self._remaining_female_last_names: List[str] = []
+        self._remaining_both_last_names: List[str] = []
+        self._remaining_either_last_names: List[str] = []
 
         # Birth date constraints
         self._min_parent_age = 18
@@ -93,20 +97,37 @@ class PersonFactory:
         with open(family_names_file, 'r') as f:
             self._last_names = json.load(f)
 
+        self._remaining_male_last_names = self._last_names.copy()
+        self._remaining_female_last_names = self._last_names.copy()
+        self._remaining_both_last_names = self._last_names.copy()
+        self._remaining_either_last_names = self._last_names.copy()
+
         for last_name in self._last_names:
             self._remaining_names[last_name] = {
                 True: self._female_names.copy(),
                 False: self._male_names.copy()
             }
 
-    def _get_last_name(self) -> str:
+    def _get_last_name(self, female:bool = None) -> str:
         """Get an available last name"""
-        last_name = random.choice(self._last_names)
+        if female is None: # Need to choose a last name that still has male and female first names
+            last_name_pool = self._remaining_both_last_names
+        else: # Need to choose a last name that this has first names depending on female value
+            last_name_pool = self._remaining_female_last_names if female else self._remaining_male_last_names
+
+        if last_name_pool==[]:
+            raise NotImplementedError("Insufficient names: Generating a dataset of this size is not supported")
+        
+        last_name = random.choice(last_name_pool)
         return last_name
 
     def _get_first_name(self, female:bool , surname: str) -> str:
         """Get an available first name based on gender and surnmame"""
         name_pool = self._remaining_names[surname][female]
+
+        if name_pool==[]:
+            raise NotImplementedError("Insufficient names: Generating a dataset of this size is not supported")
+        
         name_index = random.randrange(len(name_pool))
 
         if not self.duplicate_names:
@@ -115,16 +136,20 @@ class PersonFactory:
             name = name_pool[name_index]
 
         if len(name_pool)==0:
-            del self._last_names[surname]
+            last_name_pool = self._remaining_female_last_names if female else self._remaining_male_last_names
+            del last_name_pool[surname]
 
-            if self._last_names==[]:
-                raise NotImplementedError("Insufficient names: Generating a dataset of this size is not supported")
+            del self._remaining_both_last_names[surname]
+
+            other_last_name_pool = self._remaining_male_last_names if female else self._remaining_female_last_names
+            if surname not in other_last_name_pool:
+                del self._remaining_either_last_names[surname]
 
         return name
 
     def _get_name(self, female: bool) -> str:
         """Get an available name, last_name based on gender."""
-        last_name = self._get_last_name()
+        last_name = self._get_last_name(female)
         name = self._get_first_name(female , last_name)
 
         return name, last_name
@@ -239,7 +264,7 @@ class PersonFactory:
         if female:
             new_surname = spouse.surname
         else:
-            new_surname = self._get_last_name()
+            new_surname = self._get_last_name(female)
             spouse.surname = new_surname
 
         return self.create_person(tree_level, new_surname, spouse_dob, female)
@@ -262,7 +287,7 @@ class PersonFactory:
             female = random.random() > 0.5
         
         if surname is None:
-            surname = self._get_last_name()
+            surname = self._get_last_name(female)
 
         name = self._get_first_name(female, surname)
         self._person_counter += 1
