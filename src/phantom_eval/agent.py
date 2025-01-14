@@ -447,18 +447,23 @@ class ActAgent(Agent):
             case "RetrieveArticle":
                 try:
                     # Fetch the article for the requested entity by looking up the title
-                    article: str = self.text_corpus.loc[self.text_corpus["title"] == action_arg, "article"].values[0]
+                    # Indexing 0 raises IndexError if search is empty, i.e. no article found
+                    article: str = self.text_corpus.loc[
+                        self.text_corpus["title"].str.lower() == action_arg.lower(), "article"
+                    ].values[0]
                     observation_str = format_pred(article)
                 except IndexError:
                     observation_str = f"No article exists for the requested entity. Please try retrieving article for another entity."
             case "Search":
-                try:
-                    # Fetch all articles that contain the requested attribute
-                    articles: list[str]  = self.text_corpus.loc[self.text_corpus["article"].str.contains(action_arg), "article"].tolist()
+                # Fetch all articles that contain the requested attribute
+                articles: list[str]  = self.text_corpus.loc[
+                    self.text_corpus["article"].str.lower().str.contains(action_arg.lower()), "article"
+                ].tolist()
+                if len(articles) == 0:
+                    observation_str = f"No articles contain the requested attribute. Please try searching for another attribute."
+                else:
                     enum_articles: str = "\n\n".join(f"({i+1}) {article}" for i, article in enumerate(articles))
                     observation_str = format_pred(enum_articles)
-                except IndexError:
-                    observation_str = f"No articles contain the requested attribute. Please try searching for another attribute."
             case _:
                 observation_str = "Invalid action. Valid actions are RetrieveArticle[{{entity}}], Search[{{attribute}}], and Finish[{{answer}}]."
         observation_for_round = f"Observation {self.step_round}: {observation_str}"
@@ -609,18 +614,23 @@ class ReactAgent(Agent):
             case "RetrieveArticle":
                 try:
                     # Fetch the article for the requested entity by looking up the title
-                    article: str = self.text_corpus.loc[self.text_corpus["title"] == action_arg, "article"].values[0]
+                    # Indexing 0 raises IndexError if search is empty, i.e. no article found
+                    article: str = self.text_corpus.loc[
+                        self.text_corpus["title"].str.lower() == action_arg.lower(), "article"
+                    ].values[0]
                     observation_str = format_pred(article)
                 except IndexError:
                     observation_str = f"No article exists for the requested entity. Please try retrieving article for another entity."
             case "Search":
-                try:
-                    # Fetch all articles that contain the requested attribute
-                    articles: list[str]  = self.text_corpus.loc[self.text_corpus["article"].str.contains(action_arg), "article"].tolist()
+                # Fetch all articles that contain the requested attribute
+                articles: list[str]  = self.text_corpus.loc[
+                    self.text_corpus["article"].str.lower().str.contains(action_arg.lower()), "article"
+                ].tolist()
+                if len(articles) == 0:
+                    observation_str = f"No articles contain the requested attribute. Please try searching for another attribute."
+                else:
                     enum_articles: str = "\n\n".join(f"({i+1}) {article}" for i, article in enumerate(articles))
                     observation_str = format_pred(enum_articles)
-                except IndexError:
-                    observation_str = f"No articles contain the requested attribute. Please try searching for another attribute."
             case _:
                 observation_str = "Invalid action. Valid actions are RetrieveArticle[{{entity}}], Search[{{attribute}}], and Finish[{{answer}}]."
         observation_for_round = f"Observation {self.step_round}: {observation_str}"

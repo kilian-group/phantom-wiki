@@ -1,7 +1,7 @@
 from ..facts.database import Database
+import logging
 
-
-def get_answer(query: list[str], db: Database, answer: str):
+def get_answer(query: list[str], db: Database, answer: str, add_intermediate_answers: bool = False):
     """Get the answer to a query from the database
 
     Args:
@@ -24,17 +24,25 @@ def get_answer(query: list[str], db: Database, answer: str):
     and final_results is ["Bob"] 
             
     """
-    all_results=[]
     reversed_query = query[::-1]
-    # to get intermediate answers, we get the answer for each subset of the query, each time incremented by one subquery
-    for i in range(len(reversed_query)):
-        partial_results = db.query(", ".join(reversed_query[:i+1]))
-        unique_dicts = {tuple(sorted(d.items())) for d in partial_results}
-        unique_list = [dict(items) for items in unique_dicts]
-        # some of the values are of Variable type which is not hashable type so we need to convert them to str
-        unique_list = [{k: str(v) for k, v in d.items()} for d in unique_list]
-        partial_results = sorted(unique_list, key=lambda x: tuple(x.items()))
-        all_results.append(partial_results)
+    if add_intermediate_answers:
+        all_results=[]
+        # to get intermediate answers, we get the answer for each subset of the query, each time incremented by one subquery
+        for i in range(len(reversed_query)):
+            intermediate_query =  ", ".join(reversed_query[:i+1])
+            partial_results = db.query(intermediate_query)
+            unique_results = {
+                tuple(sorted((k, str(v)) for k, v in d.items()))
+                for d in partial_results
+            }
+            unique_list = [dict(items) for items in unique_results] # list of dicts
+
+            partial_results = sorted(unique_list, key=lambda x: tuple(x.items()))
+            all_results.append(partial_results)
+    else:
+        logging.warning("Skipping intermediate answers")
+        all_results = []
+
     final_results = [str(x[answer]) for x in db.query(", ".join(reversed_query))]
     final_results = sorted(set(final_results))
 

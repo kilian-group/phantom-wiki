@@ -30,6 +30,7 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
                 # This can be overridden by setting `use_api=True` in the model_kwargs.
                 # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
                 use_api=(args.method in ["react", "act", "react->cot-sc", "cot-sc->react"]),
+                port=args.inf_vllm_port,
             )
         case _:
             model_kwargs = dict(
@@ -111,7 +112,7 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
 
 
 async def main(args: argparse.Namespace) -> None:
-    logger.info(f"Loading LLM={args.model_name}")
+    logger.info(f"Loading LLM='{args.model_name}'")
     model_kwargs = get_model_kwargs(args)
     llm_chat: LLMChat = get_llm(args.model_name, model_kwargs=model_kwargs)
     llm_prompt: LLMPrompt = get_llm_prompt(args.method, args.model_name)
@@ -126,10 +127,10 @@ async def main(args: argparse.Namespace) -> None:
     )
 
     for seed in args.inf_seed_list:
-        logger.info(f"Running inference for method={args.method} with {seed=}")
+        logger.info(f"Running inference for method='{args.method}' with {seed=}")
         for split in args.split_list:
-            logger.info(f"Loading dataset {split=}")
-            dataset = load_data(split)
+            logger.info(f"Loading dataset='{args.dataset}' :: {split=}")
+            dataset = load_data(args.dataset, split)
             df_qa_pairs = pd.DataFrame(dataset["qa_pairs"])
             df_text = pd.DataFrame(dataset["text"])
 

@@ -6,11 +6,13 @@
 import json
 import os
 import numpy as np
+import pandas as pd
 import time
 import logging
 import subprocess
 import sys
 from datetime import datetime
+from tqdm import tqdm
 
 # phantom wiki functionality
 from .facts import (get_database,
@@ -93,11 +95,15 @@ def main(args):
         handlers=[logging.StreamHandler()]
     )
 
-    start_time=time.time()
     # save the executed command and Git commit hash to a file 
     save_command_and_git_info(args.output_dir)
 
     logging.info(f"Output dir: {args.output_dir}")
+
+    # create dictionary to store timings
+    timings = {}
+    global_start = time.time()
+
     # 
     # Step 1. Generate facts
     #
@@ -105,17 +111,20 @@ def main(args):
     db.define("nonbinary/1")
 
     blue("Generating facts")
+    start = time.time()
     # generate family tree
     db_generate_family(db, args)
     # generate friend relationships between people in the database
     db_generate_friendships(db, args)
     # generate jobs, hobbies for each person in the database
     db_generate_attributes(db, args)
+    timings['facts_generate'] = time.time() - start
 
+    db_path = os.path.join(args.output_dir, "facts.pl")
+    blue(f"Saving Prolog database to {db_path}")
     facts_time = time.time()
-
-    # save the database to a file
-    db.save_to_disk(os.path.join(args.output_dir, "facts.pl"))
+    db.save_to_disk(db_path)
+    timings['facts_save'] = time.time() - facts_time
 
     article_time = time.time()
     #
@@ -123,9 +132,12 @@ def main(args):
     # Currently, the articles are comprised of a list of facts.
     #
     blue("Generating articles")
-    # TODO: add code to merge family and CFG articles
-    # currently, we just pass in the family article
+    start = time.time()
     articles = get_articles(db, db.get_names())
+    timings['articles_generate'] = time.time() - start
+
+    blue("Saving articles")
+    start = time.time()
     if args.article_format == "txt":
         article_dir = os.path.join(args.output_dir, "articles")
         logging.info(f"Saving articles to: {article_dir}")
@@ -140,12 +152,13 @@ def main(args):
             json.dump([{"title" : name, "article" : article} for name, article in articles.items()], file, indent=4)
     else:
         raise ValueError(f"Article format {args.article_format} not supported!")
+    timings['articles_save'] = time.time() - start
 
-    question_time = time.time()
     #
     # Step 3. Generate question-answer pairs
     #
     blue("Generating question answer pairs")
+    start = time.time()
     # generate question templates with a given depth
     templates = generate_templates(depth=args.depth)
     # sample questions for each template (i.e., type)
@@ -155,7 +168,8 @@ def main(args):
         os.makedirs(question_dir, exist_ok=True)
 
     all_questions = []
-    for i, (question_template, query_template, answer) in enumerate(templates):
+    progbar = tqdm(enumerate(templates), desc="Generating questions", total=len(templates))
+    for i, (question_template, query_template, answer) in progbar:
         # Reset the seed at the start of each question type
         # so that sampled questions are the same for each question type
         rng = np.random.default_rng(args.seed)
@@ -189,20 +203,29 @@ def main(args):
                 with open(os.path.join(question_dir, f"type{i}.json"), "w") as file:
                     json.dump(questions, file, indent=4)
         all_questions.extend(questions)
+        # update progbar
+        progbar.set_description(f"Template ({i+1}/{len(templates)})")
+    timings['questions_generate'] = time.time() - start
 
+    blue("Saving questions")
+    start = time.time()
     if args.question_format == "json":
         # save all questions to a single file
         save_path = os.path.join(args.output_dir, "questions.json")
         logging.info(f"Saving questions to: {save_path}")
         with open(save_path, "w") as file:
             json.dump(all_questions, file, indent=4)
+    timings['questions_save'] = time.time() - start
 
-    logging.info("Benchmarking Results:")
-    logging.info(f"Generating all facts: {facts_time-start_time:.4f}s")
-    logging.info(f"Saving all facts in dataframe: {article_time-facts_time:.4f}s")
-    logging.info(f"Generating and writing all articles: {question_time-article_time:.4f}s")
-    logging.info(f"Generating and writing Q/As: {time.time()-question_time:.4f}s")
-    logging.info(f"Total time: {time.time()-start_time:.4f}s")
+    timings['total'] = time.time() - global_start
+
+    logging.info("Benchmarking results:")
+    df_timings = pd.DataFrame([timings])
+    logging.info(df_timings.T.to_markdown())
+    timings_path = os.path.join(args.output_dir, "timings.csv")
+    logging.info(f"Saving timings to {timings_path}")
+    df_timings.to_csv(timings_path, index=False)
+    blue("Done!")
 
 if __name__ == "__main__":
     # we combine a base parser with the family generator parser
