@@ -147,7 +147,7 @@ class Generator:
             family_tree = self._sample_family_tree(args)
             family_trees.append(family_tree)
             
-        logging.info(f"Generated family tree of {sum([len(tree) for tree in family_trees])} individuals in {time.time()-all_time_start:.3f}s.")
+        logging.info(f"Generated {len(family_trees)} family trees for a total of {sum([len(tree) for tree in family_trees])} individuals in {time.time()-all_time_start:.3f}s.")
 
         return family_trees
     
