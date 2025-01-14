@@ -57,6 +57,9 @@ def get_parser() -> argparse.ArgumentParser:
                         help="Batch number (>=1). For example, if batch_size=100 and batch_number=1, " \
                             "then the first 100 questions will be evaluated " \
                             "if None (default), all batches will be evaluated")
+    parser.add_argument("--force", "-f", action="store_true",
+                        help="Force to overwrite the output file" \
+                            "Otherwise, it will skip the evaluation if the output file exists")
     # Saving params
     parser.add_argument("--output_dir", "-od", default="out",
                     help="Path to read/write the outputs")

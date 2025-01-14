@@ -149,8 +149,21 @@ async def main(args: argparse.Namespace) -> None:
                 and (args.method not in ["react", "act", "react->cot-sc", "cot-sc->react"])
             batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
             for batch_number in range(1, math.ceil(num_df_qa_pairs/batch_size) + 1):
+                run_name = (
+                    f"split={split}" \
+                    + f"__model_name={args.model_name.replace('/', '--')}" \
+                    + f"__bs={batch_size}" \
+                    + f"__bn={batch_number}" \
+                    + f"__seed={seed}"
+                )
+                pred_path = Path(args.output_dir) / "preds" / args.method / f"{run_name}.json"
+
                 # Skip if the batch number is not the one specified
                 if (args.batch_number is not None) and (batch_number != args.batch_number):
+                    continue
+                # Skip if the output file already exists and --force is not set
+                if pred_path.exists() and not args.force:
+                    logger.info(f"Skipping {pred_path} as it already exists. Use --force to overwrite.")
                     continue
 
                 # Get batch
@@ -192,14 +205,6 @@ async def main(args: argparse.Namespace) -> None:
                             agent_interactions.append(agent.agent_interactions)
 
                 # Log the final answers for the batch
-                run_name = (
-                    f"split={split}" \
-                    + f"__model_name={args.model_name.replace('/', '--')}" \
-                    + f"__bs={batch_size}" \
-                    + f"__bn={batch_number}" \
-                    + f"__seed={seed}"
-                )
-                pred_path = Path(args.output_dir) / "preds" / args.method / f"{run_name}.json"
                 pred_path.parent.mkdir(parents=True, exist_ok=True)
                 logger.info(f"Saving predictions to {pred_path}")
 
