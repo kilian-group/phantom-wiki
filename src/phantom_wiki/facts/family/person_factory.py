@@ -54,10 +54,12 @@ class Person:
 class PersonFactory:
     """A factory class for creating Person instances."""
     
-    def __init__(self):
+    def __init__(self, duplicate_names):
         self._person_counter = 0
-        self._remaining_female_names: List[str] = []
-        self._remaining_last_names: List[str] = []
+        self.duplicate_names = duplicate_names
+
+        # Name datastructures
+        self._remaining_names = dict() 
         self._female_names: List[str] = []
         self._male_names: List[str] = []
         self._last_names: List[str] = []
@@ -75,6 +77,8 @@ class PersonFactory:
         self._std_twin_time_diff = 10
         self._min_days_sibling_diff = 300
 
+        self.load_names() 
+
     def load_names(self) -> None:
         """Load names from JSON files."""
         from importlib.resources import files
@@ -88,45 +92,42 @@ class PersonFactory:
             self._male_names = json.load(f)
         with open(family_names_file, 'r') as f:
             self._last_names = json.load(f)
-        self.reset()
-    
-    def reset_names(self) -> None:
-        """Reset the first (female & male) name pools to their initial state."""
-        self._remaining_female_names = self._female_names[:]
-        self._remaining_male_names = self._male_names[:]
 
-    def reset_surnames(self) -> None:
-        """Reset the last name to its initial state."""
-        self._remaining_last_names = self._last_names[:]
+        for last_name in self._last_names:
+            self._remaining_names[last_name] = {
+                True: self._female_names.copy(),
+                False: self._male_names.copy()
+            }
 
-    def reset(self) -> None:
-        """Reset the name pools to their initial state."""
-        self.reset_names()
-        self.reset_surnames()
+    def _get_last_name(self) -> str:
+        """Get an available last name"""
+        last_name = random.choice(self._last_names)
+        return last_name
 
-    def _get_next_surname(self) -> str:
-        """Get the next available surname"""
-        name_pool = self._last_names
-
-        surname_index = random.randrange(len(name_pool))
-        surname = name_pool.pop(surname_index)
-
-        if not name_pool:
-            raise NotImplementedError(f"Insufficient surnames: Generating more family trees than available surnames ({len(self._last_names)} total surnames)")
-        
-        return surname
-
-    def _get_next_name(self, female: bool) -> str:
-        """Get the next available name based on gender."""
-        name_pool = self._remaining_female_names if female else self._remaining_male_names
-
+    def _get_first_name(self, female:bool , surname: str) -> str:
+        """Get an available first name based on gender and surnmame"""
+        name_pool = self._remaining_names[surname][female]
         name_index = random.randrange(len(name_pool))
-        name = name_pool.pop(name_index)
 
-        if not name_pool:
-            raise NotImplementedError(f"Insufficient first names: Generating more people in a family tree than available first names ({len(self._female_names)}, {len(self._male_names)} total female and male names)")
-        
+        if not self.duplicate_names:
+            name = name_pool.pop(name_index)
+        else:
+            name = name_pool[name_index]
+
+        if len(name_pool)==0:
+            del self._last_names[surname]
+
+            if self._last_names==[]:
+                raise NotImplementedError("Insufficient names: Generating a dataset of this size is not supported")
+
         return name
+
+    def _get_name(self, female: bool) -> str:
+        """Get an available name, last_name based on gender."""
+        last_name = self._get_last_name()
+        name = self._get_first_name(female , last_name)
+
+        return name, last_name
     
     def create_parents(self, tree_level:int, children: Person) -> List[Person]:
         """ Given a children, it will create its 2 parents
@@ -152,7 +153,7 @@ class PersonFactory:
         
         # Generate lastname
         if children.female and children.married_to: 
-            parent_surname = self._get_next_surname()
+            parent_surname = self._get_last_name()
         else:
             parent_surname = children.surname
 
@@ -238,7 +239,7 @@ class PersonFactory:
         if female:
             new_surname = spouse.surname
         else:
-            new_surname = self._get_next_surname()
+            new_surname = self._get_last_name()
             spouse.surname = new_surname
 
         return self.create_person(tree_level, new_surname, spouse_dob, female)
@@ -261,9 +262,9 @@ class PersonFactory:
             female = random.random() > 0.5
         
         if surname is None:
-            surname = self._get_next_surname()
+            surname = self._get_last_name()
 
-        name = self._get_next_name(female)
+        name = self._get_first_name(female, surname)
         self._person_counter += 1
 
         return Person(

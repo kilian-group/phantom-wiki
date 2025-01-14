@@ -74,8 +74,7 @@ def db_generate_family(db, args: ArgumentParser):
     # set the random seed
     random.seed(args.seed)
     # Get the prolog family tree
-    pf = PersonFactory()
-    pf.load_names()
+    pf = PersonFactory(args.duplicate_names)
 
     gen = Generator(pf)
     family_trees = gen.generate(args)
