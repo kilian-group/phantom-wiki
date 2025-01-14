@@ -2,11 +2,10 @@ import abc
 import logging
 import re
 from collections import Counter
-from copy import deepcopy
 
 import pandas as pd
 
-from phantom_eval.llm import LLMChat, LLMChatResponse, InferenceGenerationConfig
+from phantom_eval.llm import LLMChat, LLMChatResponse, InferenceGenerationConfig, aggregate_usage
 from phantom_eval.data import Conversation, ContentTextMessage, Message
 from phantom_eval.prompts import LLMPrompt
 from phantom_eval.score import normalize_pred
@@ -96,23 +95,16 @@ class NshotAgent(Agent):
     def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
-        # Initialize agent interactions
-        self.agent_interactions = Conversation(messages=[])
-        # Create a conversation with 1 user prompt
+        # Create a conversation with 1 user prompt and initialize agent interactions
         prompt = self._build_agent_prompt(question)
-        msg = Message(role="user", content=[ContentTextMessage(text=prompt)])
-        # Add the initial message to agent's conversation
-        self.agent_interactions.messages.append(msg)
+        conv = Conversation(messages=[Message(role="user", content=[ContentTextMessage(text=prompt)])])
+        self.agent_interactions = conv
         
         # Generate response
         # Add "\n" to stop_sequences
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
-        response = llm_chat.generate_response(
-            Conversation(
-                messages=[msg] 
-            ), 
-            inf_gen_config
-        )
+        response = llm_chat.generate_response(conv, inf_gen_config)
+
         # Update agent's conversation
         self.agent_interactions.messages.append(
             Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
@@ -123,25 +115,19 @@ class NshotAgent(Agent):
     async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
         logger.debug(f"\n\t>>> questions: {questions}\n")
 
-        # Initialize agent interactions (one for each question)
-        self.agent_interactions = [Conversation(messages=[]) for _ in questions]
-        # Create a conversation with 1 user prompt
-        prompts = [self._build_agent_prompt(question) for question in questions]
-        msgs = [
-            Message(role="user", content=[ContentTextMessage(text=prompt)])
+        # Create a conversation for each user prompt, and initialize agent interactions
+        prompts: list[str] = [self._build_agent_prompt(question) for question in questions]
+        convs = [
+            Conversation(messages=[Message(role="user", content=[ContentTextMessage(text=prompt)])])
             for prompt in prompts
         ]
+        self.agent_interactions = convs
         
         # Generate response
         # Change stop_sequences to "\n"
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
-        responses = await llm_chat.batch_generate_response(
-            [
-                Conversation(messages=[msg])
-                for msg in msgs
-            ], 
-            inf_gen_config
-        )
+        responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
+
         # Add the responses to the agent's conversations
         for i, response in enumerate(responses):
             self.agent_interactions[i].messages.append(
@@ -178,7 +164,7 @@ class SCMixin:
         """
         n_preds = len(responses)
         preds: list[set[str]] = [normalize_pred(response.pred, sep) for response in responses]
-        usage: dict = self._aggregate_usage([response.usage for response in responses])
+        total_usage: dict = aggregate_usage([response.usage for response in responses])
 
         # Flatten the list of sets to a single list, e.g. becomes [A, B, A, B, C]
         all_answers: list[str] = [answer for pred in preds for answer in pred]
@@ -189,29 +175,8 @@ class SCMixin:
         error = None if len(majority_responses) > 0 else f"<agent_error>No majority vote found in {vote_counts=}.</agent_error>"
 
         majority_responses_str = sep.join(majority_responses)
-        return LLMChatResponse(pred=majority_responses_str, usage=usage, error=error)
+        return LLMChatResponse(pred=majority_responses_str, usage=total_usage, error=error)
     
-    def _aggregate_usage(self, usage_list: list[dict]) -> dict:
-        """Recursively sum the values of the usage dict.
-
-        NOTE: assumes that each usage dict shares a common schema.
-        Otherwise, value errors may occur.
-
-        Args:
-            usage_list (list[dict]): List of usage dict objects.
-        Returns:
-            dict: The aggregated usage dict.
-        """
-        if len(usage_list) <= 0:
-            return {}
-        result = deepcopy(usage_list[0]) # use first usage dict as reference
-        for key in result.keys():
-            if isinstance(result[key], dict):
-                result[key] = self._aggregate_usage([usage[key] for usage in usage_list])
-            else:
-                result[key] = sum([usage[key] for usage in usage_list])
-        return result
-
 
 class NshotSCAgent(NshotAgent, SCMixin):
     """
@@ -267,21 +232,21 @@ class CoTAgent(Agent):
     def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
         
-        # initialize agent interactions
-        self.agent_interactions = Conversation(messages=[])
-        # Create intial message
-        msg = Message(role="user", content=[ContentTextMessage(text=self._build_agent_prompt(question))])
-        # Add the initial message to agent's conversation
-        self.agent_interactions.messages.append(msg)
+        # Create a conversation with 1 user prompt and initialize agent interactions
+        prompt = self._build_agent_prompt(question)
+        conv = Conversation(messages=[Message(role="user", content=[ContentTextMessage(text=prompt)])])
+        self.agent_interactions = conv
+        
         # Generate response
-        response = llm_chat.generate_response(Conversation(messages=[msg]), inf_gen_config)
+        response = llm_chat.generate_response(conv, inf_gen_config)
+
         # Add the response to the agent's conversation
         self.agent_interactions.messages.append(
             Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
         )
         
         return LLMChatResponse(
-            pred=self.parse_answer(response.pred),
+            pred=CoTAgent.parse_answer(response.pred),
             usage=response.usage,
             error=response.error,
         )
@@ -289,25 +254,17 @@ class CoTAgent(Agent):
     async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
         logger.debug(f"\n\t>>> questions: {questions}\n")
 
-        # Initialize agent interactions (one for each question)
-        self.agent_interactions = [Conversation(messages=[]) for _ in questions]
-        # Create a conversation with 1 user prompt
-        msgs = [
-            Message(role="user", content=[ContentTextMessage(text=self._build_agent_prompt(question))])
-            for question in questions
+        # Create a conversation for each user prompt, and initialize agent interactions
+        prompts: list[str] = [self._build_agent_prompt(question) for question in questions]
+        convs = [
+            Conversation(messages=[Message(role="user", content=[ContentTextMessage(text=prompt)])])
+            for prompt in prompts
         ]
-        # Add the initial messages to agent's conversations
-        for i, msg in enumerate(msgs):
-            self.agent_interactions[i].messages.append(msg)
-        
+        self.agent_interactions = convs
+
         # Generate response
-        responses = await llm_chat.batch_generate_response(
-            [
-                Conversation(messages=[msg])
-                for msg in msgs
-            ], 
-            inf_gen_config
-        )
+        responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
+
         # Add the responses to the agent's conversations
         for i, response in enumerate(responses):
             self.agent_interactions[i].messages.append(
@@ -316,7 +273,7 @@ class CoTAgent(Agent):
         
         return [
             LLMChatResponse(
-                pred=self.parse_answer(response.pred),
+                pred=CoTAgent.parse_answer(response.pred),
                 usage=response.usage,
                 error=response.error,
             ) 
@@ -437,23 +394,26 @@ class ActAgent(Agent):
             Message(role="user", content=[ContentTextMessage(text=self._build_agent_prompt(question))])
         )
 
+        total_usage: dict = {}
         while (self.step_round <= self.max_steps) and (not self.finished):
             try:
                 response = self._step_action(llm_chat, question, inf_gen_config)
+                total_usage = aggregate_usage([total_usage, response.usage])
 
                 response = self._step_observation(response)
+                total_usage = aggregate_usage([total_usage, response.usage])
             except Exception as e:
                 response = LLMChatResponse(
-                    pred="", usage={}, error=f"<agent_error>{e}</agent_error>"
+                    pred="", usage=total_usage, error=f"<agent_error>{e}</agent_error>"
                 )
                 break
 
         if (self.step_round > self.max_steps) and (not self.finished):
             response = LLMChatResponse(
-                pred="", usage={}, error=f"<agent_error>Max act steps ({self.max_steps}) reached without finishing.</agent_error>"
+                pred="", usage=total_usage, error=f"<agent_error>Max act steps ({self.max_steps}) reached without finishing.</agent_error>"
             )
 
-        return response
+        return LLMChatResponse(pred=response.pred, usage=total_usage, error=response.error)
 
     def _step_action(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         """
@@ -476,7 +436,7 @@ class ActAgent(Agent):
     def _step_observation(self, response_action: LLMChatResponse) -> LLMChatResponse:
         """
         Run the observation step of the agent and increments the step round.
-        Returned usage is empty since the LLM is not called.
+        NOTE: Returned usage is empty since the LLM is not called.
         """
         action_type, action_arg = parse_action(response_action.pred)
         match action_type:
@@ -573,27 +533,31 @@ class ReactAgent(Agent):
             Message(role="user", content=[ContentTextMessage(text=self._build_agent_prompt(question))])
         )
 
+        total_usage: dict = {}
         while (self.step_round <= self.max_steps) and (not self.finished):
             try:
                 response = self._step_thought(llm_chat, question, inf_gen_config)
+                total_usage = aggregate_usage([total_usage, response.usage])
 
                 response = self._step_action(llm_chat, question, inf_gen_config)
+                total_usage = aggregate_usage([total_usage, response.usage])
 
                 response = self._step_observation(response)
+                total_usage = aggregate_usage([total_usage, response.usage])
             except Exception as e:
                 # If an error occurs, return the error message and empty pred
                 response = LLMChatResponse(
-                    pred="", usage={}, error=f"<agent_error>{e}</agent_error>"
+                    pred="", usage=total_usage, error=f"<agent_error>{e}</agent_error>"
                 )
                 break
 
         if (self.step_round > self.max_steps) and (not self.finished):
             # If agent exceeds max steps without answer, return the error message and empty pred
             response = LLMChatResponse(
-                pred="", usage={}, error=f"<agent_error>Max react steps ({self.max_steps}) reached without finishing.</agent_error>"
+                pred="", usage=total_usage, error=f"<agent_error>Max react steps ({self.max_steps}) reached without finishing.</agent_error>"
             )
 
-        return response
+        return LLMChatResponse(pred=response.pred, usage=total_usage, error=response.error)
 
     def _step_thought(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         """
@@ -634,7 +598,7 @@ class ReactAgent(Agent):
     def _step_observation(self, response_action: LLMChatResponse) -> LLMChatResponse:
         """
         Run the observation step of the agent and increments the step round.
-        Returned usage is empty since the LLM is not called.
+        NOTE: Returned usage is empty since the LLM is not called.
         """
         action_type, action_arg = parse_action(response_action.pred)
         match action_type:
@@ -748,23 +712,24 @@ class React_CoTSCAgent(Agent):
         logger.debug(f"\n\t>>> question: {question}\n")
 
         # Run the React agent. If the React agent reaches max steps, run the CoTSC agent.
-        response = self.react_agent.run(llm_chat, question, inf_gen_config)
+        react_response = self.react_agent.run(llm_chat, question, inf_gen_config)
         self.agent_interactions = self.react_agent.agent_interactions
-        match response.error:
+        match react_response.error:
             case None:
                 # No error occurred, return the React agent's response
                 # None case must be before error_msg case, because "in" operator is used in error_msg case
-                return response
+                return react_response
             case error_msg if "<agent_error>Max react steps" in error_msg:
                 # If the React agent reaches max steps, run the CoTSC agent
                 cotsc_inf_gen_config = inf_gen_config.model_copy(update=dict(temperature=self.cotsc_inf_temperature), deep=True)
                 cotsc_response = self.cotsc_agent.run(llm_chat, question, cotsc_inf_gen_config)
                 self.agent_interactions.messages.extend(self.cotsc_agent.agent_interactions.messages)
-                # TODO: Aggregate usage
-                return cotsc_response
+
+                total_usage = aggregate_usage([react_response.usage, cotsc_response.usage])
+                return LLMChatResponse(pred=cotsc_response.pred, usage=total_usage, error=cotsc_response.error)
             case _:
                 # Error msg is not related to max steps, return react's response and abort
-                return response
+                return react_response
 
 
 class CoTSC_ReactAgent(Agent):
@@ -841,11 +806,13 @@ class CoTSC_ReactAgent(Agent):
                 # The CoTSC agent does not get any majority vote answer, run the React agent
                 react_response = self.react_agent.run(llm_chat, question, inf_gen_config)
                 self.agent_interactions.messages.extend(self.react_agent.agent_interactions.messages)
-                # TODO: Aggregate usage
-                return react_response
+
+                total_usage = aggregate_usage([cotsc_response.usage, react_response.usage])
+                return LLMChatResponse(pred=react_response.pred, usage=total_usage, error=react_response.error)
             case _:
                 # Error msg is not related to majority vote, return CoTSC's response and abort
                 return cotsc_response
+
 
 class RAGAgent(Agent):
     def __init__(self, 
