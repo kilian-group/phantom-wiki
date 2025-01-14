@@ -20,7 +20,6 @@ def compare_prolog_dicts(prolog_dict_1: list[dict], prolog_dict_2: list[dict]) -
 
 def test_family_rules_base():
     prolog = Prolog()
-    prolog.consult(FAMILY_RULES_BASE_PATH)
     prolog.consult(FAMILY_TREE_SMALL_EXAMPLE_PATH)
 
     assert compare_prolog_dicts(
@@ -77,8 +76,6 @@ def test_family_rules_base():
 
 def test_family_rules_derived():
     prolog = Prolog()
-    prolog.consult(FAMILY_RULES_BASE_PATH)
-    prolog.consult(FAMILY_RULES_DERIVED_PATH)
     prolog.consult(FAMILY_TREE_SMALL_EXAMPLE_PATH)
 
     assert bool(list(prolog.query("niece('Veronica Donohue', 'Vita Cater')")))
@@ -173,8 +170,6 @@ def test_family_rules_derived():
 
 def test_family_rules_inlaws():
     prolog = Prolog()
-    prolog.consult(FAMILY_RULES_BASE_PATH)
-    prolog.consult(FAMILY_RULES_DERIVED_PATH)
     prolog.consult(FAMILY_TREE_SMALL_EXAMPLE_PATH)
 
     assert compare_prolog_dicts(
