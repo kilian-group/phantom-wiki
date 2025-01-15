@@ -1,9 +1,9 @@
 female(X) :-
-  gender(X, 'female').
+  gender(X, "female").
 male(X) :-
-  gender(X, 'male').
+  gender(X, "male").
 nonbinary(X) :-
-  gender(X, 'nonbinary').
+  gender(X, "nonbinary").
 
 sibling(X, Y) :- 
   parent(X, A), 

@@ -80,7 +80,7 @@ def sample(
         if not bank:
             return None
         choice = rng.choice(bank)
-        query[i] = query_temp_list[i].replace(match, f"\'{choice}\'")
+        query[i] = query_temp_list[i].replace(match, f"\"{choice}\"")
         idx = question.index(match)
         question[idx] = question[idx].replace(match, choice)
         result[match] = choice
