@@ -565,3 +565,4 @@ johann_tests/API_KEY.py
 *slurm*/
 # cache directory for speeding up evaluation
 cachedir/
+.idea/webResources.xml

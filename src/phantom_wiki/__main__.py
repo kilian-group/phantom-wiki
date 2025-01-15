@@ -85,9 +85,6 @@ def main(args):
     else:
         print("Debug mode enabled. Skipping Git status check.")
 
-    # Set up logging
-    logging.getLogger("faker").setLevel(logging.INFO)
-
     if args.quiet:
         log_level = logging.WARNING
     elif args.debug:

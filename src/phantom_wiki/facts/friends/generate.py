@@ -23,7 +23,7 @@ def create_friendship_graph(names, k: int, seed: int, visualize: bool = False, o
     # if there is an edge between two nodes, they are friends
     connected_edges = list(G.edges)
     for i, j in connected_edges:
-        facts.append(f"friend_('{i}', '{j}')")
+        facts.append(f"friend_(\"{i}\", \"{j}\")")
     logging.info(f"Generated friendship tree of {len(names)} individuals in {time.time()-start_time:.3f}s.")
 
     if visualize:
