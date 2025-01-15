@@ -8,6 +8,54 @@
             "the",
             "<relation>_5",
             "of",
+            "the",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        [
+            "<relation>_3(Y_4, Y_2)",
+            "<relation>_5(Y_6, Y_4)",
+            "<relation>_7(Y_8, Y_6)",
+            "<attribute_name>_9(Y_8, <attribute_value>_9)"
+        ],
+        "Y_2"
+    ],
+    [
+        [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the",
+            "<relation>_7",
+            "of",
+            "<name>_8",
+            "?"
+        ],
+        [
+            "<relation>_3(Y_4, Y_2)",
+            "<relation>_5(Y_6, Y_4)",
+            "<relation>_7(<name>_8, Y_6)"
+        ],
+        "Y_2"
+    ],
+    [
+        [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
             "the person whose",
             "<attribute_name>_7",
             "is",
@@ -97,6 +145,58 @@
             "the",
             "<relation>_6",
             "of",
+            "the",
+            "<relation>_8",
+            "of",
+            "<name>_9",
+            "?"
+        ],
+        [
+            "<attribute_name>_3(Y_3, Y_2)",
+            "<relation>_4(Y_5, Y_3)",
+            "<relation>_6(Y_7, Y_5)",
+            "<relation>_8(<name>_9, Y_7)"
+        ],
+        "Y_2"
+    ],
+    [
+        [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "the person whose",
+            "<attribute_name>_8",
+            "is",
+            "<attribute_value>_8",
+            "?"
+        ],
+        [
+            "<attribute_name>_3(Y_3, Y_2)",
+            "<relation>_4(Y_5, Y_3)",
+            "<relation>_6(Y_7, Y_5)",
+            "<attribute_name>_8(Y_7, <attribute_value>_8)"
+        ],
+        "Y_2"
+    ],
+    [
+        [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
             "<name>_7",
             "?"
         ],
@@ -176,8 +276,61 @@
             "the",
             "<relation>_6",
             "of",
+            "the",
+            "<relation>_8",
+            "of",
+            "<name>_9",
+            "have",
+            "?"
+        ],
+        [
+            "aggregate_all(count, distinct(<relation_plural>_2(Y_3, Y_1)), Count_1)",
+            "<relation>_4(Y_5, Y_3)",
+            "<relation>_6(Y_7, Y_5)",
+            "<relation>_8(<name>_9, Y_7)"
+        ],
+        "Count_1"
+    ],
+    [
+        [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "the person whose",
+            "<attribute_name>_8",
+            "is",
+            "<attribute_value>_8",
+            "have",
+            "?"
+        ],
+        [
+            "aggregate_all(count, distinct(<relation_plural>_2(Y_3, Y_1)), Count_1)",
+            "<relation>_4(Y_5, Y_3)",
+            "<relation>_6(Y_7, Y_5)",
+            "<attribute_name>_8(Y_7, <attribute_value>_8)"
+        ],
+        "Count_1"
+    ],
+    [
+        [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
             "<name>_7",
-            "have?"
+            "have",
+            "?"
         ],
         [
             "aggregate_all(count, distinct(<relation_plural>_2(Y_3, Y_1)), Count_1)",
@@ -198,7 +351,8 @@
             "<attribute_name>_6",
             "is",
             "<attribute_value>_6",
-            "have?"
+            "have",
+            "?"
         ],
         [
             "aggregate_all(count, distinct(<relation_plural>_2(Y_3, Y_1)), Count_1)",
@@ -216,7 +370,8 @@
             "<relation>_4",
             "of",
             "<name>_5",
-            "have?"
+            "have",
+            "?"
         ],
         [
             "aggregate_all(count, distinct(<relation_plural>_2(Y_3, Y_1)), Count_1)",
@@ -233,7 +388,8 @@
             "<attribute_name>_4",
             "is",
             "<attribute_value>_4",
-            "have?"
+            "have",
+            "?"
         ],
         [
             "aggregate_all(count, distinct(<relation_plural>_2(Y_3, Y_1)), Count_1)",
@@ -247,7 +403,8 @@
             "<relation_plural>_2",
             "does",
             "<name>_3",
-            "have?"
+            "have",
+            "?"
         ],
         [
             "aggregate_all(count, distinct(<relation_plural>_2(<name>_3, Y_1)), Count_1)"
