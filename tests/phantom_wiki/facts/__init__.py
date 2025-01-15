@@ -23,5 +23,5 @@ for i in range(8):
 
 QUESTIONS_VALID_DICT = {}
 for i in range(8):
-    with open(files("tests").joinpath(f"phantom_wiki/resources_questions/sample_{i}_valid.json")) as f:
+    with open(files("tests").joinpath(f"phantom_wiki/resources/questions/sample_{i}_valid.json")) as f:
         QUESTIONS_VALID_DICT[i] = tuple(json.load(f))
