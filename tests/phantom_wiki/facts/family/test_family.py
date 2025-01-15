@@ -1,6 +1,5 @@
 from pyswip import Prolog
 
-from phantom_wiki.facts.family import FAMILY_RULES_BASE_PATH, FAMILY_RULES_DERIVED_PATH
 from tests.phantom_wiki.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
 
 
