@@ -30,9 +30,9 @@ def test_save_database():
 def test_get_names():
     db = Database.from_disk(DATABASE_SMALL_PATH)
     names = db.get_names()
-    with open("names.json", "w") as f:
-        import json
-        json.dump(names, f, indent=4)
+    # with open("names.json", "w") as f:
+    #     import json
+    #     json.dump(names, f, indent=4)
     assert set(names) == {
         "Adele Ervin",
         "Alton Cater",

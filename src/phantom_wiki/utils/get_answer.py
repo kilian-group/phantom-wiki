@@ -1,4 +1,5 @@
 from ..facts.database import Database
+from . import decode
 import logging
 
 def get_answer(query: list[str], db: Database, answer: str, add_intermediate_answers: bool = False):
@@ -32,7 +33,7 @@ def get_answer(query: list[str], db: Database, answer: str, add_intermediate_ans
             intermediate_query =  ", ".join(reversed_query[:i+1])
             partial_results = db.query(intermediate_query)
             unique_results = {
-                tuple(sorted((k, str(v)) for k, v in d.items()))
+                tuple(sorted((k, decode(v)) for k, v in d.items()))
                 for d in partial_results
             }
             unique_list = [dict(items) for items in unique_results] # list of dicts
@@ -43,7 +44,7 @@ def get_answer(query: list[str], db: Database, answer: str, add_intermediate_ans
         logging.warning("Skipping intermediate answers")
         all_results = []
 
-    final_results = [str(x[answer]) for x in db.query(", ".join(reversed_query))]
+    final_results = [decode(x[answer]) for x in db.query(", ".join(reversed_query))]
     final_results = sorted(set(final_results))
 
     return all_results, final_results

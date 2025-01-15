@@ -9,6 +9,7 @@ from .constants import (ATTRIBUTE_FACT_TEMPLATES,
                         ATTRIBUTE_RELATION)
 from .generate import (generate_jobs,
                        generate_hobbies)
+from ...utils import decode
 # resource containing the attribute rules
 from importlib.resources import files
 ATTRIBUTE_RULES_PATH = files("phantom_wiki").joinpath("facts/attributes/rules.pl")
@@ -25,7 +26,7 @@ def get_attributes(db: Database, name: str):
     attributes = {}
     for attr in ATTRIBUTE_RELATION:
         query = f"{attr}(\"{name}\", X)"
-        results = [result['X'].decode('utf-8') for result in db.query(query)]
+        results = [decode(result['X']) for result in db.query(query)]
         attributes[attr] = results
     return attributes
 

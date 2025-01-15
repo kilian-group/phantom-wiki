@@ -7,15 +7,17 @@ import shutil
 from phantom_wiki.facts.family import fam_gen_parser
 from phantom_wiki.utils import get_parser
 from phantom_wiki.facts import question_parser
+from phantom_wiki.facts.friends import friend_gen_parser
 from phantom_wiki.__main__ import main
 from tests.phantom_wiki import ARTICLE_EXAMPLE_PATH
 
 def test_main():
     parser = get_parser(parents=[
         fam_gen_parser,
-        question_parser
+        question_parser,
+        friend_gen_parser,
     ])
-    args, _ = parser.parse_known_args(["--output-dir", "test_out", "--seed", "1", "--valid-only"])
+    args, _ = parser.parse_known_args(["--output-dir", "test_out", "--seed", "1", "--valid-only", "--debug"])
     main(args)
 
     # get example article
@@ -44,10 +46,10 @@ def test_main():
             "?",
         ]
 
-        assert data[0]["question"] == "Who is the father of the person whose hobby is bus spotting ?"
+        assert data[0]["question"] == "Who is the father of the person whose hobby is bus spotting?"
         assert data[0]["prolog"]["query"] == [
             "father(Y_4, Y_2)", 
-            "hobby(Y_4, 'bus spotting')"
+            "hobby(Y_4, \"bus spotting\")"
         ]
         assert data[0]["answer"] == ["Bruce Cater"]
 
