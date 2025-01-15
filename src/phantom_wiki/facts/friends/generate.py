@@ -4,15 +4,16 @@ import time
 import networkx as nx
 
 
-def create_friendship_graph(names, p: float, seed: int, visualize: bool = False, output_dir: str = None):
+def create_friendship_graph(names, k: int, seed: int, visualize: bool = False, output_dir: str = None):
     """
     Given the names, this creates a friendship graph usign the G(n,p) variant of Erdos-Renyi model.
 
     Returns a list of facts and individual features.
     """
     start_time = time.time()
-    # Generate an Erdős–Rényi random graph
-    G = nx.erdos_renyi_graph(n=len(names), p=p, seed=seed)
+    # Generate an G(n,p) Erdős–Rényi random graph
+    p = k / len(names)
+    G = nx.fast_gnp_random_graph(n=len(names), p=p, seed=seed)
 
     # Rename nodes with names from the list
     mapping = {i: name for i, name in enumerate(names)}

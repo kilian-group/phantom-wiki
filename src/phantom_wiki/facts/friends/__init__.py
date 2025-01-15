@@ -18,7 +18,7 @@ from .constants import (FRIENDSHIP_RELATION,
 
 friend_gen_parser = ArgumentParser(description="Friendship Generator", add_help=False)
 
-friend_gen_parser.add_argument("--friendship-p", type=int, default=0.1, help="Probability for friendship graph edge generation between two people.")
+friend_gen_parser.add_argument("--friendship-k", type=int, default=3, help="Connectivity parameter for friendship generation.")
 friend_gen_parser.add_argument("--friendship-seed", type=int, default=1, help="Seed for friendship generation.")
 friend_gen_parser.add_argument("--visualize", action="store_true", help="Whether or not to visualize the friendship graph.")
 
@@ -34,7 +34,7 @@ def db_generate_friendships(db: Database, args: ArgumentParser):
         args (ArgumentParser): arguments from the CLI.
     """
     names = db.get_names()
-    friendship_facts = create_friendship_graph(names, args.friendship_p, args.friendship_seed, args.visualize, args.output_dir)
+    friendship_facts = create_friendship_graph(names, args.friendship_k, args.friendship_seed, args.visualize, args.output_dir)
     # import pdb; pdb.set_trace()
     db.add(*friendship_facts)
 
