@@ -30,7 +30,6 @@ def get_database(*data_paths) -> Database:
 # Imports for generating facts
 from .attributes import db_generate_attributes
 from .family import db_generate_family
-from .person import db_generate_population
 from .friends import db_generate_friendships
 
 # 

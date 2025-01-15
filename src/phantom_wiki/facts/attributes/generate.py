@@ -1,6 +1,4 @@
-from faker import Faker
 from .constants import HOBBIES, JOBS
-from ..database import Database
 from numpy.random import default_rng
 
 def generate_jobs(names: list[str], seed=1) -> dict[str, str]:
