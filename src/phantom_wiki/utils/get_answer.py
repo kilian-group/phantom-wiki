@@ -38,4 +38,8 @@ def get_answer(query: list[str], db: Database, answer: str):
     final_results = [str(x[answer]) for x in db.query(", ".join(reversed_query))]
     final_results = sorted(set(final_results))
 
+    # convert the results to string to upload to HF 
+    all_results = str(all_results)
+    final_results = str(final_results)
+
     return all_results, final_results
