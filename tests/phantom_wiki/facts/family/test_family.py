@@ -1,9 +1,9 @@
 from pyswip import Prolog
 
-from tests.phantom_wiki.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
+from tests.phantom_wiki.facts import DATABASE_SMALL_107
 
 
-def prolog_result_set(prolog_dict: list[dict]) -> set[list[tuple]]:
+def prolog_result_set(prolog_dict: list[dict]) -> set[tuple]:
     # Convert each dictionary to a list of tuples
     list_of_tuples = [list(d.items()) for d in prolog_dict]
     # Convert the list of tuples to a set of tuples
@@ -16,8 +16,10 @@ def compare_prolog_dicts(prolog_dict_1: list[dict], prolog_dict_2: list[dict]) -
     set_2 = prolog_result_set(prolog_dict_2)
     return set_1 == set_2
 
+
 prolog = Prolog()
-prolog.consult(FAMILY_TREE_SMALL_EXAMPLE_PATH)
+prolog.consult(DATABASE_SMALL_107)
+
 
 def test_family_rules_base():
     assert compare_prolog_dicts(
@@ -162,7 +164,8 @@ def test_family_rules_derived():
         [{"X": "Gustavo Leibowitz"}],
     )
 
-def test_family_rules_inlaws():    
+
+def test_family_rules_inlaws():
     assert compare_prolog_dicts(
         list(prolog.query("father_in_law('Alton Cater', X)")), [{"X": "Tyler Ussery"}]
     )
