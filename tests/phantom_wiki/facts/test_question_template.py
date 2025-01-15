@@ -1,28 +1,23 @@
 # standard imports
 import json
-from numpy.random import default_rng
 
 # phantom wiki functionality
-from phantom_wiki.facts import Database
-from phantom_wiki.facts.sample import sample
 from phantom_wiki.facts.templates import generate_templates
 from phantom_wiki.utils import get_parser
+
 # testing utils
-from tests.phantom_wiki.facts import (DEPTH_6_PATH, 
-                         DEPTH_8_PATH, 
-                         DEPTH_10_PATH,
-                         QUESTIONS_DICT,
-                         QUESTIONS_VALID_DICT)
-from tests.phantom_wiki.facts.family import FACTS_SMALL_EXAMPLE_PATH
+from tests.phantom_wiki.facts import TEMPLATES_DEPTH_6_PATH, TEMPLATES_DEPTH_8_PATH, TEMPLATES_DEPTH_10_PATH
+
+from tests.phantom_wiki.facts import DATABASE_SMALL_PATH
 
 # TODO: come up with a better way to test the question-prolog pair generation
 SAVE_SAMPLE = False
 
-with open(DEPTH_6_PATH) as f:
+with open(TEMPLATES_DEPTH_6_PATH) as f:
     DATA_DEPTH_6 = json.load(f)
-with open(DEPTH_8_PATH) as f:
+with open(TEMPLATES_DEPTH_8_PATH) as f:
     DATA_DEPTH_8 = json.load(f)
-with open(DEPTH_10_PATH) as f:
+with open(TEMPLATES_DEPTH_10_PATH) as f:
     DATA_DEPTH_10 = json.load(f)
 
 
@@ -41,12 +36,14 @@ def test_generate_templates_depth_8():
         assert template[1] == query
         assert template[2] == answer
 
+
 def test_generate_templates_depth_10():
     templates = generate_templates(depth=10)
     for template, (question, query, answer) in zip(templates, DATA_DEPTH_10):
         assert template[0] == question
         assert template[1] == query
         assert template[2] == answer
+
 
 def test_template_depth_subsets():
     """Templates at depth 6 are a subset of templates at depth 8."""

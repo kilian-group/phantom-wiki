@@ -90,7 +90,8 @@
             "<relation>_4",
             "of",
             "<name>_5",
-            "have?"
+            "have",
+            "?"
         ],
         [
             "aggregate_all(count, distinct(<relation_plural>_2(Y_3, Y_1)), Count_1)",
@@ -107,7 +108,8 @@
             "<attribute_name>_4",
             "is",
             "<attribute_value>_4",
-            "have?"
+            "have",
+            "?"
         ],
         [
             "aggregate_all(count, distinct(<relation_plural>_2(Y_3, Y_1)), Count_1)",
@@ -121,7 +123,8 @@
             "<relation_plural>_2",
             "does",
             "<name>_3",
-            "have?"
+            "have",
+            "?"
         ],
         [
             "aggregate_all(count, distinct(<relation_plural>_2(<name>_3, Y_1)), Count_1)"

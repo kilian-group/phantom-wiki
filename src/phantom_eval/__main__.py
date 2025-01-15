@@ -12,15 +12,14 @@ from .utils import load_data, setup_logging
 from .data import Conversation
 from .llm import get_llm, VLLMChat, LLMChatResponse, LLMChat, InferenceGenerationConfig
 from .agent import get_agent, Agent
-from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, ACT_EXAMPLES
+from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, COT_EXAMPLES, ACT_EXAMPLES, FEWSHOT_EXAMPLES
 from . import constants
 from . import get_parser
 
 logger = logging.getLogger(__name__)
 
 
-async def main(args: argparse.Namespace) -> None:
-    logger.info(f"Loading LLM={args.model_name}")
+def get_model_kwargs(args: argparse.Namespace) -> dict:
     match args.model_name:
         case model_name if model_name in VLLMChat.SUPPORTED_LLM_NAMES:
             model_kwargs = dict(
@@ -30,12 +29,91 @@ async def main(args: argparse.Namespace) -> None:
                 # If the method is zeroshot or fewshot, we do not need to use the API (for vLLM)
                 # This can be overridden by setting `use_api=True` in the model_kwargs.
                 # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
-                use_api=(args.method in ["react", "act"]),
+                use_api=(args.method in ["react", "act", "react->cot-sc", "cot-sc->react"]),
+                port=args.inf_vllm_port,
             )
         case _:
             model_kwargs = dict(
                 model_path=args.model_path,
             )
+    return model_kwargs
+
+
+def get_agent_kwargs(args: argparse.Namespace) -> dict:
+    match args.method:
+        case "zeroshot":
+            agent_kwargs = dict()
+        case "fewshot":
+            agent_kwargs = dict(
+                fewshot_examples=FEWSHOT_EXAMPLES,
+            )
+        case "zeroshot-sc":
+            agent_kwargs = dict(
+                num_votes=args.sc_num_votes,
+                sep=constants.answer_sep,
+            )
+        case "fewshot-sc":
+            agent_kwargs = dict(
+                num_votes=args.sc_num_votes,
+                sep=constants.answer_sep,
+                fewshot_examples=FEWSHOT_EXAMPLES,
+            )
+
+        case "cot":
+            agent_kwargs = dict(
+                cot_examples=COT_EXAMPLES
+            )
+        case "cot-sc":
+            agent_kwargs = dict(
+                cot_examples=COT_EXAMPLES,
+                num_votes=args.sc_num_votes,
+                sep=constants.answer_sep,
+            )
+        case "rag":
+            agent_kwargs = dict(
+                embedding="together", #args.embedding
+                vector_store="faiss" #args.vector_store
+            )
+        case "react":
+            agent_kwargs = dict(
+                max_steps=args.react_max_steps,
+                react_examples=REACT_EXAMPLES,
+            )
+        case "act":
+            agent_kwargs = dict(
+                max_steps=args.react_max_steps,
+                act_examples=ACT_EXAMPLES,
+            )
+        case "react->cot-sc":
+            # Provide the second llm prompt (CoTSC) as an agent kwarg
+            agent_kwargs = dict(
+                max_steps=args.react_max_steps,
+                react_examples=REACT_EXAMPLES,
+                cot_llm_prompt=get_llm_prompt("cot-sc", args.model_name),
+                cot_examples=COT_EXAMPLES,
+                num_votes=args.sc_num_votes,
+                sep=constants.answer_sep,
+                cotsc_inf_temperature=constants.inf_temperature_hi, # react uses args.inf_temperature, cot-sc uses this hardcoded value
+            )
+        case "cot-sc->react":
+            # Provide the second llm prompt (React) as an agent kwarg
+            agent_kwargs = dict(
+                cot_examples=COT_EXAMPLES,
+                num_votes=args.sc_num_votes,
+                sep=constants.answer_sep,
+                cotsc_inf_temperature=constants.inf_temperature_hi, # react uses args.inf_temperature, cot-sc uses this hardcoded value
+                react_llm_prompt=get_llm_prompt("react", args.model_name),
+                max_steps=args.react_max_steps,
+                react_examples=REACT_EXAMPLES,
+            )
+        case _:
+            agent_kwargs = dict()
+    return agent_kwargs
+
+
+async def main(args: argparse.Namespace) -> None:
+    logger.info(f"Loading LLM='{args.model_name}'")
+    model_kwargs = get_model_kwargs(args)
     llm_chat: LLMChat = get_llm(args.model_name, model_kwargs=model_kwargs)
     llm_prompt: LLMPrompt = get_llm_prompt(args.method, args.model_name)
     default_inf_gen_config = InferenceGenerationConfig(
@@ -49,36 +127,15 @@ async def main(args: argparse.Namespace) -> None:
     )
 
     for seed in args.inf_seed_list:
-        logger.info(f"Running inference for method={args.method} with {seed=}")
+        logger.info(f"Running inference for method='{args.method}' with {seed=}")
         for split in args.split_list:
-            logger.info(f"Loading dataset {split=}")
-            dataset = load_data(split)
+            logger.info(f"Loading dataset='{args.dataset}' :: {split=}")
+            dataset = load_data(args.dataset, split)
             df_qa_pairs = pd.DataFrame(dataset["qa_pairs"])
             df_text = pd.DataFrame(dataset["text"])
 
             # Construct agent for the data split
-            match args.method:
-                case "zeroshot" | "fewshot":
-                    agent_kwargs = dict()
-                case "zeroshot-sc" | "fewshot-sc":
-                    agent_kwargs = dict(
-                        num_votes=args.sc_num_votes,
-                        sep=constants.answer_sep,
-                    )
-                case "CoT":
-                    raise NotImplementedError("CoT evaluation is not supported yet.")
-                case "RAG":
-                    raise NotImplementedError("RAG evaluation is not supported yet.")
-                case "react":
-                    agent_kwargs = dict(
-                        max_steps=args.react_max_steps,
-                        react_examples=REACT_EXAMPLES,
-                    )
-                case "act":
-                    agent_kwargs = dict(
-                        max_steps=args.react_max_steps,
-                        act_examples=ACT_EXAMPLES,
-                    )
+            agent_kwargs = get_agent_kwargs(args)
             agent: Agent = get_agent(
                 args.method,
                 text_corpus=df_text,
@@ -89,11 +146,24 @@ async def main(args: argparse.Namespace) -> None:
             # If the model is a local LLM, we can run on all QA examples
             num_df_qa_pairs = len(df_qa_pairs)
             can_process_full_batch = (args.model_name in VLLMChat.SUPPORTED_LLM_NAMES) \
-                and (args.method not in ["react", "act"])
+                and (args.method not in ["react", "act", "react->cot-sc", "cot-sc->react"])
             batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
             for batch_number in range(1, math.ceil(num_df_qa_pairs/batch_size) + 1):
+                run_name = (
+                    f"split={split}" \
+                    + f"__model_name={args.model_name.replace('/', '--')}" \
+                    + f"__bs={batch_size}" \
+                    + f"__bn={batch_number}" \
+                    + f"__seed={seed}"
+                )
+                pred_path = Path(args.output_dir) / "preds" / args.method / f"{run_name}.json"
+
                 # Skip if the batch number is not the one specified
                 if (args.batch_number is not None) and (batch_number != args.batch_number):
+                    continue
+                # Skip if the output file already exists and --force is not set
+                if pred_path.exists() and not args.force:
+                    logger.info(f"Skipping {pred_path} as it already exists. Use --force to overwrite.")
                     continue
 
                 # Get batch
@@ -105,8 +175,9 @@ async def main(args: argparse.Namespace) -> None:
                 # Run the method and get final responses for the batch
                 # In zeroshot, fewshot, the LLM responds with the final answer in 1 turn only,
                 # so they support batch async inference
+                agent_interactions = None
                 match args.method:
-                    case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc":
+                    case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc" | "rag":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                         responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
@@ -115,11 +186,14 @@ async def main(args: argparse.Namespace) -> None:
                         if args.log_level == "DEBUG":
                             logging.warning(f"Saving prompts for method={args.method} in agent_interactions. This takes up a lot of space as the prompts can be large.")
                             agent_interactions: list[Conversation] = agent.agent_interactions
-                    case "CoT":
-                        raise NotImplementedError("CoT evaluation is not supported yet.")
-                    case "RAG":
-                        raise NotImplementedError("RAG evaluation is not supported yet.")
-                    case "react" | "act":
+                    case "cot" | "cot-sc":
+                        questions: list[str] = batch_df_qa_pairs["question"].tolist()
+                        inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
+                        responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
+                        agent_interactions: list[Conversation] = agent.agent_interactions
+                    # case "RAG":
+                    #     raise NotImplementedError("RAG evaluation is not supported yet.")
+                    case "react" | "act" | "react->cot-sc" | "cot-sc->react":
                         # Run agent on each question one by one
                         responses: list[LLMChatResponse] = []
                         agent_interactions: list[Conversation] = []
@@ -131,24 +205,21 @@ async def main(args: argparse.Namespace) -> None:
                             agent_interactions.append(agent.agent_interactions)
 
                 # Log the final answers for the batch
-                run_name = (
-                    f"split={split}" \
-                    + f"__model_name={args.model_name.replace('/', '--')}" \
-                    + f"__bs={batch_size}" \
-                    + f"__bn={batch_number}" \
-                    + f"__seed={seed}"
-                )
-                pred_path = Path(args.output_dir) / "preds" / args.method / f"{run_name}.json"
                 pred_path.parent.mkdir(parents=True, exist_ok=True)
                 logger.info(f"Saving predictions to {pred_path}")
 
                 # Save after each batch run
+                unsaveable_agent_kwargs: list[str] = ["cot_llm_prompt", "react_llm_prompt"]
+                agent_kwargs_to_save = agent_kwargs.copy()
+                for kw in unsaveable_agent_kwargs:
+                    agent_kwargs_to_save.pop(kw, None)
+
                 save_preds(
                     pred_path,
                     split,
                     inf_gen_config,
                     model_kwargs,
-                    agent_kwargs,
+                    agent_kwargs_to_save,
                     args,
                     batch_number,
                     batch_df_qa_pairs,
@@ -180,6 +251,7 @@ def save_preds(
             "interaction": interactions[i].model_dump() if interactions else [],
             "metadata": {
                 "model": args.model_name,
+                "dataset": args.dataset,
                 "split": split,
                 "batch_size": batch_size,
                 "batch_number": batch_number,
