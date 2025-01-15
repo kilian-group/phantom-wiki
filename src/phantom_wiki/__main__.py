@@ -230,7 +230,6 @@ def main(args):
 if __name__ == "__main__":
     # we combine a base parser with the family generator parser
     # TODO: add parser for other generation components
-    # - friend
     # - attribute
     parser = get_parser(
         parents=[
