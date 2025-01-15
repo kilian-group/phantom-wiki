@@ -92,14 +92,14 @@ def db_generate_population(db: Database, size: int, seed: int = 1):
         
         # add the person to the database
         if gender == "female":
-            facts.append(f"female(\'{name}\')")
+            facts.append(f"female(\"{name}\")")
         elif gender == "male":
-            facts.append(f"male(\'{name}\')")
+            facts.append(f"male(\"{name}\")")
         else:
-            facts.append("nonbinary(\'{name}\')")
+            facts.append("nonbinary(\"{name}\")")
         # add an attribute for the age
         age = person["age"]
-        facts.append(f"age(\'{name}\', {age})")
+        facts.append(f"age(\"{name}\", {age})")
     db.add(*facts)
 
 # if __name__ == "__main__":

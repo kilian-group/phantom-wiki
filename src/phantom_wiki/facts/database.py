@@ -38,7 +38,7 @@ class Database:
         Returns:
             List of people's names.
         """
-        people = [result["X"] for result in self.prolog.query(f"type(X, {PERSON_TYPE})")]
+        people = [result["X"].decode('utf-8') for result in self.prolog.query(f"type(X, {PERSON_TYPE})")]
         return people
 
     def get_attribute_values(self):
@@ -50,7 +50,7 @@ class Database:
         # without actually having attributes in the database, 
         # you need to define the attribute predicate by uncommenting the line below
         # self.define("attribute/1")
-        attributes = [result["X"] for result in self.prolog.query("attribute(X)")]
+        attributes = [result["X"].decode('utf-8') for result in self.prolog.query("attribute(X)")]
         return attributes
 
     def query(self, query: str):
