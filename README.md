@@ -14,7 +14,7 @@ conda create -n dataset
 conda activate dataset
 conda install python=3.12 conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest
 # on G2, use pip instead of conda to install pandas and numpy to avoid C dependency conflicts
-pip install pandas numpy matplotlib
+pip install pandas numpy matplotlib networkx
 pip install together openai pre-commit datasets google-generativeai anthropic transformers tenacity tiktoken langchain langchain-community langchain-together faiss-cpu
 # vllm installation
 pip install https://vllm-wheels.s3.us-west-2.amazonaws.com/nightly/vllm-1.0.0.dev-cp38-abi3-manylinux1_x86_64.whl
