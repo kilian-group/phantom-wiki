@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH -J react-large                              # Job name
-#SBATCH -o slurm/react-large_%j.out                 # output file (%j expands to jobID)
-#SBATCH -e slurm/react-large_%j.err                 # error log file (%j expands to jobID)
+#SBATCH -J act-large                              # Job name
+#SBATCH -o slurm/act-large_%j.out                 # output file (%j expands to jobID)
+#SBATCH -e slurm/act-large_%j.err                 # error log file (%j expands to jobID)
 #SBATCH --mail-type=ALL                      # Request status by email 
 #SBATCH --mail-user=ag2435@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
@@ -11,9 +11,9 @@
 
 # Example usage (make sure to activate conda environment first):
 # if running on G2:
-# sbatch --gres=gpu:a6000:8 --partition=kilian -t infinite eval/react_L.sh <output directory> 
+# sbatch --gres=gpu:a6000:8 --partition=kilian -t infinite eval/act_L.sh <output directory>
 # if running on empire:
-# sbatch --gres=gpu:4 --partition=cornell -t 1-00:00:00 eval/react_L.sh <output directory> 
+# sbatch --gres=gpu:4 --partition=cornell -t 1-00:00:00 eval/act_L.sh <output directory>
 
 # Script for running zero-shot evaluation on all large models (10-70 B params)
 # GPU requirements when using max context length (i.e., `max_model_len=None`)
@@ -27,6 +27,11 @@ if [ -z "$1" ]; then
     echo "Usage: $0 <output directory>"
     exit 1
 fi
+# activate conda environment
+source ~/miniconda3/etc/profile.d/conda.sh
+# NOTE: this assumes that conda environment is called `dataset`
+# change this to your conda environment as necessary
+conda activate dataset
 
 # list of models
 MODELS=(
@@ -82,7 +87,7 @@ for model_name in "${MODELS[@]}"
 do
     # Start the vLLM server in the background
     echo "Starting vLLM server..."
-    vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --port $PORT"
+    vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 4 --port $PORT"
     echo $vllm_cmd
     nohup $vllm_cmd &
     
@@ -98,7 +103,7 @@ do
 
     # Run the main Python script
     cmd="python -m phantom_eval \
-        --method react \
+        --method act \
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \

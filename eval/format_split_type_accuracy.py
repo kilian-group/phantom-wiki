@@ -5,7 +5,7 @@ Saves to a csv file called scores_by_type.csv in the scores directory of the out
 Includes the question template for improved readability.
 
 Example:
-    python format_split_type_accuracy.py -od out --method zeroshot
+    python eval/format_split_type_accuracy.py -od out --method zeroshot
 """
 
 # %%
@@ -16,8 +16,9 @@ parser = get_parser()
 args = parser.parse_args()
 output_dir = args.output_dir
 method = args.method
+dataset = args.dataset
 # get evaluation data from the specified output directory and method subdirectory
-df = get_evaluation_data(output_dir, method)
+df = get_evaluation_data(output_dir, method, dataset)
 
 # %%
 # save to a csv file

@@ -4,7 +4,7 @@ Generates a table with rows for each model, split, and seed combination.
 Saves to a csv file called scores.csv in the scores directory of the output directory.
 
 Example:
-    python format_split_accuracy.py -od out --method zeroshot
+    python eval/format_split_accuracy.py -od out --method zeroshot
 """
 
 import os
@@ -14,8 +14,9 @@ parser = get_parser()
 args = parser.parse_args()
 output_dir = args.output_dir
 method = args.method
+dataset = args.dataset
 # get evaluation data from the specified output directory and method subdirectory
-df = get_evaluation_data(output_dir, method)
+df = get_evaluation_data(output_dir, method, dataset)
 # group by model, split, and seed
 grouped = df.groupby(['_model', '_split', '_seed'])
 # print the accuracy

@@ -563,3 +563,5 @@ johann_tests/API_KEY.py
 
 # slurm logs
 *slurm*/
+# cache directory for speeding up evaluation
+cachedir/

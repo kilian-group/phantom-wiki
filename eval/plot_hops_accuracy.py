@@ -4,7 +4,7 @@ Generates a plot for each metric (EM, precision, recall, f1) with the number of 
 Saves the plots to the figures directory of the output directory.
 
 Example:
-    python plot_hops_accuracy.py -od out --method zeroshot --split_name depth_10_size_26_seed_1
+    python eval/plot_hops_accuracy.py -od out --method zeroshot --split_name depth_10_size_26_seed_1
 """
 
 # %%
@@ -24,8 +24,9 @@ args = parser.parse_args()
 output_dir = args.output_dir
 method = args.method
 split_name = args.split_name
+dataset = args.dataset
 # get evaluation data from the specified output directory and method subdirectory
-df = get_evaluation_data(output_dir, method)
+df = get_evaluation_data(output_dir, method, dataset)
 
 # %%
 figures_dir = os.path.join(output_dir, 'figures', method)

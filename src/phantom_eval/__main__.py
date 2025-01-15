@@ -30,6 +30,7 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
                 # This can be overridden by setting `use_api=True` in the model_kwargs.
                 # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
                 use_api=(args.method in ["react", "act", "react->cot-sc", "cot-sc->react"]),
+                port=args.inf_vllm_port,
             )
         case _:
             model_kwargs = dict(
@@ -44,7 +45,7 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
             agent_kwargs = dict()
         case "fewshot":
             agent_kwargs = dict(
-                fewshot_examples = FEWSHOT_EXAMPLES,
+                fewshot_examples=FEWSHOT_EXAMPLES,
             )
         case "zeroshot-sc":
             agent_kwargs = dict(
@@ -55,7 +56,7 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
             agent_kwargs = dict(
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
-                fewshot_examples = FEWSHOT_EXAMPLES,
+                fewshot_examples=FEWSHOT_EXAMPLES,
             )
 
         case "cot":
@@ -111,7 +112,7 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
 
 
 async def main(args: argparse.Namespace) -> None:
-    logger.info(f"Loading LLM={args.model_name}")
+    logger.info(f"Loading LLM='{args.model_name}'")
     model_kwargs = get_model_kwargs(args)
     llm_chat: LLMChat = get_llm(args.model_name, model_kwargs=model_kwargs)
     llm_prompt: LLMPrompt = get_llm_prompt(args.method, args.model_name)
@@ -126,10 +127,10 @@ async def main(args: argparse.Namespace) -> None:
     )
 
     for seed in args.inf_seed_list:
-        logger.info(f"Running inference for method={args.method} with {seed=}")
+        logger.info(f"Running inference for method='{args.method}' with {seed=}")
         for split in args.split_list:
-            logger.info(f"Loading dataset {split=}")
-            dataset = load_data(split)
+            logger.info(f"Loading dataset='{args.dataset}' :: {split=}")
+            dataset = load_data(args.dataset, split)
             df_qa_pairs = pd.DataFrame(dataset["qa_pairs"])
             df_text = pd.DataFrame(dataset["text"])
 
@@ -148,8 +149,21 @@ async def main(args: argparse.Namespace) -> None:
                 and (args.method not in ["react", "act", "react->cot-sc", "cot-sc->react"])
             batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
             for batch_number in range(1, math.ceil(num_df_qa_pairs/batch_size) + 1):
+                run_name = (
+                    f"split={split}" \
+                    + f"__model_name={args.model_name.replace('/', '--')}" \
+                    + f"__bs={batch_size}" \
+                    + f"__bn={batch_number}" \
+                    + f"__seed={seed}"
+                )
+                pred_path = Path(args.output_dir) / "preds" / args.method / f"{run_name}.json"
+
                 # Skip if the batch number is not the one specified
                 if (args.batch_number is not None) and (batch_number != args.batch_number):
+                    continue
+                # Skip if the output file already exists and --force is not set
+                if pred_path.exists() and not args.force:
+                    logger.info(f"Skipping {pred_path} as it already exists. Use --force to overwrite.")
                     continue
 
                 # Get batch
@@ -191,14 +205,6 @@ async def main(args: argparse.Namespace) -> None:
                             agent_interactions.append(agent.agent_interactions)
 
                 # Log the final answers for the batch
-                run_name = (
-                    f"split={split}" \
-                    + f"__model_name={args.model_name.replace('/', '--')}" \
-                    + f"__bs={batch_size}" \
-                    + f"__bn={batch_number}" \
-                    + f"__seed={seed}"
-                )
-                pred_path = Path(args.output_dir) / "preds" / args.method / f"{run_name}.json"
                 pred_path.parent.mkdir(parents=True, exist_ok=True)
                 logger.info(f"Saving predictions to {pred_path}")
 
@@ -245,6 +251,7 @@ def save_preds(
             "interaction": interactions[i].model_dump() if interactions else [],
             "metadata": {
                 "model": args.model_name,
+                "dataset": args.dataset,
                 "split": split,
                 "batch_size": batch_size,
                 "batch_number": batch_number,
