@@ -4,41 +4,49 @@
 
 # standard imports
 import json
-import os
-import numpy as np
-import pandas as pd
-import time
 import logging
+import os
 import subprocess
 import sys
+import time
 from datetime import datetime
+
+import numpy as np
+import pandas as pd
 from tqdm import tqdm
 
-# phantom wiki functionality
-from .facts import (get_database,
-                    db_generate_family, 
-                    db_generate_friendships,
-                    db_generate_attributes)
 from .core.article import get_articles
-from .facts.templates import generate_templates
-from .facts.sample import sample
-from .utils import blue, get_parser, generate_unique_id
-from .utils.get_answer import get_answer
+
+# phantom wiki functionality
+from .facts import (
+    db_generate_attributes,
+    db_generate_family,
+    db_generate_friendships,
+    get_database,
+    question_parser,
+)
 from .facts.family import fam_gen_parser
-from .facts import question_parser
+from .facts.friends import friend_gen_parser
 from .facts.question_difficulty import calculate_query_difficulty
+from .facts.sample import sample
+from .facts.templates import generate_templates
+from .utils import blue, generate_unique_id, get_parser
+from .utils.get_answer import get_answer
+
 
 def check_git_status():
     try:
         # Check for uncommitted changes
-        result = subprocess.run(['git', 'status', '--porcelain'], stdout=subprocess.PIPE, text=True)
+        result = subprocess.run(["git", "status", "--porcelain"], stdout=subprocess.PIPE, text=True)
         if result.returncode != 0:
             print("Error: Unable to check Git status.")
             sys.exit(1)
-        
+
         # If `git status --porcelain` output is not empty, there are uncommitted changes
         if result.stdout.strip():
-            print("Error: You have uncommitted or unstashed changes. Please commit or stash them before running this script.")
+            print(
+                "Error: You have uncommitted or unstashed changes. Please commit or stash them before running this script."
+            )
             sys.exit(1)
     except FileNotFoundError:
         print("Error: Git is not installed or not available in PATH.")
@@ -49,29 +57,27 @@ def save_command_and_git_info(output_dir):
     """Save the executed command and Git commit hash to a file."""
 
     def get_commit_hash():
-        result = subprocess.run(['git', 'rev-parse', 'HEAD'], stdout=subprocess.PIPE, text=True)
+        result = subprocess.run(["git", "rev-parse", "HEAD"], stdout=subprocess.PIPE, text=True)
         return result.stdout.strip()
-    
+
     git_commit_hash = get_commit_hash()
     executed_command = " ".join(sys.argv)
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     info_content = (
-        f"Command: {executed_command}\n"
-        f"Timestamp: {timestamp}\n"
-        f"Git Commit Hash: {git_commit_hash}\n"
+        f"Command: {executed_command}\n" f"Timestamp: {timestamp}\n" f"Git Commit Hash: {git_commit_hash}\n"
     )
 
     os.makedirs(output_dir, exist_ok=True)
     info_file_path = os.path.join(output_dir, "run_info.txt")
-    
+
     with open(info_file_path, "w") as info_file:
         info_file.write(info_content)
 
     print(f"Run information saved to: {info_file_path}")
 
-def main(args):
 
+def main(args):
     # Check Git status before running the main logic
     if not args.debug:
         check_git_status()
@@ -80,7 +86,7 @@ def main(args):
         print("Debug mode enabled. Skipping Git status check.")
 
     # Set up logging
-    logging.getLogger('faker').setLevel(logging.INFO)
+    logging.getLogger("faker").setLevel(logging.INFO)
 
     if args.quiet:
         log_level = logging.WARNING
@@ -89,13 +95,9 @@ def main(args):
     else:
         log_level = logging.INFO
 
-    logging.basicConfig(
-        level=log_level,
-        format='%(message)s',
-        handlers=[logging.StreamHandler()]
-    )
+    logging.basicConfig(level=log_level, format="%(message)s", handlers=[logging.StreamHandler()])
 
-    # save the executed command and Git commit hash to a file 
+    # save the executed command and Git commit hash to a file
     save_command_and_git_info(args.output_dir)
 
     logging.info(f"Output dir: {args.output_dir}")
@@ -104,7 +106,7 @@ def main(args):
     timings = {}
     global_start = time.time()
 
-    # 
+    #
     # Step 1. Generate facts
     #
     db = get_database()
@@ -118,13 +120,13 @@ def main(args):
     db_generate_friendships(db, args)
     # generate jobs, hobbies for each person in the database
     db_generate_attributes(db, args)
-    timings['facts_generate'] = time.time() - start
+    timings["facts_generate"] = time.time() - start
 
     db_path = os.path.join(args.output_dir, "facts.pl")
     blue(f"Saving Prolog database to {db_path}")
     facts_time = time.time()
     db.save_to_disk(db_path)
-    timings['facts_save'] = time.time() - facts_time
+    timings["facts_save"] = time.time() - facts_time
 
     article_time = time.time()
     #
@@ -134,7 +136,7 @@ def main(args):
     blue("Generating articles")
     start = time.time()
     articles = get_articles(db, db.get_names())
-    timings['articles_generate'] = time.time() - start
+    timings["articles_generate"] = time.time() - start
 
     blue("Saving articles")
     start = time.time()
@@ -149,10 +151,12 @@ def main(args):
         save_path = os.path.join(args.output_dir, "articles.json")
         logging.info(f"Saving articles to: {save_path}")
         with open(save_path, "w") as file:
-            json.dump([{"title" : name, "article" : article} for name, article in articles.items()], file, indent=4)
+            json.dump(
+                [{"title": name, "article": article} for name, article in articles.items()], file, indent=4
+            )
     else:
         raise ValueError(f"Article format {args.article_format} not supported!")
-    timings['articles_save'] = time.time() - start
+    timings["articles_save"] = time.time() - start
 
     #
     # Step 3. Generate question-answer pairs
@@ -176,11 +180,7 @@ def main(args):
         questions = []
         for _ in range(args.num_questions_per_type):
             _, question, query = sample(
-                db, 
-                question_template, 
-                query_template, 
-                rng=rng,
-                valid_only=args.valid_only
+                db, question_template, query_template, rng=rng, valid_only=args.valid_only
             )
             # get distinct answers
             # TODO: is there a better way to do this?
@@ -189,23 +189,25 @@ def main(args):
             all_results, final_results = get_answer(query, db, answer)
             # make unique and sort in alphabetical order
             question_difficulty = calculate_query_difficulty(query)
-            questions.append({
-                "id": generate_unique_id(),
-                "question": question,
-                "intermediate_answers": all_results,
-                "answer": final_results,
-                "prolog": {"query": query, "answer": answer},
-                "template": question_template,
-                "type": i, # this references the template type
-                "difficulty": question_difficulty
-            })
+            questions.append(
+                {
+                    "id": generate_unique_id(),
+                    "question": question,
+                    "intermediate_answers": all_results,
+                    "answer": final_results,
+                    "prolog": {"query": query, "answer": answer},
+                    "template": question_template,
+                    "type": i,  # this references the template type
+                    "difficulty": question_difficulty,
+                }
+            )
             if args.question_format == "json_by_type":
                 with open(os.path.join(question_dir, f"type{i}.json"), "w") as file:
                     json.dump(questions, file, indent=4)
         all_questions.extend(questions)
         # update progbar
         progbar.set_description(f"Template ({i+1}/{len(templates)})")
-    timings['questions_generate'] = time.time() - start
+    timings["questions_generate"] = time.time() - start
 
     blue("Saving questions")
     start = time.time()
@@ -215,9 +217,9 @@ def main(args):
         logging.info(f"Saving questions to: {save_path}")
         with open(save_path, "w") as file:
             json.dump(all_questions, file, indent=4)
-    timings['questions_save'] = time.time() - start
+    timings["questions_save"] = time.time() - start
 
-    timings['total'] = time.time() - global_start
+    timings["total"] = time.time() - global_start
 
     logging.info("Benchmarking results:")
     df_timings = pd.DataFrame([timings])
@@ -227,14 +229,18 @@ def main(args):
     df_timings.to_csv(timings_path, index=False)
     blue("Done!")
 
+
 if __name__ == "__main__":
     # we combine a base parser with the family generator parser
     # TODO: add parser for other generation components
     # - friend
     # - attribute
-    parser = get_parser(parents=[
-        fam_gen_parser,
-        question_parser,
-    ])
+    parser = get_parser(
+        parents=[
+            fam_gen_parser,
+            friend_gen_parser,
+            question_parser,
+        ]
+    )
     args = parser.parse_args()
     main(args)
