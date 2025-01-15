@@ -11,7 +11,7 @@ JOBS_PATH = files("tests").joinpath("phantom_wiki/resources/facts/jobs.json")
 HOBBIES_PATH = files("tests").joinpath("phantom_wiki/resources/facts/hobbies.json")
 
 # Reference database
-DATABASE_SMALL_PATH = files("tests").joinpath("phantom_wiki/resources/small.pl")
+DATABASE_SMALL_PATH = files("tests").joinpath("phantom_wiki/resources/databases/small.pl")
 DATABASE_SMALL_107 = files("tests").joinpath("phantom_wiki/resources/databases/small_107.pl")
 
 # Question reference outputs
