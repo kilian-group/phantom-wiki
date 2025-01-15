@@ -16,11 +16,10 @@ def compare_prolog_dicts(prolog_dict_1: list[dict], prolog_dict_2: list[dict]) -
     set_2 = prolog_result_set(prolog_dict_2)
     return set_1 == set_2
 
+prolog = Prolog()
+prolog.consult(FAMILY_TREE_SMALL_EXAMPLE_PATH)
 
 def test_family_rules_base():
-    prolog = Prolog()
-    prolog.consult(FAMILY_TREE_SMALL_EXAMPLE_PATH)
-
     assert compare_prolog_dicts(
         list(prolog.query("parent('Dirk Donohue', X)")), [{"X": "Mason Donohue"}, {"X": "Therese Donohue"}]
     )
@@ -74,9 +73,6 @@ def test_family_rules_base():
 
 
 def test_family_rules_derived():
-    prolog = Prolog()
-    prolog.consult(FAMILY_TREE_SMALL_EXAMPLE_PATH)
-
     assert bool(list(prolog.query("niece('Veronica Donohue', 'Vita Cater')")))
     assert compare_prolog_dicts(list(prolog.query("niece('Veronica Donohue', X)")), [{"X": "Vita Cater"}])
 
@@ -166,11 +162,7 @@ def test_family_rules_derived():
         [{"X": "Gustavo Leibowitz"}],
     )
 
-
-def test_family_rules_inlaws():
-    prolog = Prolog()
-    prolog.consult(FAMILY_TREE_SMALL_EXAMPLE_PATH)
-
+def test_family_rules_inlaws():    
     assert compare_prolog_dicts(
         list(prolog.query("father_in_law('Alton Cater', X)")), [{"X": "Tyler Ussery"}]
     )
