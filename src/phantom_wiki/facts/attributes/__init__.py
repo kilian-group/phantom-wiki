@@ -69,7 +69,7 @@ def db_generate_attributes(db: Database, args: ArgumentParser):
     for name in names:
         # add jobs
         job = jobs[name]
-        facts.append(f"job(\'{name}\', \'{job}\')")
+        facts.append(f"job(\'{name}\', \"{job}\")")
         facts.append(f"attribute(\'{job}\')")
         
         # add hobbies
