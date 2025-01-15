@@ -18,7 +18,24 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-dependencies = []
+dependencies = [
+    "anthropic",
+    "datasets",
+    "faiss-cpu",
+    "google-generativeai",
+    "langchain",
+    "langchain-community",
+    "langchain-together",
+    "matplotlib",
+    "nltk",
+    "numpy",
+    "openai",
+    "pandas",
+    "pre-commit",
+    "tenacity",
+    "tiktoken",
+    "transformers",
+]
 
 [project.scripts]
 generate_family = "phantom_wiki.__main__:generate_family" # TODO
