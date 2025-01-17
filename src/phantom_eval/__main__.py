@@ -29,7 +29,7 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
                 # If the method is zeroshot or fewshot, we do not need to use the API (for vLLM)
                 # This can be overridden by setting `use_api=True` in the model_kwargs.
                 # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
-                use_api=(args.method in ["react", "act", "react->cot-sc", "cot-sc->react"]),
+                use_api=(args.method in ["rag","react", "act", "react->cot-sc", "cot-sc->react"]),
             )
         case _:
             model_kwargs = dict(
@@ -71,7 +71,7 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
         case "rag":
             agent_kwargs = dict(
                 embedding="together", #args.embedding
-                vector_store="faiss" #args.vector_store
+                vector_store="faiss", #args.vector_store
             )
         case "react":
             agent_kwargs = dict(
@@ -147,7 +147,7 @@ async def main(args: argparse.Namespace) -> None:
             can_process_full_batch = (args.model_name in VLLMChat.SUPPORTED_LLM_NAMES) \
                 and (args.method not in ["react", "act", "react->cot-sc", "cot-sc->react"])
             batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
-            for batch_number in range(1, math.ceil(num_df_qa_pairs/batch_size) + 1):
+            for batch_number in range(1, 2):#range(1, math.ceil(num_df_qa_pairs/batch_size) + 1):
                 # Skip if the batch number is not the one specified
                 if (args.batch_number is not None) and (batch_number != args.batch_number):
                     continue

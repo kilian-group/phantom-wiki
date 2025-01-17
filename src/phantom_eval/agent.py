@@ -17,6 +17,10 @@ from langchain_together import TogetherEmbeddings
 from langchain_core.runnables import RunnablePassthrough
 from langchain import hub
 import os
+from vllm import LLM
+from .gpu_utils import get_gpu_count
+import torch
+import openai # from openai import OpenAI
 
 logger = logging.getLogger(__name__)
 
@@ -843,30 +847,96 @@ class CoTSC_ReactAgent(Agent):
 
 class RAGAgent(Agent):
     def __init__(self, 
-                 text_corpus: pd.DataFrame, 
-                 llm_prompt: LLMPrompt, 
-                 embedding: str="together", 
-                 vector_store: str="faiss"):
+                text_corpus: pd.DataFrame, 
+                llm_prompt: LLMPrompt, 
+                embedding: str="together", 
+                vector_store: str="faiss",
+                embedding_model_name: str="meta-llama/llama-3.1-8b-instruct",
+                use_api: bool | None = True,
+                max_model_len: int | None = None,
+                tensor_parallel_size: int | None = None,
+                use_async: bool = False,
+                ):
         """
         Args:
             embedding (str): The embedding method for the vector database. Defaults to TogetherEmbeddings. Supported options are: ["together"].
             vector_store (str): The vector store for the vector database. Defaults to FAISS. Supported options are: ["faiss"].
         """
         super().__init__(text_corpus, llm_prompt)
+        self.use_async = use_async
 
         texts = self.text_corpus['article'].tolist()[:20]
+        torch.cuda.empty_cache() 
+        if(True):
+            # # API implements OpenAI API interface but doesn't need to call OpenAI's API
+            # client = OpenAI(
+            #     api_key="token-abc123", 
+            #     base_url="http://0.0.0.0:8000/v1",
+            # )
+            # responses = client.embeddings.create(
+            #     input=texts,
+            #     model=embedding_model_name,
+            # )
+            logging.info("Using vLLM server for inference")
+            try:
+                BASE_URL = "http://0.0.0.0:8000/v1" # TODO: allow this to be specified by the user
+                API_KEY="token-abc123" # TODO: allow this to be specified by the user
+                self.client = openai.OpenAI(
+                    base_url=BASE_URL,
+                    api_key=API_KEY,
+                )
+                self.async_client = openai.AsyncOpenAI(
+                    base_url=BASE_URL,
+                    api_key=API_KEY,
+                )
+            except openai.APIConnectionError as e:
+                logging.error(
+                    f"Make sure to launch the vllm server using " \
+                    "vllm serve MODEL_NAME --api-key token-abc123 --tensor_parallel_size NUM_GPUS"
+                )
+                raise e
+                
+            client = self.async_client if self.use_async else self.client
+   
+            # https://platform.openai.com/docs/guides/embeddings
+            # https://docs.vllm.ai/en/latest/getting_started/examples/openai_embedding_client.html
+            # logger.info(client.models.list().data[0].id) 2025-01-17 11:27:37,531 - phantom_eval.agent - INFO - meta-llama/llama-3.1-8b-instruct
+            responses = client.embeddings.create(
+                # input=texts,
+                input=[
+                    "Hello my name is",
+                    "The best thing about vLLM is that it supports many different models"
+                ],
+                model=client.models.list().data[0].id#client_cur_model,
+            )
+            logging.info("Responses:")
+            logging.info(responses)
+            embeddings = responses.data
+        
+        else:
+            if tensor_parallel_size is None:
+                tensor_parallel_size = get_gpu_count()
+            else:
+                tensor_parallel_size = tensor_parallel_size
 
-        embeddings = TogetherEmbeddings(api_key=os.getenv("TOGETHER_API_KEY"))
-        vectors = embeddings.embed_documents(texts)
+            embedding_model = LLM(
+                model=embedding_model_name, 
+                task="embed", 
+                # enforce_eager=True,
+                max_model_len=max_model_len,
+                tensor_parallel_size=tensor_parallel_size,
+            )
+            embedding_outputs = embedding_model.embed(texts)
+            embeddings = [output.outputs.embedding for output in embedding_outputs]
+        
+        # embeddings = TogetherEmbeddings(api_key=os.getenv("TOGETHER_API_KEY"))
+        # vectors = embeddings.embed_documents(texts)
 
         vectorstore = FAISS.from_texts(texts, embeddings)
         self.retriever = vectorstore.as_retriever()
         self.format_docs = lambda docs: "\n\n".join(doc.page_content for doc in docs)
-        # self.prompt = hub.pull("rlm/rag-prompt")
-        # self.rag_chain = (
-        #     {"context": retriever | format_docs, "question": RunnablePassthrough()}
-        #     | StrOutputParser()
-        # )
+
+
 
     def __get_evidence(self, question:str) -> str:
         """
