@@ -6,8 +6,7 @@ STEP 1: Start the vLLM API server in embedding mode:
 vllm serve meta-llama/llama-3.1-8b-instruct --api-key token-abc123 --tensor_parallel_size 2 --task embedding
 ```
 Note: 
-- The `--tensor_parallel_size` argument must match the number of GPUs on your machine.
-For meta-llama/llama-3.1-8b-instruct to run, you will need at least 2 A6000 GPUs. (For some reason, the embeddings API requires 2 GPUs, while the generate API only requires 1 GPU.)
+- For meta-llama/llama-3.1-8b-instruct to run, you will need at least 2 A6000 GPUs. (For some reason, the embeddings API requires 2 GPUs, while the generate API only requires 1 GPU.)
 
 STEP 2: Run this script to test the embeddings API.
 ```bash
