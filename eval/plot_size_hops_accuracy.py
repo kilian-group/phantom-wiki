@@ -64,6 +64,9 @@ acc_mean_std['_data_seed'] = acc_mean_std['_split'].apply(lambda x: re.match(r"d
 # get all unique data seeds
 data_seeds = acc_mean_std['_data_seed'].unique()
 print(f"Data seeds: {data_seeds}")
+# get all unique models
+models = acc_mean_std['_model'].unique()
+print(f"Models: {models}")
 
 figures_dir = os.path.join(output_dir, 'figures', method)
 os.makedirs(figures_dir, exist_ok=True)
@@ -73,31 +76,43 @@ acc_mean_std
 
 # %%
 for data_seed in data_seeds:
-    acc_mean_std_data_seed = acc_mean_std[acc_mean_std['_data_seed'] == data_seed]
-
     for metric in ['EM', 'precision', 'recall', 'f1']:
-        # NOTE: we don't need to do pivot as we are plotting x=size,y=hops,z=acc together
-        # df_mean, df_std = pivot_mean_std(acc_mean_std_data_seed, metric, independent_variable='_size')
+        fig, ax = plt.subplots(figsize=(15, 8))
+        for model in models:
+            acc_mean_std_data_seed = acc_mean_std[(acc_mean_std['_data_seed'] == data_seed) & (acc_mean_std['_model'] == model)]
 
-        plt.figure(figsize=(15, 8))
-        # use log2 scale for the x-axis
-        x = acc_mean_std_data_seed['_size'].astype(int).tolist()
-        logx = np.log2(x)
-        y = acc_mean_std_data_seed['hops'].tolist()
-        z = acc_mean_std_data_seed[(metric,'mean')].tolist()
-        # plot the contour
-        contour = plt.tricontourf(logx, y, z, cmap='viridis')
-        plt.colorbar(contour)
+            # get the distinct x values
+            x = np.sort(np.unique(acc_mean_std_data_seed['_size'].astype(int)))
+            logx = np.log2(x)
+            # get the distinct y values
+            y = np.sort(np.unique(acc_mean_std_data_seed['hops']))
+            # create a 2D array of z values
+            Z = np.zeros((len(y), len(x)))
+            for i, size in enumerate(x):
+                for j, hops in enumerate(y):
+                    Z[j, i] = acc_mean_std_data_seed[(acc_mean_std_data_seed['_size'].astype(int) == size) & (acc_mean_std_data_seed['hops'] == hops)][(metric, 'mean')].values[0]
+            # filled in contour
+            logX, Y = np.meshgrid(logx, y)
+            CS = ax.contour(logX, Y, Z)
+            # Customize the label
+            # Ref: https://matplotlib.org/stable/gallery/images_contours_and_fields/contour_label_demo.html
+            # This custom formatter adds the model name to the contour label.
+            def fmt(x):
+                s = f"{x:.0f} - {model}"
+                return s
+            # add the contour label
+            ax.clabel(CS, CS.levels, fmt=fmt, fontsize=10)
 
-        plt.legend(title='Model', loc='upper right', fontsize=12)
+        ax.legend(title='Model', loc='upper right', fontsize=12)
         # format x-axis
-        plt.xlabel('Size of universe')
-        plt.xticks(logx, x)
-        plt.ylabel('Number of hops')
-        plt.tight_layout()
+        ax.set_xlabel('Size of universe')
+        ax.set_xticks(logx)
+        ax.set_xticklabels(x)
+        ax.set_ylabel('Number of hops')
+        fig.tight_layout()
         fig_path = os.path.join(figures_dir, f'size-hops-{metric}-seed{data_seed}.png')
         print(f"Saving to {os.path.abspath(fig_path)}")
-        plt.savefig(fig_path)
+        fig.savefig(fig_path)
         # plt.show()
 
 # %%
