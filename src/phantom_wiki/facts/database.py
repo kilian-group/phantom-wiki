@@ -1,6 +1,7 @@
 from pyswip import Prolog
 from phantom_wiki.facts.family.constants import PERSON_TYPE
 import logging
+from phantom_wiki.utils import decode
 
 SAVE_ALL_CLAUSES_TO_FILE = """
 (save_all_clauses_to_file(File) :-
@@ -38,7 +39,7 @@ class Database:
         Returns:
             List of people's names.
         """
-        people = [result["X"] for result in self.prolog.query(f"type(X, {PERSON_TYPE})")]
+        people = [decode(result["X"]) for result in self.prolog.query(f"type(X, {PERSON_TYPE})")]
         return people
 
     def get_attribute_values(self):
@@ -50,7 +51,7 @@ class Database:
         # without actually having attributes in the database, 
         # you need to define the attribute predicate by uncommenting the line below
         # self.define("attribute/1")
-        attributes = [result["X"] for result in self.prolog.query("attribute(X)")]
+        attributes = [decode(result["X"]) for result in self.prolog.query("attribute(X)")]
         return attributes
 
     def query(self, query: str):

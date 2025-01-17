@@ -27,6 +27,8 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument("--inf_vllm_tensor_parallel_size", type=int, default=None,
                         help="number of gpus (vLLM param)" \
                         "if None, uses all available gpus")
+    parser.add_argument("--inf_vllm_port", type=int, default=8000,
+                        help="vllm server port number")
     parser.add_argument("--inf_max_tokens", type=int, default=4096,
                         help="Maximum number of tokens to generate")
     parser.add_argument("--inf_temperature", "-T", type=float, default=0.0,
@@ -45,6 +47,8 @@ def get_parser() -> argparse.ArgumentParser:
                         help="Seconds to wait between tries")
 
     # Dataset params
+    parser.add_argument("--dataset", type=str, default="mlcore/phantom-wiki-v0.2",
+                        help="Dataset name")
     parser.add_argument("--split_list", default=["depth_10_size_26_seed_1"], type=str, nargs="+",
                         help="List of dataset splits to evaluate")
     parser.add_argument("--batch_size", "-bs", default=10, type=int,
@@ -53,6 +57,9 @@ def get_parser() -> argparse.ArgumentParser:
                         help="Batch number (>=1). For example, if batch_size=100 and batch_number=1, " \
                             "then the first 100 questions will be evaluated " \
                             "if None (default), all batches will be evaluated")
+    parser.add_argument("--force", "-f", action="store_true",
+                        help="Force to overwrite the output file" \
+                            "Otherwise, it will skip the evaluation if the output file exists")
     # Saving params
     parser.add_argument("--output_dir", "-od", default="out",
                     help="Path to read/write the outputs")

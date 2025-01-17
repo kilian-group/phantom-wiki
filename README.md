@@ -12,9 +12,9 @@ Set up a virtual environment, clone and navigate to this repository, and run
 ```bash
 conda create -n dataset
 conda activate dataset
-conda install python=3.12 conda-forge::faker anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest
+conda install python=3.12 anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest
 # on G2, use pip instead of conda to install pandas and numpy to avoid C dependency conflicts
-pip install pandas numpy matplotlib
+pip install pandas numpy matplotlib networkx
 pip install together openai pre-commit datasets google-generativeai anthropic transformers tenacity tiktoken langchain langchain-community langchain-together faiss-cpu
 # vllm installation
 pip install https://vllm-wheels.s3.us-west-2.amazonaws.com/nightly/vllm-1.0.0.dev-cp38-abi3-manylinux1_x86_64.whl
@@ -37,13 +37,19 @@ There are 2 options:
 
 Setting up Prolog (see also the [Prolog tutorial](docs/prolog.md)):
 
+On Mac:
 ```bash
-# install SWI-Prolog (on Mac)
 brew install swi-prolog
-# TODO: install SWI-Prolog (on Windows)
-# install Python wrapper for Prolog
 pip install pyswip
 ```
+
+On Linux:
+```bash
+sudo add-apt-repository ppa:swi-prolog/stable
+sudo apt-get update
+sudo apt-get install swi-prolog
+```
+Original instructions: https://wwu-pi.github.io/tutorials/lectures/lsp/010_install_swi_prolog.html
 
 ## Evaluation
 
@@ -132,6 +138,10 @@ Rate limits: https://docs.anthropic.com/en/api/rate-limits#updated-rate-limits
 Original setup instructions: https://docs.vllm.ai/en/stable/getting_started/installation.html#install-the-latest-code
 
 Additional notes:
+- It's recommended to download the model manually:
+```bash
+huggingface-cli download MODEL_REPO_ID
+```
 - The models and their configs are downloaded directly from HuggingFace and almost all models on HF are fair game (see also: https://docs.vllm.ai/en/stable/models/supported_models.html#supported-models)
 - Total number of attention heads must be divisible by tensor parallel size
 - See minimum GPU requirements for [small](eval/zeroshot_S.sh), [medium](eval/zeroshot_M.sh), and [large](eval/zeroshot_L.sh) models at the top of each eval inference script
@@ -165,8 +175,8 @@ git push
 
 1. Clone the HuggingFace dataset repo (note: you only need to do this once):
 
-```
-cd <some location outside of this repo>
+```bash
+cd PATH_TO_LOCAL_HF_REPO
 pip install -U "huggingface_hub[cli]"
 huggingface-cli login
 # NOTE: when creating a new access token, set the token type to be `write`
@@ -176,14 +186,19 @@ git lfs install
 
 2. Generate a new dataset and save to the location of the huggingface repo
 
-```
-python -m phantom_wiki -op <path to huggingface repo> --article_format json --question_format json --valid_only -s <global seed>
+```bash
+python -m phantom_wiki -od PATH_TO_LOCAL_HF_REPO --article-format json --question-format json --valid-only -s SEED
 ```
 
 3. Push the files to the huggingface repo:
 
-```
+```bash
 git add .
 git commit -m "some message"
 git push
+```
+
+Alternatively, can use the huggingface cli (see https://huggingface.co/docs/datasets/en/share#upload-an-entire-folder):
+```bash
+huggingface-cli upload mlcore/phantom-wiki-v<version> OUTPUT_DIRECTORY . --repo-type dataset --commit-message="optional commit message"
 ```

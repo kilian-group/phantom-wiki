@@ -2,6 +2,10 @@
 """
 from glob import glob
 import pandas as pd
+import logging
+
+from joblib import Memory, expires_after
+memory = Memory("cachedir")
 
 from . import constants
 from .utils import load_data
@@ -59,7 +63,7 @@ COLORS = {
     'meta-llama/llama-3.1-8b-instruct': 'tab:orange',
     'meta-llama/llama-3.2-3b-instruct': 'tab:orange',
     'meta-llama/llama-3.2-1b-instruct': 'tab:orange',
-    'microsoft/phi-3.5-mini-instruct': 'tab:green',
+    'microsoft/phi-3.5-moe-instruct': 'tab:green',
     'microsoft/phi-3.5-mini-instruct': 'tab:green',
     'mistralai/mistral-7b-instruct-v0.3' : 'tab:red',
     'gemini-1.5-flash-002': 'tab:purple',
@@ -135,7 +139,7 @@ def _get_preds(output_dir, method):
         ]
         SAMPLING_PARAMS = ['seed']
         for filename in files:
-            print(f"Reading from {filename}...")
+            logging.info(f"Reading from {filename}...")
             df = pd.read_json(filename, orient='index', dtype=False)
             # add new columns corresponding to the metadata
             for key in METADATA:
@@ -151,7 +155,7 @@ def _get_preds(output_dir, method):
         METADATA = ['model', 'split', 'batch_size', 'batch_number', 'type']
         SAMPLING_PARAMS = ['seed']
         for filename in files:
-            print(f"Reading from {filename}...")
+            logging.info(f"Reading from {filename}...")
             df = pd.read_json(filename, orient='index', dtype=False)
             # add new columns corresponding to the metadata
             for key in METADATA:
@@ -164,14 +168,17 @@ def _get_preds(output_dir, method):
             df_list.append(df)
     # concatenate all dataframes
     df_preds = pd.concat(df_list)
+    # and add a new index from 0 to len(df_preds) so that we can save the dataframe to a json file
+    # assign the old index to a new column called 'id'
+    df_preds = df_preds.reset_index(names='id')
     return df_preds
 
-def _get_qa_pairs(splits):
+def _get_qa_pairs(dataset: str, splits: list[str]):
     df_list = []
     for split in splits:
-        df = load_data(split)['qa_pairs'].to_pandas()
-        # set index to id
-        df = df.set_index('id')
+        df = load_data(dataset, split)['qa_pairs'].to_pandas()
+        # # set index to id
+        # df = df.set_index('id')
         # convert template column to string
         df['template'] = df['template'].apply(lambda x : ' '.join(x))
         # compute the number of hops by taking the length of the prolog query
@@ -185,12 +192,17 @@ def _get_qa_pairs(splits):
     df_qa_pairs = pd.concat(df_list)
     return df_qa_pairs
 
-def get_evaluation_data(output_dir: str, method: str, sep: str = constants.answer_sep):
+@memory.cache(cache_validation_callback=expires_after(hours=1))
+def get_evaluation_data(output_dir: str, method: str, dataset: str, sep: str = constants.answer_sep):
     """Get the evaluation data for a given method
+
+    First reads the predictions from the output directory, then joins with the qa pairs.
+    NOTE: The results are cached for 1 hour at `cachedir` (see `memory` object).
 
     Args:
         output_dir (str): path to the output directory
         method (str): method used for inference (e.g., zeroshot, fewshot, etc.)
+        dataset (str): dataset name (e.g., "mlcore/phantom-wiki", "mlcore/phantom-wiki-v0.2")
         sep (str): separator when pre-processing pred/true strings.
             Default is `constants.answer_sep`.
 
@@ -204,10 +216,10 @@ def get_evaluation_data(output_dir: str, method: str, sep: str = constants.answe
     # get unique splits
     splits = df_preds['_split'].unique()
     # get the qa pairs
-    df_qa_pairs = _get_qa_pairs(splits)
+    df_qa_pairs = _get_qa_pairs(dataset, splits)
     # join with original qa pairs to get additional information about
     # the prolog queries and the templates
-    df = df_preds.merge(df_qa_pairs, left_index=True, right_index=True, how='left')
+    df = df_preds.merge(df_qa_pairs, on='id', how='left')
 
     # join the true answers with the appropriate seperator since the scoring functions expect strings
     df['EM'] = df.apply(lambda x: exact_match(x['pred'], sep.join(x['true']), sep=sep), axis=1)

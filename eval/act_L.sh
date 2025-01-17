@@ -8,10 +8,12 @@
 #SBATCH -n 8                                 # Total number of cores requested
 #SBATCH --get-user-env                       # retrieve the users login environment
 #SBATCH --mem=100000                         # server memory (MBs) requested (per node)
-#SBATCH -t 1-00:00:00                           # Time limit (hh:mm:ss)
-#SBATCH --gres=gpu:4                   # Number of GPUs requested
-#SBATCH --partition=cornell                   # Request partition
-#SBATCH --nodelist=alphagpu03
+
+# Example usage (make sure to activate conda environment first):
+# if running on G2:
+# sbatch --gres=gpu:a6000:8 --partition=kilian -t infinite eval/act_L.sh <output directory>
+# if running on empire:
+# sbatch --gres=gpu:4 --partition=cornell -t 1-00:00:00 eval/act_L.sh <output directory>
 
 # Script for running zero-shot evaluation on all large models (10-70 B params)
 # GPU requirements when using max context length (i.e., `max_model_len=None`)
@@ -47,11 +49,29 @@ then
 else
     seed_list="1 2 3 4 5"
 fi
+# construct split list
+for seed in 1 2 3 4 5
+do
+    for size in 26 50 100 200 500
+    do
+        SPLIT_LIST+="depth_10_size_${size}_seed_${seed} "
+    done
+done
+
+# Get the number of gpus by counting the number of lines in the output of nvidia-smi
+NUM_GPUS=$(nvidia-smi --query-gpu=name --format=csv,noheader | wc -l)
+echo "Number of GPUs: $NUM_GPUS"
+# Check for the next available port not in use with vllm
+PORT=8000
+while lsof -Pi :$PORT -sTCP:LISTEN -t; do
+    PORT=$((PORT + 1))
+done
+echo "Using port: $PORT"
 
 # Function to check if the server is up
 check_server() {
     local model_name=$1
-    response=$(curl -o /dev/null -s -w "%{http_code}" http://0.0.0.0:8000/v1/chat/completions \
+    response=$(curl -o /dev/null -s -w "%{http_code}" http://0.0.0.0:$PORT/v1/chat/completions \
                     -X POST \
                     -H "Content-Type: application/json" \
                     -H "Authorization: Bearer token-abc123" \
@@ -67,7 +87,7 @@ for model_name in "${MODELS[@]}"
 do
     # Start the vLLM server in the background
     echo "Starting vLLM server..."
-    vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 4"
+    vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 4 --port $PORT"
     echo $vllm_cmd
     nohup $vllm_cmd &
     
@@ -86,10 +106,11 @@ do
         --method act \
         -od $1 \
         -m $model_name \
-        --split_list depth_10_size_26_seed_1 depth_10_size_50_seed_1 depth_10_size_100_seed_1 depth_10_size_200_seed_1 depth_10_size_500_seed_1 \
+        --split_list $SPLIT_LIST \
         --inf_seed_list $seed_list \
         --inf_temperature $TEMPERATURE \
-        -bs 10"
+        -bs 10 \
+        --inf_vllm_port $PORT"
     echo $cmd
     eval $cmd
 
