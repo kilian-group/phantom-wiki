@@ -59,10 +59,10 @@ class PersonFactory:
         self.duplicate_names = duplicate_names
 
         # Name datastructures
-        self._remaining_names = dict() 
         self._female_names: List[str] = []
         self._male_names: List[str] = []
         self._last_names: List[str] = []
+        self._remaining_names = dict() 
         self._remaining_male_last_names: List[str] = []
         self._remaining_female_last_names: List[str] = []
         self._remaining_both_last_names: List[str] = []
@@ -116,7 +116,7 @@ class PersonFactory:
             last_name_pool = self._remaining_female_last_names if female else self._remaining_male_last_names
 
         if last_name_pool==[]:
-            raise NotImplementedError("Insufficient names: Generating a dataset of this size is not supported")
+            raise NotImplementedError("Insufficient names: Generating a dataset of this size is not supported (try reducing num-samples)")
         
         last_name = random.choice(last_name_pool)
         return last_name
@@ -126,7 +126,7 @@ class PersonFactory:
         name_pool = self._remaining_names[surname][female]
 
         if name_pool==[]:
-            raise NotImplementedError("Insufficient names: Generating a dataset of this size is not supported")
+            raise NotImplementedError("Insufficient names: Generating a dataset of this size is not supported (try reducing num-samples)")
         
         name_index = random.randrange(len(name_pool))
 
@@ -137,13 +137,14 @@ class PersonFactory:
 
         if len(name_pool)==0:
             last_name_pool = self._remaining_female_last_names if female else self._remaining_male_last_names
-            del last_name_pool[surname]
 
-            del self._remaining_both_last_names[surname]
+            last_name_pool.remove(surname)
+
+            self._remaining_both_last_names.remove(surname)
 
             other_last_name_pool = self._remaining_male_last_names if female else self._remaining_female_last_names
             if surname not in other_last_name_pool:
-                del self._remaining_either_last_names[surname]
+                self._remaining_either_last_names.remove(surname)
 
         return name
 
@@ -249,7 +250,7 @@ class PersonFactory:
         Args:
             tree_level: The level in the family tree where this person belongs
             spouse: The person who will mary the spouse output
-            female: Optional boolean indicating gender. If None, gender is randomly assigned            
+            female: boolean indicating gender            
         """
 
         # Generating DOB of spouse
@@ -260,12 +261,19 @@ class PersonFactory:
         spouse_yob = min(max(spouse_yob, parent_yob-self._max_parent_age_diff), parent_yob+self._max_parent_age_diff)
         spouse_dob = date(spouse_yob, random.randint(1, 12), random.randint(1, 28))
 
-        # Generate spouse surname
+        # Generate surname
         if female:
             new_surname = spouse.surname
         else:
-            new_surname = self._get_last_name(female)
+            new_surname = self._get_last_name(female) # New surname for both spouses
+            
+            # We're going to void spouse's current surname -> add it back to the pool
+            if not self.duplicate_names:
+                self._remaining_names[spouse.surname][spouse.female].append(spouse.name)
+                
+            # For spouse, find new name which works with new_surname
             spouse.surname = new_surname
+            spouse.name = self._get_first_name(spouse.female, spouse.surname)
 
         return self.create_person(tree_level, new_surname, spouse_dob, female)
 
@@ -277,7 +285,7 @@ class PersonFactory:
             dob: The date of birth of the individual
             dob: The date of birth of the individual
             female: Optional boolean indicating gender. If None, gender is randomly assigned
-        """        
+        """
         if dob is None:
             dob = date(tree_level*(self._max_parent_age + 1) + random.randint(1, self._max_parent_age), 
                        random.randint(1,12), 

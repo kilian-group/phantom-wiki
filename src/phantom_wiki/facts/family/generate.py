@@ -15,6 +15,7 @@ import os
 import pydot
 from tqdm import tqdm
 import logging
+from collections import Counter
 
 from phantom_wiki.facts.family.person_factory import (PersonFactory, 
                                                       Person)
@@ -141,12 +142,18 @@ class Generator:
         family_trees = []
 
         all_time_start = time.time()
+        names = []
         for sample_idx in tqdm(range(args.num_samples), desc="Generating family trees", leave=False):
                             
             # sample family tree
             family_tree = self._sample_family_tree(args)
             family_trees.append(family_tree)
-            
+
+            names+=[p.get_full_name() for p in family_tree]
+
+        if len(set(names))!= len(names):
+            raise ValueError(f"Duplicate names found || If this error is raised, there is a bug in the code. This is a sanity check which should never be triggered")
+
         logging.info(f"Generated {len(family_trees)} family trees for a total of {sum([len(tree) for tree in family_trees])} individuals in {time.time()-all_time_start:.3f}s.")
 
         return family_trees
