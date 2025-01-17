@@ -152,7 +152,7 @@ async def main(args: argparse.Namespace) -> None:
             can_process_full_batch = (args.model_name in VLLMChat.SUPPORTED_LLM_NAMES) \
                 and (args.method not in ["react", "act", "react->cot-sc", "cot-sc->react"])
             batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
-            for batch_number in range(1, 2):#range(1, math.ceil(num_df_qa_pairs/batch_size) + 1):
+            for batch_number in range(1, math.ceil(num_df_qa_pairs/batch_size) + 1): #range(1, 2):
                 run_name = (
                     f"split={split}" \
                     + f"__model_name={args.model_name.replace('/', '--')}" \
