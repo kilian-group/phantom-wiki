@@ -5,6 +5,7 @@ FAMILY_FACT_TEMPLATES = {
     "brother": "The brother of <subject> is",
     "sister": "The sister of <subject> is",
     "sibling": "<subject>'s sibling is",
+    "parent": "The parent of <subject> is",
     "father": "The father of <subject> is",
     "mother": "The mother of <subject> is",
     "spouse": "<subject>'s spouse is",
@@ -30,6 +31,7 @@ FAMILY_FACT_TEMPLATES_PL = {
     "brother": "The brothers of <subject> are",
     "sister": "The sisters of <subject> are",
     "sibling": "<subject>'s siblings are",
+    "parent": "The parents of <subject> are",
     "child": "The children of <subject> are",
     "son": "The sons of <subject> are",
     "daughter": "The daughters of <subject> are",
@@ -43,12 +45,10 @@ FAMILY_FACT_TEMPLATES_PL = {
 
 # Base rules
 FAMILY_RELATION_EASY = [
-    "sibling",
     "sister",
     "brother",
     "mother",
     "father",
-    "child",
     "son",
     "daughter",
     "wife",
