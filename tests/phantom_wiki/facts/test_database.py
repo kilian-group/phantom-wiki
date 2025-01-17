@@ -30,7 +30,7 @@ def test_save_database():
 
 def test_get_names():
     db = Database.from_disk(DATABASE_SMALL_PATH)
-    names = db.get_names()
+    names = db.get_person_ames()
     assert set(names) == {
         "alfonso",
         "alton",
