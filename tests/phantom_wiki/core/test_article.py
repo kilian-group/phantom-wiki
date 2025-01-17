@@ -1,7 +1,9 @@
 import os
-from phantom_wiki.facts import get_database
+
 from phantom_wiki.core.article import get_articles
-from tests.phantom_wiki.facts.family import FAMILY_TREE_SMALL_EXAMPLE_PATH
+from phantom_wiki.facts import get_database
+from tests.phantom_wiki.facts import DATABASE_SMALL_107
+
 
 def test_get_articles():
     return
@@ -9,7 +11,7 @@ def test_get_articles():
     # TODO: add test that only checks the output of get_articles
     # for now, just use test_main.py to test the entire pipeline
     output_path = "out"
-    db = get_database(FAMILY_TREE_SMALL_EXAMPLE_PATH)
+    db = get_database(DATABASE_SMALL_107)
     # define predicates that are not in the above family tree
     db.define("nonbinary/1", "age/2", "job/2", "hobby/2")
 

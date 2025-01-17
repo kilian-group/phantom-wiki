@@ -1,4 +1,5 @@
 import abc
+from copy import deepcopy
 import os
 import time
 from tqdm import tqdm
@@ -6,7 +7,7 @@ import logging
 import asyncio
 
 import anthropic
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 import openai
 import tiktoken
 import together
@@ -24,6 +25,46 @@ class LLMChatResponse(BaseModel):
     pred: str
     usage: dict
     error: str | None = None
+
+
+def aggregate_usage(usage_list: list[dict]) -> dict:
+    """
+    Recursively sum the values of the usage dict, using the first non-empty dict
+    as reference schema for keys. 
+
+    NOTE: assumes that each usage dict in the list shares a common schema.
+    Otherwise, value errors may occur.
+
+    NOTE: assumes that the usage values are summable.
+
+    Args:
+        usage_list (list[dict]): List of usage dict objects.
+
+    Returns:
+        dict: The aggregated usage dict.
+    """
+    if len(usage_list) == 0:
+        return {}
+
+    # Find the first non-empty dict in usage_list and assign it to result
+    # Use that dict as reference schema for the aggregated usage dict
+    for usage in usage_list:
+        if usage:
+            result = deepcopy(usage)
+            break
+
+    for key in result.keys():
+        if isinstance(result[key], dict):
+            # result[key] is a dict, nested within the usage dict
+            # Since usage lists share a common schema, we can assume that 
+            # the nested dicts are of the same schema
+            # Recursively sum the values of the nested dicts
+            # Use .get method to default to empty dict if key not present
+            result[key] = aggregate_usage([usage.get(key, {}) for usage in usage_list])
+        else:
+            # Assume that the values are summable (default 0 if key not present)
+            result[key] = sum([usage.get(key, 0) for usage in usage_list])
+    return result
 
 
 class InferenceGenerationConfig(BaseModel):
@@ -571,6 +612,7 @@ class VLLMChat(CommonLLMChat):
         max_model_len: int | None = None,
         tensor_parallel_size: int | None = None,
         use_api: bool = True,
+        port: int = 8000,
     ):
         """
         Args:
@@ -582,6 +624,8 @@ class VLLMChat(CommonLLMChat):
                 Defaults to True.
                 NOTE: offline inference only works for batch_generate_response
                 To maximize performance, set `use_server=False` when running Nshot and CoT agents
+            port (int): Port number for the vllm server.
+                Defaults to 8000.
         """
         super().__init__(model_name, model_path)
         
@@ -589,7 +633,7 @@ class VLLMChat(CommonLLMChat):
         if self.use_api:
             logging.info("Using vLLM server for inference")
             try:
-                BASE_URL = "http://0.0.0.0:8000/v1" # TODO: allow this to be specified by the user
+                BASE_URL = f"http://0.0.0.0:{port}/v1"
                 API_KEY="token-abc123" # TODO: allow this to be specified by the user
                 self.client = openai.OpenAI(
                     base_url=BASE_URL,

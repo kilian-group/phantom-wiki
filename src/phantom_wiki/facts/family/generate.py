@@ -179,20 +179,20 @@ def family_tree_to_facts(family_tree):
     # Add facts for each person in the family tree
     for p in family_tree:
         # add 1-ary clause indicating the person exists
-        people.append(f"type(\'{p.get_full_name()}\', {PERSON_TYPE})")
+        people.append(f"type(\"{p.get_full_name()}\", {PERSON_TYPE})")
 
         # add 2-ary clause indicating gender
         if p.female:
-            genders.append(f"gender(\'{p.get_full_name()}\', \'female\')")
+            genders.append(f"gender(\"{p.get_full_name()}\", \"female\")")
         else:
-            genders.append(f"gender(\'{p.get_full_name()}\', \'male\')")
+            genders.append(f"gender(\"{p.get_full_name()}\", \"male\")")
 
         # add 2-ary clause indicating parent relationship
         for child in p.children:
-            parent_relationships.append(f"parent(\'{child.get_full_name()}\', \'{p.get_full_name()}\')")
+            parent_relationships.append(f"parent(\"{child.get_full_name()}\", \"{p.get_full_name()}\")")
 
         # add 2-ary clause indicating date of birth
-        dates_of_birth.append(f"dob(\'{p.get_full_name()}\', \'{p.date_of_birth}\')")
+        dates_of_birth.append(f"dob(\"{p.get_full_name()}\", \"{p.date_of_birth}\")")
 
     # Returning outputs 
     return sorted(people) + sorted(genders) + sorted(parent_relationships) + sorted(dates_of_birth)

@@ -30,7 +30,6 @@ def get_database(*data_paths) -> Database:
 # Imports for generating facts
 from .attributes import db_generate_attributes
 from .family import db_generate_family
-from .person import db_generate_population
 from .friends import db_generate_friendships
 
 # 
@@ -45,3 +44,5 @@ question_parser.add_argument("--valid-only", action="store_true",
                                 help="Only generate valid questions")
 question_parser.add_argument("--depth", type=int, default=6,
                                 help="Depth of the question template")
+question_parser.add_argument("--add-intermediate-answers", action="store_true",
+                                help="Add intermediate answers to the questions")

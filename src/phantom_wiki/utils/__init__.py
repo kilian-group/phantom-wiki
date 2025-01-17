@@ -48,3 +48,8 @@ def get_parser(parents=[]):
                         help="Format to save the generated questions and answers",
                         choices=["json_by_type", "json"])
     return parser
+
+def decode(x):
+    if isinstance(x, bytes):
+        return x.decode("utf-8")
+    return x

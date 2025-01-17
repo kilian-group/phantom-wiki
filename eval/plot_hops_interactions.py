@@ -25,8 +25,9 @@ args = parser.parse_args()
 output_dir = args.output_dir
 method = args.method
 split_name = args.split_name
+dataset = args.dataset
 # get evaluation data from the specified output directory and method subdirectory
-df = get_evaluation_data(output_dir, method)
+df = get_evaluation_data(output_dir, method, dataset)
 # add a column for the number of agent interactions
 df['interactions'] = df['interaction'].apply(lambda x: len(x['messages']))
 # compute the number of react steps
