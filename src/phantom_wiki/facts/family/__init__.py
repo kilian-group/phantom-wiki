@@ -103,4 +103,5 @@ def db_generate_family(db, args: ArgumentParser):
             output_graph_path = os.path.join(args.output_dir, f"family_tree_{i+1}.png")
             family_graph.write_png(output_graph_path)
 
+    del pf
     logging.debug(f"Saved family trees in {args.output_dir} as .png and .pl.")
