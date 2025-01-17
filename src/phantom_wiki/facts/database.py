@@ -11,6 +11,31 @@ SAVE_ALL_CLAUSES_TO_FILE = """
     close(Stream))
 """
 
+CLEAR_DATABASE = """
+(clear_database :-
+    abolish_all_tables,
+    retractall(_))
+"""
+# CLEANUP = """
+# (cleanup :-
+#     current_predicate(Name/Arity),
+#     \+ predicate_property(Head, built_in),
+#     functor(Head, Name, Arity),
+#     retractall(Head),
+#     fail)
+# """
+# CLEAR_DATABASE = """
+# clear_database :-
+#     abolish_all_tables,
+#     (current_predicate(Name/Arity),
+#      functor(Head, Name, Arity),
+#      predicate_property(Head, dynamic),
+#      retractall(Head),
+#      fail
+#     ;
+#     true)
+# """
+
 class Database:
     # TODO this will potentially need to consult several rules files (for family vs friends etc.)
     # TODO define an API for consulting different types of formal facts (family, friendships, hobbies)
@@ -23,7 +48,12 @@ class Database:
             self.prolog.consult(rule)
         # Add ability to save clauses to a file
         self.prolog.assertz(SAVE_ALL_CLAUSES_TO_FILE)
+        # List to keep track of user-defined predicates
+        self.predicates = []
+        # Add ability to clear the database
+        self.prolog.assertz(CLEAR_DATABASE)
 
+    # TODO: remove
     @classmethod
     def from_disk(cls, file: str):
         """Loads a Prolog database from a file.
@@ -33,6 +63,17 @@ class Database:
         db = cls()
         db.consult(file)
         return db
+    
+    def clear(self):
+        """Clear Prolog database
+
+        Abolishes all user-defined predicates.
+        """
+        # print(f"Abolishing predicates:")
+        # for predicate in self.predicates:
+        #     print(f"- {predicate}")
+        #     self.query(f"abolish({predicate})")
+        self.query("clear_database")
 
     def get_names(self):
         """Gets all names from a Prolog database.
@@ -116,6 +157,8 @@ class Database:
         for predicate in predicates:
             logging.debug(f"- {predicate}")
             self.prolog.dynamic(predicate)
+            # Add predicate to the list of user-defined predicates so that we can abolish them later if needed
+            self.predicates.append(predicate)
 
     def save_to_disk(self, file: str):
         """Saves all clauses in the database to a file.
