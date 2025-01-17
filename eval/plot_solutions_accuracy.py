@@ -4,7 +4,7 @@ Generates a plot for each metric (EM, precision, recall, f1) with the number of 
 Saves the plots to the figures directory of the output directory.
 
 Example:
-    python plot_solutions_accuracy.py -od out --method zeroshot --split_name depth_10_size_26_seed_1
+    python eval/plot_solutions_accuracy.py -od out --method zeroshot --split_name depth_10_size_26_seed_1
 """
 
 # %%
