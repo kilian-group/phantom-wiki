@@ -21,18 +21,21 @@ Generates a plot with the universe size on the x-axis, number of hops on the y-a
 Saves the plots to the figures directory of the output directory.
 
 Example:
-    python eval/plot_size_hops_accuracy.py -od out  --method react --split_name depth_10_size_26_seed_1
+    python eval/plot_size_hops_accuracy.py -od out  --method react
 """
 
 # %%
 import os
 from phantom_eval import get_parser
 from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std
+from phantom_eval.utils import setup_logging
 import matplotlib.pyplot as plt
 import numpy as np
+import logging
+setup_logging(logging.INFO)
 
 parser = get_parser()
-if False:
+if True:
     args = parser.parse_args()
     output_dir = args.output_dir
     method = args.method
@@ -47,7 +50,7 @@ df = get_evaluation_data(output_dir, method, dataset)
 # %%
 # group by model, split, and seed
 grouped = df.groupby(['_model', '_split', '_seed', 'hops'])
-# print the accuracy
+# logging.info the accuracy
 acc = grouped[['EM','precision', 'recall', 'f1']].mean()
 # add a column that counts the number of elements in the group
 acc['count'] = grouped.size()
@@ -63,10 +66,10 @@ acc_mean_std['_size'] = acc_mean_std['_split'].apply(lambda x: re.match(r"depth_
 acc_mean_std['_data_seed'] = acc_mean_std['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(3))
 # get all unique data seeds
 data_seeds = acc_mean_std['_data_seed'].unique()
-print(f"Data seeds: {data_seeds}")
+logging.info(f"Data seeds: {data_seeds}")
 # get all unique models
 models = acc_mean_std['_model'].unique()
-print(f"Models: {models}")
+logging.info(f"Models: {models}")
 
 figures_dir = os.path.join(output_dir, 'figures', method)
 os.makedirs(figures_dir, exist_ok=True)
@@ -80,6 +83,9 @@ for data_seed in data_seeds:
         fig, ax = plt.subplots(figsize=(15, 8))
         for model in models:
             acc_mean_std_data_seed = acc_mean_std[(acc_mean_std['_data_seed'] == data_seed) & (acc_mean_std['_model'] == model)]
+            if len(acc_mean_std_data_seed) == 0:
+                logging.warning(f"No data for model {model} and data seed {data_seed}")
+                continue
 
             # get the distinct x values
             x = np.sort(np.unique(acc_mean_std_data_seed['_size'].astype(int)))
@@ -103,7 +109,7 @@ for data_seed in data_seeds:
             # add the contour label
             ax.clabel(CS, CS.levels, fmt=fmt, fontsize=10)
 
-        ax.legend(title='Model', loc='upper right', fontsize=12)
+        # ax.legend(title='Model', loc='upper right', fontsize=12)
         # format x-axis
         ax.set_xlabel('Size of universe')
         ax.set_xticks(logx)
@@ -111,7 +117,7 @@ for data_seed in data_seeds:
         ax.set_ylabel('Number of hops')
         fig.tight_layout()
         fig_path = os.path.join(figures_dir, f'size-hops-{metric}-seed{data_seed}.png')
-        print(f"Saving to {os.path.abspath(fig_path)}")
+        logging.info(f"Saving to {os.path.abspath(fig_path)}")
         fig.savefig(fig_path)
         # plt.show()
 

@@ -51,4 +51,7 @@ do
             python eval/plot_hops_interactions.py -od $OUTPUT_DIR --method $METHOD --split_name $split_name
         fi
     done
+
+    # plot pareto curves
+    python eval/plot_size_hops_accuracy.py -od $OUTPUT_DIR --method $METHOD
 done
