@@ -15,7 +15,13 @@ from .database import Database
 from .family.constants import (FAMILY_RELATION_EASY, 
                                FAMILY_RELATION_EASY_PLURALS, 
                                FAMILY_RELATION_EASY_PL2SG)
-
+from .friends.constants import (FRIENDSHIP_RELATION_EASY,
+                                FRIENDSHIP_RELATION_EASY_PLURALS,
+                                FRIENDSHIP_RELATION_EASY_PL2SG)
+# macros
+RELATION_EASY = FAMILY_RELATION_EASY + FRIENDSHIP_RELATION_EASY
+RELATION_EASY_PLURALS = FAMILY_RELATION_EASY_PLURALS + FRIENDSHIP_RELATION_EASY_PLURALS
+RELATION_EASY_PL2SG = {**FAMILY_RELATION_EASY_PL2SG, **FRIENDSHIP_RELATION_EASY_PL2SG}
 
 def sample(
     db: Database,
@@ -132,10 +138,10 @@ def sample(
         # NOTE: we also need to deal with the plural forms of the predicates
         if match := search(r"(<(relation)>_(\d+))", query[i]):  # relation predicates
             assert match in question
-            sample_predicate(FAMILY_RELATION_EASY, match, i, mapping=None)
+            sample_predicate(RELATION_EASY, match, i, mapping=None)
         elif match := search(r"(<(relation_plural)>_(\d+))", query[i]):  # relation predicates
             assert match in question
-            sample_predicate(FAMILY_RELATION_EASY_PLURALS, match, i, mapping=FAMILY_RELATION_EASY_PL2SG)
+            sample_predicate(RELATION_EASY_PLURALS, match, i, mapping=RELATION_EASY_PL2SG)
         elif match := search(r"(<attribute_name>_(\d+))", query[i]):  # attribute predicates
             assert match in question
             sample_predicate(ATTRIBUTE_RELATION, match, i, mapping=None)
