@@ -830,6 +830,20 @@ class CoTSC_ReactAgent(Agent):
                 # Error msg is not related to majority vote, return CoTSC's response and abort
                 return cotsc_response
 
+from typing import List
+from langchain_core.embeddings import Embeddings
+class CustomEmbeddings(Embeddings):
+    def __init__(self, client):
+        self.client = client
+        self.model = self.client.models.list().data[0].id
+
+    def embed_documents(self, texts: List[str]) -> List[List[float]]:
+        """Embed search docs."""
+        return [obj.embedding for obj in self.client.embeddings.create(input=texts, model=self.model).data]
+
+    def embed_query(self, text: str) -> List[float]:
+        """Embed query text."""
+        return self.embed_documents([text])[0]
 
 class RAGAgent(Agent):
     def __init__(self, 
@@ -837,11 +851,12 @@ class RAGAgent(Agent):
                 llm_prompt: LLMPrompt, 
                 embedding: str="together", 
                 vector_store: str="faiss",
-                embedding_model_name: str="intfloat/e5-mistral-7b-instruct",#"meta-llama/llama-3.1-8b-instruct",
+                embedding_model_name: str="meta-llama/llama-3.1-8b-instruct",#"intfloat/e5-mistral-7b-instruct"
                 use_api: bool | None = True,
                 max_model_len: int | None = None,
                 tensor_parallel_size: int | None = None,
                 use_async: bool = False,
+                embedding_port: int=8001,
                 ):
         """
         Args:
@@ -851,9 +866,9 @@ class RAGAgent(Agent):
         super().__init__(text_corpus, llm_prompt)
         self.use_async = use_async
 
-        texts = self.text_corpus['article'].tolist()[:20]
+        texts = self.text_corpus['article'].tolist()#[:20]
         torch.cuda.empty_cache() 
-        if(False):
+        if(True):
             # # API implements OpenAI API interface but doesn't need to call OpenAI's API
             # client = OpenAI(
             #     api_key="token-abc123", 
@@ -865,7 +880,8 @@ class RAGAgent(Agent):
             # )
             logging.info("Using vLLM server for inference")
             try:
-                BASE_URL = "http://0.0.0.0:8000/v1" # TODO: allow this to be specified by the user
+                BASE_URL = f"http://0.0.0.0:{embedding_port}/v1" # TODO: allow this to be specified by the user
+                # print(BASE_URL)
                 API_KEY="token-abc123" # TODO: allow this to be specified by the user
                 self.client = openai.OpenAI(
                     base_url=BASE_URL,
@@ -887,17 +903,26 @@ class RAGAgent(Agent):
             # https://platform.openai.com/docs/guides/embeddings
             # https://docs.vllm.ai/en/latest/getting_started/examples/openai_embedding_client.html
             # logger.info(client.models.list().data[0].id) 2025-01-17 11:27:37,531 - phantom_eval.agent - INFO - meta-llama/llama-3.1-8b-instruct
-            responses = client.embeddings.create(
-                # input=texts,
-                input=[
-                    "Hello my name is",
-                    "The best thing about vLLM is that it supports many different models"
-                ],
-                model=client.models.list().data[0].id#client_cur_model,
-            )
-            logging.info("Responses:")
-            logging.info(responses)
-            embeddings = responses.data
+            # print(client.models.list().data[0].id)
+            # responses = client.embeddings.create(
+            #     input=texts,
+            #     model=client.models.list().data[0].id#client_cur_model,
+            # )
+            # models = client.models.list()
+            # model = models.data[0].id
+
+            # responses = client.embeddings.create(
+            #     input=[
+            #         "Hello my name is",
+            #         "The best thing about vLLM is that it supports many different models"
+            #     ],
+            #     model=model,
+            # )
+
+            # logging.info("Responses:")
+            # logging.info(responses)
+            # embeddings = responses.data
+            embeddings = CustomEmbeddings(client)
         
         else:
             if tensor_parallel_size is None:
@@ -909,8 +934,8 @@ class RAGAgent(Agent):
             # del llm.llm_engine.model_executor.driver_worker
             # del llm # Isn't necessary for releasing memory, but why not
             # gc.collect()
-            os.environ["CUDA_VISIBLE_DEVICES"] = "3,4"
-            torch.cuda.empty_cache()
+            # os.environ["CUDA_VISIBLE_DEVICES"] = "3,4"
+            # torch.cuda.empty_cache()
 
             embedding_model = LLM(
                 model=embedding_model_name, 
@@ -955,7 +980,7 @@ class RAGAgent(Agent):
 
         # Create a conversation with 1 user prompt
         prompt = self._build_agent_prompt(question)
-        print(prompt)
+        # print(prompt)
         conv = Conversation(messages=[
             Message(role="user", content=[ContentTextMessage(text=prompt)])
         ])

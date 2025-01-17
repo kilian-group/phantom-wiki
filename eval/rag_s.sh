@@ -2,6 +2,8 @@
 #SBATCH -J rag-small                              # Job name
 #SBATCH -o slurm/rag-small_%j.out                 # output file (%j expands to jobID)
 #SBATCH -e slurm/rag-small_%j.err                 # error log file (%j expands to jobID)
+#SBATCH --mail-type=ALL                      # Request status by email 
+#SBATCH --mail-user=jcl354@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
 #SBATCH -n 8                                 # Total number of cores requested
 #SBATCH --get-user-env                       # retrieve the users login environment
@@ -51,7 +53,9 @@ fi
 # Function to check if the server is up
 check_server() {
     local model_name=$1
-    response=$(curl -o /dev/null -s -w "%{http_code}" http://0.0.0.0:8000/v1/chat/completions \
+    local port=$2
+    # echo http://0.0.0.0:8001/v1/chat/completions
+    response=$(curl -o /dev/null -s -w "%{http_code}" http://0.0.0.0:$port/v1/chat/completions \
                     -X POST \
                     -H "Content-Type: application/json" \
                     -H "Authorization: Bearer token-abc123" \
@@ -63,25 +67,44 @@ check_server() {
     fi
 }
 
+
+# https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html#vllm-serve
 for model_name in "${MODELS[@]}"
 do
-    # # # Start the vLLM server in the background
-    # echo "Starting vLLM server..."
-    # vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 2" #nohup launches this in the background
-    # echo $vllm_cmd
-    # nohup $vllm_cmd &
+    # # Start the vLLM server in the background
+    port=8000
+    echo "Starting vLLM server..."
+    eval export CUDA_VISIBLE_DEVICES=0,1
+    vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 2 --host 0.0.0.0 --port $port" #nohup launches this in the background
+    echo $vllm_cmd
+    nohup $vllm_cmd &
     
-    # # Wait for the server to start
-    # echo "Waiting for vLLM server to start..."
-    # SLEEP=60
-    # while ! check_server $model_name; do
-    #     echo "Server is not up yet. Checking again in $SLEEP seconds..."
-    #     sleep $SLEEP
-    # done
+    # Wait for the server to start
+    echo "Waiting for vLLM server to start..."
+    SLEEP=60
+    while ! check_server $model_name $port; do
+        echo "Server is not up yet. Checking again in $SLEEP seconds..."
+        sleep $SLEEP
+    done
 
-    # echo "vLLM server is up and running."
+    echo "vLLM server is up and running."
 
 
+    e_port=8001
+    echo "Starting embedding server..."
+    eval export CUDA_VISIBLE_DEVICES=2,3
+    vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 2 --task embed --host 0.0.0.0 --port $e_port"
+    echo $vllm_cmd
+    nohup $vllm_cmd &
+    echo "Waiting for embedding server to start..."
+    SLEEP=60
+    while ! check_server $model_name $e_port; do
+        echo "Server is not up yet. Checking again in $SLEEP seconds..."
+        sleep $SLEEP
+    done
+    echo "embedding server is up and running."
+
+    eval export CUDA_VISIBLE_DEVICES=0,1,2,3
     # Run the main Python script
     cmd="python -m phantom_eval \
         --method rag \
@@ -89,14 +112,17 @@ do
         -m $model_name \
         --split_list depth_10_size_26_seed_1 \
         --inf_seed_list $seed_list \
-        --inf_temperature $TEMPERATURE"
+        --inf_temperature $TEMPERATURE \
+        --inf_vllm_port $port
+        --inf_embedding_port $e_port
+        "
     echo $cmd
     eval $cmd
 
-    # # Stop the vLLM server using pkill
-    # echo "Stopping vLLM server..."
-    # pkill -e -f vllm
-    # echo "vLLM server stopped."
+    # Stop the vLLM server using pkill
+    echo "Stopping vLLM server..."
+    pkill -e -f vllm
+    echo "vLLM server stopped."
 done
 
 # sbatch eval/rag_s.sh /home/jcl354/phantom-wiki/out

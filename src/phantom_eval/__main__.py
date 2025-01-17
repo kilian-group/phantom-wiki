@@ -30,7 +30,7 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
                 # This can be overridden by setting `use_api=True` in the model_kwargs.
                 # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
                 use_api=(args.method in [
-                    # "rag",
+                    "rag",
                     "react", "act", "react->cot-sc", "cot-sc->react"
                     ]),
                 port=args.inf_vllm_port,
@@ -76,6 +76,7 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
             agent_kwargs = dict(
                 embedding="together", #args.embedding
                 vector_store="faiss", #args.vector_store
+                embedding_port=args.inf_embedding_port,
             )
         case "react":
             agent_kwargs = dict(

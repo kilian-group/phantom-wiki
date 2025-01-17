@@ -3,7 +3,7 @@ Ref: https://docs.vllm.ai/en/latest/getting_started/examples/openai_embedding_cl
 
 STEP 1: Start the vLLM API server in embedding mode:
 ```bash
-vllm serve meta-llama/llama-3.1-8b-instruct --api-key token-abc123 --tensor_parallel_size 2 --task embedding
+vllm serve meta-llama/llama-3.1-8b-instruct --api-key token-abc123 --tensor_parallel_size 2 --task embed
 ```
 Note: 
 - For meta-llama/llama-3.1-8b-instruct to run, you will need at least 2 A6000 GPUs. (For some reason, the embeddings API requires 2 GPUs, while the generate API only requires 1 GPU.)
@@ -38,10 +38,13 @@ model = models.data[0].id
 responses = client.embeddings.create(
     input=[
         "Hello my name is",
-        "The best thing about vLLM is that it supports many different models"
+        # "The best thing about vLLM is that it supports many different models"
     ],
     model=model,
 )
+
+# print([obj.embedding for obj in client.embeddings.create(input="Hello my name is", model=model).data])
+# print(responses.data)
 
 for data in responses.data:
     print(data.embedding)  # list of float of len 4096
