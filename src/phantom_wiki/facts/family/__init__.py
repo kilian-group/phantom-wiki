@@ -11,6 +11,7 @@ FAMILY_RULES_DERIVED_PATH = files("phantom_wiki").joinpath("facts/family/rules_d
 # imports for family generation
 from argparse import ArgumentParser
 import logging
+import gc
 
 # Create parser for family tree generation
 fam_gen_parser = ArgumentParser(description="Family Generator", add_help=False)
@@ -74,9 +75,8 @@ def db_generate_family(db, args: ArgumentParser):
     # set the random seed
     random.seed(args.seed)
     # Get the prolog family tree
-    pf = PersonFactory()
-    pf.load_names()
-
+    pf = PersonFactory(args.duplicate_names)
+    
     gen = Generator(pf)
     family_trees = gen.generate(args)
 
@@ -104,4 +104,8 @@ def db_generate_family(db, args: ArgumentParser):
             output_graph_path = os.path.join(args.output_dir, f"family_tree_{i+1}.png")
             family_graph.write_png(output_graph_path)
 
+    # Unallocate person factory to save memory (ran into segmenation fault otherwise)
+    del pf
+    gc.collect()
+    
     logging.debug(f"Saved family trees in {args.output_dir} as .png and .pl.")

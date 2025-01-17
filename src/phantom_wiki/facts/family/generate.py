@@ -15,6 +15,7 @@ import os
 import pydot
 from tqdm import tqdm
 import logging
+from collections import Counter
 
 from phantom_wiki.facts.family.person_factory import (PersonFactory, 
                                                       Person)
@@ -141,22 +142,19 @@ class Generator:
         family_trees = []
 
         all_time_start = time.time()
+        names = []
         for sample_idx in tqdm(range(args.num_samples), desc="Generating family trees", leave=False):
                             
             # sample family tree
-            start = time.time()
             family_tree = self._sample_family_tree(args)
             family_trees.append(family_tree)
-            
-            if not args.duplicate_names:
-                # Resetting all pools if user allows for duplicate names
-                self.person_factory.reset()
 
-            else:
-                # If not, reset only first name pools
-                self.person_factory.reset_names()
+            names+=[p.get_full_name() for p in family_tree]
 
-        logging.info(f"Generated family tree of {sum([len(tree) for tree in family_trees])} individuals in {time.time()-all_time_start:.3f}s.")
+        if len(set(names))!= len(names):
+            raise ValueError(f"Duplicate names found || If this error is raised, there is a bug in the code. This is a sanity check which should never be triggered")
+
+        logging.info(f"Generated {len(family_trees)} family trees for a total of {sum([len(tree) for tree in family_trees])} individuals in {time.time()-all_time_start:.3f}s.")
 
         return family_trees
     
@@ -233,8 +231,7 @@ if __name__ == "__main__":
     os.makedirs(args.output_dir, exist_ok=True)
 
     # Get the prolog family tree
-    pf = PersonFactory()
-    pf.load_names()
+    pf = PersonFactory(args.duplicate_names)
 
     gen = Generator(pf)
     family_trees = gen.generate(args)
