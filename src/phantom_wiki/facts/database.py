@@ -43,15 +43,15 @@ class Database:
 
     # TODO check output type
     def get_attribute_values(self) -> list[str]:
-        """Gets all attributes from a Prolog database.
+        """Gets all attribute values from the Prolog database.
 
         Returns:
-            List of attributes.
+            List of attributes present in the database (e.g. "job", "hobby")
         """
-        # NOTE: if you want to be able to query for attributes,
-        # without actually having attributes in the database,
-        # you need to define the attribute predicate by uncommenting the line below
-        # self.define("attribute/1")
+
+        # Defining the `attribute` predicate allows querying for attributes 
+        # even when none are defined in the database
+        self.define("attribute/1")
         attributes = [result["X"] for result in self.prolog.query("attribute(X)")]
         return attributes
 
@@ -77,7 +77,6 @@ class Database:
             logging.debug(f"- {file}")
             self.prolog.consult(file)
 
-    # TODO check output type
     def add(self, *facts: str) -> None:
         """Adds fact(s) to the Prolog database.
 
@@ -94,7 +93,6 @@ class Database:
             logging.debug(f"- {fact}")
             self.prolog.assertz(fact)
 
-    # TODO check output type
     def remove(self, *facts: str) -> None:
         """Removes a fact from the Prolog database.
 
@@ -111,7 +109,6 @@ class Database:
             logging.debug(f"- {fact}")
             self.prolog.retractall(fact)
 
-    # TODO check output type
     def define(self, *predicates: str) -> None:
         """Defines dynamic predicates in the Prolog database.
 
