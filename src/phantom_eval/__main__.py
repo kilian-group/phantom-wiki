@@ -29,7 +29,10 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
                 # If the method is zeroshot or fewshot, we do not need to use the API (for vLLM)
                 # This can be overridden by setting `use_api=True` in the model_kwargs.
                 # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
-                use_api=(args.method in ["rag","react", "act", "react->cot-sc", "cot-sc->react"]),
+                use_api=(args.method in [
+                    # "rag",
+                    "react", "act", "react->cot-sc", "cot-sc->react"
+                    ]),
             )
         case _:
             model_kwargs = dict(

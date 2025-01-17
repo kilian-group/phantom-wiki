@@ -7,7 +7,7 @@
 #SBATCH --get-user-env                       # retrieve the users login environment
 #SBATCH --mem=100000                         # server memory (MBs) requested (per node)
 #SBATCH -t infinite                           # Time limit (hh:mm:ss)
-#SBATCH --gres=gpu:a6000:2                   # Number of GPUs requested
+#SBATCH --gres=gpu:a6000:4                   # Number of GPUs requested
 #SBATCH --partition=kilian                   # Request partition
 
 # Script for running zero-shot evaluation on all small models (<4 B params)
@@ -65,21 +65,21 @@ check_server() {
 
 for model_name in "${MODELS[@]}"
 do
-    # # Start the vLLM server in the background
-    echo "Starting vLLM server..."
-    vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 2" #nohup launches this in the background
-    echo $vllm_cmd
-    nohup $vllm_cmd &
+    # # # Start the vLLM server in the background
+    # echo "Starting vLLM server..."
+    # vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 2" #nohup launches this in the background
+    # echo $vllm_cmd
+    # nohup $vllm_cmd &
     
-    # Wait for the server to start
-    echo "Waiting for vLLM server to start..."
-    SLEEP=60
-    while ! check_server $model_name; do
-        echo "Server is not up yet. Checking again in $SLEEP seconds..."
-        sleep $SLEEP
-    done
+    # # Wait for the server to start
+    # echo "Waiting for vLLM server to start..."
+    # SLEEP=60
+    # while ! check_server $model_name; do
+    #     echo "Server is not up yet. Checking again in $SLEEP seconds..."
+    #     sleep $SLEEP
+    # done
 
-    echo "vLLM server is up and running."
+    # echo "vLLM server is up and running."
 
 
     # Run the main Python script
@@ -93,10 +93,10 @@ do
     echo $cmd
     eval $cmd
 
-    # Stop the vLLM server using pkill
-    echo "Stopping vLLM server..."
-    pkill -e -f vllm
-    echo "vLLM server stopped."
+    # # Stop the vLLM server using pkill
+    # echo "Stopping vLLM server..."
+    # pkill -e -f vllm
+    # echo "vLLM server stopped."
 done
 
 # sbatch eval/rag_s.sh /home/jcl354/phantom-wiki/out
