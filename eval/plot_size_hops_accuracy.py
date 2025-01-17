@@ -98,7 +98,7 @@ for data_seed in data_seeds:
             # Ref: https://matplotlib.org/stable/gallery/images_contours_and_fields/contour_label_demo.html
             # This custom formatter adds the model name to the contour label.
             def fmt(x):
-                s = f"{x:.0f} - {model}"
+                s = f"{x:.2f} - {model}"
                 return s
             # add the contour label
             ax.clabel(CS, CS.levels, fmt=fmt, fontsize=10)
