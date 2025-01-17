@@ -21,6 +21,9 @@ from vllm import LLM
 from .gpu_utils import get_gpu_count
 import torch
 import openai # from openai import OpenAI
+import gc
+# from vllm.model_executor.parallel_utils.parallel_state import destroy_model_parallel
+
 
 logger = logging.getLogger(__name__)
 
@@ -857,7 +860,7 @@ class RAGAgent(Agent):
                 llm_prompt: LLMPrompt, 
                 embedding: str="together", 
                 vector_store: str="faiss",
-                embedding_model_name: str="meta-llama/llama-3.1-8b-instruct",
+                embedding_model_name: str="intfloat/e5-mistral-7b-instruct",#"meta-llama/llama-3.1-8b-instruct",
                 use_api: bool | None = True,
                 max_model_len: int | None = None,
                 tensor_parallel_size: int | None = None,
@@ -873,7 +876,7 @@ class RAGAgent(Agent):
 
         texts = self.text_corpus['article'].tolist()[:20]
         torch.cuda.empty_cache() 
-        if(True):
+        if(False):
             # # API implements OpenAI API interface but doesn't need to call OpenAI's API
             # client = OpenAI(
             #     api_key="token-abc123", 
@@ -925,12 +928,19 @@ class RAGAgent(Agent):
             else:
                 tensor_parallel_size = tensor_parallel_size
 
+            # destroy_model_parallel()
+            # del llm.llm_engine.model_executor.driver_worker
+            # del llm # Isn't necessary for releasing memory, but why not
+            # gc.collect()
+            os.environ["CUDA_VISIBLE_DEVICES"] = "3,4"
+            torch.cuda.empty_cache()
+
             embedding_model = LLM(
                 model=embedding_model_name, 
                 task="embed", 
                 # enforce_eager=True,
                 max_model_len=max_model_len,
-                tensor_parallel_size=tensor_parallel_size,
+                tensor_parallel_size=2#tensor_parallel_size,
             )
             embedding_outputs = embedding_model.embed(texts)
             embeddings = [output.outputs.embedding for output in embedding_outputs]
