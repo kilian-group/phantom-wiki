@@ -25,7 +25,7 @@ def test_main():
         example_article = f.read()
     # test that the articles were generated correctly
     article_dir = os.path.join("test_out", "articles")
-    with open(os.path.join(article_dir, "Adele Ervin.txt")) as file:
+    with open(os.path.join(article_dir, "Aida Wang.txt")) as file:
         article = file.read()
         assert article == example_article
 
@@ -43,15 +43,15 @@ def test_main():
             "<attribute_name>_5",
             "is",
             "<attribute_value>_5",
-            "?",
+            "?"
         ]
 
-        assert data[0]["question"] == "Who is the father of the person whose hobby is bus spotting?"
+        assert data[0]["question"] == "Who is the father of the person whose job is biomedical scientist?"
         assert data[0]["prolog"]["query"] == [
-            "father(Y_4, Y_2)", 
-            "hobby(Y_4, \"bus spotting\")"
+            "father(Y_4, Y_2)",
+            "job(Y_4, \"biomedical scientist\")"
         ]
-        assert data[0]["answer"] == ["Bruce Cater"]
+        assert data[0]["answer"] == ["Ryan Wang"]
 
     # clean up test_out directory
     shutil.rmtree("test_out")
