@@ -29,10 +29,12 @@ import itertools
 import re
 from copy import copy
 from numpy.random import Generator
+from pyswip import Variable
 
 from .attributes.constants import ATTRIBUTE_TYPES, ATTRIBUTE_ALIASES
 from .database import Database
 from .family.constants import FAMILY_RELATION_DIFFICULTY, FAMILY_RELATION_ALIAS, FAMILY_RELATION_PLURAL_ALIAS
+from ..utils import decode
 
 FAMILY_RELATION_EASY = [k for k, v in FAMILY_RELATION_DIFFICULTY.items() if v < 2]
 FAMILY_RELATIONS = [k for k, v in FAMILY_RELATION_DIFFICULTY.items()]
@@ -104,9 +106,15 @@ def sample(
         return question_
 
     def _valid_result(result):
-        return all(isinstance(value, str) for value in result.values())
+        # TODO this is a *hack* around the infinitely recursive Prolog queries
+        return all(not isinstance(value, Variable) for value in result.values())
 
     query_assignments = {}  # Maps each <placeholder> to the sampled value
+
+    supports = {}
+    for attribute_type in ATTRIBUTE_TYPES:
+        supports[attribute_type] = list(set(decode(r['Y']) for r in db.query(f"{attribute_type}(X, Y)")))
+    name_bank = db.get_person_names()
 
     valid_result = False
     n_attempts = 0
@@ -119,11 +127,6 @@ def sample(
         atom_variables = {}  # Maps <placeholder> to the temporary variable if sampled value is unavailable
         query_assignments = {}  # Maps each <placeholder> to the sampled (value, alias) pair
         question_assignments = {}
-
-        supports = {}
-        for attribute_type in ATTRIBUTE_TYPES:
-            supports[attribute_type] = list(set(r['Y'] for r in db.query(f"{attribute_type}(X, Y)")))
-        name_bank = db.get_person_names()
 
         # Iterate through subquery templates
         # TODO sampling is done right-to-left, which might have to change with star-join support in templates
@@ -166,7 +169,7 @@ def sample(
 
         if valid_only:
             q = _prepare_query(use_atom_variables=True)
-            query_results = list(itertools.islice(db.query(",".join(q)), 100))  # TODO limit to 1 for now
+            query_results = list(itertools.islice(db.query(",".join(q)), 50))  # TODO limit choices for now
             if query_results:
                 j = rng.choice(len(query_results))
                 choice = query_results[j]  # atom_variable -> sample
@@ -174,9 +177,9 @@ def sample(
                 #  predicates :(
                 if _valid_result(choice):
                     for atom_placeholder, atom_variable in atom_variables.items():
-                        query_assignments[atom_placeholder] = choice[atom_variable]
+                        query_assignments[atom_placeholder] = decode(choice[atom_variable])
                         # Atoms do not have aliases
-                        question_assignments[atom_placeholder] = choice[atom_variable]
+                        question_assignments[atom_placeholder] = decode(choice[atom_variable])
                     valid_result = True
                 else:
                     valid_result = False
