@@ -13,6 +13,7 @@ FAMILY_RULES_DERIVED_PATH = files("phantom_wiki").joinpath("facts/family/rules_d
 # imports for family generation
 from argparse import ArgumentParser
 import logging
+import gc
 
 # Create parser for family tree generation
 fam_gen_parser = ArgumentParser(description="Family Generator", add_help=False)
@@ -76,8 +77,7 @@ def db_generate_family(db, args: ArgumentParser):
     # set the random seed
     random.seed(args.seed)
     # Get the prolog family tree
-    pf = PersonFactory()
-    pf.load_names()
+    pf = PersonFactory(args.duplicate_names)
 
     gen = Generator(pf)
     family_trees = gen.generate(args)

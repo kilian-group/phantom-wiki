@@ -22,7 +22,6 @@ dependencies = [
     "anthropic",
     "datasets",
     "faiss-cpu",
-    "faker",
     "google-generativeai",
     "langchain",
     "langchain-community",

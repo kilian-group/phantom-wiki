@@ -9,6 +9,7 @@ from .constants import (ATTRIBUTE_FACT_TEMPLATES,
                         ATTRIBUTE_TYPES)
 from .generate import (generate_jobs,
                        generate_hobbies)
+from ...utils import decode
 # resource containing the attribute rules
 from importlib.resources import files
 ATTRIBUTE_RULES_PATH = files("phantom_wiki").joinpath("facts/attributes/rules.pl")
@@ -24,8 +25,8 @@ def get_attributes(db: Database, name: str):
     """
     attributes = {}
     for attr in ATTRIBUTE_TYPES:
-        query = f"{attr}(\'{name}\', X)"
-        results = [result['X'] for result in db.query(query)]
+        query = f"{attr}(\"{name}\", X)"
+        results = [decode(result['X']) for result in db.query(query)]
         attributes[attr] = results
     return attributes
 
@@ -69,13 +70,13 @@ def db_generate_attributes(db: Database, args: ArgumentParser):
     for name in names:
         # add jobs
         job = jobs[name]
-        facts.append(f"job(\'{name}\', \'{job}\')")
-        facts.append(f"attribute(\'{job}\')")
+        facts.append(f"job(\"{name}\", \"{job}\")")
+        facts.append(f"attribute(\"{job}\")")
         
         # add hobbies
         hobby = hobbies[name]
-        facts.append(f"hobby(\'{name}\', \'{hobby}\')")
-        facts.append(f"attribute(\'{hobby}\')")
+        facts.append(f"hobby(\"{name}\", \"{hobby}\")")
+        facts.append(f"attribute(\"{hobby}\")")
 
     logging.info(f"Generated attributes for {len(names)} individuals in {time.time()-start_time:.3f}s.")
     db.add(*facts)

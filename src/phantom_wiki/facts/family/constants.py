@@ -4,6 +4,7 @@ FAMILY_FACT_TEMPLATES = {
     "brother": "The brother of <subject> is",
     "sister": "The sister of <subject> is",
     "sibling": "<subject>'s sibling is",
+    "parent": "The parent of <subject> is",
     "father": "The father of <subject> is",
     "mother": "The mother of <subject> is",
     "spouse": "<subject>'s spouse is",
@@ -29,6 +30,7 @@ FAMILY_FACT_TEMPLATES_PL = {
     "brother": "The brothers of <subject> are",
     "sister": "The sisters of <subject> are",
     "sibling": "<subject>'s siblings are",
+    "parent": "The parents of <subject> are",
     "child": "The children of <subject> are",
     "son": "The sons of <subject> are",
     "daughter": "The daughters of <subject> are",
@@ -134,11 +136,30 @@ FAMILY_RELATION_ALIAS = {
     "daughter_in_law": "daughter-in-law",
 }
 
+FAMILY_RELATION_HARD_PLURALS = [
+    "nieces",
+    "nephews",
+    "grandParents",
+    "grandMothers",
+    "grandFathers",
+    "greatAunts",
+    "greatUncles",
+    "grandChildren",
+    "grandDaughters",
+    "grandSons",
+    "father_in_laws",
+    "mother_in_laws",
+    "brother_in_laws",
+    "sister_in_laws",
+    "son_in_laws",
+    "daughter_in_laws",
+]
 
-"""intrinsic difficulty for different family relations
-For all the predictates that occur in the articles the difficulty is 1.
-For harder predicates the difficulty is incremented by the extra articles that need to be checked to determine it.
-i.e. How many articles need to be retrieved to reach the relation.
+"""Intrinsic difficulty for different family relations.\
+
+For all the predicates that occur in the articles the difficulty is 1.
+For harder predicates the difficulty is incremented by the extra articles that need to be checked to determine
+the relation.
 """
 FAMILY_RELATION_DIFFICULTY = {
     "parent": 1,

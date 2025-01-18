@@ -8,7 +8,7 @@ An example of sample function working:
 "<attribute_value>_1", "?"],
 ["<relation>_3(Y_2, Y_4)", "<attribute_name>_1(Y_2, <attribute_value>_1)"],
 
--> 
+->
 
 (
     {"<attribute_name>_1": "age", "<relation>_3": "child"},
@@ -62,7 +62,7 @@ def sample(
     Returns:
         * a dictionary mapping each placeholder to its realization,
         # TODO consider not returning these for simplicity and doing the replacement elsewhere?
-        * the completed question_ as a single string,
+        * the completed question as a single string,
         * the completed Prolog query as a list of Prolog statements,
         # TODO None if valid_only is True and no valid query is found
     """
