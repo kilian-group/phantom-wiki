@@ -952,7 +952,7 @@ class RAGAgent(Agent):
 
         vectorstore = FAISS.from_texts(texts, embeddings)
         self.retriever = vectorstore.as_retriever()
-        self.format_docs = lambda docs: "\n\n".join(doc.page_content for doc in docs)
+        self.format_docs = lambda docs: "\n================\n\n".join(doc.page_content for doc in docs)
 
 
     def __get_evidence(self, question:str) -> str:
@@ -979,7 +979,7 @@ class RAGAgent(Agent):
         Parse the response to extract the answer using regex.
         The prediction is of the form: "... The answer is <answer>."
         """
-        pattern = r"The answer is (.+)\.\s*$"
+        pattern = r"answer is (.+)\.\s*$"
         m = re.search(pattern, pred)
         if m:
             return m.group(1)
