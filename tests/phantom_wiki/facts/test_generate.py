@@ -8,7 +8,7 @@ from tests.phantom_wiki.facts import DATABASE_SMALL_PATH
 #
 def test_generate_jobs():
     db = Database.from_disk(DATABASE_SMALL_PATH)
-    jobs = generate_jobs(sorted(db.get_names()), seed=1)
+    jobs = generate_jobs(sorted(db.get_person_names()), seed=1)
     import json
 
     from tests.phantom_wiki.facts import JOBS_PATH
@@ -22,7 +22,7 @@ def test_generate_jobs():
 
 def test_generate_hobbies():
     db = Database.from_disk(DATABASE_SMALL_PATH)
-    hobbies = generate_hobbies(sorted(db.get_names()), seed=1)
+    hobbies = generate_hobbies(sorted(db.get_person_names()), seed=1)
     import json
 
     from tests.phantom_wiki.facts import HOBBIES_PATH
