@@ -58,9 +58,9 @@ def sample(
         rng: random number generator
         valid_only: whether to sample only valid realizations
             if True: we uniformly sample from the set of prolog queries
-            satisfying the predicate_template_list with a non-empty answer
+            satisfying the query_template with a non-empty answer
             if False: we uniformly sample from all possible prolog queries
-            satisfying the predicate_template_list
+            satisfying the query_template
     Returns:
         * a dictionary mapping each placeholder to its realization,
         # TODO consider not returning these for simplicity and doing the replacement elsewhere?
