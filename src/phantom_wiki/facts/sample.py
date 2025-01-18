@@ -177,7 +177,7 @@ def sample(
                 #  predicates :(
                 if _valid_result(choice):
                     for atom_placeholder, atom_variable in atom_variables.items():
-                        query_assignments[atom_placeholder] = decode(choice[atom_variable])
+                        query_assignments[atom_placeholder] = f"\"{decode(choice[atom_variable])}\""
                         # Atoms do not have aliases
                         question_assignments[atom_placeholder] = decode(choice[atom_variable])
                     valid_result = True
