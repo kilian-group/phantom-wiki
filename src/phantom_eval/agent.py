@@ -1026,6 +1026,12 @@ class RAGAgent(Agent):
         # Change stop_sequences to "\n"
         # inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
         responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
+
+        # Add the responses to the agent's conversations
+        for i, response in enumerate(responses):
+            self.agent_interactions[i].messages.append(
+                Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
+            )
         return [
             LLMChatResponse(
                 pred=self._parse_answer(response.pred),
