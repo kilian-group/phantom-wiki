@@ -35,10 +35,13 @@ import logging
 setup_logging(logging.INFO)
 
 parser = get_parser()
+parser.add_argument("--fmt_max_universe_size", type=int, default=500, 
+                    help="Maximum universe size to plot")
 args = parser.parse_args()
 output_dir = args.output_dir
 method = args.method
 dataset = args.dataset
+fmt_max_universe_size = args.fmt_max_universe_size
 # get evaluation data from the specified output directory and method subdirectory
 df = get_evaluation_data(output_dir, method, dataset)
 
@@ -85,13 +88,25 @@ for data_seed in data_seeds:
 
             # get the distinct x values
             x = acc_mean_std_data_seed['_size'].astype(int).values
-            logx = np.log2(x)
             # get the distinct y values
             y = acc_mean_std_data_seed['hops'].values
             # get the accuracy values
             z = acc_mean_std_data_seed[(metric, 'mean')].values
+            # get x and y labels
+            xlabels = sorted([*np.unique(x), fmt_max_universe_size])
+            xticks = np.log2(xlabels)
+            yticks = ylabels = np.unique(y)
+            
+            # add dummy entries to plot the out-of-context region
+            X,Y = np.meshgrid(np.linspace(max(x)+1, fmt_max_universe_size, 100), np.linspace(min(y), max(y), 100))
+            Z = np.zeros_like(X)
+            # extend the x values to the right
+            x = np.append(x, X.flatten())
+            y = np.append(y, Y.flatten())
+            z = np.append(z, Z.flatten())
+
             # plot tricontourf
-            contour = ax.tricontourf(logx, y, z, levels=20, cmap='viridis')
+            contour = ax.tricontourf(np.log2(x), y, z, levels=20, cmap='viridis')
             contour.set_clim(0, 1)
             # add colorbar with min=0 and max=1
             cbar = fig.colorbar(contour)
@@ -99,9 +114,12 @@ for data_seed in data_seeds:
 
             # format x-axis
             ax.set_xlabel('Size of universe')
-            ax.set_xticks(logx)
-            ax.set_xticklabels(x)
+            ax.set_xticks(xticks)
+            ax.set_xticklabels(xlabels)
+            # format y-axis
             ax.set_ylabel('Number of hops')
+            ax.set_yticks(yticks)
+            ax.set_yticklabels(ylabels)
             fig.tight_layout()
             fig_path = os.path.join(figures_dir, f"size-hops-{metric}-seed{data_seed}-{model.replace('/', '--')}.png")
             logging.info(f"Saving to {os.path.abspath(fig_path)}")
