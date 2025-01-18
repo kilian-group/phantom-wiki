@@ -98,7 +98,7 @@ for data_seed in data_seeds:
             yticks = ylabels = np.unique(y)
             
             # add dummy entries to plot the out-of-context region
-            X,Y = np.meshgrid(np.linspace(max(x)+1, fmt_max_universe_size, 100), np.linspace(min(y), max(y), 100))
+            X,Y = np.meshgrid(np.linspace(max(x)+1, fmt_max_universe_size, 100), yticks)
             Z = np.zeros_like(X)
             # extend the x values to the right
             x = np.append(x, X.flatten())
