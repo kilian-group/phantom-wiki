@@ -52,6 +52,8 @@ do
         fi
     done
 
+    # plot per-model contour plots
+    python eval/plot_size_hops_accuracy_per_model.py -od $OUTPUT_DIR --method $METHOD
     # plot pareto curves
     python eval/plot_size_hops_accuracy.py -od $OUTPUT_DIR --method $METHOD
 done
