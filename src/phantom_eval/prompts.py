@@ -36,17 +36,18 @@ class ZeroshotLLMPrompt(LLMPrompt):
 # The current example is the example from CoT trivially adapted
 FEWSHOT_EXAMPLES = f"""
 Example 1:
-Question: What is the job of the father of anastasia?
-Answer: goldsmith
+Question: What is the hobby of the child of Jewel Backus?
+Answer: shogi
 
 Example 2:
-Question: What is the job of the person whose hobby is woodworking?
-Answer: goldsmith{constants.answer_sep}banker
+Question: What is the dob of the person whose hobby is meditation?
+Answer: 0259-06-10{constants.answer_sep}0206-04-13
 
 Example 3:
-Question: How many children does the person whose job is woodworking have?
-Answer: 1{constants.answer_sep}2
+Question: How many siblings does the person whose hobby is meditation have?
+Answer: 1{constants.answer_sep}0
 """
+
 class FewshotLLMPrompt(LLMPrompt):
     FEWSHOT_INSTRUCTION = f"""
     You are given the following evidence:
@@ -73,31 +74,18 @@ class FewshotLLMPrompt(LLMPrompt):
         )
 
 ##### CoT method
-# Some alternative formats:
-# 1. <thought>...</thought> and <action>Finish[answer]</action> tags
-# Pros: 
-# - This would be more similar to the React method. 
-# - In the future, if we want to standardize things, maybe this is the way to go.
-# Cons: 
-# - We would require additional parsing for the final answer.
-# 
-# Justification for the present format:
-# - Answer is easier to parse.
-# - For smaller models, it might be easier to generate the answer.
-# Potential cons:
-# - Output is less structured, so might be harder to verify intermediate steps.
 COT_EXAMPLES = f"""
 Example 1:
-Question: What is the job of the father of anastasia?
-Answer: First I need to find the father of anastasia. Based on the evidence, the father of anastasia is daniel. Now I need to find the job of daniel. Based on the evidence, the job of daniel is goldsmith. The answer is goldsmith.
+Question: What is the hobby of the child of Jewel Backus?
+Answer: First I need to find the child of Jewel Backus. Based on the evidence, the child of Jewel Backus is Derick Backus. Now I need to find the hobby of Derick Backus. Based on the evidence, the hobby of Derick Backus is shogi. The answer is shogi.
 
 Example 2:
-Question: What is the job of the person whose hobby is woodworking?
-Answer: I need to search for people whose hobby is woodworking. Based on the evidence, the people whose hobby is woodworking are daniel, lee. The job of daniel is goldsmith, and the job of lee is banker. The answer is goldsmith{constants.answer_sep}banker.
+Question: What is the dob of the person whose hobby is meditation?
+Answer: I need to search for people whose hobby is meditation. Based on the evidence, the people whose hobby is meditation are Adele Ervin, Tyler Ussery. The dob of Adele Ervin is 0259-06-10, and the dob of Tyler Ussery is 0206-04-13. The answer is 0259-06-10{constants.answer_sep}0206-04-13.
 
 Example 3:
-Question: How many children does the person whose job is woodworking have?
-Answer: I need to search for people whose hobby is woodworking. Based on the evidence, the people whose hobby is woodworking are daniel, lee. Daniel has 1 child, and lee has 2 children. The answer is 1{constants.answer_sep}2.
+Question: How many siblings does the person whose hobby is meditation have?
+Answer: I need to search for people whose hobby is meditation. Based on the evidence, the people whose hobby is meditation are Adele Ervin, Tyler Ussery. Adele Ervin has 1 sibling, and Tyler Ussery has 0 siblings. The answer is 1{constants.answer_sep}0.
 """
 
 class CoTLLMPrompt(LLMPrompt):
@@ -139,63 +127,63 @@ class RAGLLMPrompt(LLMPrompt):
 ##### React method
 REACT_EXAMPLES = f"""
 Example 1:
-Question: Who is the father of anastasia?
-Thought 1: I need to retrieve article about anastasia and find who her father is.
-Action 1: RetrieveArticle[anastasia].
-Observation 1: # anastasia ## Family The son of anastasia is jack, ringo, liam. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.
-Thought 2: The father of anastasia is daniel, so the answer is daniel.
-Action 2: Finish[daniel].
+Question: Who is the father of Karen Ervin?
+Thought 1: I need to retrieve article about Karen Ervin and find who her father is.
+Action 1: RetrieveArticle[Karen Ervin].
+Observation 1: # Karen Ervin ## Family Karen Ervin's sibling is Alton Cater.  The brother of Karen Ervin is Alton Cater.  The mother of Karen Ervin is Vita Cater.  The father of Karen Ervin is Bruce Cater.  The children of Karen Ervin are Adele Ervin, Lisha Leibowitz.  The daughters of Karen Ervin are Adele Ervin, Lisha Leibowitz.  The husband of Karen Ervin is Boris Ervin.  ## Friends The friend of Karen Ervin is Tyler Ussery.  ## Attributes The date of birth of Karen Ervin is 0231-09-29.  The occupation of Karen Ervin is air cabin crew.  The hobby of Karen Ervin is bus spotting.  The gender of Karen Ervin is female.
+Thought 2: The father of Karen Ervin is Bruce Cater, so the answer is Bruce Cater.
+Action 2: Finish[Bruce Cater].
 
 Example 2:
-Question: Who is the mother of ivana?
-Thought 1: I need to retrieve article about ivana and find who her mother is.
-Action 1: RetrieveArticle[ivana].
+Question: Who is the mother of Ivana Smith?
+Thought 1: I need to retrieve article about Ivana Smith and find who her mother is.
+Action 1: RetrieveArticle[Ivana Smith].
 Observation 1: No article exists for the requested entity. Please try retrieving article for another entity.
-Thought 2: Article about ivana does not exist, so I cannot find the mother of ivana. I will output empty answer.
+Thought 2: Article about Ivana Smith does not exist, so I cannot find the mother of Ivana Smith. I will output empty answer.
 Action 2: Finish[].
 
 Example 3:
-Question: Who is the son of anastasia?
-Thought 1: I need to retrieve article about anastasia and find who her father is.
-Action 1: RetrieveArticle[anastasia].
-Observation 1: # anastasia ## Family The son of anastasia is jack, ringo, liam. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.
-Thought 2: The son of anastasia is jack, ringo, liam, so the answer is jack, ringo, liam.
-Action 2: Finish[jack{constants.answer_sep}ringo{constants.answer_sep}liam].
+Question: Who is the brother of Veronica Donohue?
+Thought 1: I need to retrieve article about Veronica Donohue and find who her brother is.
+Action 1: RetrieveArticle[Veronica Donohue].
+Observation 1: # Veronica Donohue ## Family Veronica Donohue's siblings are Dirk Donohue, Pedro Donohue, Ty Donohue.  The brothers of Veronica Donohue are Dirk Donohue, Pedro Donohue, Ty Donohue.  The mother of Veronica Donohue is Therese Donohue.  The father of Veronica Donohue is Mason Donohue.  ## Friends The friends of Veronica Donohue are Vita Cater, Aubrey Leibowitz, Bruce Cater, Gerry Donohue, Rigoberto Bode.  ## Attributes The date of birth of Veronica Donohue is 0174-07-16.  The occupation of Veronica Donohue is airline pilot.  The hobby of Veronica Donohue is wikipedia editing.  The gender of Veronica Donohue is female.
+Thought 2: The brothers of anastasia are Dirk Donohue, Pedro Donohue, Ty Donohue, so the answer is Dirk Donohue, Pedro Donohue, Ty Donohue.
+Action 2: Finish[Dirk Donohue{constants.answer_sep}Pedro Donohue{constants.answer_sep}Ty Donohue].
 
 Example 4:
-Question: How many sons does anastasia have?
-Thought 1: I need to retrieve article about anastasia and find who her father is.
-Action 1: RetrieveArticle[anastasia].
-Observation 1: # anastasia ## Family The son of anastasia is jack, ringo, liam. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.
-Thought 2: The son of anastasia is jack, ringo, liam, so the answer is 3 sons.
+Question: How many brothers does Veronica Donohue have?
+Thought 1: I need to retrieve article about Veronica Donohue and find who her brother is.
+Action 1: RetrieveArticle[Veronica Donohue].
+Observation 1: # Veronica Donohue ## Family Veronica Donohue's siblings are Dirk Donohue, Pedro Donohue, Ty Donohue.  The brothers of Veronica Donohue are Dirk Donohue, Pedro Donohue, Ty Donohue.  The mother of Veronica Donohue is Therese Donohue.  The father of Veronica Donohue is Mason Donohue.  ## Friends The friends of Veronica Donohue are Vita Cater, Aubrey Leibowitz, Bruce Cater, Gerry Donohue, Rigoberto Bode.  ## Attributes The date of birth of Veronica Donohue is 0174-07-16.  The occupation of Veronica Donohue is airline pilot.  The hobby of Veronica Donohue is wikipedia editing.  The gender of Veronica Donohue is female.
+Thought 2: The brothers of anastasia are Dirk Donohue, Pedro Donohue, Ty Donohue, so the answer is 3 brothers.
 Action 2: Finish[3].
 
 Example 5:
-Question: What is the job of the father of anastasia?
-Thought 1: First, I need to retrieve article about anastasia and find who her father is.
-Action 1: RetrieveArticle[anastasia].
-Observation 1: # anastasia ## Family The son of anastasia is jack, ringo, liam. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.
-Thought 2: The father of anastasia is daniel. To find out the job of daniel, I need to retrieve article about daniel.
-Action 2: RetrieveArticle[daniel].
-Observation 2: # daniel ## Family The daughter of daniel is anastasia. The wife of daniel is leah. The mother of daniel is mary. ## Friends The friend of daniel is paul, catherine, william. ## Attributes The date of birth of daniel is 0192-12-23. The job of daniel is goldsmith. The hobby of daniel is woodworking, crocheting.
-Thought 3: The father of anastasia is daniel, and the job of daniel is goldsmith. So the answer is goldsmith.
-Action 3: Finish[goldsmith].
+Question: What is the hobby of the child of Jewel Backus?
+Thought 1: First, I need to retrieve article about Jewel Backus and find who her child is.
+Action 1: RetrieveArticle[Jewel Backus].
+Observation 1: # Jewel Backus ## Family Jewel Backus's sibling is Wilfredo Cater.  The brother of Jewel Backus is Wilfredo Cater.  The mother of Jewel Backus is Ella Cater.  The father of Jewel Backus is Alton Cater.  The child of Jewel Backus is Derick Backus.  The son of Jewel Backus is Derick Backus.  The husband of Jewel Backus is Wes Backus.  ## Friends The friends of Jewel Backus are Pedro Donohue, Staci Donohue, Tiffany Bode, Ty Donohue, Delpha Donohue, Gerry Donohue.  ## Attributes The date of birth of Jewel Backus is 0268-03-07.  The occupation of Jewel Backus is ranger/warden.  The hobby of Jewel Backus is trainspotting.  The gender of Jewel Backus is female.
+Thought 2: The child of Jewel Backus is Derick Backus. To find out the hobby of Derick Backus, I need to retrieve article about Derick Backus.
+Action 2: RetrieveArticle[Derick Backus].
+Observation 2: # Derick Backus ## Family The mother of Derick Backus is Jewel Backus.  The father of Derick Backus is Wes Backus.  ## Friends The friends of Derick Backus are Ella Cater, Gustavo Leibowitz, Lisha Leibowitz, Mason Donohue.  ## Attributes The date of birth of Derick Backus is 0295-10-18.  The occupation of Derick Backus is production assistant, television.  The hobby of Derick Backus is shogi.  The gender of Derick Backus is male.
+Thought 3: The son of Jewel Backus is Derick Backus, and the hobby of Derick Backus is shogi. So the answer is shogi.
+Action 3: Finish[shogi].
 
 Example 6:
-Question: What is the job of the person whose hobby is woodworking?
-Thought 1: I need to search for people whose hobby is woodworking.
-Action 1: Search[woodworking].
-Observation 1: (1) # daniel ## Family The daughter of daniel is anastasia. The wife of daniel is leah. The mother of daniel is mary. ## Friends The friend of daniel is paul, catherine, william. ## Attributes The date of birth of daniel is 0192-12-23. The job of daniel is goldsmith. The hobby of daniel is woodworking, crocheting.  (2) # lee ## Family The wife of lee is mary. The child of lee is marie, cindy. ## Friends The friend of lee is young, charles. ## Attributes The job of lee is banker. The hobby of lee is running, woodworking.
-Thought 2: People whose hobby is woodworking are daniel, lee. The job of daniel is goldsmith, and the job of lee is banker. So the answer is goldsmith, banker.
-Action 2: Finish[goldsmith{constants.answer_sep}banker].
+Question: What is the dob of the person whose hobby is meditation?
+Thought 1: I need to search for people whose hobby is meditation.
+Action 1: Search[meditation].
+Observation 1: (1) # Adele Ervin ## Family Adele Ervin's sibling is Lisha Leibowitz.  The sister of Adele Ervin is Lisha Leibowitz.  The mother of Adele Ervin is Karen Ervin.  The father of Adele Ervin is Boris Ervin.  ## Friends The friends of Adele Ervin are Alton Cater, Boris Ervin, Dirk Donohue, Therese Donohue, Wilfredo Cater.  ## Attributes The date of birth of Adele Ervin is 0259-06-10.  The occupation of Adele Ervin is contractor.  The hobby of Adele Ervin is meditation.  The gender of Adele Ervin is female.  (2) # Tyler Ussery ## Family The child of Tyler Ussery is Ella Cater.  The daughter of Tyler Ussery is Ella Cater.  The wife of Tyler Ussery is Margarite Ussery.  ## Friends The friends of Tyler Ussery are Karen Ervin, Lisha Leibowitz.  ## Attributes The date of birth of Tyler Ussery is 0206-04-13.  The occupation of Tyler Ussery is investment banker, corporate.  The hobby of Tyler Ussery is meditation.  The gender of Tyler Ussery is male.
+Thought 2: People whose hobby is meditation are Adele Ervin, Tyler Ussery. The dob of Adele Ervin is 0259-06-10, and the dob of Tyler Ussery is 0206-04-13. So the answer is 0259-06-10, 0206-04-13.
+Action 2: Finish[0259-06-10{constants.answer_sep}0206-04-13].
 
 Example 7:
-Question: How many children does the person whose job is woodworking have?
-Thought 1: I need to search for people whose hobby is woodworking.
-Action 1: Search[woodworking].
-Observation 1: (1) # daniel ## Family The daughter of daniel is anastasia. The wife of daniel is leah. The mother of daniel is mary. ## Friends The friend of daniel is paul, catherine, william. ## Attributes The date of birth of daniel is 0192-12-23. The job of daniel is goldsmith. The hobby of daniel is woodworking, crocheting.  (2) # lee ## Family The wife of lee is mary. The child of lee is marie, cindy. ## Friends The friend of lee is young, charles. ## Attributes The job of lee is banker. The hobby of lee is running, woodworking.
-Thought 2: People whose hobby is woodworking are daniel, lee. daniel has 1 child, and lee has 2 children. So the answer is 1, 2.
-Action 2: Finish[1{constants.answer_sep}2].
+Question: How many siblings does the person whose hobby is meditation have?
+Thought 1: I need to search for people whose hobby is meditation.
+Action 1: Search[meditation].
+Observation 1: (1) # Adele Ervin ## Family Adele Ervin's sibling is Lisha Leibowitz.  The sister of Adele Ervin is Lisha Leibowitz.  The mother of Adele Ervin is Karen Ervin.  The father of Adele Ervin is Boris Ervin.  ## Friends The friends of Adele Ervin are Alton Cater, Boris Ervin, Dirk Donohue, Therese Donohue, Wilfredo Cater.  ## Attributes The date of birth of Adele Ervin is 0259-06-10.  The occupation of Adele Ervin is contractor.  The hobby of Adele Ervin is meditation.  The gender of Adele Ervin is female.  (2) # Tyler Ussery ## Family The child of Tyler Ussery is Ella Cater.  The daughter of Tyler Ussery is Ella Cater.  The wife of Tyler Ussery is Margarite Ussery.  ## Friends The friends of Tyler Ussery are Karen Ervin, Lisha Leibowitz.  ## Attributes The date of birth of Tyler Ussery is 0206-04-13.  The occupation of Tyler Ussery is investment banker, corporate.  The hobby of Tyler Ussery is meditation.  The gender of Tyler Ussery is male.
+Thought 2: People whose hobby is meditation are Adele Ervin, Tyler Ussery. Adele Ervin has 1 sibling, and Tyler Ussery has 0 siblings. So the answer is 1, 0.
+Action 2: Finish[1{constants.answer_sep}0].
 """
 
 
@@ -246,48 +234,48 @@ class ReactGeminiPrompt(ReactLLMPrompt):
 ##### Act method
 ACT_EXAMPLES = f"""
 Example 1:
-Question: Who is the father of anastasia?
-Action 1: RetrieveArticle[anastasia].
-Observation 1: # anastasia ## Family The son of anastasia is jack, ringo, liam. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.
-Action 2: Finish[daniel].
+Question: Who is the father of Karen Ervin?
+Action 1: RetrieveArticle[Karen Ervin].
+Observation 1: # Karen Ervin ## Family Karen Ervin's sibling is Alton Cater.  The brother of Karen Ervin is Alton Cater.  The mother of Karen Ervin is Vita Cater.  The father of Karen Ervin is Bruce Cater.  The children of Karen Ervin are Adele Ervin, Lisha Leibowitz.  The daughters of Karen Ervin are Adele Ervin, Lisha Leibowitz.  The husband of Karen Ervin is Boris Ervin.  ## Friends The friend of Karen Ervin is Tyler Ussery.  ## Attributes The date of birth of Karen Ervin is 0231-09-29.  The occupation of Karen Ervin is air cabin crew.  The hobby of Karen Ervin is bus spotting.  The gender of Karen Ervin is female.
+Action 2: Finish[Bruce Cater].
 
 Example 2:
-Question: Who is the mother of ivana?
-Action 1: RetrieveArticle[ivana].
+Question: Who is the mother of Ivana Smith?
+Action 1: RetrieveArticle[Ivana Smith].
 Observation 1: No article exists for the requested entity. Please try retrieving article for another entity.
 Action 2: Finish[].
 
 Example 3:
-Question: Who is the son of anastasia?
-Action 1: RetrieveArticle[anastasia].
-Observation 1: # anastasia ## Family The son of anastasia is jack, ringo, liam. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.
-Action 2: Finish[jack{constants.answer_sep}ringo{constants.answer_sep}liam].
+Question: Who is the brother of Veronica Donohue?
+Action 1: RetrieveArticle[Veronica Donohue].
+Observation 1: # Veronica Donohue ## Family Veronica Donohue's siblings are Dirk Donohue, Pedro Donohue, Ty Donohue.  The brothers of Veronica Donohue are Dirk Donohue, Pedro Donohue, Ty Donohue.  The mother of Veronica Donohue is Therese Donohue.  The father of Veronica Donohue is Mason Donohue.  ## Friends The friends of Veronica Donohue are Vita Cater, Aubrey Leibowitz, Bruce Cater, Gerry Donohue, Rigoberto Bode.  ## Attributes The date of birth of Veronica Donohue is 0174-07-16.  The occupation of Veronica Donohue is airline pilot.  The hobby of Veronica Donohue is wikipedia editing.  The gender of Veronica Donohue is female.
+Action 2: Finish[Dirk Donohue{constants.answer_sep}Pedro Donohue{constants.answer_sep}Ty Donohue].
 
 Example 4:
-Question: How many sons does anastasia have?
-Action 1: RetrieveArticle[anastasia].
-Observation 1: # anastasia ## Family The son of anastasia is jack, ringo, liam. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.
+Question: How many brothers does Veronica Donohue have?
+Action 1: RetrieveArticle[Veronica Donohue].
+Observation 1: # Veronica Donohue ## Family Veronica Donohue's siblings are Dirk Donohue, Pedro Donohue, Ty Donohue.  The brothers of Veronica Donohue are Dirk Donohue, Pedro Donohue, Ty Donohue.  The mother of Veronica Donohue is Therese Donohue.  The father of Veronica Donohue is Mason Donohue.  ## Friends The friends of Veronica Donohue are Vita Cater, Aubrey Leibowitz, Bruce Cater, Gerry Donohue, Rigoberto Bode.  ## Attributes The date of birth of Veronica Donohue is 0174-07-16.  The occupation of Veronica Donohue is airline pilot.  The hobby of Veronica Donohue is wikipedia editing.  The gender of Veronica Donohue is female.
 Action 2: Finish[3].
 
 Example 5:
-Question: What is the job of the father of anastasia?
-Action 1: RetrieveArticle[anastasia].
-Observation 1: # anastasia ## Family The son of anastasia is jack, ringo, liam. The son of anastasia is dirk. The father of anastasia is daniel. The husband of anastasia is bob. ## Friends The friend of anastasia is marie, thomas, kate. ## Attributes The date of birth of anastasia is 0213-01-04. The job of anastasia is realtor. The hobby of anastasia is bird watching.
-Action 2: RetrieveArticle[daniel].
-Observation 2: # daniel ## Family The daughter of daniel is anastasia. The wife of daniel is leah. The mother of daniel is mary. ## Friends The friend of daniel is paul, catherine, william. ## Attributes The date of birth of daniel is 0192-12-23. The job of daniel is goldsmith. The hobby of daniel is woodworking, crocheting.
-Action 3: Finish[goldsmith].
+Question: What is the hobby of the child of Jewel Backus?
+Action 1: RetrieveArticle[Jewel Backus].
+Observation 1: # Jewel Backus ## Family Jewel Backus's sibling is Wilfredo Cater.  The brother of Jewel Backus is Wilfredo Cater.  The mother of Jewel Backus is Ella Cater.  The father of Jewel Backus is Alton Cater.  The child of Jewel Backus is Derick Backus.  The son of Jewel Backus is Derick Backus.  The husband of Jewel Backus is Wes Backus.  ## Friends The friends of Jewel Backus are Pedro Donohue, Staci Donohue, Tiffany Bode, Ty Donohue, Delpha Donohue, Gerry Donohue.  ## Attributes The date of birth of Jewel Backus is 0268-03-07.  The occupation of Jewel Backus is ranger/warden.  The hobby of Jewel Backus is trainspotting.  The gender of Jewel Backus is female.
+Action 2: RetrieveArticle[Derick Backus].
+Observation 2: # Derick Backus ## Family The mother of Derick Backus is Jewel Backus.  The father of Derick Backus is Wes Backus.  ## Friends The friends of Derick Backus are Ella Cater, Gustavo Leibowitz, Lisha Leibowitz, Mason Donohue.  ## Attributes The date of birth of Derick Backus is 0295-10-18.  The occupation of Derick Backus is production assistant, television.  The hobby of Derick Backus is shogi.  The gender of Derick Backus is male.
+Action 3: Finish[shogi].
 
 Example 6:
-Question: What is the job of the person whose hobby is woodworking?
-Action 1: Search[woodworking].
-Observation 1: (1) # daniel ## Family The daughter of daniel is anastasia. The wife of daniel is leah. The mother of daniel is mary. ## Friends The friend of daniel is paul, catherine, william. ## Attributes The date of birth of daniel is 0192-12-23. The job of daniel is goldsmith. The hobby of daniel is woodworking, crocheting.  (2) # lee ## Family The wife of lee is mary. The child of lee is marie, cindy. ## Friends The friend of lee is young, charles. ## Attributes The job of lee is banker. The hobby of lee is running, woodworking.
-Action 2: Finish[goldsmith{constants.answer_sep}banker].
+Question: What is the dob of the person whose hobby is meditation?
+Action 1: Search[meditation].
+Observation 1: (1) # Adele Ervin ## Family Adele Ervin's sibling is Lisha Leibowitz.  The sister of Adele Ervin is Lisha Leibowitz.  The mother of Adele Ervin is Karen Ervin.  The father of Adele Ervin is Boris Ervin.  ## Friends The friends of Adele Ervin are Alton Cater, Boris Ervin, Dirk Donohue, Therese Donohue, Wilfredo Cater.  ## Attributes The date of birth of Adele Ervin is 0259-06-10.  The occupation of Adele Ervin is contractor.  The hobby of Adele Ervin is meditation.  The gender of Adele Ervin is female.  (2) # Tyler Ussery ## Family The child of Tyler Ussery is Ella Cater.  The daughter of Tyler Ussery is Ella Cater.  The wife of Tyler Ussery is Margarite Ussery.  ## Friends The friends of Tyler Ussery are Karen Ervin, Lisha Leibowitz.  ## Attributes The date of birth of Tyler Ussery is 0206-04-13.  The occupation of Tyler Ussery is investment banker, corporate.  The hobby of Tyler Ussery is meditation.  The gender of Tyler Ussery is male.
+Action 2: Finish[0259-06-10{constants.answer_sep}0206-04-13].
 
 Example 7:
-Question: How many children does the person whose job is woodworking have?
-Action 1: Search[woodworking].
-Observation 1: (1) # daniel ## Family The daughter of daniel is anastasia. The wife of daniel is leah. The mother of daniel is mary. ## Friends The friend of daniel is paul, catherine, william. ## Attributes The date of birth of daniel is 0192-12-23. The job of daniel is goldsmith. The hobby of daniel is woodworking, crocheting.  (2) # lee ## Family The wife of lee is mary. The child of lee is marie, cindy. ## Friends The friend of lee is young, charles. ## Attributes The job of lee is banker. The hobby of lee is running, woodworking.
-Action 2: Finish[1{constants.answer_sep}2].
+Question: How many siblings does the person whose hobby is meditation have?
+Action 1: Search[meditation].
+Observation 1: (1) # Adele Ervin ## Family Adele Ervin's sibling is Lisha Leibowitz.  The sister of Adele Ervin is Lisha Leibowitz.  The mother of Adele Ervin is Karen Ervin.  The father of Adele Ervin is Boris Ervin.  ## Friends The friends of Adele Ervin are Alton Cater, Boris Ervin, Dirk Donohue, Therese Donohue, Wilfredo Cater.  ## Attributes The date of birth of Adele Ervin is 0259-06-10.  The occupation of Adele Ervin is contractor.  The hobby of Adele Ervin is meditation.  The gender of Adele Ervin is female.  (2) # Tyler Ussery ## Family The child of Tyler Ussery is Ella Cater.  The daughter of Tyler Ussery is Ella Cater.  The wife of Tyler Ussery is Margarite Ussery.  ## Friends The friends of Tyler Ussery are Karen Ervin, Lisha Leibowitz.  ## Attributes The date of birth of Tyler Ussery is 0206-04-13.  The occupation of Tyler Ussery is investment banker, corporate.  The hobby of Tyler Ussery is meditation.  The gender of Tyler Ussery is male.
+Action 2: Finish[1{constants.answer_sep}0].
 """
 
 
