@@ -132,7 +132,7 @@ def main(args):
     #
     blue("Generating articles")
     start = time.time()
-    articles = get_articles(db, db.get_names())
+    articles = get_articles(db, db.get_person_names())
     timings["articles_generate"] = time.time() - start
 
     blue("Saving articles")
