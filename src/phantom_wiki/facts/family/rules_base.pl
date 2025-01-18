@@ -15,9 +15,9 @@ married(X, Y) :-
   parent(Child, Y),
   X \= Y.
 
-sister(Y, X) :-
+sister(X, Y) :-
   sibling(X, Y),
-  female(X).
+  female(Y).
 
 brother(X, Y) :-
   sibling(X, Y),
