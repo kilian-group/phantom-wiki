@@ -113,8 +113,9 @@ do
         --split_list depth_10_size_26_seed_1 \
         --inf_seed_list $seed_list \
         --inf_temperature $TEMPERATURE \
-        --inf_vllm_port $port
-        --inf_embedding_port $e_port
+        -bs 2 \
+        --inf_vllm_port $port \
+        --inf_embedding_port $e_port 
         "
     echo $cmd
     eval $cmd

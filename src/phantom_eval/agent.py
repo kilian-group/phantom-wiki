@@ -955,7 +955,6 @@ class RAGAgent(Agent):
         self.format_docs = lambda docs: "\n\n".join(doc.page_content for doc in docs)
 
 
-
     def __get_evidence(self, question:str) -> str:
         """
         Returns retrieved articles in the text corpus as evidence.
@@ -975,21 +974,40 @@ class RAGAgent(Agent):
             question=question
         )
 
+    def _parse_answer(cls, pred: str) -> tuple[str, str]:
+        """
+        Parse the response to extract the answer using regex.
+        The prediction is of the form: "... The answer is <answer>."
+        """
+        pattern = r"The answer is (.+)\.\s*$"
+        m = re.search(pattern, pred)
+        if m:
+            return m.group(1)
+        else:
+            return ""
+
     def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
         # Create a conversation with 1 user prompt
         prompt = self._build_agent_prompt(question)
+        print(prompt)
         # print(prompt)
         conv = Conversation(messages=[
             Message(role="user", content=[ContentTextMessage(text=prompt)])
         ])
+        self.agent_interactions = conv
         
         # Generate response
         # Add "\n" to stop_sequences
         # inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
         response = llm_chat.generate_response(conv, inf_gen_config)
-        return response
+
+        # Update agent's conversation
+        self.agent_interactions.messages.append(
+            Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
+        )
+        return self._parse_answer(response.pred)
     
     async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
         logger.debug(f"\n\t>>> questions: {questions}\n")
@@ -1002,12 +1020,23 @@ class RAGAgent(Agent):
             ])
             for prompt in prompts
         ]
+        self.agent_interactions = convs
         
         # Generate response
         # Change stop_sequences to "\n"
         # inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
         responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
-        return responses
+        return [
+            LLMChatResponse(
+                pred=self._parse_answer(response.pred),
+                usage=response.usage,
+                error=response.error,
+            ) 
+            for response in responses
+        ]
+        # return [self._parse_answer(r.pred) for r in responses]
+
+
 
 #### Utils ####
 
