@@ -1,8 +1,10 @@
 # imports for family relations and templates
 from .constants import (FAMILY_FACT_TEMPLATES,
                         FAMILY_FACT_TEMPLATES_PL,
-                        FAMILY_RELATION_EASY,
-                        FAMILY_RELATION_HARD)
+                        FAMILY_RELATION_DIFFICULTY)
+
+FAMILY_RELATION_EASY = [k for k, v in FAMILY_RELATION_DIFFICULTY.items() if v < 2]
+FAMILY_RELATION_HARD = [k for k, v in FAMILY_RELATION_DIFFICULTY.items() if v >= 2]
 
 from importlib.resources import files
 FAMILY_RULES_BASE_PATH = files("phantom_wiki").joinpath("facts/family/rules_base.pl")
