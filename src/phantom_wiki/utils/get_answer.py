@@ -10,7 +10,7 @@ def get_answer(
     db: Database,
     answer: str,
     add_intermediate_answers: bool = False
-) -> tuple[list[str], list[str]]:
+) -> tuple[list[dict[str, str]], list[str]]:
     """Get the answer to a query from the database
 
     Args:
