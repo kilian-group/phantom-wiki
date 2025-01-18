@@ -6,7 +6,7 @@ ATTRIBUTE_FACT_TEMPLATES = {
     "gender": "The gender of <subject> is",
 }
 
-ATTRIBUTE_ALIAS = {
+ATTRIBUTE_ALIASES = {
     "dob": "date of birth",
     "job": "occupation",
     "hobby": "hobby",
