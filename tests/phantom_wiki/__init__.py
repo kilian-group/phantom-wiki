@@ -3,4 +3,4 @@ import sys
 print("\n".join(sys.path))
 from importlib.resources import files
 
-ARTICLE_EXAMPLE_PATH = files("tests").joinpath("phantom_wiki/resources/articles/Adele Ervin.txt")
+ARTICLE_EXAMPLE_PATH = files("tests").joinpath("phantom_wiki/resources/articles/Aida Wang.txt")
