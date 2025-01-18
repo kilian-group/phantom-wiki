@@ -176,9 +176,15 @@ def main(args):
         rng = np.random.default_rng(args.seed)
         questions = []
         for _ in range(args.num_questions_per_type):
-            _, question, query = sample(
+
+            # else skip (throw away) the sample
+            sample_ = sample(
                 db, question_template, query_template, rng=rng, valid_only=args.valid_only
             )
+            if sample_ is None:
+                continue
+            else:
+                _, question, query = sample_
             # get distinct answers
             # TODO: is there a better way to do this?
             # NOTE: we concatenate the clauses in the prolog query in reverse order
