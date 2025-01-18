@@ -245,11 +245,14 @@ class CoTAgent(Agent):
             Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
         )
         
-        return LLMChatResponse(
-            pred=CoTAgent.parse_answer(response.pred),
-            usage=response.usage,
-            error=response.error,
-        )
+        # Parse the response to extract the answer
+        try:
+            pred = CoTAgent.parse_answer(response.pred)
+            error = None
+        except Exception as e:
+            pred = ""
+            error = f"<agent_error>{e}</agent_error>"
+        return LLMChatResponse(pred=pred, usage=response.usage, error=error)
     
     async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
         logger.debug(f"\n\t>>> questions: {questions}\n")
@@ -270,15 +273,21 @@ class CoTAgent(Agent):
             self.agent_interactions[i].messages.append(
                 Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
             )
-        
-        return [
-            LLMChatResponse(
-                pred=CoTAgent.parse_answer(response.pred),
-                usage=response.usage,
-                error=response.error,
-            ) 
-            for response in responses
-        ]
+
+        # Parse the responses to extract the answers
+        parsed_responses: list[LLMChatResponse] = []
+        for response in responses:
+            # Try to parse the response, otherwise return an error
+            try:
+                pred = CoTAgent.parse_answer(response.pred)
+                error = None
+            except Exception as e:
+                pred = ""
+                error = f"<agent_error>{e}</agent_error>"
+            parsed_responses.append(
+                LLMChatResponse(pred=pred, usage=response.usage, error=error)
+            )
+        return parsed_responses
     
     def _build_agent_prompt(self, question: str) -> str:
         evidence = _get_evidence(self.text_corpus)
@@ -299,7 +308,7 @@ class CoTAgent(Agent):
         if m:
             return m.group(1)
         else:
-            return ""
+            raise ValueError(f"Answer '{pred}' cannot be parsed.")
 
     def reset(self) -> None:
         self.agent_interactions: Conversation = Conversation(messages=[])
@@ -438,7 +447,7 @@ class ActAgent(Agent):
         Run the observation step of the agent and increments the step round.
         NOTE: Returned usage is empty since the LLM is not called.
         """
-        action_type, action_arg = parse_action(response_action.pred)
+        action_type, action_arg = ReactAgent.parse_action(response_action.pred)
         match action_type:
             case "Finish":
                 self.step_round += 1
@@ -455,15 +464,15 @@ class ActAgent(Agent):
                 except IndexError:
                     observation_str = f"No article exists for the requested entity. Please try retrieving article for another entity."
             case "Search":
-                # Fetch all articles that contain the requested attribute
-                articles: list[str]  = self.text_corpus.loc[
-                    self.text_corpus["article"].str.lower().str.contains(action_arg.lower()), "article"
+                # Fetch all article titles that contain the requested attribute
+                article_titles: list[str]  = self.text_corpus.loc[
+                    self.text_corpus["article"].str.lower().str.contains(action_arg.lower()), "title"
                 ].tolist()
-                if len(articles) == 0:
+                if len(article_titles) == 0:
                     observation_str = f"No articles contain the requested attribute. Please try searching for another attribute."
                 else:
-                    enum_articles: str = "\n\n".join(f"({i+1}) {article}" for i, article in enumerate(articles))
-                    observation_str = format_pred(enum_articles)
+                    enum_article_titles: str = "\n\n".join(f"({i+1}) {title}" for i, title in enumerate(article_titles))
+                    observation_str = format_pred(enum_article_titles)
             case _:
                 observation_str = "Invalid action. Valid actions are RetrieveArticle[{{entity}}], Search[{{attribute}}], and Finish[{{answer}}]."
         observation_for_round = f"Observation {self.step_round}: {observation_str}"
@@ -605,7 +614,7 @@ class ReactAgent(Agent):
         Run the observation step of the agent and increments the step round.
         NOTE: Returned usage is empty since the LLM is not called.
         """
-        action_type, action_arg = parse_action(response_action.pred)
+        action_type, action_arg = ReactAgent.parse_action(response_action.pred)
         match action_type:
             case "Finish":
                 self.step_round += 1
@@ -622,15 +631,15 @@ class ReactAgent(Agent):
                 except IndexError:
                     observation_str = f"No article exists for the requested entity. Please try retrieving article for another entity."
             case "Search":
-                # Fetch all articles that contain the requested attribute
-                articles: list[str]  = self.text_corpus.loc[
-                    self.text_corpus["article"].str.lower().str.contains(action_arg.lower()), "article"
+                # Fetch all article titles that contain the requested attribute
+                article_titles: list[str]  = self.text_corpus.loc[
+                    self.text_corpus["article"].str.lower().str.contains(action_arg.lower()), "title"
                 ].tolist()
-                if len(articles) == 0:
+                if len(article_titles) == 0:
                     observation_str = f"No articles contain the requested attribute. Please try searching for another attribute."
                 else:
-                    enum_articles: str = "\n\n".join(f"({i+1}) {article}" for i, article in enumerate(articles))
-                    observation_str = format_pred(enum_articles)
+                    enum_article_titles: str = "\n\n".join(f"({i+1}) {title}" for i, title in enumerate(article_titles))
+                    observation_str = format_pred(enum_article_titles)
             case _:
                 observation_str = "Invalid action. Valid actions are RetrieveArticle[{{entity}}], Search[{{attribute}}], and Finish[{{answer}}]."
         observation_for_round = f"Observation {self.step_round}: {observation_str}"
@@ -658,6 +667,32 @@ class ReactAgent(Agent):
         ])
         response: LLMChatResponse = llm_chat.generate_response(conv, inf_gen_config)
         return response
+
+    @classmethod
+    def parse_action(cls, action: str) -> tuple[str, str]:
+        """
+        Returns a tuple of the action type and the argument.
+        Correct format: `action_type[<argument>]`.
+
+        Raises:
+            ValueError: If the action cannot be parsed.
+        """
+        # Extract the action type (any word string) and argument (any string within square brackets)
+        # argument can be empty as well
+        pattern = r'(\w+)\[(.*?)\]'
+        m = re.search(pattern, action)
+        
+        if m:
+            action_type = m.group(1)
+            action_arg = m.group(2)
+
+            # Normalize the argument
+            action_arg = action_arg.lower()
+            return action_type, action_arg
+        else:
+            raise ValueError(f"Action '{action}' cannot be parsed.")
+
+
 
 
 class React_CoTSCAgent(Agent):
@@ -905,30 +940,6 @@ class RAGAgent(Agent):
         return responses
 
 #### Utils ####
-
-def parse_action(s: str) -> tuple[str, str] | None:
-    """
-    Returns a tuple of the action type and the argument, else None if the string s does not contain the correct format.
-    Correct format: `action_type[<argument>]`.
-
-    Raises:
-        ValueError: If the action cannot be parsed.
-    """
-    # Extract the action type (any word string) and argument (any string within square brackets)
-    # argument can be empty as well
-    pattern = r'(\w+)\[(.*?)\]'
-    m = re.search(pattern, s)
-    
-    if m:
-        action_type = m.group(1)
-        action_arg = m.group(2)
-
-        # Normalize the argument
-        action_arg = action_arg.lower()
-        return action_type, action_arg
-    else:
-        raise ValueError(f"Action '{s}' cannot be parsed.")
-
 
 def format_pred(pred: str) -> str:
     """
