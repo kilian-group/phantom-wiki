@@ -1,7 +1,7 @@
 from phantom_wiki.facts import Database
 from phantom_wiki.facts.attributes.generate import generate_hobbies, generate_jobs
 from phantom_wiki.facts.person import generate_population
-from tests.phantom_wiki.facts.family import DATABASE_SMALL
+from tests.phantom_wiki.facts import DATABASE_SMALL_PATH
 
 
 #
@@ -27,7 +27,7 @@ def test_generate_population():
 # Test for attributes
 #
 def test_generate_jobs():
-    db = Database.from_disk(DATABASE_SMALL)
+    db = Database.from_disk(DATABASE_SMALL_PATH)
     jobs = generate_jobs(sorted(db.get_names()), seed=1)
     import json
 
@@ -41,7 +41,7 @@ def test_generate_jobs():
 
 
 def test_generate_hobbies():
-    db = Database.from_disk(DATABASE_SMALL)
+    db = Database.from_disk(DATABASE_SMALL_PATH)
     hobbies = generate_hobbies(sorted(db.get_names()), seed=1)
     import json
 
