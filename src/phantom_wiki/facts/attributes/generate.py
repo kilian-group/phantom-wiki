@@ -1,6 +1,7 @@
 from .constants import HOBBIES, JOBS
 from numpy.random import default_rng
 
+
 def generate_jobs(names: list[str], seed=1) -> dict[str, str]:
     """
     Generate a job for each name in the list.
@@ -10,6 +11,7 @@ def generate_jobs(names: list[str], seed=1) -> dict[str, str]:
     for name in names:
         jobs[name] = rng.choice(JOBS)
     return jobs
+
 
 def generate_hobbies(names: list[str], seed=1) -> dict[str, str]:
     rng = default_rng(seed)

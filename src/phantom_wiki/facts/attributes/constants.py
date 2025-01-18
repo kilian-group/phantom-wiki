@@ -11,7 +11,14 @@ ATTRIBUTE_FACT_TEMPLATES = {
     "gender": "The gender of <subject> is",
 }
 
-ATTRIBUTE_RELATION = [
+ATTRIBUTE_ALIASES = {
+    "dob": "date of birth",
+    "job": "occupation",
+    "hobby": "hobby",
+    "gender": "gender",
+}
+
+ATTRIBUTE_TYPES = [
     "dob",
     "job",
     "hobby",
@@ -81,7 +88,7 @@ HOBBIES = {
         "engineering",
         "jurisprudential",
         "publishing",
-        "wikipedia editing"
+        "wikipedia editing",
     ],
     "Indoor Collection hobby": [
         "action figure",
@@ -128,7 +135,7 @@ HOBBIES = {
         "video game collecting",
         "vintage cars",
         "vintage clothing",
-        "vinyl records"
+        "vinyl records",
     ],
     "Indoor Competitive hobby": [
         "air hockey",
@@ -193,7 +200,7 @@ HOBBIES = {
         "video gaming",
         "vr gaming",
         "weightlifting",
-        "wrestling"
+        "wrestling",
     ],
     "Indoor Observation hobby": [
         "audiophile",
@@ -204,7 +211,7 @@ HOBBIES = {
         "microscopy",
         "reading",
         "research",
-        "shortwave listening"
+        "shortwave listening",
     ],
     "Outdoor Collection hobby": [
         "antiquities",
@@ -219,7 +226,7 @@ HOBBIES = {
         "rock balancing",
         "sea glass collecting",
         "seashell collecting",
-        "stone collecting"
+        "stone collecting",
     ],
     "Outdoor Competitive hobby": [
         "airsoft",
@@ -291,7 +298,7 @@ HOBBIES = {
         "racquetball",
         "radio-controlled car racing",
         "radio-controlled model playing",
-        "roller derby"
+        "roller derby",
     ],
     "Outdoor Observation hobby": [
         "aircraft spotting",
@@ -310,7 +317,7 @@ HOBBIES = {
         "gongoozling",
         "herping",
         "hiking/backpacking",
-        "meteorology"
+        "meteorology",
     ],
     "Outdoors and sports": [
         "air sports",
@@ -479,8 +486,8 @@ HOBBIES = {
         "volunteering",
         "walking",
         "water sports",
-        "zoo visiting"
-    ]
+        "zoo visiting",
+    ],
 }
 
 
@@ -1011,5 +1018,5 @@ JOBS = [
     "learning mentor",
     "English as a second language teacher",
     "claims inspector",
-    "therapeutic radiographer"
+    "therapeutic radiographer",
 ]

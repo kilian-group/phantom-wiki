@@ -6,7 +6,7 @@ import logging
 # phantom wiki functionality
 from ..database import Database
 from .constants import (ATTRIBUTE_FACT_TEMPLATES, 
-                        ATTRIBUTE_RELATION)
+                        ATTRIBUTE_TYPES)
 from .generate import (generate_jobs,
                        generate_hobbies)
 from ...utils import decode
@@ -24,7 +24,7 @@ def get_attributes(db: Database, name: str):
     Get attributes for each person in the database.
     """
     attributes = {}
-    for attr in ATTRIBUTE_RELATION:
+    for attr in ATTRIBUTE_TYPES:
         query = f"{attr}(\"{name}\", X)"
         results = [decode(result['X']) for result in db.query(query)]
         attributes[attr] = results
@@ -61,7 +61,7 @@ def db_generate_attributes(db: Database, args: ArgumentParser):
         args (ArgumentParser): The command line arguments.
     """
     start_time = time.time()
-    names = db.get_names()
+    names = db.get_person_names()
     jobs = generate_jobs(names, args.seed)
     hobbies = generate_hobbies(names, args.seed)
 

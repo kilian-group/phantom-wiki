@@ -51,3 +51,22 @@ def parse_prolog_predicate_definition(line):
     pattern = r"^([a-zA-Z_]+)\((.*)\) :-\n$"
     match = re.search(pattern, line)
     return match.group(1), [s.strip() for s in match.group(2).split(",")]
+
+
+def get_prolog_result_set(result) -> set[tuple]:
+    """Converts result dictionaries into hashable sets.
+
+    This has an effect that it groups duplicate answers together.
+
+    Args:
+        result: PySwip query output.
+    """
+
+    if isinstance(result, dict):
+        return {*(zip(result.keys(), result.values()))}
+
+    results = []
+    for d in result:
+        results.append(*(zip(d.keys(), d.values())))
+
+    return {*results}

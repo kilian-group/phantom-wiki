@@ -1,8 +1,10 @@
 # imports for family relations and templates
 from .constants import (FAMILY_FACT_TEMPLATES,
                         FAMILY_FACT_TEMPLATES_PL,
-                        FAMILY_RELATION_EASY,
-                        FAMILY_RELATION_HARD)
+                        FAMILY_RELATION_DIFFICULTY)
+
+FAMILY_RELATION_EASY = [k for k, v in FAMILY_RELATION_DIFFICULTY.items() if v < 2]
+FAMILY_RELATION_HARD = [k for k, v in FAMILY_RELATION_DIFFICULTY.items() if v >= 2]
 
 from importlib.resources import files
 FAMILY_RULES_BASE_PATH = files("phantom_wiki").joinpath("facts/family/rules_base.pl")
@@ -76,7 +78,7 @@ def db_generate_family(db, args: ArgumentParser):
     random.seed(args.seed)
     # Get the prolog family tree
     pf = PersonFactory(args.duplicate_names)
-    
+
     gen = Generator(pf)
     family_trees = gen.generate(args)
 
@@ -104,8 +106,4 @@ def db_generate_family(db, args: ArgumentParser):
             output_graph_path = os.path.join(args.output_dir, f"family_tree_{i+1}.png")
             family_graph.write_png(output_graph_path)
 
-    # Unallocate person factory to save memory (ran into segmenation fault otherwise)
-    del pf
-    gc.collect()
-    
     logging.debug(f"Saved family trees in {args.output_dir} as .png and .pl.")
