@@ -303,7 +303,7 @@ class CoTAgent(Agent):
         Parse the response to extract the answer using regex.
         The prediction is of the form: "... The answer is <answer>."
         """
-        pattern = r"The answer is (.+)\.\s*$"
+        pattern = r"[t|T]he answer is (.+)\.\s*$"
         m = re.search(pattern, pred)
         if m:
             return m.group(1)
