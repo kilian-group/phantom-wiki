@@ -4,7 +4,7 @@
 
 # check that the correct number of arguments were passed
 if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <output directory> <seed>"
+    echo "Usage: $0 <output directory> <seed> <valid only (true or false)>"
     exit 1
 fi
 
@@ -13,38 +13,40 @@ OUTPUT_DIR=$1
 mkdir -p $OUTPUT_DIR
 # set seed
 SEED=$2
-echo ">>>> Generating data to $OUTPUT_DIR with seed $SEED >>>>"
+# check if valid only
+VALID_ONLY=$3
+echo ">>>> Generating data to $OUTPUT_DIR with seed $SEED and valid_only=$VALID_ONLY >>>>"
 # list of splits
 splits=()
 SIZE_LIST=(
     # for 128k-context models
     50 
     100 
-    150
-    200 
-    250 
-    300
-    350
-    400
-    450
-    # for 1M-context models
-    500
-    1000
-    1500
-    2000
-    2500
-    # for 2M-context models
-    3000
-    3500
-    4000
-    4500
-    5000
-    # for retrieval/agentic methods
-    10000
-    100000
-    1000000
+    # 150
+    # 200 
+    # 250 
+    # 300
+    # 350
+    # 400
+    # 450
+    # # for 1M-context models
+    # 500
+    # 1000
+    # 1500
+    # 2000
+    # 2500
+    # # for 2M-context models
+    # 3000
+    # 3500
+    # 4000
+    # 4500
+    # 5000
+    # # for retrieval/agentic methods
+    # 10000
+    # 100000
+    # 1000000
 )
-max_tree_size=25
+max_tree_size=50
 # generate data
 for depth in 20
 do
@@ -52,6 +54,7 @@ do
     do
         od="depth_${depth}_size_${size}_seed_${SEED}"
         cmd="python -m phantom_wiki \
+            --debug \
             -od $OUTPUT_DIR/$od \
             -s $SEED \
             --depth $depth \
@@ -60,6 +63,10 @@ do
             --max-tree-depth $depth \
             --article-format json \
             --question-format json"
+        # if valid only, add --valid-only flag
+        if [ "$VALID_ONLY" = true ]; then
+            cmd+=" --valid-only"
+        fi
         echo $cmd
         eval $cmd
 
@@ -69,11 +76,16 @@ do
 done
 
 # create dataset card
+DATASET_NAME="phantom-wiki-v0.2.1"
+# if valid only, add -valid-only to dataset name
+if [ "$VALID_ONLY" = true ]; then
+    DATASET_NAME+="-valid-only"
+fi
 # start metadata header
 cat << EOF > $OUTPUT_DIR/README.md
 ---
 license: bsd-3-clause
-dataset_name: phantom-wiki
+dataset_name: $DATASET_NAME
 EOF
 # add articles to `text-corpus` config
 cat << EOF >> $OUTPUT_DIR/README.md
