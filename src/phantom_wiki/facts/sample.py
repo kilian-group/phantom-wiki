@@ -46,6 +46,7 @@ def sample(
     query_template: list[str],
     rng: Generator,
     valid_only: bool = True,
+    hard_mode: bool = False,
 ):
     # TODO output type
     """Samples possible realizations of the question template and query template lists
@@ -61,12 +62,14 @@ def sample(
             satisfying the query_template with a non-empty answer
             if False: we uniformly sample from all possible prolog queries
             satisfying the query_template
+        hard_mode: whether to sample from hard relations 
+            if True: we sample the relation predicates from FAMILY_RELATIONS with difficulty > 1 
+            if False: we sample the relation predicates from FAMILY_RELATIONS with difficulty <= 1
     Returns:
         * a dictionary mapping each placeholder to its realization,
         # TODO consider not returning these for simplicity and doing the replacement elsewhere?
         * the completed question as a single string,
         * the completed Prolog query as a list of Prolog statements,
-        # TODO None if valid_only is True and no valid query is found
     """
 
     def _sample_atom(match_, bank) -> None:
@@ -158,14 +161,18 @@ def sample(
             if m := re.search(r"<relation>_(\d+)", query_template_[i]):
                 match = m.group(0)
                 assert match in question_template_
-                # TODO sample hard relations (modify test universes accordingly by defining new predicates)
-                _sample_predicate(match, bank=FAMILY_RELATION_EASY, alias_dict=FAMILY_RELATION_ALIAS)
+                if hard_mode:
+                    _sample_predicate(match, bank=FAMILY_RELATIONS, alias_dict=FAMILY_RELATION_ALIAS)
+                else: 
+                    _sample_predicate(match, bank=FAMILY_RELATION_EASY, alias_dict=FAMILY_RELATION_ALIAS)
 
             if m := re.search(r"<relation_plural>_(\d+)", query_template_[i]):
                 match = m.group(0)
                 assert match in question_template_
-                # TODO sample hard relations (modify test universes accordingly by defining new predicates)
-                _sample_predicate(match, bank=FAMILY_RELATION_EASY, alias_dict=FAMILY_RELATION_PLURAL_ALIAS)
+                if hard_mode:
+                    _sample_predicate(match, bank=FAMILY_RELATIONS, alias_dict=FAMILY_RELATION_ALIAS)
+                else:
+                    _sample_predicate(match, bank=FAMILY_RELATION_EASY, alias_dict=FAMILY_RELATION_ALIAS)
 
         if valid_only:
             q = _prepare_query(use_atom_variables=True)
