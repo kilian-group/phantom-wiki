@@ -179,7 +179,7 @@ def main(args):
 
             # else skip (throw away) the sample
             sample_ = sample(
-                db, question_template, query_template, rng=rng, valid_only=args.valid_only
+                db, question_template, query_template, rng=rng, valid_only=args.valid_only, hard_mode=args.hard_mode
             )
             if sample_ is None:
                 continue
