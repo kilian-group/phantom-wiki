@@ -3,7 +3,7 @@
 # HuggingFace: https://huggingface.co/datasets/mlcore/phantom-wiki-v0.2.1
 
 # check that the correct number of arguments were passed
-if [ "$#" -ne 2 ]; then
+if [ "$#" -ne 3 ]; then
     echo "Usage: $0 <output directory> <seed> <valid only (true or false)>"
     exit 1
 fi
@@ -15,7 +15,9 @@ mkdir -p $OUTPUT_DIR
 SEED=$2
 # check if valid only
 VALID_ONLY=$3
-echo ">>>> Generating data to $OUTPUT_DIR with seed $SEED and valid_only=$VALID_ONLY >>>>"
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo "Generating data to $OUTPUT_DIR with seed $SEED and valid_only=$VALID_ONLY"
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 # list of splits
 splits=()
 SIZE_LIST=(
@@ -54,7 +56,6 @@ do
     do
         od="depth_${depth}_size_${size}_seed_${SEED}"
         cmd="python -m phantom_wiki \
-            --debug \
             -od $OUTPUT_DIR/$od \
             -s $SEED \
             --depth $depth \
