@@ -32,14 +32,13 @@ fam_gen_parser.add_argument(
 fam_gen_parser.add_argument(
     "--max-tree-size",
     type=int,
-    default=26,
+    # default=26,
+    default=25,
     help="The maximum number of people that may appear in a family tree. (Default value: 26.)",
 )
 fam_gen_parser.add_argument(
     "--num-samples", type=int, default=1, help="The size of the dataset to generate. (Default value: 1.)"
 )
-# fam_gen_parser.add_argument("--output-dir", type=str, default="./out",
-#                             help="The directory where the Prolog trees will be saved. (Default value: ./out)")
 fam_gen_parser.add_argument(
     "--stop-prob",
     type=float,

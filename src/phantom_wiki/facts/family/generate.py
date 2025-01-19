@@ -151,6 +151,13 @@ class Generator:
 
             names+=[p.get_full_name() for p in family_tree]
 
+            # save generated family tree as a graph
+            if args.debug:
+                graph = create_dot_graph(family_tree)
+                save_path = os.path.join(args.output_dir, f"family_tree_{sample_idx+1}.png")
+                logging.debug(f"Saving family tree {sample_idx+1} to {save_path}")
+                graph.write_png(save_path)
+
         if len(set(names))!= len(names):
             raise ValueError(f"Duplicate names found || If this error is raised, there is a bug in the code. This is a sanity check which should never be triggered")
 
