@@ -1,4 +1,6 @@
 #!/bin/bash
+# Script for generating mlcore/phantom-wiki-v0.2
+# HuggingFace: https://huggingface.co/datasets/mlcore/phantom-wiki-v0.2
 
 # check that the correct number of arguments were passed
 if [ -z "$1" ]; then
