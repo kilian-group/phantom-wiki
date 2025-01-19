@@ -125,7 +125,6 @@ def main(args):
     db.save_to_disk(db_path)
     timings["facts_save"] = time.time() - facts_time
 
-    article_time = time.time()
     #
     # Step 2. Generate articles
     # Currently, the articles are comprised of a list of facts.
@@ -175,7 +174,8 @@ def main(args):
         # so that sampled questions are the same for each question type
         rng = np.random.default_rng(args.seed)
         questions = []
-        for _ in range(args.num_questions_per_type):
+        # for _ in range(args.num_questions_per_type):
+        while len(questions) < args.num_questions_per_type: # TODO: this is a temporary fix to make sure that we generate the same number of questions for each template
 
             # else skip (throw away) the sample
             sample_ = sample(
