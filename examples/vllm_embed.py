@@ -14,6 +14,7 @@ python vllm_embed.py
 ```
 Note: The output should be a long list of floats.
 """
+
 from argparse import ArgumentParser
 parser = ArgumentParser()
 parser.add_argument("--port", type=int, default=8000,
