@@ -959,13 +959,17 @@ class RAGAgent(Agent):
         """
         Returns retrieved articles in the text corpus as evidence.
         """
-        evidence = "Given the following evidence:\n"
-        evidence += "========BEGIN EVIDENCE========\n"
-        # evidence += "\n================\n\n".join(self.rag_chain.invoke(question))
-        evidence += self.format_docs(self.retriever.invoke(question))
-        evidence += "========END EVIDENCE========\n"
-        # print(evidence)
-        return evidence
+        if False: # NOTE: the zeroshot prompt already includes the begin/end evidence headers
+            evidence = "Given the following evidence:\n"
+            evidence += "========BEGIN EVIDENCE========\n"
+            # evidence += "\n================\n\n".join(self.rag_chain.invoke(question))
+            evidence += self.format_docs(self.retriever.invoke(question))
+            evidence += "========END EVIDENCE========\n"
+            # print(evidence)
+            return evidence
+        else:
+            evidence = self.format_docs(self.retriever.invoke(question))
+            return evidence
 
     def _build_agent_prompt(self, question: str) -> str:
         evidence = self.__get_evidence(question)
