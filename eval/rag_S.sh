@@ -9,7 +9,7 @@
 #SBATCH --get-user-env                       # retrieve the users login environment
 #SBATCH --mem=100000                         # server memory (MBs) requested (per node)
 #SBATCH -t infinite                           # Time limit (hh:mm:ss)
-#SBATCH --gres=gpu:a6000:4                   # Number of GPUs requested
+#SBATCH --gres=gpu:a6000:2                   # Number of GPUs requested
 #SBATCH --partition=kilian                   # Request partition
 
 # Script for running zero-shot evaluation on all small models (<4 B params)
@@ -102,7 +102,7 @@ do
     done
     echo "embedding server is up and running."
 
-    eval export CUDA_VISIBLE_DEVICES=0,1,2,3
+    eval export CUDA_VISIBLE_DEVICES=0,1
     # Run the main Python script
     cmd="python -m phantom_eval \
         --method rag \
@@ -113,7 +113,9 @@ do
         --inf_temperature $TEMPERATURE \
         -bs 2 \
         --inf_vllm_port $port \
-        --inf_embedding_port $e_port 
+        --inf_embedding_port $e_port \
+        --log_level DEBUG \
+        --force
         "
     echo $cmd
     eval $cmd
