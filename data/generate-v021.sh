@@ -59,8 +59,7 @@ do
             --max-tree-size $max_tree_size \
             --max-tree-depth $depth \
             --article-format json \
-            --question-format json \
-            --valid-only"
+            --question-format json"
         echo $cmd
         eval $cmd
 
