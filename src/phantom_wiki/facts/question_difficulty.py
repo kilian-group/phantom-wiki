@@ -25,6 +25,7 @@ Example2:
 # TODO: change to relative  import
 from phantom_wiki.facts.attributes.constants import ATTRIBUTE_TYPES
 from phantom_wiki.facts.family.constants import FAMILY_RELATION_DIFFICULTY
+from phantom_wiki.facts.friends.constants import FRIENDSHIP_RELATION
 
 
 def parse_prolog_predicate(query: str) -> str:
@@ -57,6 +58,8 @@ def calculate_query_difficulty(queries: list[str]) -> int:
     for predicate in predicates:
         if predicate in FAMILY_RELATION_DIFFICULTY.keys():
             difficulty += FAMILY_RELATION_DIFFICULTY[predicate]
+        if predicate in FRIENDSHIP_RELATION:
+            difficulty += 1
         if predicate in ATTRIBUTE_TYPES:
             difficulty += 1
         if predicate == "aggregate_all":
