@@ -34,6 +34,7 @@ from pyswip import Variable
 from .attributes.constants import ATTRIBUTE_TYPES, ATTRIBUTE_ALIASES
 from .database import Database
 from .family.constants import FAMILY_RELATION_DIFFICULTY, FAMILY_RELATION_ALIAS, FAMILY_RELATION_PLURAL_ALIAS
+from .friends.constants import FRIENDSHIP_RELATION, FRIENDSHIP_RELATION_ALIAS
 from ..utils import decode
 
 FAMILY_RELATION_EASY = [k for k, v in FAMILY_RELATION_DIFFICULTY.items() if v < 2]
@@ -162,17 +163,17 @@ def sample(
                 match = m.group(0)
                 assert match in question_template_
                 if hard_mode:
-                    _sample_predicate(match, bank=FAMILY_RELATIONS, alias_dict=FAMILY_RELATION_ALIAS)
+                    _sample_predicate(match, bank=FAMILY_RELATIONS+FRIENDSHIP_RELATION, alias_dict=FAMILY_RELATION_ALIAS | FRIENDSHIP_RELATION_ALIAS)
                 else: 
-                    _sample_predicate(match, bank=FAMILY_RELATION_EASY, alias_dict=FAMILY_RELATION_ALIAS)
+                    _sample_predicate(match, bank=FAMILY_RELATION_EASY+FRIENDSHIP_RELATION, alias_dict=FAMILY_RELATION_ALIAS | FRIENDSHIP_RELATION_ALIAS)
 
             if m := re.search(r"<relation_plural>_(\d+)", query_template_[i]):
                 match = m.group(0)
                 assert match in question_template_
                 if hard_mode:
-                    _sample_predicate(match, bank=FAMILY_RELATIONS, alias_dict=FAMILY_RELATION_ALIAS)
+                    _sample_predicate(match, bank=FAMILY_RELATIONS+FRIENDSHIP_RELATION, alias_dict=FAMILY_RELATION_ALIAS | FRIENDSHIP_RELATION_ALIAS)
                 else:
-                    _sample_predicate(match, bank=FAMILY_RELATION_EASY, alias_dict=FAMILY_RELATION_ALIAS)
+                    _sample_predicate(match, bank=FAMILY_RELATION_EASY+FRIENDSHIP_RELATION, alias_dict=FAMILY_RELATION_ALIAS | FRIENDSHIP_RELATION_ALIAS)
 
         if valid_only:
             q = _prepare_query(use_atom_variables=True)

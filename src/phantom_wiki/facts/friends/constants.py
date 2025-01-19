@@ -7,3 +7,5 @@ FRIENDSHIP_FACT_TEMPLATES_PL = {
 }
 
 FRIENDSHIP_RELATION = ["friend"]
+
+FRIENDSHIP_RELATION_ALIAS = {"friend": "friend"}
