@@ -27,7 +27,7 @@ fi
 # construct split list
 for seed in 1 2 3 4 5
 do
-    for size in 26 50 100 200
+    for size in 26 50 100 200 500
     do
         SPLIT_LIST+="depth_10_size_${size}_seed_${seed} "
     done
@@ -51,4 +51,9 @@ do
             python eval/plot_hops_interactions.py -od $OUTPUT_DIR --method $METHOD --split_name $split_name
         fi
     done
+
+    # plot per-model contour plots
+    python eval/plot_size_hops_accuracy_per_model.py -od $OUTPUT_DIR --method $METHOD
+    # plot pareto curves
+    python eval/plot_size_hops_accuracy.py -od $OUTPUT_DIR --method $METHOD
 done
