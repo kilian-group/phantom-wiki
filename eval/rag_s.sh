@@ -47,13 +47,15 @@ else
     seed_list="1 2 3 4 5"
 fi
 
+source eval/constants.sh
+
 for model_name in "${MODELS[@]}"
 do
     cmd="python -m phantom_eval \
         --method rag \
         -od $1 \
         -m $model_name \
-        --split_list depth_10_size_26_seed_1 \
+        --split_list $SPLIT_LIST \
         --inf_seed_list $seed_list \
         --inf_temperature $TEMPERATURE"
     echo $cmd

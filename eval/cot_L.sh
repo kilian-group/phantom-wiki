@@ -48,14 +48,8 @@ then
 else
     seed_list="1 2 3 4 5"
 fi
-# construct split list
-for seed in 1 2 3 4 5
-do
-    for size in 26 50 100 200
-    do
-        SPLIT_LIST+="depth_10_size_${size}_seed_${seed} "
-    done
-done
+
+source eval/constants.sh
 
 for model_name in "${MODELS[@]}"
 do
