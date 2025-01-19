@@ -15,9 +15,9 @@ def get_parser() -> argparse.ArgumentParser:
                         choices=SUPPORTED_METHOD_NAMES)
     
     # Method params
-    parser.add_argument("--react_max_steps", type=int, default=6,
-                        help="Maximum number of steps for the ReAct agent")
-    parser.add_argument("--sc_num_votes", type=int, default=3,
+    parser.add_argument("--react_max_steps", type=int, default=20,
+                        help="Maximum number of steps for the ReAct/Act agent")
+    parser.add_argument("--sc_num_votes", type=int, default=5,
                         help="Number of votes for an agent implementing self-consistency (majority votes)")
 
     # LLM inference params
@@ -47,9 +47,9 @@ def get_parser() -> argparse.ArgumentParser:
                         help="Seconds to wait between tries")
 
     # Dataset params
-    parser.add_argument("--dataset", type=str, default="mlcore/phantom-wiki-v0.2",
+    parser.add_argument("--dataset", type=str, default="mlcore/phantom-wiki-v0.3",
                         help="Dataset name")
-    parser.add_argument("--split_list", default=["depth_10_size_26_seed_1"], type=str, nargs="+",
+    parser.add_argument("--split_list", default=["depth_20_size_50_seed_1"], type=str, nargs="+",
                         help="List of dataset splits to evaluate")
     parser.add_argument("--batch_size", "-bs", default=10, type=int,
                         help="Batch size (>=1)")
