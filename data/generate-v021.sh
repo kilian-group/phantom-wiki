@@ -3,13 +3,17 @@
 # HuggingFace: https://huggingface.co/datasets/mlcore/phantom-wiki-v0.2.1
 
 # check that the correct number of arguments were passed
-if [ -z "$1" ]; then
-    echo "Usage: $0 <output directory>"
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <output directory> <seed>"
     exit 1
 fi
 
 # make directory for output
-mkdir -p $1
+OUTPUT_DIR=$1
+mkdir -p $OUTPUT_DIR
+# set seed
+SEED=$2
+echo ">>>> Generating data to $OUTPUT_DIR with seed $SEED >>>>"
 # list of splits
 splits=()
 SIZE_LIST=(
@@ -42,41 +46,38 @@ SIZE_LIST=(
 )
 max_tree_size=25
 # generate data
-for seed in 1 2 3
+for depth in 20
 do
-    for depth in 20
+    for size in "${SIZE_LIST[@]}"
     do
-        for size in "${SIZE_LIST[@]}"
-        do
-            od="depth_${depth}_size_${size}_seed_${seed}"
-            cmd="python -m phantom_wiki \
-                -od $1/$od \
-                -s $seed \
-                --depth $depth \
-                --num-samples $(($size / $max_tree_size)) \
-                --max-tree-size $max_tree_size \
-                --max-tree-depth $depth \
-                --article-format json \
-                --question-format json \
-                --valid-only"
-            echo $cmd
-            eval $cmd
+        od="depth_${depth}_size_${size}_seed_${SEED}"
+        cmd="python -m phantom_wiki \
+            -od $OUTPUT_DIR/$od \
+            -s $SEED \
+            --depth $depth \
+            --num-samples $(($size / $max_tree_size)) \
+            --max-tree-size $max_tree_size \
+            --max-tree-depth $depth \
+            --article-format json \
+            --question-format json \
+            --valid-only"
+        echo $cmd
+        eval $cmd
 
-            # Append split to list
-            splits+=("$od")
-        done
+        # Append split to list
+        splits+=("$od")
     done
 done
 
 # create dataset card
 # start metadata header
-cat << EOF > $1/README.md
+cat << EOF > $OUTPUT_DIR/README.md
 ---
 license: bsd-3-clause
 dataset_name: phantom-wiki
 EOF
 # add articles to `text-corpus` config
-cat << EOF >> $1/README.md
+cat << EOF >> $OUTPUT_DIR/README.md
 configs:
 - config_name: text-corpus
   data_files:
@@ -84,26 +85,26 @@ EOF
 # iterate over splits and append to dataset card
 for split in "${splits[@]}"
 do
-    echo "  - split: $split" >> $1/README.md
-    echo "    path: $split/articles.json" >> $1/README.md
+    echo "  - split: $split" >> $OUTPUT_DIR/README.md
+    echo "    path: $split/articles.json" >> $OUTPUT_DIR/README.md
 done
 # add question-answer pairs to `question-answer` config
-cat << EOF >> $1/README.md
+cat << EOF >> $OUTPUT_DIR/README.md
 - config_name: question-answer
   data_files:
 EOF
 # iterate over splits and append to dataset card
 for split in "${splits[@]}"
 do
-    echo "  - split: $split" >> $1/README.md
-    echo "    path: $split/questions.json" >> $1/README.md
+    echo "  - split: $split" >> $OUTPUT_DIR/README.md
+    echo "    path: $split/questions.json" >> $OUTPUT_DIR/README.md
 done
 # close metadata header
-cat << EOF >> $1/README.md
+cat << EOF >> $OUTPUT_DIR/README.md
 ---
 EOF
 # add dataset card contents
-cat << EOF >> $1/README.md
+cat << EOF >> $OUTPUT_DIR/README.md
 
 # Dataset Card for Dataset Name
 
