@@ -1,8 +1,15 @@
-from ..facts.database import Database
-from . import decode
 import logging
 
-def get_answer(query: list[str], db: Database, answer: str, add_intermediate_answers: bool = False):
+from ..facts.database import Database
+from . import decode
+
+
+def get_answer(
+    query: list[str],
+    db: Database,
+    answer: str,
+    add_intermediate_answers: bool = False
+) -> tuple[list[dict[str, str]], list[str]]:
     """Get the answer to a query from the database
 
     Args:
@@ -11,40 +18,39 @@ def get_answer(query: list[str], db: Database, answer: str, add_intermediate_ans
         db (Database): The database to query
         answer (str): The answer to the query as a placeholder
             Example: "Y_3"
+        add_intermediate_answers (bool, optional): Whether to add intermediate answers to the results.
+            Defaults to False.
 
     Returns:
-        all_results: list[dict]
-            A list of dictionaries with the results of each subquery
+        intermediate_answers: list[dict[str, str]]
+            A list of dictionaries with the results along the "path" to the final answer
         final_results: list[str] 
             The final results of the entire query
 
-    Solve the query in reverse order: 
-    First query the db with sister(Elisa, Y_2) and get ['Y_2': "Alice"] 
-    Then query the db with child(Y_2, Y_3), sister(Elisa, Y_2) and get ['Y_3': "Bob", 'Y_2': "Alice"] 
-    so all_results in this case is [{'Y_2': "Alice"}, {'Y_3': "Bob", 'Y_2': "Alice"}] 
-    and final_results is ["Bob"] 
-            
+    Example:
+    ```python
+    query = [child(Y_2, Y_3), sister(Elisa, Y_2)]
+    intermediate_answers, final_results = get_answer(query, db, "Y_3", add_intermediate_answers=True)
+    ```
+    outputs `[{"Y_2": "Alice", "Y_3": "Bob"}], ["Bob"]`.
+    Each dictionary in the intermediate_answers list is a sequence of placeholders and values towards a final answer.
+    There can be multiple final answers, and so multiple dictionaries in intermediate_answers.
     """
     reversed_query = query[::-1]
     if add_intermediate_answers:
-        all_results=[]
-        # to get intermediate answers, we get the answer for each subset of the query, each time incremented by one subquery
-        for i in range(len(reversed_query)):
-            intermediate_query =  ", ".join(reversed_query[:i+1])
-            partial_results = db.query(intermediate_query)
-            unique_results = {
-                tuple(sorted((k, decode(v)) for k, v in d.items()))
-                for d in partial_results
-            }
-            unique_list = [dict(items) for items in unique_results] # list of dicts
-
-            partial_results = sorted(unique_list, key=lambda x: tuple(x.items()))
-            all_results.append(partial_results)
+        intermediate_answers: list[dict[str, str]] = [
+            {k: decode(v) for k, v in x.items()}
+            for x in db.query(", ".join(reversed_query))
+        ]
+        # intermediate_answers can contain duplicate dictionaries, keep only unique ones
+        # frozenset is used to make the dictionaries hashable, and set to remove duplicates
+        unique_intermediate_answers = set(frozenset(d.items()) for d in intermediate_answers)
+        intermediate_answers = [dict(s) for s in unique_intermediate_answers]
     else:
         logging.warning("Skipping intermediate answers")
-        all_results = []
+        intermediate_answers = []
 
     final_results = [decode(x[answer]) for x in db.query(", ".join(reversed_query))]
     final_results = sorted(set(final_results))
 
-    return all_results, final_results
+    return intermediate_answers, final_results
