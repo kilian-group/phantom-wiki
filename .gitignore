@@ -566,3 +566,5 @@ johann_tests/API_KEY.py
 # cache directory for speeding up evaluation
 cachedir/
 .idea/webResources.xml
+
+debug/*

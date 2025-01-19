@@ -46,3 +46,5 @@ question_parser.add_argument("--depth", type=int, default=6,
                                 help="Depth of the question template")
 question_parser.add_argument("--add-intermediate-answers", action="store_true",
                                 help="Add intermediate answers to the questions")
+question_parser.add_argument("--hard-mode", action="store_true",
+                                help="Sample from hard relations")
