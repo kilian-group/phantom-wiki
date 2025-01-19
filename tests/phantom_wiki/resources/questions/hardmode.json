@@ -1,16 +1,13 @@
 [
     {
-        "id": "520589fa-47c8-4ac3-a75e-0c951c3eb0e7",
-        "question": "Who is the great-granddaughter of the person whose occupation is osteopath?",
+        "id": "aba0ed21-ba36-4eb7-b331-5f9443639cb9",
+        "question": "Who is the great-granddaughter of the person whose occupation is police officer?",
         "intermediate_answers": [],
-        "answer": [
-            "Myrle Smock",
-            "Shelli Beltran"
-        ],
+        "answer": [],
         "prolog": {
             "query": [
                 "great_granddaughter(Y_4, Y_2)",
-                "job(Y_4, \"osteopath\")"
+                "job(Y_4, \"police officer\")"
             ],
             "answer": "Y_2"
         },
@@ -29,7 +26,7 @@
         "difficulty": 4
     },
     {
-        "id": "a3db5c70-e192-4745-9c26-1ebc413a3d95",
+        "id": "3443b189-fe9a-48fb-ad4e-8e4e27beab25",
         "question": "Who is the child of the person whose gender is female?",
         "intermediate_answers": [],
         "answer": [
@@ -73,7 +70,7 @@
         "difficulty": 2
     },
     {
-        "id": "d9b53036-f39f-441b-9534-af6b3b836a04",
+        "id": "3746492d-adfd-426c-a622-edd2c2e84236",
         "question": "Who is the aunt of the person whose gender is male?",
         "intermediate_answers": [],
         "answer": [
@@ -102,14 +99,14 @@
         "difficulty": 3
     },
     {
-        "id": "3d94e2f3-1249-42e5-86cf-ab5ac5904c3e",
-        "question": "Who is the granddaughter of the person whose occupation is personal assistant?",
+        "id": "b0d82e2a-54d2-4729-a779-a38f197e49a0",
+        "question": "Who is the granddaughter of the person whose occupation is osteopath?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
             "query": [
                 "granddaughter(Y_4, Y_2)",
-                "job(Y_4, \"personal assistant\")"
+                "job(Y_4, \"osteopath\")"
             ],
             "answer": "Y_2"
         },
@@ -128,14 +125,14 @@
         "difficulty": 3
     },
     {
-        "id": "3bdef43c-abbe-48f1-ac59-3c304846e377",
-        "question": "Who is the aunt of the person whose occupation is immunologist?",
+        "id": "4b500fec-c28b-41e8-8f45-ded990a3924c",
+        "question": "Who is the aunt of the person whose occupation is clinical research associate?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
             "query": [
                 "aunt(Y_4, Y_2)",
-                "job(Y_4, \"immunologist\")"
+                "job(Y_4, \"clinical research associate\")"
             ],
             "answer": "Y_2"
         },
@@ -154,14 +151,14 @@
         "difficulty": 3
     },
     {
-        "id": "1066c071-a5f1-4619-8eb0-bfb6c9bdae9a",
-        "question": "Who is the sister-in-law of the person whose occupation is warehouse manager?",
+        "id": "9da03b07-8ec2-4b18-8af6-037a257b3c68",
+        "question": "Who is the sister-in-law of the person whose occupation is early years teacher?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
             "query": [
                 "sister_in_law(Y_4, Y_2)",
-                "job(Y_4, \"warehouse manager\")"
+                "job(Y_4, \"early years teacher\")"
             ],
             "answer": "Y_2"
         },
@@ -180,14 +177,14 @@
         "difficulty": 3
     },
     {
-        "id": "7c24d92c-a9e7-43e3-ae07-f6b3c5c8dc47",
-        "question": "Who is the female first cousin once removed of the person whose date of birth is 0301-10-24?",
+        "id": "ae3f6fa9-565d-40a3-95d3-b894a71ef879",
+        "question": "Who is the female first cousin once removed of the person whose date of birth is 0263-10-24?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
             "query": [
                 "female_first_cousin_once_removed(Y_4, Y_2)",
-                "dob(Y_4, \"0301-10-24\")"
+                "dob(Y_4, \"0263-10-24\")"
             ],
             "answer": "Y_2"
         },
@@ -206,7 +203,7 @@
         "difficulty": 5
     },
     {
-        "id": "da6872bf-fc1e-4c98-b910-93f66f61f042",
+        "id": "aef257f3-0fac-4925-b3db-f498d303ba56",
         "question": "Who is the sister-in-law of the person whose gender is male?",
         "intermediate_answers": [],
         "answer": [
@@ -237,7 +234,7 @@
         "difficulty": 3
     },
     {
-        "id": "d2d9f4d8-fc17-4e32-a8a9-1ba96a989630",
+        "id": "7aa7e9a1-1bb2-45b0-a301-a5a3d7cca444",
         "question": "Who is the grandson of the person whose gender is female?",
         "intermediate_answers": [],
         "answer": [
@@ -265,7 +262,7 @@
         "difficulty": 3
     },
     {
-        "id": "20d68336-c0e5-41e3-8d6b-ddd91ef8142b",
+        "id": "5fb49ec1-c503-45db-8d8b-4aeeb5133112",
         "question": "Who is the niece of the person whose gender is female?",
         "intermediate_answers": [],
         "answer": [
@@ -299,7 +296,7 @@
         "difficulty": 3
     },
     {
-        "id": "79edd2aa-e3ae-4502-a138-120cf7606bd7",
+        "id": "9876c1bc-fc5f-4691-8fe3-090d9ccdc679",
         "question": "Who is the brother-in-law of Johnetta Wang?",
         "intermediate_answers": [],
         "answer": [],
@@ -321,7 +318,7 @@
         "difficulty": 2
     },
     {
-        "id": "30059bce-9f03-498f-8ebc-ce85469d0806",
+        "id": "035faea1-fed0-4b3e-9382-fbd594af9f42",
         "question": "Who is the female second cousin of Ricardo Hackworth?",
         "intermediate_answers": [],
         "answer": [],
@@ -343,7 +340,7 @@
         "difficulty": 5
     },
     {
-        "id": "b0a9330f-ae12-48a1-a4e7-980bd3d55797",
+        "id": "98b89ac6-b9df-46da-9297-308d946d5843",
         "question": "Who is the child of Aida Wang?",
         "intermediate_answers": [],
         "answer": [
@@ -367,7 +364,7 @@
         "difficulty": 1
     },
     {
-        "id": "79b36600-7a9a-4189-8925-5706daa3f128",
+        "id": "f50df282-177d-4df2-93bc-d1a25433b998",
         "question": "Who is the female second cousin of Saul Wexler?",
         "intermediate_answers": [],
         "answer": [],
@@ -389,7 +386,7 @@
         "difficulty": 5
     },
     {
-        "id": "b9b61b14-d75b-4b4a-a19a-52d0f4fc36d1",
+        "id": "b29dd2af-c06c-4d91-b83c-0e9b2ff09555",
         "question": "Who is the nephew of Deane Smock?",
         "intermediate_answers": [],
         "answer": [
@@ -413,7 +410,7 @@
         "difficulty": 2
     },
     {
-        "id": "621cfef4-1c00-4d2c-b117-626012dfa9d1",
+        "id": "bd6450ed-a79b-42d1-98b6-e823130e5bb8",
         "question": "Who is the granddaughter of Shelli Beltran?",
         "intermediate_answers": [],
         "answer": [
@@ -440,7 +437,7 @@
         "difficulty": 2
     },
     {
-        "id": "ed6a569a-4c95-428c-b327-7b5770002271",
+        "id": "e3b3821e-f64d-46c4-860c-873bfe90a44b",
         "question": "Who is the male cousin of Dino Beltran?",
         "intermediate_answers": [],
         "answer": [],
@@ -462,7 +459,7 @@
         "difficulty": 3
     },
     {
-        "id": "4a26e4b1-004d-48d1-a956-eb90ac2f03c0",
+        "id": "bf537e11-0adc-4dd4-82a3-13b20bdbccf9",
         "question": "Who is the grandchild of Deane Smock?",
         "intermediate_answers": [],
         "answer": [],
@@ -484,7 +481,7 @@
         "difficulty": 2
     },
     {
-        "id": "4925fd47-e65c-40f7-b753-611feed18232",
+        "id": "d6463b65-c918-472b-98c0-dc9c0455b225",
         "question": "Who is the sister-in-law of Lewis Smock?",
         "intermediate_answers": [],
         "answer": [],
@@ -506,7 +503,7 @@
         "difficulty": 2
     },
     {
-        "id": "1ce1740b-b3b5-48f1-a12a-69c2ba03e184",
+        "id": "701dff88-b697-4c5a-ab22-f99484148a4b",
         "question": "Who is the sibling of Alvaro Smock?",
         "intermediate_answers": [],
         "answer": [],
@@ -528,15 +525,15 @@
         "difficulty": 1
     },
     {
-        "id": "1ff81fee-e655-4319-b034-944ab8ef846f",
-        "question": "Who is the person whose occupation is osteopath?",
+        "id": "65de2087-cb64-400f-9feb-6fe9a37ef47e",
+        "question": "Who is the person whose occupation is police officer?",
         "intermediate_answers": [],
         "answer": [
-            "Alvaro Smock"
+            "Shelli Beltran"
         ],
         "prolog": {
             "query": [
-                "job(Y_2, \"osteopath\")"
+                "job(Y_2, \"police officer\")"
             ],
             "answer": "Y_2"
         },
@@ -552,7 +549,7 @@
         "difficulty": 1
     },
     {
-        "id": "84f28940-2bf4-49dd-8c7c-0932c3940f82",
+        "id": "32dbac44-6118-4125-947e-e8bb7252e40b",
         "question": "Who is the person whose gender is male?",
         "intermediate_answers": [],
         "answer": [
@@ -586,15 +583,15 @@
         "difficulty": 1
     },
     {
-        "id": "6c46e754-c5f0-452a-8217-0ed9538ed9e6",
-        "question": "Who is the person whose date of birth is 0292-03-17?",
+        "id": "e1021701-d86a-4605-8714-1c865493c983",
+        "question": "Who is the person whose date of birth is 0299-06-11?",
         "intermediate_answers": [],
         "answer": [
-            "Ryan Wang"
+            "Jeannine Wexler"
         ],
         "prolog": {
             "query": [
-                "dob(Y_2, \"0292-03-17\")"
+                "dob(Y_2, \"0299-06-11\")"
             ],
             "answer": "Y_2"
         },
@@ -610,7 +607,7 @@
         "difficulty": 1
     },
     {
-        "id": "bef7afc2-5e1a-44b2-880e-a733c29f2e34",
+        "id": "60b162e2-64f5-4f93-905b-607967759bd9",
         "question": "Who is the person whose gender is male?",
         "intermediate_answers": [],
         "answer": [
@@ -644,15 +641,15 @@
         "difficulty": 1
     },
     {
-        "id": "c75c6fbd-1f3d-4651-89a1-1acaf254a8a0",
-        "question": "Who is the person whose date of birth is 0241-09-21?",
+        "id": "70c048d8-c1a5-44b9-ac51-89d656250865",
+        "question": "Who is the person whose date of birth is 0301-10-24?",
         "intermediate_answers": [],
         "answer": [
-            "Daisy Beltran"
+            "Saul Wexler"
         ],
         "prolog": {
             "query": [
-                "dob(Y_2, \"0241-09-21\")"
+                "dob(Y_2, \"0301-10-24\")"
             ],
             "answer": "Y_2"
         },
@@ -668,7 +665,7 @@
         "difficulty": 1
     },
     {
-        "id": "f9a98633-61f2-4ade-a196-404602293b90",
+        "id": "8423ed76-19f0-4ca9-9f40-4c614abac98a",
         "question": "Who is the person whose gender is female?",
         "intermediate_answers": [],
         "answer": [
@@ -706,15 +703,15 @@
         "difficulty": 1
     },
     {
-        "id": "6f7fd781-7bd0-4927-b6eb-7f853f8a5518",
-        "question": "Who is the person whose occupation is immunologist?",
+        "id": "61a51fc6-2420-41b6-8f1a-476b167c6ca9",
+        "question": "Who is the person whose occupation is clinical research associate?",
         "intermediate_answers": [],
         "answer": [
-            "Gene Smock"
+            "Orlando Beltran"
         ],
         "prolog": {
             "query": [
-                "job(Y_2, \"immunologist\")"
+                "job(Y_2, \"clinical research associate\")"
             ],
             "answer": "Y_2"
         },
@@ -730,15 +727,15 @@
         "difficulty": 1
     },
     {
-        "id": "d615c008-6bda-42b8-9890-c4fe2d60ce23",
-        "question": "Who is the person whose occupation is actuary?",
+        "id": "a58cbf2f-0046-4f7b-af1c-6b3d91d21a18",
+        "question": "Who is the person whose occupation is barrister's clerk?",
         "intermediate_answers": [],
         "answer": [
-            "Saul Wexler"
+            "Lewis Smock"
         ],
         "prolog": {
             "query": [
-                "job(Y_2, \"actuary\")"
+                "job(Y_2, \"barrister's clerk\")"
             ],
             "answer": "Y_2"
         },
@@ -754,15 +751,16 @@
         "difficulty": 1
     },
     {
-        "id": "3fd9d7e2-cc72-4313-916c-ecfaaada3d39",
-        "question": "Who is the person whose hobby is social studies?",
+        "id": "51699294-7516-4284-8069-a3d3b498b7aa",
+        "question": "Who is the person whose hobby is meditation?",
         "intermediate_answers": [],
         "answer": [
-            "Williams Smock"
+            "Aida Wang",
+            "Shelli Beltran"
         ],
         "prolog": {
             "query": [
-                "hobby(Y_2, \"social studies\")"
+                "hobby(Y_2, \"meditation\")"
             ],
             "answer": "Y_2"
         },
@@ -778,15 +776,15 @@
         "difficulty": 1
     },
     {
-        "id": "65f4bfd0-b0ec-4f37-bac3-dcc751d55f13",
-        "question": "Who is the person whose date of birth is 0301-10-24?",
+        "id": "031a4c8b-b474-4f64-8e58-5d15a4d72274",
+        "question": "Who is the person whose date of birth is 0263-10-24?",
         "intermediate_answers": [],
         "answer": [
-            "Saul Wexler"
+            "Orlando Beltran"
         ],
         "prolog": {
             "query": [
-                "dob(Y_2, \"0301-10-24\")"
+                "dob(Y_2, \"0263-10-24\")"
             ],
             "answer": "Y_2"
         },
@@ -802,7 +800,7 @@
         "difficulty": 1
     },
     {
-        "id": "603e947e-e29c-4de7-af6c-7e5f5265c7dd",
+        "id": "36535855-6d75-4262-a09a-2eeb0bc0c028",
         "question": "What is the gender of the brother-in-law of Johnetta Wang?",
         "intermediate_answers": [],
         "answer": [],
@@ -828,7 +826,7 @@
         "difficulty": 3
     },
     {
-        "id": "e1543e92-0587-4066-8b4e-4db3a6092313",
+        "id": "27e6bb50-73a0-4bed-9afb-64873c5d471f",
         "question": "What is the date of birth of the sibling of Vicki Hackworth?",
         "intermediate_answers": [],
         "answer": [
@@ -857,7 +855,7 @@
         "difficulty": 2
     },
     {
-        "id": "826efd25-8763-4c85-8ee3-26a7d70f65be",
+        "id": "fadff6ad-967e-459c-9f9c-98fd7b952b80",
         "question": "What is the date of birth of the female second cousin of Saul Wexler?",
         "intermediate_answers": [],
         "answer": [],
@@ -883,7 +881,7 @@
         "difficulty": 6
     },
     {
-        "id": "08bc2e17-471d-4bcb-9045-f69ffe324c8b",
+        "id": "8b17c7b2-54c4-4793-a586-3979dc9f3761",
         "question": "What is the occupation of the male first cousin once removed of Dominique Smock?",
         "intermediate_answers": [],
         "answer": [],
@@ -909,7 +907,7 @@
         "difficulty": 5
     },
     {
-        "id": "f611feea-6686-419c-ac96-d70ba26d0787",
+        "id": "7aac4ffc-e84f-4939-ae18-47083bfaf335",
         "question": "What is the occupation of the male cousin of Dino Beltran?",
         "intermediate_answers": [],
         "answer": [],
@@ -935,7 +933,7 @@
         "difficulty": 4
     },
     {
-        "id": "54709d64-c054-48cb-b36d-b12901544883",
+        "id": "daa2e8e0-e401-439f-bf2a-7ddefef05a07",
         "question": "What is the hobby of the great-uncle of Isabell Smock?",
         "intermediate_answers": [],
         "answer": [],
@@ -961,7 +959,7 @@
         "difficulty": 4
     },
     {
-        "id": "c061e41e-cd44-4b5b-bb9e-35126352f0ea",
+        "id": "a0db2254-e8d1-40be-89c5-f022ecfebbd4",
         "question": "What is the gender of the sibling of Alvaro Smock?",
         "intermediate_answers": [],
         "answer": [],
@@ -987,7 +985,7 @@
         "difficulty": 2
     },
     {
-        "id": "7476ef5e-e212-4509-84a8-a4f999b48f7f",
+        "id": "5b06eca0-d1db-40a6-8d77-9389c8f9c59e",
         "question": "What is the hobby of the male cousin of Ricardo Hackworth?",
         "intermediate_answers": [],
         "answer": [],
@@ -1013,7 +1011,7 @@
         "difficulty": 4
     },
     {
-        "id": "e343a7e6-7235-468f-9049-c1a1e4cfdfb2",
+        "id": "eeb47206-34c1-4c20-be85-f6533375d516",
         "question": "What is the occupation of the nephew of Saul Wexler?",
         "intermediate_answers": [],
         "answer": [],
@@ -1039,7 +1037,7 @@
         "difficulty": 3
     },
     {
-        "id": "3387d6f0-e668-4385-8149-72a95654ffbc",
+        "id": "cba43d18-5fd7-4535-99db-f59d2e170aac",
         "question": "What is the occupation of the father of Ryan Wang?",
         "intermediate_answers": [],
         "answer": [],
@@ -1065,16 +1063,16 @@
         "difficulty": 2
     },
     {
-        "id": "9adda902-c861-4f84-8e1b-1c84315ec501",
-        "question": "What is the gender of the person whose occupation is osteopath?",
+        "id": "df6c7f7d-0bfd-4deb-aa9f-97dc8e20541e",
+        "question": "What is the gender of the person whose occupation is police officer?",
         "intermediate_answers": [],
         "answer": [
-            "male"
+            "female"
         ],
         "prolog": {
             "query": [
                 "gender(Y_3, Y_2)",
-                "job(Y_3, \"osteopath\")"
+                "job(Y_3, \"police officer\")"
             ],
             "answer": "Y_2"
         },
@@ -1093,7 +1091,7 @@
         "difficulty": 2
     },
     {
-        "id": "dec10e60-1699-461d-acf2-0b34d519bbd7",
+        "id": "da6891a1-7b5f-4a59-a7a2-bd5110c31599",
         "question": "What is the date of birth of the person whose gender is female?",
         "intermediate_answers": [],
         "answer": [
@@ -1134,7 +1132,7 @@
         "difficulty": 2
     },
     {
-        "id": "29b954dd-4398-492d-90df-3a26f363ef65",
+        "id": "d19e09af-a153-487b-bc05-9863d3a72ce0",
         "question": "What is the date of birth of the person whose gender is male?",
         "intermediate_answers": [],
         "answer": [
@@ -1172,16 +1170,16 @@
         "difficulty": 2
     },
     {
-        "id": "cc8c10a1-598b-4d0b-b769-566f86737dda",
-        "question": "What is the occupation of the person whose occupation is personal assistant?",
+        "id": "9e2dc73e-37dc-47d2-95f6-9a7e2b19e9b5",
+        "question": "What is the occupation of the person whose occupation is osteopath?",
         "intermediate_answers": [],
         "answer": [
-            "personal assistant"
+            "osteopath"
         ],
         "prolog": {
             "query": [
                 "job(Y_3, Y_2)",
-                "job(Y_3, \"personal assistant\")"
+                "job(Y_3, \"osteopath\")"
             ],
             "answer": "Y_2"
         },
@@ -1200,16 +1198,16 @@
         "difficulty": 2
     },
     {
-        "id": "31f995ff-c22f-4b2b-90d6-6833f17231df",
-        "question": "What is the occupation of the person whose occupation is immunologist?",
+        "id": "52b54e80-2fb4-4af0-86a2-b4dc27c5d134",
+        "question": "What is the occupation of the person whose occupation is clinical research associate?",
         "intermediate_answers": [],
         "answer": [
-            "immunologist"
+            "clinical research associate"
         ],
         "prolog": {
             "query": [
                 "job(Y_3, Y_2)",
-                "job(Y_3, \"immunologist\")"
+                "job(Y_3, \"clinical research associate\")"
             ],
             "answer": "Y_2"
         },
@@ -1228,16 +1226,16 @@
         "difficulty": 2
     },
     {
-        "id": "65eb632f-0904-423a-b18d-879f00445013",
-        "question": "What is the hobby of the person whose occupation is warehouse manager?",
+        "id": "4da1c1b7-88c0-420b-9e6b-1334a79b2cef",
+        "question": "What is the hobby of the person whose occupation is early years teacher?",
         "intermediate_answers": [],
         "answer": [
-            "photography"
+            "trainspotting"
         ],
         "prolog": {
             "query": [
                 "hobby(Y_3, Y_2)",
-                "job(Y_3, \"warehouse manager\")"
+                "job(Y_3, \"early years teacher\")"
             ],
             "answer": "Y_2"
         },
@@ -1256,8 +1254,8 @@
         "difficulty": 2
     },
     {
-        "id": "9bee5e58-453c-4ae4-8746-90d8508afe74",
-        "question": "What is the gender of the person whose date of birth is 0301-10-24?",
+        "id": "21d63e9f-06d7-4efd-80e2-c71365aa3b51",
+        "question": "What is the gender of the person whose date of birth is 0263-10-24?",
         "intermediate_answers": [],
         "answer": [
             "male"
@@ -1265,7 +1263,7 @@
         "prolog": {
             "query": [
                 "gender(Y_3, Y_2)",
-                "dob(Y_3, \"0301-10-24\")"
+                "dob(Y_3, \"0263-10-24\")"
             ],
             "answer": "Y_2"
         },
@@ -1284,7 +1282,7 @@
         "difficulty": 2
     },
     {
-        "id": "0ef5523e-4fc5-4789-8758-83f13f4dbf0b",
+        "id": "3d8d37cb-95e7-46b8-805c-975ed9c7cbe4",
         "question": "What is the hobby of the person whose gender is male?",
         "intermediate_answers": [],
         "answer": [
@@ -1322,7 +1320,7 @@
         "difficulty": 2
     },
     {
-        "id": "538f932a-b570-499c-b6e2-97cd31dd6e14",
+        "id": "ac2bff56-7fe3-469f-b9d0-3511e012bdd3",
         "question": "What is the occupation of the person whose gender is female?",
         "intermediate_answers": [],
         "answer": [
@@ -1364,7 +1362,7 @@
         "difficulty": 2
     },
     {
-        "id": "26c7a561-27c0-4692-8ca6-4fc78d3745ee",
+        "id": "ef39f598-fe84-4aaa-a562-c6d3355052e4",
         "question": "What is the occupation of the person whose gender is female?",
         "intermediate_answers": [],
         "answer": [
@@ -1406,8 +1404,8 @@
         "difficulty": 2
     },
     {
-        "id": "e34462f6-c927-4c29-b1fe-c2a08be54dba",
-        "question": "How many great-granddaughter does the brother-in-law of Johnetta Wang have?",
+        "id": "c3fb5f80-4c86-49fb-963b-7e69aef9ce40",
+        "question": "How many great-granddaughters does the brother-in-law of Johnetta Wang have?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
@@ -1432,8 +1430,8 @@
         "difficulty": 3
     },
     {
-        "id": "fac983d9-bf6a-499b-ac17-c2c4a326615b",
-        "question": "How many child does the sibling of Vicki Hackworth have?",
+        "id": "f58d069b-c33a-482c-ae0d-5d6652ce8156",
+        "question": "How many children does the sibling of Vicki Hackworth have?",
         "intermediate_answers": [],
         "answer": [
             1
@@ -1460,8 +1458,8 @@
         "difficulty": 2
     },
     {
-        "id": "b6b23adf-f1d8-46ef-bc2c-ad41697402ff",
-        "question": "How many aunt does the female second cousin of Saul Wexler have?",
+        "id": "c394e089-02e9-4845-aac0-9f5b4c6fd35e",
+        "question": "How many aunts does the female second cousin of Saul Wexler have?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
@@ -1486,8 +1484,8 @@
         "difficulty": 6
     },
     {
-        "id": "59182212-9d98-46f7-b018-f70495520f10",
-        "question": "How many granddaughter does the male first cousin once removed of Dominique Smock have?",
+        "id": "08e42a00-5449-4fc0-93b0-90da0dbf5923",
+        "question": "How many granddaughters does the male first cousin once removed of Dominique Smock have?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
@@ -1512,8 +1510,8 @@
         "difficulty": 5
     },
     {
-        "id": "296a4514-f80a-4b02-b560-e35fb1b07ce3",
-        "question": "How many aunt does the male cousin of Dino Beltran have?",
+        "id": "4af5289f-3add-43a0-b767-c882a84d0f04",
+        "question": "How many aunts does the male cousin of Dino Beltran have?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
@@ -1538,8 +1536,8 @@
         "difficulty": 4
     },
     {
-        "id": "5b8569f9-16c7-410a-8f87-9b68c1abf03a",
-        "question": "How many sister-in-law does the great-uncle of Isabell Smock have?",
+        "id": "f18b05c4-ffa4-456c-ba52-fad71e068283",
+        "question": "How many sisters-in-law does the great-uncle of Isabell Smock have?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
@@ -1564,8 +1562,8 @@
         "difficulty": 4
     },
     {
-        "id": "c21d1b2b-694e-409d-a3e7-8bc383b32504",
-        "question": "How many female first cousin once removed does the sibling of Alvaro Smock have?",
+        "id": "b8eb0e56-6b6c-4b9e-bb08-e1dad45526de",
+        "question": "How many female first cousins once removed does the sibling of Alvaro Smock have?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
@@ -1590,8 +1588,8 @@
         "difficulty": 2
     },
     {
-        "id": "6c8ecaa7-ce9a-469a-9007-226237255f67",
-        "question": "How many sister-in-law does the male cousin of Ricardo Hackworth have?",
+        "id": "6a895c54-a853-4a6c-bc57-b48d5711668f",
+        "question": "How many sisters-in-law does the male cousin of Ricardo Hackworth have?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
@@ -1616,8 +1614,8 @@
         "difficulty": 4
     },
     {
-        "id": "5937a23b-d239-4a69-ae9c-59520abb2213",
-        "question": "How many grandson does the nephew of Saul Wexler have?",
+        "id": "0e33dcdb-b410-4ce4-afe1-31b184467920",
+        "question": "How many grandsons does the nephew of Saul Wexler have?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
@@ -1642,8 +1640,8 @@
         "difficulty": 3
     },
     {
-        "id": "54c7a8cf-07f2-4972-890c-9b8a0d6467d8",
-        "question": "How many niece does the father of Ryan Wang have?",
+        "id": "477e7382-b8f9-4025-a013-3d6675e4cf63",
+        "question": "How many nieces does the father of Ryan Wang have?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
@@ -1668,16 +1666,16 @@
         "difficulty": 2
     },
     {
-        "id": "a3dfcbd8-9f81-43b6-93dc-8abc6d7486ab",
-        "question": "How many great-granddaughter does the person whose occupation is osteopath have?",
+        "id": "37fe3828-5602-4b3a-a83e-661888cd6585",
+        "question": "How many great-granddaughters does the person whose occupation is police officer have?",
         "intermediate_answers": [],
         "answer": [
-            2
+            0
         ],
         "prolog": {
             "query": [
                 "aggregate_all(count, distinct(great_granddaughter(Y_3, Y_1)), Count_1)",
-                "job(Y_3, \"osteopath\")"
+                "job(Y_3, \"police officer\")"
             ],
             "answer": "Count_1"
         },
@@ -1696,8 +1694,8 @@
         "difficulty": 2
     },
     {
-        "id": "f9580f06-2a86-4769-a7c6-354b53335452",
-        "question": "How many child does the person whose gender is female have?",
+        "id": "a62f7320-9ac8-4346-9938-a88de13fa333",
+        "question": "How many children does the person whose gender is female have?",
         "intermediate_answers": [],
         "answer": [
             0,
@@ -1728,8 +1726,8 @@
         "difficulty": 2
     },
     {
-        "id": "cd686ef2-7b9c-478b-8001-54ec68a6fb6d",
-        "question": "How many aunt does the person whose gender is male have?",
+        "id": "517a3a90-70ef-4fde-b2b7-f43e21983956",
+        "question": "How many aunts does the person whose gender is male have?",
         "intermediate_answers": [],
         "answer": [
             0,
@@ -1757,8 +1755,8 @@
         "difficulty": 2
     },
     {
-        "id": "039b0d89-36b4-4bd1-897b-445289c3980b",
-        "question": "How many granddaughter does the person whose occupation is personal assistant have?",
+        "id": "5b474cab-78be-425b-89d1-576133f038fc",
+        "question": "How many granddaughters does the person whose occupation is osteopath have?",
         "intermediate_answers": [],
         "answer": [
             0
@@ -1766,7 +1764,7 @@
         "prolog": {
             "query": [
                 "aggregate_all(count, distinct(granddaughter(Y_3, Y_1)), Count_1)",
-                "job(Y_3, \"personal assistant\")"
+                "job(Y_3, \"osteopath\")"
             ],
             "answer": "Count_1"
         },
@@ -1785,8 +1783,8 @@
         "difficulty": 2
     },
     {
-        "id": "d98023a6-96fc-4dd9-b8f4-b65fec9df416",
-        "question": "How many aunt does the person whose occupation is immunologist have?",
+        "id": "24ecd17d-91a7-49f0-8862-3e3bd2093922",
+        "question": "How many aunts does the person whose occupation is clinical research associate have?",
         "intermediate_answers": [],
         "answer": [
             0
@@ -1794,7 +1792,7 @@
         "prolog": {
             "query": [
                 "aggregate_all(count, distinct(aunt(Y_3, Y_1)), Count_1)",
-                "job(Y_3, \"immunologist\")"
+                "job(Y_3, \"clinical research associate\")"
             ],
             "answer": "Count_1"
         },
@@ -1813,8 +1811,8 @@
         "difficulty": 2
     },
     {
-        "id": "3b17af4e-55a1-48de-829d-59241f2de033",
-        "question": "How many sister-in-law does the person whose occupation is warehouse manager have?",
+        "id": "cccae954-43b1-4065-957b-de637ec3de2e",
+        "question": "How many sisters-in-law does the person whose occupation is early years teacher have?",
         "intermediate_answers": [],
         "answer": [
             0
@@ -1822,7 +1820,7 @@
         "prolog": {
             "query": [
                 "aggregate_all(count, distinct(sister_in_law(Y_3, Y_1)), Count_1)",
-                "job(Y_3, \"warehouse manager\")"
+                "job(Y_3, \"early years teacher\")"
             ],
             "answer": "Count_1"
         },
@@ -1841,8 +1839,8 @@
         "difficulty": 2
     },
     {
-        "id": "5250c34e-a9d6-4887-a52e-5753a03ccf4f",
-        "question": "How many female first cousin once removed does the person whose date of birth is 0301-10-24 have?",
+        "id": "f4ffc9ee-6fb9-4e34-9aa3-a1be73d72c7c",
+        "question": "How many female first cousins once removed does the person whose date of birth is 0263-10-24 have?",
         "intermediate_answers": [],
         "answer": [
             0
@@ -1850,7 +1848,7 @@
         "prolog": {
             "query": [
                 "aggregate_all(count, distinct(female_first_cousin_once_removed(Y_3, Y_1)), Count_1)",
-                "dob(Y_3, \"0301-10-24\")"
+                "dob(Y_3, \"0263-10-24\")"
             ],
             "answer": "Count_1"
         },
@@ -1869,8 +1867,8 @@
         "difficulty": 2
     },
     {
-        "id": "dec7f1c1-08b0-4dd8-bfc2-a67f41785ae2",
-        "question": "How many sister-in-law does the person whose gender is male have?",
+        "id": "8d86e3b2-c227-4303-aaaa-6b1df50dcfc0",
+        "question": "How many sisters-in-law does the person whose gender is male have?",
         "intermediate_answers": [],
         "answer": [
             0,
@@ -1899,8 +1897,8 @@
         "difficulty": 2
     },
     {
-        "id": "dc040ebd-868f-479e-89fc-097d5c895b68",
-        "question": "How many grandson does the person whose gender is female have?",
+        "id": "511d2e42-aa2e-4f20-9878-914d231f3125",
+        "question": "How many grandsons does the person whose gender is female have?",
         "intermediate_answers": [],
         "answer": [
             0,
@@ -1928,8 +1926,8 @@
         "difficulty": 2
     },
     {
-        "id": "5db43cb1-2051-46b5-93fb-e0638db19e41",
-        "question": "How many niece does the person whose gender is female have?",
+        "id": "be3d3f04-6797-4787-a629-457f061e50f7",
+        "question": "How many nieces does the person whose gender is female have?",
         "intermediate_answers": [],
         "answer": [
             0,
@@ -1958,8 +1956,8 @@
         "difficulty": 2
     },
     {
-        "id": "a0e337d2-9d20-4790-87da-7455b7d8218d",
-        "question": "How many brother-in-law does Johnetta Wang have?",
+        "id": "24dc9038-1fd0-4318-948b-53fd5ab5e761",
+        "question": "How many brothers-in-law does Johnetta Wang have?",
         "intermediate_answers": [],
         "answer": [
             0
@@ -1982,8 +1980,8 @@
         "difficulty": 1
     },
     {
-        "id": "fa16b3b7-159b-43b5-b0ca-bf1ab9e869d0",
-        "question": "How many female second cousin does Ricardo Hackworth have?",
+        "id": "7ea932d5-b045-4e36-b10e-5a7fcff62cb7",
+        "question": "How many female second cousins does Ricardo Hackworth have?",
         "intermediate_answers": [],
         "answer": [
             0
@@ -2006,8 +2004,8 @@
         "difficulty": 1
     },
     {
-        "id": "f1ac90cd-c901-40c7-acc1-f27ee531a5e5",
-        "question": "How many child does Aida Wang have?",
+        "id": "0257cc43-d3b8-4c95-8a18-e683f8b22e8c",
+        "question": "How many children does Aida Wang have?",
         "intermediate_answers": [],
         "answer": [
             1
@@ -2030,8 +2028,8 @@
         "difficulty": 1
     },
     {
-        "id": "cd7f87d0-dd7c-4d6c-8332-7f150b6fc6b6",
-        "question": "How many female second cousin does Saul Wexler have?",
+        "id": "b24d71af-0ead-452e-a621-24f11a169dfe",
+        "question": "How many female second cousins does Saul Wexler have?",
         "intermediate_answers": [],
         "answer": [
             0
@@ -2054,8 +2052,8 @@
         "difficulty": 1
     },
     {
-        "id": "cbc9162e-f170-4b5b-8548-974f664b08ae",
-        "question": "How many nephew does Deane Smock have?",
+        "id": "d4c4f806-ca83-4573-aa6e-14d0c6cd5056",
+        "question": "How many nephews does Deane Smock have?",
         "intermediate_answers": [],
         "answer": [
             1
@@ -2078,8 +2076,8 @@
         "difficulty": 1
     },
     {
-        "id": "f91c1e53-77e6-4082-b401-f1b098d7b0d8",
-        "question": "How many granddaughter does Shelli Beltran have?",
+        "id": "bcff0b9a-2531-47ef-83b0-772de200869f",
+        "question": "How many granddaughters does Shelli Beltran have?",
         "intermediate_answers": [],
         "answer": [
             4
@@ -2102,8 +2100,8 @@
         "difficulty": 1
     },
     {
-        "id": "3ac22700-8e85-41e3-875e-2137942fd06a",
-        "question": "How many male cousin does Dino Beltran have?",
+        "id": "ae28d197-8739-4efa-8b7a-cfe50c4d5cc0",
+        "question": "How many male cousins does Dino Beltran have?",
         "intermediate_answers": [],
         "answer": [
             0
@@ -2126,8 +2124,8 @@
         "difficulty": 1
     },
     {
-        "id": "cd364f59-22a6-4f54-8984-71fee7eda221",
-        "question": "How many grandchild does Deane Smock have?",
+        "id": "4c3e1c05-2601-4810-b8c2-3f6b25079cd9",
+        "question": "How many grandchildren does Deane Smock have?",
         "intermediate_answers": [],
         "answer": [
             0
@@ -2150,8 +2148,8 @@
         "difficulty": 1
     },
     {
-        "id": "518b87fd-b9e5-4829-93d1-7635cd309509",
-        "question": "How many sister-in-law does Lewis Smock have?",
+        "id": "075e123f-f502-4908-ac47-632ac2b8c753",
+        "question": "How many sisters-in-law does Lewis Smock have?",
         "intermediate_answers": [],
         "answer": [
             0
@@ -2174,8 +2172,8 @@
         "difficulty": 1
     },
     {
-        "id": "d3301123-f80b-4e26-87aa-c105c453e34f",
-        "question": "How many sibling does Alvaro Smock have?",
+        "id": "1ed46a16-ce07-4784-a18a-043824770288",
+        "question": "How many siblings does Alvaro Smock have?",
         "intermediate_answers": [],
         "answer": [
             0

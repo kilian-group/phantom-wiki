@@ -1,15 +1,13 @@
 [
     {
-        "id": "e4da10f8-ef4f-4eb7-a90a-edbbcde6eb8c",
-        "question": "Who is the wife of the person whose occupation is immunologist?",
+        "id": "a42212d5-94d2-42d5-971b-e850f9944301",
+        "question": "Who is the wife of the person whose occupation is health promotion specialist?",
         "intermediate_answers": [],
-        "answer": [
-            "Dominique Smock"
-        ],
+        "answer": [],
         "prolog": {
             "query": [
                 "wife(Y_4, Y_2)",
-                "job(Y_4, \"immunologist\")"
+                "job(Y_4, \"health promotion specialist\")"
             ],
             "answer": "Y_2"
         },
@@ -28,7 +26,7 @@
         "difficulty": 2
     },
     {
-        "id": "66e3ec34-4b3c-415a-94c7-96803dd81510",
+        "id": "bef62073-3fbc-42d2-ab82-1277b4a2e0cd",
         "question": "Who is the sibling of the person whose gender is male?",
         "intermediate_answers": [],
         "answer": [
@@ -62,7 +60,7 @@
         "difficulty": 2
     },
     {
-        "id": "583c1d2d-bc37-4a88-b979-146bd17f9856",
+        "id": "3f78b919-46eb-4265-a87e-303976aad9b7",
         "question": "Who is the sister of the person whose gender is female?",
         "intermediate_answers": [],
         "answer": [
@@ -98,67 +96,15 @@
         "difficulty": 2
     },
     {
-        "id": "a4deb323-16d9-45e7-8498-e02bfbf30b51",
-        "question": "Who is the father of the person whose occupation is clinical cytogeneticist?",
+        "id": "36263675-c154-4071-8aab-c129dbc9127d",
+        "question": "Who is the father of the person whose occupation is education administrator?",
         "intermediate_answers": [],
         "answer": [
-            "Ricardo Hackworth"
+            "Alvaro Smock"
         ],
         "prolog": {
             "query": [
                 "father(Y_4, Y_2)",
-                "job(Y_4, \"clinical cytogeneticist\")"
-            ],
-            "answer": "Y_2"
-        },
-        "template": [
-            "Who is",
-            "the",
-            "<relation>_3",
-            "of",
-            "the person whose",
-            "<attribute_name>_5",
-            "is",
-            "<attribute_value>_5",
-            "?"
-        ],
-        "type": 0,
-        "difficulty": 2
-    },
-    {
-        "id": "66cbc444-333f-4a48-9fd0-a86a138d7eeb",
-        "question": "Who is the brother of the person whose occupation is chief of staff?",
-        "intermediate_answers": [],
-        "answer": [],
-        "prolog": {
-            "query": [
-                "brother(Y_4, Y_2)",
-                "job(Y_4, \"chief of staff\")"
-            ],
-            "answer": "Y_2"
-        },
-        "template": [
-            "Who is",
-            "the",
-            "<relation>_3",
-            "of",
-            "the person whose",
-            "<attribute_name>_5",
-            "is",
-            "<attribute_value>_5",
-            "?"
-        ],
-        "type": 0,
-        "difficulty": 2
-    },
-    {
-        "id": "2b958ca6-eae5-4529-9a09-42c139e5c2e6",
-        "question": "Who is the child of the person whose occupation is education administrator?",
-        "intermediate_answers": [],
-        "answer": [],
-        "prolog": {
-            "query": [
-                "child(Y_4, Y_2)",
                 "job(Y_4, \"education administrator\")"
             ],
             "answer": "Y_2"
@@ -178,16 +124,16 @@
         "difficulty": 2
     },
     {
-        "id": "b5b5a473-545d-4464-9d03-dc3709075bca",
-        "question": "Who is the husband of the person whose date of birth is 0239-10-28?",
+        "id": "d63116dd-494d-4c6e-9ca8-8c581788773c",
+        "question": "Who is the brother of the person whose occupation is sports therapist?",
         "intermediate_answers": [],
         "answer": [
-            "Williams Smock"
+            "Orlando Beltran"
         ],
         "prolog": {
             "query": [
-                "husband(Y_4, Y_2)",
-                "dob(Y_4, \"0239-10-28\")"
+                "brother(Y_4, Y_2)",
+                "job(Y_4, \"sports therapist\")"
             ],
             "answer": "Y_2"
         },
@@ -206,7 +152,61 @@
         "difficulty": 2
     },
     {
-        "id": "4c6997d3-c597-48c8-93f0-4219f0e3cd23",
+        "id": "b06fd274-48ff-4b14-a333-8c1b854b601e",
+        "question": "Who is the child of the person whose occupation is occupational therapist?",
+        "intermediate_answers": [],
+        "answer": [
+            "Johnetta Wang"
+        ],
+        "prolog": {
+            "query": [
+                "child(Y_4, Y_2)",
+                "job(Y_4, \"occupational therapist\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "difficulty": 2
+    },
+    {
+        "id": "949ad2e1-f3b7-40ee-b7a1-77bad0d2ab92",
+        "question": "Who is the husband of the person whose date of birth is 0325-11-20?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "husband(Y_4, Y_2)",
+                "dob(Y_4, \"0325-11-20\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "difficulty": 2
+    },
+    {
+        "id": "1e98fe87-d985-4626-b202-9ffd1ec3637a",
         "question": "Who is the child of the person whose gender is female?",
         "intermediate_answers": [],
         "answer": [
@@ -250,7 +250,7 @@
         "difficulty": 2
     },
     {
-        "id": "528eb613-9e0d-4c5b-8929-e59cc0cc638e",
+        "id": "f67e4072-68bd-45dc-9544-7bdca58999b5",
         "question": "Who is the father of the person whose gender is male?",
         "intermediate_answers": [],
         "answer": [
@@ -280,7 +280,7 @@
         "difficulty": 2
     },
     {
-        "id": "e0afe03c-5d51-4f69-91a3-52397a8b2f82",
+        "id": "a71a8e12-50b3-4e8b-b7b2-09817f201792",
         "question": "Who is the brother of the person whose gender is male?",
         "intermediate_answers": [],
         "answer": [
@@ -312,7 +312,7 @@
         "difficulty": 2
     },
     {
-        "id": "0820e6d3-22e8-4083-b8f4-609f92cf01e3",
+        "id": "12abbf1e-acb1-4e4b-b1fd-92ccde7fc5c7",
         "question": "Who is the child of Johnetta Wang?",
         "intermediate_answers": [],
         "answer": [],
@@ -334,7 +334,7 @@
         "difficulty": 1
     },
     {
-        "id": "ed23dc11-1464-4646-bf67-f587facc7637",
+        "id": "0d1eba44-b930-4765-a0f0-899e967c6834",
         "question": "Who is the friend of Ricardo Hackworth?",
         "intermediate_answers": [],
         "answer": [
@@ -361,7 +361,7 @@
         "difficulty": 1
     },
     {
-        "id": "74027deb-42e7-4c20-9acf-e4dad1af6130",
+        "id": "273a5800-cb59-4746-80b6-b13caf6f1012",
         "question": "Who is the sibling of Aida Wang?",
         "intermediate_answers": [],
         "answer": [
@@ -386,7 +386,7 @@
         "difficulty": 1
     },
     {
-        "id": "ef3bdf77-5699-40c2-bcd7-7f4f1277a6d6",
+        "id": "3eddac6e-f876-4f58-bb25-b1ce17167fe4",
         "question": "Who is the friend of Saul Wexler?",
         "intermediate_answers": [],
         "answer": [
@@ -414,7 +414,7 @@
         "difficulty": 1
     },
     {
-        "id": "ddc44894-b4e2-477c-8ba2-f2c270f3e644",
+        "id": "f1409693-f89b-4df4-90aa-cdf1882e7d03",
         "question": "Who is the brother of Deane Smock?",
         "intermediate_answers": [],
         "answer": [
@@ -440,7 +440,7 @@
         "difficulty": 1
     },
     {
-        "id": "ff94ca30-f34b-4e45-877b-3f11721f7052",
+        "id": "81009bcc-2305-44d8-bb3f-bd9c46030cd7",
         "question": "Who is the father of Shelli Beltran?",
         "intermediate_answers": [],
         "answer": [
@@ -464,7 +464,7 @@
         "difficulty": 1
     },
     {
-        "id": "8aefc1fd-7af9-4e0b-b1cf-a9d991a6d8d4",
+        "id": "3deeb86b-5edc-4d2c-acd2-f6334bb486da",
         "question": "Who is the wife of Dino Beltran?",
         "intermediate_answers": [],
         "answer": [
@@ -488,7 +488,7 @@
         "difficulty": 1
     },
     {
-        "id": "093a09f5-6529-43a0-8644-454161999157",
+        "id": "c130dd22-2220-4dca-9979-4c0098de127c",
         "question": "Who is the mother of Deane Smock?",
         "intermediate_answers": [],
         "answer": [
@@ -512,7 +512,7 @@
         "difficulty": 1
     },
     {
-        "id": "005bc7f0-4a95-4773-a095-70b33c1f97fc",
+        "id": "e431be6a-f54f-4ae1-9990-d1a253da0ef9",
         "question": "Who is the child of Lewis Smock?",
         "intermediate_answers": [],
         "answer": [],
@@ -534,7 +534,7 @@
         "difficulty": 1
     },
     {
-        "id": "44bca697-8a0f-4e06-9858-6c711411ddd5",
+        "id": "49da33af-6e63-4684-a11a-b75cc730310e",
         "question": "Who is the parent of Alvaro Smock?",
         "intermediate_answers": [],
         "answer": [],
@@ -556,15 +556,15 @@
         "difficulty": 1
     },
     {
-        "id": "8bcaed46-1cf2-4030-bd27-78dc38f13f12",
-        "question": "Who is the person whose occupation is immunologist?",
+        "id": "f4202dfe-d11e-45e9-b942-7d6aaae58aeb",
+        "question": "Who is the person whose occupation is health promotion specialist?",
         "intermediate_answers": [],
         "answer": [
-            "Gene Smock"
+            "Alison Smock"
         ],
         "prolog": {
             "query": [
-                "job(Y_2, \"immunologist\")"
+                "job(Y_2, \"health promotion specialist\")"
             ],
             "answer": "Y_2"
         },
@@ -580,7 +580,7 @@
         "difficulty": 1
     },
     {
-        "id": "cef229b7-8557-41d6-9fab-b15a537d526c",
+        "id": "6d35beae-d544-43da-a7a8-bdaecc66e4da",
         "question": "Who is the person whose gender is female?",
         "intermediate_answers": [],
         "answer": [
@@ -618,15 +618,15 @@
         "difficulty": 1
     },
     {
-        "id": "ab7b45f4-2b82-477a-9510-5845b34f36bf",
-        "question": "Who is the person whose date of birth is 0292-03-17?",
+        "id": "6f9b339c-d58f-465d-8b7e-12754b8eac89",
+        "question": "Who is the person whose date of birth is 0269-03-21?",
         "intermediate_answers": [],
         "answer": [
-            "Ryan Wang"
+            "Myrle Smock"
         ],
         "prolog": {
             "query": [
-                "dob(Y_2, \"0292-03-17\")"
+                "dob(Y_2, \"0269-03-21\")"
             ],
             "answer": "Y_2"
         },
@@ -642,7 +642,7 @@
         "difficulty": 1
     },
     {
-        "id": "85259547-8763-4de1-9075-66c84d087233",
+        "id": "f754f013-d6ca-4aa4-83aa-c88e0b216811",
         "question": "Who is the person whose gender is female?",
         "intermediate_answers": [],
         "answer": [
@@ -680,15 +680,15 @@
         "difficulty": 1
     },
     {
-        "id": "b9b676b9-5210-4e81-bf9d-e35db2c9f699",
-        "question": "Who is the person whose date of birth is 0177-07-12?",
+        "id": "4ec444c7-4d7f-4f33-8556-0ccf888eee40",
+        "question": "Who is the person whose date of birth is 0236-04-04?",
         "intermediate_answers": [],
         "answer": [
-            "Alvaro Smock"
+            "Williams Smock"
         ],
         "prolog": {
             "query": [
-                "dob(Y_2, \"0177-07-12\")"
+                "dob(Y_2, \"0236-04-04\")"
             ],
             "answer": "Y_2"
         },
@@ -704,7 +704,7 @@
         "difficulty": 1
     },
     {
-        "id": "b1d02ee3-db54-4540-9f04-813f1069f907",
+        "id": "ed76f993-2fd5-4feb-a1f5-ad394f45a588",
         "question": "Who is the person whose gender is male?",
         "intermediate_answers": [],
         "answer": [
@@ -738,15 +738,15 @@
         "difficulty": 1
     },
     {
-        "id": "89535944-7738-45e7-8b87-859d53938998",
-        "question": "Who is the person whose occupation is chief of staff?",
+        "id": "f2fbe7c6-a4d0-43e5-9e7c-d8d023581bb9",
+        "question": "Who is the person whose occupation is sports therapist?",
         "intermediate_answers": [],
         "answer": [
-            "Ricardo Hackworth"
+            "Dino Beltran"
         ],
         "prolog": {
             "query": [
-                "job(Y_2, \"chief of staff\")"
+                "job(Y_2, \"sports therapist\")"
             ],
             "answer": "Y_2"
         },
@@ -762,15 +762,15 @@
         "difficulty": 1
     },
     {
-        "id": "2f9f9502-c9c7-4398-a97a-cfa6492edc10",
-        "question": "Who is the person whose occupation is personal assistant?",
+        "id": "7ff007af-cf0b-42fa-b3bb-627ae224f76d",
+        "question": "Who is the person whose occupation is theatre manager?",
         "intermediate_answers": [],
         "answer": [
-            "Aida Wang"
+            "Vicki Hackworth"
         ],
         "prolog": {
             "query": [
-                "job(Y_2, \"personal assistant\")"
+                "job(Y_2, \"theatre manager\")"
             ],
             "answer": "Y_2"
         },
@@ -786,15 +786,15 @@
         "difficulty": 1
     },
     {
-        "id": "a98afa98-865c-42fd-b370-3c94d471fd24",
-        "question": "Who is the person whose hobby is dolls?",
+        "id": "aa0e59d0-3a7c-417d-98ac-e61c968527f4",
+        "question": "Who is the person whose hobby is dominoes?",
         "intermediate_answers": [],
         "answer": [
-            "Brian Beltran"
+            "Dino Beltran"
         ],
         "prolog": {
             "query": [
-                "hobby(Y_2, \"dolls\")"
+                "hobby(Y_2, \"dominoes\")"
             ],
             "answer": "Y_2"
         },
@@ -810,15 +810,15 @@
         "difficulty": 1
     },
     {
-        "id": "a215b0cf-133f-4b15-b11c-b35f54e4d53e",
-        "question": "Who is the person whose date of birth is 0239-10-28?",
+        "id": "90889a09-5c4d-483c-80c0-9bca6d070624",
+        "question": "Who is the person whose date of birth is 0325-11-20?",
         "intermediate_answers": [],
         "answer": [
-            "Alison Smock"
+            "Lenore Hackworth"
         ],
         "prolog": {
             "query": [
-                "dob(Y_2, \"0239-10-28\")"
+                "dob(Y_2, \"0325-11-20\")"
             ],
             "answer": "Y_2"
         },
@@ -834,7 +834,7 @@
         "difficulty": 1
     },
     {
-        "id": "b3dd3eac-bc1a-4218-90d7-29b60c5263b0",
+        "id": "02016e68-3e30-4be6-acf9-a61ae2f7b100",
         "question": "What is the gender of the child of Johnetta Wang?",
         "intermediate_answers": [],
         "answer": [],
@@ -860,7 +860,7 @@
         "difficulty": 2
     },
     {
-        "id": "8034feb3-7983-4b8a-91ea-a53d0229ae0a",
+        "id": "a02b0bda-06fe-44b7-b0c1-db037720e394",
         "question": "What is the date of birth of the parent of Vicki Hackworth?",
         "intermediate_answers": [],
         "answer": [
@@ -889,7 +889,7 @@
         "difficulty": 2
     },
     {
-        "id": "b0babd91-f440-4c61-b8c4-e113814bbb38",
+        "id": "07aa7458-8e42-407a-be10-66cef92320bd",
         "question": "What is the date of birth of the friend of Saul Wexler?",
         "intermediate_answers": [],
         "answer": [
@@ -921,7 +921,7 @@
         "difficulty": 2
     },
     {
-        "id": "bc415e2a-8cbc-4f99-8706-28ef18cfeba2",
+        "id": "8121b1c7-4416-4c11-ae60-edf8e4582fe0",
         "question": "What is the occupation of the husband of Dominique Smock?",
         "intermediate_answers": [],
         "answer": [
@@ -949,7 +949,7 @@
         "difficulty": 2
     },
     {
-        "id": "9fb72490-6d81-4a9d-afaa-aec608b98276",
+        "id": "5d50b050-8572-4bc9-aa2f-7e351faed394",
         "question": "What is the occupation of the wife of Dino Beltran?",
         "intermediate_answers": [],
         "answer": [
@@ -977,7 +977,7 @@
         "difficulty": 2
     },
     {
-        "id": "eaa4d658-701a-41d2-9d44-4fd252e3e8df",
+        "id": "e1888fc9-d281-4763-b2f4-195d65e7ee85",
         "question": "What is the hobby of the son of Isabell Smock?",
         "intermediate_answers": [],
         "answer": [],
@@ -1003,7 +1003,7 @@
         "difficulty": 2
     },
     {
-        "id": "3aeef2d1-d3d3-46d3-bdcd-af338c113453",
+        "id": "47841da3-471c-45ea-861b-31298627f788",
         "question": "What is the gender of the parent of Alvaro Smock?",
         "intermediate_answers": [],
         "answer": [],
@@ -1029,7 +1029,7 @@
         "difficulty": 2
     },
     {
-        "id": "440acfde-dd28-4994-8e91-bd0e1e25361e",
+        "id": "fb40a631-6e1e-4c03-8a7b-3fa5de03cb9b",
         "question": "What is the hobby of the husband of Ricardo Hackworth?",
         "intermediate_answers": [],
         "answer": [],
@@ -1055,7 +1055,7 @@
         "difficulty": 2
     },
     {
-        "id": "669801d4-3ee3-4e54-be72-5191bd204bf7",
+        "id": "78450f97-d697-4c4e-ad27-6fae1f8a46fc",
         "question": "What is the occupation of the brother of Saul Wexler?",
         "intermediate_answers": [],
         "answer": [],
@@ -1081,7 +1081,7 @@
         "difficulty": 2
     },
     {
-        "id": "e622177e-d89e-46fa-bb08-3ca055460fc3",
+        "id": "2f3fa45f-203b-4166-b674-222a69f21b92",
         "question": "What is the occupation of the sibling of Ryan Wang?",
         "intermediate_answers": [],
         "answer": [],
@@ -1107,16 +1107,16 @@
         "difficulty": 2
     },
     {
-        "id": "5c365f08-adeb-497d-b517-50857bb66c75",
-        "question": "What is the gender of the person whose occupation is immunologist?",
+        "id": "eea5079b-74ff-4506-8a2f-b4b3cd170015",
+        "question": "What is the gender of the person whose occupation is health promotion specialist?",
         "intermediate_answers": [],
         "answer": [
-            "male"
+            "female"
         ],
         "prolog": {
             "query": [
                 "gender(Y_3, Y_2)",
-                "job(Y_3, \"immunologist\")"
+                "job(Y_3, \"health promotion specialist\")"
             ],
             "answer": "Y_2"
         },
@@ -1135,7 +1135,7 @@
         "difficulty": 2
     },
     {
-        "id": "ef01a950-e4ca-4ec7-af90-1f9be4fd2ad5",
+        "id": "0aa3df4a-e197-49e9-9e8e-c416349645f7",
         "question": "What is the date of birth of the person whose gender is male?",
         "intermediate_answers": [],
         "answer": [
@@ -1173,7 +1173,7 @@
         "difficulty": 2
     },
     {
-        "id": "9c7fa220-f512-4ad5-b73c-8b8d1db57795",
+        "id": "e0fed61b-70e9-41d7-af72-aedd42651d00",
         "question": "What is the date of birth of the person whose gender is female?",
         "intermediate_answers": [],
         "answer": [
@@ -1214,71 +1214,15 @@
         "difficulty": 2
     },
     {
-        "id": "0d3752ae-6c1d-4275-9045-2f748d458f7b",
-        "question": "What is the occupation of the person whose occupation is clinical cytogeneticist?",
+        "id": "01047833-8bb2-4716-a482-798072c405ec",
+        "question": "What is the occupation of the person whose occupation is education administrator?",
         "intermediate_answers": [],
         "answer": [
-            "clinical cytogeneticist"
+            "education administrator"
         ],
         "prolog": {
             "query": [
                 "job(Y_3, Y_2)",
-                "job(Y_3, \"clinical cytogeneticist\")"
-            ],
-            "answer": "Y_2"
-        },
-        "template": [
-            "What is",
-            "the",
-            "<attribute_name>_3",
-            "of",
-            "the person whose",
-            "<attribute_name>_4",
-            "is",
-            "<attribute_value>_4",
-            "?"
-        ],
-        "type": 4,
-        "difficulty": 2
-    },
-    {
-        "id": "96e8f9b8-e8d7-4297-b731-e647b04e2170",
-        "question": "What is the occupation of the person whose occupation is chief of staff?",
-        "intermediate_answers": [],
-        "answer": [
-            "chief of staff"
-        ],
-        "prolog": {
-            "query": [
-                "job(Y_3, Y_2)",
-                "job(Y_3, \"chief of staff\")"
-            ],
-            "answer": "Y_2"
-        },
-        "template": [
-            "What is",
-            "the",
-            "<attribute_name>_3",
-            "of",
-            "the person whose",
-            "<attribute_name>_4",
-            "is",
-            "<attribute_value>_4",
-            "?"
-        ],
-        "type": 4,
-        "difficulty": 2
-    },
-    {
-        "id": "8ff7f8e6-b068-498a-b394-53e9e4b26a0e",
-        "question": "What is the hobby of the person whose occupation is education administrator?",
-        "intermediate_answers": [],
-        "answer": [
-            "geocaching"
-        ],
-        "prolog": {
-            "query": [
-                "hobby(Y_3, Y_2)",
                 "job(Y_3, \"education administrator\")"
             ],
             "answer": "Y_2"
@@ -1298,16 +1242,16 @@
         "difficulty": 2
     },
     {
-        "id": "65ba850b-e222-4c9a-b37c-d2741e405803",
-        "question": "What is the gender of the person whose date of birth is 0239-10-28?",
+        "id": "5322283d-d38f-4258-8c86-c401ae8c48de",
+        "question": "What is the occupation of the person whose occupation is sports therapist?",
         "intermediate_answers": [],
         "answer": [
-            "female"
+            "sports therapist"
         ],
         "prolog": {
             "query": [
-                "gender(Y_3, Y_2)",
-                "dob(Y_3, \"0239-10-28\")"
+                "job(Y_3, Y_2)",
+                "job(Y_3, \"sports therapist\")"
             ],
             "answer": "Y_2"
         },
@@ -1326,7 +1270,63 @@
         "difficulty": 2
     },
     {
-        "id": "9da02199-07ba-40d4-984b-b295ced9863b",
+        "id": "98c4f5fe-a2af-4287-aded-90b87de8fb83",
+        "question": "What is the hobby of the person whose occupation is occupational therapist?",
+        "intermediate_answers": [],
+        "answer": [
+            "sociology"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "job(Y_3, \"occupational therapist\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 2
+    },
+    {
+        "id": "f2657baf-ea6b-47c0-83ca-10c5836da7a0",
+        "question": "What is the gender of the person whose date of birth is 0325-11-20?",
+        "intermediate_answers": [],
+        "answer": [
+            "female"
+        ],
+        "prolog": {
+            "query": [
+                "gender(Y_3, Y_2)",
+                "dob(Y_3, \"0325-11-20\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 2
+    },
+    {
+        "id": "02c4892d-1c2e-4111-b1cc-5247aee91ea2",
         "question": "What is the hobby of the person whose gender is female?",
         "intermediate_answers": [],
         "answer": [
@@ -1367,7 +1367,7 @@
         "difficulty": 2
     },
     {
-        "id": "1123ce28-db1b-40ae-8fe8-83dc6607dad0",
+        "id": "06010636-5edc-4eb4-875b-722f20ad52df",
         "question": "What is the occupation of the person whose gender is male?",
         "intermediate_answers": [],
         "answer": [
@@ -1405,7 +1405,7 @@
         "difficulty": 2
     },
     {
-        "id": "86d1ccc7-94c2-4470-b155-eedf256a08c7",
+        "id": "ca1dc87b-1afa-4af0-bddd-3d33119439ce",
         "question": "What is the occupation of the person whose gender is male?",
         "intermediate_answers": [],
         "answer": [
@@ -1443,8 +1443,8 @@
         "difficulty": 2
     },
     {
-        "id": "d5628555-98b0-4ae8-997a-c0b3eec3828d",
-        "question": "How many wife does the child of Johnetta Wang have?",
+        "id": "ff5e9455-181c-4bc4-b08c-69ec584f422c",
+        "question": "How many wives does the child of Johnetta Wang have?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
@@ -1469,8 +1469,8 @@
         "difficulty": 2
     },
     {
-        "id": "507fb46f-eb94-43eb-a4a0-87e369c96144",
-        "question": "How many sibling does the parent of Vicki Hackworth have?",
+        "id": "735c4066-9c24-4657-8990-31b2fab27182",
+        "question": "How many siblings does the parent of Vicki Hackworth have?",
         "intermediate_answers": [],
         "answer": [
             1
@@ -1497,8 +1497,8 @@
         "difficulty": 2
     },
     {
-        "id": "526bbb5b-a675-41d0-bad1-481fef4ea7aa",
-        "question": "How many sister does the friend of Saul Wexler have?",
+        "id": "1e8ae300-1422-45a6-8d4c-bff195265623",
+        "question": "How many sisters does the friend of Saul Wexler have?",
         "intermediate_answers": [],
         "answer": [
             0,
@@ -1527,8 +1527,8 @@
         "difficulty": 2
     },
     {
-        "id": "293f06f1-a776-411d-a61d-e1af0f09ed84",
-        "question": "How many father does the husband of Dominique Smock have?",
+        "id": "cb47701b-8f6b-4e0b-a2b1-e48274a81be5",
+        "question": "How many fathers does the husband of Dominique Smock have?",
         "intermediate_answers": [],
         "answer": [
             1
@@ -1555,8 +1555,8 @@
         "difficulty": 2
     },
     {
-        "id": "52b5bee0-750f-49c7-ad97-da4f6dcd41ea",
-        "question": "How many brother does the wife of Dino Beltran have?",
+        "id": "c0ef73b0-219e-4329-89e6-c269dcab8285",
+        "question": "How many brothers does the wife of Dino Beltran have?",
         "intermediate_answers": [],
         "answer": [
             0
@@ -1583,8 +1583,8 @@
         "difficulty": 2
     },
     {
-        "id": "ab0f6cce-6c01-404e-909c-aef409408840",
-        "question": "How many child does the son of Isabell Smock have?",
+        "id": "606c7db7-a27e-431e-81e1-55778fde608e",
+        "question": "How many children does the son of Isabell Smock have?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
@@ -1609,8 +1609,8 @@
         "difficulty": 2
     },
     {
-        "id": "57ad5c3a-0498-4427-bb23-e0232c47e1f6",
-        "question": "How many husband does the parent of Alvaro Smock have?",
+        "id": "b8557207-e30d-4a68-bf50-4b12732d1cd9",
+        "question": "How many husbands does the parent of Alvaro Smock have?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
@@ -1635,8 +1635,8 @@
         "difficulty": 2
     },
     {
-        "id": "8a986685-e57f-4795-ade1-9a119dfe0279",
-        "question": "How many child does the husband of Ricardo Hackworth have?",
+        "id": "6fd012be-7a63-4220-8e79-b03617d7c6df",
+        "question": "How many children does the husband of Ricardo Hackworth have?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
@@ -1661,8 +1661,8 @@
         "difficulty": 2
     },
     {
-        "id": "ea2ecb70-2cbe-475a-871e-89a438e8e105",
-        "question": "How many father does the brother of Saul Wexler have?",
+        "id": "d3dae428-83d9-47ef-a213-1cbb2dd45319",
+        "question": "How many fathers does the brother of Saul Wexler have?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
@@ -1687,8 +1687,8 @@
         "difficulty": 2
     },
     {
-        "id": "e728fa6a-5ffe-4ed0-9cba-71e0019f460d",
-        "question": "How many brother does the sibling of Ryan Wang have?",
+        "id": "70333c32-288d-406f-bf04-bfcbc804f99a",
+        "question": "How many brothers does the sibling of Ryan Wang have?",
         "intermediate_answers": [],
         "answer": [],
         "prolog": {
@@ -1713,16 +1713,16 @@
         "difficulty": 2
     },
     {
-        "id": "fc5a23b7-d9fe-4d38-aed7-da7fe5a80033",
-        "question": "How many wife does the person whose occupation is immunologist have?",
+        "id": "cc975e43-feb2-4825-b8cf-41288e503e60",
+        "question": "How many wives does the person whose occupation is health promotion specialist have?",
         "intermediate_answers": [],
         "answer": [
-            1
+            0
         ],
         "prolog": {
             "query": [
                 "aggregate_all(count, distinct(wife(Y_3, Y_1)), Count_1)",
-                "job(Y_3, \"immunologist\")"
+                "job(Y_3, \"health promotion specialist\")"
             ],
             "answer": "Count_1"
         },
@@ -1741,8 +1741,8 @@
         "difficulty": 2
     },
     {
-        "id": "be50eab3-8747-4137-8ca1-5ce142a17ab3",
-        "question": "How many sibling does the person whose gender is male have?",
+        "id": "47e5118b-d084-4ad1-9248-14d51c66fd88",
+        "question": "How many siblings does the person whose gender is male have?",
         "intermediate_answers": [],
         "answer": [
             0,
@@ -1771,8 +1771,8 @@
         "difficulty": 2
     },
     {
-        "id": "badc50b9-e0b8-436f-a6cf-e8f646b54f4b",
-        "question": "How many sister does the person whose gender is female have?",
+        "id": "35234a62-3bcd-4bfd-a4bc-28c1978e21be",
+        "question": "How many sisters does the person whose gender is female have?",
         "intermediate_answers": [],
         "answer": [
             0,
@@ -1801,8 +1801,8 @@
         "difficulty": 2
     },
     {
-        "id": "de39efe8-46a9-40a3-a64c-62e87dd632f9",
-        "question": "How many father does the person whose occupation is clinical cytogeneticist have?",
+        "id": "8d510ba2-0da5-4cbf-968d-a0343867ca08",
+        "question": "How many fathers does the person whose occupation is education administrator have?",
         "intermediate_answers": [],
         "answer": [
             1
@@ -1810,62 +1810,6 @@
         "prolog": {
             "query": [
                 "aggregate_all(count, distinct(father(Y_3, Y_1)), Count_1)",
-                "job(Y_3, \"clinical cytogeneticist\")"
-            ],
-            "answer": "Count_1"
-        },
-        "template": [
-            "How many",
-            "<relation_plural>_2",
-            "does",
-            "the person whose",
-            "<attribute_name>_4",
-            "is",
-            "<attribute_value>_4",
-            "have",
-            "?"
-        ],
-        "type": 6,
-        "difficulty": 2
-    },
-    {
-        "id": "0937b11b-0a27-4d8b-8533-6da7db8ca9bf",
-        "question": "How many brother does the person whose occupation is chief of staff have?",
-        "intermediate_answers": [],
-        "answer": [
-            0
-        ],
-        "prolog": {
-            "query": [
-                "aggregate_all(count, distinct(brother(Y_3, Y_1)), Count_1)",
-                "job(Y_3, \"chief of staff\")"
-            ],
-            "answer": "Count_1"
-        },
-        "template": [
-            "How many",
-            "<relation_plural>_2",
-            "does",
-            "the person whose",
-            "<attribute_name>_4",
-            "is",
-            "<attribute_value>_4",
-            "have",
-            "?"
-        ],
-        "type": 6,
-        "difficulty": 2
-    },
-    {
-        "id": "f990e4e7-eb70-4754-8bab-99405a264519",
-        "question": "How many child does the person whose occupation is education administrator have?",
-        "intermediate_answers": [],
-        "answer": [
-            0
-        ],
-        "prolog": {
-            "query": [
-                "aggregate_all(count, distinct(child(Y_3, Y_1)), Count_1)",
                 "job(Y_3, \"education administrator\")"
             ],
             "answer": "Count_1"
@@ -1885,16 +1829,16 @@
         "difficulty": 2
     },
     {
-        "id": "ae313a99-6f60-48f5-9367-262d4d2cf79c",
-        "question": "How many husband does the person whose date of birth is 0239-10-28 have?",
+        "id": "4c365dbb-91a9-4049-93d4-05fe45f6d4c6",
+        "question": "How many brothers does the person whose occupation is sports therapist have?",
         "intermediate_answers": [],
         "answer": [
             1
         ],
         "prolog": {
             "query": [
-                "aggregate_all(count, distinct(husband(Y_3, Y_1)), Count_1)",
-                "dob(Y_3, \"0239-10-28\")"
+                "aggregate_all(count, distinct(brother(Y_3, Y_1)), Count_1)",
+                "job(Y_3, \"sports therapist\")"
             ],
             "answer": "Count_1"
         },
@@ -1913,8 +1857,64 @@
         "difficulty": 2
     },
     {
-        "id": "f4037be7-7526-4935-bc09-2137e7a3169a",
-        "question": "How many child does the person whose gender is female have?",
+        "id": "2fd4c000-ce19-44b7-a939-ec5bd3f13075",
+        "question": "How many children does the person whose occupation is occupational therapist have?",
+        "intermediate_answers": [],
+        "answer": [
+            1
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(child(Y_3, Y_1)), Count_1)",
+                "job(Y_3, \"occupational therapist\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "difficulty": 2
+    },
+    {
+        "id": "4986c24b-9c01-4a80-9c73-11edc448aa21",
+        "question": "How many husbands does the person whose date of birth is 0325-11-20 have?",
+        "intermediate_answers": [],
+        "answer": [
+            0
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(husband(Y_3, Y_1)), Count_1)",
+                "dob(Y_3, \"0325-11-20\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "difficulty": 2
+    },
+    {
+        "id": "a63bb3ce-9707-4253-936d-1b55ef50e86f",
+        "question": "How many children does the person whose gender is female have?",
         "intermediate_answers": [],
         "answer": [
             0,
@@ -1945,8 +1945,8 @@
         "difficulty": 2
     },
     {
-        "id": "f03775df-0c1a-4431-b401-34984a8576ac",
-        "question": "How many father does the person whose gender is male have?",
+        "id": "d6142121-723e-4f63-87c5-d59142a0ef39",
+        "question": "How many fathers does the person whose gender is male have?",
         "intermediate_answers": [],
         "answer": [
             0,
@@ -1974,8 +1974,8 @@
         "difficulty": 2
     },
     {
-        "id": "0d66a4e4-c6e9-4c11-97a1-2f30c18aa210",
-        "question": "How many brother does the person whose gender is male have?",
+        "id": "290b0c36-6a58-4229-a90a-b8eab06adb61",
+        "question": "How many brothers does the person whose gender is male have?",
         "intermediate_answers": [],
         "answer": [
             0,
@@ -2004,8 +2004,8 @@
         "difficulty": 2
     },
     {
-        "id": "f70f45df-0b14-4f09-9be9-583feb834ef3",
-        "question": "How many child does Johnetta Wang have?",
+        "id": "50f91fd9-f27e-41f9-83c3-8dd1b1ea495a",
+        "question": "How many children does Johnetta Wang have?",
         "intermediate_answers": [],
         "answer": [
             0
@@ -2028,8 +2028,8 @@
         "difficulty": 1
     },
     {
-        "id": "bfdf1636-f1d7-443d-bf15-59a79e913ab5",
-        "question": "How many friend does Ricardo Hackworth have?",
+        "id": "5201bb57-4a0c-4b87-a35f-2b9f68da558a",
+        "question": "How many friends does Ricardo Hackworth have?",
         "intermediate_answers": [],
         "answer": [
             4
@@ -2052,8 +2052,8 @@
         "difficulty": 1
     },
     {
-        "id": "96f480f7-2034-42ae-ad63-90ee368889b9",
-        "question": "How many sibling does Aida Wang have?",
+        "id": "ad09b40d-1806-4df2-af38-f99f9efd4e8a",
+        "question": "How many siblings does Aida Wang have?",
         "intermediate_answers": [],
         "answer": [
             2
@@ -2076,8 +2076,8 @@
         "difficulty": 1
     },
     {
-        "id": "bb87af44-49f6-47b3-9c90-dce6c6432888",
-        "question": "How many friend does Saul Wexler have?",
+        "id": "bb781ec6-008e-445c-9bf3-f10cd6bce16d",
+        "question": "How many friends does Saul Wexler have?",
         "intermediate_answers": [],
         "answer": [
             5
@@ -2100,8 +2100,8 @@
         "difficulty": 1
     },
     {
-        "id": "7044b015-fe90-405d-8745-4ab229a9eb0c",
-        "question": "How many brother does Deane Smock have?",
+        "id": "fc0f9d35-0159-47a1-b8c0-dd17172ca935",
+        "question": "How many brothers does Deane Smock have?",
         "intermediate_answers": [],
         "answer": [
             3
@@ -2124,8 +2124,8 @@
         "difficulty": 1
     },
     {
-        "id": "0e616082-fbbf-44c2-b4a5-56f177b04b26",
-        "question": "How many father does Shelli Beltran have?",
+        "id": "4619332d-3dde-44a3-80ae-530d01ce80db",
+        "question": "How many fathers does Shelli Beltran have?",
         "intermediate_answers": [],
         "answer": [
             1
@@ -2148,8 +2148,8 @@
         "difficulty": 1
     },
     {
-        "id": "96a9fd71-4c8b-4f65-937b-cdcca3e1135c",
-        "question": "How many wife does Dino Beltran have?",
+        "id": "b7def0b8-8308-42f3-94ea-ed428b91fef0",
+        "question": "How many wives does Dino Beltran have?",
         "intermediate_answers": [],
         "answer": [
             1
@@ -2172,8 +2172,8 @@
         "difficulty": 1
     },
     {
-        "id": "7efebff7-f73e-44d8-9def-bfa487bf1000",
-        "question": "How many mother does Deane Smock have?",
+        "id": "ec36dde5-e9e7-4e83-98c2-9a8ebcc4aa9b",
+        "question": "How many mothers does Deane Smock have?",
         "intermediate_answers": [],
         "answer": [
             1
@@ -2196,8 +2196,8 @@
         "difficulty": 1
     },
     {
-        "id": "e94b9a5c-d3a8-4215-87dd-807184c96823",
-        "question": "How many child does Lewis Smock have?",
+        "id": "87b6a727-f086-4ddd-aa8c-553e4c58e586",
+        "question": "How many children does Lewis Smock have?",
         "intermediate_answers": [],
         "answer": [
             0
@@ -2220,8 +2220,8 @@
         "difficulty": 1
     },
     {
-        "id": "8ec1684e-04e4-4917-baac-99d76195d2fd",
-        "question": "How many parent does Alvaro Smock have?",
+        "id": "1e0a52e8-1a3b-4c51-bf54-fe021bded1bf",
+        "question": "How many parents does Alvaro Smock have?",
         "intermediate_answers": [],
         "answer": [
             0
