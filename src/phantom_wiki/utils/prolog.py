@@ -9,11 +9,11 @@ def print_question_templates(grammar_string=QA_GRAMMAR_STRING, depth=6):
     grammar = CFG.fromstring(grammar_string)
     questions = generate_templates(grammar, depth=depth)
     total_questions = 0
-    for question, query, answer in questions:
+    for i, (question, query, answer) in enumerate(questions):
         total_questions += 1
-        print("Question:\t" + " ".join(question))
-        print("Query:\t\t" + ", ".join(query))
-        print("Answer:\t\t" + answer)
+        print(f"Question #{i+1}:\t" + " ".join(question))
+        print(f"Query #{i+1}:\t\t" + ", ".join(query))
+        print(f"Answer #{i+1}:\t\t" + answer)
         print()
     print(f"Total questions (depth {depth}):\t{total_questions}")
 

@@ -159,13 +159,13 @@ def sample(
                 match = m.group(0)
                 assert match in question_template_
                 # TODO sample hard relations (modify test universes accordingly by defining new predicates)
-                _sample_predicate(match, bank=FAMILY_RELATION_EASY, alias_dict=FAMILY_RELATION_ALIAS)
+                _sample_predicate(match, bank=FAMILY_RELATIONS, alias_dict=FAMILY_RELATION_ALIAS)
 
             if m := re.search(r"<relation_plural>_(\d+)", query_template_[i]):
                 match = m.group(0)
                 assert match in question_template_
                 # TODO sample hard relations (modify test universes accordingly by defining new predicates)
-                _sample_predicate(match, bank=FAMILY_RELATION_EASY, alias_dict=FAMILY_RELATION_PLURAL_ALIAS)
+                _sample_predicate(match, bank=FAMILY_RELATIONS, alias_dict=FAMILY_RELATION_PLURAL_ALIAS)
 
         if valid_only:
             q = _prepare_query(use_atom_variables=True)
