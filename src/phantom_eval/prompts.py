@@ -130,10 +130,26 @@ class CoTLLMPrompt(LLMPrompt):
 
 ##### RAG method
 class RAGLLMPrompt(LLMPrompt):
-    RAG_INSTRUCTION = """"""
+    RAG_INSTRUCTION = f"""
+    You are given the following evidence:
+    (BEGIN EVIDENCE)
+    {{evidence}}
+    (END EVIDENCE)
+    
+    You will be provided a question. Your response must end in the following sentence: The answer is <answer>.
+    Here, <answer> must be one of the following: 
+    - a name (if there is only one correct answer); 
+    - a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or
+    - a number (if the answer is numerical).
 
-    def get_prompt(self):
-        raise NotImplementedError("RAG evaluation is not supported yet.")
+    Question: {{question}}
+    Answer (Your response must end in "The answer is <answer>."): """
+
+    def get_prompt(self) -> PromptTemplate:
+        return PromptTemplate(
+            input_variables=["evidence", "question"],
+            template=self.RAG_INSTRUCTION,
+        )
 
 
 ##### React method
@@ -335,8 +351,7 @@ def get_llm_prompt(method: str, model_name: str) -> LLMPrompt:
         case "cot" | "cot-sc" | "cot-sc->react":
             return CoTLLMPrompt()
         case "rag":
-            # raise NotImplementedError("RAG evaluation is not supported yet.")
-            return ZeroshotLLMPrompt()
+            return RAGLLMPrompt()
         case "react" | "react->cot-sc":
             match model_name:
                 case model_name if model_name in llm.OpenAIChat.SUPPORTED_LLM_NAMES:

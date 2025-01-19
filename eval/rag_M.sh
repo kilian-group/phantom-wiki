@@ -41,9 +41,9 @@ MODELS=(
     # 'meta-llama/llama-3.2-1b-instruct'
 
     
-    'meta-llama/llama-3.2-3b-instruct' # pending access
-    'meta-llama/llama-3.1-8b-instruct'
-    'google/gemma-2-9b-it'
+    # 'meta-llama/llama-3.2-3b-instruct' # pending access
+    # 'meta-llama/llama-3.1-8b-instruct'
+    # 'google/gemma-2-9b-it'
     'mistralai/mistral-7b-instruct-v0.3'
 )
 TEMPERATURE=0
@@ -121,8 +121,11 @@ do
         --inf_temperature $TEMPERATURE \
         -bs 2 \
         --inf_vllm_port $port \
-        --inf_embedding_port $e_port 
+        --inf_embedding_port $e_port \
+        --force \
         "
+                # --log_level DEBUG \
+
     echo $cmd
     eval $cmd
 
