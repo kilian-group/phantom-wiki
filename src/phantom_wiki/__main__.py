@@ -173,43 +173,57 @@ def main(args):
         # Reset the seed at the start of each question type
         # so that sampled questions are the same for each question type
         rng = np.random.default_rng(args.seed)
-        questions = []
-        # for _ in range(args.num_questions_per_type):
-        while len(questions) < args.num_questions_per_type: # TODO: this is a temporary fix to make sure that we generate the same number of questions for each template
 
-            # else skip (throw away) the sample
-            sample_ = sample(
-                db, question_template, query_template, rng=rng, valid_only=args.valid_only
-            )
-            if sample_ is None:
-                continue
-            else:
-                _, question, query = sample_
-            # get distinct answers
-            # TODO: is there a better way to do this?
-            # NOTE: we concatenate the clauses in the prolog query in reverse order
-            # since prolog executes goals from left to right
-            all_results, final_results = get_answer(query, db, answer, add_intermediate_answers=True)
-            # make unique and sort in alphabetical order
-            question_difficulty = calculate_query_difficulty(query)
-            questions.append(
-                {
-                    "id": generate_unique_id(),
-                    "question": question,
-                    "intermediate_answers": json.dumps(all_results), #NOTE: serialize list of dicts so that it can be saved on HF
-                    "answer": final_results,
-                    "prolog": {"query": query, "answer": answer},
-                    "template": question_template,
-                    "type": i,  # this references the template type
-                    "difficulty": question_difficulty,
-                }
-            )
-            if args.question_format == "json_by_type":
-                with open(os.path.join(question_dir, f"type{i}.json"), "w") as file:
-                    json.dump(questions, file, indent=4)
-        all_questions.extend(questions)
+        def _sample(n, valid_only):
+            questions = []
+            # for _ in range(args.num_questions_per_type):
+            while len(questions) < n: # TODO: this is a temporary fix to make sure that we generate the same number of questions for each template
+
+                # else skip (throw away) the sample
+                sample_ = sample(
+                    db, question_template, query_template, rng=rng, valid_only=valid_only
+                )
+                if sample_ is None:
+                    continue
+                else:
+                    _, question, query = sample_
+                # get distinct answers
+                # TODO: is there a better way to do this?
+                # NOTE: we concatenate the clauses in the prolog query in reverse order
+                # since prolog executes goals from left to right
+                all_results, final_results = get_answer(query, db, answer, add_intermediate_answers=True)
+                # make unique and sort in alphabetical order
+                question_difficulty = calculate_query_difficulty(query)
+                questions.append(
+                    {
+                        "id": generate_unique_id(),
+                        "question": question,
+                        "intermediate_answers": json.dumps(all_results), #NOTE: serialize list of dicts so that it can be saved on HF
+                        "answer": final_results,
+                        "prolog": {"query": query, "answer": answer},
+                        "template": question_template,
+                        "type": i,  # this references the template type
+                        "difficulty": question_difficulty,
+                        "valid_only": valid_only,
+                    }
+                )
+            return questions
+        
+        sampled_questions = []
+        # First sample questions that are guaranteed to have non-null solutions
+        sampled_questions += _sample(n=args.num_questions_per_type//2, valid_only=True)
+        # Then, sample questions without this constraint
+        sampled_questions += _sample(n=args.num_questions_per_type//2, valid_only=False)
+
+        if args.question_format == "json_by_type":
+            with open(os.path.join(question_dir, f"type{i}.json"), "w") as file:
+                json.dump(sampled_questions, file, indent=4)
+        
+        all_questions.extend(sampled_questions)
+
         # update progbar
         progbar.set_description(f"Template ({i+1}/{len(templates)})")
+
     timings["questions_generate"] = time.time() - start
 
     blue("Saving questions")

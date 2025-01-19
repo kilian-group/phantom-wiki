@@ -38,10 +38,11 @@ from .friends import db_generate_friendships
 # TODO: move this into one of the question generation modules
 from argparse import ArgumentParser
 question_parser = ArgumentParser(add_help=False)
-question_parser.add_argument("--num-questions-per-type", type=int, default=10,
-                             help="Number of questions to generate per question type (i.e., template)")
-question_parser.add_argument("--valid-only", action="store_true",
-                                help="Only generate valid questions")
+question_parser.add_argument("--num-questions-per-type", type=int, default=20,
+                             help="Number of questions to generate per question type (i.e., template)" \
+                                "Half will sampled using valid_only=True, and half will be sampled with valid_only=False")
+# question_parser.add_argument("--valid-only", action="store_true",
+#                                 help="Only generate valid questions")
 question_parser.add_argument("--depth", type=int, default=6,
                                 help="Depth of the question template")
 question_parser.add_argument("--add-intermediate-answers", action="store_true",
