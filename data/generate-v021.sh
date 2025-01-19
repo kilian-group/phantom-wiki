@@ -79,8 +79,8 @@ done
 # create dataset card
 DATASET_NAME="phantom-wiki-v0.2.1"
 # if valid only, add -valid-only to dataset name
-if [ "$VALID_ONLY" = true ]; then
-    DATASET_NAME+="-valid-only"
+if [ "$VALID_ONLY" != true ]; then
+    DATASET_NAME+="-null"
 fi
 # start metadata header
 cat << EOF > $OUTPUT_DIR/README.md
