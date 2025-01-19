@@ -24,29 +24,29 @@ SIZE_LIST=(
     # for 128k-context models
     50 
     100 
-    # 150
-    # 200 
-    # 250 
-    # 300
-    # 350
-    # 400
-    # 450
-    # # for 1M-context models
-    # 500
-    # 1000
-    # 1500
-    # 2000
-    # 2500
-    # # for 2M-context models
-    # 3000
-    # 3500
-    # 4000
-    # 4500
-    # 5000
-    # # for retrieval/agentic methods
-    # 10000
-    # 100000
-    # 1000000
+    150
+    200 
+    250 
+    300
+    350
+    400
+    450
+    # for 1M-context models
+    500
+    1000
+    1500
+    2000
+    2500
+    # for 2M-context models
+    3000
+    3500
+    4000
+    4500
+    5000
+    # for retrieval/agentic methods
+    10000
+    100000
+    1000000
 )
 max_tree_size=50
 # generate data
