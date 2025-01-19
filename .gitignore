@@ -554,15 +554,14 @@ $RECYCLE.BIN/
 src/phantom_wiki/family/relationships.py
 *_output*
 *out*/
-
-#API key
-johann_tests/API_KEY.py
+*.zip
 
 *.DS_Store
 .vscode/settings.json
 
 # slurm logs
 *slurm*/
+
 # cache directory for speeding up evaluation
 cachedir/
 .idea/webResources.xml
