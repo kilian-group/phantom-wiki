@@ -22,7 +22,7 @@ ATTRIBUTE_TYPES = [
     "dob",
     "job",
     "hobby",
-    "gender", #TODO: remove gender from allowable attribute names that we can sample since it leads to unnatural questions
+    # "gender", #TODO: remove gender from allowable attribute names that we can sample since it leads to unnatural questions
 ]
 
 
