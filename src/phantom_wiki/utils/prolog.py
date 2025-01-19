@@ -9,11 +9,11 @@ def print_question_templates(grammar_string=QA_GRAMMAR_STRING, depth=6):
     grammar = CFG.fromstring(grammar_string)
     questions = generate_templates(grammar, depth=depth)
     total_questions = 0
-    for question, query, answer in questions:
+    for i, (question, query, answer) in enumerate(questions):
         total_questions += 1
-        print("Question:\t" + " ".join(question))
-        print("Query:\t\t" + ", ".join(query))
-        print("Answer:\t\t" + answer)
+        print(f"Question #{i+1}:\t" + " ".join(question))
+        print(f"Query #{i+1}:\t\t" + ", ".join(query))
+        print(f"Answer #{i+1}:\t\t" + answer)
         print()
     print(f"Total questions (depth {depth}):\t{total_questions}")
 
@@ -51,3 +51,22 @@ def parse_prolog_predicate_definition(line):
     pattern = r"^([a-zA-Z_]+)\((.*)\) :-\n$"
     match = re.search(pattern, line)
     return match.group(1), [s.strip() for s in match.group(2).split(",")]
+
+
+def get_prolog_result_set(result) -> set[tuple]:
+    """Converts result dictionaries into hashable sets.
+
+    This has an effect that it groups duplicate answers together.
+
+    Args:
+        result: PySwip query output.
+    """
+
+    if isinstance(result, dict):
+        return {*(zip(result.keys(), result.values()))}
+
+    results = []
+    for d in result:
+        results.append(*(zip(d.keys(), d.values())))
+
+    return {*results}

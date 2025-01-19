@@ -5,6 +5,7 @@ from tests.phantom_wiki.facts import DATABASE_SMALL_PATH
 
 
 def test_save_database():
+    # TODO use python tempfiles
     file = "test.pl"
     # create a database and safe to file
     db1 = Database()
@@ -29,10 +30,7 @@ def test_save_database():
 
 def test_get_names():
     db = Database.from_disk(DATABASE_SMALL_PATH)
-    names = db.get_names()
-    # with open("names.json", "w") as f:
-    #     import json
-    #     json.dump(names, f, indent=4)
+    names = db.get_person_ames()
     assert set(names) == {
         "Adele Ervin",
         "Alton Cater",

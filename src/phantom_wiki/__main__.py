@@ -125,14 +125,13 @@ def main(args):
     db.save_to_disk(db_path)
     timings["facts_save"] = time.time() - facts_time
 
-    article_time = time.time()
     #
     # Step 2. Generate articles
     # Currently, the articles are comprised of a list of facts.
     #
     blue("Generating articles")
     start = time.time()
-    articles = get_articles(db, db.get_names())
+    articles = get_articles(db, db.get_person_names())
     timings["articles_generate"] = time.time() - start
 
     blue("Saving articles")
@@ -175,22 +174,29 @@ def main(args):
         # so that sampled questions are the same for each question type
         rng = np.random.default_rng(args.seed)
         questions = []
-        for _ in range(args.num_questions_per_type):
-            _, question, query = sample(
-                db, question_template, query_template, rng=rng, valid_only=args.valid_only
+        # for _ in range(args.num_questions_per_type):
+        while len(questions) < args.num_questions_per_type: # TODO: this is a temporary fix to make sure that we generate the same number of questions for each template
+
+            # else skip (throw away) the sample
+            sample_ = sample(
+                db, question_template, query_template, rng=rng, valid_only=args.valid_only, hard_mode=args.hard_mode
             )
+            if sample_ is None:
+                continue
+            else:
+                _, question, query = sample_
             # get distinct answers
             # TODO: is there a better way to do this?
             # NOTE: we concatenate the clauses in the prolog query in reverse order
             # since prolog executes goals from left to right
-            all_results, final_results = get_answer(query, db, answer)
+            all_results, final_results = get_answer(query, db, answer, add_intermediate_answers=True)
             # make unique and sort in alphabetical order
             question_difficulty = calculate_query_difficulty(query)
             questions.append(
                 {
                     "id": generate_unique_id(),
                     "question": question,
-                    "intermediate_answers": all_results,
+                    "intermediate_answers": json.dumps(all_results), #NOTE: serialize list of dicts so that it can be saved on HF
                     "answer": final_results,
                     "prolog": {"query": query, "answer": answer},
                     "template": question_template,

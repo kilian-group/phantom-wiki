@@ -1,50 +1,96 @@
 #!/bin/bash
+# Script for generating mlcore/phantom-wiki-v0.2.1
+# HuggingFace: https://huggingface.co/datasets/mlcore/phantom-wiki-v0.2.1
 
 # check that the correct number of arguments were passed
-if [ -z "$1" ]; then
-    echo "Usage: $0 <output directory>"
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 <output directory> <seed> <valid only (true or false)>"
     exit 1
 fi
 
 # make directory for output
-mkdir -p $1
+OUTPUT_DIR=$1
+mkdir -p $OUTPUT_DIR
+# set seed
+SEED=$2
+# check if valid only
+VALID_ONLY=$3
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo "Generating data to $OUTPUT_DIR with seed $SEED and valid_only=$VALID_ONLY"
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 # list of splits
 splits=()
-
+SIZE_LIST=(
+    # for 128k-context models
+    50 
+    100 
+    150
+    200 
+    250 
+    300
+    350
+    400
+    450
+    # for 1M-context models
+    500
+    1000
+    1500
+    2000
+    2500
+    # for 2M-context models
+    3000
+    3500
+    4000
+    4500
+    5000
+    # for retrieval/agentic methods
+    10000
+    100000
+    1000000
+)
+max_tree_size=50
 # generate data
-for seed in 1 2 3 4 5
+for depth in 20
 do
-    for depth in 10
+    for size in "${SIZE_LIST[@]}"
     do
-        for size in 26 50 100 200 500
-        do
-            od="depth_${depth}_size_${size}_seed_${seed}"
-            cmd="python -m phantom_wiki \
-                -od $1/$od \
-                -s $seed \
-                --depth $depth \
-                --max-tree-size $size \
-                --article-format json \
-                --question-format json \
-                --valid-only"
-            echo $cmd
-            eval $cmd
+        od="depth_${depth}_size_${size}_seed_${SEED}"
+        cmd="python -m phantom_wiki \
+            -od $OUTPUT_DIR/$od \
+            -s $SEED \
+            --depth $depth \
+            --num-samples $(($size / $max_tree_size)) \
+            --max-tree-size $max_tree_size \
+            --max-tree-depth $depth \
+            --article-format json \
+            --question-format json \
+            --hard-mode"
+        # if valid only, add --valid-only flag
+        if [ "$VALID_ONLY" = true ]; then
+            cmd+=" --valid-only"
+        fi
+        echo $cmd
+        eval $cmd
 
-            # Append split to list
-            splits+=("$od")
-        done
+        # Append split to list
+        splits+=("$od")
     done
 done
 
 # create dataset card
+DATASET_NAME="phantom-wiki-v0.2.1"
+# if valid only, add -valid-only to dataset name
+if [ "$VALID_ONLY" != true ]; then
+    DATASET_NAME+="-null"
+fi
 # start metadata header
-cat << EOF > $1/README.md
+cat << EOF > $OUTPUT_DIR/README.md
 ---
 license: bsd-3-clause
-dataset_name: phantom-wiki
+dataset_name: $DATASET_NAME
 EOF
 # add articles to `text-corpus` config
-cat << EOF >> $1/README.md
+cat << EOF >> $OUTPUT_DIR/README.md
 configs:
 - config_name: text-corpus
   data_files:
@@ -52,26 +98,26 @@ EOF
 # iterate over splits and append to dataset card
 for split in "${splits[@]}"
 do
-    echo "  - split: $split" >> $1/README.md
-    echo "    path: $split/articles.json" >> $1/README.md
+    echo "  - split: $split" >> $OUTPUT_DIR/README.md
+    echo "    path: $split/articles.json" >> $OUTPUT_DIR/README.md
 done
 # add question-answer pairs to `question-answer` config
-cat << EOF >> $1/README.md
+cat << EOF >> $OUTPUT_DIR/README.md
 - config_name: question-answer
   data_files:
 EOF
 # iterate over splits and append to dataset card
 for split in "${splits[@]}"
 do
-    echo "  - split: $split" >> $1/README.md
-    echo "    path: $split/questions.json" >> $1/README.md
+    echo "  - split: $split" >> $OUTPUT_DIR/README.md
+    echo "    path: $split/questions.json" >> $OUTPUT_DIR/README.md
 done
 # close metadata header
-cat << EOF >> $1/README.md
+cat << EOF >> $OUTPUT_DIR/README.md
 ---
 EOF
 # add dataset card contents
-cat << EOF >> $1/README.md
+cat << EOF >> $OUTPUT_DIR/README.md
 
 # Dataset Card for Dataset Name
 
