@@ -196,7 +196,7 @@ def main(args):
                 {
                     "id": generate_unique_id(),
                     "question": question,
-                    "intermediate_answers": all_results,
+                    "intermediate_answers": json.dumps(all_results), #NOTE: serialize list of dicts so that it can be saved on HF
                     "answer": final_results,
                     "prolog": {"query": query, "answer": answer},
                     "template": question_template,
