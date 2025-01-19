@@ -171,19 +171,31 @@ Action 3: Finish[shogi].
 
 Example 6:
 Question: What is the dob of the person whose hobby is meditation?
-Thought 1: I need to search for people whose hobby is meditation.
+Thought 1: First, I need to search for people whose hobby is meditation.
 Action 1: Search[meditation].
-Observation 1: (1) # Adele Ervin ## Family Adele Ervin's sibling is Lisha Leibowitz.  The sister of Adele Ervin is Lisha Leibowitz.  The mother of Adele Ervin is Karen Ervin.  The father of Adele Ervin is Boris Ervin.  ## Friends The friends of Adele Ervin are Alton Cater, Boris Ervin, Dirk Donohue, Therese Donohue, Wilfredo Cater.  ## Attributes The date of birth of Adele Ervin is 0259-06-10.  The occupation of Adele Ervin is contractor.  The hobby of Adele Ervin is meditation.  The gender of Adele Ervin is female.  (2) # Tyler Ussery ## Family The child of Tyler Ussery is Ella Cater.  The daughter of Tyler Ussery is Ella Cater.  The wife of Tyler Ussery is Margarite Ussery.  ## Friends The friends of Tyler Ussery are Karen Ervin, Lisha Leibowitz.  ## Attributes The date of birth of Tyler Ussery is 0206-04-13.  The occupation of Tyler Ussery is investment banker, corporate.  The hobby of Tyler Ussery is meditation.  The gender of Tyler Ussery is male.
-Thought 2: People whose hobby is meditation are Adele Ervin, Tyler Ussery. The dob of Adele Ervin is 0259-06-10, and the dob of Tyler Ussery is 0206-04-13. So the answer is 0259-06-10, 0206-04-13.
-Action 2: Finish[0259-06-10{constants.answer_sep}0206-04-13].
+Observation 1: (1) Adele Ervin (2) Tyler Ussery
+Thought 2: People whose hobby is meditation are Adele Ervin, Tyler Ussery. Now I need to retrieve articles about Adele Ervin and Tyler Ussery and find their dob.
+Action 2: RetrieveArticle[Adele Ervin].
+Observation 2: # Adele Ervin ## Family Adele Ervin's sibling is Lisha Leibowitz.  The sister of Adele Ervin is Lisha Leibowitz.  The mother of Adele Ervin is Karen Ervin.  The father of Adele Ervin is Boris Ervin.  ## Friends The friends of Adele Ervin are Alton Cater, Boris Ervin, Dirk Donohue, Therese Donohue, Wilfredo Cater.  ## Attributes The date of birth of Adele Ervin is 0259-06-10.  The occupation of Adele Ervin is contractor.  The hobby of Adele Ervin is meditation.  The gender of Adele Ervin is female.
+Thought 3: The dob of Adele Ervin is 0259-06-10. Now I need to retrieve article about Tyler Ussery and find his dob.
+Action 3: RetrieveArticle[Tyler Ussery].
+Observation 3: # Tyler Ussery ## Family The child of Tyler Ussery is Ella Cater.  The daughter of Tyler Ussery is Ella Cater.  The wife of Tyler Ussery is Margarite Ussery.  ## Friends The friends of Tyler Ussery are Karen Ervin, Lisha Leibowitz.  ## Attributes The date of birth of Tyler Ussery is 0206-04-13.  The occupation of Tyler Ussery is investment banker, corporate.  The hobby of Tyler Ussery is meditation.  The gender of Tyler Ussery is male.
+Thought 4: The dob of Tyler Ussery is 0206-04-13. The dob of Adele Ervin is 0259-06-10. So the answer is 0259-06-10, 0206-04-13.
+Action 4: Finish[0259-06-10{constants.answer_sep}0206-04-13].
 
 Example 7:
 Question: How many siblings does the person whose hobby is meditation have?
 Thought 1: I need to search for people whose hobby is meditation.
 Action 1: Search[meditation].
-Observation 1: (1) # Adele Ervin ## Family Adele Ervin's sibling is Lisha Leibowitz.  The sister of Adele Ervin is Lisha Leibowitz.  The mother of Adele Ervin is Karen Ervin.  The father of Adele Ervin is Boris Ervin.  ## Friends The friends of Adele Ervin are Alton Cater, Boris Ervin, Dirk Donohue, Therese Donohue, Wilfredo Cater.  ## Attributes The date of birth of Adele Ervin is 0259-06-10.  The occupation of Adele Ervin is contractor.  The hobby of Adele Ervin is meditation.  The gender of Adele Ervin is female.  (2) # Tyler Ussery ## Family The child of Tyler Ussery is Ella Cater.  The daughter of Tyler Ussery is Ella Cater.  The wife of Tyler Ussery is Margarite Ussery.  ## Friends The friends of Tyler Ussery are Karen Ervin, Lisha Leibowitz.  ## Attributes The date of birth of Tyler Ussery is 0206-04-13.  The occupation of Tyler Ussery is investment banker, corporate.  The hobby of Tyler Ussery is meditation.  The gender of Tyler Ussery is male.
-Thought 2: People whose hobby is meditation are Adele Ervin, Tyler Ussery. Adele Ervin has 1 sibling, and Tyler Ussery has 0 siblings. So the answer is 1, 0.
-Action 2: Finish[1{constants.answer_sep}0].
+Observation 1: (1) Adele Ervin (2) Tyler Ussery
+Thought 2: People whose hobby is meditation are Adele Ervin, Tyler Ussery. Now I need to retrieve articles about Adele Ervin and Tyler Ussery and find their number of siblings.
+Action 2: RetrieveArticle[Adele Ervin].
+Observation 2: # Adele Ervin ## Family Adele Ervin's sibling is Lisha Leibowitz.  The sister of Adele Ervin is Lisha Leibowitz.  The mother of Adele Ervin is Karen Ervin.  The father of Adele Ervin is Boris Ervin.  ## Friends The friends of Adele Ervin are Alton Cater, Boris Ervin, Dirk Donohue, Therese Donohue, Wilfredo Cater.  ## Attributes The date of birth of Adele Ervin is 0259-06-10.  The occupation of Adele Ervin is contractor.  The hobby of Adele Ervin is meditation.  The gender of Adele Ervin is female.
+Thought 3: The sibling of Adele Ervin is Lisha Leibowitz. Now I need to retrieve article about Tyler Ussery and find his sibling.
+Action 3: RetrieveArticle[Tyler Ussery].
+Observation 3: # Tyler Ussery ## Family The child of Tyler Ussery is Ella Cater.  The daughter of Tyler Ussery is Ella Cater.  The wife of Tyler Ussery is Margarite Ussery.  ## Friends The friends of Tyler Ussery are Karen Ervin, Lisha Leibowitz.  ## Attributes The date of birth of Tyler Ussery is 0206-04-13.  The occupation of Tyler Ussery is investment banker, corporate.  The hobby of Tyler Ussery is meditation.  The gender of Tyler Ussery is male.
+Thought 4: The article about Tyler Ussery does not mention any siblings, so he has 0 siblings. Adele Ervin has 1 sibling. So the answer is 1, 0.
+Action 4: Finish[1{constants.answer_sep}0].
 """
 
 
@@ -201,6 +213,7 @@ class ReactLLMPrompt(LLMPrompt):
     (2) Search[{{{{attribute}}}}]. This action searches the database for {{{{attribute}}}} and retrieves all articles that contain {{{{attribute}}}}. If no article contains {{{{attribute}}}}, the action will say so.
     (3) Finish[{{{{answer}}}}]. This action answers the question with {{{{answer}}}}.
     If you cannot find the answer, output the empty answer like: Finish[].
+    If you cannot find the answer for a counting question, output the empty answer like: Finish[0].
     If there are multiple answers A,B,C, answer with a list like: Finish[A{constants.answer_sep}B{constants.answer_sep}C].
 
     You may take as many steps as necessary.
@@ -268,14 +281,22 @@ Action 3: Finish[shogi].
 Example 6:
 Question: What is the dob of the person whose hobby is meditation?
 Action 1: Search[meditation].
-Observation 1: (1) # Adele Ervin ## Family Adele Ervin's sibling is Lisha Leibowitz.  The sister of Adele Ervin is Lisha Leibowitz.  The mother of Adele Ervin is Karen Ervin.  The father of Adele Ervin is Boris Ervin.  ## Friends The friends of Adele Ervin are Alton Cater, Boris Ervin, Dirk Donohue, Therese Donohue, Wilfredo Cater.  ## Attributes The date of birth of Adele Ervin is 0259-06-10.  The occupation of Adele Ervin is contractor.  The hobby of Adele Ervin is meditation.  The gender of Adele Ervin is female.  (2) # Tyler Ussery ## Family The child of Tyler Ussery is Ella Cater.  The daughter of Tyler Ussery is Ella Cater.  The wife of Tyler Ussery is Margarite Ussery.  ## Friends The friends of Tyler Ussery are Karen Ervin, Lisha Leibowitz.  ## Attributes The date of birth of Tyler Ussery is 0206-04-13.  The occupation of Tyler Ussery is investment banker, corporate.  The hobby of Tyler Ussery is meditation.  The gender of Tyler Ussery is male.
-Action 2: Finish[0259-06-10{constants.answer_sep}0206-04-13].
+Observation 1: (1) Adele Ervin (2) Tyler Ussery
+Action 2: RetrieveArticle[Adele Ervin].
+Observation 2: # Adele Ervin ## Family Adele Ervin's sibling is Lisha Leibowitz.  The sister of Adele Ervin is Lisha Leibowitz.  The mother of Adele Ervin is Karen Ervin.  The father of Adele Ervin is Boris Ervin.  ## Friends The friends of Adele Ervin are Alton Cater, Boris Ervin, Dirk Donohue, Therese Donohue, Wilfredo Cater.  ## Attributes The date of birth of Adele Ervin is 0259-06-10.  The occupation of Adele Ervin is contractor.  The hobby of Adele Ervin is meditation.  The gender of Adele Ervin is female.
+Action 3: RetrieveArticle[Tyler Ussery].
+Observation 3: # Tyler Ussery ## Family The child of Tyler Ussery is Ella Cater.  The daughter of Tyler Ussery is Ella Cater.  The wife of Tyler Ussery is Margarite Ussery.  ## Friends The friends of Tyler Ussery are Karen Ervin, Lisha Leibowitz.  ## Attributes The date of birth of Tyler Ussery is 0206-04-13.  The occupation of Tyler Ussery is investment banker, corporate.  The hobby of Tyler Ussery is meditation.  The gender of Tyler Ussery is male.
+Action 4: Finish[0259-06-10{constants.answer_sep}0206-04-13].
 
 Example 7:
 Question: How many siblings does the person whose hobby is meditation have?
 Action 1: Search[meditation].
-Observation 1: (1) # Adele Ervin ## Family Adele Ervin's sibling is Lisha Leibowitz.  The sister of Adele Ervin is Lisha Leibowitz.  The mother of Adele Ervin is Karen Ervin.  The father of Adele Ervin is Boris Ervin.  ## Friends The friends of Adele Ervin are Alton Cater, Boris Ervin, Dirk Donohue, Therese Donohue, Wilfredo Cater.  ## Attributes The date of birth of Adele Ervin is 0259-06-10.  The occupation of Adele Ervin is contractor.  The hobby of Adele Ervin is meditation.  The gender of Adele Ervin is female.  (2) # Tyler Ussery ## Family The child of Tyler Ussery is Ella Cater.  The daughter of Tyler Ussery is Ella Cater.  The wife of Tyler Ussery is Margarite Ussery.  ## Friends The friends of Tyler Ussery are Karen Ervin, Lisha Leibowitz.  ## Attributes The date of birth of Tyler Ussery is 0206-04-13.  The occupation of Tyler Ussery is investment banker, corporate.  The hobby of Tyler Ussery is meditation.  The gender of Tyler Ussery is male.
-Action 2: Finish[1{constants.answer_sep}0].
+Observation 1: (1) Adele Ervin (2) Tyler Ussery
+Action 2: RetrieveArticle[Adele Ervin].
+Observation 2: # Adele Ervin ## Family Adele Ervin's sibling is Lisha Leibowitz.  The sister of Adele Ervin is Lisha Leibowitz.  The mother of Adele Ervin is Karen Ervin.  The father of Adele Ervin is Boris Ervin.  ## Friends The friends of Adele Ervin are Alton Cater, Boris Ervin, Dirk Donohue, Therese Donohue, Wilfredo Cater.  ## Attributes The date of birth of Adele Ervin is 0259-06-10.  The occupation of Adele Ervin is contractor.  The hobby of Adele Ervin is meditation.  The gender of Adele Ervin is female.
+Action 3: RetrieveArticle[Tyler Ussery].
+Observation 3: # Tyler Ussery ## Family The child of Tyler Ussery is Ella Cater.  The daughter of Tyler Ussery is Ella Cater.  The wife of Tyler Ussery is Margarite Ussery.  ## Friends The friends of Tyler Ussery are Karen Ervin, Lisha Leibowitz.  ## Attributes The date of birth of Tyler Ussery is 0206-04-13.  The occupation of Tyler Ussery is investment banker, corporate.  The hobby of Tyler Ussery is meditation.  The gender of Tyler Ussery is male.
+Action 4: Finish[1{constants.answer_sep}0].
 """
 
 
@@ -293,6 +314,7 @@ class ActLLMPrompt(LLMPrompt):
     (2) Search[{{{{attribute}}}}]. This action searches the database for {{{{attribute}}}} and retrieves all articles that contain {{{{attribute}}}}. If no article contains {{{{attribute}}}}, the action will say so.
     (3) Finish[{{{{answer}}}}]. This action answers the question with {{{{answer}}}}.
     If you cannot find the answer, output the empty answer like: Finish[].
+    If you cannot find the answer for a counting question, output the empty answer like: Finish[0].
     If there are multiple answers A,B,C, answer with a list like: Finish[A{constants.answer_sep}B{constants.answer_sep}C].
 
     You may take as many steps as necessary.
