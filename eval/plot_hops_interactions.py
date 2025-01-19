@@ -11,7 +11,7 @@ Example:
 import os
 from phantom_eval import get_parser
 from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std
-from phantom_eval.agent import parse_action
+from phantom_eval.agent import ReactAgent
 import matplotlib.pyplot as plt
 
 parser = get_parser()
@@ -39,7 +39,7 @@ def get_react_actions(messages):
         if message['role'] != 'assistant':
             continue
         try:
-            action_type, action_arg = parse_action(message['content'][0]['text'])
+            action_type, action_arg = ReactAgent.parse_action(message['content'][0]['text'])
             actions.append((action_type, action_arg))
         except ValueError:
             pass
