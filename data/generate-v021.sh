@@ -63,7 +63,8 @@ do
             --max-tree-size $max_tree_size \
             --max-tree-depth $depth \
             --article-format json \
-            --question-format json"
+            --question-format json \
+            --hard-mode"
         # if valid only, add --valid-only flag
         if [ "$VALID_ONLY" = true ]; then
             cmd+=" --valid-only"
