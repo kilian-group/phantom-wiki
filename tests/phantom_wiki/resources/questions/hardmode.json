@@ -1,0 +1,2200 @@
+[
+    {
+        "id": "520589fa-47c8-4ac3-a75e-0c951c3eb0e7",
+        "question": "Who is the great-granddaughter of the person whose occupation is osteopath?",
+        "intermediate_answers": [],
+        "answer": [
+            "Myrle Smock",
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "great_granddaughter(Y_4, Y_2)",
+                "job(Y_4, \"osteopath\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "difficulty": 4
+    },
+    {
+        "id": "a3db5c70-e192-4745-9c26-1ebc413a3d95",
+        "question": "Who is the child of the person whose gender is female?",
+        "intermediate_answers": [],
+        "answer": [
+            "Aida Wang",
+            "Aubrey Smock",
+            "Deane Smock",
+            "Dino Beltran",
+            "Gene Smock",
+            "Isabell Smock",
+            "Jeannine Wexler",
+            "Johnetta Wang",
+            "Leeann Hackworth",
+            "Lenore Hackworth",
+            "Lewis Smock",
+            "Myrle Smock",
+            "Orlando Beltran",
+            "Shelli Beltran",
+            "Valentina Wexler",
+            "Vicki Hackworth",
+            "Williams Smock"
+        ],
+        "prolog": {
+            "query": [
+                "child(Y_4, Y_2)",
+                "gender(Y_4, \"female\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "difficulty": 2
+    },
+    {
+        "id": "d9b53036-f39f-441b-9534-af6b3b836a04",
+        "question": "Who is the aunt of the person whose gender is male?",
+        "intermediate_answers": [],
+        "answer": [
+            "Deane Smock",
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "aunt(Y_4, Y_2)",
+                "gender(Y_4, \"male\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "difficulty": 3
+    },
+    {
+        "id": "3d94e2f3-1249-42e5-86cf-ab5ac5904c3e",
+        "question": "Who is the granddaughter of the person whose occupation is personal assistant?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "granddaughter(Y_4, Y_2)",
+                "job(Y_4, \"personal assistant\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "difficulty": 3
+    },
+    {
+        "id": "3bdef43c-abbe-48f1-ac59-3c304846e377",
+        "question": "Who is the aunt of the person whose occupation is immunologist?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "aunt(Y_4, Y_2)",
+                "job(Y_4, \"immunologist\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "difficulty": 3
+    },
+    {
+        "id": "1066c071-a5f1-4619-8eb0-bfb6c9bdae9a",
+        "question": "Who is the sister-in-law of the person whose occupation is warehouse manager?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "sister_in_law(Y_4, Y_2)",
+                "job(Y_4, \"warehouse manager\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "difficulty": 3
+    },
+    {
+        "id": "7c24d92c-a9e7-43e3-ae07-f6b3c5c8dc47",
+        "question": "Who is the female first cousin once removed of the person whose date of birth is 0301-10-24?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "female_first_cousin_once_removed(Y_4, Y_2)",
+                "dob(Y_4, \"0301-10-24\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "difficulty": 5
+    },
+    {
+        "id": "da6872bf-fc1e-4c98-b910-93f66f61f042",
+        "question": "Who is the sister-in-law of the person whose gender is male?",
+        "intermediate_answers": [],
+        "answer": [
+            "Aida Wang",
+            "Jeannine Wexler",
+            "Myrle Smock",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "sister_in_law(Y_4, Y_2)",
+                "gender(Y_4, \"male\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "difficulty": 3
+    },
+    {
+        "id": "d2d9f4d8-fc17-4e32-a8a9-1ba96a989630",
+        "question": "Who is the grandson of the person whose gender is female?",
+        "intermediate_answers": [],
+        "answer": [
+            "Williams Smock"
+        ],
+        "prolog": {
+            "query": [
+                "grandson(Y_4, Y_2)",
+                "gender(Y_4, \"female\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "difficulty": 3
+    },
+    {
+        "id": "20d68336-c0e5-41e3-8d6b-ddd91ef8142b",
+        "question": "Who is the niece of the person whose gender is female?",
+        "intermediate_answers": [],
+        "answer": [
+            "Aida Wang",
+            "Jeannine Wexler",
+            "Johnetta Wang",
+            "Leeann Hackworth",
+            "Lenore Hackworth",
+            "Valentina Wexler",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "niece(Y_4, Y_2)",
+                "gender(Y_4, \"female\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "difficulty": 3
+    },
+    {
+        "id": "79edd2aa-e3ae-4502-a138-120cf7606bd7",
+        "question": "Who is the brother-in-law of Johnetta Wang?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "brother_in_law(\"Johnetta Wang\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 2
+    },
+    {
+        "id": "30059bce-9f03-498f-8ebc-ce85469d0806",
+        "question": "Who is the female second cousin of Ricardo Hackworth?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "female_second_cousin(\"Ricardo Hackworth\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 5
+    },
+    {
+        "id": "b0a9330f-ae12-48a1-a4e7-980bd3d55797",
+        "question": "Who is the child of Aida Wang?",
+        "intermediate_answers": [],
+        "answer": [
+            "Johnetta Wang"
+        ],
+        "prolog": {
+            "query": [
+                "child(\"Aida Wang\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 1
+    },
+    {
+        "id": "79b36600-7a9a-4189-8925-5706daa3f128",
+        "question": "Who is the female second cousin of Saul Wexler?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "female_second_cousin(\"Saul Wexler\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 5
+    },
+    {
+        "id": "b9b61b14-d75b-4b4a-a19a-52d0f4fc36d1",
+        "question": "Who is the nephew of Deane Smock?",
+        "intermediate_answers": [],
+        "answer": [
+            "Williams Smock"
+        ],
+        "prolog": {
+            "query": [
+                "nephew(\"Deane Smock\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 2
+    },
+    {
+        "id": "621cfef4-1c00-4d2c-b117-626012dfa9d1",
+        "question": "Who is the granddaughter of Shelli Beltran?",
+        "intermediate_answers": [],
+        "answer": [
+            "Johnetta Wang",
+            "Leeann Hackworth",
+            "Lenore Hackworth",
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "granddaughter(\"Shelli Beltran\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 2
+    },
+    {
+        "id": "ed6a569a-4c95-428c-b327-7b5770002271",
+        "question": "Who is the male cousin of Dino Beltran?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "male_cousin(\"Dino Beltran\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 3
+    },
+    {
+        "id": "4a26e4b1-004d-48d1-a956-eb90ac2f03c0",
+        "question": "Who is the grandchild of Deane Smock?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "grandchild(\"Deane Smock\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 2
+    },
+    {
+        "id": "4925fd47-e65c-40f7-b753-611feed18232",
+        "question": "Who is the sister-in-law of Lewis Smock?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "sister_in_law(\"Lewis Smock\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 2
+    },
+    {
+        "id": "1ce1740b-b3b5-48f1-a12a-69c2ba03e184",
+        "question": "Who is the sibling of Alvaro Smock?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "sibling(\"Alvaro Smock\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 1
+    },
+    {
+        "id": "1ff81fee-e655-4319-b034-944ab8ef846f",
+        "question": "Who is the person whose occupation is osteopath?",
+        "intermediate_answers": [],
+        "answer": [
+            "Alvaro Smock"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_2, \"osteopath\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 1
+    },
+    {
+        "id": "84f28940-2bf4-49dd-8c7c-0932c3940f82",
+        "question": "Who is the person whose gender is male?",
+        "intermediate_answers": [],
+        "answer": [
+            "Alvaro Smock",
+            "Aubrey Smock",
+            "Brian Beltran",
+            "Dino Beltran",
+            "Gene Smock",
+            "Lewis Smock",
+            "Orlando Beltran",
+            "Ricardo Hackworth",
+            "Ryan Wang",
+            "Saul Wexler",
+            "Williams Smock"
+        ],
+        "prolog": {
+            "query": [
+                "gender(Y_2, \"male\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 1
+    },
+    {
+        "id": "6c46e754-c5f0-452a-8217-0ed9538ed9e6",
+        "question": "Who is the person whose date of birth is 0292-03-17?",
+        "intermediate_answers": [],
+        "answer": [
+            "Ryan Wang"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_2, \"0292-03-17\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 1
+    },
+    {
+        "id": "bef7afc2-5e1a-44b2-880e-a733c29f2e34",
+        "question": "Who is the person whose gender is male?",
+        "intermediate_answers": [],
+        "answer": [
+            "Alvaro Smock",
+            "Aubrey Smock",
+            "Brian Beltran",
+            "Dino Beltran",
+            "Gene Smock",
+            "Lewis Smock",
+            "Orlando Beltran",
+            "Ricardo Hackworth",
+            "Ryan Wang",
+            "Saul Wexler",
+            "Williams Smock"
+        ],
+        "prolog": {
+            "query": [
+                "gender(Y_2, \"male\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 1
+    },
+    {
+        "id": "c75c6fbd-1f3d-4651-89a1-1acaf254a8a0",
+        "question": "Who is the person whose date of birth is 0241-09-21?",
+        "intermediate_answers": [],
+        "answer": [
+            "Daisy Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_2, \"0241-09-21\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 1
+    },
+    {
+        "id": "f9a98633-61f2-4ade-a196-404602293b90",
+        "question": "Who is the person whose gender is female?",
+        "intermediate_answers": [],
+        "answer": [
+            "Aida Wang",
+            "Alison Smock",
+            "Daisy Beltran",
+            "Deane Smock",
+            "Dominique Smock",
+            "Isabell Smock",
+            "Jeannine Wexler",
+            "Johnetta Wang",
+            "Lannie Smock",
+            "Leeann Hackworth",
+            "Lenore Hackworth",
+            "Myrle Smock",
+            "Shelli Beltran",
+            "Valentina Wexler",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "gender(Y_2, \"female\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 1
+    },
+    {
+        "id": "6f7fd781-7bd0-4927-b6eb-7f853f8a5518",
+        "question": "Who is the person whose occupation is immunologist?",
+        "intermediate_answers": [],
+        "answer": [
+            "Gene Smock"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_2, \"immunologist\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 1
+    },
+    {
+        "id": "d615c008-6bda-42b8-9890-c4fe2d60ce23",
+        "question": "Who is the person whose occupation is actuary?",
+        "intermediate_answers": [],
+        "answer": [
+            "Saul Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_2, \"actuary\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 1
+    },
+    {
+        "id": "3fd9d7e2-cc72-4313-916c-ecfaaada3d39",
+        "question": "Who is the person whose hobby is social studies?",
+        "intermediate_answers": [],
+        "answer": [
+            "Williams Smock"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_2, \"social studies\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 1
+    },
+    {
+        "id": "65f4bfd0-b0ec-4f37-bac3-dcc751d55f13",
+        "question": "Who is the person whose date of birth is 0301-10-24?",
+        "intermediate_answers": [],
+        "answer": [
+            "Saul Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_2, \"0301-10-24\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 1
+    },
+    {
+        "id": "603e947e-e29c-4de7-af6c-7e5f5265c7dd",
+        "question": "What is the gender of the brother-in-law of Johnetta Wang?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "gender(Y_3, Y_2)",
+                "brother_in_law(\"Johnetta Wang\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "difficulty": 3
+    },
+    {
+        "id": "e1543e92-0587-4066-8b4e-4db3a6092313",
+        "question": "What is the date of birth of the sibling of Vicki Hackworth?",
+        "intermediate_answers": [],
+        "answer": [
+            "0295-05-30",
+            "0299-06-11"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "sibling(\"Vicki Hackworth\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "difficulty": 2
+    },
+    {
+        "id": "826efd25-8763-4c85-8ee3-26a7d70f65be",
+        "question": "What is the date of birth of the female second cousin of Saul Wexler?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "female_second_cousin(\"Saul Wexler\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "difficulty": 6
+    },
+    {
+        "id": "08bc2e17-471d-4bcb-9045-f69ffe324c8b",
+        "question": "What is the occupation of the male first cousin once removed of Dominique Smock?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "male_first_cousin_once_removed(\"Dominique Smock\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "difficulty": 5
+    },
+    {
+        "id": "f611feea-6686-419c-ac96-d70ba26d0787",
+        "question": "What is the occupation of the male cousin of Dino Beltran?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "male_cousin(\"Dino Beltran\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "difficulty": 4
+    },
+    {
+        "id": "54709d64-c054-48cb-b36d-b12901544883",
+        "question": "What is the hobby of the great-uncle of Isabell Smock?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "great_uncle(\"Isabell Smock\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "difficulty": 4
+    },
+    {
+        "id": "c061e41e-cd44-4b5b-bb9e-35126352f0ea",
+        "question": "What is the gender of the sibling of Alvaro Smock?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "gender(Y_3, Y_2)",
+                "sibling(\"Alvaro Smock\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "difficulty": 2
+    },
+    {
+        "id": "7476ef5e-e212-4509-84a8-a4f999b48f7f",
+        "question": "What is the hobby of the male cousin of Ricardo Hackworth?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "male_cousin(\"Ricardo Hackworth\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "difficulty": 4
+    },
+    {
+        "id": "e343a7e6-7235-468f-9049-c1a1e4cfdfb2",
+        "question": "What is the occupation of the nephew of Saul Wexler?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "nephew(\"Saul Wexler\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "difficulty": 3
+    },
+    {
+        "id": "3387d6f0-e668-4385-8149-72a95654ffbc",
+        "question": "What is the occupation of the father of Ryan Wang?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "father(\"Ryan Wang\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "difficulty": 2
+    },
+    {
+        "id": "9adda902-c861-4f84-8e1b-1c84315ec501",
+        "question": "What is the gender of the person whose occupation is osteopath?",
+        "intermediate_answers": [],
+        "answer": [
+            "male"
+        ],
+        "prolog": {
+            "query": [
+                "gender(Y_3, Y_2)",
+                "job(Y_3, \"osteopath\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 2
+    },
+    {
+        "id": "dec10e60-1699-461d-acf2-0b34d519bbd7",
+        "question": "What is the date of birth of the person whose gender is female?",
+        "intermediate_answers": [],
+        "answer": [
+            "0177-08-24",
+            "0204-03-12",
+            "0207-09-08",
+            "0211-01-18",
+            "0239-10-28",
+            "0241-09-21",
+            "0268-03-07",
+            "0269-03-21",
+            "0295-05-30",
+            "0299-06-11",
+            "0321-10-24",
+            "0324-07-03",
+            "0325-11-20",
+            "0326-06-13"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "gender(Y_3, \"female\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 2
+    },
+    {
+        "id": "29b954dd-4398-492d-90df-3a26f363ef65",
+        "question": "What is the date of birth of the person whose gender is male?",
+        "intermediate_answers": [],
+        "answer": [
+            "0177-07-12",
+            "0200-10-27",
+            "0205-11-06",
+            "0208-08-16",
+            "0236-04-04",
+            "0237-07-27",
+            "0263-10-24",
+            "0268-08-09",
+            "0292-03-17",
+            "0293-02-24",
+            "0301-10-24"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "gender(Y_3, \"male\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 2
+    },
+    {
+        "id": "cc8c10a1-598b-4d0b-b769-566f86737dda",
+        "question": "What is the occupation of the person whose occupation is personal assistant?",
+        "intermediate_answers": [],
+        "answer": [
+            "personal assistant"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "job(Y_3, \"personal assistant\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 2
+    },
+    {
+        "id": "31f995ff-c22f-4b2b-90d6-6833f17231df",
+        "question": "What is the occupation of the person whose occupation is immunologist?",
+        "intermediate_answers": [],
+        "answer": [
+            "immunologist"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "job(Y_3, \"immunologist\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 2
+    },
+    {
+        "id": "65eb632f-0904-423a-b18d-879f00445013",
+        "question": "What is the hobby of the person whose occupation is warehouse manager?",
+        "intermediate_answers": [],
+        "answer": [
+            "photography"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "job(Y_3, \"warehouse manager\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 2
+    },
+    {
+        "id": "9bee5e58-453c-4ae4-8746-90d8508afe74",
+        "question": "What is the gender of the person whose date of birth is 0301-10-24?",
+        "intermediate_answers": [],
+        "answer": [
+            "male"
+        ],
+        "prolog": {
+            "query": [
+                "gender(Y_3, Y_2)",
+                "dob(Y_3, \"0301-10-24\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 2
+    },
+    {
+        "id": "0ef5523e-4fc5-4789-8758-83f13f4dbf0b",
+        "question": "What is the hobby of the person whose gender is male?",
+        "intermediate_answers": [],
+        "answer": [
+            "architecture",
+            "biology",
+            "canoeing",
+            "dairy farming",
+            "dolls",
+            "dominoes",
+            "finance",
+            "fossil hunting",
+            "meteorology",
+            "social studies",
+            "sociology"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "gender(Y_3, \"male\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 2
+    },
+    {
+        "id": "538f932a-b570-499c-b6e2-97cd31dd6e14",
+        "question": "What is the occupation of the person whose gender is female?",
+        "intermediate_answers": [],
+        "answer": [
+            "associate professor",
+            "biomedical scientist",
+            "clinical cytogeneticist",
+            "early years teacher",
+            "ecologist",
+            "education administrator",
+            "health promotion specialist",
+            "music tutor",
+            "personal assistant",
+            "petroleum engineer",
+            "police officer",
+            "retail manager",
+            "sound technician",
+            "theatre manager",
+            "warehouse manager"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "gender(Y_3, \"female\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 2
+    },
+    {
+        "id": "26c7a561-27c0-4692-8ca6-4fc78d3745ee",
+        "question": "What is the occupation of the person whose gender is female?",
+        "intermediate_answers": [],
+        "answer": [
+            "associate professor",
+            "biomedical scientist",
+            "clinical cytogeneticist",
+            "early years teacher",
+            "ecologist",
+            "education administrator",
+            "health promotion specialist",
+            "music tutor",
+            "personal assistant",
+            "petroleum engineer",
+            "police officer",
+            "retail manager",
+            "sound technician",
+            "theatre manager",
+            "warehouse manager"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "gender(Y_3, \"female\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 2
+    },
+    {
+        "id": "e34462f6-c927-4c29-b1fe-c2a08be54dba",
+        "question": "How many great-granddaughter does the brother-in-law of Johnetta Wang have?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(great_granddaughter(Y_3, Y_1)), Count_1)",
+                "brother_in_law(\"Johnetta Wang\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "difficulty": 3
+    },
+    {
+        "id": "fac983d9-bf6a-499b-ac17-c2c4a326615b",
+        "question": "How many child does the sibling of Vicki Hackworth have?",
+        "intermediate_answers": [],
+        "answer": [
+            1
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(child(Y_3, Y_1)), Count_1)",
+                "sibling(\"Vicki Hackworth\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "difficulty": 2
+    },
+    {
+        "id": "b6b23adf-f1d8-46ef-bc2c-ad41697402ff",
+        "question": "How many aunt does the female second cousin of Saul Wexler have?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(aunt(Y_3, Y_1)), Count_1)",
+                "female_second_cousin(\"Saul Wexler\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "difficulty": 6
+    },
+    {
+        "id": "59182212-9d98-46f7-b018-f70495520f10",
+        "question": "How many granddaughter does the male first cousin once removed of Dominique Smock have?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(granddaughter(Y_3, Y_1)), Count_1)",
+                "male_first_cousin_once_removed(\"Dominique Smock\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "difficulty": 5
+    },
+    {
+        "id": "296a4514-f80a-4b02-b560-e35fb1b07ce3",
+        "question": "How many aunt does the male cousin of Dino Beltran have?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(aunt(Y_3, Y_1)), Count_1)",
+                "male_cousin(\"Dino Beltran\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "difficulty": 4
+    },
+    {
+        "id": "5b8569f9-16c7-410a-8f87-9b68c1abf03a",
+        "question": "How many sister-in-law does the great-uncle of Isabell Smock have?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sister_in_law(Y_3, Y_1)), Count_1)",
+                "great_uncle(\"Isabell Smock\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "difficulty": 4
+    },
+    {
+        "id": "c21d1b2b-694e-409d-a3e7-8bc383b32504",
+        "question": "How many female first cousin once removed does the sibling of Alvaro Smock have?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(female_first_cousin_once_removed(Y_3, Y_1)), Count_1)",
+                "sibling(\"Alvaro Smock\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "difficulty": 2
+    },
+    {
+        "id": "6c8ecaa7-ce9a-469a-9007-226237255f67",
+        "question": "How many sister-in-law does the male cousin of Ricardo Hackworth have?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sister_in_law(Y_3, Y_1)), Count_1)",
+                "male_cousin(\"Ricardo Hackworth\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "difficulty": 4
+    },
+    {
+        "id": "5937a23b-d239-4a69-ae9c-59520abb2213",
+        "question": "How many grandson does the nephew of Saul Wexler have?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(grandson(Y_3, Y_1)), Count_1)",
+                "nephew(\"Saul Wexler\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "difficulty": 3
+    },
+    {
+        "id": "54c7a8cf-07f2-4972-890c-9b8a0d6467d8",
+        "question": "How many niece does the father of Ryan Wang have?",
+        "intermediate_answers": [],
+        "answer": [],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(niece(Y_3, Y_1)), Count_1)",
+                "father(\"Ryan Wang\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "difficulty": 2
+    },
+    {
+        "id": "a3dfcbd8-9f81-43b6-93dc-8abc6d7486ab",
+        "question": "How many great-granddaughter does the person whose occupation is osteopath have?",
+        "intermediate_answers": [],
+        "answer": [
+            2
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(great_granddaughter(Y_3, Y_1)), Count_1)",
+                "job(Y_3, \"osteopath\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "difficulty": 2
+    },
+    {
+        "id": "f9580f06-2a86-4769-a7c6-354b53335452",
+        "question": "How many child does the person whose gender is female have?",
+        "intermediate_answers": [],
+        "answer": [
+            0,
+            1,
+            2,
+            3,
+            5
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(child(Y_3, Y_1)), Count_1)",
+                "gender(Y_3, \"female\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "difficulty": 2
+    },
+    {
+        "id": "cd686ef2-7b9c-478b-8001-54ec68a6fb6d",
+        "question": "How many aunt does the person whose gender is male have?",
+        "intermediate_answers": [],
+        "answer": [
+            0,
+            2
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(aunt(Y_3, Y_1)), Count_1)",
+                "gender(Y_3, \"male\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "difficulty": 2
+    },
+    {
+        "id": "039b0d89-36b4-4bd1-897b-445289c3980b",
+        "question": "How many granddaughter does the person whose occupation is personal assistant have?",
+        "intermediate_answers": [],
+        "answer": [
+            0
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(granddaughter(Y_3, Y_1)), Count_1)",
+                "job(Y_3, \"personal assistant\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "difficulty": 2
+    },
+    {
+        "id": "d98023a6-96fc-4dd9-b8f4-b65fec9df416",
+        "question": "How many aunt does the person whose occupation is immunologist have?",
+        "intermediate_answers": [],
+        "answer": [
+            0
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(aunt(Y_3, Y_1)), Count_1)",
+                "job(Y_3, \"immunologist\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "difficulty": 2
+    },
+    {
+        "id": "3b17af4e-55a1-48de-829d-59241f2de033",
+        "question": "How many sister-in-law does the person whose occupation is warehouse manager have?",
+        "intermediate_answers": [],
+        "answer": [
+            0
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sister_in_law(Y_3, Y_1)), Count_1)",
+                "job(Y_3, \"warehouse manager\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "difficulty": 2
+    },
+    {
+        "id": "5250c34e-a9d6-4887-a52e-5753a03ccf4f",
+        "question": "How many female first cousin once removed does the person whose date of birth is 0301-10-24 have?",
+        "intermediate_answers": [],
+        "answer": [
+            0
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(female_first_cousin_once_removed(Y_3, Y_1)), Count_1)",
+                "dob(Y_3, \"0301-10-24\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "difficulty": 2
+    },
+    {
+        "id": "dec7f1c1-08b0-4dd8-bfc2-a67f41785ae2",
+        "question": "How many sister-in-law does the person whose gender is male have?",
+        "intermediate_answers": [],
+        "answer": [
+            0,
+            1,
+            2
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sister_in_law(Y_3, Y_1)), Count_1)",
+                "gender(Y_3, \"male\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "difficulty": 2
+    },
+    {
+        "id": "dc040ebd-868f-479e-89fc-097d5c895b68",
+        "question": "How many grandson does the person whose gender is female have?",
+        "intermediate_answers": [],
+        "answer": [
+            0,
+            1
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(grandson(Y_3, Y_1)), Count_1)",
+                "gender(Y_3, \"female\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "difficulty": 2
+    },
+    {
+        "id": "5db43cb1-2051-46b5-93fb-e0638db19e41",
+        "question": "How many niece does the person whose gender is female have?",
+        "intermediate_answers": [],
+        "answer": [
+            0,
+            2,
+            3
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(niece(Y_3, Y_1)), Count_1)",
+                "gender(Y_3, \"female\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "difficulty": 2
+    },
+    {
+        "id": "a0e337d2-9d20-4790-87da-7455b7d8218d",
+        "question": "How many brother-in-law does Johnetta Wang have?",
+        "intermediate_answers": [],
+        "answer": [
+            0
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(brother_in_law(\"Johnetta Wang\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 1
+    },
+    {
+        "id": "fa16b3b7-159b-43b5-b0ca-bf1ab9e869d0",
+        "question": "How many female second cousin does Ricardo Hackworth have?",
+        "intermediate_answers": [],
+        "answer": [
+            0
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(female_second_cousin(\"Ricardo Hackworth\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 1
+    },
+    {
+        "id": "f1ac90cd-c901-40c7-acc1-f27ee531a5e5",
+        "question": "How many child does Aida Wang have?",
+        "intermediate_answers": [],
+        "answer": [
+            1
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(child(\"Aida Wang\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 1
+    },
+    {
+        "id": "cd7f87d0-dd7c-4d6c-8332-7f150b6fc6b6",
+        "question": "How many female second cousin does Saul Wexler have?",
+        "intermediate_answers": [],
+        "answer": [
+            0
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(female_second_cousin(\"Saul Wexler\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 1
+    },
+    {
+        "id": "cbc9162e-f170-4b5b-8548-974f664b08ae",
+        "question": "How many nephew does Deane Smock have?",
+        "intermediate_answers": [],
+        "answer": [
+            1
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(nephew(\"Deane Smock\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 1
+    },
+    {
+        "id": "f91c1e53-77e6-4082-b401-f1b098d7b0d8",
+        "question": "How many granddaughter does Shelli Beltran have?",
+        "intermediate_answers": [],
+        "answer": [
+            4
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(granddaughter(\"Shelli Beltran\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 1
+    },
+    {
+        "id": "3ac22700-8e85-41e3-875e-2137942fd06a",
+        "question": "How many male cousin does Dino Beltran have?",
+        "intermediate_answers": [],
+        "answer": [
+            0
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(male_cousin(\"Dino Beltran\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 1
+    },
+    {
+        "id": "cd364f59-22a6-4f54-8984-71fee7eda221",
+        "question": "How many grandchild does Deane Smock have?",
+        "intermediate_answers": [],
+        "answer": [
+            0
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(grandchild(\"Deane Smock\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 1
+    },
+    {
+        "id": "518b87fd-b9e5-4829-93d1-7635cd309509",
+        "question": "How many sister-in-law does Lewis Smock have?",
+        "intermediate_answers": [],
+        "answer": [
+            0
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sister_in_law(\"Lewis Smock\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 1
+    },
+    {
+        "id": "d3301123-f80b-4e26-87aa-c105c453e34f",
+        "question": "How many sibling does Alvaro Smock have?",
+        "intermediate_answers": [],
+        "answer": [
+            0
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sibling(\"Alvaro Smock\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 1
+    }
+]
