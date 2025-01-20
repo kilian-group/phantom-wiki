@@ -18,7 +18,7 @@ parser = get_parser()
 parser.add_argument(
     '--split_name', 
     type=str, 
-    default='depth_10_size_26_seed_1', 
+    default='depth_20_size_50_seed_1',
     help='Split to plot'
 )
 args = parser.parse_args()
