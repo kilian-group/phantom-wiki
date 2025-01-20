@@ -29,6 +29,8 @@ def get_parser() -> argparse.ArgumentParser:
                         "if None, uses all available gpus")
     parser.add_argument("--inf_vllm_port", type=int, default=8000,
                         help="vllm server port number")
+    parser.add_argument("--inf_embedding_port", type=int, default=8001,
+                        help="embedding vllm server port number")
     parser.add_argument("--inf_max_tokens", type=int, default=4096,
                         help="Maximum number of tokens to generate")
     parser.add_argument("--inf_temperature", "-T", type=float, default=0.0,
@@ -60,6 +62,8 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument("--force", "-f", action="store_true",
                         help="Force to overwrite the output file" \
                             "Otherwise, it will skip the evaluation if the output file exists")
+    parser.add_argument("--ignore_agent_interactions", action="store_true",
+                        help="If you don't want to save the agent interactions to the predictions JSON files, set this flag")
     # Saving params
     parser.add_argument("--output_dir", "-od", default="out",
                     help="Path to read/write the outputs")
