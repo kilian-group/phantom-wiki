@@ -12,6 +12,6 @@ for seed in 1 2 3
 do
     for size in 50 100 200 300 400 500
     do
-        SPLIT_LIST+="depth_10_size_${size}_seed_${seed} "
+        SPLIT_LIST+="depth_20_size_${size}_seed_${seed} "
     done
 done
