@@ -41,9 +41,9 @@ MODELS=(
     # 'meta-llama/llama-3.2-1b-instruct'
 
     
-    # 'meta-llama/llama-3.2-3b-instruct' # pending access
-    # 'meta-llama/llama-3.1-8b-instruct'
-    # 'google/gemma-2-9b-it'
+    'meta-llama/llama-3.2-3b-instruct' # pending access
+    'meta-llama/llama-3.1-8b-instruct'
+    'google/gemma-2-9b-it'
     'mistralai/mistral-7b-instruct-v0.3'
 )
 TEMPERATURE=0
@@ -100,6 +100,7 @@ do
     echo "Starting embedding server..."
     eval export CUDA_VISIBLE_DEVICES=2,3
     vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 2 --task embed --host 0.0.0.0 --port $e_port"
+    # vllm_cmd="nohup vllm serve WhereIsAI/UAE-Code-Large-V --api-key token-abc123 --tensor_parallel_size 1 --task embed --host 0.0.0.0 --port $e_port
     echo $vllm_cmd
     nohup $vllm_cmd &
     echo "Waiting for embedding server to start..."

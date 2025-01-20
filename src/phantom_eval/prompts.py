@@ -361,7 +361,8 @@ def get_llm_prompt(method: str, model_name: str) -> LLMPrompt:
         case "cot" | "cot-sc" | "cot-sc->react":
             return CoTLLMPrompt()
         case "rag":
-            return RAGLLMPrompt()
+            return ZeroshotLLMPrompt()
+            # return RAGLLMPrompt()
         case "react" | "react->cot-sc":
             match model_name:
                 case model_name if model_name in llm.OpenAIChat.SUPPORTED_LLM_NAMES:

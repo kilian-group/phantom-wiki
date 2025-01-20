@@ -960,27 +960,30 @@ class RAGAgent(Agent):
             embeddings = CustomEmbeddings(client)
         
         else:
-            if tensor_parallel_size is None:
-                tensor_parallel_size = get_gpu_count()
-            else:
-                tensor_parallel_size = tensor_parallel_size
+            embeddings = TogetherEmbeddings()
+            vectors = embeddings.embed_documents(texts)
 
-            # destroy_model_parallel()
-            # del llm.llm_engine.model_executor.driver_worker
-            # del llm # Isn't necessary for releasing memory, but why not
-            # gc.collect()
-            # os.environ["CUDA_VISIBLE_DEVICES"] = "3,4"
-            # torch.cuda.empty_cache()
+            # if tensor_parallel_size is None:
+            #     tensor_parallel_size = get_gpu_count()
+            # else:
+            #     tensor_parallel_size = tensor_parallel_size
 
-            embedding_model = LLM(
-                model=embedding_model_name, 
-                task="embed", 
-                # enforce_eager=True,
-                max_model_len=max_model_len,
-                tensor_parallel_size=2#tensor_parallel_size,
-            )
-            embedding_outputs = embedding_model.embed(texts)
-            embeddings = [output.outputs.embedding for output in embedding_outputs]
+            # # destroy_model_parallel()
+            # # del llm.llm_engine.model_executor.driver_worker
+            # # del llm # Isn't necessary for releasing memory, but why not
+            # # gc.collect()
+            # # os.environ["CUDA_VISIBLE_DEVICES"] = "3,4"
+            # # torch.cuda.empty_cache()
+
+            # embedding_model = LLM(
+            #     model=embedding_model_name, 
+            #     task="embed", 
+            #     # enforce_eager=True,
+            #     max_model_len=max_model_len,
+            #     tensor_parallel_size=2#tensor_parallel_size,
+            # )
+            # embedding_outputs = embedding_model.embed(texts)
+            # embeddings = [output.outputs.embedding for output in embedding_outputs]
         
         # embeddings = TogetherEmbeddings(api_key=os.getenv("TOGETHER_API_KEY"))
         # vectors = embeddings.embed_documents(texts)
@@ -1046,7 +1049,7 @@ class RAGAgent(Agent):
         self.agent_interactions.messages.append(
             Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
         )
-        return self._parse_answer(response.pred)
+        return response.pred # return self._parse_answer(response.pred)
     
     async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
         logger.debug(f"\n\t>>> questions: {questions}\n")
@@ -1073,7 +1076,7 @@ class RAGAgent(Agent):
             )
         return [
             LLMChatResponse(
-                pred=self._parse_answer(response.pred),
+                pred=response.pred,#self._parse_answer(response.pred),
                 usage=response.usage,
                 error=response.error,
             ) 

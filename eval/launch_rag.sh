@@ -1,8 +1,8 @@
-# cmd_s="bash eval/rag_S.sh /home/jcl354/phantom-wiki/out/small"
-# echo $cmd_s
-# eval $cmd_s
+cmd_s="bash eval/rag_S.sh /home/jcl354/phantom-wiki/out/original_interactions"
+echo $cmd_s
+eval $cmd_s
 
-cmd_m="bash eval/rag_M.sh /home/jcl354/phantom-wiki/out/m_debug"
+cmd_m="bash eval/rag_M.sh /home/jcl354/phantom-wiki/out/original_interactions"
 echo $cmd_m
 eval $cmd_m
 
