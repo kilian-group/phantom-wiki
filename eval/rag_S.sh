@@ -92,6 +92,7 @@ do
     echo "Starting embedding server..."
     eval export CUDA_VISIBLE_DEVICES=2,3
     vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 2 --task embed --host 0.0.0.0 --port $e_port"
+    # vllm_cmd="nohup vllm serve WhereIsAI/UAE-Code-Large-V --api-key token-abc123 --tensor_parallel_size 1 --task embed --host 0.0.0.0 --port $e_port
     echo $vllm_cmd
     nohup $vllm_cmd &
     echo "Waiting for embedding server to start..."
@@ -114,9 +115,9 @@ do
         -bs 2 \
         --inf_vllm_port $port \
         --inf_embedding_port $e_port \
-        --log_level DEBUG \
         --force
         "
+                # --log_level DEBUG \
     echo $cmd
     eval $cmd
 
