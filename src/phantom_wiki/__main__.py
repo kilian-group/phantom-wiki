@@ -189,14 +189,14 @@ def main(args):
             # TODO: is there a better way to do this?
             # NOTE: we concatenate the clauses in the prolog query in reverse order
             # since prolog executes goals from left to right
-            all_results, final_results = get_answer(query, db, answer, add_intermediate_answers=True)
+            solution_traces, final_results = get_answer(query, db, answer, return_solution_traces=True)
             # make unique and sort in alphabetical order
             question_difficulty = calculate_query_difficulty(query)
             questions.append(
                 {
                     "id": generate_unique_id(),
                     "question": question,
-                    "intermediate_answers": json.dumps(all_results), #NOTE: serialize list of dicts so that it can be saved on HF
+                    "intermediate_answers": json.dumps(solution_traces), # NOTE: serialize list of dicts so that it can be saved on HF
                     "answer": final_results,
                     "prolog": {"query": query, "answer": answer},
                     "template": question_template,
@@ -236,6 +236,8 @@ def main(args):
 if __name__ == "__main__":
     # we combine a base parser with the family generator parser
     # TODO: add parser for other generation components
+    # TODO: change --depth 10 --num-samples 1 --max-tree-size 50 --max-tree-depth 20 to be more informative
+    # i.e. specify which depth corresponds to question depth, family tree depth etc.
     # - attribute
     parser = get_parser(
         parents=[
