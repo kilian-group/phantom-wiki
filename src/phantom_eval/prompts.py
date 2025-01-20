@@ -36,16 +36,40 @@ class ZeroshotLLMPrompt(LLMPrompt):
 # The current example is the example from CoT trivially adapted
 FEWSHOT_EXAMPLES = f"""
 Example 1:
-Question: What is the hobby of the child of Jewel Backus?
-Answer: shogi
+Question: Who is the brother of Dino Beltran?
+Answer: Orlando Beltran
 
 Example 2:
-Question: What is the dob of the person whose hobby is meditation?
-Answer: 0259-06-10{constants.answer_sep}0206-04-13
+Question: Who is the sibling of Barabara Beltran?
+Answer: Aida Wang{constants.answer_sep}Vicki Hackworth
 
 Example 3:
-Question: How many siblings does the person whose hobby is meditation have?
-Answer: 1{constants.answer_sep}0
+Question: Who is the child of the sibling of Stacia Toombs?
+Answer: Aida Wang{constants.answer_sep}Barabara Beltran{constants.answer_sep}Vicki Hackworth
+
+Example 4:
+Question: Who is the uncle of William Smock?
+Answer: Eli Smock
+
+Example 5:
+Question: What is the occupation of the sister of the grandmother of Virgil Hackworth?
+Answer: actuary
+
+Example 6:
+Question: Who is the brother of the person whose occupation is associate professor?
+Answer: Orlando Beltran
+
+Example 7:
+Question: What is the date of birth of the person whose hobby is meteorology?
+Answer: 0929-10-28{constants.answer_sep}0989-06-11
+
+Example 8:
+Question: Who is the cousin of the person whose occupation is broadcast engineer?
+Answer: Leslee Toombs
+
+Example 9:
+Question: Who is the great-granddaughter of the person whose hobby is biology?
+Answer: Shelli Beltran{constants.answer_sep}Stacia Toombs
 """
 
 class FewshotLLMPrompt(LLMPrompt):
@@ -76,16 +100,40 @@ class FewshotLLMPrompt(LLMPrompt):
 ##### CoT method
 COT_EXAMPLES = f"""
 Example 1:
-Question: What is the hobby of the child of Jewel Backus?
-Answer: First I need to find the child of Jewel Backus. Based on the evidence, the child of Jewel Backus is Derick Backus. Now I need to find the hobby of Derick Backus. Based on the evidence, the hobby of Derick Backus is shogi. The answer is shogi.
+Question: Who is the brother of Dino Beltran?
+Answer: Based on the evidence, the brother of Dino Beltran is Orlando Beltran. The answer is Orlando Beltran.
 
 Example 2:
-Question: What is the dob of the person whose hobby is meditation?
-Answer: I need to search for people whose hobby is meditation. Based on the evidence, the people whose hobby is meditation are Adele Ervin, Tyler Ussery. The dob of Adele Ervin is 0259-06-10, and the dob of Tyler Ussery is 0206-04-13. The answer is 0259-06-10{constants.answer_sep}0206-04-13.
+Question: Who is the sibling of Barabara Beltran?
+Answer: Based on the evidence, the siblings of Barabara Beltran are Aida Wang, Vicki Hackworth. The answer is Aida Wang{constants.answer_sep}Vicki Hackworth.
 
 Example 3:
-Question: How many siblings does the person whose hobby is meditation have?
-Answer: I need to search for people whose hobby is meditation. Based on the evidence, the people whose hobby is meditation are Adele Ervin, Tyler Ussery. Adele Ervin has 1 sibling, and Tyler Ussery has 0 siblings. The answer is 1{constants.answer_sep}0.
+Question: Who is the child of the sibling of Stacia Toombs?
+Answer: First I need to find the sibling of Stacia Toombs. Based on the evidence, the sibling of Stacia Toombs is Shelli Beltran. Now I need to find the child of Shelli Beltran. Based on the evidence, the children of Shelli Beltran are Aida Wang, Barabara Beltran, Vicki Hackworth. The answer is Aida Wang{constants.answer_sep}Barabara Beltran{constants.answer_sep}Vicki Hackworth.
+
+Example 4:
+Question: Who is the uncle of William Smock?
+Answer: An uncle is the brother of a parent. Based on the evidence, the parents of William Smock are Dominique Smock, Gene Smock. To find the uncle of William Smock, I need to find the brother of Dominique Smock and Gene Smock. Based on the evidence, Dominique Smock has no brother, and the brother of Gene Smock is Eli Smock. So the uncle of William Smock is Eli Smock. The answer is Eli Smock.
+
+Example 5:
+Question: What is the occupation of the sister of the grandmother of Virgil Hackworth?
+Answer: A grandmother is the mother of a parent. Based on the evidence, the parents of Virgil Hackworth are Ricardo Hackworth, Vicki Hackworth. To find the grandmother of Virgil Hackworth, I need to find the mother of Ricardo Hackworth and Vicki Hackworth. Based on the evidence, Ricardo Hackworth has no mother, and the mother of Vicki Hackworth is Shelli Beltran. Now I need to find the sister of Shelli Beltran. Based on the evidence, the sister of Shelli Beltran is Stacia Toombs. Based on the evidence, the occupation of Stacia Toombs is actuary. The answer is actuary.
+
+Example 6:
+Question: Who is the brother of the person whose occupation is associate professor?
+Answer: I need to search for people whose occupation is associate professor. Based on the evidence, the person whose occupation is associate professor is Dino Beltran. And the brother of Dino Beltran is Orlando Beltran. The answer is Orlando Beltran.
+
+Example 7:
+Question: What is the date of birth of the person whose hobby is meteorology?
+Answer: I need to search for people whose hobby is meteorology. Based on the evidence, the people whose hobby is meteorology are Alison Smock, Barabara Beltran. The date of birth of Alison Smock is 0929-10-28, and the date of birth of Barabara Beltran is 0989-06-11. The answer is 0929-10-28{constants.answer_sep}0989-06-11.
+
+Example 8:
+Question: Who is the cousin of the person whose occupation is broadcast engineer?
+Answer: I need to search for people whose occupation is broadcast engineer. Based on the evidence, the person whose occupation is broadcast engineer is Barabara Beltran. A cousin is the child of the sibling of the parent. Based on the evidence, the parents of Barabara Beltran are Dino Beltran, Shelli Beltran. The sibling of Dino Beltran is Orlando Beltran, and the sibling of Shelli Beltran is Stacia Toombs. Based on the evidence, Orlando Beltran has no child, and the child of Stacia Toombs is Leslee Toombs. So the cousin of Barabara Beltran is Leslee Toombs. The answer is Leslee Toombs.
+
+Example 9:
+Question: Who is the great-granddaughter of the person whose hobby is biology?
+Answer: I need to search for people whose hobby is biology. Based on the evidence, the person whose hobby is biology is Alvaro Smock. To find the great-granddaughter of Alvaro Smock, I need to find the daughter of the child of the child of Alvaro Smock. Based on the evidence, the children of Alvaro Smock are Eli Smock, Gene Smock. Eli Smock has no child, and the child of Gene Smock is Williams Smock. The daughters of Williams Smock are Shelli Beltran, Stacia Toombs. So the great-granddaughters of Alvaro Smock, whose hobby is biology, are Shelli Beltran, Stacia Toombs. The answer is Shelli Beltran{constants.answer_sep}Stacia Toombs.
 """
 
 class CoTLLMPrompt(LLMPrompt):
@@ -257,7 +305,7 @@ Observation 4: # Gene Smock ## Family The parents of Gene Smock are Alvaro Smock
 Thought 5: The child of Gene Smock is Williams Smock. Now I need to retrieve article about Williams Smock and find his daughter, to get the great-granddaughter of Alvaro Smock.
 Action 5: RetrieveArticle[Williams Smock].
 Observation 5: # Williams Smock ## Family The parents of Williams Smock are Dominique Smock, Gene Smock.  The mother of Williams Smock is Dominique Smock.  The father of Williams Smock is Gene Smock.  The children of Williams Smock are Shelli Beltran, Stacia Toombs.  The daughters of Williams Smock are Shelli Beltran, Stacia Toombs.  The wife of Williams Smock is Alison Smock.  ## Friends The friend of Williams Smock is Lannie Smock.  ## Attributes The date of birth of Williams Smock is 0926-04-04.  The occupation of Williams Smock is clinical biochemist.  The hobby of Williams Smock is social studies.
-Thought 6: The daughters of Williams Smock are Shelli Beltran, Stacia Toombs. So the great-granddaughter of Alvaro Smock, whose hobby is biology, is Shelli Beltran, Stacia Toombs. The answer is Shelli Beltran, Stacia Toombs.
+Thought 6: The daughters of Williams Smock are Shelli Beltran, Stacia Toombs. So the great-granddaughters of Alvaro Smock, whose hobby is biology, are Shelli Beltran, Stacia Toombs. The answer is Shelli Beltran, Stacia Toombs.
 Action 6: Finish[Shelli Beltran{constants.answer_sep}Stacia Toombs].
 """
 
