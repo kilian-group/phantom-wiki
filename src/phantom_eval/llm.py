@@ -664,7 +664,7 @@ class VLLMChat(CommonLLMChat):
             self.llm = LLM(
                 model=self.model_name,
                 max_model_len=self.max_model_len,
-                tensor_parallel_size=2#self.tensor_parallel_size,
+                tensor_parallel_size=self.tensor_parallel_size,
             )
             # get tokenizer for constructing prompt
             self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, trust_remote_code=True)
