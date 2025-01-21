@@ -117,7 +117,9 @@ def sample(
 
     def _valid_result(result):
         # TODO this is a *hack* around the infinitely recursive Prolog queries
-        return all(not isinstance(value, Variable) for value in result.values())
+        # the variable responsible for the aggregation query is allowed to be a Variable type 
+        result = all(not isinstance(value, Variable) for key, value in result.items() if key not in count_variables)
+        return result
 
     query_assignments = {}  # Maps each <placeholder> to the sampled value
 
@@ -137,6 +139,8 @@ def sample(
         atom_variables = {}  # Maps <placeholder> to the temporary variable if sampled value is unavailable
         query_assignments = {}  # Maps each <placeholder> to the sampled (value, alias) pair
         question_assignments = {}
+        count_variables = [] # keep track of count variables 
+        # since e.g. aggregate_all(count, distinct(<relation_plural>_2(Y_3, Y_1)), Count_1) will return 'Y_1':Variable
 
         # Iterate through subquery templates
         # TODO sampling is done right-to-left, which might have to change with star-join support in templates
@@ -176,6 +180,16 @@ def sample(
             if m := re.search(r"<relation_plural>_(\d+)", query_template_[i]):
                 match = m.group(0)
                 assert match in question_template_
+                # check if the query type is aggregation
+                # for this query type, only the 3rd match is a Variable type
+                if match_agg := re.findall(r"aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\)", query_template_[i]):
+                    count_variables.append(match_agg[0][2])
+                # for this query type,  both the 2nd and 3rd matches are Variables  
+                # elif match_agg := re.findall(r"aggregate_all\(count, distinct\((<relation_plural>_\d+)\((<name>_\d+), (Y_\d+)\)\), (Count_\d+)\)", query_template_[i]):
+                #     import pdb; pdb.set_trace()
+                #     count_variables.append(match_agg[0][2])
+                #     # atom_variables = {'<name>_d': 'A_d'}
+                #     count_variables.append(atom_variables[match_agg[0][1]])
                 if hard_mode:
                     _sample_predicate(match, bank=RELATION, alias_dict=RELATION_PLURAL_ALIAS)
                 else:
