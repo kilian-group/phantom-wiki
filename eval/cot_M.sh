@@ -5,12 +5,9 @@
 #SBATCH --mail-type=ALL                      # Request status by email 
 #SBATCH --mail-user=ag2435@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
-#SBATCH -n 8                                 # Total number of cores requested
+#SBATCH -n 4                                 # Total number of cores requested
 #SBATCH --get-user-env                       # retrieve the users login environment
-#SBATCH --mem=100000                         # server memory (MBs) requested (per node)
-#SBATCH -t infinite                           # Time limit (hh:mm:ss)
-#SBATCH --gres=gpu:a6000:4                   # Number of GPUs requested
-#SBATCH --partition=kilian                   # Request partition
+#SBATCH --mem=32GB                         # server memory (MBs) requested (per node)
 
 # Script for running zero-shot evaluation on all medium models (<10 B params)
 # GPU requirements when using max context length (i.e., `max_model_len=None`)

@@ -5,9 +5,9 @@
 #SBATCH --mail-type=ALL                      # Request status by email 
 #SBATCH --mail-user=ag2435@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
-#SBATCH -n 8                                 # Total number of cores requested
+#SBATCH -n 4                                 # Total number of cores requested
 #SBATCH --get-user-env                       # retrieve the users login environment
-#SBATCH --mem=100000                         # server memory (MBs) requested (per node)
+#SBATCH --mem=32000                         # server memory (MBs) requested (per node)
 
 # Example usage (make sure to activate conda environment first):
 # if running on G2:
