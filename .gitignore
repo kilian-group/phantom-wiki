@@ -554,6 +554,7 @@ $RECYCLE.BIN/
 src/phantom_wiki/family/relationships.py
 *_output*
 *out*/
+*.zip
 
 #API key
 johann_tests/API_KEY.py
@@ -564,6 +565,7 @@ nohup.out
 
 # slurm logs
 *slurm*/
+
 # cache directory for speeding up evaluation
 cachedir/
 .idea/webResources.xml

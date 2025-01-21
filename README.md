@@ -120,7 +120,7 @@ Rate limits: https://platform.openai.com/docs/guides/rate-limits#usage-tiers
 1. Create an API key at https://aistudio.google.com/app/apikey (NOTE: for some reason, Google AI Studio is disabled for cornell.edu accounts, so use your personal account)
 2. Set your Google API key:
 ```
-conda env config vars set GOOGLE_API_KEY=xxxxx
+conda env config vars set GEMINI_API_KEY=xxxxx
 ```
 
 ### Anthropic

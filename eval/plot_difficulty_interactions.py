@@ -1,10 +1,10 @@
-"""Script for plotting the number of react steps vs number of hops.
+"""Script for plotting the number of react steps vs difficulty.
 
-Generates a plot with the number of hops on the x-axis and the number of react steps (i.e., number of agent interactions) on the y-axis.
+Generates a plot with the difficulty on the x-axis and the number of react steps (i.e., number of agent interactions) on the y-axis.
 Saves the plots to the figures directory of the output directory.
 
 Example:
-    python eval/plot_hops_interactions.py -od out  --method react --split_name depth_10_size_26_seed_1
+    python eval/plot_difficulty_interactions.py -od out  --method react --split_name depth_10_size_26_seed_1
 """
 
 # %%
@@ -55,20 +55,20 @@ figures_dir = os.path.join(output_dir, 'figures', method)
 os.makedirs(figures_dir, exist_ok=True)
 
 # %%
-# get accuracies by model, split, hops, seed
-COLS = ['_model', '_split', '_seed', 'hops']
+# get accuracies by model, split, difficulty, seed
+COLS = ['_model', '_split', '_seed', 'difficulty']
 acc_by_type = df.groupby(COLS)[['interactions', 'react_actions', 'non_finish_actions']].mean()
 
 # %%
-# get the mean and std of the accuracy for each model, split, and hops across seeds
-acc_mean_std = acc_by_type.groupby(['_model', '_split', 'hops']).agg(['mean', 'std'])
+# get the mean and std of the accuracy for each model, split, and difficulty across seeds
+acc_mean_std = acc_by_type.groupby(['_model', '_split', 'difficulty']).agg(['mean', 'std'])
 acc_mean_std = acc_mean_std.reset_index()
 acc_mean_std_split = acc_mean_std[acc_mean_std['_split'] == split_name]
 
 # %%
 # set figure size
 for metric in ['interactions', 'react_actions', 'non_finish_actions']:
-    df_mean, df_std = pivot_mean_std(acc_mean_std_split, metric, independent_variable='hops')
+    df_mean, df_std = pivot_mean_std(acc_mean_std_split, metric, independent_variable='difficulty')
 
     plt.figure(figsize=(15, 8))
     x = df_mean.columns
@@ -82,10 +82,10 @@ for metric in ['interactions', 'react_actions', 'non_finish_actions']:
 
     plt.legend(title='Model', loc='lower right', fontsize=12)
     # format x-axis
-    plt.xlabel('Number of hops')
+    plt.xlabel('Difficulty')
     plt.xticks(x, df_mean.columns)
     plt.ylabel(metric)
     plt.tight_layout()
-    fig_path = os.path.join(figures_dir, f'hops-{metric}-{split_name}.png')
+    fig_path = os.path.join(figures_dir, f'difficulty-{metric}-{split_name}.png')
     print(f"Saving to {os.path.abspath(fig_path)}")
     plt.savefig(fig_path)

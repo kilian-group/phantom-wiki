@@ -514,13 +514,13 @@ class GeminiChat(CommonLLMChat):
     """
     RATE_LIMITS = {
         "gemini-1.5-flash-002": {
-            "usage_tier=1": {"RPM": 15, "TPM": 1_000_000},
+            "usage_tier=1": {"RPM": 2_000, "TPM": 4_000_000},
         },
         "gemini-1.5-pro-002": {
-            "usage_tier=1": {"RPM": 2, "TPM": 32_000},
+            "usage_tier=1": {"RPM": 1_000, "TPM": 4_000_000},
         },
         "gemini-1.5-flash-8b-001": {
-            "usage_tier=1": {"RPM": 15, "TPM": 1_000_000},
+            "usage_tier=1": {"RPM": 4_000, "TPM": 4_000_000},
         },
         "gemini-2.0-flash-exp": {
             "usage_tier=1": {"RPM": 10, "TPM": 4_000_000}, # https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash
