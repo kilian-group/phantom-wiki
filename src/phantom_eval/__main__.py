@@ -205,11 +205,10 @@ async def main(args: argparse.Namespace) -> None:
                             deepcopy(agent) 
                             for _ in range(batch_size)
                         ]
-                        tasks = [
+                        responses = await asyncio.gather(*[
                             agent.run(llm_chat, qa_sample.question, inf_gen_config)
                             for agent, qa_sample in zip(agents, batch_df_qa_pairs.itertuples())
-                        ]
-                        responses = await asyncio.gather(*tasks)
+                        ])
                         agent_interactions: list[Conversation] = [agent.agent_interactions for agent in agents]
 
                 # Log the final answers for the batch
