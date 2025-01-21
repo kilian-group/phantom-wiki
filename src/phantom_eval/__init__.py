@@ -19,6 +19,9 @@ def get_parser() -> argparse.ArgumentParser:
                         help="Maximum number of steps for the ReAct agent")
     parser.add_argument("--sc_num_votes", type=int, default=3,
                         help="Number of votes for an agent implementing self-consistency (majority votes)")
+    parser.add_argument("--rag_method", type=str, default="WhereIsAI/UAE-Code-Large-V1",
+                        help="Model used for RAG's embeddings")
+                        
 
     # LLM inference params
     parser.add_argument("--inf_vllm_max_model_len", type=int, default=None,

@@ -74,9 +74,10 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
             )
         case "rag":
             agent_kwargs = dict(
-                embedding="together", #args.embedding
-                vector_store="faiss", #args.vector_store
-                embedding_port=args.inf_embedding_port,
+                # embedding="together", #args.embedding
+                # vector_store="faiss", #args.vector_store
+                # embedding_port=args.inf_embedding_port,
+                embedding_model_name=args.rag_method,
             )
         case "react":
             agent_kwargs = dict(
