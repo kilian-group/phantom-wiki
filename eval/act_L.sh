@@ -27,28 +27,8 @@ if [ -z "$1" ]; then
     echo "Usage: $0 <output directory>"
     exit 1
 fi
-# activate conda environment
-source ~/miniconda3/etc/profile.d/conda.sh
-# NOTE: this assumes that conda environment is called `dataset`
-# change this to your conda environment as necessary
-conda activate dataset
 
-# list of models
-MODELS=(
-    # 'google/gemma-2-27b-it'
-    # 'microsoft/phi-3.5-moe-instruct'
-    'meta-llama/llama-3.1-70b-instruct'
-    'meta-llama/llama-3.3-70b-instruct'
-    # 'meta-llama/llama-3.1-8b-instruct'
-)
 TEMPERATURE=0
-# if TEMPERATURE=0, then sampling is greedy so no need run with muliptle seeds
-if (( $(echo "$TEMPERATURE == 0" | bc -l) ))
-then
-    seed_list="1"
-else
-    seed_list="1 2 3 4 5"
-fi
 
 source eval/constants.sh
 
@@ -77,7 +57,7 @@ check_server() {
     fi
 }
 
-for model_name in "${MODELS[@]}"
+for model_name in "${LARGE_MODELS[@]}"
 do
     # Start the vLLM server in the background
     echo "Starting vLLM server..."
@@ -101,7 +81,7 @@ do
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \
-        --inf_seed_list $seed_list \
+        --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
         --inf_temperature $TEMPERATURE \
         -bs 10 \
         --inf_vllm_port $PORT"

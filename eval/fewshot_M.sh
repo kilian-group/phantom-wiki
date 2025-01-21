@@ -5,12 +5,9 @@
 #SBATCH --mail-type=ALL                      # Request status by email 
 #SBATCH --mail-user=ag2435@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
-#SBATCH -n 8                                 # Total number of cores requested
+#SBATCH -n 4                                 # Total number of cores requested
 #SBATCH --get-user-env                       # retrieve the users login environment
-#SBATCH --mem=100000                         # server memory (MBs) requested (per node)
-#SBATCH -t infinite                           # Time limit (hh:mm:ss)
-#SBATCH --gres=gpu:a6000:2                   # Number of GPUs requested
-#SBATCH --partition=kilian                   # Request partition
+#SBATCH --mem=32000                         # server memory (MBs) requested (per node)
 
 # Script for running fewshot evaluation on all medium models (<10 B params)
 # GPU requirements when using max context length (i.e., `max_model_len=None`)
@@ -32,33 +29,18 @@ source /share/apps/anaconda3/2021.05/etc/profile.d/conda.sh
 # change this to your conda environment as necessary
 conda activate dataset
 
-# list of models
-MODELS=(
-    # 'microsoft/phi-3.5-mini-instruct' # runs out of memory on 2 A6000 GPUs
-    'meta-llama/llama-3.2-3b-instruct'
-    'meta-llama/llama-3.1-8b-instruct'
-    'google/gemma-2-9b-it'
-    'mistralai/mistral-7b-instruct-v0.3'
-)
 TEMPERATURE=0
-# if TEMPERATURE=0, then sampling is greedy so no need run with multiple seeds
-if (( $(echo "$TEMPERATURE == 0" | bc -l) ))
-then
-    seed_list="1"
-else
-    seed_list="1 2 3 4 5"
-fi
 
 source eval/constants.sh
 
-for model_name in "${MODELS[@]}"
+for model_name in "${MEDIUM_MODELS[@]}"
 do
     cmd="python -m phantom_eval \
         --method fewshot \
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \
-        --inf_seed_list $seed_list \
+        --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
         --inf_temperature $TEMPERATURE"
     echo $cmd
     eval $cmd

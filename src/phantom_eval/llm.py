@@ -679,6 +679,7 @@ class VLLMChat(CommonLLMChat):
         "google/gemma-2-9b-it",
         "google/gemma-2-27b-it",
         "mistralai/mistral-7b-instruct-v0.3",
+        "deepseek-ai/deepseek-r1-distill-qwen-32b",
     ]
     # additional stop token for llama models
     # NOTE: eot = end-of-turn
