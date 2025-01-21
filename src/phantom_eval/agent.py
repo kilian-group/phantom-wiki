@@ -44,7 +44,7 @@ class Agent(abc.ABC):
         self.agent_interactions: Conversation | list[Conversation] = None
 
     @abc.abstractmethod
-    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+    async def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         """
         Run the agent with an LLM on a given question.
         """
@@ -100,7 +100,7 @@ class NshotAgent(Agent):
                 question=question
             )
 
-    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+    async def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
         # Create a conversation with 1 user prompt and initialize agent interactions
@@ -111,7 +111,7 @@ class NshotAgent(Agent):
         # Generate response
         # Add "\n" to stop_sequences
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
-        response = llm_chat.generate_response(conv, inf_gen_config)
+        response = await llm_chat.generate_response(conv, inf_gen_config)
 
         # Update agent's conversation
         self.agent_interactions.messages.append(
@@ -203,12 +203,12 @@ class NshotSCAgent(NshotAgent, SCMixin):
         NshotAgent.__init__(self, text_corpus, llm_prompt, fewshot_examples)
         SCMixin.__init__(self, num_votes, sep)
 
-    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+    async def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         # Relies on the implementation of run in the subclass
-        responses: list[LLMChatResponse] = [
+        responses: list[LLMChatResponse] = asyncio.gather(*[
             super().run(llm_chat, question, inf_gen_config)
             for _ in range(self.num_votes)
-        ]
+        ])
         return self.take_majority_vote(responses, self.sep)
 
     async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
@@ -237,7 +237,7 @@ class CoTAgent(Agent):
         super().__init__(text_corpus, llm_prompt)
         self.cot_examples = cot_examples
 
-    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+    async def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
         
         # Create a conversation with 1 user prompt and initialize agent interactions
@@ -246,7 +246,7 @@ class CoTAgent(Agent):
         self.agent_interactions = conv
         
         # Generate response
-        response = llm_chat.generate_response(conv, inf_gen_config)
+        response = await llm_chat.generate_response(conv, inf_gen_config)
 
         # Add the response to the agent's conversation
         self.agent_interactions.messages.append(
@@ -765,11 +765,11 @@ class React_CoTSCAgent(Agent):
     async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
         raise NotImplementedError("Batch run is not supported for React->CoTSCAgent.")
 
-    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+    async def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
         # Run the React agent. If the React agent reaches max steps, run the CoTSC agent.
-        react_response = self.react_agent.run(llm_chat, question, inf_gen_config)
+        react_response = await self.react_agent.run(llm_chat, question, inf_gen_config)
         self.agent_interactions = self.react_agent.agent_interactions
         match react_response.error:
             case None:
@@ -847,12 +847,12 @@ class CoTSC_ReactAgent(Agent):
     async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
         raise NotImplementedError("Batch run is not supported for CoTSC->ReactAgent.")
 
-    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+    async def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
         # Run the CoTSC agent. If the CoTSC agent does not get any majority vote answer, run the React agent.
         cotsc_inf_gen_config = inf_gen_config.model_copy(update=dict(temperature=self.cotsc_inf_temperature), deep=True)
-        cotsc_response = self.cotsc_agent.run(llm_chat, question, cotsc_inf_gen_config)
+        cotsc_response = await self.cotsc_agent.run(llm_chat, question, cotsc_inf_gen_config)
         self.agent_interactions = self.cotsc_agent.agent_interactions
         match cotsc_response.error:
             case None:
@@ -861,7 +861,7 @@ class CoTSC_ReactAgent(Agent):
                 return cotsc_response
             case error_msg if "<agent_error>No majority vote" in error_msg:
                 # The CoTSC agent does not get any majority vote answer, run the React agent
-                react_response = self.react_agent.run(llm_chat, question, inf_gen_config)
+                react_response = await self.react_agent.run(llm_chat, question, inf_gen_config)
                 self.agent_interactions.messages.extend(self.react_agent.agent_interactions.messages)
 
                 total_usage = aggregate_usage([cotsc_response.usage, react_response.usage])
@@ -1033,7 +1033,7 @@ class RAGAgent(Agent):
         else:
             return ""
 
-    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+    async def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
         # Create a conversation with 1 user prompt
@@ -1048,7 +1048,7 @@ class RAGAgent(Agent):
         # Generate response
         # Add "\n" to stop_sequences
         # inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
-        response = llm_chat.generate_response(conv, inf_gen_config)
+        response = await llm_chat.generate_response(conv, inf_gen_config)
 
         # Update agent's conversation
         self.agent_interactions.messages.append(
