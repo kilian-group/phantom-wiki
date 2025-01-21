@@ -22,16 +22,18 @@ conda activate dataset
 model_name=$1
 port=$2
 CUDA_VISIBLE_DEVICES=$3
-echo "Starting embedding server..."
-eval export CUDA_VISIBLE_DEVICES="$CUDA_VISIBLE_DEVICES"
-vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 1 --task embed --host 0.0.0.0 --port $port"
-echo $vllm_cmd
-nohup $vllm_cmd &
-echo "Waiting for embedding server to start..."
-SLEEP=60
+if ! check_server $model_name $port; then
+    echo "Starting $model_name embedding server..."
+    eval export CUDA_VISIBLE_DEVICES="$CUDA_VISIBLE_DEVICES"
+    vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 1 --task embed --host 0.0.0.0 --port $port"
+    nohup $vllm_cmd &
+    # echo $vllm_cmd
+fi
+
+SLEEP=40
 while ! check_server $model_name $port; do
-    echo "Server is not up yet. Checking again in $SLEEP seconds..."
+    echo "Embedding server is not up yet. Checking again in $SLEEP seconds..."
     sleep $SLEEP
 done
-echo "Embedding server is up and running."
+# echo "Embedding server is up and running."
 

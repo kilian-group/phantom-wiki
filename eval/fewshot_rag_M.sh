@@ -9,7 +9,7 @@
 #SBATCH --get-user-env                       # retrieve the users login environment
 #SBATCH --mem=100000                         # server memory (MBs) requested (per node)
 #SBATCH -t infinite                           # Time limit (hh:mm:ss)
-#SBATCH --gres=gpu:a6000:2                   # Number of GPUs requested
+#SBATCH --gres=gpu:a6000:4                   # Number of GPUs requested
 #SBATCH --partition=kilian                   # Request partition
 
 # Script for running zero-shot evaluation on all small models (<4 B params)
@@ -35,8 +35,10 @@ conda activate dataset
 
 # list of models
 MODELS=(
-    'google/gemma-2-2b-it'
-    'meta-llama/llama-3.2-1b-instruct'
+    # 'meta-llama/llama-3.2-3b-instruct' #loading datasets takes 2.5GB, embedding model takes 1GB
+    # 'meta-llama/llama-3.1-8b-instruct'
+    # 'google/gemma-2-9b-it'
+    'mistralai/mistral-7b-instruct-v0.3'
 )
 TEMPERATURE=0
 # if TEMPERATURE=0, then sampling is greedy so no need run with muliptle seeds
@@ -60,7 +62,6 @@ done
 check_server() {
     local model_name=$1
     local port=$2
-    # echo http://0.0.0.0:8001/v1/chat/completions
     response=$(curl -o /dev/null -s -w "%{http_code}" http://0.0.0.0:$port/v1/chat/completions \
                     -X POST \
                     -H "Content-Type: application/json" \
@@ -73,6 +74,7 @@ check_server() {
     fi
 }
 
+pkill -e -f vllm
 
 # https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html#vllm-serve
 for model_name in "${MODELS[@]}"
@@ -80,14 +82,14 @@ do
     # Start the vLLM server in the background
     port=8000
     echo "Starting vLLM server..."
-    eval export CUDA_VISIBLE_DEVICES=0,1
-    vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 2 --host 0.0.0.0 --port $port" #nohup launches this in the background
+    eval export CUDA_VISIBLE_DEVICES=0,1,2,3
+    vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 4 --host 0.0.0.0 --port $port --task generate" #nohup launches this in the background
     echo $vllm_cmd
     nohup $vllm_cmd &
     
     # Wait for the server to start
     echo "Waiting for vLLM server to start..."
-    SLEEP=60
+    SLEEP=40
     while ! check_server $model_name $port; do
         echo "Server is not up yet. Checking again in $SLEEP seconds..."
         sleep $SLEEP
@@ -95,32 +97,18 @@ do
 
     echo "vLLM server is up and running."
 
-    # e_port=8001
-    # echo "Starting embedding server..."
-    # eval export CUDA_VISIBLE_DEVICES=2,3
-    # vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 2 --task embed --host 0.0.0.0 --port $e_port"
-    # # vllm_cmd="nohup vllm serve WhereIsAI/UAE-Code-Large-V --api-key token-abc123 --tensor_parallel_size 1 --task embed --host 0.0.0.0 --port $e_port
-    # echo $vllm_cmd
-    # nohup $vllm_cmd &
-    # echo "Waiting for embedding server to start..."
-    # SLEEP=60
-    # while ! check_server $model_name $e_port; do
-    #     echo "Server is not up yet. Checking again in $SLEEP seconds..."
-    #     sleep $SLEEP
-    # done
-    # echo "embedding server is up and running."
-
     e_port=8001
     eval export CUDA_VISIBLE_DEVICES=0,1,2,3
     # Run the main Python script
     cmd="python -m phantom_eval \
-        --method rag \
+        --method fewshot-rag \
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \
         --inf_seed_list $seed_list \
         --inf_temperature $TEMPERATURE \
         --rag_method WhereIsAI/UAE-Code-Large-V1 \
+
         "
                 # --force \
     echo $cmd
@@ -131,6 +119,3 @@ do
     pkill -e -f vllm
     echo "vLLM server stopped."
 done
-
-# sbatch eval/zeroshot_rag_S.sh /home/jcl354/phantom-wiki/out/zeroshotRagMixin
-# bash eval/zeroshot_rag_S.sh /home/jcl354/phantom-wiki/out/zeroshotRagMixin

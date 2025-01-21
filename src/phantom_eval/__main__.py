@@ -30,7 +30,7 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
                 # This can be overridden by setting `use_api=True` in the model_kwargs.
                 # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
                 use_api=(args.method in [
-                    "rag",
+                    "rag", "fewshot-rag",
                     "react", "act", "react->cot-sc", "cot-sc->react"
                     ]),
                 port=args.inf_vllm_port,
@@ -78,6 +78,11 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 # vector_store="faiss", #args.vector_store
                 # embedding_port=args.inf_embedding_port,
                 embedding_model_name=args.rag_method,
+            )
+        case "fewshot-rag":
+            agent_kwargs = dict(
+                embedding_model_name=args.rag_method,
+                fewshot_examples=FEWSHOT_EXAMPLES,
             )
         case "react":
             agent_kwargs = dict(
@@ -182,7 +187,7 @@ async def main(args: argparse.Namespace) -> None:
                 # so they support batch async inference
                 agent_interactions = None
                 match args.method:
-                    case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc" | "rag":
+                    case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc" | "rag" | "fewshot-rag":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                         responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)

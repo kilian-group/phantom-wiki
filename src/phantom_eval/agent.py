@@ -1104,7 +1104,7 @@ class RAGMixin:
         Args:
             embedding_model_name (str): The embedding method for the vector database. Defaults to WhereIsAI/UAE-Code-Large-V. All VLLM models are supported.
         """
-        embedding_model_name = "google/gemma-2-2b-it"
+
         self.embedding_model_name = embedding_model_name
         texts = self.text_corpus['article'].tolist()
         if(use_api):
@@ -1240,7 +1240,8 @@ SUPPORTED_METHOD_NAMES: list[str] = [
     "act",
     "react->cot-sc",
     "cot-sc->react",
-    "rag"
+    "rag",
+    "fewshot-rag",
 ]
 
 
@@ -1267,7 +1268,7 @@ def get_agent(
             return React_CoTSCAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "cot-sc->react":
             return CoTSC_ReactAgent(text_corpus, llm_prompt, **agent_kwargs)
-        case "rag":
+        case "rag" | "fewshot-rag":
             # return RAGAgent(text_corpus, llm_prompt, **agent_kwargs)
             return NshotRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
         case _:
