@@ -317,59 +317,61 @@ class CommonLLMChat(LLMChat):
         response = await t
         parsed_response = self._parse_api_output(response)
         return parsed_response
-    
-    async def _async_chat_completion(self, batch_messages_api_format: list[list[dict]], inf_gen_config: InferenceGenerationConfig) -> list[object]:
-        """
-        Generate responses for a batch of formatted conversations using asynchronous API calls, and return a batch of response objects.
-        Accounts for rate limits by sleeping between requests.
-        """
-        assert self.RPM_LIMIT >= 0, "RPM_LIMIT must be greater than 0 (or 0 if no rate limit)"
-        assert self.TPM_LIMIT >= 0, "TPM_LIMIT must be greater than 0 (or 0 if no rate limit)"
-        tasks = []
-
-        start = time.time()
-        token_usage_per_minute = 0 # NOTE: we estimate the number of used tokens in the current minute
-        
-        for i, messages_api_format in tqdm(enumerate(batch_messages_api_format), total=len(batch_messages_api_format)):
-            logger.debug(f"{time.time()-start}: Requesting message {i}")
-            input_tokens = self._count_tokens(messages_api_format)
-            logger.debug(f"Input tokens: {input_tokens}")
-            token_usage_per_minute += input_tokens
-
-            # check if we need to sleep to respect the TPM rate limit
-            remaining = 60 - (time.time() - start) # number of seconds remaining in the current minute
-            if self.TPM_LIMIT and token_usage_per_minute > self.TPM_LIMIT and remaining > 0:
-                logger.info(f"Token usage per minute: {token_usage_per_minute}")
-                logger.info(f"Sleeping for {remaining} seconds to respect the TPM rate limit")
-                await asyncio.sleep(remaining + 1) # NOTE: add an extra second so we definitely pass the minute
-            
-            # reset if we have passed the minute
-            if time.time() - start > 60:
-                start = time.time()
-                token_usage_per_minute = 0
-
-            t = self._call_api(messages_api_format, inf_gen_config, use_async=True)
-            tasks.append(asyncio.create_task(t))
-            # Sleep to respect the rate limit
-            if self.RPM_LIMIT:
-                await asyncio.sleep(60 / self.RPM_LIMIT * 1.5)
-        
-        logger.debug(f"{time.time()-start}: Waiting for responses")
-        responses = await asyncio.gather(*tasks)
-        logger.debug(f"{time.time()-start}: Got all responses")
-        return responses
-    
     async def batch_generate_response(self, convs: list[Conversation], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
-        batch_messages_api_format = [self._convert_conv_to_api_format(conv) for conv in convs]
-        responses = await self._async_chat_completion(batch_messages_api_format, inf_gen_config)
-        parsed_responses = [self._parse_api_output(response) for response in responses]
+        parsed_responses = await asyncio.gather(*[
+            self.generate_response(conv, inf_gen_config) 
+            for conv in convs
+        ])
         return parsed_responses
+    
+    # 
+    # Deprecated implementation of batch_generate_response
+    # 
+    # async def _async_chat_completion(self, batch_messages_api_format: list[list[dict]], inf_gen_config: InferenceGenerationConfig) -> list[object]:
+    #     """
+    #     Generate responses for a batch of formatted conversations using asynchronous API calls, and return a batch of response objects.
+    #     Accounts for rate limits by sleeping between requests.
+    #     """
+    #     assert self.RPM_LIMIT >= 0, "RPM_LIMIT must be greater than 0 (or 0 if no rate limit)"
+    #     assert self.TPM_LIMIT >= 0, "TPM_LIMIT must be greater than 0 (or 0 if no rate limit)"
+    #     tasks = []
+
+    #     start = time.time()
+    #     token_usage_per_minute = 0 # NOTE: we estimate the number of used tokens in the current minute
+        
+    #     for i, messages_api_format in tqdm(enumerate(batch_messages_api_format), total=len(batch_messages_api_format)):
+    #         logger.debug(f"{time.time()-start}: Requesting message {i}")
+    #         input_tokens = self._count_tokens(messages_api_format)
+    #         logger.debug(f"Input tokens: {input_tokens}")
+    #         token_usage_per_minute += input_tokens
+
+    #         # check if we need to sleep to respect the TPM rate limit
+    #         remaining = 60 - (time.time() - start) # number of seconds remaining in the current minute
+    #         if self.TPM_LIMIT and token_usage_per_minute > self.TPM_LIMIT and remaining > 0:
+    #             logger.info(f"Token usage per minute: {token_usage_per_minute}")
+    #             logger.info(f"Sleeping for {remaining} seconds to respect the TPM rate limit")
+    #             await asyncio.sleep(remaining + 1) # NOTE: add an extra second so we definitely pass the minute
+            
+    #         # reset if we have passed the minute
+    #         if time.time() - start > 60:
+    #             start = time.time()
+    #             token_usage_per_minute = 0
+
+    #         t = self._call_api(messages_api_format, inf_gen_config, use_async=True)
+    #         tasks.append(asyncio.create_task(t))
+    #         # Sleep to respect the rate limit
+    #         if self.RPM_LIMIT:
+    #             await asyncio.sleep(60 / self.RPM_LIMIT * 1.5)
+        
+    #     logger.debug(f"{time.time()-start}: Waiting for responses")
+    #     responses = await asyncio.gather(*tasks)
+    #     logger.debug(f"{time.time()-start}: Got all responses")
+    #     return responses
+    
     # async def batch_generate_response(self, convs: list[Conversation], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
-    #     tasks = [
-    #         self.generate_response(conv, inf_gen_config) 
-    #         for conv in convs
-    #     ]
-    #     parsed_responses = await asyncio.gather(*tasks)
+    #     batch_messages_api_format = [self._convert_conv_to_api_format(conv) for conv in convs]
+    #     responses = await self._async_chat_completion(batch_messages_api_format, inf_gen_config)
+    #     parsed_responses = [self._parse_api_output(response) for response in responses]
     #     return parsed_responses
 
 
