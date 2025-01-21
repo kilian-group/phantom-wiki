@@ -191,10 +191,48 @@ class CommonLLMChat(LLMChat):
         super().__init__(model_name, model_path)
         self.client = None
 
+        # Utils for rate limiting
+        # value is incremented every interval and represents the next time a request can be made
+        # value_slow is incremented every minute and represents the next time a new minute starts
+        self.start = self.value = self.value_slow = time.time()
+        # NOTE: we estimate the number of used tokens in the current minute
+        self.token_usage_per_minute = 0
+        # condition variable for rate limit
+        self.cond = asyncio.Condition()
+
     def _update_rate_limits(self, usage_tier: int) -> None:
         rate_limit_for_usage_tier = self.RATE_LIMITS[self.model_name][f"usage_tier={usage_tier}"]
         self.RPM_LIMIT = rate_limit_for_usage_tier["RPM"]
         self.TPM_LIMIT = rate_limit_for_usage_tier["TPM"]
+    def _increment(self, input_tokens):
+        """Increment the counter by interval = (60 / RPM) and reset token usage
+        """
+        # inflate the interval by 1.5x to be conservative
+        self.value += 60 / self.RPM_LIMIT * 1.5
+        # increment value_slow so that it is always ahead of value
+        if self.value > self.value_slow:
+            self.value_slow += 60
+            # when value catches up to value_slow, reset token usage per minute to zero
+            self.token_usage_per_minute = 0
+        self.token_usage_per_minute += input_tokens
+    def _remaining(self):
+        """Get the number of seconds to in the current interval
+        """
+        return self.value - time.time()
+    def _check(self):
+        """Check if the current interval is over
+        """
+        logging.debug(f"curr time={time.time()-self.start}, counter={self.value-self.start}")
+        return time.time() >= self.value
+    def _current(self):
+        """Print the current time since start
+        """
+        return f"curr time={time.time() - self.start}, tokens used={self.token_usage_per_minute}"
+    @abc.abstractmethod
+    def _count_tokens(self, messages_api_format: list[dict]) -> int:
+        """Returns the count of total tokens in the messages, which are in the common format.
+        """
+        pass
 
     @abc.abstractmethod
     def _call_api(
@@ -203,8 +241,7 @@ class CommonLLMChat(LLMChat):
         inf_gen_config: InferenceGenerationConfig,
         use_async: bool = False,
     ) -> object:
-        """
-        Calls the API to generate a response for the messages. Expects messages ready for API.
+        """Calls the API to generate a response for the messages. Expects messages ready for API.
 
         Args:
             messages_api_format (list[dict]): List of messages in the API format.
@@ -215,24 +252,13 @@ class CommonLLMChat(LLMChat):
             object: The response object from the API.
         """
         pass
-    
     @abc.abstractmethod
     def _parse_api_output(self, response: object) -> LLMChatResponse:
-        """
-        Parse the response from the API and return the prediction and usage statistics.
-        """
-        pass
-
-    @abc.abstractmethod
-    def _count_tokens(self, messages_api_format: list[dict]) -> int:
-        """
-        Returns the count of total tokens in the messages, which are in the common format.
+        """Parse the response from the API and return the prediction and usage statistics.
         """
         pass
-
     def _convert_conv_to_api_format(self, conv: Conversation) -> list[dict]:
-        """
-        Converts the conversation object to a common format supported by various LLM providers.
+        """Converts the conversation object to a common format supported by various LLM providers.
         """
         formatted_messages = []
         for message in conv.messages:
@@ -255,6 +281,42 @@ class CommonLLMChat(LLMChat):
             return parsed_response
 
         return _call_api_wrapper()
+    
+    async def generate_response(self, conv: Conversation, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+        """Async version of generate_response that can be called concurrently while respecting rate limits"""
+        messages_api_format: list[dict] = self._convert_conv_to_api_format(conv)
+        input_tokens = self._count_tokens(messages_api_format)
+        logger.debug(f"Input tokens: {input_tokens}")
+        if input_tokens > self.TPM_LIMIT:
+            logging.warning(f"Input tokens {input_tokens} exceed TPM limit {self.TPM_LIMIT}")
+
+        # acquire the lock for the counter
+        await self.cond.acquire()
+        logging.debug(f"{self._current()}: Acquired lock for {conv.uid}")
+        # sleep in necessary
+        remaining = self._remaining()
+        if remaining > 0:
+            logging.debug(f"Sleeping for {remaining}")
+            await asyncio.sleep(remaining)
+        try:
+            # yield to other threads until condition is true
+            await self.cond.wait_for(lambda : self._check() and input_tokens + self.token_usage_per_minute <= self.TPM_LIMIT)
+            # update counter
+            self._increment(input_tokens)
+            logging.debug(f"{self._current()}: Updated counter to {self._current()}")
+            # schedule _call_api to run concurrently
+            t = asyncio.create_task(self._call_api(messages_api_format, inf_gen_config, use_async=True))
+            logging.debug(f"{self._current()}: Done with {conv.uid}")
+            # release underlying lock and wake up 1 waiting task
+            self.cond.notify_all()
+            logging.debug(f"{self._current()}: Notified all")
+        finally:
+            self.cond.release()
+            logging.debug(f"{self._current()}: Released lock for {conv.uid}")
+        # wait for the task to complete
+        response = await t
+        parsed_response = self._parse_api_output(response)
+        return parsed_response
     
     async def _async_chat_completion(self, batch_messages_api_format: list[list[dict]], inf_gen_config: InferenceGenerationConfig) -> list[object]:
         """
@@ -290,7 +352,7 @@ class CommonLLMChat(LLMChat):
             tasks.append(asyncio.create_task(t))
             # Sleep to respect the rate limit
             if self.RPM_LIMIT:
-                await asyncio.sleep(60 / self.RPM_LIMIT)
+                await asyncio.sleep(60 / self.RPM_LIMIT * 1.5)
         
         logger.debug(f"{time.time()-start}: Waiting for responses")
         responses = await asyncio.gather(*tasks)
@@ -302,6 +364,13 @@ class CommonLLMChat(LLMChat):
         responses = await self._async_chat_completion(batch_messages_api_format, inf_gen_config)
         parsed_responses = [self._parse_api_output(response) for response in responses]
         return parsed_responses
+    # async def batch_generate_response(self, convs: list[Conversation], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
+    #     tasks = [
+    #         self.generate_response(conv, inf_gen_config) 
+    #         for conv in convs
+    #     ]
+    #     parsed_responses = await asyncio.gather(*tasks)
+    #     return parsed_responses
 
 
 class OpenAIChat(CommonLLMChat):
@@ -377,7 +446,12 @@ class TogetherChat(CommonLLMChat):
         "meta-llama/meta-llama-3.1-405b-instruct-turbo",
         "meta-llama/llama-vision-free",
     ]
-    RATE_LIMITS = {llm_name: {"usage_tier=1": {"RPM": 20, "TPM": 500_000}} for llm_name in SUPPORTED_LLM_NAMES}
+    RATE_LIMITS = {
+        llm_name: {
+            "usage_tier=1": {"RPM": 20, "TPM": 500_000}
+        } 
+        for llm_name in SUPPORTED_LLM_NAMES
+    }
 
     def __init__(
         self,
@@ -514,16 +588,19 @@ class GeminiChat(CommonLLMChat):
     """
     RATE_LIMITS = {
         "gemini-1.5-flash-002": {
+            "usage_tier=0": {"RPM": 15, "TPM": 1_000_000}, # free tier
             "usage_tier=1": {"RPM": 2_000, "TPM": 4_000_000},
         },
         "gemini-1.5-pro-002": {
+            "usage_tier=0": {"RPM": 2, "TPM": 32_000}, # free tier
             "usage_tier=1": {"RPM": 1_000, "TPM": 4_000_000},
         },
         "gemini-1.5-flash-8b-001": {
+            "usage_tier=0": {"RPM": 15, "TPM": 1_000_000},  # free tier
             "usage_tier=1": {"RPM": 4_000, "TPM": 4_000_000},
         },
         "gemini-2.0-flash-exp": {
-            "usage_tier=1": {"RPM": 10, "TPM": 4_000_000}, # https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash
+            "usage_tier=0": {"RPM": 10, "TPM": 4_000_000}, # free tier: https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash
         }
     }
     SUPPORTED_LLM_NAMES: list[str] = list(RATE_LIMITS.keys())
