@@ -65,6 +65,8 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument("--force", "-f", action="store_true",
                         help="Force to overwrite the output file" \
                             "Otherwise, it will skip the evaluation if the output file exists")
+    parser.add_argument("--ignore_agent_interactions", action="store_true",
+                        help="If you don't want to save the agent interactions to the predictions JSON files, set this flag")
     # Saving params
     parser.add_argument("--output_dir", "-od", default="out",
                     help="Path to read/write the outputs")

@@ -109,7 +109,7 @@ do
         --method rag \
         -od $1 \
         -m $model_name \
-        --split_list depth_10_size_26_seed_1 depth_10_size_50_seed_1 depth_10_size_100_seed_1 depth_10_size_200_seed_1 \
+        --split_list $SPLIT_LIST \
         --inf_seed_list $seed_list \
         --inf_temperature $TEMPERATURE \
         -bs 2 \
