@@ -47,6 +47,8 @@ def get_parser() -> argparse.ArgumentParser:
                         help="Number of tries to get response")
     parser.add_argument("--inf_wait_seconds", type=int, default=2,
                         help="Seconds to wait between tries")
+    parser.add_argument("--inf_usage_tier", type=int, default=1,
+                        help="API usage tier (note: tier 0 corresponds to free versions of Gemini)")
 
     # Dataset params
     parser.add_argument("--dataset", type=str, default="mlcore/phantom-wiki-v0.3",
