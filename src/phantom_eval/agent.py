@@ -2,6 +2,7 @@ import abc
 import logging
 import re
 from collections import Counter
+import asyncio
 
 import pandas as pd
 
@@ -402,7 +403,7 @@ class ActAgent(Agent):
     async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
         raise NotImplementedError("Batch run is not supported for ActAgent.")
 
-    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+    async def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
         # Add the initial prompt to agent's conversation
@@ -413,10 +414,10 @@ class ActAgent(Agent):
         total_usage: dict = {}
         while (self.step_round <= self.max_steps) and (not self.finished):
             try:
-                response = self._step_action(llm_chat, question, inf_gen_config)
+                response = await self._step_action(llm_chat, question, inf_gen_config)
                 total_usage = aggregate_usage([total_usage, response.usage])
 
-                response = self._step_observation(response)
+                response = await self._step_observation(response)
                 total_usage = aggregate_usage([total_usage, response.usage])
             except Exception as e:
                 response = LLMChatResponse(
@@ -431,14 +432,14 @@ class ActAgent(Agent):
 
         return LLMChatResponse(pred=response.pred, usage=total_usage, error=response.error)
 
-    def _step_action(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+    async def _step_action(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         """
         Run the action step of the agent.
         """
         # Stop generating when seeing "Observation" (when action is complete)
         leading_llm_prompt = f"Action {self.step_round}: "
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["Observation"]), deep=True)
-        response = self._prompt_agent(llm_chat, question, leading_llm_prompt, inf_gen_config)
+        response = await self._prompt_agent(llm_chat, question, leading_llm_prompt, inf_gen_config)
         response.pred = leading_llm_prompt + format_pred(response.pred)
         logger.debug(f"\n\t>>> {response.pred}\n")
 
@@ -449,7 +450,7 @@ class ActAgent(Agent):
         )
         return response
 
-    def _step_observation(self, response_action: LLMChatResponse) -> LLMChatResponse:
+    async def _step_observation(self, response_action: LLMChatResponse) -> LLMChatResponse:
         """
         Run the observation step of the agent and increments the step round.
         NOTE: Returned usage is empty since the LLM is not called.
@@ -494,7 +495,7 @@ class ActAgent(Agent):
         self.step_round += 1
         return LLMChatResponse(pred=observation_for_round, usage={})
 
-    def _prompt_agent(self, llm_chat: LLMChat, question: str, llm_leading_prompt: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+    async def _prompt_agent(self, llm_chat: LLMChat, question: str, llm_leading_prompt: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         """
         Prompt the LLM with the agent's current prompt and the given question.
         `inf_gen_config` is passed to the LLM's generation function.
@@ -505,7 +506,7 @@ class ActAgent(Agent):
         conv: Conversation = Conversation(messages=[
             Message(role="user", content=[ContentTextMessage(text=user_message + llm_leading_prompt)])
         ])
-        response: LLMChatResponse = llm_chat.generate_response(conv, inf_gen_config)
+        response: LLMChatResponse = await llm_chat.generate_response(conv, inf_gen_config)
         return response
 
 
@@ -546,7 +547,7 @@ class ReactAgent(Agent):
     async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
         raise NotImplementedError("Batch run is not supported for ReactAgent.")
 
-    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+    async def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
         # Add the initial prompt to agent's conversation
@@ -557,13 +558,13 @@ class ReactAgent(Agent):
         total_usage: dict = {}
         while (self.step_round <= self.max_steps) and (not self.finished):
             try:
-                response = self._step_thought(llm_chat, question, inf_gen_config)
+                response = await self._step_thought(llm_chat, question, inf_gen_config)
                 total_usage = aggregate_usage([total_usage, response.usage])
 
-                response = self._step_action(llm_chat, question, inf_gen_config)
+                response = await self._step_action(llm_chat, question, inf_gen_config)
                 total_usage = aggregate_usage([total_usage, response.usage])
 
-                response = self._step_observation(response)
+                response = await self._step_observation(response)
                 total_usage = aggregate_usage([total_usage, response.usage])
             except Exception as e:
                 # If an error occurs, return the error message and empty pred
@@ -580,14 +581,15 @@ class ReactAgent(Agent):
 
         return LLMChatResponse(pred=response.pred, usage=total_usage, error=response.error)
 
-    def _step_thought(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
-        """
-        Run the thought step of the agent.
+    async def _step_thought(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+        """Run the thought step of the agent.
+
+        NOTE: this is an asynchronous function because it calls the LLM.
         """
         # Stop generating when seeing "Action" (when thought is complete)
         leading_llm_prompt = f"Thought {self.step_round}: "
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["Action"]), deep=True)
-        response = self._prompt_agent(llm_chat, question, leading_llm_prompt, inf_gen_config)
+        response = await self._prompt_agent(llm_chat, question, leading_llm_prompt, inf_gen_config)
         response.pred = leading_llm_prompt + format_pred(response.pred)
         logger.debug(f"\n\t>>> {response.pred}\n")
 
@@ -598,14 +600,15 @@ class ReactAgent(Agent):
         )
         return response
     
-    def _step_action(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
-        """
-        Run the action step of the agent.
+    async def _step_action(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+        """Run the action step of the agent.
+
+        NOTE: this is an asynchronous function because it calls the LLM.
         """
         # Stop generating when seeing "Observation" (when action is complete)
         leading_llm_prompt = f"Action {self.step_round}: "
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["Observation"]), deep=True)
-        response = self._prompt_agent(llm_chat, question, leading_llm_prompt, inf_gen_config)
+        response = await self._prompt_agent(llm_chat, question, leading_llm_prompt, inf_gen_config)
         response.pred = leading_llm_prompt + format_pred(response.pred)
         logger.debug(f"\n\t>>> {response.pred}\n")
 
@@ -616,10 +619,11 @@ class ReactAgent(Agent):
         )
         return response
 
-    def _step_observation(self, response_action: LLMChatResponse) -> LLMChatResponse:
-        """
-        Run the observation step of the agent and increments the step round.
+    async def _step_observation(self, response_action: LLMChatResponse) -> LLMChatResponse:
+        """Run the observation step of the agent and increments the step round.
+
         NOTE: Returned usage is empty since the LLM is not called.
+        Although this function does not call the LLM, we make it async so that it can be run concurrently.
         """
         action_type, action_arg = ReactAgent.parse_action(response_action.pred)
         match action_type:
@@ -661,10 +665,11 @@ class ReactAgent(Agent):
         self.step_round += 1
         return LLMChatResponse(pred=observation_for_round, usage={})
 
-    def _prompt_agent(self, llm_chat: LLMChat, question: str, leading_llm_prompt: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
-        """
-        Prompt the LLM with the agent's current prompt and the given question.
+    async def _prompt_agent(self, llm_chat: LLMChat, question: str, leading_llm_prompt: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+        """Prompt the LLM with the agent's current prompt and the given question.
         `inf_gen_config` is passed to the LLM's generation function.
+
+        NOTE: this is an asynchronous function because it calls the LLM.
         """
         # Put the full scratchpad in the prompt and ask the LLM to generate.
         # All of the back and forth conversation so far becomes the user prompt.
@@ -672,7 +677,7 @@ class ReactAgent(Agent):
         conv: Conversation = Conversation(messages=[
             Message(role="user", content=[ContentTextMessage(text=user_message + "\n" + leading_llm_prompt)])
         ])
-        response: LLMChatResponse = llm_chat.generate_response(conv, inf_gen_config)
+        response: LLMChatResponse = await llm_chat.generate_response(conv, inf_gen_config)
         return response
 
     @classmethod

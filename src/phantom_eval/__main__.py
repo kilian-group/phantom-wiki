@@ -4,6 +4,7 @@ import math
 import asyncio
 import logging
 from pathlib import Path
+from copy import deepcopy
 
 import pandas as pd
 from tqdm import tqdm
@@ -199,13 +200,17 @@ async def main(args: argparse.Namespace) -> None:
                     case "react" | "act" | "react->cot-sc" | "cot-sc->react":
                         # Run agent on each question one by one
                         responses: list[LLMChatResponse] = []
-                        agent_interactions: list[Conversation] = []
-                        for qa_sample in tqdm(batch_df_qa_pairs.itertuples(), total=batch_size):
-                            agent.reset()  # Must reset the agent for each question
-                            inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
-                            response = agent.run(llm_chat, qa_sample.question, inf_gen_config)
-                            responses.append(response)
-                            agent_interactions.append(agent.agent_interactions)
+                        inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
+                        agents = [
+                            deepcopy(agent) 
+                            for _ in range(batch_size)
+                        ]
+                        tasks = [
+                            agent.run(llm_chat, qa_sample.question, inf_gen_config)
+                            for agent, qa_sample in zip(agents, batch_df_qa_pairs.itertuples())
+                        ]
+                        responses = await asyncio.gather(*tasks)
+                        agent_interactions: list[Conversation] = [agent.agent_interactions for agent in agents]
 
                 # Log the final answers for the batch
                 pred_path.parent.mkdir(parents=True, exist_ok=True)
