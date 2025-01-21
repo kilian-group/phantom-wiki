@@ -27,8 +27,16 @@ if [ -z "$2" ]; then
 else
     METHOD_LIST=($2)
 fi
-# construct split list
-for seed in 1 #2 3 4 5
+
+# construct seed list
+if [ -z "$3" ]; then
+    echo "Using default seed list"
+    SEED_LIST="1 2 3 4 5"
+else
+    SEED_LIST="$3"
+fi
+
+for seed in $SEED_LIST
 do
     for size in 26 50 100 200 500
     do
