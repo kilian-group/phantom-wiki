@@ -9,7 +9,7 @@
 #SBATCH --get-user-env                       # retrieve the users login environment
 #SBATCH --mem=100000                         # server memory (MBs) requested (per node)
 #SBATCH -t infinite                           # Time limit (hh:mm:ss)
-#SBATCH --gres=gpu:a6000:2                   # Number of GPUs requested
+#SBATCH --gres=gpu:a6000:12                   # Number of GPUs requested
 #SBATCH --partition=kilian                   # Request partition
 
 # Script for running zero-shot evaluation on all small models (<4 B params)
@@ -35,8 +35,11 @@ conda activate dataset
 
 # list of models
 MODELS=(
-    'google/gemma-2-2b-it'
-    'meta-llama/llama-3.2-1b-instruct'
+    'meta-llama/llama-3.1-70b-instruct'
+    'meta-llama/llama-3.3-70b-instruct'
+    'google/gemma-2-27b-it'
+    'microsoft/phi-3.5-mini-instruct'
+    'microsoft/phi-3.5-moe-instruct'
 )
 TEMPERATURE=0
 # if TEMPERATURE=0, then sampling is greedy so no need run with muliptle seeds
@@ -46,7 +49,14 @@ then
 else
     seed_list="1 2 3 4 5"
 fi
-
+# construct split list
+for seed in 1 2 3 4 5
+do
+    for size in 26 50 100 200 500
+    do
+        SPLIT_LIST+="depth_10_size_${size}_seed_${seed} "
+    done
+done
 
 # Function to check if the server is up
 check_server() {
@@ -92,7 +102,6 @@ do
     echo "Starting embedding server..."
     eval export CUDA_VISIBLE_DEVICES=2,3
     vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 2 --task embed --host 0.0.0.0 --port $e_port"
-    # vllm_cmd="nohup vllm serve WhereIsAI/UAE-Code-Large-V --api-key token-abc123 --tensor_parallel_size 1 --task embed --host 0.0.0.0 --port $e_port
     echo $vllm_cmd
     nohup $vllm_cmd &
     echo "Waiting for embedding server to start..."
@@ -103,7 +112,7 @@ do
     done
     echo "embedding server is up and running."
 
-    eval export CUDA_VISIBLE_DEVICES=0,1
+    eval export CUDA_VISIBLE_DEVICES=0,1,2,3
     # Run the main Python script
     cmd="python -m phantom_eval \
         --method rag \
@@ -114,10 +123,8 @@ do
         --inf_temperature $TEMPERATURE \
         -bs 2 \
         --inf_vllm_port $port \
-        --inf_embedding_port $e_port \
-        --force
+        --inf_embedding_port $e_port 
         "
-                # --log_level DEBUG \
     echo $cmd
     eval $cmd
 

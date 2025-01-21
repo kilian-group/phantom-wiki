@@ -29,7 +29,10 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
                 # If the method is zeroshot or fewshot, we do not need to use the API (for vLLM)
                 # This can be overridden by setting `use_api=True` in the model_kwargs.
                 # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
-                use_api=(args.method in ["react", "act", "react->cot-sc", "cot-sc->react"]),
+                use_api=(args.method in [
+                    "rag",
+                    "react", "act", "react->cot-sc", "cot-sc->react"
+                    ]),
                 port=args.inf_vllm_port,
             )
         case _:
@@ -72,7 +75,8 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
         case "rag":
             agent_kwargs = dict(
                 embedding="together", #args.embedding
-                vector_store="faiss" #args.vector_store
+                vector_store="faiss", #args.vector_store
+                embedding_port=args.inf_embedding_port,
             )
         case "react":
             agent_kwargs = dict(
@@ -148,7 +152,7 @@ async def main(args: argparse.Namespace) -> None:
             can_process_full_batch = (args.model_name in VLLMChat.SUPPORTED_LLM_NAMES) \
                 and (args.method not in ["react", "act", "react->cot-sc", "cot-sc->react"])
             batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
-            for batch_number in range(1, math.ceil(num_df_qa_pairs/batch_size) + 1):
+            for batch_number in range(1, math.ceil(num_df_qa_pairs/batch_size) + 1): #range(1, 2):
                 run_name = (
                     f"split={split}" \
                     + f"__model_name={args.model_name.replace('/', '--')}" \
@@ -183,9 +187,7 @@ async def main(args: argparse.Namespace) -> None:
                         responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
                         # NOTE: the agent interactions are just single Conversation objects containing the prompt
                         # for the self-consistency methods, we save the Conversation object from the last iteration
-                        if args.log_level == "DEBUG":
-                            logging.warning(f"Saving prompts for method={args.method} in agent_interactions. This takes up a lot of space as the prompts can be large.")
-                            agent_interactions: list[Conversation] = agent.agent_interactions
+                        agent_interactions: list[Conversation] = agent.agent_interactions
                     case "cot" | "cot-sc":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
@@ -224,7 +226,7 @@ async def main(args: argparse.Namespace) -> None:
                     batch_number,
                     batch_df_qa_pairs,
                     responses,
-                    interactions=agent_interactions,
+                    interactions=agent_interactions if not args.ignore_agent_interactions else [],
                 )
 
 
