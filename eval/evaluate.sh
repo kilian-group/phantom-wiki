@@ -20,9 +20,9 @@ if [ -z "$2" ]; then
         "cot-sc"
         "react"
         "act"
-        "fewshot-rag"
-        "rag"
-        "cot-rag"
+        "fewshot-retriever"
+        "retriever"
+        "cot-retriever"
     )
 else
     METHOD_LIST=($2)
