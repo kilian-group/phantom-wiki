@@ -35,7 +35,7 @@ conda activate dataset
 
 # list of models
 MODELS=(
-    'meta-llama/llama-3.2-3b-instruct' #loading datasets takes 2.5GB, embedding model takes 1GB
+    'meta-llama/llama-3.2-3b-instruct'
     'meta-llama/llama-3.1-8b-instruct'
     'google/gemma-2-9b-it'
     'mistralai/mistral-7b-instruct-v0.3'
@@ -62,6 +62,7 @@ done
 check_server() {
     local model_name=$1
     local port=$2
+    # echo http://0.0.0.0:8001/v1/chat/completions
     response=$(curl -o /dev/null -s -w "%{http_code}" http://0.0.0.0:$port/v1/chat/completions \
                     -X POST \
                     -H "Content-Type: application/json" \
@@ -89,28 +90,26 @@ do
     
     # Wait for the server to start
     echo "Waiting for vLLM server to start..."
-    SLEEP=40
+    SLEEP=30
     while ! check_server $model_name $port; do
         echo "Server is not up yet. Checking again in $SLEEP seconds..."
         sleep $SLEEP
     done
-
     echo "vLLM server is up and running."
 
+    # Run the main Python script
     e_port=8001
     eval export CUDA_VISIBLE_DEVICES=0,1,2,3
-    # Run the main Python script
     cmd="python -m phantom_eval \
-        --method fewshot-rag \
+        --method cot-rag \
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \
         --inf_seed_list $seed_list \
         --inf_temperature $TEMPERATURE \
         --rag_method WhereIsAI/UAE-Code-Large-V1 \
-
         "
-                # --force \
+        # --force \
     echo $cmd
     eval $cmd
 

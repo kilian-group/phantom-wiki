@@ -20,12 +20,15 @@ if [ -z "$2" ]; then
         "cot-sc"
         "react"
         "act"
+        "fewshot-rag"
+        "rag"
+        "cot-rag"
     )
 else
     METHOD_LIST=($2)
 fi
 # construct split list
-for seed in 1 2 3 4 5
+for seed in 1 #2 3 4 5
 do
     for size in 26 50 100 200 500
     do

@@ -305,7 +305,10 @@ class CoTAgent(Agent):
         return parsed_responses
     
     def _build_agent_prompt(self, question: str) -> str:
-        evidence = _get_evidence(self.text_corpus)
+        if self.embedding_model_name:
+            evidence = self.get_RAG_evidence(question)
+        else:
+            evidence = _get_evidence(self.text_corpus)
         return self.llm_prompt.get_prompt().format(
             evidence=evidence,
             examples=self.cot_examples,
@@ -1213,6 +1216,43 @@ class NshotRAGAgent(NshotAgent, RAGMixin):
         # Relies on the implementation of batch_run in the subclass
         return await super().batch_run(llm_chat, questions, inf_gen_config)
 
+
+class CoTRAGAgent(CoTAgent, RAGMixin):
+    """
+    Agent to implement Zeroshot and fewshot evaluation with majority vote.
+    """
+    def __init__(self, 
+                text_corpus: pd.DataFrame, 
+                llm_prompt: LLMPrompt, 
+                cot_examples: str = "",
+                embedding_model_name: str="WhereIsAI/UAE-Code-Large-V",
+                use_api: bool | None = True,
+                tensor_parallel_size: int | None = 1,
+                port:int = 8001,
+                ):
+        """
+        Args:
+            cot_examples (str): Prompt examples to include in agent prompt.
+        """
+        CoTAgent.__init__(self, text_corpus, llm_prompt, cot_examples)
+        RAGMixin.__init__(self, text_corpus, embedding_model_name, use_api, tensor_parallel_size, port)
+
+    def run(self, 
+            llm_chat: LLMChat, 
+            question: str, 
+            inf_gen_config: InferenceGenerationConfig
+            ) -> LLMChatResponse:
+        # Relies on the implementation of run in the subclass
+        return super().run(llm_chat, question, inf_gen_config)
+
+    async def batch_run(self, 
+                        llm_chat: LLMChat, 
+                        questions: list[str], 
+                        inf_gen_config: InferenceGenerationConfig
+                        ) -> list[LLMChatResponse]:
+        # Relies on the implementation of batch_run in the subclass
+        return await super().batch_run(llm_chat, questions, inf_gen_config)
+
 #### Utils ####
 
 def format_pred(pred: str) -> str:
@@ -1242,6 +1282,7 @@ SUPPORTED_METHOD_NAMES: list[str] = [
     "cot-sc->react",
     "rag",
     "fewshot-rag",
+    "cot-rag",
 ]
 
 
@@ -1271,5 +1312,7 @@ def get_agent(
         case "rag" | "fewshot-rag":
             # return RAGAgent(text_corpus, llm_prompt, **agent_kwargs)
             return NshotRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
+        case "cot-rag":
+            return CoTRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
         case _:
             raise ValueError(f"Invalid method: {method}")
