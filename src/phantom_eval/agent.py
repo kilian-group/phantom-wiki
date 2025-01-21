@@ -423,6 +423,7 @@ class ActAgent(Agent):
                 response = LLMChatResponse(
                     pred="", usage=total_usage, error=f"<agent_error>{e}</agent_error>"
                 )
+                logging.warning(f"Error in step {self.step_round}: {e}")
                 break
 
         if (self.step_round > self.max_steps) and (not self.finished):
@@ -571,6 +572,7 @@ class ReactAgent(Agent):
                 response = LLMChatResponse(
                     pred="", usage=total_usage, error=f"<agent_error>{e}</agent_error>"
                 )
+                logging.warning(f"Error in step {self.step_round}: {e}")
                 break
 
         if (self.step_round > self.max_steps) and (not self.finished):

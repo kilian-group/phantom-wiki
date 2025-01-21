@@ -208,7 +208,7 @@ class CommonLLMChat(LLMChat):
         """Increment the counter by interval = (60 / RPM) and reset token usage
         """
         # inflate the interval by 1.5x to be conservative
-        self.value += 60 / self.RPM_LIMIT * 1.5
+        self.value += 60 / self.RPM_LIMIT * 1.5 + 1
         # increment value_slow so that it is always ahead of value
         if self.value > self.value_slow:
             self.value_slow += 60
