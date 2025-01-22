@@ -27,34 +27,14 @@ if [ -z "$1" ]; then
 fi
 # activate conda environment
 # source /share/apps/anaconda3/2021.05/etc/profile.d/conda.sh
-source /home/jcl354/anaconda3/etc/profile.d/conda.sh
-# conda init bash
-# NOTE: this assumes that conda environment is called `dataset`
-# change this to your conda environment as necessary
-conda activate dataset
+# source /home/jcl354/anaconda3/etc/profile.d/conda.sh
+# # conda init bash
+# # NOTE: this assumes that conda environment is called `dataset`
+# # change this to your conda environment as necessary
+# conda activate dataset
 
-# list of models
-MODELS=(
-    'google/gemma-2-2b-it'
-    'meta-llama/llama-3.2-1b-instruct'
-)
 TEMPERATURE=0
-# if TEMPERATURE=0, then sampling is greedy so no need run with muliptle seeds
-if (( $(echo "$TEMPERATURE == 0" | bc -l) ))
-then
-    seed_list="1"
-else
-    seed_list="1 2 3 4 5"
-fi
-
-# construct split list
-for seed in $seed_list
-do
-    for size in 26 50 100 200
-    do
-        SPLIT_LIST+="depth_10_size_${size}_seed_${seed} "
-    done
-done
+source eval/constants.sh
 
 # Function to check if the server is up
 check_server() {
@@ -76,7 +56,7 @@ check_server() {
 pkill -e -f vllm
 
 # https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html#vllm-serve
-for model_name in "${MODELS[@]}"
+for model_name in "${SMALL_MODELS[@]}"
 do
     # Start the vLLM server in the background
     port=8000
@@ -96,21 +76,6 @@ do
 
     echo "vLLM server is up and running."
 
-    # e_port=8001
-    # echo "Starting embedding server..."
-    # eval export CUDA_VISIBLE_DEVICES=2,3
-    # vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 2 --task embed --host 0.0.0.0 --port $e_port"
-    # # vllm_cmd="nohup vllm serve WhereIsAI/UAE-Code-Large-V --api-key token-abc123 --tensor_parallel_size 1 --task embed --host 0.0.0.0 --port $e_port
-    # echo $vllm_cmd
-    # nohup $vllm_cmd &
-    # echo "Waiting for embedding server to start..."
-    # SLEEP=60
-    # while ! check_server $model_name $e_port; do
-    #     echo "Server is not up yet. Checking again in $SLEEP seconds..."
-    #     sleep $SLEEP
-    # done
-    # echo "embedding server is up and running."
-
     e_port=8001
     eval export CUDA_VISIBLE_DEVICES=0,1,2,3
     # Run the main Python script
@@ -119,7 +84,7 @@ do
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \
-        --inf_seed_list $seed_list \
+        --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
         --inf_temperature $TEMPERATURE \
         --retriever_method WhereIsAI/UAE-Code-Large-V1 \
         "
@@ -132,6 +97,3 @@ do
     pkill -e -f vllm
     echo "vLLM server stopped."
 done
-
-# sbatch eval/zeroshot_rag_S.sh /home/jcl354/phantom-wiki/out/zeroshotRagMixin
-# bash eval/zeroshot_rag_S.sh /home/jcl354/phantom-wiki/out/zeroshotRagMixin

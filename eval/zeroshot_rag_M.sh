@@ -25,38 +25,16 @@ if [ -z "$1" ]; then
     echo "Usage: $0 <output directory>"
     exit 1
 fi
+TEMPERATURE=0
+
+source eval/constants.sh
 # activate conda environment
 # source /share/apps/anaconda3/2021.05/etc/profile.d/conda.sh
-source /home/jcl354/anaconda3/etc/profile.d/conda.sh
+# source /home/jcl354/anaconda3/etc/profile.d/conda.sh
 # conda init bash
 # NOTE: this assumes that conda environment is called `dataset`
 # change this to your conda environment as necessary
-conda activate dataset
-
-# list of models
-MODELS=(
-    'meta-llama/llama-3.2-3b-instruct' #loading datasets takes 2.5GB, embedding model takes 1GB
-    'meta-llama/llama-3.1-8b-instruct'
-    'google/gemma-2-9b-it'
-    'mistralai/mistral-7b-instruct-v0.3'
-)
-TEMPERATURE=0
-# if TEMPERATURE=0, then sampling is greedy so no need run with muliptle seeds
-if (( $(echo "$TEMPERATURE == 0" | bc -l) ))
-then
-    seed_list="1"
-else
-    seed_list="1 2 3 4 5"
-fi
-
-# construct split list
-for seed in $seed_list
-do
-    for size in 26 50 100 200
-    do
-        SPLIT_LIST+="depth_10_size_${size}_seed_${seed} "
-    done
-done
+# conda activate dataset
 
 # Function to check if the server is up
 check_server() {
@@ -77,7 +55,7 @@ check_server() {
 pkill -e -f vllm
 
 # https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html#vllm-serve
-for model_name in "${MODELS[@]}"
+for model_name in "${MEDIUM_MODELS[@]}"
 do
     # Start the vLLM server in the background
     port=8000
@@ -105,7 +83,7 @@ do
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \
-        --inf_seed_list $seed_list \
+        --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
         --inf_temperature $TEMPERATURE \
         --retriever_method WhereIsAI/UAE-Code-Large-V1 \
 

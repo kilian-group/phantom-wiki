@@ -22,13 +22,13 @@ LARGE_MODELS=(
 MEDIUM_MODELS=(
     'meta-llama/llama-3.2-3b-instruct'
     'meta-llama/llama-3.1-8b-instruct'
-    # 'google/gemma-2-9b-it' # OPTIONAL
-    # 'mistralai/mistral-7b-instruct-v0.3' # OPTIONAL
+    'google/gemma-2-9b-it' # OPTIONAL
+    'mistralai/mistral-7b-instruct-v0.3' # OPTIONAL
 )
 # S models (run on 3090)
 SMALL_MODELS=(
     'meta-llama/llama-3.2-1b-instruct'
-    # 'google/gemma-2-2b-it' # OPTIONAL
+    'google/gemma-2-2b-it' # OPTIONAL
 )
 # TODO add CPU models
 
