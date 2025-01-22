@@ -115,7 +115,7 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
         ax.set_yticks(yticks)
         ax.set_yticklabels(ylabels)
         fig.tight_layout()
-        fig_path = os.path.join(figures_dir, f"size-difficulty-{metric}-{model.replace('/', '--')}.png")
+        fig_path = os.path.join(figures_dir, f"size-difficulty-{metric}-{model.replace('/', '--')}.pdf")
         logging.info(f"Saving to {os.path.abspath(fig_path)}")
         fig.savefig(fig_path)
         # plt.show()
