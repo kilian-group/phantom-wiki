@@ -92,6 +92,24 @@ LINESTYLES = {
     'gpt-4o-mini-2024-07-18': '-',
     'gpt-4o-2024-11-20': '--',
 }
+HATCHSTYLES = {
+    'google/gemma-2-27b-it': '/',
+    'google/gemma-2-9b-it': '\\',
+    'google/gemma-2-2b-it': '|',
+    'meta-llama/llama-3.3-70b-instruct': '-',
+    'meta-llama/llama-3.1-70b-instruct': '+',
+    'meta-llama/llama-3.1-8b-instruct': 'x',
+    'meta-llama/llama-3.2-3b-instruct': 'o',
+    'meta-llama/llama-3.2-1b-instruct': 'O',
+    'microsoft/phi-3.5-moe-instruct': '.',
+    'microsoft/phi-3.5-mini-instruct': '*',
+    'mistralai/mistral-7b-instruct-v0.3' : '//',
+    'gemini-2.0-flash-exp': '\\\\',
+    'gemini-1.5-flash-002': '||',
+    'gemini-1.5-flash-8b-001': '--',
+    'gpt-4o-mini-2024-07-18': '++',
+    'gpt-4o-2024-11-20': 'xx',
+}
 
 def pivot_mean_std(acc_mean_std, metric, independent_variable='_split'):
     """Pivot acc_mean_std so that the specified independent variable becomes the rows

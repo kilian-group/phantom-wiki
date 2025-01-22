@@ -21,6 +21,7 @@ method = args.method
 dataset = args.dataset
 # get evaluation data from the specified output directory and method subdirectory
 df = get_evaluation_data(output_dir, method, dataset)
+import pdb; pdb.set_trace()
 
 # %%
 # group by model, size, data seed, and inference seed
