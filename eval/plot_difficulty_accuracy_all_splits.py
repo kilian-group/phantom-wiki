@@ -4,23 +4,33 @@ Generates a plot for each metric (EM, precision, recall, f1) with the difficulty
 Saves the plots to the figures directory of the output directory.
 
 Example:
-    python eval/plot_difficulty_accuracy_all_splits.py -od out --method zeroshot
+    python eval/plot_difficulty_accuracy_all_splits.py -od out --method zeroshot --depth 10
 """
 
 # %%
 import os
 from phantom_eval import get_parser
-from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std
+from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std
 import matplotlib.pyplot as plt
+import matplotlib.lines as lines
 import matplotlib.patches as mpatches
 
 parser = get_parser()
+parser.add_argument(
+    '--depth', 
+    type=int, 
+    default=20, 
+    help='Depth to plot accuracies for'
+)
 args = parser.parse_args()
 output_dir = args.output_dir
 method = args.method
 dataset = args.dataset
+depth = args.depth
 # get evaluation data from the specified output directory and method subdirectory
 df = get_evaluation_data(output_dir, method, dataset)
+# filter by depth
+df = df[(df['_depth'] == depth)]
 
 # %%
 figures_dir = os.path.join(output_dir, 'figures', method)
@@ -28,26 +38,29 @@ os.makedirs(figures_dir, exist_ok=True)
 
 # %%
 # get accuracies by model, split, difficulty, seed
-COLS = ['_model', '_split', '_seed', 'difficulty']
+COLS = ['_model', '_size', '_data_seed', '_seed', 'difficulty']
 acc_by_type = df.groupby(COLS)[['EM','precision', 'recall', 'f1']].mean()
 
 # %%
 # get the mean and std of the accuracy for each model, split, and difficulty across seeds
-acc_mean_std = acc_by_type.groupby(['_model', '_split', 'difficulty']).agg(['mean', 'std'])
+# first compute the mean across inference generation seeds
+acc_mean_std = acc_by_type.groupby(['_model', '_size', '_data_seed', 'difficulty']).agg(['mean'])
+# second compute the mean and standard error across data generation seeds
+acc_mean_std = acc_by_type.groupby(['_model', '_size', 'difficulty']).agg([mean, std])
 acc_mean_std = acc_mean_std.reset_index()
 
 # %%
 # set figure size
 
-splits_in_preds = acc_mean_std['_split'].unique()
-split_list = [split for split in args.split_list if split in splits_in_preds]
+# Get sorted list of universe sizes
+sizes_in_preds = sorted(acc_mean_std['_size'].unique().tolist())
 
 for metric in ['EM', 'precision', 'recall', 'f1']:
     plt.figure(figsize=(15, 8))
 
-    for split_name in split_list:
-        acc_mean_std_split = acc_mean_std[acc_mean_std['_split'] == split_name]
-        df_mean, df_std = pivot_mean_std(acc_mean_std_split, metric, independent_variable='difficulty')
+    for size in sizes_in_preds:
+        acc_mean_std_size = acc_mean_std[acc_mean_std['_size'].astype(int) == size]
+        df_mean, df_std = pivot_mean_std(acc_mean_std_size, metric, independent_variable='difficulty')
 
         x = df_mean.columns
         model_name2labels: dict[str, mpatches.Patch] = {}
@@ -57,22 +70,24 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
             # plt.errorbar(x, y, yerr=yerr, label=i, marker='o')
             
             # use a line plot instead of errorbar
-            # NOTE: assume that args.split_list was ordered in increasing universe size
-            # So we can use the index of the split in the list to determine the color intensity
+            # We can use the index of the size in the list to determine the color intensity
             # Higher index = higher universe size = darker color = higher alpha
             # +1 so that no intensity is 0 = transparent
-            color_intensity_for_split = (split_list.index(split_name)+1) / len(split_list)
-            
+            color_intensity_for_size = (sizes_in_preds.index(size)+1) / len(sizes_in_preds)  # between 0 and 1
+
             # Only add label to the last plot
             plt.plot(
                 x, y,
                 color=COLORS[model_name],
                 linestyle=LINESTYLES[model_name],
-                alpha=color_intensity_for_split
+                alpha=color_intensity_for_size
             )
-            plt.fill_between(x, y-yerr, y+yerr, alpha=0.3, color=COLORS[model_name])
+            # # Change color intensity for fill to be between 0 and 0.25
+            color_intensity_for_fill = color_intensity_for_size / 4
+            plt.fill_between(x, y-yerr, y+yerr, alpha=color_intensity_for_fill, color=COLORS[model_name])
 
-            model_name2labels[model_name] = mpatches.Patch(color=COLORS[model_name], label=model_name)
+            # Add label for the model. [0], [0] are dummy values for the line
+            model_name2labels[model_name] = lines.Line2D([0], [0], color=COLORS[model_name], label=model_name, linestyle=LINESTYLES[model_name])
     
     plt.legend(title='Model', loc='upper right', fontsize=12, handles=list(model_name2labels.values()))
     # format x-axis
@@ -80,6 +95,6 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
     plt.xticks(x, df_mean.columns)
     plt.ylabel(metric)
     plt.tight_layout()
-    fig_path = os.path.join(figures_dir, f'difficulty-{metric}.png')
+    fig_path = os.path.join(figures_dir, f'difficulty-{metric}.pdf')
     print(f"Saving to {os.path.abspath(fig_path)}")
     plt.savefig(fig_path)
