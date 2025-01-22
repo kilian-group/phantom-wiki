@@ -33,10 +33,14 @@ SMALL_MODELS=(
 # TODO add CPU models
 
 # Define SPLIT_LIST for dataset v0.3
-for seed in 1 2 3
+DATA_SEED_LIST="1 2 3"
+DATA_DEPTH="20"
+DATA_SIZE_LIST="50 100 200 300 400 500"
+
+for data_seed in $DATA_SEED_LIST
 do
-    for size in 50 100 200 300 400 500
+    for data_size in $DATA_SIZE_LIST
     do
-        SPLIT_LIST+="depth_20_size_${size}_seed_${seed} "
+        SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
     done
 done
