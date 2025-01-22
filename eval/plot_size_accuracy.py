@@ -62,6 +62,6 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
     plt.xticks(x, df_mean.columns)
     plt.ylabel(metric)
     plt.tight_layout()
-    fig_path = os.path.join(figures_dir, f'size-{metric}.png')
+    fig_path = os.path.join(figures_dir, f'size-{metric}.pdf')
     print(f"Saving to {os.path.abspath(fig_path)}")
     plt.savefig(fig_path)
