@@ -10,7 +10,7 @@ Example:
 # %%
 import os
 from phantom_eval import get_parser
-from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std
+from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std
 from phantom_eval.agent import ReactAgent
 import matplotlib.pyplot as plt
 
@@ -27,7 +27,7 @@ method = args.method
 split_name = args.split_name
 dataset = args.dataset
 # get evaluation data from the specified output directory and method subdirectory
-df = get_evaluation_data(output_dir, method, dataset)
+df = get_evaluation_data(output_dir, method, dataset, split=split_name)
 # add a column for the number of agent interactions
 df['interactions'] = df['interaction'].apply(lambda x: len(x['messages']))
 # compute the number of react steps
@@ -56,19 +56,20 @@ os.makedirs(figures_dir, exist_ok=True)
 
 # %%
 # get accuracies by model, split, difficulty, seed
-COLS = ['_model', '_split', '_seed', 'difficulty']
+COLS = ['_model', '_data_seed', '_seed', 'difficulty']
 acc_by_type = df.groupby(COLS)[['interactions', 'react_actions', 'non_finish_actions']].mean()
 
 # %%
 # get the mean and std of the accuracy for each model, split, and difficulty across seeds
-acc_mean_std = acc_by_type.groupby(['_model', '_split', 'difficulty']).agg(['mean', 'std'])
+# first compute the mean across inference generation seeds
+acc_mean_std = acc_by_type.groupby(['_model', '_data_seed', 'difficulty']).agg('mean')
+acc_mean_std = acc_by_type.groupby(['_model', 'difficulty']).agg([mean, std])
 acc_mean_std = acc_mean_std.reset_index()
-acc_mean_std_split = acc_mean_std[acc_mean_std['_split'] == split_name]
 
 # %%
 # set figure size
 for metric in ['interactions', 'react_actions', 'non_finish_actions']:
-    df_mean, df_std = pivot_mean_std(acc_mean_std_split, metric, independent_variable='difficulty')
+    df_mean, df_std = pivot_mean_std(acc_mean_std, metric, independent_variable='difficulty')
 
     plt.figure(figsize=(15, 8))
     x = df_mean.columns

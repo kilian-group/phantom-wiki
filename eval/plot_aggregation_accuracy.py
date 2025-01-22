@@ -10,7 +10,7 @@ Example:
 # %%
 import os
 from phantom_eval import get_parser
-from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std
+from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std
 import matplotlib.pyplot as plt
 
 parser = get_parser()
@@ -26,7 +26,7 @@ method = args.method
 split_name = args.split_name
 dataset = args.dataset
 # get evaluation data from the specified output directory and method subdirectory
-df = get_evaluation_data(output_dir, method, dataset)
+df = get_evaluation_data(output_dir, method, dataset, split=split_name)
 
 # %%
 figures_dir = os.path.join(output_dir, 'figures', method)
@@ -35,20 +35,22 @@ os.makedirs(figures_dir, exist_ok=True)
 # %%
 # get accuracies by type
 # group by model, split, aggregation, seed
-COLS = ['_model', '_split', '_seed', 'aggregation']
+COLS = ['_model', '_data_seed', '_seed', 'aggregation']
 acc_by_type = df.groupby(COLS)[['EM','precision', 'recall', 'f1']].mean()
 
 # %%
 # get the mean and std of the accuracy for each model, split, and aggregation across seeds
-acc_mean_std = acc_by_type.groupby(['_model', '_split', 'aggregation']).agg(['mean', 'std'])
+# first compute the mean across inference generation seeds
+acc_mean_std = acc_by_type.groupby(['_model', '_data_seed', 'aggregation']).agg('mean')
+# second compute the mean and standard error across data generation seeds
+acc_mean_std = acc_by_type.groupby(['_model', 'aggregation']).agg([mean, std])
 acc_mean_std = acc_mean_std.reset_index()
-acc_mean_std_split = acc_mean_std[acc_mean_std['_split'] == split_name]
 
 # %%
 
 # set figure size
 for metric in ['EM', 'precision', 'recall', 'f1']:
-    df_mean, df_std = pivot_mean_std(acc_mean_std_split, metric, independent_variable='aggregation')
+    df_mean, df_std = pivot_mean_std(acc_mean_std, metric, independent_variable='aggregation')
 
     plt.figure(figsize=(15, 8))
     x = df_mean.columns

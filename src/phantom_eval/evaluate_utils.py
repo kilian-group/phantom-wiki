@@ -3,6 +3,8 @@
 from glob import glob
 import pandas as pd
 import logging
+import numpy as np
+import re
 
 from joblib import Memory, expires_after
 memory = Memory("cachedir")
@@ -193,7 +195,7 @@ def _get_qa_pairs(dataset: str, splits: list[str]):
     return df_qa_pairs
 
 @memory.cache(cache_validation_callback=expires_after(hours=1))
-def get_evaluation_data(output_dir: str, method: str, dataset: str, sep: str = constants.answer_sep):
+def get_evaluation_data(output_dir: str, method: str, dataset: str, sep: str = constants.answer_sep, split: str = None):
     """Get the evaluation data for a given method
 
     First reads the predictions from the output directory, then joins with the qa pairs.
@@ -213,6 +215,8 @@ def get_evaluation_data(output_dir: str, method: str, dataset: str, sep: str = c
     """
     # get the predictions
     df_preds = _get_preds(output_dir, method)
+    if split is not None:
+        df_preds = df_preds[df_preds['_split'] == split]
     # get unique splits
     splits = df_preds['_split'].unique()
     # get the qa pairs
@@ -226,4 +230,18 @@ def get_evaluation_data(output_dir: str, method: str, dataset: str, sep: str = c
     df['precision'] = df.apply(lambda x: precision(x['pred'], sep.join(x['true']), sep=sep), axis=1)
     df['recall'] = df.apply(lambda x: recall(x['pred'], sep.join(x['true']), sep=sep), axis=1)
     df['f1'] = df.apply(lambda x: f1(x['pred'], sep.join(x['true']), sep=sep), axis=1)
+
+    # add a column for the data seed
+    df['_depth'] = df['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(1))
+    df['_size'] = df['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(2))
+    df['_data_seed'] = df['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(3))
+    # drop the split column
+    df = df.drop(columns=['_split'])
     return df
+
+def mean(x):
+    """Aggregation function that computes the mean of a given metric"""
+    return x.mean()
+def std(x):
+    """Aggregation function that computes the standard error of the mean of a given metric"""
+    return x.std() / np.sqrt(len(x))
