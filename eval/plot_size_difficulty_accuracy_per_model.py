@@ -15,13 +15,13 @@
 # ---
 
 # %%
-"""Script for plotting accuracy contour curves on hops vs universe size.
+"""Script for plotting accuracy contour curves on difficulty vs universe size.
 
-Generates a plot with the universe size on the x-axis, number of hops on the y-axis, and accuracy as the contour.
+Generates a plot with the universe size on the x-axis, difficulty on the y-axis, and accuracy as the contour.
 Saves the plots to the figures directory of the output directory.
 
 Example:
-    python eval/plot_size_hops_accuracy.py -od out  --method react
+    python eval/plot_size_difficulty_accuracy.py -od out  --method react
 """
 
 # %%
@@ -46,8 +46,8 @@ fmt_max_universe_size = args.fmt_max_universe_size
 df = get_evaluation_data(output_dir, method, dataset)
 
 # %%
-# group by model, split, and seed
-grouped = df.groupby(['_model', '_size', '_data_seed', '_seed', 'hops'])
+# group by model, size, data seed, and seed
+grouped = df.groupby(['_model', '_size', '_data_seed', '_seed', 'difficulty'])
 # logging.info the accuracy
 acc = grouped[['EM','precision', 'recall', 'f1']].mean()
 # add a column that counts the number of elements in the group
@@ -56,9 +56,9 @@ acc['count'] = grouped.size()
 # %%
 # get the mean and std of the accuracy for each model and split
 # first compute the mean across inference generation seeds
-acc_mean_std = acc.groupby(['_model', '_size', '_data_seed', 'hops']).agg('mean')
+acc_mean_std = acc.groupby(['_model', '_size', '_data_seed', 'difficulty']).agg('mean')
 # second compute the mean and standard error across data generation seeds
-acc_mean_std = acc.groupby(['_model', '_size', 'hops']).agg([mean, std])
+acc_mean_std = acc_mean_std.groupby(['_model', '_size', 'difficulty']).agg([mean, std])
 acc_mean_std = acc_mean_std.reset_index()
 # get all unique models
 models = acc_mean_std['_model'].unique()
@@ -83,7 +83,7 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
         # get the distinct x values
         x = acc_mean_std_data_seed['_size'].astype(int).values
         # get the distinct y values
-        y = acc_mean_std_data_seed['hops'].values
+        y = acc_mean_std_data_seed['difficulty'].values
         # get the accuracy values
         z = acc_mean_std_data_seed[(metric, 'mean')].values
         # get x and y labels
@@ -111,11 +111,11 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
         ax.set_xticks(xticks)
         ax.set_xticklabels(xlabels)
         # format y-axis
-        ax.set_ylabel('Number of hops')
+        ax.set_ylabel('Difficulty')
         ax.set_yticks(yticks)
         ax.set_yticklabels(ylabels)
         fig.tight_layout()
-        fig_path = os.path.join(figures_dir, f"size-hops-{metric}-{model.replace('/', '--')}.pdf")
+        fig_path = os.path.join(figures_dir, f"size-difficulty-{metric}-{model.replace('/', '--')}.pdf")
         logging.info(f"Saving to {os.path.abspath(fig_path)}")
         fig.savefig(fig_path)
         # plt.show()

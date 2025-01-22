@@ -28,30 +28,9 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-# list of models
-MODELS=(
-    # 'google/gemma-2-27b-it'
-    # 'microsoft/phi-3.5-moe-instruct'
-    'meta-llama/llama-3.1-70b-instruct'
-    'meta-llama/llama-3.3-70b-instruct'
-    # 'meta-llama/llama-3.1-8b-instruct'
-)
 TEMPERATURE=0
-# if TEMPERATURE=0, then sampling is greedy so no need run with muliptle seeds
-if (( $(echo "$TEMPERATURE == 0" | bc -l) ))
-then
-    seed_list="1"
-else
-    seed_list="1 2 3 4 5"
-fi
-# construct split list
-for seed in 1 2 3 4 5
-do
-    for size in 26 50 100 200 500
-    do
-        SPLIT_LIST+="depth_10_size_${size}_seed_${seed} "
-    done
-done
+
+source eval/constants.sh
 
 # Get the number of gpus by counting the number of lines in the output of nvidia-smi
 NUM_GPUS=$(nvidia-smi --query-gpu=name --format=csv,noheader | wc -l)
@@ -78,7 +57,7 @@ check_server() {
     fi
 }
 
-for model_name in "${MODELS[@]}"
+for model_name in "${LARGE_MODELS[@]}"
 do
     # Start the vLLM server in the background
     echo "Starting vLLM server..."
@@ -102,7 +81,7 @@ do
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \
-        --inf_seed_list $seed_list \
+        --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
         --inf_temperature $TEMPERATURE \
         -bs 10 \
         --inf_vllm_port $PORT"

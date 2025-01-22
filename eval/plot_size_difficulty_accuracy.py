@@ -15,13 +15,13 @@
 # ---
 
 # %%
-"""Script for plotting accuracy contour curves on hops vs universe size.
+"""Script for plotting accuracy contour curves on difficulty vs universe size.
 
-Generates a plot with the universe size on the x-axis, number of hops on the y-axis, and accuracy as the contour.
+Generates a plot with the universe size on the x-axis, difficulty on the y-axis, and accuracy as the contour.
 Saves the plots to the figures directory of the output directory.
 
 Example:
-    python eval/plot_size_hops_accuracy.py -od out  --method react
+    python eval/plot_size_difficulty_accuracy.py -od out  --method react
 """
 
 # %%
@@ -45,8 +45,8 @@ dataset = args.dataset
 df = get_evaluation_data(output_dir, method, dataset)
 
 # %%
-# group by model, split, and seed
-grouped = df.groupby(['_model', '_size', '_data_seed', '_seed', 'hops'])
+# group by model, size, data seed, and seed
+grouped = df.groupby(['_model', '_size', '_data_seed', '_seed', 'difficulty'])
 # logging.info the accuracy
 acc = grouped[['EM','precision', 'recall', 'f1']].mean()
 # add a column that counts the number of elements in the group
@@ -55,9 +55,9 @@ acc['count'] = grouped.size()
 # %%
 # get the mean and std of the accuracy for each model and split
 # first compute the mean across inference generation seeds
-acc_mean_std = acc.groupby(['_model', '_size', '_data_seed', 'hops']).agg('mean')
+acc_mean_std = acc.groupby(['_model', '_size', '_data_seed', 'difficulty']).agg('mean')
 # second compute the mean and standard error across data generation seeds
-acc_mean_std = acc.groupby(['_model', '_size', 'hops']).agg([mean, std])
+acc_mean_std = acc.groupby(['_model', '_size', 'difficulty']).agg([mean, std])
 acc_mean_std = acc_mean_std.reset_index()
 # get all unique models
 models = acc_mean_std['_model'].unique()
@@ -83,12 +83,12 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
             x = np.sort(np.unique(acc_mean_std_data_seed['_size'].astype(int)))
             logx = np.log2(x)
             # get the distinct y values
-            y = np.sort(np.unique(acc_mean_std_data_seed['hops']))
+            y = np.sort(np.unique(acc_mean_std_data_seed['difficulty']))
             # create a 2D array of z values
             Z = np.zeros((len(y), len(x)))
             for i, size in enumerate(x):
-                for j, hops in enumerate(y):
-                    Z[j, i] = acc_mean_std_data_seed[(acc_mean_std_data_seed['_size'].astype(int) == size) & (acc_mean_std_data_seed['hops'] == hops)][(metric, 'mean')].values[0]
+                for j, difficulty in enumerate(y):
+                    Z[j, i] = acc_mean_std_data_seed[(acc_mean_std_data_seed['_size'].astype(int) == size) & (acc_mean_std_data_seed['difficulty'] == difficulty)][(metric, 'mean')].values[0]
             # filled in contour
             logX, Y = np.meshgrid(logx, y)
             CS = ax.contour(logX, Y, Z, levels=[threshold])
@@ -106,9 +106,9 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
         ax.set_xlabel('Size of universe')
         ax.set_xticks(logx)
         ax.set_xticklabels(x)
-        ax.set_ylabel('Number of hops')
+        ax.set_ylabel('Difficulty')
         fig.tight_layout()
-        fig_path = os.path.join(figures_dir, f'size-hops-{metric}@{threshold:.2f}.pdf')
+        fig_path = os.path.join(figures_dir, f'size-difficulty-{metric}@{threshold:.2f}.pdf')
         logging.info(f"Saving to {os.path.abspath(fig_path)}")
         fig.savefig(fig_path)
         # plt.show()

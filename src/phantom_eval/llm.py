@@ -63,7 +63,9 @@ def aggregate_usage(usage_list: list[dict]) -> dict:
             result[key] = aggregate_usage([usage.get(key, {}) for usage in usage_list])
         else:
             # Assume that the values are summable (default 0 if key not present)
-            result[key] = sum([usage.get(key, 0) for usage in usage_list])
+            # key may exist in usage dict but have a None value, so convert that to 0
+            # Otherwise sum() will complain that it cannot sum None with integer
+            result[key] = sum([usage.get(key, 0) or 0 for usage in usage_list])
     return result
 
 
@@ -514,13 +516,13 @@ class GeminiChat(CommonLLMChat):
     """
     RATE_LIMITS = {
         "gemini-1.5-flash-002": {
-            "usage_tier=1": {"RPM": 15, "TPM": 1_000_000},
+            "usage_tier=1": {"RPM": 2_000, "TPM": 4_000_000},
         },
         "gemini-1.5-pro-002": {
-            "usage_tier=1": {"RPM": 2, "TPM": 32_000},
+            "usage_tier=1": {"RPM": 1_000, "TPM": 4_000_000},
         },
         "gemini-1.5-flash-8b-001": {
-            "usage_tier=1": {"RPM": 15, "TPM": 1_000_000},
+            "usage_tier=1": {"RPM": 4_000, "TPM": 4_000_000},
         },
         "gemini-2.0-flash-exp": {
             "usage_tier=1": {"RPM": 10, "TPM": 4_000_000}, # https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash
@@ -572,14 +574,24 @@ class GeminiChat(CommonLLMChat):
         return response
 
     def _parse_api_output(self, response: object) -> LLMChatResponse:
+        # Try to get response text. If failed due to any reason, output empty prediction
+        # Example instance why Gemini can fail to return response.text:
+        # "The candidate's [finish_reason](https://ai.google.dev/api/generate-content#finishreason) is 4. Meaning that the model was reciting from copyrighted material."
+        try:
+            pred = response.text
+            error = None
+        except Exception as e:
+            pred = ""
+            error = str(e)
         return LLMChatResponse(
-            pred=response.text,
+            pred=pred,
             usage={
                 "prompt_token_count": response.usage_metadata.prompt_token_count,
                 "response_token_count": response.usage_metadata.candidates_token_count,
                 "total_token_count": response.usage_metadata.total_token_count,
                 "cached_content_token_count": response.usage_metadata.cached_content_token_count,
             },
+            error=error
         )
 
     def _count_tokens(self, messages_api_format: list[dict]) -> int:
@@ -600,6 +612,7 @@ class VLLMChat(CommonLLMChat):
         "google/gemma-2-9b-it",
         "google/gemma-2-27b-it",
         "mistralai/mistral-7b-instruct-v0.3",
+        "deepseek-ai/deepseek-r1-distill-qwen-32b",
     ]
     # additional stop token for llama models
     # NOTE: eot = end-of-turn

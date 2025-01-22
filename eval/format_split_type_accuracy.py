@@ -28,7 +28,15 @@ os.makedirs(scores_dir, exist_ok=True)
 # %%
 # get accuracies by type
 # group by model, split, seed, type
-COLS = ['_model', '_split', '_seed', '_type', 'template', 'hops']
+COLS = [
+    '_model', '_depth', '_size', '_data_seed', '_seed', 
+    '_type', 'template', 'hops'
+]
+# NOTE: to compute std error across data generation seeds and/or inference generation seeds, use the following:
+# COLS = [
+#     '_model', '_depth', '_size',
+#     '_type', 'template', 'hops'
+# ]
 acc_by_type = df.groupby(COLS)[['EM','precision', 'recall', 'f1']].mean()
 # compute the mean and std across seeds
 # drop '_seed' from COLS

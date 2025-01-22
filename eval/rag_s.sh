@@ -9,7 +9,7 @@
 #SBATCH --get-user-env                       # retrieve the users login environment
 #SBATCH --mem=100000                         # server memory (MBs) requested (per node)
 #SBATCH -t infinite                           # Time limit (hh:mm:ss)
-#SBATCH --gres=gpu:a6000:12                   # Number of GPUs requested
+#SBATCH --gres=gpu:a6000:2                   # Number of GPUs requested
 #SBATCH --partition=kilian                   # Request partition
 
 # Script for running zero-shot evaluation on all small models (<4 B params)
@@ -33,7 +33,20 @@ source /home/jcl354/anaconda3/etc/profile.d/conda.sh
 # change this to your conda environment as necessary
 conda activate dataset
 
+# list of models
+MODELS=(
+    'google/gemma-2-2b-it'
+    'meta-llama/llama-3.2-1b-instruct'
+)
 TEMPERATURE=0
+# if TEMPERATURE=0, then sampling is greedy so no need run with muliptle seeds
+if (( $(echo "$TEMPERATURE == 0" | bc -l) ))
+then
+    seed_list="1"
+else
+    seed_list="1 2 3 4 5"
+fi
+
 
 # Function to check if the server is up
 check_server() {
@@ -52,10 +65,9 @@ check_server() {
     fi
 }
 
-source eval/constants.sh
 
 # https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html#vllm-serve
-for model_name in "${LARGE_MODELS[@]}"
+for model_name in "${MODELS[@]}"
 do
     # # Start the vLLM server in the background
     port=8000
@@ -80,6 +92,7 @@ do
     echo "Starting embedding server..."
     eval export CUDA_VISIBLE_DEVICES=2,3
     vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 2 --task embed --host 0.0.0.0 --port $e_port"
+    # vllm_cmd="nohup vllm serve WhereIsAI/UAE-Code-Large-V --api-key token-abc123 --tensor_parallel_size 1 --task embed --host 0.0.0.0 --port $e_port
     echo $vllm_cmd
     nohup $vllm_cmd &
     echo "Waiting for embedding server to start..."
@@ -90,19 +103,21 @@ do
     done
     echo "embedding server is up and running."
 
-    eval export CUDA_VISIBLE_DEVICES=0,1,2,3
+    eval export CUDA_VISIBLE_DEVICES=0,1
     # Run the main Python script
     cmd="python -m phantom_eval \
         --method rag \
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \
-        --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
+        --inf_seed_list $seed_list \
         --inf_temperature $TEMPERATURE \
         -bs 2 \
         --inf_vllm_port $port \
-        --inf_embedding_port $e_port 
+        --inf_embedding_port $e_port \
+        --force
         "
+                # --log_level DEBUG \
     echo $cmd
     eval $cmd
 
