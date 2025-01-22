@@ -61,7 +61,6 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 sep=constants.answer_sep,
                 fewshot_examples=FEWSHOT_EXAMPLES,
             )
-
         case "cot":
             agent_kwargs = dict(
                 cot_examples=COT_EXAMPLES
@@ -77,16 +76,19 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 # embedding="together", #args.embedding
                 # vector_store="faiss", #args.vector_store
                 # embedding_port=args.inf_embedding_port,
-                embedding_model_name=args.rag_method,
+                embedding_model_name=args.retriever_method,
+                retriever_num_documents=args.retriever_num_documents,
             )
         case "fewshot-retriever":
             agent_kwargs = dict(
-                embedding_model_name=args.rag_method,
+                embedding_model_name=args.retriever_method,
+                retriever_num_documents=args.retriever_num_documents,
                 fewshot_examples=FEWSHOT_EXAMPLES,
             )
         case "cot-retriever":
             agent_kwargs = dict(
-                embedding_model_name=args.rag_method,
+                embedding_model_name=args.retriever_method,
+                retriever_num_documents=args.retriever_num_documents,
                 cot_examples=COT_EXAMPLES,
             )
         case "react":

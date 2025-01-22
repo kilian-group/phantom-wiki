@@ -121,7 +121,7 @@ do
         --split_list $SPLIT_LIST \
         --inf_seed_list $seed_list \
         --inf_temperature $TEMPERATURE \
-        --rag_method WhereIsAI/UAE-Code-Large-V1 \
+        --retriever_method WhereIsAI/UAE-Code-Large-V1 \
         "
         # --force \
     echo $cmd
