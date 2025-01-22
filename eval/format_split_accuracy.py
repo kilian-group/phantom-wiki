@@ -18,7 +18,7 @@ dataset = args.dataset
 # get evaluation data from the specified output directory and method subdirectory
 df = get_evaluation_data(output_dir, method, dataset)
 # group by model, split, and seed
-grouped = df.groupby(['_model', '_split', '_seed'])
+grouped = df.groupby(['_model', '_depth', '_size', '_data_seed', '_seed'])
 # print the accuracy
 acc = grouped[['EM','precision', 'recall', 'f1']].mean()
 # add a column that counts the number of elements in the group
