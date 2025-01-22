@@ -63,7 +63,9 @@ def aggregate_usage(usage_list: list[dict]) -> dict:
             result[key] = aggregate_usage([usage.get(key, {}) for usage in usage_list])
         else:
             # Assume that the values are summable (default 0 if key not present)
-            result[key] = sum([usage.get(key, 0) for usage in usage_list])
+            # key may exist in usage dict but have a None value, so convert that to 0
+            # Otherwise sum() will complain that it cannot sum None with integer
+            result[key] = sum([usage.get(key, 0) or 0 for usage in usage_list])
     return result
 
 

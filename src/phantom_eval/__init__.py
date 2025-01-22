@@ -15,7 +15,7 @@ def get_parser() -> argparse.ArgumentParser:
                         choices=SUPPORTED_METHOD_NAMES)
     
     # Method params
-    parser.add_argument("--react_max_steps", type=int, default=20,
+    parser.add_argument("--react_max_steps", type=int, default=50,
                         help="Maximum number of steps for the ReAct/Act agent")
     parser.add_argument("--sc_num_votes", type=int, default=5,
                         help="Number of votes for an agent implementing self-consistency (majority votes)")
