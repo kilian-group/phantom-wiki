@@ -10,7 +10,7 @@ Example:
 # %%
 import os
 from phantom_eval import get_parser
-from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std
+from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -23,53 +23,45 @@ dataset = args.dataset
 df = get_evaluation_data(output_dir, method, dataset)
 
 # %%
-# group by model, split, and seed
-grouped = df.groupby(['_model', '_split', '_seed'])
+# group by model, size, data seed, and inference seed
+grouped = df.groupby(['_model', '_size', '_data_seed', '_seed'])
 # print the accuracy
 acc = grouped[['EM','precision', 'recall', 'f1']].mean()
 # add a column that counts the number of elements in the group
 acc['count'] = grouped.size()
 
 # %%
-# get the mean and std of the accuracy for each model and split
-# where std is the standard deviation across inference generation seeds
-acc_mean_std = acc.groupby(['_model', '_split']).agg(['mean', 'std'])
+# get the mean and std of the accuracy for each model and split as follows:
+# first compute the mean across inference generation seeds
+acc_mean_std = acc.groupby(['_model', '_size', '_data_seed']).agg('mean')
+# second compute the mean and standard error across data generation seeds
+acc_mean_std = acc_mean_std.groupby(['_model', '_size']).agg([mean, std])
 acc_mean_std = acc_mean_std.reset_index()
-import re
-acc_mean_std['_size'] = acc_mean_std['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(2))
-# now extract the data generation seed
-acc_mean_std['_data_seed'] = acc_mean_std['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(3))
-# get all unique data seeds
-data_seeds = acc_mean_std['_data_seed'].unique()
-print(f"Data seeds: {data_seeds}")
 
 figures_dir = os.path.join(output_dir, 'figures', method)
 os.makedirs(figures_dir, exist_ok=True)
 
 # %%
-for data_seed in data_seeds:
-    acc_mean_std_data_seed = acc_mean_std[acc_mean_std['_data_seed'] == data_seed]
+for metric in ['EM', 'precision', 'recall', 'f1']:
+    df_mean, df_std = pivot_mean_std(acc_mean_std, metric, independent_variable='_size')
 
-    for metric in ['EM', 'precision', 'recall', 'f1']:
-        df_mean, df_std = pivot_mean_std(acc_mean_std_data_seed, metric, independent_variable='_size')
+    plt.figure(figsize=(15, 8))
+    # use log2 scale for the x-axis
+    x = np.log2(df_mean.columns)
+    for i, row in df_mean.iterrows():
+        y = row
+        yerr = df_std.loc[i]
+        # plt.errorbar(x, y, yerr=yerr, label=i, marker='o')
+        # use a line plot instead of errorbar
+        plt.plot(x, y, label=i, marker='o', color=COLORS[i], linestyle=LINESTYLES[i])
+        plt.fill_between(x, y-yerr, y+yerr, alpha=0.3, color=COLORS[i])
 
-        plt.figure(figsize=(15, 8))
-        # use log2 scale for the x-axis
-        x = np.log2(df_mean.columns)
-        for i, row in df_mean.iterrows():
-            y = row
-            yerr = df_std.loc[i]
-            # plt.errorbar(x, y, yerr=yerr, label=i, marker='o')
-            # use a line plot instead of errorbar
-            plt.plot(x, y, label=i, marker='o', color=COLORS[i], linestyle=LINESTYLES[i])
-            plt.fill_between(x, y-yerr, y+yerr, alpha=0.3, color=COLORS[i])
-
-        plt.legend(title='Model', loc='upper right', fontsize=12)
-        # format x-axis
-        plt.xlabel('Size of universe')
-        plt.xticks(x, df_mean.columns)
-        plt.ylabel(metric)
-        plt.tight_layout()
-        fig_path = os.path.join(figures_dir, f'size-seed{data_seed}-{metric}.png')
-        print(f"Saving to {os.path.abspath(fig_path)}")
-        plt.savefig(fig_path)
+    plt.legend(title='Model', loc='upper right', fontsize=12)
+    # format x-axis
+    plt.xlabel('Size of universe')
+    plt.xticks(x, df_mean.columns)
+    plt.ylabel(metric)
+    plt.tight_layout()
+    fig_path = os.path.join(figures_dir, f'size-{metric}.png')
+    print(f"Saving to {os.path.abspath(fig_path)}")
+    plt.savefig(fig_path)

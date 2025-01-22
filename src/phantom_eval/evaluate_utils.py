@@ -3,6 +3,8 @@
 from glob import glob
 import pandas as pd
 import logging
+import numpy as np
+import re
 
 from joblib import Memory, expires_after
 memory = Memory("cachedir")
@@ -226,4 +228,18 @@ def get_evaluation_data(output_dir: str, method: str, dataset: str, sep: str = c
     df['precision'] = df.apply(lambda x: precision(x['pred'], sep.join(x['true']), sep=sep), axis=1)
     df['recall'] = df.apply(lambda x: recall(x['pred'], sep.join(x['true']), sep=sep), axis=1)
     df['f1'] = df.apply(lambda x: f1(x['pred'], sep.join(x['true']), sep=sep), axis=1)
+
+    # add a column for the data seed
+    df['_depth'] = df['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(1)).astype(int)
+    df['_size'] = df['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(2)).astype(int)
+    df['_data_seed'] = df['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(3)).astype(int)
+    # drop the split column
+    df = df.drop(columns=['_split'])
     return df
+
+def mean(x):
+    """Aggregation function that computes the mean of a given metric"""
+    return x.mean()
+def std(x):
+    """Aggregation function that computes the standard error of the mean of a given metric"""
+    return x.std() / np.sqrt(len(x))
