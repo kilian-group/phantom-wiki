@@ -35,9 +35,9 @@ conda activate dataset
 
 # list of models
 MODELS=(
-    # 'meta-llama/llama-3.2-3b-instruct' #loading datasets takes 2.5GB, embedding model takes 1GB
-    # 'meta-llama/llama-3.1-8b-instruct'
-    # 'google/gemma-2-9b-it'
+    'meta-llama/llama-3.2-3b-instruct' #loading datasets takes 2.5GB, embedding model takes 1GB
+    'meta-llama/llama-3.1-8b-instruct'
+    'google/gemma-2-9b-it'
     'mistralai/mistral-7b-instruct-v0.3'
 )
 TEMPERATURE=0
@@ -74,6 +74,7 @@ check_server() {
     fi
 }
 
+pkill -e -f vllm
 
 # https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html#vllm-serve
 for model_name in "${MODELS[@]}"
@@ -100,7 +101,7 @@ do
     eval export CUDA_VISIBLE_DEVICES=0,1,2,3
     # Run the main Python script
     cmd="python -m phantom_eval \
-        --method rag \
+        --method retriever \
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \

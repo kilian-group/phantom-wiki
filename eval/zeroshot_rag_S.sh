@@ -73,6 +73,7 @@ check_server() {
     fi
 }
 
+pkill -e -f vllm
 
 # https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html#vllm-serve
 for model_name in "${MODELS[@]}"
@@ -80,8 +81,8 @@ do
     # Start the vLLM server in the background
     port=8000
     echo "Starting vLLM server..."
-    eval export CUDA_VISIBLE_DEVICES=0,1
-    vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 2 --host 0.0.0.0 --port $port" #nohup launches this in the background
+    eval export CUDA_VISIBLE_DEVICES=0,1,2,3
+    vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 4 --host 0.0.0.0 --port $port" #nohup launches this in the background
     echo $vllm_cmd
     nohup $vllm_cmd &
     
@@ -114,7 +115,7 @@ do
     eval export CUDA_VISIBLE_DEVICES=0,1,2,3
     # Run the main Python script
     cmd="python -m phantom_eval \
-        --method rag \
+        --method retriever \
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \

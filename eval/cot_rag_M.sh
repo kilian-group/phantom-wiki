@@ -101,7 +101,7 @@ do
     e_port=8001
     eval export CUDA_VISIBLE_DEVICES=0,1,2,3
     cmd="python -m phantom_eval \
-        --method cot-rag \
+        --method cot-retriever \
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \
