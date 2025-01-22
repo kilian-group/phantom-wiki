@@ -58,38 +58,46 @@ sizes_in_preds = sorted(acc_mean_std['_size'].unique().tolist())
 for metric in ['EM', 'precision', 'recall', 'f1']:
     plt.figure(figsize=(15, 8))
 
+    model_name2labels: dict[str, mpatches.Patch] = {}
     for size in sizes_in_preds:
         acc_mean_std_size = acc_mean_std[acc_mean_std['_size'].astype(int) == size]
         df_mean, df_std = pivot_mean_std(acc_mean_std_size, metric, independent_variable='difficulty')
 
         x = df_mean.columns
-        model_name2labels: dict[str, mpatches.Patch] = {}
         for model_name, row in df_mean.iterrows():
             y = row
-            yerr = df_std.loc[model_name]
-            # plt.errorbar(x, y, yerr=yerr, label=i, marker='o')
             
             # use a line plot instead of errorbar
             # We can use the index of the size in the list to determine the color intensity
             # Higher index = higher universe size = darker color = higher alpha
             # +1 so that no intensity is 0 = transparent
             color_intensity_for_size = (sizes_in_preds.index(size)+1) / len(sizes_in_preds)  # between 0 and 1
+            line_width_for_size = 3*((sizes_in_preds.index(size)+1) / len(sizes_in_preds))  # between 0 and 2
 
             # Only add label to the last plot
             plt.plot(
                 x, y,
                 color=COLORS[model_name],
                 linestyle=LINESTYLES[model_name],
-                alpha=color_intensity_for_size
+                alpha=color_intensity_for_size,
+                linewidth=line_width_for_size,
             )
+            # NOTE: not plotting error bars for now because the figure looks crowded
+            # yerr = df_std.loc[model_name]
             # # Change color intensity for fill to be between 0 and 0.25
-            color_intensity_for_fill = color_intensity_for_size / 4
-            plt.fill_between(x, y-yerr, y+yerr, alpha=color_intensity_for_fill, color=COLORS[model_name])
+            # color_intensity_for_fill = color_intensity_for_size / 4
+            # plt.fill_between(x, y-yerr, y+yerr, alpha=color_intensity_for_fill, color=COLORS[model_name])
 
             # Add label for the model. [0], [0] are dummy values for the line
-            model_name2labels[model_name] = lines.Line2D([0], [0], color=COLORS[model_name], label=model_name, linestyle=LINESTYLES[model_name])
+            model_name2labels[model_name] = lines.Line2D(
+                [0], [0],
+                color=COLORS[model_name],
+                label=model_name,
+                linestyle=LINESTYLES[model_name]
+            )
     
-    plt.legend(title='Model', loc='upper right', fontsize=12, handles=list(model_name2labels.values()))
+    plt.legend(title='Model', loc='upper right', fontsize=12,
+               handles=list(model_name2labels.values()), handlelength=4.0)
     # format x-axis
     plt.xlabel('Difficulty')
     plt.xticks(x, df_mean.columns)
