@@ -4,7 +4,7 @@ Generates a plot for each metric (EM, precision, recall, f1) with the number of 
 Saves the plots to the figures directory of the output directory.
 
 Example:
-    python eval/plot_solutions_accuracy.py -od out --method zeroshot --split_name depth_10_size_26_seed_1
+    python eval/plot_solutions_accuracy.py -od out --method zeroshot --depth 20 --size 50
 """
 
 # %%
@@ -15,18 +15,27 @@ import matplotlib.pyplot as plt
 
 parser = get_parser()
 parser.add_argument(
-    '--split_name', 
-    type=str, 
-    default='depth_20_size_50_seed_1',
-    help='Split to plot accuracies for'
+    '--depth', 
+    type=int, 
+    default=20, 
+    help='Depth to plot accuracies for'
+)
+parser.add_argument(
+    '--size',
+    type=int,
+    default=50,
+    help='Size to plot accuracies for'
 )
 args = parser.parse_args()
 output_dir = args.output_dir
 method = args.method
-split_name = args.split_name
 dataset = args.dataset
+depth = args.depth
+size = args.size
 # get evaluation data from the specified output directory and method subdirectory
-df = get_evaluation_data(output_dir, method, dataset, split=split_name)
+df = get_evaluation_data(output_dir, method, dataset)
+# filter by depth and size
+df = df[(df['_depth'] == depth) & (df['_size'] == size)]
 
 # %%
 figures_dir = os.path.join(output_dir, 'figures', method)
@@ -71,7 +80,7 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
     plt.xticks(x, df_mean.columns)
     plt.ylabel(metric)
     plt.tight_layout()
-    fig_path = os.path.join(figures_dir, f'solutions-{metric}-{split_name}.png')
+    fig_path = os.path.join(figures_dir, f'solutions-{metric}-{depth=}-{size=}.png')
     print(f"Saving to {os.path.abspath(fig_path)}")
     plt.savefig(fig_path)
 

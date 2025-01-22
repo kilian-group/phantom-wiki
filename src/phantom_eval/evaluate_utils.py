@@ -195,7 +195,7 @@ def _get_qa_pairs(dataset: str, splits: list[str]):
     return df_qa_pairs
 
 @memory.cache(cache_validation_callback=expires_after(hours=1))
-def get_evaluation_data(output_dir: str, method: str, dataset: str, sep: str = constants.answer_sep, split: str = None):
+def get_evaluation_data(output_dir: str, method: str, dataset: str, sep: str = constants.answer_sep):
     """Get the evaluation data for a given method
 
     First reads the predictions from the output directory, then joins with the qa pairs.
@@ -215,8 +215,6 @@ def get_evaluation_data(output_dir: str, method: str, dataset: str, sep: str = c
     """
     # get the predictions
     df_preds = _get_preds(output_dir, method)
-    if split is not None:
-        df_preds = df_preds[df_preds['_split'] == split]
     # get unique splits
     splits = df_preds['_split'].unique()
     # get the qa pairs
@@ -232,9 +230,9 @@ def get_evaluation_data(output_dir: str, method: str, dataset: str, sep: str = c
     df['f1'] = df.apply(lambda x: f1(x['pred'], sep.join(x['true']), sep=sep), axis=1)
 
     # add a column for the data seed
-    df['_depth'] = df['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(1))
-    df['_size'] = df['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(2))
-    df['_data_seed'] = df['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(3))
+    df['_depth'] = df['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(1)).astype(int)
+    df['_size'] = df['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(2)).astype(int)
+    df['_data_seed'] = df['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(3)).astype(int)
     # drop the split column
     df = df.drop(columns=['_split'])
     return df
