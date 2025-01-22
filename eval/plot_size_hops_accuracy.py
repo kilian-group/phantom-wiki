@@ -108,7 +108,7 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
         ax.set_xticklabels(x)
         ax.set_ylabel('Number of hops')
         fig.tight_layout()
-        fig_path = os.path.join(figures_dir, f'size-hops-{metric}@{threshold:.2f}.png')
+        fig_path = os.path.join(figures_dir, f'size-hops-{metric}@{threshold:.2f}.pdf')
         logging.info(f"Saving to {os.path.abspath(fig_path)}")
         fig.savefig(fig_path)
         # plt.show()

@@ -76,6 +76,6 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
     plt.xticks(x, df_mean.columns)
     plt.ylabel(metric)
     plt.tight_layout()
-    fig_path = os.path.join(figures_dir, f'aggregation-{metric}-{depth=}-{size=}.png')
+    fig_path = os.path.join(figures_dir, f'aggregation-{metric}-{depth=}-{size=}.pdf')
     print(f"Saving to {os.path.abspath(fig_path)}")
     plt.savefig(fig_path)
