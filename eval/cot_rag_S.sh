@@ -26,6 +26,7 @@ if [ -z "$1" ]; then
     exit 1
 fi
 TEMPERATURE=0
+NUM_GPUS=$(nvidia-smi --query-gpu=name --format=csv,noheader | wc -l)
 
 source eval/constants.sh
 # activate conda environment
@@ -62,7 +63,7 @@ do
     port=8000
     echo "Starting vLLM server..."
     eval export CUDA_VISIBLE_DEVICES=0,1,2,3
-    vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 4 --host 0.0.0.0 --port $port --task generate" #nohup launches this in the background
+    vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $port --task generate" #nohup launches this in the background
     echo $vllm_cmd
     nohup $vllm_cmd &
     

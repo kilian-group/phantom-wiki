@@ -943,6 +943,7 @@ class NshotRAGAgent(NshotAgent, RAGMixin):
                 llm_prompt: LLMPrompt, 
                 fewshot_examples: str = "", 
                 embedding_model_name: str="WhereIsAI/UAE-Code-Large-V",
+                retriever_num_documents: int = 4,
                 use_api: bool | None = True,
                 tensor_parallel_size: int | None = 1,
                 port:int = 8001,
@@ -955,7 +956,7 @@ class NshotRAGAgent(NshotAgent, RAGMixin):
                 Defaults to `constants.answer_sep`.
         """
         NshotAgent.__init__(self, text_corpus, llm_prompt, fewshot_examples)
-        RAGMixin.__init__(self, text_corpus, embedding_model_name, use_api, tensor_parallel_size, port)
+        RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, use_api, tensor_parallel_size, port)
 
     def run(self, 
             llm_chat: LLMChat, 
@@ -983,6 +984,7 @@ class CoTRAGAgent(CoTAgent, RAGMixin):
                 llm_prompt: LLMPrompt, 
                 cot_examples: str = "",
                 embedding_model_name: str="WhereIsAI/UAE-Code-Large-V",
+                retriever_num_documents: int = 4,
                 use_api: bool | None = True,
                 tensor_parallel_size: int | None = 1,
                 port:int = 8001,
@@ -992,7 +994,7 @@ class CoTRAGAgent(CoTAgent, RAGMixin):
             cot_examples (str): Prompt examples to include in agent prompt.
         """
         CoTAgent.__init__(self, text_corpus, llm_prompt, cot_examples)
-        RAGMixin.__init__(self, text_corpus, embedding_model_name, use_api, tensor_parallel_size, port)
+        RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, use_api, tensor_parallel_size, port)
 
     def run(self, 
             llm_chat: LLMChat, 
