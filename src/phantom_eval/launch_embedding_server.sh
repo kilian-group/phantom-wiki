@@ -25,7 +25,7 @@ CUDA_VISIBLE_DEVICES=$3
 if ! check_server $model_name $port; then
     echo "Starting $model_name embedding server..."
     eval export CUDA_VISIBLE_DEVICES="$CUDA_VISIBLE_DEVICES"
-    vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 1 --task embed --host 0.0.0.0 --port $port"
+    vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 1 --task embed --host 0.0.0.0 --port $port"
     nohup $vllm_cmd &
     # echo $vllm_cmd
 fi
