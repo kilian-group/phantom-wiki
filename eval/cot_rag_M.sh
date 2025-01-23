@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH -J rag-small                              # Job name
-#SBATCH -o slurm/rag-small_%j.out                 # output file (%j expands to jobID)
-#SBATCH -e slurm/rag-small_%j.err                 # error log file (%j expands to jobID)
+#SBATCH -J cot-rag-medium                              # Job name
+#SBATCH -o slurm/cot-rag-medium_%j.out                 # output file (%j expands to jobID)
+#SBATCH -e slurm/cot-rag-medium_%j.err                 # error log file (%j expands to jobID)
 #SBATCH --mail-type=ALL                      # Request status by email 
 #SBATCH --mail-user=jcl354@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
@@ -36,6 +36,16 @@ source eval/constants.sh
 # change this to your conda environment as necessary
 # conda activate dataset
 
+# Get the number of gpus by counting the number of lines in the output of nvidia-smi
+NUM_GPUS=$(nvidia-smi --query-gpu=name --format=csv,noheader | wc -l)
+echo "Number of GPUs: $NUM_GPUS"
+# Check for the next available port not in use with vllm
+PORT=8000
+while lsof -Pi :$PORT -sTCP:LISTEN -t; do
+    PORT=$((PORT + 1))
+done
+echo "Using port: $PORT"
+
 # Function to check if the server is up
 check_server() {
     local model_name=$1
@@ -59,25 +69,22 @@ pkill -e -f vllm
 for model_name in "${MEDIUM_MODELS[@]}"
 do
     # Start the vLLM server in the background
-    port=8000
     echo "Starting vLLM server..."
     eval export CUDA_VISIBLE_DEVICES=0,1,2,3
-    vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 4 --host 0.0.0.0 --port $port --task generate" #nohup launches this in the background
+    vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $PORT --task generate" #nohup launches this in the background
     echo $vllm_cmd
     nohup $vllm_cmd &
     
     # Wait for the server to start
     echo "Waiting for vLLM server to start..."
-    SLEEP=30
-    while ! check_server $model_name $port; do
+    SLEEP=60
+    while ! check_server $model_name $PORT; do
         echo "Server is not up yet. Checking again in $SLEEP seconds..."
         sleep $SLEEP
     done
     echo "vLLM server is up and running."
 
     # Run the main Python script
-    e_port=8001
-    eval export CUDA_VISIBLE_DEVICES=0,1,2,3
     cmd="python -m phantom_eval \
         --method cot-retriever \
         -od $1 \
@@ -86,8 +93,7 @@ do
         --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
         --inf_temperature $TEMPERATURE \
         --retriever_method WhereIsAI/UAE-Code-Large-V1 \
-        "
-        # --force \
+        --inf_vllm_port $PORT"
     echo $cmd
     eval $cmd
 
