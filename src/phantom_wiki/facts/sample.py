@@ -161,13 +161,14 @@ def sample(
                         _sample_atom(match_v, bank=supports[query_assignments[match]])
 
             if m := re.search(r"<name>_(\d+)", query_template_[i]):
-                match = m.group(0)
-                assert match in question_template_
-                if valid_only:
-                    _set_atom_variable(match)
-                else:
-                    # TODO bank may include randomly generated names outside the universe
-                    _sample_atom(match, bank=name_bank)
+                if "aggregate_all" not in query_template_[i]: # skip aggregate queries
+                    match = m.group(0)
+                    assert match in question_template_
+                    if valid_only:
+                        _set_atom_variable(match)
+                    else:
+                        # TODO bank may include randomly generated names outside the universe
+                        _sample_atom(match, bank=name_bank)
 
             if m := re.search(r"<relation>_(\d+)", query_template_[i]):
                 match = m.group(0)
@@ -185,11 +186,10 @@ def sample(
                 if match_agg := re.findall(r"aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\)", query_template_[i]):
                     count_variables.append(match_agg[0][2])
                 # for this query type,  both the 2nd and 3rd matches are Variables  
-                # elif match_agg := re.findall(r"aggregate_all\(count, distinct\((<relation_plural>_\d+)\((<name>_\d+), (Y_\d+)\)\), (Count_\d+)\)", query_template_[i]):
-                #     import pdb; pdb.set_trace()
-                #     count_variables.append(match_agg[0][2])
-                #     # atom_variables = {'<name>_d': 'A_d'}
-                #     count_variables.append(atom_variables[match_agg[0][1]])
+                elif match_agg := re.findall(r"aggregate_all\(count, distinct\((<relation_plural>_\d+)\((<name>_\d+), (Y_\d+)\)\), (Count_\d+)\)", query_template_[i]):
+                    count_variables.append(match_agg[0][2])
+                    # hack to avoid returning a Variable type
+                    _sample_atom(match_agg[0][1], bank=name_bank)
                 if hard_mode:
                     _sample_predicate(match, bank=RELATION, alias_dict=RELATION_PLURAL_ALIAS)
                 else:
@@ -215,6 +215,8 @@ def sample(
             valid_result = True
 
     if not valid_result:
+        if n_attempts >= 100:
+            print("Failed to sample a valid query after 100 attempts.")
         # This template may not have a valid placeholder assignment in this universe
         return None
 
