@@ -16,8 +16,8 @@ check_server() {
     fi
 }
 
-source /home/jcl354/anaconda3/etc/profile.d/conda.sh
-conda activate dataset
+# source /home/jcl354/anaconda3/etc/profile.d/conda.sh
+# conda activate dataset
 
 model_name=$1
 port=$2
