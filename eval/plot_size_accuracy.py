@@ -61,6 +61,7 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
     plt.xlabel('Size of universe')
     plt.xticks(x, df_mean.columns)
     plt.ylabel(metric)
+    plt.ylim(0, 1)
     plt.tight_layout()
     fig_path = os.path.join(figures_dir, f'size-{metric}.pdf')
     print(f"Saving to {os.path.abspath(fig_path)}")
