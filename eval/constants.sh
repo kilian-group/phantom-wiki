@@ -11,6 +11,10 @@ get_inf_seed_list() {
 }
 
 # L models (run on 8 A6000 GPUs)
+API_MODELS=(
+    gemini-1.5-flash-002
+    gpt-4o-2024-11-20
+)
 LARGE_MODELS=(
     'meta-llama/llama-3.3-70b-instruct'
     'deepseek-ai/deepseek-r1-distill-qwen-32b'
