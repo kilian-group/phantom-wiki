@@ -85,7 +85,7 @@ class NshotAgent(Agent):
         self.fewshot_examples = fewshot_examples
 
     def _build_agent_prompt(self, question: str) -> str:
-        if self.embedding_model_name:
+        if hasattr(self, 'embedding_model_name') and self.embedding_model_name is not None:
             evidence = self.get_RAG_evidence(question)
         else:
             evidence = _get_evidence(self.text_corpus)
@@ -300,7 +300,7 @@ class CoTAgent(Agent):
         return parsed_responses
     
     def _build_agent_prompt(self, question: str) -> str:
-        if self.embedding_model_name:
+        if hasattr(self, 'embedding_model_name') and self.embedding_model_name is not None:
             evidence = self.get_RAG_evidence(question)
         else:
             evidence = _get_evidence(self.text_corpus)
