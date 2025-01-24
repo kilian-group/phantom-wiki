@@ -188,6 +188,10 @@ def sample_WIP(
     for atom_placeholder_, atom_variable_ in atom_variables.items():
         query = query.replace(atom_placeholder_, atom_variable_)
 
+    # NOTE: We talked about this with Anmol but we also noted that it is possible that there could be a lot of cycles in these questions.
+    # This is something we need to test once everything is done -> if that is the case, we need to add check, e.g. name bank to ensure 
+    # that we don’t revisit the same person more than once. Not too complicated but if unnecessary, then we shouldn't do it
+    
     return query_assignments, " ".join(question_template_), query
     
 
