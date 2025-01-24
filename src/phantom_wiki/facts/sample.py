@@ -185,7 +185,7 @@ def sample(
                 # for this query type, only the 3rd match is a Variable type
                 if match_agg := re.findall(r"aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\)", query_template_[i]):
                     count_variables.append(match_agg[0][2])
-                # for this query type,  both the 2nd and 3rd matches are Variables  
+                # For this type of aggregation query, instantiate the atom in the 2nd match and allow the 3rd match to be Variable  
                 elif match_agg := re.findall(r"aggregate_all\(count, distinct\((<relation_plural>_\d+)\((<name>_\d+), (Y_\d+)\)\), (Count_\d+)\)", query_template_[i]):
                     count_variables.append(match_agg[0][2])
                     # hack to avoid returning a Variable type
