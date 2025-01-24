@@ -91,7 +91,7 @@ for metric in METRICS:
             height=y, 
             width=width, 
             label=i, 
-            # yerr=yerr, 
+            yerr=yerr, 
             capsize=5, 
             color=COLORS[i], 
             alpha=0.7, 
