@@ -6,11 +6,10 @@ Saves to a csv file called scores.csv in the scores directory of the output dire
 Example:
     python eval/format_split_accuracy.py -od out --method zeroshot
 """
-import pdb; pdb.set_trace()
 import os
 import pandas as pd
 # from phantom_eval import get_parser
-from phantom_eval.evaluate_utils import get_evaluation_data
+from phantom_eval.evaluate_utils import get_evaluation_data, mean, std
 from tabulate import tabulate
 from argparse import ArgumentParser
 parser = ArgumentParser()
@@ -43,7 +42,7 @@ METRICS = [
     'f1'
 ]
 
-acc_list = []
+results = []
 for method in method_list:
     # get evaluation data from the specified output directory and method subdirectory
     df = get_evaluation_data(output_dir, method, dataset)
@@ -55,18 +54,27 @@ for method in method_list:
     # add a column that counts the number of elements in the group
     acc['count'] = grouped.size()
     # print as markdown
-    print(acc.to_markdown())
+    acc_mean_std = acc.groupby(['_model', '_depth', '_size', '_data_seed']).agg('mean')
+    # second compute the mean and standard error across data generation seeds
+    AGG = {
+        m: lambda x: f"{mean(x)*100:.2f} ± {std(x)*100:.2f}" for m in METRICS
+    }
+    AGG = {**AGG, 'count': lambda x: int(mean(x))}
+    acc_mean_std = acc_mean_std.groupby(['_model', '_depth', '_size']).agg(AGG)
+    acc_mean_std = acc_mean_std.reset_index()
     # add a column at the end for the method
-    acc['method'] = method
-    acc_list.append(acc)
+    acc_mean_std['method'] = method
+    results.append(acc_mean_std)
 
 # concatenate all the dataframes
-acc = pd.concat(acc_list)
+results = pd.concat(results)
+# reset index
+results = results.reset_index(drop=True)
 print("Accuracies:")
-print(acc.to_latex())
-print(tabulate(acc, tablefmt="github", headers="keys"))
+print(results.to_latex())
+print(tabulate(results, tablefmt="github", headers="keys"))
 
 # save to a csv file
 scores_dir = os.path.join(output_dir, 'scores')
 os.makedirs(scores_dir, exist_ok=True)
-acc.to_csv(os.path.join(scores_dir, "scores.csv"))
+results.to_csv(os.path.join(scores_dir, "scores.csv"))
