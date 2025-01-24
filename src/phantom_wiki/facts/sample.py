@@ -216,7 +216,7 @@ def sample(
 
     if not valid_result:
         if n_attempts >= 100:
-            print("Failed to sample a valid query after 100 attempts.")
+            print(f"Failed to sample a valid query after {n_attempts} attempts.")
         # This template may not have a valid placeholder assignment in this universe
         return None
 
