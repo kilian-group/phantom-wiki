@@ -47,6 +47,93 @@ RELATION_EASY = FAMILY_RELATION_EASY + FRIENDSHIP_RELATION
 RELATION = FAMILY_RELATIONS + FRIENDSHIP_RELATION
 
 
+def sample_WIP(
+    db: Database,
+    question_template: list[str],
+    query_template: list[str],
+    rng: Generator,
+    valid_only: bool = True,
+    hard_mode: bool = False,
+) -> list[dict, str, list[str]]:
+    """Samples possible realizations of the question template and query template lists
+    from the database `db`.
+
+    Args:
+        db: the Prolog database to sample from
+        question_template: question template as list of CFG terminals containing <placeholder>s
+        query_template: query template as a list of Prolog statements containing <placeholder>s
+        rng: random number generator
+        valid_only: whether to sample only valid realizations
+            if True: we uniformly sample from the set of prolog queries
+            satisfying the query_template with a non-empty answer
+            if False: we uniformly sample from all possible prolog queries
+            satisfying the query_template
+        hard_mode: whether to sample from hard relations 
+            if True: we sample the relation predicates from all FAMILY_RELATIONS
+            if False: we sample the relation predicates from FAMILY_RELATIONS with difficulty = 1
+    Returns:
+        * a dictionary mapping each placeholder to its realization,
+        # TODO consider not returning these for simplicity and doing the replacement elsewhere?
+        * the completed question as a single string,
+        * the completed Prolog query as a list of Prolog statements,
+    """
+
+    query_template_ = copy(query_template)  # we will be modifying this list in place
+    question_template_ = copy(question_template)  # we will be modifying this list in place
+
+    atom_variables = {}  # Maps <placeholder> to the temporary variable if sampled value is unavailable
+    query_assignments = {}  # Maps each <placeholder> to the sampled (value, alias) pair
+    question_assignments = {}
+
+    # supports is a dict from {job -> all_possible_jobs, dob -> all_possible_dobs, ...}
+    supports = {}
+    for attribute_type in ATTRIBUTE_TYPES:
+        supports[attribute_type] = list(set(decode(r['Y']) for r in db.query(f"{attribute_type}(X, Y)")))
+    name_bank = db.get_person_names()
+
+    for i in range(len(query_template_) - 1, -1, -1):
+        if m := re.search(r"(<attribute_name>_\d+)\((Y_\d+), (<attribute_value>_\d+)\)", query_template_[i]):
+            # 0 group is the full match, 1 is the attribute_name, 2 is the Y_i placeholder, 3 is the attribute_value
+            match, attribute_name, y_placeholder, attribute_value = m.group(0, 1, 2, 3)
+
+            # 1. Randomly sample a name from the database for the Y_i placeholder
+            name_choice = rng.choice(name_bank)
+            query_assignments[y_placeholder] = name_choice
+
+            # 2. Sample the attribute type. Everyone has a dob, job, etc. so we can sample
+            # uniformly from the set of attribute types
+            attribute_name_choice = rng.choice(ATTRIBUTE_TYPES)
+            query_assignments[attribute_name] = attribute_name_choice
+            # TODO: Do we need question_assignments dict?
+            # question_assignments[match] = ATTRIBUTE_ALIASES[choice] if ATTRIBUTE_ALIASES else choice
+
+            # 3. Now create a temporary variable for the attribute value
+            # and query the db
+            tmp_attribute_value_placeholder = f"A_{len(atom_variables)}"
+            atom_variables[attribute_value] = tmp_attribute_value_placeholder
+            r: list[dict] = db.query(f"{attribute_name_choice}({name_choice}, {tmp_attribute_value_placeholder})")
+            if r:
+                # 4. Randomly choose an attribute value from r
+                attribute_value_choice: str = decode(rng.choice(r)[tmp_attribute_value_placeholder])
+                query_assignments[attribute_value] = attribute_value_choice
+            
+        if m := re.search(r"(<relation>_\d+)\((<name>_\d+), (Y_\d+)\)", query_template_[i]):
+            # 0 group is the full match, 1 is the relation, 2 is the name, 3 is the Y_i placeholder
+            match, relation, name, y_placeholder = m.group(0, 1, 2, 3)
+            
+            # 1. Sample the name
+            name_choice = rng.choice(name_bank)
+            query_assignments[name] = name_choice
+
+            # 2. Sample a relation that exists for the name
+
+            relation_choice = rng.choice(RELATION_EASY)
+            query_assignments[match] = relation_choice
+
+            name_choice = rng.choice(name_bank)
+            query_assignments[name] = name_choice
+
+
 def sample(
     db: Database,
     question_template: list[str],
