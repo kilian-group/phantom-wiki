@@ -269,4 +269,4 @@ def mean(x):
     return x.mean()
 def std(x):
     """Aggregation function that computes the standard error of the mean of a given metric"""
-    return x.std() / np.sqrt(len(x))
+    return x.std(ddof=1) / np.sqrt(len(x))
