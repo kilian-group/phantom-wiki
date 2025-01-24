@@ -28,6 +28,7 @@ if [ -z "$2" ]; then
         "fewshot-retriever"
         "retriever"
         "cot-retriever"
+        "reasoning"
     )
 else
     METHOD_LIST=($2)
