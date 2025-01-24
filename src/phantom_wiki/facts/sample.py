@@ -116,8 +116,8 @@ def sample_WIP(
                 # 4. Randomly choose an attribute value from r
                 attribute_value_choice: str = decode(rng.choice(r)[tmp_attribute_value_placeholder])
                 query_assignments[attribute_value] = attribute_value_choice
-            
-        if m := re.search(r"(<relation>_\d+)\((<name>_\d+), (Y_\d+)\)", query_template_[i]):
+
+        elif m := re.search(r"(<relation>_\d+)\((<name>_\d+), (Y_\d+)\)", query_template_[i]):
             # 0 group is the full match, 1 is the relation, 2 is the name, 3 is the Y_i placeholder
             match, relation, name, y_placeholder = m.group(0, 1, 2, 3)
             
@@ -125,14 +125,71 @@ def sample_WIP(
             name_choice = rng.choice(name_bank)
             query_assignments[name] = name_choice
 
+            # 2. Sample a relation that exists for the name choice
+            while True: # TODO: We need to put a ceiling on the number of attempts -> if it fails, we backtrack
+                if hard_mode: # Choose relation to test based on difficulty
+                    relation_choice = rng.choice(RELATION)
+                else:
+                    relation_choice = rng.choice(RELATION_EASY)
+
+                r: list[dict] = db.query(f"{relation_choice}({name_choice}, {y_placeholder})")
+                if r: # If we have found a relation that exists for the name -> Done
+                    break
+            
+            # Save relation and y_placeholder
+            query_assignments[relation] = relation_choice
+            query_assignments[y_placeholder] = decode(rng.choice(r)[y_placeholder])
+
+        elif m := re.search(r"(<relation>_\d+)\((Y_\d+), (Y_\d+)\)", query_template_[i]):
+            # 0 group is the full match, 1 is the relation, 2 is the name, 3 is the Y_i placeholder
+            match, relation, y_placeholder_1, y_placeholder_2 = m.group(0, 1, 2, 3)
+            
+            # 1. y_placeholder_1 is already assigned
+            name = query_assignments[y_placeholder_1]
+
             # 2. Sample a relation that exists for the name
+            while True: # TODO: We need to put a ceiling on the number of attempts -> if it fails, we backtrack
+                if hard_mode:
+                    relation_choice = rng.choice(RELATION)
+                else:
+                    relation_choice = rng.choice(RELATION_EASY)
 
-            relation_choice = rng.choice(RELATION_EASY)
-            query_assignments[match] = relation_choice
+                r: list[dict] = db.query(f"{relation_choice}({name}, {y_placeholder_2})")
+                if r:
+                    query_assignments[relation] = relation_choice
+                    break
+            
+            query_assignments[relation] = relation_choice
+            query_assignments[y_placeholder_2] = decode(rng.choice(r)[y_placeholder_2])
 
-            name_choice = rng.choice(name_bank)
-            query_assignments[name] = name_choice
+        elif m := re.search(r"<relation_plural>_(\d+)", query_template_[i]):
+            raise ValueError("I don't know what this is and I don't know how to handle it.")
+        
+        else:
+            raise ValueError("We have a bug -> we thought we were exhaustive and didn't think this was possible.")
 
+        # TODO: If we didn't find something that worked -> back track
+        # NOTE: This is why I said we should use a while loop, if we don't then we can't backtrack more than once since
+        # for loops use iterators and we can't reset them. 
+
+    # We have found a valid query template, we need to parse everything
+    for i in range(len(question_template_)):
+        if question_template_[i] in query_assignments:
+            # TODO: Actually here, instead of putting the query assignment, we should put the alias of the query assignment
+            # e.g. instead of putting "dob" we put "date of birth"
+            # Maybe this is something we do earlier so we don't have to worry about it here. In Kamile's sample function 
+            # she uses question_assignments to track the aliases of the query assignments
+            question_template_[i] = query_assignments[question_template_[i]] 
+
+    # From what I understand the output "query" is the list of queries
+    query = ",,".join(query_template_)
+    for placeholder, sampled_value in query_assignments.items():
+        query = query.replace(placeholder, sampled_value)
+    for atom_placeholder_, atom_variable_ in atom_variables.items():
+        query = query.replace(atom_placeholder_, atom_variable_)
+
+    return query_assignments, " ".join(question_template_), query
+    
 
 def sample(
     db: Database,
