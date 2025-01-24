@@ -13,6 +13,7 @@ from phantom_eval import get_parser
 from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std
 import matplotlib.pyplot as plt
 import re
+import json
 
 parser = get_parser()
 # parser.add_argument(
@@ -53,4 +54,30 @@ def get_retrieved_article_titles(row):
     return titles
 df['titles'] = df.apply(get_retrieved_article_titles, axis=1)
 df['num_titles'] = df['titles'].apply(len)
-import pdb; pdb.set_trace()
+
+# import pdb; pdb.set_trace()
+
+# def get_relevant_articles(row):
+#     """Get the relevant articles from the intermediate answer column.
+
+#     We define the "relevant articles" to be the smallest set of articles that
+#     can be used to answer the question correctly using base predicates.
+#     A predicate is a base predicate if it is stated directly in the article.
+#     In our code, we use RELATION_EASY + ATTRIBUTE_TYPES to refer to base predicates.
+#     TODO: refactor get_article so that you only need to pass in a list of base predicates.
+
+#     NOTE: 
+#     - only atoms that are in the first argument of a predicate have corresponding articles,
+#     so we only need to consider those atoms when counting relevant articles. (this is not true as both X and Y have articles in father(X,Y) )
+#     - 
+
+#     New definition: number of unique articles in the intermediate answers
+#     """
+#     intermediate_answers = row['intermediate_answers']
+#     # Step 1: convert the string to a dictionary
+#     intermediate_answers = json.loads(intermediate_answers)
+#     # Step 2: get the unique number of values in each dictionary
+#     solutions = []
+#     for intermediate_answer in intermediate_answers:
+#         for _, v in intermediate_answer.items():
+#             solutions.extend(v)
