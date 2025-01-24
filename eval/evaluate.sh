@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script to generate all tables and plots
+# Script to generate tables and plots for exploratory data analysis
 # Example usage (make sure you are in the repo root directory):
 # ```bash
 # ./eval/evaluate.sh OUTPUT_DIRECTORY "zeroshot fewshot"
@@ -24,15 +24,18 @@ if [ -z "$2" ]; then
         "fewshot-sc"
         "cot-sc"
         "zeroshot-retriever"
+        "cot-retriever"
     )
 else
     METHOD_LIST=($2)
 fi
 echo "Splits: $SPLIT_LIST"
 
-DATASET=$3
 echo "Dataset: $DATASET"
 
+# 
+# Figures for exporatory data analysis
+# 
 for METHOD in "${METHOD_LIST[@]}"
 do
     # csv results
