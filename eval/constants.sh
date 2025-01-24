@@ -32,28 +32,33 @@ SMALL_MODELS=(
 )
 # TODO add CPU models
 
-# Define SPLIT_LIST for dataset v0.2
-DATA_SEED_LIST="1 2 3 4 5"
-DATA_DEPTH="10"
-DATA_SIZE_LIST="26 50 100 200 500"
+DATASET=mlcore/phantom-wiki-v0.3
 
-for data_seed in $DATA_SEED_LIST
-do
-    for data_size in $DATA_SIZE_LIST
+# if dataset is mlcore/phantom-wiki-v0.2, use the following
+if [ "$DATASET" = "mlcore/phantom-wiki-v0.2" ]; then
+    # Define SPLIT_LIST for dataset v0.2
+    DATA_SEED_LIST="1 2 3 4 5"
+    DATA_DEPTH="10"
+    DATA_SIZE_LIST="26 50 100 200 500"
+
+    for data_seed in $DATA_SEED_LIST
     do
-        SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
+        for data_size in $DATA_SIZE_LIST
+        do
+            SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
+        done
     done
-done
+else
+    # Define SPLIT_LIST for dataset v0.3
+    DATA_SEED_LIST="1 2 3"
+    DATA_DEPTH="20"
+    DATA_SIZE_LIST="50 100 200 300 400 500"
 
-# # Define SPLIT_LIST for dataset v0.3
-# DATA_SEED_LIST="1 2 3"
-# DATA_DEPTH="20"
-# DATA_SIZE_LIST="50 100 200 300 400 500"
-
-# for data_seed in $DATA_SEED_LIST
-# do
-#     for data_size in $DATA_SIZE_LIST
-#     do
-#         SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
-#     done
-# done
+    for data_seed in $DATA_SEED_LIST
+    do
+        for data_size in $DATA_SIZE_LIST
+        do
+            SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
+        done
+    done
+fi
