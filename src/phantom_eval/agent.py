@@ -1053,7 +1053,7 @@ class ReasoningAgent(Agent):
         
         # Generate response
         # # Add "\n" to stop_sequences
-        # inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
+        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
         response = llm_chat.generate_response(conv, inf_gen_config)
 
         # Update agent's conversation
@@ -1084,7 +1084,7 @@ class ReasoningAgent(Agent):
         
         # Generate response
         # # Change stop_sequences to "\n"
-        # inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
+        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
         responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
 
         # Add the responses to the agent's conversations
