@@ -1012,6 +1012,117 @@ class CoTRAGAgent(CoTAgent, RAGMixin):
         # Relies on the implementation of batch_run in the subclass
         return await super().batch_run(llm_chat, questions, inf_gen_config)
 
+class ReasoningAgent(Agent):
+    """
+    Agent to implement Zeroshot and fewshot evaluation, 
+    depending on the input `llm_prompt` on initialization.
+    """
+    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, fewshot_examples: str = ""):
+        """
+        Args:
+            fewshot_examples (str): Prompt examples to include in agent prompt.
+                If "", the agent is zero-shot. Defaults to "".
+        """
+        super().__init__(text_corpus, llm_prompt)
+        self.fewshot_examples = fewshot_examples
+
+    def _build_agent_prompt(self, question: str) -> str:
+        if hasattr(self, 'embedding_model_name') and self.embedding_model_name is not None:
+            evidence = self.get_RAG_evidence(question)
+        else:
+            evidence = _get_evidence(self.text_corpus)
+        if self.fewshot_examples: # Few-shot
+            return self.llm_prompt.get_prompt().format(
+                evidence=evidence,
+                examples=self.fewshot_examples,
+                question=question
+            )
+        else: # Zero-shot
+            return self.llm_prompt.get_prompt().format(
+                evidence=evidence,
+                question=question
+            )
+
+    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+        logger.debug(f"\n\t>>> question: {question}\n")
+
+        # Create a conversation with 1 user prompt and initialize agent interactions
+        prompt = self._build_agent_prompt(question)
+        conv = Conversation(messages=[Message(role="user", content=[ContentTextMessage(text=prompt)])])
+        self.agent_interactions = conv
+        
+        # Generate response
+        # # Add "\n" to stop_sequences
+        # inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
+        response = llm_chat.generate_response(conv, inf_gen_config)
+
+        # Update agent's conversation
+        self.agent_interactions.messages.append(
+            Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
+        )
+        
+        # return response
+        try:
+            pred = ReasoningAgent.parse_answer(response.pred)
+            error = None
+        except Exception as e:
+            pred = ""
+            error = f"<agent_error>{traceback.format_exc()}</agent_error>"
+            error = f"<agent_error>{e}</agent_error>"
+        return LLMChatResponse(pred=pred, usage=response.usage, error=error)
+    
+    async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
+        logger.debug(f"\n\t>>> questions: {questions}\n")
+
+        # Create a conversation for each user prompt, and initialize agent interactions
+        prompts: list[str] = [self._build_agent_prompt(question) for question in questions]
+        convs = [
+            Conversation(messages=[Message(role="user", content=[ContentTextMessage(text=prompt)])])
+            for prompt in prompts
+        ]
+        self.agent_interactions = convs
+        
+        # Generate response
+        # # Change stop_sequences to "\n"
+        # inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
+        responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
+
+        # Add the responses to the agent's conversations
+        for i, response in enumerate(responses):
+            self.agent_interactions[i].messages.append(
+                Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
+            )
+
+        # return responses
+                # Parse the responses to extract the answers
+        parsed_responses: list[LLMChatResponse] = []
+        for response in responses:
+            # Try to parse the response, otherwise return an error
+            try:
+                pred = ReasoningAgent.parse_answer(response.pred)
+                error = None
+            except Exception as e:
+                pred = ""
+                error = f"<agent_error>{traceback.format_exc()}</agent_error>"
+            parsed_responses.append(
+                LLMChatResponse(pred=pred, usage=response.usage, error=error)
+            )
+        return parsed_responses
+    
+    
+    @classmethod
+    def parse_answer(cls, pred: str) -> tuple[str, str]:
+        """
+        Parse the response to extract the answer using regex.
+        The prediction is of the form: "... The answer is <answer>."
+        """
+        pattern = r"</think>\s*(.+)"
+        m = re.search(pattern, pred)
+        if m:
+            return m.group(1)
+        else:
+            raise ValueError(f"Answer '{pred}' cannot be parsed.")
+
 #### Utils ####
 
 def format_pred(pred: str) -> str:
@@ -1042,6 +1153,7 @@ SUPPORTED_METHOD_NAMES: list[str] = [
     "retriever",
     "fewshot-retriever",
     "cot-retriever",
+    "reasoning",
 ]
 
 
@@ -1073,5 +1185,7 @@ def get_agent(
             return NshotRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "cot-retriever":
             return CoTRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
+        case "reasoning":
+            return ReasoningAgent(text_corpus, llm_prompt, **agent_kwargs)
         case _:
             raise ValueError(f"Invalid method: {method}")

@@ -29,19 +29,21 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-TEMPERATURE=0
+TEMPERATURE=0.7
 
 source eval/constants.sh
 
 for model_name in "${LARGE_MODELS[@]}"
 do
     cmd="python -m phantom_eval \
-        --method zeroshot \
+        --method reasoning \
         -od $1 \
         -m $model_name \
-        --split_list $SPLIT_LIST \
-        --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
+        --split_list depth_20_size_50_seed_1 \
+        --inf_seed_list 1 \
         --inf_temperature $TEMPERATURE"
+                # --split_list $SPLIT_LIST \
+                # --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
     echo $cmd
     eval $cmd
 done

@@ -614,9 +614,6 @@ class VLLMChat(CommonLLMChat):
         "mistralai/mistral-7b-instruct-v0.3",
         "deepseek-ai/deepseek-r1-distill-qwen-32b",
     ]
-    # additional stop token for llama models
-    # NOTE: eot = end-of-turn
-    ADDITIONAL_STOP = ["<|eot_id|>",]
 
     def __init__(
         self,
@@ -641,6 +638,13 @@ class VLLMChat(CommonLLMChat):
                 Defaults to 8000.
         """
         super().__init__(model_name, model_path)
+        
+        # additional stop token for llama models
+        # NOTE: eot = end-of-turn
+        if(model_name == "deepseek-ai/deepseek-r1-distill-qwen-32b"):
+            ADDITIONAL_STOP = ["<｜end▁of▁sentence｜>",]
+        else:
+            ADDITIONAL_STOP = ["<|eot_id|>",]
         
         self.use_api = use_api
         if self.use_api:

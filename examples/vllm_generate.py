@@ -25,7 +25,7 @@ def main(args):
     )
 
     completion = client.chat.completions.create(
-        model="meta-llama/llama-3.1-8b-instruct",
+        model="deepseek-ai/deepseek-r1-distill-qwen-32b",#"meta-llama/llama-3.1-8b-instruct",
         messages=[
             {"role": "user", "content": "Hello!"}
         ]
@@ -41,7 +41,7 @@ async def async_main(args):
     )
 
     completion = await client.chat.completions.create(
-        model="meta-llama/llama-3.1-8b-instruct",
+        model="deepseek-ai/deepseek-r1-distill-qwen-32b",#"meta-llama/llama-3.1-8b-instruct",
         messages=[
             {"role": "user", "content": "Hello!"}
         ]
