@@ -110,6 +110,15 @@ HATCHSTYLES = {
     'gpt-4o-mini-2024-07-18': '++',
     'gpt-4o-2024-11-20': 'xx',
 }
+# https://matplotlib.org/stable/gallery/lines_bars_and_markers/marker_reference.html#filled-markers
+MARKERS = {
+    "zeroshot": "^", #upward triangle
+    "cot": "s", #square
+    "zeroshot-retriever": "*", # star
+    "cot-retriever": "H", # hexagon
+    "act": "+", # plus
+    "react": "P", # bold plus
+}
 
 def pivot_mean_std(acc_mean_std, metric, independent_variable='_split'):
     """Pivot acc_mean_std so that the specified independent variable becomes the rows
