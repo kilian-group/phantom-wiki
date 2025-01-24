@@ -52,6 +52,9 @@ do
     # plot results for all splits
     python eval/plot_difficulty_accuracy_all_splits.py -od $OUTPUT_DIR --method $METHOD --split_list $SPLIT_LIST
 
+    # plot precision-recall for all splits
+    python eval/plot_prec_recall_all_splits.py -od $OUTPUT_DIR --method $METHOD --split_list $SPLIT_LIST
+
     # plot per-model contour plots
     python eval/plot_size_hops_accuracy_per_model.py -od $OUTPUT_DIR --method $METHOD
     python eval/plot_size_difficulty_accuracy_per_model.py -od $OUTPUT_DIR --method $METHOD
