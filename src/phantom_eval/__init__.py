@@ -9,7 +9,8 @@ def get_parser() -> argparse.ArgumentParser:
                             "NOTE: to add a new model, please submit a PR to the repo with the new model name", 
                         choices=SUPPORTED_LLM_NAMES)
     parser.add_argument("--model_path", type=str, default=None, help="Path to the model")
-    parser.add_argument("--method", type=str.lower, required=True,
+    parser.add_argument("--method", type=str.lower, default="zeroshot",
+                        # required=True,
                         help="Evaluation method. " \
                             "NOTE: to add a new method, please submit a PR with the implementation",
                         choices=SUPPORTED_METHOD_NAMES)
