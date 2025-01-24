@@ -141,7 +141,10 @@ class NshotAgent(Agent):
             self.agent_interactions[i].messages.append(
                 Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
             )
-
+        for q, r in zip(questions, responses):
+            print("Question: ", q)
+            print("Response: ", r.pred)
+            print()
         return responses
 
 

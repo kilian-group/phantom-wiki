@@ -19,8 +19,7 @@ class ZeroshotLLMPrompt(LLMPrompt):
     {{evidence}}
     (END EVIDENCE)
     
-    You will be provided a question. Your task is to provide an answer according to these instructions: 
-    - The output must be one of the following: a name (if there is only one correct answer); or a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers).
+    You will be provided a question. Your task is to generate the prolog query that will retrieve the answer to the question.
     - DO NOT include any additional information in your answer.
 
     Question: {{question}}
@@ -37,39 +36,39 @@ class ZeroshotLLMPrompt(LLMPrompt):
 FEWSHOT_EXAMPLES = f"""
 Example 1:
 Question: Who is the brother of Dino Beltran?
-Answer: Orlando Beltran
+Answer: ?- brother(X, 'Dino Beltran').
 
 Example 2:
 Question: Who is the sibling of Barabara Beltran?
-Answer: Aida Wang{constants.answer_sep}Vicki Hackworth
+Answer: ?- sibling(X, 'Barabara Beltran').
 
 Example 3:
 Question: Who is the child of the sibling of Stacia Toombs?
-Answer: Aida Wang{constants.answer_sep}Barabara Beltran{constants.answer_sep}Vicki Hackworth
+Answer: ?- sibling(X, 'Stacia Toombs'), child(Y, X).
 
 Example 4:
 Question: Who is the uncle of William Smock?
-Answer: Eli Smock
+Answer: ?- uncle(X, 'William Smock').
 
 Example 5:
 Question: What is the occupation of the sister of the grandmother of Virgil Hackworth?
-Answer: actuary
+Answer: ?- grandmother(Z, 'Virgil Hackworth'), sister(X, Z), occupation(X, Y).
 
 Example 6:
 Question: Who is the brother of the person whose occupation is associate professor?
-Answer: Orlando Beltran
+Answer: ?- occupation(X, 'associate professor'), brother(X, Y).
 
 Example 7:
 Question: What is the date of birth of the person whose hobby is meteorology?
-Answer: 0929-10-28{constants.answer_sep}0989-06-11
+Answer: ?- hobby(X, 'meteorology'), date_of_birth(X, Y).
 
 Example 8:
 Question: Who is the cousin of the person whose occupation is broadcast engineer?
-Answer: Leslee Toombs
+Answer: ?- cousin(X, Y), occupation(Y, 'broadcast engineer').
 
 Example 9:
 Question: Who is the great-granddaughter of the person whose hobby is biology?
-Answer: Shelli Beltran{constants.answer_sep}Stacia Toombs
+Answer: ?- great_granddaughter(X, Y), hobby(Y, 'biology').
 """
 
 class FewshotLLMPrompt(LLMPrompt):
@@ -79,8 +78,7 @@ class FewshotLLMPrompt(LLMPrompt):
     {{evidence}}
     (END EVIDENCE)
     
-    You will be provided a question. Your task is to provide an answer according to these instructions: 
-    - The output must be one of the following: a name (if there is only one correct answer); or a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers).
+    You will be provided a question. Your task is to provide a prolog query that will retrieve the answer to the question.
     - DO NOT include any additional information in your answer.
 
     Here are some examples:
