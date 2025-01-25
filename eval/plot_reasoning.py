@@ -34,15 +34,13 @@ parser.add_argument(
 parser.add_argument(
     "--method_list", 
     nargs="+",
-    default=["zeroshot", "cot", "zeroshot-retriever", "cot-retriever", "react", 
-            #  "act" # TODO: some json IO issue
-             ], 
+    default=plotting_utils.DEFAULT_METHOD_LIST,
     help="Method to plot"
 )
 parser.add_argument(
     "--model_list",
     nargs="+",
-    default=["gemini-1.5-flash-002", "meta-llama/llama-3.3-70b-instruct", "deepseek-ai/deepseek-r1-distill-qwen-32b"],
+    default=plotting_utils.DEFAULT_MODEL_LIST,
     help="List of models to plot"
 )
 args = parser.parse_args()

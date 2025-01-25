@@ -21,3 +21,17 @@ MODEL_ALIASES = {
     'gpt-4o-2024-11-20': 'GPT-4o',
     'deepseek-ai/deepseek-r1-distill-qwen-32b': 'DeepSeek-R1-32B',
 }
+
+DEFAULT_METHOD_LIST = [
+    "zeroshot", 
+    "cot", 
+    "zeroshot-retriever", 
+    "cot-retriever", 
+    "react", 
+    "reasoning"
+]
+DEFAULT_MODEL_LIST = [ 
+    "gemini-1.5-flash-002", 
+    "meta-llama/llama-3.3-70b-instruct", 
+    "deepseek-ai/deepseek-r1-distill-qwen-32b"
+]

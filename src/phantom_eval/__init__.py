@@ -1,6 +1,7 @@
 import argparse
 from .llm import SUPPORTED_LLM_NAMES
 from .agent import SUPPORTED_METHOD_NAMES
+from . import plotting_utils
 
 def get_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="PhantomWiki Evaluation")
