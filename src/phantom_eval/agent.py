@@ -1115,7 +1115,9 @@ SUPPORTED_METHOD_NAMES: list[str] = [
     "act",
     "react->cot-sc",
     "cot-sc->react",
-    "rag"
+    "rag",
+    "zeroshot-retriever", # TODO: remove "rag" and use zeroshot-retriever, fewshot-retriever, cot-retriever instead
+    "cot-retriever",
 ]
 
 
