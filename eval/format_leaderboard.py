@@ -21,13 +21,13 @@ parser.add_argument("--output_dir", "-od", default="out",
 parser.add_argument(
     "--method_list", 
     nargs="+", 
-    default=["zeroshot"], 
+    default=["zeroshot", "cot", "zeroshot-retriever", "cot-retriever"], 
     help="Method to plot"
 )
 parser.add_argument(
     "--model_list",
     nargs="+",
-    default=["gemini-1.5-flash-002"],
+    default=["gemini-1.5-flash-002", "meta-llama/llama-3.3-70b-instruct", "deepseek-ai/deepseek-r1-distill-qwen-32b"],
     help="List of models to plot"
 )
 args = parser.parse_args()
@@ -36,7 +36,7 @@ method_list = args.method_list
 model_list = args.model_list
 dataset = args.dataset
 METRICS = [
-    'EM',
+    # 'EM',
     # 'precision', 
     # 'recall', 
     'f1'
@@ -70,6 +70,15 @@ for method in method_list:
 results = pd.concat(results)
 # reset index
 results = results.reset_index(drop=True)
+
+# create table with models as rows and methods as columns
+results = results.pivot_table(index=['_model'], columns='method', values=METRICS, aggfunc='first')
+# currently the resulting columns are (metric, method)
+# we want them to be just (method)
+results.columns = results.columns.droplevel(0)
+# change the order of columns to be the same as method_list
+results = results[[method for method in method_list if method in results.columns]]
+
 print("Accuracies:")
 print(results.to_latex())
 print(tabulate(results, tablefmt="github", headers="keys"))
