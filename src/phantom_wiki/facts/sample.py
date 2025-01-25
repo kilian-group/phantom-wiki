@@ -47,6 +47,38 @@ RELATION_EASY = FAMILY_RELATION_EASY + FRIENDSHIP_RELATION
 RELATION = FAMILY_RELATIONS + FRIENDSHIP_RELATION
 
 
+def get_vals_and_update_cache(
+    cache: dict[str, list[tuple[str, str]]],
+    key: str,
+    db: Database,
+    query_bank: list[str],
+) -> list[tuple[str, str]]:
+    """
+    Returns the values for a key from the cache if it exists
+    Otherwise queries the database `db` with `"query(key, A)"` for all `query` in `query_bank` and returns 
+    the list of `(query, value of A)`, after updating the cache.
+
+    Args:
+        cache: a dictionary mapping keys to lists of values
+        key: the key to query the cache with
+        db: the Prolog database to query
+        query_bank: a list of Prolog queries to query the database with
+
+    Returns:
+        List of `(query, value of A)` pairs
+    """
+    if key in cache:
+        return cache[key]
+    else:
+        # Query the database with this key for all possible query
+        query_and_answer = []
+        for query in query_bank:
+            r: list[dict] = db.query(f"{query}({key}, A)")
+            query_and_answer.extend((query, decode(result['A'])) for result in r)
+        cache[key] = query_and_answer
+        return query_and_answer
+
+
 def sample_WIP(
     db: Database,
     question_template: list[str],
@@ -85,88 +117,180 @@ def sample_WIP(
     query_assignments = {}  # Maps each <placeholder> to the sampled (value, alias) pair
     question_assignments = {}
 
-    # supports is a dict from {job -> all_possible_jobs, dob -> all_possible_dobs, ...}
-    supports = {}
-    for attribute_type in ATTRIBUTE_TYPES:
-        supports[attribute_type] = list(set(decode(r['Y']) for r in db.query(f"{attribute_type}(X, Y)")))
-    name_bank = db.get_person_names()
+    # Maintain a cache (dictionary) of person -> all possible attributes
+    # e.g. "John" -> [("dob", "1990-01-01"), ("job", "teacher"), ("hobby", "reading"), ("hobby", "swimming"), ...]
+    # Invariant: (attr name, attr value) pairs are unique
+    person_name2attr_name_and_val: dict[str, list[tuple[str, str]]] = {}
+
+    # Maintain a cache (dictionary) of person -> all possible relations
+    # e.g. "John" -> [("child", "Alice"), ("child", "Bob"), ("friend", "Charlie"), ...]
+    # Invariant: (relation, related person) pairs are unique
+    person_name2relation_and_related: dict[str, list[tuple[str, str]]] = {}
+
+    # Maintain a cache (dictionary) of attribute name -> all possible attribute values
+    # e.g. "job" -> ["teacher", "doctor", "engineer", ...], "hobby" -> ["reading", "swimming", ...]
+    attr_name2attr_vals = {}
+    for attribute_type in ATTRIBUTE_TYPES: # TODO: attribute_type and attribute_name are the same
+        attr_name2attr_vals[attribute_type] = list(set(decode(r['Y']) for r in db.query(f"{attribute_type}(X, Y)")))
+    person_name_bank: list[str] = db.get_person_names()
+
+    # Possible queries in query template list:
+    # TODO: are placeholders always Y_i? or can they be X_i? Fix would be [A-Z]_\d+ instead of Y_\d+
+    # 1. <attribute_name>_(\d+)(Y_\d+, <attribute_value>_\d+) --- can appear anywhere in query template list
+    # 2. <relation>_(\d+)(<name>_\d+, Y_\d+) --- only appears at end of query template list
+    # 3. <relation>_(\d+)(Y_\d+, Y_\d+) --- only appears in middle/beginning of query template list
+    # 4. <relation_plural>_(\d+) --- only appears at beginning of query template list
 
     for i in range(len(query_template_) - 1, -1, -1):
+        # 1. <attribute_name>_(\d+)(Y_\d+, <attribute_value>_\d+) --- can appear anywhere in query template list
         if m := re.search(r"(<attribute_name>_\d+)\((Y_\d+), (<attribute_value>_\d+)\)", query_template_[i]):
             # 0 group is the full match, 1 is the attribute_name, 2 is the Y_i placeholder, 3 is the attribute_value
             match, attribute_name, y_placeholder, attribute_value = m.group(0, 1, 2, 3)
 
-            # 1. Randomly sample a name from the database for the Y_i placeholder
-            name_choice = rng.choice(name_bank)
-            query_assignments[y_placeholder] = name_choice
+            # TODO fill the query with query_assignments here or at end?
 
-            # 2. Sample the attribute type. Everyone has a dob, job, etc. so we can sample
-            # uniformly from the set of attribute types
-            attribute_name_choice = rng.choice(ATTRIBUTE_TYPES)
+            # This query becomes question "... the person whose <attribute_name> is <attribute_value>?"
+            # or "What is the <attribute_name> of the ..."
+            # In the first case, we start the graph traversal (randomly sample a person from the database)
+            # In the second case, we continue the graph traversal (use the assignment of Y_i from the previous queries)
+            # Then finding all possible (attr name, attr value) pairs for that person
+            # Selecting a random pair and using it to fill in the query
+
+            # a. If y_placeholder is already assigned, then we continue the graph traversal
+            if y_placeholder in query_assignments:
+                person_name_choice = query_assignments[y_placeholder]
+            else:
+                # Randomly sample a name from the database for the Y_i placeholder
+                person_name_choice = rng.choice(person_name_bank)
+                query_assignments[y_placeholder] = person_name_choice
+
+            # b. Find all possible (attr name, attr value) pairs for the person
+            attr_name_and_vals: list[tuple[str, str]] = get_vals_and_update_cache(
+                cache=person_name2attr_name_and_val,
+                key=person_name_choice,
+                db=db,
+                query_bank=ATTRIBUTE_TYPES,
+            )
+            
+            if len(attr_name_and_vals) == 0:
+                # If there are no attributes for this person, raise an exception
+                raise ValueError(f"No attributes found for person {person_name_choice}")
+
+            # c. Randomly choose an attribute name and value
+            attribute_name_choice, attribute_value_choice = rng.choice(attr_name_and_vals)
             query_assignments[attribute_name] = attribute_name_choice
-            # TODO: Do we need question_assignments dict?
-            # question_assignments[match] = ATTRIBUTE_ALIASES[choice] if ATTRIBUTE_ALIASES else choice
+            query_assignments[attribute_value] = attribute_value_choice
 
-            # 3. Now create a temporary variable for the attribute value
-            # and query the db
-            tmp_attribute_value_placeholder = f"A_{len(atom_variables)}"
-            atom_variables[attribute_value] = tmp_attribute_value_placeholder
-            r: list[dict] = db.query(f"{attribute_name_choice}({name_choice}, {tmp_attribute_value_placeholder})")
-            if r:
-                # 4. Randomly choose an attribute value from r
-                attribute_value_choice: str = decode(rng.choice(r)[tmp_attribute_value_placeholder])
-                query_assignments[attribute_value] = attribute_value_choice
-
+        # 2. <relation>_(\d+)(<name>_\d+, Y_\d+) --- only appears at end of query template list
         elif m := re.search(r"(<relation>_\d+)\((<name>_\d+), (Y_\d+)\)", query_template_[i]):
             # 0 group is the full match, 1 is the relation, 2 is the name, 3 is the Y_i placeholder
             match, relation, name, y_placeholder = m.group(0, 1, 2, 3)
             
-            # 1. Sample the name
-            name_choice = rng.choice(name_bank)
-            query_assignments[name] = name_choice
+            # This query becomes question "... the <relation> of <name>?"
+            # Start the graph traversal by randomly sampling a person from the database
+            # Then finding all possible (relations, related) pairs for that person
+            # Selecting a random pair and using it to fill in the query
 
-            # 2. Sample a relation that exists for the name choice
-            while True: # TODO: We need to put a ceiling on the number of attempts -> if it fails, we backtrack
-                if hard_mode: # Choose relation to test based on difficulty
-                    relation_choice = rng.choice(RELATION)
-                else:
-                    relation_choice = rng.choice(RELATION_EASY)
+            # a. Randomly sample a name from the database for the Y_i placeholder
+            person_name_choice = rng.choice(person_name_bank)
+            query_assignments[name] = person_name_choice
 
-                r: list[dict] = db.query(f"{relation_choice}({name_choice}, {y_placeholder})")
-                if r: # If we have found a relation that exists for the name -> Done
-                    break
-            
-            # Save relation and y_placeholder
+            # b. Find all possible (relation, related) pairs for the person
+            relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
+                cache=person_name2relation_and_related,
+                key=person_name_choice,
+                db=db,
+                query_bank=RELATION if hard_mode else RELATION_EASY,
+            )
+
+            if len(relation_and_related) == 0:
+                # If there are no relations for this person, raise an exception
+                # TODO: Hopping to the next person failed. We need to restart/backtrack
+                raise ValueError(f"No relations found for person {person_name_choice}")
+
+            # c. Randomly choose a relation and related person
+            relation_choice, related_person_choice = rng.choice(relation_and_related)
             query_assignments[relation] = relation_choice
-            query_assignments[y_placeholder] = decode(rng.choice(r)[y_placeholder])
+            query_assignments[y_placeholder] = related_person_choice
 
+            # NOTE: Raphael might be doing the right thing below, but I want to try a different approach
+            # # 2. Sample a relation that exists for the name choice
+            # while True: # TODO: We need to put a ceiling on the number of attempts -> if it fails, we backtrack
+            #     if hard_mode: # Choose relation to test based on difficulty
+            #         relation_choice = rng.choice(RELATION)
+            #     else:
+            #         relation_choice = rng.choice(RELATION_EASY)
+
+            #     r: list[dict] = db.query(f"{relation_choice}({person_name_choice}, {y_placeholder})")
+            #     if r: # If we have found a relation that exists for the name -> Done
+            #         break
+            
+            # # Save relation and y_placeholder
+            # query_assignments[relation] = relation_choice
+            # query_assignments[y_placeholder] = decode(rng.choice(r)[y_placeholder])
+
+        # 3. <relation>_(\d+)(Y_\d+, Y_\d+) --- only appears in middle/beginning of query template list
         elif m := re.search(r"(<relation>_\d+)\((Y_\d+), (Y_\d+)\)", query_template_[i]):
             # 0 group is the full match, 1 is the relation, 2 is the name, 3 is the Y_i placeholder
             match, relation, y_placeholder_1, y_placeholder_2 = m.group(0, 1, 2, 3)
             
-            # 1. y_placeholder_1 is already assigned
-            name = query_assignments[y_placeholder_1]
+            # This query becomes question "... the <relation> of Y_1 of ...?"
+            # Continue the graph traversal by using the assignment of Y_1 from the previous queries
+            # Then finding all possible (relations, related) pairs for that person
+            # Selecting a random pair and using it to fill in the query
 
-            # 2. Sample a relation that exists for the name
-            while True: # TODO: We need to put a ceiling on the number of attempts -> if it fails, we backtrack
-                if hard_mode:
-                    relation_choice = rng.choice(RELATION)
-                else:
-                    relation_choice = rng.choice(RELATION_EASY)
+            # a. Assume that y_placeholder_1 is already assigned
+            assert y_placeholder_1 in query_assignments, f"{y_placeholder_1} should be assigned already: {query_template_[i]} in {query_template_}"
+            assert y_placeholder_2 not in query_assignments, f"{y_placeholder_2} should not be assigned already: {query_template_[i]} in {query_template_}"
+            person_1_name_choice = query_assignments[y_placeholder_1]
 
-                r: list[dict] = db.query(f"{relation_choice}({name}, {y_placeholder_2})")
-                if r:
-                    query_assignments[relation] = relation_choice
-                    break
+            # b. Find all possible (relation, related) pairs for the person
+            relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
+                cache=person_name2relation_and_related,
+                key=person_1_name_choice,
+                db=db,
+                query_bank=RELATION if hard_mode else RELATION_EASY,
+            )
+
+            if len(relation_and_related) == 0:
+                # If there are no relations for this person, raise an exception
+                raise ValueError(f"No relations found for person {person_1_name_choice}")
             
+            # c. Randomly choose a relation and related person
+            relation_choice, related_person_choice = rng.choice(relation_and_related)
             query_assignments[relation] = relation_choice
-            query_assignments[y_placeholder_2] = decode(rng.choice(r)[y_placeholder_2])
+            query_assignments[y_placeholder_2] = related_person_choice
 
-        elif m := re.search(r"<relation_plural>_(\d+)", query_template_[i]):
-            raise ValueError("I don't know what this is and I don't know how to handle it.")
+            # NOTE: Raphael might be doing the right thing below, but I want to try a different approach
+            # # 1. y_placeholder_1 is already assigned
+            # name = query_assignments[y_placeholder_1]
+
+            # # 2. Sample a relation that exists for the name
+            # while True: # TODO: We need to put a ceiling on the number of attempts -> if it fails, we backtrack
+            #     if hard_mode:
+            #         relation_choice = rng.choice(RELATION)
+            #     else:
+            #         relation_choice = rng.choice(RELATION_EASY)
+
+            #     r: list[dict] = db.query(f"{relation_choice}({name}, {y_placeholder_2})")
+            #     if r:
+            #         query_assignments[relation] = relation_choice
+            #         break
+            
+            # query_assignments[relation] = relation_choice
+            # query_assignments[y_placeholder_2] = decode(rng.choice(r)[y_placeholder_2])
+
+        elif m := re.search(r"(<relation_plural>_\d+)\((Y_\d+)\)", query_template_[i]):
+            # 0 group is the full match, 1 is the relation, 2 is the Y_i placeholder
+            match, relation, y_placeholder = m.group(0, 1, 2)
+
+            # This query becomes question "... the <relation_plural> of ...?"
+            # TODO implement this
         
         else:
-            raise ValueError("We have a bug -> we thought we were exhaustive and didn't think this was possible.")
+            # Template is not recognized
+            raise ValueError(f"Template not recognized: {query_template_[i]} in {query_template_}")
+
 
         # TODO: If we didn't find something that worked -> back track
         # NOTE: This is why I said we should use a while loop, if we don't then we can't backtrack more than once since
