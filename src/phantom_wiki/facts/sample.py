@@ -182,7 +182,7 @@ def sample(
                 match = m.group(0)
                 assert match in question_template_
                 # check if the query type is aggregation
-                # for this query type, only the 3rd match is a Variable type
+                # For this query type, only the 3rd match can be a Variable once Prolog query returns
                 if match_agg := re.findall(r"aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\)", query_template_[i]):
                     count_variables.append(match_agg[0][2])
                 # For this type of aggregation query, instantiate the atom in the 2nd match and allow the 3rd match to be Variable  
