@@ -145,6 +145,7 @@ def sample(
     # 3. <relation>_(\d+)(Y_\d+, Y_\d+) --- does not appear at the end of query template list
     # 4. <relation>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
     # 5. <relation_plural>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
+    # 6. <attribute_name>_(\d+)(Y_\d+, Y_\d+) --- TERMINAL query: only appears at end of query template list
 
     for i in range(len(query_template_) - 1, -1, -1):
         # NOTE: Invariances:
@@ -377,6 +378,42 @@ def sample(
 
             # Add the relation to the question assignments, could be an alias
             question_assignments[relation_plural] = RELATION_PLURAL_ALIAS[relation_choice]
+
+        # 6. <attribute_name>_(\d+)(Y_\d+, Y_\d+) --- TERMINAL query: only appears at end of query template list
+        elif m := re.search(r"(<attribute_name>_\d+)\((Y_\d+), (Y_\d+)\)", query_template_[i]):
+            # 0 group is the full match, 1 is the attribute_name, 2 is the Y_i placeholder, 3 is the Y_i placeholder
+            match, attribute_name, y_placeholder_1, y_placeholder_2 = m.group(0, 1, 2, 3)
+
+            # This query becomes question "What is the <attribute_name> of the ...?"
+            # End the graph traversal by using the assignment of Y_i from the previous queries
+            # Then finding all possible (attr name, attr value) pairs for that person
+            # Selecting a random pair and using it to fill in the query
+
+            # a. Assume that y_placeholder_1 is already assigned
+            assert y_placeholder_1 in query_assignments, f"{y_placeholder_1} should be assigned already: {query_template_[i]} in {query_template_}"
+            assert y_placeholder_2 not in query_assignments, f"{y_placeholder_2} should not be assigned already: {query_template_[i]} in {query_template_}"
+
+            person_name_choice = atom_assignments[query_assignments[y_placeholder_1]]
+
+            # b. Find all possible (attr name, attr value) pairs for the person
+            attr_name_and_vals: list[tuple[str, str]] = get_vals_and_update_cache(
+                cache=person_name2attr_name_and_val,
+                key=person_name_choice,
+                db=db,
+                query_bank=ATTRIBUTE_TYPES,
+            )
+
+            if len(attr_name_and_vals) == 0:
+                # If there are no attributes for this person, raise an exception
+                raise ValueError(f"No attributes found for person {person_name_choice}")
+
+            # c. Randomly choose an attribute name and value
+            # NOTE: The attribute_value_choice is 'one possible' answer of the question "What is the ..."
+            attribute_name_choice, attribute_value_choice = rng.choice(attr_name_and_vals)
+            query_assignments[attribute_name] = attribute_name_choice
+
+            # Add the attribute name and value to the question assignments, could be an alias
+            question_assignments[attribute_name] = ATTRIBUTE_ALIASES[attribute_name_choice]
 
         else:
             # Template is not recognized
