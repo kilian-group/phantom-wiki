@@ -199,8 +199,8 @@ def sample_valid_only(
                 )
                 
                 if len(attr_name_and_vals) == 0:
-                    # If there are no attributes for this person, raise an exception
-                    raise ValueError(f"No attributes found for person {person_name_choice}")
+                    # If there are no attributes for this person, dead end in the graph traversal. Break and try again
+                    break
 
                 # c. Randomly choose an attribute name and value
                 attribute_name_choice, attribute_value_choice = rng.choice(attr_name_and_vals)
@@ -236,8 +236,8 @@ def sample_valid_only(
                 )
 
                 if len(relation_and_related) == 0:
-                    # If there are no relations for this person, raise an exception
-                    raise ValueError(f"No relations found for person {person_name_choice}")
+                    # If there are no relations for this person, dead end in the graph traversal. Break and try again
+                    break
 
                 # c. Randomly choose a relation and related person
                 relation_choice, related_person_choice = rng.choice(relation_and_related)
@@ -277,8 +277,8 @@ def sample_valid_only(
                 )
 
                 if len(relation_and_related) == 0:
-                    # If there are no relations for this person, raise an exception
-                    raise ValueError(f"No relations found for person {person_1_name_choice}")
+                    # If there are no relations for this person, dead end in the graph traversal. Break and try again
+                    break
                 
                 # c. Randomly choose a relation and related person
                 relation_choice, related_person_choice = rng.choice(relation_and_related)
@@ -315,8 +315,8 @@ def sample_valid_only(
                 )
 
                 if len(relation_and_related) == 0:
-                    # If there are no relations for this person, raise an exception
-                    raise ValueError(f"No relations found for person {person_name_choice}")
+                    # If there are no relations for this person, dead end in the graph traversal. Break and try again
+                    break
 
                 # c. Randomly choose a relation and related person
                 # NOTE: The related_person_choice is 'one possible' answer of the question "Who is the ..."
@@ -350,8 +350,8 @@ def sample_valid_only(
                 )
 
                 if len(relation_and_related) == 0:
-                    # If there are no relations for this person, raise an exception
-                    raise ValueError(f"No relations found for person {person_name_choice}")
+                    # If there are no relations for this person, dead end in the graph traversal. Break and try again
+                    break
                 
                 # c. Randomly choose a relation and related person
                 # NOTE: The related_person_choice is 'one possible' answer of the question "Who are the ..."
@@ -386,8 +386,8 @@ def sample_valid_only(
                 )
 
                 if len(attr_name_and_vals) == 0:
-                    # If there are no attributes for this person, raise an exception
-                    raise ValueError(f"No attributes found for person {person_name_choice}")
+                    # If there are no attributes for this person, dead end in the graph traversal. Break and try again
+                    break
 
                 # c. Randomly choose an attribute name and value
                 # NOTE: The attribute_value_choice is 'one possible' answer of the question "What is the ..."
@@ -401,7 +401,7 @@ def sample_valid_only(
                 # Template is not recognized
                 raise ValueError(f"Template not recognized: {query_template_[i]} in {query_template_}")
         
-        # break if we have a valid query
+        # If we reached the end of the loop, we have a valid query template and can exit the while loop
         if i == 0:
             valid_result = True
 
