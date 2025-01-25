@@ -53,15 +53,14 @@ depth = args.depth
 figures_dir = os.path.join(output_dir, 'figures')
 os.makedirs(figures_dir, exist_ok=True)
 METRICS = [
-    # 'EM', 
-    # 'precision', 
-    # 'recall', 
+    'EM', 
+    'precision', 
+    'recall', 
     'f1',
 ]
 MAX_DIFFICULTY = 16
 for metric in METRICS:
     fig = plt.figure(figsize=(3.25, 2.75)) # exact dimensions of ICML single column width
-    model_name2labels: dict[str, mpatches.Patch] = {}
 
     for method in method_list:
         # get evaluation data from the specified output directory and method subdirectory
@@ -119,21 +118,37 @@ for metric in METRICS:
                 # Add label for the model. [0], [0] are dummy values for the line
                 # key = f"{method}+{model_name}"
                 key = f"{method} + {MODEL_ALIASES[model_name]}"
-                model_name2labels[key] = lines.Line2D(
-                    [0], [0],
-                    color=COLORS[model_name],
-                    label=key, ###f"{method}+{model_name}", # cot+gemini-1.5-flash-002
-                    linestyle=LINESTYLES[model_name],
-                    marker=MARKERS[method],
-                    markersize=4,
-                    linewidth=1,
-                )
+    # Create separate handles for models and methods
+    # We will plot models on the left column and methods on the right column
+    # Having the combination of model and method in the legend is too crowded
+    legend_handles = []
+    for method in method_list:
+        key = f"{method}"
+        legend_handles.append( lines.Line2D(
+            [0], [0],
+            color="black",
+            label=key, ###f"{method}+{model_name}", # cot+gemini-1.5-flash-002
+            linestyle='none',
+            marker=MARKERS[method],
+            markersize=4,
+        ))
+    for model in model_list:
+        key = f"{MODEL_ALIASES[model]}"
+        legend_handles.append( lines.Line2D(
+            [0], [0],
+            color=COLORS[model],
+            label=key, ###f"{method}+{model_name}", # cot+gemini-1.5-flash-002
+            linestyle=LINESTYLES[model],
+            # marker=MARKERS[method],
+            # markersize=4,
+            linewidth=1,
+        ) )
 
     plt.legend(
-        handles=list(model_name2labels.values()), 
+        handles=legend_handles,
         fontsize=4,
         loc='upper center',
-        bbox_to_anchor=(0.5, -0.3),
+        bbox_to_anchor=(0.5, -0.25),
         ncol=2,
         handlelength=4,
     )
