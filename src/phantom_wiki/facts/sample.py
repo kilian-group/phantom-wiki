@@ -73,13 +73,13 @@ def get_vals_and_update_cache(
         # Query the database with this key for all possible query
         query_and_answer = []
         for query in query_bank:
-            r: list[dict] = db.query(f"{query}({key}, A)")
+            r: list[dict] = db.query(f"{query}(\"{key}\", A)")
             query_and_answer.extend((query, decode(result['A'])) for result in r)
         cache[key] = query_and_answer
         return query_and_answer
 
 
-def sample_WIP(
+def sample(
     db: Database,
     question_template: list[str],
     query_template: list[str],
@@ -89,6 +89,11 @@ def sample_WIP(
 ) -> list[dict, str, list[str]]:
     """Samples possible realizations of the question template and query template lists
     from the database `db`.
+
+    Implements a backward sampling algorithm, where we hop between people in the universe
+    creating a query.
+
+    TODO: Implement valid_only
 
     Args:
         db: the Prolog database to sample from
@@ -130,24 +135,22 @@ def sample_WIP(
     # Maintain a cache (dictionary) of attribute name -> all possible attribute values
     # e.g. "job" -> ["teacher", "doctor", "engineer", ...], "hobby" -> ["reading", "swimming", ...]
     attr_name2attr_vals = {}
-    for attribute_type in ATTRIBUTE_TYPES: # TODO: attribute_type and attribute_name are the same
+    for attribute_type in ATTRIBUTE_TYPES: # NOTE: attribute_type and attribute_name are the same
         attr_name2attr_vals[attribute_type] = list(set(decode(r['Y']) for r in db.query(f"{attribute_type}(X, Y)")))
     person_name_bank: list[str] = db.get_person_names()
 
     # Possible queries in query template list:
-    # TODO: are placeholders always Y_i? or can they be X_i? Fix would be [A-Z]_\d+ instead of Y_\d+
-    # 1. <attribute_name>_(\d+)(Y_\d+, <attribute_value>_\d+) --- can appear anywhere in query template list
+    # 1. <attribute_name>_(\d+)(Y_\d+, <attribute_value>_\d+) --- only appears at the beginning or end of query template list
     # 2. <relation>_(\d+)(<name>_\d+, Y_\d+) --- only appears at end of query template list
-    # 3. <relation>_(\d+)(Y_\d+, Y_\d+) --- only appears in middle/beginning of query template list
-    # 4. <relation_plural>_(\d+) --- only appears at beginning of query template list
+    # 3. <relation>_(\d+)(Y_\d+, Y_\d+) --- does not appear at the end of query template list
+    # 4. <relation>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
+    # 5. <relation_plural>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
 
     for i in range(len(query_template_) - 1, -1, -1):
-        # 1. <attribute_name>_(\d+)(Y_\d+, <attribute_value>_\d+) --- can appear anywhere in query template list
+        # 1. <attribute_name>_(\d+)(Y_\d+, <attribute_value>_\d+) --- only appears at the beginning or end of query template list
         if m := re.search(r"(<attribute_name>_\d+)\((Y_\d+), (<attribute_value>_\d+)\)", query_template_[i]):
             # 0 group is the full match, 1 is the attribute_name, 2 is the Y_i placeholder, 3 is the attribute_value
             match, attribute_name, y_placeholder, attribute_value = m.group(0, 1, 2, 3)
-
-            # TODO fill the query with query_assignments here or at end?
 
             # This query becomes question "... the person whose <attribute_name> is <attribute_value>?"
             # or "What is the <attribute_name> of the ..."
@@ -181,6 +184,9 @@ def sample_WIP(
             query_assignments[attribute_name] = attribute_name_choice
             query_assignments[attribute_value] = attribute_value_choice
 
+            # Add the attribute name to the question assignments, could be an alias
+            question_assignments[attribute_name] = ATTRIBUTE_ALIASES[attribute_name_choice]
+
         # 2. <relation>_(\d+)(<name>_\d+, Y_\d+) --- only appears at end of query template list
         elif m := re.search(r"(<relation>_\d+)\((<name>_\d+), (Y_\d+)\)", query_template_[i]):
             # 0 group is the full match, 1 is the relation, 2 is the name, 3 is the Y_i placeholder
@@ -205,13 +211,15 @@ def sample_WIP(
 
             if len(relation_and_related) == 0:
                 # If there are no relations for this person, raise an exception
-                # TODO: Hopping to the next person failed. We need to restart/backtrack
                 raise ValueError(f"No relations found for person {person_name_choice}")
 
             # c. Randomly choose a relation and related person
             relation_choice, related_person_choice = rng.choice(relation_and_related)
             query_assignments[relation] = relation_choice
             query_assignments[y_placeholder] = related_person_choice
+
+            # Add the relation to the question assignments, could be an alias
+            question_assignments[relation] = RELATION_ALIAS[relation_choice]
 
             # NOTE: Raphael might be doing the right thing below, but I want to try a different approach
             # # 2. Sample a relation that exists for the name choice
@@ -229,7 +237,7 @@ def sample_WIP(
             # query_assignments[relation] = relation_choice
             # query_assignments[y_placeholder] = decode(rng.choice(r)[y_placeholder])
 
-        # 3. <relation>_(\d+)(Y_\d+, Y_\d+) --- only appears in middle/beginning of query template list
+        # 3. <relation>_(\d+)(Y_\d+, Y_\d+) --- does not appear at the end of query template list
         elif m := re.search(r"(<relation>_\d+)\((Y_\d+), (Y_\d+)\)", query_template_[i]):
             # 0 group is the full match, 1 is the relation, 2 is the name, 3 is the Y_i placeholder
             match, relation, y_placeholder_1, y_placeholder_2 = m.group(0, 1, 2, 3)
@@ -261,6 +269,9 @@ def sample_WIP(
             query_assignments[relation] = relation_choice
             query_assignments[y_placeholder_2] = related_person_choice
 
+            # Add the relation to the question assignments, could be an alias
+            question_assignments[relation] = RELATION_ALIAS[relation_choice]
+
             # NOTE: Raphael might be doing the right thing below, but I want to try a different approach
             # # 1. y_placeholder_1 is already assigned
             # name = query_assignments[y_placeholder_1]
@@ -280,46 +291,111 @@ def sample_WIP(
             # query_assignments[relation] = relation_choice
             # query_assignments[y_placeholder_2] = decode(rng.choice(r)[y_placeholder_2])
 
-        elif m := re.search(r"(<relation_plural>_\d+)\((Y_\d+)\)", query_template_[i]):
+        # 4. <relation>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
+        elif m := re.search(r"(<relation>_\d+)\((Y_\d+)\)", query_template_[i]):
             # 0 group is the full match, 1 is the relation, 2 is the Y_i placeholder
             match, relation, y_placeholder = m.group(0, 1, 2)
 
-            # This query becomes question "... the <relation_plural> of ...?"
-            # TODO implement this
-        
+            # This query becomes question "Who is the <relation> of ...?"
+            # End the graph by using the assignment of Y_i from the previous queries
+            # Then finding all possible (relations, related) pairs for that person
+            # Selecting a random pair and using it to fill in the query
+
+            # a. Assume that y_placeholder is already assigned
+            assert y_placeholder in query_assignments, f"{y_placeholder} should be assigned already: {query_template_[i]} in {query_template_}"
+            person_name_choice = query_assignments[y_placeholder]
+
+            # b. Find all possible (relation, related) pairs for the person
+            relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
+                cache=person_name2relation_and_related,
+                key=person_name_choice,
+                db=db,
+                query_bank=RELATION if hard_mode else RELATION_EASY,
+            )
+
+            if len(relation_and_related) == 0:
+                # If there are no relations for this person, raise an exception
+                raise ValueError(f"No relations found for person {person_name_choice}")
+
+            # c. Randomly choose a relation and related person
+            # NOTE: The related_person_choice is 'one possible' answer of the question "Who is the ..."
+            relation_choice, related_person_choice = rng.choice(relation_and_related)
+            query_assignments[relation] = relation_choice
+
+            # Add the relation to the question assignments, could be an alias
+            question_assignments[relation] = RELATION_ALIAS[relation_choice]
+
+        # 5. <relation_plural>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
+        elif m := re.search(r"(<relation_plural>_\d+)\((Y_\d+)\)", query_template_[i]):
+            # 0 group is the full match, 1 is the relation, 2 is the Y_i placeholder
+            match, relation_plural, y_placeholder = m.group(0, 1, 2)
+
+            # This query becomes question "Who are the <relation_plural> of ...?"
+            # End the graph by using the assignment of Y_i from the previous queries
+            # Then finding all possible (relations, related) pairs for that person
+            # Selecting a random pair and using it to fill in the query
+
+            # a. Assume that y_placeholder is already assigned
+            assert y_placeholder in query_assignments, f"{y_placeholder} should be assigned already: {query_template_[i]} in {query_template_}"
+            person_name_choice = query_assignments[y_placeholder]
+
+            # b. Find all possible (relation, related) pairs for the person
+            # NOTE: Use the plural bank
+            relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
+                cache=person_name2relation_and_related,
+                key=person_name_choice,
+                db=db,
+                query_bank=RELATION if hard_mode else RELATION_EASY,
+            )
+
+            if len(relation_and_related) == 0:
+                # If there are no relations for this person, raise an exception
+                raise ValueError(f"No relations found for person {person_name_choice}")
+            
+            # c. Randomly choose a relation and related person
+            # NOTE: The related_person_choice is 'one possible' answer of the question "Who are the ..."
+            relation_choice, related_person_choice = rng.choice(relation_and_related)
+            query_assignments[relation_plural] = relation_choice
+
+            # Add the relation to the question assignments, could be an alias
+            question_assignments[relation_plural] = RELATION_PLURAL_ALIAS[relation_choice]
+
         else:
             # Template is not recognized
             raise ValueError(f"Template not recognized: {query_template_[i]} in {query_template_}")
 
-
-        # TODO: If we didn't find something that worked -> back track
-        # NOTE: This is why I said we should use a while loop, if we don't then we can't backtrack more than once since
-        # for loops use iterators and we can't reset them. 
-
-    # We have found a valid query template, we need to parse everything
-    for i in range(len(question_template_)):
-        if question_template_[i] in query_assignments:
-            # TODO: Actually here, instead of putting the query assignment, we should put the alias of the query assignment
-            # e.g. instead of putting "dob" we put "date of birth"
-            # Maybe this is something we do earlier so we don't have to worry about it here. In Kamile's sample function 
-            # she uses question_assignments to track the aliases of the query assignments
-            question_template_[i] = query_assignments[question_template_[i]] 
-
-    # From what I understand the output "query" is the list of queries
-    query = ",,".join(query_template_)
+    # We have found a valid query template, we need to prepare the query and question
+    joined_query: str = ",,".join(query_template_)
     for placeholder, sampled_value in query_assignments.items():
-        query = query.replace(placeholder, sampled_value)
-    for atom_placeholder_, atom_variable_ in atom_variables.items():
-        query = query.replace(atom_placeholder_, atom_variable_)
+        joined_query = joined_query.replace(placeholder, sampled_value)
+    query: list[str] = joined_query.split(",,")
+
+    # Last value in question template is always "?", so we join all but the last value and add the "?"
+    # This avoids a space before the "?"
+    question = " ".join(question_template_[:-1]) + question_template_[-1]
+    for placeholder, sampled_value in question_assignments.items():
+        question = question.replace(placeholder, sampled_value)
+
+    # for i in range(len(question_template_)):
+    #     if question_template_[i] in query_assignments:
+    #         # TODO: Actually here, instead of putting the query assignment, we should put the alias of the query assignment
+    #         # e.g. instead of putting "dob" we put "date of birth"
+    #         # Maybe this is something we do earlier so we don't have to worry about it here. In Kamile's sample function 
+    #         # she uses question_assignments to track the aliases of the query assignments
+    #         question_template_[i] = query_assignments[question_template_[i]] 
+
+    # Don't need this
+    # for atom_placeholder_, atom_variable_ in atom_variables.items():
+    #     query = query.replace(atom_placeholder_, atom_variable_)
 
     # NOTE: We talked about this with Anmol but we also noted that it is possible that there could be a lot of cycles in these questions.
     # This is something we need to test once everything is done -> if that is the case, we need to add check, e.g. name bank to ensure 
     # that we don’t revisit the same person more than once. Not too complicated but if unnecessary, then we shouldn't do it
     
-    return query_assignments, " ".join(question_template_), query
+    return query_assignments, question, query
     
 
-def sample(
+def sample_forward(
     db: Database,
     question_template: list[str],
     query_template: list[str],
@@ -327,9 +403,10 @@ def sample(
     valid_only: bool = True,
     hard_mode: bool = False,
 ):
-    # TODO output type
     """Samples possible realizations of the question template and query template lists
     from the database `db`.
+
+    Implements a forward sampling strategy, where we construct a query first then check prolog for validity.
 
     Args:
         db: the Prolog database to sample from
