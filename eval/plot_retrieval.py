@@ -14,6 +14,7 @@ from phantom_eval import get_parser
 from phantom_eval.utils import setup_logging
 # setup_logging("DEBUG")
 from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std, MARKERS
+from phantom_eval import plotting_utils
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import matplotlib.lines as lines
@@ -94,24 +95,37 @@ for metric in METRICS:
                 marker=MARKERS[method],
             )
             plt.fill_between(x, y-yerr, y+yerr, alpha=0.1, color=COLORS[model_name])
-            # Add label for the model. [0], [0] are dummy values for the line
-            key = f"{method}+{model_name}"
-            model_name2labels[key] = lines.Line2D(
-                [0], [0],
-                color=COLORS[model_name],
-                label=key, ###f"{method}+{model_name}", # cot+gemini-1.5-flash-002
-                linestyle=LINESTYLES[model_name],
-                marker=MARKERS[method],
-                markersize=4,
-                linewidth=1,
-            )
+
+    legend_handles = []
+    for method in method_list:
+        key = f"{method}"
+        legend_handles.append( lines.Line2D(
+            [0], [0],
+            color="black",
+            label=key, 
+            linestyle='none',
+            marker=MARKERS[method],
+            markersize=4,
+        ))
+    for model in model_list:
+        key = f"{plotting_utils.MODEL_ALIASES[model]}"
+        legend_handles.append( lines.Line2D(
+            [0], [0],
+            color=COLORS[model],
+            label=key, 
+            linestyle=LINESTYLES[model],
+            # marker=MARKERS[method],
+            # markersize=4,
+            linewidth=1,
+        ) )
 
     plt.legend(
-        handles=list(model_name2labels.values()), 
+        handles=legend_handles,
         fontsize=4,
         loc='upper center',
-        bbox_to_anchor=(0.5, -0.3),
-        ncol=2
+        bbox_to_anchor=(0.5, -0.25),
+        ncol=2,
+        handlelength=4,
     )
 
     ax = plt.gca()
@@ -119,18 +133,18 @@ for metric in METRICS:
     ax.spines['left'].set_position(('outward', 1))    # Move y-axis outward
 
     # format x-axis
-    plt.xlabel('Universe Size', fontsize=16)
+    plt.xlabel('Universe Size', fontsize=plotting_utils.LABEL_FONT_SIZE)
     # Only add labels at 10, but keep the ticks at all points
     ticks, labels = zip(*[(t, l if np.log10(l).is_integer() else "") for t, l in zip(x, df_mean.columns.tolist())])
-    plt.xticks(ticks, labels, fontsize=10)
+    plt.xticks(ticks, labels, fontsize=plotting_utils.TICK_FONT_SIZE)
 
     # format y-axis
     plt.ylabel(metric.upper(), fontsize=8)
     plt.ylim(0, 1)
-    plt.yticks(fontsize=10)
+    plt.yticks(fontsize=plotting_utils.TICK_FONT_SIZE)
 
     plt.tight_layout()
-    fig.subplots_adjust(left=0.17, right=0.85, bottom=0.3, top=0.95) #, wspace=0.3, hspace=0.3)
+    fig.subplots_adjust(left=0.17, right=0.95, bottom=0.3, top=0.95) #, wspace=0.3, hspace=0.3)
 
     fig_path = os.path.join(figures_dir, f'size-{metric}.pdf')
     print(f"Saving to {os.path.abspath(fig_path)}")

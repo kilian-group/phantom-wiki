@@ -10,7 +10,8 @@ Example:
 # %%
 import os
 from phantom_eval import get_parser
-from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std, MARKERS, MODEL_ALIASES
+from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std, MARKERS
+from phantom_eval import plotting_utils
 import matplotlib.pyplot as plt
 import matplotlib.lines as lines
 import matplotlib.patches as mpatches
@@ -53,9 +54,9 @@ depth = args.depth
 figures_dir = os.path.join(output_dir, 'figures')
 os.makedirs(figures_dir, exist_ok=True)
 METRICS = [
-    'EM', 
-    'precision', 
-    'recall', 
+    # 'EM', 
+    # 'precision', 
+    # 'recall', 
     'f1',
 ]
 MAX_DIFFICULTY = 16
@@ -115,9 +116,6 @@ for metric in METRICS:
                 color_intensity_for_fill = 0.1
                 plt.fill_between(x, y-yerr, y+yerr, alpha=color_intensity_for_fill, color=COLORS[model_name])
 
-                # Add label for the model. [0], [0] are dummy values for the line
-                # key = f"{method}+{model_name}"
-                key = f"{method} + {MODEL_ALIASES[model_name]}"
     # Create separate handles for models and methods
     # We will plot models on the left column and methods on the right column
     # Having the combination of model and method in the legend is too crowded
@@ -133,7 +131,7 @@ for metric in METRICS:
             markersize=4,
         ))
     for model in model_list:
-        key = f"{MODEL_ALIASES[model]}"
+        key = f"{plotting_utils.MODEL_ALIASES[model]}"
         legend_handles.append( lines.Line2D(
             [0], [0],
             color=COLORS[model],
@@ -156,14 +154,13 @@ for metric in METRICS:
     ax.spines['bottom'].set_position(('outward', 1))  # Move x-axis outward
     ax.spines['left'].set_position(('outward', 1))    # Move y-axis outward
 
-    TICK_FONT_SIZE = 8
     # format x-axis
-    plt.xlabel('Reasoning Steps', fontsize=10)
-    plt.xticks(x[::5], df_mean.columns[::5], fontsize=TICK_FONT_SIZE)
+    plt.xlabel('Reasoning Steps', fontsize=plotting_utils.LABEL_FONT_SIZE)
+    plt.xticks(x[::5], df_mean.columns[::5], fontsize=plotting_utils.TICK_FONT_SIZE)
     # set xlim
     plt.xlim(1, MAX_DIFFICULTY)
     plt.ylabel(metric.upper(), fontsize=8)
-    plt.yticks(fontsize=TICK_FONT_SIZE)
+    plt.yticks(fontsize=plotting_utils.TICK_FONT_SIZE)
     # set ylim
     plt.ylim(0, 1)
     plt.tight_layout()
