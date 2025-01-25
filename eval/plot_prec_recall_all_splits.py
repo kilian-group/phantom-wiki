@@ -32,6 +32,8 @@ depth = args.depth
 df = get_evaluation_data(output_dir, method, dataset)
 # filter by depth
 df = df[(df['_depth'] == depth)]
+# filter for questions that have >1 solutions
+df = df[(df['solutions'] > 1) & (df['difficulty'] <= 3)]
 
 # %%
 figures_dir = os.path.join(output_dir, 'figures', method)
