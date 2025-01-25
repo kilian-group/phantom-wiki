@@ -87,13 +87,24 @@ def sample(
     valid_only: bool = True,
     hard_mode: bool = False,
 ) -> list[dict, str, list[str]]:
+    if valid_only:
+        return sample_valid_only(db, question_template, query_template, rng, hard_mode)
+    else:
+        raise NotImplementedError("Only valid_only=True is supported for now")
+
+
+def sample_valid_only(
+    db: Database,
+    question_template: list[str],
+    query_template: list[str],
+    rng: Generator,
+    hard_mode: bool = False,
+) -> list[dict, str, list[str]]:
     """Samples possible realizations of the question template and query template lists
     from the database `db`.
 
     Implements a backward sampling algorithm, where we hop between people in the universe
     creating a query.
-
-    TODO: Implement valid_only
 
     Args:
         db: the Prolog database to sample from
@@ -110,7 +121,6 @@ def sample(
             if False: we sample the relation predicates from FAMILY_RELATIONS with difficulty = 1
     Returns:
         * a dictionary mapping each placeholder to its realization,
-        # TODO consider not returning these for simplicity and doing the replacement elsewhere?
         * the completed question as a single string,
         * the completed Prolog query as a list of Prolog statements,
     """
@@ -236,22 +246,6 @@ def sample(
             question_assignments[relation] = RELATION_ALIAS[relation_choice]
             question_assignments[name] = person_name_choice
 
-            # NOTE: Raphael might be doing the right thing below, but I want to try a different approach
-            # # 2. Sample a relation that exists for the name choice
-            # while True: # TODO: We need to put a ceiling on the number of attempts -> if it fails, we backtrack
-            #     if hard_mode: # Choose relation to test based on difficulty
-            #         relation_choice = rng.choice(RELATION)
-            #     else:
-            #         relation_choice = rng.choice(RELATION_EASY)
-
-            #     r: list[dict] = db.query(f"{relation_choice}({person_name_choice}, {y_placeholder})")
-            #     if r: # If we have found a relation that exists for the name -> Done
-            #         break
-            
-            # # Save relation and y_placeholder
-            # query_assignments[relation] = relation_choice
-            # query_assignments[y_placeholder] = decode(rng.choice(r)[y_placeholder])
-
         # 3. <relation>_(\d+)(Y_\d+, Y_\d+) --- does not appear at the end of query template list
         elif m := re.search(r"(<relation>_\d+)\((Y_\d+), (Y_\d+)\)", query_template_[i]):
             # 0 group is the full match, 1 is the relation, 2 is the name, 3 is the Y_i placeholder
@@ -291,25 +285,6 @@ def sample(
 
             # Add the relation to the question assignments, could be an alias
             question_assignments[relation] = RELATION_ALIAS[relation_choice]
-
-            # NOTE: Raphael might be doing the right thing below, but I want to try a different approach
-            # # 1. y_placeholder_1 is already assigned
-            # name = query_assignments[y_placeholder_1]
-
-            # # 2. Sample a relation that exists for the name
-            # while True: # TODO: We need to put a ceiling on the number of attempts -> if it fails, we backtrack
-            #     if hard_mode:
-            #         relation_choice = rng.choice(RELATION)
-            #     else:
-            #         relation_choice = rng.choice(RELATION_EASY)
-
-            #     r: list[dict] = db.query(f"{relation_choice}({name}, {y_placeholder_2})")
-            #     if r:
-            #         query_assignments[relation] = relation_choice
-            #         break
-            
-            # query_assignments[relation] = relation_choice
-            # query_assignments[y_placeholder_2] = decode(rng.choice(r)[y_placeholder_2])
 
         # 4. <relation>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
         elif m := re.search(r"(<relation>_\d+)\((Y_\d+)\)", query_template_[i]):
@@ -421,8 +396,8 @@ def sample(
             raise ValueError(f"Template not recognized: {query_template_[i]} in {query_template_}")
 
     # We have found a valid query template, we need to prepare the query and question
-    print(f"{query_template_=}")
-    joined_query: str = ",,".join(query_template_)
+    # print(f"{query_template_=}")
+    joined_query: str = ",,".join(query_template_) # join by ,, because , is used in Prolog queries
     for placeholder, sampled_value in query_assignments.items():
         # When placeholder is in atom_assignments, placeholder is Y_i and sampled_value is A_i
         # In these cases, we don't want to replace the placeholder with the sampled value
@@ -430,27 +405,15 @@ def sample(
         if sampled_value not in atom_assignments:
             joined_query = joined_query.replace(placeholder, sampled_value)
     query: list[str] = joined_query.split(",,")
-    print(f"{query=}")
+    # print(f"{query=}")
 
     # Last value in question template is always "?", so we join all but the last value and add the "?"
     # This avoids a space before the "?"
-    print(f"{question_template_=}")
+    # print(f"{question_template_=}")
     question = " ".join(question_template_[:-1]) + question_template_[-1]
     for placeholder, sampled_value in question_assignments.items():
         question = question.replace(placeholder, sampled_value)
-    print(f"{question=}")
-
-    # for i in range(len(question_template_)):
-    #     if question_template_[i] in query_assignments:
-    #         # TODO: Actually here, instead of putting the query assignment, we should put the alias of the query assignment
-    #         # e.g. instead of putting "dob" we put "date of birth"
-    #         # Maybe this is something we do earlier so we don't have to worry about it here. In Kamile's sample function 
-    #         # she uses question_assignments to track the aliases of the query assignments
-    #         question_template_[i] = query_assignments[question_template_[i]] 
-
-    # Don't need this
-    # for atom_placeholder_, atom_variable_ in atom_variables.items():
-    #     query = query.replace(atom_placeholder_, atom_variable_)
+    # print(f"{question=}")
 
     # NOTE: We talked about this with Anmol but we also noted that it is possible that there could be a lot of cycles in these questions.
     # This is something we need to test once everything is done -> if that is the case, we need to add check, e.g. name bank to ensure 
