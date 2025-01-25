@@ -118,9 +118,9 @@ def sample(
     query_template_ = copy(query_template)  # we will be modifying this list in place
     question_template_ = copy(question_template)  # we will be modifying this list in place
 
-    atom_variables = {}  # Maps <placeholder> to the temporary variable if sampled value is unavailable
-    query_assignments = {}  # Maps each <placeholder> to the sampled (value, alias) pair
-    question_assignments = {}
+    atom_assignments: dict[str, str] = {}  # Maps temporary variable A_i to the sampled value
+    query_assignments: dict[str, str] = {}  # Maps placeholder Y_i to the temporary variable A_i (or sampled value in case of terminal question)
+    question_assignments: dict[str, str] = {}
 
     # Maintain a cache (dictionary) of person -> all possible attributes
     # e.g. "John" -> [("dob", "1990-01-01"), ("job", "teacher"), ("hobby", "reading"), ("hobby", "swimming"), ...]
@@ -147,6 +147,9 @@ def sample(
     # 5. <relation_plural>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
 
     for i in range(len(query_template_) - 1, -1, -1):
+        # NOTE: Invariances:
+        # - Every value of assignments[Y_i] that is an atom variable (A_i) should be a key in atom_assignments
+
         # 1. <attribute_name>_(\d+)(Y_\d+, <attribute_value>_\d+) --- only appears at the beginning or end of query template list
         if m := re.search(r"(<attribute_name>_\d+)\((Y_\d+), (<attribute_value>_\d+)\)", query_template_[i]):
             # 0 group is the full match, 1 is the attribute_name, 2 is the Y_i placeholder, 3 is the attribute_value
@@ -161,11 +164,14 @@ def sample(
 
             # a. If y_placeholder is already assigned, then we continue the graph traversal
             if y_placeholder in query_assignments:
-                person_name_choice = query_assignments[y_placeholder]
+                person_name_choice = atom_assignments[query_assignments[y_placeholder]]
             else:
                 # Randomly sample a name from the database for the Y_i placeholder
+                # Create new atom variable for the person name
                 person_name_choice = rng.choice(person_name_bank)
-                query_assignments[y_placeholder] = person_name_choice
+                new_atom = f"A_{len(atom_assignments)}"
+                query_assignments[y_placeholder] = new_atom
+                atom_assignments[new_atom] = person_name_choice
 
             # b. Find all possible (attr name, attr value) pairs for the person
             attr_name_and_vals: list[tuple[str, str]] = get_vals_and_update_cache(
@@ -182,10 +188,12 @@ def sample(
             # c. Randomly choose an attribute name and value
             attribute_name_choice, attribute_value_choice = rng.choice(attr_name_and_vals)
             query_assignments[attribute_name] = attribute_name_choice
-            query_assignments[attribute_value] = attribute_value_choice
+            # Realized values, in this case <attribute_value>, should be in quotes when creating the Prolog query
+            query_assignments[attribute_value] = f"\"{attribute_value_choice}\""
 
-            # Add the attribute name to the question assignments, could be an alias
+            # Add the attribute name and value to the question assignments, could be an alias
             question_assignments[attribute_name] = ATTRIBUTE_ALIASES[attribute_name_choice]
+            question_assignments[attribute_value] = attribute_value_choice
 
         # 2. <relation>_(\d+)(<name>_\d+, Y_\d+) --- only appears at end of query template list
         elif m := re.search(r"(<relation>_\d+)\((<name>_\d+), (Y_\d+)\)", query_template_[i]):
@@ -199,7 +207,8 @@ def sample(
 
             # a. Randomly sample a name from the database for the Y_i placeholder
             person_name_choice = rng.choice(person_name_bank)
-            query_assignments[name] = person_name_choice
+            # Realized values, in this case <name>, should be in quotes when creating the Prolog query
+            query_assignments[name] = f"\"{person_name_choice}\""
 
             # b. Find all possible (relation, related) pairs for the person
             relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
@@ -216,7 +225,11 @@ def sample(
             # c. Randomly choose a relation and related person
             relation_choice, related_person_choice = rng.choice(relation_and_related)
             query_assignments[relation] = relation_choice
-            query_assignments[y_placeholder] = related_person_choice
+
+            # Create new atom variable for the related person name
+            new_atom = f"A_{len(atom_assignments)}"
+            query_assignments[y_placeholder] = new_atom
+            atom_assignments[new_atom] = related_person_choice
 
             # Add the relation to the question assignments, could be an alias
             question_assignments[relation] = RELATION_ALIAS[relation_choice]
@@ -250,7 +263,8 @@ def sample(
             # a. Assume that y_placeholder_1 is already assigned
             assert y_placeholder_1 in query_assignments, f"{y_placeholder_1} should be assigned already: {query_template_[i]} in {query_template_}"
             assert y_placeholder_2 not in query_assignments, f"{y_placeholder_2} should not be assigned already: {query_template_[i]} in {query_template_}"
-            person_1_name_choice = query_assignments[y_placeholder_1]
+
+            person_1_name_choice = atom_assignments[query_assignments[y_placeholder_1]]
 
             # b. Find all possible (relation, related) pairs for the person
             relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
@@ -267,7 +281,11 @@ def sample(
             # c. Randomly choose a relation and related person
             relation_choice, related_person_choice = rng.choice(relation_and_related)
             query_assignments[relation] = relation_choice
-            query_assignments[y_placeholder_2] = related_person_choice
+            
+            # Create new atom variable for the related person name
+            new_atom = f"A_{len(atom_assignments)}"
+            query_assignments[y_placeholder_2] = new_atom
+            atom_assignments[new_atom] = related_person_choice
 
             # Add the relation to the question assignments, could be an alias
             question_assignments[relation] = RELATION_ALIAS[relation_choice]
@@ -303,7 +321,7 @@ def sample(
 
             # a. Assume that y_placeholder is already assigned
             assert y_placeholder in query_assignments, f"{y_placeholder} should be assigned already: {query_template_[i]} in {query_template_}"
-            person_name_choice = query_assignments[y_placeholder]
+            person_name_choice = atom_assignments[query_assignments[y_placeholder]]
 
             # b. Find all possible (relation, related) pairs for the person
             relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
@@ -337,7 +355,7 @@ def sample(
 
             # a. Assume that y_placeholder is already assigned
             assert y_placeholder in query_assignments, f"{y_placeholder} should be assigned already: {query_template_[i]} in {query_template_}"
-            person_name_choice = query_assignments[y_placeholder]
+            person_name_choice = atom_assignments[query_assignments[y_placeholder]]
 
             # b. Find all possible (relation, related) pairs for the person
             # NOTE: Use the plural bank
@@ -365,16 +383,24 @@ def sample(
             raise ValueError(f"Template not recognized: {query_template_[i]} in {query_template_}")
 
     # We have found a valid query template, we need to prepare the query and question
+    print(f"{query_template_=}")
     joined_query: str = ",,".join(query_template_)
     for placeholder, sampled_value in query_assignments.items():
-        joined_query = joined_query.replace(placeholder, sampled_value)
+        # When placeholder is in atom_assignments, placeholder is Y_i and sampled_value is A_i
+        # In these cases, we don't want to replace the placeholder with the sampled value
+        # Retain Y_i in the query because output of sample() need Y_i
+        if sampled_value not in atom_assignments:
+            joined_query = joined_query.replace(placeholder, sampled_value)
     query: list[str] = joined_query.split(",,")
+    print(f"{query=}")
 
     # Last value in question template is always "?", so we join all but the last value and add the "?"
     # This avoids a space before the "?"
+    print(f"{question_template_=}")
     question = " ".join(question_template_[:-1]) + question_template_[-1]
     for placeholder, sampled_value in question_assignments.items():
         question = question.replace(placeholder, sampled_value)
+    print(f"{question=}")
 
     # for i in range(len(question_template_)):
     #     if question_template_[i] in query_assignments:
