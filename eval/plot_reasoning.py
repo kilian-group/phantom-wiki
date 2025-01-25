@@ -33,13 +33,13 @@ parser.add_argument(
 parser.add_argument(
     "--method_list", 
     nargs="+", 
-    default=["zeroshot"], 
+    default=["zeroshot", "cot", "zeroshot-retriever", "cot-retriever"], 
     help="Method to plot"
 )
 parser.add_argument(
     "--model_list",
     nargs="+",
-    default=["gemini-1.5-flash-002"],
+    default=["gemini-1.5-flash-002", "meta-llama/llama-3.3-70b-instruct", "deepseek-ai/deepseek-r1-distill-qwen-32b"],
     help="List of models to plot"
 )
 args = parser.parse_args()
@@ -50,28 +50,32 @@ dataset = args.dataset
 depth = args.depth
 figures_dir = os.path.join(output_dir, 'figures')
 os.makedirs(figures_dir, exist_ok=True)
-
-for metric in [
+METRICS = [
     # 'EM', 'precision', 'recall', 
     'f1'
-    ]:
-    plt.figure(figsize=(15, 8))
+]
+MAX_DIFFICULTY = 16
+for metric in METRICS:
+    fig = plt.figure(figsize=(3.25, 2.75)) # exact dimensions of ICML single column width
     model_name2labels: dict[str, mpatches.Patch] = {}
 
     for method in method_list:
         # get evaluation data from the specified output directory and method subdirectory
         df = get_evaluation_data(output_dir, method, dataset)
+
+        # ignore difficulty beyond 15
+        df = df[df['difficulty'] <= MAX_DIFFICULTY]
         # filter by depth
         df = df[(df['_depth'] == depth)]
         # get accuracies by model, split, difficulty, seed
         COLS = ['_model', '_size', '_data_seed', '_seed', 'difficulty']
-        acc_by_type = df.groupby(COLS)[['EM','precision', 'recall', 'f1']].mean()
+        acc_by_type = df.groupby(COLS)[METRICS].mean()
 
         # get the mean and std of the accuracy for each model, split, and difficulty across seeds
         # first compute the mean across inference generation seeds
-        acc_mean_std = acc_by_type.groupby(['_model', '_size', '_data_seed', 'difficulty']).agg(['mean'])
+        acc_mean_std = acc_by_type.groupby(['_model', '_size', '_data_seed', 'difficulty']).agg('mean')
         # second compute the mean and standard error across data generation seeds
-        acc_mean_std = acc_by_type.groupby(['_model', '_size', 'difficulty']).agg([mean, std])
+        acc_mean_std = acc_mean_std.groupby(['_model', '_size', 'difficulty']).agg([mean, std])
         acc_mean_std = acc_mean_std.reset_index()
         # Get sorted list of universe sizes
         sizes_in_preds = sorted(acc_mean_std['_size'].unique().tolist())
@@ -84,40 +88,29 @@ for metric in [
 
             x = df_mean.columns
             for model_name, row in df_mean.iterrows():
-                if model_name not in ['gemini-1.5-flash-002', 'meta-llama/llama-3.3-70b-instruct']:
+                if model_name not in model_list:
                     continue
                 y = row
-                
-                # use a line plot instead of errorbar
-                # We can use the index of the size in the list to determine the color intensity
-                # Higher index = higher universe size = darker color = higher alpha
-                # +1 so that no intensity is 0 = transparent
-                # color_intensity_for_size = (sizes_in_preds.index(size)+1) / len(sizes_in_preds)  # between 0 and 1
-                # line_width_for_size = 3*((sizes_in_preds.index(size)+1) / len(sizes_in_preds))  # between 0 and 2
-                color_intensity_for_size = 1
-                line_width_for_size = 3
 
                 # Only add label to the last plot
                 plt.plot(
                     x, y,
                     color=COLORS[model_name],
                     linestyle=LINESTYLES[model_name],
-                    alpha=color_intensity_for_size,
-                    linewidth=line_width_for_size,
+                    linewidth=1,
                 )
                 # Add scatter plot
                 plt.scatter(
-                    x, y,
+                    x[::2], y[::2],
                     color=COLORS[model_name],
-                    s=100, #marker size
-                    alpha=color_intensity_for_size,
+                    s=20, #marker size
                     marker=MARKERS[method],
                 )
                 # NOTE: not plotting error bars for now because the figure looks crowded
-                # yerr = df_std.loc[model_name]
-                # # Change color intensity for fill to be between 0 and 0.25
-                # color_intensity_for_fill = color_intensity_for_size / 4
-                # plt.fill_between(x, y-yerr, y+yerr, alpha=color_intensity_for_fill, color=COLORS[model_name])
+                yerr = df_std.loc[model_name]
+                # Change color intensity for fill to be between 0 and 0.25
+                color_intensity_for_fill = 0.25
+                plt.fill_between(x, y-yerr, y+yerr, alpha=color_intensity_for_fill, color=COLORS[model_name])
 
                 # Add label for the model. [0], [0] are dummy values for the line
                 key = f"{method}+{model_name}"
@@ -127,17 +120,33 @@ for metric in [
                     label=key, ###f"{method}+{model_name}", # cot+gemini-1.5-flash-002
                     linestyle=LINESTYLES[model_name],
                     marker=MARKERS[method],
+                    markersize=4,
+                    linewidth=1,
                 )
 
-    plt.legend(title='Model', loc='upper right', fontsize=12,
-            handles=list(model_name2labels.values()), handlelength=4.0)
+    plt.legend(
+        handles=list(model_name2labels.values()), 
+        fontsize=4,
+        loc='upper center',
+        bbox_to_anchor=(0.5, -0.3),
+        ncol=2
+    )
+    ax = plt.gca()
+    ax.spines['bottom'].set_position(('outward', 1))  # Move x-axis outward
+    ax.spines['left'].set_position(('outward', 1))    # Move y-axis outward
+
     # format x-axis
-    plt.xlabel('Reasoning Steps', fontsize=16)
-    plt.xticks(x, df_mean.columns)
-    plt.ylabel(metric, fontsize=16)
+    plt.xlabel('Reasoning Steps', fontsize=8)
+    plt.xticks(x[::5], df_mean.columns[::5], fontsize=8)
+    # set xlim
+    plt.xlim(1, MAX_DIFFICULTY)
+    plt.ylabel(metric.upper(), fontsize=8)
+    plt.yticks(fontsize=8)
     # set ylim
     plt.ylim(0, 1)
     plt.tight_layout()
+
+    fig.subplots_adjust(left=0.15, right=0.85, bottom=0.3, top=0.95) #, wspace=0.3, hspace=0.3)
     fig_path = os.path.join(figures_dir, f'difficulty-{metric}.pdf')
     print(f"Saving to {os.path.abspath(fig_path)}")
     plt.savefig(fig_path)
