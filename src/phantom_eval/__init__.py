@@ -1,6 +1,7 @@
 import argparse
 from .llm import SUPPORTED_LLM_NAMES
 from .agent import SUPPORTED_METHOD_NAMES
+from . import plotting_utils
 
 def get_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="PhantomWiki Evaluation")
@@ -9,13 +10,14 @@ def get_parser() -> argparse.ArgumentParser:
                             "NOTE: to add a new model, please submit a PR to the repo with the new model name", 
                         choices=SUPPORTED_LLM_NAMES)
     parser.add_argument("--model_path", type=str, default=None, help="Path to the model")
-    parser.add_argument("--method", type=str.lower, required=True,
+    parser.add_argument("--method", type=str.lower, default="zeroshot",
+                        # required=True,
                         help="Evaluation method. " \
                             "NOTE: to add a new method, please submit a PR with the implementation",
                         choices=SUPPORTED_METHOD_NAMES)
     
     # Method params
-    parser.add_argument("--react_max_steps", type=int, default=20,
+    parser.add_argument("--react_max_steps", type=int, default=50,
                         help="Maximum number of steps for the ReAct/Act agent")
     parser.add_argument("--sc_num_votes", type=int, default=5,
                         help="Number of votes for an agent implementing self-consistency (majority votes)")

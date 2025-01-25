@@ -2,6 +2,7 @@ import abc
 import logging
 import re
 from collections import Counter
+import traceback
 
 import pandas as pd
 
@@ -258,6 +259,7 @@ class CoTAgent(Agent):
             error = None
         except Exception as e:
             pred = ""
+            error = f"<agent_error>{traceback.format_exc()}</agent_error>"
             error = f"<agent_error>{e}</agent_error>"
         return LLMChatResponse(pred=pred, usage=response.usage, error=error)
     
@@ -290,7 +292,7 @@ class CoTAgent(Agent):
                 error = None
             except Exception as e:
                 pred = ""
-                error = f"<agent_error>{e}</agent_error>"
+                error = f"<agent_error>{traceback.format_exc()}</agent_error>"
             parsed_responses.append(
                 LLMChatResponse(pred=pred, usage=response.usage, error=error)
             )
@@ -420,7 +422,7 @@ class ActAgent(Agent):
                 total_usage = aggregate_usage([total_usage, response.usage])
             except Exception as e:
                 response = LLMChatResponse(
-                    pred="", usage=total_usage, error=f"<agent_error>{e}</agent_error>"
+                    pred="", usage=total_usage, error=f"<agent_error>{traceback.format_exc()}</agent_error>"
                 )
                 break
 
@@ -568,7 +570,7 @@ class ReactAgent(Agent):
             except Exception as e:
                 # If an error occurs, return the error message and empty pred
                 response = LLMChatResponse(
-                    pred="", usage=total_usage, error=f"<agent_error>{e}</agent_error>"
+                    pred="", usage=total_usage, error=f"<agent_error>{traceback.format_exc()}</agent_error>"
                 )
                 break
 
@@ -1113,7 +1115,9 @@ SUPPORTED_METHOD_NAMES: list[str] = [
     "act",
     "react->cot-sc",
     "cot-sc->react",
-    "rag"
+    "rag",
+    "zeroshot-retriever", # TODO: remove "rag" and use zeroshot-retriever, fewshot-retriever, cot-retriever instead
+    "cot-retriever",
 ]
 
 
