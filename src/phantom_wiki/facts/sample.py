@@ -125,13 +125,6 @@ def sample_valid_only(
         * the completed Prolog query as a list of Prolog statements,
     """
 
-    query_template_ = copy(query_template)  # we will be modifying this list in place
-    question_template_ = copy(question_template)  # we will be modifying this list in place
-
-    atom_assignments: dict[str, str] = {}  # Maps temporary variable A_i to the sampled value
-    query_assignments: dict[str, str] = {}  # Maps placeholder Y_i to the temporary variable A_i (or sampled value in case of terminal question)
-    question_assignments: dict[str, str] = {}
-
     # Maintain a cache (dictionary) of person -> all possible attributes
     # e.g. "John" -> [("dob", "1990-01-01"), ("job", "teacher"), ("hobby", "reading"), ("hobby", "swimming"), ...]
     # Invariant: (attr name, attr value) pairs are unique
@@ -142,258 +135,275 @@ def sample_valid_only(
     # Invariant: (relation, related person) pairs are unique
     person_name2relation_and_related: dict[str, list[tuple[str, str]]] = {}
 
-    # Maintain a cache (dictionary) of attribute name -> all possible attribute values
-    # e.g. "job" -> ["teacher", "doctor", "engineer", ...], "hobby" -> ["reading", "swimming", ...]
-    attr_name2attr_vals = {}
-    for attribute_type in ATTRIBUTE_TYPES: # NOTE: attribute_type and attribute_name are the same
-        attr_name2attr_vals[attribute_type] = list(set(decode(r['Y']) for r in db.query(f"{attribute_type}(X, Y)")))
     person_name_bank: list[str] = db.get_person_names()
 
-    # Possible queries in query template list:
-    # 1. <attribute_name>_(\d+)(Y_\d+, <attribute_value>_\d+) --- only appears at the beginning or end of query template list
-    # 2. <relation>_(\d+)(<name>_\d+, Y_\d+) --- only appears at end of query template list
-    # 3. <relation>_(\d+)(Y_\d+, Y_\d+) --- does not appear at the end of query template list
-    # 4. <relation>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
-    # 5. <relation_plural>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
-    # 6. <attribute_name>_(\d+)(Y_\d+, Y_\d+) --- TERMINAL query: only appears at end of query template list
+    atom_assignments: dict[str, str] = {}  # Maps temporary variable A_i to the sampled value
+    query_assignments: dict[str, str] = {}  # Maps placeholder Y_i to the temporary variable A_i (or sampled value in case of terminal question)
+    question_assignments: dict[str, str] = {}
 
-    for i in range(len(query_template_) - 1, -1, -1):
-        # NOTE: Invariances:
-        # - Every value of assignments[Y_i] that is an atom variable (A_i) should be a key in atom_assignments
+    valid_result = False
+    n_attempts = 0
+    while not valid_result and n_attempts < 100:  # TODO limit to 100 attempts per template for now
+        n_attempts += 1
 
+        # TODO don't need copy, remove
+        query_template_ = copy(query_template)  # we will be modifying this list in place
+        question_template_ = copy(question_template)  # we will be modifying this list in place
+
+        # Reinitialize the assignments for each new attempt
+        atom_assignments = {}
+        query_assignments = {}
+        question_assignments = {}
+
+        # Possible queries in query template list:
         # 1. <attribute_name>_(\d+)(Y_\d+, <attribute_value>_\d+) --- only appears at the beginning or end of query template list
-        if m := re.search(r"(<attribute_name>_\d+)\((Y_\d+), (<attribute_value>_\d+)\)", query_template_[i]):
-            # 0 group is the full match, 1 is the attribute_name, 2 is the Y_i placeholder, 3 is the attribute_value
-            match, attribute_name, y_placeholder, attribute_value = m.group(0, 1, 2, 3)
+        # 2. <relation>_(\d+)(<name>_\d+, Y_\d+) --- only appears at end of query template list
+        # 3. <relation>_(\d+)(Y_\d+, Y_\d+) --- does not appear at the end of query template list
+        # 4. <relation>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
+        # 5. <relation_plural>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
+        # 6. <attribute_name>_(\d+)(Y_\d+, Y_\d+) --- TERMINAL query: only appears at end of query template list
 
-            # This query becomes question "... the person whose <attribute_name> is <attribute_value>?"
-            # or "What is the <attribute_name> of the ..."
-            # In the first case, we start the graph traversal (randomly sample a person from the database)
-            # In the second case, we continue the graph traversal (use the assignment of Y_i from the previous queries)
-            # Then finding all possible (attr name, attr value) pairs for that person
-            # Selecting a random pair and using it to fill in the query
+        for i in range(len(query_template_) - 1, -1, -1):
+            # NOTE: Invariances:
+            # - Every value of assignments[Y_i] that is an atom variable (A_i) should be a key in atom_assignments
 
-            # a. If y_placeholder is already assigned, then we continue the graph traversal
-            if y_placeholder in query_assignments:
-                person_name_choice = atom_assignments[query_assignments[y_placeholder]]
-            else:
-                # Randomly sample a name from the database for the Y_i placeholder
-                # Create new atom variable for the person name
+            # 1. <attribute_name>_(\d+)(Y_\d+, <attribute_value>_\d+) --- only appears at the beginning or end of query template list
+            if m := re.search(r"(<attribute_name>_\d+)\((Y_\d+), (<attribute_value>_\d+)\)", query_template_[i]):
+                # 0 group is the full match, 1 is the attribute_name, 2 is the Y_i placeholder, 3 is the attribute_value
+                match, attribute_name, y_placeholder, attribute_value = m.group(0, 1, 2, 3)
+
+                # This query becomes question "... the person whose <attribute_name> is <attribute_value>?"
+                # or "What is the <attribute_name> of the ..."
+                # In the first case, we start the graph traversal (randomly sample a person from the database)
+                # In the second case, we continue the graph traversal (use the assignment of Y_i from the previous queries)
+                # Then finding all possible (attr name, attr value) pairs for that person
+                # Selecting a random pair and using it to fill in the query
+
+                # a. If y_placeholder is already assigned, then we continue the graph traversal
+                if y_placeholder in query_assignments:
+                    person_name_choice = atom_assignments[query_assignments[y_placeholder]]
+                else:
+                    # Randomly sample a name from the database for the Y_i placeholder
+                    # Create new atom variable for the person name
+                    person_name_choice = rng.choice(person_name_bank)
+                    new_atom = f"A_{len(atom_assignments)}"
+                    query_assignments[y_placeholder] = new_atom
+                    atom_assignments[new_atom] = person_name_choice
+
+                # b. Find all possible (attr name, attr value) pairs for the person
+                attr_name_and_vals: list[tuple[str, str]] = get_vals_and_update_cache(
+                    cache=person_name2attr_name_and_val,
+                    key=person_name_choice,
+                    db=db,
+                    query_bank=ATTRIBUTE_TYPES,
+                )
+                
+                if len(attr_name_and_vals) == 0:
+                    # If there are no attributes for this person, raise an exception
+                    raise ValueError(f"No attributes found for person {person_name_choice}")
+
+                # c. Randomly choose an attribute name and value
+                attribute_name_choice, attribute_value_choice = rng.choice(attr_name_and_vals)
+                query_assignments[attribute_name] = attribute_name_choice
+                # Realized values, in this case <attribute_value>, should be in quotes when creating the Prolog query
+                query_assignments[attribute_value] = f"\"{attribute_value_choice}\""
+
+                # Add the attribute name and value to the question assignments, could be an alias
+                question_assignments[attribute_name] = ATTRIBUTE_ALIASES[attribute_name_choice]
+                question_assignments[attribute_value] = attribute_value_choice
+
+            # 2. <relation>_(\d+)(<name>_\d+, Y_\d+) --- only appears at end of query template list
+            elif m := re.search(r"(<relation>_\d+)\((<name>_\d+), (Y_\d+)\)", query_template_[i]):
+                # 0 group is the full match, 1 is the relation, 2 is the name, 3 is the Y_i placeholder
+                match, relation, name, y_placeholder = m.group(0, 1, 2, 3)
+                
+                # This query becomes question "... the <relation> of <name>?"
+                # Start the graph traversal by randomly sampling a person from the database
+                # Then finding all possible (relations, related) pairs for that person
+                # Selecting a random pair and using it to fill in the query
+
+                # a. Randomly sample a name from the database for the Y_i placeholder
                 person_name_choice = rng.choice(person_name_bank)
+                # Realized values, in this case <name>, should be in quotes when creating the Prolog query
+                query_assignments[name] = f"\"{person_name_choice}\""
+
+                # b. Find all possible (relation, related) pairs for the person
+                relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
+                    cache=person_name2relation_and_related,
+                    key=person_name_choice,
+                    db=db,
+                    query_bank=RELATION if hard_mode else RELATION_EASY,
+                )
+
+                if len(relation_and_related) == 0:
+                    # If there are no relations for this person, raise an exception
+                    raise ValueError(f"No relations found for person {person_name_choice}")
+
+                # c. Randomly choose a relation and related person
+                relation_choice, related_person_choice = rng.choice(relation_and_related)
+                query_assignments[relation] = relation_choice
+
+                # Create new atom variable for the related person name
                 new_atom = f"A_{len(atom_assignments)}"
                 query_assignments[y_placeholder] = new_atom
-                atom_assignments[new_atom] = person_name_choice
+                atom_assignments[new_atom] = related_person_choice
 
-            # b. Find all possible (attr name, attr value) pairs for the person
-            attr_name_and_vals: list[tuple[str, str]] = get_vals_and_update_cache(
-                cache=person_name2attr_name_and_val,
-                key=person_name_choice,
-                db=db,
-                query_bank=ATTRIBUTE_TYPES,
-            )
-            
-            if len(attr_name_and_vals) == 0:
-                # If there are no attributes for this person, raise an exception
-                raise ValueError(f"No attributes found for person {person_name_choice}")
+                # Add the relation to the question assignments, could be an alias
+                question_assignments[relation] = RELATION_ALIAS[relation_choice]
+                question_assignments[name] = person_name_choice
 
-            # c. Randomly choose an attribute name and value
-            attribute_name_choice, attribute_value_choice = rng.choice(attr_name_and_vals)
-            query_assignments[attribute_name] = attribute_name_choice
-            # Realized values, in this case <attribute_value>, should be in quotes when creating the Prolog query
-            query_assignments[attribute_value] = f"\"{attribute_value_choice}\""
+            # 3. <relation>_(\d+)(Y_\d+, Y_\d+) --- does not appear at the end of query template list
+            elif m := re.search(r"(<relation>_\d+)\((Y_\d+), (Y_\d+)\)", query_template_[i]):
+                # 0 group is the full match, 1 is the relation, 2 is the name, 3 is the Y_i placeholder
+                match, relation, y_placeholder_1, y_placeholder_2 = m.group(0, 1, 2, 3)
+                
+                # This query becomes question "... the <relation> of Y_1 of ...?"
+                # Continue the graph traversal by using the assignment of Y_1 from the previous queries
+                # Then finding all possible (relations, related) pairs for that person
+                # Selecting a random pair and using it to fill in the query
 
-            # Add the attribute name and value to the question assignments, could be an alias
-            question_assignments[attribute_name] = ATTRIBUTE_ALIASES[attribute_name_choice]
-            question_assignments[attribute_value] = attribute_value_choice
+                # a. Assume that y_placeholder_1 is already assigned
+                assert y_placeholder_1 in query_assignments, f"{y_placeholder_1} should be assigned already: {query_template_[i]} in {query_template_}"
+                assert y_placeholder_2 not in query_assignments, f"{y_placeholder_2} should not be assigned already: {query_template_[i]} in {query_template_}"
 
-        # 2. <relation>_(\d+)(<name>_\d+, Y_\d+) --- only appears at end of query template list
-        elif m := re.search(r"(<relation>_\d+)\((<name>_\d+), (Y_\d+)\)", query_template_[i]):
-            # 0 group is the full match, 1 is the relation, 2 is the name, 3 is the Y_i placeholder
-            match, relation, name, y_placeholder = m.group(0, 1, 2, 3)
-            
-            # This query becomes question "... the <relation> of <name>?"
-            # Start the graph traversal by randomly sampling a person from the database
-            # Then finding all possible (relations, related) pairs for that person
-            # Selecting a random pair and using it to fill in the query
+                person_1_name_choice = atom_assignments[query_assignments[y_placeholder_1]]
 
-            # a. Randomly sample a name from the database for the Y_i placeholder
-            person_name_choice = rng.choice(person_name_bank)
-            # Realized values, in this case <name>, should be in quotes when creating the Prolog query
-            query_assignments[name] = f"\"{person_name_choice}\""
+                # b. Find all possible (relation, related) pairs for the person
+                relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
+                    cache=person_name2relation_and_related,
+                    key=person_1_name_choice,
+                    db=db,
+                    query_bank=RELATION if hard_mode else RELATION_EASY,
+                )
 
-            # b. Find all possible (relation, related) pairs for the person
-            relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
-                cache=person_name2relation_and_related,
-                key=person_name_choice,
-                db=db,
-                query_bank=RELATION if hard_mode else RELATION_EASY,
-            )
+                if len(relation_and_related) == 0:
+                    # If there are no relations for this person, raise an exception
+                    raise ValueError(f"No relations found for person {person_1_name_choice}")
+                
+                # c. Randomly choose a relation and related person
+                relation_choice, related_person_choice = rng.choice(relation_and_related)
+                query_assignments[relation] = relation_choice
+                
+                # Create new atom variable for the related person name
+                new_atom = f"A_{len(atom_assignments)}"
+                query_assignments[y_placeholder_2] = new_atom
+                atom_assignments[new_atom] = related_person_choice
 
-            if len(relation_and_related) == 0:
-                # If there are no relations for this person, raise an exception
-                raise ValueError(f"No relations found for person {person_name_choice}")
+                # Add the relation to the question assignments, could be an alias
+                question_assignments[relation] = RELATION_ALIAS[relation_choice]
 
-            # c. Randomly choose a relation and related person
-            relation_choice, related_person_choice = rng.choice(relation_and_related)
-            query_assignments[relation] = relation_choice
+            # 4. <relation>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
+            elif m := re.search(r"(<relation>_\d+)\((Y_\d+)\)", query_template_[i]):
+                # 0 group is the full match, 1 is the relation, 2 is the Y_i placeholder
+                match, relation, y_placeholder = m.group(0, 1, 2)
 
-            # Create new atom variable for the related person name
-            new_atom = f"A_{len(atom_assignments)}"
-            query_assignments[y_placeholder] = new_atom
-            atom_assignments[new_atom] = related_person_choice
+                # This query becomes question "Who is the <relation> of ...?"
+                # End the graph by using the assignment of Y_i from the previous queries
+                # Then finding all possible (relations, related) pairs for that person
+                # Selecting a random pair and using it to fill in the query
 
-            # Add the relation to the question assignments, could be an alias
-            question_assignments[relation] = RELATION_ALIAS[relation_choice]
-            question_assignments[name] = person_name_choice
+                # a. Assume that y_placeholder is already assigned
+                assert y_placeholder in query_assignments, f"{y_placeholder} should be assigned already: {query_template_[i]} in {query_template_}"
+                person_name_choice = atom_assignments[query_assignments[y_placeholder]]
 
-        # 3. <relation>_(\d+)(Y_\d+, Y_\d+) --- does not appear at the end of query template list
-        elif m := re.search(r"(<relation>_\d+)\((Y_\d+), (Y_\d+)\)", query_template_[i]):
-            # 0 group is the full match, 1 is the relation, 2 is the name, 3 is the Y_i placeholder
-            match, relation, y_placeholder_1, y_placeholder_2 = m.group(0, 1, 2, 3)
-            
-            # This query becomes question "... the <relation> of Y_1 of ...?"
-            # Continue the graph traversal by using the assignment of Y_1 from the previous queries
-            # Then finding all possible (relations, related) pairs for that person
-            # Selecting a random pair and using it to fill in the query
+                # b. Find all possible (relation, related) pairs for the person
+                relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
+                    cache=person_name2relation_and_related,
+                    key=person_name_choice,
+                    db=db,
+                    query_bank=RELATION if hard_mode else RELATION_EASY,
+                )
 
-            # a. Assume that y_placeholder_1 is already assigned
-            assert y_placeholder_1 in query_assignments, f"{y_placeholder_1} should be assigned already: {query_template_[i]} in {query_template_}"
-            assert y_placeholder_2 not in query_assignments, f"{y_placeholder_2} should not be assigned already: {query_template_[i]} in {query_template_}"
+                if len(relation_and_related) == 0:
+                    # If there are no relations for this person, raise an exception
+                    raise ValueError(f"No relations found for person {person_name_choice}")
 
-            person_1_name_choice = atom_assignments[query_assignments[y_placeholder_1]]
+                # c. Randomly choose a relation and related person
+                # NOTE: The related_person_choice is 'one possible' answer of the question "Who is the ..."
+                relation_choice, related_person_choice = rng.choice(relation_and_related)
+                query_assignments[relation] = relation_choice
 
-            # b. Find all possible (relation, related) pairs for the person
-            relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
-                cache=person_name2relation_and_related,
-                key=person_1_name_choice,
-                db=db,
-                query_bank=RELATION if hard_mode else RELATION_EASY,
-            )
+                # Add the relation to the question assignments, could be an alias
+                question_assignments[relation] = RELATION_ALIAS[relation_choice]
 
-            if len(relation_and_related) == 0:
-                # If there are no relations for this person, raise an exception
-                raise ValueError(f"No relations found for person {person_1_name_choice}")
-            
-            # c. Randomly choose a relation and related person
-            relation_choice, related_person_choice = rng.choice(relation_and_related)
-            query_assignments[relation] = relation_choice
-            
-            # Create new atom variable for the related person name
-            new_atom = f"A_{len(atom_assignments)}"
-            query_assignments[y_placeholder_2] = new_atom
-            atom_assignments[new_atom] = related_person_choice
+            # 5. <relation_plural>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
+            elif m := re.search(r"(<relation_plural>_\d+)\((Y_\d+)\)", query_template_[i]):
+                # 0 group is the full match, 1 is the relation, 2 is the Y_i placeholder
+                match, relation_plural, y_placeholder = m.group(0, 1, 2)
 
-            # Add the relation to the question assignments, could be an alias
-            question_assignments[relation] = RELATION_ALIAS[relation_choice]
+                # This query becomes question "Who are the <relation_plural> of ...?"
+                # End the graph by using the assignment of Y_i from the previous queries
+                # Then finding all possible (relations, related) pairs for that person
+                # Selecting a random pair and using it to fill in the query
 
-        # 4. <relation>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
-        elif m := re.search(r"(<relation>_\d+)\((Y_\d+)\)", query_template_[i]):
-            # 0 group is the full match, 1 is the relation, 2 is the Y_i placeholder
-            match, relation, y_placeholder = m.group(0, 1, 2)
+                # a. Assume that y_placeholder is already assigned
+                assert y_placeholder in query_assignments, f"{y_placeholder} should be assigned already: {query_template_[i]} in {query_template_}"
+                person_name_choice = atom_assignments[query_assignments[y_placeholder]]
 
-            # This query becomes question "Who is the <relation> of ...?"
-            # End the graph by using the assignment of Y_i from the previous queries
-            # Then finding all possible (relations, related) pairs for that person
-            # Selecting a random pair and using it to fill in the query
+                # b. Find all possible (relation, related) pairs for the person
+                # NOTE: Use the plural bank
+                relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
+                    cache=person_name2relation_and_related,
+                    key=person_name_choice,
+                    db=db,
+                    query_bank=RELATION if hard_mode else RELATION_EASY,
+                )
 
-            # a. Assume that y_placeholder is already assigned
-            assert y_placeholder in query_assignments, f"{y_placeholder} should be assigned already: {query_template_[i]} in {query_template_}"
-            person_name_choice = atom_assignments[query_assignments[y_placeholder]]
+                if len(relation_and_related) == 0:
+                    # If there are no relations for this person, raise an exception
+                    raise ValueError(f"No relations found for person {person_name_choice}")
+                
+                # c. Randomly choose a relation and related person
+                # NOTE: The related_person_choice is 'one possible' answer of the question "Who are the ..."
+                relation_choice, related_person_choice = rng.choice(relation_and_related)
+                query_assignments[relation_plural] = relation_choice
 
-            # b. Find all possible (relation, related) pairs for the person
-            relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
-                cache=person_name2relation_and_related,
-                key=person_name_choice,
-                db=db,
-                query_bank=RELATION if hard_mode else RELATION_EASY,
-            )
+                # Add the relation to the question assignments, could be an alias
+                question_assignments[relation_plural] = RELATION_PLURAL_ALIAS[relation_choice]
 
-            if len(relation_and_related) == 0:
-                # If there are no relations for this person, raise an exception
-                raise ValueError(f"No relations found for person {person_name_choice}")
+            # 6. <attribute_name>_(\d+)(Y_\d+, Y_\d+) --- TERMINAL query: only appears at end of query template list
+            elif m := re.search(r"(<attribute_name>_\d+)\((Y_\d+), (Y_\d+)\)", query_template_[i]):
+                # 0 group is the full match, 1 is the attribute_name, 2 is the Y_i placeholder, 3 is the Y_i placeholder
+                match, attribute_name, y_placeholder_1, y_placeholder_2 = m.group(0, 1, 2, 3)
 
-            # c. Randomly choose a relation and related person
-            # NOTE: The related_person_choice is 'one possible' answer of the question "Who is the ..."
-            relation_choice, related_person_choice = rng.choice(relation_and_related)
-            query_assignments[relation] = relation_choice
+                # This query becomes question "What is the <attribute_name> of the ...?"
+                # End the graph traversal by using the assignment of Y_i from the previous queries
+                # Then finding all possible (attr name, attr value) pairs for that person
+                # Selecting a random pair and using it to fill in the query
 
-            # Add the relation to the question assignments, could be an alias
-            question_assignments[relation] = RELATION_ALIAS[relation_choice]
+                # a. Assume that y_placeholder_1 is already assigned
+                assert y_placeholder_1 in query_assignments, f"{y_placeholder_1} should be assigned already: {query_template_[i]} in {query_template_}"
+                assert y_placeholder_2 not in query_assignments, f"{y_placeholder_2} should not be assigned already: {query_template_[i]} in {query_template_}"
 
-        # 5. <relation_plural>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
-        elif m := re.search(r"(<relation_plural>_\d+)\((Y_\d+)\)", query_template_[i]):
-            # 0 group is the full match, 1 is the relation, 2 is the Y_i placeholder
-            match, relation_plural, y_placeholder = m.group(0, 1, 2)
+                person_name_choice = atom_assignments[query_assignments[y_placeholder_1]]
 
-            # This query becomes question "Who are the <relation_plural> of ...?"
-            # End the graph by using the assignment of Y_i from the previous queries
-            # Then finding all possible (relations, related) pairs for that person
-            # Selecting a random pair and using it to fill in the query
+                # b. Find all possible (attr name, attr value) pairs for the person
+                attr_name_and_vals: list[tuple[str, str]] = get_vals_and_update_cache(
+                    cache=person_name2attr_name_and_val,
+                    key=person_name_choice,
+                    db=db,
+                    query_bank=ATTRIBUTE_TYPES,
+                )
 
-            # a. Assume that y_placeholder is already assigned
-            assert y_placeholder in query_assignments, f"{y_placeholder} should be assigned already: {query_template_[i]} in {query_template_}"
-            person_name_choice = atom_assignments[query_assignments[y_placeholder]]
+                if len(attr_name_and_vals) == 0:
+                    # If there are no attributes for this person, raise an exception
+                    raise ValueError(f"No attributes found for person {person_name_choice}")
 
-            # b. Find all possible (relation, related) pairs for the person
-            # NOTE: Use the plural bank
-            relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
-                cache=person_name2relation_and_related,
-                key=person_name_choice,
-                db=db,
-                query_bank=RELATION if hard_mode else RELATION_EASY,
-            )
+                # c. Randomly choose an attribute name and value
+                # NOTE: The attribute_value_choice is 'one possible' answer of the question "What is the ..."
+                attribute_name_choice, attribute_value_choice = rng.choice(attr_name_and_vals)
+                query_assignments[attribute_name] = attribute_name_choice
 
-            if len(relation_and_related) == 0:
-                # If there are no relations for this person, raise an exception
-                raise ValueError(f"No relations found for person {person_name_choice}")
-            
-            # c. Randomly choose a relation and related person
-            # NOTE: The related_person_choice is 'one possible' answer of the question "Who are the ..."
-            relation_choice, related_person_choice = rng.choice(relation_and_related)
-            query_assignments[relation_plural] = relation_choice
+                # Add the attribute name and value to the question assignments, could be an alias
+                question_assignments[attribute_name] = ATTRIBUTE_ALIASES[attribute_name_choice]
 
-            # Add the relation to the question assignments, could be an alias
-            question_assignments[relation_plural] = RELATION_PLURAL_ALIAS[relation_choice]
-
-        # 6. <attribute_name>_(\d+)(Y_\d+, Y_\d+) --- TERMINAL query: only appears at end of query template list
-        elif m := re.search(r"(<attribute_name>_\d+)\((Y_\d+), (Y_\d+)\)", query_template_[i]):
-            # 0 group is the full match, 1 is the attribute_name, 2 is the Y_i placeholder, 3 is the Y_i placeholder
-            match, attribute_name, y_placeholder_1, y_placeholder_2 = m.group(0, 1, 2, 3)
-
-            # This query becomes question "What is the <attribute_name> of the ...?"
-            # End the graph traversal by using the assignment of Y_i from the previous queries
-            # Then finding all possible (attr name, attr value) pairs for that person
-            # Selecting a random pair and using it to fill in the query
-
-            # a. Assume that y_placeholder_1 is already assigned
-            assert y_placeholder_1 in query_assignments, f"{y_placeholder_1} should be assigned already: {query_template_[i]} in {query_template_}"
-            assert y_placeholder_2 not in query_assignments, f"{y_placeholder_2} should not be assigned already: {query_template_[i]} in {query_template_}"
-
-            person_name_choice = atom_assignments[query_assignments[y_placeholder_1]]
-
-            # b. Find all possible (attr name, attr value) pairs for the person
-            attr_name_and_vals: list[tuple[str, str]] = get_vals_and_update_cache(
-                cache=person_name2attr_name_and_val,
-                key=person_name_choice,
-                db=db,
-                query_bank=ATTRIBUTE_TYPES,
-            )
-
-            if len(attr_name_and_vals) == 0:
-                # If there are no attributes for this person, raise an exception
-                raise ValueError(f"No attributes found for person {person_name_choice}")
-
-            # c. Randomly choose an attribute name and value
-            # NOTE: The attribute_value_choice is 'one possible' answer of the question "What is the ..."
-            attribute_name_choice, attribute_value_choice = rng.choice(attr_name_and_vals)
-            query_assignments[attribute_name] = attribute_name_choice
-
-            # Add the attribute name and value to the question assignments, could be an alias
-            question_assignments[attribute_name] = ATTRIBUTE_ALIASES[attribute_name_choice]
-
-        else:
-            # Template is not recognized
-            raise ValueError(f"Template not recognized: {query_template_[i]} in {query_template_}")
+            else:
+                # Template is not recognized
+                raise ValueError(f"Template not recognized: {query_template_[i]} in {query_template_}")
+        
+        # break if we have a valid query
+        if i == 0:
+            valid_result = True
 
     # We have found a valid query template, we need to prepare the query and question
     # print(f"{query_template_=}")
@@ -415,10 +425,6 @@ def sample_valid_only(
         question = question.replace(placeholder, sampled_value)
     # print(f"{question=}")
 
-    # NOTE: We talked about this with Anmol but we also noted that it is possible that there could be a lot of cycles in these questions.
-    # This is something we need to test once everything is done -> if that is the case, we need to add check, e.g. name bank to ensure 
-    # that we don’t revisit the same person more than once. Not too complicated but if unnecessary, then we shouldn't do it
-    
     return query_assignments, question, query
     
 
