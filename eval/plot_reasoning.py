@@ -109,7 +109,7 @@ for metric in METRICS:
                 # NOTE: not plotting error bars for now because the figure looks crowded
                 yerr = df_std.loc[model_name]
                 # Change color intensity for fill to be between 0 and 0.25
-                color_intensity_for_fill = 0.25
+                color_intensity_for_fill = 0.1
                 plt.fill_between(x, y-yerr, y+yerr, alpha=color_intensity_for_fill, color=COLORS[model_name])
 
                 # Add label for the model. [0], [0] are dummy values for the line
@@ -136,17 +136,17 @@ for metric in METRICS:
     ax.spines['left'].set_position(('outward', 1))    # Move y-axis outward
 
     # format x-axis
-    plt.xlabel('Reasoning Steps', fontsize=8)
-    plt.xticks(x[::5], df_mean.columns[::5], fontsize=8)
+    plt.xlabel('Reasoning Steps', fontsize=16)
+    plt.xticks(x[::5], df_mean.columns[::5], fontsize=10)
     # set xlim
     plt.xlim(1, MAX_DIFFICULTY)
     plt.ylabel(metric.upper(), fontsize=8)
-    plt.yticks(fontsize=8)
+    plt.yticks(fontsize=10)
     # set ylim
     plt.ylim(0, 1)
     plt.tight_layout()
 
-    fig.subplots_adjust(left=0.15, right=0.85, bottom=0.3, top=0.95) #, wspace=0.3, hspace=0.3)
+    fig.subplots_adjust(left=0.17, right=0.85, bottom=0.3, top=0.95) #, wspace=0.3, hspace=0.3)
     fig_path = os.path.join(figures_dir, f'difficulty-{metric}.pdf')
     print(f"Saving to {os.path.abspath(fig_path)}")
     plt.savefig(fig_path)
