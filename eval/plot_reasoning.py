@@ -10,7 +10,7 @@ Example:
 # %%
 import os
 from phantom_eval import get_parser
-from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std, MARKERS
+from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std, MARKERS, MODEL_ALIASES
 import matplotlib.pyplot as plt
 import matplotlib.lines as lines
 import matplotlib.patches as mpatches
@@ -32,8 +32,10 @@ parser.add_argument(
 )
 parser.add_argument(
     "--method_list", 
-    nargs="+", 
-    default=["zeroshot", "cot", "zeroshot-retriever", "cot-retriever"], 
+    nargs="+",
+    default=["zeroshot", "cot", "zeroshot-retriever", "cot-retriever", "react", 
+            #  "act" # TODO: some json IO issue
+             ], 
     help="Method to plot"
 )
 parser.add_argument(
@@ -51,8 +53,10 @@ depth = args.depth
 figures_dir = os.path.join(output_dir, 'figures')
 os.makedirs(figures_dir, exist_ok=True)
 METRICS = [
-    # 'EM', 'precision', 'recall', 
-    'f1'
+    # 'EM', 
+    # 'precision', 
+    # 'recall', 
+    'f1',
 ]
 MAX_DIFFICULTY = 16
 for metric in METRICS:
@@ -113,7 +117,8 @@ for metric in METRICS:
                 plt.fill_between(x, y-yerr, y+yerr, alpha=color_intensity_for_fill, color=COLORS[model_name])
 
                 # Add label for the model. [0], [0] are dummy values for the line
-                key = f"{method}+{model_name}"
+                # key = f"{method}+{model_name}"
+                key = f"{method} + {MODEL_ALIASES[model_name]}"
                 model_name2labels[key] = lines.Line2D(
                     [0], [0],
                     color=COLORS[model_name],
@@ -129,24 +134,26 @@ for metric in METRICS:
         fontsize=4,
         loc='upper center',
         bbox_to_anchor=(0.5, -0.3),
-        ncol=2
+        ncol=2,
+        handlelength=4,
     )
     ax = plt.gca()
     ax.spines['bottom'].set_position(('outward', 1))  # Move x-axis outward
     ax.spines['left'].set_position(('outward', 1))    # Move y-axis outward
 
+    TICK_FONT_SIZE = 8
     # format x-axis
-    plt.xlabel('Reasoning Steps', fontsize=16)
-    plt.xticks(x[::5], df_mean.columns[::5], fontsize=10)
+    plt.xlabel('Reasoning Steps', fontsize=10)
+    plt.xticks(x[::5], df_mean.columns[::5], fontsize=TICK_FONT_SIZE)
     # set xlim
     plt.xlim(1, MAX_DIFFICULTY)
     plt.ylabel(metric.upper(), fontsize=8)
-    plt.yticks(fontsize=10)
+    plt.yticks(fontsize=TICK_FONT_SIZE)
     # set ylim
     plt.ylim(0, 1)
     plt.tight_layout()
 
-    fig.subplots_adjust(left=0.17, right=0.85, bottom=0.3, top=0.95) #, wspace=0.3, hspace=0.3)
+    fig.subplots_adjust(left=0.17, right=0.95, bottom=0.3, top=0.95) #, wspace=0.3, hspace=0.3)
     fig_path = os.path.join(figures_dir, f'difficulty-{metric}.pdf')
     print(f"Saving to {os.path.abspath(fig_path)}")
     plt.savefig(fig_path)
