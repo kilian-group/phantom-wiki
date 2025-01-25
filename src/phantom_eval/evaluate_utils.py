@@ -55,6 +55,7 @@ MODELS = [
     'gemini-2.0-flash-exp',
     'gpt-4o-mini-2024-07-18',
     'gpt-4o-2024-11-20',
+    'deepseek-ai/deepseek-r1-distill-qwen-32b',
 ]
 COLORS = {
     'google/gemma-2-27b-it': 'tab:blue',
@@ -73,6 +74,7 @@ COLORS = {
     'gemini-2.0-flash-exp': 'tab:purple',
     'gpt-4o-mini-2024-07-18': 'tab:brown',
     'gpt-4o-2024-11-20': 'tab:brown',
+    'deepseek-ai/deepseek-r1-distill-qwen-32b': 'tab:green',
 }
 LINESTYLES = {
     'google/gemma-2-27b-it': '-',
@@ -91,6 +93,7 @@ LINESTYLES = {
     'gemini-1.5-flash-8b-001': 'dotted',
     'gpt-4o-mini-2024-07-18': '-',
     'gpt-4o-2024-11-20': '--',
+    'deepseek-ai/deepseek-r1-distill-qwen-32b': '-',
 }
 HATCHSTYLES = {
     'google/gemma-2-27b-it': '/',
@@ -109,6 +112,7 @@ HATCHSTYLES = {
     'gemini-1.5-flash-8b-001': '--',
     'gpt-4o-mini-2024-07-18': '++',
     'gpt-4o-2024-11-20': 'xx',
+    'deepseek-ai/deepseek-r1-distill-qwen-32b': '++',
 }
 # https://matplotlib.org/stable/gallery/lines_bars_and_markers/marker_reference.html#filled-markers
 MARKERS = {
@@ -118,6 +122,7 @@ MARKERS = {
     "cot-retriever": "H", # hexagon
     "act": "+", # plus
     "react": "P", # bold plus
+    "reasoning": "D", # diamond
 }
 
 def pivot_mean_std(acc_mean_std, metric, independent_variable='_split'):
