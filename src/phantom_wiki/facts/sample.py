@@ -234,6 +234,7 @@ def sample(
 
             # Add the relation to the question assignments, could be an alias
             question_assignments[relation] = RELATION_ALIAS[relation_choice]
+            question_assignments[name] = person_name_choice
 
             # NOTE: Raphael might be doing the right thing below, but I want to try a different approach
             # # 2. Sample a relation that exists for the name choice
