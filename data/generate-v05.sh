@@ -54,7 +54,8 @@ do
         --max-tree-depth $depth \
         --article-format json \
         --question-format json \
-        --hard-mode"
+        --hard-mode
+        --valid-only"
     echo $cmd
     eval $cmd
     splits+=("$od")
