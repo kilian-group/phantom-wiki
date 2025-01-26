@@ -21,7 +21,14 @@ MODEL_ALIASES = {
     'gpt-4o-2024-11-20': 'GPT-4o',
     'deepseek-ai/deepseek-r1-distill-qwen-32b': 'DeepSeek-R1-32B',
 }
-
+METHOD_ALIASES = {
+    'zeroshot': 'Zeroshot',
+    'cot': 'CoT',
+    'zeroshot-retriever': 'Zeroshot-RAG',
+    'cot-retriever': 'CoT-RAG',
+    'react': 'ReAct',
+    'reasoning': 'Reasoning'
+}
 DEFAULT_METHOD_LIST = [
     "zeroshot", 
     "cot", 
