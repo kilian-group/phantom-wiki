@@ -404,6 +404,7 @@ def sample_valid_only(
 
                 # Add the relation to the question assignments, could be an alias
                 question_assignments[relation_plural] = RELATION_PLURAL_ALIAS[relation_choice]
+                question_assignments[name] = person_name_choice
             
             # 8. aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\) --- TERMINAL query: only appears at end of query template list
             elif m := re.search(r"aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\)", query_template[i]):
