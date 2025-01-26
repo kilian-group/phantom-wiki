@@ -1,5 +1,7 @@
 import logging
 
+from pyswip import Variable
+
 from ..facts.database import Database
 from . import decode
 
@@ -47,7 +49,18 @@ def get_answer(
         # solution_traces can contain duplicate dictionaries, keep only unique ones
         # frozenset is used to make the dictionaries hashable, and set to remove duplicates
         unique_solution_traces = set(frozenset(d.items()) for d in solution_traces)
-        solution_traces = [dict(s) for s in unique_solution_traces]
+        solution_traces_unfiltered = [dict(s) for s in unique_solution_traces]
+
+        # For aggregation questions, prolog will create a Variable type for the final placeholder of the query
+        # We remove this from the solution traces because
+        # - it is not useful for solution traces column in the dataset
+        # - the Variable object is not JSON serializable and cannot be dumped into a file
+        solution_traces: list[dict[str, str]] = []
+        for trace in solution_traces_unfiltered:
+            solution_traces.append(
+                {k: v for k, v in trace.items() if not isinstance(v, Variable)}
+            )
+
     else:
         logging.warning("Skipping solution traces")
         solution_traces = []
