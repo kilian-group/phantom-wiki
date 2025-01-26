@@ -887,7 +887,7 @@ class CustomEmbeddings(Embeddings):
 class RAGMixin:
     def __init__(self, 
                 text_corpus: pd.DataFrame, 
-                embedding_model_name: str="WhereIsAI/UAE-Large-V1",
+                embedding_model_name: str="whereisai/uae-large-v1",
                 retriever_num_documents: int = 4,
                 use_api: bool | None = True,
                 tensor_parallel_size: int | None = 1,

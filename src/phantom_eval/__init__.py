@@ -19,7 +19,7 @@ def get_parser() -> argparse.ArgumentParser:
                         help="Maximum number of steps for the ReAct/Act agent")
     parser.add_argument("--sc_num_votes", type=int, default=5,
                         help="Number of votes for an agent implementing self-consistency (majority votes)")
-    parser.add_argument("--retriever_method", type=str, default="WhereIsAI/UAE-Large-V1",
+    parser.add_argument("--retriever_method", type=str, default="whereisai/uae-large-v1",
                         help="Model used for RAG's embeddings")
     parser.add_argument("--retriever_num_documents", type=int, default=4,
                         help="Number of documents retrieved")
