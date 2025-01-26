@@ -93,7 +93,7 @@ def process__attr_name__Y__attr_val(
     person_name_bank: list[str],
     person_name2attr_name_and_val: dict[str, list[tuple[str, str]]],
 ) -> bool:
-    """
+    r"""
     Processes <attribute_name>_(\d+)(Y_\d+, <attribute_value>_\d+) --- only appears at the beginning or end of query template list
 
     Returns True if the processing is successful, False otherwise
@@ -152,7 +152,7 @@ def process__relation__name__Y(
     person_name2relation_and_related: dict[str, list[tuple[str, str]]],
     relation_bank: list[str],
 ) -> bool:
-    """
+    r"""
     Processes <relation>_(\d+)(<name>_\d+, Y_\d+) --- only appears at end of query template list
     
     Returns True if the processing is successful, False otherwise
@@ -205,7 +205,7 @@ def process__relation__Y__Y(
     person_name2relation_and_related: dict[str, list[tuple[str, str]]],
     relation_bank: list[str],
 ) -> bool:
-    """
+    r"""
     Processes <relation>_(\d+)(Y_\d+, Y_\d+) --- does not appear at the end of query template list
     
     Returns True if the processing is successful, False otherwise
@@ -259,7 +259,7 @@ def process__relation__Y(
     relation_bank: list[str],
     alias_dict: dict[str, str],
 ) -> bool:
-    """
+    r"""
     Processes <relation>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
     And also <relation_plural>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
 
@@ -310,7 +310,7 @@ def process__attr_name__Y__Y(
     db: Database,
     person_name2attr_name_and_val: dict[str, list[tuple[str, str]]],
 ) -> bool:
-    """
+    r"""
     Processes <attribute_name>_(\d+)(Y_\d+, Y_\d+) --- TERMINAL query: only appears at end of query template list
     
     Returns True if the processing is successful, False otherwise
@@ -362,7 +362,7 @@ def process__agg__relation_plural__name__Y(
     person_name2relation_and_related: dict[str, list[tuple[str, str]]],
     relation_bank: list[str],
 ) -> bool:
-    """
+    r"""
     Processes aggregate_all\(count, distinct\((<relation_plural>_\d+)\((<name>_\d+), (Y_\d+)\)\), (Count_\d+)\) --- TERMINAL query: only appears at end of query template list
 
     Returns True if the processing is successful, False otherwise
@@ -413,7 +413,7 @@ def process__agg__relation_plural__Y__Y(
     person_name2relation_and_related: dict[str, list[tuple[str, str]]],
     relation_bank: list[str],
 ) -> bool:
-    """
+    r"""
     Processes aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\) --- TERMINAL query: only appears at end of query template list
     
     Returns True if the processing is successful, False otherwise
