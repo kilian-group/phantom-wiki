@@ -21,7 +21,6 @@ echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 splits=()
 SIZE_LIST=(
     # for 128k-context models
-    25
     50 
     100 
     200 
@@ -45,6 +44,21 @@ max_tree_size=50
 # generate data
 for depth in 20
 do
+    od="depth_${depth}_size_25_seed_${SEED}"
+    cmd="python -m phantom_wiki \
+        -od $OUTPUT_DIR/$od \
+        -s $SEED \
+        --depth $depth \
+        --num-samples 1 \
+        --max-tree-size 25 \
+        --max-tree-depth $depth \
+        --article-format json \
+        --question-format json \
+        --hard-mode"
+    echo $cmd
+    eval $cmd
+    splits+=("$od")
+
     for size in "${SIZE_LIST[@]}"
     do
         od="depth_${depth}_size_${size}_seed_${SEED}"
