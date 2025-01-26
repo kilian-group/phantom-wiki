@@ -58,25 +58,13 @@ METRICS = [
     'f1',
 ]
 MAX_DIFFICULTY = 16
-SIMPLE_METHODS = [
-    "zeroshot",
-    "cot",
-    "reasoning",
-]
-RAG_METHODS = [
-    "zeroshot-retriever",
-    "cot-retriever",
-]
-AGENTIC_METHODS = [
-    # "act",
-    "react",
-]
 for metric in METRICS:
     # fig = plt.figure(figsize=(3.25, 2.75)) # exact dimensions of ICML single column width
     # replace this with a subplot figure with 1 rows and 3 columns
     fig, axs = plt.subplots(1, 3, figsize=(6.75, 2.5))
 
-    for i, methods in enumerate([SIMPLE_METHODS, RAG_METHODS, AGENTIC_METHODS]):
+    for i, methods in enumerate([plotting_utils.SIMPLE_METHODS, plotting_utils.RAG_METHODS, plotting_utils.AGENTIC_METHODS]):
+        method_handles = []
         for method in methods:
             print(f"Plotting {method} for {metric}")
             # get evaluation data from the specified output directory and method subdirectory
@@ -128,8 +116,25 @@ for metric in METRICS:
                     # Change color intensity for fill to be between 0 and 0.25
                     color_intensity_for_fill = 0.1
                     axs[i].fill_between(x, y-yerr, y+yerr, alpha=color_intensity_for_fill, color=COLORS[model_name])
+            
+            # Add method to legend
+            key = f"{plotting_utils.METHOD_ALIASES[method]}"
+            method_handles.append( lines.Line2D(
+                [0], [0],
+                color="black",
+                label=key, 
+                linestyle='none',
+                marker=MARKERS[method],
+                markersize=4,
+            ))
+        axs[i].legend(
+            handles=method_handles,
+            fontsize=plotting_utils.LEGEND_FONT_SIZE,
+            loc='upper right',
+            ncol=1,
+            handlelength=2,
+        )
         
-        # ax = plt.gca()
         axs[i].spines['bottom'].set_position(('outward', 1))  # Move x-axis outward
         axs[i].spines['left'].set_position(('outward', 1))    # Move y-axis outward
 
@@ -148,20 +153,10 @@ for metric in METRICS:
     # Create separate handles for models and methods
     # We will plot models on the left column and methods on the right column
     # Having the combination of model and method in the legend is too crowded
-    legend_handles = []
-    for method in method_list:
-        key = f"{method}"
-        legend_handles.append( lines.Line2D(
-            [0], [0],
-            color="black",
-            label=key, ###f"{method}+{model_name}", # cot+gemini-1.5-flash-002
-            linestyle='none',
-            marker=MARKERS[method],
-            markersize=4,
-        ))
+    model_handles = []
     for model in model_list:
         key = f"{plotting_utils.MODEL_ALIASES[model]}"
-        legend_handles.append( lines.Line2D(
+        model_handles.append( lines.Line2D(
             [0], [0],
             color=COLORS[model],
             label=key, ###f"{method}+{model_name}", # cot+gemini-1.5-flash-002
@@ -173,8 +168,8 @@ for metric in METRICS:
 
     # attach the legend to the entire figure instead of any individual subplot
     fig.legend(
-        handles=legend_handles,
-        fontsize=5,
+        handles=model_handles,
+        fontsize=plotting_utils.LEGEND_FONT_SIZE,
         loc='lower center',
         # bbox_to_anchor=(0.5, -0.05),
         ncol=6,

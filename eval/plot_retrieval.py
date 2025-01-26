@@ -53,6 +53,8 @@ for metric in METRICS:
     fig, axs = plt.subplots(1, 3, figsize=(6.75, 2.5))
 
     for i, methods in enumerate([plotting_utils.SIMPLE_METHODS, plotting_utils.RAG_METHODS, plotting_utils.AGENTIC_METHODS]):
+        method_handles = []
+
         for method in methods:
             # get evaluation data from the specified output directory and method subdirectory
             df = get_evaluation_data(output_dir, method, dataset)
@@ -96,6 +98,23 @@ for metric in METRICS:
                     marker=MARKERS[method],
                 )
                 axs[i].fill_between(x, y-yerr, y+yerr, alpha=0.1, color=COLORS[model_name])
+            
+            key = f"{plotting_utils.METHOD_ALIASES[method]}"
+            method_handles.append( lines.Line2D(
+                [0], [0],
+                color="black",
+                label=key, 
+                linestyle='none',
+                marker=MARKERS[method],
+                markersize=4,
+            ))
+        axs[i].legend(
+            handles=method_handles,
+            fontsize=plotting_utils.LEGEND_FONT_SIZE,
+            loc='upper right',
+            ncol=1,
+            handlelength=2,
+        )
 
         axs[i].spines['bottom'].set_position(('outward', 1))  # Move x-axis outward
         axs[i].spines['left'].set_position(('outward', 1))    # Move y-axis outward
@@ -114,20 +133,11 @@ for metric in METRICS:
         axs[i].set_yticks(np.arange(0, 1.1, 0.1))
         axs[i].tick_params(axis='y', labelsize=plotting_utils.TICK_FONT_SIZE)
 
-    legend_handles = []
-    for method in method_list:
-        key = f"{method}"
-        legend_handles.append( lines.Line2D(
-            [0], [0],
-            color="black",
-            label=key, 
-            linestyle='none',
-            marker=MARKERS[method],
-            markersize=4,
-        ))
+    # attach the model legend to the entire figure instead of any individual subplot
+    model_handles = []
     for model in model_list:
         key = f"{plotting_utils.MODEL_ALIASES[model]}"
-        legend_handles.append( lines.Line2D(
+        model_handles.append( lines.Line2D(
             [0], [0],
             color=COLORS[model],
             label=key, 
@@ -136,11 +146,9 @@ for metric in METRICS:
             # markersize=4,
             linewidth=1,
         ) )
-
-    # attach the legend to the entire figure instead of any individual subplot
     fig.legend(
-        handles=legend_handles,
-        fontsize=5,
+        handles=model_handles,
+        fontsize=plotting_utils.LEGEND_FONT_SIZE,
         loc='lower center',
         # bbox_to_anchor=(0.5, -0.05),
         ncol=6,

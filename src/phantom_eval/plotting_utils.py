@@ -1,6 +1,7 @@
 # Single column figures
 TICK_FONT_SIZE = 8
 LABEL_FONT_SIZE = 10
+LEGEND_FONT_SIZE = 8
 
 MODEL_ALIASES = {
     'google/gemma-2-27b-it': "Gemma-2-27B",
@@ -36,6 +37,19 @@ DEFAULT_METHOD_LIST = [
     "cot-retriever", 
     "react", 
     "reasoning"
+]
+SIMPLE_METHODS = [
+    "zeroshot",
+    "cot",
+    "reasoning",
+]
+RAG_METHODS = [
+    "zeroshot-retriever",
+    "cot-retriever",
+]
+AGENTIC_METHODS = [
+    # "act",
+    "react",
 ]
 DEFAULT_MODEL_LIST = [ 
     "gemini-1.5-flash-002", 
