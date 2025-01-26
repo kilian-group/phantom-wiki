@@ -1,29 +1,22 @@
-"""Replaces placeholders in a question and query template with actual values derived from the database.
+"""
+Replaces <relation>, <relation_plural>, <attribute_name>, <attribute_value>, <name> placeholders in a question
+and query template with actual values derived from the database.
 
-An example of sample function working:
-############################################################################
-# TODO clean up
+Example:
 
-["Who is", "the", "<relation>_3", "of", "the person whose", "<attribute_name>_1", "is",
-"<attribute_value>_1", "?"],
-["<relation>_3(Y_2, Y_4)", "<attribute_name>_1(Y_2, <attribute_value>_1)"],
+Input question template and query:
+```python
+    ["Who is", "the", "<relation>_3", "of", "the person whose", "<attribute_name>_1", "is", "<attribute_value>_1", "?"],
+    ["<relation>_3(Y_2, Y_4)", "<attribute_name>_1(Y_2, <attribute_value>_1)"],
+```
 
-->
-
+outputs one possible question and query that matches the provided template:
+```python
 (
-    {"<attribute_name>_1": "age", "<relation>_3": "child"},
-    "Who is the child of the person whose age is <attribute_value>_1 ?",
-    ["child(Y_2, Y_4)", "age(Y_2, <attribute_value>_1)"], # TODO <attribute_value>_1 should also be sampled
+    "Who is the child of the person whose age is 10?",
+    ["child(Y_2, Y_4)", "age(Y_2, "10")"]
 )
-############################################################################
-
-Notes:
-
-* valid_only will have to be implemented according to the tree structure of the template,
-starting with the leaves and re-querying for validity when merging branches;
-how should the backtracking work?
-* maybe don't set any values for *atoms* and query for matches in that way
-
+```
 """
 import itertools
 import re
@@ -79,63 +72,43 @@ def get_vals_and_update_cache(
         return query_and_answer
 
 
-def sample(
-    db: Database,
-    question_template: list[str],
-    query_template: list[str],
-    rng: Generator,
-    valid_only: bool = True,
-    hard_mode: bool = False,
-) -> list[dict, str, list[str]]:
-    if valid_only:
-        return sample_valid_only(db, question_template, query_template, rng, hard_mode)
-    else:
-        raise NotImplementedError("Only valid_only=True is supported for now")
-
-
 def sample_valid_only(
-    db: Database,
     question_template: list[str],
     query_template: list[str],
     rng: Generator,
+    db: Database,
+    person_name_bank: list[str],
+    person_name2attr_name_and_val: dict[str, list[tuple[str, str]]],
+    person_name2relation_and_related: dict[str, list[tuple[str, str]]],
     hard_mode: bool = False,
-) -> list[dict, str, list[str]]:
-    """Samples possible realizations of the question template and query template lists
+) -> list[str, list[str]]:
+    """
+    Samples possible realizations of the question template and query template lists
     from the database `db`.
 
-    Implements a backward sampling algorithm, where we hop between people in the universe
-    creating a query.
+    Implements a random walk over the universe of people to create a query.
+    Equivalent to chaining the queries in the query template list "backwards", i.e. realizing
+    values of the placeholders in the query in a reverse order.
 
     Args:
-        db: the Prolog database to sample from
-        question_template: question template as list of CFG terminals containing <placeholder>s
-        query_template: query template as a list of Prolog statements containing <placeholder>s
-        rng: random number generator
-        valid_only: whether to sample only valid realizations
-            if True: we uniformly sample from the set of prolog queries
-            satisfying the query_template with a non-empty answer
-            if False: we uniformly sample from all possible prolog queries
-            satisfying the query_template
+        question_template (list[str]): question template as list of CFG terminals containing <placeholder>s
+        query_template (list[str]): query template as a list of Prolog statements containing <placeholder>s
+        rng (`Generator`): random number generator
+        db (`Database`): the Prolog database to sample from
+        person_name_bank (list[str]): list of all person names in the database
+        person_name2attr_name_and_val (dict[str, list[tuple[str, str]]]): cache of person -> all possible (attr name, attr value) pairs
+            e.g. "John" -> [("dob", "1990-01-01"), ("job", "teacher"), ("hobby", "reading"), ("hobby", "swimming"), ...]
+            NOTE: Invariant: (attr name, attr value) pairs are unique
+        person_name2relation_and_related (dict[str, list[tuple[str, str]]]): cache of person -> all possible (relation, related person) pairs 
+            e.g. "John" -> [("child", "Alice"), ("child", "Bob"), ("friend", "Charlie"), ...]
+            NOTE: Invariant: (relation, related person) pairs are unique
         hard_mode: whether to sample from hard relations 
             if True: we sample the relation predicates from all FAMILY_RELATIONS
             if False: we sample the relation predicates from FAMILY_RELATIONS with difficulty = 1
     Returns:
-        * a dictionary mapping each placeholder to its realization,
         * the completed question as a single string,
         * the completed Prolog query as a list of Prolog statements,
     """
-
-    # Maintain a cache (dictionary) of person -> all possible attributes
-    # e.g. "John" -> [("dob", "1990-01-01"), ("job", "teacher"), ("hobby", "reading"), ("hobby", "swimming"), ...]
-    # Invariant: (attr name, attr value) pairs are unique
-    person_name2attr_name_and_val: dict[str, list[tuple[str, str]]] = {}
-
-    # Maintain a cache (dictionary) of person -> all possible relations
-    # e.g. "John" -> [("child", "Alice"), ("child", "Bob"), ("friend", "Charlie"), ...]
-    # Invariant: (relation, related person) pairs are unique
-    person_name2relation_and_related: dict[str, list[tuple[str, str]]] = {}
-
-    person_name_bank: list[str] = db.get_person_names()
 
     atom_assignments: dict[str, str] = {}  # Maps temporary variable A_i to the sampled value
     query_assignments: dict[str, str] = {}  # Maps placeholder Y_i to the temporary variable A_i (or sampled value in case of terminal question)
@@ -501,7 +474,7 @@ def sample_valid_only(
         question = question.replace(placeholder, sampled_value)
     # print(f"{question=}")
 
-    return query_assignments, question, query
+    return question, query
     
 
 def sample_forward(
@@ -511,8 +484,11 @@ def sample_forward(
     rng: Generator,
     valid_only: bool = True,
     hard_mode: bool = False,
-):
-    """Samples possible realizations of the question template and query template lists
+) -> tuple[str, list[str]]:
+    """
+    DEPRECATED: Use sample_valid_only instead, which implements a (much faster) random walk over the universe of people to create a query.
+    
+    Samples possible realizations of the question template and query template lists
     from the database `db`.
 
     Implements a forward sampling strategy, where we construct a query first then check prolog for validity.
@@ -663,4 +639,4 @@ def sample_forward(
         return None
 
     question, query = _prepare_question(), _prepare_query()
-    return query_assignments, question, query
+    return question, query
