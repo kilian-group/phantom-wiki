@@ -17,8 +17,10 @@ for split in dataset:
     if size == 25:
         continue
     print(depth, size, seed)
+    # filter out questions with difficulty > 3
+    d = dataset[split].filter(lambda x: x['difficulty'] > 3)
     # plot histogram 
-    solutions = [len(a) for a in dataset[split]['answer']]
+    solutions = [len(a) for a in d['answer']]
     row = size // 50 - 1
     col = seed - 1
     print(row, col)
