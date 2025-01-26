@@ -11,6 +11,7 @@ Example:
 import os
 from phantom_eval import get_parser
 from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std
+from phantom_eval import plotting_utils
 import matplotlib.pyplot as plt
 import matplotlib.lines as lines
 import matplotlib.patches as mpatches
@@ -25,6 +26,7 @@ parser.add_argument(
 args = parser.parse_args()
 output_dir = args.output_dir
 method = args.method
+model_list = plotting_utils.DEFAULT_MODEL_LIST
 dataset = args.dataset
 depth = args.depth
 
@@ -33,7 +35,7 @@ df = get_evaluation_data(output_dir, method, dataset)
 # filter by depth
 df = df[(df['_depth'] == depth)]
 # filter for questions that have >1 solutions
-df = df[(df['solutions'] > 1) & (df['difficulty'] <= 3)]
+df = df[(df['solutions'] > 1) & (df['difficulty'] > 3)]
 
 # %%
 figures_dir = os.path.join(output_dir, 'figures', method)
@@ -64,9 +66,6 @@ plt.figure()
 # Get sorted list of universe sizes
 sizes_in_preds = sorted(acc_mean_std['_size'].unique().tolist())
 
-skip_model_names: list[str] = [
-    "meta-llama/llama-3.2-3b-instruct",
-]
 model_name2labels: dict[str, mpatches.Patch] = {}
 
 # Get model on rows and size on columns, numbers are precision and recall
@@ -76,7 +75,7 @@ for size in sizes_in_preds:
     rec_df_mean, rec_df_std = pivot_mean_std(acc_mean_std_size, 'recall', independent_variable='_size')
 
     for model_name, prec in prec_df_mean.iterrows():
-        if model_name in skip_model_names:
+        if model_name not in model_list:
             continue
         rec = rec_df_mean.loc[model_name]
         
