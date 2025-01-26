@@ -10,6 +10,7 @@ import os
 import pandas as pd
 # from phantom_eval import get_parser
 from phantom_eval.evaluate_utils import get_evaluation_data, mean, std
+from phantom_eval import plotting_utils
 from tabulate import tabulate
 from argparse import ArgumentParser
 parser = ArgumentParser()
@@ -21,13 +22,13 @@ parser.add_argument("--output_dir", "-od", default="out",
 parser.add_argument(
     "--method_list", 
     nargs="+", 
-    default=["zeroshot", "cot", "zeroshot-retriever", "cot-retriever"], 
+    default=plotting_utils.DEFAULT_METHOD_LIST, 
     help="Method to plot"
 )
 parser.add_argument(
     "--model_list",
     nargs="+",
-    default=["gemini-1.5-flash-002", "meta-llama/llama-3.3-70b-instruct", "deepseek-ai/deepseek-r1-distill-qwen-32b"],
+    default=plotting_utils.DEFAULT_MODEL_LIST,
     help="List of models to plot"
 )
 args = parser.parse_args()
@@ -41,8 +42,13 @@ METRICS = [
     # 'recall', 
     'f1'
 ]
+SIZE_LIST = [
+    50, 
+    500, 
+    5000
+]
 
-results = []
+df_list = []
 for method in method_list:
     # get evaluation data from the specified output directory and method subdirectory
     df = get_evaluation_data(output_dir, method, dataset)
@@ -64,26 +70,36 @@ for method in method_list:
     acc_mean_std = acc_mean_std.reset_index()
     # add a column at the end for the method
     acc_mean_std['method'] = method
-    results.append(acc_mean_std)
+    df_list.append(acc_mean_std)
 
 # concatenate all the dataframes
-results = pd.concat(results)
+df_all = pd.concat(df_list)
 # reset index
-results = results.reset_index(drop=True)
+df_all = df_all.reset_index(drop=True)
 
+# only consider universe sizes in SIZE_LIST
+results = df_all[df_all['_size'].isin(SIZE_LIST)]
+# use model aliases
+results['_model'] = results['_model'].apply(lambda x: plotting_utils.MODEL_ALIASES.get(x, x))
 # create table with models as rows and methods as columns
-results = results.pivot_table(index=['_model'], columns='method', values=METRICS, aggfunc='first')
+results = results.pivot_table(index=['_size', '_model'], columns='method', values=METRICS, aggfunc='first')
+# replace the column name _size with "Universe Size"
+results = results.rename_axis(index=['Universe Size', 'Model'])
 # currently the resulting columns are (metric, method)
 # we want them to be just (method)
 results.columns = results.columns.droplevel(0)
 # change the order of columns to be the same as method_list
 results = results[[method for method in method_list if method in results.columns]]
+# rename the columns to the method aliases
+results.columns = [plotting_utils.METHOD_ALIASES.get(method, method) for method in results.columns]
+# reset the index
+results = results.reset_index()
 
 print("Accuracies:")
-print(results.to_latex())
-print(tabulate(results, tablefmt="github", headers="keys"))
+print(results.to_latex(index=False))
+print(tabulate(results, tablefmt="github", headers="keys", showindex=False))
 
-# save to a csv file
-scores_dir = os.path.join(output_dir, 'scores')
-os.makedirs(scores_dir, exist_ok=True)
-results.to_csv(os.path.join(scores_dir, "scores.csv"))
+# # save to a csv file
+# scores_dir = os.path.join(output_dir, 'scores')
+# os.makedirs(scores_dir, exist_ok=True)
+# results.to_csv(os.path.join(scores_dir, "scores.csv"))
