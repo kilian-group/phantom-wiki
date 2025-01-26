@@ -222,7 +222,7 @@ def sample_valid_only(
                 # Then finding all possible (relations, related) pairs for that person
                 # Selecting a random pair and using it to fill in the query
 
-                # a. Randomly sample a name from the database for the Y_i placeholder
+                # a. Randomly sample a name from the database for the <name> placeholder
                 person_name_choice = rng.choice(person_name_bank)
                 # Realized values, in this case <name>, should be in quotes when creating the Prolog query
                 query_assignments[name] = f"\"{person_name_choice}\""
@@ -254,7 +254,7 @@ def sample_valid_only(
 
             # 3. <relation>_(\d+)(Y_\d+, Y_\d+) --- does not appear at the end of query template list
             elif m := re.search(r"(<relation>_\d+)\((Y_\d+), (Y_\d+)\)", query_template_[i]):
-                # 0 group is the full match, 1 is the relation, 2 is the name, 3 is the Y_i placeholder
+                # 0 group is the full match, 1 is the relation, 2 is the Y_i placeholder, 3 is the Y_j placeholder
                 match, relation, y_placeholder_1, y_placeholder_2 = m.group(0, 1, 2, 3)
                 
                 # This query becomes question "... the <relation> of Y_1 of ...?"
@@ -396,6 +396,82 @@ def sample_valid_only(
 
                 # Add the attribute name and value to the question assignments, could be an alias
                 question_assignments[attribute_name] = ATTRIBUTE_ALIASES[attribute_name_choice]
+
+            # 7. aggregate_all\(count, distinct\((<relation_plural>_\d+)\((<name>_\d+), (Y_\d+)\)\), (Count_\d+)\) --- TERMINAL query: only appears at end of query template list
+            elif m := re.search(r"aggregate_all\(count, distinct\((<relation_plural>_\d+)\((<name>_\d+), (Y_\d+)\)\), (Count_\d+)\)", query_template_[i]):
+                # 0 group is the full match, 1 is the relation, 2 is the name, 3 is the Y_i placeholder, 4 is the Count_i placeholder
+                match, relation_plural, name, y_placeholder, count_placeholder = m.group(0, 1, 2, 3, 4)
+
+                # This query becomes question "How many <relation_plural> does <name> have?"
+                # Start the graph traversal by randomly sampling a person from the database
+                # Then finding all possible (relations, related) pairs for that person
+                # Selecting a random pair and using it to fill in the query
+
+                # a. Randomly sample a name from the database for the <name> placeholder
+                person_name_choice = rng.choice(person_name_bank)
+                # Realized values, in this case <name>, should be in quotes when creating the Prolog query
+                query_assignments[name] = f"\"{person_name_choice}\""
+
+                # b. Find all possible (relation, related) pairs for the person
+                relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
+                    cache=person_name2relation_and_related,
+                    key=person_name_choice,
+                    db=db,
+                    query_bank=RELATION if hard_mode else RELATION_EASY,
+                )
+
+                if len(relation_and_related) == 0:
+                    # If there are no relations for this person, dead end in the graph traversal. Break and try again
+                    break
+
+                # c. Randomly choose a relation and related person
+                # NOTE: The related_person_choice is 'one possible' answer of the question "How many ..."
+                relation_choice, related_person_choice = rng.choice(relation_and_related)
+                query_assignments[relation_plural] = relation_choice
+
+                # Add the relation to the question assignments, could be an alias
+                question_assignments[relation_plural] = RELATION_PLURAL_ALIAS[relation_choice]
+            
+            # 8. aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\) --- TERMINAL query: only appears at end of query template list
+            elif m := re.search(r"aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\)", query_template_[i]):
+                # 0 group is the full match, 1 is the relation, 2 is the Y_i placeholder, 3 is the Y_j placeholder, 4 is the Count_i placeholder
+                match, relation_plural, y_placeholder_1, y_placeholder_2, count_placeholder = m.group(0, 1, 2, 3, 4)
+
+                # This query becomes question "How many <relation_plural> does the ...?"
+                # Continue the graph traversal by using the assignment of Y_i from the previous queries
+                # Then finding all possible (relations, related) pairs for that person
+                # Selecting a random pair and using it to fill in the query
+
+                # a. Assume that y_placeholder_1 is already assigned
+                assert y_placeholder_1 in query_assignments, f"{y_placeholder_1} should be assigned already: {query_template_[i]} in {query_template_}"
+                assert y_placeholder_2 not in query_assignments, f"{y_placeholder_2} should not be assigned already: {query_template_[i]} in {query_template_}"
+
+                person_1_name_choice = atom_assignments[query_assignments[y_placeholder_1]]
+
+                # b. Find all possible (relation, related) pairs for the person
+                relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
+                    cache=person_name2relation_and_related,
+                    key=person_1_name_choice,
+                    db=db,
+                    query_bank=RELATION if hard_mode else RELATION_EASY,
+                )
+
+                if len(relation_and_related) == 0:
+                    # If there are no relations for this person, dead end in the graph traversal. Break and try again
+                    break
+
+                # c. Randomly choose a relation and related person
+                # NOTE: The related_person_choice is 'one possible' answer of the question "How many ..."
+                relation_choice, related_person_choice = rng.choice(relation_and_related)
+                query_assignments[relation_plural] = relation_choice
+
+                # Create new atom variable for the related person name
+                new_atom = f"A_{len(atom_assignments)}"
+                query_assignments[y_placeholder_2] = new_atom
+                atom_assignments[new_atom] = related_person_choice
+
+                # Add the relation to the question assignments, could be an alias
+                question_assignments[relation_plural] = RELATION_PLURAL_ALIAS[relation_choice]
 
             else:
                 # Template is not recognized
