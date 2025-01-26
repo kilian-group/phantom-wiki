@@ -71,7 +71,7 @@ def get_answer(
         logging.warning("Skipping solution traces")
         solution_traces = []
 
-    final_results = [decode(x[answer]) for x in query_result]
+    final_results = [str(decode(x[answer])) for x in query_result]
     final_results = sorted(set(final_results))
 
     return solution_traces, final_results
