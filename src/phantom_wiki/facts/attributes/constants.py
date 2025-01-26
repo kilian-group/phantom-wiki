@@ -18,11 +18,15 @@ ATTRIBUTE_ALIASES = {
     "gender": "gender",
 }
 
+# Do not want to add gender here. This list is used by both question and article generation. Including gender
+# here would lead to unnaturally hard questions like "Who is the sister of the person whose gender is male?"
+# These questions can have a really long list of answers, which is not ideal.
+# We do want to include gender in articles, so when generating articles we temporarily add "gender" to this list
 ATTRIBUTE_TYPES = [
     "dob",
     "job",
     "hobby",
-    # "gender", #TODO: remove gender from allowable attribute names that we can sample since it leads to unnatural questions
+    # "gender",
 ]
 
 
