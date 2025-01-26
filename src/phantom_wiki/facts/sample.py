@@ -248,59 +248,6 @@ def process__relation__Y__Y(
     return True
 
 
-def process__relation__Y(
-    m: re.Match,
-    query_assignments: dict[str, str],
-    question_assignments: dict[str, str],
-    atom_assignments: dict[str, str],
-    rng: Generator,
-    db: Database,
-    person_name2relation_and_related: dict[str, list[tuple[str, str]]],
-    relation_bank: list[str],
-    alias_dict: dict[str, str],
-) -> bool:
-    r"""
-    Processes <relation>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
-    And also <relation_plural>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
-
-    Specify relation or relation_plural using the alias_dict to use the alias in the question.
-    
-    Returns True if the processing is successful, False otherwise
-    """
-    # 0 group is the full match, 1 is the relation, 2 is the Y_i placeholder
-    match, relation, y_placeholder = m.group(0, 1, 2)
-
-    # This query becomes question "Who is the <relation> of ...?"
-    # End the graph by using the assignment of Y_i from the previous queries
-    # Then finding all possible (relations, related) pairs for that person
-    # Selecting a random pair and using it to fill in the query
-
-    # a. Assume that y_placeholder is already assigned
-    assert y_placeholder in query_assignments, f"{y_placeholder} should be assigned already"
-    person_name_choice = atom_assignments[query_assignments[y_placeholder]]
-
-    # b. Find all possible (relation, related) pairs for the person
-    relation_and_related: list[tuple[str, str]] = get_vals_and_update_cache(
-        cache=person_name2relation_and_related,
-        key=person_name_choice,
-        db=db,
-        query_bank=relation_bank,
-    )
-
-    if len(relation_and_related) == 0:
-        # If there are no relations for this person, dead end in the graph traversal. Break and try again
-        return False
-
-    # c. Randomly choose a relation and related person
-    # NOTE: The related_person_choice is 'one possible' answer of the question "Who is the ..."
-    relation_choice, related_person_choice = rng.choice(relation_and_related)
-    query_assignments[relation] = relation_choice
-
-    # Add the relation to the question assignments, could be an alias
-    question_assignments[relation] = alias_dict[relation_choice]
-    return True
-
-
 def process__attr_name__Y__Y(
     m: re.Match,
     query_assignments: dict[str, str],
@@ -515,11 +462,9 @@ def sample_valid_only(
         # 1. <attribute_name>_(\d+)(Y_\d+, <attribute_value>_\d+) --- only appears at the beginning or end of query template list
         # 2. <relation>_(\d+)(<name>_\d+, Y_\d+) --- only appears at end of query template list
         # 3. <relation>_(\d+)(Y_\d+, Y_\d+) --- does not appear at the end of query template list
-        # 4. <relation>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
-        # 5. <relation_plural>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
-        # 6. <attribute_name>_(\d+)(Y_\d+, Y_\d+) --- TERMINAL query: only appears at end of query template list
-        # 7. aggregate_all\(count, distinct\((<relation_plural>_\d+)\((<name>_\d+), (Y_\d+)\)\), (Count_\d+)\) --- TERMINAL query: only appears at end of query template list
-        # 8. aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\) --- TERMINAL query: only appears at end of query template list
+        # 4. <attribute_name>_(\d+)(Y_\d+, Y_\d+) --- TERMINAL query: only appears at end of query template list
+        # 5. aggregate_all\(count, distinct\((<relation_plural>_\d+)\((<name>_\d+), (Y_\d+)\)\), (Count_\d+)\) --- TERMINAL query: only appears at end of query template list
+        # 6. aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\) --- TERMINAL query: only appears at end of query template list
 
         for i in range(len(query_template) - 1, -1, -1):
             # NOTE: Invariances:
@@ -551,23 +496,7 @@ def sample_valid_only(
                 )
                 if not is_success: break
 
-            # 4. <relation>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
-            elif m := re.search(r"(<relation>_\d+)\((Y_\d+)\)", query_template[i]):
-                is_success = process__relation__Y(
-                    m, query_assignments, question_assignments, atom_assignments, rng,
-                    db, person_name2relation_and_related, relation_bank, alias_dict=RELATION_ALIAS,
-                )
-                if not is_success: break
-
-            # 5. <relation_plural>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
-            elif m := re.search(r"(<relation_plural>_\d+)\((Y_\d+)\)", query_template[i]):
-                is_success = process__relation__Y(
-                    m, query_assignments, question_assignments, atom_assignments, rng,
-                    db, person_name2relation_and_related, relation_bank, alias_dict=RELATION_PLURAL_ALIAS,
-                )
-                if not is_success: break
-
-            # 6. <attribute_name>_(\d+)(Y_\d+, Y_\d+) --- TERMINAL query: only appears at end of query template list
+            # 4. <attribute_name>_(\d+)(Y_\d+, Y_\d+) --- TERMINAL query: only appears at end of query template list
             elif m := re.search(r"(<attribute_name>_\d+)\((Y_\d+), (Y_\d+)\)", query_template[i]):
                 is_success = process__attr_name__Y__Y(
                     m, query_assignments, question_assignments, atom_assignments, rng,
@@ -575,7 +504,7 @@ def sample_valid_only(
                 )
                 if not is_success: break
 
-            # 7. aggregate_all\(count, distinct\((<relation_plural>_\d+)\((<name>_\d+), (Y_\d+)\)\), (Count_\d+)\) --- TERMINAL query: only appears at end of query template list
+            # 5. aggregate_all\(count, distinct\((<relation_plural>_\d+)\((<name>_\d+), (Y_\d+)\)\), (Count_\d+)\) --- TERMINAL query: only appears at end of query template list
             elif m := re.search(r"aggregate_all\(count, distinct\((<relation_plural>_\d+)\((<name>_\d+), (Y_\d+)\)\), (Count_\d+)\)", query_template[i]):
                 is_success = process__agg__relation_plural__name__Y(
                     m, query_assignments, question_assignments, atom_assignments, rng,
@@ -583,7 +512,7 @@ def sample_valid_only(
                 )
                 if not is_success: break
             
-            # 8. aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\) --- TERMINAL query: only appears at end of query template list
+            # 6. aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\) --- TERMINAL query: only appears at end of query template list
             elif m := re.search(r"aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\)", query_template[i]):
                 is_success = process__agg__relation_plural__Y__Y(
                     m, query_assignments, question_assignments, atom_assignments, rng,
