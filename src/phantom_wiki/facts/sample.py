@@ -81,6 +81,7 @@ def sample_valid_only(
     person_name2attr_name_and_val: dict[str, list[tuple[str, str]]],
     person_name2relation_and_related: dict[str, list[tuple[str, str]]],
     hard_mode: bool = False,
+    num_sampling_attempts: int = 100,
 ) -> list[str, list[str]]:
     """
     Samples possible realizations of the question template and query template lists
@@ -105,6 +106,7 @@ def sample_valid_only(
         hard_mode: whether to sample from hard relations 
             if True: we sample the relation predicates from all FAMILY_RELATIONS
             if False: we sample the relation predicates from FAMILY_RELATIONS with difficulty = 1
+        num_samplng_attempts (int): number of attempts to sample a valid question
     Returns:
         * the completed question as a single string,
         * the completed Prolog query as a list of Prolog statements,
@@ -116,12 +118,8 @@ def sample_valid_only(
 
     valid_result = False
     n_attempts = 0
-    while not valid_result and n_attempts < 100:  # TODO limit to 100 attempts per template for now
+    while not valid_result and n_attempts < num_sampling_attempts:
         n_attempts += 1
-
-        # TODO don't need copy, remove
-        query_template_ = copy(query_template)  # we will be modifying this list in place
-        question_template_ = copy(question_template)  # we will be modifying this list in place
 
         # Reinitialize the assignments for each new attempt
         atom_assignments = {}
@@ -135,13 +133,15 @@ def sample_valid_only(
         # 4. <relation>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
         # 5. <relation_plural>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
         # 6. <attribute_name>_(\d+)(Y_\d+, Y_\d+) --- TERMINAL query: only appears at end of query template list
+        # 7. aggregate_all\(count, distinct\((<relation_plural>_\d+)\((<name>_\d+), (Y_\d+)\)\), (Count_\d+)\) --- TERMINAL query: only appears at end of query template list
+        # 8. aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\) --- TERMINAL query: only appears at end of query template list
 
-        for i in range(len(query_template_) - 1, -1, -1):
+        for i in range(len(query_template) - 1, -1, -1):
             # NOTE: Invariances:
             # - Every value of assignments[Y_i] that is an atom variable (A_i) should be a key in atom_assignments
 
             # 1. <attribute_name>_(\d+)(Y_\d+, <attribute_value>_\d+) --- only appears at the beginning or end of query template list
-            if m := re.search(r"(<attribute_name>_\d+)\((Y_\d+), (<attribute_value>_\d+)\)", query_template_[i]):
+            if m := re.search(r"(<attribute_name>_\d+)\((Y_\d+), (<attribute_value>_\d+)\)", query_template[i]):
                 # 0 group is the full match, 1 is the attribute_name, 2 is the Y_i placeholder, 3 is the attribute_value
                 match, attribute_name, y_placeholder, attribute_value = m.group(0, 1, 2, 3)
 
@@ -186,7 +186,7 @@ def sample_valid_only(
                 question_assignments[attribute_value] = attribute_value_choice
 
             # 2. <relation>_(\d+)(<name>_\d+, Y_\d+) --- only appears at end of query template list
-            elif m := re.search(r"(<relation>_\d+)\((<name>_\d+), (Y_\d+)\)", query_template_[i]):
+            elif m := re.search(r"(<relation>_\d+)\((<name>_\d+), (Y_\d+)\)", query_template[i]):
                 # 0 group is the full match, 1 is the relation, 2 is the name, 3 is the Y_i placeholder
                 match, relation, name, y_placeholder = m.group(0, 1, 2, 3)
                 
@@ -226,7 +226,7 @@ def sample_valid_only(
                 question_assignments[name] = person_name_choice
 
             # 3. <relation>_(\d+)(Y_\d+, Y_\d+) --- does not appear at the end of query template list
-            elif m := re.search(r"(<relation>_\d+)\((Y_\d+), (Y_\d+)\)", query_template_[i]):
+            elif m := re.search(r"(<relation>_\d+)\((Y_\d+), (Y_\d+)\)", query_template[i]):
                 # 0 group is the full match, 1 is the relation, 2 is the Y_i placeholder, 3 is the Y_j placeholder
                 match, relation, y_placeholder_1, y_placeholder_2 = m.group(0, 1, 2, 3)
                 
@@ -236,8 +236,8 @@ def sample_valid_only(
                 # Selecting a random pair and using it to fill in the query
 
                 # a. Assume that y_placeholder_1 is already assigned
-                assert y_placeholder_1 in query_assignments, f"{y_placeholder_1} should be assigned already: {query_template_[i]} in {query_template_}"
-                assert y_placeholder_2 not in query_assignments, f"{y_placeholder_2} should not be assigned already: {query_template_[i]} in {query_template_}"
+                assert y_placeholder_1 in query_assignments, f"{y_placeholder_1} should be assigned already: {query_template[i]} in {query_template}"
+                assert y_placeholder_2 not in query_assignments, f"{y_placeholder_2} should not be assigned already: {query_template[i]} in {query_template}"
 
                 person_1_name_choice = atom_assignments[query_assignments[y_placeholder_1]]
 
@@ -266,7 +266,7 @@ def sample_valid_only(
                 question_assignments[relation] = RELATION_ALIAS[relation_choice]
 
             # 4. <relation>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
-            elif m := re.search(r"(<relation>_\d+)\((Y_\d+)\)", query_template_[i]):
+            elif m := re.search(r"(<relation>_\d+)\((Y_\d+)\)", query_template[i]):
                 # 0 group is the full match, 1 is the relation, 2 is the Y_i placeholder
                 match, relation, y_placeholder = m.group(0, 1, 2)
 
@@ -276,7 +276,7 @@ def sample_valid_only(
                 # Selecting a random pair and using it to fill in the query
 
                 # a. Assume that y_placeholder is already assigned
-                assert y_placeholder in query_assignments, f"{y_placeholder} should be assigned already: {query_template_[i]} in {query_template_}"
+                assert y_placeholder in query_assignments, f"{y_placeholder} should be assigned already: {query_template[i]} in {query_template}"
                 person_name_choice = atom_assignments[query_assignments[y_placeholder]]
 
                 # b. Find all possible (relation, related) pairs for the person
@@ -300,7 +300,7 @@ def sample_valid_only(
                 question_assignments[relation] = RELATION_ALIAS[relation_choice]
 
             # 5. <relation_plural>_(\d+)(Y_\d+) --- TERMINAL query: only appears at beginning of query template list
-            elif m := re.search(r"(<relation_plural>_\d+)\((Y_\d+)\)", query_template_[i]):
+            elif m := re.search(r"(<relation_plural>_\d+)\((Y_\d+)\)", query_template[i]):
                 # 0 group is the full match, 1 is the relation, 2 is the Y_i placeholder
                 match, relation_plural, y_placeholder = m.group(0, 1, 2)
 
@@ -310,7 +310,7 @@ def sample_valid_only(
                 # Selecting a random pair and using it to fill in the query
 
                 # a. Assume that y_placeholder is already assigned
-                assert y_placeholder in query_assignments, f"{y_placeholder} should be assigned already: {query_template_[i]} in {query_template_}"
+                assert y_placeholder in query_assignments, f"{y_placeholder} should be assigned already: {query_template[i]} in {query_template}"
                 person_name_choice = atom_assignments[query_assignments[y_placeholder]]
 
                 # b. Find all possible (relation, related) pairs for the person
@@ -335,7 +335,7 @@ def sample_valid_only(
                 question_assignments[relation_plural] = RELATION_PLURAL_ALIAS[relation_choice]
 
             # 6. <attribute_name>_(\d+)(Y_\d+, Y_\d+) --- TERMINAL query: only appears at end of query template list
-            elif m := re.search(r"(<attribute_name>_\d+)\((Y_\d+), (Y_\d+)\)", query_template_[i]):
+            elif m := re.search(r"(<attribute_name>_\d+)\((Y_\d+), (Y_\d+)\)", query_template[i]):
                 # 0 group is the full match, 1 is the attribute_name, 2 is the Y_i placeholder, 3 is the Y_i placeholder
                 match, attribute_name, y_placeholder_1, y_placeholder_2 = m.group(0, 1, 2, 3)
 
@@ -345,8 +345,8 @@ def sample_valid_only(
                 # Selecting a random pair and using it to fill in the query
 
                 # a. Assume that y_placeholder_1 is already assigned
-                assert y_placeholder_1 in query_assignments, f"{y_placeholder_1} should be assigned already: {query_template_[i]} in {query_template_}"
-                assert y_placeholder_2 not in query_assignments, f"{y_placeholder_2} should not be assigned already: {query_template_[i]} in {query_template_}"
+                assert y_placeholder_1 in query_assignments, f"{y_placeholder_1} should be assigned already: {query_template[i]} in {query_template}"
+                assert y_placeholder_2 not in query_assignments, f"{y_placeholder_2} should not be assigned already: {query_template[i]} in {query_template}"
 
                 person_name_choice = atom_assignments[query_assignments[y_placeholder_1]]
 
@@ -371,7 +371,7 @@ def sample_valid_only(
                 question_assignments[attribute_name] = ATTRIBUTE_ALIASES[attribute_name_choice]
 
             # 7. aggregate_all\(count, distinct\((<relation_plural>_\d+)\((<name>_\d+), (Y_\d+)\)\), (Count_\d+)\) --- TERMINAL query: only appears at end of query template list
-            elif m := re.search(r"aggregate_all\(count, distinct\((<relation_plural>_\d+)\((<name>_\d+), (Y_\d+)\)\), (Count_\d+)\)", query_template_[i]):
+            elif m := re.search(r"aggregate_all\(count, distinct\((<relation_plural>_\d+)\((<name>_\d+), (Y_\d+)\)\), (Count_\d+)\)", query_template[i]):
                 # 0 group is the full match, 1 is the relation, 2 is the name, 3 is the Y_i placeholder, 4 is the Count_i placeholder
                 match, relation_plural, name, y_placeholder, count_placeholder = m.group(0, 1, 2, 3, 4)
 
@@ -406,7 +406,7 @@ def sample_valid_only(
                 question_assignments[relation_plural] = RELATION_PLURAL_ALIAS[relation_choice]
             
             # 8. aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\) --- TERMINAL query: only appears at end of query template list
-            elif m := re.search(r"aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\)", query_template_[i]):
+            elif m := re.search(r"aggregate_all\(count, distinct\((<relation_plural>_\d+)\((Y_\d+), (Y_\d+)\)\), (Count_\d+)\)", query_template[i]):
                 # 0 group is the full match, 1 is the relation, 2 is the Y_i placeholder, 3 is the Y_j placeholder, 4 is the Count_i placeholder
                 match, relation_plural, y_placeholder_1, y_placeholder_2, count_placeholder = m.group(0, 1, 2, 3, 4)
 
@@ -416,8 +416,8 @@ def sample_valid_only(
                 # Selecting a random pair and using it to fill in the query
 
                 # a. Assume that y_placeholder_1 is already assigned
-                assert y_placeholder_1 in query_assignments, f"{y_placeholder_1} should be assigned already: {query_template_[i]} in {query_template_}"
-                assert y_placeholder_2 not in query_assignments, f"{y_placeholder_2} should not be assigned already: {query_template_[i]} in {query_template_}"
+                assert y_placeholder_1 in query_assignments, f"{y_placeholder_1} should be assigned already: {query_template[i]} in {query_template}"
+                assert y_placeholder_2 not in query_assignments, f"{y_placeholder_2} should not be assigned already: {query_template[i]} in {query_template}"
 
                 person_1_name_choice = atom_assignments[query_assignments[y_placeholder_1]]
 
@@ -448,7 +448,7 @@ def sample_valid_only(
 
             else:
                 # Template is not recognized
-                raise ValueError(f"Template not recognized: {query_template_[i]} in {query_template_}")
+                raise ValueError(f"Template not recognized: {query_template[i]} in {query_template}")
         
         # If we reached the end of the loop, we have a valid query template and can exit the while loop
         if i == 0:
@@ -456,7 +456,7 @@ def sample_valid_only(
 
     # We have found a valid query template, we need to prepare the query and question
     # print(f"{query_template_=}")
-    joined_query: str = ",,".join(query_template_) # join by ,, because , is used in Prolog queries
+    joined_query: str = ",,".join(query_template) # join by ,, because , is used in Prolog queries
     for placeholder, sampled_value in query_assignments.items():
         # When placeholder is in atom_assignments, placeholder is Y_i and sampled_value is A_i
         # In these cases, we don't want to replace the placeholder with the sampled value
@@ -469,7 +469,7 @@ def sample_valid_only(
     # Last value in question template is always "?", so we join all but the last value and add the "?"
     # This avoids a space before the "?"
     # print(f"{question_template_=}")
-    question = " ".join(question_template_[:-1]) + question_template_[-1]
+    question = " ".join(question_template[:-1]) + question_template[-1]
     for placeholder, sampled_value in question_assignments.items():
         question = question.replace(placeholder, sampled_value)
     # print(f"{question=}")

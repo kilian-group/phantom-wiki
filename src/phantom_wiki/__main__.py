@@ -202,6 +202,7 @@ def main(args):
                     person_name2attr_name_and_val,
                     person_name2relation_and_related,
                     hard_mode=args.hard_mode,
+                    num_sampling_attempts=args.num_sampling_attempts,
                 )
             else:
                 raise NotImplementedError("Sampling questions without valid_only is not supported.")
