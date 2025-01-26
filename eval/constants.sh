@@ -28,7 +28,7 @@ MEDIUM_MODELS=(
 # S models (run on 3090)
 SMALL_MODELS=(
     'meta-llama/llama-3.2-1b-instruct'
-    'google/gemma-2-2b-it' # OPTIONAL
+    # 'google/gemma-2-2b-it' # OPTIONAL
 )
 # TODO add CPU models
 
