@@ -40,7 +40,7 @@ def get_answer(
     """
     # Evaluate the reversed query
     reversed_query = query[::-1]
-    query_result = list(db.query(", ".join(reversed_query)))  # db.query returns a generator, so we convert it to a list
+    query_result: list[dict] = db.query(", ".join(reversed_query))
 
     if return_solution_traces:
         solution_traces: list[dict[str, str]] = [
