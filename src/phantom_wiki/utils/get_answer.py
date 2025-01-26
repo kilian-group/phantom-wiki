@@ -49,17 +49,23 @@ def get_answer(
         # solution_traces can contain duplicate dictionaries, keep only unique ones
         # frozenset is used to make the dictionaries hashable, and set to remove duplicates
         unique_solution_traces = set(frozenset(d.items()) for d in solution_traces)
-        solution_traces_unfiltered = [dict(s) for s in unique_solution_traces]
+        solution_traces = [dict(s) for s in unique_solution_traces]
 
         # For aggregation questions, prolog will create a Variable type for the final placeholder of the query
         # We remove this from the solution traces because
         # - it is not useful for solution traces column in the dataset
         # - the Variable object is not JSON serializable and cannot be dumped into a file
-        solution_traces: list[dict[str, str]] = []
-        for trace in solution_traces_unfiltered:
-            solution_traces.append(
-                {k: v for k, v in trace.items() if not isinstance(v, Variable)}
-            )
+        # TODO Anmol: implement this. I'm getting segfault whatever I do.
+        # for trace in solution_traces:
+        #     for k, v in trace.items():
+        #         if isinstance(v, Variable):
+        #             print(k, v)
+        #             trace[k] = ""
+            # # Find keys to delete and only iterate through them, to avoid modifying the dictionary while iterating
+            # # or causing a segfault (there are lots of keys in trace, so we only want to use a generator)
+            # keys_to_delete = [k for k, v in trace.items() if isinstance(v, Variable)]
+            # for k in keys_to_delete:
+            #     del trace[k]
 
     else:
         logging.warning("Skipping solution traces")

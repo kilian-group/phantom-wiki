@@ -189,7 +189,7 @@ def main(args):
             # TODO: is there a better way to do this?
             # NOTE: we concatenate the clauses in the prolog query in reverse order
             # since prolog executes goals from left to right
-            solution_traces, final_results = get_answer(query, db, answer, return_solution_traces=True)
+            solution_traces, final_results = get_answer(query, db, answer, return_solution_traces=False)
             # make unique and sort in alphabetical order
             question_difficulty = calculate_query_difficulty(query)
             questions.append(
