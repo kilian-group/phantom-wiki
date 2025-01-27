@@ -63,7 +63,7 @@ for metric in METRICS:
     # replace this with a subplot figure with 1 rows and 3 columns
     fig, axs = plt.subplots(1, 3, figsize=(6.75, 2.5))
 
-    for i, methods in enumerate([plotting_utils.SIMPLE_METHODS, plotting_utils.RAG_METHODS, plotting_utils.AGENTIC_METHODS]):
+    for i, (name, methods) in enumerate([('Simple', plotting_utils.SIMPLE_METHODS), ('RAG', plotting_utils.RAG_METHODS), ('Agentic', plotting_utils.AGENTIC_METHODS)]):
         method_handles = []
         for method in methods:
             print(f"Plotting {method} for {metric}")
@@ -152,6 +152,8 @@ for metric in METRICS:
         axs[i].tick_params(axis='y', labelsize=plotting_utils.TICK_FONT_SIZE)
         # set ylim
         axs[i].set_ylim(0, 1)
+        # set title
+        axs[i].set_title(name, fontsize=plotting_utils.LABEL_FONT_SIZE)
 
     # Create separate handles for models and methods
     # We will plot models on the left column and methods on the right column
@@ -179,7 +181,7 @@ for metric in METRICS:
         handlelength=4,
     )
     plt.tight_layout()
-    plt.subplots_adjust(left=0.1, right=0.95, top=0.95, wspace=0.3)  # Adjust horizontal space between subplots and reduce padding to the left and right
+    plt.subplots_adjust(left=0.1, right=0.95, top=0.9, wspace=0.3)  # Adjust horizontal space between subplots and reduce padding to the left and right
 
     # fig.subplots_adjust(left=0.17, right=0.95, bottom=0.3, top=0.95) #, wspace=0.3, hspace=0.3)
     fig_path = os.path.join(figures_dir, f'difficulty-{metric}.pdf')

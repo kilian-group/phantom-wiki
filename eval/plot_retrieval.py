@@ -52,7 +52,7 @@ for metric in METRICS:
     fig = plt.figure(figsize=(3.25, 2.75)) # exact dimensions of ICML single column width
     fig, axs = plt.subplots(1, 3, figsize=(6.75, 2.5))
 
-    for i, methods in enumerate([plotting_utils.SIMPLE_METHODS, plotting_utils.RAG_METHODS, plotting_utils.AGENTIC_METHODS]):
+    for i, (name, methods) in enumerate([('Simple', plotting_utils.SIMPLE_METHODS), ('RAG', plotting_utils.RAG_METHODS), ('Agentic', plotting_utils.AGENTIC_METHODS)]):
         method_handles = []
 
         for method in methods:
@@ -135,6 +135,8 @@ for metric in METRICS:
         axs[i].set_ylim(0, 1)
         axs[i].set_yticks(np.arange(0, 1.1, 0.1))
         axs[i].tick_params(axis='y', labelsize=plotting_utils.TICK_FONT_SIZE)
+        # set title
+        axs[i].set_title(name, fontsize=plotting_utils.LABEL_FONT_SIZE)
 
     # attach the model legend to the entire figure instead of any individual subplot
     model_handles = []
@@ -158,7 +160,7 @@ for metric in METRICS:
         handlelength=4,
     )
     plt.tight_layout()
-    plt.subplots_adjust(left=0.1, right=0.95, top=0.95, wspace=0.3)  # Adjust horizontal space between subplots and reduce padding to the left and right
+    plt.subplots_adjust(left=0.1, right=0.95, top=0.9, wspace=0.3)  # Adjust horizontal space between subplots and reduce padding to the left and right
 
     fig_path = os.path.join(figures_dir, f'size-{metric}.pdf')
     print(f"Saving to {os.path.abspath(fig_path)}")
