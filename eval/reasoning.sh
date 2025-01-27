@@ -29,7 +29,8 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-TEMPERATURE=0.7
+TEMPERATURE=0.6
+TOP_P=0.95
 
 source eval/constants.sh
 
@@ -42,6 +43,7 @@ do
         --split_list $SPLIT_LIST \
         --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
         --inf_temperature $TEMPERATURE \
+        --inf_top_p $TOP_P \ 
         --force "
 
     echo $cmd
