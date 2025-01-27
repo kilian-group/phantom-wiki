@@ -8,26 +8,28 @@ dataset = load_dataset("mlcore/phantom-wiki-v0.3", name='question-answer')
 # print the splits
 print(dataset)
 # make a figure with 30 subplots (10 rows, 3 columns)
-fig, axs = plt.subplots(10, 3, figsize=(10, 20))
+SIZES = [50, 500, 5000]
+fig, axs = plt.subplots(3, len(SIZES), figsize=(6.75, 6))
 
 for split in dataset:
     # get depth, size, seed from split
     match = re.search(r'depth_(\d+)_size_(\d+)_seed_(\d+)', split)
     depth, size, seed = int(match.group(1)), int(match.group(2)), int(match.group(3))
-    if size == 25:
+    if size not in SIZES:
         continue
     print(depth, size, seed)
     # filter out questions with difficulty > 3
-    d = dataset[split].filter(lambda x: x['difficulty'] > 3)
+    d = dataset[split] #.filter(lambda x: x['difficulty'] > 3)
     # plot histogram 
     solutions = [len(a) for a in d['answer']]
-    row = size // 50 - 1
-    col = seed - 1
+    row = seed - 1
+    col = SIZES.index(size)
     print(row, col)
     axs[row, col].hist(solutions, bins=20, alpha=0.5, label=split, density=True)
     # axs[row, col].set_ylim(0, 100)  # Set the same y-axis limit for all subplots
-    # add title to subplot
-    axs[row, col].set_title(f"Depth {depth}, Size {size}, Seed {seed}")
+    if row == 0:
+        # add title to subplot
+        axs[row, col].set_title(f"Size {size}")
     # set xlim to [0, 20]
     # axs[row, col].set_xlim(0, 20)
 
