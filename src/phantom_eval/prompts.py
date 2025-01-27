@@ -190,12 +190,12 @@ class RAGLLMPrompt(LLMPrompt):
 ##### React method
 REACT_EXAMPLES = f"""
 Example 1:
-Question: Who is the brother of Dino Beltran?
-Thought 1: I need to retrieve article about Dino Beltran and find who his brother is.
-Action 1: RetrieveArticle[Dino Beltran].
-Observation 1: # Dino Beltran ## Family The parents of Dino Beltran are Brian Beltran, Daisy Beltran.  Dino Beltran's sibling is Orlando Beltran.  The brother of Dino Beltran is Orlando Beltran.  The mother of Dino Beltran is Daisy Beltran.  The father of Dino Beltran is Brian Beltran.  The children of Dino Beltran are Aida Wang, Barabara Beltran, Vicki Hackworth.  The daughters of Dino Beltran are Aida Wang, Barabara Beltran, Vicki Hackworth.  The wife of Dino Beltran is Shelli Beltran.  ## Friends The friend of Dino Beltran is Alvaro Smock.  ## Attributes The date of birth of Dino Beltran is 0958-08-09.  The occupation of Dino Beltran is associate professor.  The hobby of Dino Beltran is shogi.
-Thought 2: The brother of Dino Beltran is Orlando Beltran, so the answer is Orlando Beltran.
-Action 2: Finish[Orlando Beltran].
+Question: Who is the sister of Aida Wang?
+Thought 1: I need to retrieve article about Aida Wang and find who their sister is.
+Action 1: RetrieveArticle[Aida Wang].
+Observation 1: # Aida Wang ## Family The sisters of Aida Wang are Barabara Beltran, Vicki Hackworth.  The mother of Aida Wang is Shelli Beltran.  The father of Aida Wang is Dino Beltran.  The daughter of Aida Wang is Johnetta Wang.  The husband of Aida Wang is Ryan Wang.  ## Friends The friends of Aida Wang are Alvaro Smock, Lannie Smock, Leslee Toombs, Ryan Wang.  ## Attributes The date of birth of Aida Wang is 0985-05-30.  The occupation of Aida Wang is personal assistant.  The hobby of Aida Wang is meditation.  The gender of Aida Wang is female.
+Thought 2: The sisters of Aida Wang are Barabara Beltran, Vicki Hackworth. So the answer is Barabara Beltran, Vicki Hackworth.
+Action 2: Finish[Barabara Beltran{constants.answer_sep}Vicki Hackworth].
 
 Example 2:
 Question: Who is the mother of Ivana Smith?
@@ -206,68 +206,68 @@ Thought 2: Article about Ivana Smith does not exist, so I cannot find the mother
 Action 2: Finish[].
 
 Example 3:
-Question: Who is the sibling of Barabara Beltran?
-Thought 1: I need to retrieve article about Barabara Beltran and find who her sibling is.
-Action 1: RetrieveArticle[Barabara Beltran].
-Observation 1: # Barabara Beltran ## Family The parents of Barabara Beltran are Dino Beltran, Shelli Beltran.  Barabara Beltran's siblings are Aida Wang, Vicki Hackworth.  The sisters of Barabara Beltran are Aida Wang, Vicki Hackworth.  The mother of Barabara Beltran is Shelli Beltran.  The father of Barabara Beltran is Dino Beltran.  ## Friends ## Attributes The date of birth of Barabara Beltran is 0989-06-11.  The occupation of Barabara Beltran is broadcast engineer.  The hobby of Barabara Beltran is meteorology.
-Thought 2: The siblings of Barabara Beltran are Aida Wang, Vicki Hackworth. So the answer is Aida Wang, Vicki Hackworth.
-Action 2: Finish[Aida Wang{constants.answer_sep}Vicki Hackworth].
+Question: Who is the child of Alvaro Smock?
+Thought 1: I need to retrieve article about Alvaro Smock and find who his children are.
+Action 1: RetrieveArticle[Alvaro Smock].
+Observation 1: # Alvaro Smock ## Family The sons of Alvaro Smock are Eli Smock, Gene Smock.  The wife of Alvaro Smock is Lannie Smock.  ## Friends The friends of Alvaro Smock are Dino Beltran, Gene Smock, Aida Wang.  ## Attributes The date of birth of Alvaro Smock is 0867-07-12.  The occupation of Alvaro Smock is osteopath.  The hobby of Alvaro Smock is biology
+Thought 2: The children of Alvaro Smock are Eli Smock, Gene Smock. So the answer is Eli Smock, Gene Smock.
+Action 2: Finish[Eli Smock{constants.answer_sep}Gene Smock].
 
 Example 4:
-Question: Who is the child of the sibling of Stacia Toombs?
-Thought 1: First, I need to retrieve article about Stacia Toombs and find who her sibling is.
-Action 1: RetrieveArticle[Stacia Toombs].
-Observation 1: # Stacia Toombs ## Family The parents of Stacia Toombs are Alison Smock, Williams Smock.  Stacia Toombs's sibling is Shelli Beltran.  The sister of Stacia Toombs is Shelli Beltran.  The mother of Stacia Toombs is Alison Smock.  The father of Stacia Toombs is Williams Smock.  The child of Stacia Toombs is Leslee Toombs.  The daughter of Stacia Toombs is Leslee Toombs.  The husband of Stacia Toombs is Wilbert Toombs.  ## Friends The friends of Stacia Toombs are Brian Beltran, Isiah Lutz, Leeann Hackworth, Lesley Lutz, Ryan Wang.  ## Attributes The date of birth of Stacia Toombs is 0959-03-22.  The occupation of Stacia Toombs is actuary.  The hobby of Stacia Toombs is finance.
-Thought 2: The sibling of Stacia Toombs is Shelli Beltran. Now I need to retrieve article about Shelli Beltran and find who her child is.
-Action 2: RetrieveArticle[Shelli Beltran].
-Observation 2: # Shelli Beltran ## Family The parents of Shelli Beltran are Alison Smock, Williams Smock.  Shelli Beltran's sibling is Stacia Toombs.  The sister of Shelli Beltran is Stacia Toombs.  The mother of Shelli Beltran is Alison Smock.  The father of Shelli Beltran is Williams Smock.  The children of Shelli Beltran are Aida Wang, Barabara Beltran, Vicki Hackworth.  The daughters of Shelli Beltran are Aida Wang, Barabara Beltran, Vicki Hackworth.  The husband of Shelli Beltran is Dino Beltran.  ## Friends The friends of Shelli Beltran are Brian Beltran, Eli Smock, Isiah Lutz, Leslee Toombs, Lesley Lutz, Ryan Wang.  ## Attributes The date of birth of Shelli Beltran is 0958-03-08.  The occupation of Shelli Beltran is occupational therapist.  The hobby of Shelli Beltran is sociology.
-Thought 3: The child of Shelli Beltran is Aida Wang, Barabara Beltran, Vicki Hackworth. So the answer is Aida Wang, Barabara Beltran, Vicki Hackworth.
-Action 3: Finish[Aida Wang{constants.answer_sep}Barabara Beltran{constants.answer_sep}Vicki Hackworth].
+Question: Who is the friend of the child of Alvaro Smock?
+Thought 1: First, I need to retrieve article about Alvaro Smock and find who his child is.
+Action 1: RetrieveArticle[Alvaro Smock].
+Observation 1: # Alvaro Smock ## Family The sons of Alvaro Smock are Eli Smock, Gene Smock.  The wife of Alvaro Smock is Lannie Smock.  ## Friends The friends of Alvaro Smock are Dino Beltran, Gene Smock, Aida Wang.  ## Attributes The date of birth of Alvaro Smock is 0867-07-12.  The occupation of Alvaro Smock is osteopath.  The hobby of Alvaro Smock is biology.  The gender of Alvaro Smock is male.
+Thought 2: The children of Alvaro Smock are Eli Smock, Gene Smock. Now I need to retrieve article about Eli Smock and Gene Smock and find who their friends are.
+Action 2: RetrieveArticle[Eli Smock].
+Observation 2: # Eli Smock ## Family The brother of Eli Smock is Gene Smock.  The mother of Eli Smock is Lannie Smock.  The father of Eli Smock is Alvaro Smock.  ## Friends The friends of Eli Smock are Leisa Lutz, Shelli Beltran, Vicki Hackworth, Virgil Hackworth, Alison Smock, Brian Beltran.  ## Attributes The date of birth of Eli Smock is 0901-01-18.  The occupation of Eli Smock is retail manager.  The hobby of Eli Smock is tether car.  The gender of Eli Smock is male.
+Thought 3: The friends of Eli Smock are Leisa Lutz, Shelli Beltran, Vicki Hackworth, Virgil Hackworth, Alison Smock, Brian Beltran. Now I need to retrieve article about Gene Smock and find who his friends are.
+Action 3: RetrieveArticle[Gene Smock].
+Observation 3: # Gene Smock ## Family The brother of Gene Smock is Eli Smock.  The mother of Gene Smock is Lannie Smock.  The father of Gene Smock is Alvaro Smock.  The son of Gene Smock is Williams Smock.  The wife of Gene Smock is Dominique Smock.  ## Friends The friends of Gene Smock are Leeann Hackworth, Leisa Lutz, Ricardo Hackworth, Alvaro Smock, Dominique Smock.  ## Attributes The date of birth of Gene Smock is 0898-08-16.  The occupation of Gene Smock is immunologist.  The hobby of Gene Smock is architecture.  The gender of Gene Smock is male.
+Thought 4: The friends of Gene Smock are Leeann Hackworth, Leisa Lutz, Ricardo Hackworth, Alvaro Smock, Dominique Smock. And the friends of Eli Smock are Leisa Lutz, Shelli Beltran, Vicki Hackworth, Virgil Hackworth, Alison Smock, Brian Beltran. So the friends of the children of Alvaro Smock are Leisa Lutz, Shelli Beltran, Vicki Hackworth, Virgil Hackworth, Alison Smock, Brian Beltran, Leeann Hackworth, Ricardo Hackworth, Dominique Smock. The answer is Leisa Lutz, Shelli Beltran, Vicki Hackworth, Virgil Hackworth, Alison Smock, Brian Beltran, Leeann Hackworth, Ricardo Hackworth, Dominique Smock.
+Action 4: Finish[Leisa Lutz{constants.answer_sep}Shelli Beltran{constants.answer_sep}Vicki Hackworth{constants.answer_sep}Virgil Hackworth{constants.answer_sep}Alison Smock{constants.answer_sep}Brian Beltran{constants.answer_sep}Leeann Hackworth{constants.answer_sep}Ricardo Hackworth{constants.answer_sep}Dominique Smock].
 
 Example 5:
-Question: Who is the uncle of William Smock?
-Thought 1: First, I need to retrieve article about William Smock. To find the uncle of William Smock, I need to find the brother of his parent.
-Action 1: RetrieveArticle[William Smock].
-Observation 1: # Williams Smock ## Family The parents of Williams Smock are Dominique Smock, Gene Smock.  The mother of Williams Smock is Dominique Smock.  The father of Williams Smock is Gene Smock.  The children of Williams Smock are Shelli Beltran, Stacia Toombs.  The daughters of Williams Smock are Shelli Beltran, Stacia Toombs.  The wife of Williams Smock is Alison Smock.  ## Friends The friend of Williams Smock is Lannie Smock.  ## Attributes The date of birth of Williams Smock is 0926-04-04.  The occupation of Williams Smock is clinical biochemist.  The hobby of Williams Smock is social studies.
-Thought 2: The parents of William Smock are Dominique Smock, Gene Smock. To find the uncle of William Smock, I need to find the brother of Dominique Smock and Gene Smock.
-Action 2: RetrieveArticle[Dominique Smock].
-Observation 2: # Dominique Smock ## Family The child of Dominique Smock is Williams Smock.  The son of Dominique Smock is Williams Smock.  The husband of Dominique Smock is Gene Smock.  ## Friends The friends of Dominique Smock are Gene Smock, Isiah Lutz, Orlando Beltran, Vicki Hackworth.  ## Attributes The date of birth of Dominique Smock is 0897-09-08.  The occupation of Dominique Smock is sports therapist.  The hobby of Dominique Smock is dominoes.
-Thought 3: Dominique Smock has no brother. Now I need to retrieve article about Gene Smock and find his brother.
-Action 3: RetrieveArticle[Gene Smock].
-Observation 3: # Gene Smock ## Family The parents of Gene Smock are Alvaro Smock, Lannie Smock.  Gene Smock's sibling is Eli Smock.  The brother of Gene Smock is Eli Smock.  The mother of Gene Smock is Lannie Smock.  The father of Gene Smock is Alvaro Smock.  The child of Gene Smock is Williams Smock.  The son of Gene Smock is Williams Smock.  The wife of Gene Smock is Dominique Smock.  ## Friends The friends of Gene Smock are Leeann Hackworth, Leisa Lutz, Ricardo Hackworth, Alvaro Smock, Dominique Smock.  ## Attributes The date of birth of Gene Smock is 0898-08-16.  The occupation of Gene Smock is immunologist.  The hobby of Gene Smock is architecture.
-Thought 4: The brother of Gene Smock is Eli Smock, and Dominique Smock has no brother. Since Gene Smock and Dominique Smock are the parents of William Smock, the uncle of William Smock is Eli Smock. So the answer is Eli Smock.
-Action 4: Finish[Eli Smock].
+Question: Who is the aunt of Vicki Hackworth?
+Thought 1: First, I need to retrieve article about Vicki Hackworth. To find the aunt of Vicki Hackworth, I need to find the sister of her parents.
+Action 1: RetrieveArticle[Vicki Hackworth].
+Observation 1: # Vicki Hackworth ## Family The sisters of Vicki Hackworth are Aida Wang, Barabara Beltran.  The mother of Vicki Hackworth is Shelli Beltran.  The father of Vicki Hackworth is Dino Beltran.  The son of Vicki Hackworth is Virgil Hackworth.  The daughters of Vicki Hackworth are Leeann Hackworth, Leisa Lutz.  The husband of Vicki Hackworth is Ricardo Hackworth.  ## Friends The friends of Vicki Hackworth are Brian Beltran, Dominique Smock, Eli Smock.  ## Attributes The date of birth of Vicki Hackworth is 0985-05-30.  The occupation of Vicki Hackworth is police officer.  The hobby of Vicki Hackworth is meditation.  The gender of Vicki Hackworth is female.
+Thought 2: The parents of Vicki Hackworth are Shelli Beltran, Dino Beltran. To find the aunt of Vicki Hackworth, I need to find the sister of Shelli Beltran and Dino Beltran.
+Action 2: RetrieveArticle[Shelli Beltran].
+Observation 2: # Shelli Beltran ## Family The sister of Shelli Beltran is Stacia Toombs.  The mother of Shelli Beltran is Alison Smock.  The father of Shelli Beltran is Williams Smock.  The daughters of Shelli Beltran are Aida Wang, Barabara Beltran, Vicki Hackworth.  The husband of Shelli Beltran is Dino Beltran.  ## Friends The friends of Shelli Beltran are Brian Beltran, Eli Smock, Isiah Lutz, Leslee Toombs, Lesley Lutz, Ryan Wang.  ## Attributes The date of birth of Shelli Beltran is 0958-03-08.  The occupation of Shelli Beltran is occupational therapist.  The hobby of Shelli Beltran is sociology.  The gender of Shelli Beltran is female.
+Thought 3: The sister of Shelli Beltran is Stacia Toombs. Now I need to retrieve article about Dino Beltran and find his sister.
+Action 3: RetrieveArticle[Dino Beltran].
+Observation 3: # Dino Beltran ## Family The brother of Dino Beltran is Orlando Beltran.  The mother of Dino Beltran is Daisy Beltran.  The father of Dino Beltran is Brian Beltran.  The daughters of Dino Beltran are Aida Wang, Barabara Beltran, Vicki Hackworth.  The wife of Dino Beltran is Shelli Beltran.  ## Friends The friend of Dino Beltran is Alvaro Smock.  ## Attributes The date of birth of Dino Beltran is 0958-08-09.  The occupation of Dino Beltran is associate professor.  The hobby of Dino Beltran is shogi.  The gender of Dino Beltran is male.
+Thought 4: Dino Beltran has no sister, and the sister of Shelli Beltran is Stacia Toombs. So the aunt of Vicki Hackworth is Stacia Toombs. The answer is Stacia Toombs.
+Action 4: Finish[Stacia Toombs].
 
 Example 6:
-Question: What is the occupation of the sister of the grandmother of Virgil Hackworth?
-Thought 1: First, I need to retrieve article about Virgil Hackworth. To find the grandmother of Virgil Hackworth, I need to find the mother of his parent.
-Action 1: RetrieveArticle[Virgil Hackworth].
-Observation 1: # Virgil Hackworth ## Family The parents of Virgil Hackworth are Ricardo Hackworth, Vicki Hackworth.  Virgil Hackworth's siblings are Leeann Hackworth, Leisa Lutz.  The sisters of Virgil Hackworth are Leeann Hackworth, Leisa Lutz.  The mother of Virgil Hackworth is Vicki Hackworth.  The father of Virgil Hackworth is Ricardo Hackworth.  ## Friends The friends of Virgil Hackworth are Alison Smock, Eli Smock, Orlando Beltran, Ryan Wang.  ## Attributes The date of birth of Virgil Hackworth is 1009-06-23.  The occupation of Virgil Hackworth is sound technician.  The hobby of Virgil Hackworth is wikipedia editing.
-Thought 2: The parents of Virgil Hackworth are Ricardo Hackworth, Vicki Hackworth. To find the grandmother of Virgil Hackworth, I need to find the mother of Ricardo Hackworth and Vicki Hackworth.
-Action 2: RetrieveArticle[Ricardo Hackworth].
-Observation 2: # Ricardo Hackworth ## Family The children of Ricardo Hackworth are Leeann Hackworth, Leisa Lutz, Virgil Hackworth.  The son of Ricardo Hackworth is Virgil Hackworth.  The daughters of Ricardo Hackworth are Leeann Hackworth, Leisa Lutz.  The wife of Ricardo Hackworth is Vicki Hackworth.  ## Friends The friends of Ricardo Hackworth are Gene Smock, Isiah Lutz, Johnetta Wang.  ## Attributes The date of birth of Ricardo Hackworth is 0983-02-24.  The occupation of Ricardo Hackworth is clinical research associate.  The hobby of Ricardo Hackworth is dairy farming.
-Thought 3: Ricardo Hackworth has no mother. So I need to retrieve article about Vicki Hackworth and find her mother.
-Action 3: RetrieveArticle[Vicki Hackworth].
-Observation 3: # Vicki Hackworth ## Family The parents of Vicki Hackworth are Dino Beltran, Shelli Beltran.  Vicki Hackworth's siblings are Aida Wang, Barabara Beltran.  The sisters of Vicki Hackworth are Aida Wang, Barabara Beltran.  The mother of Vicki Hackworth is Shelli Beltran.  The father of Vicki Hackworth is Dino Beltran.  The children of Vicki Hackworth are Leeann Hackworth, Leisa Lutz, Virgil Hackworth.  The son of Vicki Hackworth is Virgil Hackworth.  The daughters of Vicki Hackworth are Leeann Hackworth, Leisa Lutz.  The husband of Vicki Hackworth is Ricardo Hackworth.  ## Friends The friends of Vicki Hackworth are Brian Beltran, Dominique Smock, Eli Smock.  ## Attributes The date of birth of Vicki Hackworth is 0985-05-30.  The occupation of Vicki Hackworth is police officer.  The hobby of Vicki Hackworth is meditation.
-Thought 4: The mother of Vicki Hackworth is Shelli Beltran. So the only grandmother of Virgil Hackworth is Shelli Beltran. Now I need to retrieve article about Shelli Beltran and find her sister.
-Action 4: RetrieveArticle[Shelli Beltran].
-Observation 4: # Shelli Beltran ## Family The parents of Shelli Beltran are Alison Smock, Williams Smock.  Shelli Beltran's sibling is Stacia Toombs.  The sister of Shelli Beltran is Stacia Toombs.  The mother of Shelli Beltran is Alison Smock.  The father of Shelli Beltran is Williams Smock.  The children of Shelli Beltran are Aida Wang, Barabara Beltran, Vicki Hackworth.  The daughters of Shelli Beltran are Aida Wang, Barabara Beltran, Vicki Hackworth.  The husband of Shelli Beltran is Dino Beltran.  ## Friends The friends of Shelli Beltran are Brian Beltran, Eli Smock, Isiah Lutz, Leslee Toombs, Lesley Lutz, Ryan Wang.  ## Attributes The date of birth of Shelli Beltran is 0958-03-08.  The occupation of Shelli Beltran is occupational therapist.  The hobby of Shelli Beltran is sociology.
-Thought 5: The sister of Shelli Beltran is Stacia Toombs. Now I need to retrieve article about Stacia Toombs and find her occupation.
-Action 5: RetrieveArticle[Stacia Toombs].
-Observation 5: # Stacia Toombs ## Family The parents of Stacia Toombs are Alison Smock, Williams Smock.  Stacia Toombs's sibling is Shelli Beltran.  The sister of Stacia Toombs is Shelli Beltran.  The mother of Stacia Toombs is Alison Smock.  The father of Stacia Toombs is Williams Smock.  The child of Stacia Toombs is Leslee Toombs.  The daughter of Stacia Toombs is Leslee Toombs.  The husband of Stacia Toombs is Wilbert Toombs.  ## Friends The friends of Stacia Toombs are Brian Beltran, Isiah Lutz, Leeann Hackworth, Lesley Lutz, Ryan Wang.  ## Attributes The date of birth of Stacia Toombs is 0959-03-22.  The occupation of Stacia Toombs is actuary.  The hobby of Stacia Toombs is finance.
-Thought 6: The occupation of Stacia Toombs is actuary. So the answer is actuary.
-Action 6: Finish[actuary].
+Question: What is the occupation of the husband of Stacia Toombs?
+Thought 1: First, I need to retrieve article about Stacia Toombs and find who her husband is.
+Action 1: RetrieveArticle[Stacia Toombs].
+Observation 1: # Stacia Toombs ## Family The sister of Stacia Toombs is Shelli Beltran.  The mother of Stacia Toombs is Alison Smock.  The father of Stacia Toombs is Williams Smock.  The daughter of Stacia Toombs is Leslee Toombs.  The husband of Stacia Toombs is Wilbert Toombs.  ## Friends The friends of Stacia Toombs are Brian Beltran, Isiah Lutz, Leeann Hackworth, Lesley Lutz, Ryan Wang.  ## Attributes The date of birth of Stacia Toombs is 0959-03-22.  The occupation of Stacia Toombs is actuary.  The hobby of Stacia Toombs is finance.  The gender of Stacia Toombs is female.
+Thought 2: The husband of Stacia Toombs is Wilbert Toombs. Now I need to retrieve article about Wilbert Toombs and find his occupation.
+Action 2: RetrieveArticle[Wilbert Toombs].
+Observation 2: # Wilbert Toombs ## Family The daughter of Wilbert Toombs is Leslee Toombs.  The wife of Wilbert Toombs is Stacia Toombs.  ## Friends ## Attributes The date of birth of Wilbert Toombs is 0956-07-26.  The occupation of Wilbert Toombs is theatre manager.  The hobby of Wilbert Toombs is radio-controlled car racing.  The gender of Wilbert Toombs is male.
+Thought 3: The occupation of Wilbert Toombs is theatre manager. So the answer is theatre manager.
+Action 3: Finish[theatre manager].
 
 Example 7:
-Question: Who is the brother of the person whose occupation is associate professor?
-Thought 1: First, I need to search for people whose occupation is associate professor.
-Action 1: Search[associate professor].
-Observation 1: (1) Dino Beltran
-Thought 2: Person whose hobby is associate professor is Dino Beltran. Now I need to retrieve article about Dino Beltran and find his brother.
-Action 2: RetrieveArticle[Dino Beltran].
-Observation 2: # Dino Beltran ## Family The parents of Dino Beltran are Brian Beltran, Daisy Beltran.  Dino Beltran's sibling is Orlando Beltran.  The brother of Dino Beltran is Orlando Beltran.  The mother of Dino Beltran is Daisy Beltran.  The father of Dino Beltran is Brian Beltran.  The children of Dino Beltran are Aida Wang, Barabara Beltran, Vicki Hackworth.  The daughters of Dino Beltran are Aida Wang, Barabara Beltran, Vicki Hackworth.  The wife of Dino Beltran is Shelli Beltran.  ## Friends The friend of Dino Beltran is Alvaro Smock.  ## Attributes The date of birth of Dino Beltran is 0958-08-09.  The occupation of Dino Beltran is associate professor.  The hobby of Dino Beltran is shogi.
-Thought 3: The brother of Dino Beltran is Orlando Beltran, so the answer is Orlando Beltran.
-Action 3: Finish[Orlando Beltran].
+Question: What is the hobby of the daughter-in-law of Lannie Smock?
+Thought 1: First, I need to retrieve article about Lannie Smock and find who her daughter-in-law is. A daughter-in-law is the wife of a child.
+Action 1: RetrieveArticle[Lannie Smock].
+Observation 1: # Lannie Smock ## Family The sons of Lannie Smock are Eli Smock, Gene Smock.  The husband of Lannie Smock is Alvaro Smock.  ## Friends The friends of Lannie Smock are Williams Smock, Aida Wang, Alison Smock.  ## Attributes The date of birth of Lannie Smock is 0867-08-24.  The occupation of Lannie Smock is biomedical scientist.  The hobby of Lannie Smock is bus spotting.  The gender of Lannie Smock is female.
+Thought 2: The sons of Lannie Smock are Eli Smock, Gene Smock. Now I need to retrieve articles about Eli Smock and Gene Smock and find their wives.
+Action 2: RetrieveArticle[Eli Smock].
+Observation 2: # Eli Smock ## Family The brother of Eli Smock is Gene Smock.  The mother of Eli Smock is Lannie Smock.  The father of Eli Smock is Alvaro Smock.  ## Friends The friends of Eli Smock are Leisa Lutz, Shelli Beltran, Vicki Hackworth, Virgil Hackworth, Alison Smock, Brian Beltran.  ## Attributes The date of birth of Eli Smock is 0901-01-18.  The occupation of Eli Smock is retail manager.  The hobby of Eli Smock is tether car.  The gender of Eli Smock is male.
+Thought 3: Eli Smock has no wife. Now I need to retrieve article about Gene Smock and find his wife.
+Action 3: RetrieveArticle[Gene Smock].
+Observation 3: # Gene Smock ## Family The brother of Gene Smock is Eli Smock.  The mother of Gene Smock is Lannie Smock.  The father of Gene Smock is Alvaro Smock.  The son of Gene Smock is Williams Smock.  The wife of Gene Smock is Dominique Smock.  ## Friends The friends of Gene Smock are Leeann Hackworth, Leisa Lutz, Ricardo Hackworth, Alvaro Smock, Dominique Smock.  ## Attributes The date of birth of Gene Smock is 0898-08-16.  The occupation of Gene Smock is immunologist.  The hobby of Gene Smock is architecture.  The gender of Gene Smock is male.
+Thought 4: The wife of Gene Smock is Dominique Smock, and Eli Smock has no wife. So the daughter-in-law of Lannie Smock is Dominique Smock. Now I need to retrieve article about Dominique Smock and find her hobby.
+Action 4: RetrieveArticle[Dominique Smock].
+Observation 4: # Dominique Smock ## Family The son of Dominique Smock is Williams Smock.  The husband of Dominique Smock is Gene Smock.  ## Friends The friends of Dominique Smock are Gene Smock, Isiah Lutz, Orlando Beltran, Vicki Hackworth.  ## Attributes The date of birth of Dominique Smock is 0897-09-08.  The occupation of Dominique Smock is sports therapist.  The hobby of Dominique Smock is dominoes.  The gender of Dominique Smock is female.
+Thought 4: The hobby of Dominique Smock is dominoes. So the answer is dominoes.
+Action 4: Finish[dominoes].
 
 Example 8:
 Question: What is the date of birth of the person whose hobby is meteorology?
