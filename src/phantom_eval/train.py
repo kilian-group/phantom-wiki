@@ -34,8 +34,9 @@ from prompts import LLMPrompt, ZeroshotLLMPrompt
 
 # %%
 # def train_model(dataset_splits):
-dataset_splits=["depth_20_size_50_seed_1", "depth_20_size_50_seed_2", "depth_20_size_50_seed_3"]
-eval_split = "depth_20_size_50_seed_4"
+dataset_name="mlcore/phantom-wiki-v0.5"
+dataset_splits=["depth_20_size_25_seed_1", "depth_20_size_25_seed_2"]
+eval_split = "depth_20_size_25_seed_3"
 model_name = "meta-llama/Llama-3.2-1B-Instruct"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
@@ -94,10 +95,10 @@ data_collator = DataCollatorForSeq2Seq(
     model=model,
     padding=True
 )
-        
+
 
 # %%
-eval_data = load_data(dataset="mlcore/phantom-wiki-v0.5", split=eval_split)
+eval_data = load_data(dataset=dataset_name, split=eval_split)
 eval_df_qa_pairs = pd.DataFrame(eval_data["qa_pairs"])
 eval_df_text = pd.DataFrame(eval_data["text"])
 eval_dataset = CustomDataset(qa_pairs=eval_df_qa_pairs, text=eval_df_text, tokenizer=tokenizer)
