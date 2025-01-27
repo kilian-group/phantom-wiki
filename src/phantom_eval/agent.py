@@ -887,7 +887,7 @@ class CustomEmbeddings(Embeddings):
 class RAGMixin:
     def __init__(self, 
                 text_corpus: pd.DataFrame, 
-                embedding_model_name: str="WhereIsAI/UAE-Code-Large-V1",
+                embedding_model_name: str="whereisai/uae-large-v1",
                 retriever_num_documents: int = 4,
                 use_api: bool | None = True,
                 tensor_parallel_size: int | None = 1,
@@ -1025,7 +1025,6 @@ class ReasoningAgent(Agent):
         """
         super().__init__(text_corpus, llm_prompt)
         self.fewshot_examples = fewshot_examples
-
     def _build_agent_prompt(self, question: str) -> str:
         if hasattr(self, 'embedding_model_name') and self.embedding_model_name is not None:
             evidence = self.get_RAG_evidence(question)
@@ -1042,10 +1041,8 @@ class ReasoningAgent(Agent):
                 evidence=evidence,
                 question=question
             )
-
     def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
-
         # Create a conversation with 1 user prompt and initialize agent interactions
         prompt = self._build_agent_prompt(question)
         conv = Conversation(messages=[Message(role="user", content=[ContentTextMessage(text=prompt)])])
@@ -1055,7 +1052,6 @@ class ReasoningAgent(Agent):
         # # Add "\n" to stop_sequences
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
         response = llm_chat.generate_response(conv, inf_gen_config)
-
         # Update agent's conversation
         self.agent_interactions.messages.append(
             Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
@@ -1073,7 +1069,6 @@ class ReasoningAgent(Agent):
     
     async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
         logger.debug(f"\n\t>>> questions: {questions}\n")
-
         # Create a conversation for each user prompt, and initialize agent interactions
         prompts: list[str] = [self._build_agent_prompt(question) for question in questions]
         convs = [
@@ -1086,13 +1081,11 @@ class ReasoningAgent(Agent):
         # # Change stop_sequences to "\n"
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
         responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
-
         # Add the responses to the agent's conversations
         for i, response in enumerate(responses):
             self.agent_interactions[i].messages.append(
                 Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
             )
-
         # return responses
                 # Parse the responses to extract the answers
         parsed_responses: list[LLMChatResponse] = []
@@ -1123,6 +1116,7 @@ class ReasoningAgent(Agent):
         else:
             raise ValueError(f"Answer '{pred}' cannot be parsed.")
 
+
 #### Utils ####
 
 def format_pred(pred: str) -> str:
@@ -1150,9 +1144,9 @@ SUPPORTED_METHOD_NAMES: list[str] = [
     "act",
     "react->cot-sc",
     "cot-sc->react",
-    "retriever",
-    "fewshot-retriever",
-    "cot-retriever",
+    "zeroshot-rag",
+    "fewshot-rag",
+    "cot-rag",
     "reasoning",
 ]
 
@@ -1180,10 +1174,10 @@ def get_agent(
             return React_CoTSCAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "cot-sc->react":
             return CoTSC_ReactAgent(text_corpus, llm_prompt, **agent_kwargs)
-        case "retriever" | "fewshot-retriever":
+        case "zeroshot-rag" | "fewshot-rag":
             # return RAGAgent(text_corpus, llm_prompt, **agent_kwargs)
             return NshotRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
-        case "cot-retriever":
+        case "cot-rag":
             return CoTRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "reasoning":
             return ReasoningAgent(text_corpus, llm_prompt, **agent_kwargs)

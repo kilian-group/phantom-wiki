@@ -28,13 +28,6 @@ fi
 TEMPERATURE=0
 
 source eval/constants.sh
-# activate conda environment
-# source /share/apps/anaconda3/2021.05/etc/profile.d/conda.sh
-# source /home/jcl354/anaconda3/etc/profile.d/conda.sh
-# conda init bash
-# NOTE: this assumes that conda environment is called `dataset`
-# change this to your conda environment as necessary
-# conda activate dataset
 
 # Get the number of gpus by counting the number of lines in the output of nvidia-smi
 NUM_GPUS=$(nvidia-smi --query-gpu=name --format=csv,noheader | wc -l)
@@ -86,13 +79,13 @@ do
 
     # Run the main Python script
     cmd="python -m phantom_eval \
-        --method cot-retriever \
+        --method cot-rag \
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \
         --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
         --inf_temperature $TEMPERATURE \
-        --retriever_method WhereIsAI/UAE-Code-Large-V1 \
+        --retriever_method whereisai/uae-large-v1 \
         --inf_vllm_port $PORT"
     echo $cmd
     eval $cmd

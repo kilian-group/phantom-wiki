@@ -85,13 +85,13 @@ do
 
     # Run the main Python script
     cmd="python -m phantom_eval \
-        --method retriever \
+        --method zeroshot-rag \
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \
         --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
         --inf_temperature $TEMPERATURE \
-        --retriever_method WhereIsAI/UAE-Code-Large-V1 \
+        --retriever_method whereisai/uae-large-v1 \
         --inf_vllm_port $PORT"
     echo $cmd
     eval $cmd

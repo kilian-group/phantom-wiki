@@ -33,7 +33,7 @@ class Database:
         db.consult(file)
         return db
 
-    def get_person_names(self):
+    def get_person_names(self) -> list[str]:
         """Gets the names of all people in the Prolog database.
 
         Returns:

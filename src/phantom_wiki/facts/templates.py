@@ -53,19 +53,8 @@ from typing import Any
 
 from nltk import CFG, Nonterminal
 
-# QA_GRAMMAR_STRING = """
-#     S -> 'Who is' R '?' | 'What is' A '?' | 'How many' RN_p 'does' R_c 'have' '?'
-#     R -> 'the' RN 'of' R_c | 'the person whose' AN 'is' AV
-#     R_c -> R | N
-#     A -> 'the' AN 'of' R
-#     RN -> '<relation>'
-#     RN_p -> '<relation_plural>'
-#     AN -> '<attribute_name>'
-#     AV -> '<attribute_value>'
-#     N -> '<name>'
-#     """
 QA_GRAMMAR_STRING = """
-    S -> 'Who is' R '?' | 'What is' A '?'
+    S -> 'Who is' R '?' | 'What is' A '?' | 'How many' RN_p 'does' R_c 'have' '?'
     R -> 'the' RN 'of' R_c | 'the person whose' AN 'is' AV
     R_c -> R | N
     A -> 'the' AN 'of' R
@@ -75,6 +64,17 @@ QA_GRAMMAR_STRING = """
     AV -> '<attribute_value>'
     N -> '<name>'
     """
+# QA_GRAMMAR_STRING = """
+#     S -> 'Who is' R '?' | 'What is' A '?'
+#     R -> 'the' RN 'of' R_c | 'the person whose' AN 'is' AV
+#     R_c -> R | N
+#     A -> 'the' AN 'of' R
+#     RN -> '<relation>'
+#     RN_p -> '<relation_plural>'
+#     AN -> '<attribute_name>'
+#     AV -> '<attribute_value>'
+#     N -> '<name>'
+#     """
 
 
 def generate_templates(grammar: CFG = None, depth=4) -> Iterable:
