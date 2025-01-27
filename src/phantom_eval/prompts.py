@@ -108,40 +108,48 @@ class FewshotLLMPrompt(LLMPrompt):
 ##### CoT method
 COT_EXAMPLES = f"""
 Example 1:
-Question: Who is the brother of Dino Beltran?
-Answer: Based on the evidence, the brother of Dino Beltran is Orlando Beltran. The answer is Orlando Beltran.
+Question: Who is the sister of Aida Wang?
+Answer: Based on the evidence, the sisters of Aida Wang are Barabara Beltran, Vicki Hackworth. The answer is Barabara Beltran{constants.answer_sep}Vicki Hackworth.
 
 Example 2:
-Question: Who is the sibling of Barabara Beltran?
-Answer: Based on the evidence, the siblings of Barabara Beltran are Aida Wang, Vicki Hackworth. The answer is Aida Wang{constants.answer_sep}Vicki Hackworth.
+Question: Who is the child of Alvaro Smock?
+Answer: Based on the evidence, the children of Alvaro Smock are Eli Smock, Gene Smock. The answer is Eli Smock{constants.answer_sep}Gene Smock.
 
 Example 3:
-Question: Who is the child of the sibling of Stacia Toombs?
-Answer: First I need to find the sibling of Stacia Toombs. Based on the evidence, the sibling of Stacia Toombs is Shelli Beltran. Now I need to find the child of Shelli Beltran. Based on the evidence, the children of Shelli Beltran are Aida Wang, Barabara Beltran, Vicki Hackworth. The answer is Aida Wang{constants.answer_sep}Barabara Beltran{constants.answer_sep}Vicki Hackworth.
+Question: Who is the friend of the child of Alvaro Smock?
+Answer: First I need to find the children of Alvaro Smock. Based on the evidence, the children of Alvaro Smock are Eli Smock, Gene Smock. Now I need to find the friends of Eli Smock and Gene Smock. Based on the evidence, the friends of Eli Smock are Leisa Lutz, Shelli Beltran, Vicki Hackworth, Virgil Hackworth, Alison Smock, Brian Beltran. The friends of Gene Smock are Leeann Hackworth, Leisa Lutz, Ricardo Hackworth, Alvaro Smock, Dominique Smock. The answer is Leisa Lutz{constants.answer_sep}Shelli Beltran{constants.answer_sep}Vicki Hackworth{constants.answer_sep}Virgil Hackworth{constants.answer_sep}Alison Smock{constants.answer_sep}Brian Beltran{constants.answer_sep}Leeann Hackworth{constants.answer_sep}Ricardo Hackworth{constants.answer_sep}Dominique Smock.
 
 Example 4:
-Question: Who is the uncle of William Smock?
-Answer: An uncle is the brother of a parent. Based on the evidence, the parents of William Smock are Dominique Smock, Gene Smock. To find the uncle of William Smock, I need to find the brother of Dominique Smock and Gene Smock. Based on the evidence, Dominique Smock has no brother, and the brother of Gene Smock is Eli Smock. So the uncle of William Smock is Eli Smock. The answer is Eli Smock.
+Question: Who is the aunt of Vicki Hackworth?
+Answer: An aunt is the sister of a parent. Based on the evidence, the parents of Vicki Hackworth are Shelli Beltran, Dino Beltran. To find the aunt of Vicki Hackworth, I need to find the sister of Shelli Beltran and Dino Beltran. Based on the evidence, Shelli Beltran has no sister, and the sister of Dino Beltran is Stacia Toombs. The answer is Stacia Toombs.
 
 Example 5:
-Question: What is the occupation of the sister of the grandmother of Virgil Hackworth?
-Answer: A grandmother is the mother of a parent. Based on the evidence, the parents of Virgil Hackworth are Ricardo Hackworth, Vicki Hackworth. To find the grandmother of Virgil Hackworth, I need to find the mother of Ricardo Hackworth and Vicki Hackworth. Based on the evidence, Ricardo Hackworth has no mother, and the mother of Vicki Hackworth is Shelli Beltran. Now I need to find the sister of Shelli Beltran. Based on the evidence, the sister of Shelli Beltran is Stacia Toombs. Based on the evidence, the occupation of Stacia Toombs is actuary. The answer is actuary.
+Question: What is the occupation of the husband of Stacia Toombs?
+Answer: Based on the evidence, the husband of Stacia Toombs is Wilbert Toombs. The occupation of Wilbert Toombs is theatre manager. The answer is theatre manager.
 
 Example 6:
-Question: Who is the brother of the person whose occupation is associate professor?
-Answer: I need to search for people whose occupation is associate professor. Based on the evidence, the person whose occupation is associate professor is Dino Beltran. And the brother of Dino Beltran is Orlando Beltran. The answer is Orlando Beltran.
+Question: What is the hobby of the daughter-in-law of Lannie Smock?
+Answer: A daughter-in-law is the wife of a child. Based on the evidence, the children of Lannie Smock are Eli Smock, Gene Smock. Eli Smock has no wife, and the wife of Gene Smock is Dominique Smock. The hobby of Dominique Smock is dominoes. The answer is dominoes.
 
 Example 7:
-Question: What is the date of birth of the person whose hobby is meteorology?
-Answer: I need to search for people whose hobby is meteorology. Based on the evidence, the people whose hobby is meteorology are Alison Smock, Barabara Beltran. The date of birth of Alison Smock is 0929-10-28, and the date of birth of Barabara Beltran is 0989-06-11. The answer is 0929-10-28{constants.answer_sep}0989-06-11.
+Question: What is the date of birth of the person whose hobby is finance?
+Answer: I need to search for people whose hobby is finance. Based on the evidence, the person whose hobby is finance is Stacia Toombs. The date of birth of Stacia Toombs is 0959-03-22. The answer is 0959-03-22.
 
 Example 8:
-Question: Who is the cousin of the person whose occupation is broadcast engineer?
-Answer: I need to search for people whose occupation is broadcast engineer. Based on the evidence, the person whose occupation is broadcast engineer is Barabara Beltran. A cousin is the child of the sibling of the parent. Based on the evidence, the parents of Barabara Beltran are Dino Beltran, Shelli Beltran. The sibling of Dino Beltran is Orlando Beltran, and the sibling of Shelli Beltran is Stacia Toombs. Based on the evidence, Orlando Beltran has no child, and the child of Stacia Toombs is Leslee Toombs. So the cousin of Barabara Beltran is Leslee Toombs. The answer is Leslee Toombs.
+Question: Who is the great-granddaughter of the person whose occupation is biomedical scientist?
+Answer: I need to search for people whose occupation is biomedical scientist. Based on the evidence, the person whose occupation is biomedical scientist is Lannie Smock. To find the great-granddaughter of Lannie Smock, I need to find the daughter of the child of the child of Lannie Smock. Based on the evidence, the children of Lannie Smock are Eli Smock, Gene Smock. Eli Smock has no child, and the child of Gene Smock is Williams Smock. The daughters of Williams Smock are Shelli Beltran, Stacia Toombs. The answer is Shelli Beltran{constants.answer_sep}Stacia Toombs.
 
 Example 9:
-Question: Who is the great-granddaughter of the person whose hobby is biology?
-Answer: I need to search for people whose hobby is biology. Based on the evidence, the person whose hobby is biology is Alvaro Smock. To find the great-granddaughter of Alvaro Smock, I need to find the daughter of the child of the child of Alvaro Smock. Based on the evidence, the children of Alvaro Smock are Eli Smock, Gene Smock. Eli Smock has no child, and the child of Gene Smock is Williams Smock. The daughters of Williams Smock are Shelli Beltran, Stacia Toombs. So the great-granddaughters of Alvaro Smock, whose hobby is biology, are Shelli Beltran, Stacia Toombs. The answer is Shelli Beltran{constants.answer_sep}Stacia Toombs.
+Question: How many friends does Ryan Wang have?
+Answer: Based on the evidence, the friends of Ryan Wang are Shelli Beltran, Stacia Toombs, Virgil Hackworth, Aida Wang. The answer is 4.
+
+Example 10:
+Question: How many friends does the child of Alvaro Smock have?
+Answer: First, I need to find the children of Alvaro Smock. Based on the evidence, the children of Alvaro Smock are Eli Smock, Gene Smock. Now I need to find how many friends they have. Based on the evidence, the friends of Eli Smock are Leisa Lutz, Shelli Beltran, Vicki Hackworth, Virgil Hackworth, Alison Smock, Brian Beltran. The friends of Gene Smock are Leeann Hackworth, Leisa Lutz, Ricardo Hackworth, Alvaro Smock, Dominique Smock. The answer is 6{constants.answer_sep}5.
+
+Example 11:
+Question: How many uncles does the friend of Stacia Toombs have?
+Answer: First, I need to find the friends of Stacia Toombs. Based on the evidence, the friends of Stacia Toombs are Brian Beltran, Isiah Lutz, Leeann Hackworth, Lesley Lutz, Ryan Wang.  Now I need to find how many uncles they have.  An uncle is the brother of a parent.  Based on the evidence, Brian Beltran has no parents, Isiah Lutz has no parents, Leeann Hackworth has 2 parents, Lesley Lutz has 2 parents, and Ryan Wang has no parents.  Based on the evidence, the parents of Leeann Hackworth are Vicki Hackworth, Ricardo Hackworth. But both parents do not have brothers.  Based on the evidence, the parents of Lesley Lutz are Leisa Lutz, Isiah Lutz. The brother of Leisa Lutz is Virgil Hackworth, so he is an uncle of Lesley Lutz. Isiah Lutz has no brother.  So the friends of Stacia Toombs have 0, 0, 0, 1, 0 uncles. Unique is 0, 1. The answer is 0{constants.answer_sep}1.
 """
 
 class CoTLLMPrompt(LLMPrompt):
