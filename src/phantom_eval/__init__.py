@@ -1,19 +1,21 @@
 import argparse
 from .llm import SUPPORTED_LLM_NAMES
 from .agent import SUPPORTED_METHOD_NAMES
+from . import plotting_utils
 
 def get_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="PhantomWiki Evaluation")
     parser.add_argument("--model_name", "-m", type=str.lower, default="meta-llama/llama-vision-free",
                         help="model name. " \
-                            "NOTE: to add a new model, please submit a PR to the repo with the new model name", 
+                            "NOTE: to add a new model, please submit a PR to the repo with the new model name",
                         choices=SUPPORTED_LLM_NAMES)
     parser.add_argument("--model_path", type=str, default=None, help="Path to the model")
-    parser.add_argument("--method", type=str.lower, required=True,
+    parser.add_argument("--method", type=str.lower, default="zeroshot",
+                        # required=True,
                         help="Evaluation method. " \
                             "NOTE: to add a new method, please submit a PR with the implementation",
                         choices=SUPPORTED_METHOD_NAMES)
-    
+
     # Method params
     parser.add_argument("--react_max_steps", type=int, default=50,
                         help="Maximum number of steps for the ReAct/Act agent")
@@ -54,7 +56,7 @@ def get_parser() -> argparse.ArgumentParser:
                         help="Seconds to wait between tries")
 
     # Dataset params
-    parser.add_argument("--dataset", type=str, default="mlcore/phantom-wiki-v0.3",
+    parser.add_argument("--dataset", type=str, default="mlcore/phantom-wiki-v0.5",
                         help="Dataset name")
     parser.add_argument("--split_list", default=["depth_20_size_50_seed_1"], type=str, nargs="+",
                         help="List of dataset splits to evaluate")

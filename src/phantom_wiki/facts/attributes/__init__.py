@@ -24,7 +24,9 @@ def get_attributes(db: Database, name: str):
     Get attributes for each person in the database.
     """
     attributes = {}
-    for attr in ATTRIBUTE_TYPES:
+    # HACK: Include "gender" as an attribute type when generating articles
+    attribute_type_in_articles = ATTRIBUTE_TYPES + ["gender"]
+    for attr in attribute_type_in_articles:
         query = f"{attr}(\"{name}\", X)"
         results = [decode(result['X']) for result in db.query(query)]
         attributes[attr] = results

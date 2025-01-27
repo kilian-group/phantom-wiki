@@ -79,7 +79,7 @@ do
 
     # Run the main Python script
     cmd="python -m phantom_eval \
-        --method cot-retriever \
+        --method cot-rag \
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \

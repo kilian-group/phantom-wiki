@@ -20,7 +20,7 @@ class ZeroshotLLMPrompt(LLMPrompt):
     (END EVIDENCE)
     
     You will be provided a question. Your task is to provide an answer according to these instructions: 
-    - The output must be one of the following: a name (if there is only one correct answer); or a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers).
+    - The output must be one of the following: a name (if there is only one correct answer); or a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or numbers separated by '{constants.answer_sep}' (if the answer is numerical).
     - DO NOT include any additional information in your answer.
 
     Question: {{question}}
@@ -508,11 +508,11 @@ def get_llm_prompt(method: str, model_name: str) -> LLMPrompt:
     match method:
         case "zeroshot" | "zeroshot-sc":
             return ZeroshotLLMPrompt()
-        case "fewshot" | "fewshot-sc" | "fewshot-retriever":
+        case "fewshot" | "fewshot-sc" | "fewshot-rag":
             return FewshotLLMPrompt()
-        case "cot" | "cot-sc" | "cot-sc->react" | "cot-retriever":
+        case "cot" | "cot-sc" | "cot-sc->react" | "cot-rag":
             return CoTLLMPrompt()
-        case "retriever":
+        case "zeroshot-rag":
             return ZeroshotLLMPrompt()
             # return RAGLLMPrompt()
         case "react" | "react->cot-sc":

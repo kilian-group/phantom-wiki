@@ -81,7 +81,7 @@ do
     eval export CUDA_VISIBLE_DEVICES=0,1,2,3
     # Run the main Python script
     cmd="python -m phantom_eval \
-        --method retriever \
+        --method zeroshot-rag \
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \

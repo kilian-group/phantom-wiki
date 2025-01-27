@@ -28,7 +28,7 @@ from .facts import (
 from .facts.family import fam_gen_parser
 from .facts.friends import friend_gen_parser
 from .facts.question_difficulty import calculate_query_difficulty
-from .facts.sample import sample
+from .facts.sample import sample_valid_only
 from .facts.templates import generate_templates
 from .utils import blue, generate_unique_id, get_parser
 from .utils.get_answer import get_answer
@@ -169,6 +169,20 @@ def main(args):
 
     all_questions = []
     progbar = tqdm(enumerate(templates), desc="Generating questions", total=len(templates))
+
+    # Populate person name bank for the universe. The list is static across generating questions
+    # so create it once and pass it to the question generation function
+    person_name_bank: list[str] = db.get_person_names()
+
+    # Create caches for person -> (attr name, attr value) and person -> (relation, related person) pairs
+    # When we iterate over multiple questions, we can reuse the same cache to avoid recomputing
+    # e.g. "John" -> [("dob", "1990-01-01"), ("job", "teacher"), ("hobby", "reading"), ("hobby", "swimming"), ...]
+    # NOTE: Invariant: (attr name, attr value) pairs are unique
+    person_name2attr_name_and_val: dict[str, list[tuple[str, str]]] = {}
+    # e.g. "John" -> [("child", "Alice"), ("child", "Bob"), ("friend", "Charlie"), ...]
+    # NOTE: Invariant: (relation, related person) pairs are unique
+    person_name2relation_and_related: dict[str, list[tuple[str, str]]] = {}
+
     for i, (question_template, query_template, answer) in progbar:
         # Reset the seed at the start of each question type
         # so that sampled questions are the same for each question type
@@ -177,20 +191,24 @@ def main(args):
         # for _ in range(args.num_questions_per_type):
         while len(questions) < args.num_questions_per_type: # TODO: this is a temporary fix to make sure that we generate the same number of questions for each template
 
-            # else skip (throw away) the sample
-            sample_ = sample(
-                db, question_template, query_template, rng=rng, valid_only=args.valid_only, hard_mode=args.hard_mode
-            )
-            if sample_ is None:
-                continue
+            # sample a question
+            if args.valid_only:
+                question, query = sample_valid_only(
+                    question_template,
+                    query_template,
+                    rng,
+                    db,
+                    person_name_bank,
+                    person_name2attr_name_and_val,
+                    person_name2relation_and_related,
+                    hard_mode=args.hard_mode,
+                    num_sampling_attempts=args.num_sampling_attempts,
+                )
             else:
-                _, question, query = sample_
-            # get distinct answers
-            # TODO: is there a better way to do this?
-            # NOTE: we concatenate the clauses in the prolog query in reverse order
-            # since prolog executes goals from left to right
-            solution_traces, final_results = get_answer(query, db, answer, return_solution_traces=True)
-            # make unique and sort in alphabetical order
+                raise NotImplementedError("Sampling questions without valid_only is not supported.")
+
+            # Get all possible answers for the query
+            solution_traces, final_results = get_answer(query, db, answer, return_solution_traces=False)
             question_difficulty = calculate_query_difficulty(query)
             questions.append(
                 {

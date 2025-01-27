@@ -7,14 +7,15 @@ from ..utils import decode
 
 def get_articles(db: Database, names: list[str]) -> dict:
     # get family article
+    # HACK: Do not include parent, child, and sibling in the articles
+    relation_list = [r for r in FAMILY_RELATION_EASY if r not in ["parent", "child", "sibling"]]
     family_facts = get_relation_facts(
-        db, names, FAMILY_RELATION_EASY, FAMILY_FACT_TEMPLATES, FAMILY_FACT_TEMPLATES_PL
+        db, names, relation_list, FAMILY_FACT_TEMPLATES, FAMILY_FACT_TEMPLATES_PL
     )
     # get friendship article
     friend_facts = get_relation_facts(
         db, names, FRIENDSHIP_RELATION, FRIENDSHIP_FACT_TEMPLATES, FRIENDSHIP_FACT_TEMPLATES_PL
     )
-    # TODO: get attributes
     attribute_facts = get_attribute_facts(db, names)
 
     # import pdb; pdb.set_trace()

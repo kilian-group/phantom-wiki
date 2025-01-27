@@ -10,7 +10,7 @@ Example:
 # %%
 import os
 from phantom_eval import get_parser
-from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std
+from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std, MARKERS
 import matplotlib.pyplot as plt
 import matplotlib.lines as lines
 import matplotlib.patches as mpatches
@@ -82,6 +82,14 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
                 alpha=color_intensity_for_size,
                 linewidth=line_width_for_size,
             )
+            # Add scatter plot
+            plt.scatter(
+                x, y,
+                color=COLORS[model_name],
+                s=100, #marker size
+                alpha=color_intensity_for_size,
+                marker=MARKERS[method],
+            )
             # NOTE: not plotting error bars for now because the figure looks crowded
             # yerr = df_std.loc[model_name]
             # # Change color intensity for fill to be between 0 and 0.25
@@ -102,6 +110,8 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
     plt.xlabel('Difficulty')
     plt.xticks(x, df_mean.columns)
     plt.ylabel(metric)
+    # set ylim
+    plt.ylim(0, 1)
     plt.tight_layout()
     fig_path = os.path.join(figures_dir, f'difficulty-{metric}.pdf')
     print(f"Saving to {os.path.abspath(fig_path)}")
