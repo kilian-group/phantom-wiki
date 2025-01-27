@@ -85,7 +85,7 @@ class CustomDataset(Dataset):
     
     def _build_agent_prompt(self, question: str) -> str:
         return self.prompt.get_prompt().format(
-            evidence=_get_evidence(self.text),
+            evidence=self._get_evidence(self.text),
             question=question
         )
 
