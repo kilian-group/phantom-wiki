@@ -69,6 +69,9 @@ for metric in METRICS:
             print(f"Plotting {method} for {metric}")
             # get evaluation data from the specified output directory and method subdirectory
             df = get_evaluation_data(output_dir, method, dataset)
+            if df.empty:
+                print(f"No data found for {method}")
+                continue
             # ignore difficulty beyond 15
             df = df[df['difficulty'] <= MAX_DIFFICULTY]
             # filter by depth
