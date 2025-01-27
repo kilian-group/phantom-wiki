@@ -3,6 +3,8 @@
 from glob import glob
 import pandas as pd
 import logging
+import numpy as np
+import re
 
 from joblib import Memory, expires_after
 memory = Memory("cachedir")
@@ -53,6 +55,7 @@ MODELS = [
     'gemini-2.0-flash-exp',
     'gpt-4o-mini-2024-07-18',
     'gpt-4o-2024-11-20',
+    'deepseek-ai/deepseek-r1-distill-qwen-32b',
 ]
 COLORS = {
     'google/gemma-2-27b-it': 'tab:blue',
@@ -71,6 +74,7 @@ COLORS = {
     'gemini-2.0-flash-exp': 'tab:purple',
     'gpt-4o-mini-2024-07-18': 'tab:brown',
     'gpt-4o-2024-11-20': 'tab:brown',
+    'deepseek-ai/deepseek-r1-distill-qwen-32b': 'tab:green',
 }
 LINESTYLES = {
     'google/gemma-2-27b-it': '-',
@@ -89,6 +93,36 @@ LINESTYLES = {
     'gemini-1.5-flash-8b-001': 'dotted',
     'gpt-4o-mini-2024-07-18': '-',
     'gpt-4o-2024-11-20': '--',
+    'deepseek-ai/deepseek-r1-distill-qwen-32b': '-',
+}
+HATCHSTYLES = {
+    'google/gemma-2-27b-it': '/',
+    'google/gemma-2-9b-it': '\\',
+    'google/gemma-2-2b-it': '|',
+    'meta-llama/llama-3.3-70b-instruct': '-',
+    'meta-llama/llama-3.1-70b-instruct': '+',
+    'meta-llama/llama-3.1-8b-instruct': 'x',
+    'meta-llama/llama-3.2-3b-instruct': 'o',
+    'meta-llama/llama-3.2-1b-instruct': 'O',
+    'microsoft/phi-3.5-moe-instruct': '.',
+    'microsoft/phi-3.5-mini-instruct': '*',
+    'mistralai/mistral-7b-instruct-v0.3' : '//',
+    'gemini-2.0-flash-exp': '\\\\',
+    'gemini-1.5-flash-002': '||',
+    'gemini-1.5-flash-8b-001': '--',
+    'gpt-4o-mini-2024-07-18': '++',
+    'gpt-4o-2024-11-20': 'xx',
+    'deepseek-ai/deepseek-r1-distill-qwen-32b': '++',
+}
+# https://matplotlib.org/stable/gallery/lines_bars_and_markers/marker_reference.html#filled-markers
+MARKERS = {
+    "zeroshot": "^", #upward triangle
+    "cot": "s", #square
+    "zeroshot-retriever": "*", # star
+    "cot-retriever": "H", # hexagon
+    "act": "+", # plus
+    "react": "P", # bold plus
+    "reasoning": "D", # diamond
 }
 
 def pivot_mean_std(acc_mean_std, metric, independent_variable='_split'):
@@ -226,4 +260,18 @@ def get_evaluation_data(output_dir: str, method: str, dataset: str, sep: str = c
     df['precision'] = df.apply(lambda x: precision(x['pred'], sep.join(x['true']), sep=sep), axis=1)
     df['recall'] = df.apply(lambda x: recall(x['pred'], sep.join(x['true']), sep=sep), axis=1)
     df['f1'] = df.apply(lambda x: f1(x['pred'], sep.join(x['true']), sep=sep), axis=1)
+
+    # add a column for the data seed
+    df['_depth'] = df['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(1)).astype(int)
+    df['_size'] = df['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(2)).astype(int)
+    df['_data_seed'] = df['_split'].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(3)).astype(int)
+    # drop the split column
+    df = df.drop(columns=['_split'])
     return df
+
+def mean(x):
+    """Aggregation function that computes the mean of a given metric"""
+    return x.mean()
+def std(x):
+    """Aggregation function that computes the standard error of the mean of a given metric"""
+    return x.std(ddof=1) / np.sqrt(len(x))

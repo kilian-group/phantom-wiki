@@ -63,7 +63,9 @@ def aggregate_usage(usage_list: list[dict]) -> dict:
             result[key] = aggregate_usage([usage.get(key, {}) for usage in usage_list])
         else:
             # Assume that the values are summable (default 0 if key not present)
-            result[key] = sum([usage.get(key, 0) for usage in usage_list])
+            # key may exist in usage dict but have a None value, so convert that to 0
+            # Otherwise sum() will complain that it cannot sum None with integer
+            result[key] = sum([usage.get(key, 0) or 0 for usage in usage_list])
     return result
 
 
@@ -624,9 +626,6 @@ class VLLMChat(CommonLLMChat):
         "mistralai/mistral-7b-instruct-v0.3",
         "deepseek-ai/deepseek-r1-distill-qwen-32b",
     ]
-    # additional stop token for llama models
-    # NOTE: eot = end-of-turn
-    ADDITIONAL_STOP = ["<|eot_id|>",]
 
     def __init__(
         self,
@@ -651,6 +650,13 @@ class VLLMChat(CommonLLMChat):
                 Defaults to 8000.
         """
         super().__init__(model_name, model_path)
+        
+        # additional stop token for llama models
+        # NOTE: eot = end-of-turn
+        if(model_name == "deepseek-ai/deepseek-r1-distill-qwen-32b"):
+            self.ADDITIONAL_STOP = ["<｜end▁of▁sentence｜>",]
+        else:
+            self.ADDITIONAL_STOP = ["<|eot_id|>",]
         
         self.use_api = use_api
         if self.use_api:

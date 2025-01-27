@@ -30,7 +30,7 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
                 # This can be overridden by setting `use_api=True` in the model_kwargs.
                 # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
                 use_api=(args.method in [
-                    "rag",
+                    "zeroshot-rag", "fewshot-rag", "cot-rag",
                     "react", "act", "react->cot-sc", "cot-sc->react"
                     ]),
                 port=args.inf_vllm_port,
@@ -45,7 +45,7 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
 
 def get_agent_kwargs(args: argparse.Namespace) -> dict:
     match args.method:
-        case "zeroshot":
+        case "zeroshot" | "reasoning":
             agent_kwargs = dict()
         case "fewshot":
             agent_kwargs = dict(
@@ -62,7 +62,6 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 sep=constants.answer_sep,
                 fewshot_examples=FEWSHOT_EXAMPLES,
             )
-
         case "cot":
             agent_kwargs = dict(
                 cot_examples=COT_EXAMPLES
@@ -73,11 +72,25 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
             )
-        case "rag":
+        case "zeroshot-rag":
             agent_kwargs = dict(
-                embedding="together", #args.embedding
-                vector_store="faiss", #args.vector_store
-                embedding_port=args.inf_embedding_port,
+                # embedding="together", #args.embedding
+                # vector_store="faiss", #args.vector_store
+                # embedding_port=args.inf_embedding_port,
+                embedding_model_name=args.retriever_method,
+                retriever_num_documents=args.retriever_num_documents,
+            )
+        case "fewshot-rag":
+            agent_kwargs = dict(
+                embedding_model_name=args.retriever_method,
+                retriever_num_documents=args.retriever_num_documents,
+                fewshot_examples=FEWSHOT_EXAMPLES,
+            )
+        case "cot-rag":
+            agent_kwargs = dict(
+                embedding_model_name=args.retriever_method,
+                retriever_num_documents=args.retriever_num_documents,
+                cot_examples=COT_EXAMPLES,
             )
         case "react":
             agent_kwargs = dict(
@@ -182,19 +195,19 @@ async def main(args: argparse.Namespace) -> None:
                 # so they support batch async inference
                 agent_interactions = None
                 match args.method:
-                    case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc" | "rag":
+                    case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc" | "zeroshot-rag" | "fewshot-rag" | "reasoning":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                         responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
                         # NOTE: the agent interactions are just single Conversation objects containing the prompt
                         # for the self-consistency methods, we save the Conversation object from the last iteration
                         agent_interactions: list[Conversation] = agent.agent_interactions
-                    case "cot" | "cot-sc":
+                    case "cot" | "cot-sc" | "cot-rag":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                         responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
                         agent_interactions: list[Conversation] = agent.agent_interactions
-                    # case "RAG":
+                    # case "zeroshot-rag":
                     #     raise NotImplementedError("RAG evaluation is not supported yet.")
                     case "react" | "act" | "react->cot-sc" | "cot-sc->react":
                         # Run agent on each question one by one
