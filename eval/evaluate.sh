@@ -31,28 +31,13 @@ else
     METHOD_LIST=($2)
 fi
 
-# construct seed list
-if [ -z "$3" ]; then
-    echo "Using default seed list"
-    SEED_LIST="1 2 3 4 5"
-else
-    SEED_LIST="$3"
-fi
-
-for seed in $SEED_LIST
-do
-    for size in 26 50 100 200 500
-    do
-        SPLIT_LIST+="depth_10_size_${size}_seed_${seed} "
-    done
-done
 echo "Splits: $SPLIT_LIST"
 
 echo "Dataset: $DATASET"
 
-# 
+#
 # Figures for exporatory data analysis
-# 
+#
 for METHOD in "${METHOD_LIST[@]}"
 do
     # csv results
