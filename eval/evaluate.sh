@@ -23,19 +23,21 @@ if [ -z "$2" ]; then
         "zeroshot-sc"
         "fewshot-sc"
         "cot-sc"
-        "zeroshot-retriever"
-        "cot-retriever"
+        "zeroshot-rag"
+        "cot-rag"
+        "reasoning"
     )
 else
     METHOD_LIST=($2)
 fi
+
 echo "Splits: $SPLIT_LIST"
 
 echo "Dataset: $DATASET"
 
-# 
+#
 # Figures for exporatory data analysis
-# 
+#
 for METHOD in "${METHOD_LIST[@]}"
 do
     # csv results
