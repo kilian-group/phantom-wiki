@@ -115,8 +115,8 @@ for split in dataset_splits:
         args=training_args,
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
-        save_strategy="epoch"
     )
+            # save_strategy="epoch"
     trainer.train()
 
 # %%
