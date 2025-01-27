@@ -20,7 +20,7 @@ class ZeroshotLLMPrompt(LLMPrompt):
     (END EVIDENCE)
     
     You will be provided a question. Your task is to provide an answer according to these instructions: 
-    - The output must be one of the following: a name (if there is only one correct answer); or a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers).
+    - The output must be one of the following: a name (if there is only one correct answer); or a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or numbers separated by '{constants.answer_sep}' (if the answer is numerical).
     - DO NOT include any additional information in your answer.
 
     Question: {{question}}
