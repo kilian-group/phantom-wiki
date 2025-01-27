@@ -34,9 +34,9 @@ from prompts import LLMPrompt, ZeroshotLLMPrompt
 
 # %%
 # def train_model(dataset_splits):
-dataset_name="mlcore/phantom-wiki-v0.5"
-dataset_splits=["depth_20_size_25_seed_1", "depth_20_size_25_seed_2"]
-eval_split = "depth_20_size_25_seed_3"
+dataset_name="mlcore/phantom-wiki-v0.2"#"mlcore/phantom-wiki-v0.5"
+dataset_splits=["depth_10_size_26_seed_1", "depth_10_size_26_seed_2", "depth_10_size_26_seed_3"]#["depth_20_size_25_seed_1", "depth_20_size_25_seed_2"]
+eval_split = "depth_10_size_26_seed_4" #"depth_20_size_25_seed_3"
 model_name = "meta-llama/Llama-3.2-1B-Instruct"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
@@ -78,7 +78,7 @@ class CustomDataset(Dataset):
             "labels": self.labels[idx]
         }
 
-    def _get_evidence(text_corpus: pd.DataFrame) -> str:
+    def _get_evidence(self, text_corpus: pd.DataFrame) -> str:
         """Utility for constructing evidence
         Returns all articles (concatenated as a string) in the text corpus as evidence.
         """
@@ -121,12 +121,3 @@ for split in dataset_splits:
     trainer.train()
 
 # %%
-
-# %%
-# df_qa_pairs.columns
-# Index(['id', 'question', 'intermediate_answers', 'answer', 'prolog',
-#        'template', 'type', 'difficulty'],
-#       dtype='object')
-# df_qa_pairs.head()
-#                                     id	                  question        	                intermediate_answers	          answer	                                      prolog	                                                template	                                          type	difficulty
-# 0	97edcc8c-952c-4f81-be38-f63d81b68517	Who is the granddaughter of the mother of the ...	          []	    [Aida Wang, Barabara Beltran, Christina Coe, C...	      {'answer': 'Y_2', 'query': ['granddaughter(Y_4...	      [Who is, the, <relation>_3, of, the, <relation...	  0	    12
