@@ -39,6 +39,6 @@ fig.suptitle('Distribution of Solution Count in the Dataset')
 # fig.legend()
 # use tight layout
 fig.tight_layout(rect=[0, 0.03, 1, 0.95])
-save_path = 'solutions_distribution.png'
+save_path = 'solution_distribution.png'
 print(f"Saving figure to {save_path}")
 fig.savefig(save_path)
