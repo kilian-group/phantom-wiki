@@ -58,6 +58,9 @@ for metric in METRICS:
         for method in methods:
             # get evaluation data from the specified output directory and method subdirectory
             df = get_evaluation_data(output_dir, method, dataset)
+            if df.empty:
+                print(f"No data found for {method}")
+                continue
             # group by model, size, data seed, and inference seed
             grouped = df.groupby(['_model', '_size', '_data_seed', '_seed'])
             # print the accuracy
