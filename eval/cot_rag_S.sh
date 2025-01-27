@@ -29,13 +29,6 @@ TEMPERATURE=0
 NUM_GPUS=$(nvidia-smi --query-gpu=name --format=csv,noheader | wc -l)
 
 source eval/constants.sh
-# activate conda environment
-# source /share/apps/anaconda3/2021.05/etc/profile.d/conda.sh
-# source /home/jcl354/anaconda3/etc/profile.d/conda.sh
-# conda init bash
-# NOTE: this assumes that conda environment is called `dataset`
-# change this to your conda environment as necessary
-# conda activate dataset
 
 # Function to check if the server is up
 check_server() {
@@ -86,7 +79,7 @@ do
         --split_list $SPLIT_LIST \
         --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
         --inf_temperature $TEMPERATURE \
-        --retriever_method WhereIsAI/UAE-Code-Large-V1 \
+        --retriever_method whereisai/uae-large-v1 \
         "
         # --force \
     echo $cmd

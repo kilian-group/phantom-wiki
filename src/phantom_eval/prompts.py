@@ -506,7 +506,7 @@ class ActLLMPrompt(LLMPrompt):
 def get_llm_prompt(method: str, model_name: str) -> LLMPrompt:
     # For react->cot-sc and cot-sc->react methods, return the LLMPrompt for the first part of the method
     match method:
-        case "zeroshot" | "zeroshot-sc" | "reasoning":
+        case "zeroshot" | "zeroshot-sc":
             return ZeroshotLLMPrompt()
         case "fewshot" | "fewshot-sc" | "fewshot-retriever":
             return FewshotLLMPrompt()
