@@ -36,40 +36,48 @@ class ZeroshotLLMPrompt(LLMPrompt):
 # The current example is the example from CoT trivially adapted
 FEWSHOT_EXAMPLES = f"""
 Example 1:
-Question: Who is the brother of Dino Beltran?
-Answer: Orlando Beltran
+Question: Who is the sister of Aida Wang?
+Answer: Barabara Beltran{constants.answer_sep}Vicki Hackworth
 
 Example 2:
-Question: Who is the sibling of Barabara Beltran?
-Answer: Aida Wang{constants.answer_sep}Vicki Hackworth
+Question: Who is the child of Alvaro Smock?
+Answer: Eli Smock{constants.answer_sep}Gene Smock
 
 Example 3:
-Question: Who is the child of the sibling of Stacia Toombs?
-Answer: Aida Wang{constants.answer_sep}Barabara Beltran{constants.answer_sep}Vicki Hackworth
+Question: Who is the friend of the child of Alvaro Smock?
+Answer: Leisa Lutz{constants.answer_sep}Shelli Beltran{constants.answer_sep}Vicki Hackworth{constants.answer_sep}Virgil Hackworth{constants.answer_sep}Alison Smock{constants.answer_sep}Brian Beltran{constants.answer_sep}Leeann Hackworth{constants.answer_sep}Ricardo Hackworth{constants.answer_sep}Dominique Smock
 
 Example 4:
-Question: Who is the uncle of William Smock?
-Answer: Eli Smock
+Question: Who is the aunt of Vicki Hackworth?
+Answer: Stacia Toombs
 
 Example 5:
-Question: What is the occupation of the sister of the grandmother of Virgil Hackworth?
-Answer: actuary
+Question: What is the occupation of the husband of Stacia Toombs?
+Answer: theatre manager
 
 Example 6:
-Question: Who is the brother of the person whose occupation is associate professor?
-Answer: Orlando Beltran
+Question: What is the hobby of the daughter-in-law of Lannie Smock?
+Answer: dominoes
 
 Example 7:
-Question: What is the date of birth of the person whose hobby is meteorology?
-Answer: 0929-10-28{constants.answer_sep}0989-06-11
+Question: What is the date of birth of the person whose hobby is finance?
+Answer: 0959-03-22
 
 Example 8:
-Question: Who is the cousin of the person whose occupation is broadcast engineer?
-Answer: Leslee Toombs
+Question: Who is the great-granddaughter of the person whose occupation is biomedical scientist?
+Answer: Shelli Beltran{constants.answer_sep}Stacia Toombs
 
 Example 9:
-Question: Who is the great-granddaughter of the person whose hobby is biology?
-Answer: Shelli Beltran{constants.answer_sep}Stacia Toombs
+Question: How many friends does Ryan Wang have?
+Answer: 4
+
+Example 10:
+Question: How many friends does the child of Alvaro Smock have?
+Answer: 6{constants.answer_sep}5
+
+Example 11:
+Question: How many uncles does the friend of Stacia Toombs have?
+Answer: 0{constants.answer_sep}1
 """
 
 class FewshotLLMPrompt(LLMPrompt):
@@ -80,7 +88,7 @@ class FewshotLLMPrompt(LLMPrompt):
     (END EVIDENCE)
     
     You will be provided a question. Your task is to provide an answer according to these instructions: 
-    - The output must be one of the following: a name (if there is only one correct answer); or a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers).
+    - The output must be one of the following: a name (if there is only one correct answer); or a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or numbers separated by '{constants.answer_sep}' (if the answer is numerical).
     - DO NOT include any additional information in your answer.
 
     Here are some examples:
