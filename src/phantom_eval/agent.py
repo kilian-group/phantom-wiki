@@ -1040,9 +1040,9 @@ SUPPORTED_METHOD_NAMES: list[str] = [
     "act",
     "react->cot-sc",
     "cot-sc->react",
-    "retriever",
-    "fewshot-retriever",
-    "cot-retriever",
+    "zeroshot-rag",
+    "fewshot-rag",
+    "cot-rag",
 ]
 
 
@@ -1069,10 +1069,10 @@ def get_agent(
             return React_CoTSCAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "cot-sc->react":
             return CoTSC_ReactAgent(text_corpus, llm_prompt, **agent_kwargs)
-        case "retriever" | "fewshot-retriever":
+        case "zeroshot-rag" | "fewshot-rag":
             # return RAGAgent(text_corpus, llm_prompt, **agent_kwargs)
             return NshotRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
-        case "cot-retriever":
+        case "cot-rag":
             return CoTRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
         case _:
             raise ValueError(f"Invalid method: {method}")

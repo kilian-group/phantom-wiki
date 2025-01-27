@@ -508,11 +508,11 @@ def get_llm_prompt(method: str, model_name: str) -> LLMPrompt:
     match method:
         case "zeroshot" | "zeroshot-sc":
             return ZeroshotLLMPrompt()
-        case "fewshot" | "fewshot-sc" | "fewshot-retriever":
+        case "fewshot" | "fewshot-sc" | "fewshot-rag":
             return FewshotLLMPrompt()
-        case "cot" | "cot-sc" | "cot-sc->react" | "cot-retriever":
+        case "cot" | "cot-sc" | "cot-sc->react" | "cot-rag":
             return CoTLLMPrompt()
-        case "retriever":
+        case "zeroshot-rag":
             return ZeroshotLLMPrompt()
             # return RAGLLMPrompt()
         case "react" | "react->cot-sc":
