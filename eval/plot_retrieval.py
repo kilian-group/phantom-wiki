@@ -133,7 +133,6 @@ for metric in METRICS:
         if i == 0:
             axs[i].set_ylabel(metric.upper(), fontsize=8)
         axs[i].set_ylim(0, 1)
-        axs[i].set_yticks(np.arange(0, 1.1, 0.1))
         axs[i].tick_params(axis='y', labelsize=plotting_utils.TICK_FONT_SIZE)
         # set title
         axs[i].set_title(name, fontsize=plotting_utils.LABEL_FONT_SIZE)
