@@ -106,7 +106,7 @@ eval_dataset = CustomDataset(qa_pairs=eval_df_qa_pairs, text=eval_df_text, token
 # %%
 for split in dataset_splits:
     print(f"Training on {split}")
-    train_data = load_data(dataset="mlcore/phantom-wiki-v0.5", split=split)
+    train_data = load_data(dataset=dataset_name, split=split)
     train_df_qa_pairs = pd.DataFrame(train_data["qa_pairs"])
     train_df_text = pd.DataFrame(train_data["text"])
     train_dataset = CustomDataset(qa_pairs=train_df_qa_pairs, text=train_df_text, tokenizer=tokenizer)
