@@ -44,7 +44,7 @@ do
         --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
         --inf_temperature $TEMPERATURE \
         --inf_top_p $TOP_P \ 
-        --force "
+        "
 
     echo $cmd
     eval $cmd
