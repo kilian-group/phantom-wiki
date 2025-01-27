@@ -25,16 +25,16 @@ MODEL_ALIASES = {
 METHOD_ALIASES = {
     'zeroshot': 'Zeroshot',
     'cot': 'CoT',
-    'zeroshot-retriever': 'Zeroshot-RAG',
-    'cot-retriever': 'CoT-RAG',
+    'zeroshot-rag': 'Zeroshot-RAG',
+    'cot-rag': 'CoT-RAG',
     'react': 'ReAct',
     'reasoning': 'Reasoning'
 }
 DEFAULT_METHOD_LIST = [
     "zeroshot", 
     "cot", 
-    "zeroshot-retriever", 
-    "cot-retriever", 
+    "zeroshot-rag", 
+    "cot-rag", 
     "react", 
     "reasoning"
 ]
@@ -44,15 +44,16 @@ SIMPLE_METHODS = [
     "reasoning",
 ]
 RAG_METHODS = [
-    "zeroshot-retriever",
-    "cot-retriever",
+    "zeroshot-rag",
+    "cot-rag",
 ]
 AGENTIC_METHODS = [
     # "act",
     "react",
 ]
 DEFAULT_MODEL_LIST = [ 
+    "deepseek-ai/deepseek-r1-distill-qwen-32b",
     "gemini-1.5-flash-002", 
+    "gpt-4o-2024-11-20",
     "meta-llama/llama-3.3-70b-instruct", 
-    "deepseek-ai/deepseek-r1-distill-qwen-32b"
 ]
