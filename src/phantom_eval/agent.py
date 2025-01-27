@@ -13,16 +13,14 @@ from phantom_eval.score import normalize_pred
 import phantom_eval.constants as constants
 
 from langchain_community.vectorstores import FAISS
-from langchain_together import TogetherEmbeddings
-from langchain_core.runnables import RunnablePassthrough
-from langchain import hub
 import os
 from vllm import LLM
 from .gpu_utils import get_gpu_count
 import torch
-import openai # from openai import OpenAI
-import gc
-# from vllm.model_executor.parallel_utils.parallel_state import destroy_model_parallel
+import openai 
+import subprocess
+from typing import List
+from langchain_core.embeddings import Embeddings
 
 
 logger = logging.getLogger(__name__)
@@ -87,7 +85,10 @@ class NshotAgent(Agent):
         self.fewshot_examples = fewshot_examples
 
     def _build_agent_prompt(self, question: str) -> str:
-        evidence = _get_evidence(self.text_corpus)
+        if hasattr(self, 'embedding_model_name') and self.embedding_model_name is not None:
+            evidence = self.get_RAG_evidence(question)
+        else:
+            evidence = _get_evidence(self.text_corpus)
         if self.fewshot_examples: # Few-shot
             return self.llm_prompt.get_prompt().format(
                 evidence=evidence,
@@ -299,7 +300,10 @@ class CoTAgent(Agent):
         return parsed_responses
     
     def _build_agent_prompt(self, question: str) -> str:
-        evidence = _get_evidence(self.text_corpus)
+        if hasattr(self, 'embedding_model_name') and self.embedding_model_name is not None:
+            evidence = self.get_RAG_evidence(question)
+        else:
+            evidence = _get_evidence(self.text_corpus)
         return self.llm_prompt.get_prompt().format(
             evidence=evidence,
             examples=self.cot_examples,
@@ -867,8 +871,6 @@ class CoTSC_ReactAgent(Agent):
                 # Error msg is not related to majority vote, return CoTSC's response and abort
                 return cotsc_response
 
-from typing import List
-from langchain_core.embeddings import Embeddings
 class CustomEmbeddings(Embeddings):
     def __init__(self, client):
         self.client = client
@@ -882,210 +884,133 @@ class CustomEmbeddings(Embeddings):
         """Embed query text."""
         return self.embed_documents([text])[0]
 
-class RAGAgent(Agent):
+class RAGMixin:
     def __init__(self, 
                 text_corpus: pd.DataFrame, 
-                llm_prompt: LLMPrompt, 
-                embedding: str="together", 
-                vector_store: str="faiss",
-                embedding_model_name: str="meta-llama/llama-3.1-8b-instruct",#"intfloat/e5-mistral-7b-instruct"
+                embedding_model_name: str="whereisai/uae-large-v1",
+                retriever_num_documents: int = 4,
                 use_api: bool | None = True,
-                max_model_len: int | None = None,
-                tensor_parallel_size: int | None = None,
-                use_async: bool = False,
-                embedding_port: int=8001,
+                tensor_parallel_size: int | None = 1,
+                port:int = 8001,
                 ):
         """
         Args:
-            embedding (str): The embedding method for the vector database. Defaults to TogetherEmbeddings. Supported options are: ["together"].
-            vector_store (str): The vector store for the vector database. Defaults to FAISS. Supported options are: ["faiss"].
+            embedding_model_name (str): The embedding method for the vector database. Defaults to WhereIsAI/UAE-Code-Large-V. All VLLM models are supported.
+            retriever_num_documents (int): Number of documents retrieved. Defaults to 4. See https://api.python.langchain.com/en/latest/vectorstores/langchain_community.vectorstores.faiss.FAISS.html#langchain_community.vectorstores.faiss.FAISS.as_retriever for other options.
         """
-        super().__init__(text_corpus, llm_prompt)
-        self.use_async = use_async
 
-        texts = self.text_corpus['article'].tolist()#[:20]
-        torch.cuda.empty_cache() 
-        if(True):
-            # # API implements OpenAI API interface but doesn't need to call OpenAI's API
-            # client = OpenAI(
-            #     api_key="token-abc123", 
-            #     base_url="http://0.0.0.0:8000/v1",
-            # )
-            # responses = client.embeddings.create(
-            #     input=texts,
-            #     model=embedding_model_name,
-            # )
-            logging.info("Using vLLM server for inference")
-            try:
-                BASE_URL = f"http://0.0.0.0:{embedding_port}/v1" # TODO: allow this to be specified by the user
-                # print(BASE_URL)
-                API_KEY="token-abc123" # TODO: allow this to be specified by the user
-                self.client = openai.OpenAI(
-                    base_url=BASE_URL,
-                    api_key=API_KEY,
-                )
-                self.async_client = openai.AsyncOpenAI(
-                    base_url=BASE_URL,
-                    api_key=API_KEY,
-                )
-            except openai.APIConnectionError as e:
-                logging.error(
-                    f"Make sure to launch the vllm server using " \
-                    "vllm serve MODEL_NAME --api-key token-abc123 --tensor_parallel_size NUM_GPUS"
-                )
-                raise e
-                
-            client = self.async_client if self.use_async else self.client
-   
-            # https://platform.openai.com/docs/guides/embeddings
-            # https://docs.vllm.ai/en/latest/getting_started/examples/openai_embedding_client.html
-            # logger.info(client.models.list().data[0].id) 2025-01-17 11:27:37,531 - phantom_eval.agent - INFO - meta-llama/llama-3.1-8b-instruct
-            # print(client.models.list().data[0].id)
-            # responses = client.embeddings.create(
-            #     input=texts,
-            #     model=client.models.list().data[0].id#client_cur_model,
-            # )
-            # models = client.models.list()
-            # model = models.data[0].id
+        self.embedding_model_name = embedding_model_name
+        texts = self.text_corpus['article'].tolist()
+        if(use_api):
+            # launch server
+            subprocess.call(["./src/phantom_eval/launch_embedding_server.sh", 
+                            embedding_model_name, 
+                            str(port), 
+                            str(get_gpu_count()-1)
+                            ])
 
-            # responses = client.embeddings.create(
-            #     input=[
-            #         "Hello my name is",
-            #         "The best thing about vLLM is that it supports many different models"
-            #     ],
-            #     model=model,
-            # )
-
-            # logging.info("Responses:")
-            # logging.info(responses)
-            # embeddings = responses.data
+            # build retriever
+            BASE_URL = f"http://0.0.0.0:{port}/v1" 
+            API_KEY="token-abc123" 
+            client = openai.OpenAI(
+                base_url=BASE_URL,
+                api_key=API_KEY,
+            )
             embeddings = CustomEmbeddings(client)
-        
+            vectorstore = FAISS.from_texts(texts, embeddings)
+            self.retriever = vectorstore.as_retriever(
+                search_kwargs={'k': retriever_num_documents}
+            )
         else:
-            embeddings = TogetherEmbeddings()
-            vectors = embeddings.embed_documents(texts)
+            raise NotImplementedError("Not implemented yet")
 
-            # if tensor_parallel_size is None:
-            #     tensor_parallel_size = get_gpu_count()
-            # else:
-            #     tensor_parallel_size = tensor_parallel_size
-
-            # # destroy_model_parallel()
-            # # del llm.llm_engine.model_executor.driver_worker
-            # # del llm # Isn't necessary for releasing memory, but why not
-            # # gc.collect()
-            # # os.environ["CUDA_VISIBLE_DEVICES"] = "3,4"
-            # # torch.cuda.empty_cache()
-
-            # embedding_model = LLM(
-            #     model=embedding_model_name, 
-            #     task="embed", 
-            #     # enforce_eager=True,
-            #     max_model_len=max_model_len,
-            #     tensor_parallel_size=2#tensor_parallel_size,
-            # )
-            # embedding_outputs = embedding_model.embed(texts)
-            # embeddings = [output.outputs.embedding for output in embedding_outputs]
-        
-        # embeddings = TogetherEmbeddings(api_key=os.getenv("TOGETHER_API_KEY"))
-        # vectors = embeddings.embed_documents(texts)
-
-        vectorstore = FAISS.from_texts(texts, embeddings)
-        self.retriever = vectorstore.as_retriever()
-        self.format_docs = lambda docs: "\n================\n\n".join(doc.page_content for doc in docs)
-
-
-    def __get_evidence(self, question:str) -> str:
+    def get_RAG_evidence(self, question:str) -> str:
         """
         Returns retrieved articles in the text corpus as evidence.
         """
-        if False: # NOTE: the zeroshot prompt already includes the begin/end evidence headers
-            evidence = "Given the following evidence:\n"
-            evidence += "========BEGIN EVIDENCE========\n"
-            # evidence += "\n================\n\n".join(self.rag_chain.invoke(question))
-            evidence += self.format_docs(self.retriever.invoke(question))
-            evidence += "========END EVIDENCE========\n"
-            # print(evidence)
-            return evidence
-        else:
-            evidence = self.format_docs(self.retriever.invoke(question))
-            return evidence
-
-    def _build_agent_prompt(self, question: str) -> str:
-        evidence = self.__get_evidence(question)
-        return self.llm_prompt.get_prompt().format(
-            evidence=evidence,
-            question=question
-        )
-
-    def _parse_answer(cls, pred: str) -> tuple[str, str]:
-        """
-        Parse the response to extract the answer using regex.
-        The prediction is of the form: "... The answer is <answer>."
-        """
-        pattern = r"answer is (.+)\.\s*$"
-        m = re.search(pattern, pred)
-        if m:
-            return m.group(1)
-        else:
-            return ""
-
-    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
-        logger.debug(f"\n\t>>> question: {question}\n")
-
-        # Create a conversation with 1 user prompt
-        prompt = self._build_agent_prompt(question)
-        print(prompt)
-        # print(prompt)
-        conv = Conversation(messages=[
-            Message(role="user", content=[ContentTextMessage(text=prompt)])
-        ])
-        self.agent_interactions = conv
-        
-        # Generate response
-        # Add "\n" to stop_sequences
-        # inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
-        response = llm_chat.generate_response(conv, inf_gen_config)
-
-        # Update agent's conversation
-        self.agent_interactions.messages.append(
-            Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
-        )
-        return response.pred # return self._parse_answer(response.pred)
+        self.format_RAG_docs = lambda docs: "\n================\n\n".join(doc.page_content for doc in docs)
+        evidence = self.format_RAG_docs(self.retriever.invoke(question))
+        return evidence
     
-    async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
-        logger.debug(f"\n\t>>> questions: {questions}\n")
 
-        # Create a conversation with 1 user prompt
-        prompts = [self._build_agent_prompt(question) for question in questions]
-        convs = [
-            Conversation(messages=[
-                Message(role="user", content=[ContentTextMessage(text=prompt)])
-            ])
-            for prompt in prompts
-        ]
-        self.agent_interactions = convs
-        
-        # Generate response
-        # Change stop_sequences to "\n"
-        # inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
-        responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
 
-        # Add the responses to the agent's conversations
-        for i, response in enumerate(responses):
-            self.agent_interactions[i].messages.append(
-                Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
-            )
-        return [
-            LLMChatResponse(
-                pred=response.pred,#self._parse_answer(response.pred),
-                usage=response.usage,
-                error=response.error,
-            ) 
-            for response in responses
-        ]
-        # return [self._parse_answer(r.pred) for r in responses]
+class NshotRAGAgent(NshotAgent, RAGMixin):
+    """
+    Agent to implement Zeroshot and fewshot evaluation with majority vote.
+    """
+    def __init__(self, 
+                text_corpus: pd.DataFrame, 
+                llm_prompt: LLMPrompt, 
+                fewshot_examples: str = "", 
+                embedding_model_name: str="WhereIsAI/UAE-Code-Large-V",
+                retriever_num_documents: int = 4,
+                use_api: bool | None = True,
+                tensor_parallel_size: int | None = 1,
+                port:int = 8001,
+                ):
+        """
+        Args:
+            fewshot_examples (str): Prompt examples to include in agent prompt.
+                If "", the agent is zero-shot. Defaults to "".
+            sep (str): The separator used to split the prediction.
+                Defaults to `constants.answer_sep`.
+        """
+        NshotAgent.__init__(self, text_corpus, llm_prompt, fewshot_examples)
+        RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, use_api, tensor_parallel_size, port)
 
+    def run(self, 
+            llm_chat: LLMChat, 
+            question: str, 
+            inf_gen_config: InferenceGenerationConfig
+            ) -> LLMChatResponse:
+        # Relies on the implementation of run in the subclass
+        return super().run(llm_chat, question, inf_gen_config)
+
+    async def batch_run(self, 
+                        llm_chat: LLMChat, 
+                        questions: list[str], 
+                        inf_gen_config: InferenceGenerationConfig
+                        ) -> list[LLMChatResponse]:
+        # Relies on the implementation of batch_run in the subclass
+        return await super().batch_run(llm_chat, questions, inf_gen_config)
+
+
+class CoTRAGAgent(CoTAgent, RAGMixin):
+    """
+    Agent to implement Zeroshot and fewshot evaluation with majority vote.
+    """
+    def __init__(self, 
+                text_corpus: pd.DataFrame, 
+                llm_prompt: LLMPrompt, 
+                cot_examples: str = "",
+                embedding_model_name: str="WhereIsAI/UAE-Code-Large-V",
+                retriever_num_documents: int = 4,
+                use_api: bool | None = True,
+                tensor_parallel_size: int | None = 1,
+                port:int = 8001,
+                ):
+        """
+        Args:
+            cot_examples (str): Prompt examples to include in agent prompt.
+        """
+        CoTAgent.__init__(self, text_corpus, llm_prompt, cot_examples)
+        RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, use_api, tensor_parallel_size, port)
+
+    def run(self, 
+            llm_chat: LLMChat, 
+            question: str, 
+            inf_gen_config: InferenceGenerationConfig
+            ) -> LLMChatResponse:
+        # Relies on the implementation of run in the subclass
+        return super().run(llm_chat, question, inf_gen_config)
+
+    async def batch_run(self, 
+                        llm_chat: LLMChat, 
+                        questions: list[str], 
+                        inf_gen_config: InferenceGenerationConfig
+                        ) -> list[LLMChatResponse]:
+        # Relies on the implementation of batch_run in the subclass
+        return await super().batch_run(llm_chat, questions, inf_gen_config)
 
 
 #### Utils ####
@@ -1115,9 +1040,9 @@ SUPPORTED_METHOD_NAMES: list[str] = [
     "act",
     "react->cot-sc",
     "cot-sc->react",
-    "rag",
-    "zeroshot-retriever", # TODO: remove "rag" and use zeroshot-retriever, fewshot-retriever, cot-retriever instead
-    "cot-retriever",
+    "zeroshot-rag",
+    "fewshot-rag",
+    "cot-rag",
 ]
 
 
@@ -1144,7 +1069,10 @@ def get_agent(
             return React_CoTSCAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "cot-sc->react":
             return CoTSC_ReactAgent(text_corpus, llm_prompt, **agent_kwargs)
-        case "rag":
-            return RAGAgent(text_corpus, llm_prompt, **agent_kwargs)
+        case "zeroshot-rag" | "fewshot-rag":
+            # return RAGAgent(text_corpus, llm_prompt, **agent_kwargs)
+            return NshotRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
+        case "cot-rag":
+            return CoTRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
         case _:
             raise ValueError(f"Invalid method: {method}")

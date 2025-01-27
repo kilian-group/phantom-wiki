@@ -42,6 +42,7 @@ do
         --split_list $SPLIT_LIST \
         --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
         --inf_temperature $TEMPERATURE"
+
     echo $cmd
     eval $cmd
 done
