@@ -38,6 +38,7 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
         case _:
             model_kwargs = dict(
                 model_path=args.model_path,
+                usage_tier=args.inf_usage_tier,
             )
     return model_kwargs
 

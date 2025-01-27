@@ -194,6 +194,9 @@ class CommonLLMChat(LLMChat):
         self.client = None
 
     def _update_rate_limits(self, usage_tier: int) -> None:
+        usage_tier_str = f"usage_tier={usage_tier}"
+        if usage_tier_str not in self.RATE_LIMITS[self.model_name]:
+            raise ValueError(f"Usage tier {usage_tier} not supported for {self.model_name}, please update the class for {self.model_name}.")
         rate_limit_for_usage_tier = self.RATE_LIMITS[self.model_name][f"usage_tier={usage_tier}"]
         self.RPM_LIMIT = rate_limit_for_usage_tier["RPM"]
         self.TPM_LIMIT = rate_limit_for_usage_tier["TPM"]
@@ -307,12 +310,18 @@ class CommonLLMChat(LLMChat):
 
 
 class OpenAIChat(CommonLLMChat):
+    # https://platform.openai.com/docs/guides/rate-limits/usage-tiers
     RATE_LIMITS = {
         "gpt-4o-mini-2024-07-18": {
+            "usage_tier=0": {"RPM": 3, "TPM": 40_000},  # free tier
             "usage_tier=1": {"RPM": 500, "TPM": 200_000},
+            "usage_tier=2": {"RPM": 5_000, "TPM": 2_000_000},
+            "usage_tier=3": {"RPM": 5_000, "TPM": 4_000_000},
         },
         "gpt-4o-2024-11-20": {
             "usage_tier=1": {"RPM": 500, "TPM": 30_000},
+            "usage_tier=2": {"RPM": 5_000, "TPM": 450_000},
+            "usage_tier=3": {"RPM": 5_000, "TPM": 800_000},
         },
     }
     SUPPORTED_LLM_NAMES: list[str] = list(RATE_LIMITS.keys())
@@ -516,16 +525,19 @@ class GeminiChat(CommonLLMChat):
     """
     RATE_LIMITS = {
         "gemini-1.5-flash-002": {
+            "usage_tier=0": {"RPM": 15, "TPM": 1_000_000},  # free tier
             "usage_tier=1": {"RPM": 2_000, "TPM": 4_000_000},
         },
         "gemini-1.5-pro-002": {
+            "usage_tier=0": {"RPM": 2, "TPM": 32_000_000},  # free tier
             "usage_tier=1": {"RPM": 1_000, "TPM": 4_000_000},
         },
         "gemini-1.5-flash-8b-001": {
+            "usage_tier=0": {"RPM": 15, "TPM": 1_000_000},  # free tier
             "usage_tier=1": {"RPM": 4_000, "TPM": 4_000_000},
         },
         "gemini-2.0-flash-exp": {
-            "usage_tier=1": {"RPM": 10, "TPM": 4_000_000}, # https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash
+            "usage_tier=0": {"RPM": 10, "TPM": 4_000_000},  # free tier: https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash
         }
     }
     SUPPORTED_LLM_NAMES: list[str] = list(RATE_LIMITS.keys())
