@@ -37,6 +37,6 @@ fig.suptitle('Distribution of reasoning steps in the dataset')
 # fig.legend()
 # use tight layout
 # fig.tight_layout(rect=[0, 0.03, 1, 0.95])
-save_path = 'dataset_distribution.png'
+save_path = 'difficulty_distribution.png'
 print(f"Saving figure to {save_path}")
 fig.savefig(save_path)
