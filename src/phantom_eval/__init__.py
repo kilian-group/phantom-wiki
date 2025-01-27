@@ -44,7 +44,7 @@ def get_parser() -> argparse.ArgumentParser:
                         help="Temperature for sampling")
     parser.add_argument("--inf_top_p", "-p", type=float, default=0.7,
                         help="Top-p for sampling")
-    parser.add_argument("--inf_top_k", "-k", type=int, default=50,
+    parser.add_argument("--inf_top_k", "-k", type=int, default=-1,
                         help="Top-k for sampling")
     parser.add_argument("--inf_repetition_penalty", "-r", type=float, default=1.0,
                         help="Repetition penalty for sampling")
