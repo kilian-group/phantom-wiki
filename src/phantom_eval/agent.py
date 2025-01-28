@@ -901,7 +901,7 @@ class RAGMixin:
 
         self.embedding_model_name = embedding_model_name
         texts = self.text_corpus['article'].tolist()
-        if(use_api):
+        if(True):#if(use_api):
             # launch server
             subprocess.call(["./src/phantom_eval/launch_embedding_server.sh", 
                             embedding_model_name, 

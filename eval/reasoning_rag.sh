@@ -62,19 +62,19 @@ check_server() {
 
 for model_name in "${REASONING_MODELS[@]}"
 do
-    echo "Starting vLLM server..."
-    vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $PORT" #nohup launches this in the background
-    echo $vllm_cmd
-    nohup $vllm_cmd &
+    # echo "Starting vLLM server..."
+    # vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $PORT" #nohup launches this in the background
+    # echo $vllm_cmd
+    # nohup $vllm_cmd &
     
-    echo "Waiting for vLLM server to start..."
-    SLEEP=60
-    while ! check_server $model_name $PORT; do
-        echo "Server is not up yet. Checking again in $SLEEP seconds..."
-        sleep $SLEEP
-    done
+    # echo "Waiting for vLLM server to start..."
+    # SLEEP=60
+    # while ! check_server $model_name $PORT; do
+    #     echo "Server is not up yet. Checking again in $SLEEP seconds..."
+    #     sleep $SLEEP
+    # done
 
-    echo "vLLM server is up and running."
+    # echo "vLLM server is up and running."
 
     cmd="python -m phantom_eval \
         --method reasoning \
@@ -83,8 +83,9 @@ do
         --split_list $SPLIT_LIST \
         --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
         --inf_temperature $TEMPERATURE \
-        --inf_top_p $TOP_P 
+        --inf_top_p $TOP_P \
         "
+        # --batch_size 1
 
     echo $cmd
     eval $cmd
