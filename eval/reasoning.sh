@@ -31,10 +31,11 @@ fi
 
 TEMPERATURE=0.6
 TOP_P=0.95
+REASONING_MODELS=('deepseek-ai/deepseek-r1-distill-qwen-32b')
 
 source eval/constants.sh
 
-for model_name in "${LARGE_MODELS[@]}"
+for model_name in "${REASONING_MODELS[@]}"
 do
     cmd="python -m phantom_eval \
         --method reasoning \

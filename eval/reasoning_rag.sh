@@ -31,6 +31,7 @@ fi
 
 TEMPERATURE=0.6
 TOP_P=0.95
+REASONING_MODELS=('deepseek-ai/deepseek-r1-distill-qwen-32b')
 
 source eval/constants.sh
 
@@ -59,7 +60,7 @@ check_server() {
     fi
 }
 
-for model_name in "${LARGE_MODELS[@]}"
+for model_name in "${REASONING_MODELS[@]}"
 do
     echo "Starting vLLM server..."
     vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $PORT" #nohup launches this in the background
