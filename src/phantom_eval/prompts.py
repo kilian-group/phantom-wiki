@@ -36,39 +36,39 @@ class ZeroshotLLMPrompt(LLMPrompt):
 FEWSHOT_EXAMPLES = f"""
 Example 1:
 Question: Who is the brother of Dino Beltran?
-Answer: ?- brother(X, 'Dino Beltran').
+Answer: brother(X, 'Dino Beltran')
 
 Example 2:
 Question: Who is the sibling of Barabara Beltran?
-Answer: ?- sibling(X, 'Barabara Beltran').
+Answer: sibling(X, 'Barabara Beltran')
 
 Example 3:
-Question: Who is the child of the sibling of Stacia Toombs?
-Answer: ?- sibling(X, 'Stacia Toombs'), child(Y, X).
+Question: Who is the mother of the sister of Stacia Toombs?
+Answer: sister('Stacia Toombs', Y), mother(Y, X)
 
 Example 4:
 Question: Who is the uncle of William Smock?
-Answer: ?- uncle(X, 'William Smock').
+Answer: uncle('William Smock', X)
 
 Example 5:
 Question: What is the occupation of the sister of the grandmother of Virgil Hackworth?
-Answer: ?- grandmother(Z, 'Virgil Hackworth'), sister(X, Z), occupation(X, Y).
+Answer: grandmother('Virgil Hackworth', Z), sister(Z, Y), job(Y, X)
 
 Example 6:
 Question: Who is the brother of the person whose occupation is associate professor?
-Answer: ?- occupation(X, 'associate professor'), brother(X, Y).
+Answer: job(X, 'associate professor'), brother(X, Y)
 
 Example 7:
 Question: What is the date of birth of the person whose hobby is meteorology?
-Answer: ?- hobby(X, 'meteorology'), date_of_birth(X, Y).
+Answer: hobby(X, 'meteorology'), dob(X, Y)
 
 Example 8:
 Question: Who is the cousin of the person whose occupation is broadcast engineer?
-Answer: ?- cousin(X, Y), occupation(Y, 'broadcast engineer').
+Answer: job(Y, 'broadcast engineer'), cousin(Y, X)
 
 Example 9:
 Question: Who is the great-granddaughter of the person whose hobby is biology?
-Answer: ?- great_granddaughter(X, Y), hobby(Y, 'biology').
+Answer: hobby(Y, 'biology'), great_granddaughter(X, Y)
 """
 
 class FewshotLLMPrompt(LLMPrompt):
