@@ -42,9 +42,10 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
 training_args = TrainingArguments(
     output_dir="./results",
-    evaluation_strategy="epoch",
+    eval_strategy="epoch",
     learning_rate=2e-5,
-    per_device_train_batch_size=8,
+    per_device_train_batch_size=1,
+    gradient_accumulation_steps=1,
     num_train_epochs=1,
     weight_decay=0.01,
 )
@@ -62,8 +63,8 @@ class CustomDataset(Dataset):
         answers = qa_pairs["answer"].apply(lambda x: ", ".join(x) if isinstance(x, list) else x).tolist()
 
         tokenizer.pad_token = tokenizer.eos_token
-        tokenized_inputs = tokenizer(prompts, padding="max_length", max_length=30000)#, padding="max_length", truncation=True, max_length=max_length, return_tensors="pt")
-        tokenized_labels = tokenizer(answers, padding="max_length", max_length=30000)["input_ids"]#, padding="max_length", truncation=True, max_length=max_length, return_tensors="pt")["input_ids"]
+        tokenized_inputs = tokenizer(prompts, padding="max_length", max_length=5000)#, padding="max_length", truncation=True, max_length=max_length, return_tensors="pt")
+        tokenized_labels = tokenizer(answers, padding="max_length", max_length=5000)["input_ids"]#, padding="max_length", truncation=True, max_length=max_length, return_tensors="pt")["input_ids"]
         tokenized_labels[tokenized_labels == tokenizer.pad_token_id] = -100         # Ensure labels' padding tokens are ignored in loss computation
         self.inputs = tokenized_inputs
         self.labels = tokenized_labels
@@ -104,6 +105,17 @@ eval_df_text = pd.DataFrame(eval_data["text"])
 eval_dataset = CustomDataset(qa_pairs=eval_df_qa_pairs, text=eval_df_text, tokenizer=tokenizer)
 
 # %%
+from peft import get_peft_model, TaskType, LoraConfig
+lora_config = LoraConfig(
+    r=4,
+    lora_alpha=8,
+    lora_dropout=0.1,
+    bias="none",
+    task_type=TaskType.CAUSAL_LM,
+    target_modules = ["q_proj", "k_proj", "v_proj"]
+)
+model = get_peft_model(model, lora_config)
+
 for split in dataset_splits:
     print(f"Training on {split}")
     train_data = load_data(dataset=dataset_name, split=split)
