@@ -54,7 +54,7 @@ for metric in METRICS:
 
     for i, (name, methods) in enumerate([('Simple', plotting_utils.SIMPLE_METHODS), ('RAG', plotting_utils.RAG_METHODS), ('Agentic', plotting_utils.AGENTIC_METHODS)]):
         method_handles = []
-
+        all_x = []
         for method in methods:
             # get evaluation data from the specified output directory and method subdirectory
             df = get_evaluation_data(output_dir, method, dataset)
@@ -78,7 +78,9 @@ for metric in METRICS:
             df_mean, df_std = pivot_mean_std(acc_mean_std, metric, independent_variable='_size')
 
             # use log2 scale for the x-axis
-            x = np.log2(df_mean.columns)
+            all_x.extend(df_mean.columns.tolist())
+            log2x = np.log2(df_mean.columns)
+            # add the x values to a list
             for model_name, row in df_mean.iterrows():
                 if model_name not in model_list:
                     continue
@@ -87,7 +89,7 @@ for metric in METRICS:
                 # plt.errorbar(x, y, yerr=yerr, label=i, marker='o')
                 # use a line plot instead of errorbar
                 axs[i].plot(
-                    x, y, 
+                    log2x, y, 
                     label=f"{method}+{model_name}", # cot+gemini-1.5-flash-002
                     color=COLORS[model_name], 
                     linestyle=LINESTYLES[model_name],
@@ -95,12 +97,12 @@ for metric in METRICS:
                 )
                 # Add scatter plot
                 axs[i].scatter(
-                    x[::2], y[::2],
+                    log2x[::2], y[::2],
                     color=COLORS[model_name],
                     s=20, #marker size
                     marker=MARKERS[method],
                 )
-                axs[i].fill_between(x, y-yerr, y+yerr, alpha=0.1, color=COLORS[model_name])
+                axs[i].fill_between(log2x, y-yerr, y+yerr, alpha=0.1, color=COLORS[model_name])
             
             key = f"{plotting_utils.METHOD_ALIASES[method]}"
             method_handles.append( lines.Line2D(
@@ -122,13 +124,6 @@ for metric in METRICS:
         axs[i].spines['bottom'].set_position(('outward', 1))  # Move x-axis outward
         axs[i].spines['left'].set_position(('outward', 1))    # Move y-axis outward
 
-        # format x-axis
-        axs[i].set_xlabel('Universe Size', fontsize=plotting_utils.LABEL_FONT_SIZE)
-        # Only add labels at 10, but keep the ticks at all points
-        ticks, labels = zip(*[(t, l if np.log10(l).is_integer() else "") for t, l in zip(x, df_mean.columns.tolist())])
-        axs[i].set_xticks(ticks)
-        axs[i].set_xticklabels(labels, fontsize=plotting_utils.TICK_FONT_SIZE)
-
         # format y-axis
         if i == 0:
             axs[i].set_ylabel(metric.upper(), fontsize=8)
@@ -148,6 +143,17 @@ for metric in METRICS:
             # axs[i].legend(fontsize=plotting_utils.LEGEND_FONT_SIZE, loc='upper left')
             # add text at the top of the line
             axs[i].text(np.log2(500), 1, '128k Context', fontsize=6, color='gray')
+        
+        # format x-axis
+        axs[i].set_xlabel('Universe Size', fontsize=plotting_utils.LABEL_FONT_SIZE)
+        # Only add labels at 10, but keep the ticks at all points
+        # import pdb; pdb.set_trace()
+        all_x = sorted(list(set(all_x)))
+        if len(all_x) == 0:
+            continue
+        ticks, labels = zip(*[(t, f"$10^{int(np.log10(l))}$" if np.log10(l).is_integer() else "") for t, l in zip(np.log2(all_x), all_x)])
+        axs[i].set_xticks(ticks)
+        axs[i].set_xticklabels(labels, fontsize=plotting_utils.TICK_FONT_SIZE)
 
     # attach the model legend to the entire figure instead of any individual subplot
     model_handles = []
