@@ -133,9 +133,21 @@ for metric in METRICS:
         if i == 0:
             axs[i].set_ylabel(metric.upper(), fontsize=8)
         axs[i].set_ylim(0, 1)
-        axs[i].tick_params(axis='y', labelsize=plotting_utils.TICK_FONT_SIZE)
+        # only add tickes at 0, 0.5, 1 
+        axs[i].set_yticks([0, 0.5, 1])
+        axs[i].set_yticklabels([0, 0.5, 1], fontsize=plotting_utils.TICK_FONT_SIZE)
+        # axs[i].tick_params(axis='y', labelsize=plotting_utils.TICK_FONT_SIZE)
         # set title
         axs[i].set_title(name, fontsize=plotting_utils.LABEL_FONT_SIZE)
+
+        if i==0:
+            # Add vertical line at x=500 to indicate the max context length
+            axs[i].axvline(x=np.log2(500), color='gray', linestyle='--', linewidth=0.1
+                        #    label='128k Context'
+                           )
+            # axs[i].legend(fontsize=plotting_utils.LEGEND_FONT_SIZE, loc='upper left')
+            # add text at the top of the line
+            axs[i].text(np.log2(500), 1, '128k Context', fontsize=6, color='gray')
 
     # attach the model legend to the entire figure instead of any individual subplot
     model_handles = []

@@ -142,16 +142,16 @@ for metric in METRICS:
         axs[i].spines['left'].set_position(('outward', 1))    # Move y-axis outward
 
         # format x-axis
+        axs[i].set_xlim(1, MAX_DIFFICULTY)
         axs[i].set_xlabel('Reasoning Steps', fontsize=plotting_utils.LABEL_FONT_SIZE)
         axs[i].set_xticks(x[::5])
-        axs[i].set_xticklabels(df_mean.columns[::5], fontsize=plotting_utils.TICK_FONT_SIZE)
-        # set xlim
-        axs[i].set_xlim(1, MAX_DIFFICULTY)
+        axs[i].set_xticklabels(df_mean.columns[::5], fontsize=plotting_utils.TICK_FONT_SIZE)        
         if i == 0:
             axs[i].set_ylabel(metric.upper(), fontsize=plotting_utils.LABEL_FONT_SIZE)
-        axs[i].tick_params(axis='y', labelsize=plotting_utils.TICK_FONT_SIZE)
         # set ylim
         axs[i].set_ylim(0, 1)
+        axs[i].set_yticks([0, 0.5, 1])
+        axs[i].set_yticklabels([0, 0.5, 1], fontsize=plotting_utils.TICK_FONT_SIZE)
         # set title
         axs[i].set_title(name, fontsize=plotting_utils.LABEL_FONT_SIZE)
 
@@ -176,14 +176,12 @@ for metric in METRICS:
         handles=model_handles,
         fontsize=plotting_utils.LEGEND_FONT_SIZE,
         loc='lower center',
-        # bbox_to_anchor=(0.5, -0.05),
         ncol=6,
         handlelength=4,
     )
     plt.tight_layout()
     plt.subplots_adjust(left=0.1, right=0.95, top=0.9, wspace=0.3)  # Adjust horizontal space between subplots and reduce padding to the left and right
 
-    # fig.subplots_adjust(left=0.17, right=0.95, bottom=0.3, top=0.95) #, wspace=0.3, hspace=0.3)
     fig_path = os.path.join(figures_dir, f'difficulty-{metric}.pdf')
     print(f"Saving to {os.path.abspath(fig_path)}")
     plt.savefig(fig_path)
