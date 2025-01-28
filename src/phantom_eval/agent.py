@@ -1186,6 +1186,7 @@ SUPPORTED_METHOD_NAMES: list[str] = [
     "fewshot-rag",
     "cot-rag",
     "reasoning",
+    "reasoning-rag",
 ]
 
 
