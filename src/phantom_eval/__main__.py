@@ -72,7 +72,7 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
             )
-        case "zeroshot-rag":
+        case "zeroshot-rag" | "reasoning-rag":
             agent_kwargs = dict(
                 # embedding="together", #args.embedding
                 # vector_store="faiss", #args.vector_store
@@ -195,7 +195,7 @@ async def main(args: argparse.Namespace) -> None:
                 # so they support batch async inference
                 agent_interactions = None
                 match args.method:
-                    case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc" | "zeroshot-rag" | "fewshot-rag" | "reasoning":
+                    case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc" | "zeroshot-rag" | "fewshot-rag" | "reasoning" | "reasoning-rag":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                         responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
