@@ -16,6 +16,11 @@ from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, COT_EXAMPLES, AC
 from . import constants
 from . import get_parser
 
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+from phantom_wiki.facts.database import Database
+
 logger = logging.getLogger(__name__)
 
 
@@ -230,6 +235,63 @@ async def main(args: argparse.Namespace) -> None:
                 )
 
 
+def split_prolog_query(query: str) -> tuple[list[str], str | None]:
+    """Split a compound Prolog query into individual queries and get final variable.
+    
+    Args:
+        query: A Prolog query string like "?- hobby(X, 'bus spotting'), father(X, Y)."
+        
+    Returns:
+        Tuple of (list of query strings, final variable letter or None)
+        Example: (["hobby(X, 'bus spotting')", "father(X, Y)"], "Y")
+    """
+    
+    # First clean up the full query
+    query = query.strip()
+    if query.startswith('?-'):
+        query = query[2:].strip()
+    if query.endswith('.'):
+        query = query[:-1].strip()
+    
+    # Split on comma but respect parentheses and quotes
+    queries = []
+    current = []
+    paren_count = 0
+    in_quotes = False
+    
+    for char in query:
+        if char == "'" and not in_quotes:
+            in_quotes = True
+            current.append(char)
+        elif char == "'" and in_quotes:
+            in_quotes = False
+            current.append(char)
+        elif char == '(' and not in_quotes:
+            paren_count += 1
+            current.append(char)
+        elif char == ')' and not in_quotes:
+            paren_count -= 1
+            current.append(char)
+        elif char == ',' and paren_count == 0 and not in_quotes:
+            queries.append(''.join(current).strip())
+            current = []
+        else:
+            current.append(char)
+    
+    if current:
+        queries.append(''.join(current).strip())
+    
+    # Get final variable from last predicate
+    final_variable = None
+    if queries:
+        last_pred = queries[-1]
+        variables = [c for c in last_pred if c.isupper()]
+        if variables:
+            final_variable = variables[-1]
+    
+    return queries, final_variable
+
+
 def save_preds(
     pred_path: Path,
     split: str,
@@ -244,11 +306,78 @@ def save_preds(
 ) -> None:
     preds = {}
     batch_size = len(batch_df_qa_pairs)
+    
+    # Get the absolute path to facts.pl
+    facts_path = Path(__file__).parent.parent / "phantom_eval" / "facts.pl"
+    logger.info(f"Looking for facts.pl at: {facts_path.absolute()}")
+    if not facts_path.exists():
+        raise FileNotFoundError(f"Could not find facts.pl at {facts_path.absolute()}")
+    
+    db = Database()
+    db.from_disk(str(facts_path))
     for i, qa_sample in enumerate(batch_df_qa_pairs.itertuples()):
         uid = qa_sample.id
+        
+        # Split the query and execute each part
+        query_results = []
+        pred_query = responses[i].pred
+        sub_queries, target_variable = split_prolog_query(pred_query)
+        
+        # Build the compound query incrementally
+        compound_query = ""
+        variable_bindings = {}
+        
+        for j, sub_query in enumerate(sub_queries):
+            try:
+                # Add this sub_query to compound query
+                if compound_query:
+                    compound_query += f", {sub_query}"
+                else:
+                    compound_query = sub_query
+                
+                # Execute the compound query up to this point
+                result = db.query(compound_query)
+                
+                # Store result and variable bindings
+                query_results.append({
+                    'query': compound_query,
+                    'sub_query_added': sub_query,
+                    'result': result,
+                    'variables': variable_bindings.copy()
+                })
+                
+                # Update variable bindings from result
+                if result:
+                    for binding in result:
+                        variable_bindings.update(binding)
+                
+            except Exception as e:
+                logger.error(f"Query failed: {compound_query}")
+                logger.error(f"Error: {str(e)}")
+                query_results.append({
+                    'query': compound_query,
+                    'sub_query_added': sub_query,
+                    'error': str(e),
+                    'variables': variable_bindings.copy()
+                })
+                break  # Stop if any part fails
+        
+        # Use the final result for the prediction
+        final_result = query_results[-1].get('result') if query_results else None
+        
+        # Get final value for target variable
+        final_value = None
+        if final_result and target_variable:
+            for binding in final_result:
+                if target_variable in binding:
+                    final_value = binding[target_variable]
+                    break
+        
         preds[uid] = {
-            "true" : qa_sample.answer,
-            "pred" : responses[i].pred,
+            "true": qa_sample.answer,
+            "pred": final_value,
+            "prolog_query": responses[i].pred,
+            "prolog_bindings": final_result,
             "error": responses[i].error,
             "interaction": interactions[i].model_dump() if interactions else [],
             "metadata": {
@@ -267,6 +396,12 @@ def save_preds(
 
     with open(pred_path, "w") as f:
         json.dump(preds, f, indent=4)
+        
+    accuracy = 0
+    for pred in preds.values():
+        if pred["true"] == [pred["pred"]]:
+            accuracy += 1
+    print(f"Accuracy: {accuracy / len(preds)} when evaluating {len(preds)} samples")
 
 
 if __name__ == "__main__":
