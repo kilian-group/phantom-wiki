@@ -25,19 +25,13 @@ MODEL_ALIASES = {
 METHOD_ALIASES = {
     'zeroshot': 'Zeroshot',
     'cot': 'CoT',
+    'reasoning': 'Reasoning',
     'zeroshot-rag': 'Zeroshot-RAG',
     'cot-rag': 'CoT-RAG',
+    'reasoning-rag': 'Reasoning-RAG',
+    'act': 'Act',
     'react': 'ReAct',
-    'reasoning': 'Reasoning'
 }
-DEFAULT_METHOD_LIST = [
-    "zeroshot", 
-    "cot", 
-    "zeroshot-rag", 
-    "cot-rag", 
-    "react", 
-    "reasoning"
-]
 SIMPLE_METHODS = [
     "zeroshot",
     "cot",
@@ -46,10 +40,16 @@ SIMPLE_METHODS = [
 RAG_METHODS = [
     "zeroshot-rag",
     "cot-rag",
+    "reasoning-rag",
 ]
 AGENTIC_METHODS = [
     # "act",
     "react",
+]
+DEFAULT_METHOD_LIST = [
+    *SIMPLE_METHODS,
+    *RAG_METHODS,
+    *AGENTIC_METHODS,
 ]
 DEFAULT_MODEL_LIST = [ 
     "deepseek-ai/deepseek-r1-distill-qwen-32b",
