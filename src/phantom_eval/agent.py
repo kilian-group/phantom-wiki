@@ -901,7 +901,7 @@ class RAGMixin:
 
         self.embedding_model_name = embedding_model_name
         texts = self.text_corpus['article'].tolist()
-        if(use_api):
+        if(True):#if(use_api):
             # launch server
             subprocess.call(["./src/phantom_eval/launch_embedding_server.sh", 
                             embedding_model_name, 
@@ -1012,6 +1012,7 @@ class CoTRAGAgent(CoTAgent, RAGMixin):
         # Relies on the implementation of batch_run in the subclass
         return await super().batch_run(llm_chat, questions, inf_gen_config)
 
+
 class ReasoningAgent(Agent):
     """
     Agent to implement Zeroshot and fewshot evaluation, 
@@ -1117,6 +1118,43 @@ class ReasoningAgent(Agent):
             raise ValueError(f"Answer '{pred}' cannot be parsed.")
 
 
+class ReasoningRAGAgent(ReasoningAgent, RAGMixin):
+    def __init__(self, 
+                text_corpus: pd.DataFrame, 
+                llm_prompt: LLMPrompt, 
+                fewshot_examples: str = "", 
+                embedding_model_name: str="WhereIsAI/UAE-Code-Large-V",
+                retriever_num_documents: int = 4,
+                use_api: bool | None = True,
+                tensor_parallel_size: int | None = 1,
+                port:int = 8001,
+                ):
+        """
+        Args:
+            fewshot_examples (str): Prompt examples to include in agent prompt.
+                If "", the agent is zero-shot. Defaults to "".
+            sep (str): The separator used to split the prediction.
+                Defaults to `constants.answer_sep`.
+        """
+        ReasoningAgent.__init__(self, text_corpus, llm_prompt, fewshot_examples)
+        RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, use_api, tensor_parallel_size, port)
+
+    def run(self, 
+            llm_chat: LLMChat, 
+            question: str, 
+            inf_gen_config: InferenceGenerationConfig
+            ) -> LLMChatResponse:
+        # Relies on the implementation of run in the subclass
+        return super().run(llm_chat, question, inf_gen_config)
+
+    async def batch_run(self, 
+                        llm_chat: LLMChat, 
+                        questions: list[str], 
+                        inf_gen_config: InferenceGenerationConfig
+                        ) -> list[LLMChatResponse]:
+        # Relies on the implementation of batch_run in the subclass
+        return await super().batch_run(llm_chat, questions, inf_gen_config)
+
 #### Utils ####
 
 def format_pred(pred: str) -> str:
@@ -1148,6 +1186,7 @@ SUPPORTED_METHOD_NAMES: list[str] = [
     "fewshot-rag",
     "cot-rag",
     "reasoning",
+    "reasoning-rag",
 ]
 
 
@@ -1181,5 +1220,7 @@ def get_agent(
             return CoTRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "reasoning":
             return ReasoningAgent(text_corpus, llm_prompt, **agent_kwargs)
+        case "reasoning-rag":
+            return ReasoningRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
         case _:
             raise ValueError(f"Invalid method: {method}")
