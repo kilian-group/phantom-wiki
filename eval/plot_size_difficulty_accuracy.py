@@ -88,7 +88,8 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
             Z = np.zeros((len(y), len(x)))
             for i, size in enumerate(x):
                 for j, difficulty in enumerate(y):
-                    Z[j, i] = acc_mean_std_data_seed[(acc_mean_std_data_seed['_size'].astype(int) == size) & (acc_mean_std_data_seed['difficulty'] == difficulty)][(metric, 'mean')].values[0]
+                    z = acc_mean_std_data_seed[(acc_mean_std_data_seed['_size'].astype(int) == size) & (acc_mean_std_data_seed['difficulty'] == difficulty)][(metric, 'mean')]
+                    Z[j, i] = z.values[0] if len(z) > 0 else np.nan
             # filled in contour
             logX, Y = np.meshgrid(logx, y)
             CS = ax.contour(logX, Y, Z, levels=[threshold])

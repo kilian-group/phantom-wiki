@@ -1,24 +1,31 @@
 import argparse
 from .llm import SUPPORTED_LLM_NAMES
 from .agent import SUPPORTED_METHOD_NAMES
+from . import plotting_utils
 
 def get_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="PhantomWiki Evaluation")
     parser.add_argument("--model_name", "-m", type=str.lower, default="meta-llama/llama-vision-free",
                         help="model name. " \
-                            "NOTE: to add a new model, please submit a PR to the repo with the new model name", 
+                            "NOTE: to add a new model, please submit a PR to the repo with the new model name",
                         choices=SUPPORTED_LLM_NAMES)
     parser.add_argument("--model_path", type=str, default=None, help="Path to the model")
-    parser.add_argument("--method", type=str.lower, required=True,
+    parser.add_argument("--method", type=str.lower, default="zeroshot",
+                        # required=True,
                         help="Evaluation method. " \
                             "NOTE: to add a new method, please submit a PR with the implementation",
                         choices=SUPPORTED_METHOD_NAMES)
-    
+
     # Method params
     parser.add_argument("--react_max_steps", type=int, default=50,
                         help="Maximum number of steps for the ReAct/Act agent")
     parser.add_argument("--sc_num_votes", type=int, default=5,
                         help="Number of votes for an agent implementing self-consistency (majority votes)")
+    parser.add_argument("--retriever_method", type=str, default="whereisai/uae-large-v1",
+                        help="Model used for RAG's embeddings")
+    parser.add_argument("--retriever_num_documents", type=int, default=4,
+                        help="Number of documents retrieved")
+                        
 
     # LLM inference params
     parser.add_argument("--inf_vllm_max_model_len", type=int, default=None,
@@ -37,7 +44,7 @@ def get_parser() -> argparse.ArgumentParser:
                         help="Temperature for sampling")
     parser.add_argument("--inf_top_p", "-p", type=float, default=0.7,
                         help="Top-p for sampling")
-    parser.add_argument("--inf_top_k", "-k", type=int, default=50,
+    parser.add_argument("--inf_top_k", "-k", type=int, default=-1,
                         help="Top-k for sampling")
     parser.add_argument("--inf_repetition_penalty", "-r", type=float, default=1.0,
                         help="Repetition penalty for sampling")
@@ -47,9 +54,11 @@ def get_parser() -> argparse.ArgumentParser:
                         help="Number of tries to get response")
     parser.add_argument("--inf_wait_seconds", type=int, default=2,
                         help="Seconds to wait between tries")
+    parser.add_argument("--inf_usage_tier", type=int, default=1,
+                        help="API usage tier (note: tier 0 corresponds to free versions)")
 
     # Dataset params
-    parser.add_argument("--dataset", type=str, default="mlcore/phantom-wiki-v0.3",
+    parser.add_argument("--dataset", type=str, default="mlcore/phantom-wiki-v0.5",
                         help="Dataset name")
     parser.add_argument("--split_list", default=["depth_20_size_50_seed_1"], type=str, nargs="+",
                         help="List of dataset splits to evaluate")
