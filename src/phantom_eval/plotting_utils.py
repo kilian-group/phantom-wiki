@@ -1,7 +1,7 @@
 # Single column figures
 TICK_FONT_SIZE = 8
 LABEL_FONT_SIZE = 10
-LEGEND_FONT_SIZE = 8
+LEGEND_FONT_SIZE = 7
 
 MODEL_ALIASES = {
     'google/gemma-2-27b-it': "Gemma-2-27B",
