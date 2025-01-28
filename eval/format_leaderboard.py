@@ -8,17 +8,11 @@ Example:
 """
 import os
 import pandas as pd
-# from phantom_eval import get_parser
+from phantom_eval import get_parser
 from phantom_eval.evaluate_utils import get_evaluation_data, mean, std
 from phantom_eval import plotting_utils
 from tabulate import tabulate
-from argparse import ArgumentParser
-parser = ArgumentParser()
-# Dataset params
-parser.add_argument("--dataset", type=str, default="mlcore/phantom-wiki-v0.3",
-                    help="Dataset name")
-parser.add_argument("--output_dir", "-od", default="out",
-                help="Path to read/write the outputs")
+parser = get_parser()
 parser.add_argument(
     "--method_list", 
     nargs="+", 
@@ -52,6 +46,9 @@ df_list = []
 for method in method_list:
     # get evaluation data from the specified output directory and method subdirectory
     df = get_evaluation_data(output_dir, method, dataset)
+    if df.empty:
+        print(f"No data found for method {method}")
+        continue
     df = df[df['_model'].isin(model_list)]
     # group by model, split, and seed
     grouped = df.groupby(['_model', '_depth', '_size', '_data_seed', '_seed'])

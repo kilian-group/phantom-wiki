@@ -19,8 +19,8 @@ if [ -z "$2" ]; then
         "cot"
         "react"
         "act"
-        "zeroshot-retriever"
-        "cot-retriever"
+        "zeroshot-rag"
+        "cot-rag"
         "reasoning"
     )
 else
@@ -38,7 +38,7 @@ echo "Models: ${MODEL_LIST[@]}"
 # Split list is defined in constants.sh
 echo "Splits: $SPLIT_LIST"
 # Override whichever dataset was specified in constants.sh
-DATASET=mlcore/phantom-wiki-v0.3
+DATASET=mlcore/phantom-wiki-v0.5
 echo "Dataset: $DATASET"
 
 # 
@@ -50,16 +50,10 @@ python eval/format_leaderboard.py -od $OUTPUT_DIR --dataset $DATASET --method_li
 # Sec 5: Evaluating Reasoning
 # 
 python eval/plot_reasoning.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST --model_list $MODEL_LIST
+# TODO: add aggregation vs non-aggregation plot
 
 # 
 # Sec 6: Evaluating Retrieval
 # 
 python eval/plot_retrieval.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST --model_list $MODEL_LIST
-# TODO
-# python eval/plot_size_accuracy_delta.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST
-
-# 
-# Sec 7: Evaluating Reasoning and Retrieval
-# 
-# TODO
-# python eval/plot_reasoning_retrieval.py -od $OUTPUT_DIR --method $METHOD --dataset $DATASET
+python eval/plot_size_accuracy_delta.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST
