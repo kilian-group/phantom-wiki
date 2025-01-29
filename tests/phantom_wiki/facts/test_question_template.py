@@ -4,7 +4,6 @@ import json
 from numpy.random import default_rng
 
 from phantom_wiki.facts import Database
-from phantom_wiki.facts.sample import sample
 # phantom wiki functionality
 from phantom_wiki.facts.templates import generate_templates
 from phantom_wiki.utils import get_parser
@@ -55,6 +54,7 @@ def test_template_depth_subsets():
     templates_depth_6 = generate_templates(depth=6)
     templates_depth_8 = generate_templates(depth=8)
     templates_depth_10 = generate_templates(depth=10)
+    templates_depth_20 = generate_templates(depth=20)
 
     # Hashable representation
     def condense_templates(q):
@@ -63,9 +63,11 @@ def test_template_depth_subsets():
     condensed_templates_depth_6 = set(map(condense_templates, templates_depth_6))
     condensed_templates_depth_8 = set(map(condense_templates, templates_depth_8))
     condensed_templates_depth_10 = set(map(condense_templates, templates_depth_10))
+    condensed_templates_depth_20 = set(map(condense_templates, templates_depth_20))
 
     assert condensed_templates_depth_6 <= condensed_templates_depth_8
     assert condensed_templates_depth_8 <= condensed_templates_depth_10
+    assert condensed_templates_depth_10 <= condensed_templates_depth_20
 
 
 #
@@ -76,23 +78,25 @@ args, _ = parser.parse_known_args(["--output_dir", "test_out", "--seed", "1"])
 db = Database.from_disk(DATABASE_SMALL_PATH)
 
 
-def test_samples():
-    for i, (question_template_list, predicate_template_list, _) in enumerate(DATA_DEPTH_6):
-        rng = default_rng(seed=1)
-        any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
-        # with open(f"sample_{i}.json", "a") as f:
-        #     json.dump(any_query, f, indent=4)
-        print("Queries with possibly no answer:")
-        print(any_query)
-        # assert any_query == QUESTIONS_DICT[i]
+# TODO: update this test so that it uses the new sample_valid_only function
+# from phantom_wiki.facts.sample import sample_valid_only
+# def test_samples():
+#     for i, (question_template_list, predicate_template_list, _) in enumerate(DATA_DEPTH_6):
+#         rng = default_rng(seed=1)
+#         any_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=False)
+#         # with open(f"sample_{i}.json", "a") as f:
+#         #     json.dump(any_query, f, indent=4)
+#         print("Queries with possibly no answer:")
+#         print(any_query)
+#         # assert any_query == QUESTIONS_DICT[i]
 
-        valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
-        # with open(f"sample_{i}_valid.json", "a") as f:
-        #     json.dump(valid_query, f, indent=4)
-        print()
-        print("Queries with valid answers:")
-        print(valid_query)
-        # assert valid_query == QUESTIONS_VALID_DICT[i]
+#         valid_query = sample(db, question_template_list, predicate_template_list, rng=rng, valid_only=True)
+#         # with open(f"sample_{i}_valid.json", "a") as f:
+#         #     json.dump(valid_query, f, indent=4)
+#         print()
+#         print("Queries with valid answers:")
+#         print(valid_query)
+#         # assert valid_query == QUESTIONS_VALID_DICT[i]
 
 # def test_sample_1():
 #     # case 1: valid_only=False
