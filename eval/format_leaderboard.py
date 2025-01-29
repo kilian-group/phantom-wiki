@@ -102,6 +102,19 @@ def get_method_type(method):
     return method_type, plotting_utils.METHOD_ALIASES.get(method, method)
 method_types = [get_method_type(method) for method in results.columns]
 results.columns = pd.MultiIndex.from_tuples(method_types, names=['Type', 'Method'])
+# DeepSeek-CoT should be filled with a dash
+deepseek_rows = [x[1] in [plotting_utils.MODEL_ALIASES['deepseek-ai/deepseek-r1-distill-qwen-32b']] for x in results.index]
+deepseek_cols = [x for x in results.columns if 'CoT' in x[1]] # only reasoning
+results.loc[deepseek_rows, deepseek_cols] = '---'
+# Llama-3.3-70B zeroshot and cot beyond size 5000 should be filled with \ooc
+llama_rows = [(x[0]>500 and x[1] in [plotting_utils.MODEL_ALIASES['meta-llama/llama-3.3-70b-instruct']]) for x in results.index]
+llama_cols = [x for x in results.columns if x[1] in ['Zeroshot', 'CoT']] # only zeroshot and reasoning
+results.loc[llama_rows, llama_cols] = '\\ooc'
+# Gemini t and cot beyond size 5000 should be filled with \ooc
+gemini_rows = [(x[0]>500 and x[1] in [plotting_utils.MODEL_ALIASES['gemini-1.5-flash-002']]) for x in results.index]
+gemini_cols = [x for x in results.columns if x[1] in ['Zeroshot', 'CoT']] # only zeroshot and reasoning
+results.loc[gemini_rows, gemini_cols] = '\\ooc???'
+
 # reset the index
 results = results.reset_index()
 
