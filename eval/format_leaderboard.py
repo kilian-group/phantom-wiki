@@ -66,7 +66,8 @@ for method in method_list:
     acc_mean_std = acc_mean_std.groupby(['_model', '_depth', '_size']).agg(AGG)
     acc_mean_std = acc_mean_std.reset_index()
     # add a column at the end for the method
-    acc_mean_std['method'] = method
+    # For the paper only: if _model='deepseek-ai/deepseek-r1-distill-qwen-32b' and method="reasoning", then set method to zeroshot
+    acc_mean_std['method'] = method.replace("reasoning", "zeroshot") if "reasoning" in method else method
     df_list.append(acc_mean_std)
 
 # concatenate all the dataframes
@@ -87,13 +88,40 @@ results = results.rename_axis(index=['Universe Size', 'Model'])
 results.columns = results.columns.droplevel(0)
 # change the order of columns to be the same as method_list
 results = results[[method for method in method_list if method in results.columns]]
-# rename the columns to the method aliases
-results.columns = [plotting_utils.METHOD_ALIASES.get(method, method) for method in results.columns]
+# add a level to the columns representing whether it's a simple, rag, or agentic method
+def get_method_type(method):
+    if method in plotting_utils.SIMPLE_METHODS:
+        method_type = 'Simple'
+    elif method in plotting_utils.RAG_METHODS:
+        method_type = 'RAG'
+    elif method in plotting_utils.AGENTIC_METHODS:
+        method_type = 'Agentic'
+    else:
+        method_type = 'Other'
+    # rename the columns to the method aliases
+    return method_type, plotting_utils.METHOD_ALIASES.get(method, method)
+method_types = [get_method_type(method) for method in results.columns]
+results.columns = pd.MultiIndex.from_tuples(method_types, names=['Type', 'Method'])
 # reset the index
 results = results.reset_index()
 
 print("Accuracies:")
-print(results.to_latex(index=False))
+latex_str = results.to_latex(index=False, column_format='c'*len(results.columns))
+lines = latex_str.splitlines()
+new_lines = [lines[0], lines[1]]  # add the header lines
+
+# Add \midrule between changes in the universe size value
+last_size = None
+for line in lines[2:]:
+    parts = line.split('&')
+    current_size = parts[0].strip()
+    if current_size != last_size and current_size.isdigit():
+        new_lines.append(r'\midrule')
+    last_size = current_size
+    new_lines.append(line)
+
+print("\n".join(new_lines))
+
 print(tabulate(results, tablefmt="github", headers="keys", showindex=False))
 
 # # save to a csv file
