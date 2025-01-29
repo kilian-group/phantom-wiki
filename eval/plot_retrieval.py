@@ -76,7 +76,7 @@ for metric in METRICS:
             if df.empty:
                 logging.warning(f"No data found for {method}")
                 continue
-            if False:
+            if True:
                 logging.warning("Reducing the difficulty by only including those questions that are generated from depth=10 templates")
                 include = df.apply(lambda x: x['template'] in question_templates_10, axis=1)
                 df = df[include]
