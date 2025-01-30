@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH -J cot-rag-medium                              # Job name
-#SBATCH -o slurm/cot-rag-medium_%j.out                 # output file (%j expands to jobID)
-#SBATCH -e slurm/cot-rag-medium_%j.err                 # error log file (%j expands to jobID)
+#SBATCH -J cot-rag-large                              # Job name
+#SBATCH -o slurm/cot-rag-large_%j.out                 # output file (%j expands to jobID)
+#SBATCH -e slurm/cot-rag-large_%j.err                 # error log file (%j expands to jobID)
 #SBATCH --mail-type=ALL                      # Request status by email 
 #SBATCH --mail-user=jcl354@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
