@@ -10,7 +10,7 @@ Example:
 # %%
 import os
 from phantom_eval import get_parser
-from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std, MARKERS
+from phantom_eval.evaluate_utils import get_evaluation_data, pivot_mean_std, mean, std
 from phantom_eval import plotting_utils
 import matplotlib.pyplot as plt
 import matplotlib.lines as lines
@@ -103,22 +103,22 @@ for metric in METRICS:
                     # Only add label to the last plot
                     axs[i].plot(
                         x, y,
-                        color=COLORS[model_name],
-                        linestyle=LINESTYLES[model_name],
+                        color=plotting_utils.COLORS[model_name],
+                        linestyle=plotting_utils.LINESTYLES[model_name],
                         linewidth=1,
                     )
                     # Add scatter plot
                     axs[i].scatter(
                         x[::2], y[::2],
-                        color=COLORS[model_name],
+                        color=plotting_utils.COLORS[model_name],
                         s=20, #marker size
-                        marker=MARKERS[method],
+                        marker=plotting_utils.MARKERS[method],
                     )
                     # NOTE: not plotting error bars for now because the figure looks crowded
                     yerr = df_std.loc[model_name]
                     # Change color intensity for fill to be between 0 and 0.25
                     color_intensity_for_fill = 0.1
-                    axs[i].fill_between(x, y-yerr, y+yerr, alpha=color_intensity_for_fill, color=COLORS[model_name])
+                    axs[i].fill_between(x, y-yerr, y+yerr, alpha=color_intensity_for_fill, color=plotting_utils.COLORS[model_name])
             
             # Add method to legend
             key = f"{plotting_utils.METHOD_ALIASES[method]}"
@@ -127,7 +127,7 @@ for metric in METRICS:
                 color="black",
                 label=key, 
                 linestyle='none',
-                marker=MARKERS[method],
+                marker=plotting_utils.MARKERS[method],
                 markersize=4,
             ))
         axs[i].legend(
@@ -163,11 +163,9 @@ for metric in METRICS:
         key = f"{plotting_utils.MODEL_ALIASES[model]}"
         model_handles.append( lines.Line2D(
             [0], [0],
-            color=COLORS[model],
+            color=plotting_utils.COLORS[model],
             label=key, ###f"{method}+{model_name}", # cot+gemini-1.5-flash-002
-            linestyle=LINESTYLES[model],
-            # marker=MARKERS[method],
-            # markersize=4,
+            linestyle=plotting_utils.LINESTYLES[model],
             linewidth=1,
         ) )
 
