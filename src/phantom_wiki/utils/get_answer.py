@@ -8,37 +8,74 @@ from . import decode
 
 
 def get_answer(
-    all_queries: list[list[str]],
+    all_queries: list[list[list[str]]],
     db: Database,
     answers: str,
     return_solution_traces: bool = False,
     multi_threading: bool = False,
 ) -> tuple[list[dict[str, str]], list[str]]:
-    """Get the answer to a query from the database (TODO: change description to be logical)
+    """Retrieves answers for a given set of logical queries from the database.
 
     Args:
-        all_queries (list(list[str]): The query to be answered
-            Example: [child(Y_2, Y_3), sister(Elisa, Y_2)]
-        db (Database): The database to query
-        answer (str): The answer to the query as a placeholder
+        all_queries (list[list[list[str]]]): A list of list of list of queries to be evaluated against the database.
+            Each query is a list of logical predicates. Each list of list of queries follows a single template.
+            Example: [["child(Y_2, Y_3)", "sister(Elisa, Y_2)"]]
+        db (Database): The database instance used to resolve the queries.
+        answers (str): A placeholder variable representing the expected answer.
             Example: "Y_3"
-        return_solution_traces (bool, optional): Flag to return solution traces (intermediate results).
-            Defaults to False, in which case the returned list is empty.
+        return_solution_traces (bool, optional): Whether to return intermediate solution traces 
+            (i.e., step-by-step mappings of placeholders to values). Defaults to False.
+        multi_threading (bool, optional): Whether to enable concurrent query execution. Defaults to False.
+
 
     Returns:
-        solution_traces: list[dict[str, str]]
-            A list of dictionaries with the results along the "path trace" to the final answer
-        final_results: list[str] 
-            The final results of the entire query
+            - `final_results`: A list of strings representing the final answer(s) derived from the query.
+
+        `solution_traces`: list(list(list[dict[str, str]]))
+            A list of list of list dictionaries with the results along the "path trace" to the final answer
+        `final_results`: list(list(list[str]))
+            The final results of the list of list of queries
 
     Example:
     ```python
-    query = [child(Y_2, Y_3), sister(Elisa, Y_2)]
-    solution_traces, final_results = get_answer(query, db, "Y_3", return_solution_traces=True)
+    queries = [
+        [
+            ["child(Y_2, Y_3)", "sister(Elisa, Y_2)"],
+            ["parent(Y_4, Y_5)", "brother(John, Y_4)"]
+        ],
+        [
+            ["ancestor(Y_6, Y_7)", "cousin(Mike, Y_6)"]
+        ]
+    ]
+
+    solution_traces, final_results = get_answer(queries, db, "Y_3", return_solution_traces=True)
     ```
-    outputs `[{"Y_2": "Alice", "Y_3": "Bob"}], ["Bob"]`.
-    Each dictionary in the solution_traces list is a sequence of placeholders and values towards a final answer.
-    There can be multiple final answers, and so multiple dictionaries in solution_traces.
+
+    **Expected Output:**
+    ```
+    solution_traces = [
+        [
+            [
+                {"Y_2": "Alice", "Y_3": "Bob"},
+                {"Y_4": "David", "Y_5": "Eve"}
+            ]
+        ],
+        [
+            [
+                {"Y_6": "Sarah", "Y_7": "Tom"}
+            ]
+        ]
+    ]
+
+    final_results = [
+        [
+            ["Bob", "Eve"]
+        ],
+        [
+            ["Tom"]
+        ]
+    ]
+    ```
     """
     # All the solution traces
     all_solution_traces, all_final_results = [], []
