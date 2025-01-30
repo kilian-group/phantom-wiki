@@ -13,7 +13,7 @@ import logging
 from phantom_eval import get_parser
 from phantom_eval.utils import setup_logging
 setup_logging("INFO")
-from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std, MARKERS
+from phantom_eval.evaluate_utils import get_evaluation_data, pivot_mean_std, mean, std
 from phantom_eval import plotting_utils
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
@@ -113,18 +113,18 @@ for metric in METRICS:
                 axs[i].plot(
                     log2x, y, 
                     label=f"{method_}+{model_name}", # cot+gemini-1.5-flash-002
-                    color=COLORS[model_name], 
-                    linestyle=LINESTYLES[model_name],
+                    color=plotting_utils.COLORS[model_name], 
+                    linestyle=plotting_utils.LINESTYLES[model_name],
                     linewidth=1,
                 )
                 # Add scatter plot
                 axs[i].scatter(
                     log2x[::2], y[::2],
-                    color=COLORS[model_name],
+                    color=plotting_utils.COLORS[model_name],
                     s=20, #marker size
-                    marker=MARKERS[method_],
+                    marker=plotting_utils.MARKERS[method_],
                 )
-                axs[i].fill_between(log2x, y-yerr, y+yerr, alpha=0.1, color=COLORS[model_name])
+                axs[i].fill_between(log2x, y-yerr, y+yerr, alpha=0.1, color=plotting_utils.COLORS[model_name])
             
             key = f"{plotting_utils.METHOD_ALIASES[method_]}"
             if key not in method_handles:
@@ -133,7 +133,7 @@ for metric in METRICS:
                     color="black",
                     label=key, 
                     linestyle='none',
-                    marker=MARKERS[method_],
+                    marker=plotting_utils.MARKERS[method_],
                     markersize=4,
                 )
         axs[i].legend(
@@ -182,9 +182,9 @@ for metric in METRICS:
         key = f"{plotting_utils.MODEL_ALIASES[model]}"
         model_handles.append( lines.Line2D(
             [0], [0],
-            color=COLORS[model],
+            color=plotting_utils.COLORS[model],
             label=key, 
-            linestyle=LINESTYLES[model],
+            linestyle=plotting_utils.LINESTYLES[model],
             linewidth=1,
         ) )
     fig.legend(
