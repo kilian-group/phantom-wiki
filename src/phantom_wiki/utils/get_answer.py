@@ -136,7 +136,7 @@ def get_answer(
                     #     del trace[k]
 
             else:
-                # logging.warning("Skipping solution traces")
+                logging.warning("Skipping solution traces")
                 solution_trace = []
 
             final_result = [str(decode(x[answer])) for x in query_result]
