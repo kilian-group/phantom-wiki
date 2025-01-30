@@ -3,7 +3,6 @@ from phantom_wiki.facts.family.constants import PERSON_TYPE
 import logging
 from phantom_wiki.utils import decode
 from multiprocessing import Pool
-import time
 
 SAVE_ALL_CLAUSES_TO_FILE = """
 (save_all_clauses_to_file(File) :-
@@ -57,9 +56,9 @@ class Database:
         self.define("attribute/1")
         attributes = [decode(result["X"]) for result in self.prolog.query("attribute(X)")]
         return attributes
-    def batch_query(self, queries: list[str]) -> list[list[dict]]:
-        """Queries the Prolog database with multiple queries by leveraging
-        concurrency.
+    def batch_query(self, queries: list[str], multi_threading: bool = False) -> list[list[dict]]:
+        """Queries the Prolog database with multiple queries. If multi_threading 
+         is true, then this function leverages multi processors.
 
         Args:
             queries: List of Prolog query strings
@@ -67,36 +66,13 @@ class Database:
         Returns:
             List of results for each query
         """
-        t1 = time.time()
-        with Pool() as pool:
-            pool_results = pool.map(self.query, queries)
-        pool_querying_time = time.time()-t1
+        if multi_threading:
+            with Pool() as pool:
+                results = pool.map(self.query, queries)
+        else:
+            results = [self.query(q) for q in queries]
 
-        t2 = time.time()
-        seq_results = [self.query(q) for q in queries]
-        reg_querying_time = time.time()-t2
-
-        # print("Results equality:", pool_results==seq_results)
-        # print(seq_results)
-        # print(f"{queries[0]}\n{queries[1]}")
-        # query = f"""concurrent({len(queries)}, [{queries[0]}, {queries[1]}], [])"""
-        # # query = f"""concurrent({len(queries)}, [{','.join(queries)}], [])"""
-        # response = self.query(query)
-        # print("DSA", response)
-
-        # print("NO", self.query(queries[0]))
-        # print("ASD", self.query(f"findall([Y_2, Y_4, Y_6, Y_8], concurrent(2, [{queries[0]}], []), Results)"))
-        # # print(self.query(queries[0]), self.query(queries[1]))
-        # # print(self.query(queries[0]))
-        # # print([
-        # #     list(self.prolog.query(query)) for query in queries
-        # # ])
-        # # print(response)
-        # query = f"""concurrent({len(queries)}, [{','.join(f"safe_goal(({q}))" for q in queries)}], [])"""
-        # response = list(self.prolog.query(query))
-        # # print(response)
-
-        return pool_results, pool_querying_time, reg_querying_time
+        return results
     
     def query(self, query: str) -> list[dict]:
         """Queries the Prolog database.

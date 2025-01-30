@@ -222,9 +222,9 @@ def main(args):
         all_queries.append(queries)
 
 
-    # Get all possible answers for the queries
+    # Get all possible answers/solution traces for the queries
     answers = [t[2] for t in templates]
-    all_solution_traces, all_final_results = get_answer(all_queries, db, answers, return_solution_traces=False)
+    all_solution_traces, all_final_results = get_answer(all_queries, db, answers, return_solution_traces=False, args.multi_threading)
 
     progbar = tqdm(enumerate(templates), desc="Generating questions #2", total=len(templates))
     for i, (question_template, query_template, answer) in progbar:
@@ -232,7 +232,6 @@ def main(args):
         solution_traces = all_solution_traces[i]
         final_results = all_final_results[i]
 
-        # print(len(solution_traces))
         questions = []
         for i in range(len(final_results)):
             solution_trace = solution_traces[i]
@@ -262,7 +261,6 @@ def main(args):
         progbar.set_description(f"Template ({i+1}/{len(templates)})")
     timings["questions_generate"] = time.time() - start
 
-    print("NASODNASD", args.use_multithreading)
     blue("Saving questions")
     start = time.time()
     if args.question_format == "json":
