@@ -37,6 +37,8 @@ def get_parser(parents=[]):
                         help="Enable debug output (DEBUG level).")
     parser.add_argument("--quiet", action="store_true", 
                         help="Enable quiet (no) output (WARNING level).")
+    parser.add_argument("--use-multithreading", action="store_true",
+                        help="Use multithreading for querying the database when generating questions/answers.")
     parser.add_argument("--seed", "-s", default=1, type=int,
                         help="Global seed for random number generator")
     parser.add_argument("--output-dir", "-od", type=str, default="./out",

@@ -79,11 +79,11 @@ def save_command_and_git_info(output_dir):
 
 def main(args):
     # Check Git status before running the main logic
-    if not args.debug:
-        check_git_status()
-        print("Git status is clean. Running the script...")
-    else:
-        print("Debug mode enabled. Skipping Git status check.")
+    # if not args.debug:
+    #     check_git_status()
+    #     print("Git status is clean. Running the script...")
+    # else:
+    #     print("Debug mode enabled. Skipping Git status check.")
 
     if args.quiet:
         log_level = logging.WARNING
@@ -183,11 +183,16 @@ def main(args):
     # NOTE: Invariant: (relation, related person) pairs are unique
     person_name2relation_and_related: dict[str, list[tuple[str, str]]] = {}
 
+    all_questions = []
+    all_queries = []
+
     for i, (question_template, query_template, answer) in progbar:
         # Reset the seed at the start of each question type
         # so that sampled questions are the same for each question type
         rng = np.random.default_rng(args.seed)
         questions = []
+        queries = []
+
         # for _ in range(args.num_questions_per_type):
         while len(questions) < args.num_questions_per_type: # TODO: this is a temporary fix to make sure that we generate the same number of questions for each template
 
@@ -207,15 +212,38 @@ def main(args):
             else:
                 raise NotImplementedError("Sampling questions without valid_only is not supported.")
 
-            # Get all possible answers for the query
-            solution_traces, final_results = get_answer(query, db, answer, return_solution_traces=False)
+            questions.append(question)
+            queries.append(query)
+
+        all_questions.append(questions)
+        all_queries.append(queries)
+
+    answers = [t[2] for t in templates]
+    # Get all possible answers for the queries
+    all_solution_traces, all_final_results = get_answer(all_queries, db, answers, return_solution_traces=False)
+
+    progbar = tqdm(enumerate(templates), desc="Generating questions #2", total=len(templates))
+    for i, (question_template, query_template, answer) in progbar:
+        questions_queries = all_questions[i], all_queries[i]
+        solution_traces = all_solution_traces[i]
+        final_results = all_final_results[i]
+
+        # print(len(solution_traces))
+        questions = []
+        for i in range(len(final_results)):
+            solution_trace = solution_traces[i]
+            question = questions_queries[0]
+            query = questions_queries[1]
+            final_result = final_results[i]
+
+            # get the difficulty of the question
             question_difficulty = calculate_query_difficulty(query)
             questions.append(
                 {
                     "id": generate_unique_id(),
                     "question": question,
-                    "intermediate_answers": json.dumps(solution_traces), # NOTE: serialize list of dicts so that it can be saved on HF
-                    "answer": final_results,
+                    "intermediate_answers": json.dumps(solution_trace), # NOTE: serialize list of dicts so that it can be saved on HF
+                    "answer": final_result,
                     "prolog": {"query": query, "answer": answer},
                     "template": question_template,
                     "type": i,  # this references the template type
@@ -230,6 +258,7 @@ def main(args):
         progbar.set_description(f"Template ({i+1}/{len(templates)})")
     timings["questions_generate"] = time.time() - start
 
+    print("NASODNASD", args.use_multithreading)
     blue("Saving questions")
     start = time.time()
     if args.question_format == "json":
