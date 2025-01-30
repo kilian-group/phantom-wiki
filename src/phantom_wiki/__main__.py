@@ -183,6 +183,7 @@ def main(args):
     # NOTE: Invariant: (relation, related person) pairs are unique
     person_name2relation_and_related: dict[str, list[tuple[str, str]]] = {}
 
+    # To store all the questions and queries for all templates
     all_questions = []
     all_queries = []
 
@@ -190,6 +191,8 @@ def main(args):
         # Reset the seed at the start of each question type
         # so that sampled questions are the same for each question type
         rng = np.random.default_rng(args.seed)
+
+        # To store the questions and queries for the given template
         questions = []
         queries = []
 
@@ -218,8 +221,9 @@ def main(args):
         all_questions.append(questions)
         all_queries.append(queries)
 
-    answers = [t[2] for t in templates]
+
     # Get all possible answers for the queries
+    answers = [t[2] for t in templates]
     all_solution_traces, all_final_results = get_answer(all_queries, db, answers, return_solution_traces=False)
 
     progbar = tqdm(enumerate(templates), desc="Generating questions #2", total=len(templates))
