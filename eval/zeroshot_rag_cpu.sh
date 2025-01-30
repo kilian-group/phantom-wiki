@@ -78,7 +78,7 @@ do
         --method zeroshot-rag \
         -od $1 \
         -m $model_name \
-        --split_list depth_20_size_5000_seed_1 depth_20_size_5000_seed_2 depth_20_size_5000_seed_3 \
+        --split_list $SPLIT_LIST \
         --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
         --inf_temperature $TEMPERATURE \
         --retriever_method whereisai/uae-large-v1 \
