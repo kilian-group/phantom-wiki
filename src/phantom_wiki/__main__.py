@@ -167,7 +167,6 @@ def main(args):
         logging.info(f"Saving questions to: {question_dir}")
         os.makedirs(question_dir, exist_ok=True)
 
-    all_questions = []
     progbar = tqdm(enumerate(templates), desc="Generating questions", total=len(templates))
 
     # Populate person name bank for the universe. The list is static across generating questions
@@ -226,18 +225,21 @@ def main(args):
     answers = [t[2] for t in templates]
     all_solution_traces, all_final_results = get_answer(all_queries, db, answers, return_solution_traces=False, multi_threading=args.use_multithreading)
 
+    all_full_questions = []
     progbar = tqdm(enumerate(templates), desc="Generating questions #2", total=len(templates))
+    
     for i, (question_template, query_template, answer) in progbar:
-        questions_queries = all_questions[i], all_queries[i]
-        solution_traces = all_solution_traces[i]
-        final_results = all_final_results[i]
+        template_questions = all_questions[i]
+        template_queries = all_queries[i]
+        template_solution_traces = all_solution_traces[i]
+        template_final_results = all_final_results[i]
 
         questions = []
-        for i in range(len(final_results)):
-            solution_trace = solution_traces[i]
-            question = questions_queries[0]
-            query = questions_queries[1]
-            final_result = final_results[i]
+        for j in range(len(template_final_results)):
+            solution_trace = template_solution_traces[j]
+            question = template_queries[j]
+            query = template_questions[j]
+            final_result = template_final_results[j]
 
             # get the difficulty of the question
             question_difficulty = calculate_query_difficulty(query)
@@ -256,7 +258,9 @@ def main(args):
             if args.question_format == "json_by_type":
                 with open(os.path.join(question_dir, f"type{i}.json"), "w") as file:
                     json.dump(questions, file, indent=4)
-        all_questions.extend(questions)
+
+        all_full_questions.extend(questions) # TODO: What is this?
+
         # update progbar
         progbar.set_description(f"Template ({i+1}/{len(templates)})")
     timings["questions_generate"] = time.time() - start
@@ -268,7 +272,7 @@ def main(args):
         save_path = os.path.join(args.output_dir, "questions.json")
         logging.info(f"Saving questions to: {save_path}")
         with open(save_path, "w") as file:
-            json.dump(all_questions, file, indent=4)
+            json.dump(all_full_questions, file, indent=4)
     timings["questions_save"] = time.time() - start
 
     timings["total"] = time.time() - global_start
