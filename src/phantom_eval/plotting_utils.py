@@ -16,11 +16,11 @@ plt.rcParams.update({
     'axes.spines.top': False,
     'axes.spines.right': False,
     # set major tick length
-    'xtick.major.size': 6,
-    'ytick.major.size': 6,
+    # 'xtick.major.size': 6,
+    # 'ytick.major.size': 6,
     # set minor tick length
-    'xtick.minor.size': 3,
-    'ytick.minor.size': 3,
+    # 'xtick.minor.size': 3,
+    # 'ytick.minor.size': 3,
 })
 COLORS = {
     'google/gemma-2-27b-it': 'tab:blue',
@@ -103,7 +103,8 @@ MARKERS = {
 }
 
 # Single column figures
-TICK_FONT_SIZE = 8
+TICK_FONT_SIZE = 6
+MINOR_TICK_FONT_SIZE = 3
 LABEL_FONT_SIZE = 10
 LEGEND_FONT_SIZE = 7
 MARKER_ALPHA = 1
@@ -186,3 +187,6 @@ SIMPLIFIED_METHODS['reasoning'] = 'zeroshot'
 SIMPLIFIED_METHODS['cot-reasoning'] = 'cot'
 SIMPLIFIED_METHODS['reasoning-rag'] = 'zeroshot-rag'
 SIMPLIFIED_METHODS['cot-rag-reasoning'] = 'cot-rag'
+
+import numpy as np
+DEC = np.arange(1,11)

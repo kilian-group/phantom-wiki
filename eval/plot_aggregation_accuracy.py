@@ -10,7 +10,8 @@ Example:
 # %%
 import os
 from phantom_eval import get_parser
-from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std
+from phantom_eval.evaluate_utils import get_evaluation_data, pivot_mean_std, mean, std
+from phantom_eval import plotting_utils
 import matplotlib.pyplot as plt
 
 parser = get_parser()
@@ -52,7 +53,7 @@ acc_by_type = df.groupby(COLS)[['EM','precision', 'recall', 'f1']].mean()
 # first compute the mean across inference generation seeds
 acc_mean_std = acc_by_type.groupby(['_model', '_data_seed', 'aggregation']).agg('mean')
 # second compute the mean and standard error across data generation seeds
-acc_mean_std = acc_by_type.groupby(['_model', 'aggregation']).agg([mean, std])
+acc_mean_std = acc_mean_std.groupby(['_model', 'aggregation']).agg([mean, std])
 acc_mean_std = acc_mean_std.reset_index()
 
 # %%
@@ -67,8 +68,8 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
         y = row
         yerr = df_std.loc[i]
         # use a line plot instead of errorbar
-        plt.plot(x, y, label=i, marker='o', color=COLORS[i], linestyle=LINESTYLES[i])
-        plt.fill_between(x, y-yerr, y+yerr, alpha=0.3, color=COLORS[i])
+        plt.plot(x, y, label=i, marker='o', color=plotting_utils.COLORS[i], linestyle=plotting_utils.LINESTYLES[i])
+        plt.fill_between(x, y-yerr, y+yerr, alpha=0.3, color=plotting_utils.COLORS[i])
 
     plt.legend(title='Model', loc='upper right', fontsize=12)
     # format x-axis

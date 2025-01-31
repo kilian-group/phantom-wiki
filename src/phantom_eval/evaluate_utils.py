@@ -145,7 +145,7 @@ def _get_qa_pairs(dataset: str, splits: list[str]):
     df_qa_pairs = pd.concat(df_list)
     return df_qa_pairs
 
-@memory.cache(cache_validation_callback=expires_after(hours=1))
+@memory.cache(cache_validation_callback=expires_after(hours=4))
 def get_evaluation_data(output_dir: str, method: str, dataset: str, sep: str = constants.answer_sep):
     """Get the evaluation data for a given method
 

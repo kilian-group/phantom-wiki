@@ -21,13 +21,13 @@ Generates a plot with the universe size on the x-axis, difficulty on the y-axis,
 Saves the plots to the figures directory of the output directory.
 
 Example:
-    python eval/plot_size_difficulty_accuracy.py -od out  --method react
+    python eval/plot_size_difficulty_accuracy_per_model.py -od out  --method react
 """
 
 # %%
 import os
 from phantom_eval import get_parser
-from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std
+from phantom_eval.evaluate_utils import get_evaluation_data, pivot_mean_std, mean, std
 from phantom_eval.utils import setup_logging
 import matplotlib.pyplot as plt
 import numpy as np
@@ -35,7 +35,7 @@ import logging
 setup_logging(logging.INFO)
 
 parser = get_parser()
-parser.add_argument("--fmt_max_universe_size", type=int, default=500, 
+parser.add_argument("--fmt_max_universe_size", type=int, default=10_000, 
                     help="Maximum universe size to plot")
 args = parser.parse_args()
 output_dir = args.output_dir
@@ -44,12 +44,22 @@ dataset = args.dataset
 fmt_max_universe_size = args.fmt_max_universe_size
 # get evaluation data from the specified output directory and method subdirectory
 df = get_evaluation_data(output_dir, method, dataset)
+DIFFICULTY = 'difficulty'
+MAX_DIFFICULTY = 15
+# ignore difficulty beyond 15
+df = df[df[DIFFICULTY] <= MAX_DIFFICULTY]
+METRICS = [
+    # 'EM', 
+    # 'precision', 
+    # 'recall', 
+    'f1',
+]
 
 # %%
 # group by model, size, data seed, and seed
 grouped = df.groupby(['_model', '_size', '_data_seed', '_seed', 'difficulty'])
 # logging.info the accuracy
-acc = grouped[['EM','precision', 'recall', 'f1']].mean()
+acc = grouped[METRICS].mean()
 # add a column that counts the number of elements in the group
 acc['count'] = grouped.size()
 
@@ -68,10 +78,7 @@ figures_dir = os.path.join(output_dir, 'figures', method)
 os.makedirs(figures_dir, exist_ok=True)
 
 # %%
-acc_mean_std
-
-# %%
-for metric in ['EM', 'precision', 'recall', 'f1']:
+for metric in METRICS:
     for model in models:
         # create a new figure for each data seed, metric, and model
         fig, ax = plt.subplots(figsize=(15, 8))
@@ -107,7 +114,7 @@ for metric in ['EM', 'precision', 'recall', 'f1']:
         cbar.set_label(metric)
 
         # format x-axis
-        ax.set_xlabel('Size of universe')
+        ax.set_xlabel('Universe size')
         ax.set_xticks(xticks)
         ax.set_xticklabels(xlabels)
         # format y-axis
