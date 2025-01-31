@@ -60,8 +60,6 @@ from phantom_wiki.facts.templates import QA_GRAMMAR_STRING, generate_templates
 from scipy.interpolate import interp1d
 grammar = CFG.fromstring(QA_GRAMMAR_STRING)
 question_templates_10 = [' '.join(question) for question, _, _ in generate_templates(grammar, depth=10)]
-# import pdb; pdb.set_trace()
-DEC = np.arange(1,11)
 
 for metric in METRICS:
     fig = plt.figure(figsize=(3.25, 2.75)) # exact dimensions of ICML single column width
@@ -199,7 +197,7 @@ for metric in METRICS:
             axs[i].text(np.log10(3125), 0, '1M', fontsize=6, color='gray')
         
     all_x = sorted(list(set(all_x)))
-    xticks = [50, *DEC*100, *DEC*1000]
+    xticks = [50, *plotting_utils.DEC*100, *plotting_utils.DEC*1000]
     for i in range(3):
         # format x-axis
         axs[i].set_xlabel('Universe size $n$', fontsize=plotting_utils.LABEL_FONT_SIZE)
