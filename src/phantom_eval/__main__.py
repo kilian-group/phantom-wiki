@@ -62,7 +62,7 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 sep=constants.answer_sep,
                 fewshot_examples=FEWSHOT_EXAMPLES,
             )
-        case "cot":
+        case "cot" | "cot-reasoning":
             agent_kwargs = dict(
                 cot_examples=COT_EXAMPLES
             )
@@ -86,7 +86,7 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 retriever_num_documents=args.retriever_num_documents,
                 fewshot_examples=FEWSHOT_EXAMPLES,
             )
-        case "cot-rag":
+        case "cot-rag" | "cot-rag-reasoning":
             agent_kwargs = dict(
                 embedding_model_name=args.retriever_method,
                 retriever_num_documents=args.retriever_num_documents,
@@ -166,6 +166,7 @@ async def main(args: argparse.Namespace) -> None:
             can_process_full_batch = (args.model_name in VLLMChat.SUPPORTED_LLM_NAMES) \
                 and (args.method not in ["react", "act", "react->cot-sc", "cot-sc->react"])
             batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
+            # batch_size = args.batch_size
             for batch_number in range(1, math.ceil(num_df_qa_pairs/batch_size) + 1): #range(1, 2):
                 run_name = (
                     f"split={split}" \
@@ -202,7 +203,7 @@ async def main(args: argparse.Namespace) -> None:
                         # NOTE: the agent interactions are just single Conversation objects containing the prompt
                         # for the self-consistency methods, we save the Conversation object from the last iteration
                         agent_interactions: list[Conversation] = agent.agent_interactions
-                    case "cot" | "cot-sc" | "cot-rag":
+                    case "cot" | "cot-sc" | "cot-rag" | "cot-reasoning" | "cot-rag-reasoning":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                         responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
