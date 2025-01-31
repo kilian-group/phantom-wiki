@@ -4,7 +4,7 @@ from datasets import load_dataset
 import matplotlib.pyplot as plt
 import re
 
-dataset = load_dataset("mlcore/phantom-wiki-v0.3", name='question-answer')
+dataset = load_dataset("mlcore/phantom-wiki-v0.5", name='question-answer')
 # print the splits
 print(dataset)
 # make a figure with 30 subplots (10 rows, 3 columns)
