@@ -9,6 +9,8 @@ Example:
 import os
 import pandas as pd
 from phantom_eval import get_parser
+from phantom_eval.utils import setup_logging
+setup_logging("INFO")
 from phantom_eval.evaluate_utils import get_evaluation_data, mean, std
 from phantom_eval import plotting_utils
 from tabulate import tabulate
@@ -70,7 +72,7 @@ for method in method_list:
     acc_mean_std = acc_mean_std.reset_index()
     # add a column at the end for the method
     # For the paper only: if _model='deepseek-ai/deepseek-r1-distill-qwen-32b' and method="reasoning", then set method to zeroshot
-    acc_mean_std['method'] = method.replace("reasoning", "zeroshot") if "reasoning" in method else method
+    acc_mean_std['method'] = plotting_utils.SIMPLIFIED_METHODS[method]
     df_list.append(acc_mean_std)
 
 # concatenate all the dataframes
@@ -91,10 +93,10 @@ results = results.rename_axis(index=['Universe Size', 'Model'])
 results.columns = results.columns.droplevel(0)
 # change the order of columns to be the same as method_list
 results = results[[method for method in method_list if method in results.columns]]
-# add a level to the columns representing whether it's a simple, rag, or agentic method
+# add a level to the columns representing whether it's an in-context, rag, or agentic method
 def get_method_type(method):
-    if method in plotting_utils.SIMPLE_METHODS:
-        method_type = 'Simple'
+    if method in plotting_utils.INCONTEXT_METHODS:
+        method_type = 'In-Context'
     elif method in plotting_utils.RAG_METHODS:
         method_type = 'RAG'
     elif method in plotting_utils.AGENTIC_METHODS:
@@ -102,26 +104,26 @@ def get_method_type(method):
     else:
         method_type = 'Other'
     # rename the columns to the method aliases
-    return method_type, plotting_utils.METHOD_ALIASES.get(method, method)
+    return method_type, plotting_utils.METHOD_LATEX_ALIASES.get(method, method)
 method_types = [get_method_type(method) for method in results.columns]
 results.columns = pd.MultiIndex.from_tuples(method_types, names=['Type', 'Method'])
-# DeepSeek with CoT and React should be filled with a dash
-deepseek_rows = [x[1] in [plotting_utils.MODEL_ALIASES['deepseek-ai/deepseek-r1-distill-qwen-32b']] for x in results.index]
-NON_ZEROSHOT_METHODS = [plotting_utils.METHOD_ALIASES[m] for m in plotting_utils.DEFAULT_METHOD_LIST if 'zeroshot' not in m]
-deepseek_cols = [x for x in results.columns if x[1] in NON_ZEROSHOT_METHODS] # only reasoning
-results.loc[deepseek_rows, deepseek_cols] = '---'
+# # DeepSeek with CoT and React should be filled with a dash
+# deepseek_rows = [x[1] in [plotting_utils.MODEL_ALIASES['deepseek-ai/deepseek-r1-distill-qwen-32b']] for x in results.index]
+# NON_ZEROSHOT_METHODS = [plotting_utils.METHOD_LATEX_ALIASES[m] for m in plotting_utils.DEFAULT_METHOD_LIST if 'zeroshot' not in m]
+# deepseek_cols = [x for x in results.columns if x[1] in NON_ZEROSHOT_METHODS] # only reasoning
+# results.loc[deepseek_rows, deepseek_cols] = '---'
 # Llama-3.3-70B, GPT-4o zeroshot and cot beyond size 5000 should be filled with \ooc
 MODELS_128K = [
     plotting_utils.MODEL_ALIASES['meta-llama/llama-3.3-70b-instruct'],
     plotting_utils.MODEL_ALIASES['gpt-4o-2024-11-20'],
 ]
 rows_128k = [(x[0]>500 and x[1] in MODELS_128K) for x in results.index]
-cols_128k = [x for x in results.columns if x[1] in [plotting_utils.METHOD_ALIASES[m] for m in plotting_utils.SIMPLE_METHODS]] # only zeroshot and reasoning
+cols_128k = [x for x in results.columns if x[1] in [plotting_utils.METHOD_LATEX_ALIASES[m] for m in plotting_utils.INCONTEXT_METHODS]] # only zeroshot and reasoning
 results.loc[rows_128k, cols_128k] = '\\ooc'
 # Gemini t and cot beyond size 5000 should be filled with \ooc
 rows_1M = [(x[0]>500 and x[1] in [plotting_utils.MODEL_ALIASES['gemini-1.5-flash-002']]) for x in results.index]
-cols_1M = [x for x in results.columns if x[1] in [plotting_utils.METHOD_ALIASES[m] for m in plotting_utils.SIMPLE_METHODS]] # only zeroshot and reasoning
-results.loc[rows_1M, cols_1M] = '\\ooc???'
+cols_1M = [x for x in results.columns if x[1] in [plotting_utils.METHOD_LATEX_ALIASES[m] for m in plotting_utils.INCONTEXT_METHODS]] # only zeroshot and reasoning
+results.loc[rows_1M, cols_1M] = '\\ooc'
 
 # reset the index
 results = results.reset_index()
