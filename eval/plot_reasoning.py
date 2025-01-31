@@ -9,6 +9,7 @@ Example:
 
 # %%
 import os
+import logging
 from phantom_eval import get_parser
 from phantom_eval.utils import setup_logging
 setup_logging("INFO")
@@ -71,7 +72,10 @@ for metric in METRICS:
                 continue
             # ignore difficulty beyond 15
             df = df[df[DIFFICULTY] <= MAX_DIFFICULTY]
-            # df = df[df['solutions']<= 1]
+            if False:
+                # NOTE: in the ICML submission, we include the reasoning figure controlling for the number of solutions
+                logging.warning(f"Filtering out {method} with more than 1 solution")
+                df = df[df['solutions']<= 1]
             # filter by depth
             df = df[(df['_depth'] == depth)]
             # get accuracies by model, split, difficulty, seed
