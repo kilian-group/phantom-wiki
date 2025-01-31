@@ -49,7 +49,10 @@ training_args = TrainingArguments(
     gradient_accumulation_steps=1,
     num_train_epochs=1,
     weight_decay=0.01,
+    per_device_eval_batch_size=2,
     eval_accumulation_steps=2,
+    torch_empty_cache_steps=2,
+    gradient_checkpointing=True,
 )
     # evaluation_strategy="no",
 
