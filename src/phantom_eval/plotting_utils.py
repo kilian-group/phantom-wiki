@@ -1,21 +1,26 @@
 ################ Utils and macros for plotting ################
+# TODO: use LaTeX for rendering (need to have LaTeX installed locally)
+# import matplotlib as mpl
+# # Add LaTeX packages (note: latex must be installed)
+# mpl.rcParams['text.latex.preamble'] = r'\usepackage{amssymb} \usepackage{amsmath}'
+# # Enable LaTeX rendering
+# mpl.rcParams['text.usetex'] = True
+# mpl.rcParams['font.family'] ='serif'
+
 # create a plot
 import matplotlib.pyplot as plt
 # utils for plotting
 plt.rcParams.update({
-    'font.size': 24,
     'font.family': 'serif',
     'mathtext.fontset': 'stix',
-    'axes.labelsize': 30,
-    'axes.titlesize': 30,
-    'xtick.labelsize': 24,
-    'ytick.labelsize': 24,
-    'legend.fontsize': 24,
-    'axes.linewidth': 0.8,
-    'lines.linewidth': 3,
-    'lines.markersize': 10,
     'axes.spines.top': False,
     'axes.spines.right': False,
+    # set major tick length
+    'xtick.major.size': 6,
+    'ytick.major.size': 6,
+    # set minor tick length
+    'xtick.minor.size': 3,
+    'ytick.minor.size': 3,
 })
 COLORS = {
     'google/gemma-2-27b-it': 'tab:blue',
@@ -55,6 +60,17 @@ LINESTYLES = {
     'gpt-4o-2024-11-20': '--',
     'deepseek-ai/deepseek-r1-distill-qwen-32b': '-',
 }
+METHOD_LINESTYLES = {
+    'zeroshot': '--',
+    'cot': '-',
+    'reasoning': '-.',
+    'zeroshot-rag': '--',
+    'cot-rag': '-',
+    'reasoning-rag': '-.',
+    'act': '--',
+    'react': '-',
+    'cot-rag-reasoning': '-.',
+}
 HATCHSTYLES = {
     'google/gemma-2-27b-it': '/',
     'google/gemma-2-9b-it': '\\',
@@ -90,6 +106,10 @@ MARKERS = {
 TICK_FONT_SIZE = 8
 LABEL_FONT_SIZE = 10
 LEGEND_FONT_SIZE = 7
+MARKER_ALPHA = 1
+MARKER_SIZE = 3
+LINE_ALPHA = 0.75
+OUTWARD = 4
 
 MODEL_ALIASES = {
     'google/gemma-2-27b-it': "Gemma-2-27B",
@@ -110,32 +130,47 @@ MODEL_ALIASES = {
     'gpt-4o-2024-11-20': 'GPT-4o',
     'deepseek-ai/deepseek-r1-distill-qwen-32b': 'DeepSeek-R1-32B',
 }
-METHOD_ALIASES = {
+METHOD_LATEX_ALIASES = {
     'zeroshot': '\\zeroshot',
     'cot': '\\CoT',
     'reasoning': '\\reasoning',
+    'cot-reasoning': '\\cotreasoning',
     'zeroshot-rag': '\\zeroshotrag',
     'cot-rag': '\\cotrag',
     'reasoning-rag': '\\reasoningrag',
+    'cot-reasoning-rag': '\\cotreasoningrag',
     'act': '\\act',
     'react': '\\react',
 }
-SIMPLE_METHODS = [
+METHOD_ALIASES = {
+    'zeroshot': 'ZeroShot',
+    'cot': 'CoT',
+    'reasoning': 'Reasoning',
+    'zeroshot-rag': 'ZeroShot-RAG',
+    'cot-rag': 'CoT-RAG',
+    'reasoning-rag': 'Reasoning-RAG',
+    'act': 'Act',
+    'react': 'ReAct',
+    'cot-rag-reasoning': 'CoT-Reasoning-RAG',
+}
+INCONTEXT_METHODS = [
     "zeroshot",
     "cot",
     "reasoning",
+    "cot-reasoning",
 ]
 RAG_METHODS = [
     "zeroshot-rag",
     "cot-rag",
     "reasoning-rag",
+    "cot-rag-reasoning",
 ]
 AGENTIC_METHODS = [
     # "act",
     "react",
 ]
 DEFAULT_METHOD_LIST = [
-    *SIMPLE_METHODS,
+    *INCONTEXT_METHODS,
     *RAG_METHODS,
     *AGENTIC_METHODS,
 ]
@@ -145,3 +180,9 @@ DEFAULT_MODEL_LIST = [
     "gpt-4o-2024-11-20",
     "meta-llama/llama-3.3-70b-instruct", 
 ]
+
+SIMPLIFIED_METHODS = {x:x for x in DEFAULT_METHOD_LIST}
+SIMPLIFIED_METHODS['reasoning'] = 'zeroshot'
+SIMPLIFIED_METHODS['cot-reasoning'] = 'cot'
+SIMPLIFIED_METHODS['reasoning-rag'] = 'zeroshot-rag'
+SIMPLIFIED_METHODS['cot-rag-reasoning'] = 'cot-rag'
