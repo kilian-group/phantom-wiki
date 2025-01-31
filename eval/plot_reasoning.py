@@ -161,11 +161,16 @@ for metric in METRICS:
             axs[i].set_ylabel(metric.upper(), fontsize=plotting_utils.LABEL_FONT_SIZE)
         # set ylim
         axs[i].set_ylim(0, 1)
-        yticks = [0, 0.5, 1]
-        axs[i].set_yticks(yticks)
-        axs[i].set_yticks([0.25, 0.75], minor=True)
-        axs[i].set_yticks(yticks)
-        axs[i].set_yticklabels(yticks, fontsize=plotting_utils.TICK_FONT_SIZE)
+        if False:
+            yticks = [0, 0.5, 1]
+            axs[i].set_yticks(yticks)
+            axs[i].set_yticks([0.25, 0.75], minor=True)
+            axs[i].set_yticks(yticks)
+            axs[i].set_yticklabels(yticks, fontsize=plotting_utils.TICK_FONT_SIZE)
+        else:
+            yticks = [0, 0.25, 0.5, 0.75, 1]
+            axs[i].set_yticks(yticks)
+            axs[i].set_yticklabels(yticks, fontsize=plotting_utils.TICK_FONT_SIZE)
         # set title
         axs[i].set_title(name, fontsize=plotting_utils.LABEL_FONT_SIZE)
 
