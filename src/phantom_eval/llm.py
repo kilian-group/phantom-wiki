@@ -2,7 +2,6 @@ import abc
 from copy import deepcopy
 import os
 import time
-from tqdm import tqdm
 import logging
 import asyncio
 
@@ -209,7 +208,7 @@ class CommonLLMChat(LLMChat):
         rate_limit_for_usage_tier = self.RATE_LIMITS[self.model_name][f"usage_tier={usage_tier}"]
         self.RPM_LIMIT = rate_limit_for_usage_tier["RPM"]
         self.TPM_LIMIT = rate_limit_for_usage_tier["TPM"]
-    def _increment(self, input_tokens):
+    def _increment(self):
         """Increment the counter by interval = (60 / RPM) and reset token usage
         """
         now = time.time()
@@ -221,22 +220,22 @@ class CommonLLMChat(LLMChat):
     async def _sleep_rpm(self):
         """Sleep if the RPM limit is exceeded
         """
-        remaining = self.end_rpm - time.time()
+        remaining = max(self.end_rpm - time.time(), 0)
         logging.debug(f"Sleeping for {remaining} to satisfy RPM limit")
-        return await asyncio.sleep(max(remaining, 0))
+        return await asyncio.sleep(remaining)
     async def _sleep_tpm(self, input_tokens):
         """Sleep if the input_tokens will exceed the TPM limit
         """
         if input_tokens + self.token_usage_per_minute > self.TPM_LIMIT:
-            remaining = self.end_tpm - time.time()
+            remaining = max(self.end_tpm - time.time(), 0)
             logging.debug(f"Sleeping for {remaining} to satisfy TPM limit")
-            await asyncio.sleep(max(remaining, 0))
+            await asyncio.sleep(remaining)
             self.token_usage_per_minute = 0 # reset token_usage_per_minute if new minute has started
     def _check(self, input_tokens):
         """Check that the condition is satisfied
         """
         now = time.time()
-        logging.debug(f"curr time={now-self.start}, rpm counter={self.end_rpm-self.start}, tpm counter={self.end_tpm-self.start}, token_usage_per_minute={self.token_usage_per_minute}")
+        logging.debug(f"checking: curr time={now-self.start}, rpm counter={self.end_rpm-self.start}, tpm counter={self.end_tpm-self.start}, token_usage_per_minute={self.token_usage_per_minute}")
         return now >= self.end_rpm and input_tokens + self.token_usage_per_minute <= self.TPM_LIMIT
     def _current(self):
         """Print the current time since start
@@ -281,20 +280,6 @@ class CommonLLMChat(LLMChat):
                     case ContentTextMessage(text=text):
                         formatted_messages.append({"role": message.role, "content": [{"type": "text", "text": text}]})
         return formatted_messages
-
-    def generate_response(self, conv: Conversation, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
-        assert self.client is not None, "Client is not initialized."
-
-        # max_retries and wait_seconds are object attributes, and cannot be written around the generate_response function
-        # So we need to wrap the _call_api function with the retry decorator
-        @retry(stop=stop_after_attempt(inf_gen_config.max_retries), wait=wait_fixed(inf_gen_config.wait_seconds))
-        def _call_api_wrapper() -> str:
-            messages_api_format: list[dict] = self._convert_conv_to_api_format(conv)
-            response = self._call_api(messages_api_format, inf_gen_config)
-            parsed_response = self._parse_api_output(response)
-            return parsed_response
-
-        return _call_api_wrapper()
     
     async def generate_response(self, conv: Conversation, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         """Async version of generate_response that can be called concurrently while respecting rate limits"""
@@ -316,6 +301,8 @@ class CommonLLMChat(LLMChat):
             # schedule _call_api to run concurrently
             t = asyncio.create_task(self._call_api(messages_api_format, inf_gen_config, use_async=True))
             logging.debug(f"{self._current()}: Done with {conv.uid}")
+            self._increment()
+            self.token_usage_per_minute += input_tokens
             logging.debug(f"{self._current()}: Updated counter")
             # release underlying lock and wake up 1 waiting task
             self.cond.notify()
@@ -333,57 +320,6 @@ class CommonLLMChat(LLMChat):
             for conv in convs
         ])
         return parsed_responses
-    
-    # 
-    # Deprecated implementation of batch_generate_response
-    # 
-    # async def _async_chat_completion(self, batch_messages_api_format: list[list[dict]], inf_gen_config: InferenceGenerationConfig) -> list[object]:
-    #     """
-    #     Generate responses for a batch of formatted conversations using asynchronous API calls, and return a batch of response objects.
-    #     Accounts for rate limits by sleeping between requests.
-    #     """
-    #     assert self.RPM_LIMIT >= 0, "RPM_LIMIT must be greater than 0 (or 0 if no rate limit)"
-    #     assert self.TPM_LIMIT >= 0, "TPM_LIMIT must be greater than 0 (or 0 if no rate limit)"
-    #     tasks = []
-
-    #     start = time.time()
-    #     token_usage_per_minute = 0 # NOTE: we estimate the number of used tokens in the current minute
-        
-    #     for i, messages_api_format in tqdm(enumerate(batch_messages_api_format), total=len(batch_messages_api_format)):
-    #         logger.debug(f"{time.time()-start}: Requesting message {i}")
-    #         input_tokens = self._count_tokens(messages_api_format)
-    #         logger.debug(f"Input tokens: {input_tokens}")
-    #         token_usage_per_minute += input_tokens
-
-    #         # check if we need to sleep to respect the TPM rate limit
-    #         remaining = 60 - (time.time() - start) # number of seconds remaining in the current minute
-    #         if self.TPM_LIMIT and token_usage_per_minute > self.TPM_LIMIT and remaining > 0:
-    #             logger.info(f"Token usage per minute: {token_usage_per_minute}")
-    #             logger.info(f"Sleeping for {remaining} seconds to respect the TPM rate limit")
-    #             await asyncio.sleep(remaining + 1) # NOTE: add an extra second so we definitely pass the minute
-            
-    #         # reset if we have passed the minute
-    #         if time.time() - start > 60:
-    #             start = time.time()
-    #             token_usage_per_minute = 0
-
-    #         t = self._call_api(messages_api_format, inf_gen_config, use_async=True)
-    #         tasks.append(asyncio.create_task(t))
-    #         # Sleep to respect the rate limit
-    #         if self.RPM_LIMIT:
-    #             await asyncio.sleep(60 / self.RPM_LIMIT * 1.5)
-        
-    #     logger.debug(f"{time.time()-start}: Waiting for responses")
-    #     responses = await asyncio.gather(*tasks)
-    #     logger.debug(f"{time.time()-start}: Got all responses")
-    #     return responses
-    
-    # async def batch_generate_response(self, convs: list[Conversation], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
-    #     batch_messages_api_format = [self._convert_conv_to_api_format(conv) for conv in convs]
-    #     responses = await self._async_chat_completion(batch_messages_api_format, inf_gen_config)
-    #     parsed_responses = [self._parse_api_output(response) for response in responses]
-    #     return parsed_responses
-
 
 class OpenAIChat(CommonLLMChat):
     # https://platform.openai.com/docs/guides/rate-limits/usage-tiers
@@ -531,9 +467,11 @@ class TogetherChat(CommonLLMChat):
 class AnthropicChat(CommonLLMChat):
     RATE_LIMITS = {
         "claude-3-5-sonnet-20241022": {
+            "usage_tier=1": {"RPM": 50, "TPM": 40_000},
             "usage_tier=2": {"RPM": 1_000, "TPM": 80_000},
         },
         "claude-3-5-haiku-20241022": {
+            "usage_tier=1": {"RPM": 50, "TPM": 50_000},
             "usage_tier=2": {"RPM": 1_000, "TPM": 100_000},
         },
     }
@@ -614,7 +552,6 @@ class GeminiChat(CommonLLMChat):
             "usage_tier=1": {"RPM": 1_000, "TPM": 4_000_000},
         },
         "gemini-1.5-flash-8b-001": {
-            "usage_tier=0": {"RPM": 15, "TPM": 1_000_000},  # free tier
             "usage_tier=0": {"RPM": 15, "TPM": 1_000_000},  # free tier
             "usage_tier=1": {"RPM": 4_000, "TPM": 4_000_000},
         },
@@ -899,34 +836,3 @@ def get_llm(model_name: str, model_kwargs: dict) -> LLMChat:
             return VLLMChat(model_name=model_name, **model_kwargs)
         case _:
             raise ValueError(f"Model name {model_name} must be one of {SUPPORTED_LLM_NAMES}.")
-
-
-# 
-# Testing the rate limiting logic
-# 
-class MockChat(CommonLLMChat):
-    SUPPORTED_LLM_NAMES: list[str] = ["mock_model"]
-    RATE_LIMITS = {
-        "mock_model": {
-            "usage_tier=1": {"RPM": 1_000, "TPM": 80_000}, # high RPM but low TPM
-            "usage_tier=2": {"RPM": 15, "TPM": 1_000_000}, # low RPM but high TPM
-            "usage_tier=3": {"RPM": 1_000, "TPM": 1_000_000}, # high RPM and TPM
-        },
-    }
-    def __init__(
-            self, 
-            model_name: str, 
-            model_path: str | None = None,
-            usage_tier: int = 1,
-        ):
-        super().__init__(model_name, model_path)
-        self._update_rate_limits(usage_tier)
-    def _count_tokens(self, messages_api_format: list[dict]) -> int:
-        return len(messages_api_format[0]["content"][0]["text"].split())
-    def _call_api(self, messages_api_format: list[dict], inf_gen_config: InferenceGenerationConfig, use_async: bool = False) -> object:
-        # return the content of the message
-        async def mock_call_api():
-            return messages_api_format[0]["content"][0]["text"]
-        return mock_call_api()
-    def _parse_api_output(self, response: object) -> LLMChatResponse:
-        return LLMChatResponse(pred=response, usage={})
