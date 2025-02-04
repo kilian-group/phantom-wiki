@@ -63,7 +63,9 @@ def aggregate_usage(usage_list: list[dict]) -> dict:
             result[key] = aggregate_usage([usage.get(key, {}) for usage in usage_list])
         else:
             # Assume that the values are summable (default 0 if key not present)
-            result[key] = sum([usage.get(key, 0) for usage in usage_list])
+            # key may exist in usage dict but have a None value, so convert that to 0
+            # Otherwise sum() will complain that it cannot sum None with integer
+            result[key] = sum([usage.get(key, 0) or 0 for usage in usage_list])
     return result
 
 
@@ -201,6 +203,9 @@ class CommonLLMChat(LLMChat):
         self.cond = asyncio.Condition()
 
     def _update_rate_limits(self, usage_tier: int) -> None:
+        usage_tier_str = f"usage_tier={usage_tier}"
+        if usage_tier_str not in self.RATE_LIMITS[self.model_name]:
+            raise ValueError(f"Usage tier {usage_tier} not supported for {self.model_name}, please update the class for {self.model_name}.")
         rate_limit_for_usage_tier = self.RATE_LIMITS[self.model_name][f"usage_tier={usage_tier}"]
         self.RPM_LIMIT = rate_limit_for_usage_tier["RPM"]
         self.TPM_LIMIT = rate_limit_for_usage_tier["TPM"]
@@ -376,12 +381,18 @@ class CommonLLMChat(LLMChat):
 
 
 class OpenAIChat(CommonLLMChat):
+    # https://platform.openai.com/docs/guides/rate-limits/usage-tiers
     RATE_LIMITS = {
         "gpt-4o-mini-2024-07-18": {
+            "usage_tier=0": {"RPM": 3, "TPM": 40_000},  # free tier
             "usage_tier=1": {"RPM": 500, "TPM": 200_000},
+            "usage_tier=2": {"RPM": 5_000, "TPM": 2_000_000},
+            "usage_tier=3": {"RPM": 5_000, "TPM": 4_000_000},
         },
         "gpt-4o-2024-11-20": {
             "usage_tier=1": {"RPM": 500, "TPM": 30_000},
+            "usage_tier=2": {"RPM": 5_000, "TPM": 450_000},
+            "usage_tier=3": {"RPM": 5_000, "TPM": 800_000},
         },
     }
     SUPPORTED_LLM_NAMES: list[str] = list(RATE_LIMITS.keys())
@@ -590,7 +601,7 @@ class GeminiChat(CommonLLMChat):
     """
     RATE_LIMITS = {
         "gemini-1.5-flash-002": {
-            "usage_tier=0": {"RPM": 15, "TPM": 1_000_000}, # free tier
+            "usage_tier=0": {"RPM": 15, "TPM": 1_000_000},  # free tier
             "usage_tier=1": {"RPM": 2_000, "TPM": 4_000_000},
         },
         "gemini-1.5-pro-002": {
@@ -599,10 +610,11 @@ class GeminiChat(CommonLLMChat):
         },
         "gemini-1.5-flash-8b-001": {
             "usage_tier=0": {"RPM": 15, "TPM": 1_000_000},  # free tier
+            "usage_tier=0": {"RPM": 15, "TPM": 1_000_000},  # free tier
             "usage_tier=1": {"RPM": 4_000, "TPM": 4_000_000},
         },
         "gemini-2.0-flash-exp": {
-            "usage_tier=0": {"RPM": 10, "TPM": 4_000_000}, # free tier: https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash
+            "usage_tier=0": {"RPM": 10, "TPM": 4_000_000},  # free tier: https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash
         }
     }
     SUPPORTED_LLM_NAMES: list[str] = list(RATE_LIMITS.keys())
@@ -651,14 +663,24 @@ class GeminiChat(CommonLLMChat):
         return response
 
     def _parse_api_output(self, response: object) -> LLMChatResponse:
+        # Try to get response text. If failed due to any reason, output empty prediction
+        # Example instance why Gemini can fail to return response.text:
+        # "The candidate's [finish_reason](https://ai.google.dev/api/generate-content#finishreason) is 4. Meaning that the model was reciting from copyrighted material."
+        try:
+            pred = response.text
+            error = None
+        except Exception as e:
+            pred = ""
+            error = str(e)
         return LLMChatResponse(
-            pred=response.text,
+            pred=pred,
             usage={
                 "prompt_token_count": response.usage_metadata.prompt_token_count,
                 "response_token_count": response.usage_metadata.candidates_token_count,
                 "total_token_count": response.usage_metadata.total_token_count,
                 "cached_content_token_count": response.usage_metadata.cached_content_token_count,
             },
+            error=error
         )
 
     def _count_tokens(self, messages_api_format: list[dict]) -> int:
@@ -681,9 +703,6 @@ class VLLMChat(CommonLLMChat):
         "mistralai/mistral-7b-instruct-v0.3",
         "deepseek-ai/deepseek-r1-distill-qwen-32b",
     ]
-    # additional stop token for llama models
-    # NOTE: eot = end-of-turn
-    ADDITIONAL_STOP = ["<|eot_id|>",]
 
     def __init__(
         self,
@@ -708,6 +727,13 @@ class VLLMChat(CommonLLMChat):
                 Defaults to 8000.
         """
         super().__init__(model_name, model_path)
+        
+        # additional stop token for llama models
+        # NOTE: eot = end-of-turn
+        if(model_name == "deepseek-ai/deepseek-r1-distill-qwen-32b"):
+            self.ADDITIONAL_STOP = ["<｜end▁of▁sentence｜>",]
+        else:
+            self.ADDITIONAL_STOP = ["<|eot_id|>",]
         
         self.use_api = use_api
         if self.use_api:
