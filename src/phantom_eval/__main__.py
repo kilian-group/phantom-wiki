@@ -329,15 +329,6 @@ def save_preds(
     for i, qa_sample in enumerate(batch_df_qa_pairs.itertuples()):
         uid = qa_sample.id
         if args.prolog_query:
-            db = Database()
-    
-            # Get the facts.pl file from the dataset split directory
-            facts_path = f"{os.path.dirname(os.path.abspath(__file__))}/../../{args.dataset}/{args.split_list[0]}/facts.pl"
-            logger.info(f"Looking for facts.pl at: {facts_path}")
-            if not Path(facts_path).exists():
-                raise FileNotFoundError(f"Could not find facts.pl at {facts_path}")
-            db = Database.from_disk(str(facts_path))
-    
             # Split the query and execute each part
             query_results = []
             pred_query = responses[i].pred
@@ -398,18 +389,23 @@ def save_preds(
             final_result = query_results[-1].get('result') if query_results else None
         
             # Get final value for target variable
-            final_value = None
+            final_value = set()
             if final_result and target_variable:
                 for binding in final_result:
                     if target_variable in binding:
-                        final_value = binding[target_variable]
-                        break
+                        final_value.add(binding[target_variable])
+            if final_value == set():
+                final_value = None
+            elif len(final_value) == 1:
+                final_value = final_value.pop()
+            else:
+                final_value = list(final_value)
+                final_value.sort()
         
         preds[uid] = {
             "true": qa_sample.answer,
             "pred": final_value if args.prolog_query else responses[i].pred,
-            "prolog_query": responses[i].pred if args.prolog_query else None,
-            "prolog_bindings": final_result[-1] if args.prolog_query else None,
+            "prolog_query": pred_query if args.prolog_query else None,
             "error": responses[i].error,
             "interaction": interactions[i].model_dump() if interactions else [],
             "metadata": {
@@ -433,6 +429,14 @@ if __name__ == "__main__":
     parser = get_parser()
     args = parser.parse_args()
     setup_logging(args.log_level)
+    db = Database()
+    
+    # Get the facts.pl file from the dataset split directory
+    facts_path = f"{os.path.dirname(os.path.abspath(__file__))}/../../{args.dataset}/{args.split_list[0]}/facts.pl"
+    logger.info(f"Looking for facts.pl at: {facts_path}")
+    if not Path(facts_path).exists():
+        raise FileNotFoundError(f"Could not find facts.pl at {facts_path}")
+    db = Database.from_disk(str(facts_path))
 
     # NOTE: asyncio.run should only be called once in a single Python instance.
     # Thus, any high-level function containing awaits in its implementation 
