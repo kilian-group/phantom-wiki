@@ -352,10 +352,10 @@ class CoTSCAgent(CoTAgent, SCMixin):
         CoTAgent.__init__(self, text_corpus, llm_prompt, cot_examples)
         SCMixin.__init__(self, num_votes, sep)
 
-    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+    async def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         # Relies on the implementation of run in the subclass
         responses: list[LLMChatResponse] = [
-            super().run(llm_chat, question, inf_gen_config)
+            await super().run(llm_chat, question, inf_gen_config)
             for _ in range(self.num_votes)
         ]
         return self.take_majority_vote(responses, self.sep)
@@ -965,13 +965,13 @@ class NshotRAGAgent(NshotAgent, RAGMixin):
         NshotAgent.__init__(self, text_corpus, llm_prompt, fewshot_examples)
         RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, use_api, tensor_parallel_size, port)
 
-    def run(self, 
+    async def run(self, 
             llm_chat: LLMChat, 
             question: str, 
             inf_gen_config: InferenceGenerationConfig
             ) -> LLMChatResponse:
         # Relies on the implementation of run in the subclass
-        return super().run(llm_chat, question, inf_gen_config)
+        return await super().run(llm_chat, question, inf_gen_config)
 
     async def batch_run(self, 
                         llm_chat: LLMChat, 
@@ -1003,13 +1003,13 @@ class CoTRAGAgent(CoTAgent, RAGMixin):
         CoTAgent.__init__(self, text_corpus, llm_prompt, cot_examples)
         RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, use_api, tensor_parallel_size, port)
 
-    def run(self, 
+    async def run(self, 
             llm_chat: LLMChat, 
             question: str, 
             inf_gen_config: InferenceGenerationConfig
             ) -> LLMChatResponse:
         # Relies on the implementation of run in the subclass
-        return super().run(llm_chat, question, inf_gen_config)
+        return await super().run(llm_chat, question, inf_gen_config)
 
     async def batch_run(self, 
                         llm_chat: LLMChat, 
@@ -1146,7 +1146,7 @@ class ReasoningRAGAgent(ReasoningAgent, RAGMixin):
         ReasoningAgent.__init__(self, text_corpus, llm_prompt, fewshot_examples)
         RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, use_api, tensor_parallel_size, port)
 
-    def run(self, 
+    async def run(self, 
             llm_chat: LLMChat, 
             question: str, 
             inf_gen_config: InferenceGenerationConfig
