@@ -397,12 +397,15 @@ class TogetherChat(CommonLLMChat):
     SUPPORTED_LLM_NAMES: list[str] = [
         "meta-llama/meta-llama-3.1-8b-instruct-turbo",
         "meta-llama/meta-llama-3.1-70b-instruct-turbo",
+        "meta-llama/llama-3.3-70b-instruct-turbo",
         "meta-llama/meta-llama-3.1-405b-instruct-turbo",
         "meta-llama/llama-vision-free",
+        "meta-llama/llama-3.3-70b-instruct-turbo-free",
     ]
     RATE_LIMITS = {
         llm_name: {
-            "usage_tier=1": {"RPM": 20, "TPM": 500_000}
+            "usage_tier=0": {"RPM": 20, "TPM": 500_000},
+            "usage_tier=1": {"RPM": 600, "TPM": 500_000}
         } 
         for llm_name in SUPPORTED_LLM_NAMES
     }
