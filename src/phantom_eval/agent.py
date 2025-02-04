@@ -1049,7 +1049,7 @@ class ReasoningAgent(Agent):
                 evidence=evidence,
                 question=question
             )
-    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+    async def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
         # Create a conversation with 1 user prompt and initialize agent interactions
         prompt = self._build_agent_prompt(question)
