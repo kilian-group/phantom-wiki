@@ -25,7 +25,8 @@ def get_parser() -> argparse.ArgumentParser:
                         help="Model used for RAG's embeddings")
     parser.add_argument("--retriever_num_documents", type=int, default=4,
                         help="Number of documents retrieved")
-                        
+    parser.add_argument("--prolog_query", type=bool, default=False,
+                        help="If True, the Zeroshot and Fewshot agents will generate answers through Prolog queries")
 
     # LLM inference params
     parser.add_argument("--inf_vllm_max_model_len", type=int, default=None,

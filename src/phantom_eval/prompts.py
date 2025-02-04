@@ -7,13 +7,13 @@ from phantom_eval import constants
 
 class LLMPrompt(abc.ABC):
     @abc.abstractmethod
-    def get_prompt(self) -> PromptTemplate:
+    def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
         pass
 
 
 ##### Zeroshot method
 class ZeroshotLLMPrompt(LLMPrompt):
-    ZEROSHOT_INSTRUCTION = f"""
+    ZEROSHOT_INSTRUCTION_PROLOG = f"""
     You are given the following evidence:
     (BEGIN EVIDENCE)
     {{evidence}}
@@ -24,55 +24,120 @@ class ZeroshotLLMPrompt(LLMPrompt):
 
     Question: {{question}}
     Answer: """
+    
+    ZEROSHOT_INSTRUCTION = f"""
+    You are given the following evidence:
+    (BEGIN EVIDENCE)
+    {{evidence}}
+    (END EVIDENCE)
+    
+    You will be provided a question. Your task is to provide an answer according to these instructions: 
+    - The output must be one of the following: a name (if there is only one correct answer); or a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or numbers separated by '{constants.answer_sep}' (if the answer is numerical).
+    - DO NOT include any additional information in your answer.
 
-    def get_prompt(self) -> PromptTemplate:
-        return PromptTemplate(
-            input_variables=["evidence", "question"],
-            template=self.ZEROSHOT_INSTRUCTION,
-        )
+    Question: {{question}}
+    Answer: """
+
+    def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
+        if prolog_query:
+            return PromptTemplate(
+                input_variables=["evidence", "question"],
+                template=self.ZEROSHOT_INSTRUCTION_PROLOG,
+            )
+        else:
+            return PromptTemplate(
+                input_variables=["evidence", "question"],
+                template=self.ZEROSHOT_INSTRUCTION,
+            )
 
 ##### Fewshot method
 # The current example is the example from CoT trivially adapted
-FEWSHOT_EXAMPLES = f"""
+FEWSHOT_EXAMPLES_PROLOG = f"""
 Example 1:
 Question: Who is the brother of Dino Beltran?
-Answer: brother(X, 'Dino Beltran')
+Answer: brother(X, "Dino Beltran")
 
 Example 2:
 Question: Who is the sibling of Barabara Beltran?
-Answer: sibling(X, 'Barabara Beltran')
+Answer: sibling(X, "Barabara Beltran")
 
 Example 3:
 Question: Who is the mother of the sister of Stacia Toombs?
-Answer: sister('Stacia Toombs', Y), mother(Y, X)
+Answer: sister("Stacia Toombs", Y), mother(Y, X)
 
 Example 4:
-Question: Who is the uncle of William Smock?
-Answer: uncle('William Smock', X)
+Question: Who is the male second cousin of the uncle of William Smock?
+Answer: uncle("William Smock", X), male_second_cousin(X, Y)
 
 Example 5:
 Question: What is the occupation of the sister of the grandmother of Virgil Hackworth?
-Answer: grandmother('Virgil Hackworth', Z), sister(Z, Y), job(Y, X)
+Answer: grandmother("Virgil Hackworth", Z), sister(Z, Y), job(Y, X)
 
 Example 6:
-Question: Who is the brother of the person whose occupation is associate professor?
-Answer: job(X, 'associate professor'), brother(X, Y)
+Question: Who is the wife of the person whose occupation is associate professor?
+Answer: job(X, "associate professor"), wife(X, Y)
 
 Example 7:
 Question: What is the date of birth of the person whose hobby is meteorology?
-Answer: hobby(X, 'meteorology'), dob(X, Y)
+Answer: hobby(X, "meteorology"), dob(X, Y)
 
 Example 8:
 Question: Who is the cousin of the person whose occupation is broadcast engineer?
-Answer: job(Y, 'broadcast engineer'), cousin(Y, X)
+Answer: job(Y, "broadcast engineer"), cousin(Y, X)
 
 Example 9:
-Question: Who is the great-granddaughter of the person whose hobby is biology?
-Answer: hobby(Y, 'biology'), great_granddaughter(X, Y)
+Question: Who is the granddaughter of the mother of the friend of the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager?
+Answer: job(A, "theatre manager"), great_granddaughter(A, B), friend(B, C), parent(C, D), mother(D, E), friend(E, F), friend(F, G), mother(G, H), granddaughter(H, I)
+"""
+
+FEWSHOT_EXAMPLES = f"""
+Example 1:
+Question: Who is the sister of Aida Wang?
+Answer: Barabara Beltran{constants.answer_sep}Vicki Hackworth
+
+Example 2:
+Question: Who is the child of Alvaro Smock?
+Answer: Eli Smock{constants.answer_sep}Gene Smock
+
+Example 3:
+Question: Who is the friend of the child of Alvaro Smock?
+Answer: Leisa Lutz{constants.answer_sep}Shelli Beltran{constants.answer_sep}Vicki Hackworth{constants.answer_sep}Virgil Hackworth{constants.answer_sep}Alison Smock{constants.answer_sep}Brian Beltran{constants.answer_sep}Leeann Hackworth{constants.answer_sep}Ricardo Hackworth{constants.answer_sep}Dominique Smock
+
+Example 4:
+Question: Who is the aunt of Vicki Hackworth?
+Answer: Stacia Toombs
+
+Example 5:
+Question: What is the occupation of the husband of Stacia Toombs?
+Answer: theatre manager
+
+Example 6:
+Question: What is the hobby of the daughter-in-law of Lannie Smock?
+Answer: dominoes
+
+Example 7:
+Question: What is the date of birth of the person whose hobby is finance?
+Answer: 0959-03-22
+
+Example 8:
+Question: Who is the great-granddaughter of the person whose occupation is biomedical scientist?
+Answer: Shelli Beltran{constants.answer_sep}Stacia Toombs
+
+Example 9:
+Question: How many friends does Ryan Wang have?
+Answer: 4
+
+Example 10:
+Question: How many friends does the child of Alvaro Smock have?
+Answer: 6{constants.answer_sep}5
+
+Example 11:
+Question: How many uncles does the friend of Stacia Toombs have?
+Answer: 0{constants.answer_sep}1
 """
 
 class FewshotLLMPrompt(LLMPrompt):
-    FEWSHOT_INSTRUCTION = f"""
+    FEWSHOT_INSTRUCTION_PROLOG = f"""
     You are given the following evidence:
     (BEGIN EVIDENCE)
     {{evidence}}
@@ -88,12 +153,36 @@ class FewshotLLMPrompt(LLMPrompt):
 
     Question: {{question}}
     Answer: """
+    
+    FEWSHOT_INSTRUCTION = f"""
+    You are given the following evidence:
+    (BEGIN EVIDENCE)
+    {{evidence}}
+    (END EVIDENCE)
+    
+    You will be provided a question. Your task is to provide an answer according to these instructions: 
+    - The output must be one of the following: a name (if there is only one correct answer); or a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or numbers separated by '{constants.answer_sep}' (if the answer is numerical).
+    - DO NOT include any additional information in your answer.
 
-    def get_prompt(self):
-        return PromptTemplate(
-            input_variables=["evidence", "examples", "question"],
-            template=self.FEWSHOT_INSTRUCTION,
-        )
+    Here are some examples:
+    (START OF EXAMPLES)
+    {{examples}}
+    (END OF EXAMPLES)
+
+    Question: {{question}}
+    Answer: """
+
+    def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
+        if prolog_query:
+            return PromptTemplate(
+                input_variables=["evidence", "examples", "question"],
+                template=self.FEWSHOT_INSTRUCTION_PROLOG,
+            )
+        else:
+            return PromptTemplate(
+                input_variables=["evidence", "examples", "question"],
+                template=self.FEWSHOT_INSTRUCTION,
+            )
 
 ##### CoT method
 COT_EXAMPLES = f"""
@@ -163,7 +252,7 @@ class CoTLLMPrompt(LLMPrompt):
     Question: {{question}}
     Answer: """
 
-    def get_prompt(self) -> PromptTemplate:
+    def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
         return PromptTemplate(
             input_variables=["evidence", "examples", "question"],
             template=self.COT_INSTRUCTION,
@@ -187,7 +276,7 @@ class RAGLLMPrompt(LLMPrompt):
     Question: {{question}}
     Answer (Your response must end in "The answer is <answer>."): """
 
-    def get_prompt(self) -> PromptTemplate:
+    def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
         return PromptTemplate(
             input_variables=["evidence", "question"],
             template=self.RAG_INSTRUCTION,
@@ -395,7 +484,7 @@ class ReactLLMPrompt(LLMPrompt):
     {{scratchpad}}
     """
 
-    def get_prompt(self) -> PromptTemplate:
+    def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
         return PromptTemplate(
             input_variables=["examples", "question", "scratchpad"],
             template=self.REACT_INSTRUCTION,
@@ -565,7 +654,7 @@ class ActLLMPrompt(LLMPrompt):
     {{scratchpad}}
     """
 
-    def get_prompt(self) -> PromptTemplate:
+    def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
         return PromptTemplate(
             input_variables=["examples", "question", "scratchpad"],
             template=self.ACT_INSTRUCTION,

@@ -75,7 +75,7 @@ class NshotAgent(Agent):
     Agent to implement Zeroshot and fewshot evaluation, 
     depending on the input `llm_prompt` on initialization.
     """
-    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, fewshot_examples: str = ""):
+    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, fewshot_examples: str = "", prolog_query: bool = False):
         """
         Args:
             fewshot_examples (str): Prompt examples to include in agent prompt.
@@ -83,20 +83,21 @@ class NshotAgent(Agent):
         """
         super().__init__(text_corpus, llm_prompt)
         self.fewshot_examples = fewshot_examples
-
+        self.prolog_query = prolog_query
+        
     def _build_agent_prompt(self, question: str) -> str:
         if hasattr(self, 'embedding_model_name') and self.embedding_model_name is not None:
             evidence = self.get_RAG_evidence(question)
         else:
             evidence = _get_evidence(self.text_corpus)
         if self.fewshot_examples: # Few-shot
-            return self.llm_prompt.get_prompt().format(
+            return self.llm_prompt.get_prompt(self.prolog_query).format(
                 evidence=evidence,
                 examples=self.fewshot_examples,
                 question=question
             )
         else: # Zero-shot
-            return self.llm_prompt.get_prompt().format(
+            return self.llm_prompt.get_prompt(self.prolog_query).format(
                 evidence=evidence,
                 question=question
             )
