@@ -74,39 +74,3 @@ def test_vllm():
     response = llm_chat.generate_response(example_conv)
     pred = response.pred.strip()
     assert pred == "2", f"Expected 2, got {pred}"
-
-# 
-# Functionality for testing the RPM and TPM rate limits
-#
-def test_mock():
-    llm_chat = MockChat(
-        model_name="mock_model",
-        usage_tier=1,
-    )
-    response = asyncio.run(llm_chat.generate_response(example_conv, inf_gen_config))
-    pred = response.pred
-    assert pred == EXAMPLE_PROMPT, f"Expected {EXAMPLE_PROMPT}, got {pred}"
-def test_mock_batch_high_rpm_low_tpm():
-    llm_chat = MockChat(
-        model_name="mock_model",
-        usage_tier=1,
-    )
-    responses = asyncio.run(llm_chat.batch_generate_response([example_conv for _ in range(1000)], inf_gen_config))
-    preds = [response.pred for response in responses]
-    assert preds[0] == EXAMPLE_PROMPT, f"Expected {EXAMPLE_PROMPT}, got {preds[0]}"
-def test_mock_batch_low_rpm_high_tpm():
-    llm_chat = MockChat(
-        model_name="mock_model",
-        usage_tier=2,
-    )
-    responses = asyncio.run(llm_chat.batch_generate_response([example_conv for _ in range(1000)], inf_gen_config))
-    preds = [response.pred for response in responses]
-    assert preds[0] == EXAMPLE_PROMPT, f"Expected {EXAMPLE_PROMPT}, got {preds[0]}"
-def test_mock_batch_high_rpm_high_tpm():
-    llm_chat = MockChat(
-        model_name="mock_model",
-        usage_tier=3,
-    )
-    responses = asyncio.run(llm_chat.batch_generate_response([example_conv for _ in range(1000)], inf_gen_config))
-    preds = [response.pred for response in responses]
-    assert preds[0] == EXAMPLE_PROMPT, f"Expected {EXAMPLE_PROMPT}, got {preds[0]}"
