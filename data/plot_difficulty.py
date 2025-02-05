@@ -18,7 +18,7 @@ for depth in [10, 20]:
         for seed in [1,2,3]:
             print(depth, size, seed)
             split = f"depth_{depth}_size_{size}_seed_{seed}"
-            dataset = load_data("mlcore/phantom-wiki-v0.5", split)
+            dataset = load_data("mlcore/phantom-wiki-v050", split)
             # plot histogram 
             difficulty.extend(dataset['qa_pairs']['difficulty'])
         # import pdb; pdb.set_trace()
