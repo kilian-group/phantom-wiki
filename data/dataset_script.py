@@ -60,7 +60,7 @@ for depth in [20]:
 for filename, config in [("articles.json", "text-corpus"), ("questions.json", "question-answer"), ("facts.pl", "database")]:
     _URLS[config] = {}
     for split in SPLITS:
-        _URLS[config][split] = f"https://huggingface.co/datasets/ag2435/phantom-wiki/resolve/main/{split}/{filename}"
+        _URLS[config][split] = f"https://huggingface.co/datasets/mlcore/phantom-wiki/resolve/main/{split}/{filename}"
 
 class PhantomWiki(datasets.GeneratorBasedBuilder):
     """PhantomWiki v0.5"""
