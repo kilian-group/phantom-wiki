@@ -1,6 +1,7 @@
 # Single column figures
 TICK_FONT_SIZE = 8
 LABEL_FONT_SIZE = 10
+LEGEND_FONT_SIZE = 7
 
 MODEL_ALIASES = {
     'google/gemma-2-27b-it': "Gemma-2-27B",
@@ -21,17 +22,38 @@ MODEL_ALIASES = {
     'gpt-4o-2024-11-20': 'GPT-4o',
     'deepseek-ai/deepseek-r1-distill-qwen-32b': 'DeepSeek-R1-32B',
 }
-
+METHOD_ALIASES = {
+    'zeroshot': 'Zeroshot',
+    'cot': 'CoT',
+    'reasoning': 'Reasoning',
+    'zeroshot-rag': 'Zeroshot-RAG',
+    'cot-rag': 'CoT-RAG',
+    'reasoning-rag': 'Reasoning-RAG',
+    'act': 'Act',
+    'react': 'ReAct',
+}
+SIMPLE_METHODS = [
+    "zeroshot",
+    "cot",
+    "reasoning",
+]
+RAG_METHODS = [
+    "zeroshot-rag",
+    "cot-rag",
+    "reasoning-rag",
+]
+AGENTIC_METHODS = [
+    # "act",
+    "react",
+]
 DEFAULT_METHOD_LIST = [
-    "zeroshot", 
-    "cot", 
-    "zeroshot-retriever", 
-    "cot-retriever", 
-    "react", 
-    "reasoning"
+    *SIMPLE_METHODS,
+    *RAG_METHODS,
+    *AGENTIC_METHODS,
 ]
 DEFAULT_MODEL_LIST = [ 
+    "deepseek-ai/deepseek-r1-distill-qwen-32b",
     "gemini-1.5-flash-002", 
+    "gpt-4o-2024-11-20",
     "meta-llama/llama-3.3-70b-instruct", 
-    "deepseek-ai/deepseek-r1-distill-qwen-32b"
 ]

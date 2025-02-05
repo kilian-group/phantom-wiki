@@ -118,11 +118,12 @@ HATCHSTYLES = {
 MARKERS = {
     "zeroshot": "^", #upward triangle
     "cot": "s", #square
-    "zeroshot-retriever": "*", # star
-    "cot-retriever": "H", # hexagon
+    "zeroshot-rag": "^", # upward triangle
+    "cot-rag": "s", # square
     "act": "+", # plus
     "react": "P", # bold plus
     "reasoning": "D", # diamond
+    "reasoning-rag": "D", # diamond
 }
 
 def pivot_mean_std(acc_mean_std, metric, independent_variable='_split'):
@@ -164,6 +165,11 @@ def _get_preds(output_dir, method):
     # NOTE: the actual filenames do not matter, since each row also contains
     # the model, split, batch_size, batch_number, and seed in the metadata and sampling params fields
     files = glob(f"{output_dir}/preds/{method}/*.json")
+
+    if len(files) == 0:
+        logging.warning(f"No files found in {output_dir}/preds/{method}/*.json")
+        return pd.DataFrame()
+    
     df_list = []
     if False: # old pred file format to maintain backwards compatibility
         # keys to create auxiliary columns that are useful for analysis
@@ -247,6 +253,8 @@ def get_evaluation_data(output_dir: str, method: str, dataset: str, sep: str = c
     """
     # get the predictions
     df_preds = _get_preds(output_dir, method)
+    if df_preds.empty:
+        return df_preds
     # get unique splits
     splits = df_preds['_split'].unique()
     # get the qa pairs

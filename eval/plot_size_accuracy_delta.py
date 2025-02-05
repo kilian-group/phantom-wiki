@@ -27,12 +27,13 @@ Example:
 # %%
 import os
 from phantom_eval import get_parser
+from phantom_eval import plotting_utils
 from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, HATCHSTYLES, pivot_mean_std, mean, std
 import matplotlib.pyplot as plt
 import numpy as np
 
 parser = get_parser()
-parser.add_argument("--mixin", type=str, default="retriever", help="Mixin to compare")
+parser.add_argument("--mixin", type=str, default="rag", help="Mixin to compare")
 args = parser.parse_args()
 output_dir = args.output_dir
 method = args.method
@@ -46,7 +47,12 @@ df_with_retriever = get_evaluation_data(output_dir, f"{method}-{mixin}", dataset
 # join on ['_model', '_size', '_data_seed', '_seed', 'id]
 df = df.merge(df_with_retriever, on=['_model', '_size', '_data_seed', '_seed', 'id'], how='inner', suffixes=('', f'_with_{mixin}'))
 # replace ['EM','precision', 'recall', 'f1'] with difference between the two columns
-METRICS = ['EM','precision', 'recall', 'f1']
+METRICS = [
+    'EM',
+    'precision', 
+    'recall', 
+    'f1'
+]
 df[METRICS] = df[[m + f'_with_{mixin}' for m in METRICS]].sub(df[METRICS].values)
 # drop the columns with _with_retriever suffix
 df = df.drop(columns=[col for col in df.columns if col.endswith(f'_with_{mixin}')])
@@ -76,7 +82,7 @@ for metric in METRICS:
     df_mean, df_std = pivot_mean_std(acc_mean_std, metric, independent_variable='_size')
     # df_mean columns are the universe sizes
     # df_mean index is the models
-    plt.figure(figsize=(15, 8))
+    fig = plt.figure(figsize=(3.25, 2.5))
     # import pdb; pdb.set_trace()
     x = np.arange(len(df_mean.columns)) * len(df_mean)
     spacing = 0.2  # space between groups of bars
@@ -92,19 +98,23 @@ for metric in METRICS:
             width=width, 
             label=i, 
             yerr=yerr, 
-            capsize=5, 
+            # capsize=5, 
             color=COLORS[i], 
             alpha=0.7, 
             hatch=HATCHSTYLES[i],
         )
 
-    plt.xticks(x + (width + spacing) * (len(df_mean) - 1) / 2, df_mean.columns)
-
-    plt.legend(title='Model', loc='upper right', fontsize=18)
+    fig.legend(loc='lower center', fontsize=plotting_utils.LEGEND_FONT_SIZE)
     # format x-axis
-    plt.xlabel('Size of universe')
-    plt.ylabel(f"{metric} (w/ {mixin} - w/o {mixin})")
+    plt.xlabel('Size of universe', fontsize=plotting_utils.LABEL_FONT_SIZE)
+    plt.xticks(x + (width + spacing) * (len(df_mean) - 1) / 2, df_mean.columns, fontsize=plotting_utils.TICK_FONT_SIZE)
+    # format y-axis
+    plt.ylabel(f"{metric.upper()} (w/ {mixin} - w/o {mixin})", fontsize=plotting_utils.LABEL_FONT_SIZE)
+    plt.yticks(fontsize=plotting_utils.TICK_FONT_SIZE)
+
     plt.tight_layout()
+    plt.subplots_adjust(left=0.2, right=0.95, top=0.95)  # Adjust horizontal space between subplots and reduce padding to the left and right
+
     fig_path = os.path.join(figures_dir, f'size-delta-{metric}-{mixin}.pdf')
     print(f"Saving to {os.path.abspath(fig_path)}")
     plt.savefig(fig_path)

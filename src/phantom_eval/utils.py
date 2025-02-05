@@ -1,20 +1,72 @@
 import argparse
 import logging
+import re
 
 from datasets import load_dataset, Dataset
 
+#
+# RESTRICT TO LOW DEPTH QUESTIONS (i.e., questions generated from the CFG with depth=10)
+# Note that the full dataset is generated using depth=20, but we can filter the
+# question-answer pairs by the template used to generate the question, which is
+# stored in the 'template' column of the dataframe.
+# 
+from nltk import CFG
+from phantom_wiki.facts.templates import QA_GRAMMAR_STRING, generate_templates
+grammar = CFG.fromstring(QA_GRAMMAR_STRING)
 
 def load_data(dataset: str, split: str) -> dict[str, Dataset]:
-    """
-    Load the phantom-wiki dataset from HuggingFace for a specific split.
-    example: load_data("depth6")
-    """
-    qa_pairs = load_dataset(dataset, "question-answer")[split]
-    text = load_dataset(dataset, "text-corpus")[split]
+    """Load the phantom-wiki dataset from HuggingFace for a specific split.
 
-    dataset = {"qa_pairs": qa_pairs, "text": text}
-    return dataset
+    NOTE: Split does not necessarily have to exist on HF. We can dynamically construct
+    a split by using the fact that if if A <= B, then the questions generated 
+    using depth=A are strictly contained in the questions generated using depth=B.
 
+    TODO: implement a test to check that the question-answer pairs returned by this
+    function is the same as the question-answer pairs had we truly generated a dataset
+    instance with the exact depth, size, seed.
+
+    Args:
+        dataset: The name of the dataset to load.
+        split: The split of the dataset to load.
+
+    Returns:
+        A dictionary containing the loaded datasets.
+    Example:
+        >>> from utils import load_data
+        >>> dataset = load_data("mlcore/phantom-wiki-v0.5", "depth_20_size_50_seed_1")
+    """
+    def _get_params(split: str) -> tuple[str, int, int]:
+        """Extract the depth, size, and seed from the split string."""
+        match = re.search(r"depth_(\d+)_size_(\d+)_seed_(\d+)", split)
+        depth, size, seed = match.groups()
+        return int(depth), int(size), int(seed)
+
+    ds_question_answer = load_dataset(dataset, "question-answer")
+    ds_text_corpus = load_dataset(dataset, "text-corpus")
+
+    available_splits = ds_question_answer.keys()
+    if split in available_splits:
+        logging.info(f"Using split {split} from dataset {dataset}.")
+        return {
+            "qa_pairs": ds_question_answer[split], 
+            "text": ds_text_corpus[split]
+        }
+    else:
+        requested_depth, requested_size, requested_seed = _get_params(split)
+        requested_question_templates = [question for question, _, _ in generate_templates(grammar, depth=requested_depth)]
+        # NOTE: requested_question_templates is a list of lists
+
+        for s in available_splits:
+            depth, size, seed = _get_params(s)
+            if requested_depth <= depth and requested_size == size and requested_seed == seed:
+                logging.info(f"Requested split {split} not found. Using subset of split {s} instead.")
+                # filter by template (NOTE: each template is a list of strings)
+                qa_pairs = ds_question_answer[s].filter(lambda x: x['template'] in requested_question_templates)
+                return {
+                    "qa_pairs": qa_pairs, 
+                    "text": ds_text_corpus[s] # the text corpus remains the same, since it is not generated from the CFG
+                }
+        raise ValueError(f"Split {split} not found in dataset {dataset}. Available splits: {available_splits}")
 
 def get_relevant_articles(dataset: Dataset, name_list: list[str]) -> str:
     """
