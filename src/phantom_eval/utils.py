@@ -32,8 +32,8 @@ def load_data(dataset: str, split: str) -> dict[str, Dataset]:
     Returns:
         A dictionary containing the loaded datasets.
     Example:
-        >>> from utils import load_data
-        >>> dataset = load_data("mlcore/phantom-wiki-v0.5", "depth_20_size_50_seed_1")
+        >>> from phantom_eval.utils import load_data
+        >>> dataset = load_data("mlcore/phantom-wiki-v050", "depth_20_size_50_seed_1")
     """
     def _get_params(split: str) -> tuple[str, int, int]:
         """Extract the depth, size, and seed from the split string."""
@@ -41,15 +41,17 @@ def load_data(dataset: str, split: str) -> dict[str, Dataset]:
         depth, size, seed = match.groups()
         return int(depth), int(size), int(seed)
 
-    ds_question_answer = load_dataset(dataset, "question-answer")
-    ds_text_corpus = load_dataset(dataset, "text-corpus")
+    ds_text_corpus = load_dataset(dataset, "text-corpus", trust_remote_code=True)
+    ds_question_answer = load_dataset(dataset, "question-answer", trust_remote_code=True)
+    ds_database = load_dataset(dataset, "database", trust_remote_code=True)
 
     available_splits = ds_question_answer.keys()
     if split in available_splits:
         logging.info(f"Using split {split} from dataset {dataset}.")
         return {
             "qa_pairs": ds_question_answer[split], 
-            "text": ds_text_corpus[split]
+            "text": ds_text_corpus[split],
+            "database": ds_database[split],
         }
     else:
         requested_depth, requested_size, requested_seed = _get_params(split)
@@ -64,7 +66,8 @@ def load_data(dataset: str, split: str) -> dict[str, Dataset]:
                 qa_pairs = ds_question_answer[s].filter(lambda x: x['template'] in requested_question_templates)
                 return {
                     "qa_pairs": qa_pairs, 
-                    "text": ds_text_corpus[s] # the text corpus remains the same, since it is not generated from the CFG
+                    "text": ds_text_corpus[s], # the text corpus remains the same, since it is not generated from the CFG
+                    "database": ds_database[s],
                 }
         raise ValueError(f"Split {split} not found in dataset {dataset}. Available splits: {available_splits}")
 
