@@ -161,6 +161,13 @@ async def main(args: argparse.Namespace) -> None:
             dataset = load_data(args.dataset, split)
             df_qa_pairs = pd.DataFrame(dataset["qa_pairs"])
             df_text = pd.DataFrame(dataset["text"])
+            
+            # Get the facts.pl file from the dataset split directory
+            facts_path = f"{os.path.dirname(os.path.abspath(__file__))}/../../{args.dataset}/{split}/facts.pl"
+            logger.info(f"Looking for facts.pl at: {facts_path}")
+            if not Path(facts_path).exists():
+                raise FileNotFoundError(f"Could not find facts.pl at {facts_path}")
+            db = Database.from_disk(str(facts_path))
 
             # Construct agent for the data split
             agent_kwargs = get_agent_kwargs(args)
@@ -204,6 +211,7 @@ async def main(args: argparse.Namespace) -> None:
                 # In zeroshot, fewshot, the LLM responds with the final answer in 1 turn only,
                 # so they support batch async inference
                 agent_interactions = None
+                prolog_results = []  # Store Prolog query results
                 match args.method:
                     case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc" | "zeroshot-rag" | "fewshot-rag" | "reasoning" | "reasoning-rag":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
@@ -230,6 +238,84 @@ async def main(args: argparse.Namespace) -> None:
                             responses.append(response)
                             agent_interactions.append(agent.agent_interactions)
 
+                # Process Prolog queries if needed
+                if args.prolog_query:
+                    for response in responses:
+                        query_results = []
+                        pred_query = response.pred
+                        sub_queries, target_variable = split_prolog_query(pred_query)
+                        
+                        # Build the compound query incrementally
+                        compound_query = ""
+                        variable_bindings = {}
+                        
+                        for sub_query in sub_queries:
+                            try:
+                                # Add this sub_query to compound query
+                                if compound_query:
+                                    compound_query += f", {sub_query}"
+                                else:
+                                    compound_query = sub_query
+                                
+                                # Execute the compound query up to this point
+                                result = db.query(compound_query)
+                                
+                                # Convert any bytes in the result to strings
+                                decoded_result = []
+                                if result:
+                                    for binding in result:
+                                        decoded_binding = {}
+                                        for key, value in binding.items():
+                                            if isinstance(value, bytes):
+                                                decoded_binding[key] = value.decode('utf-8')
+                                            else:
+                                                decoded_binding[key] = value
+                                        decoded_result.append(decoded_binding)
+                                
+                                # Store result and variable bindings
+                                query_results.append({
+                                    'query': compound_query,
+                                    'sub_query_added': sub_query,
+                                    'result': decoded_result,
+                                    'variables': variable_bindings.copy()
+                                })
+                                
+                                # Update variable bindings from result
+                                if decoded_result:
+                                    for binding in decoded_result:
+                                        variable_bindings.update(binding)
+                                
+                            except Exception as e:
+                                logger.error(f"Query failed: {compound_query}")
+                                logger.error(f"Error: {str(e)}")
+                                query_results.append({
+                                    'query': compound_query,
+                                    'sub_query_added': sub_query,
+                                    'error': str(e),
+                                    'variables': variable_bindings.copy()
+                                })
+                                break  # Stop if any part fails
+                        
+                        # Get final value for target variable
+                        final_value = set()
+                        if query_results and query_results[-1].get('result') and target_variable:
+                            for binding in query_results[-1]['result']:
+                                if target_variable in binding:
+                                    final_value.add(binding[target_variable])
+                        if final_value == set():
+                            final_value = None
+                        elif len(final_value) == 1:
+                            final_value = final_value.pop()
+                        else:
+                            final_value = list(final_value)
+                            final_value.sort()
+                        
+                        prolog_results.append({
+                            'final_value': final_value,
+                            'query': pred_query,
+                            'query_results': query_results
+                        })
+
                 # Log the final answers for the batch
                 pred_path.parent.mkdir(parents=True, exist_ok=True)
                 logger.info(f"Saving predictions to {pred_path}")
@@ -250,6 +336,7 @@ async def main(args: argparse.Namespace) -> None:
                     batch_number,
                     batch_df_qa_pairs,
                     responses,
+                    prolog_results=prolog_results if args.prolog_query else None,
                     interactions=agent_interactions if not args.ignore_agent_interactions else [],
                 )
 
@@ -321,6 +408,7 @@ def save_preds(
     batch_number: int,
     batch_df_qa_pairs: pd.DataFrame,
     responses: list[LLMChatResponse],
+    prolog_results: list[dict] | None = None,
     interactions: list[Conversation] | None = None,
 ) -> None:
     preds = {}
@@ -328,84 +416,22 @@ def save_preds(
     
     for i, qa_sample in enumerate(batch_df_qa_pairs.itertuples()):
         uid = qa_sample.id
-        if args.prolog_query:
-            # Split the query and execute each part
-            query_results = []
-            pred_query = responses[i].pred
-            sub_queries, target_variable = split_prolog_query(pred_query)
         
-            # Build the compound query incrementally
-            compound_query = ""
-            variable_bindings = {}
-            
-            for j, sub_query in enumerate(sub_queries):
-                try:
-                    # Add this sub_query to compound query
-                    if compound_query:
-                        compound_query += f", {sub_query}"
-                    else:
-                        compound_query = sub_query
-                    
-                    # Execute the compound query up to this point
-                    result = db.query(compound_query)
-                    
-                    # Convert any bytes in the result to strings
-                    decoded_result = []
-                    if result:
-                        for binding in result:
-                            decoded_binding = {}
-                            for key, value in binding.items():
-                                if isinstance(value, bytes):
-                                    decoded_binding[key] = value.decode('utf-8')
-                                else:
-                                    decoded_binding[key] = value
-                            decoded_result.append(decoded_binding)
-                    
-                    # Store result and variable bindings
-                    query_results.append({
-                        'query': compound_query,
-                        'sub_query_added': sub_query,
-                        'result': decoded_result,
-                        'variables': variable_bindings.copy()
-                    })
-                    
-                    # Update variable bindings from result
-                    if decoded_result:
-                        for binding in decoded_result:
-                            variable_bindings.update(binding)
-                    
-                except Exception as e:
-                    logger.error(f"Query failed: {compound_query}")
-                    logger.error(f"Error: {str(e)}")
-                    query_results.append({
-                        'query': compound_query,
-                        'sub_query_added': sub_query,
-                        'error': str(e),
-                        'variables': variable_bindings.copy()
-                    })
-                    break  # Stop if any part fails
-            
-            # Use the final result for the prediction
-            final_result = query_results[-1].get('result') if query_results else None
-        
-            # Get final value for target variable
-            final_value = set()
-            if final_result and target_variable:
-                for binding in final_result:
-                    if target_variable in binding:
-                        final_value.add(binding[target_variable])
-            if final_value == set():
-                final_value = None
-            elif len(final_value) == 1:
-                final_value = final_value.pop()
-            else:
-                final_value = list(final_value)
-                final_value.sort()
+        # Get the appropriate prediction value and query info
+        if args.prolog_query and prolog_results:
+            pred_value = prolog_results[i]['final_value']
+            pred_query = prolog_results[i]['query']
+            query_results = prolog_results[i]['query_results']
+        else:
+            pred_value = responses[i].pred
+            pred_query = None
+            query_results = None
         
         preds[uid] = {
             "true": qa_sample.answer,
-            "pred": final_value if args.prolog_query else responses[i].pred,
-            "prolog_query": pred_query if args.prolog_query else None,
+            "pred": pred_value,
+            "prolog_query": pred_query,
+            "prolog_query_results": query_results if args.log_level.upper() == "DEBUG" else None,
             "error": responses[i].error,
             "interaction": interactions[i].model_dump() if interactions else [],
             "metadata": {
@@ -429,14 +455,6 @@ if __name__ == "__main__":
     parser = get_parser()
     args = parser.parse_args()
     setup_logging(args.log_level)
-    db = Database()
-    
-    # Get the facts.pl file from the dataset split directory
-    facts_path = f"{os.path.dirname(os.path.abspath(__file__))}/../../{args.dataset}/{args.split_list[0]}/facts.pl"
-    logger.info(f"Looking for facts.pl at: {facts_path}")
-    if not Path(facts_path).exists():
-        raise FileNotFoundError(f"Could not find facts.pl at {facts_path}")
-    db = Database.from_disk(str(facts_path))
 
     # NOTE: asyncio.run should only be called once in a single Python instance.
     # Thus, any high-level function containing awaits in its implementation 
