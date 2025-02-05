@@ -1,7 +1,0 @@
-S -> NP VP
-NP -> Name | Name ", a " Occupation
-Name -> "Ella Rivers" | "Ella Johnson" | "Ella Smith"
-Occupation -> "Television production assistant"
-VP -> "who works at " Place "." | "employed by " Company "."
-Place -> "Orion Media Studios" | "Luna Broadcasting Center" | "Starline Productions"
-Company -> "Galaxy Entertainment Corp" | "Sunshine Network Inc" | "Moonlight Pictures Ltd"

@@ -1,6 +1,0 @@
-S -> NAME " is a " OCCUPATION " residing in " LOCATION "."
-NAME -> "Philipp Lumen"
-OCCUPATION -> "Gaffer"
-LOCATION -> CITY ", " COUNTRY
-CITY -> "Glimmerdale" | "Sparkleton" | "Lumenshire"
-COUNTRY -> "Fantasialand" | "Illuminatia" | "Radiancia"

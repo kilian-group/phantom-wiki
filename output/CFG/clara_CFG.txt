@@ -1,9 +1,0 @@
-bio -> intro background career hobbies 
-intro -> "Meet Clara, a renowned futures trader with a knack for navigating the complexities of financial markets." 
-background -> edu origin 
-edu -> "Clara graduated with a degree in Economics from Flotwin University, where she honed her analytical skills." 
-origin -> " Originally from the bustling city of New Aradia, she learned the importance of adaptability and foresight early on." 
-career -> career_start success 
-career_start -> "Starting her career at the prestigious brokerage firm, Sterling & Blythe, "
-success -> "Clara quickly gained recognition for her innovative trading strategies and her ability to predict market trends with remarkable accuracy." 
-hobbies -> "When she's not engrossed in the world of futures, Clara enjoys hiking in the serene mountains of Verduin and exploring contemporary art galleries."

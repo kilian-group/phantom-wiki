@@ -1,3 +1,0 @@
-S -> "Vincent is a lawyer based in" City ", currently practicing at" LawFirm "."
-City -> "Middleville" | "Greenville" | "Lakeview"
-LawFirm -> "Hawthorne & Associates" | "Baker & Veritas" | "Stonebridge Legal"

@@ -1,3 +1,10 @@
+female(X) :-
+  gender(X, "female").
+male(X) :-
+  gender(X, "male").
+nonbinary(X) :-
+  gender(X, "nonbinary").
+
 sibling(X, Y) :- 
   parent(X, A), 
   parent(Y, A),
@@ -8,13 +15,13 @@ married(X, Y) :-
   parent(Child, Y),
   X \= Y.
 
-sister(Y, X) :-
-    sibling(X, Y),
-    female(X).
+sister(X, Y) :-
+  sibling(X, Y),
+  female(Y).
 
 brother(X, Y) :-
-    sibling(X, Y),
-    male(Y).
+  sibling(X, Y),
+  male(Y).
 
 mother(X, Y) :- 
   parent(X, Y),

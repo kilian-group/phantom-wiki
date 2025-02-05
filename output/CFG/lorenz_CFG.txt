@@ -1,6 +1,0 @@
-bio -> name profession company achievements hobbies 
-name -> "Lorenz Carmichael" 
-profession -> "is a Fitness Centre Manager" 
-company -> "at Apex Physique Gym" 
-achievements -> "with over a decade of experience in transforming fitness environments" 
-hobbies -> ". Lorenz enjoys hiking, cooking exotic meals, and participating in triathlons during his free time"

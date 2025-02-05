@@ -1,5 +1,0 @@
-S -> Name Bio
-Name -> "Leo Smith"
-Bio -> Occupation Background
-Occupation -> " is an Engineer specializing in Electronics"
-Background -> " at NovaTech Corporation." | " at Quantum Electrics Inc." | " with a passion for innovation."

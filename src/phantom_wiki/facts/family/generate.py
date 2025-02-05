@@ -13,11 +13,15 @@ import time
 from typing import List
 import os
 import pydot
+from tqdm import tqdm
+import logging
+from collections import Counter
 
 from phantom_wiki.facts.family.person_factory import (PersonFactory, 
                                                       Person)
 from phantom_wiki.facts.family import fam_gen_parser
 from phantom_wiki.utils import get_parser
+from phantom_wiki.facts.family.constants import PERSON_TYPE
 
 # ============================================================================= #
 #                               CLASS  GENERATOR                                #
@@ -137,74 +141,66 @@ class Generator:
         # create list for storing graph representations of all created samples
         family_trees = []
 
-        for sample_idx in range(args.num_samples):
-            
-            print("creating sample #{}: ".format(sample_idx), end="")
-                
+        all_time_start = time.time()
+        names = []
+        for sample_idx in tqdm(range(args.num_samples), desc="Generating family trees", leave=False):
+                            
             # sample family tree
-            print("sampling family tree", end="")
-            start = time.time()
             family_tree = self._sample_family_tree(args)
             family_trees.append(family_tree)
 
-            print(" OK ({:.3f}s)".format(time.time() - start))
+            names+=[p.get_full_name() for p in family_tree]
 
-            # Resetting person factory if user allows for duplicate names
-            if not args.duplicate_names:
-                self.person_factory.reset()
+            # save generated family tree as a graph
+            if args.debug:
+                graph = create_dot_graph(family_tree)
+                save_path = os.path.join(args.output_dir, f"family_tree_{sample_idx+1}.png")
+                logging.debug(f"Saving family tree {sample_idx+1} to {save_path}")
+                graph.write_png(save_path)
 
+        if len(set(names))!= len(names):
+            raise ValueError(f"Duplicate names found || If this error is raised, there is a bug in the code. This is a sanity check which should never be triggered")
+
+        logging.info(f"Generated {len(family_trees)} family trees for a total of {sum([len(tree) for tree in family_trees])} individuals in {time.time()-all_time_start:.3f}s.")
 
         return family_trees
     
 # Given parser args -> pretty print it
 def pretty_print_args(args):
-    print('-----------------')
-    print('| Configuration |')
-    print('-----------------')
+    logging.debug('-----------------')
+    logging.debug('| Configuration |')
+    logging.debug('-----------------')
     for key, value in vars(args).items():
-        print(f"{key.replace('_', ' ').title()}: {value}")
-
-# Given a family tree in the form of a list -> generate the prolog
-def family_tree_to_pl(family_tree):
-    # Outputs
-    genders = []
-    parent_relationships = []
-
-    # Getting relationships and genders
-    for p in family_tree:
-        if p.female:
-            genders.append(f"female({p.name}).")
-        else:
-            genders.append(f"male({p.name}).")
-
-        for child in p.children:
-            parent_relationships.append(f"parent({p.name}, {child.name}).")
-
-    # Returning outputs 
-    return sorted(genders) + [""] + sorted(parent_relationships)
+        logging.debug(f"{key.replace('_', ' ').title()}: {value}")
 
 # Given a family tree in the form of a list -> generate the facts
 def family_tree_to_facts(family_tree):
     # Outputs
+    people = []
     genders = []
     parent_relationships = []
     dates_of_birth = []
 
-    # Getting relationships and genders
+    # Add facts for each person in the family tree
     for p in family_tree:
+        # add 1-ary clause indicating the person exists
+        people.append(f"type(\"{p.get_full_name()}\", {PERSON_TYPE})")
+
+        # add 2-ary clause indicating gender
         if p.female:
-            genders.append(f"female(\'{p.name}\')")
+            genders.append(f"gender(\"{p.get_full_name()}\", \"female\")")
         else:
-            genders.append(f"male(\'{p.name}\')")
+            genders.append(f"gender(\"{p.get_full_name()}\", \"male\")")
 
+        # add 2-ary clause indicating parent relationship
         for child in p.children:
-            parent_relationships.append(f"parent(\'{child.name}\', \'{p.name}\')")
+            parent_relationships.append(f"parent(\"{child.get_full_name()}\", \"{p.get_full_name()}\")")
 
-        # add dob attribute
-        dates_of_birth.append(f"dob(\'{p.name}\', \'{p.date_of_birth}\')")
+        # add 2-ary clause indicating date of birth
+        dates_of_birth.append(f"dob(\"{p.get_full_name()}\", \"{p.date_of_birth}\")")
 
     # Returning outputs 
-    return sorted(genders) + sorted(parent_relationships) + sorted(dates_of_birth)
+    return sorted(people) + sorted(genders) + sorted(parent_relationships) + sorted(dates_of_birth)
 
 # Given a family tree, generate and save a graph plot 
 def create_dot_graph(family_tree):
@@ -217,12 +213,12 @@ def create_dot_graph(family_tree):
         else:
             color = "lightblue"
 
-        graph.add_node(pydot.Node(p.name, style="filled", fillcolor=color))    
+        graph.add_node(pydot.Node(p.get_full_name(), style="filled", fillcolor=color))    
 
     # Add the edges
     for p in family_tree:
         for c in p.children:
-            graph.add_edge(pydot.Edge(p.name, c.name))
+            graph.add_edge(pydot.Edge(p.get_full_name(), c.get_full_name()))
 
     return graph
 
@@ -242,14 +238,13 @@ if __name__ == "__main__":
     os.makedirs(args.output_dir, exist_ok=True)
 
     # Get the prolog family tree
-    pf = PersonFactory()
-    pf.load_names()
+    pf = PersonFactory(args.duplicate_names)
 
     gen = Generator(pf)
     family_trees = gen.generate(args)
     for i, family_tree in enumerate(family_trees):
         # Obtain family tree in Prolog format
-        pl_family_tree = family_tree_to_pl(family_tree)
+        pl_family_tree = family_tree_to_facts(family_tree)
 
         # Create a unique filename for each tree
         output_file_path = os.path.join(args.output_dir, f"family_tree_{i+1}.pl")

@@ -1,26 +1,9 @@
-from typing import Optional
-from argparse import ArgumentParser
-# imports for article generation via CFGs
-from faker import Faker
-from nltk import CFG
-from nltk.parse.generate import generate
-from .generative import generate_cfg_openai
-from ..utils.parsing import format_generated_cfg
-from .constants.article_templates import BASIC_ARTICLE_TEMPLATE
-# imports for article generation via LLMs
-from together import Together
-from .constants.article_templates import (LLAMA_ARTICLE_GENERAION_PROMPT7)
-# imports for getting facts
 from ..facts import Database
 from ..facts.attributes import get_attribute_facts
-from ..facts.family import (FAMILY_FACT_TEMPLATES, 
-                            FAMILY_RELATION_EASY)
-from ..facts.friends import (FRIENDSHIP_RELATION, 
-                             FRIENDSHIP_FACT_TEMPLATES,)
-# CLI arguments for article generation
-article_parser = ArgumentParser(add_help=False)
-article_parser.add_argument("--model", "-m", type=str, default=None, 
-                            help="model to use for article generation")
+from ..facts.family import FAMILY_FACT_TEMPLATES, FAMILY_FACT_TEMPLATES_PL, FAMILY_RELATION_EASY
+from ..facts.friends import FRIENDSHIP_FACT_TEMPLATES, FRIENDSHIP_FACT_TEMPLATES_PL, FRIENDSHIP_RELATION
+from .constants.article_templates import BASIC_ARTICLE_TEMPLATE
+from ..utils import decode
 
 def get_articles(
         db: Database, 
@@ -41,12 +24,17 @@ def get_articles(
         article generation contains multiple types of articles (e.g., basic, llama-8b)
     """
     # get family article
-    family_facts = get_relation_facts(db, names, FAMILY_RELATION_EASY, FAMILY_FACT_TEMPLATES)
+    # HACK: Do not include parent, child, and sibling in the articles
+    relation_list = [r for r in FAMILY_RELATION_EASY if r not in ["parent", "child", "sibling"]]
+    family_facts = get_relation_facts(
+        db, names, relation_list, FAMILY_FACT_TEMPLATES, FAMILY_FACT_TEMPLATES_PL
+    )
     # get friendship article
-    friend_facts = get_relation_facts(db, names, FRIENDSHIP_RELATION, FRIENDSHIP_FACT_TEMPLATES)
-    # get attributes
+    friend_facts = get_relation_facts(
+        db, names, FRIENDSHIP_RELATION, FRIENDSHIP_FACT_TEMPLATES, FRIENDSHIP_FACT_TEMPLATES_PL
+    )
     attribute_facts = get_attribute_facts(db, names)
-    
+
     articles = {}
     for name in names:
         # generate multiple types of articles so that we can compare their quality
@@ -74,15 +62,17 @@ def get_articles(
 
     return articles
 
-# 
+
+#
 # Functionality to get relation-based facts
-# 
+#
 def get_relation_facts(
-        db: Database, 
-        names: list[str], 
-        relation_list: list[str],
-        relation_templates: dict[str, str],
-    ) -> dict[str, list[str]]:
+    db: Database,
+    names: list[str],
+    relation_list: list[str],
+    relation_templates: dict[str, str],
+    relation_templates_plural: dict[str, str],
+) -> dict[str, list[str]]:
     """
     Get relation-based facts for a list of names.
 
@@ -103,64 +93,31 @@ def get_relation_facts(
         for relation, target in relations.items():
             if not target:
                 continue
-            relation_template = relation_templates[relation]
+            if len(target) > 1:
+                relation_template = relation_templates_plural[relation]
+            else:
+                relation_template = relation_templates[relation]
             fact = relation_template.replace("<subject>", name) + " " + ", ".join(target) + "."
             person_facts.append(fact)
 
         facts[name] = person_facts
 
     return facts
+
+
 def get_relations(db: Database, name: str, relation_list: list[str]) -> dict:
     """
-    Get the results for all relations in the specified `relation_list` 
+    Get the results for all relations in the specified `relation_list`
     for a given `name`.
     """
     relations = {}
     for relation in relation_list:
-        query = f"distinct({relation}(\'{name}\', X))"
-        results = [result['X'] for result in db.query(query)]
+        query = f"distinct({relation}(\"{name}\", X))"
+        results = [decode(result["X"]) for result in db.query(query)]
         relations[relation] = results
 
     return relations
 
-
-# 
-# WIP: Functionality to generate articles using CFGs
-# 
-def generate_llm_article_cfg_pairs(
-    person_list: list[str], use_jobs=True, max_attempts=10
-) -> dict[str, tuple[str, str]]:
-    pairs = {}
-    if use_jobs:
-        fake = Faker()
-    for person in person_list:
-        if use_jobs:
-            job = fake.job()
-        else:
-            job = "unknown"
-
-        for _ in range(max_attempts):
-            try:
-                generated_cfg = generate_cfg_openai(person, job)
-                formatted_cfg = format_generated_cfg(generated_cfg)
-                cfg = CFG.fromstring(formatted_cfg)
-                article = " ".join(generate(cfg))
-                break
-            except Exception as e:
-                print(f"[Attempt {_}] Error generating CFG and article for {person}: {e}")
-                cfg = None
-                article = None
-                continue
-
-        if article is None:
-            print(f"Failed to generate CFG and article for {person}")
-            continue
-        else:
-            pairs[person] = (article, cfg.tostring())
-
-    return pairs
-
-# 
 # Functionality to generate articles using LLM
 # 
 # NOTE: set the API key using conda env vars (see README.md)

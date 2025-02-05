@@ -1,9 +1,0 @@
-bio -> intro background career
-intro -> "Meet name, a talented Musician."
-name -> "Alina Harmonia"
-background -> "name hails from city, where her love for music began at an early age."
-city -> "Melodyville"
-career -> "Today, name is known for achievements."
-achievements -> "her soulful performances and captivating compositions at venues around the world such as venue1 and venue2"
-venue1 -> "Harmony Hall"
-venue2 -> "Crescendo Theatre"
