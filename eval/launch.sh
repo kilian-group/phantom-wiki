@@ -55,5 +55,12 @@ sbatch --gres=gpu:a6000:8 --partition=kilian -t 1-00:00:00 --mail-user=$2 eval/c
 # sbatch --gres=gpu:a6000:8 --partition=kilian -t 1-00:00:00 --mail-user=$2 eval/fewshot-sc_L.sh $1
 # sbatch --gres=gpu:a6000:8 --partition=kilian -t 1-00:00:00 --mail-user=$2 eval/cot-sc_L.sh $1
 
+sbatch --partition=kilian -t 1-00:00:00 --mail-user=$2 eval/zeroshot_cpu.sh $1
+sbatch --partition=kilian -t 1-00:00:00 --mail-user=$2 eval/cot_cpu.sh $1
+
 sbatch --gres=gpu:a6000:8 --partition=kilian -t 1-00:00:00 --mail-user=$2 eval/react_L.sh $1
+sbatch --gres=gpu:a6000:8 --partition=kilian -t infinite --mail-user=$2 eval/react_L_large.sh $1
 sbatch --gres=gpu:a6000:8 --partition=kilian -t 1-00:00:00 --mail-user=$2 eval/act_L.sh $1
+
+sbatch --gres=gpu:3090:1 --partition=kilian -t infinite --mail-user=$2 eval/zeroshot_rag_cpu.sh $1
+sbatch --gres=gpu:3090:1 --partition=kilian -t infinite --mail-user=$2 eval/cot_rag_cpu.sh $1

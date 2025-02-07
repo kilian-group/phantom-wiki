@@ -59,7 +59,7 @@ def get_parser() -> argparse.ArgumentParser:
                         help="API usage tier (note: tier 0 corresponds to free versions)")
 
     # Dataset params
-    parser.add_argument("--dataset", type=str, default="mlcore/phantom-wiki-v0.5",
+    parser.add_argument("--dataset", type=str, default="mlcore/phantom-wiki-v050",
                         help="Dataset name")
     parser.add_argument("--split_list", default=["depth_20_size_50_seed_1"], type=str, nargs="+",
                         help="List of dataset splits to evaluate")
