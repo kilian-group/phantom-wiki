@@ -13,11 +13,11 @@ get_inf_seed_list() {
 # L models (run on 8 A6000 GPUs)
 API_MODELS=(
     gemini-1.5-flash-002
-    gpt-4o-2024-11-20
+    # gpt-4o-2024-11-20
 )
 LARGE_MODELS=(
     'meta-llama/llama-3.3-70b-instruct'
-    'deepseek-ai/deepseek-r1-distill-qwen-32b'
+    # 'deepseek-ai/deepseek-r1-distill-qwen-32b'
     # 'google/gemma-2-27b-it' # OPTIONAL
     # 'microsoft/phi-3.5-mini-instruct' # OPTIONAL
     # 'microsoft/phi-3.5-moe-instruct' # OPTIONAL
@@ -66,7 +66,7 @@ elif [ "$DATASET" = "mlcore/phantom-wiki-v0.3" ]; then
         done
     done
 elif [ "$DATASET" = "mlcore/phantom-wiki-v050" ]; then
-    # Define SPLIT_LIST for dataset v0.3
+    # Define SPLIT_LIST for dataset v0.5
     DATA_SEED_LIST="1 2 3"
     DATA_DEPTH="20"
     DATA_SIZE_LIST="50 100 200 300 400 500 1000"
@@ -76,6 +76,16 @@ elif [ "$DATASET" = "mlcore/phantom-wiki-v050" ]; then
         for data_size in $DATA_SIZE_LIST
         do
             SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
+        done
+    done
+    # Define large SPLIT_LIST for dataset v0.5
+    LARGE_DATA_SEED_LIST="1"
+    LARGE_DATA_SIZE_LIST="2500 5000 10000"
+    for data_seed in $LARGE_DATA_SEED_LIST
+    do
+        for data_size in $LARGE_DATA_SIZE_LIST
+        do
+            LARGE_SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
         done
     done
 else
