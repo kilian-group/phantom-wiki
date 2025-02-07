@@ -50,3 +50,5 @@ question_parser.add_argument("--add-intermediate-answers", action="store_true",
                                 help="Add intermediate answers to the questions")
 question_parser.add_argument("--hard-mode", action="store_true",
                                 help="Sample from hard relations")
+question_parser.add_argument("--skip-solution-traces", action="store_true",
+                                help="Do not include solution traces in the dataset")
