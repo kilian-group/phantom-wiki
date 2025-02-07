@@ -46,8 +46,6 @@ question_parser.add_argument("--num-sampling-attempts", type=int, default=100,
                                 help="Number of attempts to sample a valid question")
 question_parser.add_argument("--depth", type=int, default=6,
                                 help="Depth of the question template")
-question_parser.add_argument("--add-intermediate-answers", action="store_true",
-                                help="Add intermediate answers to the questions")
 question_parser.add_argument("--hard-mode", action="store_true",
                                 help="Sample from hard relations")
 question_parser.add_argument("--skip-solution-traces", action="store_true",

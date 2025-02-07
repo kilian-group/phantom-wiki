@@ -20,7 +20,7 @@ def get_answer(
         db (Database): The database to query
         answer (str): The answer to the query as a placeholder
             Example: "Y_3"
-        skip_solution_traces (bool, optional): Flag to skip solution traces (intermediate results).
+        skip_solution_traces (bool, optional): Flag to skip solution traces, which describe the intermediate steps towards final answer.
             Defaults to False, in which case the returned list is non-empty.
 
     Returns:
