@@ -4,6 +4,7 @@ import math
 import asyncio
 import logging
 from pathlib import Path
+import os
 
 import pandas as pd
 from tqdm import tqdm
@@ -15,10 +16,8 @@ from .agent import get_agent, Agent
 from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, COT_EXAMPLES, ACT_EXAMPLES, FEWSHOT_EXAMPLES, FEWSHOT_EXAMPLES_PROLOG
 from . import constants
 from . import get_parser
+from .prolog_utils import get_prolog_results
 
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from phantom_wiki.facts.database import Database
 
 logger = logging.getLogger(__name__)
@@ -240,81 +239,7 @@ async def main(args: argparse.Namespace) -> None:
 
                 # Process Prolog queries if needed
                 if args.prolog_query:
-                    for response in responses:
-                        query_results = []
-                        pred_query = response.pred
-                        sub_queries, target_variable = split_prolog_query(pred_query)
-                        
-                        # Build the compound query incrementally
-                        compound_query = ""
-                        variable_bindings = {}
-                        
-                        for sub_query in sub_queries:
-                            try:
-                                # Add this sub_query to compound query
-                                if compound_query:
-                                    compound_query += f", {sub_query}"
-                                else:
-                                    compound_query = sub_query
-                                
-                                # Execute the compound query up to this point
-                                result = db.query(compound_query)
-                                
-                                # Convert any bytes in the result to strings
-                                decoded_result = []
-                                if result:
-                                    for binding in result:
-                                        decoded_binding = {}
-                                        for key, value in binding.items():
-                                            if isinstance(value, bytes):
-                                                decoded_binding[key] = value.decode('utf-8')
-                                            else:
-                                                decoded_binding[key] = value
-                                        decoded_result.append(decoded_binding)
-                                
-                                # Store result and variable bindings
-                                query_results.append({
-                                    'query': compound_query,
-                                    'sub_query_added': sub_query,
-                                    'result': decoded_result,
-                                    'variables': variable_bindings.copy()
-                                })
-                                
-                                # Update variable bindings from result
-                                if decoded_result:
-                                    for binding in decoded_result:
-                                        variable_bindings.update(binding)
-                                
-                            except Exception as e:
-                                logger.error(f"Query failed: {compound_query}")
-                                logger.error(f"Error: {str(e)}")
-                                query_results.append({
-                                    'query': compound_query,
-                                    'sub_query_added': sub_query,
-                                    'error': str(e),
-                                    'variables': variable_bindings.copy()
-                                })
-                                break  # Stop if any part fails
-                        
-                        # Get final value for target variable
-                        final_value = set()
-                        if query_results and query_results[-1].get('result') and target_variable:
-                            for binding in query_results[-1]['result']:
-                                if target_variable in binding:
-                                    final_value.add(binding[target_variable])
-                        if final_value == set():
-                            final_value = None
-                        elif len(final_value) == 1:
-                            final_value = final_value.pop()
-                        else:
-                            final_value = list(final_value)
-                            final_value.sort()
-                        
-                        prolog_results.append({
-                            'final_value': final_value,
-                            'query': pred_query,
-                            'query_results': query_results
-                        })
+                    prolog_results = get_prolog_results(responses, db, logger, args.log_level.upper() == "DEBUG")
 
                 # Log the final answers for the batch
                 pred_path.parent.mkdir(parents=True, exist_ok=True)
@@ -339,64 +264,6 @@ async def main(args: argparse.Namespace) -> None:
                     prolog_results=prolog_results if args.prolog_query else None,
                     interactions=agent_interactions if not args.ignore_agent_interactions else [],
                 )
-
-
-def split_prolog_query(query: str) -> tuple[list[str], str | None]:
-    """Split a compound Prolog query into individual queries and get final variable.
-    
-    Args:
-        query: A Prolog query string like "?- hobby(X, 'bus spotting'), father(X, Y)."
-        
-    Returns:
-        Tuple of (list of query strings, final variable letter or None)
-        Example: (["hobby(X, 'bus spotting')", "father(X, Y)"], "Y")
-    """
-    
-    # First clean up the full query
-    query = query.strip()
-    if query.startswith('?-'):
-        query = query[2:].strip()
-    if query.endswith('.'):
-        query = query[:-1].strip()
-    
-    # Split on comma but respect parentheses and quotes
-    queries = []
-    current = []
-    paren_count = 0
-    in_quotes = False
-    
-    for char in query:
-        if char == "'" and not in_quotes:
-            in_quotes = True
-            current.append(char)
-        elif char == "'" and in_quotes:
-            in_quotes = False
-            current.append(char)
-        elif char == '(' and not in_quotes:
-            paren_count += 1
-            current.append(char)
-        elif char == ')' and not in_quotes:
-            paren_count -= 1
-            current.append(char)
-        elif char == ',' and paren_count == 0 and not in_quotes:
-            queries.append(''.join(current).strip())
-            current = []
-        else:
-            current.append(char)
-    
-    if current:
-        queries.append(''.join(current).strip())
-    
-    # Get final variable from last predicate
-    final_variable = None
-    if queries:
-        last_pred = queries[-1]
-        variables = [c for c in last_pred if c.isupper()]
-        if variables:
-            final_variable = variables[-1]
-    
-    return queries, final_variable
-
 
 def save_preds(
     pred_path: Path,
