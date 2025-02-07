@@ -38,7 +38,7 @@ echo "Models: ${MODEL_LIST[@]}"
 # Split list is defined in constants.sh
 echo "Splits: $SPLIT_LIST"
 # Override whichever dataset was specified in constants.sh
-DATASET=mlcore/phantom-wiki-v0.5
+DATASET=mlcore/phantom-wiki-v050
 echo "Dataset: $DATASET"
 
 # 

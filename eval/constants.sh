@@ -36,7 +36,7 @@ SMALL_MODELS=(
 )
 # TODO add CPU models
 
-DATASET=mlcore/phantom-wiki-v0.5
+DATASET=mlcore/phantom-wiki-v050
 
 # if dataset is mlcore/phantom-wiki-v0.2, use the following
 if [ "$DATASET" = "mlcore/phantom-wiki-v0.2" ]; then
@@ -65,7 +65,7 @@ elif [ "$DATASET" = "mlcore/phantom-wiki-v0.3" ]; then
             SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
         done
     done
-elif [ "$DATASET" = "mlcore/phantom-wiki-v0.5" ]; then
+elif [ "$DATASET" = "mlcore/phantom-wiki-v050" ]; then
     # Define SPLIT_LIST for dataset v0.5
     DATA_SEED_LIST="1 2 3"
     DATA_DEPTH="20"
