@@ -159,7 +159,7 @@ class NshotAgent(Agent):
             for response in responses:
                 # Try to parse the response, otherwise return an error
                 try:
-                    pred = ReasoningAgent.parse_answer(response.pred)
+                    pred = NshotAgent.parse_thinking_answer(response.pred)
                     error = None
                 except Exception as e:
                     pred = ""
