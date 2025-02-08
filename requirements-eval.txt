@@ -1,0 +1,10 @@
+anthropic
+datasets>=3.1.0
+faiss-cpu>=1.9.0.post1
+google-generativeai
+langchain>=0.3.14
+langchain-community
+langchain-together
+tiktoken
+transformers>=4.47.1
+vllm>=0.6.5

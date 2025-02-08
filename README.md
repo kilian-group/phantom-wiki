@@ -35,7 +35,8 @@ There are 2 options:
 
 ## PhantomWiki Evaluation
 
-Run evaluation methods (like `zeroshot,fewshot,react,...`) with an LLM like so:
+First, install dependencies from `pip install -r requirements-eval.txt`.
+Then run evaluation methods (like `zeroshot,fewshot,react,...`) with an LLM like so:
 ```bash
 python -m phantom_eval --method <method> --model_name <llm_name>
 ```
