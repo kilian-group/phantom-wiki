@@ -1,26 +1,26 @@
-# Phantom Wiki
+# PhantomWiki
 
-> \[!CAUTION\]
-> This is a **work-in-progress** project on automatic language model dataset generation.
->
-> Use at your own risk.
+## Installation
 
-## Setup
-
-Set up a virtual environment, clone and navigate to this repository, and run
-
+PhantomWiki uses the [Prolog](https://en.wikipedia.org/wiki/Prolog) logic programming language, available on all operating systems through [SWI-Prolog](https://www.swi-prolog.org/).
+We recommend installing SWI-prolog through your [distribution](https://www.swi-prolog.org/Download.html) or through conda, for example:
 ```bash
-conda create -n dataset
-conda activate dataset
-conda install python=3.12 anaconda::sqlalchemy anaconda::nltk anaconda::termcolor pydot pytest
-# on G2, use pip instead of conda to install pandas and numpy to avoid C dependency conflicts
-pip install pandas numpy matplotlib networkx
-pip install together openai pre-commit datasets google-generativeai anthropic transformers tenacity tiktoken langchain langchain-community langchain-together faiss-cpu
-# vllm installation
-pip install https://vllm-wheels.s3.us-west-2.amazonaws.com/nightly/vllm-1.0.0.dev-cp38-abi3-manylinux1_x86_64.whl
+# On MacOS
+brew install swi-prolog
+
+# On Linux with apt
+sudo add-apt-repository ppa:swi-prolog/stable
+sudo apt-get update
+sudo apt-get install swi-prolog
+
+# With conda package manager
+conda install conda-forge::swi-prolog
 ```
 
-### Installing phantom-wiki in development mode
+PhantomWiki is available with Python 3.12+ through `pip install phantom-wiki`.
+Alternatively, clone this github repo and run `pip install .`
+
+### Installing PhantomWiki in development mode
 
 There are 2 options:
 1. (Recommended) Install the package in editable mode using pip:
@@ -33,25 +33,7 @@ There are 2 options:
     2. Add `PYTHONPATH=src`
     3. Restart VSCode
 
-### Prolog
-
-Setting up Prolog (see also the [Prolog tutorial](docs/prolog.md)):
-
-On Mac:
-```bash
-brew install swi-prolog
-pip install pyswip
-```
-
-On Linux:
-```bash
-sudo add-apt-repository ppa:swi-prolog/stable
-sudo apt-get update
-sudo apt-get install swi-prolog
-```
-Original instructions: https://wwu-pi.github.io/tutorials/lectures/lsp/010_install_swi_prolog.html
-
-## Evaluation
+## PhantomWiki Evaluation
 
 Run evaluation methods (like `zeroshot,fewshot,react,...`) with an LLM like so:
 ```bash
