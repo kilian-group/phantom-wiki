@@ -46,9 +46,7 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
 def get_agent_kwargs(args: argparse.Namespace) -> dict:
     match args.method:
         case "zeroshot":
-            agent_kwargs = dict(
-                model_name=args.model_name
-            )
+            agent_kwargs = dict()
         case "fewshot":
             agent_kwargs = dict(
                 fewshot_examples=FEWSHOT_EXAMPLES,

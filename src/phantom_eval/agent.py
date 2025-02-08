@@ -75,7 +75,7 @@ class NshotAgent(Agent):
     Agent to implement Zeroshot and fewshot evaluation, 
     depending on the input `llm_prompt` on initialization.
     """
-    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, model_name:str, fewshot_examples: str = ""):
+    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, fewshot_examples: str = ""):
         """
         Args:
             fewshot_examples (str): Prompt examples to include in agent prompt.
@@ -83,7 +83,6 @@ class NshotAgent(Agent):
         """
         super().__init__(text_corpus, llm_prompt)
         self.fewshot_examples = fewshot_examples
-        self.model_name = model_name
 
     def _build_agent_prompt(self, question: str) -> str:
         if hasattr(self, 'embedding_model_name') and self.embedding_model_name is not None:
@@ -112,7 +111,10 @@ class NshotAgent(Agent):
         
         # Generate response
         # Add "\n" to stop_sequences
-        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
+        if any(rm in llm_chat.model_name for rm in REASONING_MODELS):
+            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
+        else:
+            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
         response = llm_chat.generate_response(conv, inf_gen_config)
 
         # Update agent's conversation
@@ -120,7 +122,7 @@ class NshotAgent(Agent):
             Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
         )
 
-        if any(rm in self.model_name for rm in REASONING_MODELS):
+        if any(rm in llm_chat.model_name for rm in REASONING_MODELS):
             try:
                 pred = NshotAgent.parse_thinking_answer(response.pred)
                 error = None
@@ -145,7 +147,10 @@ class NshotAgent(Agent):
         
         # Generate response
         # Change stop_sequences to "\n"
-        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
+        if any(rm in llm_chat.model_name for rm in REASONING_MODELS):
+            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
+        else:
+            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
         responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
 
         # Add the responses to the agent's conversations
@@ -154,7 +159,7 @@ class NshotAgent(Agent):
                 Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
             )
 
-        if any(rm in self.model_name for rm in REASONING_MODELS):
+        if any(rm in llm_chat.model_name for rm in REASONING_MODELS):
             parsed_responses: list[LLMChatResponse] = []
             for response in responses:
                 # Try to parse the response, otherwise return an error
@@ -230,7 +235,7 @@ class NshotSCAgent(NshotAgent, SCMixin):
     """
     Agent to implement Zeroshot and fewshot evaluation with majority vote.
     """
-    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, model_name:str, fewshot_examples: str = "", num_votes: int = 3, sep: str = constants.answer_sep):
+    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, fewshot_examples: str = "", num_votes: int = 3, sep: str = constants.answer_sep):
         """
         Args:
             fewshot_examples (str): Prompt examples to include in agent prompt.
@@ -980,7 +985,6 @@ class NshotRAGAgent(NshotAgent, RAGMixin):
     def __init__(self, 
                 text_corpus: pd.DataFrame, 
                 llm_prompt: LLMPrompt, 
-                model_name: str,
                 fewshot_examples: str = "", 
                 embedding_model_name: str="WhereIsAI/UAE-Code-Large-V",
                 retriever_num_documents: int = 4,
@@ -995,7 +999,7 @@ class NshotRAGAgent(NshotAgent, RAGMixin):
             sep (str): The separator used to split the prediction.
                 Defaults to `constants.answer_sep`.
         """
-        NshotAgent.__init__(self, text_corpus, llm_prompt, model_name, fewshot_examples)
+        NshotAgent.__init__(self, text_corpus, llm_prompt, fewshot_examples)
         RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, use_api, tensor_parallel_size, port)
 
     def run(self, 
@@ -1086,7 +1090,7 @@ SUPPORTED_METHOD_NAMES: list[str] = [
 ]
 
 REASONING_MODELS: list[str] = [
-    "deepseek",
+    "deepseek-ai/deepseek-r1-distill-qwen-32b",
 ]
 
 def get_agent(
