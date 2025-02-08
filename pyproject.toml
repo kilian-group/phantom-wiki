@@ -4,15 +4,22 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "phantom-wiki"
-dynamic = ["version"]
+description = "On-Demand Datasets for Reasoning and Retrieval Evaluation"
+version = "0.5.0"
 authors = [
+    {name="Albert Gong", email="ag2435@cornell.edu"},
     {name="Chao Wan", email="cw862@cornell.edu"},
+    {name="Kamilė Stankevičiūtė", email="ks2448@cornell.edu"},
+    {name="Anmol Kabra", email="anmol@cs.cornell.edu"},
+    {name="Raphael Thesmar", email="rft38@cornell.edu"},
+    {name="Johann Lee", email="jcl354@cornell.edu"},
+    {name="Carla Gomes", email="gomes@cs.cornell.edu"},
+    {name="Kilian Weinberger", email="kilian@cornell.edu"},
 ]
 
 
-description = ""
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -20,37 +27,50 @@ classifiers = [
 ]
 dependencies = [
     "anthropic",
-    "datasets",
-    "faiss-cpu",
+    "datasets>=3.1.0",
+    "faiss-cpu>=1.9.0.post1",
     "google-generativeai",
-    "langchain",
+    "langchain>=0.3.14",
     "langchain-community",
     "langchain-together",
-    "matplotlib",
-    "nltk",
-    "numpy",
+    "matplotlib>=3.10.0",
+    "nltk>=3.9.1",
+    "numpy>=1.26.4",
     "openai",
-    "pandas",
-    "pre-commit",
-    "tenacity",
+    "pandas>=2.2.2",
+    "pydot>=1.4.2",
+    "pyswip>=0.3.2",
+    "SQLAlchemy>=2.0.34",
+    "termcolor",
     "tiktoken",
-    "transformers",
+    "together",
+    "transformers>=4.47.1",
+    "vllm>=0.6.5",
 ]
 
-[project.scripts]
-generate_family = "phantom_wiki.__main__:generate_family" # TODO
-
-[tool.setuptools_scm]
-
 [project.optional-dependencies]
-dev = ["pre-commit"]
-tests = ["pytest", "pytest-cov", "rootutils"]
-#docs = [
-#  "mkdocs==1.6.0", "mkdocs-material==9.5.31", "mkdocstrings[python,shell]==0.25.2", "mkdocs-gen-files==0.5.0",
-#  "mkdocs-literate-nav==0.6.1", "mkdocs-section-index==0.3.9", "mkdocs-git-authors-plugin==0.9.0",
-#  "mkdocs-git-revision-date-localized-plugin==1.2.6"
-#]
+dev = [
+    "pre-commit>=4.0.1",
+    "black",
+]
+tests = [
+    "pytest>=8.3.4",
+    "pytest-cov",
+    "rootutils",
+]
+docs = [
+  "mkdocs==1.6.0",
+  "mkdocs-material==9.5.31",
+  "mkdocstrings[python,shell]==0.25.2",
+  "mkdocs-gen-files==0.5.0",
+  "mkdocs-literate-nav==0.6.1",
+  "mkdocs-section-index==0.3.9",
+  "mkdocs-git-authors-plugin==0.9.0",
+  "mkdocs-git-revision-date-localized-plugin==1.2.6"
+]
 
 [project.urls]
 Homepage = "https://github.com/ag2435/phantom-wiki"
 Issues = "https://github.com/ag2435/phantom-wiki/issues"
+Documentation = "https://ag2435.github.io/phantom-wiki"
+Repository = "https://github.com/ag2435/phantom-wiki.git"
