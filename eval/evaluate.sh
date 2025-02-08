@@ -25,7 +25,6 @@ if [ -z "$2" ]; then
         "cot-sc"
         "zeroshot-rag"
         "cot-rag"
-        "reasoning"
     )
 else
     METHOD_LIST=($2)
