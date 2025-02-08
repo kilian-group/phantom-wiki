@@ -208,13 +208,13 @@ def main(args):
                 raise NotImplementedError("Sampling questions without valid_only is not supported.")
 
             # Get all possible answers for the query
-            solution_traces, final_results = get_answer(query, db, answer, return_solution_traces=False)
+            solution_traces, final_results = get_answer(query, db, answer, skip_solution_traces=args.skip_solution_traces)
             question_difficulty = calculate_query_difficulty(query)
             questions.append(
                 {
                     "id": generate_unique_id(),
                     "question": question,
-                    "intermediate_answers": json.dumps(solution_traces), # NOTE: serialize list of dicts so that it can be saved on HF
+                    "solution_traces": json.dumps(solution_traces), # NOTE: serialize list of dicts so that it can be saved on HF
                     "answer": final_results,
                     "prolog": {"query": query, "answer": answer},
                     "template": question_template,
