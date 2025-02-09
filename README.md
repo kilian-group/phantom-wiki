@@ -35,7 +35,12 @@ There are 2 options:
 
 ## PhantomWiki Evaluation
 
-First, install dependencies from `pip install -r requirements-eval.txt`.
+First, install dependencies and [vLLM](https://github.com/vllm-project/vllm) to match your hardware (GPU, CPU, etc.):
+```bash
+pip install -r requirements-eval.txt
+pip install "vllm>=0.6.6"
+```
+
 Then run evaluation methods (like `zeroshot,fewshot,react,...`) with an LLM like so:
 ```bash
 python -m phantom_eval --method <method> --model_name <llm_name>

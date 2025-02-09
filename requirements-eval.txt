@@ -7,4 +7,3 @@ langchain-community
 langchain-together
 tiktoken
 transformers>=4.47.1
-vllm>=0.6.5
