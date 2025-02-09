@@ -245,7 +245,7 @@ class NshotSCAgent(NshotAgent, SCMixin):
             sep (str): The separator used to split the prediction.
                 Defaults to `constants.answer_sep`.
         """
-        NshotAgent.__init__(self, text_corpus, llm_prompt, model_name, fewshot_examples)
+        NshotAgent.__init__(self, text_corpus, llm_prompt, fewshot_examples)
         SCMixin.__init__(self, num_votes, sep)
 
     def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
