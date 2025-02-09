@@ -5,6 +5,7 @@ import asyncio
 import logging
 from pathlib import Path
 import os
+import tempfile
 
 import pandas as pd
 from tqdm import tqdm
@@ -161,12 +162,12 @@ async def main(args: argparse.Namespace) -> None:
             df_qa_pairs = pd.DataFrame(dataset["qa_pairs"])
             df_text = pd.DataFrame(dataset["text"])
             
-            # Get the facts.pl file from the dataset split directory
-            facts_path = f"{os.path.dirname(os.path.abspath(__file__))}/../../{args.dataset}/{split}/facts.pl"
-            logger.info(f"Looking for facts.pl at: {facts_path}")
-            if not Path(facts_path).exists():
-                raise FileNotFoundError(f"Could not find facts.pl at {facts_path}")
-            db = Database.from_disk(str(facts_path))
+            # Create temporary file and load database from disk
+            with tempfile.NamedTemporaryFile(mode='w', suffix='.pl') as tmp:
+                content = dataset['database']['content']
+                tmp.write('\n'.join(content))
+                tmp.flush()
+                db = Database.from_disk(tmp.name)
 
             # Construct agent for the data split
             agent_kwargs = get_agent_kwargs(args)
