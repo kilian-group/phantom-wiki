@@ -41,11 +41,11 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "pre-commit>=4.0.1",
+    "pre-commit",
     "black",
 ]
 tests = [
-    "pytest>=8.3.4",
+    "pytest",
     "pytest-cov",
     "rootutils",
 ]
