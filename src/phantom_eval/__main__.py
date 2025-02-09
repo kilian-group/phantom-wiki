@@ -161,13 +161,6 @@ async def main(args: argparse.Namespace) -> None:
             dataset = load_data(args.dataset, split)
             df_qa_pairs = pd.DataFrame(dataset["qa_pairs"])
             df_text = pd.DataFrame(dataset["text"])
-            
-            # Create temporary file and load database from disk
-            with tempfile.NamedTemporaryFile(mode='w', suffix='.pl') as tmp:
-                content = dataset['database']['content']
-                tmp.write('\n'.join(content))
-                tmp.flush()
-                db = Database.from_disk(tmp.name)
 
             # Construct agent for the data split
             agent_kwargs = get_agent_kwargs(args)
@@ -211,7 +204,6 @@ async def main(args: argparse.Namespace) -> None:
                 # In zeroshot, fewshot, the LLM responds with the final answer in 1 turn only,
                 # so they support batch async inference
                 agent_interactions = None
-                prolog_results = []  # Store Prolog query results
                 match args.method:
                     case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc" | "zeroshot-rag" | "fewshot-rag" | "reasoning" | "reasoning-rag":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
@@ -239,7 +231,16 @@ async def main(args: argparse.Namespace) -> None:
                             agent_interactions.append(agent.agent_interactions)
 
                 # Process Prolog queries if needed
+                prolog_results = []
                 if args.prolog_query:
+                    assert len(args.split_list) == 1, "When prolog_query is true, we can only evaluate one split at a time since only one Prolog database can be in memory at any given time due to limitations with pyswip"
+                    # Create temporary file and load database from disk
+                    with tempfile.NamedTemporaryFile(mode='w', suffix='.pl') as tmp:
+                        content = dataset['database']['content']
+                        tmp.write('\n'.join(content))
+                        tmp.flush()
+                        db = Database.from_disk(tmp.name)
+                        
                     prolog_results = get_prolog_results(responses, db, logger, args.log_level.upper() == "DEBUG")
 
                 # Log the final answers for the batch
