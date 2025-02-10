@@ -177,15 +177,15 @@ class NshotAgent(Agent):
         return responses
     
     @classmethod
-    def parse_thinking_answer(cls, pred: str) -> tuple[str, str]:
+    def parse_thinking_answer(cls, pred: str) -> str:
         """
         Parse the response to extract the answer using regex.
-        The prediction is of the form: "... The answer is <answer>."
+        The prediction is of the form: "</think> ..."
         """
         pattern = r"</think>\s*(.+)"
         m = re.search(pattern, pred)
         if m:
-            return m.group(1)
+            return m.group(1) #return first subgroup of the match https://docs.python.org/3/library/re.html#re.Match
         else:
             raise ValueError(f"Answer '{pred}' cannot be parsed.")
 
