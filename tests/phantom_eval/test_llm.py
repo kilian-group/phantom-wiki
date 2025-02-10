@@ -5,11 +5,8 @@ See the README for more information.
 """
 
 import asyncio
-from phantom_eval.llm import (get_llm, 
-                              InferenceGenerationConfig)
-from phantom_eval.data import (Conversation, 
-                               ContentTextMessage, 
-                               Message)
+from phantom_eval.llm import get_llm, InferenceGenerationConfig
+from phantom_eval._types import Conversation, ContentTextMessage, Message
 
 EXAMPLE_PROMPT = """
 Question: What is 1+1? (Please answer with a single integer.)

@@ -9,7 +9,7 @@ import pandas as pd
 from tqdm import tqdm
 
 from .utils import load_data, setup_logging
-from .data import Conversation
+from ._types import Conversation
 from .llm import get_llm, VLLMChat, LLMChatResponse, LLMChat, InferenceGenerationConfig
 from .agent import get_agent, Agent
 from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, COT_EXAMPLES, ACT_EXAMPLES, FEWSHOT_EXAMPLES

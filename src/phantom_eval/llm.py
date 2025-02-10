@@ -14,7 +14,7 @@ import together
 import google.generativeai as gemini
 from tenacity import retry, stop_after_attempt, wait_fixed
 from vllm import (LLM, SamplingParams)
-from .data import ContentTextMessage, Conversation
+from ._types import ContentTextMessage, Conversation
 from transformers import AutoTokenizer
 from .gpu_utils import get_gpu_count
 

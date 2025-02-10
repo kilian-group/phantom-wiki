@@ -7,7 +7,7 @@ import traceback
 import pandas as pd
 
 from phantom_eval.llm import LLMChat, LLMChatResponse, InferenceGenerationConfig, aggregate_usage
-from phantom_eval.data import Conversation, ContentTextMessage, Message
+from phantom_eval._types import Conversation, ContentTextMessage, Message
 from phantom_eval.prompts import LLMPrompt
 from phantom_eval.score import normalize_pred
 import phantom_eval.constants as constants
