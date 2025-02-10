@@ -45,3 +45,9 @@ class Conversation(BaseModel):
         """
         with open(Path(file_path).expanduser(), "w") as f:
             f.write(self.model_dump_json(indent=4))
+
+
+class LLMChatResponse(BaseModel):
+    pred: str
+    usage: dict
+    error: str | None = None
