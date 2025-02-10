@@ -110,10 +110,10 @@ class NshotAgent(Agent):
         self.agent_interactions = conv
         
         # Generate response
-        # Add "\n" to stop_sequences
         if any(rm in llm_chat.model_name for rm in REASONING_MODELS):
             inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
         else:
+            # Add "\n" to stop_sequences
             inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
         response = llm_chat.generate_response(conv, inf_gen_config)
 
@@ -146,10 +146,10 @@ class NshotAgent(Agent):
         self.agent_interactions = convs
         
         # Generate response
-        # Change stop_sequences to "\n"
         if any(rm in llm_chat.model_name for rm in REASONING_MODELS):
             inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
         else:
+            # Change stop_sequences to "\n"
             inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
         responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
 
