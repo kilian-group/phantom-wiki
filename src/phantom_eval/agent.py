@@ -1,26 +1,21 @@
 import abc
+from collections import Counter
 import logging
 import re
-from collections import Counter
+import subprocess
 import traceback
 
+import openai 
 import pandas as pd
+from langchain_community.vectorstores import FAISS
+from langchain_core.embeddings import Embeddings
 
-from phantom_eval.llm import LLMChat, LLMChatResponse, InferenceGenerationConfig, aggregate_usage
-from phantom_eval._types import Conversation, ContentTextMessage, Message
+from phantom_eval._types import Conversation, ContentTextMessage, LLMChatResponse, Message
+from phantom_eval.gpu_utils import get_gpu_count
+from phantom_eval.llm.common import InferenceGenerationConfig, aggregate_usage, LLMChat
 from phantom_eval.prompts import LLMPrompt
 from phantom_eval.score import normalize_pred
 import phantom_eval.constants as constants
-
-from langchain_community.vectorstores import FAISS
-import os
-from vllm import LLM
-from .gpu_utils import get_gpu_count
-import torch
-import openai 
-import subprocess
-from typing import List
-from langchain_core.embeddings import Embeddings
 
 
 logger = logging.getLogger(__name__)
@@ -706,8 +701,6 @@ class ReactAgent(Agent):
             raise ValueError(f"Action '{action}' cannot be parsed.")
 
 
-
-
 class React_CoTSCAgent(Agent):
     """
     Agent to implement React->CoTSC evaluation.
@@ -871,18 +864,20 @@ class CoTSC_ReactAgent(Agent):
                 # Error msg is not related to majority vote, return CoTSC's response and abort
                 return cotsc_response
 
+
 class CustomEmbeddings(Embeddings):
     def __init__(self, client):
         self.client = client
         self.model = self.client.models.list().data[0].id
 
-    def embed_documents(self, texts: List[str]) -> List[List[float]]:
+    def embed_documents(self, texts: list[str]) -> list[list[float]]:
         """Embed search docs."""
         return [obj.embedding for obj in self.client.embeddings.create(input=texts, model=self.model).data]
 
-    def embed_query(self, text: str) -> List[float]:
+    def embed_query(self, text: str) -> list[float]:
         """Embed query text."""
         return self.embed_documents([text])[0]
+
 
 class RAGMixin:
     def __init__(self, 
