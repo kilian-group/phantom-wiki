@@ -9,9 +9,11 @@ from phantom_eval.llm.common import CommonLLMChat, InferenceGenerationConfig
 class AnthropicChat(CommonLLMChat):
     RATE_LIMITS = {
         "claude-3-5-sonnet-20241022": {
+            "usage_tier=1": {"RPM": 50, "TPM": 40_000},
             "usage_tier=2": {"RPM": 1_000, "TPM": 80_000},
         },
         "claude-3-5-haiku-20241022": {
+            "usage_tier=1": {"RPM": 50, "TPM": 50_000},
             "usage_tier=2": {"RPM": 1_000, "TPM": 100_000},
         },
     }
@@ -21,7 +23,7 @@ class AnthropicChat(CommonLLMChat):
         self,
         model_name: str,
         model_path: str | None = None,
-        usage_tier: int = 2,
+        usage_tier: int = 1,
     ):
         super().__init__(model_name, model_path)
         self.client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
