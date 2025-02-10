@@ -933,7 +933,6 @@ class RAGMixin:
                 text_corpus: pd.DataFrame, 
                 embedding_model_name: str="whereisai/uae-large-v1",
                 retriever_num_documents: int = 4,
-                use_api: bool | None = True,
                 tensor_parallel_size: int | None = 1,
                 port:int = 8001,
                 ):
@@ -945,28 +944,27 @@ class RAGMixin:
 
         self.embedding_model_name = embedding_model_name
         texts = self.text_corpus['article'].tolist()
-        if(True):#if(use_api):
-            # launch server
-            subprocess.call(["./src/phantom_eval/launch_embedding_server.sh", 
-                            embedding_model_name, 
-                            str(port), 
-                            str(get_gpu_count()-1)
-                            ])
 
-            # build retriever
-            BASE_URL = f"http://0.0.0.0:{port}/v1" 
-            API_KEY="token-abc123" 
-            client = openai.OpenAI(
-                base_url=BASE_URL,
-                api_key=API_KEY,
-            )
-            embeddings = CustomEmbeddings(client)
-            vectorstore = FAISS.from_texts(texts, embeddings)
-            self.retriever = vectorstore.as_retriever(
-                search_kwargs={'k': retriever_num_documents}
-            )
-        else:
-            raise NotImplementedError("Not implemented yet")
+        # launch server
+        subprocess.call(["./src/phantom_eval/launch_embedding_server.sh", 
+                        embedding_model_name, 
+                        str(port), 
+                        str(get_gpu_count()-1)
+                        ])
+
+        # build retriever
+        BASE_URL = f"http://0.0.0.0:{port}/v1" 
+        API_KEY="token-abc123" 
+        client = openai.OpenAI(
+            base_url=BASE_URL,
+            api_key=API_KEY,
+        )
+        embeddings = CustomEmbeddings(client)
+        vectorstore = FAISS.from_texts(texts, embeddings)
+        self.retriever = vectorstore.as_retriever(
+            search_kwargs={'k': retriever_num_documents}
+        )
+
 
     def get_RAG_evidence(self, question:str) -> str:
         """
@@ -988,7 +986,6 @@ class NshotRAGAgent(NshotAgent, RAGMixin):
                 fewshot_examples: str = "", 
                 embedding_model_name: str="WhereIsAI/UAE-Code-Large-V",
                 retriever_num_documents: int = 4,
-                use_api: bool | None = True,
                 tensor_parallel_size: int | None = 1,
                 port:int = 8001,
                 ):
@@ -1000,7 +997,7 @@ class NshotRAGAgent(NshotAgent, RAGMixin):
                 Defaults to `constants.answer_sep`.
         """
         NshotAgent.__init__(self, text_corpus, llm_prompt, fewshot_examples)
-        RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, use_api, tensor_parallel_size, port)
+        RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, tensor_parallel_size, port)
 
     def run(self, 
             llm_chat: LLMChat, 
@@ -1029,7 +1026,6 @@ class CoTRAGAgent(CoTAgent, RAGMixin):
                 cot_examples: str = "",
                 embedding_model_name: str="WhereIsAI/UAE-Code-Large-V",
                 retriever_num_documents: int = 4,
-                use_api: bool | None = True,
                 tensor_parallel_size: int | None = 1,
                 port:int = 8001,
                 ):
@@ -1038,7 +1034,7 @@ class CoTRAGAgent(CoTAgent, RAGMixin):
             cot_examples (str): Prompt examples to include in agent prompt.
         """
         CoTAgent.__init__(self, text_corpus, llm_prompt, cot_examples)
-        RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, use_api, tensor_parallel_size, port)
+        RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, tensor_parallel_size, port)
 
     def run(self, 
             llm_chat: LLMChat, 
