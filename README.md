@@ -37,9 +37,11 @@ There are 2 options:
 
 First, install dependencies and [vLLM](https://github.com/vllm-project/vllm) to match your hardware (GPU, CPU, etc.):
 ```bash
-pip install -r requirements-eval.txt
+pip install phantom-wiki[eval]
 pip install "vllm>=0.6.6"
 ```
+
+If you're installing from source, use `pip install .[eval]`.
 
 Then run evaluation methods (like `zeroshot,fewshot,react,...`) with an LLM like so:
 ```bash
