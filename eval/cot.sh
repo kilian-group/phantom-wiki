@@ -32,7 +32,7 @@ source eval/constants.sh
 
 # check which modelsize to run
 if [ "$1" == "large" ]; then
-    MODELS=("${LARGE_MODELS[@]}")ßß
+    MODELS=("${LARGE_MODELS[@]}")
 elif [ "$1" == "medium" ]; then
     MODELS=("${MEDIUM_MODELS[@]}")
 elif [ "$1" == "small" ]; then
