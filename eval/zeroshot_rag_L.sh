@@ -67,21 +67,21 @@ pkill -e -f vllm
 # https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html#vllm-serve
 for model_name in "${LARGE_MODELS[@]}"
 do
-    # Start the vLLM server in the background
-    echo "Starting vLLM server..."
-    vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $PORT" #nohup launches this in the background
-    echo $vllm_cmd
-    nohup $vllm_cmd &
+    # # Start the vLLM server in the background
+    # echo "Starting vLLM server..."
+    # vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $PORT" #nohup launches this in the background
+    # echo $vllm_cmd
+    # nohup $vllm_cmd &
     
-    # Wait for the server to start
-    echo "Waiting for vLLM server to start..."
-    SLEEP=60
-    while ! check_server $model_name $PORT; do
-        echo "Server is not up yet. Checking again in $SLEEP seconds..."
-        sleep $SLEEP
-    done
+    # # Wait for the server to start
+    # echo "Waiting for vLLM server to start..."
+    # SLEEP=60
+    # while ! check_server $model_name $PORT; do
+    #     echo "Server is not up yet. Checking again in $SLEEP seconds..."
+    #     sleep $SLEEP
+    # done
 
-    echo "vLLM server is up and running."
+    # echo "vLLM server is up and running."
 
     # Run the main Python script
     cmd="python -m phantom_eval \
