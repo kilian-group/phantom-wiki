@@ -110,7 +110,7 @@ class NshotAgent(Agent):
         self.agent_interactions = conv
         
         # Generate response
-        if any(rm in llm_chat.model_name for rm in REASONING_MODELS):
+        if llm_chat.model_name in REASONING_MODELS:
             inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
         else:
             # Add "\n" to stop_sequences
@@ -122,7 +122,7 @@ class NshotAgent(Agent):
             Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
         )
 
-        if any(rm in llm_chat.model_name for rm in REASONING_MODELS):
+        if llm_chat.model_name in REASONING_MODELS:
             try:
                 pred = NshotAgent.parse_thinking_answer(response.pred)
                 error = None
@@ -146,7 +146,7 @@ class NshotAgent(Agent):
         self.agent_interactions = convs
         
         # Generate response
-        if any(rm in llm_chat.model_name for rm in REASONING_MODELS):
+        if llm_chat.model_name in REASONING_MODELS:
             inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
         else:
             # Change stop_sequences to "\n"
@@ -159,7 +159,7 @@ class NshotAgent(Agent):
                 Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
             )
 
-        if any(rm in llm_chat.model_name for rm in REASONING_MODELS):
+        if llm_chat.model_name in REASONING_MODELS:
             parsed_responses: list[LLMChatResponse] = []
             for response in responses:
                 # Try to parse the response, otherwise return an error
