@@ -20,9 +20,9 @@
 # ~8B models    | 2          | 1         | 1
 # ~70B models   |            | 8         | 4
 
-# check that the correct number of arguments were passed
-# 0: output_dir 1: model_name 2:port
-if [ -z "$1" ]; then
+# 0: output_dir 1: model_size: small/medium/large 2: method
+# check that the correct number of arguments were passed (3rd argument should be empty)
+if [ -z "$3" ]; then
     echo "Usage: $0 <output directory>"
     exit 1
 fi
