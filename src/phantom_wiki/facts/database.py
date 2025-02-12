@@ -75,8 +75,8 @@ class Database:
 
         else:
             results = []
-            for q in tqdm(queries):
-                results.append(self.query(q), desc="Querying the database")
+            for q in tqdm(queries, desc="Querying the database"):
+                results.append(self.query(q))
 
         return results
     
