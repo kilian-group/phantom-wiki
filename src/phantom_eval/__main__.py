@@ -65,12 +65,14 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
             agent_kwargs = dict(
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
+                prolog_query=args.prolog_query
             )
         case "fewshot-sc":
             agent_kwargs = dict(
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
                 fewshot_examples=FEWSHOT_EXAMPLES,
+                prolog_query=args.prolog_query
             )
         case "cot":
             agent_kwargs = dict(
