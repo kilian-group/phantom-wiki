@@ -54,8 +54,17 @@ check_server() {
 
 source eval/constants.sh
 
-# https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html#vllm-serve
-for model_name in "${LARGE_MODELS[@]}"
+
+if [ "$1" == "large" ]; then
+    MODELS=("${LARGE_MODELS[@]}")
+elif [ "$1" == "medium" ]; then
+    MODELS=("${MEDIUM_MODELS[@]}")
+else
+    echo "Usage: $0 {large|medium}"
+    exit 1
+fi
+
+for model_name in "${MODELS[@]}"
 do
     # # Start the vLLM server in the background
     port=8000
