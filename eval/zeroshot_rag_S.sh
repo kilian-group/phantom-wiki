@@ -60,36 +60,38 @@ NUM_GPUS=$(nvidia-smi --query-gpu=name --format=csv,noheader | wc -l)
 for model_name in "${SMALL_MODELS[@]}"
 do
     # Start the vLLM server in the background
-    port=8000
-    echo "Starting vLLM server..."
-    eval export CUDA_VISIBLE_DEVICES=0,1,2,3
-    vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $port" #nohup launches this in the background
-    echo $vllm_cmd
-    nohup $vllm_cmd &
+    # port=8000
+    # echo "Starting vLLM server..."
+    # eval export CUDA_VISIBLE_DEVICES=0,1,2,3
+    # vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $port" #nohup launches this in the background
+    # echo $vllm_cmd
+    # nohup $vllm_cmd &
 
-    # Wait for the server to start
-    echo "Waiting for vLLM server to start..."
-    SLEEP=60
-    while ! check_server $model_name $port; do
-        echo "Server is not up yet. Checking again in $SLEEP seconds..."
-        sleep $SLEEP
-    done
+    # # Wait for the server to start
+    # echo "Waiting for vLLM server to start..."
+    # SLEEP=60
+    # while ! check_server $model_name $port; do
+    #     echo "Server is not up yet. Checking again in $SLEEP seconds..."
+    #     sleep $SLEEP
+    # done
 
-    echo "vLLM server is up and running."
+    # echo "vLLM server is up and running."
 
-    e_port=8001
-    eval export CUDA_VISIBLE_DEVICES=0,1,2,3
+    # e_port=8001
+    # eval export CUDA_VISIBLE_DEVICES=0,1,2,3
     # Run the main Python script
     cmd="python -m phantom_eval \
         --method zeroshot-rag \
         -od $1 \
         -m $model_name \
-        --split_list $SPLIT_LIST \
-        --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
+        --split_list depth_20_size_200_seed_1 \
+        --inf_seed_list 1 \
         --inf_temperature $TEMPERATURE \
         --retriever_method whereisai/uae-large-v1 \
         "
                 # --force \
+        #                 --split_list $SPLIT_LIST \
+        # --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
     echo $cmd
     eval $cmd
 

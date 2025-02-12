@@ -33,9 +33,7 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
                 use_api=(
                     args.method
                     in [
-                        "zeroshot-rag",
-                        "fewshot-rag",
-                        "cot-rag",
+                        # "zeroshot-rag", "fewshot-rag", "cot-rag",
                         "react",
                         "act",
                         "react->cot-sc",
@@ -54,7 +52,7 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
 
 def get_agent_kwargs(args: argparse.Namespace) -> dict:
     match args.method:
-        case "zeroshot" | "reasoning":
+        case "zeroshot":
             agent_kwargs = dict()
         case "fewshot":
             agent_kwargs = dict(
@@ -79,11 +77,8 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
             )
-        case "zeroshot-rag" | "reasoning-rag":
+        case "zeroshot-rag":
             agent_kwargs = dict(
-                # embedding="together", #args.embedding
-                # vector_store="faiss", #args.vector_store
-                # embedding_port=args.inf_embedding_port,
                 embedding_model_name=args.retriever_method,
                 retriever_num_documents=args.retriever_num_documents,
             )
@@ -209,14 +204,7 @@ async def main(args: argparse.Namespace) -> None:
                 agent_interactions = None
                 match args.method:
                     case (
-                        "zeroshot"
-                        | "zeroshot-sc"
-                        | "fewshot"
-                        | "fewshot-sc"
-                        | "zeroshot-rag"
-                        | "fewshot-rag"
-                        | "reasoning"
-                        | "reasoning-rag"
+                        "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc" | "zeroshot-rag" | "fewshot-rag"
                     ):
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)

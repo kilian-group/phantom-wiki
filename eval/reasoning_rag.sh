@@ -77,7 +77,7 @@ do
     # echo "vLLM server is up and running."
 
     cmd="python -m phantom_eval \
-        --method reasoning \
+        --method zeroshot-rag \
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \
