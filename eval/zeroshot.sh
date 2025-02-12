@@ -33,7 +33,19 @@ TEMPERATURE=0
 
 source eval/constants.sh
 
-for model_name in "${LARGE_MODELS[@]}"
+# check which modelsize to run
+if [ "$1" == "large" ]; then
+    MODELS=("${LARGE_MODELS[@]}")
+elif [ "$1" == "medium" ]; then
+    MODELS=("${MEDIUM_MODELS[@]}")
+elif [ "$1" == "small" ]; then
+    MODELS=("${SMALL_MODELS[@]}")
+else
+    echo "Usage: $0 {large|medium|small}"
+    exit 1
+fi
+
+for model_name in "${MODELS[@]}"
 do
     cmd="python -m phantom_eval \
         --method zeroshot \
