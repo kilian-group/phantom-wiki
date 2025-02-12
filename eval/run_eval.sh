@@ -24,7 +24,7 @@
 
 # Check if the number of arguments is less than 4 (excluding the script name)
 if [ "$#" -lt 4 ]; then
-    echo "Usage: $0 <output_dir> <method> <model_name> <split>"
+    echo "Usage: eval/run_eval.sh <output_dir> <method> <model_name> <split_list>"
     exit 1
 fi
 
@@ -59,8 +59,8 @@ cmd="python -m phantom_eval \
 if [ "${METHOD}" == "reasoning" ]; then
     TEMPERATURE=0.6
     TOP_P=0.95
-    if [ "$MODEL_NAME" != "deepseek-ai/deepseek-r1-distill-qwen-32b" ]; then   
-        echo "Reasoning method only available for 'deepseek-ai/deepseek-r1-distill-qwen-32b'"
+    if [[ ! " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+        echo "Reasoning method only available for ${REASONING_MODELS[@]}"
         exit 1
     fi
     cmd+=" \
@@ -73,9 +73,29 @@ else
     --inf_temperature $TEMPERATURE"
 fi
 
+cmd+= " \
+    --inf_seed_list $(get_inf_seed_list $TEMPERATURE)"
 
-# If not using API, need to start vLLM server 
-if [[ ! " ${API_MODELS[@]} " =~ " ${model} " ]]; then
+
+# Function to check if the vLLM server is up
+check_server() {
+    local model_name=$1
+    local port=$2
+    # echo http://0.0.0.0:8001/v1/chat/completions
+    response=$(curl -o /dev/null -s -w "%{http_code}" http://0.0.0.0:$port/v1/chat/completions \
+                    -X POST \
+                    -H "Content-Type: application/json" \
+                    -H "Authorization: Bearer token-abc123" \
+                    -d "{\"model\": \"$model_name\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello!\"}]}")
+    if [ "$response" -eq 200 ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# If the method is react or act, we need to start vLLM server 
+if [[ "$METHOD" =~ act ]]; then
 do
     # Get the number of gpus by counting the number of lines in the output of nvidia-smi
     NUM_GPUS=$(nvidia-smi --query-gpu=name --format=csv,noheader | wc -l)
@@ -89,24 +109,24 @@ do
 
     cmd+=" \
         --inf_vllm_port $PORT"
-
     echo "Using port: $PORT"
+
     echo "Starting vLLM server..."
-    vllm_cmd="vllm serve $model --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $PORT" #nohup launches this in the background
+    vllm_cmd="vllm serve $MODEL_NAME --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $PORT" #nohup launches this in the background
     echo $vllm_cmd
     nohup $vllm_cmd &
     
     # Wait for the server to start
     echo "Waiting for vLLM server to start..."
     SLEEP=60
-    while ! check_server $model $PORT; do
+    while ! check_server $MODEL_NAME $PORT; do
         echo "Server is not up yet. Checking again in $SLEEP seconds..."
         sleep $SLEEP
     done
 
     echo "vLLM server is up and running."
 
-if [[ "$method" =~ "rag" ]]; then
+if [[ "$METHOD" =~ "rag" ]]; then
     cmd+=" \
         --retriever_method whereisai/uae-large-v1"
 fi
@@ -114,7 +134,7 @@ echo $cmd
 eval $cmd
 
 
-if [[ ! " ${API_MODELS[@]} " =~ " ${model} " ]]; then
+if [[ "$METHOD" =~ act ]]; then
     # Stop the vLLM server using pkill
     echo "Stopping vLLM server..."
     pkill -e -f vllm
