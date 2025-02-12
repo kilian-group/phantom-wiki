@@ -75,6 +75,13 @@ do
 
     echo "vLLM server is up and running."
 
+    # check which split to run
+    if [ "$1" == "large" ]; then
+        SPLIT_LIST=("${LARGE_SPLIT_LIST[@]}")
+    else
+        SPLIT_LIST=("${SPLIT_LIST[@]}")
+    fi
+
     # Run the main Python script
     cmd="python -m phantom_eval \
         --method react \
