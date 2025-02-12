@@ -45,7 +45,8 @@ def check_git_status():
         # If `git status --porcelain` output is not empty, there are uncommitted changes
         if result.stdout.strip():
             print(
-                "Error: You have uncommitted or unstashed changes. Please commit or stash them before running this script."
+                "Error: You have uncommitted or unstashed changes. "
+                "Please commit or stash them before running this script."
             )
             sys.exit(1)
     except FileNotFoundError:
@@ -176,7 +177,8 @@ def main(args):
 
     # Create caches for person -> (attr name, attr value) and person -> (relation, related person) pairs
     # When we iterate over multiple questions, we can reuse the same cache to avoid recomputing
-    # e.g. "John" -> [("dob", "1990-01-01"), ("job", "teacher"), ("hobby", "reading"), ("hobby", "swimming"), ...]
+    # e.g. "John" -> [("dob", "1990-01-01"), ("job", "teacher"), ("hobby", "reading"),
+    # ("hobby", "swimming"), ...]
     # NOTE: Invariant: (attr name, attr value) pairs are unique
     person_name2attr_name_and_val: dict[str, list[tuple[str, str]]] = {}
     # e.g. "John" -> [("child", "Alice"), ("child", "Bob"), ("friend", "Charlie"), ...]
@@ -189,8 +191,9 @@ def main(args):
         rng = np.random.default_rng(args.seed)
         questions = []
         # for _ in range(args.num_questions_per_type):
-        while len(questions) < args.num_questions_per_type: # TODO: this is a temporary fix to make sure that we generate the same number of questions for each template
-
+        while (
+            len(questions) < args.num_questions_per_type
+        ):  # TODO: temporary fix to make sure that we generate the same number of questions for each template
             # sample a question
             if args.valid_only:
                 question, query = sample_valid_only(
@@ -208,13 +211,17 @@ def main(args):
                 raise NotImplementedError("Sampling questions without valid_only is not supported.")
 
             # Get all possible answers for the query
-            solution_traces, final_results = get_answer(query, db, answer, skip_solution_traces=args.skip_solution_traces)
+            solution_traces, final_results = get_answer(
+                query, db, answer, skip_solution_traces=args.skip_solution_traces
+            )
             question_difficulty = calculate_query_difficulty(query)
             questions.append(
                 {
                     "id": generate_unique_id(),
                     "question": question,
-                    "solution_traces": json.dumps(solution_traces), # NOTE: serialize list of dicts so that it can be saved on HF
+                    "solution_traces": json.dumps(
+                        solution_traces
+                    ),  # NOTE: serialize list of dicts so that it can be saved on HF
                     "answer": final_results,
                     "prolog": {"query": query, "answer": answer},
                     "template": question_template,

@@ -7,10 +7,7 @@ from . import decode
 
 
 def get_answer(
-    query: list[str],
-    db: Database,
-    answer: str,
-    skip_solution_traces: bool = False
+    query: list[str], db: Database, answer: str, skip_solution_traces: bool = False
 ) -> tuple[list[dict[str, str]], list[str]]:
     """Get the answer to a query from the database
 
@@ -20,13 +17,14 @@ def get_answer(
         db (Database): The database to query
         answer (str): The answer to the query as a placeholder
             Example: "Y_3"
-        skip_solution_traces (bool, optional): Flag to skip solution traces, which describe the intermediate steps towards final answer.
+        skip_solution_traces (bool, optional): Flag to skip solution traces, which describe the intermediate
+        steps towards final answer.
             Defaults to False, in which case the returned list is non-empty.
 
     Returns:
         solution_traces: list[dict[str, str]]
             A list of dictionaries with the results along the "path trace" to the final answer
-        final_results: list[str] 
+        final_results: list[str]
             The final results of the entire query
 
     Example:
@@ -35,7 +33,8 @@ def get_answer(
     solution_traces, final_results = get_answer(query, db, "Y_3", skip_solution_traces=False)
     ```
     outputs `[{"Y_2": "Alice", "Y_3": "Bob"}], ["Bob"]`.
-    Each dictionary in the solution_traces list is a sequence of placeholders and values towards a final answer.
+    Each dictionary in the solution_traces list is a sequence of placeholders and values towards a final
+    answer.
     There can be multiple final answers, and so multiple dictionaries in solution_traces.
     """
     # Evaluate the reversed query
@@ -46,16 +45,18 @@ def get_answer(
         logging.warning("Skipping solution traces")
         solution_traces = []
     else:
-        # NOTE: for aggregation questions, prolog will create a Variable type for the final placeholder of the query
+        # NOTE: for aggregation questions, prolog will create a Variable type for the final placeholder of
+        # the query
         # These have indeterminate values, and are not useful for solution traces.
-        # Moreover, decoding them and saving them to a file (as part of solution_traces) will cause a segfault.
+        # Moreover, decoding them and saving them to a file (as part of solution_traces) will cause a
+        # segfault.
         # Hence, only decode values that are not Variables
         solution_traces: list[dict[str, str]] = [
             {k: decode(v) for k, v in x.items() if not isinstance(v, Variable)} for x in query_result
         ]
         # solution_traces can contain duplicate dictionaries, keep only unique ones
         # frozenset is used to make the dictionaries hashable, and set to remove duplicates
-        unique_solution_traces = set(frozenset(d.items()) for d in solution_traces)
+        unique_solution_traces = {frozenset(d.items()) for d in solution_traces}
         solution_traces = [dict(s) for s in unique_solution_traces]
 
     final_results = [str(decode(x[answer])) for x in query_result]

@@ -5,7 +5,6 @@ from phantom_eval.llm.openai import OpenAIChat
 from phantom_eval.llm.together import TogetherChat
 from phantom_eval.llm.vllm import VLLMChat
 
-
 SUPPORTED_LLM_NAMES: list[str] = (
     AnthropicChat.SUPPORTED_LLM_NAMES
     + GeminiChat.SUPPORTED_LLM_NAMES

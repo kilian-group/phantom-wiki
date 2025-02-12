@@ -4,18 +4,22 @@ import os
 
 from nltk import CFG
 
-from phantom_wiki.utils.parsing import *
+from phantom_wiki.utils.parsing import *  # noqa: F403
 
 # Define the CFG as a string and parse it using nltk.CFG.fromstring
 # cfg_string = """
-# S -> "Anastasia is a talented" Occupation "known for her" Skill "in the music world." Description Achievements Influence
+# S -> "Anastasia is a talented" Occupation "known for her" Skill "in the music world."
+# Description Achievements Influence
 # Occupation -> "musician" | "composer" | "violinist" | "guitarist" | "pianist" | "singer-songwriter"
-# Skill -> "mastery of melodies" | "ability to captivate audiences" | "passion for composing" | "skill with harmonies" | "unique musical style" | "innovative approach to music" | "expressive performance"
+# Skill -> "mastery of melodies" | "ability to captivate audiences" | "passion for composing" |
+# "skill with harmonies" | "unique musical style" | "innovative approach to music" | "expressive performance"
 # Description -> Genre Style
 # Genre -> "She specializes in" MusicStyle "."
-# MusicStyle -> "classical music" | "jazz fusion" | "indie rock" | "electronic compositions" | "folk tunes" | "contemporary ballads"
+# MusicStyle -> "classical music" | "jazz fusion" | "indie rock" | "electronic compositions" |
+# "folk tunes" | "contemporary ballads"
 # Style -> "Her music is often described as" Adjective "."
-# Adjective -> "ethereal and haunting" | "dynamic and intense" | "melodic and harmonious" | "soulful and introspective" | "energetic and captivating"
+# Adjective -> "ethereal and haunting" | "dynamic and intense" | "melodic and harmonious" |
+#  "soulful and introspective" | "energetic and captivating"
 # Achievements -> "She has released" Number AlbumType "and" Number SingleType "."
 # Number -> "several" | "two" | "three" | "numerous" | "a collection of"
 # AlbumType -> "albums" | "EPs" | "soundtracks"
@@ -37,9 +41,8 @@ def TO_BE_REFACTORED():
 
     # Generate the questions associated with each non-terminal
     # import pdb; pdb.set_trace()
-    raw_questions = get_response(None, None, cfg_string)
-    questions = parse_question_list(raw_questions)
-
+    raw_questions = get_response(None, None, cfg_string)  # noqa: F405
+    questions = parse_question_list(raw_questions)  # noqa: F405
 
     # Questions associated with each CFG non-terminal
     # questions = {
@@ -56,7 +59,11 @@ def TO_BE_REFACTORED():
     # Generate Python code from parsed CFG
     def generate_code_from_parsed_cfg(grammar, questions):
         # Initialize the generated code as a list of strings for easier formatting
-        code = ["import random\n\n", "import textwrap\n\n", "# Define possible choices for each CFG terminal\n"]
+        code = [
+            "import random\n\n",
+            "import textwrap\n\n",
+            "# Define possible choices for each CFG terminal\n",
+        ]
 
         # Create a dictionary to collect production rules by their LHS
         rules = {}
@@ -130,7 +137,6 @@ def TO_BE_REFACTORED():
 
         # Return the entire code as a string
         return "".join(code)
-
 
     # Generate the Python code
     generated_code = generate_code_from_parsed_cfg(grammar, questions)
