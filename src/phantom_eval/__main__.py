@@ -233,7 +233,6 @@ async def main(args: argparse.Namespace) -> None:
                 # Process Prolog queries if needed
                 prolog_results = []
                 if args.prolog_query:
-                    assert len(args.split_list) == 1, "When prolog_query is true, we can only evaluate one split at a time since only one Prolog database can be in memory at any given time due to limitations with pyswip"
                     # Create temporary file and load database from disk
                     with tempfile.NamedTemporaryFile(mode='w', suffix='.pl') as tmp:
                         content = dataset['database']['content']
@@ -287,7 +286,7 @@ def save_preds(
         uid = qa_sample.id
         
         # Get the appropriate prediction value and query info
-        if args.prolog_query and prolog_results:
+        if prolog_results:
             pred_value = prolog_results[i]['final_value']
             pred_query = prolog_results[i]['query']
             query_results = prolog_results[i]['query_results']
@@ -324,6 +323,8 @@ if __name__ == "__main__":
     parser = get_parser()
     args = parser.parse_args()
     setup_logging(args.log_level)
+    if args.prolog_query:
+        assert len(args.split_list) == 1, "When prolog_query is true, we can only evaluate one split at a time since only one Prolog database can be in memory at any given time due to limitations with pyswip"
 
     # NOTE: asyncio.run should only be called once in a single Python instance.
     # Thus, any high-level function containing awaits in its implementation 
