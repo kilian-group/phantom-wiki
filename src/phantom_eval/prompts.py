@@ -8,6 +8,15 @@ from phantom_eval import constants
 class LLMPrompt(abc.ABC):
     @abc.abstractmethod
     def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
+        """Get the prompt template for this LLM prompt.
+        
+        Args:
+            prolog_query: If True, returns a prompt template that instructs the LLM to generate a Prolog query.
+                         If False, returns a prompt template that instructs the LLM to generate a direct answer.
+        
+        Returns:
+            A PromptTemplate object containing the prompt template.
+        """
         pass
 
 
@@ -39,6 +48,15 @@ class ZeroshotLLMPrompt(LLMPrompt):
     Answer: """
 
     def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
+        """Get the zeroshot prompt template.
+        
+        Args:
+            prolog_query: If True, returns a prompt template that instructs the LLM to generate a Prolog query.
+                         If False, returns a prompt template that instructs the LLM to generate a direct answer.
+        
+        Returns:
+            A PromptTemplate object containing the zeroshot prompt template.
+        """
         if prolog_query:
             return PromptTemplate(
                 input_variables=["evidence", "question"],
@@ -173,6 +191,15 @@ class FewshotLLMPrompt(LLMPrompt):
     Answer: """
 
     def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
+        """Get the fewshot prompt template.
+        
+        Args:
+            prolog_query: If True, returns a prompt template that instructs the LLM to generate a Prolog query.
+                         If False, returns a prompt template that instructs the LLM to generate a direct answer.
+        
+        Returns:
+            A PromptTemplate object containing the fewshot prompt template.
+        """
         if prolog_query:
             return PromptTemplate(
                 input_variables=["evidence", "examples", "question"],
@@ -253,6 +280,14 @@ class CoTLLMPrompt(LLMPrompt):
     Answer: """
 
     def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
+        """Get the Chain-of-Thought prompt template.
+        
+        Args:
+            prolog_query: This parameter is not used for CoT prompts, as they do not support Prolog query generation.
+        
+        Returns:
+            A PromptTemplate object containing the Chain-of-Thought prompt template.
+        """
         return PromptTemplate(
             input_variables=["evidence", "examples", "question"],
             template=self.COT_INSTRUCTION,
@@ -277,6 +312,14 @@ class RAGLLMPrompt(LLMPrompt):
     Answer (Your response must end in "The answer is <answer>."): """
 
     def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
+        """Get the RAG prompt template.
+        
+        Args:
+            prolog_query: This parameter is not used for RAG prompts, as they do not support Prolog query generation.
+        
+        Returns:
+            A PromptTemplate object containing the RAG prompt template.
+        """
         return PromptTemplate(
             input_variables=["evidence", "question"],
             template=self.RAG_INSTRUCTION,
@@ -485,6 +528,14 @@ class ReactLLMPrompt(LLMPrompt):
     """
 
     def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
+        """Get the ReAct prompt template.
+        
+        Args:
+            prolog_query: This parameter is not used for ReAct prompts, as they do not support Prolog query generation.
+        
+        Returns:
+            A PromptTemplate object containing the ReAct prompt template.
+        """
         return PromptTemplate(
             input_variables=["examples", "question", "scratchpad"],
             template=self.REACT_INSTRUCTION,
@@ -655,6 +706,14 @@ class ActLLMPrompt(LLMPrompt):
     """
 
     def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
+        """Get the Act prompt template.
+        
+        Args:
+            prolog_query: This parameter is not used for Act prompts, as they do not support Prolog query generation.
+        
+        Returns:
+            A PromptTemplate object containing the Act prompt template.
+        """
         return PromptTemplate(
             input_variables=["examples", "question", "scratchpad"],
             template=self.ACT_INSTRUCTION,
