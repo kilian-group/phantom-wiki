@@ -3,6 +3,7 @@ from phantom_wiki.facts.family.constants import PERSON_TYPE
 import logging
 from phantom_wiki.utils import decode
 from multiprocessing import Pool
+from tqdm import tqdm
 
 SAVE_ALL_CLAUSES_TO_FILE = """
 (save_all_clauses_to_file(File) :-
@@ -68,7 +69,10 @@ class Database:
         """
         if multi_threading:
             with Pool() as pool:
-                results = pool.map(self.query, queries)
+                results = []
+                for result in tqdm(pool.imap(self.query, queries), total=len(queries), desc="Querying the database"):
+                    results.append(result)
+
         else:
             results = [self.query(q) for q in queries]
 
