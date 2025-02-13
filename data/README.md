@@ -41,17 +41,17 @@ Then we generate question-answer pairs with tunable difficulties, encapsulating 
 
 ## Uses
 
-PhantomWiki is intended to evaluate retrieval augmented generation (RAG) systems and agentic workflows.
+PhantomWiki is intended to evaluate retrieval augmented generation (RAG) systems and agentic workflows. In particular, it is particularly useful for disentangling the reasoning and retrieval capabilities of large language models, as demonstrated in our paper.
 
 ### Direct Use
 
-Owing to its fully synthetic and controllable nature, PhantomWiki is particularly useful for disentangling the reasoning and retrieval capabilities of large language models.
+PhantomWiki should be used to quantify the reasoning and retrieval capabilities of LLMs.
 
 ### Out-of-Scope Use
 
 <!-- This section addresses misuse, malicious use, and uses that the dataset will not work well for. -->
 
-[More Information Needed]
+PhantomWiki is not suitable for training LLMs.
 
 ## Dataset Structure
 
@@ -73,11 +73,14 @@ We take the first steps toward a large-scale synthetic dataset that can evaluate
 
 ### Source Data
 
-This is a synthetic dataset.
+This is a synthetic dataset. The extent to which we use real data is detailed as follows:
+1. Names are sampled from TODO
+2. We modify the list of real-life jobs provided by the `faker` Python package and sample from this list when generating universes. We are grateful to the contributors of Faker (c) 2012 Daniele Faraglia for curating this list and making it publically available.
+3. We modify the list of hobbies at https://www.kaggle.com/datasets/mrhell/list-of-hobbies and sample from this list when generating universes. We are grateful to Arjun Raj for curating this list and making it publically available.
 
 #### Data Collection and Processing
 
-This dataset was generated on commodity CPUs using Python and Prolog. See paper for full details of the generation pipeline, including timings. 
+This dataset was generated on commodity CPUs using Python and SWI-Prolog. See paper for full details of the generation pipeline, including timings. 
 
 #### Who are the source data producers?
 
@@ -107,19 +110,19 @@ N/A
 
 <!-- State whether the dataset contains data that might be considered personal, sensitive, or private (e.g., data that reveals addresses, uniquely identifiable names or aliases, racial or ethnic origins, sexual orientations, religious beliefs, political opinions, financial or health data, etc.). If efforts were made to anonymize the data, describe the anonymization process. -->
 
-N/A
+PhantomWiki does not reference any personal or private data.
 
 ## Bias, Risks, and Limitations
 
 <!-- This section is meant to convey both technical and sociotechnical limitations. -->
 
-N/A
+PhantomWiki generates large-scale corpora, reflecting fictional universes of characters and mimicking the style of fan-wiki websites. While sufficient for evaluating complex reasoning and retrieval capabilities of LLMs, PhantomWiki is limited to simplified family relations and attributes. Extending the complexity of PhantomWiki to the full scope of Wikipedia is an exiting future direction.
 
 ### Recommendations
 
 <!-- This section is meant to convey recommendations with respect to the bias, risk, and technical limitations. -->
 
-Users should be made aware of the risks, biases and limitations of the dataset. More information needed for further recommendations.
+PhantomWiki should be used as a benchmark to inform how LLMs should be used on reasoning- and retrieval-based tasks. For holistic evaluation on diverse tasks, PhantomWiki should be combined with other benchmarks.
 
 ## Citation [optional]
 
