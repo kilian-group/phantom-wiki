@@ -223,7 +223,7 @@ def main(args):
 
     # Get all possible answers/solution traces for the queries
     answers = [t[2] for t in templates]
-    all_solution_traces, all_final_results = get_answer(all_queries, db, answers, return_solution_traces=False, multi_threading=args.use_multithreading)
+    all_solution_traces, all_final_results = get_answer(all_queries, db, answers, skip_solution_traces=args.skip_solution_traces, multi_threading=args.use_multithreading)
 
     all_full_questions = []
     progbar = tqdm(enumerate(templates), desc="Generating questions #2", total=len(templates))

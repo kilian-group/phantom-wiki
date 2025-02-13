@@ -11,7 +11,7 @@ def get_answer(
     all_queries: list[list[list[str]]],
     db: Database,
     answers: str,
-    return_solution_traces: bool = False,
+    skip_solution_traces: bool = False,
     multi_threading: bool = False,
 ) -> tuple[list[dict[str, str]], list[str]]:
     """Retrieves answers for a given set of logical queries from the database.
@@ -23,8 +23,8 @@ def get_answer(
         db (Database): The database instance used to resolve the queries.
         answers (str): A placeholder variable representing the expected answer.
             Example: "Y_3"
-        return_solution_traces (bool, optional): Whether to return intermediate solution traces 
-            (i.e., step-by-step mappings of placeholders to values). Defaults to False.
+        skip_solution_traces (bool, optional): Flag to skip solution traces, which describe the intermediate steps towards final answer.
+            Defaults to False, in which case the returned list is non-empty.
         multi_threading (bool, optional): Whether to enable concurrent query execution. Defaults to False.
 
 
@@ -110,34 +110,22 @@ def get_answer(
         for query_result in query_results:
             # Here, we iterate through query results of one single template
 
-            if return_solution_traces:
+            if skip_solution_traces:
+                logging.warning("Skipping solution traces")
+                solution_trace = []
+
+            else:
+                # NOTE: for aggregation questions, prolog will create a Variable type for the final placeholder of the query
+                # These have indeterminate values, and are not useful for solution traces.
+                # Moreover, decoding them and saving them to a file (as part of solution_traces) will cause a segfault.
+                # Hence, only decode values that are not Variables
                 solution_trace: list[dict[str, str]] = [
-                    {k: decode(v) for k, v in x.items()} for x in query_result
+                    {k: decode(v) for k, v in x.items() if not isinstance(v, Variable)} for x in query_result
                 ]
                 # solution_trace can contain duplicate dictionaries, keep only unique ones
                 # frozenset is used to make the dictionaries hashable, and set to remove duplicates
                 unique_solution_trace = set(frozenset(d.items()) for d in solution_trace)
                 solution_trace = [dict(s) for s in unique_solution_trace]
-
-                # For aggregation questions, prolog will create a Variable type for the final placeholder of the query
-                # We remove this from the solution traces because
-                # - it is not useful for solution traces column in the dataset
-                # - the Variable object is not JSON serializable and cannot be dumped into a file
-                # TODO Anmol: implement this. I'm getting segfault whatever I do.
-                # for trace in solution_trace:
-                #     for k, v in trace.items():
-                #         if isinstance(v, Variable):
-                #             print(k, v)
-                #             trace[k] = ""
-                    # # Find keys to delete and only iterate through them, to avoid modifying the dictionary while iterating
-                    # # or causing a segfault (there are lots of keys in trace, so we only want to use a generator)
-                    # keys_to_delete = [k for k, v in trace.items() if isinstance(v, Variable)]
-                    # for k in keys_to_delete:
-                    #     del trace[k]
-
-            else:
-                logging.warning("Skipping solution traces")
-                solution_trace = []
 
             final_result = [str(decode(x[answer])) for x in query_result]
             final_result = sorted(set(final_result))
