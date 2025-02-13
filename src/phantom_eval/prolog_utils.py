@@ -1,4 +1,10 @@
-from .llm import get_llm, VLLMChat, LLMChatResponse, LLMChat, InferenceGenerationConfig
+from phantom_eval.llm.anthropic import AnthropicChat
+from phantom_eval.llm.common import LLMChat
+from phantom_eval.llm.gemini import GeminiChat
+from phantom_eval.llm.openai import OpenAIChat
+from phantom_eval.llm.together import TogetherChat
+from phantom_eval.llm.vllm import VLLMChat
+from phantom_eval.llm.common import LLMChatResponse, InferenceGenerationConfig
 from phantom_wiki.facts.database import Database
 
 import logging
