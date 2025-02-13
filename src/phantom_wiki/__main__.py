@@ -231,21 +231,19 @@ def main(args):
     for i, (question_template, query_template, answer) in progbar:
 
         questions = []
-        for j in range(len(all_final_results[i])):
-            solution_trace = all_solution_traces[i][j]
-            question = all_queries[i][j]
-            query = all_questions[i][j]
-            final_result = all_final_results[i][j]
+        for j in range(len(all_questions[i])):
+            question = all_questions[i][j]
+            query = all_queries[i][j]
 
             # get the difficulty of the question
-            question_difficulty = calculate_query_difficulty(query)
+            question_difficulty = calculate_query_difficulty(all_questions[i][j])
             questions.append(
                 {
                     "id": generate_unique_id(),
                     "question": question,
-                    "solution_traces": json.dumps(solution_trace), # NOTE: serialize list of dicts so that it can be saved on HF
-                    "answer": final_result,
-                    "prolog": {"query": query, "answer": answer},
+                    "solution_traces": json.dumps(all_solution_traces[i][j]), # NOTE: serialize list of dicts so that it can be saved on HF
+                    "answer": all_final_results[i][j],
+                    "prolog": {"query": all_questions[i][j], "answer": answer},
                     "template": question_template,
                     "type": i,  # this references the template type
                     "difficulty": question_difficulty,
