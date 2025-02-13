@@ -61,8 +61,6 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 fewshot_examples=FEWSHOT_EXAMPLES if not args.prolog_query else FEWSHOT_EXAMPLES_PROLOG,
                 prolog_query=args.prolog_query
             )
-        case "reasoning":
-            agent_kwargs = dict()
         case "zeroshot-sc":
             agent_kwargs = dict(
                 num_votes=args.sc_num_votes,
