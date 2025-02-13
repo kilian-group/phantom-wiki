@@ -41,7 +41,7 @@ repos:
             "--exclude",
             "logs/*,data/*",
             "--per-file-ignores",
-            "__init__.py:F401,src/phantom_eval/prompts.py:E501,src/phantom_wiki/core/constants/llm_templates.py:E501",
+            "__init__.py:F401,src/phantom_eval/prompts.py:E501,F541,src/phantom_wiki/core/constants/llm_templates.py:E501",
           ]
   # python remove unused imports
   - repo: https://github.com/PyCQA/autoflake
