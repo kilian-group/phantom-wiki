@@ -11,7 +11,10 @@
 import matplotlib.pyplot as plt
 # utils for plotting
 plt.rcParams.update({
-    'font.family': 'serif',
+    # 'font.family': 'serif',
+    # 'font.family': 'DejaVu Serif',
+    'font.family': 'Times New Roman',
+    # 'font.serif': ['Times New Roman'],
     'mathtext.fontset': 'stix',
     'axes.spines.top': False,
     'axes.spines.right': False,

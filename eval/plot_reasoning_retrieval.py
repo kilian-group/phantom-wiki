@@ -19,6 +19,7 @@ import numpy as np
 import logging
 from matplotlib import rc
 setup_logging(logging.INFO)
+import scipy.interpolate as interp
 
 parser = get_parser()
 parser.add_argument("--fmt_max_universe_size", type=int, default=10_000, 
@@ -37,15 +38,31 @@ METRICS = [
     # 'recall', 
     'f1',
 ]
-TICK_FONT_SIZE = 6
+TICK_FONT_SIZE = 8
 TICK_LENGTH = 4
 MINOR_TICK_LENGTH = 2
-LABEL_FONT_SIZE = 8
+LABEL_FONT_SIZE = 10
 rc('font', **{'size': TICK_FONT_SIZE})  # Set the default font size for LaTeX text
 
 figures_dir = os.path.join(output_dir, 'figures')
 figures_dir = os.path.join(output_dir, 'figures')
 os.makedirs(figures_dir, exist_ok=True)
+
+# utils for plotting
+plt.rcParams.update({
+    'font.family': 'serif',
+    # 'font.family': 'Times New Roman',
+    'font.serif': ['Times New Roman'],
+    # 'mathtext.fontset': 'stix',
+    'axes.spines.top': False,
+    'axes.spines.right': False,
+    # set major tick length
+    # 'xtick.major.size': 6,
+    # 'ytick.major.size': 6,
+    # set minor tick length
+    # 'xtick.minor.size': 3,
+    # 'ytick.minor.size': 3,
+})
 
 # %%
 for metric in METRICS:
@@ -54,7 +71,10 @@ for metric in METRICS:
     for i, (method, method_name) in enumerate([('cot', 'In-Context'), ('cot-rag', 'RAG'), ('react', 'Agentic')]):
         # get evaluation data from the specified output directory and method subdirectory
         df = get_evaluation_data(output_dir, method, dataset)
+        # import pdb; pdb.set_trace()
         df = df[df[DIFFICULTY] <= MAX_DIFFICULTY]
+        print(method)
+        print(df[df['_model'] == model].groupby(['_size'])['_data_seed'].agg(lambda x: list(set(x))))
 
         # group by model, size, data seed, and seed
         grouped = df.groupby(['_model', '_size', '_data_seed', '_seed', 'difficulty'])
@@ -81,30 +101,56 @@ for metric in METRICS:
         y = acc_mean_std['difficulty'].values
         # get the accuracy values
         z = acc_mean_std[(metric, 'mean')].values
+
+        # # smooth the contour
+        # zfun_smooth_rbf = interp.RBFInterpolator(np.stack((x,y),axis=-1), z,
+        #                                  smoothing=0)  # explicit default smoothing=0 for interpolation
+        # # create a grid of x and y values
+        # x_dense = np.linspace(50, fmt_max_universe_size, 1000)
+        # y_dense = np.linspace(1, MAX_DIFFICULTY, 1000)
+        # # create a meshgrid of x and y values
+        # x_dense, y_dense = np.meshgrid(x_dense, y_dense)
+        # # import pdb; pdb.set_trace()
+        # # evaluate the z values on the grid
+        # z_dense = zfun_smooth_rbf(np.stack((x_dense.flatten(),y_dense.flatten()),axis=-1))
+        
         # get x and y labels
         xlabels = sorted([*np.unique(x), fmt_max_universe_size])
         xticks = np.log10(xlabels)
         yticks = ylabels = np.unique(y)
         
-        # add dummy entries to plot the out-of-context region
-        X,Y = np.meshgrid(np.linspace(max(x)+1, fmt_max_universe_size, 100), yticks)
-        Z = np.zeros_like(X)
-        # extend the x values to the right
-        x = np.append(x, X.flatten())
-        y = np.append(y, Y.flatten())
-        z = np.append(z, Z.flatten())
+        if True:
+            # add dummy entries to plot the out-of-context region
+            X,Y = np.meshgrid(np.linspace(max(x)+1, fmt_max_universe_size, 100), yticks)
+            Z = np.zeros_like(X)
+            # extend the x values to the right
+            x = np.append(x, X.flatten())
+            y = np.append(y, Y.flatten())
+            z = np.append(z, Z.flatten())
+        else:
+            # add dummy entries to plot the out-of-context region
+            X,Y = np.meshgrid(np.linspace(max(x)+1, fmt_max_universe_size, 100), yticks)
+            Z = np.zeros_like(X)
+            # extend the x values to the right
+            x = np.append(x_dense, X.flatten())
+            y = np.append(y_dense, Y.flatten())
+            z = np.append(z_dense, Z.flatten())
 
         # plot tricontourf
-        contour = axs[i].tricontourf(np.log10(x), y, z, levels=20, cmap='viridis')
+        contour = axs[i].tricontourf(np.log10(x), y, z, levels=40, cmap='viridis')
         contour.set_clim(0, 1)
+        # Hide the contour lines
+        # https://stackoverflow.com/questions/8263769/hide-contour-linestroke-on-pyplot-contourf-to-get-only-fills/32911283#32911283
+        contour.set_edgecolor("face")
         if i == 2:
             # add colorbar with min=0 and max=1
             cbar = fig.colorbar(contour, ax=axs, shrink=0.2, aspect=20)
-            # cbar.set_label(metric.capitalize())
-            cbar.set_label("F1 Score", labelpad=0.5)
-            # set tick labels to every 0.1
-            cbar.set_ticks([0,1])
+            cbar.set_label("F1 Score", labelpad=0.5, fontsize=LABEL_FONT_SIZE)
+            cbar.ax.tick_params(labelsize=TICK_FONT_SIZE)
             cbar.ax.set_position([0.9, 0.3, 0.05, 0.55]) # [x, y, width, height]
+            # only add ticks and ticklabels at 0 and 1
+            cbar.set_ticks([0, 1])
+            # NOTE: for some reason the colorbar breaks when plotting Gemini results
             
         # format x-axis
         xticks = [50, *plotting_utils.DEC*100, *plotting_utils.DEC*1000]
