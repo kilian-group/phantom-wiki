@@ -1,7 +1,8 @@
 """Store possible attributes and their templates for the fact generation.
 
 There are 423 possible hobbies and 516 possible jobs. Hobbies and jobs are lowercase by convention,
-unless they contain proper nouns. The templates are used to convert the attribute into a natural-language sentence.
+unless they contain proper nouns. The templates are used to convert the attribute into a natural-language
+sentence.
 """
 
 ATTRIBUTE_FACT_TEMPLATES = {
@@ -21,7 +22,8 @@ ATTRIBUTE_ALIASES = {
 # Do not want to add gender here. This list is used by both question and article generation. Including gender
 # here would lead to unnaturally hard questions like "Who is the sister of the person whose gender is male?"
 # These questions can have a really long list of answers, which is not ideal.
-# We do want to include gender in articles, so when generating articles we temporarily add "gender" to this list
+# We do want to include gender in articles, so when generating articles we temporarily add "gender"
+# to this list
 ATTRIBUTE_TYPES = [
     "dob",
     "job",
@@ -495,15 +497,18 @@ HOBBIES = {
 }
 
 
-"""Jobs
+"""
+Jobs
 This list of jobs is based on the faker library
-Source: https://github.com/joke2k/faker/blob/8a249d00f09db9911350449e9f5050a635b57fbb/faker/providers/job/__init__.py
+Source:
+https://github.com/joke2k/faker/blob/8a249d00f09db9911350449e9f5050a635b57fbb/faker/providers/job/__init__.py
 Copyright (c) 2012 Daniele Faraglia
 URL: https://faker.readthedocs.io/
 For license information, see https://github.com/joke2k/faker/blob/master/LICENSE.txt
 
 We additionally apply the following pre-processing steps:
-1. remove specialities coming after a comma in the original jobs list (e.g., "Accountant, chartered" -> "accountant")
+1. remove specialities coming after a comma in the original jobs list (e.g.,
+   "Accountant, chartered" -> "accountant")
 2. lowercase all jobs (except for proper nouns)
 """
 JOBS = [

@@ -2,7 +2,7 @@
 #SBATCH -J zeroshot-rag-cpu                              # Job name
 #SBATCH -o slurm/zeroshot-rag-cpu_%j.out                 # output file (%j expands to jobID)
 #SBATCH -e slurm/zeroshot-rag-cpu_%j.err                 # error log file (%j expands to jobID)
-#SBATCH --mail-type=ALL                      # Request status by email 
+#SBATCH --mail-type=ALL                      # Request status by email
 #SBATCH -N 1                                 # Total number of nodes requested
 #SBATCH -n 4                                 # Total number of cores requested
 #SBATCH --get-user-env                       # retrieve the users login environment
@@ -63,7 +63,7 @@ do
     # vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $PORT --task generate" #nohup launches this in the background
     # echo $vllm_cmd
     # nohup $vllm_cmd &
-    
+
     # # Wait for the server to start
     # echo "Waiting for vLLM server to start..."
     # SLEEP=60

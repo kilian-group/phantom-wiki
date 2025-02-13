@@ -21,7 +21,6 @@ if [ -z "$2" ]; then
         "act"
         "zeroshot-rag"
         "cot-rag"
-        "reasoning"
     )
 else
     METHOD_LIST=($2)
@@ -41,19 +40,19 @@ echo "Splits: $SPLIT_LIST"
 DATASET=mlcore/phantom-wiki-v050
 echo "Dataset: $DATASET"
 
-# 
+#
 # Sec 4: Main accuracy table across methods/models
-# 
+#
 python eval/format_leaderboard.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST --model_list $MODEL_LIST
 
 #
 # Sec 5: Evaluating Reasoning
-# 
+#
 python eval/plot_reasoning.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST --model_list $MODEL_LIST
 # TODO: add aggregation vs non-aggregation plot
 
-# 
+#
 # Sec 6: Evaluating Retrieval
-# 
+#
 python eval/plot_retrieval.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST --model_list $MODEL_LIST
 python eval/plot_size_accuracy_delta.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST

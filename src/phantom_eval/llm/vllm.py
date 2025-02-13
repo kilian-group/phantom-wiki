@@ -53,17 +53,21 @@ class VLLMChat(CommonLLMChat):
 
         # additional stop token for llama models
         # NOTE: eot = end-of-turn
-        if(model_name == "deepseek-ai/deepseek-r1-distill-qwen-32b"):
-            self.ADDITIONAL_STOP = ["<｜end▁of▁sentence｜>",]
+        if model_name == "deepseek-ai/deepseek-r1-distill-qwen-32b":
+            self.ADDITIONAL_STOP = [
+                "<｜end▁of▁sentence｜>",
+            ]
         else:
-            self.ADDITIONAL_STOP = ["<|eot_id|>",]
+            self.ADDITIONAL_STOP = [
+                "<|eot_id|>",
+            ]
 
         self.use_api = use_api
         if self.use_api:
             logger.info("Using vLLM server for inference")
             try:
                 BASE_URL = f"http://0.0.0.0:{port}/v1"
-                API_KEY="token-abc123" # TODO: allow this to be specified by the user
+                API_KEY = "token-abc123"  # TODO: allow this to be specified by the user
                 self.client = openai.OpenAI(
                     base_url=BASE_URL,
                     api_key=API_KEY,
@@ -74,7 +78,7 @@ class VLLMChat(CommonLLMChat):
                 )
             except openai.APIConnectionError as e:
                 logger.error(
-                    f"Make sure to launch the vllm server using " \
+                    "Make sure to launch the vllm server using "
                     "vllm serve MODEL_NAME --api-key token-abc123 --tensor_parallel_size NUM_GPUS"
                 )
                 raise e
@@ -83,7 +87,8 @@ class VLLMChat(CommonLLMChat):
             # vLLM configs
             self.max_model_len = max_model_len
             if tensor_parallel_size is None:
-                # NOTE: the reason why we can't use torch.cuda.device_count() is because of some weird bug between torch and vllm,
+                # NOTE: the reason why we can't use torch.cuda.device_count() is because of some weird bug
+                # between torch and vllm,
                 # where we can't call `import torch` before instantiating the LLM object
                 self.tensor_parallel_size = get_gpu_count()
             else:
@@ -107,16 +112,14 @@ class VLLMChat(CommonLLMChat):
         return formatted_messages
 
     def _parse_api_output(self, response: object) -> LLMChatResponse:
-        """Parse the output of vllm server when using the OpenAI compatible server
-        """
+        """Parse the output of vllm server when using the OpenAI compatible server"""
         return LLMChatResponse(
             pred=response.choices[0].message.content,
             usage=response.usage.model_dump(),
         )
 
     def _parse_vllm_output(self, response: object) -> LLMChatResponse:
-        """Parse output of vllm offline inference when using (batch) offline inference
-        """
+        """Parse output of vllm offline inference when using (batch) offline inference"""
         return LLMChatResponse(
             pred=response.outputs[0].text,
             usage={
@@ -124,7 +127,7 @@ class VLLMChat(CommonLLMChat):
                 "completion_tokens": len(response.outputs[0].token_ids),
                 "total_tokens": len(response.prompt_token_ids) + len(response.outputs[0].token_ids),
                 "cached_tokens": response.num_cached_tokens,
-            }
+            },
         )
 
     def _call_api(
@@ -135,8 +138,7 @@ class VLLMChat(CommonLLMChat):
     ) -> object:
         # NOTE: vllm implements an OpenAI compatible server
         # https://github.com/openai/openai-python
-        assert self.use_api, \
-            "This function should not be called when using vllm batched offline inference"
+        assert self.use_api, "This function should not be called when using vllm batched offline inference"
         client = self.async_client if use_async else self.client
         response = client.chat.completions.create(
             model=self.model_name,
@@ -151,14 +153,18 @@ class VLLMChat(CommonLLMChat):
         )
         return response
 
-    def generate_response(self, conv: Conversation, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
+    def generate_response(
+        self, conv: Conversation, inf_gen_config: InferenceGenerationConfig
+    ) -> LLMChatResponse:
         assert self.client is not None, "Client is not initialized."
         messages_api_format: list[dict] = self._convert_conv_to_api_format(conv)
         response = self._call_api(messages_api_format, inf_gen_config)
         parsed_response = self._parse_api_output(response)
         return parsed_response
 
-    async def batch_generate_response(self, convs: list[Conversation], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
+    async def batch_generate_response(
+        self, convs: list[Conversation], inf_gen_config: InferenceGenerationConfig
+    ) -> list[LLMChatResponse]:
         if self.use_api:
             # When using api, we can use the parent class implementation
             return await super().batch_generate_response(convs, inf_gen_config)
@@ -174,9 +180,7 @@ class VLLMChat(CommonLLMChat):
             )
             prompts = [
                 self.tokenizer.apply_chat_template(
-                    self._convert_conv_to_api_format(conv),
-                    tokenize=False,
-                    add_generation_prompt=True
+                    self._convert_conv_to_api_format(conv), tokenize=False, add_generation_prompt=True
                 )
                 for conv in convs
             ]

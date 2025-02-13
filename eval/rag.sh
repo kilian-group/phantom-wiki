@@ -2,7 +2,7 @@
 #SBATCH -J rag-small                              # Job name
 #SBATCH -o slurm/rag-small_%j.out                 # output file (%j expands to jobID)
 #SBATCH -e slurm/rag-small_%j.err                 # error log file (%j expands to jobID)
-#SBATCH --mail-type=ALL                      # Request status by email 
+#SBATCH --mail-type=ALL                      # Request status by email
 #SBATCH --mail-user=jcl354@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
 #SBATCH -n 8                                 # Total number of cores requested
@@ -73,7 +73,7 @@ do
     vllm_cmd="nohup vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 2 --host 0.0.0.0 --port $port" #nohup launches this in the background
     echo $vllm_cmd
     nohup $vllm_cmd &
-    
+
     # Wait for the server to start
     echo "Waiting for vLLM server to start..."
     SLEEP=60
@@ -110,7 +110,7 @@ do
         --inf_temperature $TEMPERATURE \
         -bs 2 \
         --inf_vllm_port $port \
-        --inf_embedding_port $e_port 
+        --inf_embedding_port $e_port
         "
     echo $cmd
     eval $cmd

@@ -2,7 +2,7 @@
 #SBATCH -J zeroshot-rag-medium                              # Job name
 #SBATCH -o slurm/zeroshot-rag-medium_%j.out                 # output file (%j expands to jobID)
 #SBATCH -e slurm/zeroshot-rag-medium_%j.err                 # error log file (%j expands to jobID)
-#SBATCH --mail-type=ALL                      # Request status by email 
+#SBATCH --mail-type=ALL                      # Request status by email
 #SBATCH --mail-user=jcl354@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
 #SBATCH -n 8                                 # Total number of cores requested
@@ -78,21 +78,21 @@ fi
 
 for model_name in "${MODELS[@]}"
 do
-    # Start the vLLM server in the background
-    echo "Starting vLLM server..."
-    vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $PORT" #nohup launches this in the background
-    echo $vllm_cmd
-    nohup $vllm_cmd &
-    
-    # Wait for the server to start
-    echo "Waiting for vLLM server to start..."
-    SLEEP=60
-    while ! check_server $model_name $PORT; do
-        echo "Server is not up yet. Checking again in $SLEEP seconds..."
-        sleep $SLEEP
-    done
+    # # Start the vLLM server in the background
+    # echo "Starting vLLM server..."
+    # vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $PORT" #nohup launches this in the background
+    # echo $vllm_cmd
+    # nohup $vllm_cmd &
 
-    echo "vLLM server is up and running."
+    # # Wait for the server to start
+    # echo "Waiting for vLLM server to start..."
+    # SLEEP=60
+    # while ! check_server $model_name $PORT; do
+    #     echo "Server is not up yet. Checking again in $SLEEP seconds..."
+    #     sleep $SLEEP
+    # done
+
+    # echo "vLLM server is up and running."
 
     # Run the main Python script
     cmd="python -m phantom_eval \

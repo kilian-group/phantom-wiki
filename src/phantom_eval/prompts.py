@@ -1,8 +1,8 @@
 import abc
 
 from langchain.prompts import PromptTemplate
-from phantom_eval import llm
-from phantom_eval import constants
+
+from phantom_eval import constants, llm
 from phantom_eval.llm.anthropic import AnthropicChat
 from phantom_eval.llm.gemini import GeminiChat
 from phantom_eval.llm.openai import OpenAIChat
@@ -12,33 +12,107 @@ from phantom_eval.llm.vllm import VLLMChat
 
 class LLMPrompt(abc.ABC):
     @abc.abstractmethod
-    def get_prompt(self) -> PromptTemplate:
-        pass
+    def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
+        """Get the prompt template for this LLM prompt.
+
+        Args:
+            prolog_query: If True, returns a prompt template that instructs the LLM to generate a Prolog query.
+                         If False, returns a prompt template that instructs the LLM to generate a direct answer.
+
+        Returns:
+            A PromptTemplate object containing the prompt template.
+        """
 
 
 ##### Zeroshot method
 class ZeroshotLLMPrompt(LLMPrompt):
+    ZEROSHOT_INSTRUCTION_PROLOG = f"""
+    You are given the following evidence:
+    (BEGIN EVIDENCE)
+    {{evidence}}
+    (END EVIDENCE)
+
+    You will be provided a question. Your task is to generate the prolog query that will retrieve the answer to the question.
+    - DO NOT include any additional information in your answer.
+
+    Question: {{question}}
+    Answer: """
+
     ZEROSHOT_INSTRUCTION = f"""
     You are given the following evidence:
     (BEGIN EVIDENCE)
     {{evidence}}
     (END EVIDENCE)
-    
-    You will be provided a question. Your task is to provide an answer according to these instructions: 
+
+    You will be provided a question. Your task is to provide an answer according to these instructions:
     - The output must be one of the following: a name (if there is only one correct answer); or a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or numbers separated by '{constants.answer_sep}' (if the answer is numerical).
     - DO NOT include any additional information in your answer.
 
     Question: {{question}}
     Answer: """
 
-    def get_prompt(self) -> PromptTemplate:
-        return PromptTemplate(
-            input_variables=["evidence", "question"],
-            template=self.ZEROSHOT_INSTRUCTION,
-        )
+    def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
+        """Get the zeroshot prompt template.
+
+        Args:
+            prolog_query: If True, returns a prompt template that instructs the LLM to generate a Prolog query.
+                         If False, returns a prompt template that instructs the LLM to generate a direct answer.
+
+        Returns:
+            A PromptTemplate object containing the zeroshot prompt template.
+        """
+        if prolog_query:
+            return PromptTemplate(
+                input_variables=["evidence", "question"],
+                template=self.ZEROSHOT_INSTRUCTION_PROLOG,
+            )
+        else:
+            return PromptTemplate(
+                input_variables=["evidence", "question"],
+                template=self.ZEROSHOT_INSTRUCTION,
+            )
+
 
 ##### Fewshot method
 # The current example is the example from CoT trivially adapted
+FEWSHOT_EXAMPLES_PROLOG = f"""
+Example 1:
+Question: Who is the brother of Dino Beltran?
+Answer: brother(X, "Dino Beltran")
+
+Example 2:
+Question: Who is the sibling of Barabara Beltran?
+Answer: sibling(X, "Barabara Beltran")
+
+Example 3:
+Question: Who is the mother of the sister of Stacia Toombs?
+Answer: sister("Stacia Toombs", Y), mother(Y, X)
+
+Example 4:
+Question: Who is the male second cousin of the uncle of William Smock?
+Answer: uncle("William Smock", X), male_second_cousin(X, Y)
+
+Example 5:
+Question: What is the occupation of the sister of the grandmother of Virgil Hackworth?
+Answer: grandmother("Virgil Hackworth", Z), sister(Z, Y), job(Y, X)
+
+Example 6:
+Question: Who is the wife of the person whose occupation is associate professor?
+Answer: job(X, "associate professor"), wife(X, Y)
+
+Example 7:
+Question: What is the date of birth of the person whose hobby is meteorology?
+Answer: hobby(X, "meteorology"), dob(X, Y)
+
+Example 8:
+Question: Who is the cousin of the person whose occupation is broadcast engineer?
+Answer: job(Y, "broadcast engineer"), cousin(Y, X)
+
+Example 9:
+Question: Who is the granddaughter of the mother of the friend of the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager?
+Answer: job(A, "theatre manager"), great_granddaughter(A, B), friend(B, C), parent(C, D), mother(D, E), friend(E, F), friend(F, G), mother(G, H), granddaughter(H, I)
+"""
+
 FEWSHOT_EXAMPLES = f"""
 Example 1:
 Question: Who is the sister of Aida Wang?
@@ -85,14 +159,32 @@ Question: How many uncles does the friend of Stacia Toombs have?
 Answer: 0{constants.answer_sep}1
 """
 
+
 class FewshotLLMPrompt(LLMPrompt):
+    FEWSHOT_INSTRUCTION_PROLOG = f"""
+    You are given the following evidence:
+    (BEGIN EVIDENCE)
+    {{evidence}}
+    (END EVIDENCE)
+
+    You will be provided a question. Your task is to provide a prolog query that will retrieve the answer to the question.
+    - DO NOT include any additional information in your answer.
+
+    Here are some examples:
+    (START OF EXAMPLES)
+    {{examples}}
+    (END OF EXAMPLES)
+
+    Question: {{question}}
+    Answer: """
+
     FEWSHOT_INSTRUCTION = f"""
     You are given the following evidence:
     (BEGIN EVIDENCE)
     {{evidence}}
     (END EVIDENCE)
-    
-    You will be provided a question. Your task is to provide an answer according to these instructions: 
+
+    You will be provided a question. Your task is to provide an answer according to these instructions:
     - The output must be one of the following: a name (if there is only one correct answer); or a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or numbers separated by '{constants.answer_sep}' (if the answer is numerical).
     - DO NOT include any additional information in your answer.
 
@@ -104,11 +196,27 @@ class FewshotLLMPrompt(LLMPrompt):
     Question: {{question}}
     Answer: """
 
-    def get_prompt(self):
-        return PromptTemplate(
-            input_variables=["evidence", "examples", "question"],
-            template=self.FEWSHOT_INSTRUCTION,
-        )
+    def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
+        """Get the fewshot prompt template.
+
+        Args:
+            prolog_query: If True, returns a prompt template that instructs the LLM to generate a Prolog query.
+                         If False, returns a prompt template that instructs the LLM to generate a direct answer.
+
+        Returns:
+            A PromptTemplate object containing the fewshot prompt template.
+        """
+        if prolog_query:
+            return PromptTemplate(
+                input_variables=["evidence", "examples", "question"],
+                template=self.FEWSHOT_INSTRUCTION_PROLOG,
+            )
+        else:
+            return PromptTemplate(
+                input_variables=["evidence", "examples", "question"],
+                template=self.FEWSHOT_INSTRUCTION,
+            )
+
 
 ##### CoT method
 COT_EXAMPLES = f"""
@@ -157,15 +265,16 @@ Question: How many uncles does the friend of Stacia Toombs have?
 Answer: First, I need to find the friends of Stacia Toombs. Based on the evidence, the friends of Stacia Toombs are Brian Beltran, Isiah Lutz, Leeann Hackworth, Lesley Lutz, Ryan Wang.  Now I need to find how many uncles they have.  An uncle is the brother of a parent.  Based on the evidence, Brian Beltran has no parents, Isiah Lutz has no parents, Leeann Hackworth has 2 parents, Lesley Lutz has 2 parents, and Ryan Wang has no parents.  Based on the evidence, the parents of Leeann Hackworth are Vicki Hackworth, Ricardo Hackworth. But both parents do not have brothers.  Based on the evidence, the parents of Lesley Lutz are Leisa Lutz, Isiah Lutz. The brother of Leisa Lutz is Virgil Hackworth, so he is an uncle of Lesley Lutz. Isiah Lutz has no brother.  So the friends of Stacia Toombs have 0, 0, 0, 1, 0 uncles. Unique is 0, 1. The answer is 0{constants.answer_sep}1.
 """
 
+
 class CoTLLMPrompt(LLMPrompt):
     COT_INSTRUCTION = f"""
     You are given the following evidence:
     (BEGIN EVIDENCE)
     {{evidence}}
     (END EVIDENCE)
-    
+
     You will be provided a question. Your response must end in the following sentence: The answer is <answer>.
-    Here, <answer> must be one of the following: 
+    Here, <answer> must be one of the following:
     - a name (if there is only one correct answer); or
     - a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or
     - numbers separated by '{constants.answer_sep}' (if the answer is numerical).
@@ -178,7 +287,15 @@ class CoTLLMPrompt(LLMPrompt):
     Question: {{question}}
     Answer: """
 
-    def get_prompt(self) -> PromptTemplate:
+    def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
+        """Get the Chain-of-Thought prompt template.
+
+        Args:
+            prolog_query: This parameter is not used for CoT prompts, as they do not support Prolog query generation.
+
+        Returns:
+            A PromptTemplate object containing the Chain-of-Thought prompt template.
+        """
         return PromptTemplate(
             input_variables=["evidence", "examples", "question"],
             template=self.COT_INSTRUCTION,
@@ -192,17 +309,25 @@ class RAGLLMPrompt(LLMPrompt):
     (BEGIN EVIDENCE)
     {{evidence}}
     (END EVIDENCE)
-    
+
     You will be provided a question. Your response must end in the following sentence: The answer is <answer>.
-    Here, <answer> must be one of the following: 
-    - a name (if there is only one correct answer); 
+    Here, <answer> must be one of the following:
+    - a name (if there is only one correct answer);
     - a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or
     - numbers separated by '{constants.answer_sep}' (if the answer is numerical).
 
     Question: {{question}}
     Answer (Your response must end in "The answer is <answer>."): """
 
-    def get_prompt(self) -> PromptTemplate:
+    def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
+        """Get the RAG prompt template.
+
+        Args:
+            prolog_query: This parameter is not used for RAG prompts, as they do not support Prolog query generation.
+
+        Returns:
+            A PromptTemplate object containing the RAG prompt template.
+        """
         return PromptTemplate(
             input_variables=["evidence", "question"],
             template=self.RAG_INSTRUCTION,
@@ -386,7 +511,7 @@ class ReactLLMPrompt(LLMPrompt):
     # examples, question, and scratchpad are input variables that the react agent
     # will provide after calling the get_prompt method.
     # n, entity, attribute, answer are placeholders that we want the LLM to read within double braces, like {{n}}, {{entity}}, {{attribute}}, {{answer}}
-    # So we escape them with 4 braces in this fstring (after get_prompt().format() is called, 
+    # So we escape them with 4 braces in this fstring (after get_prompt().format() is called,
     # they will be replaced with 2 braces)
     REACT_INSTRUCTION = f"""
     Solve a question answering task with interleaving Thought, Action, Observation steps.
@@ -410,7 +535,15 @@ class ReactLLMPrompt(LLMPrompt):
     {{scratchpad}}
     """
 
-    def get_prompt(self) -> PromptTemplate:
+    def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
+        """Get the ReAct prompt template.
+
+        Args:
+            prolog_query: This parameter is not used for ReAct prompts, as they do not support Prolog query generation.
+
+        Returns:
+            A PromptTemplate object containing the ReAct prompt template.
+        """
         return PromptTemplate(
             input_variables=["examples", "question", "scratchpad"],
             template=self.REACT_INSTRUCTION,
@@ -556,7 +689,7 @@ class ActLLMPrompt(LLMPrompt):
     # examples, question, and scratchpad are input variables that the act agent
     # will provide after calling the get_prompt method.
     # n, entity, attribute, answer are placeholders that we want the LLM to read within double braces, like {{n}}, {{entity}}, {{attribute}}, {{answer}}
-    # So we escape them with 4 braces in this fstring (after get_prompt().format() is called, 
+    # So we escape them with 4 braces in this fstring (after get_prompt().format() is called,
     # they will be replaced with 2 braces)
     ACT_INSTRUCTION = f"""
     Solve a question answering task with interleaving Action and Observation steps.
@@ -580,7 +713,15 @@ class ActLLMPrompt(LLMPrompt):
     {{scratchpad}}
     """
 
-    def get_prompt(self) -> PromptTemplate:
+    def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
+        """Get the Act prompt template.
+
+        Args:
+            prolog_query: This parameter is not used for Act prompts, as they do not support Prolog query generation.
+
+        Returns:
+            A PromptTemplate object containing the Act prompt template.
+        """
         return PromptTemplate(
             input_variables=["examples", "question", "scratchpad"],
             template=self.ACT_INSTRUCTION,
@@ -590,13 +731,13 @@ class ActLLMPrompt(LLMPrompt):
 def get_llm_prompt(method: str, model_name: str) -> LLMPrompt:
     # For react->cot-sc and cot-sc->react methods, return the LLMPrompt for the first part of the method
     match method:
-        case "zeroshot" | "zeroshot-sc" | "reasoning":
+        case "zeroshot" | "zeroshot-sc":
             return ZeroshotLLMPrompt()
         case "fewshot" | "fewshot-sc" | "fewshot-rag":
             return FewshotLLMPrompt()
         case "cot" | "cot-sc" | "cot-sc->react" | "cot-rag":
             return CoTLLMPrompt()
-        case "zeroshot-rag" | "reasoning-rag":
+        case "zeroshot-rag":
             return ZeroshotLLMPrompt()
             # return RAGLLMPrompt()
         case "react" | "react->cot-sc":
@@ -617,4 +758,3 @@ def get_llm_prompt(method: str, model_name: str) -> LLMPrompt:
             return ActLLMPrompt()
         case _:
             raise ValueError(f"Method {method} not supported.")
-
