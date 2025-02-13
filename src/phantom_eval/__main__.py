@@ -101,7 +101,7 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 retriever_num_documents=args.retriever_num_documents,
                 fewshot_examples=FEWSHOT_EXAMPLES,
             )
-        case "cot-rag" | "cot-rag-reasoning":
+        case "cot-rag":
             agent_kwargs = dict(
                 embedding_model_name=args.retriever_method,
                 retriever_num_documents=args.retriever_num_documents,
@@ -228,7 +228,7 @@ async def main(args: argparse.Namespace) -> None:
                         # prompt for the self-consistency methods, we save the Conversation object from the
                         # last iteration
                         agent_interactions: list[Conversation] = agent.agent_interactions
-                    case "cot" | "cot-sc" | "cot-rag" | "cot-reasoning" | "cot-rag-reasoning":
+                    case "cot" | "cot-sc" | "cot-rag":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                         responses: list[LLMChatResponse] = await agent.batch_run(
