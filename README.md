@@ -171,6 +171,9 @@ git commit -m "your commit message"
 git push
 ```
 
+Alternatively, run `pre-commit install` once and this will install a hook that automatically runs pre-commit
+on every commit.
+
 **Testing:**
 
 1. If prompted, select `pytest` as the testing framework for the VSCode Testing Extension
