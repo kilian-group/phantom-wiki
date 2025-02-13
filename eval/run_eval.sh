@@ -2,7 +2,7 @@
 #SBATCH -J method-size                              # Job name
 #SBATCH -o slurm/method-size_%j.out                 # output file (%j expands to jobID)
 #SBATCH -e slurm/method-size_%j.err                 # error log file (%j expands to jobID)
-#SBATCH --mail-type=ALL                      # Request status by email 
+#SBATCH --mail-type=ALL                      # Request status by email
 #SBATCH --mail-user=xxx@cornell.edu          # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
 #SBATCH -n n                                 # Total number of cores requested
@@ -23,59 +23,48 @@
 #!/bin/bash
 
 # Check if the number of arguments is less than 4 (excluding the script name)
-if [ "$#" -lt 4 ]; then
-    echo "Usage: eval/run_eval.sh <output_dir> <method> <model_name> <split_list>"
+if [ "$#" -lt 3 ]; then
+    echo "Usage: eval/run_eval.sh <output_dir> <method> <model_name> --flag flag_value"
     exit 1
 fi
+
+# Parse the arguments to get extra arguments after the first 4
+shift 3
+cmd_args=$@
 
 OUTPUT_DIR=$1
 METHOD=$2
 MODEL_NAME=$3
-SPLIT=$4
-
-# Print values (for debugging or confirmation)
-echo "Running eval with $0: \
-    Output Directory: $OUTPUT_DIR \
-    Method: $METHOD \
-    Model Name: $MODEL_NAME \
-    Split: $SPLIT"
 
 source eval/constants.sh
-# activate conda environment
-# source /share/apps/anaconda3/2021.05/etc/profile.d/conda.sh
-# conda init bash
-# NOTE: this assumes that conda environment is called `dataset`
-# change this to your conda environment as necessary
-# conda activate dataset
 
 # Base command
 cmd="python -m phantom_eval \
     --method $METHOD \
     -od $OUTPUT_DIR \
-    -m $MODEL_NAME \
-    --split_list $SPLIT"
+    -m $MODEL_NAME"
 
-# fix some parameters if using reasoning method
-if [ "${METHOD}" == "reasoning" ]; then
+# concatenate the extra arguments to the base command
+cmd+=" $cmd_args"
+
+# check if input contains --split_list if not add the default SPLIT_LIST
+if [[ ! "$@" =~ "--split_list" ]]; then
+    cmd+=" --split_list $SPLIT_LIST"
+fi
+
+# if the model is deepseek, add the temperature and top_p
+if [ "${MODEL_NAME}" =~ "deepseek" ]; then
     TEMPERATURE=0.6
     TOP_P=0.95
-    if [[ ! " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
-        echo "Reasoning method only available for ${REASONING_MODELS[@]}"
-        exit 1
-    fi
-    cmd+=" \
-        --inf_temperature $TEMPERATURE \
-        --inf_top_p $TOP_P"
+    cmd+=" --inf_temperature $TEMPERATURE \
+           --inf_top_p $TOP_P"
 
 else
     TEMPERATURE=0
-    cmd+=" \
-    --inf_temperature $TEMPERATURE"
+    cmd+=" --inf_temperature $TEMPERATURE"
 fi
 
-cmd+= " \
-    --inf_seed_list $(get_inf_seed_list $TEMPERATURE)"
-
+cmd+=" --inf_seed_list $(get_inf_seed_list $TEMPERATURE)"
 
 # Function to check if the vLLM server is up
 check_server() {
@@ -94,9 +83,7 @@ check_server() {
     fi
 }
 
-# If the method is react or act, we need to start vLLM server 
-if [[ "$METHOD" =~ act ]]; then
-do
+spinup_server(){
     # Get the number of gpus by counting the number of lines in the output of nvidia-smi
     NUM_GPUS=$(nvidia-smi --query-gpu=name --format=csv,noheader | wc -l)
     echo "Number of GPUs: $NUM_GPUS"
@@ -115,7 +102,7 @@ do
     vllm_cmd="vllm serve $MODEL_NAME --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $PORT" #nohup launches this in the background
     echo $vllm_cmd
     nohup $vllm_cmd &
-    
+
     # Wait for the server to start
     echo "Waiting for vLLM server to start..."
     SLEEP=60
@@ -125,6 +112,14 @@ do
     done
 
     echo "vLLM server is up and running."
+}
+
+# If the method is react or act, we need to start vLLM server
+if [[ "$METHOD" = act ]] || [[ "$METHOD" = react ]]; then
+    # print the method
+    echo "Method: $METHOD"
+    spinup_server
+fi
 
 if [[ "$METHOD" =~ "rag" ]]; then
     cmd+=" \
@@ -133,8 +128,8 @@ fi
 echo $cmd
 eval $cmd
 
-
-if [[ "$METHOD" =~ act ]]; then
+# if the method is react or act, we need to stop the vLLM server
+if [[ "$METHOD" = act ]] || [[ "$METHOD" = react ]]; then
     # Stop the vLLM server using pkill
     echo "Stopping vLLM server..."
     pkill -e -f vllm
