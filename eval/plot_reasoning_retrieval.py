@@ -22,7 +22,6 @@ from phantom_eval.evaluate_utils import get_evaluation_data, mean, std
 from phantom_eval.utils import setup_logging
 
 setup_logging(logging.INFO)
-import scipy.interpolate as interp
 
 parser = get_parser()
 parser.add_argument("--fmt_max_universe_size", type=int, default=10_000, help="Maximum universe size to plot")
@@ -73,9 +72,6 @@ for metric in METRICS:
     for i, (method, method_name) in enumerate(
         [("cot", "In-Context"), ("cot-rag", "RAG"), ("react", "Agentic")]
     ):
-    for i, (method, method_name) in enumerate(
-        [("cot", "In-Context"), ("cot-rag", "RAG"), ("react", "Agentic")]
-    ):
         # get evaluation data from the specified output directory and method subdirectory
         df = get_evaluation_data(output_dir, method, dataset)
         # import pdb; pdb.set_trace()
@@ -85,23 +81,18 @@ for metric in METRICS:
 
         # group by model, size, data seed, and seed
         grouped = df.groupby(["_model", "_size", "_data_seed", "_seed", "difficulty"])
-        grouped = df.groupby(["_model", "_size", "_data_seed", "_seed", "difficulty"])
         # logging.info the accuracy
         acc = grouped[METRICS].mean()
         # add a column that counts the number of elements in the group
-        acc["count"] = grouped.size()
         acc["count"] = grouped.size()
 
         # get the mean and std of the accuracy for each model and split
         # first compute the mean across inference generation seeds
         acc_mean_std = acc.groupby(["_model", "_size", "_data_seed", "difficulty"]).agg("mean")
-        acc_mean_std = acc.groupby(["_model", "_size", "_data_seed", "difficulty"]).agg("mean")
         # second compute the mean and standard error across data generation seeds
-        acc_mean_std = acc_mean_std.groupby(["_model", "_size", "difficulty"]).agg([mean, std])
         acc_mean_std = acc_mean_std.groupby(["_model", "_size", "difficulty"]).agg([mean, std])
         acc_mean_std = acc_mean_std.reset_index()
 
-        acc_mean_std = acc_mean_std[acc_mean_std["_model"] == model]
         acc_mean_std = acc_mean_std[acc_mean_std["_model"] == model]
         if len(acc_mean_std) == 0:
             logging.warning(f"No data for model {model}")
@@ -109,12 +100,9 @@ for metric in METRICS:
 
         # get the distinct x values
         x = acc_mean_std["_size"].astype(int).values
-        x = acc_mean_std["_size"].astype(int).values
         # get the distinct y values
         y = acc_mean_std["difficulty"].values
-        y = acc_mean_std["difficulty"].values
         # get the accuracy values
-        z = acc_mean_std[(metric, "mean")].values
         z = acc_mean_std[(metric, "mean")].values
         # get x and y labels
         xlabels = sorted([*np.unique(x), fmt_max_universe_size])
@@ -123,7 +111,6 @@ for metric in METRICS:
 
 
         # add dummy entries to plot the out-of-context region
-        X, Y = np.meshgrid(np.linspace(max(x) + 1, fmt_max_universe_size, 100), yticks)
         X, Y = np.meshgrid(np.linspace(max(x) + 1, fmt_max_universe_size, 100), yticks)
         Z = np.zeros_like(X)
         # extend the x values to the right
@@ -146,11 +133,7 @@ for metric in METRICS:
             cbar.set_ticks([0, 1])
             cbar.ax.set_position([0.9, 0.3, 0.05, 0.55])  # [x, y, width, height]
 
-            cbar.set_ticks([0, 1])
-            cbar.ax.set_position([0.9, 0.3, 0.05, 0.55])  # [x, y, width, height]
-
         # format x-axis
-        xticks = [50, *plotting_utils.DEC * 100, *plotting_utils.DEC * 1000]
         xticks = [50, *plotting_utils.DEC * 100, *plotting_utils.DEC * 1000]
         # Set major and minor ticks
         major_ticks = [np.log10(x) for x in xticks if np.log10(x).is_integer()]
@@ -161,27 +144,16 @@ for metric in METRICS:
         axs[i].set_xticklabels(
             [f"$10^{int(np.log10(x))}$" for x in xticks if np.log10(x).is_integer()], fontsize=TICK_FONT_SIZE
         )
-        axs[i].set_xticklabels(
-            [f"$10^{int(np.log10(x))}$" for x in xticks if np.log10(x).is_integer()], fontsize=TICK_FONT_SIZE
-        )
         # set the xlim
         axs[i].set_xlim(np.log10(50), np.log10(10000))
         # Set tick lengths
         axs[i].tick_params(axis="x", which="major", length=TICK_LENGTH)
         axs[i].tick_params(axis="x", which="minor", length=MINOR_TICK_LENGTH)
-        axs[i].tick_params(axis="x", which="major", length=TICK_LENGTH)
-        axs[i].tick_params(axis="x", which="minor", length=MINOR_TICK_LENGTH)
 
         # format y-axis
         if i == 0:
-        if i == 0:
             yticks = [1, 5, 10, 15]
             axs[i].set_yticks(yticks)
-            axs[i].tick_params(axis="y", which="major", length=TICK_LENGTH)
-            axs[i].tick_params(axis="y", which="minor", length=MINOR_TICK_LENGTH)
-            axs[i].set_yticks(range(1, MAX_DIFFICULTY + 1), minor=True)
-            axs[i].tick_params(axis="y", which="major", labelsize=TICK_FONT_SIZE)
-            axs[i].tick_params(axis="y", which="minor", labelsize=MINOR_TICK_LENGTH)
             axs[i].tick_params(axis="y", which="major", length=TICK_LENGTH)
             axs[i].tick_params(axis="y", which="minor", length=MINOR_TICK_LENGTH)
             axs[i].set_yticks(range(1, MAX_DIFFICULTY + 1), minor=True)
@@ -191,23 +163,17 @@ for metric in METRICS:
             axs[i].set_yticklabels(yticks, fontsize=TICK_FONT_SIZE)
             # set ylabel
             axs[i].set_ylabel("Reasoning steps", fontsize=LABEL_FONT_SIZE)
-            axs[i].set_ylabel("Reasoning steps", fontsize=LABEL_FONT_SIZE)
         else:
             # turn off y-axis
             axs[i].set_yticklabels([])
             # turn off spines
             axs[i].spines["left"].set_visible(False)
-            axs[i].spines["left"].set_visible(False)
             # turn off all ticks
-            axs[i].tick_params(axis="y", which="both", left=False, labelleft=False)
-
             axs[i].tick_params(axis="y", which="both", left=False, labelleft=False)
 
         # set title
         axs[i].set_title(method_name, fontsize=LABEL_FONT_SIZE)
 
-        axs[i].spines["bottom"].set_position(("outward", plotting_utils.OUTWARD))  # Move x-axis outward
-        axs[i].spines["left"].set_position(("outward", plotting_utils.OUTWARD))  # Move y-axis outward
         axs[i].spines["bottom"].set_position(("outward", plotting_utils.OUTWARD))  # Move x-axis outward
         axs[i].spines["left"].set_position(("outward", plotting_utils.OUTWARD))  # Move y-axis outward
 
@@ -218,14 +184,8 @@ for metric in METRICS:
         top=0.85,
         bottom=0.3,
         wspace=0.1,  # Adjust horizontal space between subplots and reduce padding to the left and right
-        left=0.15,
-        right=0.85,
-        top=0.85,
-        bottom=0.3,
-        wspace=0.1,  # Adjust horizontal space between subplots and reduce padding to the left and right
     )
     # add label to the x-axis of the figure
-    fig.text(0.5, 0.04, "Number of documents", ha="center", fontsize=LABEL_FONT_SIZE)
     fig.text(0.5, 0.04, "Number of documents", ha="center", fontsize=LABEL_FONT_SIZE)
 
     fig_path = os.path.join(figures_dir, f"size-difficulty-{metric}-{model.replace('/', '--')}.pdf")
