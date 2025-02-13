@@ -1,16 +1,12 @@
 #!/bin/bash
-#SBATCH -J cot-rag-medium                              # Job name
-#SBATCH -o slurm/cot-rag-medium_%j.out                 # output file (%j expands to jobID)
-#SBATCH -e slurm/cot-rag-medium_%j.err                 # error log file (%j expands to jobID)
+#SBATCH -J zeroshot-rag-cpu                              # Job name
+#SBATCH -o slurm/zeroshot-rag-cpu_%j.out                 # output file (%j expands to jobID)
+#SBATCH -e slurm/zeroshot-rag-cpu_%j.err                 # error log file (%j expands to jobID)
 #SBATCH --mail-type=ALL                      # Request status by email 
-#SBATCH --mail-user=jcl354@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
-#SBATCH -n 8                                 # Total number of cores requested
+#SBATCH -n 4                                 # Total number of cores requested
 #SBATCH --get-user-env                       # retrieve the users login environment
-#SBATCH --mem=100000                         # server memory (MBs) requested (per node)
-#SBATCH -t infinite                           # Time limit (hh:mm:ss)
-#SBATCH --gres=gpu:a6000:4                   # Number of GPUs requested
-#SBATCH --partition=kilian                   # Request partition
+#SBATCH --mem=32000                         # server memory (MBs) requested (per node)
 
 # Script for running zero-shot evaluation on all small models (<4 B params)
 # GPU requirements when using max context length (i.e., `max_model_len=None`)
@@ -59,9 +55,9 @@ check_server() {
 pkill -e -f vllm
 
 # https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html#vllm-serve
-for model_name in "${MEDIUM_MODELS[@]}"
+for model_name in "${API_MODELS[@]}"
 do
-    # # Start the vLLM server in the background
+    # Start the vLLM server in the background
     # echo "Starting vLLM server..."
     # eval export CUDA_VISIBLE_DEVICES=0,1,2,3
     # vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $PORT --task generate" #nohup launches this in the background
@@ -79,14 +75,15 @@ do
 
     # Run the main Python script
     cmd="python -m phantom_eval \
-        --method cot-rag \
+        --method zeroshot-rag \
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \
         --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
         --inf_temperature $TEMPERATURE \
         --retriever_method whereisai/uae-large-v1 \
-        --inf_vllm_port $PORT"
+        --inf_vllm_port $PORT \
+        --inf_usage_tier 1"
     echo $cmd
     eval $cmd
 

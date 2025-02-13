@@ -84,7 +84,7 @@ do
 done
 
 # create dataset card
-DATASET_NAME="phantom-wiki-v0.5"
+DATASET_NAME="phantom-wiki-v050"
 
 # start metadata header
 cat << EOF > $OUTPUT_DIR/README.md

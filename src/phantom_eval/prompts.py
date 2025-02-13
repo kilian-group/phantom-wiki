@@ -1,8 +1,13 @@
 import abc
 
 from langchain.prompts import PromptTemplate
-import phantom_eval.llm as llm
+from phantom_eval import llm
 from phantom_eval import constants
+from phantom_eval.llm.anthropic import AnthropicChat
+from phantom_eval.llm.gemini import GeminiChat
+from phantom_eval.llm.openai import OpenAIChat
+from phantom_eval.llm.together import TogetherChat
+from phantom_eval.llm.vllm import VLLMChat
 
 
 class LLMPrompt(abc.ABC):
@@ -585,26 +590,26 @@ class ActLLMPrompt(LLMPrompt):
 def get_llm_prompt(method: str, model_name: str) -> LLMPrompt:
     # For react->cot-sc and cot-sc->react methods, return the LLMPrompt for the first part of the method
     match method:
-        case "zeroshot" | "zeroshot-sc" | "reasoning":
+        case "zeroshot" | "zeroshot-sc":
             return ZeroshotLLMPrompt()
         case "fewshot" | "fewshot-sc" | "fewshot-rag":
             return FewshotLLMPrompt()
         case "cot" | "cot-sc" | "cot-sc->react" | "cot-rag":
             return CoTLLMPrompt()
-        case "zeroshot-rag" | "reasoning-rag":
+        case "zeroshot-rag":
             return ZeroshotLLMPrompt()
             # return RAGLLMPrompt()
         case "react" | "react->cot-sc":
             match model_name:
-                case model_name if model_name in llm.OpenAIChat.SUPPORTED_LLM_NAMES:
+                case model_name if model_name in OpenAIChat.SUPPORTED_LLM_NAMES:
                     return ReactLLMPrompt()
-                case model_name if model_name in llm.TogetherChat.SUPPORTED_LLM_NAMES:
+                case model_name if model_name in TogetherChat.SUPPORTED_LLM_NAMES:
                     return ReactTogetherPrompt()
-                case model_name if model_name in llm.GeminiChat.SUPPORTED_LLM_NAMES:
+                case model_name if model_name in GeminiChat.SUPPORTED_LLM_NAMES:
                     return ReactGeminiPrompt()
-                case model_name if model_name in llm.AnthropicChat.SUPPORTED_LLM_NAMES:
+                case model_name if model_name in AnthropicChat.SUPPORTED_LLM_NAMES:
                     return ReactLLMPrompt()
-                case model_name if model_name in llm.VLLMChat.SUPPORTED_LLM_NAMES:
+                case model_name if model_name in VLLMChat.SUPPORTED_LLM_NAMES:
                     return ReactLLMPrompt()
                 case _:
                     raise ValueError(f"Model name {model_name} must be one of {llm.SUPPORTED_LLM_NAMES}.")

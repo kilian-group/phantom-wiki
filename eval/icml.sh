@@ -21,7 +21,6 @@ if [ -z "$2" ]; then
         "act"
         "zeroshot-rag"
         "cot-rag"
-        "reasoning"
     )
 else
     METHOD_LIST=($2)
@@ -38,7 +37,7 @@ echo "Models: ${MODEL_LIST[@]}"
 # Split list is defined in constants.sh
 echo "Splits: $SPLIT_LIST"
 # Override whichever dataset was specified in constants.sh
-DATASET=mlcore/phantom-wiki-v0.5
+DATASET=mlcore/phantom-wiki-v050
 echo "Dataset: $DATASET"
 
 # 

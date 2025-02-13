@@ -1,26 +1,21 @@
 import abc
+from collections import Counter
 import logging
 import re
-from collections import Counter
+import subprocess
 import traceback
 
+import openai 
 import pandas as pd
+from langchain_community.vectorstores import FAISS
+from langchain_core.embeddings import Embeddings
 
-from phantom_eval.llm import LLMChat, LLMChatResponse, InferenceGenerationConfig, aggregate_usage
-from phantom_eval.data import Conversation, ContentTextMessage, Message
+from phantom_eval._types import Conversation, ContentTextMessage, LLMChatResponse, Message
+from phantom_eval.gpu_utils import get_gpu_count
+from phantom_eval.llm.common import InferenceGenerationConfig, aggregate_usage, LLMChat
 from phantom_eval.prompts import LLMPrompt
 from phantom_eval.score import normalize_pred
 import phantom_eval.constants as constants
-
-from langchain_community.vectorstores import FAISS
-import os
-from vllm import LLM
-from .gpu_utils import get_gpu_count
-import torch
-import openai 
-import subprocess
-from typing import List
-from langchain_core.embeddings import Embeddings
 
 
 logger = logging.getLogger(__name__)
@@ -110,14 +105,27 @@ class NshotAgent(Agent):
         self.agent_interactions = conv
         
         # Generate response
-        # Add "\n" to stop_sequences
-        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
+        if llm_chat.model_name in REASONING_MODELS:
+            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
+        else:
+            # Add "\n" to stop_sequences
+            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
         response = llm_chat.generate_response(conv, inf_gen_config)
 
         # Update agent's conversation
         self.agent_interactions.messages.append(
             Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
         )
+
+        if llm_chat.model_name in REASONING_MODELS:
+            try:
+                pred = NshotAgent.parse_thinking_answer(response.pred)
+                error = None
+            except Exception as e:
+                pred = ""
+                error = f"<agent_error>{traceback.format_exc()}</agent_error>"
+                error = f"<agent_error>{e}</agent_error>"
+            return LLMChatResponse(pred=pred, usage=response.usage, error=error)
         
         return response
     
@@ -133,8 +141,11 @@ class NshotAgent(Agent):
         self.agent_interactions = convs
         
         # Generate response
-        # Change stop_sequences to "\n"
-        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
+        if llm_chat.model_name in REASONING_MODELS:
+            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
+        else:
+            # Change stop_sequences to "\n"
+            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
         responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
 
         # Add the responses to the agent's conversations
@@ -143,7 +154,35 @@ class NshotAgent(Agent):
                 Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
             )
 
+        if llm_chat.model_name in REASONING_MODELS:
+            parsed_responses: list[LLMChatResponse] = []
+            for response in responses:
+                # Try to parse the response, otherwise return an error
+                try:
+                    pred = NshotAgent.parse_thinking_answer(response.pred)
+                    error = None
+                except Exception as e:
+                    pred = ""
+                    error = f"<agent_error>{traceback.format_exc()}</agent_error>"
+                parsed_responses.append(
+                    LLMChatResponse(pred=pred, usage=response.usage, error=error)
+                )
+            return parsed_responses
+        
         return responses
+    
+    @classmethod
+    def parse_thinking_answer(cls, pred: str) -> str:
+        """
+        Parse the response to extract the answer using regex.
+        The prediction is of the form: "</think> ..."
+        """
+        pattern = r"</think>\s*(.+)"
+        m = re.search(pattern, pred)
+        if m:
+            return m.group(1) #return first subgroup of the match https://docs.python.org/3/library/re.html#re.Match
+        else:
+            raise ValueError(f"Answer '{pred}' cannot be parsed.")
 
 
 class SCMixin:
@@ -706,8 +745,6 @@ class ReactAgent(Agent):
             raise ValueError(f"Action '{action}' cannot be parsed.")
 
 
-
-
 class React_CoTSCAgent(Agent):
     """
     Agent to implement React->CoTSC evaluation.
@@ -871,25 +908,26 @@ class CoTSC_ReactAgent(Agent):
                 # Error msg is not related to majority vote, return CoTSC's response and abort
                 return cotsc_response
 
+
 class CustomEmbeddings(Embeddings):
     def __init__(self, client):
         self.client = client
         self.model = self.client.models.list().data[0].id
 
-    def embed_documents(self, texts: List[str]) -> List[List[float]]:
+    def embed_documents(self, texts: list[str]) -> list[list[float]]:
         """Embed search docs."""
         return [obj.embedding for obj in self.client.embeddings.create(input=texts, model=self.model).data]
 
-    def embed_query(self, text: str) -> List[float]:
+    def embed_query(self, text: str) -> list[float]:
         """Embed query text."""
         return self.embed_documents([text])[0]
+
 
 class RAGMixin:
     def __init__(self, 
                 text_corpus: pd.DataFrame, 
                 embedding_model_name: str="whereisai/uae-large-v1",
                 retriever_num_documents: int = 4,
-                use_api: bool | None = True,
                 tensor_parallel_size: int | None = 1,
                 port:int = 8001,
                 ):
@@ -901,28 +939,27 @@ class RAGMixin:
 
         self.embedding_model_name = embedding_model_name
         texts = self.text_corpus['article'].tolist()
-        if(True):#if(use_api):
-            # launch server
-            subprocess.call(["./src/phantom_eval/launch_embedding_server.sh", 
-                            embedding_model_name, 
-                            str(port), 
-                            str(get_gpu_count()-1)
-                            ])
 
-            # build retriever
-            BASE_URL = f"http://0.0.0.0:{port}/v1" 
-            API_KEY="token-abc123" 
-            client = openai.OpenAI(
-                base_url=BASE_URL,
-                api_key=API_KEY,
-            )
-            embeddings = CustomEmbeddings(client)
-            vectorstore = FAISS.from_texts(texts, embeddings)
-            self.retriever = vectorstore.as_retriever(
-                search_kwargs={'k': retriever_num_documents}
-            )
-        else:
-            raise NotImplementedError("Not implemented yet")
+        # launch server
+        subprocess.call(["./src/phantom_eval/launch_embedding_server.sh", 
+                        embedding_model_name, 
+                        str(port), 
+                        str(get_gpu_count()-1)
+                        ])
+
+        # build retriever
+        BASE_URL = f"http://0.0.0.0:{port}/v1" 
+        API_KEY="token-abc123" 
+        client = openai.OpenAI(
+            base_url=BASE_URL,
+            api_key=API_KEY,
+        )
+        embeddings = CustomEmbeddings(client)
+        vectorstore = FAISS.from_texts(texts, embeddings)
+        self.retriever = vectorstore.as_retriever(
+            search_kwargs={'k': retriever_num_documents}
+        )
+
 
     def get_RAG_evidence(self, question:str) -> str:
         """
@@ -944,7 +981,6 @@ class NshotRAGAgent(NshotAgent, RAGMixin):
                 fewshot_examples: str = "", 
                 embedding_model_name: str="WhereIsAI/UAE-Code-Large-V",
                 retriever_num_documents: int = 4,
-                use_api: bool | None = True,
                 tensor_parallel_size: int | None = 1,
                 port:int = 8001,
                 ):
@@ -956,7 +992,7 @@ class NshotRAGAgent(NshotAgent, RAGMixin):
                 Defaults to `constants.answer_sep`.
         """
         NshotAgent.__init__(self, text_corpus, llm_prompt, fewshot_examples)
-        RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, use_api, tensor_parallel_size, port)
+        RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, tensor_parallel_size, port)
 
     def run(self, 
             llm_chat: LLMChat, 
@@ -985,7 +1021,6 @@ class CoTRAGAgent(CoTAgent, RAGMixin):
                 cot_examples: str = "",
                 embedding_model_name: str="WhereIsAI/UAE-Code-Large-V",
                 retriever_num_documents: int = 4,
-                use_api: bool | None = True,
                 tensor_parallel_size: int | None = 1,
                 port:int = 8001,
                 ):
@@ -994,7 +1029,7 @@ class CoTRAGAgent(CoTAgent, RAGMixin):
             cot_examples (str): Prompt examples to include in agent prompt.
         """
         CoTAgent.__init__(self, text_corpus, llm_prompt, cot_examples)
-        RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, use_api, tensor_parallel_size, port)
+        RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, tensor_parallel_size, port)
 
     def run(self, 
             llm_chat: LLMChat, 
@@ -1012,148 +1047,6 @@ class CoTRAGAgent(CoTAgent, RAGMixin):
         # Relies on the implementation of batch_run in the subclass
         return await super().batch_run(llm_chat, questions, inf_gen_config)
 
-
-class ReasoningAgent(Agent):
-    """
-    Agent to implement Zeroshot and fewshot evaluation, 
-    depending on the input `llm_prompt` on initialization.
-    """
-    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, fewshot_examples: str = ""):
-        """
-        Args:
-            fewshot_examples (str): Prompt examples to include in agent prompt.
-                If "", the agent is zero-shot. Defaults to "".
-        """
-        super().__init__(text_corpus, llm_prompt)
-        self.fewshot_examples = fewshot_examples
-    def _build_agent_prompt(self, question: str) -> str:
-        if hasattr(self, 'embedding_model_name') and self.embedding_model_name is not None:
-            evidence = self.get_RAG_evidence(question)
-        else:
-            evidence = _get_evidence(self.text_corpus)
-        if self.fewshot_examples: # Few-shot
-            return self.llm_prompt.get_prompt().format(
-                evidence=evidence,
-                examples=self.fewshot_examples,
-                question=question
-            )
-        else: # Zero-shot
-            return self.llm_prompt.get_prompt().format(
-                evidence=evidence,
-                question=question
-            )
-    def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
-        logger.debug(f"\n\t>>> question: {question}\n")
-        # Create a conversation with 1 user prompt and initialize agent interactions
-        prompt = self._build_agent_prompt(question)
-        conv = Conversation(messages=[Message(role="user", content=[ContentTextMessage(text=prompt)])])
-        self.agent_interactions = conv
-        
-        # Generate response
-        # # Add "\n" to stop_sequences
-        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
-        response = llm_chat.generate_response(conv, inf_gen_config)
-        # Update agent's conversation
-        self.agent_interactions.messages.append(
-            Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
-        )
-        
-        # return response
-        try:
-            pred = ReasoningAgent.parse_answer(response.pred)
-            error = None
-        except Exception as e:
-            pred = ""
-            error = f"<agent_error>{traceback.format_exc()}</agent_error>"
-            error = f"<agent_error>{e}</agent_error>"
-        return LLMChatResponse(pred=pred, usage=response.usage, error=error)
-    
-    async def batch_run(self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig) -> list[LLMChatResponse]:
-        logger.debug(f"\n\t>>> questions: {questions}\n")
-        # Create a conversation for each user prompt, and initialize agent interactions
-        prompts: list[str] = [self._build_agent_prompt(question) for question in questions]
-        convs = [
-            Conversation(messages=[Message(role="user", content=[ContentTextMessage(text=prompt)])])
-            for prompt in prompts
-        ]
-        self.agent_interactions = convs
-        
-        # Generate response
-        # # Change stop_sequences to "\n"
-        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
-        responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
-        # Add the responses to the agent's conversations
-        for i, response in enumerate(responses):
-            self.agent_interactions[i].messages.append(
-                Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
-            )
-        # return responses
-                # Parse the responses to extract the answers
-        parsed_responses: list[LLMChatResponse] = []
-        for response in responses:
-            # Try to parse the response, otherwise return an error
-            try:
-                pred = ReasoningAgent.parse_answer(response.pred)
-                error = None
-            except Exception as e:
-                pred = ""
-                error = f"<agent_error>{traceback.format_exc()}</agent_error>"
-            parsed_responses.append(
-                LLMChatResponse(pred=pred, usage=response.usage, error=error)
-            )
-        return parsed_responses
-    
-    
-    @classmethod
-    def parse_answer(cls, pred: str) -> tuple[str, str]:
-        """
-        Parse the response to extract the answer using regex.
-        The prediction is of the form: "... The answer is <answer>."
-        """
-        pattern = r"</think>\s*(.+)"
-        m = re.search(pattern, pred)
-        if m:
-            return m.group(1)
-        else:
-            raise ValueError(f"Answer '{pred}' cannot be parsed.")
-
-
-class ReasoningRAGAgent(ReasoningAgent, RAGMixin):
-    def __init__(self, 
-                text_corpus: pd.DataFrame, 
-                llm_prompt: LLMPrompt, 
-                fewshot_examples: str = "", 
-                embedding_model_name: str="WhereIsAI/UAE-Code-Large-V",
-                retriever_num_documents: int = 4,
-                use_api: bool | None = True,
-                tensor_parallel_size: int | None = 1,
-                port:int = 8001,
-                ):
-        """
-        Args:
-            fewshot_examples (str): Prompt examples to include in agent prompt.
-                If "", the agent is zero-shot. Defaults to "".
-            sep (str): The separator used to split the prediction.
-                Defaults to `constants.answer_sep`.
-        """
-        ReasoningAgent.__init__(self, text_corpus, llm_prompt, fewshot_examples)
-        RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, use_api, tensor_parallel_size, port)
-
-    def run(self, 
-            llm_chat: LLMChat, 
-            question: str, 
-            inf_gen_config: InferenceGenerationConfig
-            ) -> LLMChatResponse:
-        # Relies on the implementation of run in the subclass
-        return super().run(llm_chat, question, inf_gen_config)
-
-    async def batch_run(self, 
-                        llm_chat: LLMChat, 
-                        questions: list[str], 
-                        inf_gen_config: InferenceGenerationConfig
-                        ) -> list[LLMChatResponse]:
-        # Relies on the implementation of batch_run in the subclass
-        return await super().batch_run(llm_chat, questions, inf_gen_config)
 
 #### Utils ####
 
@@ -1185,10 +1078,11 @@ SUPPORTED_METHOD_NAMES: list[str] = [
     "zeroshot-rag",
     "fewshot-rag",
     "cot-rag",
-    "reasoning",
-    "reasoning-rag",
 ]
 
+REASONING_MODELS: list[str] = [
+    "deepseek-ai/deepseek-r1-distill-qwen-32b",
+]
 
 def get_agent(
     method: str,
@@ -1214,13 +1108,8 @@ def get_agent(
         case "cot-sc->react":
             return CoTSC_ReactAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "zeroshot-rag" | "fewshot-rag":
-            # return RAGAgent(text_corpus, llm_prompt, **agent_kwargs)
             return NshotRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "cot-rag":
             return CoTRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
-        case "reasoning":
-            return ReasoningAgent(text_corpus, llm_prompt, **agent_kwargs)
-        case "reasoning-rag":
-            return ReasoningRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
         case _:
             raise ValueError(f"Invalid method: {method}")
