@@ -229,17 +229,13 @@ def main(args):
     progbar = tqdm(enumerate(templates), desc="Generating questions #2", total=len(templates))
     
     for i, (question_template, query_template, answer) in progbar:
-        template_questions = all_questions[i]
-        template_queries = all_queries[i]
-        template_solution_traces = all_solution_traces[i]
-        template_final_results = all_final_results[i]
 
         questions = []
-        for j in range(len(template_final_results)):
-            solution_trace = template_solution_traces[j]
-            question = template_queries[j]
-            query = template_questions[j]
-            final_result = template_final_results[j]
+        for j in range(len(all_final_results[i])):
+            solution_trace = all_solution_traces[i][j]
+            question = all_queries[i][j]
+            query = all_questions[i][j]
+            final_result = all_final_results[i][j]
 
             # get the difficulty of the question
             question_difficulty = calculate_query_difficulty(query)
