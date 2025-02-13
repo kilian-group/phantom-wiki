@@ -229,21 +229,19 @@ def main(args):
     progbar = tqdm(enumerate(templates), desc="Generating questions #2", total=len(templates))
     
     for i, (question_template, query_template, answer) in progbar:
-
         questions = []
-        for j in range(len(all_questions[i])):
-            question = all_questions[i][j]
-            query = all_queries[i][j]
 
+        for j in range(args.num_questions_per_type):
             # get the difficulty of the question
-            question_difficulty = calculate_query_difficulty(all_questions[i][j])
+            question_difficulty = calculate_query_difficulty(all_queries[i][j])
+
             questions.append(
                 {
                     "id": generate_unique_id(),
-                    "question": question,
+                    "question": all_questions[i][j],
                     "solution_traces": json.dumps(all_solution_traces[i][j]), # NOTE: serialize list of dicts so that it can be saved on HF
                     "answer": all_final_results[i][j],
-                    "prolog": {"query": all_questions[i][j], "answer": answer},
+                    "prolog": {"query": all_queries[i][j], "answer": answer},
                     "template": question_template,
                     "type": i,  # this references the template type
                     "difficulty": question_difficulty,
