@@ -4,6 +4,8 @@ import math
 import asyncio
 import logging
 from pathlib import Path
+import os
+import tempfile
 
 import pandas as pd
 from tqdm import tqdm
@@ -14,9 +16,12 @@ from .llm.common import InferenceGenerationConfig, LLMChat
 from .llm.vllm import VLLMChat
 from .utils import load_data, setup_logging
 from .agent import get_agent, Agent
-from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, COT_EXAMPLES, ACT_EXAMPLES, FEWSHOT_EXAMPLES
+from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, COT_EXAMPLES, ACT_EXAMPLES, FEWSHOT_EXAMPLES, FEWSHOT_EXAMPLES_PROLOG
 from . import constants
 from . import get_parser
+from .prolog_utils import get_prolog_results
+
+from phantom_wiki.facts.database import Database
 
 logger = logging.getLogger(__name__)
 
@@ -48,21 +53,26 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
 def get_agent_kwargs(args: argparse.Namespace) -> dict:
     match args.method:
         case "zeroshot":
-            agent_kwargs = dict()
+            agent_kwargs = dict(
+                prolog_query=args.prolog_query
+            )
         case "fewshot":
             agent_kwargs = dict(
-                fewshot_examples=FEWSHOT_EXAMPLES,
+                fewshot_examples=FEWSHOT_EXAMPLES if not args.prolog_query else FEWSHOT_EXAMPLES_PROLOG,
+                prolog_query=args.prolog_query
             )
         case "zeroshot-sc":
             agent_kwargs = dict(
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
+                prolog_query=args.prolog_query
             )
         case "fewshot-sc":
             agent_kwargs = dict(
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
                 fewshot_examples=FEWSHOT_EXAMPLES,
+                prolog_query=args.prolog_query
             )
         case "cot":
             agent_kwargs = dict(
@@ -219,6 +229,18 @@ async def main(args: argparse.Namespace) -> None:
                             responses.append(response)
                             agent_interactions.append(agent.agent_interactions)
 
+                # Process Prolog queries if needed
+                prolog_results = []
+                if args.prolog_query:
+                    # Create temporary file and load database from disk
+                    with tempfile.NamedTemporaryFile(mode='w', suffix='.pl') as tmp:
+                        content = dataset['database']['content']
+                        tmp.write('\n'.join(content))
+                        tmp.flush()
+                        db = Database.from_disk(tmp.name)
+                        
+                    prolog_results = get_prolog_results(responses, db, logger, args.log_level.upper() == "DEBUG")
+
                 # Log the final answers for the batch
                 pred_path.parent.mkdir(parents=True, exist_ok=True)
                 logger.info(f"Saving predictions to {pred_path}")
@@ -239,9 +261,9 @@ async def main(args: argparse.Namespace) -> None:
                     batch_number,
                     batch_df_qa_pairs,
                     responses,
+                    prolog_results=prolog_results if args.prolog_query else None,
                     interactions=agent_interactions if not args.ignore_agent_interactions else [],
                 )
-
 
 def save_preds(
     pred_path: Path,
@@ -253,15 +275,30 @@ def save_preds(
     batch_number: int,
     batch_df_qa_pairs: pd.DataFrame,
     responses: list[LLMChatResponse],
+    prolog_results: list[dict] | None = None,
     interactions: list[Conversation] | None = None,
 ) -> None:
     preds = {}
     batch_size = len(batch_df_qa_pairs)
+    
     for i, qa_sample in enumerate(batch_df_qa_pairs.itertuples()):
         uid = qa_sample.id
+        
+        # Get the appropriate prediction value and query info
+        if prolog_results:
+            pred_value = prolog_results[i]['final_value']
+            pred_query = prolog_results[i]['query']
+            query_results = prolog_results[i]['query_results']
+        else:
+            pred_value = responses[i].pred
+            pred_query = None
+            query_results = None
+        
         preds[uid] = {
-            "true" : qa_sample.answer,
-            "pred" : responses[i].pred,
+            "true": qa_sample.answer,
+            "pred": pred_value,
+            "prolog_query": pred_query,
+            "prolog_query_results": query_results if args.log_level.upper() == "DEBUG" else None,
             "error": responses[i].error,
             "interaction": interactions[i].model_dump() if interactions else [],
             "metadata": {
@@ -281,11 +318,12 @@ def save_preds(
     with open(pred_path, "w") as f:
         json.dump(preds, f, indent=4)
 
-
 if __name__ == "__main__":
     parser = get_parser()
     args = parser.parse_args()
     setup_logging(args.log_level)
+    if args.prolog_query:
+        assert len(args.split_list) == 1, "When prolog_query is true, we can only evaluate one split at a time since only one Prolog database can be in memory at any given time due to limitations with pyswip"
 
     # NOTE: asyncio.run should only be called once in a single Python instance.
     # Thus, any high-level function containing awaits in its implementation 
