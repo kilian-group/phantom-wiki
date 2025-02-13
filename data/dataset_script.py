@@ -4,12 +4,9 @@ Template: https://github.com/huggingface/datasets/blob/main/templates/new_datase
 """
 
 
-import csv
 import json
-import os
 
 import datasets
-
 
 # TODO: Add BibTeX citation
 # Find for instance the citation on arxiv or on the dataset repo/website
@@ -57,10 +54,17 @@ for depth in [20]:
     for size in SIZES:
         for seed in [1, 2, 3]:
             SPLITS.append(f"depth_{depth}_size_{size}_seed_{seed}")
-for filename, config in [("articles.json", "text-corpus"), ("questions.json", "question-answer"), ("facts.pl", "database")]:
+for filename, config in [
+    ("articles.json", "text-corpus"),
+    ("questions.json", "question-answer"),
+    ("facts.pl", "database"),
+]:
     _URLS[config] = {}
     for split in SPLITS:
-        _URLS[config][split] = f"https://huggingface.co/datasets/mlcore/phantom-wiki/resolve/main/{split}/{filename}"
+        _URLS[config][
+            split
+        ] = f"https://huggingface.co/datasets/mlcore/phantom-wiki/resolve/main/{split}/{filename}"
+
 
 class PhantomWiki(datasets.GeneratorBasedBuilder):
     """PhantomWiki v0.5"""
@@ -79,17 +83,28 @@ class PhantomWiki(datasets.GeneratorBasedBuilder):
     # data = datasets.load_dataset('my_dataset', 'first_domain')
     # data = datasets.load_dataset('my_dataset', 'second_domain')
     BUILDER_CONFIGS = [
-        datasets.BuilderConfig(name="text-corpus", version=VERSION, description="This config contains the documents in the text corpus"),
-        datasets.BuilderConfig(name="question-answer", version=VERSION, description="This config containst the question-answer pairs"),
-        datasets.BuilderConfig(name="database", version=VERSION, description="This config contains the complete Prolog database"),
+        datasets.BuilderConfig(
+            name="text-corpus",
+            version=VERSION,
+            description="This config contains the documents in the text corpus",
+        ),
+        datasets.BuilderConfig(
+            name="question-answer",
+            version=VERSION,
+            description="This config containst the question-answer pairs",
+        ),
+        datasets.BuilderConfig(
+            name="database", version=VERSION, description="This config contains the complete Prolog database"
+        ),
     ]
 
     # DEFAULT_CONFIG_NAME = "first_domain"  # It's not mandatory to have a default configuration. Just use one if it make sense.
 
     def _info(self):
-        """This method specifies the datasets.DatasetInfo object which contains informations and typings for the dataset
-        """
-        if self.config.name == "text-corpus":  # This is the name of the configuration selected in BUILDER_CONFIGS above
+        """This method specifies the datasets.DatasetInfo object which contains informations and typings for the dataset"""
+        if (
+            self.config.name == "text-corpus"
+        ):  # This is the name of the configuration selected in BUILDER_CONFIGS above
             features = datasets.Features(
                 {
                     "title": datasets.Value("string"),
@@ -142,7 +157,7 @@ class PhantomWiki(datasets.GeneratorBasedBuilder):
 
     def _split_generators(self, dl_manager):
         """This method is tasked with downloading/extracting the data and defining the splits depending on the configuration
-        
+
         NOTE: If several configurations are possible (listed in BUILDER_CONFIGS), the configuration selected by the user is in self.config.name
         """
         # dl_manager is a datasets.download.DownloadManager that can be used to download and extract URLS
@@ -152,14 +167,16 @@ class PhantomWiki(datasets.GeneratorBasedBuilder):
         data_dir = dl_manager.download_and_extract(urls)
         splits = []
         for name, filepath in data_dir.items():
-            splits.append(datasets.SplitGenerator(
-                name=name,
-                # These kwargs will be passed to _generate_examples
-                gen_kwargs={
-                    "filepath": filepath,
-                    "split": name,
-                },
-            ))
+            splits.append(
+                datasets.SplitGenerator(
+                    name=name,
+                    # These kwargs will be passed to _generate_examples
+                    gen_kwargs={
+                        "filepath": filepath,
+                        "split": name,
+                    },
+                )
+            )
         return splits
 
     # method parameters are unpacked from `gen_kwargs` as given in `_split_generators`
