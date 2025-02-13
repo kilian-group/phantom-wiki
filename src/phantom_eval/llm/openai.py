@@ -67,7 +67,7 @@ class OpenAIChat(CommonLLMChat):
 
     def _count_tokens(self, messages_api_format: list[dict]) -> int:
         """
-        NOTE: this only counts the tokens in raw string message, 
+        NOTE: this only counts the tokens in raw string message,
         not the tokens in the actual prompt to the model,
         which may be different depending on the server-side implementation.
         Compared to the actual token count returned by the API responses, this is a systematic overestimate.

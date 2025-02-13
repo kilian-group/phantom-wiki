@@ -17,6 +17,7 @@ class GeminiChat(CommonLLMChat):
     ]
     ```
     """
+
     RATE_LIMITS = {
         "gemini-1.5-flash-002": {
             "usage_tier=0": {"RPM": 15, "TPM": 1_000_000},  # free tier
@@ -31,8 +32,11 @@ class GeminiChat(CommonLLMChat):
             "usage_tier=1": {"RPM": 4_000, "TPM": 4_000_000},
         },
         "gemini-2.0-flash-exp": {
-            "usage_tier=0": {"RPM": 10, "TPM": 4_000_000},  # free tier: https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash
-        }
+            "usage_tier=0": {
+                "RPM": 10,
+                "TPM": 4_000_000,
+            },  # free tier: https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash
+        },
     }
     SUPPORTED_LLM_NAMES: list[str] = list(RATE_LIMITS.keys())
 
@@ -74,7 +78,7 @@ class GeminiChat(CommonLLMChat):
                 top_p=inf_gen_config.top_p,
                 max_output_tokens=inf_gen_config.max_tokens,
                 stop_sequences=inf_gen_config.stop_sequences,
-                # NOTE: API does not suport topK>40
+                # NOTE: API does not support topK>40
             ),
         )
         return response
@@ -82,7 +86,8 @@ class GeminiChat(CommonLLMChat):
     def _parse_api_output(self, response: object) -> LLMChatResponse:
         # Try to get response text. If failed due to any reason, output empty prediction
         # Example instance why Gemini can fail to return response.text:
-        # "The candidate's [finish_reason](https://ai.google.dev/api/generate-content#finishreason) is 4. Meaning that the model was reciting from copyrighted material."
+        # "The candidate's [finish_reason](https://ai.google.dev/api/generate-content#finishreason) is 4.
+        # Meaning that the model was reciting from copyrighted material."
         try:
             pred = response.text
             error = None
@@ -97,7 +102,7 @@ class GeminiChat(CommonLLMChat):
                 "total_token_count": response.usage_metadata.total_token_count,
                 "cached_content_token_count": response.usage_metadata.cached_content_token_count,
             },
-            error=error
+            error=error,
         )
 
     def _count_tokens(self, messages_api_format: list[dict]) -> int:

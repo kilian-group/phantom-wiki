@@ -1,4 +1,4 @@
-"""Script for evaluating the recall of relevant documents 
+"""Script for evaluating the recall of relevant documents
 
 Example:
 ```bash
@@ -7,19 +7,17 @@ python eval/plot_retriever_ablation.py -od out --method zeroshot
 """
 
 
-# %%
-import os
-from phantom_eval import get_parser
-from phantom_eval.evaluate_utils import get_evaluation_data, COLORS, LINESTYLES, pivot_mean_std, mean, std
-import matplotlib.pyplot as plt
 import re
-import json
+
+# %%
+from phantom_eval import get_parser
+from phantom_eval.evaluate_utils import get_evaluation_data
 
 parser = get_parser()
 # parser.add_argument(
-#     '--depth', 
-#     type=int, 
-#     default=20, 
+#     '--depth',
+#     type=int,
+#     default=20,
 #     help='Depth to plot accuracies for'
 # )
 # parser.add_argument(
@@ -39,21 +37,23 @@ df = get_evaluation_data(output_dir, method, dataset)
 # # filter by depth and size
 # df = df[(df['_depth'] == depth) & (df['_size'] == size)]
 
+
 # get the retrieved articles
 def get_retrieved_article_titles(row):
-    """Extrac the titles of the retrieved articles from the prompt.
-    """
-    prompt = row['interaction']['messages'][0]['content'][0]['text']
+    """Extract the titles of the retrieved articles from the prompt."""
+    prompt = row["interaction"]["messages"][0]["content"][0]["text"]
     # Step 1: get the evidence section use regex matching
     # NOTE: the evidence sections starts with (BEGIN EVIDENCE) and ends with (END EVIDENCE)
-    evidence = re.search(r'\(BEGIN EVIDENCE\)(.*)\(END EVIDENCE\)', prompt, re.DOTALL).group(1)
+    evidence = re.search(r"\(BEGIN EVIDENCE\)(.*)\(END EVIDENCE\)", prompt, re.DOTALL).group(1)
     # Step 2: get the articles by splitting by "\n\n================\n\n"
-    articles = evidence.split('\n\n================\n\n')
+    articles = evidence.split("\n\n================\n\n")
     # Step 3: Extract the title from each article
-    titles = [re.search(r'# (.*)\n\n', article).group(1) for article in articles]
+    titles = [re.search(r"# (.*)\n\n", article).group(1) for article in articles]
     return titles
-df['titles'] = df.apply(get_retrieved_article_titles, axis=1)
-df['num_titles'] = df['titles'].apply(len)
+
+
+df["titles"] = df.apply(get_retrieved_article_titles, axis=1)
+df["num_titles"] = df["titles"].apply(len)
 
 # import pdb; pdb.set_trace()
 
@@ -66,10 +66,11 @@ df['num_titles'] = df['titles'].apply(len)
 #     In our code, we use RELATION_EASY + ATTRIBUTE_TYPES to refer to base predicates.
 #     TODO: refactor get_article so that you only need to pass in a list of base predicates.
 
-#     NOTE: 
+#     NOTE:
 #     - only atoms that are in the first argument of a predicate have corresponding articles,
-#     so we only need to consider those atoms when counting relevant articles. (this is not true as both X and Y have articles in father(X,Y) )
-#     - 
+#     so we only need to consider those atoms when counting relevant articles. (this is not true as both X and
+#     Y have articles in father(X,Y) )
+#     -
 
 #     New definition: number of unique articles in the intermediate answers
 #     """

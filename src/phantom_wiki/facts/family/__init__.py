@@ -1,19 +1,18 @@
 # imports for family relations and templates
-from .constants import (FAMILY_FACT_TEMPLATES,
-                        FAMILY_FACT_TEMPLATES_PL,
-                        FAMILY_RELATION_DIFFICULTY)
+from .constants import FAMILY_RELATION_DIFFICULTY
 
 FAMILY_RELATION_EASY = [k for k, v in FAMILY_RELATION_DIFFICULTY.items() if v < 2]
 FAMILY_RELATION_HARD = [k for k, v in FAMILY_RELATION_DIFFICULTY.items() if v >= 2]
 
 from importlib.resources import files
+
 FAMILY_RULES_BASE_PATH = files("phantom_wiki").joinpath("facts/family/rules_base.pl")
 FAMILY_RULES_DERIVED_PATH = files("phantom_wiki").joinpath("facts/family/rules_derived.pl")
 
+import logging
+
 # imports for family generation
 from argparse import ArgumentParser
-import logging
-import gc
 
 # Create parser for family tree generation
 fam_gen_parser = ArgumentParser(description="Family Generator", add_help=False)
@@ -43,7 +42,8 @@ fam_gen_parser.add_argument(
     "--stop-prob",
     type=float,
     default=0.0,
-    help="The probability of stopping to further extend a family tree after a person has been added. (Default value: 0.)",
+    help="The probability of stopping to further extend a family tree after a person has been added. "
+    "(Default value: 0.)",
 )
 fam_gen_parser.add_argument(
     "--duplicate-names",
@@ -91,7 +91,7 @@ def db_generate_family(db, args: ArgumentParser):
         #############
         # Debugging #
         #############
-        if args.debug: 
+        if args.debug:
             # Create a unique filename for each tree
             output_file_path = os.path.join(args.output_dir, f"family_tree_{i+1}.pl")
             os.makedirs(args.output_dir, exist_ok=True)

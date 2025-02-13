@@ -31,7 +31,7 @@ class Conversation(BaseModel):
         Returns:
             Conversation: The conversation object.
         """
-        with open(Path(file_path).expanduser(), "r") as f:
+        with open(Path(file_path).expanduser()) as f:
             data = json.load(f)
 
         return Conversation(**data)
