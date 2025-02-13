@@ -149,7 +149,7 @@ PhantomWiki should be used as a benchmark to inform how LLMs should be used on r
 
 ## Dataset Card Authors [optional]
 
-Albert Gong
+[More Information Needed]
 
 ## Dataset Card Contact
 
