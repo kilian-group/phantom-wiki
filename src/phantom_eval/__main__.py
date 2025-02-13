@@ -10,9 +10,11 @@ import tempfile
 import pandas as pd
 from tqdm import tqdm
 
+from ._types import Conversation, LLMChatResponse
+from .llm import get_llm
+from .llm.common import InferenceGenerationConfig, LLMChat
+from .llm.vllm import VLLMChat
 from .utils import load_data, setup_logging
-from .data import Conversation
-from .llm import get_llm, VLLMChat, LLMChatResponse, LLMChat, InferenceGenerationConfig
 from .agent import get_agent, Agent
 from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, COT_EXAMPLES, ACT_EXAMPLES, FEWSHOT_EXAMPLES, FEWSHOT_EXAMPLES_PROLOG
 from . import constants
@@ -35,7 +37,7 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
                 # This can be overridden by setting `use_api=True` in the model_kwargs.
                 # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
                 use_api=(args.method in [
-                    "zeroshot-rag", "fewshot-rag", "cot-rag",
+                    # "zeroshot-rag", "fewshot-rag", "cot-rag",
                     "react", "act", "react->cot-sc", "cot-sc->react"
                     ]),
                 port=args.inf_vllm_port,
@@ -84,11 +86,8 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
             )
-        case "zeroshot-rag" | "reasoning-rag":
+        case "zeroshot-rag":
             agent_kwargs = dict(
-                # embedding="together", #args.embedding
-                # vector_store="faiss", #args.vector_store
-                # embedding_port=args.inf_embedding_port,
                 embedding_model_name=args.retriever_method,
                 retriever_num_documents=args.retriever_num_documents,
             )
@@ -207,7 +206,7 @@ async def main(args: argparse.Namespace) -> None:
                 # so they support batch async inference
                 agent_interactions = None
                 match args.method:
-                    case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc" | "zeroshot-rag" | "fewshot-rag" | "reasoning" | "reasoning-rag":
+                    case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc" | "zeroshot-rag" | "fewshot-rag":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                         responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
