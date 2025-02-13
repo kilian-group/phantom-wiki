@@ -74,9 +74,10 @@ We take the first steps toward a large-scale synthetic dataset that can evaluate
 ### Source Data
 
 This is a synthetic dataset. The extent to which we use real data is detailed as follows:
-1. Names are sampled from TODO
-2. We modify the list of real-life jobs provided by the `faker` Python package and sample from this list when generating universes. We are grateful to the contributors of Faker (c) 2012 Daniele Faraglia for curating this list and making it publically available.
-3. We modify the list of hobbies at https://www.kaggle.com/datasets/mrhell/list-of-hobbies and sample from this list when generating universes. We are grateful to Arjun Raj for curating this list and making it publically available.
+1. We sample surnames from among the most common surnames in the US population according to https://names.mongabay.com/most_common_surnames.htm
+2. We sample first names using the `names` Python package (https://github.com/treyhunner/names). We thank the contributors for making this tool publically available.
+3. We sample jobs from the list of real-life jobs from the `faker` Python package. We thank the contributors for making this tool publically available.
+4. We sample hobbies from the list of real-life hobbies at https://www.kaggle.com/datasets/mrhell/list-of-hobbies. We are grateful to the original author for curating this list and making it publically available.
 
 #### Data Collection and Processing
 
