@@ -39,15 +39,31 @@ METRICS = [
     # 'recall',
     "f1",
 ]
-TICK_FONT_SIZE = 6
+TICK_FONT_SIZE = 8
 TICK_LENGTH = 4
 MINOR_TICK_LENGTH = 2
-LABEL_FONT_SIZE = 8
-rc("font", **{"size": TICK_FONT_SIZE})  # Set the default font size for LaTeX text
+LABEL_FONT_SIZE = 10
+rc('font', **{'size': TICK_FONT_SIZE})  # Set the default font size for LaTeX text
 
 figures_dir = os.path.join(output_dir, "figures")
 figures_dir = os.path.join(output_dir, "figures")
 os.makedirs(figures_dir, exist_ok=True)
+
+# utils for plotting
+plt.rcParams.update({
+    'font.family': 'serif',
+    # 'font.family': 'Times New Roman',
+    'font.serif': ['Times New Roman'],
+    # 'mathtext.fontset': 'stix',
+    'axes.spines.top': False,
+    'axes.spines.right': False,
+    # set major tick length
+    # 'xtick.major.size': 6,
+    # 'ytick.major.size': 6,
+    # set minor tick length
+    # 'xtick.minor.size': 3,
+    # 'ytick.minor.size': 3,
+})
 
 # %%
 for metric in METRICS:
@@ -58,7 +74,10 @@ for metric in METRICS:
     ):
         # get evaluation data from the specified output directory and method subdirectory
         df = get_evaluation_data(output_dir, method, dataset)
+        # import pdb; pdb.set_trace()
         df = df[df[DIFFICULTY] <= MAX_DIFFICULTY]
+        print(method)
+        print(df[df['_model'] == model].groupby(['_size'])['_data_seed'].agg(lambda x: list(set(x))))
 
         # group by model, size, data seed, and seed
         grouped = df.groupby(["_model", "_size", "_data_seed", "_seed", "difficulty"])
@@ -90,6 +109,7 @@ for metric in METRICS:
         xticks = np.log10(xlabels)
         yticks = ylabels = np.unique(y)
 
+
         # add dummy entries to plot the out-of-context region
         X, Y = np.meshgrid(np.linspace(max(x) + 1, fmt_max_universe_size, 100), yticks)
         Z = np.zeros_like(X)
@@ -99,8 +119,11 @@ for metric in METRICS:
         z = np.append(z, Z.flatten())
 
         # plot tricontourf
-        contour = axs[i].tricontourf(np.log10(x), y, z, levels=20, cmap="viridis")
+        contour = axs[i].tricontourf(np.log10(x), y, z, levels=40, cmap="viridis")
         contour.set_clim(0, 1)
+        # Hide the contour lines
+        # https://stackoverflow.com/questions/8263769/hide-contour-linestroke-on-pyplot-contourf-to-get-only-fills/32911283#32911283
+        contour.set_edgecolor("face")
         if i == 2:
             # add colorbar with min=0 and max=1
             cbar = fig.colorbar(contour, ax=axs, shrink=0.2, aspect=20)
