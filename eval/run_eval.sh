@@ -28,13 +28,14 @@ if [ "$#" -lt 3 ]; then
     exit 1
 fi
 
-# Parse the arguments to get extra arguments after the first 4
-shift 3
-cmd_args=$@
-
 OUTPUT_DIR=$1
 METHOD=$2
 MODEL_NAME=$3
+
+# Parse the arguments to get extra arguments after the first 4
+shift 3
+cmd_args=$@
+echo "Extra arguments: $cmd_args"
 
 source eval/constants.sh
 
@@ -53,7 +54,7 @@ if [[ ! "$@" =~ "--split_list" ]]; then
 fi
 
 # if the model is deepseek, add the temperature and top_p
-if [ "${MODEL_NAME}" =~ "deepseek" ]; then
+if [[ "${MODEL_NAME}" =~ deepseek ]]; then
     TEMPERATURE=0.6
     TOP_P=0.95
     cmd+=" --inf_temperature $TEMPERATURE \
