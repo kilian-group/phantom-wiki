@@ -2,43 +2,32 @@
 #SBATCH -J zeroshot-cpu                              # Job name
 #SBATCH -o slurm/zeroshot-cpu_%j.out                 # output file (%j expands to jobID)
 #SBATCH -e slurm/zeroshot-cpu_%j.err                 # error log file (%j expands to jobID)
-#SBATCH --mail-type=ALL                      # Request status by email 
-#SBATCH --mail-user=ag2435@cornell.edu       # Email address to send results to.
+#SBATCH --mail-type=ALL                      # Request status by email
 #SBATCH -N 1                                 # Total number of nodes requested
 #SBATCH -n 2                                 # Total number of cores requested
 #SBATCH --get-user-env                       # retrieve the users login environment
 #SBATCH --mem=8000                         # server memory (MBs) requested (per node)
-#SBATCH -t infinite                           # Time limit (hh:mm:ss)
-#SBATCH --partition=kilian                   # Request partition
 
 # check that the correct number of arguments were passed
-if [ -z "$1" ] && [ -z "$2" ]; then
-    echo "Usage: $0 <output directory> <model name>"
+if [ -z "$1" ]; then
+    echo "Usage: $0 <output directory>"
     exit 1
 fi
-# activate conda environment
-source /share/apps/anaconda3/2021.05/etc/profile.d/conda.sh
-# NOTE: this assumes that conda environment is called `dataset`
-# change this to your conda environment as necessary
-conda activate dataset
 
 TEMPERATURE=0
-# if TEMPERATURE=0, then sampling is greedy so no need run with multiple seeds
-if (( $(echo "$TEMPERATURE == 0" | bc -l) ))
-then
-    seed_list="1"
-else
-    seed_list="1 2 3 4 5"
-fi
 
 source eval/constants.sh
 
-# NOTE: specify batch size to save intermediate batches
-python -m phantom_eval \
-    --method zeroshot \
-    -od $1 \
-    -m $2 \
-    -bs 10 \
-    --split_list $SPLIT_LIST \
-    --inf_seed_list $seed_list \
-    --inf_temperature $TEMPERATURE
+for model_name in "${API_MODELS[@]}"
+do
+    cmd="python -m phantom_eval \
+        --method zeroshot \
+        -od $1 \
+        -m $model_name \
+        --split_list depth_10_size_2500_seed_1 depth_10_size_2500_seed_2 depth_10_size_2500_seed_3 \
+        --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
+        --inf_temperature $TEMPERATURE \
+        --inf_usage_tier 0"
+    echo $cmd
+    eval $cmd
+done

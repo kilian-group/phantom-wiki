@@ -2,7 +2,7 @@
 #SBATCH -J cot-sc-medium                              # Job name
 #SBATCH -o slurm/cot-sc-medium_%j.out                 # output file (%j expands to jobID)
 #SBATCH -e slurm/cot-sc-medium_%j.err                 # error log file (%j expands to jobID)
-#SBATCH --mail-type=ALL                      # Request status by email 
+#SBATCH --mail-type=ALL                      # Request status by email
 #SBATCH -N 1                                 # Total number of nodes requested
 #SBATCH -n 4                                 # Total number of cores requested
 #SBATCH --get-user-env                       # retrieve the users login environment

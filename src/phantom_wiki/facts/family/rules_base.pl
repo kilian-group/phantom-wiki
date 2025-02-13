@@ -5,8 +5,8 @@ male(X) :-
 nonbinary(X) :-
   gender(X, "nonbinary").
 
-sibling(X, Y) :- 
-  parent(X, A), 
+sibling(X, Y) :-
+  parent(X, A),
   parent(Y, A),
   X \= Y.
 
@@ -23,15 +23,15 @@ brother(X, Y) :-
   sibling(X, Y),
   male(Y).
 
-mother(X, Y) :- 
+mother(X, Y) :-
   parent(X, Y),
   female(Y).
 
 father(X, Y) :-
   parent(X, Y),
-  male(Y). 
+  male(Y).
 
-child(X, Y) :- 
+child(X, Y) :-
   parent(Y, X).
 
 son(X, Y) :-
@@ -46,6 +46,6 @@ wife(X, Y) :-
   married(X, Y),
   female(Y).
 
-husband(X, Y) :- 
+husband(X, Y) :-
   married(X, Y),
   male(Y).

@@ -1,20 +1,33 @@
 import argparse
-import json
-import math
 import asyncio
+import json
 import logging
+import math
+import tempfile
 from pathlib import Path
 
 import pandas as pd
 from tqdm import tqdm
 
+from phantom_wiki.facts.database import Database
+
+from . import constants, get_parser
+from ._types import Conversation, LLMChatResponse
+from .agent import Agent, get_agent
+from .llm import get_llm
+from .llm.common import InferenceGenerationConfig, LLMChat
+from .llm.vllm import VLLMChat
+from .prolog_utils import get_prolog_results
+from .prompts import (
+    ACT_EXAMPLES,
+    COT_EXAMPLES,
+    FEWSHOT_EXAMPLES,
+    FEWSHOT_EXAMPLES_PROLOG,
+    REACT_EXAMPLES,
+    LLMPrompt,
+    get_llm_prompt,
+)
 from .utils import load_data, setup_logging
-from .data import Conversation
-from .llm import get_llm, VLLMChat, LLMChatResponse, LLMChat, InferenceGenerationConfig
-from .agent import get_agent, Agent
-from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, COT_EXAMPLES, ACT_EXAMPLES, FEWSHOT_EXAMPLES
-from . import constants
-from . import get_parser
 
 logger = logging.getLogger(__name__)
 
@@ -29,10 +42,16 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
                 # If the method is zeroshot or fewshot, we do not need to use the API (for vLLM)
                 # This can be overridden by setting `use_api=True` in the model_kwargs.
                 # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
-                use_api=(args.method in [
-                    "zeroshot-rag", "fewshot-rag", "cot-rag",
-                    "react", "act", "react->cot-sc", "cot-sc->react"
-                    ]),
+                use_api=(
+                    args.method
+                    in [
+                        # "zeroshot-rag", "fewshot-rag", "cot-rag",
+                        "react",
+                        "act",
+                        "react->cot-sc",
+                        "cot-sc->react",
+                    ]
+                ),
                 port=args.inf_vllm_port,
             )
         case _:
@@ -45,38 +64,34 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
 
 def get_agent_kwargs(args: argparse.Namespace) -> dict:
     match args.method:
-        case "zeroshot" | "reasoning":
-            agent_kwargs = dict()
+        case "zeroshot":
+            agent_kwargs = dict(prolog_query=args.prolog_query)
         case "fewshot":
             agent_kwargs = dict(
-                fewshot_examples=FEWSHOT_EXAMPLES,
+                fewshot_examples=FEWSHOT_EXAMPLES if not args.prolog_query else FEWSHOT_EXAMPLES_PROLOG,
+                prolog_query=args.prolog_query,
             )
         case "zeroshot-sc":
             agent_kwargs = dict(
-                num_votes=args.sc_num_votes,
-                sep=constants.answer_sep,
+                num_votes=args.sc_num_votes, sep=constants.answer_sep, prolog_query=args.prolog_query
             )
         case "fewshot-sc":
             agent_kwargs = dict(
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
                 fewshot_examples=FEWSHOT_EXAMPLES,
+                prolog_query=args.prolog_query,
             )
-        case "cot" | "cot-reasoning":
-            agent_kwargs = dict(
-                cot_examples=COT_EXAMPLES
-            )
+        case "cot":
+            agent_kwargs = dict(cot_examples=COT_EXAMPLES)
         case "cot-sc":
             agent_kwargs = dict(
                 cot_examples=COT_EXAMPLES,
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
             )
-        case "zeroshot-rag" | "reasoning-rag":
+        case "zeroshot-rag":
             agent_kwargs = dict(
-                # embedding="together", #args.embedding
-                # vector_store="faiss", #args.vector_store
-                # embedding_port=args.inf_embedding_port,
                 embedding_model_name=args.retriever_method,
                 retriever_num_documents=args.retriever_num_documents,
             )
@@ -111,7 +126,8 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 cot_examples=COT_EXAMPLES,
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
-                cotsc_inf_temperature=constants.inf_temperature_hi, # react uses args.inf_temperature, cot-sc uses this hardcoded value
+                # react uses args.inf_temperature, cot-sc uses this hardcoded value
+                cotsc_inf_temperature=constants.inf_temperature_hi,
             )
         case "cot-sc->react":
             # Provide the second llm prompt (React) as an agent kwarg
@@ -119,7 +135,8 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 cot_examples=COT_EXAMPLES,
                 num_votes=args.sc_num_votes,
                 sep=constants.answer_sep,
-                cotsc_inf_temperature=constants.inf_temperature_hi, # react uses args.inf_temperature, cot-sc uses this hardcoded value
+                # react uses args.inf_temperature, cot-sc uses this hardcoded value
+                cotsc_inf_temperature=constants.inf_temperature_hi,
                 react_llm_prompt=get_llm_prompt("react", args.model_name),
                 max_steps=args.react_max_steps,
                 react_examples=REACT_EXAMPLES,
@@ -163,16 +180,16 @@ async def main(args: argparse.Namespace) -> None:
 
             # If the model is a local LLM, we can run on all QA examples
             num_df_qa_pairs = len(df_qa_pairs)
-            can_process_full_batch = (args.model_name in VLLMChat.SUPPORTED_LLM_NAMES) \
-                and (args.method not in ["react", "act", "react->cot-sc", "cot-sc->react"])
+            can_process_full_batch = (args.model_name in VLLMChat.SUPPORTED_LLM_NAMES) and (
+                args.method not in ["react", "act", "react->cot-sc", "cot-sc->react"]
+            )
             batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
-            # batch_size = args.batch_size
-            for batch_number in range(1, math.ceil(num_df_qa_pairs/batch_size) + 1): #range(1, 2):
+            for batch_number in range(1, math.ceil(num_df_qa_pairs / batch_size) + 1):  # range(1, 2):
                 run_name = (
-                    f"split={split}" \
-                    + f"__model_name={args.model_name.replace('/', '--')}" \
-                    + f"__bs={batch_size}" \
-                    + f"__bn={batch_number}" \
+                    f"split={split}"
+                    + f"__model_name={args.model_name.replace('/', '--')}"
+                    + f"__bs={batch_size}"
+                    + f"__bn={batch_number}"
                     + f"__seed={seed}"
                 )
                 pred_path = Path(args.output_dir) / "preds" / args.method / f"{run_name}.json"
@@ -188,7 +205,10 @@ async def main(args: argparse.Namespace) -> None:
                 # Get batch
                 batch_start_idx = (batch_number - 1) * batch_size
                 batch_end_idx = batch_start_idx + batch_size
-                logger.info(f"Getting predictions for questions [{batch_start_idx}, {batch_end_idx}) out of {num_df_qa_pairs}")
+                logger.info(
+                    f"Getting predictions for questions [{batch_start_idx}, {batch_end_idx})"
+                    f"out of {num_df_qa_pairs}"
+                )
                 batch_df_qa_pairs = df_qa_pairs.iloc[batch_start_idx:batch_end_idx]
 
                 # Run the method and get final responses for the batch
@@ -196,17 +216,24 @@ async def main(args: argparse.Namespace) -> None:
                 # so they support batch async inference
                 agent_interactions = None
                 match args.method:
-                    case "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc" | "zeroshot-rag" | "fewshot-rag" | "reasoning" | "reasoning-rag":
+                    case (
+                        "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc" | "zeroshot-rag" | "fewshot-rag"
+                    ):
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
-                        responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
-                        # NOTE: the agent interactions are just single Conversation objects containing the prompt
-                        # for the self-consistency methods, we save the Conversation object from the last iteration
+                        responses: list[LLMChatResponse] = await agent.batch_run(
+                            llm_chat, questions, inf_gen_config
+                        )
+                        # NOTE: the agent interactions are just single Conversation objects containing the
+                        # prompt for the self-consistency methods, we save the Conversation object from the
+                        # last iteration
                         agent_interactions: list[Conversation] = agent.agent_interactions
                     case "cot" | "cot-sc" | "cot-rag" | "cot-reasoning" | "cot-rag-reasoning":
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
-                        responses: list[LLMChatResponse] = await agent.batch_run(llm_chat, questions, inf_gen_config)
+                        responses: list[LLMChatResponse] = await agent.batch_run(
+                            llm_chat, questions, inf_gen_config
+                        )
                         agent_interactions: list[Conversation] = agent.agent_interactions
                     # case "zeroshot-rag":
                     #     raise NotImplementedError("RAG evaluation is not supported yet.")
@@ -216,10 +243,26 @@ async def main(args: argparse.Namespace) -> None:
                         agent_interactions: list[Conversation] = []
                         for qa_sample in tqdm(batch_df_qa_pairs.itertuples(), total=batch_size):
                             agent.reset()  # Must reset the agent for each question
-                            inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
+                            inf_gen_config = default_inf_gen_config.model_copy(
+                                update=dict(seed=seed), deep=True
+                            )
                             response = agent.run(llm_chat, qa_sample.question, inf_gen_config)
                             responses.append(response)
                             agent_interactions.append(agent.agent_interactions)
+
+                # Process Prolog queries if needed
+                prolog_results = []
+                if args.prolog_query:
+                    # Create temporary file and load database from disk
+                    with tempfile.NamedTemporaryFile(mode="w", suffix=".pl") as tmp:
+                        content = dataset["database"]["content"]
+                        tmp.write("\n".join(content))
+                        tmp.flush()
+                        db = Database.from_disk(tmp.name)
+
+                    prolog_results = get_prolog_results(
+                        responses, db, logger, args.log_level.upper() == "DEBUG"
+                    )
 
                 # Log the final answers for the batch
                 pred_path.parent.mkdir(parents=True, exist_ok=True)
@@ -241,6 +284,7 @@ async def main(args: argparse.Namespace) -> None:
                     batch_number,
                     batch_df_qa_pairs,
                     responses,
+                    prolog_results=prolog_results if args.prolog_query else None,
                     interactions=agent_interactions if not args.ignore_agent_interactions else [],
                 )
 
@@ -255,15 +299,30 @@ def save_preds(
     batch_number: int,
     batch_df_qa_pairs: pd.DataFrame,
     responses: list[LLMChatResponse],
+    prolog_results: list[dict] | None = None,
     interactions: list[Conversation] | None = None,
 ) -> None:
     preds = {}
     batch_size = len(batch_df_qa_pairs)
+
     for i, qa_sample in enumerate(batch_df_qa_pairs.itertuples()):
         uid = qa_sample.id
+
+        # Get the appropriate prediction value and query info
+        if prolog_results:
+            pred_value = prolog_results[i]["final_value"]
+            pred_query = prolog_results[i]["query"]
+            query_results = prolog_results[i]["query_results"]
+        else:
+            pred_value = responses[i].pred
+            pred_query = None
+            query_results = None
+
         preds[uid] = {
-            "true" : qa_sample.answer,
-            "pred" : responses[i].pred,
+            "true": qa_sample.answer,
+            "pred": pred_value,
+            "prolog_query": pred_query,
+            "prolog_query_results": query_results if args.log_level.upper() == "DEBUG" else None,
             "error": responses[i].error,
             "interaction": interactions[i].model_dump() if interactions else [],
             "metadata": {
@@ -288,9 +347,14 @@ if __name__ == "__main__":
     parser = get_parser()
     args = parser.parse_args()
     setup_logging(args.log_level)
+    if args.prolog_query:
+        assert len(args.split_list) == 1, (
+            "When prolog_query is true, we can only evaluate one split at a time since only one Prolog "
+            "database can be in memory at any given time due to limitations with pyswip"
+        )
 
     # NOTE: asyncio.run should only be called once in a single Python instance.
-    # Thus, any high-level function containing awaits in its implementation 
+    # Thus, any high-level function containing awaits in its implementation
     # must be marked with the `async` keyword in the function definition.
     # See also: https://proxiesapi.com/articles/how-many-times-should-asyncio-run-be-called-python
     asyncio.run(main(args))
