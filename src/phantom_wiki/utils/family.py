@@ -38,10 +38,10 @@
 #     lines = cfg.strip().split("\n")
 #     current_rule = None
 #     one_line_cfg = []
-    
+
 #     for line in lines:
 #         line = line.strip()
-        
+
 #         # If the line starts with a non-terminal followed by '->', it's a new rule
 #         if "->" in line:
 #             if current_rule:
@@ -51,11 +51,11 @@
 #         else:
 #             # If it's a continuation of the previous rule, append it to the same line
 #             current_rule += " " + line
-    
+
 #     # Append the last rule
 #     if current_rule:
 #         one_line_cfg.append(current_rule)
-    
+
 #     return "\n".join(one_line_cfg)
 
 # def write_bio(bio, file_path):
@@ -73,12 +73,12 @@
 # def extract_content_between_triple_quotes(paragraph):
 #     # Regex pattern to capture content between the first pair of triple quotes
 #     match = re.search(r"'''(.*?)'''", paragraph, flags=re.DOTALL)
-    
+
 #     if match:
 #         return match.group(1).strip()
 #     else:
 #         return paragraph  # Return an empty string if no triple quotes are found
-    
+
 
 # # Function to generate a random sentence from the CFG
 # def generate_sentence(grammar, production=None):
@@ -90,8 +90,8 @@
 #     else:
 #         chosen_prod = random.choice(grammar.productions(lhs=production))
 #         return ' '.join(generate_sentence(grammar, prod) for prod in chosen_prod.rhs())
-    
-# def generate_article_with_retries(person, job, 
+
+# def generate_article_with_retries(person, job,
 #                                   # if using existing CFG, pass the path to
 #                                   CFG_file: str=None,
 #                                   max_attempts=100):
@@ -106,7 +106,7 @@
 #             if article:
 #                 print(f"Successfully generated article for {person}")
 #                 return article, processed_text
-            
+
 #         except Exception as e:
 #             print(f"Error generating article - {e}")
 #             # regenerate the CFG with retries

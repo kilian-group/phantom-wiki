@@ -2,8 +2,9 @@ from ..facts import Database
 from ..facts.attributes import get_attribute_facts
 from ..facts.family import FAMILY_FACT_TEMPLATES, FAMILY_FACT_TEMPLATES_PL, FAMILY_RELATION_EASY
 from ..facts.friends import FRIENDSHIP_FACT_TEMPLATES, FRIENDSHIP_FACT_TEMPLATES_PL, FRIENDSHIP_RELATION
-from .constants.article_templates import BASIC_ARTICLE_TEMPLATE
 from ..utils import decode
+from .constants.article_templates import BASIC_ARTICLE_TEMPLATE
+
 
 def get_articles(db: Database, names: list[str]) -> dict:
     # get family article
@@ -81,7 +82,7 @@ def get_relations(db: Database, name: str, relation_list: list[str]) -> dict:
     """
     relations = {}
     for relation in relation_list:
-        query = f"distinct({relation}(\"{name}\", X))"
+        query = f'distinct({relation}("{name}", X))'
         results = [decode(result["X"]) for result in db.query(query)]
         relations[relation] = results
 

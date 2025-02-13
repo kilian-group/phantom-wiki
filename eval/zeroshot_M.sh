@@ -2,7 +2,7 @@
 #SBATCH -J zeroshot-medium                              # Job name
 #SBATCH -o slurm/zeroshot-medium_%j.out                 # output file (%j expands to jobID)
 #SBATCH -e slurm/zeroshot-medium_%j.err                 # error log file (%j expands to jobID)
-#SBATCH --mail-type=ALL                      # Request status by email 
+#SBATCH --mail-type=ALL                      # Request status by email
 #SBATCH --mail-user=ag2435@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
 #SBATCH -n 4                                 # Total number of cores requested

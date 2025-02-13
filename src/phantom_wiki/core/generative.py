@@ -1,9 +1,7 @@
 import openai
 from together import Together
 
-from .constants.llm_templates import (CFG_PROMPT_TEMPLATE_OPENAI,
-                                      CFG_PROMPT_TEMPLATE_LLAMA,
-                                      CFG2QAs_TEMPLATE)
+from .constants.llm_templates import CFG_PROMPT_TEMPLATE_LLAMA, CFG_PROMPT_TEMPLATE_OPENAI, CFG2QAs_TEMPLATE
 
 
 # TODO: add more types of information/make this more flexible?
@@ -32,11 +30,8 @@ def generate_llama(person, job, cfg_str):
         prompt = CFG_PROMPT_TEMPLATE_LLAMA.format(person, job)
     else:
         prompt = CFG2QAs_TEMPLATE.format(cfg_str)
-    response =client.chat.completions.create(
-        model="meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
-        messages=[
-            {"role": "user", "content": prompt}
-        ]
+    response = client.chat.completions.create(
+        model="meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo", messages=[{"role": "user", "content": prompt}]
     )
     raw_text = response.choices[0].message.content
     return raw_text
