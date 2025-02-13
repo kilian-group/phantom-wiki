@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH -J reasoning-large                              # Job name
-#SBATCH -o slurm/reasoning-large_%j.out                 # output file (%j expands to jobID)
-#SBATCH -e slurm/reasoning-large_%j.err                 # error log file (%j expands to jobID)
+#SBATCH -J reasoning                              # Job name
+#SBATCH -o slurm/reasoning_%j.out                 # output file (%j expands to jobID)
+#SBATCH -e slurm/reasoning_%j.err                 # error log file (%j expands to jobID)
 #SBATCH --mail-type=ALL                      # Request status by email
 #SBATCH --mail-user=ag2435@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
@@ -31,14 +31,13 @@ fi
 
 TEMPERATURE=0.6
 TOP_P=0.95
-REASONING_MODELS=('deepseek-ai/deepseek-r1-distill-qwen-32b')
 
 source eval/constants.sh
 
 for model_name in "${REASONING_MODELS[@]}"
 do
     cmd="python -m phantom_eval \
-        --method reasoning \
+        --method zeroshot \
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \
