@@ -36,4 +36,3 @@ while ! check_server $model_name $port; do
     sleep $SLEEP
 done
 # echo "Embedding server is up and running."
-
