@@ -79,11 +79,11 @@ def save_command_and_git_info(output_dir):
 
 def main(args):
     # Check Git status before running the main logic
-    # if not args.debug:
-    #     check_git_status()
-    #     print("Git status is clean. Running the script...")
-    # else:
-    #     print("Debug mode enabled. Skipping Git status check.")
+    if not args.debug:
+        check_git_status()
+        print("Git status is clean. Running the script...")
+    else:
+        print("Debug mode enabled. Skipping Git status check.")
 
     if args.quiet:
         log_level = logging.WARNING
