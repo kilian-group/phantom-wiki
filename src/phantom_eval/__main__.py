@@ -16,7 +16,7 @@ from .llm.common import InferenceGenerationConfig, LLMChat
 from .llm.vllm import VLLMChat
 from .utils import load_data, setup_logging
 from .agent import get_agent, Agent
-from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, COT_EXAMPLES, ACT_EXAMPLES, FEWSHOT_EXAMPLES, FEWSHOT_EXAMPLES_PROLOG
+from .prompts import get_llm_prompt, LLMPrompt, REACT_EXAMPLES, COT_EXAMPLES, ACT_EXAMPLES, FEWSHOT_EXAMPLES, FEWSHOT_EXAMPLES_PROLOG, COT_EXAMPLES_PROLOG
 from . import constants
 from . import get_parser
 from .prolog_utils import get_prolog_results
@@ -76,7 +76,8 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
             )
         case "cot":
             agent_kwargs = dict(
-                cot_examples=COT_EXAMPLES
+                cot_examples=COT_EXAMPLES if not args.prolog_query else COT_EXAMPLES_PROLOG,
+                prolog_query=args.prolog_query
             )
         case "cot-sc":
             agent_kwargs = dict(
