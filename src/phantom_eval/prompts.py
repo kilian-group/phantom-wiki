@@ -217,6 +217,44 @@ class FewshotLLMPrompt(LLMPrompt):
             )
 
 ##### CoT method
+COT_EXAMPLES_PROLOG = f"""
+Example 1:
+Question: Who is the brother of Dino Beltran?
+Answer: I can get the brother of Dino Beltran with the query brother(X, "Dino Beltran"). Therefore, the answer is brother(X, "Dino Beltran").
+
+Example 2:
+Question: Who is the sibling of Barabara Beltran?
+Answer: I can get the sibling of Barbara Beltran with the query sibling(X, "Barabara Beltran"). Therefore, the answer is sibling(X, "Barabara Beltran").
+
+Example 3:
+Question: Who is the mother of the sister of Stacia Toombs?
+Answer: I can get the sister of Stacia Toombs with the query sister("Stacia Toombs", Y). Since Y is the sister of Stacia Toombs, I can get the mother of Y with the query mother(Y, X). Therefore, the answer is sister("Stacia Toombs", Y), mother(Y, X).
+
+Example 4:
+Question: Who is the male second cousin of the uncle of William Smock?
+Answer: I can get the uncle of William Smock with the query uncle("William Smock", X). Since X is the uncle of William Smock, I can get the male second cousin of X with the query male_second_cousin(X, Y). Therefore, the answer is uncle("William Smock", X), male_second_cousin(X, Y).
+
+Example 5:
+Question: What is the occupation of the sister of the grandmother of Virgil Hackworth?
+Answer: I can get the grandmother of Virgil Hackworth with the query grandmother("Virgil Hackworth", Z). Since Z is the grandmother of Virgil Hackworth, I can get the sister of Z with the query sister(Z, Y). Since Y is the sister of the grandmother of Virgil Hackworth, I can get the occupation of Y with the query job(Y, X). Therefore, the answer is grandmother("Virgil Hackworth", Z), sister(Z, Y), job(Y, X).
+
+Example 6:
+Question: Who is the wife of the person whose occupation is associate professor?
+Answer: I can get the person whose occupation is associate professor with the query job(X, "associate professor"). Since X is the person whose occupation is associate professor, I can get the wife of X with the query wife(X, Y). Therefore, the answer is job(X, "associate professor"), wife(X, Y).
+
+Example 7:
+Question: What is the date of birth of the person whose hobby is meteorology?
+Answer: I can get the person whose hobby is meteorology with the query hobby(X, "meteorology"). Since X is the person whose hobby is meteorology, I can get the date of birth of X with the query dob(X, Y). Therefore, the answer is hobby(X, "meteorology"), dob(X, Y).
+
+Example 8:
+Question: Who is the cousin of the person whose hobby is broadcast engineer?
+Answer: I can get the person whose hobby is broadcast engineer with the query hobby(Y, "broadcast engineer"). Since Y is the person whose hobby is broadcast engineer, I can get the cousin of Y with the query cousin(Y, X). Therefore, the answer is hobby(Y, "broadcast engineer"), cousin(Y, X).
+
+Example 9:
+Question: Who is the granddaughter of the mother of the friend of the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager?
+Answer: I can get the person whose occupation is theatre manager with the query job(A, "theatre manager"). Since A is the person whose occupation is theatre manager, I can get the great-granddaughter of A with the query great_granddaughter(A, B). Since B is the great-granddaughter of the person whose occupation is theatre manager, I can get the friend of B with the query friend(B, C). Since C is the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the parent of C with the query parent(C, D). Since D is the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the mother of D with the query mother(D, E). Since E is the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the friend of E with the query friend(E, F). Since F is the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the friend of F with the query friend(F, G). Since G is the friend of the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the mother of G with the query mother(G, H). Since H is the mother of the friend of the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the granddaughter of H with the query granddaughter(H, I). Therefore, the answer is job(A, "theatre manager"), great_granddaughter(A, B), friend(B, C), parent(C, D), mother(D, E), friend(E, F), friend(F, G), mother(G, H), granddaughter(H, I).
+"""
+
 COT_EXAMPLES = f"""
 Example 1:
 Question: Who is the sister of Aida Wang?
@@ -284,19 +322,47 @@ class CoTLLMPrompt(LLMPrompt):
     Question: {{question}}
     Answer: """
 
+    COT_INSTRUCTION_PROLOG = f"""
+    You are given the following evidence:
+    (BEGIN EVIDENCE)
+    {{evidence}}
+    (END EVIDENCE)
+    
+    You will be provided a question. Your response must end in the following sentence: The answer is <answer>.
+    Here, <answer> must be the prolog query that will retrieve the answer to the question.
+    Make sure to double check the query to make sure it is syntactically correct using the following checks:
+    - The query is a valid prolog query.
+    - Fields that aren't variables should be enclosed in double quotes.
+    - The variables in the query are capital letters.
+    
+    Here are some examples:
+    (START OF EXAMPLES)
+    {{examples}}
+    (END OF EXAMPLES)
+
+    Question: {{question}}
+    Answer: """
+
     def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
         """Get the Chain-of-Thought prompt template.
         
         Args:
-            prolog_query: This parameter is not used for CoT prompts, as they do not support Prolog query generation.
+            prolog_query: If True, returns a prompt template that instructs the LLM to generate a Prolog query.
+                         If False, returns a prompt template that instructs the LLM to generate a direct answer.
         
         Returns:
             A PromptTemplate object containing the Chain-of-Thought prompt template.
         """
-        return PromptTemplate(
-            input_variables=["evidence", "examples", "question"],
-            template=self.COT_INSTRUCTION,
-        )
+        if prolog_query:
+            return PromptTemplate(
+                input_variables=["evidence", "examples", "question"],
+                template=self.COT_INSTRUCTION_PROLOG,
+            )
+        else:
+            return PromptTemplate(
+                input_variables=["evidence", "examples", "question"],
+                template=self.COT_INSTRUCTION,
+            )
 
 
 ##### RAG method
