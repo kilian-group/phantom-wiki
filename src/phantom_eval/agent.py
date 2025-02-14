@@ -269,15 +269,16 @@ class CoTAgent(Agent):
             self, 
             text_corpus: pd.DataFrame, 
             llm_prompt: LLMPrompt,
-            cot_examples: str = ""
-    ):
+            cot_examples: str = "",
+            prolog_query: bool = False
+        ):
         """
         Args:
             cot_examples (str): Prompt examples to include in agent prompt.
         """
         super().__init__(text_corpus, llm_prompt)
         self.cot_examples = cot_examples
-
+        self.prolog_query = prolog_query
     def run(self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
         
@@ -344,19 +345,20 @@ class CoTAgent(Agent):
             evidence = self.get_RAG_evidence(question)
         else:
             evidence = _get_evidence(self.text_corpus)
-        return self.llm_prompt.get_prompt().format(
+        return self.llm_prompt.get_prompt(prolog_query=self.prolog_query).format(
             evidence=evidence,
             examples=self.cot_examples,
             question=question
         )
     
     @classmethod
-    def parse_answer(cls, pred: str) -> tuple[str, str]:
+    def parse_answer(cls, pred: str) -> str:
         """
         Parse the response to extract the answer using regex.
         The prediction is of the form: "... The answer is <answer>."
         """
-        pattern = r"[t|T]he answer is (.+)\.\s*$"
+        # Try to match "the answer is <answer>." pattern first
+        pattern = r"[T|t]he answer is:?\s*(.*?)\."
         m = re.search(pattern, pred)
         if m:
             return m.group(1)
