@@ -10,31 +10,47 @@ from . import decode
 def get_answer(
     all_queries: list[list[list[str]]],
     db: Database,
-    answers: str,
+    answers: list[str],
     skip_solution_traces: bool = False,
     multi_threading: bool = False,
-) -> tuple[list[dict[str, str]], list[str]]:
+) -> tuple[list[list[list[dict[str, str]]]], list[list[list[str]]]]:
     """Retrieves answers for a given set of logical queries from the database.
 
     Args:
-        all_queries (list[list[list[str]]]): A list of list of list of queries to be evaluated against the database.
-            Each query is a list of logical predicates. Each list of list of queries follows a single template.
-            Example: [["child(Y_2, Y_3)", "sister(Elisa, Y_2)"]]
+        all_queries (list[list[list[str]]]): A structured collection of logical queries to be evaluated against the database.
+            - Organized as [number of template types] x [number of questions per template] x [subqueries per query].
+            - Each query consists of a list of logical predicates expressed as strings.
+            - Example:
+                ```
+                [
+                    [   # Template 1
+                        ["child(Y_2, Y_3)", "sister(Elisa, Y_2)"],  # Query 1
+                        ["parent(Y_4, Y_5)", "brother(John, Y_4)"]  # Query 2
+                    ],
+                    [   # Template 2
+                        ["ancestor(Y_6, Y_7)", "cousin(Mike, Y_6)"]  # Query 1
+                    ]
+                ]
+                ```
         db (Database): The database instance used to resolve the queries.
-        answers (str): A placeholder variable representing the expected answer.
-            Example: "Y_3"
+        answers (list[str]): A list of placeholder variables representing the expected answer(s) for each template type.
+            - The length of `answers` must match the number of template types.
+            - Example: `["Y_3", "Y_5"]` means extracting `Y_3` for the first template type and `Y_5` for the second.
         skip_solution_traces (bool, optional): Flag to skip solution traces, which describe the intermediate steps towards final answer.
             Defaults to False, in which case the returned list is non-empty.
-        multi_threading (bool, optional): Whether to enable concurrent query execution. Defaults to False.
+        multi_threading (bool, optional): If `True`, enables parallel query execution for performance improvements. Defaults to `False`.
 
 
     Returns:
-            - `final_results`: A list of strings representing the final answer(s) derived from the query.
-
-        `solution_traces`: list(list(list[dict[str, str]]))
-            A list of list of list dictionaries with the results along the "path trace" to the final answer
-        `final_results`: list(list(list[str]))
-            The final results of the list of list of queries
+        tuple:
+            - `all_solution_traces` (list[list[list[dict[str, str]]]]): 
+                A structured list containing intermediate solution traces for each query.
+                - Matches the structure of `all_queries`.
+                - Each trace contains a list of dictionaries mapping query variables to their resolved values.
+            - `all_final_results` (list[list[list[str]]]): 
+                The final resolved answers extracted for each query.
+                - Matches the structure of `all_queries`.
+                - Each sublist contains a list of string results.
 
     Example:
     ```python
@@ -48,7 +64,7 @@ def get_answer(
         ]
     ]
 
-    solution_traces, final_results = get_answer(queries, db, "Y_3", return_solution_traces=True)
+    solution_traces, final_results = get_answer(queries, db, ["Y_3", "Y_5"])
     ```
 
     **Expected Output:**
