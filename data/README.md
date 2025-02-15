@@ -51,7 +51,6 @@ PhantomWiki should be used to quantify the reasoning and retrieval capabilities 
 
 <!-- This section addresses misuse, malicious use, and uses that the dataset will not work well for. -->
 
-PhantomWiki is not suitable for training LLMs.
 
 ## Dataset Structure
 
