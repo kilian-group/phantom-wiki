@@ -12,9 +12,9 @@ size_categories:
 
 **This repository is a collection of PhantomWiki instances generated using the `phantom-wiki` Python package.**
 
-PhantomWiki is a framework for generating unique, factually consistent document corpora with diverse question-answer pairs.
-Unlike prior work, PhantomWiki is neither a fixed dataset, nor is it based on any existing data.
-Instead, a new PhantomWiki instance is generated on demand for each evaluation.
+PhantomWiki is framework for evaluating LLMs, specifically RAG and agentic workflows, that is resistant to memorization.
+Unlike prior work, it is neither a fixed dataset, nor is it based on any existing data.
+Instead, PhantomWiki generates unique dataset instances, comprised of factually consistent document corpora with diverse question-answer pairs, on demand.
 
 ## Dataset Details
 
@@ -40,11 +40,12 @@ Then we generate question-answer pairs with tunable difficulties, encapsulating 
 
 ## Uses
 
-PhantomWiki is intended to evaluate retrieval augmented generation (RAG) systems and agentic workflows. In particular, it is particularly useful for disentangling the reasoning and retrieval capabilities of large language models, as demonstrated in our paper.
+**We encourage users to generate a new (unique) PhantomWiki instance to combat data leakage and overfitting.**
+PhantomWiki enables quantitative evaluation of the reasoning and retrieval capabilities of LLMs. See our full paper for analysis of frontier LLMs, including GPT-4o, Gemini-1.5-Flash, [Llama-3.3-70B-Instruct](https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct) and [DeepSeek-R1-Distill-Qwen-32B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B).
 
 ### Direct Use
 
-PhantomWiki should be used to quantify the reasoning and retrieval capabilities of LLMs.
+PhantomWiki is intended to evaluate retrieval augmented generation (RAG) systems and agentic workflows.
 
 ### Out-of-Scope Use
 
