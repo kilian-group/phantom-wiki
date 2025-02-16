@@ -34,7 +34,7 @@ check_server() {
     fi
 }
 
-$model_name = $2
+model_name = $2
  # Start the vLLM server in the background
 echo "Starting vLLM server..."
 vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --port $PORT"
