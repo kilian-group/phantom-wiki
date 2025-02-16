@@ -69,8 +69,8 @@ MEMORY=${MEMORY:-100}
 #
 echo "Generating slurm script..."
 mkdir -p eval/slurm_scripts
-echo "Creating directory to save slurm outputs..."
-SLURM_OUTPUT_DIR=slurm_outputs
+SLURM_OUTPUT_DIR=logs
+echo "Creating directory ${SLURM_OUTPUT_DIR}/ to save slurm outputs..."
 mkdir -p $SLURM_OUTPUT_DIR
 
 cat << EOT > eval/slurm_scripts/${JOB_NAME}.slurm

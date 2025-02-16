@@ -571,3 +571,4 @@ cachedir/
 .idea/webResources.xml
 
 debug/*
+logs*/
