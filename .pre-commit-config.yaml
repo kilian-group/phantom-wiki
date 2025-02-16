@@ -3,7 +3,6 @@ default_language_version:
 
 exclude: |
   (?x)^(
-        data/.*|
         docs/.*|
         examples/.*|
         out/.*|
