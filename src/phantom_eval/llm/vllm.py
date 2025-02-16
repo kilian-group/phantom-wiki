@@ -55,7 +55,8 @@ class VLLMChat(CommonLLMChat):
 
         # additional stop token for llama models
         # NOTE: eot = end-of-turn
-        if model_name == "deepseek-ai/deepseek-r1-distill-qwen-32b":
+        # Handle additional stop token for all distilled deepseek r1 models
+        if model_name.startswith("deepseek-ai/deepseek-r1-distill-qwen"):
             self.ADDITIONAL_STOP = [
                 "<｜end▁of▁sentence｜>",
             ]
