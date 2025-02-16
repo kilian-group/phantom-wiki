@@ -43,6 +43,8 @@ COLORS = {
     "gpt-4o-mini-2024-07-18": "tab:brown",
     "gpt-4o-2024-11-20": "tab:brown",
     "deepseek-ai/deepseek-r1-distill-qwen-32b": "tab:green",
+    "deepseek-ai/deepseek-r1-distill-qwen-7b": "tab:green",
+    "deepseek-ai/deepseek-r1-distill-qwen-1.5b": "tab:green"
 }
 LINESTYLES = {
     "google/gemma-2-27b-it": "-",
@@ -62,6 +64,8 @@ LINESTYLES = {
     "gpt-4o-mini-2024-07-18": "-",
     "gpt-4o-2024-11-20": "--",
     "deepseek-ai/deepseek-r1-distill-qwen-32b": "-",
+    "deepseek-ai/deepseek-r1-distill-qwen-7b": "-",
+    "deepseek-ai/deepseek-r1-distill-qwen-1.5b": "-"
 }
 METHOD_LINESTYLES = {
     "zeroshot": "--",
@@ -92,6 +96,8 @@ HATCHSTYLES = {
     "gpt-4o-mini-2024-07-18": "++",
     "gpt-4o-2024-11-20": "xx",
     "deepseek-ai/deepseek-r1-distill-qwen-32b": "++",
+    "deepseek-ai/deepseek-r1-distill-qwen-7b": "++",
+    "deepseek-ai/deepseek-r1-distill-qwen-1.5b": "++"
 }
 # https://matplotlib.org/stable/gallery/lines_bars_and_markers/marker_reference.html#filled-markers
 MARKERS = {
@@ -133,6 +139,8 @@ MODEL_ALIASES = {
     "gpt-4o-mini-2024-07-18": "GPT-4o-Mini",
     "gpt-4o-2024-11-20": "GPT-4o",
     "deepseek-ai/deepseek-r1-distill-qwen-32b": "DeepSeek-R1-32B",
+    "deepseek-ai/deepseek-r1-distill-qwen-7b": "DeepSeek-R1-7B",
+    "deepseek-ai/deepseek-r1-distill-qwen-1.5b": "DeepSeek-R1-1.5B"
 }
 METHOD_LATEX_ALIASES = {
     "zeroshot": "\\zeroshot",
