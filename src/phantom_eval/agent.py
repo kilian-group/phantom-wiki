@@ -659,7 +659,7 @@ class ReactAgent(Agent):
                 response = self._step_action(llm_chat, question, inf_gen_config)
                 total_usage = aggregate_usage([total_usage, response.usage])
 
-                response = self._step_observation(response)
+                response = self._step_observation(llm_chat, response)
                 total_usage = aggregate_usage([total_usage, response.usage])
             except Exception:
                 # If an error occurs, return the error message and empty pred
@@ -719,12 +719,17 @@ class ReactAgent(Agent):
         )
         return response
 
-    def _step_observation(self, response_action: LLMChatResponse) -> LLMChatResponse:
+    def _step_observation(self, llm_chat: LLMChat, response_action: LLMChatResponse) -> LLMChatResponse:
         """
         Run the observation step of the agent and increments the step round.
         NOTE: Returned usage is empty since the LLM is not called.
         """
-        action_type, action_arg = ReactAgent.parse_action(response_action.pred)
+        # If we're using a reasoning model, we trigger parse_thinking_action instead of parse_action
+        if llm_chat.model_name in REASONING_MODELS:
+            action_type, action_arg = ReactAgent.parse_thinking_action(response_action.pred)
+        else:
+            action_type, action_arg = ReactAgent.parse_action(response_action.pred)
+
         match action_type:
             case "Finish":
                 self.step_round += 1
@@ -822,6 +827,29 @@ class ReactAgent(Agent):
             return action_type, action_arg
         else:
             raise ValueError(f"Action '{action}' cannot be parsed.")
+
+    @classmethod
+    def parse_thinking_action(cls, action: str) -> tuple[str, str]:
+        """
+        Returns a tuple of the action type and the argument given an output from a reasoning model.
+        Correct format: `action_type[<argument>]`.
+
+        Raises:
+            ValueError: If the action cannot be parsed.
+        """
+        pattern = r"<\/think>\s+(\w+)\[(.*?)\]"
+        m = re.search(pattern, action)
+
+        if m:
+            action_type = m.group(1)
+            action_arg = m.group(2)
+
+            # Normalize the argument
+            action_arg = action_arg.lower()
+            return action_type, action_arg
+        else:
+            raise ValueError(f"Action '{action}' cannot be parsed.")
+
 
 
 class React_CoTSCAgent(Agent):
@@ -1192,6 +1220,8 @@ SUPPORTED_METHOD_NAMES: list[str] = [
 
 REASONING_MODELS: list[str] = [
     "deepseek-ai/deepseek-r1-distill-qwen-32b",
+    "deepseek-ai/deepseek-r1-distill-qwen-7b",
+    "deepseek-ai/deepseek-r1-distill-qwen-1.5b"
 ]
 
 
