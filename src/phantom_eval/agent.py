@@ -725,10 +725,11 @@ class ReactAgent(Agent):
         NOTE: Returned usage is empty since the LLM is not called.
         """
         # If we're using a reasoning model, we trigger parse_thinking_action instead of parse_action
-        if llm_chat.model_name in REASONING_MODELS:
-            action_type, action_arg = ReactAgent.parse_thinking_action(response_action.pred)
-        else:
-            action_type, action_arg = ReactAgent.parse_action(response_action.pred)
+        # if llm_chat.model_name in REASONING_MODELS:
+        #     action_type, action_arg = ReactAgent.parse_thinking_action(response_action.pred)
+        # else:
+        #     action_type, action_arg = ReactAgent.parse_action(response_action.pred)
+        action_type, action_arg = ReactAgent.parse_action(response_action.pred)
 
         match action_type:
             case "Finish":
