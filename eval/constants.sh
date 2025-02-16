@@ -92,3 +92,20 @@ else
     echo "Unknown dataset: $DATASET. Cannot define SPLIT_LIST."
     exit 1
 fi
+
+# get list of support methods by running the following python command
+METHODS=(
+    "zeroshot"
+    "fewshot"
+    "zeroshot-sc"
+    "fewshot-sc"
+    "cot"
+    "cot-sc"
+    "react"
+    "act"
+    "react->cot-sc"
+    "cot-sc->react"
+    "zeroshot-rag"
+    "fewshot-rag"
+    "cot-rag"
+)
