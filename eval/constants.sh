@@ -10,17 +10,19 @@ get_inf_seed_list() {
     fi
 }
 
-# L models (run on 8 A6000 GPUs)
 API_MODELS=(
-    gemini-1.5-flash-002
-    # gpt-4o-2024-11-20
+    'gemini-1.5-flash-002'
+    # 'gpt-4o-2024-11-20'
 )
+# L models (run on 8 A6000 GPUs)
 LARGE_MODELS=(
     'meta-llama/llama-3.3-70b-instruct'
-    # 'deepseek-ai/deepseek-r1-distill-qwen-32b'
     # 'google/gemma-2-27b-it' # OPTIONAL
     # 'microsoft/phi-3.5-mini-instruct' # OPTIONAL
     # 'microsoft/phi-3.5-moe-instruct' # OPTIONAL
+)
+REASONING_MODELS=(
+    'deepseek-ai/deepseek-r1-distill-qwen-32b'
 )
 # M models (run on 4 A6000 GPUs)
 MEDIUM_MODELS=(
@@ -34,11 +36,9 @@ SMALL_MODELS=(
     'meta-llama/llama-3.2-1b-instruct'
     # 'google/gemma-2-2b-it' # OPTIONAL
 )
-# TODO add CPU models
 
 DATASET=mlcore/phantom-wiki-v050
 
-# if dataset is mlcore/phantom-wiki-v0.2, use the following
 if [ "$DATASET" = "mlcore/phantom-wiki-v0.2" ]; then
     # Define SPLIT_LIST for dataset v0.2
     DATA_SEED_LIST="1 2 3 4 5"

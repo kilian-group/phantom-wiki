@@ -306,6 +306,9 @@ class CoTAgent(Agent):
         self.agent_interactions = conv
 
         # Generate response
+        inf_gen_config = inf_gen_config.model_copy(
+            update=dict(stop_sequences=[]), deep=True
+        )  # remove \n from stop sequences
         response = llm_chat.generate_response(conv, inf_gen_config)
 
         # Add the response to the agent's conversation
@@ -315,7 +318,10 @@ class CoTAgent(Agent):
 
         # Parse the response to extract the answer
         try:
-            pred = CoTAgent.parse_answer(response.pred)
+            if llm_chat.model_name in REASONING_MODELS:
+                pred = CoTAgent.parse_thinking_answer(response.pred)
+            else:
+                pred = CoTAgent.parse_answer(response.pred)
             error = None
         except Exception as e:
             pred = ""
@@ -337,6 +343,9 @@ class CoTAgent(Agent):
         self.agent_interactions = convs
 
         # Generate response
+        inf_gen_config = inf_gen_config.model_copy(
+            update=dict(stop_sequences=[]), deep=True
+        )  # remove \n from stop sequences
         responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
 
         # Add the responses to the agent's conversations
@@ -350,7 +359,10 @@ class CoTAgent(Agent):
         for response in responses:
             # Try to parse the response, otherwise return an error
             try:
-                pred = CoTAgent.parse_answer(response.pred)
+                if llm_chat.model_name in REASONING_MODELS:
+                    pred = CoTAgent.parse_thinking_answer(response.pred)
+                else:
+                    pred = CoTAgent.parse_answer(response.pred)
                 error = None
             except Exception:
                 pred = ""
@@ -368,13 +380,26 @@ class CoTAgent(Agent):
         )
 
     @classmethod
-    def parse_answer(cls, pred: str) -> tuple[str, str]:
+    def parse_answer(cls, pred: str) -> str:
         """
         Parse the response to extract the answer using regex.
         The prediction is of the form: "... The answer is <answer>."
         """
         pattern = r"[t|T]he answer is (.+)\.\s*$"
         m = re.search(pattern, pred)
+        if m:
+            return m.group(1)
+        else:
+            raise ValueError(f"Answer '{pred}' cannot be parsed.")
+
+    @classmethod
+    def parse_thinking_answer(cls, pred: str) -> str:
+        """
+        Parse the response to extract the answer using regex.
+        The prediction is of the form: "</think>... The answer is <answer>."
+        """
+        pattern = r"</think>.*[tT]he answer is \s*(.+)\."
+        m = re.search(pattern, pred, re.DOTALL)  # re.DOTALL to match newlines as well
         if m:
             return m.group(1)
         else:
@@ -1143,18 +1168,6 @@ class CoTRAGAgent(CoTAgent, RAGMixin):
         RAGMixin.__init__(
             self, text_corpus, embedding_model_name, retriever_num_documents, tensor_parallel_size, port
         )
-
-    def run(
-        self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
-    ) -> LLMChatResponse:
-        # Relies on the implementation of run in the subclass
-        return super().run(llm_chat, question, inf_gen_config)
-
-    async def batch_run(
-        self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig
-    ) -> list[LLMChatResponse]:
-        # Relies on the implementation of batch_run in the subclass
-        return await super().batch_run(llm_chat, questions, inf_gen_config)
 
 
 #### Utils ####
