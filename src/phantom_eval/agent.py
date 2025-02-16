@@ -838,7 +838,7 @@ class ReactAgent(Agent):
         Raises:
             ValueError: If the action cannot be parsed.
         """
-        pattern = r"<\/think>\s+(\w+)\[(.*?)\]"
+        pattern = r"(?:<\/think>[\s\S]*?)(\w+)\[(.*?)\]"
         m = re.search(pattern, action)
 
         if m:
