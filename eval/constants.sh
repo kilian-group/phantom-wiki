@@ -34,7 +34,9 @@ SMALL_MODELS=(
     'meta-llama/llama-3.2-1b-instruct'
     # 'google/gemma-2-2b-it' # OPTIONAL
 )
-# TODO add CPU models
+REASONING_MODELS=(
+    "deepseek-ai/deepseek-r1-distill-qwen-32b"
+)
 
 DATASET=mlcore/phantom-wiki-v050
 
