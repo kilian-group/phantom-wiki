@@ -251,7 +251,7 @@ def main(args):
                 with open(os.path.join(question_dir, f"type{i}.json"), "w") as file:
                     json.dump(questions, file, indent=4)
 
-        all_full_questions.extend(questions) # TODO: What is this?
+        all_full_questions.extend(questions)
 
         # update progbar
         progbar.set_description(f"Template ({i+1}/{len(templates)})")

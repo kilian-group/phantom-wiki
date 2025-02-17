@@ -42,7 +42,7 @@ SIZE_LIST=(
 )
 max_tree_size=50
 # generate data
-for depth in 10
+for depth in 20
 do
     od="depth_${depth}_size_25_seed_${SEED}"
     cmd="python -m phantom_wiki \

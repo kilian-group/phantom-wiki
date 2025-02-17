@@ -34,37 +34,36 @@ def get_answer(
                 ```
         db (Database): The database instance used to resolve the queries.
         answers (list[str]): A list of placeholder variables representing the expected answer(s) for each template type.
-            - The length of `answers` must match the number of template types.
+            - The length of `answers` must match the number of template types (first dimension of the `all_queries` input).
             - Example: `["Y_3", "Y_5"]` means extracting `Y_3` for the first template type and `Y_5` for the second.
         skip_solution_traces (bool, optional): Flag to skip solution traces, which describe the intermediate steps towards final answer.
             Defaults to False, in which case the returned list is non-empty.
         multi_threading (bool, optional): If `True`, enables parallel query execution for performance improvements. Defaults to `False`.
 
 
-    Returns:
-        tuple:
-            - `all_solution_traces` (list[list[list[dict[str, str]]]]): 
-                A structured list containing intermediate solution traces for each query.
-                - Matches the structure of `all_queries`.
-                - Each trace contains a list of dictionaries mapping query variables to their resolved values.
-            - `all_final_results` (list[list[list[str]]]): 
-                The final resolved answers extracted for each query.
-                - Matches the structure of `all_queries`.
-                - Each sublist contains a list of string results.
+    Returns: (tuple)
+        `all_solution_traces` (list[list[list[dict[str, str]]]]): A structured list containing intermediate solution traces for each query.
+            - Matches the structure of `all_queries`.
+            - Each trace contains a list of dictionaries mapping query variables to their resolved values.
+
+        `all_final_results` (list[list[list[str]]]): The final resolved answers extracted for each query.
+            - Matches the structure of `all_queries`.
+            - Each sublist contains a list of string results.
 
     Example:
     ```python
     queries = [
         [
             ["child(Y_2, Y_3)", "sister(Elisa, Y_2)"],
-            ["parent(Y_4, Y_5)", "brother(John, Y_4)"]
+            ["parent(Y_2, Y_3)", "brother(John, Y_2)"]
         ],
         [
             ["ancestor(Y_6, Y_7)", "cousin(Mike, Y_6)"]
+            ["ancestor(Y_6, Y_7)", "nephew(Mike, Y_6)"]
         ]
     ]
 
-    solution_traces, final_results = get_answer(queries, db, ["Y_3", "Y_5"])
+    solution_traces, final_results = get_answer(queries, db, ["Y_3", "Y_7"])
     ```
 
     **Expected Output:**
@@ -72,23 +71,30 @@ def get_answer(
     solution_traces = [
         [
             [
-                {"Y_2": "Alice", "Y_3": "Bob"},
-                {"Y_4": "David", "Y_5": "Eve"}
+                [{"Y_2": "Alice", "Y_3": "Bob"}, {"Y_2": "Alice", "Y_3": "Rupert"}],
+                [{"Y_4": "David", "Y_5": "Eve"}]
             ]
         ],
         [
             [
-                {"Y_6": "Sarah", "Y_7": "Tom"}
+                [{"Y_6": "Sarah", "Y_7": "Tom"}]
+                [{"Y_6": "George", "Y_7": "Jack"}]
             ]
         ]
     ]
 
     final_results = [
         [
-            ["Bob", "Eve"]
+            [
+                ["Bob", "Rupert"], 
+                ["Eve"]
+            ]
         ],
         [
-            ["Tom"]
+            [
+                ["Tom"], 
+                ["Jack"]
+            ]
         ]
     ]
     ```
