@@ -2,7 +2,11 @@ from ..facts import Database
 from ..facts.attributes import get_attribute_facts
 from ..facts.family import FAMILY_RELATION_EASY
 from ..facts.family.constants import FAMILY_FACT_TEMPLATES, FAMILY_FACT_TEMPLATES_PL
-from ..facts.friends.constants import FRIENDSHIP_FACT_TEMPLATES, FRIENDSHIP_FACT_TEMPLATES_PL, FRIENDSHIP_RELATION
+from ..facts.friends.constants import (
+    FRIENDSHIP_FACT_TEMPLATES,
+    FRIENDSHIP_FACT_TEMPLATES_PL,
+    FRIENDSHIP_RELATION,
+)
 from ..utils import decode
 from .constants.article_templates import BASIC_ARTICLE_TEMPLATE
 
