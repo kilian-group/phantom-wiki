@@ -16,17 +16,12 @@ import pandas as pd
 from tqdm import tqdm
 
 from .core.article import get_articles
+from .facts import get_database, question_parser
 
 # phantom wiki functionality
-from .facts import (
-    db_generate_attributes,
-    db_generate_family,
-    db_generate_friendships,
-    get_database,
-    question_parser,
-)
-from .facts.family import fam_gen_parser
-from .facts.friends import friend_gen_parser
+from .facts.attributes import db_generate_attributes
+from .facts.family import db_generate_family, fam_gen_parser
+from .facts.friends import db_generate_friendships, friend_gen_parser
 from .facts.question_difficulty import calculate_query_difficulty
 from .facts.sample import sample_valid_only
 from .facts.templates import generate_templates
