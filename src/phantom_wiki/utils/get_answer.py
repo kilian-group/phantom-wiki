@@ -1,7 +1,6 @@
 import logging
 
 from pyswip import Variable
-import re
 
 from ..facts.database import Database
 from . import decode
@@ -17,8 +16,9 @@ def get_answer(
     """Retrieves answers for a given set of logical queries from the database.
 
     Args:
-        all_queries (list[list[list[str]]]): A structured collection of logical queries to be evaluated against the database.
-            - Organized as [number of template types] x [number of questions per template] x [subqueries per query].
+        all_queries (list[list[list[str]]]): A structured collection of logical
+            queries to be evaluated against the database.
+            - Organized as [# of template types] x [# of questions per template] x [subqueries per query].
             - Each query consists of a list of logical predicates expressed as strings.
             - Example:
                 ```
@@ -32,22 +32,30 @@ def get_answer(
                 ]
                 ```
         db (Database): The database instance used to resolve the queries.
-        answers (list[str]): A list of placeholder variables representing the expected answer(s) for each template type.
-            - The length of `answers` must match the number of template types (first dimension of the `all_queries` input).
-            - Example: `["Y_3", "Y_5"]` means extracting `Y_3` for the first template type and `Y_5` for the second.
-        skip_solution_traces (bool, optional): Flag to skip solution traces, which describe the intermediate steps towards final answer.
-            Defaults to False, in which case the returned list is non-empty.
-        multi_threading (bool, optional): If `True`, enables parallel query execution for performance improvements. Defaults to `False`.
+        answers (list[str]): A list of placeholder variables for the expected answers
+            for each template type.
+            - The length of `answers` must match the number of template types
+            (1st dimension of `all_queries`).
+            - Example: `["Y_3", "Y_5"]` means extracting `Y_3` for the first template
+            type and `Y_5` for the second.
+        skip_solution_traces (bool, optional): Flag to skip solution traces, which describe the
+            intermediate steps towards final answer. Defaults to False, in which case the
+            returned list is non-empty.
+        multi_threading (bool, optional): If `True`, enables parallel query execution for
+            performance improvements. Defaults to `False`.
 
 
     Returns: (tuple)
-        `all_solution_traces` (list[list[list[dict[str, str]]]]): A structured list containing intermediate solution traces for each query.
-            - Organized as [number of template types] x [number of questions per template] x [solution traces per query].
+
+        `all_solution_traces` (list[list[list[dict[str, str]]]]):
+            - A structured list containing intermediate solution traces for each query.
+            - Set up as [# of template types] x [# of questions per template] x [solution traces per query].
             - Matches the structure of `all_queries`.
             - Each trace contains a list of dictionaries mapping query variables to their resolved values.
 
-        `all_final_results` (list[list[list[str]]]): The final resolved answers extracted for each query.
-            - Organized as [number of template types] x [number of questions per template] x [results per query].
+        `all_final_results` (list[list[list[str]]]):
+            - The final resolved answers extracted for each query.
+            - Organized as [# of template types] x [# of questions per template] x [results per query].
             - Matches the structure of `all_queries`.
             - Each sublist contains a list of string results.
 
@@ -87,13 +95,13 @@ def get_answer(
     final_results = [
         [
             [
-                ["Bob", "Rupert"], 
+                ["Bob", "Rupert"],
                 ["Eve"]
             ]
         ],
         [
             [
-                ["Tom"], 
+                ["Tom"],
                 ["Jack"]
             ]
         ]
@@ -120,16 +128,16 @@ def get_answer(
         all_query_results.append([])
         for j in range(len(all_queries[i])):
             all_query_results[i].append(temp_query_results[c])
-            c+=1
+            c += 1
 
     for j in range(len(all_queries)):
         # This iterates through the templates queries
-        query_results = all_query_results[j] # These are thus the query results for one template
-        answer = answers[j] # This is the answer for one template
+        query_results = all_query_results[j]  # These are thus the query results for one template
+        answer = answers[j]  # This is the answer for one template
 
         solution_traces = []
         final_results = []
-        
+
         for query_result in query_results:
             # Here, we iterate through query results of one single template
 
@@ -138,16 +146,17 @@ def get_answer(
                 solution_trace = []
 
             else:
-                # NOTE: for aggregation questions, prolog will create a Variable type for the final placeholder of the query
-                # These have indeterminate values, and are not useful for solution traces.
-                # Moreover, decoding them and saving them to a file (as part of solution_traces) will cause a segfault.
+                # NOTE: for aggregation questions, prolog will create a Variable type
+                # for the final placeholder of the query. These have indeterminate values,
+                # and are not useful for solution traces. Moreover, decoding them and
+                # saving them to a file (as part of solution_traces) will cause a segfault.
                 # Hence, only decode values that are not Variables
                 solution_trace: list[dict[str, str]] = [
                     {k: decode(v) for k, v in x.items() if not isinstance(v, Variable)} for x in query_result
                 ]
                 # solution_trace can contain duplicate dictionaries, keep only unique ones
                 # frozenset is used to make the dictionaries hashable, and set to remove duplicates
-                unique_solution_trace = set(frozenset(d.items()) for d in solution_trace)
+                unique_solution_trace = {frozenset(d.items()) for d in solution_trace}
                 solution_trace = [dict(s) for s in unique_solution_trace]
 
             final_result = [str(decode(x[answer])) for x in query_result]

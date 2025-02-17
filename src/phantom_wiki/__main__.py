@@ -218,14 +218,19 @@ def main(args):
         all_questions.append(questions)
         all_queries.append(queries)
 
-
     # Get all possible answers/solution traces for the queries
     answers = [t[2] for t in templates]
-    all_solution_traces, all_final_results = get_answer(all_queries, db, answers, skip_solution_traces=args.skip_solution_traces, multi_threading=args.use_multithreading)
+    all_solution_traces, all_final_results = get_answer(
+        all_queries,
+        db,
+        answers,
+        skip_solution_traces=args.skip_solution_traces,
+        multi_threading=args.use_multithreading,
+    )
 
     all_full_questions = []
     progbar = tqdm(enumerate(templates), desc="Generating questions #2", total=len(templates))
-    
+
     for i, (question_template, query_template, answer) in progbar:
         questions = []
 
@@ -237,7 +242,9 @@ def main(args):
                 {
                     "id": generate_unique_id(),
                     "question": all_questions[i][j],
-                    "solution_traces": json.dumps(all_solution_traces[i][j]), # NOTE: serialize list of dicts so that it can be saved on HF
+                    "solution_traces": json.dumps(
+                        all_solution_traces[i][j]
+                    ),  # NOTE: serialize list of dicts so that it can be saved on HF
                     "answer": all_final_results[i][j],
                     "prolog": {"query": all_queries[i][j], "answer": answer},
                     "template": question_template,
