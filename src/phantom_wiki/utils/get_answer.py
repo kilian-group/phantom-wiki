@@ -23,13 +23,12 @@ def get_answer(
             - Example:
                 ```
                 [
-                    [   # Template 1
-                        ["child(Y_2, Y_3)", "sister(Elisa, Y_2)"],  # Query 1
-                        ["parent(Y_4, Y_5)", "brother(John, Y_4)"]  # Query 2
-                    ],
-                    [   # Template 2
-                        ["ancestor(Y_6, Y_7)", "cousin(Mike, Y_6)"]  # Query 1
-                    ]
+                    ["child(Y_2, Y_3)", "sister(Elisa, Y_2)"],
+                    ["parent(Y_2, Y_3)", "brother(John, Y_2)"]
+                ],
+                [
+                    ["ancestor(Y_6, Y_7)", "cousin(Mike, Y_6)"]
+                    ["ancestor(Y_6, Y_7)", "nephew(Mike, Y_6)"]
                 ]
                 ```
         db (Database): The database instance used to resolve the queries.
@@ -72,7 +71,7 @@ def get_answer(
         [
             [
                 [{"Y_2": "Alice", "Y_3": "Bob"}, {"Y_2": "Alice", "Y_3": "Rupert"}],
-                [{"Y_4": "David", "Y_5": "Eve"}]
+                [{"Y_2": "David", "Y_3": "Eve"}]
             ]
         ],
         [
