@@ -42,10 +42,12 @@ def get_answer(
 
     Returns: (tuple)
         `all_solution_traces` (list[list[list[dict[str, str]]]]): A structured list containing intermediate solution traces for each query.
+            - Organized as [number of template types] x [number of questions per template] x [solution traces per query].
             - Matches the structure of `all_queries`.
             - Each trace contains a list of dictionaries mapping query variables to their resolved values.
 
         `all_final_results` (list[list[list[str]]]): The final resolved answers extracted for each query.
+            - Organized as [number of template types] x [number of questions per template] x [results per query].
             - Matches the structure of `all_queries`.
             - Each sublist contains a list of string results.
 
