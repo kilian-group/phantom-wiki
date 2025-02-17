@@ -18,10 +18,11 @@ from tqdm import tqdm
 from .core.article import get_articles
 
 # phantom wiki functionality
+from .facts.attributes import db_generate_attributes
+from .facts.family import db_generate_family
+from .facts.friends import db_generate_friendships
+
 from .facts import (
-    db_generate_attributes,
-    db_generate_family,
-    db_generate_friendships,
     get_database,
     question_parser,
 )
