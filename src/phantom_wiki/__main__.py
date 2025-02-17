@@ -2,6 +2,8 @@
 # Creating questions:
 #   python -m phantom_wiki -od <output path>
 
+import copy
+
 # standard imports
 import json
 import logging
@@ -10,7 +12,6 @@ import subprocess
 import sys
 import time
 from datetime import datetime
-import copy
 
 import numpy as np
 import pandas as pd
