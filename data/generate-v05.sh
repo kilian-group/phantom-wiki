@@ -55,6 +55,7 @@ do
         --article-format json \
         --question-format json \
         --hard-mode
+        --use-multithread
         --valid-only"
     echo $cmd
     eval $cmd
