@@ -4,6 +4,7 @@
 
 PhantomWiki uses the [Prolog](https://en.wikipedia.org/wiki/Prolog) logic programming language, available on all operating systems through [SWI-Prolog](https://www.swi-prolog.org/).
 We recommend installing SWI-prolog through your [distribution](https://www.swi-prolog.org/Download.html) or through conda, for example:
+
 ```bash
 # On MacOS
 brew install swi-prolog
@@ -23,19 +24,23 @@ Alternatively, clone this github repo and run `pip install .`
 ### Installing PhantomWiki in development mode
 
 There are 2 options:
+
 1. (Recommended) Install the package in editable mode using pip:
-    ```bash
-    pip install -e .
-    ```
+
+   ```bash
+   pip install -e .
+   ```
 
 2. If you use VSCode, you can add to the python path without installing the package:
-    1. Create a file in the repo root called `.env`
-    2. Add `PYTHONPATH=src`
-    3. Restart VSCode
+
+   1. Create a file in the repo root called `.env`
+   2. Add `PYTHONPATH=src`
+   3. Restart VSCode
 
 ## PhantomWiki Evaluation
 
 First, install dependencies and [vLLM](https://github.com/vllm-project/vllm) to match your hardware (GPU, CPU, etc.):
+
 ```bash
 pip install phantom-wiki[eval]
 pip install "vllm>=0.6.6"
@@ -44,15 +49,17 @@ pip install "vllm>=0.6.6"
 If you're installing from source, use `pip install .[eval]`.
 
 Then run evaluation methods (like `zeroshot,fewshot,react,...`) with an LLM like so:
+
 ```bash
 python -m phantom_eval --method <method> --model_name <llm_name>
 ```
 
 **Steps for reproducing all results:**
 
-🛑 Make sure to request access for Gemma, Llama 3.1, 3.2, and 3.3 models on HuggingFace before proceeding. 
+🛑 Make sure to request access for Gemma, Llama 3.1, 3.2, and 3.3 models on HuggingFace before proceeding.
 
 🧪 To generate the prediction files, run the following scripts (e.g., using slurm) from the root directory:
+
 ```
 # Create a dir for slurm logs
 mkdir slurm
@@ -74,11 +81,14 @@ sbatch eval/cot_L.sh <output directory>
 sbatch eval/zeroshot_cpu.sh <output directory> <model name>
 sbatch eval/cot_cpu.sh <output directory> <model name>
 ```
+
 📊 To generate the tables and figures, run the following script from the root directory:
+
 ```
 # make sure the dataset conda env is activated!
 ./eval/evaluate.sh <output directory> <method>
 ```
+
 where <output directory> here is the same as <output directory> when generating the prediction and <method> cam be zeroshot/react/etc.
 
 NOTE: this script will save the outputs to OUTPUT_DIRECTORY under `scores/` and `figures/`
@@ -98,40 +108,52 @@ conda env config vars set TOGETHER_API_KEY=xxxxx
 ```
 
 ### OpenAI
+
 1. Register an account *with your cornell.edu email* at https://platform.openai.com/ and join "Kilian's Group"
 2. Create an API key at https://platform.openai.com/settings/organization/api-keys under your name
 3. Set your OpenAI API key in your conda environment:
+
 ```
 conda env config vars set OPENAI_API_KEY=xxxxx
 ```
+
 Rate limits: https://platform.openai.com/docs/guides/rate-limits#usage-tiers
 
 ### Google Gemini
+
 1. Create an API key at https://aistudio.google.com/app/apikey (NOTE: for some reason, Google AI Studio is disabled for cornell.edu accounts, so use your personal account)
 2. Set your Google API key:
+
 ```
 conda env config vars set GEMINI_API_KEY=xxxxx
 ```
 
 ### Anthropic
-1. Register an account *with your cornell.edu email* and join "Kilian's Group" 
+
+1. Register an account *with your cornell.edu email* and join "Kilian's Group"
 2. Create an API key at https://console.anthropic.com/settings/keys under your name
 3. Set your Anthropic API key in your conda environment:
+
 ```
 conda env config vars set ANTHROPIC_API_KEY=xxxxx
 ```
+
 Rate limits: https://docs.anthropic.com/en/api/rate-limits#updated-rate-limits
 
 :rotating_light: The Anthropic API has particularly low rate limits so it takes longer to get predictions.
 
 ### vLLM
+
 Original setup instructions: https://docs.vllm.ai/en/stable/getting_started/installation.html#install-the-latest-code
 
 Additional notes:
+
 - It's recommended to download the model manually:
+
 ```bash
 huggingface-cli download MODEL_REPO_ID
 ```
+
 - The models and their configs are downloaded directly from HuggingFace and almost all models on HF are fair game (see also: https://docs.vllm.ai/en/stable/models/supported_models.html#supported-models)
 - Total number of attention heads must be divisible by tensor parallel size
 - See minimum GPU requirements for [small](eval/zeroshot_S.sh), [medium](eval/zeroshot_M.sh), and [large](eval/zeroshot_L.sh) models at the top of each eval inference script
@@ -148,6 +170,9 @@ pre-commit run
 git commit -m "your commit message"
 git push
 ```
+
+Alternatively, run `pre-commit install` once and this will install a hook that automatically runs pre-commit
+on every commit.
 
 **Testing:**
 
@@ -189,6 +214,7 @@ git push
 ```
 
 Alternatively, can use the huggingface cli (see https://huggingface.co/docs/datasets/en/share#upload-an-entire-folder):
+
 ```bash
 huggingface-cli upload mlcore/phantom-wiki-v<version> OUTPUT_DIRECTORY . --repo-type dataset --commit-message="optional commit message"
 ```

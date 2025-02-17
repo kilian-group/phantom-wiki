@@ -8,12 +8,11 @@ def get_gpu_count() -> int:
     try:
         result = subprocess.run(
             ["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
+            capture_output=True,
             check=True,
-            text=True
+            text=True,
         )
-        gpu_list = result.stdout.strip().split('\n')
+        gpu_list = result.stdout.strip().split("\n")
         return len(gpu_list)
     except subprocess.CalledProcessError as e:
         print(f"Error occurred while trying to get GPU count: {e}")
@@ -21,4 +20,3 @@ def get_gpu_count() -> int:
     except FileNotFoundError:
         print("nvidia-smi command not found. Ensure that the NVIDIA drivers are installed.")
         return 0
-

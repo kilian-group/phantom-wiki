@@ -1,6 +1,8 @@
-from pyswip import Prolog
-from phantom_wiki.facts.family.constants import PERSON_TYPE
 import logging
+
+from pyswip import Prolog
+
+from phantom_wiki.facts.family.constants import PERSON_TYPE
 from phantom_wiki.utils import decode
 from multiprocessing import Pool
 from tqdm import tqdm

@@ -16,17 +16,12 @@ import pandas as pd
 from tqdm import tqdm
 
 from .core.article import get_articles
+from .facts import get_database, question_parser
 
 # phantom wiki functionality
-from .facts import (
-    db_generate_attributes,
-    db_generate_family,
-    db_generate_friendships,
-    get_database,
-    question_parser,
-)
-from .facts.family import fam_gen_parser
-from .facts.friends import friend_gen_parser
+from .facts.attributes import db_generate_attributes
+from .facts.family import db_generate_family, fam_gen_parser
+from .facts.friends import db_generate_friendships, friend_gen_parser
 from .facts.question_difficulty import calculate_query_difficulty
 from .facts.sample import sample_valid_only
 from .facts.templates import generate_templates
@@ -45,7 +40,8 @@ def check_git_status():
         # If `git status --porcelain` output is not empty, there are uncommitted changes
         if result.stdout.strip():
             print(
-                "Error: You have uncommitted or unstashed changes. Please commit or stash them before running this script."
+                "Error: You have uncommitted or unstashed changes. "
+                "Please commit or stash them before running this script."
             )
             sys.exit(1)
     except FileNotFoundError:
@@ -175,7 +171,8 @@ def main(args):
 
     # Create caches for person -> (attr name, attr value) and person -> (relation, related person) pairs
     # When we iterate over multiple questions, we can reuse the same cache to avoid recomputing
-    # e.g. "John" -> [("dob", "1990-01-01"), ("job", "teacher"), ("hobby", "reading"), ("hobby", "swimming"), ...]
+    # e.g. "John" -> [("dob", "1990-01-01"), ("job", "teacher"), ("hobby", "reading"),
+    # ("hobby", "swimming"), ...]
     # NOTE: Invariant: (attr name, attr value) pairs are unique
     person_name2attr_name_and_val: dict[str, list[tuple[str, str]]] = {}
     # e.g. "John" -> [("child", "Alice"), ("child", "Bob"), ("friend", "Charlie"), ...]
@@ -196,8 +193,9 @@ def main(args):
         queries = []
 
         # for _ in range(args.num_questions_per_type):
-        while len(questions) < args.num_questions_per_type: # TODO: this is a temporary fix to make sure that we generate the same number of questions for each template
-
+        while (
+            len(questions) < args.num_questions_per_type
+        ):  # TODO: temporary fix to make sure that we generate the same number of questions for each template
             # sample a question
             if args.valid_only:
                 question, query = sample_valid_only(

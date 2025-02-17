@@ -16,7 +16,9 @@ class TogetherChat(CommonLLMChat):
         "meta-llama/meta-llama-3.1-405b-instruct-turbo",
         "meta-llama/llama-vision-free",
     ]
-    RATE_LIMITS = {llm_name: {"usage_tier=1": {"RPM": 20, "TPM": 500_000}} for llm_name in SUPPORTED_LLM_NAMES}
+    RATE_LIMITS = {
+        llm_name: {"usage_tier=1": {"RPM": 20, "TPM": 500_000}} for llm_name in SUPPORTED_LLM_NAMES
+    }
 
     def __init__(
         self,

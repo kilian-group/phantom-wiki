@@ -58,5 +58,5 @@ def test_get_names():
         "Veronica Donohue",
         "Vita Cater",
         "Wes Backus",
-        "Wilfredo Cater"
+        "Wilfredo Cater",
     }

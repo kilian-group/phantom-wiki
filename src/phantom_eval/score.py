@@ -1,11 +1,12 @@
 from phantom_eval import constants
 from phantom_eval.utils import normalize_pred
 
+
 def exact_match(
-        pred: str, 
-        true: str, 
-        sep: str = constants.answer_sep,
-    ) -> bool:
+    pred: str,
+    true: str,
+    sep: str = constants.answer_sep,
+) -> bool:
     """
     Simple score function that checks if the prediction is equal to the true answer
     """
@@ -13,10 +14,10 @@ def exact_match(
 
 
 def precision(
-        pred: str, 
-        true: str,
-        sep: str = constants.answer_sep,
-    ) -> float:
+    pred: str,
+    true: str,
+    sep: str = constants.answer_sep,
+) -> float:
     """
     Assume:
     - true is an arbitrary string, which can be empty, separated by spaces/commas/etc
@@ -32,10 +33,10 @@ def precision(
 
 
 def recall(
-        pred: str, 
-        true: str,
-        sep: str = constants.answer_sep,
-    ) -> float:
+    pred: str,
+    true: str,
+    sep: str = constants.answer_sep,
+) -> float:
     """
     Assume:
     - true is a string of words separated by `sep`
@@ -51,10 +52,10 @@ def recall(
 
 
 def f1(
-        pred: str, 
-        true: str,
-        sep: str = constants.answer_sep,
-    ) -> float:
+    pred: str,
+    true: str,
+    sep: str = constants.answer_sep,
+) -> float:
     pres = precision(pred, true, sep)
     rec = recall(pred, true, sep)
     if pres + rec == 0:

@@ -2,7 +2,7 @@
 #SBATCH -J act-large                              # Job name
 #SBATCH -o slurm/act-large_%j.out                 # output file (%j expands to jobID)
 #SBATCH -e slurm/act-large_%j.err                 # error log file (%j expands to jobID)
-#SBATCH --mail-type=ALL                      # Request status by email 
+#SBATCH --mail-type=ALL                      # Request status by email
 #SBATCH --mail-user=ag2435@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
 #SBATCH -n 8                                 # Total number of cores requested
@@ -64,7 +64,7 @@ do
     vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size 4 --port $PORT"
     echo $vllm_cmd
     nohup $vllm_cmd &
-    
+
     # Wait for the server to start
     echo "Waiting for vLLM server to start..."
     SLEEP=60
