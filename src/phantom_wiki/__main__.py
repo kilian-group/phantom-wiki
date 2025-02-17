@@ -10,6 +10,7 @@ import subprocess
 import sys
 import time
 from datetime import datetime
+import copy
 
 import numpy as np
 import pandas as pd
@@ -221,7 +222,7 @@ def main(args):
     # Get all possible answers/solution traces for the queries
     answers = [t[2] for t in templates]
     all_solution_traces, all_final_results = get_answer(
-        all_queries,
+        copy.deepcopy(all_queries),
         db,
         answers,
         skip_solution_traces=args.skip_solution_traces,
