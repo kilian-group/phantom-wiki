@@ -1,18 +1,19 @@
 # standard imports
 import json
 
-from numpy.random import default_rng
-
 from phantom_wiki.facts import Database
+
 # phantom wiki functionality
 from phantom_wiki.facts.templates import generate_templates
 from phantom_wiki.utils import get_parser
 
 # testing utils
-from tests.phantom_wiki.facts import TEMPLATES_DEPTH_6_PATH, TEMPLATES_DEPTH_8_PATH, TEMPLATES_DEPTH_10_PATH, \
-    QUESTIONS_DICT, QUESTIONS_VALID_DICT
-
-from tests.phantom_wiki.facts import DATABASE_SMALL_PATH
+from tests.phantom_wiki.facts import (
+    DATABASE_SMALL_PATH,
+    TEMPLATES_DEPTH_6_PATH,
+    TEMPLATES_DEPTH_8_PATH,
+    TEMPLATES_DEPTH_10_PATH,
+)
 
 # TODO: come up with a better way to test the question-prolog pair generation
 SAVE_SAMPLE = False

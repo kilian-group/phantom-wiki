@@ -21,9 +21,9 @@ echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 splits=()
 SIZE_LIST=(
     # for 128k-context models
-    50 
-    100 
-    200 
+    50
+    100
+    200
     300
     400
     # for 1M-context models
@@ -55,6 +55,7 @@ do
         --article-format json \
         --question-format json \
         --hard-mode
+        --use-multithread
         --valid-only"
     echo $cmd
     eval $cmd

@@ -2,7 +2,7 @@
 #SBATCH -J rag-small                              # Job name
 #SBATCH -o slurm/rag-small_%j.out                 # output file (%j expands to jobID)
 #SBATCH -e slurm/rag-small_%j.err                 # error log file (%j expands to jobID)
-#SBATCH --mail-type=ALL                      # Request status by email 
+#SBATCH --mail-type=ALL                      # Request status by email
 #SBATCH --mail-user=jcl354@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
 #SBATCH -n 8                                 # Total number of cores requested
@@ -52,22 +52,22 @@ pkill -e -f vllm
 # https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html#vllm-serve
 for model_name in "${SMALL_MODELS[@]}"
 do
-    # Start the vLLM server in the background
-    port=8000
-    echo "Starting vLLM server..."
-    eval export CUDA_VISIBLE_DEVICES=0,1,2,3
-    vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $port --task generate" #nohup launches this in the background
-    echo $vllm_cmd
-    nohup $vllm_cmd &
-    
-    # Wait for the server to start
-    echo "Waiting for vLLM server to start..."
-    SLEEP=30
-    while ! check_server $model_name $port; do
-        echo "Server is not up yet. Checking again in $SLEEP seconds..."
-        sleep $SLEEP
-    done
-    echo "vLLM server is up and running."
+    # # Start the vLLM server in the background
+    # port=8000
+    # echo "Starting vLLM server..."
+    # eval export CUDA_VISIBLE_DEVICES=0,1,2,3
+    # vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $port --task generate" #nohup launches this in the background
+    # echo $vllm_cmd
+    # nohup $vllm_cmd &
+
+    # # Wait for the server to start
+    # echo "Waiting for vLLM server to start..."
+    # SLEEP=30
+    # while ! check_server $model_name $port; do
+    #     echo "Server is not up yet. Checking again in $SLEEP seconds..."
+    #     sleep $SLEEP
+    # done
+    # echo "vLLM server is up and running."
 
     # Run the main Python script
     e_port=8001

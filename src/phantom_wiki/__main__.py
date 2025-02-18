@@ -2,6 +2,8 @@
 # Creating questions:
 #   python -m phantom_wiki -od <output path>
 
+import copy
+
 # standard imports
 import json
 import logging
@@ -16,17 +18,12 @@ import pandas as pd
 from tqdm import tqdm
 
 from .core.article import get_articles
+from .facts import get_database, question_parser
 
 # phantom wiki functionality
-from .facts import (
-    db_generate_attributes,
-    db_generate_family,
-    db_generate_friendships,
-    get_database,
-    question_parser,
-)
-from .facts.family import fam_gen_parser
-from .facts.friends import friend_gen_parser
+from .facts.attributes import db_generate_attributes
+from .facts.family import db_generate_family, fam_gen_parser
+from .facts.friends import db_generate_friendships, friend_gen_parser
 from .facts.question_difficulty import calculate_query_difficulty
 from .facts.sample import sample_valid_only
 from .facts.templates import generate_templates
@@ -45,7 +42,8 @@ def check_git_status():
         # If `git status --porcelain` output is not empty, there are uncommitted changes
         if result.stdout.strip():
             print(
-                "Error: You have uncommitted or unstashed changes. Please commit or stash them before running this script."
+                "Error: You have uncommitted or unstashed changes. "
+                "Please commit or stash them before running this script."
             )
             sys.exit(1)
     except FileNotFoundError:
@@ -167,7 +165,6 @@ def main(args):
         logging.info(f"Saving questions to: {question_dir}")
         os.makedirs(question_dir, exist_ok=True)
 
-    all_questions = []
     progbar = tqdm(enumerate(templates), desc="Generating questions", total=len(templates))
 
     # Populate person name bank for the universe. The list is static across generating questions
@@ -176,21 +173,31 @@ def main(args):
 
     # Create caches for person -> (attr name, attr value) and person -> (relation, related person) pairs
     # When we iterate over multiple questions, we can reuse the same cache to avoid recomputing
-    # e.g. "John" -> [("dob", "1990-01-01"), ("job", "teacher"), ("hobby", "reading"), ("hobby", "swimming"), ...]
+    # e.g. "John" -> [("dob", "1990-01-01"), ("job", "teacher"), ("hobby", "reading"),
+    # ("hobby", "swimming"), ...]
     # NOTE: Invariant: (attr name, attr value) pairs are unique
     person_name2attr_name_and_val: dict[str, list[tuple[str, str]]] = {}
     # e.g. "John" -> [("child", "Alice"), ("child", "Bob"), ("friend", "Charlie"), ...]
     # NOTE: Invariant: (relation, related person) pairs are unique
     person_name2relation_and_related: dict[str, list[tuple[str, str]]] = {}
 
+    # To store all the questions and queries for all templates
+    all_questions = []
+    all_queries = []
+
     for i, (question_template, query_template, answer) in progbar:
         # Reset the seed at the start of each question type
         # so that sampled questions are the same for each question type
         rng = np.random.default_rng(args.seed)
-        questions = []
-        # for _ in range(args.num_questions_per_type):
-        while len(questions) < args.num_questions_per_type: # TODO: this is a temporary fix to make sure that we generate the same number of questions for each template
 
+        # To store the questions and queries for the given template
+        questions = []
+        queries = []
+
+        # for _ in range(args.num_questions_per_type):
+        while (
+            len(questions) < args.num_questions_per_type
+        ):  # TODO: temporary fix to make sure that we generate the same number of questions for each template
             # sample a question
             if args.valid_only:
                 question, query = sample_valid_only(
@@ -207,16 +214,41 @@ def main(args):
             else:
                 raise NotImplementedError("Sampling questions without valid_only is not supported.")
 
-            # Get all possible answers for the query
-            solution_traces, final_results = get_answer(query, db, answer, skip_solution_traces=args.skip_solution_traces)
-            question_difficulty = calculate_query_difficulty(query)
+            questions.append(question)
+            queries.append(query)
+
+        all_questions.append(questions)
+        all_queries.append(queries)
+
+    # Get all possible answers/solution traces for the queries
+    answers = [t[2] for t in templates]
+    all_solution_traces, all_final_results = get_answer(
+        copy.deepcopy(all_queries),
+        db,
+        answers,
+        skip_solution_traces=args.skip_solution_traces,
+        multi_threading=args.use_multithreading,
+    )
+
+    all_full_questions = []
+    progbar = tqdm(enumerate(templates), desc="Generating questions #2", total=len(templates))
+
+    for i, (question_template, query_template, answer) in progbar:
+        questions = []
+
+        for j in range(args.num_questions_per_type):
+            # get the difficulty of the question
+            question_difficulty = calculate_query_difficulty(all_queries[i][j])
+
             questions.append(
                 {
                     "id": generate_unique_id(),
-                    "question": question,
-                    "solution_traces": json.dumps(solution_traces), # NOTE: serialize list of dicts so that it can be saved on HF
-                    "answer": final_results,
-                    "prolog": {"query": query, "answer": answer},
+                    "question": all_questions[i][j],
+                    "solution_traces": json.dumps(
+                        all_solution_traces[i][j]
+                    ),  # NOTE: serialize list of dicts so that it can be saved on HF
+                    "answer": all_final_results[i][j],
+                    "prolog": {"query": all_queries[i][j], "answer": answer},
                     "template": question_template,
                     "type": i,  # this references the template type
                     "difficulty": question_difficulty,
@@ -225,7 +257,9 @@ def main(args):
             if args.question_format == "json_by_type":
                 with open(os.path.join(question_dir, f"type{i}.json"), "w") as file:
                     json.dump(questions, file, indent=4)
-        all_questions.extend(questions)
+
+        all_full_questions.extend(questions)
+
         # update progbar
         progbar.set_description(f"Template ({i+1}/{len(templates)})")
     timings["questions_generate"] = time.time() - start
@@ -237,7 +271,7 @@ def main(args):
         save_path = os.path.join(args.output_dir, "questions.json")
         logging.info(f"Saving questions to: {save_path}")
         with open(save_path, "w") as file:
-            json.dump(all_questions, file, indent=4)
+            json.dump(all_full_questions, file, indent=4)
     timings["questions_save"] = time.time() - start
 
     timings["total"] = time.time() - global_start
