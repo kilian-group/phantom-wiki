@@ -44,7 +44,7 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Run PhantomWiki tests with pytest
         run: |
-          pytest tests/phantom_wiki/facts/core
+          pytest tests/phantom_wiki/core
           pytest tests/phantom_wiki/facts/family
           pytest tests/phantom_wiki/facts/test_generate.py
           pytest tests/phantom_wiki/facts/test_get_names.py
