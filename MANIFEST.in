@@ -1,1 +1,1 @@
-include phantom_wiki/ *.pl
+recursive-include src/phantom_wiki *.pl
