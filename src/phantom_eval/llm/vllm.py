@@ -26,7 +26,7 @@ class VLLMChat(CommonLLMChat):
         "mistralai/mistral-7b-instruct-v0.3",
         "deepseek-ai/deepseek-r1-distill-qwen-32b",
         "deepseek-ai/deepseek-r1-distill-qwen-7b",
-        "deepseek-ai/deepseek-r1-distill-qwen-1.5b"
+        "deepseek-ai/deepseek-r1-distill-qwen-1.5b",
     ]
 
     def __init__(

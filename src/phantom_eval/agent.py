@@ -852,7 +852,6 @@ class ReactAgent(Agent):
             raise ValueError(f"Action '{action}' cannot be parsed.")
 
 
-
 class React_CoTSCAgent(Agent):
     """
     Agent to implement React->CoTSC evaluation.
@@ -1222,7 +1221,7 @@ SUPPORTED_METHOD_NAMES: list[str] = [
 REASONING_MODELS: list[str] = [
     "deepseek-ai/deepseek-r1-distill-qwen-32b",
     "deepseek-ai/deepseek-r1-distill-qwen-7b",
-    "deepseek-ai/deepseek-r1-distill-qwen-1.5b"
+    "deepseek-ai/deepseek-r1-distill-qwen-1.5b",
 ]
 
 
