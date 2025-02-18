@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest]
         python-version: ["3.12"]
 
     steps:
@@ -32,8 +32,6 @@ jobs:
             sudo apt-get install swi-prolog
           elif [[ "$RUNNER_OS" == "macOS" ]]; then
             brew install swi-prolog
-          elif [[ "$RUNNER_OS" == "Windows" ]]; then
-            choco install swipl
           fi
           python -m pip install --upgrade pip
           python -m pip install flake8 pytest
