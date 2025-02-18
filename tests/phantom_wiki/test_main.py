@@ -21,7 +21,7 @@ def test_main():
             friend_gen_parser,
         ]
     )
-    args, _ = parser.parse_known_args(["--output-dir", "test_out", "--seed", "1", "--valid-only", "--debug"])
+    args, _ = parser.parse_known_args(["--output-dir", "test_out", "--seed", "1", "--valid-only"])
     main(args)
 
     # get example article
