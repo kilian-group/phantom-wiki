@@ -31,12 +31,10 @@ dependencies = [
     "networkx",
     "nltk>=3.9.1",
     "numpy>=1.26.4",
-    "openai",
     "pandas>=2.2.2",
     "pydot>=1.4.2",
     "pyswip>=0.3.2",
     "termcolor",
-    "together",
     "tqdm",
 ]
 
@@ -68,7 +66,9 @@ eval = [
     "langchain>=0.3.14",
     "langchain-community",
     "langchain-together",
+    "openai",
     "tiktoken",
+    "together",
     "transformers>=4.47.1",
 ]
 
