@@ -25,7 +25,7 @@ We reflect these facts in a large-scale corpus, mimicking the style of fan-wiki 
 Then we generate question-answer pairs with tunable difficulties, encapsulating the types of multi-hop questions commonly considered in the question-answering (QA) literature.
 
 - **Created by:** Albert Gong, Kamilė Stankevičiūtė, Chao Wan, Anmol Kabra, Raphael Thesmar, Johann Lee, Julius Klenke, Carla P. Gomes, Kilian Q. Weinberger
-- **Funded by \[optional\]:** \[More Information Needed\]
+- **Funded by:** AG is funded by the NewYork-Presbyterian Hospital; KS is funded by AstraZeneca; CW is funded by NSF OAC-2118310; AK is partially funded by the National Science Foundation (NSF), the National Institute of Food and Agriculture (USDA/NIFA), the Air Force Office of Scientific Research (AFOSR), and a Schmidt AI2050 Senior Fellowship, a Schmidt Sciences program.
 - **Shared by \[optional\]:** \[More Information Needed\]
 - **Language(s) (NLP):** English
 - **License:** MIT License
