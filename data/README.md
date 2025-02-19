@@ -36,7 +36,7 @@ Then we generate question-answer pairs with tunable difficulties, encapsulating 
 
 - **Repository:** https://github.com/albertgong1/phantom-wiki
 - **Paper \[optional\]:** TODO
-- **Demo \[optional\]:** TODO
+- **Demo:** https://github.com/albertgong1/phantom-wiki/examples
 
 ## Uses
 
