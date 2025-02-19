@@ -77,7 +77,7 @@ This is a synthetic dataset. The extent to which we use real data is detailed as
 1. We sample surnames from among the most common surnames in the US population according to https://names.mongabay.com/most_common_surnames.htm
 2. We sample first names using the `names` Python package (https://github.com/treyhunner/names). We thank the contributors for making this tool publicly available.
 3. We sample jobs from the list of real-life jobs from the `faker` Python package. We thank the contributors for making this tool publicly available.
-4. We sample hobbies from the list of real-life hobbies at https://www.kaggle.com/datasets/mrhell/list-of-hobbies. We are grateful to the original author for curating this list and making it publically available.
+4. We sample hobbies from the list of real-life hobbies at https://www.kaggle.com/datasets/mrhell/list-of-hobbies. We are grateful to the original author for curating this list and making it publicly available.
 
 #### Data Collection and Processing
 
