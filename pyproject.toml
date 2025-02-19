@@ -73,7 +73,6 @@ eval = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/ag2435/phantom-wiki"
-Issues = "https://github.com/ag2435/phantom-wiki/issues"
-Documentation = "https://ag2435.github.io/phantom-wiki"
-Repository = "https://github.com/ag2435/phantom-wiki.git"
+Homepage = "https://github.com/albertgong1/phantom-wiki"
+Issues = "https://github.com/albertgong1/phantom-wiki/issues"
+Repository = "https://github.com/albertgong1/phantom-wiki.git"

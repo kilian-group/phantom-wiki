@@ -16,6 +16,8 @@ sudo apt-get install swi-prolog
 
 # With conda package manager
 conda install conda-forge::swi-prolog
+
+# TODO: add Windows instructions
 ```
 
 PhantomWiki is available with Python 3.12+ through `pip install phantom-wiki`.
