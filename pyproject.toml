@@ -36,6 +36,7 @@ dependencies = [
     "pyswip>=0.3.2",
     "termcolor",
     "tqdm",
+    "tabulate",
 ]
 
 [project.optional-dependencies]
