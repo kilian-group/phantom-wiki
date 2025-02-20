@@ -34,6 +34,7 @@ dependencies = [
     "pandas>=2.2.2",
     "pydot>=1.4.2",
     "pyswip>=0.3.2",
+    "tabulate",
     "termcolor",
     "tqdm",
 ]
@@ -67,7 +68,6 @@ eval = [
     "langchain-community",
     "langchain-together",
     "openai",
-    "tabulate",
     "tiktoken",
     "together",
     "transformers>=4.47.1",
