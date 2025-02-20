@@ -36,7 +36,6 @@ dependencies = [
     "pyswip>=0.3.2",
     "termcolor",
     "tqdm",
-    "tabulate",
 ]
 
 [project.optional-dependencies]
@@ -68,6 +67,7 @@ eval = [
     "langchain-community",
     "langchain-together",
     "openai",
+    "tabulate",
     "tiktoken",
     "together",
     "transformers>=4.47.1",
