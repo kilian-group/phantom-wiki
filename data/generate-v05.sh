@@ -2,9 +2,9 @@
 # Script for generating mlcore/phantom-wiki-v0.5
 # HuggingFace: https://huggingface.co/datasets/mlcore/phantom-wiki-v0.5
 
-# check that the correct number of arguments were passed
-if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <output directory> <seed>"
+# check that the correct number of arguments were passed, at least 2
+if [ "$#" -lt 2 ]; then
+    echo "Usage: $0 <output directory> <seed> --flag1 value1 --flag2 value2 ..."
     exit 1
 fi
 
@@ -14,16 +14,21 @@ mkdir -p $OUTPUT_DIR
 # set seed
 SEED=$2
 
+# shift arguments to get flags (script, output directory, seed)
+shift 2
+cmd_args=$@
+
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 echo "Generating data to $OUTPUT_DIR with seed $SEED"
+echo "Extra arguments: $cmd_args"
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 # list of splits
 splits=()
 SIZE_LIST=(
     # for 128k-context models
-    50 
-    100 
-    200 
+    50
+    100
+    200
     300
     400
     # for 1M-context models
@@ -54,8 +59,9 @@ do
         --max-tree-depth $depth \
         --article-format json \
         --question-format json \
-        --hard-mode
-        --valid-only"
+        --hard-mode \
+        --valid-only \
+        $cmd_args"
     echo $cmd
     eval $cmd
     splits+=("$od")
@@ -72,8 +78,9 @@ do
             --max-tree-depth $depth \
             --article-format json \
             --question-format json \
-            --hard-mode
-            --valid-only"
+            --hard-mode \
+            --valid-only \
+            $cmd_args"
         echo $cmd
         eval $cmd
 

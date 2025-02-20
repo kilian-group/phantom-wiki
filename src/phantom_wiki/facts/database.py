@@ -1,6 +1,8 @@
 import logging
+from multiprocessing import Pool
 
 from pyswip import Prolog
+from tqdm import tqdm
 
 from phantom_wiki.facts.family.constants import PERSON_TYPE
 from phantom_wiki.utils import decode
@@ -57,6 +59,31 @@ class Database:
         self.define("attribute/1")
         attributes = [decode(result["X"]) for result in self.prolog.query("attribute(X)")]
         return attributes
+
+    def batch_query(self, queries: list[str], multi_threading: bool = False) -> list[list[dict]]:
+        """Queries the Prolog database with multiple queries. If multi_threading
+         is true, then this function leverages multi processors.
+
+        Args:
+            queries: List of Prolog query strings
+
+        Returns:
+            List of results for each query
+        """
+        if multi_threading:
+            with Pool() as pool:
+                results = []
+                for result in tqdm(
+                    pool.imap(self.query, queries), total=len(queries), desc="Querying the database"
+                ):
+                    results.append(result)
+
+        else:
+            results = []
+            for q in tqdm(queries, desc="Querying the database"):
+                results.append(self.query(q))
+
+        return results
 
     def query(self, query: str) -> list[dict]:
         """Queries the Prolog database.

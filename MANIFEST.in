@@ -1,0 +1,3 @@
+recursive-include src/phantom_wiki *.json
+recursive-include src/phantom_wiki *.pl
+recursive-include tests/phantom_wiki/resources *
