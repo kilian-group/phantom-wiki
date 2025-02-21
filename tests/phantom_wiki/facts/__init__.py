@@ -13,6 +13,7 @@ HOBBIES_PATH = files("tests").joinpath("phantom_wiki/resources/facts/hobbies.jso
 # Reference database
 DATABASE_SMALL_PATH = files("tests").joinpath("phantom_wiki/resources/databases/small.pl")
 DATABASE_SMALL_107 = files("tests").joinpath("phantom_wiki/resources/databases/small_107.pl")
+DATABASE_TEST_PATH = files("tests").joinpath("phantom_wiki/resources/databases/test.pl")
 
 # Question reference outputs
 QUESTIONS_DICT = {}

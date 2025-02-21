@@ -293,13 +293,21 @@ class NshotSCAgent(NshotAgent, SCMixin):
 
 
 class CoTAgent(Agent):
-    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, cot_examples: str = ""):
+    def __init__(
+        self,
+        text_corpus: pd.DataFrame,
+        llm_prompt: LLMPrompt,
+        cot_examples: str = "",
+        prolog_query: bool = False,
+    ):
         """
         Args:
             cot_examples (str): Prompt examples to include in agent prompt.
+            prolog_query (bool): Whether to use prolog query in the agent prompt.
         """
         super().__init__(text_corpus, llm_prompt)
         self.cot_examples = cot_examples
+        self.prolog_query = prolog_query
 
     def run(
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
@@ -381,7 +389,7 @@ class CoTAgent(Agent):
             evidence = self.get_RAG_evidence(question)
         else:
             evidence = _get_evidence(self.text_corpus)
-        return self.llm_prompt.get_prompt().format(
+        return self.llm_prompt.get_prompt(prolog_query=self.prolog_query).format(
             evidence=evidence, examples=self.cot_examples, question=question
         )
 
