@@ -21,6 +21,7 @@ from .prolog_utils import get_prolog_results
 from .prompts import (
     ACT_EXAMPLES,
     COT_EXAMPLES,
+    COT_EXAMPLES_PROLOG,
     FEWSHOT_EXAMPLES,
     FEWSHOT_EXAMPLES_PROLOG,
     REACT_EXAMPLES,
@@ -83,7 +84,10 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
                 prolog_query=args.prolog_query,
             )
         case "cot":
-            agent_kwargs = dict(cot_examples=COT_EXAMPLES)
+            agent_kwargs = dict(
+                cot_examples=COT_EXAMPLES if not args.prolog_query else COT_EXAMPLES_PROLOG,
+                prolog_query=args.prolog_query,
+            )
         case "cot-sc":
             agent_kwargs = dict(
                 cot_examples=COT_EXAMPLES,
