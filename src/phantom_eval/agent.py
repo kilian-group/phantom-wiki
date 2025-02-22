@@ -659,7 +659,7 @@ class ReactAgent(Agent):
                 response = self._step_action(llm_chat, question, inf_gen_config)
                 total_usage = aggregate_usage([total_usage, response.usage])
 
-                response = self._step_observation(llm_chat, response)
+                response = self._step_observation(response)
                 total_usage = aggregate_usage([total_usage, response.usage])
             except Exception:
                 # If an error occurs, return the error message and empty pred
@@ -719,16 +719,11 @@ class ReactAgent(Agent):
         )
         return response
 
-    def _step_observation(self, llm_chat: LLMChat, response_action: LLMChatResponse) -> LLMChatResponse:
+    def _step_observation(self, response_action: LLMChatResponse) -> LLMChatResponse:
         """
         Run the observation step of the agent and increments the step round.
         NOTE: Returned usage is empty since the LLM is not called.
         """
-        # If we're using a reasoning model, we trigger parse_thinking_action instead of parse_action
-        # if llm_chat.model_name in REASONING_MODELS:
-        #     action_type, action_arg = ReactAgent.parse_thinking_action(response_action.pred)
-        # else:
-        #     action_type, action_arg = ReactAgent.parse_action(response_action.pred)
         action_type, action_arg = ReactAgent.parse_action(response_action.pred)
 
         match action_type:
@@ -813,6 +808,9 @@ class ReactAgent(Agent):
 
         Raises:
             ValueError: If the action cannot be parsed.
+
+        NOTE: This method is also able to handle Deepseek's outputs, because their models don't generate model
+        calls inbetween <think> </think> tags.
         """
         # Extract the action type (any word string) and argument (any string within square brackets)
         # argument can be empty as well
