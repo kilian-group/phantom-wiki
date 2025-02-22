@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 class VLLMChat(CommonLLMChat):
+    # NOTE: vLLM supports all models on Hugging Face Hub, but these are the ones we have officially tested
     SUPPORTED_LLM_NAMES: list[str] = [
         "meta-llama/llama-3.1-8b-instruct",
         "meta-llama/llama-3.1-70b-instruct",
