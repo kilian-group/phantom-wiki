@@ -1,5 +1,6 @@
 import logging
 
+from phantom_eval import constants
 from phantom_eval.llm.common import LLMChatResponse
 from phantom_wiki.facts.database import Database
 
@@ -178,12 +179,19 @@ def get_prolog_results(
                 if target_variable in binding:
                     final_value.add(binding[target_variable])
         if final_value == set():
-            final_value = None
+            # final_value = None
+            # NOTE: the score functions expect a string, so we need to return an empty string
+            final_value = ""
         elif len(final_value) == 1:
             final_value = final_value.pop()
         else:
             final_value = list(final_value)
-            final_value.sort()
+            # Albert: sorting throws an error when the values are of type Variable
+            # final_value.sort()
+            # NOTE: the score functions expect a string, so we need to join the list using a separator
+            final_value = constants.answer_sep.join(final_value)
+
+        assert isinstance(final_value, str), f"final_value: {final_value} is not a string"
 
         prolog_results.append(
             {"final_value": final_value, "query": pred_query, "query_results": query_results}
