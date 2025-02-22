@@ -184,11 +184,19 @@ async def main(args: argparse.Namespace) -> None:
 
             # If the model is a local LLM, we can run on all QA examples
             num_df_qa_pairs = len(df_qa_pairs)
-            can_process_full_batch = repo_exists(args.model_name) and (
-                args.method not in ["react", "act", "react->cot-sc", "cot-sc->react"]
-            )
-            batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
-            for batch_number in range(1, math.ceil(num_df_qa_pairs / batch_size) + 1):  # range(1, 2):
+
+            if args.batch_number is not None:
+                assert args.batch_number >= 1, "Batch number must be >= 1"
+                assert args.batch_number <= math.ceil(
+                    num_df_qa_pairs / args.batch_size
+                ), "Batch number must be <= ceil(num_df_qa_pairs / batch_size)"
+                batch_size = args.batch_size
+            else:
+                can_process_full_batch = repo_exists(args.model_name) and (
+                    args.method not in ["react", "act", "react->cot-sc", "cot-sc->react"]
+                )
+                batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
+            for batch_number in range(1, math.ceil(num_df_qa_pairs / batch_size) + 1):
                 run_name = (
                     f"split={split}"
                     + f"__model_name={args.model_name.replace('/', '--')}"
@@ -210,7 +218,7 @@ async def main(args: argparse.Namespace) -> None:
                 batch_start_idx = (batch_number - 1) * batch_size
                 batch_end_idx = batch_start_idx + batch_size
                 logger.info(
-                    f"Getting predictions for questions [{batch_start_idx}, {batch_end_idx})"
+                    f"Getting predictions for questions [{batch_start_idx}, {batch_end_idx}) "
                     f"out of {num_df_qa_pairs}"
                 )
                 batch_df_qa_pairs = df_qa_pairs.iloc[batch_start_idx:batch_end_idx]
