@@ -7,6 +7,7 @@ import tempfile
 from pathlib import Path
 
 import pandas as pd
+from huggingface_hub import repo_exists
 from tqdm import tqdm
 
 from phantom_wiki.facts.database import Database
@@ -16,7 +17,6 @@ from ._types import Conversation, LLMChatResponse
 from .agent import Agent, get_agent
 from .llm import get_llm
 from .llm.common import InferenceGenerationConfig, LLMChat
-from .llm.vllm import VLLMChat
 from .prolog_utils import get_prolog_results
 from .prompts import (
     ACT_EXAMPLES,
@@ -35,7 +35,7 @@ logger = logging.getLogger(__name__)
 
 def get_model_kwargs(args: argparse.Namespace) -> dict:
     match args.model_name:
-        case model_name if model_name in VLLMChat.SUPPORTED_LLM_NAMES:
+        case model_name if repo_exists(model_name):
             model_kwargs = dict(
                 model_path=args.model_path,
                 max_model_len=args.inf_vllm_max_model_len,
@@ -184,7 +184,7 @@ async def main(args: argparse.Namespace) -> None:
 
             # If the model is a local LLM, we can run on all QA examples
             num_df_qa_pairs = len(df_qa_pairs)
-            can_process_full_batch = (args.model_name in VLLMChat.SUPPORTED_LLM_NAMES) and (
+            can_process_full_batch = repo_exists(args.model_name) and (
                 args.method not in ["react", "act", "react->cot-sc", "cot-sc->react"]
             )
             batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size

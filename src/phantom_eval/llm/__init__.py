@@ -12,7 +12,6 @@ SUPPORTED_LLM_NAMES: list[str] = (
     + GeminiChat.SUPPORTED_LLM_NAMES
     + OpenAIChat.SUPPORTED_LLM_NAMES
     + TogetherChat.SUPPORTED_LLM_NAMES
-    + VLLMChat.SUPPORTED_LLM_NAMES
 )
 
 
@@ -30,4 +29,7 @@ def get_llm(model_name: str, model_kwargs: dict) -> LLMChat:
             # NOTE: vLLM supports all models on Hugging Face Hub
             return VLLMChat(model_name=model_name, **model_kwargs)
         case _:
-            raise ValueError(f"Model name {model_name} must be one of {SUPPORTED_LLM_NAMES}.")
+            raise ValueError(
+                f"Model name {model_name} must be one of {SUPPORTED_LLM_NAMES}"
+                " or exist as a repo on HuggingFace."
+            )
