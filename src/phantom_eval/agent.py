@@ -827,28 +827,6 @@ class ReactAgent(Agent):
         else:
             raise ValueError(f"Action '{action}' cannot be parsed.")
 
-    @classmethod
-    def parse_thinking_action(cls, action: str) -> tuple[str, str]:
-        """
-        Returns a tuple of the action type and the argument given an output from a reasoning model.
-        Correct format: `action_type[<argument>]`.
-
-        Raises:
-            ValueError: If the action cannot be parsed.
-        """
-        pattern = r"(?:<\/think>[\s\S]*?)(\w+)\[(.*?)\]"
-        m = re.search(pattern, action)
-
-        if m:
-            action_type = m.group(1)
-            action_arg = m.group(2)
-
-            # Normalize the argument
-            action_arg = action_arg.lower()
-            return action_type, action_arg
-        else:
-            raise ValueError(f"Action '{action}' cannot be parsed.")
-
 
 class React_CoTSCAgent(Agent):
     """
