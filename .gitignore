@@ -565,6 +565,7 @@ nohup.out
 
 # slurm logs
 *slurm*/
+*logs*/
 
 # cache directory for speeding up evaluation
 cachedir/
