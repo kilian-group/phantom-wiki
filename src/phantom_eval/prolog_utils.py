@@ -141,7 +141,10 @@ def get_prolog_results(
                             if isinstance(value, bytes):
                                 decoded_binding[key] = value.decode("utf-8")
                             else:
-                                decoded_binding[key] = value
+                                # NOTE: the first if-statement doesn't seem to handle
+                                # the case when the value is a Variable
+                                # so I just convert everything else to a string
+                                decoded_binding[key] = str(value)
                         decoded_result.append(decoded_binding)
 
                 # Store result and variable bindings
@@ -183,13 +186,13 @@ def get_prolog_results(
             # NOTE: the score functions expect a string, so we need to return an empty string
             final_value = ""
         elif len(final_value) == 1:
-            final_value = final_value.pop()
+            final_value = str(final_value.pop())
         else:
             final_value = list(final_value)
             # Albert: sorting throws an error when the values are of type Variable
             # final_value.sort()
             # NOTE: the score functions expect a string, so we need to join the list using a separator
-            final_value = constants.answer_sep.join(final_value)
+            final_value = constants.answer_sep.join([str(v) for v in final_value])
 
         assert isinstance(final_value, str), f"final_value: {final_value} is not a string"
 
