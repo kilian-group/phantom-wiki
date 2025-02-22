@@ -28,10 +28,11 @@ grouped = df.groupby(["_model", "_depth", "_size", "_data_seed", "_seed"])
 acc = grouped[["EM", "precision", "recall", "f1"]].mean()
 # add a column that counts the number of elements in the group
 acc["count"] = grouped.size()
-# print as markdown
-print(acc.to_markdown())
 # add a column at the end for the method
 acc["method"] = method
+# print as markdown
+print(acc.to_markdown())
+
 # save to a csv file
 scores_dir = os.path.join(output_dir, "scores", method)
 os.makedirs(scores_dir, exist_ok=True)

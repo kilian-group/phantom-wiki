@@ -51,12 +51,12 @@ acc = grouped[["EM", "precision", "recall", "f1"]].agg(["mean", "std"])
 # COLS.remove("_seed")
 # add a column that counts the number of elements in the group
 acc["count"] = grouped.size()
-# print the accuracy
-print(acc.to_markdown())
 # collapse multi-index columns
 acc.columns = acc.columns.to_flat_index()
 # add a column at the end for the method
 acc["method"] = method
+# print the accuracy
+print(acc.to_markdown())
 
 # save to a csv file
 scores_dir = os.path.join(output_dir, "scores", method)
