@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH -J reasoning-large                              # Job name
-#SBATCH -o slurm/reasoning-large_%j.out                 # output file (%j expands to jobID)
-#SBATCH -e slurm/reasoning-large_%j.err                 # error log file (%j expands to jobID)
+#SBATCH -J cot-rag-reasoning                              # Job name
+#SBATCH -o slurm/cot-rag-reasoning_%j.out                 # output file (%j expands to jobID)
+#SBATCH -e slurm/cot-rag-reasoning_%j.err                 # error log file (%j expands to jobID)
 #SBATCH --mail-type=ALL                      # Request status by email
 #SBATCH --mail-user=ag2435@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
@@ -31,7 +31,6 @@ fi
 
 TEMPERATURE=0.6
 TOP_P=0.95
-REASONING_MODELS=('deepseek-ai/deepseek-r1-distill-qwen-32b')
 
 source eval/constants.sh
 
@@ -62,22 +61,8 @@ check_server() {
 
 for model_name in "${REASONING_MODELS[@]}"
 do
-    # echo "Starting vLLM server..."
-    # vllm_cmd="vllm serve $model_name --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port $PORT" #nohup launches this in the background
-    # echo $vllm_cmd
-    # nohup $vllm_cmd &
-
-    # echo "Waiting for vLLM server to start..."
-    # SLEEP=60
-    # while ! check_server $model_name $PORT; do
-    #     echo "Server is not up yet. Checking again in $SLEEP seconds..."
-    #     sleep $SLEEP
-    # done
-
-    # echo "vLLM server is up and running."
-
     cmd="python -m phantom_eval \
-        --method zeroshot-rag \
+        --method cot-rag \
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \
@@ -85,7 +70,6 @@ do
         --inf_temperature $TEMPERATURE \
         --inf_top_p $TOP_P \
         "
-        # --batch_size 1
 
     echo $cmd
     eval $cmd

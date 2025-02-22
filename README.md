@@ -1,25 +1,70 @@
 # PhantomWiki
 
+PhantomWiki generates on-demand datasets to evaluate reasoning and retrieval capabilities of LLMs.
+
+- [Website](/todo)
+- [Paper](/todo)
+- [Demo](/todo)
+
+## Using PhantomWiki
+
+PhantomWiki is available with Python 3.12+ through
+
+```bash
+pip install phantom-wiki
+```
+
+To build from source, you can clone this repository and run `pip install .`.
+
+Then generate datasets of varying sizes with:
+
+```bash
+./data/generate-v05.sh /path/to/output/ 1 --use-multithreading
+```
+
+**NOTE:** We do not support `--use-multithreading` on macOS yet.
+
+This generation script creates PhantomWiki datasets with random generation seed 1:
+
+- Universe sizes 25, 50, 500, ..., 5K, 500K, 1M (number of documents)
+- Question template depth 20 (proportional to difficulty)
+
+For example, it executes the following command to generate a size 5K universe (`5000 = --max-tree-size * --num-samples`):
+
+```bash
+python -m phantom_wiki \
+   -od /path/to/output/depth_20_size_5000_seed_1 \
+   -s 1 \
+   --depth 20 \
+   --num-samples 100 \
+   --max-tree-size 50 \
+   --max-tree-depth 20 \
+   --article-format json \
+   --question-format json \
+   --hard-mode \
+   --valid-only \
+   --use-multithreading
+```
+
 ## Installation
 
 PhantomWiki uses the [Prolog](https://en.wikipedia.org/wiki/Prolog) logic programming language, available on all operating systems through [SWI-Prolog](https://www.swi-prolog.org/).
 We recommend installing SWI-prolog through your [distribution](https://www.swi-prolog.org/Download.html) or through conda, for example:
 
 ```bash
-# On MacOS
+# On macOS: with homebrew
 brew install swi-prolog
 
-# On Linux with apt
+# On Linux: with apt
 sudo add-apt-repository ppa:swi-prolog/stable
 sudo apt-get update
 sudo apt-get install swi-prolog
 
-# With conda package manager
+# On Linux: with conda
 conda install conda-forge::swi-prolog
-```
 
-PhantomWiki is available with Python 3.12+ through `pip install phantom-wiki`.
-Alternatively, clone this github repo and run `pip install .`
+# On Windows: download and install binary from https://www.swi-prolog.org/download/stable
+```
 
 ### Installing PhantomWiki in development mode
 
@@ -37,7 +82,7 @@ There are 2 options:
    2. Add `PYTHONPATH=src`
    3. Restart VSCode
 
-## PhantomWiki Evaluation
+## Evaluating LLMs on PhantomWiki
 
 First, install dependencies and [vLLM](https://github.com/vllm-project/vllm) to match your hardware (GPU, CPU, etc.):
 
@@ -46,15 +91,15 @@ pip install phantom-wiki[eval]
 pip install "vllm>=0.6.6"
 ```
 
-If you're installing from source, use `pip install .[eval]`.
+If you're installing from source, use `pip install -e .[eval]`.
 
-Then run evaluation methods (like `zeroshot,fewshot,react,...`) with an LLM like so:
+Then run evaluation methods (like `zeroshot,cot,react,...`) with an LLM like so:
 
 ```bash
 python -m phantom_eval --method <method> --model_name <llm_name>
 ```
 
-**Steps for reproducing all results:**
+### Reproducing LLM evaluation results in the paper
 
 🛑 Make sure to request access for Gemma, Llama 3.1, 3.2, and 3.3 models on HuggingFace before proceeding.
 
@@ -163,7 +208,17 @@ huggingface-cli download MODEL_REPO_ID
 
 **Git:**
 
+Use [pre-commit](https://pre-commit.com/) for automatic code formatting.
+You can install the git hook that automatically runs pre-commit on every commit.
+
+```bash
+pip install phantom-wiki[dev] # or pip install -e .[dev]
+pre-commit install
 ```
+
+To run pre-commit manually:
+
+```bash
 git add <files that you want to stage>
 pre-commit run
 # at this point, you might need to fix any issues raised by pre-commit and restage your modified files
@@ -171,19 +226,21 @@ git commit -m "your commit message"
 git push
 ```
 
-Alternatively, run `pre-commit install` once and this will install a hook that automatically runs pre-commit
-on every commit.
-
 **Testing:**
 
-1. If prompted, select `pytest` as the testing framework for the VSCode Testing Extension
-2. To run the tests, there are two methods:
-   - Run from the Testing Extension (note: your python interpreter must be set to the `dataset` conda environment created above)
-   - Call `pytest` in the terminal (note: make sure the `dataset` conda environment is activated)
+Run `pytest` to run tests:
+
+```bash
+pip install phantom-wiki[tests] # or pip install -e .[tests]
+pytest
+```
+
+Alternatively, you can use `pytest` through your editor's (like VSCode) testing extension.
+Accordingly specify your python environment and interpreter.
 
 **Sharing results:**
 
-- Model predictions can be shared at `/share/nikola/phantom-wiki/eval`
+- Model predictions can be shared at `/share/nikola/phantom-wiki/eval/`
 - Please copy the predictions to your local working directory rather than reading from the shared directory directly
 
 ## Sharing dataset to HuggingFace
@@ -217,4 +274,19 @@ Alternatively, can use the huggingface cli (see https://huggingface.co/docs/data
 
 ```bash
 huggingface-cli upload mlcore/phantom-wiki-v<version> OUTPUT_DIRECTORY . --repo-type dataset --commit-message="optional commit message"
+```
+
+## Citation
+
+TODO with arxiv link
+
+```bibtex
+@article{2025_phantomwiki,
+  title={{PhantomWiki: On-Demand Datasets for Reasoning and Retrieval Evaluation}},
+  author={Albert Gong and Kamilė Stankevičiūtė and Chao Wan and Anmol Kabra and Raphael Thesmar and Johann Lee and Julius Klenke and Carla P. Gomes and Kilian Q. Weinberger},
+  year={2025},
+  journal={todo},
+  url={todo},
+  note={Under Review},
+}
 ```
