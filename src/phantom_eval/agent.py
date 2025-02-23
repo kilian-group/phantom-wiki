@@ -148,12 +148,13 @@ class NshotAgent(Agent):
         self.agent_interactions = convs
 
         # Generate response
-        if llm_chat.model_name in REASONING_MODELS:
+        if llm_chat.model_name in REASONING_MODELS or "gpt-4o" in llm_chat.model_name:
             inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
         else:
             # Change stop_sequences to "\n"
             inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
         responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
+        logger.info(f"{responses=}")
 
         # Add the responses to the agent's conversations
         for i, response in enumerate(responses):
