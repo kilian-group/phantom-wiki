@@ -109,7 +109,7 @@ class PhantomWiki(datasets.GeneratorBasedBuilder):
                 {
                     "title": datasets.Value("string"),
                     "article": datasets.Value("string"),
-                    # "facts": datasets.Value("string"), # TODO
+                    "facts": datasets.Sequence(datasets.Value("string")),
                 }
             )
         elif self.config.name == "question-answer":
