@@ -26,6 +26,8 @@ class VLLMChat(CommonLLMChat):
         "google/gemma-2-27b-it",
         "mistralai/mistral-7b-instruct-v0.3",
         "deepseek-ai/deepseek-r1-distill-qwen-32b",
+        "deepseek-ai/deepseek-r1-distill-qwen-7b",
+        "deepseek-ai/deepseek-r1-distill-qwen-1.5b",
     ]
 
     def __init__(
@@ -55,7 +57,8 @@ class VLLMChat(CommonLLMChat):
 
         # additional stop token for llama models
         # NOTE: eot = end-of-turn
-        if model_name == "deepseek-ai/deepseek-r1-distill-qwen-32b":
+        # Handle additional stop token for all distilled deepseek r1 models
+        if model_name.startswith("deepseek-ai/deepseek-r1-distill-qwen"):
             self.ADDITIONAL_STOP = [
                 "<｜end▁of▁sentence｜>",
             ]
