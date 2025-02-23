@@ -5,14 +5,16 @@ The article generation pipeline comprises two stages:
 We currently support two types of facts:
 - relations, which includes family relations and friendship relations
 - attributes, which includes hobbies, jobs, dates of birth, and genders
-TODO: add support for ternary predicates
+
+TODO (Albert): add support for ternary predicates
 
 2. Converting each Prolog fact to a natural-language sentence using templates
 Each Prolog predicate is associated with a template that specifies how to convert
 a fact with that predicate to a natural-language sentence. For example, the Prolog
 predicate hobby/2 is associated with the template "The hobby of <subject> is".
 Note that some predicates have multiple templates to handle singular and plural cases.
-TODO: figure out a better way of storing the following information
+
+TODO (Albert): figure out a better way of storing the following information
 - templates (singular and plural)
 - aliases (e.g., dob -> date-of-birth)
 - choices (e.g., set of all hobbies) and probability of choosing each choice (e.g., uniform)
