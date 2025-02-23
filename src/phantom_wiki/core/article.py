@@ -20,6 +20,10 @@ TODO (Albert): figure out a better way of storing the following information
 - choices (e.g., set of all hobbies) and probability of choosing each choice (e.g., uniform)
 - whether we include the predicate in articles
 - whether we include the predicate in questions
+NOTE: for templates, we could also consider introducing a syntax for translating from
+Prolog facts to natural-language sentences. For example,
+- sibling(X, Y) -> "The sibling of <X> is <Y>." and "The siblings of <X> are <Y>."
+- hobby(X, Y) -> "The hobby of <X> is <Y>."
 """
 
 from collections import defaultdict
