@@ -139,7 +139,7 @@ def main(args):
         logging.info(f"Saving articles to: {article_dir}")
         os.makedirs(article_dir, exist_ok=True)
         for name, (article, facts) in articles.items():
-            with open(os.path.join(article_dir, f"{name}_article.txt"), "w") as file:
+            with open(os.path.join(article_dir, f"{name}.txt"), "w") as file:
                 file.write(article)
             with open(os.path.join(article_dir, f"{name}_facts.txt"), "w") as file:
                 file.write("\n".join(facts))
