@@ -52,13 +52,15 @@ def get_articles(db: Database, names: list[str]) -> dict:
     """
     # HACK: Do not include parent, child, and sibling in the articles
     relation_list = [r for r in FAMILY_RELATION_EASY if r not in ["parent", "child", "sibling"]]
-    family_sentences = get_relation_sentences(
+    family_sentences, family_facts = get_relations(
         db, names, relation_list, FAMILY_FACT_TEMPLATES, FAMILY_FACT_TEMPLATES_PL
     )
-    friend_sentences = get_relation_sentences(
+    friend_sentences, friend_facts = get_relations(
         db, names, FRIENDSHIP_RELATION, FRIENDSHIP_FACT_TEMPLATES, FRIENDSHIP_FACT_TEMPLATES_PL
     )
-    attribute_sentences = get_attribute_sentences(db, names)
+    attribute_sentences, attribute_facts = get_attributes(
+        db, names, ATTRIBUTE_TYPES + ["gender"], ATTRIBUTE_FACT_TEMPLATES
+    )
 
     articles = {}
     for name in names:
@@ -68,20 +70,21 @@ def get_articles(db: Database, names: list[str]) -> dict:
             friend_facts="\n".join(friend_sentences[name]),
             attribute_facts="\n".join(attribute_sentences[name]),
         )
-        articles[name] = article
+        facts = family_facts[name] + friend_facts[name] + attribute_facts[name]
+        articles[name] = (article, facts)
     return articles
 
 
 #
 # Functionality to get relation sentences
 #
-def get_relation_sentences(
+def get_relations(
     db: Database,
     names: list[str],
     relation_list: list[str],
     relation_templates: dict[str, str],
     relation_templates_plural: dict[str, str],
-) -> dict[str, list[str]]:
+) -> tuple[dict[str, list[str]], dict[str, list[str]]]:
     """
     Get relation sentences for a list of names.
 
@@ -95,38 +98,41 @@ def get_relation_sentences(
         dict of facts for each name
     """
     sents = defaultdict(list)
+    facts = defaultdict(list)
     for name in names:
-        relations = get_relations(db, name, relation_list)
-        for relation, target in relations.items():
+        for relation in relation_list:
+            # create list of answers for each relation
+            target = []
+
+            query = f'distinct({relation}("{name}", X))'
+            for result in db.query(query):
+                decoded_result = decode(result["X"])
+                target.append(decoded_result)
+                facts[name].append(f'{relation}("{name}", "{decoded_result}").')
+
             if not target:
                 continue
+            # Choose the appropriate template based on the number of targets
             if len(target) > 1:
                 relation_template = relation_templates_plural[relation]
             else:
                 relation_template = relation_templates[relation]
-            fact = relation_template.replace("<subject>", name) + " " + ", ".join(target) + "."
-            sents[name].append(fact)
-    return sents
-
-
-def get_relations(db: Database, name: str, relation_list: list[str]) -> dict:
-    """
-    Get the results for all relations in the specified `relation_list`
-    for a given `name`.
-    """
-    relations = {}
-    for relation in relation_list:
-        query = f'distinct({relation}("{name}", X))'
-        results = [decode(result["X"]) for result in db.query(query)]
-        relations[relation] = results
-
-    return relations
+            # Construct the sentence
+            sent = relation_template.replace("<subject>", name) + " " + ", ".join(target) + "."
+            # Append the sentence to the list of sentences for the person
+            sents[name].append(sent)
+    return sents, facts
 
 
 #
 # Functionality to get attribute sentences
 #
-def get_attribute_sentences(db: Database, names: list[str]) -> dict[str, list[str]]:
+def get_attributes(
+    db: Database,
+    names: list[str],
+    attribute_list: list[str],
+    attribute_templates: dict[str, str],
+) -> tuple[dict[str, list[str]], dict[str, list[str]]]:
     """Get attribute sentences for a list of names.
 
     Args:
@@ -136,26 +142,21 @@ def get_attribute_sentences(db: Database, names: list[str]) -> dict[str, list[st
         dict of sentences for each name
     """
     sents = defaultdict(list)
+    facts = defaultdict(list)
     for name in names:
-        attributes = get_attributes(db, name)
-        for attr, target in attributes.items():
-            if target == []:
+        for attr in attribute_list:
+            # create list of answers for each attribute
+            target = []
+            query = f'{attr}("{name}", X)'
+            for result in db.query(query):
+                decoded_result = decode(result["X"])
+                target.append(decoded_result)
+                facts[name].append(f'{attr}("{name}", "{decoded_result}").')
+            if not target:
                 continue
-            attr_template = ATTRIBUTE_FACT_TEMPLATES[attr]
-            fact = attr_template.replace("<subject>", name) + " " + ", ".join([str(s) for s in target]) + "."
-            sents[name].append(fact)
-    return sents
-
-
-def get_attributes(db: Database, name: str):
-    """
-    Get attributes for each person in the database.
-    """
-    attributes = {}
-    # HACK: Include "gender" as an attribute type when generating articles
-    attribute_type_in_articles = ATTRIBUTE_TYPES + ["gender"]
-    for attr in attribute_type_in_articles:
-        query = f'{attr}("{name}", X)'
-        results = [decode(result["X"]) for result in db.query(query)]
-        attributes[attr] = results
-    return attributes
+            # Construct the sentence
+            attr_template = attribute_templates[attr]
+            sent = attr_template.replace("<subject>", name) + " " + ", ".join(target) + "."
+            # Append the sentence to the list of sentences for the person
+            sents[name].append(sent)
+    return sents, facts

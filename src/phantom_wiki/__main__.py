@@ -138,15 +138,22 @@ def main(args):
         article_dir = os.path.join(args.output_dir, "articles")
         logging.info(f"Saving articles to: {article_dir}")
         os.makedirs(article_dir, exist_ok=True)
-        for name, article in articles.items():
-            with open(os.path.join(article_dir, f"{name}.txt"), "w") as file:
+        for name, (article, facts) in articles.items():
+            with open(os.path.join(article_dir, f"{name}_article.txt"), "w") as file:
                 file.write(article)
+            with open(os.path.join(article_dir, f"{name}_facts.txt"), "w") as file:
+                file.write("\n".join(facts))
     elif args.article_format == "json":
         save_path = os.path.join(args.output_dir, "articles.json")
         logging.info(f"Saving articles to: {save_path}")
         with open(save_path, "w") as file:
             json.dump(
-                [{"title": name, "article": article} for name, article in articles.items()], file, indent=4
+                [
+                    {"title": name, "article": article, "facts": facts}
+                    for name, (article, facts) in articles.items()
+                ],
+                file,
+                indent=4,
             )
     else:
         raise ValueError(f"Article format {args.article_format} not supported!")
