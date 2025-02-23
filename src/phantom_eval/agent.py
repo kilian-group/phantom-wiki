@@ -764,6 +764,7 @@ class ReactAgent(Agent):
         NOTE: Returned usage is empty since the LLM is not called.
         """
         action_type, action_arg = ReactAgent.parse_action(response_action.pred)
+
         match action_type:
             case "Finish":
                 self.step_round += 1
@@ -846,6 +847,9 @@ class ReactAgent(Agent):
 
         Raises:
             ValueError: If the action cannot be parsed.
+
+        NOTE: This method is also able to handle Deepseek's outputs, because their models don't generate model
+        calls in between <think> </think> tags.
         """
         # Extract the action type (any word string) and argument (any string within square brackets)
         # argument can be empty as well
@@ -1219,6 +1223,8 @@ SUPPORTED_METHOD_NAMES: list[str] = [
 
 REASONING_MODELS: list[str] = [
     "deepseek-ai/deepseek-r1-distill-qwen-32b",
+    "deepseek-ai/deepseek-r1-distill-qwen-7b",
+    "deepseek-ai/deepseek-r1-distill-qwen-1.5b",
 ]
 
 

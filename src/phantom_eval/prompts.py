@@ -1,5 +1,6 @@
 import abc
 
+from huggingface_hub import repo_exists
 from langchain.prompts import PromptTemplate
 
 from phantom_eval import constants, llm
@@ -7,7 +8,6 @@ from phantom_eval.llm.anthropic import AnthropicChat
 from phantom_eval.llm.gemini import GeminiChat
 from phantom_eval.llm.openai import OpenAIChat
 from phantom_eval.llm.together import TogetherChat
-from phantom_eval.llm.vllm import VLLMChat
 
 
 class LLMPrompt(abc.ABC):
@@ -807,7 +807,7 @@ def get_llm_prompt(method: str, model_name: str) -> LLMPrompt:
                     return ReactGeminiPrompt()
                 case model_name if model_name in AnthropicChat.SUPPORTED_LLM_NAMES:
                     return ReactLLMPrompt()
-                case model_name if model_name in VLLMChat.SUPPORTED_LLM_NAMES:
+                case model_name if repo_exists(model_name):
                     return ReactLLMPrompt()
                 case _:
                     raise ValueError(f"Model name {model_name} must be one of {llm.SUPPORTED_LLM_NAMES}.")
