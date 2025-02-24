@@ -1,5 +1,6 @@
 import logging
 
+from phantom_eval import constants
 from phantom_eval.llm.common import LLMChatResponse
 from phantom_wiki.facts.database import Database
 
@@ -140,7 +141,10 @@ def get_prolog_results(
                             if isinstance(value, bytes):
                                 decoded_binding[key] = value.decode("utf-8")
                             else:
-                                decoded_binding[key] = value
+                                # NOTE: the first if-statement doesn't seem to handle
+                                # the case when the value is a Variable
+                                # so I just convert everything else to a string
+                                decoded_binding[key] = str(value)
                         decoded_result.append(decoded_binding)
 
                 # Store result and variable bindings
@@ -177,15 +181,16 @@ def get_prolog_results(
             for binding in query_results[-1]["result"]:
                 if target_variable in binding:
                     final_value.add(binding[target_variable])
-        if final_value == set():
-            final_value = None
+        if len(final_value) == 0:
+            # NOTE: the score functions expect a string, so we need to return an empty string
+            final_value_str = ""
         elif len(final_value) == 1:
-            final_value = final_value.pop()
+            final_value_str = str(final_value.pop())
         else:
-            final_value = list(final_value)
-            final_value.sort()
+            # NOTE: the score functions expect a string, so we need to join the list using a separator
+            final_value_str = constants.answer_sep.join([str(v) for v in list(final_value)])
 
         prolog_results.append(
-            {"final_value": final_value, "query": pred_query, "query_results": query_results}
+            {"final_value": final_value_str, "query": pred_query, "query_results": query_results}
         )
     return prolog_results

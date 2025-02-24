@@ -110,11 +110,7 @@ class NshotAgent(Agent):
         self.agent_interactions = conv
 
         # Generate response
-        if llm_chat.model_name in REASONING_MODELS:
-            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
-        else:
-            # Add "\n" to stop_sequences
-            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
+        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
         response = llm_chat.generate_response(conv, inf_gen_config)
 
         # Update agent's conversation
@@ -148,11 +144,7 @@ class NshotAgent(Agent):
         self.agent_interactions = convs
 
         # Generate response
-        if llm_chat.model_name in REASONING_MODELS:
-            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
-        else:
-            # Change stop_sequences to "\n"
-            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
+        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
         responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
 
         # Add the responses to the agent's conversations
@@ -287,13 +279,21 @@ class NshotSCAgent(NshotAgent, SCMixin):
 
 
 class CoTAgent(Agent):
-    def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt, cot_examples: str = ""):
+    def __init__(
+        self,
+        text_corpus: pd.DataFrame,
+        llm_prompt: LLMPrompt,
+        cot_examples: str = "",
+        prolog_query: bool = False,
+    ):
         """
         Args:
             cot_examples (str): Prompt examples to include in agent prompt.
+            prolog_query (bool): Whether to use prolog query in the agent prompt.
         """
         super().__init__(text_corpus, llm_prompt)
         self.cot_examples = cot_examples
+        self.prolog_query = prolog_query
 
     def run(
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
@@ -375,7 +375,7 @@ class CoTAgent(Agent):
             evidence = self.get_RAG_evidence(question)
         else:
             evidence = _get_evidence(self.text_corpus)
-        return self.llm_prompt.get_prompt().format(
+        return self.llm_prompt.get_prompt(prolog_query=self.prolog_query).format(
             evidence=evidence, examples=self.cot_examples, question=question
         )
 
@@ -750,6 +750,7 @@ class ReactAgent(Agent):
         NOTE: Returned usage is empty since the LLM is not called.
         """
         action_type, action_arg = ReactAgent.parse_action(response_action.pred)
+
         match action_type:
             case "Finish":
                 self.step_round += 1
@@ -832,6 +833,9 @@ class ReactAgent(Agent):
 
         Raises:
             ValueError: If the action cannot be parsed.
+
+        NOTE: This method is also able to handle Deepseek's outputs, because their models don't generate model
+        calls in between <think> </think> tags.
         """
         # Extract the action type (any word string) and argument (any string within square brackets)
         # argument can be empty as well
@@ -1205,6 +1209,8 @@ SUPPORTED_METHOD_NAMES: list[str] = [
 
 REASONING_MODELS: list[str] = [
     "deepseek-ai/deepseek-r1-distill-qwen-32b",
+    "deepseek-ai/deepseek-r1-distill-qwen-7b",
+    "deepseek-ai/deepseek-r1-distill-qwen-1.5b",
 ]
 
 

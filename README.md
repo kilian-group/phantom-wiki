@@ -91,95 +91,18 @@ pip install phantom-wiki[eval]
 pip install "vllm>=0.6.6"
 ```
 
-If you're installing from source, use `pip install -e .[eval]`.
+If you're installing from source, use `pip install -e ".[eval]"`.
 
-Then run evaluation methods (like `zeroshot,cot,react,...`) with an LLM like so:
+### Setting up API keys
 
-```bash
-python -m phantom_eval --method <method> --model_name <llm_name>
-```
-
-### Reproducing LLM evaluation results in the paper
-
-🛑 Make sure to request access for Gemma, Llama 3.1, 3.2, and 3.3 models on HuggingFace before proceeding.
-
-🧪 To generate the prediction files, run the following scripts (e.g., using slurm) from the root directory:
-
-```
-# Create a dir for slurm logs
-mkdir slurm
-
-conda activate dataset
-# run small models (< 4B params) locally (allocates 1 3090)
-sbatch eval/zeroshot_S.sh <output directory>
-sbatch eval/fewshow_S.sh <output directory>
-sbatch eval/cot_S.sh <output directory>
-# run medium models (< 10B params) locally (allocates 2 A6000s)
-sbatch eval/zeroshot_M.sh <output directory>
-sbatch eval/fewshot_M.sh <output directory>
-sbatch eval/cot_M.sh <output directory>
-# run large models (10-70B params) locally (allocates 8 A6000s)
-sbatch eval/zeroshot_L.sh <output directory>
-sbatch eval/fewshow_L.sh <output directory>
-sbatch eval/cot_L.sh <output directory>
-# run API models (NOTE: this can be very expensive!)
-sbatch eval/zeroshot_cpu.sh <output directory> <model name>
-sbatch eval/cot_cpu.sh <output directory> <model name>
-```
-
-📊 To generate the tables and figures, run the following script from the root directory:
-
-```
-# make sure the dataset conda env is activated!
-./eval/evaluate.sh <output directory> <method>
-```
-
-where <output directory> here is the same as <output directory> when generating the prediction and <method> cam be zeroshot/react/etc.
-
-NOTE: this script will save the outputs to OUTPUT_DIRECTORY under `scores/` and `figures/`
-
-TODO: make the folder naming structure more consistent
-
-Run `python -m phantom_eval -h` for usage help and a list of supported models.
-Below are setup instructions for various LLM providers supported in evaluation.
-
-### TogetherAI
-
-1. Register for an account at https://api.together.ai
-2. Set your TogetherAI API key:
-
-```
-conda env config vars set TOGETHER_API_KEY=xxxxx
-```
-
-### OpenAI
-
-1. Register an account *with your cornell.edu email* at https://platform.openai.com/ and join "Kilian's Group"
-2. Create an API key at https://platform.openai.com/settings/organization/api-keys under your name
-3. Set your OpenAI API key in your conda environment:
-
-```
-conda env config vars set OPENAI_API_KEY=xxxxx
-```
-
-Rate limits: https://platform.openai.com/docs/guides/rate-limits#usage-tiers
-
-### Google Gemini
-
-1. Create an API key at https://aistudio.google.com/app/apikey (NOTE: for some reason, Google AI Studio is disabled for cornell.edu accounts, so use your personal account)
-2. Set your Google API key:
-
-```
-conda env config vars set GEMINI_API_KEY=xxxxx
-```
-
-### Anthropic
+<details>
+<summary>Anthropic</summary>
 
 1. Register an account *with your cornell.edu email* and join "Kilian's Group"
 2. Create an API key at https://console.anthropic.com/settings/keys under your name
 3. Set your Anthropic API key in your conda environment:
 
-```
+```bash
 conda env config vars set ANTHROPIC_API_KEY=xxxxx
 ```
 
@@ -187,7 +110,49 @@ Rate limits: https://docs.anthropic.com/en/api/rate-limits#updated-rate-limits
 
 :rotating_light: The Anthropic API has particularly low rate limits so it takes longer to get predictions.
 
-### vLLM
+</details>
+
+<details>
+<summary>Google Gemini</summary>
+
+1. Create an API key at https://aistudio.google.com/app/apikey (NOTE: for some reason, Google AI Studio is disabled for cornell.edu accounts, so use your personal account)
+2. Set your Gemini API key:
+
+```bash
+conda env config vars set GEMINI_API_KEY=xxxxx
+```
+
+</details>
+
+<details>
+<summary>OpenAI</summary>
+
+1. Register an account *with your cornell.edu email* at https://platform.openai.com/ and join "Kilian's Group"
+2. Create an API key at https://platform.openai.com/settings/organization/api-keys under your name
+3. Set your OpenAI API key in your conda environment:
+
+```bash
+conda env config vars set OPENAI_API_KEY=xxxxx
+```
+
+Rate limits: https://platform.openai.com/docs/guides/rate-limits#usage-tiers
+
+</details>
+
+<details>
+<summary>TogetherAI</summary>
+
+1. Register for an account at https://api.together.ai
+2. Set your TogetherAI API key:
+
+```bash
+conda env config vars set TOGETHER_API_KEY=xxxxx
+```
+
+</details>
+
+<details>
+<summary>vLLM</summary>
 
 Original setup instructions: https://docs.vllm.ai/en/stable/getting_started/installation.html#install-the-latest-code
 
@@ -203,6 +168,31 @@ huggingface-cli download MODEL_REPO_ID
 - Total number of attention heads must be divisible by tensor parallel size
 - See minimum GPU requirements for [small](eval/zeroshot_S.sh), [medium](eval/zeroshot_M.sh), and [large](eval/zeroshot_L.sh) models at the top of each eval inference script
 - Running the same code on the same GPU indeed gives perfectly reproducible outputs, but running the same code on different GPUs (e.g., 3090 vs A6000) doesn't necessarily lead to the same results (see: https://github.com/albertgong1/phantom-wiki/pull/79#issuecomment-2559001925).
+
+</details>
+
+### Reproducing LLM evaluation results in the paper
+
+> \[!NOTE\]
+> For vLLM inference, make sure to request access for Gemma, Llama 3.1, 3.2, and 3.3 models on HuggingFace before proceeding.
+
+🧪 To generate the prediction files, run the following scripts (e.g., using slurm) from the root directory:
+
+```bash
+python -m phantom_eval --method METHOD --model_name MODEL_NAME --split_list SPLIT_LIST -od OUTPUT_DIRECTORY
+```
+
+> \[!TIP\]
+> To generate a slurm script with the appropriate GPU allocation and inference config, run the [create_eval.sh](./eval/create_eval.sh) script and follow the prompted steps.
+
+📊 To generate the tables and figures, run the following script from the root directory:
+
+```
+# make sure the dataset conda env is activated!
+./eval/icml.sh OUTPUT_DIRECTORY METHOD
+```
+
+where OUTPUT_DIRECTORY and METHOD are the same as when generating the predictions. This script will create the following subdirectories in OUTPUT_DIRECTORY: `scores/` and `figures/`.
 
 ## Development best practices
 
@@ -245,32 +235,7 @@ Accordingly specify your python environment and interpreter.
 
 ## Sharing dataset to HuggingFace
 
-1. Clone the HuggingFace dataset repo (note: you only need to do this once):
-
-```bash
-cd PATH_TO_LOCAL_HF_REPO
-pip install -U "huggingface_hub[cli]"
-huggingface-cli login
-# NOTE: when creating a new access token, set the token type to be `write`
-git clone https://huggingface.co/datasets/mlcore/phantom-wiki
-git lfs install
-```
-
-2. Generate a new dataset and save to the location of the huggingface repo
-
-```bash
-python -m phantom_wiki -od PATH_TO_LOCAL_HF_REPO --article-format json --question-format json --valid-only -s SEED
-```
-
-3. Push the files to the huggingface repo:
-
-```bash
-git add .
-git commit -m "some message"
-git push
-```
-
-Alternatively, can use the huggingface cli (see https://huggingface.co/docs/datasets/en/share#upload-an-entire-folder):
+Use the huggingface cli (see https://huggingface.co/docs/datasets/en/share#upload-an-entire-folder):
 
 ```bash
 huggingface-cli upload mlcore/phantom-wiki-v<version> OUTPUT_DIRECTORY . --repo-type dataset --commit-message="optional commit message"
