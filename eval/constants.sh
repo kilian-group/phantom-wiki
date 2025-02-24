@@ -10,14 +10,13 @@ get_inf_seed_list() {
     fi
 }
 
-# L models (run on 8 A6000 GPUs)
 API_MODELS=(
-    gemini-1.5-flash-002
-    gpt-4o-2024-11-20
+    'gemini-1.5-flash-002'
+    # 'gpt-4o-2024-11-20'
 )
+# L models (run on 8 A6000 GPUs)
 LARGE_MODELS=(
     'meta-llama/llama-3.3-70b-instruct'
-    'deepseek-ai/deepseek-r1-distill-qwen-32b'
     # 'google/gemma-2-27b-it' # OPTIONAL
     # 'microsoft/phi-3.5-mini-instruct' # OPTIONAL
     # 'microsoft/phi-3.5-moe-instruct' # OPTIONAL
@@ -34,9 +33,11 @@ SMALL_MODELS=(
     'meta-llama/llama-3.2-1b-instruct'
     # 'google/gemma-2-2b-it' # OPTIONAL
 )
-# TODO add CPU models
+REASONING_MODELS=(
+    "deepseek-ai/deepseek-r1-distill-qwen-32b"
+)
 
-DATASET=mlcore/phantom-wiki-v0.5
+DATASET=mlcore/phantom-wiki-v050
 
 # if dataset is mlcore/phantom-wiki-v0.2, use the following
 if [ "$DATASET" = "mlcore/phantom-wiki-v0.2" ]; then
@@ -65,8 +66,8 @@ elif [ "$DATASET" = "mlcore/phantom-wiki-v0.3" ]; then
             SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
         done
     done
-elif [ "$DATASET" = "mlcore/phantom-wiki-v0.5" ]; then
-    # Define SPLIT_LIST for dataset v0.3
+elif [ "$DATASET" = "mlcore/phantom-wiki-v050" ]; then
+    # Define SPLIT_LIST for dataset v0.5
     DATA_SEED_LIST="1 2 3"
     DATA_DEPTH="20"
     DATA_SIZE_LIST="50 100 200 300 400 500 1000"
@@ -78,7 +79,34 @@ elif [ "$DATASET" = "mlcore/phantom-wiki-v0.5" ]; then
             SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
         done
     done
+    # Define large SPLIT_LIST for dataset v0.5
+    LARGE_DATA_SEED_LIST="1"
+    LARGE_DATA_SIZE_LIST="2500 5000 10000"
+    for data_seed in $LARGE_DATA_SEED_LIST
+    do
+        for data_size in $LARGE_DATA_SIZE_LIST
+        do
+            LARGE_SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
+        done
+    done
 else
     echo "Unknown dataset: $DATASET. Cannot define SPLIT_LIST."
     exit 1
 fi
+
+# get list of support methods by running the following python command
+METHODS=(
+    "zeroshot"
+    "fewshot"
+    "zeroshot-sc"
+    "fewshot-sc"
+    "cot"
+    "cot-sc"
+    "react"
+    "act"
+    "react->cot-sc"
+    "cot-sc->react"
+    "zeroshot-rag"
+    "fewshot-rag"
+    "cot-rag"
+)

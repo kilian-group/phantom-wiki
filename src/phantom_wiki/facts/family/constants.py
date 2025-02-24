@@ -1,3 +1,4 @@
+"""Constants for family relationship wording in facts/questions and estimating their difficulty."""
 PERSON_TYPE = "person"
 
 FAMILY_FACT_TEMPLATES = {
@@ -155,7 +156,7 @@ FAMILY_RELATION_HARD_PLURALS = [
     "daughter_in_laws",
 ]
 
-"""Intrinsic difficulty for different family relations.\
+"""Intrinsic difficulty for different family relations.
 
 For all the predicates that occur in the articles the difficulty is 1.
 For harder predicates the difficulty is incremented by the extra articles that need to be checked to determine

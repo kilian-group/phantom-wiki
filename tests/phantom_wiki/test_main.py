@@ -3,25 +3,29 @@ import json
 import os
 import shutil
 
+from phantom_wiki.__main__ import main
+from phantom_wiki.facts import question_parser
+
 # phantom wiki functionality
 from phantom_wiki.facts.family import fam_gen_parser
-from phantom_wiki.utils import get_parser
-from phantom_wiki.facts import question_parser
 from phantom_wiki.facts.friends import friend_gen_parser
-from phantom_wiki.__main__ import main
+from phantom_wiki.utils import get_parser
 from tests.phantom_wiki import ARTICLE_EXAMPLE_PATH
 
+
 def test_main():
-    parser = get_parser(parents=[
-        fam_gen_parser,
-        question_parser,
-        friend_gen_parser,
-    ])
-    args, _ = parser.parse_known_args(["--output-dir", "test_out", "--seed", "1", "--valid-only", "--debug"])
+    parser = get_parser(
+        parents=[
+            fam_gen_parser,
+            question_parser,
+            friend_gen_parser,
+        ]
+    )
+    args, _ = parser.parse_known_args(["--output-dir", "test_out", "--seed", "1", "--valid-only"])
     main(args)
 
     # get example article
-    with open(ARTICLE_EXAMPLE_PATH, "r") as f:
+    with open(ARTICLE_EXAMPLE_PATH) as f:
         example_article = f.read()
     # test that the articles were generated correctly
     article_dir = os.path.join("test_out", "articles")
@@ -43,15 +47,15 @@ def test_main():
             "<attribute_name>_5",
             "is",
             "<attribute_value>_5",
-            "?"
+            "?",
         ]
 
-        assert data[0]["question"] == "Who is the father of the person whose job is biomedical scientist?"
-        assert data[0]["prolog"]["query"] == [
-            "father(Y_4, Y_2)",
-            "job(Y_4, \"biomedical scientist\")"
-        ]
-        assert data[0]["answer"] == ["Ryan Wang"]
+        assert (
+            data[0]["question"]
+            == "Who is the daughter of the person whose occupation is early years teacher?"
+        )
+        assert data[0]["prolog"]["query"] == ["daughter(Y_4, Y_2)", 'job(Y_4, "early years teacher")']
+        assert data[0]["answer"] == ["Valentina Wexler"]
 
     # clean up test_out directory
     shutil.rmtree("test_out")

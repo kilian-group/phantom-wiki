@@ -1,5 +1,6 @@
-from .constants import HOBBIES, JOBS
 from numpy.random import default_rng
+
+from .constants import HOBBIES, JOBS
 
 
 def generate_jobs(names: list[str], seed=1) -> dict[str, str]:

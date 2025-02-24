@@ -6,7 +6,7 @@ import networkx as nx
 
 def create_friendship_graph(names, k: int, seed: int, visualize: bool = False, output_dir: str = None):
     """
-    Given the names, this creates a friendship graph usign the G(n,p) variant of Erdos-Renyi model.
+    Given the names, this creates a friendship graph using the G(n,p) variant of Erdos-Renyi model.
 
     Returns a list of facts and individual features.
     """
@@ -23,7 +23,7 @@ def create_friendship_graph(names, k: int, seed: int, visualize: bool = False, o
     # if there is an edge between two nodes, they are friends
     connected_edges = list(G.edges)
     for i, j in connected_edges:
-        facts.append(f"friend_(\"{i}\", \"{j}\")")
+        facts.append(f'friend_("{i}", "{j}")')
     logging.info(f"Generated friendship tree of {len(names)} individuals in {time.time()-start_time:.3f}s.")
 
     if visualize:
@@ -47,16 +47,3 @@ def create_friendship_graph(names, k: int, seed: int, visualize: bool = False, o
         plt.show()
 
     return facts
-
-
-# # Obtain names to create the friendship tree on
-# names = get_names("tests/family/family_tree_100.pl")
-
-
-"""
-# Plot and save plot of friendship tree
-generate_tree_visualization = False
-if generate_tree_visualization:
-    graph = plot_friendship_tree(names, coords, pl_friendship_tree)
-    graph.write_png('tests/friendship_tree_100_visualization.png')
-"""

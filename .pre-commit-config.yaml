@@ -1,7 +1,14 @@
 default_language_version:
   python: python3.12
 
-exclude: ^output/
+exclude: |
+  (?x)^(
+        docs/.*|
+        examples/.*|
+        out/.*|
+        output/.*|
+        src/phantom_wiki/facts/family/names/(\w+).json
+    )$
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -10,8 +17,6 @@ repos:
       # list of supported hooks: https://pre-commit.com/hooks.html
       - id: trailing-whitespace
       - id: end-of-file-fixer
-        exclude: "^sample_output/"
-      - id: check-docstring-first
       - id: check-yaml
       - id: debug-statements
       - id: detect-private-key
@@ -30,12 +35,12 @@ repos:
           [
             "--max-complexity=10",
             "--extend-ignore",
-            "E402,E701,E251,E226,E302,W504,E704,E402,E401,C901,E203",
+            "E402,E701,E251,E226,E302,W504,E704,E402,E401,C901,E203,E266",
             "--max-line-length=110",
             "--exclude",
             "logs/*,data/*",
             "--per-file-ignores",
-            "__init__.py:F401",
+            "__init__.py:F401,src/phantom_eval/prompts.py:E501,F541,src/phantom_wiki/core/constants/llm_templates.py:E501",
           ]
   # python remove unused imports
   - repo: https://github.com/PyCQA/autoflake
@@ -63,7 +68,7 @@ repos:
     rev: v3.10.1
     hooks:
       - id: pyupgrade
-        args: [--py310-plus]
+        args: [--py311-plus]
 
   # python docstring formatting
   # - repo: https://github.com/myint/docformatter
@@ -81,10 +86,10 @@ repos:
         exclude: "environment.yaml"
 
   # shell scripts linter
-  - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.9.0.5
-    hooks:
-      - id: shellcheck
+  # - repo: https://github.com/shellcheck-py/shellcheck-py
+  #   rev: v0.9.0.5
+  #   hooks:
+  #     - id: shellcheck
 
   # md formatting
   - repo: https://github.com/executablebooks/mdformat
@@ -108,7 +113,7 @@ repos:
       - id: codespell
         args:
           - --skip=logs/**,data/**,*.ipynb,*.bib,env.yml,env_cpu.yml,*.svg,poetry.lock
-          - --ignore-words-list=ehr
+          - --ignore-words-list=pres,mater
 
   # jupyter notebook cell output clearing
   - repo: https://github.com/kynan/nbstripout

@@ -11,4 +11,3 @@ FRIENDSHIP_RELATION = ["friend"]
 FRIENDSHIP_RELATION_ALIAS = {"friend": "friend"}
 
 FRIENDSHIP_RELATION_PLURAL_ALIAS = {"friend": "friends"}
-
