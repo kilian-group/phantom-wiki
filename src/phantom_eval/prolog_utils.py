@@ -182,7 +182,6 @@ def get_prolog_results(
                 if target_variable in binding:
                     final_value.add(binding[target_variable])
         if len(final_value) == 0:
-            # final_value = None
             # NOTE: the score functions expect a string, so we need to return an empty string
             final_value_str = ""
         elif len(final_value) == 1:
