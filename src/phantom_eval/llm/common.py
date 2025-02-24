@@ -118,9 +118,10 @@ class LLMChat(abc.ABC):
                 model_name in self.SUPPORTED_LLM_NAMES
             ), f"Model name {model_name} must be one of {self.SUPPORTED_LLM_NAMES}."
         else:
-            logger.warning(
-                f"Model name {model_name} is not in the supported list {self.SUPPORTED_LLM_NAMES}."
-            )
+            if model_name not in self.SUPPORTED_LLM_NAMES:
+                logger.warning(
+                    f"Model name {model_name} is not in the supported list {self.SUPPORTED_LLM_NAMES}."
+                )
         self.model_name = model_name
         self.model_path = model_path
 

@@ -182,6 +182,15 @@ async def main(args: argparse.Namespace) -> None:
                 agent_kwargs=agent_kwargs,
             )
 
+            if args.prolog_query:
+                logger.info("Loading Prolog database")
+                # Create temporary file and load database from disk
+                with tempfile.NamedTemporaryFile(mode="w", suffix=".pl") as tmp:
+                    content = dataset["database"]["content"]
+                    tmp.write("\n".join(content))
+                    tmp.flush()
+                    db = Database.from_disk(tmp.name)
+
             # If the model is a local LLM, we can run on all QA examples
             num_df_qa_pairs = len(df_qa_pairs)
 
@@ -265,13 +274,6 @@ async def main(args: argparse.Namespace) -> None:
                 # Process Prolog queries if needed
                 prolog_results = []
                 if args.prolog_query:
-                    # Create temporary file and load database from disk
-                    with tempfile.NamedTemporaryFile(mode="w", suffix=".pl") as tmp:
-                        content = dataset["database"]["content"]
-                        tmp.write("\n".join(content))
-                        tmp.flush()
-                        db = Database.from_disk(tmp.name)
-
                     prolog_results = get_prolog_results(
                         responses, db, logger, args.log_level.upper() == "DEBUG"
                     )
@@ -353,6 +355,7 @@ def save_preds(
 
     with open(pred_path, "w") as f:
         json.dump(preds, f, indent=4)
+        f.flush()
 
 
 if __name__ == "__main__":

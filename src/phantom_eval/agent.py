@@ -110,11 +110,7 @@ class NshotAgent(Agent):
         self.agent_interactions = conv
 
         # Generate response
-        if llm_chat.model_name in REASONING_MODELS:
-            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
-        else:
-            # Add "\n" to stop_sequences
-            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
+        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
         response = llm_chat.generate_response(conv, inf_gen_config)
 
         # Update agent's conversation
@@ -148,11 +144,7 @@ class NshotAgent(Agent):
         self.agent_interactions = convs
 
         # Generate response
-        if llm_chat.model_name in REASONING_MODELS:
-            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
-        else:
-            # Change stop_sequences to "\n"
-            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
+        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
         responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
 
         # Add the responses to the agent's conversations
@@ -843,7 +835,7 @@ class ReactAgent(Agent):
             ValueError: If the action cannot be parsed.
 
         NOTE: This method is also able to handle Deepseek's outputs, because their models don't generate model
-        calls inbetween <think> </think> tags.
+        calls in between <think> </think> tags.
         """
         # Extract the action type (any word string) and argument (any string within square brackets)
         # argument can be empty as well

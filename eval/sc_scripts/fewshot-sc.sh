@@ -1,9 +1,8 @@
 #!/bin/bash
-#SBATCH -J zeroshot-reasoning                              # Job name
-#SBATCH -o slurm/zeroshot-reasoning_%j.out                 # output file (%j expands to jobID)
-#SBATCH -e slurm/zeroshot-reasoning_%j.err                 # error log file (%j expands to jobID)
+#SBATCH -J fewshot-sc-large                              # Job name
+#SBATCH -o slurm/fewshot-sc-large_%j.out                 # output file (%j expands to jobID)
+#SBATCH -e slurm/fewshot-sc-large_%j.err                 # error log file (%j expands to jobID)
 #SBATCH --mail-type=ALL                      # Request status by email
-#SBATCH --mail-user=ag2435@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
 #SBATCH -n 8                                 # Total number of cores requested
 #SBATCH --get-user-env                       # retrieve the users login environment
@@ -11,17 +10,18 @@
 
 # Example usage (make sure to activate conda environment first):
 # if running on G2:
-# sbatch --gres=gpu:a6000:8 --partition=kilian -t infinite eval/zeroshot_L.sh <output directory>
+# sbatch --gres=gpu:a6000:8 --partition=kilian -t infinite eval/fewshot-sc_L.sh <output directory>
 # if running on empire:
-# sbatch --gres=gpu:4 --partition=cornell -t 1-00:00:00 eval/zeroshot_L.sh <output directory>
+# sbatch --gres=gpu:4 --partition=cornell -t 1-00:00:00 eval/fewshot-sc_L.sh <output directory>
 
-# Script for running zero-shot evaluation on all large models (10-70 B params)
+# Script for running zeroshot with self-consistency evaluation on all medium models (<10 B params)
 # GPU requirements when using max context length (i.e., `max_model_len=None`)
 # Model Size    | 3090 GPU   | A6000 GPU | H100 GPU
 # ------------- | -----------|-----------|---------
 # ~4B models    | 1          | 1         | 1
 # ~8B models    | 2          | 1         | 1
 # ~70B models   |            | 8         | 4
+# NOTE: meta-llama/llama-3.2-11b-vision-instruct runs out of memory on 8 A6000 GPUs
 
 # check that the correct number of arguments were passed
 if [ -z "$1" ]; then
@@ -29,23 +29,31 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-TEMPERATURE=0.6
-TOP_P=0.95
+TEMPERATURE=0.7
 
 source eval/constants.sh
 
-for model_name in "${REASONING_MODELS[@]}"
+# check which modelsize to run
+if [ "$1" == "large" ]; then
+    MODELS=("${LARGE_MODELS[@]}")
+elif [ "$1" == "medium" ]; then
+    MODELS=("${MEDIUM_MODELS[@]}")
+elif [ "$1" == "small" ]; then
+    MODELS=("${SMALL_MODELS[@]}")
+else
+    echo "Usage: $0 {large|medium|small}"
+    exit 1
+fi
+
+for model_name in "${MODELS[@]}"
 do
     cmd="python -m phantom_eval \
-        --method zeroshot \
+        --method fewshot-sc \
         -od $1 \
         -m $model_name \
         --split_list $SPLIT_LIST \
         --inf_seed_list $(get_inf_seed_list $TEMPERATURE) \
-        --inf_temperature $TEMPERATURE \
-        --inf_top_p $TOP_P
-        "
-
+        --inf_temperature $TEMPERATURE"
     echo $cmd
     eval $cmd
 done
