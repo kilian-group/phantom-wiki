@@ -110,14 +110,7 @@ class NshotAgent(Agent):
         self.agent_interactions = conv
 
         # Generate response
-        if False:
-            if llm_chat.model_name in REASONING_MODELS:
-                inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
-            else:
-                # Add "\n" to stop_sequences
-                inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
-        else:
-            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
+        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
         response = llm_chat.generate_response(conv, inf_gen_config)
 
         # Update agent's conversation
@@ -151,14 +144,7 @@ class NshotAgent(Agent):
         self.agent_interactions = convs
 
         # Generate response
-        if False:
-            if llm_chat.model_name in REASONING_MODELS:
-                inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
-            else:
-                # Change stop_sequences to "\n"
-                inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["\n"]), deep=True)
-        else:
-            inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
+        inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
         responses = await llm_chat.batch_generate_response(convs, inf_gen_config)
 
         # Add the responses to the agent's conversations
