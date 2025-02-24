@@ -181,22 +181,17 @@ def get_prolog_results(
             for binding in query_results[-1]["result"]:
                 if target_variable in binding:
                     final_value.add(binding[target_variable])
-        if final_value == set():
+        if len(final_value) == 0:
             # final_value = None
             # NOTE: the score functions expect a string, so we need to return an empty string
-            final_value = ""
+            final_value_str = ""
         elif len(final_value) == 1:
-            final_value = str(final_value.pop())
+            final_value_str = str(final_value.pop())
         else:
-            final_value = list(final_value)
-            # Albert: sorting throws an error when the values are of type Variable
-            # final_value.sort()
             # NOTE: the score functions expect a string, so we need to join the list using a separator
-            final_value = constants.answer_sep.join([str(v) for v in final_value])
-
-        assert isinstance(final_value, str), f"final_value: {final_value} is not a string"
+            final_value_str = constants.answer_sep.join([str(v) for v in list(final_value)])
 
         prolog_results.append(
-            {"final_value": final_value, "query": pred_query, "query_results": query_results}
+            {"final_value": final_value_str, "query": pred_query, "query_results": query_results}
         )
     return prolog_results
