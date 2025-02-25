@@ -92,7 +92,6 @@ class InferenceGenerationConfig(BaseModel):
     # API retry params
     max_retries: int = 3
     wait_seconds: int = 2
-    prolog: bool = False
 
 
 class LLMChat(abc.ABC):

@@ -159,7 +159,6 @@ async def main(args: argparse.Namespace) -> None:
         repetition_penalty=args.inf_repetition_penalty,
         max_retries=args.inf_max_retries,
         wait_seconds=args.inf_wait_seconds,
-        prolog=args.prolog_query,
     )
 
     for seed in args.inf_seed_list:
