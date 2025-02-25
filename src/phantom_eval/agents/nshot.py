@@ -15,7 +15,7 @@ import pandas as pd
 
 import phantom_eval.constants as constants
 from phantom_eval._types import ContentTextMessage, Conversation, LLMChatResponse, Message
-from phantom_eval.agents.common import REASONING_LLM_NAMES, Agent, RAGMixin, SCMixin, get_evidence
+from phantom_eval.agents.common import REASONING_LLM_NAMES, Agent, RAGMixin, SCMixin, get_all_evidence
 from phantom_eval.llm.common import InferenceGenerationConfig, LLMChat
 from phantom_eval.prompts import LLMPrompt
 
@@ -61,7 +61,7 @@ class NshotAgent(Agent):
             return self.llm_prompt.get_prompt(self.prolog_query).format(evidence=evidence, question=question)
 
     def _build_agent_prompt(self, question: str) -> str:
-        evidence = get_evidence(self.text_corpus)
+        evidence = get_all_evidence(self.text_corpus)
         return self.combine_evidence_and_question(evidence, question)
 
     def run(

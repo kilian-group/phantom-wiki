@@ -230,7 +230,7 @@ REASONING_LLM_NAMES: list[str] = [
 ]
 
 
-def get_evidence(text_corpus: pd.DataFrame) -> str:
+def get_all_evidence(text_corpus: pd.DataFrame) -> str:
     """
     Return all articles in the text corpus concatenated as a string.
     """
