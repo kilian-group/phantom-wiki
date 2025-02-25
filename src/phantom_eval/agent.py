@@ -100,7 +100,10 @@ class NshotAgent(Agent):
             return self.llm_prompt.get_prompt(self.prolog_query).format(evidence=evidence, question=question)
 
     def run(
-        self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
+        self,
+        llm_chat: LLMChat,
+        question: str,
+        inf_gen_config: InferenceGenerationConfig,
     ) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
@@ -121,7 +124,7 @@ class NshotAgent(Agent):
         self.agent_interactions.messages.append(
             Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
         )
-        if inf_gen_config.prolog:
+        if self.prolog_query:
             response.pred = self.parse_prolog_answer(response.pred)
             return response
 
@@ -138,7 +141,10 @@ class NshotAgent(Agent):
         return response
 
     async def batch_run(
-        self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig
+        self,
+        llm_chat: LLMChat,
+        questions: list[str],
+        inf_gen_config: InferenceGenerationConfig,
     ) -> list[LLMChatResponse]:
         logger.debug(f"\n\t>>> questions: {questions}\n")
 
@@ -164,7 +170,7 @@ class NshotAgent(Agent):
                 Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
             )
 
-        if inf_gen_config.prolog:
+        if self.prolog_query:
             for i, response in enumerate(responses):
                 responses[i].pred = self.parse_prolog_answer(response.pred)
             return responses
@@ -307,7 +313,10 @@ class CoTAgent(Agent):
         self.cot_examples = cot_examples
 
     def run(
-        self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
+        self,
+        llm_chat: LLMChat,
+        question: str,
+        inf_gen_config: InferenceGenerationConfig,
     ) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
@@ -333,7 +342,7 @@ class CoTAgent(Agent):
                 pred = CoTAgent.parse_thinking_answer(response.pred)
             else:
                 pred = CoTAgent.parse_answer(response.pred)
-            if inf_gen_config.prolog:
+            if self.prolog_query:
                 pred = self.parse_prolog_answer(pred)
             error = None
         except Exception as e:
@@ -343,7 +352,10 @@ class CoTAgent(Agent):
         return LLMChatResponse(pred=pred, usage=response.usage, error=error)
 
     async def batch_run(
-        self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig
+        self,
+        llm_chat: LLMChat,
+        questions: list[str],
+        inf_gen_config: InferenceGenerationConfig,
     ) -> list[LLMChatResponse]:
         logger.debug(f"\n\t>>> questions: {questions}\n")
 
@@ -376,7 +388,7 @@ class CoTAgent(Agent):
                     pred = CoTAgent.parse_thinking_answer(response.pred)
                 else:
                     pred = CoTAgent.parse_answer(response.pred)
-                if inf_gen_config.prolog:
+                if self.prolog_query:
                     pred = self.parse_prolog_answer(pred)
                 error = None
             except Exception:
