@@ -60,11 +60,8 @@ class OpenAIChat(CommonLLMChat):
         return response
 
     def _parse_api_output(self, response: object) -> LLMChatResponse:
-        pred = response.choices[0].message.content
-        if "prolog" in pred:
-            pred = pred.replace("`", "").strip().split("\n")[-1]
         return LLMChatResponse(
-            pred=pred,
+            pred=response.choices[0].message.content,
             usage=response.usage.model_dump(),
         )
 

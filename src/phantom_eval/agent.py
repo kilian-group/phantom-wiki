@@ -121,6 +121,9 @@ class NshotAgent(Agent):
         self.agent_interactions.messages.append(
             Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
         )
+        if inf_gen_config.prolog:
+            response.pred = self.parse_prolog_answer(response.pred)
+            return response
 
         if llm_chat.model_name in REASONING_MODELS:
             try:
@@ -161,6 +164,11 @@ class NshotAgent(Agent):
                 Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
             )
 
+        if inf_gen_config.prolog:
+            for i, response in enumerate(responses):
+                responses[i].pred = self.parse_prolog_answer(response.pred)
+            return responses
+
         if llm_chat.model_name in REASONING_MODELS:
             parsed_responses: list[LLMChatResponse] = []
             for response in responses:
@@ -190,6 +198,9 @@ class NshotAgent(Agent):
             )  # return first subgroup of the match https://docs.python.org/3/library/re.html#re.Match
         else:
             raise ValueError(f"Answer '{pred}' cannot be parsed.")
+
+    def parse_prolog_answer(self, pred: str) -> str:
+        return pred.replace("`", "").strip().split("\n")[-1]
 
 
 class SCMixin:
@@ -322,6 +333,8 @@ class CoTAgent(Agent):
                 pred = CoTAgent.parse_thinking_answer(response.pred)
             else:
                 pred = CoTAgent.parse_answer(response.pred)
+            if inf_gen_config.prolog:
+                pred = self.parse_prolog_answer(pred)
             error = None
         except Exception as e:
             pred = ""
@@ -363,6 +376,8 @@ class CoTAgent(Agent):
                     pred = CoTAgent.parse_thinking_answer(response.pred)
                 else:
                     pred = CoTAgent.parse_answer(response.pred)
+                if inf_gen_config.prolog:
+                    pred = self.parse_prolog_answer(pred)
                 error = None
             except Exception:
                 pred = ""
@@ -404,6 +419,9 @@ class CoTAgent(Agent):
             return m.group(1)
         else:
             raise ValueError(f"Answer '{pred}' cannot be parsed.")
+
+    def parse_prolog_answer(self, pred: str) -> str:
+        return pred.replace("`", "").strip().split("\n")[-1]
 
     def reset(self) -> None:
         self.agent_interactions: Conversation = Conversation(messages=[])
