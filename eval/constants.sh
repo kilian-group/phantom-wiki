@@ -21,9 +21,6 @@ LARGE_MODELS=(
     # 'microsoft/phi-3.5-mini-instruct' # OPTIONAL
     # 'microsoft/phi-3.5-moe-instruct' # OPTIONAL
 )
-REASONING_MODELS=(
-    'deepseek-ai/deepseek-r1-distill-qwen-32b'
-)
 # M models (run on 4 A6000 GPUs)
 MEDIUM_MODELS=(
     'meta-llama/llama-3.2-3b-instruct'
@@ -36,9 +33,13 @@ SMALL_MODELS=(
     'meta-llama/llama-3.2-1b-instruct'
     # 'google/gemma-2-2b-it' # OPTIONAL
 )
+REASONING_MODELS=(
+    "deepseek-ai/deepseek-r1-distill-qwen-32b"
+)
 
 DATASET=mlcore/phantom-wiki-v050
 
+# if dataset is mlcore/phantom-wiki-v0.2, use the following
 if [ "$DATASET" = "mlcore/phantom-wiki-v0.2" ]; then
     # Define SPLIT_LIST for dataset v0.2
     DATA_SEED_LIST="1 2 3 4 5"
@@ -92,3 +93,20 @@ else
     echo "Unknown dataset: $DATASET. Cannot define SPLIT_LIST."
     exit 1
 fi
+
+# get list of support methods by running the following python command
+METHODS=(
+    "zeroshot"
+    "fewshot"
+    "zeroshot-sc"
+    "fewshot-sc"
+    "cot"
+    "cot-sc"
+    "react"
+    "act"
+    "react->cot-sc"
+    "cot-sc->react"
+    "zeroshot-rag"
+    "fewshot-rag"
+    "cot-rag"
+)

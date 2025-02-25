@@ -1,7 +1,6 @@
 import argparse
 
 from .agent import SUPPORTED_METHOD_NAMES
-from .llm import SUPPORTED_LLM_NAMES
 
 
 def get_parser() -> argparse.ArgumentParser:
@@ -13,7 +12,7 @@ def get_parser() -> argparse.ArgumentParser:
         default="meta-llama/llama-vision-free",
         help="model name. "
         "NOTE: to add a new model, please submit a PR to the repo with the new model name",
-        choices=SUPPORTED_LLM_NAMES,
+        # choices=SUPPORTED_LLM_NAMES,
     )
     parser.add_argument("--model_path", type=str, default=None, help="Path to the model")
     parser.add_argument(

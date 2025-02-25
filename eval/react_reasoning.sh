@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH -J react-large                              # Job name
-#SBATCH -o slurm/react-large_%j.out                 # output file (%j expands to jobID)
-#SBATCH -e slurm/react-large_%j.err                 # error log file (%j expands to jobID)
+#SBATCH -J react-reasoning                              # Job name
+#SBATCH -o slurm/react-reasoning_%j.out                 # output file (%j expands to jobID)
+#SBATCH -e slurm/react-reasoning_%j.err                 # error log file (%j expands to jobID)
 #SBATCH --mail-type=ALL                      # Request status by email
 #SBATCH --mail-user=ag2435@cornell.edu       # Email address to send results to.
 #SBATCH -N 1                                 # Total number of nodes requested
@@ -57,7 +57,7 @@ check_server() {
     fi
 }
 
-for model_name in "${LARGE_MODELS[@]}"
+for model_name in "${REASONING_MODELS[@]}"
 do
     # Start the vLLM server in the background
     echo "Starting vLLM server..."
