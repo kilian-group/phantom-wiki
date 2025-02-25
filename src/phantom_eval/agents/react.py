@@ -1,3 +1,14 @@
+"""
+This module implements various agentic evaluation methods for question answering tasks.
+The module contains several agent classes:
+- `ReactAgent`: Implements the ReAct (Thought, Action, Observation) evaluation pattern
+- `ActAgent`: Implements a simpler Action-Observation evaluation pattern
+- `React_CoTSCAgent`: Combines ReAct with Chain-of-Thought Self-Consistency, falling back to
+    CoTSC if ReAct fails
+- `CoTSC_ReactAgent`: Combines Chain-of-Thought Self-Consistency with ReAct, falling back to
+    ReAct if CoTSC fails
+"""
+
 import logging
 import re
 import traceback
@@ -22,6 +33,13 @@ def format_pred(pred: str) -> str:
 
 
 class ReactAgent(Agent):
+    """
+    Agent that implements agentic react (thought, action, observation) evaluation.
+
+    The LLM generates a thought based on the conversation history, then an action based on the thought.
+    The agent then observes the result of the action and updates the conversation history.
+    """
+
     def __init__(
         self,
         text_corpus: pd.DataFrame,
@@ -31,6 +49,9 @@ class ReactAgent(Agent):
     ):
         """
         Args:
+            text_corpus (pd.DataFrame): The text corpus to search for answers.
+                Must contain two columns: 'title' and 'article'.
+            llm_prompt (LLMPrompt): The prompt to be used by the agent.
             max_steps (int): The maximum number of steps the agent can take.
                 Defaults to 6.
             react_examples (str): Prompt examples to include in agent prompt.
@@ -102,6 +123,13 @@ class ReactAgent(Agent):
     ) -> LLMChatResponse:
         """
         Run the thought step of the agent.
+        Stop generating when seeing "Action" token from LLM (when thought is complete).
+
+        Args:
+            llm_chat (LLMChat): The LLMChat object to use for generating responses.
+            question (str): The question to ask the agent.
+            inf_gen_config (InferenceGenerationConfig): The inference generation config to use
+                for generating responses.
         """
         # Stop generating when seeing "Action" (when thought is complete)
         leading_llm_prompt = f"Thought {self.step_round}: "
@@ -122,6 +150,13 @@ class ReactAgent(Agent):
     ) -> LLMChatResponse:
         """
         Run the action step of the agent.
+        Stop generating when seeing "Observation" token from LLM (when thought is complete).
+
+        Args:
+            llm_chat (LLMChat): The LLMChat object to use for generating responses.
+            question (str): The question to ask the agent.
+            inf_gen_config (InferenceGenerationConfig): The inference generation config to use
+                for generating responses.
         """
         # Stop generating when seeing "Observation" (when action is complete)
         leading_llm_prompt = f"Action {self.step_round}: "
@@ -139,8 +174,13 @@ class ReactAgent(Agent):
 
     def _step_observation(self, response_action: LLMChatResponse) -> LLMChatResponse:
         """
-        Run the observation step of the agent and increments the step round.
-        NOTE: Returned usage is empty since the LLM is not called.
+        Run the observation step of the agent depending on the action
+        and increments the step round.
+        NOTE: Usage in returned `LLMChatResponse.usage` is empty since the LLM is not called
+        in this observation step.
+
+        Args:
+            response_action (LLMChatResponse): The response from the action step.
         """
         action_type, action_arg = ReactAgent.parse_action(response_action.pred)
 
@@ -202,8 +242,16 @@ class ReactAgent(Agent):
         inf_gen_config: InferenceGenerationConfig,
     ) -> LLMChatResponse:
         """
-        Prompt the LLM with the agent's current prompt and the given question.
-        `inf_gen_config` is passed to the LLM's generation function.
+        Prompts the LLM with the agent's current prompt (created from question, scratchpad,
+        and `leading_llm_prompt`). The `leading_llm_prompt` is not part of the scratchpad,
+        but is used to indicate the current step. For example, "Thought 1: " or "Action 2: ".
+
+        Args:
+            llm_chat (LLMChat): The LLMChat object to use for generating responses.
+            question (str): The question to ask the agent.
+            leading_llm_prompt (str): The prompt to indicate the current step.
+            inf_gen_config (InferenceGenerationConfig): The inference generation config to use
+                for generating responses.
         """
         # Put the full scratchpad in the prompt and ask the LLM to generate.
         # All of the back and forth conversation so far becomes the user prompt.
@@ -227,8 +275,8 @@ class ReactAgent(Agent):
         Raises:
             ValueError: If the action cannot be parsed.
 
-        NOTE: This method is also able to handle Deepseek's outputs, because their models don't generate model
-        calls in between <think> </think> tags.
+        NOTE: This method is also able to handle Deepseek's outputs, because their models don't generate
+        `action_type[<argument>]` action calls between <think>...</think> tags.
         """
         # Extract the action type (any word string) and argument (any string within square brackets)
         # argument can be empty as well
@@ -247,6 +295,13 @@ class ReactAgent(Agent):
 
 
 class ActAgent(Agent):
+    """
+    Agent that implements agentic act evaluation (action, observation).
+
+    The LLM generates an action based on the conversation history.
+    The agent then observes the result of the action and updates the conversation history.
+    """
+
     def __init__(
         self,
         text_corpus: pd.DataFrame,
@@ -256,6 +311,9 @@ class ActAgent(Agent):
     ):
         """
         Args:
+            text_corpus (pd.DataFrame): The text corpus to search for answers.
+                Must contain two columns: 'title' and 'article'.
+            llm_prompt (LLMPrompt): The prompt to be used by the agent.
             max_steps (int): The maximum number of steps the agent can take.
                 Defaults to 6.
             act_examples (str): Prompt examples to include in agent prompt.
@@ -322,6 +380,13 @@ class ActAgent(Agent):
     ) -> LLMChatResponse:
         """
         Run the action step of the agent.
+        Stop generating when seeing "Observation" token from LLM (when thought is complete).
+
+        Args:
+            llm_chat (LLMChat): The LLMChat object to use for generating responses.
+            question (str): The question to ask the agent.
+            inf_gen_config (InferenceGenerationConfig): The inference generation config to use
+                for generating responses.
         """
         # Stop generating when seeing "Observation" (when action is complete)
         leading_llm_prompt = f"Action {self.step_round}: "
@@ -339,8 +404,13 @@ class ActAgent(Agent):
 
     def _step_observation(self, response_action: LLMChatResponse) -> LLMChatResponse:
         """
-        Run the observation step of the agent and increments the step round.
-        NOTE: Returned usage is empty since the LLM is not called.
+        Run the observation step of the agent depending on the action
+        and increments the step round.
+        NOTE: Usage in returned `LLMChatResponse.usage` is empty since the LLM is not called
+        in this observation step.
+
+        Args:
+            response_action (LLMChatResponse): The response from the action step.
         """
         action_type, action_arg = ReactAgent.parse_action(response_action.pred)
         match action_type:
@@ -401,8 +471,16 @@ class ActAgent(Agent):
         inf_gen_config: InferenceGenerationConfig,
     ) -> LLMChatResponse:
         """
-        Prompt the LLM with the agent's current prompt and the given question.
-        `inf_gen_config` is passed to the LLM's generation function.
+        Prompts the LLM with the agent's current prompt (created from question, scratchpad,
+        and `leading_llm_prompt`). The `leading_llm_prompt` is not part of the scratchpad,
+        but is used to indicate the current step. For example, "Action 2: ".
+
+        Args:
+            llm_chat (LLMChat): The LLMChat object to use for generating responses.
+            question (str): The question to ask the agent.
+            leading_llm_prompt (str): The prompt to indicate the current step.
+            inf_gen_config (InferenceGenerationConfig): The inference generation config to use
+                for generating responses.
         """
         # Put the full scratchpad in the prompt and ask the LLM to generate.
         # All of the back and forth conversation so far becomes the user prompt.
@@ -418,8 +496,10 @@ class ActAgent(Agent):
 
 class React_CoTSCAgent(Agent):
     """
-    Agent to implement React->CoTSC evaluation.
-    If React agent reaches max steps, run CoTSC agent.
+    Agent to implement React->CoTSC evaluation, as described in the paper
+    https://arxiv.org/abs/2210.03629.
+    If React sub-agent reaches max steps, this agent runs CoTSC sub-agent method
+    (chain of thought with self-consistency).
     """
 
     def __init__(
@@ -435,11 +515,15 @@ class React_CoTSCAgent(Agent):
         cotsc_inf_temperature: float = constants.inf_temperature_hi,
     ):
         """
-        Takes 2 LLM Prompts. Pass the first prompt to the React agent
+        Takes 2 LLM Prompts. The first prompt is passed to the React agent
         and the second prompt to the CoTSC agent.
-        Must provide the CoTSC agent prompt, otherwise the agent is not initialized.
+        Must provide the CoTSC agent prompt (even though the default is None),
+        otherwise the agent is not initialized.
 
         Args:
+            text_corpus (pd.DataFrame): The text corpus to search for answers.
+                Must contain two columns: 'title' and 'article'.
+            react_llm_prompt (LLMPrompt): The prompt to be used by the React agent.
             max_steps (int): The maximum number of steps the agent can take.
                 Defaults to 6.
             react_examples (str): Prompt examples to include in agent prompt.
@@ -453,6 +537,7 @@ class React_CoTSCAgent(Agent):
             sep (str): The separator used to split the prediction.
                 Defaults to `constants.answer_sep`.
             cotsc_inf_temperature (float): The inference temperature to use for CoTSC agent.
+                This temperature is not used for the react agent, but only for the CoTSC agent.
                 Defaults to `constants.inf_temperature_hi`.
         """
         assert cot_llm_prompt is not None, "CoTSC agent prompt is required."
@@ -469,6 +554,10 @@ class React_CoTSCAgent(Agent):
         self.agent_interactions: Conversation = Conversation(messages=[])
 
     def _build_agent_prompt(self, question: str) -> str:
+        logger.warning(
+            "React_CoTSCAgent._build_agent_prompt() joins prompts of"
+            "React and CoTSC agents. Each agent should used only the prompts meant for them."
+        )
         # Join the prompts of the React and CoTSC agents
         return (
             self.react_agent._build_agent_prompt(question)
@@ -513,8 +602,8 @@ class React_CoTSCAgent(Agent):
 
 class CoTSC_ReactAgent(Agent):
     """
-    Agent to implement CoTSC->React evaluation.
-    If CoTSC agent does not get any majority vote answer, run React agent.
+    Agent to implement CoTSC->React evaluation, as described in the paper https://arxiv.org/abs/2210.03629.
+    If CoTSC sub-agent finds that no answer attains a majority vote, this agent runs React sub-agent method.
     """
 
     def __init__(
@@ -530,11 +619,15 @@ class CoTSC_ReactAgent(Agent):
         react_examples: str = "",
     ):
         """
-        Takes 2 LLM Prompts. Pass the first prompt to the CoTSC agent
+        Takes 2 LLM Prompts. The first prompt is passed to the CoTSC agent
         and the second prompt to the React agent.
-        Must provide the React agent prompt, otherwise the agent is not initialized.
+        Must provide the React agent prompt (even though the default is None),
+        otherwise the agent is not initialized.
 
         Args:
+            text_corpus (pd.DataFrame): The text corpus to search for answers.
+                Must contain two columns: 'title' and 'article'.
+            cot_llm_prompt (LLMPrompt): The prompt to be used by the CoTSC agent.
             cot_examples (str): Prompt examples to include in agent prompt.
                 Defaults to "".
             num_votes (int): The number of votes to take for the majority vote.
@@ -542,6 +635,7 @@ class CoTSC_ReactAgent(Agent):
             sep (str): The separator used to split the prediction.
                 Defaults to `constants.answer_sep`.
             cotsc_inf_temperature (float): The inference temperature to use for CoTSC agent.
+                This temperature is not used for the react agent, but only for the CoTSC agent.
                 Defaults to `constants.inf_temperature_hi`.
             react_llm_prompt (LLMPrompt): The prompt to be used by the React agent.
                 Must be provided.
@@ -564,6 +658,10 @@ class CoTSC_ReactAgent(Agent):
         self.agent_interactions: Conversation = Conversation(messages=[])
 
     def _build_agent_prompt(self, question: str) -> str:
+        logger.warning(
+            "CoTSC_ReactAgent._build_agent_prompt() joins prompts of"
+            "CoTSC and React agents. Each agent should used only the prompts meant for them."
+        )
         # Join the prompts of the CoTSC and React agents
         return (
             self.cotsc_agent._build_agent_prompt(question)
