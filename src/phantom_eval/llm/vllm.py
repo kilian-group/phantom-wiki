@@ -163,7 +163,7 @@ class VLLMChat(CommonLLMChat):
     ) -> LLMChatResponse:
         assert self.client is not None, "Client is not initialized."
         messages_api_format: list[dict] = self._convert_conv_to_api_format(conv)
-        response = self._call_api(messages_api_format, inf_gen_config)
+        response = await self._call_api(messages_api_format, inf_gen_config, use_async=True)
         parsed_response = self._parse_api_output(response)
         return parsed_response
 

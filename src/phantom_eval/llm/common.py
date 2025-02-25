@@ -312,6 +312,7 @@ class CommonLLMChat(LLMChat):
             # yield to other threads until condition is true
             await self.cond.wait_for(lambda: self._check(input_tokens))
             # schedule _call_api to run concurrently
+            logging.debug(f"{self._current()}: Calling API for {conv.uid}")
             t = asyncio.create_task(self._call_api(messages_api_format, inf_gen_config, use_async=True))
             logging.debug(f"{self._current()}: Done with {conv.uid}")
             self._increment()
