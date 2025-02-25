@@ -1,3 +1,16 @@
+"""
+This module provides common agent components for phantom_eval including:
+
+- Abstract `Agent` class for implementing evaluation methods (zeroshot, cot, react)
+- `SCMixin` for self-consistency voting across multiple predictions
+- `CustomEmbeddings` wrapper for model embeddings via local OpenAI API
+- `RAGMixin` for retrieval-augmented generation
+- Utility functions for evidence retrieval and Reasoning LLM names
+
+The agents derived from `Agent` class can run evaluations on single question at a time or batches
+using different LLM prompts and chat interfaces.
+"""
+
 import abc
 import subprocess
 from collections import Counter
@@ -16,7 +29,10 @@ from phantom_eval.score import normalize_pred
 
 class Agent(abc.ABC):
     """
-    Abstract class for an agent that implements an evaluation method by prompting an LLM.
+    Abstract class for an agent that implements an evaluation method (e.g. zeroshot, cot, react)
+    using the specified `LLMPrompt` and `LLMChat` objects.
+
+    The agent can be run on a single question or on a batch of questions.
     """
 
     def __init__(self, text_corpus: pd.DataFrame, llm_prompt: LLMPrompt):
@@ -35,7 +51,13 @@ class Agent(abc.ABC):
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         """
-        Run the agent with an LLM on a given question.
+        Run the agent with an `LLMChat` on a given question.
+
+        Args:
+            llm_chat (LLMChat): The LLMChat object to use for generating responses.
+            question (str): The question to ask the agent.
+            inf_gen_config (InferenceGenerationConfig): The inference generation config to use
+                for generating responses.
         """
 
     @abc.abstractmethod
@@ -43,13 +65,19 @@ class Agent(abc.ABC):
         self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig
     ) -> list[LLMChatResponse]:
         """
-        Asynchronously run the agent with an LLM on a list of questions.
+        Asynchronously run the agent with an `LLMChat` on a list of questions.
+
+        Args:
+            llm_chat (LLMChat): The LLMChat object to use for generating responses.
+            questions (list[str]): The list of questions to ask the agent.
+            inf_gen_config (InferenceGenerationConfig): The inference generation config to use
+                for generating responses.
         """
 
     @abc.abstractmethod
     def _build_agent_prompt(self, question: str) -> str:
         """
-        Returns the agent prompt with the given question.
+        Builds and returns the agent prompt with the given question.
         The prompt may depend on the agent's internal state.
         """
 
@@ -60,6 +88,12 @@ class Agent(abc.ABC):
 
 
 class SCMixin:
+    """
+    Mixin class to implement self-consistency, i.e. take a majority vote over multiple predictions.
+
+    Combine this with an agent class to implement self-consistency evaluation.
+    """
+
     def __init__(self, num_votes: int, sep: str):
         """
         Args:
@@ -82,7 +116,8 @@ class SCMixin:
 
         Returns:
             LLMChatResponse: the majority vote as a single string of answers separated by <sep>
-                (the output string is in LLMChatResponse.pred).
+                (the output string is in `LLMChatResponse.pred`).
+                If no answer has a majority vote, an error message is returned in `LLMChatResponse.error`.
         """
         n_preds = len(responses)
         preds: list[set[str]] = [normalize_pred(response.pred, sep) for response in responses]
@@ -105,42 +140,59 @@ class SCMixin:
 
 
 class CustomEmbeddings(Embeddings):
-    def __init__(self, client):
+    """
+    Wrapper class for model embeddings, accessed on vLLM via the local OpenAI API.
+    """
+
+    def __init__(self, client: openai.OpenAI):
         self.client = client
         self.model = self.client.models.list().data[0].id
 
     def embed_documents(self, texts: list[str]) -> list[list[float]]:
-        """Embed search docs."""
+        """
+        Return the embeddings of the input document texts. Each text is embedded as a list of floats.
+        """
         return [obj.embedding for obj in self.client.embeddings.create(input=texts, model=self.model).data]
 
     def embed_query(self, text: str) -> list[float]:
-        """Embed query text."""
+        """
+        Return the embedding of the input query text. The text is embedded as a list of floats.
+        """
         return self.embed_documents([text])[0]
 
 
 class RAGMixin:
+    """
+    Mixin class to implement RAG evaluation with a retriever.
+
+    Combine this with an agent class to implement RAG evaluation with prompting techniques like zeroshot, cot.
+    """
+
     def __init__(
         self,
         text_corpus: pd.DataFrame,
         embedding_model_name: str = "whereisai/uae-large-v1",
         retriever_num_documents: int = 4,
-        tensor_parallel_size: int | None = 1,
         port: int = 8001,
     ):
         """
         Args:
+            text_corpus (pd.DataFrame): The text corpus containing documents in the "article" column.
             embedding_model_name (str): The embedding method for the vector database.
-                Defaults to WhereIsAI/UAE-Code-Large-V. All VLLM models are supported.
+                All embedding models available through huggingface and loadable by vLLM are supported.
+                Defaults to "whereisai/uae-large-v1".
             retriever_num_documents (int): Number of documents retrieved.
                 Defaults to 4. See
-                https://api.python.langchain.com/en/latest/vectorstores/langchain_community.vectorstores.
-                faiss.FAISS.html#langchain_community.vectorstores.faiss.FAISS.as_retriever for other options.
+                "https://api.python.langchain.com/en/latest/vectorstores/langchain_community.vectorstores.faiss.FAISS.html#langchain_community.vectorstores.faiss.FAISS.as_retriever"
+                for other options.
+            port (int): The port number to use for the embedding server.
+                Defaults to 8001.
         """
 
         self.embedding_model_name = embedding_model_name
-        texts = self.text_corpus["article"].tolist()
+        texts = text_corpus["article"].tolist()
 
-        # launch server
+        # Launch server on the last GPU
         subprocess.call(
             [
                 "./src/phantom_eval/launch_embedding_server.sh",
@@ -150,7 +202,7 @@ class RAGMixin:
             ]
         )
 
-        # build retriever
+        # Embed documents and build retriever
         BASE_URL = f"http://0.0.0.0:{port}/v1"
         API_KEY = "token-abc123"
         client = openai.OpenAI(
@@ -163,7 +215,8 @@ class RAGMixin:
 
     def get_RAG_evidence(self, question: str) -> str:
         """
-        Returns retrieved articles in the text corpus as evidence.
+        Returns retrieved articles given the question from the text corpus.
+        The retrieved articles are concatenated as a string.
         """
         self.format_RAG_docs = lambda docs: "\n================\n\n".join(doc.page_content for doc in docs)
         evidence = self.format_RAG_docs(self.retriever.invoke(question))
@@ -177,8 +230,8 @@ REASONING_LLM_NAMES: list[str] = [
 ]
 
 
-def _get_evidence(text_corpus: pd.DataFrame) -> str:
-    """Utility for constructing evidence
-    Returns all articles (concatenated as a string) in the text corpus as evidence.
+def get_evidence(text_corpus: pd.DataFrame) -> str:
+    """
+    Return all articles in the text corpus concatenated as a string.
     """
     return "\n================\n\n".join(text_corpus["article"])

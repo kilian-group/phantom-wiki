@@ -29,6 +29,9 @@ def get_agent(
     llm_prompt: LLMPrompt,
     agent_kwargs: dict,
 ) -> Agent:
+    """
+    Returns an `Agent` object based on the specified method.
+    """
     match method:
         case "zeroshot" | "fewshot":
             return NshotAgent(text_corpus, llm_prompt, **agent_kwargs)

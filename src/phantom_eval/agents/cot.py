@@ -6,7 +6,7 @@ import pandas as pd
 
 import phantom_eval.constants as constants
 from phantom_eval._types import ContentTextMessage, Conversation, LLMChatResponse, Message
-from phantom_eval.agents.common import REASONING_LLM_NAMES, Agent, RAGMixin, SCMixin, _get_evidence
+from phantom_eval.agents.common import REASONING_LLM_NAMES, Agent, RAGMixin, SCMixin, get_evidence
 from phantom_eval.llm.common import InferenceGenerationConfig, LLMChat
 from phantom_eval.prompts import LLMPrompt
 
@@ -110,7 +110,7 @@ class CoTAgent(Agent):
             # TODO this should be moved to the CoTAgent class, which should override _build_agent_prompt
             evidence = self.get_RAG_evidence(question)
         else:
-            evidence = _get_evidence(self.text_corpus)
+            evidence = get_evidence(self.text_corpus)
         return self.llm_prompt.get_prompt(prolog_query=self.prolog_query).format(
             evidence=evidence, examples=self.cot_examples, question=question
         )
@@ -214,6 +214,4 @@ class CoTRAGAgent(CoTAgent, RAGMixin):
             cot_examples (str): Prompt examples to include in agent prompt.
         """
         CoTAgent.__init__(self, text_corpus, llm_prompt, cot_examples)
-        RAGMixin.__init__(
-            self, text_corpus, embedding_model_name, retriever_num_documents, tensor_parallel_size, port
-        )
+        RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, port)
