@@ -28,18 +28,6 @@ _LICENSE = ""
 
 
 class PhantomWiki_(datasets.GeneratorBasedBuilder):
-    # This is an example of a dataset with multiple configurations.
-    # If you don't want/need to define several sub-sets in your dataset,
-    # just remove the BUILDER_CONFIG_CLASS and the BUILDER_CONFIGS attributes.
-
-    # If you need to make complex sub-parts in the datasets with configurable options
-    # You can create your own builder configuration class to store attribute, inheriting from datasets.BuilderConfig
-    # BUILDER_CONFIG_CLASS = MyBuilderConfig
-
-    # You will be able to load one or the other configurations in the following list with
-    # data = datasets.load_dataset('my_dataset', 'first_domain')
-    # data = datasets.load_dataset('my_dataset', 'second_domain')
-
     VERSION = datasets.Version("0.5.0")
 
     BUILDER_CONFIGS = [
@@ -57,8 +45,6 @@ class PhantomWiki_(datasets.GeneratorBasedBuilder):
             name="database", version=VERSION, description="This config contains the complete Prolog database"
         ),
     ]
-
-    # DEFAULT_CONFIG_NAME = "first_domain"  # It's not mandatory to have a default configuration. Just use one if it make sense.
 
     def _info(self):
         """This method specifies the datasets.DatasetInfo object which contains informations and typings for the dataset"""
@@ -121,6 +107,7 @@ class PhantomWiki_(datasets.GeneratorBasedBuilder):
 
         NOTE: If several configurations are possible (listed in BUILDER_CONFIGS), the configuration selected by the user is in self.config.name
         """
+        # the data_dir is passed in when load_dataset is called
         data_dir = self.config.data_dir
         # Ensure the directory exists
         if not os.path.exists(data_dir):
@@ -136,6 +123,7 @@ class PhantomWiki_(datasets.GeneratorBasedBuilder):
             if os.path.isdir(os.path.join(data_dir, name))
         }
         if not sub_dir:
+            # if there are no subdirectories, then we are using the name of the data_dir as the split name
             return [
                 datasets.SplitGenerator(
                     name=f"{data_dir[:-1]}",
@@ -147,6 +135,7 @@ class PhantomWiki_(datasets.GeneratorBasedBuilder):
                 )
             ]
         else:
+            # if there are subdirectories, then we are using the names of the subdirectories as the split names
             for name, filepath in sub_dir.items():
                 splits.append(
                     datasets.SplitGenerator(
