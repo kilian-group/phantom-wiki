@@ -1,3 +1,12 @@
+"""
+This module implements Chain of Thought agents for phantom_eval, i.e. the cot method.
+The module contains three main agent classes:
+
+- `CoTAgent`: Base agent implementing the standard Chain of Thought evaluation method
+- `CoTSCAgent`: CoT agent with self-consistency using majority voting
+- `CoTRAGAgent`: CoT agent with Retrieval Augmented Generation (RAG)
+"""
+
 import logging
 import re
 import traceback
@@ -14,6 +23,10 @@ logger = logging.getLogger(__name__)
 
 
 class CoTAgent(Agent):
+    """
+    Agent that implements the cot (Chain of Thought) evaluation method.
+    """
+
     def __init__(
         self,
         text_corpus: pd.DataFrame,
@@ -23,12 +36,26 @@ class CoTAgent(Agent):
     ):
         """
         Args:
+            text_corpus (pd.DataFrame): The text corpus to search for answers.
+                Must contain two columns: 'title' and 'article'.
+            llm_prompt (LLMPrompt): The prompt to be used by the agent.
             cot_examples (str): Prompt examples to include in agent prompt.
-            prolog_query (bool): Whether to use prolog query in the agent prompt.
+                Defaults to "".
+            prolog_query (bool): Whether to use the prompt for eliciting prolog queries from LLMs.
+                Passed on to `LLMPrompt.get_prompt()`. Defaults to False.
         """
         super().__init__(text_corpus, llm_prompt)
         self.cot_examples = cot_examples
         self.prolog_query = prolog_query
+
+    def combine_evidence_and_question(self, evidence: str, question: str) -> str:
+        return self.llm_prompt.get_prompt(prolog_query=self.prolog_query).format(
+            evidence=evidence, examples=self.cot_examples, question=question
+        )
+
+    def _build_agent_prompt(self, question: str) -> str:
+        evidence = get_all_evidence(self.text_corpus)
+        return self.combine_evidence_and_question(evidence, question)
 
     def run(
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
@@ -105,21 +132,11 @@ class CoTAgent(Agent):
             parsed_responses.append(LLMChatResponse(pred=pred, usage=response.usage, error=error))
         return parsed_responses
 
-    def _build_agent_prompt(self, question: str) -> str:
-        if hasattr(self, "embedding_model_name") and self.embedding_model_name is not None:
-            # TODO this should be moved to the CoTAgent class, which should override _build_agent_prompt
-            evidence = self.get_RAG_evidence(question)
-        else:
-            evidence = get_all_evidence(self.text_corpus)
-        return self.llm_prompt.get_prompt(prolog_query=self.prolog_query).format(
-            evidence=evidence, examples=self.cot_examples, question=question
-        )
-
     @classmethod
     def parse_answer(cls, pred: str) -> str:
         """
         Parse the response to extract the answer using regex.
-        The prediction is of the form: "... The answer is <answer>."
+        The prediction should be of the form: "... The answer is <answer>." otherwise a ValueError is raised.
         """
         pattern = r"[t|T]he answer is (.+)\.\s*$"
         m = re.search(pattern, pred)
@@ -132,7 +149,8 @@ class CoTAgent(Agent):
     def parse_thinking_answer(cls, pred: str) -> str:
         """
         Parse the response to extract the answer using regex.
-        The prediction is of the form: "</think>... The answer is <answer>."
+        The prediction should be of the form: "</think>... The answer is <answer>."
+        otherwise a ValueError is raised.
         """
         pattern = r"</think>.*[tT]he answer is \s*(.+)\."
         m = re.search(pattern, pred, re.DOTALL)  # re.DOTALL to match newlines as well
@@ -147,7 +165,7 @@ class CoTAgent(Agent):
 
 class CoTSCAgent(CoTAgent, SCMixin):
     """
-    Agent to implement CoT evaluation with majority vote.
+    Agent to implement cot-sc evaluation with majority vote (self-consistency).
     """
 
     def __init__(
@@ -160,7 +178,10 @@ class CoTSCAgent(CoTAgent, SCMixin):
     ):
         """
         Args:
-            cot_examples (str): Prompt examples to include in agent prompt.
+            text_corpus (pd.DataFrame): The text corpus to search for answers.
+                Must contain two columns: 'title' and 'article'.
+            llm_prompt (LLMPrompt): The prompt to be used by the agent.
+            cot_examples (str): CoT prompt examples to include in agent prompt.
                 Defaults to "".
             num_votes (int): The number of votes to take for the majority vote.
                 Defaults to 3.
@@ -196,7 +217,7 @@ class CoTSCAgent(CoTAgent, SCMixin):
 
 class CoTRAGAgent(CoTAgent, RAGMixin):
     """
-    Agent to implement Zeroshot and fewshot evaluation with majority vote.
+    Agent to implement cot-rag evaluation where the agent uses retriever to create evidence.
     """
 
     def __init__(
@@ -204,14 +225,27 @@ class CoTRAGAgent(CoTAgent, RAGMixin):
         text_corpus: pd.DataFrame,
         llm_prompt: LLMPrompt,
         cot_examples: str = "",
-        embedding_model_name: str = "WhereIsAI/UAE-Code-Large-V",
+        embedding_model_name: str = "whereisai/uae-large-v1",
         retriever_num_documents: int = 4,
-        tensor_parallel_size: int | None = 1,
         port: int = 8001,
     ):
         """
         Args:
+            text_corpus (pd.DataFrame): The text corpus to search for answers.
+                Must contain two columns: 'title' and 'article'.
+            llm_prompt (LLMPrompt): The prompt to be used by the agent.
             cot_examples (str): Prompt examples to include in agent prompt.
+                Defaults to "".
+            embedding_model_name (str): The name of the embedding model to use for retrieval.
+                Defaults to "whereisai/uae-large-v1".
+            retriever_num_documents (int): The number of documents to retrieve.
+                Defaults to 4.
+            port (int): The port to use for the retriever.
+                Defaults to 8001.
         """
         CoTAgent.__init__(self, text_corpus, llm_prompt, cot_examples)
         RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, port)
+
+    def _build_agent_prompt(self, question):
+        evidence = self.get_RAG_evidence(question)
+        return self.combine_evidence_and_question(evidence, question)

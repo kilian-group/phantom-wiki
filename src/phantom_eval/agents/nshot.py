@@ -43,7 +43,7 @@ class NshotAgent(Agent):
             fewshot_examples (str): Few-shot prompt examples to include in agent prompt.
                 If "", the agent is zero-shot. Defaults to "".
             prolog_query (bool): Whether to use the prompt for eliciting prolog queries from LLMs.
-                Defaults to False.
+                Passed on to `LLMPrompt.get_prompt()`. Defaults to False.
         """
         super().__init__(text_corpus, llm_prompt)
         self.fewshot_examples = fewshot_examples
@@ -239,15 +239,3 @@ class NshotRAGAgent(NshotAgent, RAGMixin):
         """
         evidence = self.get_RAG_evidence(question)
         return self.combine_evidence_and_question(evidence, question)
-
-    def run(
-        self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
-    ) -> LLMChatResponse:
-        # Relies on the implementation of run in NshotAgent
-        return super().run(llm_chat, question, inf_gen_config)
-
-    async def batch_run(
-        self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig
-    ) -> list[LLMChatResponse]:
-        # Relies on the implementation of batch_run in NshotAgent
-        return await super().batch_run(llm_chat, questions, inf_gen_config)
