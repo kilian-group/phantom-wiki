@@ -158,7 +158,7 @@ class VLLMChat(CommonLLMChat):
         )
         return response
 
-    def generate_response(
+    async def generate_response(
         self, conv: Conversation, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         assert self.client is not None, "Client is not initialized."

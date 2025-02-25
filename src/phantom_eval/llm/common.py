@@ -239,7 +239,7 @@ class CommonLLMChat(LLMChat):
         now = time.time()
         logging.debug(
             f"checking: curr time={now-self.start}, rpm counter={self.end_rpm-self.start}, "
-            "tpm counter={self.end_tpm-self.start}, token_usage_per_minute={self.token_usage_per_minute}"
+            f"tpm counter={self.end_tpm-self.start}, token_usage_per_minute={self.token_usage_per_minute}"
         )
         return now >= self.end_rpm and input_tokens + self.token_usage_per_minute <= self.TPM_LIMIT
 
