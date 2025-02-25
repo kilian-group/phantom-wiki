@@ -130,7 +130,7 @@ class LLMChat(abc.ABC):
         self.model_path = model_path
 
     @abc.abstractmethod
-    def generate_response(
+    async def generate_response(
         self, conv: Conversation, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         """
