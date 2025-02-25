@@ -1,3 +1,12 @@
+"""
+This module implements N-shot agents for phantom_eval, such as zeroshot and fewshot methods.
+The module contains three main agent classes:
+
+- `NshotAgent`: Base agent implementing zero-shot and few-shot evaluation based on provided examples
+- `NshotSCAgent`: Extends NshotAgent with self-consistency through majority voting
+- `NshotRAGAgent`: Extends NshotAgent with Retrieval Augmented Generation (RAG)
+"""
+
 import logging
 import re
 import traceback
@@ -15,8 +24,8 @@ logger = logging.getLogger(__name__)
 
 class NshotAgent(Agent):
     """
-    Agent to implement Zeroshot and fewshot evaluation,
-    depending on the input `llm_prompt` on initialization.
+    Agent that implements zero-shot and few-shot evaluation, depending on whether
+    `fewshot_examples` is provided.
     """
 
     def __init__(
@@ -28,25 +37,32 @@ class NshotAgent(Agent):
     ):
         """
         Args:
-            fewshot_examples (str): Prompt examples to include in agent prompt.
+            text_corpus (pd.DataFrame): The text corpus to search for answers.
+                Must contain two columns: 'title' and 'article'.
+            llm_prompt (LLMPrompt): The prompt to be used by the agent.
+            fewshot_examples (str): Few-shot prompt examples to include in agent prompt.
                 If "", the agent is zero-shot. Defaults to "".
+            prolog_query (bool): Whether to use the prompt for eliciting prolog queries from LLMs.
+                Defaults to False.
         """
         super().__init__(text_corpus, llm_prompt)
         self.fewshot_examples = fewshot_examples
         self.prolog_query = prolog_query
 
-    def _build_agent_prompt(self, question: str) -> str:
-        if hasattr(self, "embedding_model_name") and self.embedding_model_name is not None:
-            # TODO this should be moved to the NshotRAGAgent class, which should override _build_agent_prompt
-            evidence = self.get_RAG_evidence(question)
-        else:
-            evidence = get_evidence(self.text_corpus)
+    def combine_evidence_and_question(self, evidence: str, question: str) -> str:
+        """
+        Combine the evidence and question to form the agent prompt using `self.llm_prompt`.
+        """
         if self.fewshot_examples:  # Few-shot
             return self.llm_prompt.get_prompt(self.prolog_query).format(
                 evidence=evidence, examples=self.fewshot_examples, question=question
             )
         else:  # Zero-shot
             return self.llm_prompt.get_prompt(self.prolog_query).format(evidence=evidence, question=question)
+
+    def _build_agent_prompt(self, question: str) -> str:
+        evidence = get_evidence(self.text_corpus)
+        return self.combine_evidence_and_question(evidence, question)
 
     def run(
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
@@ -121,7 +137,7 @@ class NshotAgent(Agent):
     def parse_thinking_answer(cls, pred: str) -> str:
         """
         Parse the response to extract the answer using regex.
-        The prediction is of the form: "</think> ..."
+        The prediction should be of the form: "</think> ..." otherwise a ValueError is raised.
         """
         pattern = r"</think>\s*(.+)"
         m = re.search(pattern, pred)
@@ -135,7 +151,7 @@ class NshotAgent(Agent):
 
 class NshotSCAgent(NshotAgent, SCMixin):
     """
-    Agent to implement Zeroshot and fewshot evaluation with majority vote.
+    Agent to implement zeroshot-sc and fewshot-sc evaluation with majority vote (self-consistency).
     """
 
     def __init__(
@@ -148,7 +164,10 @@ class NshotSCAgent(NshotAgent, SCMixin):
     ):
         """
         Args:
-            fewshot_examples (str): Prompt examples to include in agent prompt.
+            text_corpus (pd.DataFrame): The text corpus to search for answers.
+                Must contain two columns: 'title' and 'article'.
+            llm_prompt (LLMPrompt): The prompt to be used by the agent.
+            fewshot_examples (str): Few-shot prompt examples to include in agent prompt.
                 If "", the agent is zero-shot. Defaults to "".
             num_votes (int): The number of votes to take for the majority vote.
                 Defaults to 3.
@@ -184,7 +203,8 @@ class NshotSCAgent(NshotAgent, SCMixin):
 
 class NshotRAGAgent(NshotAgent, RAGMixin):
     """
-    Agent to implement Zeroshot and fewshot evaluation with majority vote.
+    Agent to implement zeroshot-rag and fewshot-rag evaluation where the
+    agent uses retriever to create evidence.
     """
 
     def __init__(
@@ -192,29 +212,42 @@ class NshotRAGAgent(NshotAgent, RAGMixin):
         text_corpus: pd.DataFrame,
         llm_prompt: LLMPrompt,
         fewshot_examples: str = "",
-        embedding_model_name: str = "WhereIsAI/UAE-Code-Large-V",
+        embedding_model_name: str = "whereisai/uae-large-v1",
         retriever_num_documents: int = 4,
-        tensor_parallel_size: int | None = 1,
         port: int = 8001,
     ):
         """
         Args:
+            text_corpus (pd.DataFrame): The text corpus to search for answers.
+                Must contain two columns: 'title' and 'article'.
+            llm_prompt (LLMPrompt): The prompt to be used by the agent.
             fewshot_examples (str): Prompt examples to include in agent prompt.
                 If "", the agent is zero-shot. Defaults to "".
-            sep (str): The separator used to split the prediction.
-                Defaults to `constants.answer_sep`.
+            embedding_model_name (str): The name of the embedding model to use for retrieval.
+                Defaults to "whereisai/uae-large-v1".
+            retriever_num_documents (int): The number of documents to retrieve.
+                Defaults to 4.
+            port (int): The port to use for the retriever.
+                Defaults to 8001.
         """
         NshotAgent.__init__(self, text_corpus, llm_prompt, fewshot_examples)
         RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, port)
 
+    def _build_agent_prompt(self, question: str) -> str:
+        """
+        Override the method in NshotAgent to use RAG to create evidence.
+        """
+        evidence = self.get_RAG_evidence(question)
+        return self.combine_evidence_and_question(evidence, question)
+
     def run(
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
-        # Relies on the implementation of run in the subclass
+        # Relies on the implementation of run in NshotAgent
         return super().run(llm_chat, question, inf_gen_config)
 
     async def batch_run(
         self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig
     ) -> list[LLMChatResponse]:
-        # Relies on the implementation of batch_run in the subclass
+        # Relies on the implementation of batch_run in NshotAgent
         return await super().batch_run(llm_chat, questions, inf_gen_config)
