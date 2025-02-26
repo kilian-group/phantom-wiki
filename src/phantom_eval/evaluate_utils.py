@@ -62,7 +62,6 @@ def pivot_mean_std(acc_mean_std, metric, independent_variable="_split"):
 
 
 ################ Utils for getting evaluation data ################
-@memory.cache(cache_validation_callback=expires_after(hours=4))
 def _get_preds(output_dir, method):
     """Get predictions from the output directory corresponding to method `method`
 
@@ -123,7 +122,6 @@ def _get_preds(output_dir, method):
     return df_preds
 
 
-@memory.cache(cache_validation_callback=expires_after(hours=4))
 def _get_qa_pairs(dataset: str, splits: list[str]):
     df_list = []
     for split in splits:
@@ -168,7 +166,7 @@ def get_evaluation_data(output_dir: str, method: str, dataset: str, sep: str = c
     if df_preds.empty:
         return df_preds
     # get unique splits
-    splits = df_preds["_split"].unique()
+    splits = df_preds["_split"].unique().tolist()
     # get the qa pairs
     df_qa_pairs = _get_qa_pairs(dataset, splits)
     # join with original qa pairs to get additional information about

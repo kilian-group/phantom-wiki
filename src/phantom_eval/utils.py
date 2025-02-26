@@ -2,6 +2,7 @@ import logging
 import re
 
 from datasets import Dataset, load_dataset
+from joblib import Memory, expires_after
 
 #
 # RESTRICT TO LOW DEPTH QUESTIONS (i.e., questions generated from the CFG with depth=10)
@@ -13,10 +14,12 @@ from nltk import CFG
 
 from phantom_wiki.facts.templates import QA_GRAMMAR_STRING, generate_templates
 
+memory = Memory("cachedir")
 grammar = CFG.fromstring(QA_GRAMMAR_STRING)
 BUILDER_PATH = "data/PhantomWiki_local.py"
 
 
+@memory.cache(cache_validation_callback=expires_after(hours=4))
 def load_data(dataset: str, split: str = None, from_local: bool = False) -> dict[str, Dataset]:
     """Load the phantom-wiki dataset from HuggingFace for a specific split or load from a local folder.
 

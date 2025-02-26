@@ -1,11 +1,13 @@
 """Script to format the accuracy of the models on the splits.
 
 Generates a table with rows for each model, split, and seed combination.
-Saves to a csv file called scores.csv in the scores directory of the output directory.
+Prints out the leaderboard in latex and markdown formats -- used in the paper.
 
 Example:
-    python eval/format_split_accuracy.py -od out --method zeroshot
+    python eval/format_leaderboard.py -od out
 """
+import os
+
 import pandas as pd
 
 from phantom_eval import get_parser
@@ -54,7 +56,8 @@ for method in method_list:
     acc = grouped[METRICS].mean()
     # add a column that counts the number of elements in the group
     acc["count"] = grouped.size()
-    print(acc)
+    # Save the accuracy to a csv file
+    acc.to_csv(os.path.join(output_dir, f"{method}_preds_stats.csv"))
     # print as markdown
     acc_mean_std = acc.groupby(["_model", "_depth", "_size", "_data_seed"]).agg("mean")
     # second compute the mean and standard error across data generation seeds
