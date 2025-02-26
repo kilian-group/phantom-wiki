@@ -15,7 +15,14 @@ import pandas as pd
 
 import phantom_eval.constants as constants
 from phantom_eval._types import ContentTextMessage, Conversation, LLMChatResponse, Message
-from phantom_eval.agents.common import REASONING_LLM_NAMES, Agent, RAGMixin, SCMixin, get_all_evidence
+from phantom_eval.agents.common import (
+    REASONING_LLM_NAMES,
+    Agent,
+    RAGMixin,
+    SCMixin,
+    get_all_evidence,
+    parse_prolog_query,
+)
 from phantom_eval.llm.common import InferenceGenerationConfig, LLMChat
 from phantom_eval.prompts import LLMPrompt
 
@@ -78,6 +85,10 @@ class CoTAgent(Agent):
             Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
         )
 
+        if self.prolog_query:
+            response.pred = parse_prolog_query(response.pred)
+            return response
+
         # Parse the response to extract the answer
         try:
             if llm_chat.model_name in REASONING_LLM_NAMES:
@@ -115,6 +126,8 @@ class CoTAgent(Agent):
             self.agent_interactions[i].messages.append(
                 Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
             )
+            if self.prolog_query:
+                responses[i].pred = parse_prolog_query(response.pred)
 
         # Parse the responses to extract the answers
         parsed_responses: list[LLMChatResponse] = []
