@@ -15,7 +15,14 @@ import pandas as pd
 
 import phantom_eval.constants as constants
 from phantom_eval._types import ContentTextMessage, Conversation, LLMChatResponse, Message
-from phantom_eval.agents.common import REASONING_LLM_NAMES, Agent, RAGMixin, SCMixin, get_all_evidence
+from phantom_eval.agents.common import (
+    REASONING_LLM_NAMES,
+    Agent,
+    RAGMixin,
+    SCMixin,
+    get_all_evidence,
+    parse_prolog_query,
+)
 from phantom_eval.llm.common import InferenceGenerationConfig, LLMChat
 from phantom_eval.prompts import LLMPrompt
 
@@ -83,6 +90,10 @@ class NshotAgent(Agent):
             Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
         )
 
+        if self.prolog_query:
+            response.pred = parse_prolog_query(response.pred)
+            return response
+
         if llm_chat.model_name in REASONING_LLM_NAMES:
             try:
                 pred = NshotAgent.parse_thinking_answer(response.pred)
@@ -117,6 +128,8 @@ class NshotAgent(Agent):
             self.agent_interactions[i].messages.append(
                 Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
             )
+            if self.prolog_query:
+                responses[i].pred = parse_prolog_query(response.pred)
 
         if llm_chat.model_name in REASONING_LLM_NAMES:
             parsed_responses: list[LLMChatResponse] = []

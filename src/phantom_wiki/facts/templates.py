@@ -93,7 +93,7 @@ def generate_templates(grammar: CFG = None, depth=4) -> Iterable:
     Returns:
         An iterator of lists of the form [question_template, prolog_template], where
         question_template is a list of strings of non-terminal tokens, and
-        prolog_tempalte is of the form [list of query statements: list[str], query answer: str]
+        prolog_template is of the form [list of query statements: list[str], query answer: str]
     """
     if grammar is None:
         grammar = CFG.fromstring(QA_GRAMMAR_STRING)

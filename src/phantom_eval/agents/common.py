@@ -235,3 +235,10 @@ def get_all_evidence(text_corpus: pd.DataFrame) -> str:
     Return all articles in the text corpus concatenated as a string.
     """
     return "\n================\n\n".join(text_corpus["article"])
+
+
+def parse_prolog_query(pred: str) -> str:
+    """
+    Parse the prolog query from the prediction.
+    """
+    return pred.replace("`", "").strip().split("\n")[-1]
