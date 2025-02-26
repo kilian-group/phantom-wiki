@@ -1,6 +1,6 @@
 import argparse
 
-from .agent import SUPPORTED_METHOD_NAMES
+from .agents import SUPPORTED_METHOD_NAMES
 
 
 def get_parser() -> argparse.ArgumentParser:
