@@ -8,7 +8,7 @@ Ref: https://huggingface.co/docs/datasets/main/en/package_reference/main_classes
 import time
 from argparse import ArgumentParser
 
-from huggingface_hub import DatasetCard, DatasetCardData
+from huggingface_hub import DatasetCard, DatasetCardData, create_repo
 
 from phantom_eval.utils import load_data
 
@@ -34,10 +34,34 @@ CONFIG_ALIASES = {
 
 def main(args):
     """Push select data splits to HuggingFace Hub."""
-    # DATA_DIR = "/Users/ag2435/phantom/data/phantom-wiki-v0.5"
-    # REPO_ID = "kilian-group/phantom-wiki-v1"
     DATA_DIR = args.data_dir
     REPO_ID = args.repo_id
+
+    # Create HuggingFace repo
+    create_repo(REPO_ID, repo_type="dataset")
+
+    # Push model card to HuggingFace Hub
+    card_data = DatasetCardData(
+        language="en",
+        license="mit",
+        annotations_creators="machine-generated",
+        language_creators="machine-generated",
+        multilinguality="monolingual",
+        size_categories="1K-10K",
+        source_datasets="original",
+        task_categories="question-answering",
+        pretty_name="PhantomWiki v1",
+        config_names=["question-answer", "corpus", "database"],
+    )
+    card = DatasetCard.from_template(
+        card_data=card_data,
+        template_path="data/README.md",
+    )
+    card.push_to_hub(
+        repo_id=REPO_ID,
+        commit_message="Add dataset card for PhantomWiki v1",
+    )
+    time.sleep(5)
 
     for split in SPLITS:
         print(f"Loading split: {split}")
@@ -52,28 +76,6 @@ def main(args):
                 commit_message=f"Add {config_name} config of split {split}",
             )
             time.sleep(5)
-
-    # Push model card to HuggingFace Hub
-    card_data = DatasetCardData(
-        language="en",
-        license="mit",
-        annotations_creators="machine-generated",
-        language_creators="machine-generated",
-        multilinguality="monolingual",
-        # size_categories='1K1T',
-        source_datasets="original",
-        task_categories="question-answering",
-        pretty_name="PhantomWiki v1",
-        config_names=["question-answer", "corpus", "database"],
-    )
-    card = DatasetCard.from_template(
-        card_data=card_data,
-        template_path="data/README.md",
-    )
-    card.push_to_hub(
-        repo_id=REPO_ID,
-        commit_message="Add dataset card for PhantomWiki v1",
-    )
 
 
 if __name__ == "__main__":
