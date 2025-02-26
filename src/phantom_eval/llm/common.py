@@ -5,6 +5,7 @@ import time
 from copy import deepcopy
 
 from pydantic import BaseModel
+from tenacity import retry, stop_after_attempt, wait_fixed
 
 from phantom_eval._types import ContentTextMessage, Conversation, LLMChatResponse
 
@@ -187,13 +188,26 @@ class CommonLLMChat(LLMChat):
         model_name: str,
         model_path: str | None = None,
         strict_model_name: bool = True,
+        enforce_rate_limits: bool = False,
     ):
+        """
+        Initialize the LLM chat object.
+        Args:
+            model_name (str): The model name to use.
+            model_path (Optional[str]): Local path to the model.
+                Defaults to None.
+            strict_model_name (bool): Whether to check if the model name is supported.
+                Defaults to True.
+            enforce_rate_limits (bool): Whether to enforce rate limits.
+                Defaults to False.
+        """
         super().__init__(model_name, model_path, strict_model_name)
         self.client = None
 
-        # Utils for rate limiting
-        # value is incremented every interval and represents the next time a request can be made
-        # value_slow is incremented every minute and represents the next time a new minute starts
+        # Functionality for enforcing rate limiting on the client side
+        self.enforce_rate_limits = enforce_rate_limits
+        # end_rpm is incremented every interval and represents the next time a request can be made
+        # end_tpm is incremented every minute and represents the next time a new minute starts
         self.start = self.end_rpm = self.end_tpm = time.time()
         # NOTE: we estimate the number of used tokens in the current minute
         self.token_usage_per_minute = 0
@@ -295,39 +309,60 @@ class CommonLLMChat(LLMChat):
     async def generate_response(
         self, conv: Conversation, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
-        """Async version of generate_response that can be called concurrently while respecting rate limits"""
-        messages_api_format: list[dict] = self._convert_conv_to_api_format(conv)
-        input_tokens = self._count_tokens(messages_api_format)
-        logger.debug(f"Input tokens: {input_tokens}")
-        if input_tokens > self.TPM_LIMIT:
-            raise ValueError(f"Input tokens {input_tokens} exceed TPM limit {self.TPM_LIMIT}")
+        """Async version of generate_response that can be called concurrently to respect rate limits
 
-        # acquire the lock for the counter
-        await self.cond.acquire()
-        logging.debug(f"{self._current()}: Acquired lock for {conv.uid}")
-        # ensure that counter.check(input_tokens) will be satisfied
-        await self._sleep_rpm()
-        await self._sleep_tpm(input_tokens)
-        try:
-            # yield to other threads until condition is true
-            await self.cond.wait_for(lambda: self._check(input_tokens))
-            # schedule _call_api to run concurrently
-            logging.debug(f"{self._current()}: Calling API for {conv.uid}")
-            t = asyncio.create_task(self._call_api(messages_api_format, inf_gen_config, use_async=True))
-            logging.debug(f"{self._current()}: Done with {conv.uid}")
-            self._increment()
-            self.token_usage_per_minute += input_tokens
-            logging.debug(f"{self._current()}: Updated counter")
-            # release underlying lock and wake up 1 waiting task
-            self.cond.notify()
-            logging.debug(f"{self._current()}: Notified 1")
-        finally:
-            self.cond.release()
-            logging.debug(f"{self._current()}: Released lock for {conv.uid}")
-        # wait for the task to complete
-        response = await t
-        parsed_response = self._parse_api_output(response)
-        return parsed_response
+        If self.enforce_rate_limits is True, this function will enforce the rate limits
+        by acquiring a lock and waiting for the condition to be satisfied.
+        Otherwise, it will call the API directly.
+        """
+        if self.enforce_rate_limits:
+            messages_api_format: list[dict] = self._convert_conv_to_api_format(conv)
+            input_tokens = self._count_tokens(messages_api_format)
+            logger.debug(f"Input tokens: {input_tokens}")
+            if input_tokens > self.TPM_LIMIT:
+                raise ValueError(f"Input tokens {input_tokens} exceed TPM limit {self.TPM_LIMIT}")
+
+            # acquire the lock for the counter
+            await self.cond.acquire()
+            logging.debug(f"{self._current()}: Acquired lock for {conv.uid}")
+            # ensure that counter.check(input_tokens) will be satisfied
+            await self._sleep_rpm()
+            await self._sleep_tpm(input_tokens)
+            try:
+                # yield to other threads until condition is true
+                await self.cond.wait_for(lambda: self._check(input_tokens))
+                # schedule _call_api to run concurrently
+                logging.debug(f"{self._current()}: Calling API for {conv.uid}")
+                t = asyncio.create_task(self._call_api(messages_api_format, inf_gen_config, use_async=True))
+                logging.debug(f"{self._current()}: Done with {conv.uid}")
+                self._increment()
+                self.token_usage_per_minute += input_tokens
+                logging.debug(f"{self._current()}: Updated counter")
+                # release underlying lock and wake up 1 waiting task
+                self.cond.notify()
+                logging.debug(f"{self._current()}: Notified 1")
+            finally:
+                self.cond.release()
+                logging.debug(f"{self._current()}: Released lock for {conv.uid}")
+            # wait for the task to complete
+            response = await t
+            parsed_response = self._parse_api_output(response)
+            return parsed_response
+        else:
+            # max_retries and wait_seconds are object attributes, and cannot be written around the
+            # generate_response function
+            # So we need to wrap the _call_api function with the retry decorator
+            @retry(
+                stop=stop_after_attempt(inf_gen_config.max_retries),
+                wait=wait_fixed(inf_gen_config.wait_seconds),
+            )
+            def _call_api_wrapper() -> str:
+                messages_api_format: list[dict] = self._convert_conv_to_api_format(conv)
+                response = self._call_api(messages_api_format, inf_gen_config)
+                parsed_response = self._parse_api_output(response)
+                return parsed_response
+
+            return _call_api_wrapper()
 
     async def batch_generate_response(
         self, convs: list[Conversation], inf_gen_config: InferenceGenerationConfig

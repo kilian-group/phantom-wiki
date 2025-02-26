@@ -45,8 +45,9 @@ class GeminiChat(CommonLLMChat):
         model_name: str,
         model_path: str | None = None,
         usage_tier: int = 1,
+        enforce_rate_limits: bool = False,
     ):
-        super().__init__(model_name, model_path)
+        super().__init__(model_name, model_path, True, enforce_rate_limits)
 
         gemini.configure(api_key=os.getenv("GEMINI_API_KEY"))
         self.client = gemini.GenerativeModel(self.model_name)
