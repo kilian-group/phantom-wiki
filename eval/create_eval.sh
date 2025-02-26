@@ -3,7 +3,7 @@
 
 source eval/constants.sh
 
-# 
+#
 # Construct job name
 #
 read -p "Enter the method: " METHOD
@@ -18,12 +18,17 @@ JOB_NAME=${METHOD}-${MODEL_NAME##*/}
 #
 # Add option to set the cluster name
 #
-read -p "Enter cluster name (G2 or Empire): " CLUSTER_NAME
+read -p "Enter cluster name (G2 or Empire or aida): " CLUSTER_NAME
+# Add flags:
+# - specify GPUs configuration with --gres=${GRES}
+# - specify partition with --partition=${PARTITION}
+# - specify time with --time=${TIME}
 if [[ "$CLUSTER_NAME" =~ ^[Gg]2$ ]]; then
     if [[ " ${LARGE_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
         GPU=a6000
         NUM_GPUS=8
     elif [[ " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+        GPU=a6000
         NUM_GPUS=4
     elif [[ " ${MEDIUM_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
         GPU=a6000
@@ -54,12 +59,29 @@ elif [[ "$CLUSTER_NAME" =~ ^[Ee]mpire$ ]]; then
     GRES="gpu:${NUM_GPUS}"
     PARTITION=cornell
     TIME="1-00:00:00"
+elif [[ "$CLUSTER_NAME" =~ aida$ ]]; then
+    GPU=a100
+    if [[ " ${LARGE_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+        NUM_GPUS=4
+    elif [[ " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+        NUM_GPUS=2
+    elif [[ " ${MEDIUM_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+        NUM_GPUS=1
+    elif [[ " ${SMALL_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+        NUM_GPUS=1
+    else
+        echo "Invalid model name. Exiting..."
+        exit 1
+    fi
+    GRES="gpu:${GPU}:${NUM_GPUS}"
+    PARTITION=full
+    TIME="1-00:00:00"
 else
     echo "Invalid cluster name. Exiting..."
     exit 1
 fi
 
-# 
+#
 # Add option to set the number of CPUs and memory
 #
 read -p "Enter the number of CPUs (default: 8): " CPUS
@@ -68,7 +90,7 @@ read -p "Enter the memory in GB (default: 100): " MEMORY
 CPUS=${CPUS:-8}
 MEMORY=${MEMORY:-100}
 
-# 
+#
 # Generate the slurm script
 #
 echo "Generating slurm script..."
@@ -203,7 +225,7 @@ EOT
 
 chmod +x eval/slurm_scripts/${JOB_NAME}.slurm
 
-# 
+#
 # Add option to run the script
 #
 read -p "Launch the script? (y/N): " LAUNCH

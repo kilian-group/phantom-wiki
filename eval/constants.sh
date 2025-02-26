@@ -11,26 +11,26 @@ get_inf_seed_list() {
 }
 
 API_MODELS=(
-    'gemini-1.5-flash-002'
-    # 'gpt-4o-2024-11-20'
+    "gemini-1.5-flash-002"
+    "gpt-4o-2024-11-20"
 )
 # L models (run on 8 A6000 GPUs)
 LARGE_MODELS=(
-    'meta-llama/llama-3.3-70b-instruct'
+    "meta-llama/llama-3.3-70b-instruct"
     # 'google/gemma-2-27b-it' # OPTIONAL
     # 'microsoft/phi-3.5-mini-instruct' # OPTIONAL
     # 'microsoft/phi-3.5-moe-instruct' # OPTIONAL
 )
 # M models (run on 4 A6000 GPUs)
 MEDIUM_MODELS=(
-    'meta-llama/llama-3.2-3b-instruct'
-    'meta-llama/llama-3.1-8b-instruct'
+    "meta-llama/llama-3.2-3b-instruct"
+    "meta-llama/llama-3.1-8b-instruct"
     # 'google/gemma-2-9b-it' # OPTIONAL
     # 'mistralai/mistral-7b-instruct-v0.3' # OPTIONAL
 )
 # S models (run on 3090)
 SMALL_MODELS=(
-    'meta-llama/llama-3.2-1b-instruct'
+    "meta-llama/llama-3.2-1b-instruct"
     # 'google/gemma-2-2b-it' # OPTIONAL
 )
 REASONING_MODELS=(
