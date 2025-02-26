@@ -77,6 +77,9 @@ def main(args):
             )
             time.sleep(5)
 
+    print("Datasets pushed to https://huggingface.co/datasets/kilian-group/phantom-wiki-v1")
+    print("Done!")
+
 
 if __name__ == "__main__":
     parser = ArgumentParser()
