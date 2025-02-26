@@ -122,7 +122,7 @@ class PhantomWiki(datasets.GeneratorBasedBuilder):
                     "answer": datasets.Sequence(datasets.Value("string")),
                     "prolog": datasets.Features(
                         {
-                            "query": datasets.Value("string"),
+                            "query": datasets.Sequence(datasets.Value("string")),
                             "answer": datasets.Value("string"),
                         }
                     ),
