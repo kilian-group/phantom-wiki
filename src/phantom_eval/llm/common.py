@@ -306,6 +306,43 @@ class CommonLLMChat(LLMChat):
                         )
         return formatted_messages
 
+    async def _generate_response(
+        self, conv: Conversation, inf_gen_config: InferenceGenerationConfig
+    ) -> LLMChatResponse:
+        """Async version of generate_response that respects rate limits"""
+        messages_api_format: list[dict] = self._convert_conv_to_api_format(conv)
+        input_tokens = self._count_tokens(messages_api_format)
+        logger.debug(f"Input tokens: {input_tokens}")
+        if input_tokens > self.TPM_LIMIT:
+            raise ValueError(f"Input tokens {input_tokens} exceed TPM limit {self.TPM_LIMIT}")
+
+        # acquire the lock for the counter
+        await self.cond.acquire()
+        logging.debug(f"{self._current()}: Acquired lock for {conv.uid}")
+        # ensure that counter.check(input_tokens) will be satisfied
+        await self._sleep_rpm()
+        await self._sleep_tpm(input_tokens)
+        try:
+            # yield to other threads until condition is true
+            await self.cond.wait_for(lambda: self._check(input_tokens))
+            # schedule _call_api to run concurrently
+            logging.debug(f"{self._current()}: Calling API for {conv.uid}")
+            t = asyncio.create_task(self._call_api(messages_api_format, inf_gen_config, use_async=True))
+            logging.debug(f"{self._current()}: Done with {conv.uid}")
+            self._increment()
+            self.token_usage_per_minute += input_tokens
+            logging.debug(f"{self._current()}: Updated counter")
+            # release underlying lock and wake up 1 waiting task
+            self.cond.notify()
+            logging.debug(f"{self._current()}: Notified 1")
+        finally:
+            self.cond.release()
+            logging.debug(f"{self._current()}: Released lock for {conv.uid}")
+        # wait for the task to complete
+        response = await t
+        parsed_response = self._parse_api_output(response)
+        return parsed_response
+
     async def generate_response(
         self, conv: Conversation, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
@@ -316,38 +353,7 @@ class CommonLLMChat(LLMChat):
         Otherwise, it will call the API directly.
         """
         if self.enforce_rate_limits:
-            messages_api_format: list[dict] = self._convert_conv_to_api_format(conv)
-            input_tokens = self._count_tokens(messages_api_format)
-            logger.debug(f"Input tokens: {input_tokens}")
-            if input_tokens > self.TPM_LIMIT:
-                raise ValueError(f"Input tokens {input_tokens} exceed TPM limit {self.TPM_LIMIT}")
-
-            # acquire the lock for the counter
-            await self.cond.acquire()
-            logging.debug(f"{self._current()}: Acquired lock for {conv.uid}")
-            # ensure that counter.check(input_tokens) will be satisfied
-            await self._sleep_rpm()
-            await self._sleep_tpm(input_tokens)
-            try:
-                # yield to other threads until condition is true
-                await self.cond.wait_for(lambda: self._check(input_tokens))
-                # schedule _call_api to run concurrently
-                logging.debug(f"{self._current()}: Calling API for {conv.uid}")
-                t = asyncio.create_task(self._call_api(messages_api_format, inf_gen_config, use_async=True))
-                logging.debug(f"{self._current()}: Done with {conv.uid}")
-                self._increment()
-                self.token_usage_per_minute += input_tokens
-                logging.debug(f"{self._current()}: Updated counter")
-                # release underlying lock and wake up 1 waiting task
-                self.cond.notify()
-                logging.debug(f"{self._current()}: Notified 1")
-            finally:
-                self.cond.release()
-                logging.debug(f"{self._current()}: Released lock for {conv.uid}")
-            # wait for the task to complete
-            response = await t
-            parsed_response = self._parse_api_output(response)
-            return parsed_response
+            return await self._generate_response(conv, inf_gen_config)
         else:
             # max_retries and wait_seconds are object attributes, and cannot be written around the
             # generate_response function
@@ -368,6 +374,6 @@ class CommonLLMChat(LLMChat):
         self, convs: list[Conversation], inf_gen_config: InferenceGenerationConfig
     ) -> list[LLMChatResponse]:
         parsed_responses = await asyncio.gather(
-            *[self.generate_response(conv, inf_gen_config) for conv in convs]
+            *[self._generate_response(conv, inf_gen_config) for conv in convs]
         )
         return parsed_responses
