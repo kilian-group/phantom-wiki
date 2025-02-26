@@ -54,6 +54,7 @@ for method in method_list:
     acc = grouped[METRICS].mean()
     # add a column that counts the number of elements in the group
     acc["count"] = grouped.size()
+    print(acc)
     # print as markdown
     acc_mean_std = acc.groupby(["_model", "_depth", "_size", "_data_seed"]).agg("mean")
     # second compute the mean and standard error across data generation seeds

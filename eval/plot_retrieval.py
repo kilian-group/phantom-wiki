@@ -96,6 +96,7 @@ for metric in METRICS:
             acc = grouped[["EM", "precision", "recall", "f1"]].mean()
             # add a column that counts the number of elements in the group
             acc["count"] = grouped.size()
+            print(acc)
 
             # get the mean and std of the accuracy for each model and split as follows:
             # first compute the mean across inference generation seeds

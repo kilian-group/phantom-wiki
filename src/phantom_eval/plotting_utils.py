@@ -70,13 +70,13 @@ LINESTYLES = {
 METHOD_LINESTYLES = {
     "zeroshot": "--",
     "cot": "-",
-    "reasoning": "-.",
+    # "reasoning": "-.",
     "zeroshot-rag": "--",
     "cot-rag": "-",
-    "reasoning-rag": "-.",
+    # "reasoning-rag": "-.",
     "act": "--",
     "react": "-",
-    "cot-rag-reasoning": "-.",
+    # "cot-rag-reasoning": "-.",
 }
 HATCHSTYLES = {
     "google/gemma-2-27b-it": "/",
@@ -107,8 +107,8 @@ MARKERS = {
     "cot-rag": "s",  # square
     "act": "+",  # plus
     "react": "P",  # bold plus
-    "reasoning": "D",  # diamond
-    "reasoning-rag": "D",  # diamond
+    # "reasoning": "D",  # diamond
+    # "reasoning-rag": "D",  # diamond
 }
 
 # Single column figures
@@ -145,37 +145,37 @@ MODEL_ALIASES = {
 METHOD_LATEX_ALIASES = {
     "zeroshot": "\\zeroshot",
     "cot": "\\CoT",
-    "reasoning": "\\reasoning",
-    "cot-reasoning": "\\cotreasoning",
+    # "reasoning": "\\reasoning",
+    # "cot-reasoning": "\\cotreasoning",
     "zeroshot-rag": "\\zeroshotrag",
     "cot-rag": "\\cotrag",
-    "reasoning-rag": "\\reasoningrag",
-    "cot-reasoning-rag": "\\cotreasoningrag",
+    # "reasoning-rag": "\\reasoningrag",
+    # "cot-reasoning-rag": "\\cotreasoningrag",
     "act": "\\act",
     "react": "\\react",
 }
 METHOD_ALIASES = {
     "zeroshot": "ZeroShot",
     "cot": "CoT",
-    "reasoning": "Reasoning",
+    # "reasoning": "Reasoning",
     "zeroshot-rag": "ZeroShot-RAG",
     "cot-rag": "CoT-RAG",
-    "reasoning-rag": "Reasoning-RAG",
+    # "reasoning-rag": "Reasoning-RAG",
     "act": "Act",
     "react": "ReAct",
-    "cot-rag-reasoning": "CoT-Reasoning-RAG",
+    # "cot-rag-reasoning": "CoT-Reasoning-RAG",
 }
 INCONTEXT_METHODS = [
     "zeroshot",
     "cot",
-    "reasoning",
-    "cot-reasoning",
+    # "reasoning",
+    # "cot-reasoning",
 ]
 RAG_METHODS = [
     "zeroshot-rag",
     "cot-rag",
-    "reasoning-rag",
-    "cot-rag-reasoning",
+    # "reasoning-rag",
+    # "cot-rag-reasoning",
 ]
 AGENTIC_METHODS = [
     # "act",
@@ -194,10 +194,10 @@ DEFAULT_MODEL_LIST = [
 ]
 
 SIMPLIFIED_METHODS = {x: x for x in DEFAULT_METHOD_LIST}
-SIMPLIFIED_METHODS["reasoning"] = "zeroshot"
-SIMPLIFIED_METHODS["cot-reasoning"] = "cot"
-SIMPLIFIED_METHODS["reasoning-rag"] = "zeroshot-rag"
-SIMPLIFIED_METHODS["cot-rag-reasoning"] = "cot-rag"
+# SIMPLIFIED_METHODS["reasoning"] = "zeroshot"
+# SIMPLIFIED_METHODS["cot-reasoning"] = "cot"
+# SIMPLIFIED_METHODS["reasoning-rag"] = "zeroshot-rag"
+# SIMPLIFIED_METHODS["cot-rag-reasoning"] = "cot-rag"
 
 import numpy as np
 

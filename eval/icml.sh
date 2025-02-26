@@ -17,10 +17,9 @@ if [ -z "$2" ]; then
     METHOD_LIST=(
         "zeroshot"
         "cot"
-        "react"
-        "act"
         "zeroshot-rag"
         "cot-rag"
+        "react"
     )
 else
     METHOD_LIST=($2)
@@ -30,12 +29,12 @@ fi
 MODEL_LIST=(
     "${API_MODELS[@]}"
     "${LARGE_MODELS[@]}"
-    "${MEDIUM_MODELS[@]}"
+    "${REASONING_MODELS[@]}"
+    # "${MEDIUM_MODELS[@]}"
     # "${SMALL_MODELS[@]}"
 )
 echo "Models: ${MODEL_LIST[@]}"
-# Split list is defined in constants.sh
-echo "Splits: $SPLIT_LIST"
+
 # Override whichever dataset was specified in constants.sh
 DATASET=mlcore/phantom-wiki-v050
 echo "Dataset: $DATASET"
@@ -49,10 +48,9 @@ python eval/format_leaderboard.py -od $OUTPUT_DIR --dataset $DATASET --method_li
 # Sec 5: Evaluating Reasoning
 #
 python eval/plot_reasoning.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST --model_list $MODEL_LIST
-# TODO: add aggregation vs non-aggregation plot
 
 #
 # Sec 6: Evaluating Retrieval
 #
 python eval/plot_retrieval.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST --model_list $MODEL_LIST
-python eval/plot_size_accuracy_delta.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST
+# python eval/plot_size_accuracy_delta.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST
