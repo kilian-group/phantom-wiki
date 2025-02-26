@@ -20,7 +20,7 @@ class Message(BaseModel):
 
 class Conversation(BaseModel):
     messages: list[Message]
-    uid: int = Field(default_factory=lambda: uuid4().hex)
+    uid: str = Field(default_factory=lambda: uuid4().hex)
 
     @staticmethod
     def load_from_path(file_path: str) -> Conversation:
