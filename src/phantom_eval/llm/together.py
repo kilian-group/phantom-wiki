@@ -10,14 +10,22 @@ logger = logging.getLogger(__name__)
 
 
 class TogetherChat(CommonLLMChat):
+    # https://docs.together.ai/docs/serverless-models
     SUPPORTED_LLM_NAMES: list[str] = [
         "meta-llama/meta-llama-3.1-8b-instruct-turbo",
         "meta-llama/meta-llama-3.1-70b-instruct-turbo",
+        "meta-llama/llama-3.3-70b-instruct-turbo",
         "meta-llama/meta-llama-3.1-405b-instruct-turbo",
         "meta-llama/llama-vision-free",
     ]
+    # https://docs.together.ai/docs/rate-limits
     RATE_LIMITS = {
-        llm_name: {"usage_tier=1": {"RPM": 20, "TPM": 500_000}} for llm_name in SUPPORTED_LLM_NAMES
+        llm_name: {
+            "usage_tier=0": {"RPM": 60, "TPM": 60_000},  # free tier
+            "usage_tier=1": {"RPM": 600, "TPM": 180_000},
+            "usage_tier=2": {"RPM": 1_800, "TPM": 250_000},
+        }
+        for llm_name in SUPPORTED_LLM_NAMES
     }
 
     def __init__(
