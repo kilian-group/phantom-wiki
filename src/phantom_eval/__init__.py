@@ -91,11 +91,12 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument("--dataset", type=str, default="mlcore/phantom-wiki-v050", help="Dataset name")
     parser.add_argument(
         "--split_list",
-        default=["depth_20_size_50_seed_1"],
         type=str,
         nargs="+",
         help="List of dataset splits to evaluate",
     )
+    parser.add_argument("--from_local", action="store_true", help="Load the dataset from a local folder")
+    parser.add_argument("--data_dir", type=str, default=None, help="Path to the local dataset folder")
     parser.add_argument("--batch_size", "-bs", default=10, type=int, help="Batch size (>=1)")
     parser.add_argument(
         "--batch_number",
