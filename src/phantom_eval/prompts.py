@@ -110,11 +110,11 @@ Answer: job(A, "theatre manager"), great_granddaughter(A, B), friend(B, C), pare
 
 Example 9:
 Question: How many friends does the child of Alvaro Smock have?
-Answer: child(A, 'Alvaro Smock'), findall(B, friend(A, B), C), length(C, D)
+Answer: child("Alvaro Smock", A), aggregate_all(count, friend(A, B), C)
 
 Example 10:
 Question: How many uncles does the maternal grandmother of the friend of Stacia Toombs have?
-Answer: friend(A, 'Stacia Toombs'), mother(A, B), mother(B, C), findall(D, uncle(C, D), E), length(E, F)
+Answer: friend("Stacia Toombs", A), mother(A, B), mother(B, C), aggregate_all(count, uncle(C, D), E)
 """
 
 FEWSHOT_EXAMPLES = f"""
@@ -253,10 +253,10 @@ Question: Who is the granddaughter of the mother of the friend of the friend of 
 Answer: I can get the person whose occupation is theatre manager with the query job(A, "theatre manager"). Since A is the person whose occupation is theatre manager, I can get the great-granddaughter of A with the query great_granddaughter(A, B). Since B is the great-granddaughter of the person whose occupation is theatre manager, I can get the friend of B with the query friend(B, C). Since C is the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the parent of C with the query parent(C, D). Since D is the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the mother of D with the query mother(D, E). Since E is the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the friend of E with the query friend(E, F). Since F is the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the friend of F with the query friend(F, G). Since G is the friend of the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the mother of G with the query mother(G, H). Since H is the mother of the friend of the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the granddaughter of H with the query granddaughter(H, I). Therefore, the answer is job(A, "theatre manager"), great_granddaughter(A, B), friend(B, C), parent(C, D), mother(D, E), friend(E, F), friend(F, G), mother(G, H), granddaughter(H, I).
 Example 9:
 Question: How many friends does the child of Alvaro Smock have?
-Answer: I can get the child of Alvaro Smock with the query child(A, 'Alvaro Smock'). Since A is the child of Alvaro Smock, I can get the number of friends of A with the query findall(B, friend(A, B), C), length(C, D). Therefore, the answer is child(A, 'Alvaro Smock'), findall(B, friend(A, B), C), length(C, D).
+Answer: I can get the child of Alvaro Smock with the query child("Alvaro Smock", A). Since A is the child of Alvaro Smock, I can get the number of friends of A with the query findall(B, friend(A, B), C), length(C, D). Therefore, the answer is child("Alvaro Smock", A), findall(B, friend(A, B), C), length(C, D).
 Example 10:
 Question: How many uncles does the maternal grandmother of the friend of Stacia Toombs have?
-Answer: I can get the friend of Stacia Toombs with the query friend(A, 'Stacia Toombs'). Since A is the friend of Stacia Toombs, I can get the maternal grandmother of A with the query mother(A, B), mother(B, C). Since D is the maternal grandmother of the friend of Stacia Toombs, I can get the number of uncles of D with the query findall(E, uncle(D, E), F), length(F, G). Therefore, the answer is friend(A, 'Stacia Toombs'), mother(A, B), mother(B, C), findall(E, uncle(D, E), F), length(F, G).
+Answer: I can get the friend of Stacia Toombs with the query friend("Stacia Toombs", A). Since A is the friend of Stacia Toombs, I can get the maternal grandmother of A with the query mother(A, B), mother(B, C). Since D is the maternal grandmother of the friend of Stacia Toombs, I can get the number of uncles of D with the query findall(E, uncle(D, E), F), length(F, G). Therefore, the answer is friend("Stacia Toombs", A), mother(A, B), mother(B, C), findall(E, uncle(D, E), F), length(F, G).
 """
 
 COT_EXAMPLES = f"""
