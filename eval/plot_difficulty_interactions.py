@@ -14,7 +14,7 @@ import os
 import matplotlib.pyplot as plt
 
 from phantom_eval import get_parser
-from phantom_eval.agent import ReactAgent
+from phantom_eval.agents.react import ReactAgent
 from phantom_eval.evaluate_utils import COLORS, LINESTYLES, get_evaluation_data, mean, pivot_mean_std, std
 
 parser = get_parser()

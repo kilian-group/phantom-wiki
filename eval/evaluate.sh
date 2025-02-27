@@ -14,18 +14,7 @@ source eval/constants.sh
 # If second argument is provided, use that for METHOD_LIST
 if [ -z "$2" ]; then
     echo "Using default method list"
-    METHOD_LIST=(
-        "zeroshot"
-        "fewshot"
-        "cot"
-        "react"
-        "act"
-        "zeroshot-sc"
-        "fewshot-sc"
-        "cot-sc"
-        "zeroshot-rag"
-        "cot-rag"
-    )
+    METHOD_LIST=$METHODS
 else
     METHOD_LIST=($2)
 fi

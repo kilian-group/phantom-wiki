@@ -14,7 +14,8 @@ from phantom_wiki.facts.database import Database
 
 from . import constants, get_parser
 from ._types import Conversation, LLMChatResponse
-from .agent import Agent, get_agent
+from .agents import get_agent
+from .agents.common import Agent
 from .llm import get_llm
 from .llm.common import InferenceGenerationConfig, LLMChat
 from .prolog_utils import get_prolog_results
