@@ -35,7 +35,7 @@ def create_friendship_graph(names, k: int, seed: int, visualize: bool = False, o
             with_labels=True,
             node_color="lightblue",
             edge_color="gray",
-            node_size=2000,
+            node_size=1500,
             font_size=6,
         )
 
@@ -44,6 +44,6 @@ def create_friendship_graph(names, k: int, seed: int, visualize: bool = False, o
         plt.savefig(
             f"{output_dir}/friendship_graph.png", format="png", dpi=300
         )  # Save as PNG with high resolution
-        plt.show()
+        plt.close() # Close figure
 
     return facts

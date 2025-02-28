@@ -19,10 +19,6 @@ friend_gen_parser.add_argument(
 friend_gen_parser.add_argument(
     "--friendship-seed", type=int, default=1, help="Seed for friendship generation."
 )
-friend_gen_parser.add_argument(
-    "--visualize", action="store_true", help="Whether or not to visualize the friendship graph."
-)
-
 
 #
 # Functionality to add friendships for everyone in the database.
