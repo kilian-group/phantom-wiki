@@ -35,7 +35,6 @@ def check_git_status():
         print("Error: Git is not installed or not available in PATH.")
         sys.exit(1)
 
-
 if __name__ == "__main__":
     # We combine a base parser with all the generators' parsers
     parser = get_parser(
@@ -48,10 +47,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Check Git status before running the main logic
-    # if not args.debug:
-    #     check_git_status()
-    #     print("Git status is clean. Running the script...")
-    # else:
-    #     print("Debug mode enabled. Skipping Git status check.")
+    if not args.debug:
+        check_git_status()
+        print("Git status is clean. Running the script...")
+    else:
+        print("Debug mode enabled. Skipping Git status check.")
 
     generate_dataset(**vars(args))
