@@ -40,7 +40,7 @@ class Generator:
             args: The configuration that specifies how to create the dataset.
         """
         # add first person to the family tree
-        fam_tree = [self.person_factory.create_person(args.max_tree_depth)]
+        fam_tree = [self.person_factory.create_person(args.max_family_tree_depth)]
 
         min_level = max_level = fam_tree[0].tree_level
         tree_depth = max_level - min_level
@@ -53,10 +53,10 @@ class Generator:
 
             # determine whether it is possible to add parents and children of the sampled person
             can_add_parents = not current_person.parents and (
-                current_person.tree_level > min_level or tree_depth < args.max_tree_depth
+                current_person.tree_level > min_level or tree_depth < args.max_family_tree_depth
             )
             can_add_children = len(current_person.children) < args.max_branching_factor and (
-                current_person.tree_level < max_level or tree_depth < args.max_tree_depth
+                current_person.tree_level < max_level or tree_depth < args.max_family_tree_depth
             )
 
             # decide what to do
@@ -119,8 +119,8 @@ class Generator:
 
             # Check stopping conditions
             if (
-                person_count >= args.max_tree_size
-                or total_attempts >= args.max_tree_size * 10
+                person_count >= args.max_family_tree_size
+                or total_attempts >= args.max_family_tree_size * 10
                 or (args.stop_prob > 0 and random.random() < args.stop_prob)
             ):
                 break

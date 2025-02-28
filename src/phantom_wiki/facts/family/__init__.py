@@ -23,20 +23,20 @@ fam_gen_parser.add_argument(
     help="The maximum number of children that any person in a family tree may have. (Default value: 5.)",
 )
 fam_gen_parser.add_argument(
-    "--max-tree-depth",
+    "--max-family-tree-depth",
     type=int,
     default=5,
     help="The maximum depth that a family tree may have. (Default value: 5.)",
 )
 fam_gen_parser.add_argument(
-    "--max-tree-size",
+    "--max-family-tree-size",
     type=int,
-    # default=26,
     default=25,
     help="The maximum number of people that may appear in a family tree. (Default value: 26.)",
 )
 fam_gen_parser.add_argument(
-    "--num-samples", type=int, default=1, help="The size of the dataset to generate. (Default value: 1.)"
+    "--num-samples", type=int, default=1, 
+    help="The number of family trees to generate. (Default value: 1.)"
 )
 fam_gen_parser.add_argument(
     "--stop-prob",
@@ -49,7 +49,7 @@ fam_gen_parser.add_argument(
     "--duplicate-names",
     type=bool,
     default=False,
-    help="Used to allow/prevent duplicate names in the generation. (Default value: False.)",
+    help="Allow/prevent duplicate names in the generation. (Default value: False.)",
 )
 
 fam_gen_parser.add_argument(
