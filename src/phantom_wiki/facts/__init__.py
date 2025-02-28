@@ -48,7 +48,7 @@ question_parser.add_argument(
 question_parser.add_argument(
     "--num-sampling-attempts", type=int, default=100, help="Number of attempts to sample a valid question"
 )
-question_parser.add_argument("--depth", type=int, default=6, help="Depth of the question template")
+question_parser.add_argument("--question-depth", type=int, default=6, help="Depth of the question template")
 question_parser.add_argument("--easy-mode", action="store_true", help="Sample from easy relations (hard mode is default)")
 question_parser.add_argument(
     "--skip-solution-traces", action="store_true", help="Do not include solution traces in the dataset"

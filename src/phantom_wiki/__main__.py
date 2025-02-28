@@ -35,7 +35,7 @@ def create_phantom_dataset(max_branching_factor=5, max_family_tree_depth=5,
                          max_family_tree_size=25, num_samples=1, stop_prob=0, 
                          duplicate_names=False, friendship_k=3, friendship_seed=1, 
                          num_questions_per_type=10, num_sampling_attempts=100, 
-                         depth=6, easy_mode=False, skip_solution_traces=False, 
+                         question_depth=6, easy_mode=False, skip_solution_traces=False, 
                          debug=False, quiet=False, visualize=False, use_multithreading=False, 
                          seed=1, output_dir="./out", article_format="txt", 
                          question_format="json_by_type"):
@@ -57,8 +57,6 @@ def create_phantom_dataset(max_branching_factor=5, max_family_tree_depth=5,
         The probability of stopping to further extend a family tree after a person has been added.
     duplicate_names : bool, default=False
         Allow/prevent duplicate names in the generation.
-    test : bool, default=False
-        Whether or not in test-mode, if yes, can allow unhashed or uncommitted changes.
     friendship_k : int, default=3
         Average degree in friendship graph.
     friendship_seed : int, default=1
@@ -67,7 +65,7 @@ def create_phantom_dataset(max_branching_factor=5, max_family_tree_depth=5,
         Number of questions to generate per question type (i.e., template).
     num_sampling_attempts : int, default=100
         Number of attempts to sample a valid question.
-    depth : int, default=6
+    question_depth : int, default=6
         Depth of the question template.
     easy_mode : bool, default=False
         Sample from easy relations (hard mode is default).
@@ -186,7 +184,7 @@ def create_phantom_dataset(max_branching_factor=5, max_family_tree_depth=5,
     blue("Generating question answer pairs")
     start = time.time()
     # generate question templates with a given depth
-    templates = generate_templates(depth=depth)
+    templates = generate_templates(depth=question_depth)
     # sample questions for each template (i.e., type)
     if question_format == "json_by_type":
         question_dir = os.path.join(output_dir, "questions")
