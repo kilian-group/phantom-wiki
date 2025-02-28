@@ -31,7 +31,7 @@ from .utils import blue, generate_unique_id, get_parser
 from .utils.get_answer import get_answer
 
 
-def create_phantom_dataset(
+def generate_dataset(
     max_branching_factor=5,
     max_family_tree_depth=5,
     max_family_tree_size=25,
@@ -385,7 +385,7 @@ def main(args):
     else:
         print("Debug mode enabled. Skipping Git status check.")
 
-    create_phantom_dataset(**vars(args))
+    generate_dataset(**vars(args))
 
 
 if __name__ == "__main__":
