@@ -32,7 +32,11 @@ class Generator:
         self.person_factory = person_factory
 
     def _sample_family_tree(
-        self, max_family_tree_depth, max_branching_factor, max_family_tree_size, stop_prob
+        self,
+        max_family_tree_depth: int,
+        max_branching_factor: int,
+        max_family_tree_size: int,
+        stop_prob: float,
     ) -> list[Person]:
         """Creates a single family tree.
 
@@ -135,13 +139,13 @@ class Generator:
 
     def generate(
         self,
-        max_family_tree_depth,
-        max_branching_factor,
-        max_family_tree_size,
-        stop_prob,
-        num_samples,
-        debug,
-        output_dir,
+        max_family_tree_depth: int,
+        max_branching_factor: int,
+        max_family_tree_size: int,
+        stop_prob: float,
+        num_samples: int,
+        debug: bool,
+        output_dir: str,
     ) -> list[list[Person]]:
         """Generates a list family trees based on the provided configuration.
 

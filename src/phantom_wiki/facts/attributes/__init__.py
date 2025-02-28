@@ -17,13 +17,16 @@ ATTRIBUTE_RULES_PATH = files("phantom_wiki").joinpath("facts/attributes/rules.pl
 #
 # Functionality to generate attributes for everyone in the database.
 #
-def db_generate_attributes(db: Database, seed):
+def db_generate_attributes(db: Database, seed: int):
     """
     Generate attributes for each person in the database.
 
     Args:
         db (Database): The database containing the facts.
-       seed (int): Global seed for random number generator.
+        seed (int): Global seed for random number generator.
+
+    Returns:
+        None
     """
     start_time = time.time()
     names = db.get_person_names()

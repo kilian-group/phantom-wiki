@@ -61,16 +61,16 @@ from .generate import Generator, PersonFactory, create_dot_graph, family_tree_to
 
 def db_generate_family(
     db,
-    seed,
-    duplicate_names,
-    debug,
-    output_dir,
-    visualize,
-    max_family_tree_depth,
-    max_branching_factor,
-    max_family_tree_size,
-    stop_prob,
-    num_samples,
+    seed: int,
+    duplicate_names: bool,
+    debug: bool,
+    output_dir: str,
+    visualize: bool,
+    max_family_tree_depth: int,
+    max_branching_factor: int,
+    max_family_tree_size: int,
+    stop_prob: float,
+    num_samples: int,
 ):
     """Generates family facts for a database.
 

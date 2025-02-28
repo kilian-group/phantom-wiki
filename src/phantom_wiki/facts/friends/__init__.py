@@ -24,7 +24,9 @@ friend_gen_parser.add_argument(
 #
 # Functionality to add friendships for everyone in the database.
 #
-def db_generate_friendships(db: Database, friendship_k, friendship_seed, visualize, output_dir):
+def db_generate_friendships(
+    db: Database, friendship_k: int, friendship_seed: int, visualize: bool, output_dir: str
+):
     """
     Generate friendship facts for each person in the database.
 

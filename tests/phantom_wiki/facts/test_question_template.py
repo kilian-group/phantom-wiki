@@ -79,8 +79,8 @@ args, _ = parser.parse_known_args(["--output_dir", "test_out", "--seed", "1"])
 db = Database.from_disk(DATABASE_SMALL_PATH)
 
 
-# TODO: update this test so that it uses the new sample_valid_only function
-# from phantom_wiki.facts.sample import sample_valid_only
+# TODO: update this test so that it uses the new sample_question function
+# from phantom_wiki.facts.sample import sample_question
 # def test_samples():
 #     for i, (question_template_list, predicate_template_list, _) in enumerate(DATA_DEPTH_6):
 #         rng = default_rng(seed=1)

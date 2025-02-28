@@ -434,7 +434,7 @@ def process__agg__relation_plural__Y__Y(
     return True
 
 
-def sample_valid_only(
+def sample_question(
     question_template: list[str],
     query_template: list[str],
     rng: Generator,
@@ -662,7 +662,7 @@ def sample_forward(
     easy_mode: bool = False,
 ) -> tuple[str, list[str]]:
     """
-    DEPRECATED: Use sample_valid_only instead, which implements a (much faster) random walk over the universe
+    DEPRECATED: Use sample_question instead, which implements a (much faster) random walk over the universe
     of people to create a query.
 
     Samples possible realizations of the question template and query template lists
