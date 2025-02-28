@@ -45,7 +45,6 @@ question_parser.add_argument(
     default=10,
     help="Number of questions to generate per question type (i.e., template)",
 )
-question_parser.add_argument("--valid-only", action="store_true", help="Only generate valid questions")
 question_parser.add_argument(
     "--num-sampling-attempts", type=int, default=100, help="Number of attempts to sample a valid question"
 )

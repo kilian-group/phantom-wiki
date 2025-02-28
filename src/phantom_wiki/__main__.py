@@ -206,20 +206,17 @@ def main(args):
             len(questions) < args.num_questions_per_type
         ):  # TODO: temporary fix to make sure that we generate the same number of questions for each template
             # sample a question
-            if args.valid_only:
-                question, query = sample_valid_only(
-                    question_template,
-                    query_template,
-                    rng,
-                    db,
-                    person_name_bank,
-                    person_name2attr_name_and_val,
-                    person_name2relation_and_related,
-                    hard_mode=args.hard_mode,
-                    num_sampling_attempts=args.num_sampling_attempts,
-                )
-            else:
-                raise NotImplementedError("Sampling questions without valid_only is not supported.")
+            question, query = sample_valid_only(
+                question_template,
+                query_template,
+                rng,
+                db,
+                person_name_bank,
+                person_name2attr_name_and_val,
+                person_name2relation_and_related,
+                hard_mode=args.hard_mode,
+                num_sampling_attempts=args.num_sampling_attempts,
+            )
 
             questions.append(question)
             queries.append(query)
