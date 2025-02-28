@@ -31,7 +31,7 @@ python eval/plot_reasoning_retrieval.py -od $OUTPUT_DIR --dataset $DATASET -m $M
 python eval/format_leaderboard.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST
 
 # Figure 3: F1 scores as a function of difficulty, as measured by reasoning steps
-python eval/plot_reasoning.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST
+python eval/plot_reasoning.py -od $OUTPUT_DIR --dataset $DATASET
 
 # Figure 4: F1 scores as a function of universe size
-python eval/plot_retrieval.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST
+python eval/plot_retrieval.py -od $OUTPUT_DIR --dataset $DATASET

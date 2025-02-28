@@ -4,7 +4,7 @@ Generates a table with rows for each model, split, and seed combination.
 Prints out the leaderboard in latex and markdown formats -- used in the paper.
 
 Example:
-    python eval/format_leaderboard.py -od out
+    python eval/format_leaderboard.py -od out --method_list zeroshot cot react
 """
 import os
 
@@ -66,9 +66,7 @@ for method in method_list:
     acc_mean_std = acc_mean_std.groupby(["_model", "_depth", "_size"]).agg(AGG)
     acc_mean_std = acc_mean_std.reset_index()
     # add a column at the end for the method
-    # For the paper only: if _model='deepseek-ai/deepseek-r1-distill-qwen-32b' and method="reasoning",
-    # then set method to zeroshot
-    acc_mean_std["method"] = plotting_utils.SIMPLIFIED_METHODS[method]
+    acc_mean_std["method"] = method
     df_list.append(acc_mean_std)
 
 # concatenate all the dataframes

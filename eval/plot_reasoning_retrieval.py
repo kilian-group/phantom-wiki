@@ -5,7 +5,7 @@ Generates a plot with the universe size on the x-axis, difficulty on the y-axis,
 Saves the plots to the figures directory of the output directory.
 
 Example:
-    python eval/plot_size_difficulty_accuracy_per_model.py -od out  --method react
+    python eval/plot_reasoning_retrieval.py -od out
 """
 
 import logging
@@ -53,17 +53,9 @@ os.makedirs(figures_dir, exist_ok=True)
 plt.rcParams.update(
     {
         "font.family": "serif",
-        # 'font.family': 'Times New Roman',
         "font.serif": ["Times New Roman"],
-        # 'mathtext.fontset': 'stix',
         "axes.spines.top": False,
         "axes.spines.right": False,
-        # set major tick length
-        # 'xtick.major.size': 6,
-        # 'ytick.major.size': 6,
-        # set minor tick length
-        # 'xtick.minor.size': 3,
-        # 'ytick.minor.size': 3,
     }
 )
 
