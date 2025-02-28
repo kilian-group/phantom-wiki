@@ -35,7 +35,7 @@ def create_friendship_graph(names, k: int, seed: int, visualize: bool = False, o
             with_labels=True,
             node_color="lightblue",
             edge_color="gray",
-            node_size=1500,
+            node_size=2000,
             font_size=6,
         )
 
