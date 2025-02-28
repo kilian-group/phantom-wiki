@@ -6,6 +6,17 @@ PhantomWiki generates on-demand datasets to evaluate reasoning and retrieval cap
 - [Paper](/todo)
 - [Demo](/todo)
 
+For convenience, we pre-generate PhantomWiki instances of size 50, 500, and 5000 with seeds 1,2,3. These can be downloaded using HuggingFace:
+
+```python
+from datasets import load_dataset
+
+# Download the document corpus
+ds_corpus = load_dataset("kilian-group/phantom-wiki-v1", "text-corpus")
+# Download the question-answer pairs
+ds_qa = load_dataset("kilian-group/phantom-wiki-v1", "question-answer")
+```
+
 ## Using PhantomWiki
 
 PhantomWiki is available with Python 3.12+ through

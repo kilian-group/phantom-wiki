@@ -12,9 +12,9 @@ from datasets import Dataset, load_dataset
 from nltk import CFG
 
 from phantom_wiki.facts.templates import QA_GRAMMAR_STRING, generate_templates
+from phantom_wiki.utils.hf_datasets import PhantomWikiDatasetBuilder
 
 grammar = CFG.fromstring(QA_GRAMMAR_STRING)
-BUILDER_PATH = "data/PhantomWiki_local.py"
 
 
 def load_data(dataset: str, split: str = None, from_local: bool = False) -> dict[str, Dataset]:
@@ -41,61 +41,70 @@ def load_data(dataset: str, split: str = None, from_local: bool = False) -> dict
         >>> dataset = load_data("path_to_out_dir", from_local=True) # load from HF
     """
 
-    def _get_params(split: str) -> tuple[str, int, int]:
+    def _get_params(split: str) -> tuple[int, int, int]:
         """Extract the depth, size, and seed from the split string."""
-        match = re.search(r"depth_(\d+)_size_(\d+)_seed_(\d+)", split)
-        depth, size, seed = match.groups()
-        return int(depth), int(size), int(seed)
+        if match := re.search(r"depth_(\d+)_size_(\d+)_seed_(\d+)", split):
+            depth, size, seed = match.groups()
+            return int(depth), int(size), int(seed)
+        else:
+            raise ValueError(f"Invalid split format: {split}")
 
     if not from_local:
         ds_text_corpus = load_dataset(dataset, "text-corpus", trust_remote_code=True)
         ds_question_answer = load_dataset(dataset, "question-answer", trust_remote_code=True)
         ds_database = load_dataset(dataset, "database", trust_remote_code=True)
-
-        available_splits = ds_question_answer.keys()
-        if split in available_splits:
-            logging.info(f"Using split {split} from dataset {dataset}.")
-            return {
-                "qa_pairs": ds_question_answer[split],
-                "text": ds_text_corpus[split],
-                "database": ds_database[split],
-            }
-        else:
-            requested_depth, requested_size, requested_seed = _get_params(split)
-            requested_question_templates = [
-                question for question, _, _ in generate_templates(grammar, depth=requested_depth)
-            ]
-            # NOTE: requested_question_templates is a list of lists
-
-            for s in available_splits:
-                depth, size, seed = _get_params(s)
-                if requested_depth <= depth and requested_size == size and requested_seed == seed:
-                    logging.info(f"Requested split {split} not found. Using subset of split {s} instead.")
-                    # filter by template (NOTE: each template is a list of strings)
-                    qa_pairs = ds_question_answer[s].filter(
-                        lambda x: x["template"] in requested_question_templates
-                    )
-                    return {
-                        "qa_pairs": qa_pairs,
-                        "text": ds_text_corpus[
-                            s
-                        ],  # the text corpus remains the same, since it is not generated from the CFG
-                        "database": ds_database[s],
-                    }
-            raise ValueError(
-                f"Split {split} not found in dataset {dataset}. Available splits: {available_splits}"
-            )
     else:
-        # Load from local folder
-        ds_text_corpus = load_dataset(BUILDER_PATH, name="text-corpus", data_dir=dataset)
-        ds_question_answer = load_dataset(BUILDER_PATH, name="question-answer", data_dir=dataset)
-        ds_database = load_dataset(BUILDER_PATH, name="database", data_dir=dataset)
+        builder_text_corpus = PhantomWikiDatasetBuilder(config_name="text-corpus", data_dir=dataset)
+        builder_text_corpus.download_and_prepare()
+        ds_text_corpus = builder_text_corpus.as_dataset()
 
+        builder_question_answer = PhantomWikiDatasetBuilder(config_name="question-answer", data_dir=dataset)
+        builder_question_answer.download_and_prepare()
+        ds_question_answer = builder_question_answer.as_dataset()
+
+        builder_database = PhantomWikiDatasetBuilder(config_name="database", data_dir=dataset)
+        builder_database.download_and_prepare()
+        ds_database = builder_database.as_dataset()
+
+    available_splits = ds_question_answer.keys()
+
+    if from_local and split is None:
+        if len(available_splits) == 1:
+            split = list(available_splits)[0]
+        else:
+            raise ValueError(f"Multiple splits available: {available_splits}. Please specify a split.")
+
+    if split in available_splits:
+        logging.info(f"Using split {split} from dataset {dataset}.")
         return {
-            "qa_pairs": ds_question_answer,
-            "text": ds_text_corpus,
-            "database": ds_database,
+            "qa_pairs": ds_question_answer[split],
+            "text": ds_text_corpus[split],
+            "database": ds_database[split],
         }
+    else:
+        requested_depth, requested_size, requested_seed = _get_params(split)
+        requested_question_templates = [
+            question for question, _, _ in generate_templates(grammar, depth=requested_depth)
+        ]
+        # NOTE: requested_question_templates is a list of lists
+
+        for s in available_splits:
+            depth, size, seed = _get_params(s)
+            if requested_depth <= depth and requested_size == size and requested_seed == seed:
+                logging.info(f"Requested split {split} not found. Using subset of split {s} instead.")
+                # filter by template (NOTE: each template is a list of strings)
+                qa_pairs = ds_question_answer[s].filter(
+                    lambda x: x["template"] in requested_question_templates
+                )
+                return {
+                    "qa_pairs": qa_pairs,
+                    # the text corpus remains the same, since it is not generated from the CFG
+                    "text": ds_text_corpus[s],
+                    "database": ds_database[s],
+                }
+        raise ValueError(
+            f"Split {split} not found in dataset {dataset}. Available splits: {available_splits}"
+        )
 
 
 def get_relevant_articles(dataset: Dataset, name_list: list[str]) -> str:
@@ -129,7 +138,7 @@ def normalize_pred(pred: str, sep: str) -> set[str]:
     return set(map(str.lower, map(str.strip, pred.split(sep))))
 
 
-def setup_logging(log_level: str) -> str:
+def setup_logging(log_level: str):
     # Suppress httpx logging from API requests
     logging.getLogger("httpx").setLevel(logging.WARNING)
     logging.getLogger("httpcore").setLevel(logging.WARNING)

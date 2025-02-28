@@ -1,3 +1,14 @@
+"""
+Dataset builder for PhantomWiki dataset.
+
+Usage:
+```python
+from phantom_wiki.utils.hf_datasets import PhantomWikiDatasetBuilder
+builder = PhantomWikiDatasetBuilder(config_name="...", data_dir="...")
+ds = builder.as_dataset(split="...")
+```
+"""
+
 import json
 import os
 
@@ -21,13 +32,36 @@ This new dataset is designed to solve this great NLP task and is crafted with a 
 """
 
 # TODO: Add a link to an official homepage for the dataset here
-_HOMEPAGE = "https://github.com/albertgong1/phantom-wiki"
+_HOMEPAGE = "https://github.com/kilian-group/phantom-wiki"
 
 # TODO: Add the licence for the dataset here if you can find it
-_LICENSE = ""
+_LICENSE = """
+MIT License
+
+Copyright (c) 2025 Albert Gong, Kamilė Stankevičiūtė, Chao Wan, Anmol Kabra,
+Raphael Thesmar, Johann Lee, Julius Klenke, Carla P. Gomes, Kilian Q. Weinberger
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""
 
 
-class PhantomWiki_(datasets.GeneratorBasedBuilder):
+class PhantomWikiDatasetBuilder(datasets.GeneratorBasedBuilder):
     VERSION = datasets.Version("0.5.0")
 
     BUILDER_CONFIGS = [
@@ -47,7 +81,9 @@ class PhantomWiki_(datasets.GeneratorBasedBuilder):
     ]
 
     def _info(self):
-        """This method specifies the datasets.DatasetInfo object which contains informations and typings for the dataset"""
+        """This method specifies the datasets.DatasetInfo object
+        which contains information and typings for the dataset
+        """
         if (
             self.config.name == "text-corpus"
         ):  # This is the name of the configuration selected in BUILDER_CONFIGS above
@@ -59,7 +95,8 @@ class PhantomWiki_(datasets.GeneratorBasedBuilder):
                 }
             )
         elif self.config.name == "question-answer":
-            # NOTE: to see available data types: https://huggingface.co/docs/datasets/v2.5.2/en/package_reference/main_classes#datasets.Features
+            # NOTE: to see available data types:
+            # https://huggingface.co/docs/datasets/v2.5.2/en/package_reference/main_classes#datasets.Features
             features = datasets.Features(
                 {
                     "id": datasets.Value("string"),
@@ -90,9 +127,12 @@ class PhantomWiki_(datasets.GeneratorBasedBuilder):
             # This is the description that will appear on the datasets page.
             description=_DESCRIPTION,
             # This defines the different columns of the dataset and their types
-            features=features,  # Here we define them above because they are different between the two configurations
-            # If there's a common (input, target) tuple from the features, uncomment supervised_keys line below and
-            # specify them. They'll be used if as_supervised=True in builder.as_dataset.
+            # Here we define them above because they are different between
+            # the two configurations
+            features=features,
+            # If there's a common (input, target) tuple from the features,
+            # uncomment supervised_keys line below and specify them.
+            # They'll be used if as_supervised=True in builder.as_dataset.
             # supervised_keys=("sentence", "label"),
             # Homepage of the dataset for documentation
             homepage=_HOMEPAGE,
@@ -103,9 +143,11 @@ class PhantomWiki_(datasets.GeneratorBasedBuilder):
         )
 
     def _split_generators(self, _):
-        """This method is tasked with downloading/extracting the data and defining the splits depending on the configuration
+        """This method is tasked with downloading/extracting the data
+        and defining the splits depending on the configuration
 
-        NOTE: If several configurations are possible (listed in BUILDER_CONFIGS), the configuration selected by the user is in self.config.name
+        NOTE: If several configurations are possible (listed in BUILDER_CONFIGS),
+        the configuration selected by the user is in self.config.name
         """
         # the data_dir is passed in when load_dataset is called
         data_dir = self.config.data_dir
@@ -114,45 +156,49 @@ class PhantomWiki_(datasets.GeneratorBasedBuilder):
             raise ValueError(f"Data Directory {data_dir} does not exist.")
 
         splits = []
-        # get all the subdirectories in the data_dir as a dictionary, where the key is the name of the split
+        # get all the subdirectories in the data_dir as a dictionary,
+        # where the key is the name of the split
         # and the value is the path to the file
         # first check if there are subdirectories in the data_dir
         sub_dir = {
             name: os.path.join(data_dir, name)
             for name in os.listdir(data_dir)
-            if os.path.isdir(os.path.join(data_dir, name))
+            if os.path.isdir(os.path.join(data_dir, name)) and not name.startswith(".")
         }
         if not sub_dir:
-            # if there are no subdirectories, then we are using the name of the data_dir as the split name
+            # if there are no subdirectories, then we are using
+            # the name of the data_dir as the split name
+            basename = os.path.basename(data_dir)
             return [
                 datasets.SplitGenerator(
-                    name=f"{data_dir[:-1]}",
+                    name=basename,
                     # These kwargs will be passed to _generate_examples
                     gen_kwargs={
                         "filepath": data_dir,
-                        "split": "eval",
                     },
                 )
             ]
         else:
-            # if there are subdirectories, then we are using the names of the subdirectories as the split names
+            # if there are subdirectories, then we are using
+            # the names of the subdirectories as the split names
             for name, filepath in sub_dir.items():
+                # check that filepath is a directory
+                basename = os.path.basename(filepath)
                 splits.append(
                     datasets.SplitGenerator(
-                        name=name,
+                        name=basename,
                         # These kwargs will be passed to _generate_examples
                         gen_kwargs={
                             "filepath": filepath,
-                            "split": name,
                         },
                     )
                 )
             return splits
 
     # method parameters are unpacked from `gen_kwargs` as given in `_split_generators`
-    def _generate_examples(self, filepath, split):
-        # TODO: This method handles input defined in _split_generators to yield (key, example) tuples from the dataset.
-        # The `key` is for legacy reasons (tfds) and is not important in itself, but must be unique for each example.
+    def _generate_examples(self, filepath):
+        # The `key` is for legacy reasons (tfds) and is not important in itself,
+        # but must be unique for each example.
         if self.config.name == "text-corpus":
             with open(os.path.join(filepath, "articles.json"), encoding="utf-8") as f:
                 for key, data in enumerate(json.load(f)):
