@@ -32,7 +32,7 @@ fam_gen_parser.add_argument(
     "--max-family-tree-size",
     type=int,
     default=25,
-    help="The maximum number of people that may appear in a family tree. (Default value: 26.)",
+    help="The maximum number of people that may appear in a family tree. (Default value: 25)",
 )
 fam_gen_parser.add_argument(
     "--num-samples", type=int, default=1, 
@@ -64,22 +64,38 @@ import random
 
 from .generate import Generator, PersonFactory, create_dot_graph, family_tree_to_facts
 
-
-def db_generate_family(db, args: ArgumentParser):
+def db_generate_family(db, seed, duplicate_names, debug, output_dir, visualize,
+                     max_family_tree_depth, max_branching_factor, max_family_tree_size,
+                     stop_prob, num_samples):
     """Generates family facts for a database.
 
-    args:
-        db: Database
-        num_people: number of people to generate
-        seed: random seed
+    Args:
+        db: Database object to store the generated family facts.
+        seed (int): Global seed for random number generator.
+        duplicate_names (bool): Allow/prevent duplicate names in the generation.
+        debug (bool): Whether to enable debug output.
+        output_dir (str): Path to the output folder.
+        visualize (bool): Whether or not to visualize the family graphs.
+        max_family_tree_depth (int): The maximum depth that a family tree may have.
+        max_branching_factor (int): The maximum number of children that any person in a family tree may have.
+        max_family_tree_size (int): The maximum number of people that may appear in a family tree.
+        stop_prob (float): The probability of stopping to further extend a family tree after a person has been added.
+        num_samples (int): The number of family trees to generate.
+
+    Returns:
+        list: The generated family trees.
     """
     # set the random seed
-    random.seed(args.seed)
+    random.seed(seed)
+   
     # Get the prolog family tree
-    pf = PersonFactory(args.duplicate_names)
+    pf = PersonFactory(duplicate_names)
 
     gen = Generator(pf)
-    family_trees = gen.generate(args)
+    family_trees = gen.generate(
+        max_family_tree_depth, max_branching_factor, max_family_tree_size,
+        stop_prob, num_samples, debug, output_dir
+    )
 
     for i, family_tree in enumerate(family_trees):
         logging.debug(f"Adding family tree {i+1} to the database.")
@@ -89,19 +105,19 @@ def db_generate_family(db, args: ArgumentParser):
         db.add(*facts)
 
         # If the debug flag is effective -> save the family tree to a file
-        if args.debug:
+        if debug:
             # Create a unique filename for each tree
-            output_file_path = os.path.join(args.output_dir, f"family_tree_{i+1}.pl")
-            os.makedirs(args.output_dir, exist_ok=True)
+            output_file_path = os.path.join(output_dir, f"family_tree_{i+1}.pl")
+            os.makedirs(output_dir, exist_ok=True)
 
             # Write the Prolog family tree to the file
             with open(output_file_path, "w") as f:
                 f.write("\n".join(facts))
 
         # If the visualize flag is effective -> generate family graph plot and save it
-        if args.visualize:
+        if visualize:
             family_graph = create_dot_graph(family_tree)
-            output_graph_path = os.path.join(args.output_dir, f"family_tree_{i+1}.png")
+            output_graph_path = os.path.join(output_dir, f"family_tree_{i+1}.png")
             family_graph.write_png(output_graph_path)
 
-    logging.debug(f"Saved family trees in {args.output_dir} as .png and .pl.")
+    logging.debug(f"Saved family trees in {output_dir} as .pl and .png (if visualize=True).")
