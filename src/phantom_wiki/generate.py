@@ -106,6 +106,7 @@ def generate_dataset(
 
     logging.basicConfig(level=log_level, format="%(message)s", handlers=[logging.StreamHandler()])
 
+    os.makedirs(output_dir, exist_ok=True)
     logging.info(f"Output dir: {output_dir}")
 
     # create dictionary to store timings
