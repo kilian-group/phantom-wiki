@@ -21,6 +21,24 @@ import matplotlib.lines as lines
 import matplotlib.pyplot as plt
 import numpy as np
 
+# utils for plotting
+plt.rcParams.update(
+    {
+        "font.family": "serif",
+        # 'font.family': 'Times New Roman',
+        "font.serif": ["Times New Roman"],
+        # 'mathtext.fontset': 'stix',
+        "axes.spines.top": False,
+        "axes.spines.right": False,
+        # set major tick length
+        # 'xtick.major.size': 6,
+        # 'ytick.major.size': 6,
+        # set minor tick length
+        # 'xtick.minor.size': 3,
+        # 'ytick.minor.size': 3,
+    }
+)
+
 from phantom_eval import plotting_utils
 from phantom_eval.evaluate_utils import get_evaluation_data, mean, pivot_mean_std, std
 
@@ -121,13 +139,19 @@ for metric in METRICS:
                 yerr = df_std.loc[model_name]
 
                 logging.debug(f"Plotting {method_} for {model_name} with x={df_mean.columns} and y={y}")
-                if model_name == "gpt-4o-2024-11-20" and method_ in ["zeroshot-rag", "cot-rag", "react"]:
+                if model_name in [
+                    "gpt-4o-2024-11-20",
+                    "deepseek-ai/deepseek-r1-distill-qwen-32b",
+                ] and method_ in ["zeroshot-rag", "cot-rag", "react"]:
                     # import pdb; pdb.set_trace()
                     # Create interpolation function
                     valid_indices = ~np.isnan(log10x) & ~np.isnan(y)
                     f = interp1d(log10x[valid_indices], y[valid_indices], kind="linear")
                     # interpolate missing points to create a smooth line
-                    x_new = np.linspace(np.log10(50), np.log10(10000), 50)
+                    if False:
+                        x_new = np.linspace(np.log10(50), np.log10(10000), 50)
+                    else:
+                        x_new = np.linspace(min(log10x[valid_indices]), max(log10x[valid_indices]), 100)
                     y_new = f(x_new)
                     # # use a line plot instead of errorbar
                     axs[i].plot(

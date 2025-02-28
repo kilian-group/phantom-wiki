@@ -20,6 +20,24 @@ setup_logging("INFO")
 import matplotlib.lines as lines
 import matplotlib.pyplot as plt
 
+# utils for plotting
+plt.rcParams.update(
+    {
+        "font.family": "serif",
+        # 'font.family': 'Times New Roman',
+        "font.serif": ["Times New Roman"],
+        # 'mathtext.fontset': 'stix',
+        "axes.spines.top": False,
+        "axes.spines.right": False,
+        # set major tick length
+        # 'xtick.major.size': 6,
+        # 'ytick.major.size': 6,
+        # set minor tick length
+        # 'xtick.minor.size': 3,
+        # 'ytick.minor.size': 3,
+    }
+)
+
 from phantom_eval import plotting_utils
 from phantom_eval.evaluate_utils import get_evaluation_data, mean, pivot_mean_std, std
 

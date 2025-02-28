@@ -22,18 +22,16 @@ fi
 # Override whichever dataset was specified in constants.sh
 DATASET=mlcore/phantom-wiki-v050
 echo "Dataset: $DATASET"
+MODEL="meta-llama/llama-3.3-70b-instruct"
 
-#
-# Sec 4: Main accuracy table across methods/models
-#
+# Figure 1: Reasoning and retrieval heatmaps
+python eval/plot_reasoning_retrieval.py -od $OUTPUT_DIR --dataset $DATASET -m $MODEL
+
+# Table 2: F1 scores
 python eval/format_leaderboard.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST
 
-#
-# Sec 5: Evaluating Reasoning
-#
+# Figure 3: F1 scores as a function of difficulty, as measured by reasoning steps
 python eval/plot_reasoning.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST
 
-#
-# Sec 6: Evaluating Retrieval
-#
+# Figure 4: F1 scores as a function of universe size
 python eval/plot_retrieval.py -od $OUTPUT_DIR --dataset $DATASET --method_list $METHOD_LIST

@@ -127,11 +127,12 @@ for metric in METRICS:
         contour.set_edgecolor("face")
         if i == 2:
             # add colorbar with min=0 and max=1
-            cbar = fig.colorbar(contour, ax=axs, shrink=0.2, aspect=20)
+            cbar = fig.colorbar(contour, ax=axs, shrink=0.2, aspect=20, ticks=[0, 0.975])
             # cbar.set_label(metric.capitalize())
             cbar.set_label("F1 Score", labelpad=0.5)
             # set tick labels to every 0.1
-            cbar.set_ticks([0, 1])
+            # cbar.set_ticks([0, 1])
+            cbar.ax.set_yticklabels(["0", "1"])
             cbar.ax.set_position([0.9, 0.3, 0.05, 0.55])  # [x, y, width, height]
 
         # format x-axis
