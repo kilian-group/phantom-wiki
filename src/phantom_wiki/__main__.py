@@ -214,7 +214,7 @@ def main(args):
                 person_name_bank,
                 person_name2attr_name_and_val,
                 person_name2relation_and_related,
-                hard_mode=args.hard_mode,
+                easy_mode=args.easy_mode,
                 num_sampling_attempts=args.num_sampling_attempts,
             )
 
@@ -290,11 +290,7 @@ def main(args):
 
 
 if __name__ == "__main__":
-    # we combine a base parser with the family generator parser
-    # TODO: add parser for other generation components
-    # TODO: change --depth 10 --num-samples 1 --max-tree-size 50 --max-tree-depth 20 to be more informative
-    # i.e. specify which depth corresponds to question depth, family tree depth etc.
-    # - attribute
+    # We combine a base parser with all the generators' parsers
     parser = get_parser(
         parents=[
             fam_gen_parser,
