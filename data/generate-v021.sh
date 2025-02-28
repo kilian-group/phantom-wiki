@@ -3,8 +3,8 @@
 # HuggingFace: https://huggingface.co/datasets/mlcore/phantom-wiki-v0.2.1
 
 # check that the correct number of arguments were passed
-if [ "$#" -ne 3 ]; then
-    echo "Usage: $0 <output directory> <seed> <valid only (true or false)>"
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <output directory> <seed>"
     exit 1
 fi
 
@@ -13,11 +13,10 @@ OUTPUT_DIR=$1
 mkdir -p $OUTPUT_DIR
 # set seed
 SEED=$2
-# check if valid only
-VALID_ONLY=$3
-echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-echo "Generating data to $OUTPUT_DIR with seed $SEED and valid_only=$VALID_ONLY"
-echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+echo "Generating data to $OUTPUT_DIR with seed $SEED"
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 # list of splits
 splits=()
 SIZE_LIST=(
@@ -58,17 +57,12 @@ do
         cmd="python -m phantom_wiki \
             -od $OUTPUT_DIR/$od \
             -s $SEED \
-            --depth $depth \
+            --question-depth $depth \
             --num-samples $(($size / $max_tree_size)) \
-            --max-tree-size $max_tree_size \
-            --max-tree-depth $depth \
+            --max-family-tree-size $max_tree_size \
+            --max-family-tree-depth $depth \
             --article-format json \
-            --question-format json \
-            --hard-mode"
-        # if valid only, add --valid-only flag
-        if [ "$VALID_ONLY" = true ]; then
-            cmd+=" --valid-only"
-        fi
+            --question-format json"
         echo $cmd
         eval $cmd
 
@@ -79,10 +73,7 @@ done
 
 # create dataset card
 DATASET_NAME="phantom-wiki-v0.2.1"
-# if valid only, add -valid-only to dataset name
-if [ "$VALID_ONLY" != true ]; then
-    DATASET_NAME+="-null"
-fi
+
 # start metadata header
 cat << EOF > $OUTPUT_DIR/README.md
 ---

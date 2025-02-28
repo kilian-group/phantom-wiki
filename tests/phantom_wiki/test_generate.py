@@ -15,7 +15,6 @@ def test_main():
         seed=1,
         easy_mode=True
     )
-    return
 
     # get example article
     with open(ARTICLE_EXAMPLE_PATH) as f:

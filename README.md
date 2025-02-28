@@ -40,20 +40,18 @@ This generation script creates PhantomWiki datasets with random generation seed 
 - Universe sizes 25, 50, 500, ..., 5K, 500K, 1M (number of documents)
 - Question template depth 20 (proportional to difficulty)
 
-For example, it executes the following command to generate a size 5K universe (`5000 = --max-tree-size * --num-samples`):
+For example, it executes the following command to generate a size 5K universe (`5000 = --max-family-tree-size * --num-samples`):
 
 ```bash
 python -m phantom_wiki \
    -od /path/to/output/depth_20_size_5000_seed_1 \
    -s 1 \
-   --depth 20 \
+   --question-depth 20 \
    --num-samples 100 \
-   --max-tree-size 50 \
-   --max-tree-depth 20 \
+   --max-family-tree-size 50 \
+   --max-family-tree-depth 20 \
    --article-format json \
    --question-format json \
-   --hard-mode \
-   --valid-only \
    --use-multithreading
 ```
 

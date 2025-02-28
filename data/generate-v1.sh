@@ -37,14 +37,12 @@ do
     cmd="python -m phantom_wiki \
         -od $OUTPUT_DIR/$od \
         -s $SEED \
-        --depth $depth \
+        --question-depth $depth \
         --num-samples 1 \
-        --max-tree-size 25 \
-        --max-tree-depth $depth \
+        --max-family-tree-size 25 \
+        --max-family-tree-depth $depth \
         --article-format json \
         --question-format json \
-        --hard-mode \
-        --valid-only \
         $cmd_args"
     echo $cmd
     eval $cmd
@@ -56,14 +54,12 @@ do
         cmd="python -m phantom_wiki \
             -od $OUTPUT_DIR/$od \
             -s $SEED \
-            --depth $depth \
+            --question-depth $depth \
             --num-samples $(($size / $max_tree_size)) \
-            --max-tree-size $max_tree_size \
-            --max-tree-depth $depth \
+            --max-family-tree-size $max_tree_size \
+            --max-family-tree-depth $depth \
             --article-format json \
             --question-format json \
-            --hard-mode \
-            --valid-only \
             $cmd_args"
         echo $cmd
         eval $cmd
