@@ -52,7 +52,7 @@ def get_parser(parents=[]):
     parser.add_argument("--debug", action="store_true", help="Enable debug output (DEBUG level).")
     parser.add_argument("--quiet", action="store_true", help="Enable quiet (no) output (WARNING level).")
     parser.add_argument(
-    "--visualize", action="store_true", help="Whether or not to visualize the friendship & family graphs."
+        "--visualize", action="store_true", help="Whether or not to visualize the friendship & family graphs."
     )
     parser.add_argument(
         "--use-multithreading",

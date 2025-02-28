@@ -17,10 +17,8 @@ import time
 import pydot
 from tqdm import tqdm
 
-from phantom_wiki.facts.family import fam_gen_parser
 from phantom_wiki.facts.family.constants import PERSON_TYPE
 from phantom_wiki.facts.family.person_factory import Person, PersonFactory
-from phantom_wiki.utils import get_parser
 
 # ============================================================================= #
 #                               CLASS  GENERATOR                                #
@@ -33,14 +31,16 @@ class Generator:
     def __init__(self, person_factory: PersonFactory):
         self.person_factory = person_factory
 
-    def _sample_family_tree(self, max_family_tree_depth, max_branching_factor, max_family_tree_size, stop_prob) -> list[Person]:
+    def _sample_family_tree(
+        self, max_family_tree_depth, max_branching_factor, max_family_tree_size, stop_prob
+    ) -> list[Person]:
         """Creates a single family tree.
 
         Args:
             max_family_tree_depth (int): The maximum depth that a family tree may have.
-            max_branching_factor (int): The maximum number of children that any person in a family tree may have.
+            max_branching_factor (int): Maximum number of children that any person in a family tree may have.
             max_family_tree_size (int): The maximum number of people that may appear in a family tree.
-            stop_prob (float): The probability of stopping to further extend a family tree after a person has been added.
+            stop_prob (float): Probability of stopping to extend a family tree after a person has been added.
 
         Returns:
             list[Person]: A list of Person objects representing the generated family tree.
@@ -133,20 +133,29 @@ class Generator:
 
         return fam_tree
 
-    def generate(self, max_family_tree_depth, max_branching_factor, max_family_tree_size, stop_prob, num_samples, debug, output_dir) -> list[list[Person]]:
+    def generate(
+        self,
+        max_family_tree_depth,
+        max_branching_factor,
+        max_family_tree_size,
+        stop_prob,
+        num_samples,
+        debug,
+        output_dir,
+    ) -> list[list[Person]]:
         """Generates a list family trees based on the provided configuration.
 
         Args:
             max_family_tree_depth (int): The maximum depth that a family tree may have.
-            max_branching_factor (int): The maximum number of children that any person in a family tree may have.
+            max_branching_factor (int): Maximum number of children that any person in a family tree may have.
             max_family_tree_size (int): The maximum number of people that may appear in a family tree.
-            stop_prob (float): The probability of stopping to further extend a family tree after a person has been added.
+            stop_prob (float): Probability of stopping to extend a family tree after a person has been added.
             num_samples (int): The number of family trees to generate.
             debug (bool): Whether to enable debug output.
             output_dir (str): Path to the output folder.
 
         Returns:
-            list[list[Person]]: A list of family trees, where each family tree is represented as a list of Person objects.
+            list[list[Person]]: A list of family trees, where family trees are lists of Person objects.
         """
         # create list for storing graph representations of all created samples
         family_trees = []
@@ -155,7 +164,9 @@ class Generator:
         names = []
         for sample_idx in tqdm(range(num_samples), desc="Generating family trees", leave=False):
             # sample family tree
-            family_tree = self._sample_family_tree(max_family_tree_depth, max_branching_factor, max_family_tree_size, stop_prob)
+            family_tree = self._sample_family_tree(
+                max_family_tree_depth, max_branching_factor, max_family_tree_size, stop_prob
+            )
             family_trees.append(family_tree)
 
             names += [p.get_full_name() for p in family_tree]

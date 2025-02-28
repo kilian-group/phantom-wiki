@@ -35,8 +35,7 @@ fam_gen_parser.add_argument(
     help="The maximum number of people that may appear in a family tree. (Default value: 25)",
 )
 fam_gen_parser.add_argument(
-    "--num-samples", type=int, default=1, 
-    help="The number of family trees to generate. (Default value: 1.)"
+    "--num-samples", type=int, default=1, help="The number of family trees to generate. (Default value: 1.)"
 )
 fam_gen_parser.add_argument(
     "--stop-prob",
@@ -59,9 +58,20 @@ import random
 
 from .generate import Generator, PersonFactory, create_dot_graph, family_tree_to_facts
 
-def db_generate_family(db, seed, duplicate_names, debug, output_dir, visualize,
-                     max_family_tree_depth, max_branching_factor, max_family_tree_size,
-                     stop_prob, num_samples):
+
+def db_generate_family(
+    db,
+    seed,
+    duplicate_names,
+    debug,
+    output_dir,
+    visualize,
+    max_family_tree_depth,
+    max_branching_factor,
+    max_family_tree_size,
+    stop_prob,
+    num_samples,
+):
     """Generates family facts for a database.
 
     Args:
@@ -74,7 +84,7 @@ def db_generate_family(db, seed, duplicate_names, debug, output_dir, visualize,
         max_family_tree_depth (int): The maximum depth that a family tree may have.
         max_branching_factor (int): The maximum number of children that any person in a family tree may have.
         max_family_tree_size (int): The maximum number of people that may appear in a family tree.
-        stop_prob (float): The probability of stopping to further extend a family tree after a person has been added.
+        stop_prob (float): Probability of stopping to extend a family tree after a person has been added.
         num_samples (int): The number of family trees to generate.
 
     Returns:
@@ -82,14 +92,19 @@ def db_generate_family(db, seed, duplicate_names, debug, output_dir, visualize,
     """
     # set the random seed
     random.seed(seed)
-   
+
     # Get the prolog family tree
     pf = PersonFactory(duplicate_names)
 
     gen = Generator(pf)
     family_trees = gen.generate(
-        max_family_tree_depth, max_branching_factor, max_family_tree_size,
-        stop_prob, num_samples, debug, output_dir
+        max_family_tree_depth,
+        max_branching_factor,
+        max_family_tree_size,
+        stop_prob,
+        num_samples,
+        debug,
+        output_dir,
     )
 
     for i, family_tree in enumerate(family_trees):

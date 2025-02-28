@@ -1,7 +1,6 @@
 # standard imports
 import logging
 import time
-from argparse import ArgumentParser
 
 # resource containing the attribute rules
 from importlib.resources import files

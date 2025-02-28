@@ -20,6 +20,7 @@ friend_gen_parser.add_argument(
     "--friendship-seed", type=int, default=1, help="Seed for friendship generation."
 )
 
+
 #
 # Functionality to add friendships for everyone in the database.
 #
@@ -38,9 +39,7 @@ def db_generate_friendships(db: Database, friendship_k, friendship_seed, visuali
         None
     """
     names = db.get_person_names()
-    friendship_facts = create_friendship_graph(
-        names, friendship_k, friendship_seed, visualize, output_dir
-    )
+    friendship_facts = create_friendship_graph(names, friendship_k, friendship_seed, visualize, output_dir)
     # import pdb; pdb.set_trace()
     db.add(*friendship_facts)
 

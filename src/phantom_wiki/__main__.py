@@ -31,16 +31,31 @@ from .utils import blue, generate_unique_id, get_parser
 from .utils.get_answer import get_answer
 
 
-def create_phantom_dataset(max_branching_factor=5, max_family_tree_depth=5, 
-                         max_family_tree_size=25, num_samples=1, stop_prob=0, 
-                         duplicate_names=False, friendship_k=3, friendship_seed=1, 
-                         num_questions_per_type=10, num_sampling_attempts=100, 
-                         question_depth=6, easy_mode=False, skip_solution_traces=False, 
-                         debug=False, quiet=False, visualize=False, use_multithreading=False, 
-                         seed=1, output_dir="./out", article_format="txt", 
-                         question_format="json_by_type"):
+def create_phantom_dataset(
+    max_branching_factor=5,
+    max_family_tree_depth=5,
+    max_family_tree_size=25,
+    num_samples=1,
+    stop_prob=0,
+    duplicate_names=False,
+    friendship_k=3,
+    friendship_seed=1,
+    num_questions_per_type=10,
+    num_sampling_attempts=100,
+    question_depth=6,
+    easy_mode=False,
+    skip_solution_traces=False,
+    debug=False,
+    quiet=False,
+    visualize=False,
+    use_multithreading=False,
+    seed=1,
+    output_dir="./out",
+    article_format="txt",
+    question_format="json_by_type",
+):
     """
-    Generate a PhantomWiki dataset consisting of family trees, friendship networks, 
+    Generate a PhantomWiki dataset consisting of family trees, friendship networks,
     articles, and reasoning questions with answers.
 
     Parameters
@@ -124,10 +139,20 @@ def create_phantom_dataset(max_branching_factor=5, max_family_tree_depth=5,
     blue("Generating facts")
     start = time.time()
     # generate family tree
-    db_generate_family(db, seed, duplicate_names, debug, output_dir, visualize,
-                     max_family_tree_depth, max_branching_factor, max_family_tree_size,
-                     stop_prob, num_samples)
-    
+    db_generate_family(
+        db,
+        seed,
+        duplicate_names,
+        debug,
+        output_dir,
+        visualize,
+        max_family_tree_depth,
+        max_branching_factor,
+        max_family_tree_size,
+        stop_prob,
+        num_samples,
+    )
+
     # generate friend relationships between people in the database
     db_generate_friendships(db, friendship_k, friendship_seed, visualize, output_dir)
 
@@ -307,6 +332,7 @@ def create_phantom_dataset(max_branching_factor=5, max_family_tree_depth=5,
     df_timings.to_csv(timings_path, index=False)
     blue("Done!")
 
+
 def check_git_status():
     try:
         # Check for uncommitted changes
@@ -350,6 +376,7 @@ def save_command_and_git_info(output_dir):
 
     print(f"Run information saved to: {info_file_path}")
 
+
 def main(args):
     # Check Git status before running the main logic
     if not args.debug:
@@ -359,6 +386,7 @@ def main(args):
         print("Debug mode enabled. Skipping Git status check.")
 
     create_phantom_dataset(**vars(args))
+
 
 if __name__ == "__main__":
     # We combine a base parser with all the generators' parsers
