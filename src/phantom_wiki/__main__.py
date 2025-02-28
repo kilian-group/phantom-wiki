@@ -33,12 +33,11 @@ from .utils.get_answer import get_answer
 
 def create_phantom_dataset(max_branching_factor=5, max_family_tree_depth=5, 
                          max_family_tree_size=25, num_samples=1, stop_prob=0, 
-                         duplicate_names=False, test=False, friendship_k=3, 
-                         friendship_seed=1, num_questions_per_type=10, 
-                         num_sampling_attempts=100, depth=6, easy_mode=False, 
-                         skip_solution_traces=False, debug=False, quiet=False, 
-                         visualize=False, use_multithreading=False, seed=1, 
-                         output_dir="./out", article_format="txt", 
+                         duplicate_names=False, friendship_k=3, friendship_seed=1, 
+                         num_questions_per_type=10, num_sampling_attempts=100, 
+                         depth=6, easy_mode=False, skip_solution_traces=False, 
+                         debug=False, quiet=False, visualize=False, use_multithreading=False, 
+                         seed=1, output_dir="./out", article_format="txt", 
                          question_format="json_by_type"):
     """
     Generate a PhantomWiki dataset consisting of family trees, friendship networks, 

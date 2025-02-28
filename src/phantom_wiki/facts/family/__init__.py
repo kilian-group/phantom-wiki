@@ -52,11 +52,6 @@ fam_gen_parser.add_argument(
     help="Allow/prevent duplicate names in the generation. (Default value: False.)",
 )
 
-fam_gen_parser.add_argument(
-    "--test",
-    action="store_true",
-    help="Whether or not in test-mode, if yes, can allow unhashed or uncommitted changes.",
-)
 # wrapper for family tree generation
 
 import os
