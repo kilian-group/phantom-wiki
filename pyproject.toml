@@ -68,6 +68,7 @@ eval = [
     "langchain-community",
     "langchain-together",
     "openai",
+    "scipy",
     "tiktoken",
     "together",
     "transformers>=4.47.1",
