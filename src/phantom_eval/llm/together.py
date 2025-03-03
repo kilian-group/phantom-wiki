@@ -8,6 +8,8 @@ from phantom_eval.llm.common import CommonLLMChat, InferenceGenerationConfig
 
 logger = logging.getLogger(__name__)
 
+TG_PREFIX = "tg::"
+
 
 class TogetherChat(CommonLLMChat):
     # https://docs.together.ai/docs/serverless-models
@@ -17,6 +19,21 @@ class TogetherChat(CommonLLMChat):
         "meta-llama/llama-3.3-70b-instruct-turbo",
         "meta-llama/meta-llama-3.1-405b-instruct-turbo",
         "meta-llama/llama-vision-free",
+        # NOTE: the Together model names are identical to the
+        # HF model names, so we we add a tg:: prefix to the
+        # model names to indicate that we want to use the
+        # together.ai serverless models
+        # TODO (Albert): debug runtime errors with
+        # - deepseek-v3,
+        # - r1-distill-llama-70b
+        # f"{TG_PREFIX}deepseek-ai/deepseek-v3",
+        # f"{TG_PREFIX}deepseek-ai/deepseek-r1",
+        # TODO (Albert): use YAML config to specify lower RPM for
+        # - deepseek-r1,
+        # - r1-distill-qwen-14b
+        # f"{TG_PREFIX}deepseek-ai/deepseek-r1-distill-llama-70b",
+        # f"{TG_PREFIX}deepseek-ai/deepseek-r1-distill-qwen-1.5b",
+        # f"{TG_PREFIX}deepseek-ai/deepseek-r1-distill-qwen-14b",
     ]
     # https://docs.together.ai/docs/rate-limits
     RATE_LIMITS = {
@@ -63,7 +80,7 @@ class TogetherChat(CommonLLMChat):
         # https://docs.together.ai/reference/completions-1
         client = self.async_client if use_async else self.client
         response = client.chat.completions.create(
-            model=self.model_name,
+            model=self._get_together_model_name(),
             messages=messages_api_format,
             temperature=inf_gen_config.temperature,
             top_p=inf_gen_config.top_p,
@@ -84,3 +101,7 @@ class TogetherChat(CommonLLMChat):
     def _count_tokens(self, messages_api_format: list[dict]) -> int:
         # TODO: implement count tokens for llama models
         return 0
+
+    def _get_together_model_name(self) -> str:
+        """Remove the tg:: prefix from the model name if present."""
+        return self.model_name.replace(TG_PREFIX, "")
