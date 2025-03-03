@@ -8,7 +8,6 @@ from copy import deepcopy
 from pathlib import Path
 
 import pandas as pd
-from huggingface_hub import repo_exists
 
 from phantom_wiki.facts.database import Database
 
@@ -16,8 +15,7 @@ from . import constants, get_parser
 from ._types import Conversation, LLMChatResponse
 from .agents import get_agent
 from .agents.common import Agent
-from .llm import get_llm
-from .llm.common import InferenceGenerationConfig, LLMChat
+from .llm import InferenceGenerationConfig, LLMChat, get_llm, is_huggingface_model
 from .prolog_utils import get_prolog_results
 from .prompts import (
     ACT_EXAMPLES,
@@ -36,7 +34,7 @@ logger = logging.getLogger(__name__)
 
 def get_model_kwargs(args: argparse.Namespace) -> dict:
     match args.model_name:
-        case model_name if repo_exists(model_name):
+        case model_name if is_huggingface_model(model_name):
             model_kwargs = dict(
                 model_path=args.model_path,
                 max_model_len=args.inf_vllm_max_model_len,
@@ -202,7 +200,7 @@ async def main(args: argparse.Namespace) -> None:
                 ), "Batch number must be <= ceil(num_df_qa_pairs / batch_size)"
                 batch_size = args.batch_size
             else:
-                can_process_full_batch = repo_exists(args.model_name) and (
+                can_process_full_batch = is_huggingface_model(args.model_name) and (
                     args.method not in ["react", "act", "react->cot-sc", "cot-sc->react"]
                 )
                 batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
