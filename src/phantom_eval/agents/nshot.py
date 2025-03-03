@@ -24,7 +24,7 @@ from phantom_eval.agents.common import (
     get_all_evidence,
     parse_prolog_query,
 )
-from phantom_eval.llm.common import InferenceGenerationConfig, LLMChat
+from phantom_eval.llm import InferenceGenerationConfig, LLMChat
 from phantom_eval.prompts import LLMPrompt
 
 logger = logging.getLogger(__name__)

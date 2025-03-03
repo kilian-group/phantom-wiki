@@ -19,7 +19,7 @@ import phantom_eval.constants as constants
 from phantom_eval._types import ContentTextMessage, Conversation, LLMChatResponse, Message
 from phantom_eval.agents.common import Agent
 from phantom_eval.agents.cot import CoTSCAgent
-from phantom_eval.llm.common import InferenceGenerationConfig, LLMChat, aggregate_usage
+from phantom_eval.llm import InferenceGenerationConfig, LLMChat, aggregate_usage
 from phantom_eval.prompts import LLMPrompt
 
 logger = logging.getLogger(__name__)
