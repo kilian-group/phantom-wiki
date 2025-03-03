@@ -1,7 +1,8 @@
 from huggingface_hub import repo_exists
 
+from phantom_eval._types import ContentTextMessage, Conversation, LLMChatResponse, Message
 from phantom_eval.llm.anthropic import AnthropicChat
-from phantom_eval.llm.common import LLMChat
+from phantom_eval.llm.common import InferenceGenerationConfig, LLMChat, aggregate_usage
 from phantom_eval.llm.gemini import GeminiChat
 from phantom_eval.llm.openai import OpenAIChat
 from phantom_eval.llm.together import TogetherChat
