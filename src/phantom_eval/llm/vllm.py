@@ -1,3 +1,4 @@
+import asyncio
 import logging
 
 import openai
@@ -53,7 +54,7 @@ class VLLMChat(CommonLLMChat):
             port (int): Port number for the vllm server.
                 Defaults to 8000.
         """
-        super().__init__(model_name, model_path, strict_model_name=False)
+        super().__init__(model_name, model_path, strict_model_name=False, enforce_rate_limits=False)
 
         # additional stop token for llama models
         # NOTE: eot = end-of-turn
@@ -158,12 +159,12 @@ class VLLMChat(CommonLLMChat):
         )
         return response
 
-    def generate_response(
+    async def generate_response(
         self, conv: Conversation, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         assert self.client is not None, "Client is not initialized."
         messages_api_format: list[dict] = self._convert_conv_to_api_format(conv)
-        response = self._call_api(messages_api_format, inf_gen_config)
+        response = await self._call_api(messages_api_format, inf_gen_config, use_async=True)
         parsed_response = self._parse_api_output(response)
         return parsed_response
 
@@ -172,7 +173,11 @@ class VLLMChat(CommonLLMChat):
     ) -> list[LLMChatResponse]:
         if self.use_api:
             # When using api, we can use the parent class implementation
-            return await super().batch_generate_response(convs, inf_gen_config)
+            # return await super().batch_generate_response(convs, inf_gen_config)
+            parsed_responses = await asyncio.gather(
+                *[self.generate_response(conv, inf_gen_config) for conv in convs]
+            )
+            return parsed_responses
         else:
             sampling_params = SamplingParams(
                 temperature=inf_gen_config.temperature,

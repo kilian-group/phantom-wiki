@@ -6,7 +6,7 @@ PhantomWiki generates on-demand datasets to evaluate reasoning and retrieval cap
 - [Paper](/todo)
 - [Demo](/todo)
 
-For convenience, we pre-generate PhantomWiki instances of size 50, 500, and 5000 with seeds 1,2,3. These can be downloaded using HuggingFace:
+For convenience, we have pre-generated PhantomWiki instances of size 50, 500, and 5000 with seeds 1/2/3, which can be downloaded using HuggingFace:
 
 ```python
 from datasets import load_dataset
@@ -19,11 +19,14 @@ ds_qa = load_dataset("kilian-group/phantom-wiki-v1", "question-answer")
 
 ## Using PhantomWiki
 
-PhantomWiki is available with Python 3.12+ through
+To install the `phantom-wiki` package, use the following pip command:
 
 ```bash
 pip install phantom-wiki
 ```
+
+> \[!NOTE\]
+> This package has been tested with Python 3.12. We require Python 3.10+ to support match statements.
 
 To build from source, you can clone this repository and run `pip install .`.
 
@@ -187,7 +190,7 @@ huggingface-cli download MODEL_REPO_ID
 > \[!NOTE\]
 > For vLLM inference, make sure to request access for Gemma, Llama 3.1, 3.2, and 3.3 models on HuggingFace before proceeding.
 
-🧪 To generate the prediction files, run the following scripts (e.g., using slurm) from the root directory:
+🧪 To generate the predictions, run the following command from the root directory:
 
 ```bash
 python -m phantom_eval --method METHOD --model_name MODEL_NAME --split_list SPLIT_LIST -od OUTPUT_DIRECTORY
@@ -196,73 +199,21 @@ python -m phantom_eval --method METHOD --model_name MODEL_NAME --split_list SPLI
 > \[!TIP\]
 > To generate a slurm script with the appropriate GPU allocation and inference config, run the [create_eval.sh](./eval/create_eval.sh) script and follow the prompted steps.
 
-📊 To generate the tables and figures, run the following script from the root directory:
+📊 To generate the tables and figures, run the following command from the root directory:
 
-```
-# make sure the dataset conda env is activated!
+```bash
 ./eval/icml.sh OUTPUT_DIRECTORY METHOD
 ```
 
 where OUTPUT_DIRECTORY and METHOD are the same as when generating the predictions. This script will create the following subdirectories in OUTPUT_DIRECTORY: `scores/` and `figures/`.
 
-## Development best practices
-
-**Git:**
-
-Use [pre-commit](https://pre-commit.com/) for automatic code formatting.
-You can install the git hook that automatically runs pre-commit on every commit.
-
-```bash
-pip install phantom-wiki[dev] # or pip install -e .[dev]
-pre-commit install
-```
-
-To run pre-commit manually:
-
-```bash
-git add <files that you want to stage>
-pre-commit run
-# at this point, you might need to fix any issues raised by pre-commit and restage your modified files
-git commit -m "your commit message"
-git push
-```
-
-**Testing:**
-
-Run `pytest` to run tests:
-
-```bash
-pip install phantom-wiki[tests] # or pip install -e .[tests]
-pytest
-```
-
-Alternatively, you can use `pytest` through your editor's (like VSCode) testing extension.
-Accordingly specify your python environment and interpreter.
-
-**Sharing results:**
-
-- Model predictions can be shared at `/share/nikola/phantom-wiki/eval/`
-- Please copy the predictions to your local working directory rather than reading from the shared directory directly
-
-## Sharing dataset to HuggingFace
-
-Use the huggingface cli (see https://huggingface.co/docs/datasets/en/share#upload-an-entire-folder):
-
-```bash
-huggingface-cli upload mlcore/phantom-wiki-v<version> OUTPUT_DIRECTORY . --repo-type dataset --commit-message="optional commit message"
-```
-
 ## Citation
 
-TODO with arxiv link
-
 ```bibtex
-@article{2025_phantomwiki,
-  title={{PhantomWiki: On-Demand Datasets for Reasoning and Retrieval Evaluation}},
-  author={Albert Gong and Kamilė Stankevičiūtė and Chao Wan and Anmol Kabra and Raphael Thesmar and Johann Lee and Julius Klenke and Carla P. Gomes and Kilian Q. Weinberger},
-  year={2025},
-  journal={todo},
-  url={todo},
-  note={Under Review},
+@article{gong2025phantomwiki,
+  title={PhantomWiki: On-Demand Datasets for Reasoning and Retrieval Evaluation},
+  author={Gong, Albert and Stankevi{\v{c}}i{\=u}t{\.e}, Kamil{\.e} and Wan, Chao and Kabra, Anmol and Thesmar, Raphael and Lee, Johann and Klenke, Julius and Gomes, Carla P and Weinberger, Kilian Q},
+  journal={arXiv preprint arXiv:2502.20377},
+  year={2025}
 }
 ```

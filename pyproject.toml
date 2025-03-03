@@ -78,3 +78,6 @@ eval = [
 Homepage = "https://github.com/albertgong1/phantom-wiki"
 Issues = "https://github.com/albertgong1/phantom-wiki/issues"
 Repository = "https://github.com/albertgong1/phantom-wiki.git"
+
+[tool.autoflake]
+ignore-init-module-imports = true

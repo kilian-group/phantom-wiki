@@ -19,7 +19,7 @@ import phantom_eval.constants as constants
 from phantom_eval._types import ContentTextMessage, Conversation, LLMChatResponse, Message
 from phantom_eval.agents.common import Agent
 from phantom_eval.agents.cot import CoTSCAgent
-from phantom_eval.llm.common import InferenceGenerationConfig, LLMChat, aggregate_usage
+from phantom_eval.llm import InferenceGenerationConfig, LLMChat, aggregate_usage
 from phantom_eval.prompts import LLMPrompt
 
 logger = logging.getLogger(__name__)
@@ -79,7 +79,7 @@ class ReactAgent(Agent):
     ) -> list[LLMChatResponse]:
         raise NotImplementedError("Batch run is not supported for ReactAgent.")
 
-    def run(
+    async def run(
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
@@ -92,13 +92,13 @@ class ReactAgent(Agent):
         total_usage: dict = {}
         while (self.step_round <= self.max_steps) and (not self.finished):
             try:
-                response = self._step_thought(llm_chat, question, inf_gen_config)
+                response = await self._step_thought(llm_chat, question, inf_gen_config)
                 total_usage = aggregate_usage([total_usage, response.usage])
 
-                response = self._step_action(llm_chat, question, inf_gen_config)
+                response = await self._step_action(llm_chat, question, inf_gen_config)
                 total_usage = aggregate_usage([total_usage, response.usage])
 
-                response = self._step_observation(response)
+                response = await self._step_observation(response)
                 total_usage = aggregate_usage([total_usage, response.usage])
             except Exception:
                 # If an error occurs, return the error message and empty pred
@@ -118,7 +118,7 @@ class ReactAgent(Agent):
 
         return LLMChatResponse(pred=response.pred, usage=total_usage, error=response.error)
 
-    def _step_thought(
+    async def _step_thought(
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         """
@@ -134,7 +134,7 @@ class ReactAgent(Agent):
         # Stop generating when seeing "Action" (when thought is complete)
         leading_llm_prompt = f"Thought {self.step_round}: "
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["Action"]), deep=True)
-        response = self._prompt_agent(llm_chat, question, leading_llm_prompt, inf_gen_config)
+        response = await self._prompt_agent(llm_chat, question, leading_llm_prompt, inf_gen_config)
         response.pred = leading_llm_prompt + format_pred(response.pred)
         logger.debug(f"\n\t>>> {response.pred}\n")
 
@@ -145,7 +145,7 @@ class ReactAgent(Agent):
         )
         return response
 
-    def _step_action(
+    async def _step_action(
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         """
@@ -161,7 +161,7 @@ class ReactAgent(Agent):
         # Stop generating when seeing "Observation" (when action is complete)
         leading_llm_prompt = f"Action {self.step_round}: "
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["Observation"]), deep=True)
-        response = self._prompt_agent(llm_chat, question, leading_llm_prompt, inf_gen_config)
+        response = await self._prompt_agent(llm_chat, question, leading_llm_prompt, inf_gen_config)
         response.pred = leading_llm_prompt + format_pred(response.pred)
         logger.debug(f"\n\t>>> {response.pred}\n")
 
@@ -172,7 +172,7 @@ class ReactAgent(Agent):
         )
         return response
 
-    def _step_observation(self, response_action: LLMChatResponse) -> LLMChatResponse:
+    async def _step_observation(self, response_action: LLMChatResponse) -> LLMChatResponse:
         """
         Run the observation step of the agent depending on the action
         and increments the step round.
@@ -234,7 +234,7 @@ class ReactAgent(Agent):
         self.step_round += 1
         return LLMChatResponse(pred=observation_for_round, usage={})
 
-    def _prompt_agent(
+    async def _prompt_agent(
         self,
         llm_chat: LLMChat,
         question: str,
@@ -263,7 +263,7 @@ class ReactAgent(Agent):
                 )
             ]
         )
-        response: LLMChatResponse = llm_chat.generate_response(conv, inf_gen_config)
+        response: LLMChatResponse = await llm_chat.generate_response(conv, inf_gen_config)
         return response
 
     @classmethod
@@ -341,7 +341,7 @@ class ActAgent(Agent):
     ) -> list[LLMChatResponse]:
         raise NotImplementedError("Batch run is not supported for ActAgent.")
 
-    def run(
+    async def run(
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
@@ -354,10 +354,10 @@ class ActAgent(Agent):
         total_usage: dict = {}
         while (self.step_round <= self.max_steps) and (not self.finished):
             try:
-                response = self._step_action(llm_chat, question, inf_gen_config)
+                response = await self._step_action(llm_chat, question, inf_gen_config)
                 total_usage = aggregate_usage([total_usage, response.usage])
 
-                response = self._step_observation(response)
+                response = await self._step_observation(response)
                 total_usage = aggregate_usage([total_usage, response.usage])
             except Exception:
                 response = LLMChatResponse(
@@ -375,7 +375,7 @@ class ActAgent(Agent):
 
         return LLMChatResponse(pred=response.pred, usage=total_usage, error=response.error)
 
-    def _step_action(
+    async def _step_action(
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         """
@@ -391,7 +391,7 @@ class ActAgent(Agent):
         # Stop generating when seeing "Observation" (when action is complete)
         leading_llm_prompt = f"Action {self.step_round}: "
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=["Observation"]), deep=True)
-        response = self._prompt_agent(llm_chat, question, leading_llm_prompt, inf_gen_config)
+        response = await self._prompt_agent(llm_chat, question, leading_llm_prompt, inf_gen_config)
         response.pred = leading_llm_prompt + format_pred(response.pred)
         logger.debug(f"\n\t>>> {response.pred}\n")
 
@@ -402,7 +402,7 @@ class ActAgent(Agent):
         )
         return response
 
-    def _step_observation(self, response_action: LLMChatResponse) -> LLMChatResponse:
+    async def _step_observation(self, response_action: LLMChatResponse) -> LLMChatResponse:
         """
         Run the observation step of the agent depending on the action
         and increments the step round.
@@ -463,7 +463,7 @@ class ActAgent(Agent):
         self.step_round += 1
         return LLMChatResponse(pred=observation_for_round, usage={})
 
-    def _prompt_agent(
+    async def _prompt_agent(
         self,
         llm_chat: LLMChat,
         question: str,
@@ -490,7 +490,7 @@ class ActAgent(Agent):
                 Message(role="user", content=[ContentTextMessage(text=user_message + llm_leading_prompt)])
             ]
         )
-        response: LLMChatResponse = llm_chat.generate_response(conv, inf_gen_config)
+        response: LLMChatResponse = await llm_chat.generate_response(conv, inf_gen_config)
         return response
 
 
@@ -570,13 +570,13 @@ class React_CoTSCAgent(Agent):
     ) -> list[LLMChatResponse]:
         raise NotImplementedError("Batch run is not supported for React->CoTSCAgent.")
 
-    def run(
+    async def run(
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
         # Run the React agent. If the React agent reaches max steps, run the CoTSC agent.
-        react_response = self.react_agent.run(llm_chat, question, inf_gen_config)
+        react_response = await self.react_agent.run(llm_chat, question, inf_gen_config)
         self.agent_interactions = self.react_agent.agent_interactions
         match react_response.error:
             case None:
@@ -588,7 +588,7 @@ class React_CoTSCAgent(Agent):
                 cotsc_inf_gen_config = inf_gen_config.model_copy(
                     update=dict(temperature=self.cotsc_inf_temperature), deep=True
                 )
-                cotsc_response = self.cotsc_agent.run(llm_chat, question, cotsc_inf_gen_config)
+                cotsc_response = await self.cotsc_agent.run(llm_chat, question, cotsc_inf_gen_config)
                 self.agent_interactions.messages.extend(self.cotsc_agent.agent_interactions.messages)
 
                 total_usage = aggregate_usage([react_response.usage, cotsc_response.usage])
@@ -674,7 +674,7 @@ class CoTSC_ReactAgent(Agent):
     ) -> list[LLMChatResponse]:
         raise NotImplementedError("Batch run is not supported for CoTSC->ReactAgent.")
 
-    def run(
+    async def run(
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
@@ -683,7 +683,7 @@ class CoTSC_ReactAgent(Agent):
         cotsc_inf_gen_config = inf_gen_config.model_copy(
             update=dict(temperature=self.cotsc_inf_temperature), deep=True
         )
-        cotsc_response = self.cotsc_agent.run(llm_chat, question, cotsc_inf_gen_config)
+        cotsc_response = await self.cotsc_agent.run(llm_chat, question, cotsc_inf_gen_config)
         self.agent_interactions = self.cotsc_agent.agent_interactions
         match cotsc_response.error:
             case None:
@@ -692,7 +692,7 @@ class CoTSC_ReactAgent(Agent):
                 return cotsc_response
             case error_msg if "<agent_error>No majority vote" in error_msg:
                 # The CoTSC agent does not get any majority vote answer, run the React agent
-                react_response = self.react_agent.run(llm_chat, question, inf_gen_config)
+                react_response = await self.react_agent.run(llm_chat, question, inf_gen_config)
                 self.agent_interactions.messages.extend(self.react_agent.agent_interactions.messages)
 
                 total_usage = aggregate_usage([cotsc_response.usage, react_response.usage])

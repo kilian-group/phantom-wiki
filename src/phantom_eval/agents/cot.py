@@ -23,7 +23,7 @@ from phantom_eval.agents.common import (
     get_all_evidence,
     parse_prolog_query,
 )
-from phantom_eval.llm.common import InferenceGenerationConfig, LLMChat
+from phantom_eval.llm import InferenceGenerationConfig, LLMChat
 from phantom_eval.prompts import LLMPrompt
 
 logger = logging.getLogger(__name__)
@@ -64,7 +64,7 @@ class CoTAgent(Agent):
         evidence = get_all_evidence(self.text_corpus)
         return self.combine_evidence_and_question(evidence, question)
 
-    def run(
+    async def run(
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
@@ -78,7 +78,7 @@ class CoTAgent(Agent):
         inf_gen_config = inf_gen_config.model_copy(
             update=dict(stop_sequences=[]), deep=True
         )  # remove \n from stop sequences
-        response = llm_chat.generate_response(conv, inf_gen_config)
+        response = await llm_chat.generate_response(conv, inf_gen_config)
 
         # Add the response to the agent's conversation
         self.agent_interactions.messages.append(
@@ -204,12 +204,12 @@ class CoTSCAgent(CoTAgent, SCMixin):
         CoTAgent.__init__(self, text_corpus, llm_prompt, cot_examples)
         SCMixin.__init__(self, num_votes, sep)
 
-    def run(
+    async def run(
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         # Relies on the implementation of run in the subclass
         responses: list[LLMChatResponse] = [
-            super().run(llm_chat, question, inf_gen_config) for _ in range(self.num_votes)
+            await super().run(llm_chat, question, inf_gen_config) for _ in range(self.num_votes)
         ]
         return self.take_majority_vote(responses, self.sep)
 

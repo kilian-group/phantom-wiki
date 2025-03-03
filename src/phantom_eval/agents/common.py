@@ -22,7 +22,7 @@ from langchain_core.embeddings import Embeddings
 
 from phantom_eval._types import Conversation, LLMChatResponse
 from phantom_eval.gpu_utils import get_gpu_count
-from phantom_eval.llm.common import InferenceGenerationConfig, LLMChat, aggregate_usage
+from phantom_eval.llm import InferenceGenerationConfig, LLMChat, aggregate_usage
 from phantom_eval.prompts import LLMPrompt
 from phantom_eval.score import normalize_pred
 
@@ -47,7 +47,7 @@ class Agent(abc.ABC):
         self.agent_interactions: Conversation | list[Conversation] = None
 
     @abc.abstractmethod
-    def run(
+    async def run(
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         """
