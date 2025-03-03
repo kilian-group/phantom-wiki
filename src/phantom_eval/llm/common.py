@@ -374,6 +374,6 @@ class CommonLLMChat(LLMChat):
         self, convs: list[Conversation], inf_gen_config: InferenceGenerationConfig
     ) -> list[LLMChatResponse]:
         parsed_responses = await asyncio.gather(
-            *[self._generate_response(conv, inf_gen_config) for conv in convs]
+            *[self.generate_response_with_rate_limits(conv, inf_gen_config) for conv in convs]
         )
         return parsed_responses
