@@ -3,7 +3,7 @@
 PhantomWiki generates on-demand datasets to evaluate reasoning and retrieval capabilities of LLMs.
 
 - [Website](/todo)
-- [Paper](/todo)
+- [Paper](https://arxiv.org/abs/2502.20377)
 - [Demo](/todo)
 
 For convenience, we pre-generate PhantomWiki instances of size 50, 500, and 5000 with seeds 1,2,3. These can be downloaded using HuggingFace:
@@ -57,7 +57,12 @@ python -m phantom_wiki \
    --use-multithreading
 ```
 
-## Installation
+### Command-line interface
+
+The dataset generation could also be called using the `phantom-wiki-generate` or `pw-generate` CLI aliases
+(Note that the same arguments should still be provided as in the `python -m phantom_wiki ...` command above).
+
+## Installation of dependencies
 
 PhantomWiki uses the [Prolog](https://en.wikipedia.org/wiki/Prolog) logic programming language, available on all operating systems through [SWI-Prolog](https://www.swi-prolog.org/).
 We recommend installing SWI-prolog through your [distribution](https://www.swi-prolog.org/Download.html) or through conda, for example:
@@ -254,15 +259,13 @@ huggingface-cli upload mlcore/phantom-wiki-v<version> OUTPUT_DIRECTORY . --repo-
 
 ## Citation
 
-TODO with arxiv link
-
 ```bibtex
 @article{2025_phantomwiki,
   title={{PhantomWiki: On-Demand Datasets for Reasoning and Retrieval Evaluation}},
   author={Albert Gong and Kamilė Stankevičiūtė and Chao Wan and Anmol Kabra and Raphael Thesmar and Johann Lee and Julius Klenke and Carla P. Gomes and Kilian Q. Weinberger},
   year={2025},
-  journal={todo},
-  url={todo},
+  journal={arXiv preprint arXiv:2502.20377},
+  url={https://arxiv.org/abs/2502.20377},
   note={Under Review},
 }
 ```
