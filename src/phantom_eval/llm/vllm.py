@@ -1,3 +1,4 @@
+import asyncio
 import logging
 
 import openai
@@ -172,7 +173,11 @@ class VLLMChat(CommonLLMChat):
     ) -> list[LLMChatResponse]:
         if self.use_api:
             # When using api, we can use the parent class implementation
-            return await super().batch_generate_response(convs, inf_gen_config)
+            # return await super().batch_generate_response(convs, inf_gen_config)
+            parsed_responses = await asyncio.gather(
+                *[self.generate_response(conv, inf_gen_config) for conv in convs]
+            )
+            return parsed_responses
         else:
             sampling_params = SamplingParams(
                 temperature=inf_gen_config.temperature,
