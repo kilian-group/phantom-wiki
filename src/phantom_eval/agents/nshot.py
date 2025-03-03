@@ -7,6 +7,7 @@ The module contains three main agent classes:
 - `NshotRAGAgent`: Extends NshotAgent with Retrieval Augmented Generation (RAG)
 """
 
+import asyncio
 import logging
 import re
 import traceback
@@ -23,7 +24,7 @@ from phantom_eval.agents.common import (
     get_all_evidence,
     parse_prolog_query,
 )
-from phantom_eval.llm.common import InferenceGenerationConfig, LLMChat
+from phantom_eval.llm import InferenceGenerationConfig, LLMChat
 from phantom_eval.prompts import LLMPrompt
 
 logger = logging.getLogger(__name__)
@@ -71,7 +72,7 @@ class NshotAgent(Agent):
         evidence = get_all_evidence(self.text_corpus)
         return self.combine_evidence_and_question(evidence, question)
 
-    def run(
+    async def run(
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
@@ -83,7 +84,7 @@ class NshotAgent(Agent):
 
         # Generate response
         inf_gen_config = inf_gen_config.model_copy(update=dict(stop_sequences=[]), deep=True)
-        response = llm_chat.generate_response(conv, inf_gen_config)
+        response = await llm_chat.generate_response(conv, inf_gen_config)
 
         # Update agent's conversation
         self.agent_interactions.messages.append(
@@ -190,13 +191,13 @@ class NshotSCAgent(NshotAgent, SCMixin):
         NshotAgent.__init__(self, text_corpus, llm_prompt, fewshot_examples)
         SCMixin.__init__(self, num_votes, sep)
 
-    def run(
+    async def run(
         self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         # Relies on the implementation of run in the subclass
-        responses: list[LLMChatResponse] = [
-            super().run(llm_chat, question, inf_gen_config) for _ in range(self.num_votes)
-        ]
+        responses: list[LLMChatResponse] = asyncio.gather(
+            *[super().run(llm_chat, question, inf_gen_config) for _ in range(self.num_votes)]
+        )
         return self.take_majority_vote(responses, self.sep)
 
     async def batch_run(

@@ -68,6 +68,7 @@ eval = [
     "langchain-community",
     "langchain-together",
     "openai",
+    "scipy",
     "tiktoken",
     "together",
     "transformers>=4.47.1",
@@ -81,3 +82,7 @@ pw-generate = "phantom_wiki.__main__:main"
 Homepage = "https://github.com/kilian-group/phantom-wiki"
 Issues = "https://github.com/kilian-group/phantom-wiki/issues"
 Repository = "https://github.com/kilian-group/phantom-wiki.git"
+
+
+[tool.autoflake]
+ignore-init-module-imports = true

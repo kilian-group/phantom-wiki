@@ -1,7 +1,7 @@
 import logging
 
 from phantom_eval import constants
-from phantom_eval.llm.common import LLMChatResponse
+from phantom_eval.llm import LLMChatResponse
 from phantom_wiki.facts.database import Database
 
 

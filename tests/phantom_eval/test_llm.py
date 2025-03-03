@@ -6,9 +6,7 @@ See the README for more information.
 
 import asyncio
 
-from phantom_eval._types import ContentTextMessage, Conversation, Message
-from phantom_eval.llm import get_llm
-from phantom_eval.llm.common import InferenceGenerationConfig
+from phantom_eval.llm import ContentTextMessage, Conversation, InferenceGenerationConfig, Message, get_llm
 
 EXAMPLE_PROMPT = """
 Question: What is 1+1? (Please answer with a single integer.)
