@@ -55,6 +55,7 @@ jobs:
       - name: Install PhantomEval dependencies
         run: |
           python -m pip install ".[eval]"
+          python -m pip install vllm
       - name: Run PhantomEval tests with pytest
         run: |
           pytest tests/phantom_eval/test_llm_async.py
