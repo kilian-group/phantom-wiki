@@ -258,7 +258,7 @@ async def main(args: argparse.Namespace) -> None:
                     # case "zeroshot-rag":
                     #     raise NotImplementedError("RAG evaluation is not supported yet.")
                     case "react" | "act" | "react->cot-sc" | "cot-sc->react":
-                        # Run agent on each question one by one
+                        # Run all agents in parallel using asyncio.gather
                         responses: list[LLMChatResponse] = []
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                         agents = [deepcopy(agent) for _ in range(batch_size)]
