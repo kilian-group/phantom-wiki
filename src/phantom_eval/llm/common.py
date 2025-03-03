@@ -306,7 +306,7 @@ class CommonLLMChat(LLMChat):
                         )
         return formatted_messages
 
-    async def _generate_response(
+    async def generate_response_with_rate_limits(
         self, conv: Conversation, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         """Async version of generate_response that respects rate limits"""
@@ -353,7 +353,7 @@ class CommonLLMChat(LLMChat):
         Otherwise, it will call the API directly.
         """
         if self.enforce_rate_limits:
-            return await self._generate_response(conv, inf_gen_config)
+            return await self.generate_response_with_rate_limits(conv, inf_gen_config)
         else:
             # max_retries and wait_seconds are object attributes, and cannot be written around the
             # generate_response function
