@@ -53,7 +53,9 @@ class TogetherChat(CommonLLMChat):
         enforce_rate_limits: bool = False,
     ):
         logger.info("Using TogetherAI for inference")
-        super().__init__(model_name, model_path, True, enforce_rate_limits)
+        super().__init__(
+            model_name, model_path, strict_model_name=True, enforce_rate_limits=enforce_rate_limits
+        )
         self.client = together.Together(api_key=os.getenv("TOGETHER_API_KEY"))
         self.async_client = together.AsyncTogether(api_key=os.getenv("TOGETHER_API_KEY"))
         self._update_rate_limits(usage_tier)

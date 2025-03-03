@@ -54,7 +54,7 @@ class VLLMChat(CommonLLMChat):
             port (int): Port number for the vllm server.
                 Defaults to 8000.
         """
-        super().__init__(model_name, model_path, strict_model_name=False)
+        super().__init__(model_name, model_path, strict_model_name=False, enforce_rate_limits=False)
 
         # additional stop token for llama models
         # NOTE: eot = end-of-turn
