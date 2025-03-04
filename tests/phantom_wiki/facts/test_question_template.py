@@ -74,7 +74,7 @@ def test_template_depth_subsets():
 #
 # Tests for sampling placeholders from the database
 #
-parser = get_parser()
+parser = get_parser(parents=[])
 args, _ = parser.parse_known_args(["--output_dir", "test_out", "--seed", "1"])
 db = Database.from_disk(DATABASE_SMALL_PATH)
 
