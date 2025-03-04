@@ -41,16 +41,19 @@ def generate_unique_id():
 #
 # Functionality for parsing arguments
 #
-from argparse import ArgumentParser
+import argparse
 
 
-def get_parser(parents=[]):
+def get_parser(parents: list) -> argparse.ArgumentParser:
     """
     Factory for creating an argument parser.
     """
-    parser = ArgumentParser(description="Generate PhantomWiki", parents=parents)
+    parser = argparse.ArgumentParser(description="Generate a PhantomWiki instance", parents=parents)
     parser.add_argument("--debug", action="store_true", help="Enable debug output (DEBUG level).")
     parser.add_argument("--quiet", action="store_true", help="Enable quiet (no) output (WARNING level).")
+    parser.add_argument(
+        "--visualize", action="store_true", help="Whether or not to visualize the friendship & family graphs."
+    )
     parser.add_argument(
         "--use-multithreading",
         action="store_true",

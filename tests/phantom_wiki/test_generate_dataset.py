@@ -1,36 +1,23 @@
-# standard imports
 import json
 import os
 import shutil
 
-from phantom_wiki.__main__ import main
-from phantom_wiki.facts import question_parser
-
-# phantom wiki functionality
-from phantom_wiki.facts.family import fam_gen_parser
-from phantom_wiki.facts.friends import friend_gen_parser
-from phantom_wiki.utils import get_parser
+from phantom_wiki.generate_dataset import generate_dataset
 from tests.phantom_wiki import ARTICLE_EXAMPLE_PATH
 
 
-def test_main():
-    parser = get_parser(
-        parents=[
-            fam_gen_parser,
-            question_parser,
-            friend_gen_parser,
-        ]
-    )
-    args, _ = parser.parse_known_args(["--output-dir", "test_out", "--seed", "1", "--valid-only"])
-    main(args)
+def test_generate_dataset():
+    generate_dataset(output_dir="test_out", seed=1, easy_mode=True)
 
     # get example article
     with open(ARTICLE_EXAMPLE_PATH) as f:
         example_article = f.read()
     # test that the articles were generated correctly
     article_dir = os.path.join("test_out", "articles")
+
     with open(os.path.join(article_dir, "Aida Wang.txt")) as file:
         article = file.read()
+        print("HELLO", article == example_article)
         assert article == example_article
 
     # test that the questions were generated correctly
