@@ -119,7 +119,7 @@ class PersonFactory:
         if last_name_pool == []:
             raise NotImplementedError(
                 "Insufficient names: Generating a dataset of this size is not supported "
-                "(try reducing num-samples)"
+                "(try reducing --num-family-trees)"
             )
 
         last_name = random.choice(last_name_pool)
@@ -132,7 +132,7 @@ class PersonFactory:
         if name_pool == []:
             raise NotImplementedError(
                 "Insufficient names: Generating a dataset of this size is not supported "
-                "(try reducing num-samples)"
+                "(try reducing --num-family-trees)"
             )
 
         name_index = random.randrange(len(name_pool))

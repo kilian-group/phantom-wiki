@@ -58,7 +58,7 @@ do
             -od $OUTPUT_DIR/$od \
             --seed $SEED \
             --question-depth $depth \
-            --num-samples $(($size / $max_tree_size)) \
+            --num-family-trees $(($size / $max_tree_size)) \
             --max-family-tree-size $max_tree_size \
             --max-family-tree-depth $depth \
             --article-format json \

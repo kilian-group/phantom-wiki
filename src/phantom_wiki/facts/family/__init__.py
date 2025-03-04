@@ -35,7 +35,10 @@ fam_gen_parser.add_argument(
     help="The maximum number of people that may appear in a family tree. (Default value: 25)",
 )
 fam_gen_parser.add_argument(
-    "--num-samples", type=int, default=1, help="The number of family trees to generate. (Default value: 1.)"
+    "--num-family-trees",
+    type=int,
+    default=1,
+    help="The number of family trees to generate. (Default value: 1.)",
 )
 fam_gen_parser.add_argument(
     "--stop-prob",
@@ -70,7 +73,7 @@ def db_generate_family(
     max_branching_factor: int,
     max_family_tree_size: int,
     stop_prob: float,
-    num_samples: int,
+    num_family_trees: int,
 ) -> None:
     """Generates family facts for a database.
 
@@ -85,7 +88,7 @@ def db_generate_family(
         max_branching_factor (int): The maximum number of children that any person in a family tree may have.
         max_family_tree_size (int): The maximum number of people that may appear in a family tree.
         stop_prob (float): Probability of stopping to extend a family tree after a person has been added.
-        num_samples (int): The number of family trees to generate.
+        num_family_trees (int): The number of family trees to generate.
 
     Returns:
         None, the function adds the generated family facts to the database.
@@ -102,7 +105,7 @@ def db_generate_family(
         max_branching_factor,
         max_family_tree_size,
         stop_prob,
-        num_samples,
+        num_family_trees,
         debug,
         output_dir,
     )

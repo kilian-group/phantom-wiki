@@ -24,7 +24,7 @@ def generate_dataset(
     max_branching_factor: int = 5,
     max_family_tree_depth: int = 5,
     max_family_tree_size: int = 25,
-    num_samples: int = 1,
+    num_family_trees: int = 1,
     stop_prob: int = 0,
     duplicate_names: bool = False,
     friendship_k: int = 3,
@@ -54,7 +54,7 @@ def generate_dataset(
             (default=5)
         max_family_tree_size (int): The maximum number of people that may appear
             in a family tree. (default=25)
-        num_samples (int): The number of family trees to generate. (default=1)
+        num_family_trees (int): The number of family trees to generate. (default=1)
         stop_prob (float): The probability of stopping to further extend a family tree
             after a person has been added. (default=0)
         duplicate_names (bool): Allow/prevent duplicate names in the generation.
@@ -124,7 +124,7 @@ def generate_dataset(
         max_branching_factor,
         max_family_tree_size,
         stop_prob,
-        num_samples,
+        num_family_trees,
     )
 
     # generate friend relationships between people in the database

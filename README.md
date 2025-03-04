@@ -51,14 +51,14 @@ The following generation script creates datasets of various sizes with random ge
 - Universe sizes 25, 50, 500, ..., 5K, 500K, 1M (number of documents)
 - Question template depth 20 (proportional to difficulty)
 
-For example, it executes the following command to generate a size 5K universe (`5000 = --max-family-tree-size * --num-samples`):
+For example, it executes the following command to generate a size 5K universe (`5000 = --max-family-tree-size * --num-family-trees`):
 
 ```bash
 python -m phantom_wiki \
    -od /path/to/output/depth_20_size_5000_seed_1 \
    --seed 1 \
    --question-depth 20 \
-   --num-samples 100 \
+   --num-family-trees 100 \
    --max-family-tree-size 50 \
    --max-family-tree-depth 20 \
    --article-format json \

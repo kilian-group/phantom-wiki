@@ -143,7 +143,7 @@ class Generator:
         max_branching_factor: int,
         max_family_tree_size: int,
         stop_prob: float,
-        num_samples: int,
+        num_family_trees: int,
         debug: bool,
         output_dir: str,
     ) -> list[list[Person]]:
@@ -154,7 +154,7 @@ class Generator:
             max_branching_factor (int): Maximum number of children that any person in a family tree may have.
             max_family_tree_size (int): The maximum number of people that may appear in a family tree.
             stop_prob (float): Probability of stopping to extend a family tree after a person has been added.
-            num_samples (int): The number of family trees to generate.
+            num_family_trees (int): The number of family trees to generate.
             debug (bool): Whether to enable debug output.
             output_dir (str): Path to the output folder.
 
@@ -166,7 +166,7 @@ class Generator:
 
         all_time_start = time.time()
         names = []
-        for sample_idx in tqdm(range(num_samples), desc="Generating family trees", leave=False):
+        for sample_idx in tqdm(range(num_family_trees), desc="Generating family trees", leave=False):
             # sample family tree
             family_tree = self._sample_family_tree(
                 max_family_tree_depth, max_branching_factor, max_family_tree_size, stop_prob
