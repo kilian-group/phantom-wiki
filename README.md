@@ -6,20 +6,9 @@ PhantomWiki generates on-demand datasets to evaluate reasoning and retrieval cap
 - [Paper](/todo)
 - [Demo](/todo)
 
-For convenience, we have pre-generated PhantomWiki instances of size 50, 500, and 5000 with seeds 1/2/3, which can be downloaded using HuggingFace:
-
-```python
-from datasets import load_dataset
-
-# Download the document corpus
-ds_corpus = load_dataset("kilian-group/phantom-wiki-v1", "text-corpus")
-# Download the question-answer pairs
-ds_qa = load_dataset("kilian-group/phantom-wiki-v1", "question-answer")
-```
-
 ## Using PhantomWiki
 
-To install the `phantom-wiki` package, use the following pip command:
+First [install Prolog](#installation) on your machine, then PhantomWiki with `pip`:
 
 ```bash
 pip install phantom-wiki
@@ -30,34 +19,64 @@ pip install phantom-wiki
 
 To build from source, you can clone this repository and run `pip install .`.
 
-Then generate datasets of varying sizes with:
+Generate PhantomWiki datasets with random generation seed 1:
 
-```bash
-./data/generate-v05.sh /path/to/output/ 1 --use-multithreading
+1. In Python:
+
+```python
+import phantom_wiki as pw
+
+pw.generate_dataset(
+    output_dir="/path/to/output",
+    seed=1,
+    use_multithreading=True,
+)
 ```
 
-**NOTE:** We do not support `--use-multithreading` on macOS yet.
+2. In a terminal:
 
-This generation script creates PhantomWiki datasets with random generation seed 1:
+```bash
+python -m phantom_wiki -od "/path/to/output" --seed 1 --use-multithreading
+```
+
+> \[!NOTE\]
+> We do not support `--use-multithreading` on macOS yet, so you shouldn't specify the flag (or set it to `True`).
+
+The following generation script creates datasets of various sizes with random generation seed 1:
+
+```bash
+./data/generate-v1.sh /path/to/output/ 1 --use-multithreading
+```
 
 - Universe sizes 25, 50, 500, ..., 5K, 500K, 1M (number of documents)
 - Question template depth 20 (proportional to difficulty)
 
-For example, it executes the following command to generate a size 5K universe (`5000 = --max-tree-size * --num-samples`):
+For example, it executes the following command to generate a size 5K universe (`5000 = --max-family-tree-size * --num-family-trees`):
 
 ```bash
 python -m phantom_wiki \
    -od /path/to/output/depth_20_size_5000_seed_1 \
-   -s 1 \
-   --depth 20 \
-   --num-samples 100 \
-   --max-tree-size 50 \
-   --max-tree-depth 20 \
+   --seed 1 \
+   --question-depth 20 \
+   --num-family-trees 100 \
+   --max-family-tree-size 50 \
+   --max-family-tree-depth 20 \
    --article-format json \
    --question-format json \
-   --hard-mode \
-   --valid-only \
    --use-multithreading
+```
+
+### Pre-generated PhantomWiki datasets on Huggingface
+
+For convenience of development, we provide pre-generated PhantomWiki datasets on HuggingFace (sizes 50, 500, and 5000 with seeds 1, 2, and 3).
+
+```python
+from datasets import load_dataset
+
+# Download the document corpus
+ds_corpus = load_dataset("kilian-group/phantom-wiki-v1", "text-corpus")
+# Download the question-answer pairs
+ds_qa = load_dataset("kilian-group/phantom-wiki-v1", "question-answer")
 ```
 
 ## Installation

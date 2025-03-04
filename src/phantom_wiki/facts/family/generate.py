@@ -17,10 +17,8 @@ import time
 import pydot
 from tqdm import tqdm
 
-from phantom_wiki.facts.family import fam_gen_parser
 from phantom_wiki.facts.family.constants import PERSON_TYPE
 from phantom_wiki.facts.family.person_factory import Person, PersonFactory
-from phantom_wiki.utils import get_parser
 
 # ============================================================================= #
 #                               CLASS  GENERATOR                                #
@@ -33,14 +31,26 @@ class Generator:
     def __init__(self, person_factory: PersonFactory):
         self.person_factory = person_factory
 
-    def _sample_family_tree(self, args) -> list[Person]:
+    def _sample_family_tree(
+        self,
+        max_family_tree_depth: int,
+        max_branching_factor: int,
+        max_family_tree_size: int,
+        stop_prob: float,
+    ) -> list[Person]:
         """Creates a single family tree.
 
         Args:
-            args: The configuration that specifies how to create the dataset.
+            max_family_tree_depth (int): The maximum depth that a family tree may have.
+            max_branching_factor (int): Maximum number of children that any person in a family tree may have.
+            max_family_tree_size (int): The maximum number of people that may appear in a family tree.
+            stop_prob (float): Probability of stopping to extend a family tree after a person has been added.
+
+        Returns:
+            list[Person]: A list of Person objects representing the generated family tree.
         """
         # add first person to the family tree
-        fam_tree = [self.person_factory.create_person(args.max_tree_depth)]
+        fam_tree = [self.person_factory.create_person(max_family_tree_depth)]
 
         min_level = max_level = fam_tree[0].tree_level
         tree_depth = max_level - min_level
@@ -53,10 +63,10 @@ class Generator:
 
             # determine whether it is possible to add parents and children of the sampled person
             can_add_parents = not current_person.parents and (
-                current_person.tree_level > min_level or tree_depth < args.max_tree_depth
+                current_person.tree_level > min_level or tree_depth < max_family_tree_depth
             )
-            can_add_children = len(current_person.children) < args.max_branching_factor and (
-                current_person.tree_level < max_level or tree_depth < args.max_tree_depth
+            can_add_children = len(current_person.children) < max_branching_factor and (
+                current_person.tree_level < max_level or tree_depth < max_family_tree_depth
             )
 
             # decide what to do
@@ -119,36 +129,56 @@ class Generator:
 
             # Check stopping conditions
             if (
-                person_count >= args.max_tree_size
-                or total_attempts >= args.max_tree_size * 10
-                or (args.stop_prob > 0 and random.random() < args.stop_prob)
+                person_count >= max_family_tree_size
+                or total_attempts >= max_family_tree_size * 10
+                or (stop_prob > 0 and random.random() < stop_prob)
             ):
                 break
 
         return fam_tree
 
-    def generate(self, args) -> list[list[Person]]:
-        """Generates a family tree dataset based on the provided configuration.
+    def generate(
+        self,
+        max_family_tree_depth: int,
+        max_branching_factor: int,
+        max_family_tree_size: int,
+        stop_prob: float,
+        num_family_trees: int,
+        debug: bool,
+        output_dir: str,
+    ) -> list[list[Person]]:
+        """Generates a list family trees based on the provided configuration.
 
         Args:
-            args: The configuration that specifies how to create the dataset.
+            max_family_tree_depth (int): The maximum depth that a family tree may have.
+            max_branching_factor (int): Maximum number of children that any person in a family tree may have.
+            max_family_tree_size (int): The maximum number of people that may appear in a family tree.
+            stop_prob (float): Probability of stopping to extend a family tree after a person has been added.
+            num_family_trees (int): The number of family trees to generate.
+            debug (bool): Whether to enable debug output.
+            output_dir (str): Path to the output folder.
+
+        Returns:
+            list[list[Person]]: A list of family trees, where family trees are lists of Person objects.
         """
         # create list for storing graph representations of all created samples
         family_trees = []
 
         all_time_start = time.time()
         names = []
-        for sample_idx in tqdm(range(args.num_samples), desc="Generating family trees", leave=False):
+        for sample_idx in tqdm(range(num_family_trees), desc="Generating family trees", leave=False):
             # sample family tree
-            family_tree = self._sample_family_tree(args)
+            family_tree = self._sample_family_tree(
+                max_family_tree_depth, max_branching_factor, max_family_tree_size, stop_prob
+            )
             family_trees.append(family_tree)
 
             names += [p.get_full_name() for p in family_tree]
 
             # save generated family tree as a graph
-            if args.debug:
+            if debug:
                 graph = create_dot_graph(family_tree)
-                save_path = os.path.join(args.output_dir, f"family_tree_{sample_idx+1}.png")
+                save_path = os.path.join(output_dir, f"family_tree_{sample_idx+1}.png")
                 logging.debug(f"Saving family tree {sample_idx+1} to {save_path}")
                 graph.write_png(save_path)
 
@@ -165,15 +195,6 @@ class Generator:
         )
 
         return family_trees
-
-
-# Given parser args -> pretty print it
-def pretty_print_args(args):
-    logging.debug("-----------------")
-    logging.debug("| Configuration |")
-    logging.debug("-----------------")
-    for key, value in vars(args).items():
-        logging.debug(f"{key.replace('_', ' ').title()}: {value}")
 
 
 # Given a family tree in the form of a list -> generate the facts
@@ -225,40 +246,3 @@ def create_dot_graph(family_tree):
             graph.add_edge(pydot.Edge(p.get_full_name(), c.get_full_name()))
 
     return graph
-
-
-# Generate
-if __name__ == "__main__":
-    # Parse arguments and print help
-    parser = get_parser(parents=[fam_gen_parser])
-    args = parser.parse_args()
-
-    # Pretty-print args
-    pretty_print_args(args)
-
-    # Set the seed
-    random.seed(args.seed)
-
-    # Ensure the output directory exists
-    os.makedirs(args.output_dir, exist_ok=True)
-
-    # Get the prolog family tree
-    pf = PersonFactory(args.duplicate_names)
-
-    gen = Generator(pf)
-    family_trees = gen.generate(args)
-    for i, family_tree in enumerate(family_trees):
-        # Obtain family tree in Prolog format
-        pl_family_tree = family_tree_to_facts(family_tree)
-
-        # Create a unique filename for each tree
-        output_file_path = os.path.join(args.output_dir, f"family_tree_{i+1}.pl")
-
-        # Write the Prolog family tree to the file
-        with open(output_file_path, "w") as f:
-            f.write("\n".join(pl_family_tree))
-
-        # Generate family graph plot and save it
-        family_graph = create_dot_graph(family_tree)
-        output_graph_path = os.path.join(args.output_dir, f"family_tree_{i+1}.png")
-        family_graph.write_png(output_graph_path)

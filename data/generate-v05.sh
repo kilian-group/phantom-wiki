@@ -52,15 +52,13 @@ do
     od="depth_${depth}_size_25_seed_${SEED}"
     cmd="python -m phantom_wiki \
         -od $OUTPUT_DIR/$od \
-        -s $SEED \
-        --depth $depth \
-        --num-samples 1 \
-        --max-tree-size 25 \
-        --max-tree-depth $depth \
+        --seed $SEED \
+        --question-depth $depth \
+        --num-family-trees 1 \
+        --max-family-tree-size 25 \
+        --max-family-tree-depth $depth \
         --article-format json \
         --question-format json \
-        --hard-mode \
-        --valid-only \
         $cmd_args"
     echo $cmd
     eval $cmd
@@ -71,15 +69,13 @@ do
         od="depth_${depth}_size_${size}_seed_${SEED}"
         cmd="python -m phantom_wiki \
             -od $OUTPUT_DIR/$od \
-            -s $SEED \
-            --depth $depth \
-            --num-samples $(($size / $max_tree_size)) \
-            --max-tree-size $max_tree_size \
-            --max-tree-depth $depth \
+            --seed $SEED \
+            --question-depth $depth \
+            --num-family-trees $(($size / $max_tree_size)) \
+            --max-family-tree-size $max_tree_size \
+            --max-family-tree-depth $depth \
             --article-format json \
             --question-format json \
-            --hard-mode \
-            --valid-only \
             $cmd_args"
         echo $cmd
         eval $cmd

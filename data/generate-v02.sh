@@ -23,12 +23,11 @@ do
             od="depth_${depth}_size_${size}_seed_${seed}"
             cmd="python -m phantom_wiki \
                 -od $1/$od \
-                -s $seed \
-                --depth $depth \
-                --max-tree-size $size \
+                --seed $seed \
+                --question-depth $depth \
+                --max-family-tree-size $size \
                 --article-format json \
-                --question-format json \
-                --valid-only"
+                --question-format json"
             echo $cmd
             eval $cmd
 
