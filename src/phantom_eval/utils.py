@@ -32,8 +32,12 @@ def load_data(dataset: str, split: str = None, from_local: bool = False) -> dict
     instance with the exact depth, size, seed.
 
     Args:
-        dataset: The name of the dataset on HF to load. Or the path to the local folder.
-        split: The split of the dataset to load.
+        dataset:
+            if from_local=False: The name of the dataset on HF to load.
+            if from_local=True: The path to the local folder.
+        split:
+            if from_local=False: The split of the dataset on HF to load.
+            if from_local=True: The subdirectory of the local folder.
         from_local: Whether to load the dataset from a local folder.
 
     Returns:
@@ -41,41 +45,42 @@ def load_data(dataset: str, split: str = None, from_local: bool = False) -> dict
     Example:
         >>> from phantom_eval.utils import load_data
         >>> dataset = load_data("mlcore/phantom-wiki-v050", split="depth_20_size_50_seed_1") # load from HF
-        >>> dataset = load_data("path_to_out_dir", from_local=True) # load from HF
+        >>> dataset = load_data("path_to_out_dir", "sub_dir", from_local=True) # load from local folder
     """
 
     def _get_params(split: str) -> tuple[int, int, int]:
         """Extract the depth, size, and seed from the split string."""
-        if match := re.search(r"depth_(\d+)_size_(\d+)_seed_(\d+)", split):
-            depth, size, seed = match.groups()
-            return int(depth), int(size), int(seed)
-        else:
-            raise ValueError(f"Invalid split format: {split}")
+
+        # if loading from HF, the split has to match the format like "depth_20_size_50_seed_1"
+        if not from_local:
+            if match := re.search(r"depth_(\d+)_size_(\d+)_seed_(\d+)", split):
+                depth, size, seed = match.groups()
+                return int(depth), int(size), int(seed)
+            else:
+                raise ValueError(f"Invalid split format: {split}")
 
     if not from_local:
         ds_text_corpus = load_dataset(dataset, "text-corpus", trust_remote_code=True)
         ds_question_answer = load_dataset(dataset, "question-answer", trust_remote_code=True)
         ds_database = load_dataset(dataset, "database", trust_remote_code=True)
     else:
-        builder_text_corpus = PhantomWikiDatasetBuilder(config_name="text-corpus", data_dir=dataset)
+        builder_text_corpus = PhantomWikiDatasetBuilder(
+            config_name="text-corpus", data_dir=f"{dataset}/{split}"
+        )
         builder_text_corpus.download_and_prepare()
         ds_text_corpus = builder_text_corpus.as_dataset()
 
-        builder_question_answer = PhantomWikiDatasetBuilder(config_name="question-answer", data_dir=dataset)
+        builder_question_answer = PhantomWikiDatasetBuilder(
+            config_name="question-answer", data_dir=f"{dataset}/{split}"
+        )
         builder_question_answer.download_and_prepare()
         ds_question_answer = builder_question_answer.as_dataset()
 
-        builder_database = PhantomWikiDatasetBuilder(config_name="database", data_dir=dataset)
+        builder_database = PhantomWikiDatasetBuilder(config_name="database", data_dir=f"{dataset}/{split}")
         builder_database.download_and_prepare()
         ds_database = builder_database.as_dataset()
 
     available_splits = ds_question_answer.keys()
-
-    if from_local and split is None:
-        if len(available_splits) == 1:
-            split = list(available_splits)[0]
-        else:
-            raise ValueError(f"Multiple splits available: {available_splits}. Please specify a split.")
 
     if split in available_splits:
         logging.info(f"Using split {split} from dataset {dataset}.")
