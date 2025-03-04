@@ -48,7 +48,7 @@ def get_parser(parents: list) -> argparse.ArgumentParser:
     """
     Factory for creating an argument parser.
     """
-    parser = argparse.ArgumentParser(description="Generate PhantomWiki", parents=parents)
+    parser = argparse.ArgumentParser(description="Generate a PhantomWiki instance", parents=parents)
     parser.add_argument("--debug", action="store_true", help="Enable debug output (DEBUG level).")
     parser.add_argument("--quiet", action="store_true", help="Enable quiet (no) output (WARNING level).")
     parser.add_argument(

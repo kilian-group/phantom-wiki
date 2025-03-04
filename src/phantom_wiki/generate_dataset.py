@@ -86,7 +86,7 @@ def generate_dataset(
 
     Returns:
         None, The function saves all generated data to the output directory as well as a
-        a `timings.csv` and does not return any value.
+        `timings.csv` and does not return any value.
     """
 
     if quiet:
@@ -143,7 +143,7 @@ def generate_dataset(
 
     #
     # Step 2. Generate articles
-    # Currently, the articles are comprised of a list of facts.
+    # Currently, the articles comprise a list of facts.
     #
     blue("Generating articles")
     start = time.time()

@@ -21,7 +21,7 @@ To build from source, you can clone this repository and run `pip install .`.
 
 Generate PhantomWiki datasets with random generation seed 1:
 
-1. In python:
+1. In Python:
 
 ```python
 import phantom_wiki as pw
@@ -39,7 +39,8 @@ pw.generate_dataset(
 python -m phantom_wiki -od "/path/to/output" --seed 1 --use-multithreading
 ```
 
-**NOTE:** We do not support `--use-multithreading` on macOS yet, so you shouldn't specify the flag (or set it to `True`).
+> \[!NOTE\]
+> We do not support `--use-multithreading` on macOS yet, so you shouldn't specify the flag (or set it to `True`).
 
 The following generation script creates datasets of various sizes with random generation seed 1:
 
@@ -67,7 +68,7 @@ python -m phantom_wiki \
 
 ### Pre-generated PhantomWiki datasets on Huggingface
 
-For convenience, we provide pre-generated PhantomWiki datasets on Huggingface (sizes 50, 500, and 5000 with seeds 1, 2, and 3).
+For convenience of development, we provide pre-generated PhantomWiki datasets on HuggingFace (sizes 50, 500, and 5000 with seeds 1, 2, and 3).
 
 ```python
 from datasets import load_dataset
