@@ -96,6 +96,7 @@ def get_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--split_list",
+        default=["depth_20_size_50_seed_1"],
         type=str,
         nargs="+",
         help="List of dataset splits to evaluate",

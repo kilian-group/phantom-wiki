@@ -166,18 +166,9 @@ async def main(args: argparse.Namespace) -> None:
         wait_seconds=args.inf_wait_seconds,
     )
 
-    # If loading from HF and no split is specified, load the default split
-    if not args.from_local and args.split_list is None:
-        split_list = ["depth_20_size_50_seed_1"]
-    # if loading from local folder and no split is specified, throw error message
-    elif args.from_local and args.split_list is None:
-        logging.info("No split specified, a split should be a list of subfolders of your data folder")
-    else:
-        split_list = args.split_list
-
     for seed in args.inf_seed_list:
         logger.info(f"Running inference for method='{args.method}' with {seed=}")
-        for split in split_list:
+        for split in args.split_list:
             dataset = load_data(args.dataset, split, args.from_local)
             logger.info(f"Loading dataset='{args.dataset}' :: {split=}")
             df_qa_pairs = pd.DataFrame(dataset["qa_pairs"])
