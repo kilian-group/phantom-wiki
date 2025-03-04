@@ -115,6 +115,14 @@ Answer: child("Alvaro Smock", A), aggregate_all(count, friend(A, B), C)
 Example 10:
 Question: How many uncles does the maternal grandmother of the friend of Stacia Toombs have?
 Answer: friend("Stacia Toombs", A), mother(A, B), mother(B, C), aggregate_all(count, uncle(C, D), E)
+
+Example 11:
+Question: Which film came out first, Kung Fu Panda or Megamind?
+Answer: release_year("Kung Fu Panda", A), release_year("Megamind", B), (A < B -> C = "Kung Fu Panda" ; C = "Megamind").
+
+Example 12:
+Question: Are New York City and San Francisco in the same country?
+Answer: country("New York City", A), country("San Francisco", B), (A = B -> C = "Yes" ; C = "No").
 """
 
 FEWSHOT_EXAMPLES = f"""
@@ -227,36 +235,54 @@ COT_EXAMPLES_PROLOG = f"""
 Example 1:
 Question: Who is the brother of Dino Beltran?
 Answer: I can get the brother of Dino Beltran with the query brother(X, "Dino Beltran"). Therefore, the answer is brother(X, "Dino Beltran").
+
 Example 2:
 Question: Who is the sibling of Barabara Beltran?
 Answer: I can get the sibling of Barbara Beltran with the query sibling(X, "Barabara Beltran"). Therefore, the answer is sibling(X, "Barabara Beltran").
+
 Example 3:
 Question: Who is the mother of the sister of Stacia Toombs?
 Answer: I can get the sister of Stacia Toombs with the query sister("Stacia Toombs", Y). Since Y is the sister of Stacia Toombs, I can get the mother of Y with the query mother(Y, X). Therefore, the answer is sister("Stacia Toombs", Y), mother(Y, X).
+
 Example 4:
 Question: Who is the male second cousin of the uncle of William Smock?
 Answer: I can get the uncle of William Smock with the query uncle("William Smock", X). Since X is the uncle of William Smock, I can get the male second cousin of X with the query male_second_cousin(X, Y). Therefore, the answer is uncle("William Smock", X), male_second_cousin(X, Y).
+
 Example 5:
 Question: What is the occupation of the sister of the grandmother of Virgil Hackworth?
 Answer: I can get the grandmother of Virgil Hackworth with the query grandmother("Virgil Hackworth", Z). Since Z is the grandmother of Virgil Hackworth, I can get the sister of Z with the query sister(Z, Y). Since Y is the sister of the grandmother of Virgil Hackworth, I can get the occupation of Y with the query job(Y, X). Therefore, the answer is grandmother("Virgil Hackworth", Z), sister(Z, Y), job(Y, X).
+
 Example 6:
 Question: Who is the wife of the person whose occupation is associate professor?
 Answer: I can get the person whose occupation is associate professor with the query job(X, "associate professor"). Since X is the person whose occupation is associate professor, I can get the wife of X with the query wife(X, Y). Therefore, the answer is job(X, "associate professor"), wife(X, Y).
+
 Example 7:
 Question: What is the date of birth of the person whose hobby is meteorology?
 Answer: I can get the person whose hobby is meteorology with the query hobby(X, "meteorology"). Since X is the person whose hobby is meteorology, I can get the date of birth of X with the query dob(X, Y). Therefore, the answer is hobby(X, "meteorology"), dob(X, Y).
+
 Example 8:
 Question: Who is the cousin of the person whose hobby is broadcast engineer?
 Answer: I can get the person whose hobby is broadcast engineer with the query hobby(Y, "broadcast engineer"). Since Y is the person whose hobby is broadcast engineer, I can get the cousin of Y with the query cousin(Y, X). Therefore, the answer is hobby(Y, "broadcast engineer"), cousin(Y, X).
+
 Example 9:
 Question: Who is the granddaughter of the mother of the friend of the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager?
 Answer: I can get the person whose occupation is theatre manager with the query job(A, "theatre manager"). Since A is the person whose occupation is theatre manager, I can get the great-granddaughter of A with the query great_granddaughter(A, B). Since B is the great-granddaughter of the person whose occupation is theatre manager, I can get the friend of B with the query friend(B, C). Since C is the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the parent of C with the query parent(C, D). Since D is the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the mother of D with the query mother(D, E). Since E is the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the friend of E with the query friend(E, F). Since F is the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the friend of F with the query friend(F, G). Since G is the friend of the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the mother of G with the query mother(G, H). Since H is the mother of the friend of the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the granddaughter of H with the query granddaughter(H, I). Therefore, the answer is job(A, "theatre manager"), great_granddaughter(A, B), friend(B, C), parent(C, D), mother(D, E), friend(E, F), friend(F, G), mother(G, H), granddaughter(H, I).
+
 Example 9:
 Question: How many friends does the child of Alvaro Smock have?
 Answer: I can get the child of Alvaro Smock with the query child("Alvaro Smock", A). Since A is the child of Alvaro Smock, I can get the number of friends of A with the query findall(B, friend(A, B), C), length(C, D). Therefore, the answer is child("Alvaro Smock", A), findall(B, friend(A, B), C), length(C, D).
+
 Example 10:
 Question: How many uncles does the maternal grandmother of the friend of Stacia Toombs have?
 Answer: I can get the friend of Stacia Toombs with the query friend("Stacia Toombs", A). Since A is the friend of Stacia Toombs, I can get the maternal grandmother of A with the query mother(A, B), mother(B, C). Since D is the maternal grandmother of the friend of Stacia Toombs, I can get the number of uncles of D with the query findall(E, uncle(D, E), F), length(F, G). Therefore, the answer is friend("Stacia Toombs", A), mother(A, B), mother(B, C), findall(E, uncle(D, E), F), length(F, G).
+
+Example 11:
+Question: Which film came out first, Kung Fu Panda or Megamind?
+Answer: I can get the release year of the film Kung Fu Panda with the query release_year("Kung Fu Panda", A). I can get the release year of the film Megamind with the query release_year("Megamind", B). Since A is the release year of the film Kung Fu Panda and B is the release year of the film Megamind, I can get the name of the film that was released first with the query (A < B -> C = "Kung Fu Panda" ; C = "Megamind"). Therefore, the answer is release_year("Kung Fu Panda", A), release_year("Megamind", B), (A < B -> C = "Kung Fu Panda" ; C = "Megamind").
+
+Example 12:
+Question: Are New York City and San Francisco in the same country?
+Answer: I can get the country of New York City with the query country("New York City", A). I can get the country of San Francisco with the query country("San Francisco", B). Since A is the country of New York City and B is the country of San Francisco, I can get the answer with the query (A = B -> C = "Yes" ; C = "No"). Therefore, the answer is country("New York City", A), country("San Francisco", B), (A = B -> C = "Yes" ; C = "No").
 """
 
 COT_EXAMPLES = f"""
