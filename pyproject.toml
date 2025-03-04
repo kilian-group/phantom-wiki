@@ -75,8 +75,8 @@ eval = [
 ]
 
 [project.scripts]
-phantom-wiki-generate = "phantom_wiki.__main__:main"
-pw-generate = "phantom_wiki.__main__:main"
+phantom-wiki-generate = "phantom_wiki.generate_dataset:generate_dataset"
+pw-generate = "phantom_wiki.generate_dataset:generate_dataset"
 
 [project.urls]
 Homepage = "https://github.com/kilian-group/phantom-wiki"
