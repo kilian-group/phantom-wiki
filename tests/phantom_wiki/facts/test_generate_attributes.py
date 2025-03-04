@@ -1,5 +1,5 @@
 from phantom_wiki.facts import Database
-from phantom_wiki.facts.attributes.generate import generate_hobbies, generate_jobs
+from phantom_wiki.facts.attributes.generate_attributes import generate_hobbies, generate_jobs
 from tests.phantom_wiki.facts import DATABASE_SMALL_PATH
 
 
