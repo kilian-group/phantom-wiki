@@ -1,10 +1,4 @@
-# Usage:
-# Creating questions:
-#   python -m phantom_wiki -od <output path>
-
 import copy
-
-# standard imports
 import json
 import logging
 import os
@@ -16,8 +10,6 @@ from tqdm import tqdm
 
 from .core.article import get_articles
 from .facts import get_database
-
-# phantom wiki functionality
 from .facts.attributes import db_generate_attributes
 from .facts.family import db_generate_family
 from .facts.friends import db_generate_friendships

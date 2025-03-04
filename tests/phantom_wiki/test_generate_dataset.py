@@ -1,15 +1,12 @@
-# standard imports
 import json
 import os
 import shutil
 
-from phantom_wiki.generate import generate_dataset
-
-# phantom wiki functionality
+from phantom_wiki.generate_dataset import generate_dataset
 from tests.phantom_wiki import ARTICLE_EXAMPLE_PATH
 
 
-def test_main():
+def test_generate_dataset():
     generate_dataset(output_dir="test_out", seed=1, easy_mode=True)
 
     # get example article

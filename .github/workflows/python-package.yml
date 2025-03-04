@@ -51,4 +51,4 @@ jobs:
           pytest tests/phantom_wiki/facts/test_load_database.py
           pytest tests/phantom_wiki/facts/test_save_database.py
           pytest tests/phantom_wiki/facts/test_question_template.py
-          pytest tests/phantom_wiki/test_main.py
+          pytest tests/phantom_wiki/test_generate_dataset.py
