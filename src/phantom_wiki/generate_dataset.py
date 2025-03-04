@@ -109,7 +109,6 @@ def generate_dataset(
     # Step 1. Generate facts
     #
     db = get_database()
-    db.define("nonbinary/1")
 
     blue("Generating facts")
     start = time.time()
