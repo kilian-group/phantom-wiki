@@ -52,7 +52,7 @@ do
     od="depth_${depth}_size_25_seed_${SEED}"
     cmd="python -m phantom_wiki \
         -od $OUTPUT_DIR/$od \
-        -s $SEED \
+        --seed $SEED \
         --question-depth $depth \
         --num-samples 1 \
         --max-family-tree-size 25 \
@@ -69,7 +69,7 @@ do
         od="depth_${depth}_size_${size}_seed_${SEED}"
         cmd="python -m phantom_wiki \
             -od $OUTPUT_DIR/$od \
-            -s $SEED \
+            --seed $SEED \
             --question-depth $depth \
             --num-samples $(($size / $max_tree_size)) \
             --max-family-tree-size $max_tree_size \
