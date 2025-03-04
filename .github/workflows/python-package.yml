@@ -52,3 +52,10 @@ jobs:
           pytest tests/phantom_wiki/facts/test_save_database.py
           pytest tests/phantom_wiki/facts/test_question_template.py
           pytest tests/phantom_wiki/test_generate_dataset.py
+      - name: Install PhantomEval dependencies
+        run: |
+          python -m pip install ".[eval]"
+          python -m pip install vllm
+      - name: Run PhantomEval tests with pytest
+        run: |
+          pytest tests/phantom_eval/test_llm_async.py
