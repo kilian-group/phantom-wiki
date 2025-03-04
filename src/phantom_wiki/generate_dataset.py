@@ -88,6 +88,11 @@ def generate_dataset(
         None, The function saves all generated data to the output directory as well as a
         `timings.csv` and does not return any value.
     """
+    assert article_format in ["txt", "json"], "Article format not supported, use 'txt' or 'json'."
+    assert question_format in [
+        "json_by_type",
+        "json",
+    ], "Question format not supported, use 'json_by_type' or 'json'."
 
     if quiet:
         log_level = logging.WARNING
