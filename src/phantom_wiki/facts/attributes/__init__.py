@@ -1,13 +1,9 @@
-# standard imports
 import logging
 import time
-
-# resource containing the attribute rules
 from importlib.resources import files
 
-# phantom wiki functionality
 from ..database import Database
-from .generate import generate_hobbies, generate_jobs
+from .generate_attributes import generate_hobbies, generate_jobs
 
 ATTRIBUTE_RULES_PATH = files("phantom_wiki").joinpath("facts/attributes/rules.pl")
 
