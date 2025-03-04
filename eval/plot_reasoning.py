@@ -37,6 +37,8 @@ method_list = args.method_list
 model_list = args.model_list
 dataset = args.dataset
 depth = args.depth
+from_local = args.from_local
+
 figures_dir = os.path.join(output_dir, "figures")
 os.makedirs(figures_dir, exist_ok=True)
 METRICS = [
@@ -66,7 +68,7 @@ for metric in METRICS:
         for method in methods:
             print(f"Plotting {method} for {metric}")
             # get evaluation data from the specified output directory and method subdirectory
-            df = get_evaluation_data(output_dir, method, dataset)
+            df = get_evaluation_data(output_dir, method, dataset, from_local)
             if df.empty:
                 print(f"No data found for {method}")
                 continue

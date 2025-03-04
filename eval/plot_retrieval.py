@@ -38,6 +38,8 @@ output_dir = args.output_dir
 method_list = args.method_list
 model_list = args.model_list
 dataset = args.dataset
+from_local = args.from_local
+
 figures_dir = os.path.join(output_dir, "figures")
 os.makedirs(figures_dir, exist_ok=True)
 METRICS = [
@@ -77,7 +79,7 @@ for metric in METRICS:
         method_handles = {}
         for method in methods:
             # get evaluation data from the specified output directory and method subdirectory
-            df = get_evaluation_data(output_dir, method, dataset)
+            df = get_evaluation_data(output_dir, method, dataset, from_local)
             # import pdb; pdb.set_trace()
             if df.empty:
                 logging.warning(f"No data found for {method}")

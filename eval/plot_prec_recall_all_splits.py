@@ -25,9 +25,10 @@ method = args.method
 model_list = plotting_utils.DEFAULT_MODEL_LIST
 dataset = args.dataset
 depth = args.depth
+from_local = args.from_local
 
 # get evaluation data from the specified output directory and method subdirectory
-df = get_evaluation_data(output_dir, method, dataset)
+df = get_evaluation_data(output_dir, method, dataset, from_local)
 # filter by depth
 df = df[(df["_depth"] == depth)]
 # filter for questions that have >1 solutions

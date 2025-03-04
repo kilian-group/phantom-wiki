@@ -19,9 +19,10 @@ output_dir = args.output_dir
 method = args.method
 dataset = args.dataset
 log_level = args.log_level
+from_local = args.from_local
 setup_logging(log_level)
 # get evaluation data from the specified output directory and method subdirectory
-df = get_evaluation_data(output_dir, method, dataset)
+df = get_evaluation_data(output_dir, method, dataset, from_local)
 # group by model, split, and seed
 grouped = df.groupby(["_model", "_depth", "_size", "_data_seed", "_seed"])
 # print the accuracy

@@ -26,8 +26,9 @@ method = args.method
 dataset = args.dataset
 depth = args.depth
 size = args.size
+from_local = args.from_local
 # get evaluation data from the specified output directory and method subdirectory
-df = get_evaluation_data(output_dir, method, dataset)
+df = get_evaluation_data(output_dir, method, dataset, from_local)
 # filter by depth and size
 df = df[(df["_depth"] == depth) & (df["_size"] == size)]
 

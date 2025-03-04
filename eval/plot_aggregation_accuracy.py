@@ -19,14 +19,17 @@ from phantom_eval.evaluate_utils import get_evaluation_data, mean, pivot_mean_st
 parser = get_parser()
 parser.add_argument("--depth", type=int, default=20, help="Depth to plot accuracies for")
 parser.add_argument("--size", type=int, default=50, help="Size to plot accuracies for")
+parser.add_argument("--from_local", action="store_true", help="Load the dataset from a local folder")
+
 args = parser.parse_args()
 output_dir = args.output_dir
 method = args.method
 dataset = args.dataset
 depth = args.depth
 size = args.size
+from_local = args.from_local
 # get evaluation data from the specified output directory and method subdirectory
-df = get_evaluation_data(output_dir, method, dataset)
+df = get_evaluation_data(output_dir, method, dataset, from_local)
 # filter by depth and size
 df = df[(df["_depth"] == depth) & (df["_size"] == size)]
 

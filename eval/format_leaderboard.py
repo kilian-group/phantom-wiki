@@ -29,6 +29,7 @@ output_dir = args.output_dir
 method_list = args.method_list
 model_list = args.model_list
 dataset = args.dataset
+from_local = args.from_local
 METRICS = [
     # 'EM',
     # 'precision',
@@ -40,7 +41,7 @@ SIZE_LIST = [50, 500, 5000]
 df_list = []
 for method in method_list:
     # get evaluation data from the specified output directory and method subdirectory
-    df = get_evaluation_data(output_dir, method, dataset)
+    df = get_evaluation_data(output_dir, method, dataset, from_local)
     if df.empty:
         print(f"No data found for method {method}")
         continue
