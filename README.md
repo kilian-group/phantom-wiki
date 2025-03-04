@@ -3,7 +3,7 @@
 PhantomWiki generates on-demand datasets to evaluate reasoning and retrieval capabilities of LLMs.
 
 - [Website](/todo)
-- [Paper](/todo)
+- [Paper](https://arxiv.org/abs/2502.20377)
 - [Demo](/todo)
 
 ## Using PhantomWiki
@@ -36,11 +36,13 @@ pw.generate_dataset(
 2. In a terminal:
 
 ```bash
-python -m phantom_wiki -od "/path/to/output" --seed 1 --use-multithreading
+phantom-wiki-generate -od "/path/to/output" --seed 1 --use-multithreading
 ```
 
+(You can also use the shorthand alias `pw-generate`.)
+
 > \[!NOTE\]
-> We do not support `--use-multithreading` on macOS yet, so you shouldn't specify the flag (or set it to `True`).
+> We do not support `--use-multithreading` on macOS yet, so you should skip this flag (or set it to `False`).
 
 The following generation script creates datasets of various sizes with random generation seed 1:
 
@@ -54,7 +56,7 @@ The following generation script creates datasets of various sizes with random ge
 For example, it executes the following command to generate a size 5K universe (`5000 = --max-family-tree-size * --num-family-trees`):
 
 ```bash
-python -m phantom_wiki \
+pw-generate \
    -od /path/to/output/depth_20_size_5000_seed_1 \
    --seed 1 \
    --question-depth 20 \
@@ -79,7 +81,7 @@ ds_corpus = load_dataset("kilian-group/phantom-wiki-v1", "text-corpus")
 ds_qa = load_dataset("kilian-group/phantom-wiki-v1", "question-answer")
 ```
 
-## Installation
+## Installing dependencies
 
 PhantomWiki uses the [Prolog](https://en.wikipedia.org/wiki/Prolog) logic programming language, available on all operating systems through [SWI-Prolog](https://www.swi-prolog.org/).
 We recommend installing SWI-prolog through your [distribution](https://www.swi-prolog.org/Download.html) or through conda, for example:
@@ -230,7 +232,7 @@ where OUTPUT_DIRECTORY and METHOD are the same as when generating the prediction
 
 ```bibtex
 @article{gong2025phantomwiki,
-  title={PhantomWiki: On-Demand Datasets for Reasoning and Retrieval Evaluation},
+  title={{PhantomWiki}: On-Demand Datasets for Reasoning and Retrieval Evaluation},
   author={Gong, Albert and Stankevi{\v{c}}i{\=u}t{\.e}, Kamil{\.e} and Wan, Chao and Kabra, Anmol and Thesmar, Raphael and Lee, Johann and Klenke, Julius and Gomes, Carla P and Weinberger, Kilian Q},
   journal={arXiv preprint arXiv:2502.20377},
   year={2025}

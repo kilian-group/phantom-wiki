@@ -226,7 +226,10 @@ def generate_dataset(
 
         # for _ in range(args.num_questions_per_type):
         while (
-            len(questions) < num_questions_per_type
+            len(questions)
+            < num_questions_per_type
+            # TODO: handle potential edge cases where templates repeatedly fail to generate,
+            # resulting in an infinite loop
         ):  # TODO: temporary fix to make sure that we generate the same number of questions for each template
             # sample a question
             question, query = sample_question(

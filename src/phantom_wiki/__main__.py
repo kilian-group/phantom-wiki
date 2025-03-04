@@ -12,7 +12,8 @@ from .facts.friends import friend_gen_parser
 from .generate_dataset import generate_dataset
 from .utils import get_parser
 
-if __name__ == "__main__":
+
+def main():
     # We combine a base parser with all the generators' parsers
     parser = get_parser(
         parents=[
@@ -24,3 +25,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     generate_dataset(**vars(args))
+
+
+if __name__ == "__main__":
+    main()
