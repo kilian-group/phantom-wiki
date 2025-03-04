@@ -71,7 +71,7 @@ def db_generate_family(
     max_family_tree_size: int,
     stop_prob: float,
     num_samples: int,
-):
+) -> None:
     """Generates family facts for a database.
 
     Args:
@@ -88,7 +88,7 @@ def db_generate_family(
         num_samples (int): The number of family trees to generate.
 
     Returns:
-        list: The generated family trees.
+        None, the function adds the generated family facts to the database.
     """
     # set the random seed
     random.seed(seed)

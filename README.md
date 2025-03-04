@@ -45,7 +45,7 @@ For example, it executes the following command to generate a size 5K universe (`
 ```bash
 python -m phantom_wiki \
    -od /path/to/output/depth_20_size_5000_seed_1 \
-   -s 1 \
+   -seed 1 \
    --question-depth 20 \
    --num-samples 100 \
    --max-family-tree-size 50 \

@@ -17,7 +17,7 @@ ATTRIBUTE_RULES_PATH = files("phantom_wiki").joinpath("facts/attributes/rules.pl
 #
 # Functionality to generate attributes for everyone in the database.
 #
-def db_generate_attributes(db: Database, seed: int):
+def db_generate_attributes(db: Database, seed: int) -> None:
     """
     Generate attributes for each person in the database.
 

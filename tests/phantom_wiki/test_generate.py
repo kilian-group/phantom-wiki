@@ -10,11 +10,7 @@ from tests.phantom_wiki import ARTICLE_EXAMPLE_PATH
 
 
 def test_main():
-    generate_dataset(
-        output_dir="test_out",
-        seed=1,
-        easy_mode=True
-    )
+    generate_dataset(output_dir="test_out", seed=1, easy_mode=True)
 
     # get example article
     with open(ARTICLE_EXAMPLE_PATH) as f:

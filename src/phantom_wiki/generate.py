@@ -50,7 +50,7 @@ def generate_dataset(
     output_dir: str = "./out",
     article_format: str = "txt",
     question_format: str = "json_by_type",
-):
+) -> None:
     """
     Generate a PhantomWiki dataset consisting of family trees, friendship networks,
     articles, and reasoning questions with answers.
