@@ -170,7 +170,7 @@ def get_evaluation_data(
     if df_preds.empty:
         return df_preds
     # get unique splits
-    splits = df_preds["_split"].unique()
+    splits = df_preds["_split"].unique().tolist()
     # get the qa pairs
     df_qa_pairs = _get_qa_pairs(dataset, splits, from_local)
     # join with original qa pairs to get additional information about

@@ -32,7 +32,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from phantom_eval import get_parser, plotting_utils
-from phantom_eval.evaluate_utils import COLORS, HATCHSTYLES, get_evaluation_data, mean, pivot_mean_std, std
+from phantom_eval.evaluate_utils import get_evaluation_data, mean, pivot_mean_std, std
+from phantom_eval.plotting_utils import COLORS, HATCHSTYLES
 
 parser = get_parser()
 parser.add_argument("--mixin", type=str, default="rag", help="Mixin to compare")

@@ -1,13 +1,3 @@
-################ Utils and macros for plotting ################
-# TODO: use LaTeX for rendering (need to have LaTeX installed locally)
-# import matplotlib as mpl
-# # Add LaTeX packages (note: latex must be installed)
-# mpl.rcParams['text.latex.preamble'] = r'\usepackage{amssymb} \usepackage{amsmath}'
-# # Enable LaTeX rendering
-# mpl.rcParams['text.usetex'] = True
-# mpl.rcParams['font.family'] ='serif'
-
-# create a plot
 import matplotlib.pyplot as plt
 
 # utils for plotting
@@ -17,12 +7,6 @@ plt.rcParams.update(
         "mathtext.fontset": "stix",
         "axes.spines.top": False,
         "axes.spines.right": False,
-        # set major tick length
-        # 'xtick.major.size': 6,
-        # 'ytick.major.size': 6,
-        # set minor tick length
-        # 'xtick.minor.size': 3,
-        # 'ytick.minor.size': 3,
     }
 )
 COLORS = {
@@ -70,13 +54,10 @@ LINESTYLES = {
 METHOD_LINESTYLES = {
     "zeroshot": "--",
     "cot": "-",
-    "reasoning": "-.",
     "zeroshot-rag": "--",
     "cot-rag": "-",
-    "reasoning-rag": "-.",
     "act": "--",
     "react": "-",
-    "cot-rag-reasoning": "-.",
 }
 HATCHSTYLES = {
     "google/gemma-2-27b-it": "/",
@@ -107,8 +88,6 @@ MARKERS = {
     "cot-rag": "s",  # square
     "act": "+",  # plus
     "react": "P",  # bold plus
-    "reasoning": "D",  # diamond
-    "reasoning-rag": "D",  # diamond
 }
 
 # Single column figures
@@ -145,40 +124,28 @@ MODEL_ALIASES = {
 METHOD_LATEX_ALIASES = {
     "zeroshot": "\\zeroshot",
     "cot": "\\CoT",
-    "reasoning": "\\reasoning",
-    "cot-reasoning": "\\cotreasoning",
     "zeroshot-rag": "\\zeroshotrag",
     "cot-rag": "\\cotrag",
-    "reasoning-rag": "\\reasoningrag",
-    "cot-reasoning-rag": "\\cotreasoningrag",
     "act": "\\act",
     "react": "\\react",
 }
 METHOD_ALIASES = {
     "zeroshot": "ZeroShot",
     "cot": "CoT",
-    "reasoning": "Reasoning",
     "zeroshot-rag": "ZeroShot-RAG",
     "cot-rag": "CoT-RAG",
-    "reasoning-rag": "Reasoning-RAG",
     "act": "Act",
     "react": "ReAct",
-    "cot-rag-reasoning": "CoT-Reasoning-RAG",
 }
 INCONTEXT_METHODS = [
     "zeroshot",
     "cot",
-    "reasoning",
-    "cot-reasoning",
 ]
 RAG_METHODS = [
     "zeroshot-rag",
     "cot-rag",
-    "reasoning-rag",
-    "cot-rag-reasoning",
 ]
 AGENTIC_METHODS = [
-    # "act",
     "react",
 ]
 DEFAULT_METHOD_LIST = [
@@ -192,12 +159,6 @@ DEFAULT_MODEL_LIST = [
     "gpt-4o-2024-11-20",
     "meta-llama/llama-3.3-70b-instruct",
 ]
-
-SIMPLIFIED_METHODS = {x: x for x in DEFAULT_METHOD_LIST}
-SIMPLIFIED_METHODS["reasoning"] = "zeroshot"
-SIMPLIFIED_METHODS["cot-reasoning"] = "cot"
-SIMPLIFIED_METHODS["reasoning-rag"] = "zeroshot-rag"
-SIMPLIFIED_METHODS["cot-rag-reasoning"] = "cot-rag"
 
 import numpy as np
 

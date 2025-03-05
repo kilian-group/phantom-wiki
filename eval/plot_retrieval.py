@@ -5,7 +5,7 @@ metric on the y-axis.
 Saves the plots to the figures directory of the output directory.
 
 Example:
-    python eval/plot_size_accuracy.py -od out --method zeroshot
+    python eval/plot_retrieval.py -od out
 """
 
 import logging
@@ -21,6 +21,16 @@ import matplotlib.lines as lines
 import matplotlib.pyplot as plt
 import numpy as np
 
+# utils for plotting
+plt.rcParams.update(
+    {
+        "font.family": "serif",
+        "font.serif": ["Times New Roman"],
+        "axes.spines.top": False,
+        "axes.spines.right": False,
+    }
+)
+
 from phantom_eval import plotting_utils
 from phantom_eval.evaluate_utils import get_evaluation_data, mean, pivot_mean_std, std
 
@@ -28,14 +38,10 @@ from phantom_eval.evaluate_utils import get_evaluation_data, mean, pivot_mean_st
 
 parser = get_parser()
 parser.add_argument(
-    "--method_list", nargs="+", default=plotting_utils.DEFAULT_METHOD_LIST, help="Method to plot"
-)
-parser.add_argument(
     "--model_list", nargs="+", default=plotting_utils.DEFAULT_MODEL_LIST, help="List of models to plot"
 )
 args = parser.parse_args()
 output_dir = args.output_dir
-method_list = args.method_list
 model_list = args.model_list
 dataset = args.dataset
 from_local = args.from_local
@@ -84,13 +90,13 @@ for metric in METRICS:
             if df.empty:
                 logging.warning(f"No data found for {method}")
                 continue
-            if True:
-                logging.warning(
-                    """ Reducing the difficulty by only including those questions that are generated
-                        from depth=10 templates"""
-                )
-                include = df.apply(lambda x: x["template"] in question_templates_10, axis=1)
-                df = df[include]
+
+            logging.warning(
+                """ Reducing the difficulty by only including those questions that are generated
+                    from depth=10 templates"""
+            )
+            include = df.apply(lambda x: x["template"] in question_templates_10, axis=1)
+            df = df[include]
 
             # group by model, size, data seed, and inference seed
             grouped = df.groupby(["_model", "_size", "_data_seed", "_seed"])
@@ -98,6 +104,7 @@ for metric in METRICS:
             acc = grouped[["EM", "precision", "recall", "f1"]].mean()
             # add a column that counts the number of elements in the group
             acc["count"] = grouped.size()
+            print(acc)
 
             # get the mean and std of the accuracy for each model and split as follows:
             # first compute the mean across inference generation seeds
@@ -107,9 +114,6 @@ for metric in METRICS:
             acc_mean_std = acc_mean_std.reset_index()
 
             df_mean, df_std = pivot_mean_std(acc_mean_std, metric, independent_variable="_size")
-            # For the paper only: if _model='deepseek-ai/deepseek-r1-distill-qwen-32b' and method="reasoning",
-            #  then set method to zeroshot
-            method_ = plotting_utils.SIMPLIFIED_METHODS[method]
 
             # use log10 scale for the x-axis
             all_x.extend(df_mean.columns.tolist())
@@ -121,23 +125,26 @@ for metric in METRICS:
                 y = row
                 yerr = df_std.loc[model_name]
 
-                logging.debug(f"Plotting {method_} for {model_name} with x={df_mean.columns} and y={y}")
-                if model_name == "gpt-4o-2024-11-20" and method_ in ["zeroshot-rag", "cot-rag", "react"]:
+                logging.debug(f"Plotting {method} for {model_name} with x={df_mean.columns} and y={y}")
+                if model_name in [
+                    "gpt-4o-2024-11-20",
+                    "deepseek-ai/deepseek-r1-distill-qwen-32b",
+                ] and method in ["zeroshot-rag", "cot-rag", "react"]:
                     # import pdb; pdb.set_trace()
                     # Create interpolation function
                     valid_indices = ~np.isnan(log10x) & ~np.isnan(y)
                     f = interp1d(log10x[valid_indices], y[valid_indices], kind="linear")
                     # interpolate missing points to create a smooth line
-                    x_new = np.linspace(np.log10(50), np.log10(10000), 50)
+                    x_new = np.linspace(min(log10x[valid_indices]), max(log10x[valid_indices]), 100)
                     y_new = f(x_new)
                     # # use a line plot instead of errorbar
                     axs[i].plot(
                         x_new,
                         y_new,
-                        label=f"{method_}+{model_name}",  # cot+gemini-1.5-flash-002
+                        label=f"{method}+{model_name}",  # cot+gemini-1.5-flash-002
                         color=plotting_utils.COLORS[model_name],
                         linestyle=plotting_utils.METHOD_LINESTYLES[
-                            method_
+                            method
                         ],  # NOTE: determine the linestyle using the method
                         linewidth=1,
                         alpha=plotting_utils.LINE_ALPHA,
@@ -148,7 +155,7 @@ for metric in METRICS:
                         y,
                         color=plotting_utils.COLORS[model_name],
                         # NOTE: determine the linestyle using the method
-                        linestyle=plotting_utils.METHOD_LINESTYLES[method_],
+                        linestyle=plotting_utils.METHOD_LINESTYLES[method],
                         linewidth=1,
                         alpha=plotting_utils.LINE_ALPHA,
                     )
@@ -164,7 +171,7 @@ for metric in METRICS:
                     alpha=plotting_utils.MARKER_ALPHA,
                     clip_on=False,
                 )
-            key = f"{plotting_utils.METHOD_ALIASES[method_]}"
+            key = f"{plotting_utils.METHOD_ALIASES[method]}"
             if key not in method_handles:
                 method_handles[key] = lines.Line2D(
                     [0],
@@ -172,7 +179,7 @@ for metric in METRICS:
                     color="black",
                     label=key,
                     linestyle=plotting_utils.METHOD_LINESTYLES[
-                        method_
+                        method
                     ],  # NOTE: determine the linestyle using the method
                     markersize=4,
                 )
@@ -192,16 +199,10 @@ for metric in METRICS:
         if i == 0:
             axs[i].set_ylabel(metric.upper(), fontsize=8)
         axs[i].set_ylim(0, 1)
-        if False:
-            yticks = [0, 0.5, 1]
-            axs[i].set_yticks(yticks)
-            axs[i].set_yticks([0.25, 0.75], minor=True)
-            axs[i].set_yticks(yticks)
-            axs[i].set_yticklabels(yticks, fontsize=plotting_utils.TICK_FONT_SIZE)
-        else:
-            yticks = [0, 0.25, 0.5, 0.75, 1]
-            axs[i].set_yticks(yticks)
-            axs[i].set_yticklabels(yticks, fontsize=plotting_utils.TICK_FONT_SIZE)
+        yticks = [0, 0.25, 0.5, 0.75, 1]
+        axs[i].set_yticks(yticks)
+        axs[i].set_yticklabels(yticks, fontsize=plotting_utils.TICK_FONT_SIZE)
+
         # set title
         axs[i].set_title(name, fontsize=plotting_utils.LABEL_FONT_SIZE)
 

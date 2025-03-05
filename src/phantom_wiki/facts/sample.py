@@ -434,7 +434,7 @@ def process__agg__relation_plural__Y__Y(
     return True
 
 
-def sample_valid_only(
+def sample_question(
     question_template: list[str],
     query_template: list[str],
     rng: Generator,
@@ -442,7 +442,7 @@ def sample_valid_only(
     person_name_bank: list[str],
     person_name2attr_name_and_val: dict[str, list[tuple[str, str]]],
     person_name2relation_and_related: dict[str, list[tuple[str, str]]],
-    hard_mode: bool = False,
+    easy_mode: bool = False,
     num_sampling_attempts: int = 100,
 ) -> list[str, list[str]]:
     """
@@ -468,9 +468,9 @@ def sample_valid_only(
         (relation, related person) pairs
             e.g. "John" -> [("child", "Alice"), ("child", "Bob"), ("friend", "Charlie"), ...]
             NOTE: Invariant: (relation, related person) pairs are unique
-        hard_mode: whether to sample from hard relations
-            if True: we sample the relation predicates from all FAMILY_RELATIONS
-            if False: we sample the relation predicates from FAMILY_RELATIONS with difficulty = 1
+        easy_mode: whether to sample from easy relations
+            if False: we sample the relation predicates from all FAMILY_RELATIONS
+            if True: we sample the relation predicates from FAMILY_RELATIONS with difficulty = 1
         num_samplng_attempts (int): number of attempts to sample a valid question
     Returns:
         * the completed question as a single string,
@@ -514,7 +514,7 @@ def sample_valid_only(
             # - Every value of assignments[Y_i] that is an atom variable (A_i) should be a key in
             #   atom_assignments
 
-            relation_bank = RELATION if hard_mode else RELATION_EASY
+            relation_bank = RELATION_EASY if easy_mode else RELATION
 
             # 1. <attribute_name>_(\d+)(Y_\d+, <attribute_value>_\d+)
             # -- only appears at the beginning or end of query template list
@@ -659,10 +659,10 @@ def sample_forward(
     query_template: list[str],
     rng: Generator,
     valid_only: bool = True,
-    hard_mode: bool = False,
+    easy_mode: bool = False,
 ) -> tuple[str, list[str]]:
     """
-    DEPRECATED: Use sample_valid_only instead, which implements a (much faster) random walk over the universe
+    DEPRECATED: Use sample_question instead, which implements a (much faster) random walk over the universe
     of people to create a query.
 
     Samples possible realizations of the question template and query template lists
@@ -680,9 +680,9 @@ def sample_forward(
             satisfying the query_template with a non-empty answer
             if False: we uniformly sample from all possible prolog queries
             satisfying the query_template
-        hard_mode: whether to sample from hard relations
-            if True: we sample the relation predicates from all FAMILY_RELATIONS
-            if False: we sample the relation predicates from FAMILY_RELATIONS with difficulty = 1
+        easy_mode: whether to sample from easy relations
+            if False: we sample the relation predicates from all FAMILY_RELATIONS
+            if True: we sample the relation predicates from FAMILY_RELATIONS with difficulty = 1
     Returns:
         * a dictionary mapping each placeholder to its realization,
         # TODO consider not returning these for simplicity and doing the replacement elsewhere?
@@ -787,10 +787,10 @@ def sample_forward(
             if m := re.search(r"<relation>_(\d+)", query_template_[i]):
                 match = m.group(0)
                 assert match in question_template_
-                if hard_mode:
-                    _sample_predicate(match, bank=RELATION, alias_dict=RELATION_ALIAS)
-                else:
+                if easy_mode:
                     _sample_predicate(match, bank=RELATION_EASY, alias_dict=RELATION_ALIAS)
+                else:
+                    _sample_predicate(match, bank=RELATION, alias_dict=RELATION_ALIAS)
 
             if m := re.search(r"<relation_plural>_(\d+)", query_template_[i]):
                 match = m.group(0)
@@ -813,10 +813,10 @@ def sample_forward(
                     count_variables.append(match_agg[0][2])
                     # hack to avoid returning a Variable type
                     _sample_atom(match_agg[0][1], bank=name_bank)
-                if hard_mode:
-                    _sample_predicate(match, bank=RELATION, alias_dict=RELATION_PLURAL_ALIAS)
-                else:
+                if easy_mode:
                     _sample_predicate(match, bank=RELATION_EASY, alias_dict=RELATION_PLURAL_ALIAS)
+                else:
+                    _sample_predicate(match, bank=RELATION, alias_dict=RELATION_PLURAL_ALIAS)
 
         if valid_only:
             q = _prepare_query(use_atom_variables=True)

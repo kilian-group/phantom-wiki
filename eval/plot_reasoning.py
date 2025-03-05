@@ -5,7 +5,7 @@ on the y-axis.
 Saves the plots to the figures directory of the output directory.
 
 Example:
-    python eval/plot_difficulty_accuracy_all_splits.py -od out --method zeroshot --depth 10
+    python eval/plot_reasoning.py -od out --depth 20
 """
 
 import logging
@@ -20,20 +20,26 @@ setup_logging("INFO")
 import matplotlib.lines as lines
 import matplotlib.pyplot as plt
 
+# utils for plotting
+plt.rcParams.update(
+    {
+        "font.family": "serif",
+        "font.serif": ["Times New Roman"],
+        "axes.spines.top": False,
+        "axes.spines.right": False,
+    }
+)
+
 from phantom_eval import plotting_utils
 from phantom_eval.evaluate_utils import get_evaluation_data, mean, pivot_mean_std, std
 
 parser = get_parser()
 parser.add_argument("--depth", type=int, default=20, help="Depth to plot accuracies for")
 parser.add_argument(
-    "--method_list", nargs="+", default=plotting_utils.DEFAULT_METHOD_LIST, help="Method to plot"
-)
-parser.add_argument(
     "--model_list", nargs="+", default=plotting_utils.DEFAULT_MODEL_LIST, help="List of models to plot"
 )
 args = parser.parse_args()
 output_dir = args.output_dir
-method_list = args.method_list
 model_list = args.model_list
 dataset = args.dataset
 depth = args.depth
@@ -95,7 +101,6 @@ for metric in METRICS:
             sizes_in_preds = sorted(acc_mean_std["_size"].unique().tolist())
             # only plot a few sizes
             sizes_in_preds = [min(sizes_in_preds)]
-            method_ = plotting_utils.SIMPLIFIED_METHODS[method]
 
             for size in sizes_in_preds:
                 acc_mean_std_size = acc_mean_std[acc_mean_std["_size"].astype(int) == size]
@@ -111,7 +116,7 @@ for metric in METRICS:
                         y,
                         color=plotting_utils.COLORS[model_name],
                         # NOTE: determine the linestyle using the method
-                        linestyle=plotting_utils.METHOD_LINESTYLES[method_],
+                        linestyle=plotting_utils.METHOD_LINESTYLES[method],
                         linewidth=1,
                         alpha=plotting_utils.LINE_ALPHA,
                     )
@@ -137,14 +142,14 @@ for metric in METRICS:
                     )
 
             # Add method to legend
-            key = f"{plotting_utils.METHOD_ALIASES[method_]}"
+            key = f"{plotting_utils.METHOD_ALIASES[method]}"
             if key not in method_handles:
                 method_handles[key] = lines.Line2D(
                     [0],
                     [0],
                     color="black",
                     label=key,
-                    linestyle=plotting_utils.METHOD_LINESTYLES[method_],
+                    linestyle=plotting_utils.METHOD_LINESTYLES[method],
                     linewidth=1,
                 )
         axs[i].legend(
@@ -177,16 +182,9 @@ for metric in METRICS:
             axs[i].set_ylabel(metric.upper(), fontsize=plotting_utils.LABEL_FONT_SIZE)
         # set ylim
         axs[i].set_ylim(0, 1)
-        if False:
-            yticks = [0, 0.5, 1]
-            axs[i].set_yticks(yticks)
-            axs[i].set_yticks([0.25, 0.75], minor=True)
-            axs[i].set_yticks(yticks)
-            axs[i].set_yticklabels(yticks, fontsize=plotting_utils.TICK_FONT_SIZE)
-        else:
-            yticks = [0, 0.25, 0.5, 0.75, 1]
-            axs[i].set_yticks(yticks)
-            axs[i].set_yticklabels(yticks, fontsize=plotting_utils.TICK_FONT_SIZE)
+        yticks = [0, 0.25, 0.5, 0.75, 1]
+        axs[i].set_yticks(yticks)
+        axs[i].set_yticklabels(yticks, fontsize=plotting_utils.TICK_FONT_SIZE)
         # set title
         axs[i].set_title(name, fontsize=plotting_utils.LABEL_FONT_SIZE)
 

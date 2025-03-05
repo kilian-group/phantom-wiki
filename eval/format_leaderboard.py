@@ -1,11 +1,13 @@
 """Script to format the accuracy of the models on the splits.
 
 Generates a table with rows for each model, split, and seed combination.
-Saves to a csv file called scores.csv in the scores directory of the output directory.
+Prints out the leaderboard in latex and markdown formats -- used in the paper.
 
 Example:
-    python eval/format_split_accuracy.py -od out --method zeroshot
+    python eval/format_leaderboard.py -od out --method_list zeroshot cot react
 """
+import os
+
 import pandas as pd
 
 from phantom_eval import get_parser
@@ -55,6 +57,8 @@ for method in method_list:
     acc = grouped[METRICS].mean()
     # add a column that counts the number of elements in the group
     acc["count"] = grouped.size()
+    # Save the accuracy to a csv file
+    acc.to_csv(os.path.join(output_dir, f"{method}_preds_stats.csv"))
     # print as markdown
     acc_mean_std = acc.groupby(["_model", "_depth", "_size", "_data_seed"]).agg("mean")
     # second compute the mean and standard error across data generation seeds
@@ -63,9 +67,7 @@ for method in method_list:
     acc_mean_std = acc_mean_std.groupby(["_model", "_depth", "_size"]).agg(AGG)
     acc_mean_std = acc_mean_std.reset_index()
     # add a column at the end for the method
-    # For the paper only: if _model='deepseek-ai/deepseek-r1-distill-qwen-32b' and method="reasoning",
-    # then set method to zeroshot
-    acc_mean_std["method"] = plotting_utils.SIMPLIFIED_METHODS[method]
+    acc_mean_std["method"] = method
     df_list.append(acc_mean_std)
 
 # concatenate all the dataframes

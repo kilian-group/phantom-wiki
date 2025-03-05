@@ -5,7 +5,7 @@ Generates a plot with the universe size on the x-axis, difficulty on the y-axis,
 Saves the plots to the figures directory of the output directory.
 
 Example:
-    python eval/plot_size_difficulty_accuracy_per_model.py -od out  --method react
+    python eval/plot_reasoning_retrieval.py -od out
 """
 
 import logging
@@ -54,17 +54,9 @@ os.makedirs(figures_dir, exist_ok=True)
 plt.rcParams.update(
     {
         "font.family": "serif",
-        # 'font.family': 'Times New Roman',
         "font.serif": ["Times New Roman"],
-        # 'mathtext.fontset': 'stix',
         "axes.spines.top": False,
         "axes.spines.right": False,
-        # set major tick length
-        # 'xtick.major.size': 6,
-        # 'ytick.major.size': 6,
-        # set minor tick length
-        # 'xtick.minor.size': 3,
-        # 'ytick.minor.size': 3,
     }
 )
 
@@ -128,11 +120,12 @@ for metric in METRICS:
         contour.set_edgecolor("face")
         if i == 2:
             # add colorbar with min=0 and max=1
-            cbar = fig.colorbar(contour, ax=axs, shrink=0.2, aspect=20)
+            cbar = fig.colorbar(contour, ax=axs, shrink=0.2, aspect=20, ticks=[0, 0.975])
             # cbar.set_label(metric.capitalize())
             cbar.set_label("F1 Score", labelpad=0.5)
             # set tick labels to every 0.1
-            cbar.set_ticks([0, 1])
+            # cbar.set_ticks([0, 1])
+            cbar.ax.set_yticklabels(["0", "1"])
             cbar.ax.set_position([0.9, 0.3, 0.05, 0.55])  # [x, y, width, height]
 
         # format x-axis
