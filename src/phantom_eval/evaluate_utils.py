@@ -82,38 +82,21 @@ def _get_preds(output_dir, method):
         return pd.DataFrame()
 
     df_list = []
-    if False:  # old pred file format to maintain backwards compatibility
-        # keys to create auxiliary columns that are useful for analysis
-        METADATA = ["model", "split", "batch_size", "batch_number", "type", "seed"]
-        SAMPLING_PARAMS = ["seed"]
-        for filename in files:
-            logging.info(f"Reading from {filename}...")
-            df = pd.read_json(filename, orient="index", dtype=False)
-            # add new columns corresponding to the metadata
-            for key in METADATA:
-                df["_" + key] = df["metadata"].apply(lambda x: x[key])
-            # # add new columns corresponding to the sampling parameters
-            # for key in SAMPLING_PARAMS:
-            #     df["_" + key] = df['inference_params'].apply(lambda x: x[key])
-            # drop the metadata column
-            df = df.drop(columns=["metadata"])
-            df_list.append(df)
-    else:
-        # keys to create auxiliary columns that are useful for analysis
-        METADATA = ["model", "split", "batch_size", "batch_number", "type"]
-        SAMPLING_PARAMS = ["seed"]
-        for filename in files:
-            logging.info(f"Reading from {filename}...")
-            df = pd.read_json(filename, orient="index", dtype=False)
-            # add new columns corresponding to the metadata
-            for key in METADATA:
-                df["_" + key] = df["metadata"].apply(lambda x: x[key])
-            # add new columns corresponding to the sampling parameters
-            for key in SAMPLING_PARAMS:
-                df["_" + key] = df["inference_params"].apply(lambda x: x[key])
-            # drop the metadata column
-            df = df.drop(columns=["metadata"])
-            df_list.append(df)
+    # keys to create auxiliary columns that are useful for analysis
+    METADATA = ["model", "split", "batch_size", "batch_number", "type"]
+    SAMPLING_PARAMS = ["seed"]
+    for filename in files:
+        logging.info(f"Reading from {filename}...")
+        df = pd.read_json(filename, orient="index", dtype=False)
+        # add new columns corresponding to the metadata
+        for key in METADATA:
+            df["_" + key] = df["metadata"].apply(lambda x: x[key])
+        # add new columns corresponding to the sampling parameters
+        for key in SAMPLING_PARAMS:
+            df["_" + key] = df["inference_params"].apply(lambda x: x[key])
+        # drop the metadata column
+        df = df.drop(columns=["metadata"])
+        df_list.append(df)
     # concatenate all dataframes
     df_preds = pd.concat(df_list)
     # and add a new index from 0 to len(df_preds) so that we can save the dataframe to a json file
@@ -143,17 +126,18 @@ def _get_qa_pairs(dataset: str, splits: list[str], from_local: bool = False):
 
 
 @memory.cache(cache_validation_callback=expires_after(hours=4))
-def get_evaluation_data(
+def get_predictions_with_qa(
     output_dir: str,
     method: str,
     dataset: str,
     from_local: bool = False,
-    sep: str = constants.answer_sep,
 ):
-    """Get the evaluation data for a given method
+    """Get the predictions with the qa pairs
 
     First reads the predictions from the output directory, then joins with the qa pairs.
-    NOTE: The results are cached for 1 hour at `cachedir` (see `memory` object).
+    NOTE: The results are cached for 4 hours at `cachedir` (see `memory` object).
+    To invalidate the cache, delete the `cachedir` folder.
+    NOTE: to include the scores, use `get_evaluation_data`.
 
     Args:
         output_dir (str): path to the output directory
@@ -161,8 +145,6 @@ def get_evaluation_data(
         dataset (str): dataset name (e.g., "mlcore/phantom-wiki", "mlcore/phantom-wiki-v0.2")
         from_local (bool) : if loading the data from a local folder.
             Default is False.
-        sep (str): separator when pre-processing pred/true strings.
-            Default is `constants.answer_sep`.
 
     Returns:
         pd.DataFrame: a dataframe containing the evaluation data,
@@ -181,12 +163,6 @@ def get_evaluation_data(
     # the prolog queries and the templates
     df = df_preds.merge(df_qa_pairs, on="id", how="left")
 
-    # join the true answers with the appropriate separator since the scoring functions expect strings
-    df["EM"] = df.apply(lambda x: exact_match(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
-    df["precision"] = df.apply(lambda x: precision(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
-    df["recall"] = df.apply(lambda x: recall(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
-    df["f1"] = df.apply(lambda x: f1(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
-
     # add a column for the data seed
     df["_depth"] = (
         df["_split"].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(1)).astype(int)
@@ -199,6 +175,37 @@ def get_evaluation_data(
     )
     # drop the split column
     df = df.drop(columns=["_split"])
+    return df
+
+
+@memory.cache(cache_validation_callback=expires_after(hours=4))
+def get_evaluation_data(
+    output_dir: str,
+    method: str,
+    dataset: str,
+    from_local: bool = False,
+    sep: str = constants.answer_sep,
+):
+    """Get the predictions with scores
+
+    Args:
+        output_dir (str): path to the output directory
+        method (str): method used for inference (e.g., zeroshot, fewshot, etc.)
+        dataset (str): dataset name (e.g., "mlcore/phantom-wiki", "mlcore/phantom-wiki-v0.2")
+        from_local (bool) : if loading the data from a local folder.
+            Default is False.
+        sep (str): separator when pre-processing pred/true strings.
+            Default is `constants.answer_sep`.
+
+    Returns:
+        pd.DataFrame: a dataframe containing the predictions with scores
+    """
+    df = get_predictions_with_qa(output_dir, method, dataset, from_local)
+    # join the true answers with the appropriate separator since the scoring functions expect strings
+    df["EM"] = df.apply(lambda x: exact_match(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
+    df["precision"] = df.apply(lambda x: precision(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
+    df["recall"] = df.apply(lambda x: recall(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
+    df["f1"] = df.apply(lambda x: f1(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
     return df
 
 
