@@ -144,7 +144,11 @@ def _get_qa_pairs(dataset: str, splits: list[str], from_local: bool = False):
 
 @memory.cache(cache_validation_callback=expires_after(hours=4))
 def get_evaluation_data(
-    output_dir: str, method: str, dataset: str, sep: str = constants.answer_sep, from_local: bool = False
+    output_dir: str,
+    method: str,
+    dataset: str,
+    from_local: bool = False,
+    sep: str = constants.answer_sep,
 ):
     """Get the evaluation data for a given method
 
@@ -155,10 +159,10 @@ def get_evaluation_data(
         output_dir (str): path to the output directory
         method (str): method used for inference (e.g., zeroshot, fewshot, etc.)
         dataset (str): dataset name (e.g., "mlcore/phantom-wiki", "mlcore/phantom-wiki-v0.2")
-        sep (str): separator when pre-processing pred/true strings.
-            Default is `constants.answer_sep`.
         from_local (bool) : if loading the data from a local folder.
             Default is False.
+        sep (str): separator when pre-processing pred/true strings.
+            Default is `constants.answer_sep`.
 
     Returns:
         pd.DataFrame: a dataframe containing the evaluation data,
