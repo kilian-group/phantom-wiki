@@ -26,11 +26,14 @@ parser.add_argument(
 parser.add_argument(
     "--model_list", nargs="+", default=plotting_utils.DEFAULT_MODEL_LIST, help="List of models to plot"
 )
+parser.add_argument("--filter_by_depth", default=20, type=int, help="Filter by depth")
 args = parser.parse_args()
 output_dir = args.output_dir
 method_list = args.method_list
 model_list = args.model_list
 dataset = args.dataset
+from_local = args.from_local
+filter_by_depth = args.filter_by_depth
 METRICS = [
     # 'EM',
     # 'precision',
@@ -42,14 +45,14 @@ SIZE_LIST = [50, 500, 5000]
 df_list = []
 for method in method_list:
     # get evaluation data from the specified output directory and method subdirectory
-    df = get_evaluation_data(output_dir, method, dataset)
+    df = get_evaluation_data(output_dir, method, dataset, from_local)
     if df.empty:
         print(f"No data found for method {method}")
         continue
     # filter by model
     df = df[df["_model"].isin(model_list)]
     # filter by depth
-    df = df[df["_depth"] == 20]
+    df = df[df["_depth"] == filter_by_depth]
     # group by model, split, and seed
     grouped = df.groupby(["_model", "_depth", "_size", "_data_seed", "_seed"])
     # print the accuracy

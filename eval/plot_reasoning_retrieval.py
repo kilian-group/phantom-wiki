@@ -30,6 +30,7 @@ output_dir = args.output_dir
 dataset = args.dataset
 fmt_max_universe_size = args.fmt_max_universe_size
 model = args.model_name
+from_local = args.from_local
 DIFFICULTY = "difficulty"
 MAX_DIFFICULTY = 15
 # ignore difficulty beyond 15
@@ -67,7 +68,7 @@ for metric in METRICS:
         [("cot", "In-Context"), ("cot-rag", "RAG"), ("react", "Agentic")]
     ):
         # get evaluation data from the specified output directory and method subdirectory
-        df = get_evaluation_data(output_dir, method, dataset)
+        df = get_evaluation_data(output_dir, method, dataset, from_local)
         # import pdb; pdb.set_trace()
         df = df[df[DIFFICULTY] <= MAX_DIFFICULTY]
         print(method)

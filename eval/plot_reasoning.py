@@ -5,7 +5,7 @@ on the y-axis.
 Saves the plots to the figures directory of the output directory.
 
 Example:
-    python eval/plot_reasoning.py -od out --depth 20
+    python eval/plot_reasoning.py -od out --filter_by_depth 20
 """
 
 import logging
@@ -34,7 +34,7 @@ from phantom_eval import plotting_utils
 from phantom_eval.evaluate_utils import get_evaluation_data, mean, pivot_mean_std, std
 
 parser = get_parser()
-parser.add_argument("--depth", type=int, default=20, help="Depth to plot accuracies for")
+parser.add_argument("--filter_by_depth", type=int, default=20, help="Depth to plot accuracies for")
 parser.add_argument(
     "--model_list", nargs="+", default=plotting_utils.DEFAULT_MODEL_LIST, help="List of models to plot"
 )
@@ -42,7 +42,9 @@ args = parser.parse_args()
 output_dir = args.output_dir
 model_list = args.model_list
 dataset = args.dataset
-depth = args.depth
+filter_by_depth = args.filter_by_depth
+from_local = args.from_local
+
 figures_dir = os.path.join(output_dir, "figures")
 os.makedirs(figures_dir, exist_ok=True)
 METRICS = [
@@ -72,7 +74,7 @@ for metric in METRICS:
         for method in methods:
             print(f"Plotting {method} for {metric}")
             # get evaluation data from the specified output directory and method subdirectory
-            df = get_evaluation_data(output_dir, method, dataset)
+            df = get_evaluation_data(output_dir, method, dataset, from_local)
             if df.empty:
                 print(f"No data found for {method}")
                 continue
@@ -84,7 +86,7 @@ for metric in METRICS:
                 logging.warning(f"Filtering out {method} with more than 1 solution")
                 df = df[df["solutions"] <= 1]
             # filter by depth
-            df = df[(df["_depth"] == depth)]
+            df = df[(df["_depth"] == filter_by_depth)]
             # get accuracies by model, split, difficulty, seed
             COLS = ["_model", "_size", "_data_seed", "_seed", DIFFICULTY]
             acc_by_type = df.groupby(COLS)[METRICS].mean()

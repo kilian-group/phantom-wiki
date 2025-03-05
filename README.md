@@ -2,9 +2,8 @@
 
 PhantomWiki generates on-demand datasets to evaluate reasoning and retrieval capabilities of LLMs.
 
-- [Website](/todo)
 - [Paper](https://arxiv.org/abs/2502.20377)
-- [Demo](/todo)
+- [Demo](/demo.ipynb)
 
 ## Using PhantomWiki
 

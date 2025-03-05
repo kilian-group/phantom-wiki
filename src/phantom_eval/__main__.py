@@ -167,8 +167,8 @@ async def main(args: argparse.Namespace) -> None:
     for seed in args.inf_seed_list:
         logger.info(f"Running inference for method='{args.method}' with {seed=}")
         for split in args.split_list:
+            dataset = load_data(args.dataset, split, args.from_local)
             logger.info(f"Loading dataset='{args.dataset}' :: {split=}")
-            dataset = load_data(args.dataset, split)
             df_qa_pairs = pd.DataFrame(dataset["qa_pairs"])
             df_text = pd.DataFrame(dataset["text"])
 
