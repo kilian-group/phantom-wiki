@@ -82,38 +82,21 @@ def _get_preds(output_dir, method):
         return pd.DataFrame()
 
     df_list = []
-    if False:  # old pred file format to maintain backwards compatibility
-        # keys to create auxiliary columns that are useful for analysis
-        METADATA = ["model", "split", "batch_size", "batch_number", "type", "seed"]
-        SAMPLING_PARAMS = ["seed"]
-        for filename in files:
-            logging.info(f"Reading from {filename}...")
-            df = pd.read_json(filename, orient="index", dtype=False)
-            # add new columns corresponding to the metadata
-            for key in METADATA:
-                df["_" + key] = df["metadata"].apply(lambda x: x[key])
-            # # add new columns corresponding to the sampling parameters
-            # for key in SAMPLING_PARAMS:
-            #     df["_" + key] = df['inference_params'].apply(lambda x: x[key])
-            # drop the metadata column
-            df = df.drop(columns=["metadata"])
-            df_list.append(df)
-    else:
-        # keys to create auxiliary columns that are useful for analysis
-        METADATA = ["model", "split", "batch_size", "batch_number", "type"]
-        SAMPLING_PARAMS = ["seed"]
-        for filename in files:
-            logging.info(f"Reading from {filename}...")
-            df = pd.read_json(filename, orient="index", dtype=False)
-            # add new columns corresponding to the metadata
-            for key in METADATA:
-                df["_" + key] = df["metadata"].apply(lambda x: x[key])
-            # add new columns corresponding to the sampling parameters
-            for key in SAMPLING_PARAMS:
-                df["_" + key] = df["inference_params"].apply(lambda x: x[key])
-            # drop the metadata column
-            df = df.drop(columns=["metadata"])
-            df_list.append(df)
+    # keys to create auxiliary columns that are useful for analysis
+    METADATA = ["model", "split", "batch_size", "batch_number", "type"]
+    SAMPLING_PARAMS = ["seed"]
+    for filename in files:
+        logging.info(f"Reading from {filename}...")
+        df = pd.read_json(filename, orient="index", dtype=False)
+        # add new columns corresponding to the metadata
+        for key in METADATA:
+            df["_" + key] = df["metadata"].apply(lambda x: x[key])
+        # add new columns corresponding to the sampling parameters
+        for key in SAMPLING_PARAMS:
+            df["_" + key] = df["inference_params"].apply(lambda x: x[key])
+        # drop the metadata column
+        df = df.drop(columns=["metadata"])
+        df_list.append(df)
     # concatenate all dataframes
     df_preds = pd.concat(df_list)
     # and add a new index from 0 to len(df_preds) so that we can save the dataframe to a json file
