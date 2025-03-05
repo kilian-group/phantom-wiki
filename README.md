@@ -5,7 +5,18 @@ PhantomWiki generates on-demand datasets to evaluate reasoning and retrieval cap
 - [Paper](https://arxiv.org/abs/2502.20377)
 - [Demo](/demo.ipynb)
 
-## Using PhantomWiki
+## Contents
+
+- [🚀 Quickstart](#-quickstart)
+  - [Pre-generated PhantomWiki datasets on Huggingface](#pre-generated-phantomwiki-datasets-on-huggingface)
+- [🔗 Installing dependencies](#-installing-dependencies)
+  - [Installing PhantomWiki in development mode](#installing-phantomwiki-in-development-mode)
+- [🔢 Evaluating LLMs on PhantomWiki](#-evaluating-llms-on-phantomwiki)
+  - [Setting up API keys](#setting-up-api-keys)
+  - [Reproducing LLM evaluation results in the paper](#reproducing-llm-evaluation-results-in-the-paper)
+- [📃 Citation](#-citation)
+
+## 🚀 Quickstart
 
 First [install Prolog](#installation) on your machine, then PhantomWiki with `pip`:
 
@@ -80,7 +91,7 @@ ds_corpus = load_dataset("kilian-group/phantom-wiki-v1", "text-corpus")
 ds_qa = load_dataset("kilian-group/phantom-wiki-v1", "question-answer")
 ```
 
-## Installing dependencies
+## 🔗 Installing dependencies
 
 PhantomWiki uses the [Prolog](https://en.wikipedia.org/wiki/Prolog) logic programming language, available on all operating systems through [SWI-Prolog](https://www.swi-prolog.org/).
 We recommend installing SWI-prolog through your [distribution](https://www.swi-prolog.org/Download.html) or through conda, for example:
@@ -116,7 +127,7 @@ There are 2 options:
    2. Add `PYTHONPATH=src`
    3. Restart VSCode
 
-## Evaluating LLMs on PhantomWiki
+## 🔢 Evaluating LLMs on PhantomWiki
 
 First, install dependencies and [vLLM](https://github.com/vllm-project/vllm) to match your hardware (GPU, CPU, etc.):
 
@@ -227,7 +238,7 @@ python -m phantom_eval --method METHOD --model_name MODEL_NAME --split_list SPLI
 
 where OUTPUT_DIRECTORY and METHOD are the same as when generating the predictions. This script will create the following subdirectories in OUTPUT_DIRECTORY: `scores/` and `figures/`.
 
-## Citation
+## 📃 Citation
 
 ```bibtex
 @article{gong2025phantomwiki,
