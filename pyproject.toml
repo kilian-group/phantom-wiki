@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "phantom-wiki"
 description = "On-Demand Datasets for Reasoning and Retrieval Evaluation"
-version = "0.5.0"
+dynamic = ["version"]
 authors = [
     {name="Albert Gong", email="ag2435@cornell.edu"},
     {name="Chao Wan", email="cw862@cornell.edu"},
