@@ -4,7 +4,7 @@ PhantomWiki generates on-demand datasets to evaluate reasoning and retrieval cap
 
 - [Website](/todo)
 - [Paper](/todo)
-- [Demo](/todo)
+- [Demo](/demo.ipynb)
 
 For convenience, we pre-generate PhantomWiki instances of size 50, 500, and 5000 with seeds 1,2,3. These can be downloaded using HuggingFace:
 
