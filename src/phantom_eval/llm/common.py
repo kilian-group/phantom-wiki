@@ -1,9 +1,12 @@
 import abc
 import asyncio
 import logging
+import os
 import time
 from copy import deepcopy
+from typing import Any
 
+import yaml
 from pydantic import BaseModel
 from tenacity import retry, stop_after_attempt, wait_fixed
 
@@ -52,6 +55,33 @@ def aggregate_usage(usage_list: list[dict]) -> dict:
             # Otherwise sum() will complain that it cannot sum None with integer
             result[key] = sum([usage.get(key, 0) or 0 for usage in usage_list])
     return result
+
+
+API_LLMS_CONFIG_FILE = "api_llms_config.yaml"
+
+
+def load_yaml_config(config_file: str) -> dict[str, Any]:
+    """
+    Load YAML configuration file.
+
+    Args:
+        config_file: Path to the configuration file (relative to this module).
+            Defaults to "api_llms_config.yaml".
+
+    Returns:
+        Dictionary containing the configuration.
+    """
+    # Get directory of current file
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    config_path = os.path.join(current_dir, config_file)
+
+    try:
+        with open(config_path) as file:
+            return yaml.safe_load(file)
+    except FileNotFoundError:
+        raise FileNotFoundError(f"LLM config file not found at {config_path}")
+    except yaml.YAMLError as e:
+        raise ValueError(f"Error parsing LLM config YAML: {e}")
 
 
 class InferenceGenerationConfig(BaseModel):
@@ -190,16 +220,26 @@ class CommonLLMChat(LLMChat):
         # condition variable for rate limit
         self.cond = asyncio.Condition()
 
-    def _update_rate_limits(self, usage_tier: int) -> None:
-        usage_tier_str = f"usage_tier={usage_tier}"
-        if usage_tier_str not in self.RATE_LIMITS[self.model_name]:
-            raise ValueError(
-                f"Usage tier {usage_tier} not supported for {self.model_name}, "
-                f"please update the class for {self.model_name}."
+    def _update_rate_limits(self, server: str, model_name: str, usage_tier: int) -> None:
+        """
+        Load rate limits from config file based on server, model name, and usage tier.
+
+        If the rate limits are not found, set `self.enforce_rate_limits` to False.
+        """
+        config = load_yaml_config(API_LLMS_CONFIG_FILE)
+        tier_key = f"usage_tier={usage_tier}"
+
+        try:
+            # Access the configuration using the provider, model name, and usage tier
+            rate_limits = config["openai"][model_name][tier_key]
+            self.rpm_limit = rate_limits["RPM"]
+            self.tpm_limit = rate_limits["TPM"]
+        except KeyError:
+            logging.info(
+                f"Rate limits not found for {server} server, model name={self.model_name} with {tier_key}."
+                " Rate limits will not be enforced."
             )
-        rate_limit_for_usage_tier = self.RATE_LIMITS[self.model_name][f"usage_tier={usage_tier}"]
-        self.RPM_LIMIT = rate_limit_for_usage_tier["RPM"]
-        self.TPM_LIMIT = rate_limit_for_usage_tier["TPM"]
+            self.enforce_rate_limits = False
 
     def _increment(self):
         """Increment the counter by interval = (60 / RPM) and reset token usage"""

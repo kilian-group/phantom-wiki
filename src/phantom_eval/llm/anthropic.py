@@ -7,17 +7,6 @@ from phantom_eval.llm.common import CommonLLMChat, InferenceGenerationConfig
 
 
 class AnthropicChat(CommonLLMChat):
-    RATE_LIMITS = {
-        "claude-3-5-sonnet-20241022": {
-            "usage_tier=1": {"RPM": 50, "TPM": 40_000},
-            "usage_tier=2": {"RPM": 1_000, "TPM": 80_000},
-        },
-        "claude-3-5-haiku-20241022": {
-            "usage_tier=1": {"RPM": 50, "TPM": 50_000},
-            "usage_tier=2": {"RPM": 1_000, "TPM": 100_000},
-        },
-    }
-
     def __init__(
         self,
         model_name: str,

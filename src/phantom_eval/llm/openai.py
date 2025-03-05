@@ -8,21 +8,6 @@ from phantom_eval.llm.common import CommonLLMChat, InferenceGenerationConfig
 
 
 class OpenAIChat(CommonLLMChat):
-    # https://platform.openai.com/docs/guides/rate-limits/usage-tiers
-    RATE_LIMITS = {
-        "gpt-4o-mini-2024-07-18": {
-            "usage_tier=0": {"RPM": 3, "TPM": 40_000},  # free tier
-            "usage_tier=1": {"RPM": 500, "TPM": 200_000},
-            "usage_tier=2": {"RPM": 5_000, "TPM": 2_000_000},
-            "usage_tier=3": {"RPM": 5_000, "TPM": 4_000_000},
-        },
-        "gpt-4o-2024-11-20": {
-            "usage_tier=1": {"RPM": 500, "TPM": 30_000},
-            "usage_tier=2": {"RPM": 5_000, "TPM": 450_000},
-            "usage_tier=3": {"RPM": 5_000, "TPM": 800_000},
-        },
-    }
-
     def __init__(
         self,
         model_name: str,
@@ -33,7 +18,7 @@ class OpenAIChat(CommonLLMChat):
         self.client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.async_client = openai.AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.encoding = tiktoken.encoding_for_model(model_name)
-        self._update_rate_limits(usage_tier)
+        self._update_rate_limits("openai", model_name, usage_tier)
 
     def _call_api(
         self,
