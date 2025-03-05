@@ -16,7 +16,6 @@ class VLLMChat(CommonLLMChat):
     def __init__(
         self,
         model_name: str,
-        model_path: str | None = None,
         max_model_len: int | None = None,
         tensor_parallel_size: int | None = None,
         use_api: bool = False,
@@ -36,7 +35,7 @@ class VLLMChat(CommonLLMChat):
             port (int): Port number for the vllm server.
                 Defaults to 8000.
         """
-        super().__init__(model_name, model_path, enforce_rate_limits=False)
+        super().__init__(model_name, enforce_rate_limits=False)
 
         # additional stop token for llama models
         # NOTE: eot = end-of-turn

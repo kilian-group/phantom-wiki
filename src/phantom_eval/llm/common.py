@@ -94,22 +94,17 @@ class InferenceGenerationConfig(BaseModel):
 
 
 class LLMChat(abc.ABC):
-    # TODO remove model_path
     def __init__(
         self,
         model_name: str,
-        model_path: str | None = None,
     ):
         """
         Initialize the LLM chat object.
 
         Args:
             model_name (str): The model name to use.
-            model_path (Optional[str]): Local path to the model.
-                Defaults to None.
         """
         self.model_name = model_name
-        self.model_path = model_path
 
     @abc.abstractmethod
     async def generate_response(
@@ -173,19 +168,16 @@ class CommonLLMChat(LLMChat):
     def __init__(
         self,
         model_name: str,
-        model_path: str | None = None,
         enforce_rate_limits: bool = False,
     ):
         """
         Initialize the LLM chat object.
         Args:
             model_name (str): The model name to use.
-            model_path (Optional[str]): Local path to the model.
-                Defaults to None.
             enforce_rate_limits (bool): Whether to enforce rate limits.
                 Defaults to False.
         """
-        super().__init__(model_name, model_path)
+        super().__init__(model_name)
         self.client = None
 
         # Functionality for enforcing rate limiting on the client side

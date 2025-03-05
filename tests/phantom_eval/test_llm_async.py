@@ -35,11 +35,10 @@ class MockChat(CommonLLMChat):
     def __init__(
         self,
         model_name: str,
-        model_path: str | None = None,
         usage_tier: int = 1,
         enforce_rate_limits: bool = True,
     ):
-        super().__init__(model_name, model_path, enforce_rate_limits=enforce_rate_limits)
+        super().__init__(model_name, enforce_rate_limits=enforce_rate_limits)
         self._update_rate_limits(usage_tier)
 
     def _count_tokens(self, messages_api_format: list[dict]) -> int:

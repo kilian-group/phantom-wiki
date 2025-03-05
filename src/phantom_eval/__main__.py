@@ -36,7 +36,6 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
     match args.server:
         case "vllm":
             model_kwargs = dict(
-                model_path=args.model_path,
                 max_model_len=args.inf_vllm_max_model_len,
                 tensor_parallel_size=args.inf_vllm_tensor_parallel_size,
                 # If the method is zeroshot or fewshot, we do not need to use the API (for vLLM)
@@ -54,7 +53,6 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
             )
         case _:
             model_kwargs = dict(
-                model_path=args.model_path,
                 usage_tier=args.inf_usage_tier,
             )
     return model_kwargs
