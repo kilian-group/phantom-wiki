@@ -18,8 +18,8 @@ example_conv = Conversation(
 inf_gen_config = InferenceGenerationConfig()
 
 
-def _test_llm(model_name):
-    llm_chat = get_llm(model_name=model_name, model_kwargs={})
+def _test_llm(server: str, model_name: str):
+    llm_chat = get_llm(server=server, model_name=model_name, model_kwargs={})
     """
     Test for synchronous calls
     """
@@ -43,15 +43,15 @@ def _test_llm(model_name):
 
 
 def test_anthropic():
-    _test_llm("claude-3-5-haiku-20241022")
+    _test_llm(server="anthropic", model_name="claude-3-5-haiku-20241022")
 
 
 def test_gemini():
-    _test_llm("gemini-1.5-flash-002")
+    _test_llm(server="gemini", model_name="gemini-1.5-flash-002")
 
 
 def test_openai():
-    _test_llm("gpt-4o-mini-2024-07-18")
+    _test_llm(server="openai", model_name="gpt-4o-mini-2024-07-18")
 
 
 def test_together():
@@ -59,7 +59,7 @@ def test_together():
     This test is known to fail with the following error:
     together.error.APIError: Error code: 500 - {"message": "Internal server error", "type_": "server_error"}
     """
-    _test_llm("meta-llama/meta-llama-3.1-8b-instruct-turbo")
+    _test_llm(server="together", model_name="meta-llama/meta-llama-3.1-8b-instruct-turbo")
 
 
 def test_vllm():
@@ -75,6 +75,7 @@ def test_vllm():
     ```
     """
     llm_chat = get_llm(
+        server="vllm",
         model_name="meta-llama/llama-3.1-8b-instruct",
         model_kwargs=dict(
             use_server=True,

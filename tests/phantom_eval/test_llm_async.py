@@ -24,7 +24,6 @@ setup_logging("DEBUG")
 # Testing the rate limiting logic
 #
 class MockChat(CommonLLMChat):
-    SUPPORTED_LLM_NAMES: list[str] = ["mock_model"]
     RATE_LIMITS = {
         "mock_model": {
             "usage_tier=1": {"RPM": 1_000, "TPM": 80_000},  # high RPM but low TPM
@@ -40,9 +39,7 @@ class MockChat(CommonLLMChat):
         usage_tier: int = 1,
         enforce_rate_limits: bool = True,
     ):
-        super().__init__(
-            model_name, model_path, strict_model_name=True, enforce_rate_limits=enforce_rate_limits
-        )
+        super().__init__(model_name, model_path, enforce_rate_limits=enforce_rate_limits)
         self._update_rate_limits(usage_tier)
 
     def _count_tokens(self, messages_api_format: list[dict]) -> int:

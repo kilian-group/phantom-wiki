@@ -17,7 +17,6 @@ class AnthropicChat(CommonLLMChat):
             "usage_tier=2": {"RPM": 1_000, "TPM": 100_000},
         },
     }
-    SUPPORTED_LLM_NAMES: list[str] = list(RATE_LIMITS.keys())
 
     def __init__(
         self,
@@ -26,9 +25,7 @@ class AnthropicChat(CommonLLMChat):
         usage_tier: int = 1,
         enforce_rate_limits: bool = False,
     ):
-        super().__init__(
-            model_name, model_path, strict_model_name=True, enforce_rate_limits=enforce_rate_limits
-        )
+        super().__init__(model_name, model_path, enforce_rate_limits=enforce_rate_limits)
         self.client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
         self.async_client = anthropic.AsyncAnthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
         self._update_rate_limits(usage_tier)

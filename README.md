@@ -67,15 +67,15 @@ For example, it executes the following command to generate a size 5K universe (`
 
 ```bash
 pw-generate \
-   -od /path/to/output/depth_20_size_5000_seed_1 \
-   --seed 1 \
-   --question-depth 20 \
-   --num-family-trees 100 \
-   --max-family-tree-size 50 \
-   --max-family-tree-depth 20 \
-   --article-format json \
-   --question-format json \
-   --use-multithreading
+	-od /path/to/output/depth_20_size_5000_seed_1 \
+	--seed 1 \
+	--question-depth 20 \
+	--num-family-trees 100 \
+	--max-family-tree-size 50 \
+	--max-family-tree-depth 20 \
+	--article-format json \
+	--question-format json \
+	--use-multithreading
 ```
 
 ### Pre-generated PhantomWiki datasets on Huggingface
@@ -224,7 +224,7 @@ huggingface-cli download MODEL_REPO_ID
 🧪 To generate the predictions, run the following command from the root directory:
 
 ```bash
-python -m phantom_eval --method METHOD --model_name MODEL_NAME --split_list SPLIT_LIST -od OUTPUT_DIRECTORY
+python -m phantom_eval --method METHOD --server SERVER --model_name MODEL_NAME --split_list SPLIT_LIST -od OUTPUT_DIRECTORY
 ```
 
 > \[!TIP\]

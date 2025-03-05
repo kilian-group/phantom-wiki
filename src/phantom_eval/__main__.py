@@ -15,7 +15,7 @@ from . import constants, get_parser
 from ._types import Conversation, LLMChatResponse
 from .agents import get_agent
 from .agents.common import Agent
-from .llm import InferenceGenerationConfig, LLMChat, get_llm, is_huggingface_model
+from .llm import InferenceGenerationConfig, LLMChat, get_llm
 from .prolog_utils import get_prolog_results
 from .prompts import (
     ACT_EXAMPLES,
@@ -33,19 +33,17 @@ logger = logging.getLogger(__name__)
 
 
 def get_model_kwargs(args: argparse.Namespace) -> dict:
-    match args.model_name:
-        case model_name if is_huggingface_model(model_name):
+    match args.server:
+        case "vllm":
             model_kwargs = dict(
                 model_path=args.model_path,
                 max_model_len=args.inf_vllm_max_model_len,
                 tensor_parallel_size=args.inf_vllm_tensor_parallel_size,
                 # If the method is zeroshot or fewshot, we do not need to use the API (for vLLM)
-                # This can be overridden by setting `use_api=True` in the model_kwargs.
-                # NOTE: non-vLLM models will always use the API so this flag doesn't affect them.
+                # This can be overridden by modifying the code below to `use_api=True`.
                 use_api=(
                     args.method
                     in [
-                        # "zeroshot-rag", "fewshot-rag", "cot-rag",
                         "react",
                         "act",
                         "react->cot-sc",
@@ -152,7 +150,7 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
 async def main(args: argparse.Namespace) -> None:
     logger.info(f"Loading LLM='{args.model_name}'")
     model_kwargs = get_model_kwargs(args)
-    llm_chat: LLMChat = get_llm(args.model_name, model_kwargs=model_kwargs)
+    llm_chat: LLMChat = get_llm(args.server, args.model_name, model_kwargs=model_kwargs)
     llm_prompt: LLMPrompt = get_llm_prompt(args.method, args.model_name)
     default_inf_gen_config = InferenceGenerationConfig(
         max_tokens=args.inf_max_tokens,
@@ -190,9 +188,8 @@ async def main(args: argparse.Namespace) -> None:
                     tmp.flush()
                     db = Database.from_disk(tmp.name)
 
-            # If the model is a local LLM, we can run on all QA examples
+            # If the server is vllm, we can run on all QA examples
             num_df_qa_pairs = len(df_qa_pairs)
-
             if args.batch_number is not None:
                 assert args.batch_number >= 1, "Batch number must be >= 1"
                 assert args.batch_number <= math.ceil(
@@ -200,10 +197,11 @@ async def main(args: argparse.Namespace) -> None:
                 ), "Batch number must be <= ceil(num_df_qa_pairs / batch_size)"
                 batch_size = args.batch_size
             else:
-                can_process_full_batch = is_huggingface_model(args.model_name) and (
+                can_process_full_batch = args.server == "vllm" and (
                     args.method not in ["react", "act", "react->cot-sc", "cot-sc->react"]
                 )
                 batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
+
             for batch_number in range(1, math.ceil(num_df_qa_pairs / batch_size) + 1):
                 run_name = (
                     f"split={split}"

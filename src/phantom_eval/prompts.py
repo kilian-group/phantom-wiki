@@ -2,12 +2,7 @@ import abc
 
 from langchain.prompts import PromptTemplate
 
-from phantom_eval import constants, llm
-from phantom_eval.llm import is_huggingface_model
-from phantom_eval.llm.anthropic import AnthropicChat
-from phantom_eval.llm.gemini import GeminiChat
-from phantom_eval.llm.openai import OpenAIChat
-from phantom_eval.llm.together import TogetherChat
+from phantom_eval import constants
 
 
 class LLMPrompt(abc.ABC):
@@ -617,16 +612,6 @@ class ReactLLMPrompt(LLMPrompt):
         )
 
 
-class ReactTogetherPrompt(ReactLLMPrompt):
-    # TODO: Customize REACT_INSTRUCTION for Together models
-    pass
-
-
-class ReactGeminiPrompt(ReactLLMPrompt):
-    # TODO: Customize REACT_INSTRUCTION for Gemini
-    pass
-
-
 ##### Act method
 ACT_EXAMPLES = f"""
 Example 1:
@@ -806,21 +791,8 @@ def get_llm_prompt(method: str, model_name: str) -> LLMPrompt:
             return CoTLLMPrompt()
         case "zeroshot-rag":
             return ZeroshotLLMPrompt()
-            # return RAGLLMPrompt()
         case "react" | "react->cot-sc":
-            match model_name:
-                case model_name if model_name in OpenAIChat.SUPPORTED_LLM_NAMES:
-                    return ReactLLMPrompt()
-                case model_name if model_name in TogetherChat.SUPPORTED_LLM_NAMES:
-                    return ReactTogetherPrompt()
-                case model_name if model_name in GeminiChat.SUPPORTED_LLM_NAMES:
-                    return ReactGeminiPrompt()
-                case model_name if model_name in AnthropicChat.SUPPORTED_LLM_NAMES:
-                    return ReactLLMPrompt()
-                case model_name if is_huggingface_model(model_name):
-                    return ReactLLMPrompt()
-                case _:
-                    raise ValueError(f"Model name {model_name} must be one of {llm.SUPPORTED_LLM_NAMES}.")
+            return ReactLLMPrompt()
         case "act":
             return ActLLMPrompt()
         case _:

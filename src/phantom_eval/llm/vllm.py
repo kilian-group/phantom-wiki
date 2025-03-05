@@ -13,24 +13,6 @@ logger = logging.getLogger(__name__)
 
 
 class VLLMChat(CommonLLMChat):
-    # NOTE: vLLM supports all models on Hugging Face Hub, but these are the ones we have officially tested
-    SUPPORTED_LLM_NAMES: list[str] = [
-        "meta-llama/llama-3.1-8b-instruct",
-        "meta-llama/llama-3.1-70b-instruct",
-        "meta-llama/llama-3.2-1b-instruct",
-        "meta-llama/llama-3.2-3b-instruct",
-        "meta-llama/llama-3.3-70b-instruct",
-        "microsoft/phi-3.5-mini-instruct",
-        "microsoft/phi-3.5-moe-instruct",
-        "google/gemma-2-2b-it",
-        "google/gemma-2-9b-it",
-        "google/gemma-2-27b-it",
-        "mistralai/mistral-7b-instruct-v0.3",
-        "deepseek-ai/deepseek-r1-distill-qwen-32b",
-        "deepseek-ai/deepseek-r1-distill-qwen-7b",
-        "deepseek-ai/deepseek-r1-distill-qwen-1.5b",
-    ]
-
     def __init__(
         self,
         model_name: str,
@@ -54,7 +36,7 @@ class VLLMChat(CommonLLMChat):
             port (int): Port number for the vllm server.
                 Defaults to 8000.
         """
-        super().__init__(model_name, model_path, strict_model_name=False, enforce_rate_limits=False)
+        super().__init__(model_name, model_path, enforce_rate_limits=False)
 
         # additional stop token for llama models
         # NOTE: eot = end-of-turn

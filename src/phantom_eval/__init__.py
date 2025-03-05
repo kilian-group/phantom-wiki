@@ -1,25 +1,31 @@
 import argparse
 
 from .agents import SUPPORTED_METHOD_NAMES
+from .llm import SUPPORTED_LLM_SERVERS
 
 
 def get_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="PhantomWiki Evaluation")
     parser.add_argument(
+        "--server",
+        type=str.lower,
+        default="together",
+        choices=SUPPORTED_LLM_SERVERS,
+        help="The server to use for the assistant. "
+        "NOTE: to add a new server, please submit a PR with the implementation",
+    )
+    parser.add_argument(
         "--model_name",
         "-m",
         type=str.lower,
         default="meta-llama/llama-vision-free",
-        help="model name. "
-        "NOTE: to add a new model, please submit a PR to the repo with the new model name",
-        # choices=SUPPORTED_LLM_NAMES,
+        help="The model name or the path to the model, see suggestions in `src/phantom_eval/llm/api_llms_config.yaml`",
     )
-    parser.add_argument("--model_path", type=str, default=None, help="Path to the model")
+    parser.add_argument("--model_path", type=str, default=None, help="The path to the model")
     parser.add_argument(
         "--method",
         type=str.lower,
         default="zeroshot",
-        # required=True,
         help="Evaluation method. " "NOTE: to add a new method, please submit a PR with the implementation",
         choices=SUPPORTED_METHOD_NAMES,
     )

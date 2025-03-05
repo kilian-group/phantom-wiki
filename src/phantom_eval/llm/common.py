@@ -94,13 +94,11 @@ class InferenceGenerationConfig(BaseModel):
 
 
 class LLMChat(abc.ABC):
-    SUPPORTED_LLM_NAMES: list[str] = []
-
+    # TODO remove model_path
     def __init__(
         self,
         model_name: str,
         model_path: str | None = None,
-        strict_model_name: bool = True,
     ):
         """
         Initialize the LLM chat object.
@@ -109,18 +107,7 @@ class LLMChat(abc.ABC):
             model_name (str): The model name to use.
             model_path (Optional[str]): Local path to the model.
                 Defaults to None.
-            strict_model_name (bool): Whether to check if the model name is supported.
-                Defaults to True.
         """
-        if strict_model_name:
-            assert (
-                model_name in self.SUPPORTED_LLM_NAMES
-            ), f"Model name {model_name} must be one of {self.SUPPORTED_LLM_NAMES}."
-        else:
-            if model_name not in self.SUPPORTED_LLM_NAMES:
-                logger.warning(
-                    f"Model name {model_name} is not in the supported list {self.SUPPORTED_LLM_NAMES}."
-                )
         self.model_name = model_name
         self.model_path = model_path
 
@@ -187,7 +174,6 @@ class CommonLLMChat(LLMChat):
         self,
         model_name: str,
         model_path: str | None = None,
-        strict_model_name: bool = True,
         enforce_rate_limits: bool = False,
     ):
         """
@@ -196,12 +182,10 @@ class CommonLLMChat(LLMChat):
             model_name (str): The model name to use.
             model_path (Optional[str]): Local path to the model.
                 Defaults to None.
-            strict_model_name (bool): Whether to check if the model name is supported.
-                Defaults to True.
             enforce_rate_limits (bool): Whether to enforce rate limits.
                 Defaults to False.
         """
-        super().__init__(model_name, model_path, strict_model_name)
+        super().__init__(model_name, model_path)
         self.client = None
 
         # Functionality for enforcing rate limiting on the client side

@@ -38,7 +38,6 @@ class GeminiChat(CommonLLMChat):
             },  # free tier: https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash
         },
     }
-    SUPPORTED_LLM_NAMES: list[str] = list(RATE_LIMITS.keys())
 
     def __init__(
         self,
@@ -47,9 +46,7 @@ class GeminiChat(CommonLLMChat):
         usage_tier: int = 1,
         enforce_rate_limits: bool = False,
     ):
-        super().__init__(
-            model_name, model_path, strict_model_name=True, enforce_rate_limits=enforce_rate_limits
-        )
+        super().__init__(model_name, model_path, enforce_rate_limits=enforce_rate_limits)
 
         gemini.configure(api_key=os.getenv("GEMINI_API_KEY"))
         self.client = gemini.GenerativeModel(self.model_name)
