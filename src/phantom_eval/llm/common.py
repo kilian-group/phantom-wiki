@@ -227,11 +227,11 @@ class CommonLLMChat(LLMChat):
         try:
             # Access the configuration using the provider, model name, and usage tier
             rate_limits = config[server][model_name][tier_key]
-            self.rpm_limit = rate_limits["RPM"]
-            self.tpm_limit = rate_limits["TPM"]
+            self.RPM_LIMIT = rate_limits["RPM"]
+            self.TPM_LIMIT = rate_limits["TPM"]
         except KeyError:
             logger.info(
-                f"Rate limits not found for {server} server, model name={self.model_name} with {tier_key}."
+                f"Rate limits not found for server={server}, model_name={self.model_name} with {tier_key}."
                 f" Please check the config file {self.llms_rpm_tpm_config_fpath}."
                 " Rate limits will not be enforced."
             )
@@ -389,6 +389,6 @@ class CommonLLMChat(LLMChat):
         self, convs: list[Conversation], inf_gen_config: InferenceGenerationConfig
     ) -> list[LLMChatResponse]:
         parsed_responses = await asyncio.gather(
-            *[self.generate_response_with_rate_limits(conv, inf_gen_config) for conv in convs]
+            *[self.generate_response(conv, inf_gen_config) for conv in convs]
         )
         return parsed_responses

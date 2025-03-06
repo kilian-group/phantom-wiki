@@ -60,8 +60,8 @@ class TogetherChat(CommonLLMChat):
             else:
                 rate_limits = server_config["default"][tier_key]
 
-            self.rpm_limit = rate_limits["RPM"]
-            self.tpm_limit = rate_limits["TPM"]
+            self.RPM_LIMIT = rate_limits["RPM"]
+            self.TPM_LIMIT = rate_limits["TPM"]
         except KeyError:
             logger.info(
                 f"Rate limits not found for {server} server, model name={self.model_name} with {tier_key}."

@@ -100,7 +100,7 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--inf_llms_rpm_tpm_config_fpath",
         type=str,
-        default=DEFAULT_LLMS_RPM_TPM_CONFIG_FPATH,
+        default=str(DEFAULT_LLMS_RPM_TPM_CONFIG_FPATH),
         help="Path to the config file with rate limits for the LLMs",
     )
 
