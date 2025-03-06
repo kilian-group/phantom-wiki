@@ -14,27 +14,21 @@ import os
 
 import datasets
 
-# TODO: Add BibTeX citation
-# Find for instance the citation on arxiv or on the dataset repo/website
 _CITATION = """\
-@InProceedings{huggingface:dataset,
-title = {A great new dataset},
-author={huggingface, Inc.
-},
-year={2020}
+@article{gong2025phantomwiki,
+  title={{PhantomWiki}: On-Demand Datasets for Reasoning and Retrieval Evaluation},
+  author={Gong, Albert and Stankevi{\v{c}}i{\\=u}t{\\.e}, Kamil{\\.e} and Wan, Chao and Kabra, Anmol and Thesmar, Raphael and Lee, Johann and Klenke, Julius and Gomes, Carla P and Weinberger, Kilian Q},
+  journal={arXiv preprint arXiv:2502.20377},
+  year={2025}
 }
 """
 
-# TODO: Add description of the dataset here
-# You can copy an official description
 _DESCRIPTION = """\
-This new dataset is designed to solve this great NLP task and is crafted with a lot of care.
+PhantomWiki generates on-demand datasets to evaluate reasoning and retrieval capabilities of LLMs.
 """
 
-# TODO: Add a link to an official homepage for the dataset here
 _HOMEPAGE = "https://github.com/kilian-group/phantom-wiki"
 
-# TODO: Add the licence for the dataset here if you can find it
 _LICENSE = """
 MIT License
 
@@ -73,7 +67,7 @@ class PhantomWikiDatasetBuilder(datasets.GeneratorBasedBuilder):
         datasets.BuilderConfig(
             name="question-answer",
             version=VERSION,
-            description="This config containst the question-answer pairs",
+            description="This config contains the question-answer pairs",
         ),
         datasets.BuilderConfig(
             name="database", version=VERSION, description="This config contains the complete Prolog database"
