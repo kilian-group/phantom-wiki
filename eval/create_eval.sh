@@ -12,8 +12,10 @@ if [[ ! " ${METHODS[@]} " =~ " ${METHOD} " ]]; then
     echo "Invalid method. Exiting..."
     exit 1
 fi
-read -p "Enter the model name: " MODEL_NAME
-JOB_NAME=${METHOD}-${MODEL_NAME##*/}
+read -p "Enter the model name or absolute path: " MODEL_NAME_OR_PATH
+# Remove the final / if present, and get an alias for the model
+MODEL_ALIAS=$(basename ${MODEL_NAME_OR_PATH%/})
+JOB_NAME=${METHOD}-${MODEL_ALIAS##*/}
 
 #
 # Add option to set the cluster name
@@ -27,16 +29,16 @@ if [[ "$CLUSTER_NAME" =~ ^[Gg]2$ ]]; then
     # Default options
     GPU=a6000
     NUM_GPUS=1
-    if [[ " ${LARGE_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    if [[ " ${LARGE_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         GPU=a6000
         NUM_GPUS=8
-    elif [[ " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         GPU=a6000
         NUM_GPUS=4
-    elif [[ " ${MEDIUM_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${MEDIUM_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         GPU=a6000
         NUM_GPUS=1
-    elif [[ " ${SMALL_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${SMALL_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         GPU=3090
         NUM_GPUS=1
     else
@@ -47,13 +49,13 @@ if [[ "$CLUSTER_NAME" =~ ^[Gg]2$ ]]; then
     TIME=infinite
 elif [[ "$CLUSTER_NAME" =~ ^[Ee]mpire$ ]]; then
     NUM_GPUS=1
-    if [[ " ${LARGE_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    if [[ " ${LARGE_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         NUM_GPUS=4
-    elif [[ " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         NUM_GPUS=2
-    elif [[ " ${MEDIUM_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${MEDIUM_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         NUM_GPUS=1
-    elif [[ " ${SMALL_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${SMALL_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         NUM_GPUS=1
     else
         echo "Did not recognize model, using default value of NUM_GPUS=$NUM_GPUS"
@@ -64,13 +66,13 @@ elif [[ "$CLUSTER_NAME" =~ ^[Ee]mpire$ ]]; then
 elif [[ "$CLUSTER_NAME" =~ aida$ ]]; then
     GPU=a100
     NUM_GPUS=1
-    if [[ " ${LARGE_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    if [[ " ${LARGE_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         NUM_GPUS=4
-    elif [[ " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         NUM_GPUS=2
-    elif [[ " ${MEDIUM_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${MEDIUM_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         NUM_GPUS=1
-    elif [[ " ${SMALL_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${SMALL_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         NUM_GPUS=1
     else
         echo "Did not recognize model, using default value of GPU=$GPU and NUM_GPUS=$NUM_GPUS"
@@ -95,7 +97,7 @@ MEMORY=${MEMORY:-100}
 #
 # Add option to set if the model is deepseek r1
 #
-read -p "Is the model deepseek r1 (to correctly parse think tags)? (y/N): " DEEPSEEK_R1
+read -p "Is the model Deepseek R1 (to correctly parse <think> tags)? (y/N): " IS_DEEPSEEK_R1
 
 #
 # Generate the slurm script
@@ -138,7 +140,7 @@ cmd="python -m phantom_eval \
     --method $METHOD \
     -od \$OUTPUT_DIR \
     --server vllm \
-    -m $MODEL_NAME"
+    -m $MODEL_NAME_OR_PATH"
 
 # concatenate the extra arguments to the base command
 cmd+=" \$cmd_args"
@@ -149,7 +151,7 @@ if [[ ! "\$@" =~ "--split_list" ]]; then
 fi
 
 # if the model is deepseek, add the temperature and top_p and inf_is_deepseek_r1_model flag
-if [[ "$DEEPSEEK_R1" =~ ^[Yy]$ ]]; then
+if [[ "$IS_DEEPSEEK_R1" =~ ^[Yy]$ ]]; then
     TEMPERATURE=0.6
     TOP_P=0.95
     cmd+=" --inf_temperature \$TEMPERATURE \
@@ -192,14 +194,14 @@ spinup_server(){
     echo "Using port: \$PORT"
 
     echo "Starting vLLM server..."
-    vllm_cmd="vllm serve $MODEL_NAME --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port \$PORT" #nohup launches this in the background
+    vllm_cmd="vllm serve $MODEL_NAME_OR_PATH --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port \$PORT" #nohup launches this in the background
     echo \$vllm_cmd
     nohup \$vllm_cmd &
 
     # Wait for the server to start
     echo "Waiting for vLLM server to start..."
     SLEEP=60
-    while ! check_server $MODEL_NAME \$PORT; do
+    while ! check_server $MODEL_NAME_OR_PATH \$PORT; do
         echo "Server is not up yet. Checking again in \$SLEEP seconds..."
         sleep \$SLEEP
     done
