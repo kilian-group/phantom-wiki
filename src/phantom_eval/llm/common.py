@@ -1,9 +1,9 @@
 import abc
 import asyncio
 import logging
-import os
 import time
 from copy import deepcopy
+from pathlib import Path
 from typing import Any
 
 import yaml
@@ -72,12 +72,12 @@ def load_yaml_config(config_file: str) -> dict[str, Any]:
         Dictionary containing the configuration.
     """
     # Get directory of current file
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    config_path = os.path.join(current_dir, config_file)
+    current_dir = Path(__file__).parent
+    config_path = current_dir / config_file
 
     try:
-        with open(config_path) as file:
-            return yaml.safe_load(file)
+        with open(config_path) as f:
+            return yaml.safe_load(f)
     except FileNotFoundError:
         raise FileNotFoundError(f"LLM config file not found at {config_path}")
     except yaml.YAMLError as e:
@@ -184,12 +184,6 @@ class CommonLLMChat(LLMChat):
     Use `_convert_conv_to_api_format` to convert a `Conversation` into such a list.
     """
 
-    # Rate limits: Requests per minute (RPM) and Tokens per minute (TPM)
-    RATE_LIMITS = {
-        "model_name": {
-            "usage_tier=1": {"RPM": 0, "TPM": 0},
-        },
-    }
     # NOTE: RPM and TPM limits are set to 0 by default, and should be overridden by the subclass
     # value of 0 indicates no rate limit
     RPM_LIMIT: int = 0
@@ -214,11 +208,11 @@ class CommonLLMChat(LLMChat):
         self.enforce_rate_limits = enforce_rate_limits
         # end_rpm is incremented every interval and represents the next time a request can be made
         # end_tpm is incremented every minute and represents the next time a new minute starts
-        self.start = self.end_rpm = self.end_tpm = time.time()
+        self.start_time = self.end_time_rpm = self.end_time_tpm = time.time()
         # NOTE: we estimate the number of used tokens in the current minute
         self.token_usage_per_minute = 0
         # condition variable for rate limit
-        self.cond = asyncio.Condition()
+        self.cond_lock = asyncio.Condition()
 
     def _update_rate_limits(self, server: str, model_name: str, usage_tier: int) -> None:
         """
@@ -231,51 +225,54 @@ class CommonLLMChat(LLMChat):
 
         try:
             # Access the configuration using the provider, model name, and usage tier
-            rate_limits = config["openai"][model_name][tier_key]
+            rate_limits = config[server][model_name][tier_key]
             self.rpm_limit = rate_limits["RPM"]
             self.tpm_limit = rate_limits["TPM"]
         except KeyError:
-            logging.info(
+            logger.info(
                 f"Rate limits not found for {server} server, model name={self.model_name} with {tier_key}."
                 " Rate limits will not be enforced."
             )
             self.enforce_rate_limits = False
 
-    def _increment(self):
+    def _increment_end_times(self):
         """Increment the counter by interval = (60 / RPM) and reset token usage"""
         now = time.time()
-        if now > self.end_rpm:
-            self.end_rpm = now + 60 / self.RPM_LIMIT  # set the next rpm deadline to be 1 interval from now
-        if now > self.end_tpm:
-            self.end_tpm = now + 60  # set the next tpm deadline to be 1 minute
+        if now > self.end_time_rpm:
+            self.end_time_rpm = (
+                now + 60 / self.RPM_LIMIT
+            )  # set the next rpm deadline to be 1 interval from now
+        if now > self.end_time_tpm:
+            self.end_time_tpm = now + 60  # set the next tpm deadline to be 1 minute
             self.token_usage_per_minute = 0
 
     async def _sleep_rpm(self):
         """Sleep if the RPM limit is exceeded"""
-        remaining = max(self.end_rpm - time.time(), 0)
-        logging.debug(f"Sleeping for {remaining} to satisfy RPM limit")
+        remaining = max(self.end_time_rpm - time.time(), 0)
+        logger.debug(f"Sleeping for {remaining} to satisfy RPM limit")
         return await asyncio.sleep(remaining)
 
-    async def _sleep_tpm(self, input_tokens):
+    async def _sleep_tpm(self, input_tokens: int):
         """Sleep if the input_tokens will exceed the TPM limit"""
         if input_tokens + self.token_usage_per_minute > self.TPM_LIMIT:
-            remaining = max(self.end_tpm - time.time(), 0)
-            logging.debug(f"Sleeping for {remaining} to satisfy TPM limit")
+            remaining = max(self.end_time_tpm - time.time(), 0)
+            logger.debug(f"Sleeping for {remaining} to satisfy TPM limit")
             await asyncio.sleep(remaining)
             self.token_usage_per_minute = 0  # reset token_usage_per_minute if new minute has started
 
-    def _check(self, input_tokens):
+    def _check(self, input_tokens: int) -> bool:
         """Check that the condition is satisfied"""
         now = time.time()
-        logging.debug(
-            f"checking: curr time={now-self.start}, rpm counter={self.end_rpm-self.start}, "
-            f"tpm counter={self.end_tpm-self.start}, token_usage_per_minute={self.token_usage_per_minute}"
+        logger.debug(
+            f"checking: curr time={now-self.start_time}, rpm counter={self.end_time_rpm-self.start_time}, "
+            f"tpm counter={self.end_time_tpm-self.start_time}, "
+            f"token_usage_per_minute={self.token_usage_per_minute}"
         )
-        return now >= self.end_rpm and input_tokens + self.token_usage_per_minute <= self.TPM_LIMIT
+        return now >= self.end_time_rpm and input_tokens + self.token_usage_per_minute <= self.TPM_LIMIT
 
-    def _current(self):
+    def _display_curr_time(self):
         """Print the current time since start"""
-        return f"curr time={time.time() - self.start}, tokens used={self.token_usage_per_minute}"
+        return f"curr time={time.time() - self.start_time}, tokens used={self.token_usage_per_minute}"
 
     @abc.abstractmethod
     def _call_api(
@@ -333,27 +330,27 @@ class CommonLLMChat(LLMChat):
             raise ValueError(f"Input tokens {input_tokens} exceed TPM limit {self.TPM_LIMIT}")
 
         # acquire the lock for the counter
-        await self.cond.acquire()
-        logging.debug(f"{self._current()}: Acquired lock for {conv.uid}")
+        await self.cond_lock.acquire()
+        logger.debug(f"{self._display_curr_time()}: Acquired lock for {conv.uid}")
         # ensure that counter.check(input_tokens) will be satisfied
         await self._sleep_rpm()
         await self._sleep_tpm(input_tokens)
         try:
             # yield to other threads until condition is true
-            await self.cond.wait_for(lambda: self._check(input_tokens))
+            await self.cond_lock.wait_for(lambda: self._check(input_tokens))
             # schedule _call_api to run concurrently
-            logging.debug(f"{self._current()}: Calling API for {conv.uid}")
+            logger.debug(f"{self._display_curr_time()}: Calling API for {conv.uid}")
             t = asyncio.create_task(self._call_api(messages_api_format, inf_gen_config, use_async=True))
-            logging.debug(f"{self._current()}: Done with {conv.uid}")
-            self._increment()
+            logger.debug(f"{self._display_curr_time()}: Done with {conv.uid}")
+            self._increment_end_times()
             self.token_usage_per_minute += input_tokens
-            logging.debug(f"{self._current()}: Updated counter")
+            logger.debug(f"{self._display_curr_time()}: Updated counter")
             # release underlying lock and wake up 1 waiting task
-            self.cond.notify()
-            logging.debug(f"{self._current()}: Notified 1")
+            self.cond_lock.notify()
+            logger.debug(f"{self._display_curr_time()}: Notified 1")
         finally:
-            self.cond.release()
-            logging.debug(f"{self._current()}: Released lock for {conv.uid}")
+            self.cond_lock.release()
+            logger.debug(f"{self._display_curr_time()}: Released lock for {conv.uid}")
         # wait for the task to complete
         response = await t
         parsed_response = self._parse_api_output(response)
