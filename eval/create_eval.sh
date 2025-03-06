@@ -130,6 +130,7 @@ echo "##################################################"
 cmd="python -m phantom_eval \
     --method $METHOD \
     -od \$OUTPUT_DIR \
+    --server vllm \
     -m $MODEL_NAME"
 
 # concatenate the extra arguments to the base command
