@@ -3,7 +3,7 @@
 PhantomWiki generates on-demand datasets to evaluate reasoning and retrieval capabilities of LLMs.
 
 - [Paper](https://arxiv.org/abs/2502.20377)
-- [Demo](/demo.ipynb)
+- [Demo](https://github.com/kilian-group/phantom-wiki/blob/main/demo.ipynb)
 
 ## Contents
 
@@ -143,11 +143,12 @@ If you're installing from source, use `pip install -e ".[eval]"`.
 <details>
 <summary>Anthropic</summary>
 
-1. Register an account *with your cornell.edu email* and join "Kilian's Group"
-2. Create an API key at https://console.anthropic.com/settings/keys under your name
-3. Set your Anthropic API key in your conda environment:
+1. Create an API key at https://console.anthropic.com/settings/keys
+2. Set your Anthropic API key as an environment variable. Or in your conda environment:
 
 ```bash
+export ANTHROPIC_API_KEY=xxxxx
+# or
 conda env config vars set ANTHROPIC_API_KEY=xxxxx
 ```
 
@@ -160,10 +161,12 @@ Rate limits: https://docs.anthropic.com/en/api/rate-limits#updated-rate-limits
 <details>
 <summary>Google Gemini</summary>
 
-1. Create an API key at https://aistudio.google.com/app/apikey (NOTE: for some reason, Google AI Studio is disabled for cornell.edu accounts, so use your personal account)
-2. Set your Gemini API key:
+1. Create an API key at https://aistudio.google.com/app/apikey
+2. Set your Gemini API key as an environment variable. Or in your conda environment:
 
 ```bash
+export GEMINI_API_KEY=xxxx
+# or
 conda env config vars set GEMINI_API_KEY=xxxxx
 ```
 
@@ -172,15 +175,14 @@ conda env config vars set GEMINI_API_KEY=xxxxx
 <details>
 <summary>OpenAI</summary>
 
-1. Register an account *with your cornell.edu email* at https://platform.openai.com/ and join "Kilian's Group"
-2. Create an API key at https://platform.openai.com/settings/organization/api-keys under your name
-3. Set your OpenAI API key in your conda environment:
+1. Create an API key at https://platform.openai.com/settings/organization/api-keys
+2. Set your OpenAI API key as an environment variable. Or in your conda environment:
 
 ```bash
+export OPENAI_API_KEY=xxxxx
+# or
 conda env config vars set OPENAI_API_KEY=xxxxx
 ```
-
-Rate limits: https://platform.openai.com/docs/guides/rate-limits#usage-tiers
 
 </details>
 
@@ -188,9 +190,11 @@ Rate limits: https://platform.openai.com/docs/guides/rate-limits#usage-tiers
 <summary>TogetherAI</summary>
 
 1. Register for an account at https://api.together.ai
-2. Set your TogetherAI API key:
+2. Set your TogetherAI API key as an environment variable. Or in your conda environment:
 
 ```bash
+export TOGETHER_API_KEY=xxxxx
+# or
 conda env config vars set TOGETHER_API_KEY=xxxxx
 ```
 
@@ -209,10 +213,7 @@ Additional notes:
 huggingface-cli download MODEL_REPO_ID
 ```
 
-- The models and their configs are downloaded directly from HuggingFace and almost all models on HF are fair game (see also: https://docs.vllm.ai/en/stable/models/supported_models.html#supported-models)
-- Total number of attention heads must be divisible by tensor parallel size
-- See minimum GPU requirements for [small](eval/zeroshot_S.sh), [medium](eval/zeroshot_M.sh), and [large](eval/zeroshot_L.sh) models at the top of each eval inference script
-- Running the same code on the same GPU indeed gives perfectly reproducible outputs, but running the same code on different GPUs (e.g., 3090 vs A6000) doesn't necessarily lead to the same results (see: https://github.com/albertgong1/phantom-wiki/pull/79#issuecomment-2559001925).
+The models and their configs are downloaded directly from HuggingFace and almost all models on HF are fair game (see also: https://docs.vllm.ai/en/stable/models/supported_models.html#supported-models)
 
 </details>
 
@@ -224,7 +225,7 @@ huggingface-cli download MODEL_REPO_ID
 🧪 To generate the predictions, run the following command from the root directory:
 
 ```bash
-python -m phantom_eval --method METHOD --server SERVER --model_name MODEL_NAME --split_list SPLIT_LIST -od OUTPUT_DIRECTORY
+python -m phantom_eval --method METHOD --server SERVER --model_name MODEL_NAME_OR_PATH --split_list SPLIT_LIST -od OUTPUT_DIRECTORY
 ```
 
 > \[!TIP\]
