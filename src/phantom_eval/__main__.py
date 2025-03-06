@@ -50,6 +50,7 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
                     ]
                 ),
                 port=args.inf_vllm_port,
+                is_deepseek_r1_model=args.inf_is_deepseek_r1_model,
             )
         case _:
             model_kwargs = dict(
@@ -233,28 +234,31 @@ async def main(args: argparse.Namespace) -> None:
                 # In zeroshot, fewshot, the LLM responds with the final answer in 1 turn only,
                 # so they support batch async inference
                 agent_interactions = None
+                methods_with_batch_run = [
+                    "zeroshot",
+                    "zeroshot-sc",
+                    "zeroshot-rag",
+                    "fewshot",
+                    "fewshot-sc",
+                    "fewshot-rag",
+                    "cot",
+                    "cot-sc",
+                    "cot-rag",
+                ]
                 match args.method:
-                    case (
-                        "zeroshot" | "zeroshot-sc" | "fewshot" | "fewshot-sc" | "zeroshot-rag" | "fewshot-rag"
-                    ):
+                    case method if method in methods_with_batch_run:
                         questions: list[str] = batch_df_qa_pairs["question"].tolist()
                         inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
                         responses: list[LLMChatResponse] = await agent.batch_run(
-                            llm_chat, questions, inf_gen_config
+                            llm_chat,
+                            questions,
+                            inf_gen_config,
+                            parse_thinking_output=args.inf_is_deepseek_r1_model,
                         )
                         # NOTE: the agent interactions are just single Conversation objects containing the
                         # prompt for the self-consistency methods, we save the Conversation object from the
                         # last iteration
                         agent_interactions: list[Conversation] = agent.agent_interactions
-                    case "cot" | "cot-sc" | "cot-rag":
-                        questions: list[str] = batch_df_qa_pairs["question"].tolist()
-                        inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
-                        responses: list[LLMChatResponse] = await agent.batch_run(
-                            llm_chat, questions, inf_gen_config
-                        )
-                        agent_interactions: list[Conversation] = agent.agent_interactions
-                    # case "zeroshot-rag":
-                    #     raise NotImplementedError("RAG evaluation is not supported yet.")
                     case "react" | "act" | "react->cot-sc" | "cot-sc->react":
                         # Run all agents in parallel using asyncio.gather
                         responses: list[LLMChatResponse] = []
@@ -262,7 +266,12 @@ async def main(args: argparse.Namespace) -> None:
                         agents = [deepcopy(agent) for _ in range(batch_size)]
                         responses = await asyncio.gather(
                             *[
-                                agent.run(llm_chat, qa_sample.question, inf_gen_config)
+                                agent.run(
+                                    llm_chat,
+                                    qa_sample.question,
+                                    inf_gen_config,
+                                    parse_thinking_output=args.inf_is_deepseek_r1_model,
+                                )
                                 for agent, qa_sample in zip(agents, batch_df_qa_pairs.itertuples())
                             ]
                         )

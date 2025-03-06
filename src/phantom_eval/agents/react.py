@@ -75,12 +75,22 @@ class ReactAgent(Agent):
         )
 
     async def batch_run(
-        self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig
+        self,
+        llm_chat: LLMChat,
+        questions: list[str],
+        inf_gen_config: InferenceGenerationConfig,
+        *args,
+        **kwargs,
     ) -> list[LLMChatResponse]:
         raise NotImplementedError("Batch run is not supported for ReactAgent.")
 
     async def run(
-        self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
+        self,
+        llm_chat: LLMChat,
+        question: str,
+        inf_gen_config: InferenceGenerationConfig,
+        *args,
+        **kwargs,
     ) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
@@ -337,12 +347,22 @@ class ActAgent(Agent):
         )
 
     async def batch_run(
-        self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig
+        self,
+        llm_chat: LLMChat,
+        questions: list[str],
+        inf_gen_config: InferenceGenerationConfig,
+        *args,
+        **kwargs,
     ) -> list[LLMChatResponse]:
         raise NotImplementedError("Batch run is not supported for ActAgent.")
 
     async def run(
-        self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
+        self,
+        llm_chat: LLMChat,
+        question: str,
+        inf_gen_config: InferenceGenerationConfig,
+        *args,
+        **kwargs,
     ) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
@@ -566,17 +586,27 @@ class React_CoTSCAgent(Agent):
         )
 
     async def batch_run(
-        self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig
+        self,
+        llm_chat: LLMChat,
+        questions: list[str],
+        inf_gen_config: InferenceGenerationConfig,
+        *args,
+        **kwargs,
     ) -> list[LLMChatResponse]:
         raise NotImplementedError("Batch run is not supported for React->CoTSCAgent.")
 
     async def run(
-        self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
+        self,
+        llm_chat: LLMChat,
+        question: str,
+        inf_gen_config: InferenceGenerationConfig,
+        *args,
+        **kwargs,
     ) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
         # Run the React agent. If the React agent reaches max steps, run the CoTSC agent.
-        react_response = await self.react_agent.run(llm_chat, question, inf_gen_config)
+        react_response = await self.react_agent.run(llm_chat, question, inf_gen_config, *args, **kwargs)
         self.agent_interactions = self.react_agent.agent_interactions
         match react_response.error:
             case None:
@@ -588,7 +618,9 @@ class React_CoTSCAgent(Agent):
                 cotsc_inf_gen_config = inf_gen_config.model_copy(
                     update=dict(temperature=self.cotsc_inf_temperature), deep=True
                 )
-                cotsc_response = await self.cotsc_agent.run(llm_chat, question, cotsc_inf_gen_config)
+                cotsc_response = await self.cotsc_agent.run(
+                    llm_chat, question, cotsc_inf_gen_config, *args, **kwargs
+                )
                 self.agent_interactions.messages.extend(self.cotsc_agent.agent_interactions.messages)
 
                 total_usage = aggregate_usage([react_response.usage, cotsc_response.usage])
@@ -670,12 +702,22 @@ class CoTSC_ReactAgent(Agent):
         )
 
     async def batch_run(
-        self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig
+        self,
+        llm_chat: LLMChat,
+        questions: list[str],
+        inf_gen_config: InferenceGenerationConfig,
+        *args,
+        **kwargs,
     ) -> list[LLMChatResponse]:
         raise NotImplementedError("Batch run is not supported for CoTSC->ReactAgent.")
 
     async def run(
-        self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
+        self,
+        llm_chat: LLMChat,
+        question: str,
+        inf_gen_config: InferenceGenerationConfig,
+        *args,
+        **kwargs,
     ) -> LLMChatResponse:
         logger.debug(f"\n\t>>> question: {question}\n")
 
@@ -683,7 +725,7 @@ class CoTSC_ReactAgent(Agent):
         cotsc_inf_gen_config = inf_gen_config.model_copy(
             update=dict(temperature=self.cotsc_inf_temperature), deep=True
         )
-        cotsc_response = await self.cotsc_agent.run(llm_chat, question, cotsc_inf_gen_config)
+        cotsc_response = await self.cotsc_agent.run(llm_chat, question, cotsc_inf_gen_config, *args, **kwargs)
         self.agent_interactions = self.cotsc_agent.agent_interactions
         match cotsc_response.error:
             case None:
@@ -692,7 +734,9 @@ class CoTSC_ReactAgent(Agent):
                 return cotsc_response
             case error_msg if "<agent_error>No majority vote" in error_msg:
                 # The CoTSC agent does not get any majority vote answer, run the React agent
-                react_response = await self.react_agent.run(llm_chat, question, inf_gen_config)
+                react_response = await self.react_agent.run(
+                    llm_chat, question, inf_gen_config, *args, **kwargs
+                )
                 self.agent_interactions.messages.extend(self.react_agent.agent_interactions.messages)
 
                 total_usage = aggregate_usage([cotsc_response.usage, react_response.usage])

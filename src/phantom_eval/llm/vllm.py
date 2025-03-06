@@ -20,6 +20,7 @@ class VLLMChat(CommonLLMChat):
         tensor_parallel_size: int | None = None,
         use_api: bool = False,
         port: int = 8000,
+        is_deepseek_r1_model: bool = False,
     ):
         """
         Args:
@@ -33,20 +34,20 @@ class VLLMChat(CommonLLMChat):
                 To maximize performance, set `use_api=False` when running Nshot and CoT agents
             port (int): Port number for the vllm server.
                 Defaults to 8000.
+            is_deepseek_r1_model (bool): Whether the model is a distilled deepseek r1 model.
+                We add the stop token "<|end_of_sentence|>" for these models.
+                If False, we add the stop token "<|eot_id|>".
+                Defaults to False.
         """
         # NOTE: with vllm, we don't need to enforce rate limits. So we don't call self._update_rate_limits()
         # at the end __init__() either
         super().__init__(model_name, enforce_rate_limits=False)
 
         # Handle additional stop token for all distilled deepseek r1 models
-        if model_name.startswith("deepseek-ai/deepseek-r1-distill-qwen"):
-            self.ADDITIONAL_STOP = [
-                "<｜end▁of▁sentence｜>",
-            ]
+        if is_deepseek_r1_model:
+            self.ADDITIONAL_STOP = ["<｜end▁of▁sentence｜>"]
         else:
-            self.ADDITIONAL_STOP = [
-                "<|eot_id|>",
-            ]
+            self.ADDITIONAL_STOP = ["<|eot_id|>"]
 
         self.use_api = use_api
         if self.use_api:

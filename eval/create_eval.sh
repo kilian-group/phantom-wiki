@@ -93,6 +93,11 @@ CPUS=${CPUS:-8}
 MEMORY=${MEMORY:-100}
 
 #
+# Add option to set if the model is deepseek r1
+#
+read -p "Is the model deepseek r1 (to correctly parse think tags)? (y/N): " DEEPSEEK_R1
+
+#
 # Generate the slurm script
 #
 echo "Generating slurm script..."
@@ -143,13 +148,13 @@ if [[ ! "\$@" =~ "--split_list" ]]; then
     cmd+=" --split_list \$SPLIT_LIST"
 fi
 
-# if the model is deepseek, add the temperature and top_p
-if [[ "${MODEL_NAME}" =~ deepseek ]]; then
+# if the model is deepseek, add the temperature and top_p and inf_is_deepseek_r1_model flag
+if [[ "$DEEPSEEK_R1" =~ ^[Yy]$ ]]; then
     TEMPERATURE=0.6
     TOP_P=0.95
     cmd+=" --inf_temperature \$TEMPERATURE \
-           --inf_top_p \$TOP_P"
-
+           --inf_top_p \$TOP_P \
+           --inf_is_deepseek_r1_model"
 else
     TEMPERATURE=0
     cmd+=" --inf_temperature \$TEMPERATURE"

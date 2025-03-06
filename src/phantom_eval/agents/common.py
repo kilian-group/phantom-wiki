@@ -48,7 +48,7 @@ class Agent(abc.ABC):
 
     @abc.abstractmethod
     async def run(
-        self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig
+        self, llm_chat: LLMChat, question: str, inf_gen_config: InferenceGenerationConfig, *args, **kwargs
     ) -> LLMChatResponse:
         """
         Run the agent with an `LLMChat` on a given question.
@@ -62,7 +62,12 @@ class Agent(abc.ABC):
 
     @abc.abstractmethod
     async def batch_run(
-        self, llm_chat: LLMChat, questions: list[str], inf_gen_config: InferenceGenerationConfig
+        self,
+        llm_chat: LLMChat,
+        questions: list[str],
+        inf_gen_config: InferenceGenerationConfig,
+        *args,
+        **kwargs,
     ) -> list[LLMChatResponse]:
         """
         Asynchronously run the agent with an `LLMChat` on a list of questions.
@@ -221,13 +226,6 @@ class RAGMixin:
         self.format_RAG_docs = lambda docs: "\n================\n\n".join(doc.page_content for doc in docs)
         evidence = self.format_RAG_docs(self.retriever.invoke(question))
         return evidence
-
-
-REASONING_LLM_NAMES: list[str] = [
-    "deepseek-ai/deepseek-r1-distill-qwen-32b",
-    "deepseek-ai/deepseek-r1-distill-qwen-7b",
-    "deepseek-ai/deepseek-r1-distill-qwen-1.5b",
-]
 
 
 def get_all_evidence(text_corpus: pd.DataFrame) -> str:

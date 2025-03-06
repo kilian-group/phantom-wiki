@@ -103,6 +103,13 @@ def get_parser() -> argparse.ArgumentParser:
         default=str(DEFAULT_LLMS_RPM_TPM_CONFIG_FPATH),
         help="Path to the config file with rate limits for the LLMs",
     )
+    parser.add_argument(
+        "--inf_is_deepseek_r1_model",
+        action="store_true",
+        help="Flag to specify if the model is DeepSeek-R1, "
+        "for correctly parsing <think>...</think> tags, "
+        "and determining the additional stop token in vllm",
+    )
 
     # Dataset params
     parser.add_argument(
