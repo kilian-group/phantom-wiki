@@ -20,7 +20,7 @@ grammar = CFG.fromstring(QA_GRAMMAR_STRING)
 
 
 @memory.cache(cache_validation_callback=expires_after(hours=4))
-def load_data(dataset: str, split: str = None, from_local: bool = False) -> dict[str, Dataset]:
+def load_data(dataset: str, split: str, from_local: bool = False) -> dict[str, Dataset]:
     """Load the phantom-wiki dataset from HuggingFace for a specific split or load from a local folder.
 
     NOTE: Split does not necessarily have to exist on HF. We can dynamically construct
