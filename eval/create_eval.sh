@@ -24,6 +24,9 @@ read -p "Enter cluster name (G2 or Empire or aida): " CLUSTER_NAME
 # - specify partition with --partition=${PARTITION}
 # - specify time with --time=${TIME}
 if [[ "$CLUSTER_NAME" =~ ^[Gg]2$ ]]; then
+    # Default options
+    GPU=a6000
+    NUM_GPUS=1
     if [[ " ${LARGE_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
         GPU=a6000
         NUM_GPUS=8
@@ -37,13 +40,13 @@ if [[ "$CLUSTER_NAME" =~ ^[Gg]2$ ]]; then
         GPU=3090
         NUM_GPUS=1
     else
-        echo "Invalid model name. Exiting..."
-        exit 1
+        echo "Did not recognize model, using default values for GPU=$GPU and NUM_GPUS=$NUM_GPUS"
     fi
     GRES="gpu:${GPU}:${NUM_GPUS}"
     PARTITION=kilian
     TIME=infinite
 elif [[ "$CLUSTER_NAME" =~ ^[Ee]mpire$ ]]; then
+    NUM_GPUS=1
     if [[ " ${LARGE_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
         NUM_GPUS=4
     elif [[ " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
@@ -53,14 +56,14 @@ elif [[ "$CLUSTER_NAME" =~ ^[Ee]mpire$ ]]; then
     elif [[ " ${SMALL_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
         NUM_GPUS=1
     else
-        echo "Invalid model name. Exiting..."
-        exit 1
+        echo "Did not recognize model, using default value of NUM_GPUS=$NUM_GPUS"
     fi
     GRES="gpu:${NUM_GPUS}"
     PARTITION=cornell
     TIME="1-00:00:00"
 elif [[ "$CLUSTER_NAME" =~ aida$ ]]; then
     GPU=a100
+    NUM_GPUS=1
     if [[ " ${LARGE_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
         NUM_GPUS=4
     elif [[ " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
@@ -70,8 +73,7 @@ elif [[ "$CLUSTER_NAME" =~ aida$ ]]; then
     elif [[ " ${SMALL_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
         NUM_GPUS=1
     else
-        echo "Invalid model name. Exiting..."
-        exit 1
+        echo "Did not recognize model, using default value of GPU=$GPU and NUM_GPUS=$NUM_GPUS"
     fi
     GRES="gpu:${GPU}:${NUM_GPUS}"
     PARTITION=full
