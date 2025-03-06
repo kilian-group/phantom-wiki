@@ -65,7 +65,7 @@ class VLLMChat(CommonLLMChat):
             except openai.APIConnectionError as e:
                 logger.error(
                     "Make sure to launch the vllm server using "
-                    "vllm serve MODEL_NAME --api-key token-abc123 --tensor_parallel_size NUM_GPUS"
+                    "vllm serve MODEL_NAME_OR_PATH --api-key token-abc123 --tensor_parallel_size NUM_GPUS"
                 )
                 raise e
         else:

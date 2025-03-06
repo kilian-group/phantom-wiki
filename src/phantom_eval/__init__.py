@@ -17,7 +17,7 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--model_name",
         "-m",
-        type=str.lower,
+        type=str,
         default="meta-llama/llama-vision-free",
         help="The model name or the path to the model, see suggestions in "
         "`src/phantom_eval/llm/api_llms_config.yaml`",
