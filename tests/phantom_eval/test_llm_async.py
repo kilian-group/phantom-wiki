@@ -3,6 +3,7 @@
 
 import asyncio
 import time
+from pathlib import Path
 
 from phantom_eval.llm import (
     ContentTextMessage,
@@ -17,6 +18,9 @@ from phantom_eval.utils import setup_logging
 setup_logging("DEBUG")
 
 
+MOCK_RPM_TPM_CONFIG_FPATH = Path("tests/phantom_eval/mock_rpm_tpm_config.yaml")
+
+
 #
 # Mock class
 #
@@ -24,22 +28,18 @@ setup_logging("DEBUG")
 # Testing the rate limiting logic
 #
 class MockChat(CommonLLMChat):
-    RATE_LIMITS = {
-        "mock_model": {
-            "usage_tier=1": {"RPM": 1_000, "TPM": 80_000},  # high RPM but low TPM
-            "usage_tier=2": {"RPM": 20, "TPM": 1_000_000},  # low RPM but high TPM
-            "usage_tier=3": {"RPM": 1_000, "TPM": 1_000_000},  # high RPM and TPM
-        },
-    }
-
     def __init__(
         self,
         model_name: str,
         usage_tier: int = 1,
         enforce_rate_limits: bool = True,
     ):
-        super().__init__(model_name, enforce_rate_limits=enforce_rate_limits)
-        self._update_rate_limits(usage_tier)
+        super().__init__(
+            model_name,
+            enforce_rate_limits=enforce_rate_limits,
+            llms_rpm_tpm_config_fpath=MOCK_RPM_TPM_CONFIG_FPATH,
+        )
+        self._update_rate_limits("mock", model_name, usage_tier)
 
     def _count_tokens(self, messages_api_format: list[dict]) -> int:
         return len(messages_api_format[0]["content"][0]["text"])
