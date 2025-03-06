@@ -34,9 +34,9 @@ Then we generate question-answer pairs with tunable difficulties, encapsulating 
 
 <!-- Provide the basic links for the dataset. -->
 
-- **Repository:** https://github.com/albertgong1/phantom-wiki
-- **Paper \[optional\]:** TODO
-- **Demo:** https://github.com/albertgong1/phantom-wiki/examples
+- **Repository:** https://github.com/kilian-group/phantom-wiki
+- **Paper:** [PhantomWiki: On-Demand Datasets for Reasoning and Retrieval Evaluation](https://huggingface.co/papers/2502.20377)
+- **Demo:** https://github.com/kilian-group/phantom-wiki/blob/main/demo.ipynb
 
 ## Uses
 
