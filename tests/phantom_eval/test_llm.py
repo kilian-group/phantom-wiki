@@ -19,7 +19,7 @@ inf_gen_config = InferenceGenerationConfig()
 
 
 def _test_llm(server: str, model_name: str):
-    llm_chat = get_llm(server=server, model_name=model_name, model_kwargs={})
+    llm_chat = get_llm(server, model_name, model_kwargs={})
     """
     Test for synchronous calls
     """
@@ -75,11 +75,9 @@ def test_vllm():
     ```
     """
     llm_chat = get_llm(
-        server="vllm",
+        "vllm",
         model_name="meta-llama/llama-3.1-8b-instruct",
-        model_kwargs=dict(
-            use_server=True,
-        ),
+        model_kwargs=dict(use_api=True),
     )
     response = llm_chat.generate_response(example_conv)
     pred = response.pred.strip()

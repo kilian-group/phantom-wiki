@@ -20,7 +20,6 @@ class VLLMChat(CommonLLMChat):
         tensor_parallel_size: int | None = None,
         use_api: bool = False,
         port: int = 8000,
-        **kwargs: dict,
     ):
         """
         Args:
@@ -29,16 +28,16 @@ class VLLMChat(CommonLLMChat):
             tensor_parallel_size (int): Number of GPUs to use for tensor parallelism.
                 Defaults to None (uses all available GPUs).
             use_api (bool): Whether to use the vllm server or offline inference
-                Defaults to True.
+                Defaults to False.
                 NOTE: offline inference only works for batch_generate_response
-                To maximize performance, set `use_server=False` when running Nshot and CoT agents
+                To maximize performance, set `use_api=False` when running Nshot and CoT agents
             port (int): Port number for the vllm server.
                 Defaults to 8000.
         """
+        # NOTE: with vllm, we don't need to enforce rate limits. So we don't call self._update_rate_limits()
+        # at the end __init__() either
         super().__init__(model_name, enforce_rate_limits=False)
 
-        # additional stop token for llama models
-        # NOTE: eot = end-of-turn
         # Handle additional stop token for all distilled deepseek r1 models
         if model_name.startswith("deepseek-ai/deepseek-r1-distill-qwen"):
             self.ADDITIONAL_STOP = [
@@ -105,8 +104,8 @@ class VLLMChat(CommonLLMChat):
             usage=response.usage.model_dump(),
         )
 
-    def _parse_vllm_output(self, response: object) -> LLMChatResponse:
-        """Parse output of vllm offline inference when using (batch) offline inference"""
+    def _parse_batch_vllm_output(self, response: object) -> LLMChatResponse:
+        """Parse output of vllm offline inference when using batch offline inference"""
         return LLMChatResponse(
             pred=response.outputs[0].text,
             usage={
@@ -176,7 +175,7 @@ class VLLMChat(CommonLLMChat):
                 for conv in convs
             ]
             responses = self.llm.generate(prompts, sampling_params)
-            parsed_responses = [self._parse_vllm_output(response) for response in responses]
+            parsed_responses = [self._parse_batch_vllm_output(response) for response in responses]
             return parsed_responses
 
     def _count_tokens(self, messages_api_format: list[dict]) -> int:

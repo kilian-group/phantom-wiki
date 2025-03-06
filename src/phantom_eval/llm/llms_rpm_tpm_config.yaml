@@ -1,6 +1,7 @@
 # API LLM Rate Limit Configuration
 
 # OpenAI Models
+# https://platform.openai.com/docs/guides/rate-limits
 openai:
   gpt-4o-mini-2024-07-18:
     usage_tier=0: # free tier
@@ -27,6 +28,7 @@ openai:
       TPM: 800000
 
 # Gemini Models
+# https://ai.google.dev/gemini-api/docs/rate-limits
 gemini:
   gemini-1.5-flash-002:
     usage_tier=0: # free tier
@@ -55,6 +57,7 @@ gemini:
       TPM: 4000000
 
 # Anthropic Models
+# https://docs.anthropic.com/en/api/rate-limits
 anthropic:
   claude-3-5-sonnet-20241022:
     usage_tier=1:
@@ -70,3 +73,27 @@ anthropic:
     usage_tier=2:
       RPM: 1000
       TPM: 100000
+
+# All Together models have the same limit, no need for a separate entry for each model
+# https://docs.together.ai/docs/rate-limits
+together:
+  default:
+    usage_tier=0: # free tier
+      RPM: 60
+      TPM: 60000
+    usage_tier=1:
+      RPM: 600
+      TPM: 180000
+    usage_tier=2:
+      RPM: 1800
+      TPM: 250000
+  deepseek-ai/DeepSeek-R1:
+    usage_tier=0: # free tier
+      RPM: 6
+      TPM: 60000
+    usage_tier=1:
+      RPM: 12
+      TPM: 180000
+    usage_tier=2:
+      RPM: 1800
+      TPM: 250000

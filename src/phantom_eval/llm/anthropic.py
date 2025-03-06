@@ -11,9 +11,9 @@ class AnthropicChat(CommonLLMChat):
         self,
         model_name: str,
         usage_tier: int = 1,
-        enforce_rate_limits: bool = False,
+        **kwargs,
     ):
-        super().__init__(model_name, enforce_rate_limits=enforce_rate_limits)
+        super().__init__(model_name, **kwargs)
         self.client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
         self.async_client = anthropic.AsyncAnthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
         self._update_rate_limits(usage_tier)

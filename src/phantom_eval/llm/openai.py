@@ -12,9 +12,9 @@ class OpenAIChat(CommonLLMChat):
         self,
         model_name: str,
         usage_tier: int = 1,
-        enforce_rate_limits: bool = False,
+        **kwargs,
     ):
-        super().__init__(model_name, enforce_rate_limits=enforce_rate_limits)
+        super().__init__(model_name, **kwargs)
         self.client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.async_client = openai.AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.encoding = tiktoken.encoding_for_model(model_name)

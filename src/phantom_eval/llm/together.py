@@ -4,53 +4,27 @@ import os
 import together
 
 from phantom_eval._types import ContentTextMessage, Conversation, LLMChatResponse
-from phantom_eval.llm.common import CommonLLMChat, InferenceGenerationConfig
+from phantom_eval.llm.common import (
+    DEFAULT_LLMS_RPM_TPM_CONFIG_FPATH,
+    CommonLLMChat,
+    InferenceGenerationConfig,
+    load_yaml_config,
+)
 
 logger = logging.getLogger(__name__)
 
 
 class TogetherChat(CommonLLMChat):
-    # TODO: move to YAML config
-    # https://docs.together.ai/docs/serverless-models
-    SUPPORTED_LLM_NAMES: list[str] = [
-        "meta-llama/meta-llama-3.1-8b-instruct-turbo",
-        "meta-llama/meta-llama-3.1-70b-instruct-turbo",
-        "meta-llama/llama-3.3-70b-instruct-turbo",
-        "meta-llama/meta-llama-3.1-405b-instruct-turbo",
-        "meta-llama/llama-vision-free",
-        # TODO (Albert): debug runtime errors with
-        # - deepseek-v3,
-        # - r1-distill-llama-70b
-        # f"{TG_PREFIX}deepseek-ai/deepseek-v3",
-        # f"{TG_PREFIX}deepseek-ai/deepseek-r1",
-        # TODO (Albert): use YAML config to specify lower RPM for
-        # - deepseek-r1,
-        # - r1-distill-qwen-14b
-        # f"{TG_PREFIX}deepseek-ai/deepseek-r1-distill-llama-70b",
-        # f"{TG_PREFIX}deepseek-ai/deepseek-r1-distill-qwen-1.5b",
-        # f"{TG_PREFIX}deepseek-ai/deepseek-r1-distill-qwen-14b",
-    ]
-    # https://docs.together.ai/docs/rate-limits
-    RATE_LIMITS = {
-        llm_name: {
-            "usage_tier=0": {"RPM": 60, "TPM": 60_000},  # free tier
-            "usage_tier=1": {"RPM": 600, "TPM": 180_000},
-            "usage_tier=2": {"RPM": 1_800, "TPM": 250_000},
-        }
-        for llm_name in SUPPORTED_LLM_NAMES
-    }
-
     def __init__(
         self,
         model_name: str,
         usage_tier: int = 1,
-        enforce_rate_limits: bool = False,
+        **kwargs,
     ):
-        logger.info("Using TogetherAI for inference")
-        super().__init__(model_name, enforce_rate_limits=enforce_rate_limits)
+        super().__init__(model_name, **kwargs)
         self.client = together.Together(api_key=os.getenv("TOGETHER_API_KEY"))
         self.async_client = together.AsyncTogether(api_key=os.getenv("TOGETHER_API_KEY"))
-        self._update_rate_limits(usage_tier)
+        self._update_rate_limits("together", model_name, usage_tier)
 
     def _convert_conv_to_api_format(self, conv: Conversation) -> list[dict]:
         """
@@ -63,6 +37,37 @@ class TogetherChat(CommonLLMChat):
                     case ContentTextMessage(text=text):
                         formatted_messages.append({"role": message.role, "content": text})
         return formatted_messages
+
+    def _update_rate_limits(self, server: str, model_name: str, usage_tier: int) -> None:
+        """
+        Load rate limits from config file based on server, model name, and usage tier.
+
+        If the rate limits are not found, set `self.enforce_rate_limits` to False.
+
+        Overrides the `_update_rate_limits` method in `CommonLLMChat` to handle TogetherAI's
+        default rate limits.
+        """
+        config = load_yaml_config(DEFAULT_LLMS_RPM_TPM_CONFIG_FPATH)
+        tier_key = f"usage_tier={usage_tier}"
+
+        try:
+            # Access the configuration using the provider, model name, and usage tier
+            server_config = config[server]
+
+            # Check if model_name is in server_config or if "default" is in server_config
+            if model_name in server_config:
+                rate_limits = server_config[model_name][tier_key]
+            else:
+                rate_limits = server_config["default"][tier_key]
+
+            self.rpm_limit = rate_limits["RPM"]
+            self.tpm_limit = rate_limits["TPM"]
+        except KeyError:
+            logger.info(
+                f"Rate limits not found for {server} server, model name={self.model_name} with {tier_key}."
+                " Rate limits will not be enforced."
+            )
+            self.enforce_rate_limits = False
 
     def _call_api(
         self,

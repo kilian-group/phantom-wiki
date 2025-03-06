@@ -54,6 +54,8 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
         case _:
             model_kwargs = dict(
                 usage_tier=args.inf_usage_tier,
+                enforce_rate_limits=not args.inf_relax_rate_limits,
+                llms_rpm_tpm_config_fpath=args.inf_llms_rpm_tpm_config_fpath,
             )
     return model_kwargs
 

@@ -57,24 +57,20 @@ def aggregate_usage(usage_list: list[dict]) -> dict:
     return result
 
 
-API_LLMS_CONFIG_FILE = "api_llms_config.yaml"
+# Default path to the LLM API config file
+DEFAULT_LLMS_RPM_TPM_CONFIG_FPATH = Path(__file__).parent / "llms_rpm_tpm_config.yaml"
 
 
-def load_yaml_config(config_file: str) -> dict[str, Any]:
+def load_yaml_config(config_path: str) -> dict[str, Any]:
     """
     Load YAML configuration file.
 
     Args:
-        config_file: Path to the configuration file (relative to this module).
-            Defaults to "api_llms_config.yaml".
+        config_path: Path to the configuration file (relative to this module).
 
     Returns:
         Dictionary containing the configuration.
     """
-    # Get directory of current file
-    current_dir = Path(__file__).parent
-    config_path = current_dir / config_file
-
     try:
         with open(config_path) as f:
             return yaml.safe_load(f)
@@ -193,6 +189,7 @@ class CommonLLMChat(LLMChat):
         self,
         model_name: str,
         enforce_rate_limits: bool = False,
+        llms_rpm_tpm_config_fpath: str = DEFAULT_LLMS_RPM_TPM_CONFIG_FPATH,
     ):
         """
         Initialize the LLM chat object.
@@ -200,12 +197,16 @@ class CommonLLMChat(LLMChat):
             model_name (str): The model name to use.
             enforce_rate_limits (bool): Whether to enforce rate limits.
                 Defaults to False.
+            llms_rpm_tpm_config_fpath (str): Path to the LLM API config file.
+                Defaults to `DEFAULT_LLMS_RPM_TPM_CONFIG_FPATH`.
         """
         super().__init__(model_name)
         self.client = None
 
         # Functionality for enforcing rate limiting on the client side
         self.enforce_rate_limits = enforce_rate_limits
+        self.llms_rpm_tpm_config_fpath = llms_rpm_tpm_config_fpath
+
         # end_rpm is incremented every interval and represents the next time a request can be made
         # end_tpm is incremented every minute and represents the next time a new minute starts
         self.start_time = self.end_time_rpm = self.end_time_tpm = time.time()
@@ -220,7 +221,7 @@ class CommonLLMChat(LLMChat):
 
         If the rate limits are not found, set `self.enforce_rate_limits` to False.
         """
-        config = load_yaml_config(API_LLMS_CONFIG_FILE)
+        config = load_yaml_config(self.llms_rpm_tpm_config_fpath)
         tier_key = f"usage_tier={usage_tier}"
 
         try:
@@ -231,6 +232,7 @@ class CommonLLMChat(LLMChat):
         except KeyError:
             logger.info(
                 f"Rate limits not found for {server} server, model name={self.model_name} with {tier_key}."
+                f" Please check the config file {self.llms_rpm_tpm_config_fpath}."
                 " Rate limits will not be enforced."
             )
             self.enforce_rate_limits = False

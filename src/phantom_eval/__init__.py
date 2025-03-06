@@ -1,7 +1,7 @@
 import argparse
 
 from .agents import SUPPORTED_METHOD_NAMES
-from .llm import SUPPORTED_LLM_SERVERS
+from .llm import DEFAULT_LLMS_RPM_TPM_CONFIG_FPATH, SUPPORTED_LLM_SERVERS
 
 
 def get_parser() -> argparse.ArgumentParser:
@@ -91,6 +91,17 @@ def get_parser() -> argparse.ArgumentParser:
         type=int,
         default=1,
         help="API usage tier (note: tier 0 corresponds to free versions)",
+    )
+    parser.add_argument(
+        "--inf_relax_rate_limits",
+        action="store_true",
+        help="Flag to relax enforcing rate limits for the LLMs.",
+    )
+    parser.add_argument(
+        "--inf_llms_rpm_tpm_config_fpath",
+        type=str,
+        default=DEFAULT_LLMS_RPM_TPM_CONFIG_FPATH,
+        help="Path to the config file with rate limits for the LLMs",
     )
 
     # Dataset params
