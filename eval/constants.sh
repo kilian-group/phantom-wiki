@@ -37,36 +37,9 @@ REASONING_MODELS=(
     "deepseek-ai/deepseek-r1-distill-qwen-32b"
 )
 
-DATASET=mlcore/phantom-wiki-v050
+DATASET=kilian-group/phantom-wiki-v1
 
-# if dataset is mlcore/phantom-wiki-v0.2, use the following
-if [ "$DATASET" = "mlcore/phantom-wiki-v0.2" ]; then
-    # Define SPLIT_LIST for dataset v0.2
-    DATA_SEED_LIST="1 2 3 4 5"
-    DATA_DEPTH="10"
-    DATA_SIZE_LIST="26 50 100 200 500"
-
-    for data_seed in $DATA_SEED_LIST
-    do
-        for data_size in $DATA_SIZE_LIST
-        do
-            SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
-        done
-    done
-elif [ "$DATASET" = "mlcore/phantom-wiki-v0.3" ]; then
-    # Define SPLIT_LIST for dataset v0.3
-    DATA_SEED_LIST="1 2 3"
-    DATA_DEPTH="20"
-    DATA_SIZE_LIST="50 100 200 300 400 500"
-
-    for data_seed in $DATA_SEED_LIST
-    do
-        for data_size in $DATA_SIZE_LIST
-        do
-            SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
-        done
-    done
-elif [ "$DATASET" = "mlcore/phantom-wiki-v050" ]; then
+if [ "$DATASET" = "kilian-group/phantom-wiki-v050" ]; then
     # Define SPLIT_LIST for dataset v0.5
     DATA_SEED_LIST="1 2 3"
     DATA_DEPTH="20"
@@ -79,6 +52,7 @@ elif [ "$DATASET" = "mlcore/phantom-wiki-v050" ]; then
             SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
         done
     done
+
     # Define large SPLIT_LIST for dataset v0.5
     LARGE_DATA_SEED_LIST="1"
     LARGE_DATA_SIZE_LIST="2500 5000 10000"
@@ -87,6 +61,19 @@ elif [ "$DATASET" = "mlcore/phantom-wiki-v050" ]; then
         for data_size in $LARGE_DATA_SIZE_LIST
         do
             LARGE_SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
+        done
+    done
+elif [ "$DATASET" = "kilian-group/phantom-wiki-v1" ]; then
+    # Define SPLIT_LIST for dataset v1
+    DATA_SEED_LIST="1 2 3"
+    DATA_DEPTH="20"
+    DATA_SIZE_LIST="50 500 5000"
+
+    for data_seed in $DATA_SEED_LIST
+    do
+        for data_size in $DATA_SIZE_LIST
+        do
+            SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
         done
     done
 else

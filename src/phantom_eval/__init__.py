@@ -108,7 +108,7 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--dataset",
         type=str,
-        default="mlcore/phantom-wiki-v050",
+        default="kilian-group/phantom-wiki-v1",
         help="Dataset name if loading from HF or the path to local dataset",
     )
     parser.add_argument(
