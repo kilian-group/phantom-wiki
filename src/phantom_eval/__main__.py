@@ -4,19 +4,18 @@ import json
 import logging
 import math
 import tempfile
+from copy import deepcopy
 from pathlib import Path
 
 import pandas as pd
-from huggingface_hub import repo_exists
-from tqdm import tqdm
 
 from phantom_wiki.facts.database import Database
 
 from . import constants, get_parser
 from ._types import Conversation, LLMChatResponse
-from .agent import Agent, get_agent
-from .llm import get_llm
-from .llm.common import InferenceGenerationConfig, LLMChat
+from .agents import get_agent
+from .agents.common import Agent
+from .llm import InferenceGenerationConfig, LLMChat, get_llm, is_huggingface_model
 from .prolog_utils import get_prolog_results
 from .prompts import (
     ACT_EXAMPLES,
@@ -35,7 +34,7 @@ logger = logging.getLogger(__name__)
 
 def get_model_kwargs(args: argparse.Namespace) -> dict:
     match args.model_name:
-        case model_name if repo_exists(model_name):
+        case model_name if is_huggingface_model(model_name):
             model_kwargs = dict(
                 model_path=args.model_path,
                 max_model_len=args.inf_vllm_max_model_len,
@@ -168,8 +167,8 @@ async def main(args: argparse.Namespace) -> None:
     for seed in args.inf_seed_list:
         logger.info(f"Running inference for method='{args.method}' with {seed=}")
         for split in args.split_list:
+            dataset = load_data(args.dataset, split, args.from_local)
             logger.info(f"Loading dataset='{args.dataset}' :: {split=}")
-            dataset = load_data(args.dataset, split)
             df_qa_pairs = pd.DataFrame(dataset["qa_pairs"])
             df_text = pd.DataFrame(dataset["text"])
 
@@ -201,7 +200,7 @@ async def main(args: argparse.Namespace) -> None:
                 ), "Batch number must be <= ceil(num_df_qa_pairs / batch_size)"
                 batch_size = args.batch_size
             else:
-                can_process_full_batch = repo_exists(args.model_name) and (
+                can_process_full_batch = is_huggingface_model(args.model_name) and (
                     args.method not in ["react", "act", "react->cot-sc", "cot-sc->react"]
                 )
                 batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
@@ -259,17 +258,19 @@ async def main(args: argparse.Namespace) -> None:
                     # case "zeroshot-rag":
                     #     raise NotImplementedError("RAG evaluation is not supported yet.")
                     case "react" | "act" | "react->cot-sc" | "cot-sc->react":
-                        # Run agent on each question one by one
+                        # Run all agents in parallel using asyncio.gather
                         responses: list[LLMChatResponse] = []
-                        agent_interactions: list[Conversation] = []
-                        for qa_sample in tqdm(batch_df_qa_pairs.itertuples(), total=batch_size):
-                            agent.reset()  # Must reset the agent for each question
-                            inf_gen_config = default_inf_gen_config.model_copy(
-                                update=dict(seed=seed), deep=True
-                            )
-                            response = agent.run(llm_chat, qa_sample.question, inf_gen_config)
-                            responses.append(response)
-                            agent_interactions.append(agent.agent_interactions)
+                        inf_gen_config = default_inf_gen_config.model_copy(update=dict(seed=seed), deep=True)
+                        agents = [deepcopy(agent) for _ in range(batch_size)]
+                        responses = await asyncio.gather(
+                            *[
+                                agent.run(llm_chat, qa_sample.question, inf_gen_config)
+                                for agent, qa_sample in zip(agents, batch_df_qa_pairs.itertuples())
+                            ]
+                        )
+                        agent_interactions: list[Conversation] = [
+                            agent.agent_interactions for agent in agents
+                        ]
 
                 # Process Prolog queries if needed
                 prolog_results = []

@@ -46,8 +46,9 @@ args = parser.parse_args()
 output_dir = args.output_dir
 method = args.method
 dataset = args.dataset
+from_local = args.from_local
 # get evaluation data from the specified output directory and method subdirectory
-df = get_evaluation_data(output_dir, method, dataset)
+df = get_evaluation_data(output_dir, method, dataset, from_local)
 
 # %%
 # group by model, size, data seed, and seed

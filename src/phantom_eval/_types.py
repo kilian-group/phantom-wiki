@@ -3,8 +3,9 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from typing import Literal
+from uuid import uuid4
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class ContentTextMessage(BaseModel):
@@ -19,6 +20,7 @@ class Message(BaseModel):
 
 class Conversation(BaseModel):
     messages: list[Message]
+    uid: str = Field(default_factory=lambda: uuid4().hex)
 
     @staticmethod
     def load_from_path(file_path: str) -> Conversation:

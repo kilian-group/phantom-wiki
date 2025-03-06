@@ -1,11 +1,13 @@
 """Script to format the accuracy of the models on the splits.
 
 Generates a table with rows for each model, split, and seed combination.
-Saves to a csv file called scores.csv in the scores directory of the output directory.
+Prints out the leaderboard in latex and markdown formats -- used in the paper.
 
 Example:
-    python eval/format_split_accuracy.py -od out --method zeroshot
+    python eval/format_leaderboard.py -od out --method_list zeroshot cot react
 """
+import os
+
 import pandas as pd
 
 from phantom_eval import get_parser
@@ -24,11 +26,14 @@ parser.add_argument(
 parser.add_argument(
     "--model_list", nargs="+", default=plotting_utils.DEFAULT_MODEL_LIST, help="List of models to plot"
 )
+parser.add_argument("--filter_by_depth", default=20, type=int, help="Filter by depth")
 args = parser.parse_args()
 output_dir = args.output_dir
 method_list = args.method_list
 model_list = args.model_list
 dataset = args.dataset
+from_local = args.from_local
+filter_by_depth = args.filter_by_depth
 METRICS = [
     # 'EM',
     # 'precision',
@@ -40,20 +45,22 @@ SIZE_LIST = [50, 500, 5000]
 df_list = []
 for method in method_list:
     # get evaluation data from the specified output directory and method subdirectory
-    df = get_evaluation_data(output_dir, method, dataset)
+    df = get_evaluation_data(output_dir, method, dataset, from_local)
     if df.empty:
         print(f"No data found for method {method}")
         continue
     # filter by model
     df = df[df["_model"].isin(model_list)]
     # filter by depth
-    df = df[df["_depth"] == 20]
+    df = df[df["_depth"] == filter_by_depth]
     # group by model, split, and seed
     grouped = df.groupby(["_model", "_depth", "_size", "_data_seed", "_seed"])
     # print the accuracy
     acc = grouped[METRICS].mean()
     # add a column that counts the number of elements in the group
     acc["count"] = grouped.size()
+    # Save the accuracy to a csv file
+    acc.to_csv(os.path.join(output_dir, f"{method}_preds_stats.csv"))
     # print as markdown
     acc_mean_std = acc.groupby(["_model", "_depth", "_size", "_data_seed"]).agg("mean")
     # second compute the mean and standard error across data generation seeds
@@ -62,9 +69,7 @@ for method in method_list:
     acc_mean_std = acc_mean_std.groupby(["_model", "_depth", "_size"]).agg(AGG)
     acc_mean_std = acc_mean_std.reset_index()
     # add a column at the end for the method
-    # For the paper only: if _model='deepseek-ai/deepseek-r1-distill-qwen-32b' and method="reasoning",
-    # then set method to zeroshot
-    acc_mean_std["method"] = plotting_utils.SIMPLIFIED_METHODS[method]
+    acc_mean_std["method"] = method
     df_list.append(acc_mean_std)
 
 # concatenate all the dataframes

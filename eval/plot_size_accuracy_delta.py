@@ -32,7 +32,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from phantom_eval import get_parser, plotting_utils
-from phantom_eval.evaluate_utils import COLORS, HATCHSTYLES, get_evaluation_data, mean, pivot_mean_std, std
+from phantom_eval.evaluate_utils import get_evaluation_data, mean, pivot_mean_std, std
+from phantom_eval.plotting_utils import COLORS, HATCHSTYLES
 
 parser = get_parser()
 parser.add_argument("--mixin", type=str, default="rag", help="Mixin to compare")
@@ -41,10 +42,11 @@ output_dir = args.output_dir
 method = args.method
 dataset = args.dataset
 mixin = args.mixin
+from_local = args.from_local
 
 # get evaluation data from the specified output directory and method subdirectory
-df = get_evaluation_data(output_dir, method, dataset)
-df_with_retriever = get_evaluation_data(output_dir, f"{method}-{mixin}", dataset)
+df = get_evaluation_data(output_dir, method, dataset, from_local)
+df_with_retriever = get_evaluation_data(output_dir, f"{method}-{mixin}", dataset, from_local)
 # import pdb; pdb.set_trace()
 # join on ['_model', '_size', '_data_seed', '_seed', 'id]
 df = df.merge(

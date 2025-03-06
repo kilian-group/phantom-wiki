@@ -1,6 +1,6 @@
 #!/bin/bash
-# Script for generating mlcore/phantom-wiki-v0.5
-# HuggingFace: https://huggingface.co/datasets/mlcore/phantom-wiki-v0.5
+# Script for generating mlcore/phantom-wiki-v1
+# HuggingFace: https://huggingface.co/datasets/mlcore/phantom-wiki-v1
 
 # check that the correct number of arguments were passed, at least 2
 if [ "$#" -lt 2 ]; then
@@ -25,25 +25,9 @@ echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # list of splits
 splits=()
 SIZE_LIST=(
-    # for 128k-context models
     50
-    100
-    200
-    300
-    400
-    # for 1M-context models
     500
-    1000
-    2500
-    # for 2M-context models
     5000
-    7500
-    # for retrieval/agentic methods
-    10000
-    50000
-    100000
-    500000
-    1000000
 )
 max_tree_size=50
 # generate data
@@ -91,7 +75,7 @@ DATASET_NAME="phantom-wiki-v050"
 # start metadata header
 cat << EOF > $OUTPUT_DIR/README.md
 ---
-license: bsd-3-clause
+license: mit
 dataset_name: $DATASET_NAME
 EOF
 # add articles to `text-corpus` config

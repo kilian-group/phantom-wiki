@@ -1,11 +1,11 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools", "wheel", "setuptools-git-versioning"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "phantom-wiki"
 description = "On-Demand Datasets for Reasoning and Retrieval Evaluation"
-version = "0.5.0"
+dynamic = ["version"]
 authors = [
     {name="Albert Gong", email="ag2435@cornell.edu"},
     {name="Chao Wan", email="cw862@cornell.edu"},
@@ -50,14 +50,14 @@ tests = [
     "rootutils",
 ]
 docs = [
-  "mkdocs==1.6.0",
-  "mkdocs-material==9.5.31",
-  "mkdocstrings[python,shell]==0.25.2",
-  "mkdocs-gen-files==0.5.0",
-  "mkdocs-literate-nav==0.6.1",
-  "mkdocs-section-index==0.3.9",
-  "mkdocs-git-authors-plugin==0.9.0",
-  "mkdocs-git-revision-date-localized-plugin==1.2.6"
+    "mkdocs==1.6.0",
+    "mkdocs-material==9.5.31",
+    "mkdocstrings[python,shell]==0.25.2",
+    "mkdocs-gen-files==0.5.0",
+    "mkdocs-literate-nav==0.6.1",
+    "mkdocs-section-index==0.3.9",
+    "mkdocs-git-authors-plugin==0.9.0",
+    "mkdocs-git-revision-date-localized-plugin==1.2.6"
 ]
 eval = [
     "anthropic",
@@ -68,12 +68,23 @@ eval = [
     "langchain-community",
     "langchain-together",
     "openai",
+    "scipy",
     "tiktoken",
     "together",
     "transformers>=4.47.1",
 ]
 
+[project.scripts]
+phantom-wiki-generate = "phantom_wiki.__main__:main"
+pw-generate = "phantom_wiki.__main__:main"
+
 [project.urls]
-Homepage = "https://github.com/albertgong1/phantom-wiki"
-Issues = "https://github.com/albertgong1/phantom-wiki/issues"
-Repository = "https://github.com/albertgong1/phantom-wiki.git"
+Homepage = "https://github.com/kilian-group/phantom-wiki"
+Issues = "https://github.com/kilian-group/phantom-wiki/issues"
+Repository = "https://github.com/kilian-group/phantom-wiki.git"
+
+[tool.setuptools-git-versioning]
+enabled = true
+
+[tool.autoflake]
+ignore-init-module-imports = true
