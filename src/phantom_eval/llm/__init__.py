@@ -14,6 +14,7 @@ SUPPORTED_LLM_NAMES: list[str] = (
     + GeminiChat.SUPPORTED_LLM_NAMES
     + OpenAIChat.SUPPORTED_LLM_NAMES
     + TogetherChat.SUPPORTED_LLM_NAMES
+    + VLLMChat.SUPPORTED_LLM_NAMES
 )
 
 
