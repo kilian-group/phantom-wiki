@@ -556,10 +556,9 @@ src/phantom_wiki/family/relationships.py
 *out*/
 *.zip
 
-#API key
-johann_tests/API_KEY.py
+# local files
+*.lock
 nohup.out
-
 *.DS_Store
 .vscode/settings.json
 

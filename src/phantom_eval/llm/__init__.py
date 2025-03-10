@@ -1,45 +1,41 @@
-from huggingface_hub import repo_exists
-from huggingface_hub.errors import HFValidationError
-
 from phantom_eval._types import ContentTextMessage, Conversation, LLMChatResponse, Message
-from phantom_eval.llm.anthropic import AnthropicChat
-from phantom_eval.llm.common import InferenceGenerationConfig, LLMChat, aggregate_usage
-from phantom_eval.llm.gemini import GeminiChat
-from phantom_eval.llm.openai import OpenAIChat
-from phantom_eval.llm.together import TogetherChat
-from phantom_eval.llm.vllm import VLLMChat
-
-SUPPORTED_LLM_NAMES: list[str] = (
-    AnthropicChat.SUPPORTED_LLM_NAMES
-    + GeminiChat.SUPPORTED_LLM_NAMES
-    + OpenAIChat.SUPPORTED_LLM_NAMES
-    + TogetherChat.SUPPORTED_LLM_NAMES
+from phantom_eval.llm.common import (
+    DEFAULT_LLMS_RPM_TPM_CONFIG_FPATH,
+    InferenceGenerationConfig,
+    LLMChat,
+    aggregate_usage,
 )
 
+SUPPORTED_LLM_SERVERS = [
+    "anthropic",
+    "gemini",
+    "openai",
+    "together",
+    "vllm",
+]
 
-def get_llm(model_name: str, model_kwargs: dict) -> LLMChat:
-    match model_name:
-        case model_name if model_name in AnthropicChat.SUPPORTED_LLM_NAMES:
+
+def get_llm(server: str, model_name: str, model_kwargs: dict) -> LLMChat:
+    match server:
+        case "anthropic":
+            from phantom_eval.llm.anthropic import AnthropicChat
+
             return AnthropicChat(model_name=model_name, **model_kwargs)
-        case model_name if model_name in GeminiChat.SUPPORTED_LLM_NAMES:
+        case "gemini":
+            from phantom_eval.llm.gemini import GeminiChat
+
             return GeminiChat(model_name=model_name, **model_kwargs)
-        case model_name if model_name in OpenAIChat.SUPPORTED_LLM_NAMES:
+        case "openai":
+            from phantom_eval.llm.openai import OpenAIChat
+
             return OpenAIChat(model_name=model_name, **model_kwargs)
-        case model_name if model_name in TogetherChat.SUPPORTED_LLM_NAMES:
+        case "together":
+            from phantom_eval.llm.together import TogetherChat
+
             return TogetherChat(model_name=model_name, **model_kwargs)
-        case model_name if is_huggingface_model(model_name):
-            # NOTE: vLLM supports all models on Hugging Face Hub
+        case "vllm":
+            from phantom_eval.llm.vllm import VLLMChat
+
             return VLLMChat(model_name=model_name, **model_kwargs)
         case _:
-            raise ValueError(
-                f"Model name {model_name} must be one of {SUPPORTED_LLM_NAMES}"
-                " or exist as a repo on HuggingFace."
-            )
-
-
-def is_huggingface_model(model_name: str) -> bool:
-    """Check if the model name is a HuggingFace model."""
-    try:
-        return repo_exists(model_name)
-    except HFValidationError:
-        return False
+            raise ValueError(f"Provider {server} not supported.")

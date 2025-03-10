@@ -1,0 +1,11 @@
+mock:
+  mock_model:
+    usage_tier=1: # high RPM but low TPM
+      RPM: 1000
+      TPM: 80000
+    usage_tier=2: # low RPM but high TPM
+      RPM: 20
+      TPM: 1000000
+    usage_tier=3: # high RPM and TPM
+      RPM: 1000
+      TPM: 1000000

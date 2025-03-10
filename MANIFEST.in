@@ -1,3 +1,5 @@
 recursive-include src/phantom_wiki *.json
 recursive-include src/phantom_wiki *.pl
 recursive-include tests/phantom_wiki/resources *
+recursive-include src/phantom_eval *.yaml
+recursive-include tests/phantom_eval *.yaml
