@@ -41,6 +41,8 @@ class TogetherChat(CommonLLMChat):
     def _update_rate_limits(self, server: str, model_name: str, usage_tier: int) -> None:
         """
         Load rate limits from config file based on server, model name, and usage tier.
+        Model name is case-insensitive. If the model name is not found, the default rate limits
+        are used.
 
         If the rate limits are not found, set `self.enforce_rate_limits` to False.
 
@@ -54,10 +56,15 @@ class TogetherChat(CommonLLMChat):
             # Access the configuration using the provider, model name, and usage tier
             server_config = config[server]
 
-            # Check if model_name is in server_config or if "default" is in server_config
-            if model_name in server_config:
-                rate_limits = server_config[model_name][tier_key]
+            # Ignore case for model name and server_config keys
+            # E.g. "Llama-3.1" and "llama-3.1" should be treated as the same model
+            # in the config file that the model_name can match to
+            lower_keys2orig_keys = {k.lower(): k for k in server_config.keys()}
+            if model_name.lower() in lower_keys2orig_keys:
+                orig_key = lower_keys2orig_keys[model_name.lower()]
+                rate_limits = server_config[orig_key][tier_key]
             else:
+                # Use default rate limits if model name is not found
                 rate_limits = server_config["default"][tier_key]
 
             self.RPM_LIMIT = rate_limits["RPM"]

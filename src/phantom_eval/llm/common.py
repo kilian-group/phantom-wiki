@@ -218,6 +218,8 @@ class CommonLLMChat(LLMChat):
     def _update_rate_limits(self, server: str, model_name: str, usage_tier: int) -> None:
         """
         Load rate limits from config file based on server, model name, and usage tier.
+        Model name is case-insensitive. If the model name is not found, the default rate limits
+        are used.
 
         If the rate limits are not found, set `self.enforce_rate_limits` to False.
         """
@@ -226,7 +228,15 @@ class CommonLLMChat(LLMChat):
 
         try:
             # Access the configuration using the provider, model name, and usage tier
-            rate_limits = config[server][model_name][tier_key]
+            server_config = config[server]
+
+            # Ignore case for model name and server_config keys
+            # E.g. "gpt-4o" and "GPT-4o" should be treated as the same model
+            # in the config file that the model_name can match to
+            lower_keys2orig_keys = {k.lower(): k for k in server_config.keys()}
+            orig_key = lower_keys2orig_keys[model_name.lower()]
+            rate_limits = server_config[orig_key][tier_key]
+
             self.RPM_LIMIT = rate_limits["RPM"]
             self.TPM_LIMIT = rate_limits["TPM"]
         except KeyError:
