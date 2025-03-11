@@ -37,19 +37,24 @@ REASONING_MODELS=(
     "deepseek-ai/deepseek-r1-distill-qwen-32b"
 )
 
-DATASET=kilian-group/phantom-wiki-v1
+# Define the default dataset if not already defined
+if [ -z "$DATASET" ]; then
+    DATASET=kilian-group/phantom-wiki-v1
+fi
 
 if [ "$DATASET" = "kilian-group/phantom-wiki-v050" ]; then
     # Define SPLIT_LIST for dataset v0.5
+    # Splits of universe sizes 50, 100, 200, 300, 400, 500, 1000, 2500, 5000, 10000 are available on huggingface
+    # for dataset v0.5 and we evaluate on them
     DATA_SEED_LIST="1 2 3"
-    DATA_DEPTH="20"
+    DATA_QUESTION_DEPTH="20"
     DATA_SIZE_LIST="50 100 200 300 400 500 1000"
 
     for data_seed in $DATA_SEED_LIST
     do
         for data_size in $DATA_SIZE_LIST
         do
-            SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
+            SPLIT_LIST+="depth_${DATA_QUESTION_DEPTH}_size_${data_size}_seed_${data_seed} "
         done
     done
 
@@ -60,20 +65,22 @@ if [ "$DATASET" = "kilian-group/phantom-wiki-v050" ]; then
     do
         for data_size in $LARGE_DATA_SIZE_LIST
         do
-            LARGE_SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
+            LARGE_SPLIT_LIST+="depth_${DATA_QUESTION_DEPTH}_size_${data_size}_seed_${data_seed} "
         done
     done
 elif [ "$DATASET" = "kilian-group/phantom-wiki-v1" ]; then
     # Define SPLIT_LIST for dataset v1
+    # Splits of universe sizes 50, 500, 5000 are available on huggingface
+    # for dataset v1 and we evaluate on them
     DATA_SEED_LIST="1 2 3"
-    DATA_DEPTH="20"
+    DATA_QUESTION_DEPTH="20"
     DATA_SIZE_LIST="50 500 5000"
 
     for data_seed in $DATA_SEED_LIST
     do
         for data_size in $DATA_SIZE_LIST
         do
-            SPLIT_LIST+="depth_${DATA_DEPTH}_size_${data_size}_seed_${data_seed} "
+            SPLIT_LIST+="depth_${DATA_QUESTION_DEPTH}_size_${data_size}_seed_${data_seed} "
         done
     done
 else

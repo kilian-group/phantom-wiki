@@ -248,4 +248,7 @@ if [[ "$LAUNCH" =~ ^[Yy]$ ]]; then
 else
     echo "Slurm script generated. To launch the script, run:"
     echo "sbatch eval/slurm_scripts/${JOB_NAME}.slurm OUTPUT_DIR --flag flag_value"
+    echo ""
+    echo "To specify environment variables such as DATASET=kilian-group/phantom-wiki-v1, run:"
+    echo "sbatch --export=ALL,DATASET='kilian-group/phantom-wiki-v1' eval/slurm_scripts/${JOB_NAME}.slurm OUTPUT_DIR --flag flag_value"
 fi

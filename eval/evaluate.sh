@@ -36,13 +36,13 @@ do
     python eval/plot_size_accuracy.py -od $OUTPUT_DIR --method $METHOD --dataset $DATASET
     for data_size in $DATA_SIZE_LIST
     do
-        python eval/plot_hops_accuracy.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_DEPTH --size $data_size --dataset $DATASET
-        python eval/plot_difficulty_accuracy.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_DEPTH --size $data_size --dataset $DATASET
-        python eval/plot_aggregation_accuracy.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_DEPTH --size $data_size --dataset $DATASET
-        python eval/plot_solutions_accuracy.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_DEPTH --size $data_size --dataset $DATASET
+        python eval/plot_hops_accuracy.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_QUESTION_DEPTH --size $data_size --dataset $DATASET
+        python eval/plot_difficulty_accuracy.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_QUESTION_DEPTH --size $data_size --dataset $DATASET
+        python eval/plot_aggregation_accuracy.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_QUESTION_DEPTH --size $data_size --dataset $DATASET
+        python eval/plot_solutions_accuracy.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_QUESTION_DEPTH --size $data_size --dataset $DATASET
         if [ $METHOD == "react" ] || [ $METHOD == "act" ]; then
-            python eval/plot_hops_interactions.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_DEPTH --size $data_size --dataset $DATASET
-            python eval/plot_difficulty_interactions.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_DEPTH --size $data_size --dataset $DATASET
+            python eval/plot_hops_interactions.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_QUESTION_DEPTH --size $data_size --dataset $DATASET
+            python eval/plot_difficulty_interactions.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_QUESTION_DEPTH --size $data_size --dataset $DATASET
         fi
     done
 
