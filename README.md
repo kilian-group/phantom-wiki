@@ -222,14 +222,23 @@ The models and their configs are downloaded directly from HuggingFace and almost
 > \[!NOTE\]
 > For vLLM inference, make sure to request access for Gemma, Llama 3.1, 3.2, and 3.3 models on HuggingFace before proceeding.
 
-🧪 To generate the predictions, run the following command from the root directory:
+🧪 To generate the predictions from an LLM with a prompting `METHOD`, run the following command:
 
 ```bash
 python -m phantom_eval --method METHOD --server SERVER --model_name MODEL_NAME_OR_PATH --split_list SPLIT_LIST -od OUTPUT_DIRECTORY
 ```
 
+We implement lightweight interfaces to Anthropic, OpenAI, Gemini, and Together APIs, which you can select by specifying `SERVER`, e.g. `anthropic`, `openai`, `gemini`, `together` respectively.
+We also implement an interface to `vllm` server, to evaluate local LLMs.
+
+Example usages:
+
+- `METHOD` can be `zeroshot`, `fewshot`, `cot`, `react`, `zeroshot-rag` etc.
+- Evaluate GPT-4o through checkpoint names `--server openai --model_name gpt-4o-2024-11-20` or with name aliases `server openai --model_name gpt-4o`. We pass on the model name to the API, so any LLM name supported by the API is supported by our interface. Similarly for Anthropic, Gemini, and Together.
+- Evaluate Huggingface LLMs through Model Card name `--server vllm --model_name deepseek-ai/DeepSeek-R1-Distill-Qwen-32B`, or through local weights path `--server vllm --model_name /absolute/path/to/weights/`.
+
 > \[!TIP\]
-> To generate a slurm script with the appropriate GPU allocation and inference config, run the [create_eval.sh](./eval/create_eval.sh) script and follow the prompted steps.
+> To generate a slurm script for clusters at Cornell (g2, empire, aida) with the appropriate GPU allocation, run [`bash eval/create_eval.sh`](https://github.com/kilian-group/phantom-wiki/blob/main/eval/create_eval.sh) script and follow the prompted steps.
 
 📊 To generate the tables and figures, run the following command from the root directory:
 
