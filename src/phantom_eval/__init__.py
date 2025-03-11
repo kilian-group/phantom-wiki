@@ -95,7 +95,7 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--inf_relax_rate_limits",
         action="store_true",
-        help="Flag to relax enforcing rate limits for the LLMs.",
+        help="Flag to relax enforcing rate limits for the LLMs",
     )
     parser.add_argument(
         "--inf_llms_rpm_tpm_config_fpath",
