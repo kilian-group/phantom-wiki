@@ -234,7 +234,7 @@ We also implement an interface to `vllm` server, to evaluate local LLMs.
 Example usages:
 
 - `METHOD` can be `zeroshot`, `fewshot`, `cot`, `react`, `zeroshot-rag` etc.
-- Evaluate GPT-4o through checkpoint names `--server openai --model_name gpt-4o-2024-11-20` or with name aliases `server openai --model_name gpt-4o`. We pass on the model name to the API, so any LLM name supported by the API is supported by our interface. Similarly for Anthropic, Gemini, and Together.
+- Evaluate GPT-4o through checkpoint names `--server openai --model_name gpt-4o-2024-11-20` or with name aliases `--server openai --model_name gpt-4o`. We pass on the model name to the API, so any LLM name supported by the API is supported by our interface. Similarly for Anthropic, Gemini, and Together.
 - Evaluate Huggingface LLMs through Model Card name `--server vllm --model_name deepseek-ai/DeepSeek-R1-Distill-Qwen-32B`, or through local weights path `--server vllm --model_name /absolute/path/to/weights/`.
 
 > \[!TIP\]
