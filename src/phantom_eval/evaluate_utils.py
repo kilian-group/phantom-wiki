@@ -96,6 +96,22 @@ def _get_preds(output_dir, method):
             df["_" + key] = df["inference_params"].apply(lambda x: x[key])
         # drop the metadata column
         df = df.drop(columns=["metadata"])
+
+        # add a column to count number of tokens in the prediction
+        def _get_first_assistant_message_from_conv(conv: dict) -> str:
+            messages = conv["messages"]
+            for message in messages:
+                if message["role"] == "assistant":
+                    return message["content"][0]["text"]
+
+        df["num_tokens"] = df["interaction"].apply(
+            lambda conv: len(_get_first_assistant_message_from_conv(conv).split())
+        )
+
+        # add a column to count number of turns in the conversation
+        # ignore the first message (user message) since it is the prompt
+        df["num_turns"] = df["interaction"].apply(lambda conv: len(conv["messages"]) - 1)
+
         df_list.append(df)
     # concatenate all dataframes
     df_preds = pd.concat(df_list)
