@@ -13,33 +13,14 @@ logger = logging.getLogger(__name__)
 
 
 class VLLMChat(CommonLLMChat):
-    # NOTE: vLLM supports all models on Hugging Face Hub, but these are the ones we have officially tested
-    SUPPORTED_LLM_NAMES: list[str] = [
-        "meta-llama/llama-3.1-8b-instruct",
-        "meta-llama/llama-3.1-70b-instruct",
-        "meta-llama/llama-3.2-1b-instruct",
-        "meta-llama/llama-3.2-3b-instruct",
-        "meta-llama/llama-3.3-70b-instruct",
-        "microsoft/phi-3.5-mini-instruct",
-        "microsoft/phi-3.5-moe-instruct",
-        "google/gemma-2-2b-it",
-        "google/gemma-2-9b-it",
-        "google/gemma-2-27b-it",
-        "mistralai/mistral-7b-instruct-v0.3",
-        "deepseek-ai/deepseek-r1-distill-qwen-32b",
-        "deepseek-ai/deepseek-r1-distill-qwen-7b",
-        "deepseek-ai/deepseek-r1-distill-qwen-1.5b",
-    ]
-
     def __init__(
         self,
         model_name: str,
-        model_path: str | None = None,
         max_model_len: int | None = None,
         tensor_parallel_size: int | None = None,
         use_api: bool = False,
         port: int = 8000,
-        **kwargs: dict,
+        is_deepseek_r1_model: bool = False,
     ):
         """
         Args:
@@ -48,25 +29,25 @@ class VLLMChat(CommonLLMChat):
             tensor_parallel_size (int): Number of GPUs to use for tensor parallelism.
                 Defaults to None (uses all available GPUs).
             use_api (bool): Whether to use the vllm server or offline inference
-                Defaults to True.
+                Defaults to False.
                 NOTE: offline inference only works for batch_generate_response
-                To maximize performance, set `use_server=False` when running Nshot and CoT agents
+                To maximize performance, set `use_api=False` when running Nshot and CoT agents
             port (int): Port number for the vllm server.
                 Defaults to 8000.
+            is_deepseek_r1_model (bool): Whether the model is a distilled deepseek r1 model.
+                We add the stop token "<|end_of_sentence|>" for these models.
+                If False, we add the stop token "<|eot_id|>".
+                Defaults to False.
         """
-        super().__init__(model_name, model_path, strict_model_name=False, enforce_rate_limits=False)
+        # NOTE: with vllm, we don't need to enforce rate limits. So we don't call self._update_rate_limits()
+        # at the end __init__() either
+        super().__init__(model_name, enforce_rate_limits=False)
 
-        # additional stop token for llama models
-        # NOTE: eot = end-of-turn
         # Handle additional stop token for all distilled deepseek r1 models
-        if model_name.startswith("deepseek-ai/deepseek-r1-distill-qwen"):
-            self.ADDITIONAL_STOP = [
-                "<｜end▁of▁sentence｜>",
-            ]
+        if is_deepseek_r1_model:
+            self.ADDITIONAL_STOP = ["<｜end▁of▁sentence｜>"]
         else:
-            self.ADDITIONAL_STOP = [
-                "<|eot_id|>",
-            ]
+            self.ADDITIONAL_STOP = ["<|eot_id|>"]
 
         self.use_api = use_api
         if self.use_api:
@@ -85,7 +66,7 @@ class VLLMChat(CommonLLMChat):
             except openai.APIConnectionError as e:
                 logger.error(
                     "Make sure to launch the vllm server using "
-                    "vllm serve MODEL_NAME --api-key token-abc123 --tensor_parallel_size NUM_GPUS"
+                    "vllm serve MODEL_NAME_OR_PATH --api-key token-abc123 --tensor_parallel_size NUM_GPUS"
                 )
                 raise e
         else:
@@ -124,8 +105,8 @@ class VLLMChat(CommonLLMChat):
             usage=response.usage.model_dump(),
         )
 
-    def _parse_vllm_output(self, response: object) -> LLMChatResponse:
-        """Parse output of vllm offline inference when using (batch) offline inference"""
+    def _parse_batch_vllm_output(self, response: object) -> LLMChatResponse:
+        """Parse output of vllm offline inference when using batch offline inference"""
         return LLMChatResponse(
             pred=response.outputs[0].text,
             usage={
@@ -195,7 +176,7 @@ class VLLMChat(CommonLLMChat):
                 for conv in convs
             ]
             responses = self.llm.generate(prompts, sampling_params)
-            parsed_responses = [self._parse_vllm_output(response) for response in responses]
+            parsed_responses = [self._parse_batch_vllm_output(response) for response in responses]
             return parsed_responses
 
     def _count_tokens(self, messages_api_format: list[dict]) -> int:

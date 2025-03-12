@@ -7,31 +7,16 @@ from phantom_eval.llm.common import CommonLLMChat, InferenceGenerationConfig
 
 
 class AnthropicChat(CommonLLMChat):
-    RATE_LIMITS = {
-        "claude-3-5-sonnet-20241022": {
-            "usage_tier=1": {"RPM": 50, "TPM": 40_000},
-            "usage_tier=2": {"RPM": 1_000, "TPM": 80_000},
-        },
-        "claude-3-5-haiku-20241022": {
-            "usage_tier=1": {"RPM": 50, "TPM": 50_000},
-            "usage_tier=2": {"RPM": 1_000, "TPM": 100_000},
-        },
-    }
-    SUPPORTED_LLM_NAMES: list[str] = list(RATE_LIMITS.keys())
-
     def __init__(
         self,
         model_name: str,
-        model_path: str | None = None,
         usage_tier: int = 1,
-        enforce_rate_limits: bool = False,
+        **kwargs,
     ):
-        super().__init__(
-            model_name, model_path, strict_model_name=True, enforce_rate_limits=enforce_rate_limits
-        )
+        super().__init__(model_name, **kwargs)
         self.client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
         self.async_client = anthropic.AsyncAnthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-        self._update_rate_limits(usage_tier)
+        self._update_rate_limits("anthropic", model_name, usage_tier)
 
     def _call_api(
         self,

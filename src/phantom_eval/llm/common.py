@@ -3,7 +3,10 @@ import asyncio
 import logging
 import time
 from copy import deepcopy
+from pathlib import Path
+from typing import Any
 
+import yaml
 from pydantic import BaseModel
 from tenacity import retry, stop_after_attempt, wait_fixed
 
@@ -54,6 +57,29 @@ def aggregate_usage(usage_list: list[dict]) -> dict:
     return result
 
 
+# Default path to the LLM API config file
+DEFAULT_LLMS_RPM_TPM_CONFIG_FPATH = Path(__file__).parent / "llms_rpm_tpm_config.yaml"
+
+
+def load_yaml_config(config_path: str) -> dict[str, Any]:
+    """
+    Load YAML configuration file.
+
+    Args:
+        config_path: Path to the configuration file (relative to this module).
+
+    Returns:
+        Dictionary containing the configuration.
+    """
+    try:
+        with open(config_path) as f:
+            return yaml.safe_load(f)
+    except FileNotFoundError:
+        raise FileNotFoundError(f"LLM config file not found at {config_path}")
+    except yaml.YAMLError as e:
+        raise ValueError(f"Error parsing LLM config YAML: {e}")
+
+
 class InferenceGenerationConfig(BaseModel):
     """
     Inference generation configuration for LLMs.
@@ -94,35 +120,17 @@ class InferenceGenerationConfig(BaseModel):
 
 
 class LLMChat(abc.ABC):
-    SUPPORTED_LLM_NAMES: list[str] = []
-
     def __init__(
         self,
         model_name: str,
-        model_path: str | None = None,
-        strict_model_name: bool = True,
     ):
         """
         Initialize the LLM chat object.
 
         Args:
             model_name (str): The model name to use.
-            model_path (Optional[str]): Local path to the model.
-                Defaults to None.
-            strict_model_name (bool): Whether to check if the model name is supported.
-                Defaults to True.
         """
-        if strict_model_name:
-            assert (
-                model_name in self.SUPPORTED_LLM_NAMES
-            ), f"Model name {model_name} must be one of {self.SUPPORTED_LLM_NAMES}."
-        else:
-            if model_name not in self.SUPPORTED_LLM_NAMES:
-                logger.warning(
-                    f"Model name {model_name} is not in the supported list {self.SUPPORTED_LLM_NAMES}."
-                )
         self.model_name = model_name
-        self.model_path = model_path
 
     @abc.abstractmethod
     async def generate_response(
@@ -172,12 +180,6 @@ class CommonLLMChat(LLMChat):
     Use `_convert_conv_to_api_format` to convert a `Conversation` into such a list.
     """
 
-    # Rate limits: Requests per minute (RPM) and Tokens per minute (TPM)
-    RATE_LIMITS = {
-        "model_name": {
-            "usage_tier=1": {"RPM": 0, "TPM": 0},
-        },
-    }
     # NOTE: RPM and TPM limits are set to 0 by default, and should be overridden by the subclass
     # value of 0 indicates no rate limit
     RPM_LIMIT: int = 0
@@ -186,80 +188,103 @@ class CommonLLMChat(LLMChat):
     def __init__(
         self,
         model_name: str,
-        model_path: str | None = None,
-        strict_model_name: bool = True,
         enforce_rate_limits: bool = False,
+        llms_rpm_tpm_config_fpath: str = DEFAULT_LLMS_RPM_TPM_CONFIG_FPATH,
     ):
         """
         Initialize the LLM chat object.
         Args:
             model_name (str): The model name to use.
-            model_path (Optional[str]): Local path to the model.
-                Defaults to None.
-            strict_model_name (bool): Whether to check if the model name is supported.
-                Defaults to True.
             enforce_rate_limits (bool): Whether to enforce rate limits.
                 Defaults to False.
+            llms_rpm_tpm_config_fpath (str): Path to the LLM API config file.
+                Defaults to `DEFAULT_LLMS_RPM_TPM_CONFIG_FPATH`.
         """
-        super().__init__(model_name, model_path, strict_model_name)
+        super().__init__(model_name)
         self.client = None
 
         # Functionality for enforcing rate limiting on the client side
         self.enforce_rate_limits = enforce_rate_limits
+        self.llms_rpm_tpm_config_fpath = llms_rpm_tpm_config_fpath
+
         # end_rpm is incremented every interval and represents the next time a request can be made
         # end_tpm is incremented every minute and represents the next time a new minute starts
-        self.start = self.end_rpm = self.end_tpm = time.time()
+        self.start_time = self.end_time_rpm = self.end_time_tpm = time.time()
         # NOTE: we estimate the number of used tokens in the current minute
         self.token_usage_per_minute = 0
         # condition variable for rate limit
-        self.cond = asyncio.Condition()
+        self.cond_lock = asyncio.Condition()
 
-    def _update_rate_limits(self, usage_tier: int) -> None:
-        usage_tier_str = f"usage_tier={usage_tier}"
-        if usage_tier_str not in self.RATE_LIMITS[self.model_name]:
-            raise ValueError(
-                f"Usage tier {usage_tier} not supported for {self.model_name}, "
-                f"please update the class for {self.model_name}."
+    def _update_rate_limits(self, server: str, model_name: str, usage_tier: int) -> None:
+        """
+        Load rate limits from config file based on server, model name, and usage tier.
+        Model name is case-insensitive. If the model name is not found, the default rate limits
+        are used.
+
+        If the rate limits are not found, set `self.enforce_rate_limits` to False.
+        """
+        config = load_yaml_config(self.llms_rpm_tpm_config_fpath)
+        tier_key = f"usage_tier={usage_tier}"
+
+        try:
+            # Access the configuration using the provider, model name, and usage tier
+            server_config = config[server]
+
+            # Ignore case for model name and server_config keys
+            # E.g. "gpt-4o" and "GPT-4o" should be treated as the same model
+            # in the config file that the model_name can match to
+            lower_keys2orig_keys = {k.lower(): k for k in server_config.keys()}
+            orig_key = lower_keys2orig_keys[model_name.lower()]
+            rate_limits = server_config[orig_key][tier_key]
+
+            self.RPM_LIMIT = rate_limits["RPM"]
+            self.TPM_LIMIT = rate_limits["TPM"]
+        except KeyError:
+            logger.info(
+                f"Rate limits not found for server={server}, model_name={self.model_name} with {tier_key}."
+                f" Please check the config file {self.llms_rpm_tpm_config_fpath}."
+                " Rate limits will not be enforced."
             )
-        rate_limit_for_usage_tier = self.RATE_LIMITS[self.model_name][f"usage_tier={usage_tier}"]
-        self.RPM_LIMIT = rate_limit_for_usage_tier["RPM"]
-        self.TPM_LIMIT = rate_limit_for_usage_tier["TPM"]
+            self.enforce_rate_limits = False
 
-    def _increment(self):
+    def _increment_end_times(self):
         """Increment the counter by interval = (60 / RPM) and reset token usage"""
         now = time.time()
-        if now > self.end_rpm:
-            self.end_rpm = now + 60 / self.RPM_LIMIT  # set the next rpm deadline to be 1 interval from now
-        if now > self.end_tpm:
-            self.end_tpm = now + 60  # set the next tpm deadline to be 1 minute
+        if now > self.end_time_rpm:
+            self.end_time_rpm = (
+                now + 60 / self.RPM_LIMIT
+            )  # set the next rpm deadline to be 1 interval from now
+        if now > self.end_time_tpm:
+            self.end_time_tpm = now + 60  # set the next tpm deadline to be 1 minute
             self.token_usage_per_minute = 0
 
     async def _sleep_rpm(self):
         """Sleep if the RPM limit is exceeded"""
-        remaining = max(self.end_rpm - time.time(), 0)
-        logging.debug(f"Sleeping for {remaining} to satisfy RPM limit")
+        remaining = max(self.end_time_rpm - time.time(), 0)
+        logger.debug(f"Sleeping for {remaining} to satisfy RPM limit")
         return await asyncio.sleep(remaining)
 
-    async def _sleep_tpm(self, input_tokens):
+    async def _sleep_tpm(self, input_tokens: int):
         """Sleep if the input_tokens will exceed the TPM limit"""
         if input_tokens + self.token_usage_per_minute > self.TPM_LIMIT:
-            remaining = max(self.end_tpm - time.time(), 0)
-            logging.debug(f"Sleeping for {remaining} to satisfy TPM limit")
+            remaining = max(self.end_time_tpm - time.time(), 0)
+            logger.debug(f"Sleeping for {remaining} to satisfy TPM limit")
             await asyncio.sleep(remaining)
             self.token_usage_per_minute = 0  # reset token_usage_per_minute if new minute has started
 
-    def _check(self, input_tokens):
+    def _check(self, input_tokens: int) -> bool:
         """Check that the condition is satisfied"""
         now = time.time()
-        logging.debug(
-            f"checking: curr time={now-self.start}, rpm counter={self.end_rpm-self.start}, "
-            f"tpm counter={self.end_tpm-self.start}, token_usage_per_minute={self.token_usage_per_minute}"
+        logger.debug(
+            f"checking: curr time={now-self.start_time}, rpm counter={self.end_time_rpm-self.start_time}, "
+            f"tpm counter={self.end_time_tpm-self.start_time}, "
+            f"token_usage_per_minute={self.token_usage_per_minute}"
         )
-        return now >= self.end_rpm and input_tokens + self.token_usage_per_minute <= self.TPM_LIMIT
+        return now >= self.end_time_rpm and input_tokens + self.token_usage_per_minute <= self.TPM_LIMIT
 
-    def _current(self):
+    def _display_curr_time(self):
         """Print the current time since start"""
-        return f"curr time={time.time() - self.start}, tokens used={self.token_usage_per_minute}"
+        return f"curr time={time.time() - self.start_time}, tokens used={self.token_usage_per_minute}"
 
     @abc.abstractmethod
     def _call_api(
@@ -317,27 +342,27 @@ class CommonLLMChat(LLMChat):
             raise ValueError(f"Input tokens {input_tokens} exceed TPM limit {self.TPM_LIMIT}")
 
         # acquire the lock for the counter
-        await self.cond.acquire()
-        logging.debug(f"{self._current()}: Acquired lock for {conv.uid}")
+        await self.cond_lock.acquire()
+        logger.debug(f"{self._display_curr_time()}: Acquired lock for {conv.uid}")
         # ensure that counter.check(input_tokens) will be satisfied
         await self._sleep_rpm()
         await self._sleep_tpm(input_tokens)
         try:
             # yield to other threads until condition is true
-            await self.cond.wait_for(lambda: self._check(input_tokens))
+            await self.cond_lock.wait_for(lambda: self._check(input_tokens))
             # schedule _call_api to run concurrently
-            logging.debug(f"{self._current()}: Calling API for {conv.uid}")
+            logger.debug(f"{self._display_curr_time()}: Calling API for {conv.uid}")
             t = asyncio.create_task(self._call_api(messages_api_format, inf_gen_config, use_async=True))
-            logging.debug(f"{self._current()}: Done with {conv.uid}")
-            self._increment()
+            logger.debug(f"{self._display_curr_time()}: Done with {conv.uid}")
+            self._increment_end_times()
             self.token_usage_per_minute += input_tokens
-            logging.debug(f"{self._current()}: Updated counter")
+            logger.debug(f"{self._display_curr_time()}: Updated counter")
             # release underlying lock and wake up 1 waiting task
-            self.cond.notify()
-            logging.debug(f"{self._current()}: Notified 1")
+            self.cond_lock.notify()
+            logger.debug(f"{self._display_curr_time()}: Notified 1")
         finally:
-            self.cond.release()
-            logging.debug(f"{self._current()}: Released lock for {conv.uid}")
+            self.cond_lock.release()
+            logger.debug(f"{self._display_curr_time()}: Released lock for {conv.uid}")
         # wait for the task to complete
         response = await t
         parsed_response = self._parse_api_output(response)
@@ -374,6 +399,6 @@ class CommonLLMChat(LLMChat):
         self, convs: list[Conversation], inf_gen_config: InferenceGenerationConfig
     ) -> list[LLMChatResponse]:
         parsed_responses = await asyncio.gather(
-            *[self.generate_response_with_rate_limits(conv, inf_gen_config) for conv in convs]
+            *[self.generate_response(conv, inf_gen_config) for conv in convs]
         )
         return parsed_responses

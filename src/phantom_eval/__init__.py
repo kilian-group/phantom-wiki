@@ -1,25 +1,31 @@
 import argparse
 
 from .agents import SUPPORTED_METHOD_NAMES
+from .llm import DEFAULT_LLMS_RPM_TPM_CONFIG_FPATH, SUPPORTED_LLM_SERVERS
 
 
 def get_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="PhantomWiki Evaluation")
     parser.add_argument(
+        "--server",
+        type=str.lower,
+        default="together",
+        choices=SUPPORTED_LLM_SERVERS,
+        help="The server to use for the assistant. "
+        "NOTE: to add a new server, please submit a PR with the implementation",
+    )
+    parser.add_argument(
         "--model_name",
         "-m",
-        type=str.lower,
+        type=str,
         default="meta-llama/llama-vision-free",
-        help="model name. "
-        "NOTE: to add a new model, please submit a PR to the repo with the new model name",
-        # choices=SUPPORTED_LLM_NAMES,
+        help="The model name or the path to the model, see suggestions in "
+        "`src/phantom_eval/llm/api_llms_config.yaml`",
     )
-    parser.add_argument("--model_path", type=str, default=None, help="Path to the model")
     parser.add_argument(
         "--method",
         type=str.lower,
         default="zeroshot",
-        # required=True,
         help="Evaluation method. " "NOTE: to add a new method, please submit a PR with the implementation",
         choices=SUPPORTED_METHOD_NAMES,
     )
@@ -86,12 +92,30 @@ def get_parser() -> argparse.ArgumentParser:
         default=1,
         help="API usage tier (note: tier 0 corresponds to free versions)",
     )
+    parser.add_argument(
+        "--inf_relax_rate_limits",
+        action="store_true",
+        help="Flag to relax enforcing rate limits for the LLMs",
+    )
+    parser.add_argument(
+        "--inf_llms_rpm_tpm_config_fpath",
+        type=str,
+        default=str(DEFAULT_LLMS_RPM_TPM_CONFIG_FPATH),
+        help="Path to the config file with rate limits for the LLMs",
+    )
+    parser.add_argument(
+        "--inf_is_deepseek_r1_model",
+        action="store_true",
+        help="Flag to specify if the model is DeepSeek-R1, "
+        "for correctly parsing <think>...</think> tags, "
+        "and determining the additional stop token in vllm",
+    )
 
     # Dataset params
     parser.add_argument(
         "--dataset",
         type=str,
-        default="mlcore/phantom-wiki-v050",
+        default="kilian-group/phantom-wiki-v1",
         help="Dataset name if loading from HF or the path to local dataset",
     )
     parser.add_argument(

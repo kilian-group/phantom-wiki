@@ -18,42 +18,17 @@ class GeminiChat(CommonLLMChat):
     ```
     """
 
-    RATE_LIMITS = {
-        "gemini-1.5-flash-002": {
-            "usage_tier=0": {"RPM": 15, "TPM": 1_000_000},  # free tier
-            "usage_tier=1": {"RPM": 2_000, "TPM": 4_000_000},
-        },
-        "gemini-1.5-pro-002": {
-            "usage_tier=0": {"RPM": 2, "TPM": 32_000_000},  # free tier
-            "usage_tier=1": {"RPM": 1_000, "TPM": 4_000_000},
-        },
-        "gemini-1.5-flash-8b-001": {
-            "usage_tier=0": {"RPM": 15, "TPM": 1_000_000},  # free tier
-            "usage_tier=1": {"RPM": 4_000, "TPM": 4_000_000},
-        },
-        "gemini-2.0-flash-exp": {
-            "usage_tier=0": {
-                "RPM": 10,
-                "TPM": 4_000_000,
-            },  # free tier: https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash
-        },
-    }
-    SUPPORTED_LLM_NAMES: list[str] = list(RATE_LIMITS.keys())
-
     def __init__(
         self,
         model_name: str,
-        model_path: str | None = None,
         usage_tier: int = 1,
-        enforce_rate_limits: bool = False,
+        **kwargs,
     ):
-        super().__init__(
-            model_name, model_path, strict_model_name=True, enforce_rate_limits=enforce_rate_limits
-        )
+        super().__init__(model_name, **kwargs)
 
         gemini.configure(api_key=os.getenv("GEMINI_API_KEY"))
         self.client = gemini.GenerativeModel(self.model_name)
-        self._update_rate_limits(usage_tier)
+        self._update_rate_limits("gemini", model_name, usage_tier)
 
     def _convert_conv_to_api_format(self, conv: Conversation) -> list[dict]:
         # https://ai.google.dev/gemini-api/docs/models/gemini

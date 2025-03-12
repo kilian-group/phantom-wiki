@@ -12,8 +12,10 @@ if [[ ! " ${METHODS[@]} " =~ " ${METHOD} " ]]; then
     echo "Invalid method. Exiting..."
     exit 1
 fi
-read -p "Enter the model name: " MODEL_NAME
-JOB_NAME=${METHOD}-${MODEL_NAME##*/}
+read -p "Enter the model name or absolute path: " MODEL_NAME_OR_PATH
+# Remove the final / if present, and get an alias for the model
+MODEL_ALIAS=$(basename ${MODEL_NAME_OR_PATH%/})
+JOB_NAME=${METHOD}-${MODEL_ALIAS##*/}
 
 #
 # Add option to set the cluster name
@@ -24,54 +26,56 @@ read -p "Enter cluster name (G2 or Empire or aida): " CLUSTER_NAME
 # - specify partition with --partition=${PARTITION}
 # - specify time with --time=${TIME}
 if [[ "$CLUSTER_NAME" =~ ^[Gg]2$ ]]; then
-    if [[ " ${LARGE_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    # Default options
+    GPU=a6000
+    NUM_GPUS=1
+    if [[ " ${LARGE_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         GPU=a6000
         NUM_GPUS=8
-    elif [[ " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         GPU=a6000
         NUM_GPUS=4
-    elif [[ " ${MEDIUM_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${MEDIUM_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         GPU=a6000
         NUM_GPUS=1
-    elif [[ " ${SMALL_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${SMALL_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         GPU=3090
         NUM_GPUS=1
     else
-        echo "Invalid model name. Exiting..."
-        exit 1
+        echo "Did not recognize model, using default values for GPU=$GPU and NUM_GPUS=$NUM_GPUS"
     fi
     GRES="gpu:${GPU}:${NUM_GPUS}"
     PARTITION=kilian
     TIME=infinite
 elif [[ "$CLUSTER_NAME" =~ ^[Ee]mpire$ ]]; then
-    if [[ " ${LARGE_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    NUM_GPUS=1
+    if [[ " ${LARGE_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         NUM_GPUS=4
-    elif [[ " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         NUM_GPUS=2
-    elif [[ " ${MEDIUM_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${MEDIUM_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         NUM_GPUS=1
-    elif [[ " ${SMALL_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${SMALL_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         NUM_GPUS=1
     else
-        echo "Invalid model name. Exiting..."
-        exit 1
+        echo "Did not recognize model, using default value of NUM_GPUS=$NUM_GPUS"
     fi
     GRES="gpu:${NUM_GPUS}"
     PARTITION=cornell
     TIME="1-00:00:00"
 elif [[ "$CLUSTER_NAME" =~ aida$ ]]; then
     GPU=a100
-    if [[ " ${LARGE_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    NUM_GPUS=1
+    if [[ " ${LARGE_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         NUM_GPUS=4
-    elif [[ " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${REASONING_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         NUM_GPUS=2
-    elif [[ " ${MEDIUM_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${MEDIUM_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         NUM_GPUS=1
-    elif [[ " ${SMALL_MODELS[@]} " =~ " ${MODEL_NAME} " ]]; then
+    elif [[ " ${SMALL_MODELS[@]} " =~ " ${MODEL_NAME_OR_PATH} " ]]; then
         NUM_GPUS=1
     else
-        echo "Invalid model name. Exiting..."
-        exit 1
+        echo "Did not recognize model, using default value of GPU=$GPU and NUM_GPUS=$NUM_GPUS"
     fi
     GRES="gpu:${GPU}:${NUM_GPUS}"
     PARTITION=full
@@ -89,6 +93,11 @@ read -p "Enter the memory in GB (default: 100): " MEMORY
 # Set default values if not provided
 CPUS=${CPUS:-8}
 MEMORY=${MEMORY:-100}
+
+#
+# Add option to set if the model is deepseek r1
+#
+read -p "Is the model DeepSeek R1 (to correctly parse <think> tags and set DeepSeek R1-specific stop tokens)? (y/N): " IS_DEEPSEEK_R1
 
 #
 # Generate the slurm script
@@ -130,7 +139,8 @@ echo "##################################################"
 cmd="python -m phantom_eval \
     --method $METHOD \
     -od \$OUTPUT_DIR \
-    -m $MODEL_NAME"
+    --server vllm \
+    -m $MODEL_NAME_OR_PATH"
 
 # concatenate the extra arguments to the base command
 cmd+=" \$cmd_args"
@@ -140,13 +150,13 @@ if [[ ! "\$@" =~ "--split_list" ]]; then
     cmd+=" --split_list \$SPLIT_LIST"
 fi
 
-# if the model is deepseek, add the temperature and top_p
-if [[ "${MODEL_NAME}" =~ deepseek ]]; then
+# if the model is deepseek, add the temperature and top_p and inf_is_deepseek_r1_model flag
+if [[ "$IS_DEEPSEEK_R1" =~ ^[Yy]$ ]]; then
     TEMPERATURE=0.6
     TOP_P=0.95
     cmd+=" --inf_temperature \$TEMPERATURE \
-           --inf_top_p \$TOP_P"
-
+           --inf_top_p \$TOP_P \
+           --inf_is_deepseek_r1_model"
 else
     TEMPERATURE=0
     cmd+=" --inf_temperature \$TEMPERATURE"
@@ -184,14 +194,14 @@ spinup_server(){
     echo "Using port: \$PORT"
 
     echo "Starting vLLM server..."
-    vllm_cmd="vllm serve $MODEL_NAME --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port \$PORT" #nohup launches this in the background
+    vllm_cmd="vllm serve $MODEL_NAME_OR_PATH --api-key token-abc123 --tensor_parallel_size $NUM_GPUS --host 0.0.0.0 --port \$PORT" #nohup launches this in the background
     echo \$vllm_cmd
     nohup \$vllm_cmd &
 
     # Wait for the server to start
     echo "Waiting for vLLM server to start..."
     SLEEP=60
-    while ! check_server $MODEL_NAME \$PORT; do
+    while ! check_server $MODEL_NAME_OR_PATH \$PORT; do
         echo "Server is not up yet. Checking again in \$SLEEP seconds..."
         sleep \$SLEEP
     done
@@ -238,4 +248,7 @@ if [[ "$LAUNCH" =~ ^[Yy]$ ]]; then
 else
     echo "Slurm script generated. To launch the script, run:"
     echo "sbatch eval/slurm_scripts/${JOB_NAME}.slurm OUTPUT_DIR --flag flag_value"
+    echo ""
+    echo "To specify environment variables such as DATASET=kilian-group/phantom-wiki-v1, run:"
+    echo "sbatch --export=ALL,DATASET='kilian-group/phantom-wiki-v1' eval/slurm_scripts/${JOB_NAME}.slurm OUTPUT_DIR --flag flag_value"
 fi
