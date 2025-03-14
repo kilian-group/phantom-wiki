@@ -62,6 +62,7 @@ def pivot_mean_std(acc_mean_std, metric, independent_variable="_split"):
 
 
 ################ Utils for getting evaluation data ################
+@memory.cache(cache_validation_callback=expires_after(hours=4))
 def _get_preds(output_dir, method):
     """Get predictions from the output directory corresponding to method `method`
 
@@ -105,10 +106,13 @@ def _get_preds(output_dir, method):
     return df_preds
 
 
+@memory.cache(cache_validation_callback=expires_after(hours=4))
 def _get_qa_pairs(dataset: str, splits: list[str], from_local: bool = False):
     df_list = []
     for split in splits:
-        df = load_data(dataset, split, from_local)["qa_pairs"].to_pandas()
+        # NOTE: using Dataset.to_pandas() casts lists to numpy arrays
+        # which is not JSON serializable. Thus, we use pd.DataFrame() instead
+        df = pd.DataFrame(load_data(dataset, split, from_local)["qa_pairs"])
         # # set index to id
         # df = df.set_index('id')
         # convert template column to string
@@ -163,7 +167,7 @@ def get_predictions_with_qa(
     # the prolog queries and the templates
     df = df_preds.merge(df_qa_pairs, on="id", how="left")
 
-    # add a column for the data seed
+    # add a column for data generation parameters
     df["_depth"] = (
         df["_split"].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(1)).astype(int)
     )
@@ -173,8 +177,6 @@ def get_predictions_with_qa(
     df["_data_seed"] = (
         df["_split"].apply(lambda x: re.match(r"depth_(\d+)_size_(\d+)_seed_(\d+)", x).group(3)).astype(int)
     )
-    # drop the split column
-    df = df.drop(columns=["_split"])
     return df
 
 
