@@ -30,6 +30,9 @@ setup_logging(logging.INFO)
 parser = get_parser()
 parser.add_argument("--fmt_max_universe_size", type=int, default=10_000, help="Maximum universe size to plot")
 parser.add_argument("--filter_by_size", type=int, default=50, help="Plot for universe size")
+parser.add_argument(
+    "--filter_by_metric_threshold", type=float, default=0.0, help="Filter by metric threshold"
+)
 args = parser.parse_args()
 output_dir = args.output_dir
 dataset = args.dataset
@@ -37,6 +40,7 @@ fmt_max_universe_size = args.fmt_max_universe_size
 model = args.model_name
 from_local = args.from_local
 filter_by_size = args.filter_by_size
+filter_by_metric_threshold = args.filter_by_metric_threshold
 DIFFICULTY = "difficulty"
 MAX_DIFFICULTY = 15
 # ignore difficulty beyond 15
@@ -58,8 +62,8 @@ os.makedirs(figures_dir, exist_ok=True)
 # utils for plotting
 plt.rcParams.update(
     {
-        "font.family": "serif",
-        "font.serif": ["Times New Roman"],
+        # "font.family": "serif",
+        # "font.serif": ["Times New Roman"],
         "axes.spines.top": False,
         "axes.spines.right": False,
     }
@@ -68,7 +72,7 @@ plt.rcParams.update(
 # %%
 methods = [("cot", "CoT"), ("react", "ReAct")]
 for metric in METRICS:
-    fig, axs = plt.subplots(1, len(methods), figsize=(10, 6))
+    fig, axs = plt.subplots(1, len(methods), figsize=(10, 4))
 
     for i, (method, method_name) in enumerate(methods):
         if method == "cot":
@@ -80,11 +84,10 @@ for metric in METRICS:
 
         # get evaluation data from the specified output directory and method subdirectory
         df = get_evaluation_data(output_dir, method, dataset, from_local)
-        # import pdb; pdb.set_trace()
         df = df[df[DIFFICULTY] <= MAX_DIFFICULTY]
         df = df[df["_size"] == filter_by_size]
-        print(method)
-        print(df[df["_model"] == model].groupby(["_size"])["_data_seed"].agg(lambda x: list(set(x))))
+
+        df = df[df[metric] >= filter_by_metric_threshold]
 
         # Collapse num_tokens into buckets of 100
         df["num_tokens"] = df["num_tokens"].apply(lambda x: 100 * (x // 100))
@@ -108,13 +111,6 @@ for metric in METRICS:
             logging.warning(f"No data for model {model}")
             continue
 
-        # # get the distinct x values
-        # x = acc_mean_std[CONV_LEN].astype(int).values
-        # # get the distinct y values
-        # y = acc_mean_std["difficulty"].values
-
-        # TODO transpose x and y: reasoning steps on x-axis and conv len on y-axis
-
         # get the distinct x values
         x = acc_mean_std["difficulty"].values
         # get the distinct y values
@@ -126,29 +122,24 @@ for metric in METRICS:
         xlabels = xticks = sorted(np.unique(x))
         yticks = ylabels = sorted(np.unique(y))
 
-        # add dummy entries to plot the out-of-context region
-        # X, Y = np.meshgrid(np.linspace(max(x) + 1, fmt_max_universe_size, 100), yticks)
-        X, Y = np.meshgrid(xticks, yticks)
-        Z = np.zeros_like(X)
-        # extend the x values to the right
-        x = np.append(x, X.flatten())
-        y = np.append(y, Y.flatten())
-        z = np.append(z, Z.flatten())
+        # Make a scatter plot of difficulty vs conversation length with accuracy as the color
+        # scatter plot of conversation length vs difficulty with accuracy as color
+        scatter = axs[i].scatter(
+            acc_mean_std["difficulty"],
+            acc_mean_std[CONV_LEN].astype(int),
+            c=acc_mean_std[(metric, "mean")],
+            cmap="viridis",
+            vmin=0,
+            vmax=1,
+            alpha=0.5,
+            marker="o",
+        )
 
-        # plot tricontourf
-        contour = axs[i].tricontourf(x, y, z, levels=40, cmap="viridis")
-        contour.set_clim(0, 1)
-        # Hide the contour lines
-        # https://stackoverflow.com/questions/8263769/hide-contour-linestroke-on-pyplot-contourf-to-get-only-fills/32911283#32911283
-        contour.set_edgecolor("face")
         # Add a colorbar to the last subplot
         if i == len(methods) - 1:
             # add colorbar with min=0 and max=1
-            cbar = fig.colorbar(contour, ax=axs, shrink=0.2, aspect=20, ticks=[0, 0.975])
-            # cbar.set_label(metric.capitalize())
+            cbar = fig.colorbar(scatter, ax=axs, shrink=0.2, aspect=20, ticks=[0, 0.975])
             cbar.set_label("F1 Score", labelpad=0.5)
-            # set tick labels to every 0.1
-            # cbar.set_ticks([0, 1])
             cbar.ax.set_yticklabels(["0", "1"])
             cbar.ax.set_position([0.9, 0.3, 0.05, 0.55])  # [x, y, width, height]
 
@@ -161,43 +152,28 @@ for metric in METRICS:
         axs[i].set_xticks(range(1, MAX_DIFFICULTY + 1), minor=True)
         axs[i].tick_params(axis="x", which="major", labelsize=TICK_FONT_SIZE)
         axs[i].tick_params(axis="x", which="minor", labelsize=MINOR_TICK_LENGTH)
-        axs[i].set_xlim(1, MAX_DIFFICULTY)
+        axs[i].set_xlim(0, MAX_DIFFICULTY + 1)
         axs[i].set_xticklabels(xticks, fontsize=TICK_FONT_SIZE)
         # set xlabel
         axs[i].set_xlabel("Reasoning steps", fontsize=LABEL_FONT_SIZE)
 
-        # xticks = [50, *plotting_utils.DEC * 100, *plotting_utils.DEC * 1000]
-        # Set major and minor ticks
-        # major_ticks = [x for x in xticks if x % 1000 == 0]
-        # minor_ticks = [x for x in xticks if not (x % 1000 == 0)]
-        # axs[i].set_xticks(major_ticks)
-        # axs[i].set_xticks(minor_ticks, minor=True)
-        # # Set major tick labels
-        # axs[i].set_xticklabels(
-        #     # [f"$10^{int(np.log10(x))}$" for x in xticks
-        #        if np.log10(x).is_integer()], fontsize=TICK_FONT_SIZE
-        #     major_ticks, fontsize=TICK_FONT_SIZE
-        # )
-        # # set the xlim
-        # axs[i].set_xlim(min(x), max(x))
-        # # Set tick lengths
-        # axs[i].tick_params(axis="x", which="major", length=TICK_LENGTH)
-        # axs[i].tick_params(axis="x", which="minor", length=MINOR_TICK_LENGTH)
-
         # format y-axis
         # Find the right spacing for y-ticks: get the 10^y values that are closest to the min and max of y
-        y_range = max(y)
-        y_spacing = 10 ** np.floor(np.log10(y_range / 4))
-        major_yticks = [y for y in yticks if y % y_spacing == 0]
-        minor_yticks = [y for y in yticks if not (y % y_spacing == 0)]
+        # React has a maximum of 150 turns (50 max react steps * 3 thought+action+observation per step)
+        # CoT has a maximum of 4000 tokens enforced by the generation config
+        y_range = 150 if method == "react" else 4000
+        axs[i].set_ylim(0, y_range)
+        y_spacing = 10 ** np.ceil(np.log10(y_range / 4))
+        major_yticks = np.arange(0, y_range + 1, y_spacing)
+        minor_yticks = np.arange(0, y_range + 1, y_spacing / 2)
+        # major_yticks = [y for y in yticks if y % y_spacing == 0]
+        # minor_yticks = [y for y in yticks if not (y % y_spacing == 0)]
         axs[i].set_yticks(major_yticks)
         axs[i].tick_params(axis="y", which="major", length=TICK_LENGTH)
         axs[i].tick_params(axis="y", which="minor", length=MINOR_TICK_LENGTH)
         axs[i].set_yticks(minor_yticks, minor=True)
         # Set major tick labels
         axs[i].set_yticklabels(
-            # [f"$10^{int(np.log10(x))}$"
-            #  for x in xticks if np.log10(x).is_integer()], fontsize=TICK_FONT_SIZE
             major_yticks,
             fontsize=TICK_FONT_SIZE,
         )
@@ -205,36 +181,6 @@ for metric in METRICS:
             axs[i].set_ylabel("Number of tokens", fontsize=LABEL_FONT_SIZE)
         elif method == "react":
             axs[i].set_ylabel("Number of convo turns", fontsize=LABEL_FONT_SIZE)
-
-        # major_ticks = [x for x in xticks if x % 1000 == 0]
-        # minor_ticks = [x for x in xticks if not (x % 1000 == 0)]
-        # axs[i].set_xticks(major_ticks)
-        # axs[i].set_xticks(minor_ticks, minor=True)
-        # # Set major tick labels
-        # axs[i].set_xticklabels(
-        #     # [f"$10^{int(np.log10(x))}$"
-        #        for x in xticks if np.log10(x).is_integer()], fontsize=TICK_FONT_SIZE
-        #     major_ticks, fontsize=TICK_FONT_SIZE
-        # )
-        # if i == 0:
-        # yticks = [1, 5, 10, 15]
-        # axs[i].set_yticks(yticks)
-        # axs[i].tick_params(axis="y", which="major", length=TICK_LENGTH)
-        # axs[i].tick_params(axis="y", which="minor", length=MINOR_TICK_LENGTH)
-        # axs[i].set_yticks(range(1, MAX_DIFFICULTY + 1), minor=True)
-        # axs[i].tick_params(axis="y", which="major", labelsize=TICK_FONT_SIZE)
-        # axs[i].tick_params(axis="y", which="minor", labelsize=MINOR_TICK_LENGTH)
-        # axs[i].set_ylim(1, MAX_DIFFICULTY)
-        # axs[i].set_yticklabels(yticks, fontsize=TICK_FONT_SIZE)
-        # # set ylabel
-        # axs[i].set_ylabel("Reasoning steps", fontsize=LABEL_FONT_SIZE)
-        # else:
-        #     # turn off y-axis
-        #     axs[i].set_yticklabels([])
-        #     # turn off spines
-        #     axs[i].spines["left"].set_visible(False)
-        #     # turn off all ticks
-        #     axs[i].tick_params(axis="y", which="both", left=False, labelleft=False)
 
         # set title
         axs[i].set_title(f"{method_name} size={filter_by_size}", fontsize=LABEL_FONT_SIZE)
@@ -251,10 +197,18 @@ for metric in METRICS:
         wspace=0.2,  # Adjust horizontal space between subplots and reduce padding to the left and right
     )
     # add label to the x-axis of the figure
-    fig.text(0.5, 0.04, "Length of conversation", ha="center", fontsize=LABEL_FONT_SIZE)
+    fig.text(
+        0.5,
+        0.04,
+        f"Length of conversation, metric {metric} >= {filter_by_metric_threshold:0.2f}",
+        ha="center",
+        fontsize=LABEL_FONT_SIZE,
+    )
 
     fig_path = os.path.join(
-        figures_dir, f"convlen-difficulty-{metric}-size{filter_by_size}-{model.replace('/', '--')}.pdf"
+        figures_dir,
+        f"convlen-difficulty-{metric}>={filter_by_metric_threshold:0.2f}"
+        f"-size{filter_by_size}-{model.replace('/', '--')}.pdf",
     )
     logging.info(f"Saving to {os.path.abspath(fig_path)}")
     fig.savefig(fig_path)
