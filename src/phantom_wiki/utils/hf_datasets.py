@@ -57,21 +57,17 @@ SOFTWARE.
 
 
 class PhantomWikiDatasetBuilder(datasets.GeneratorBasedBuilder):
-    VERSION = datasets.Version("0.5.0")
-
     BUILDER_CONFIGS = [
         datasets.BuilderConfig(
             name="text-corpus",
-            version=VERSION,
             description="This config contains the documents in the text corpus",
         ),
         datasets.BuilderConfig(
             name="question-answer",
-            version=VERSION,
             description="This config contains the question-answer pairs",
         ),
         datasets.BuilderConfig(
-            name="database", version=VERSION, description="This config contains the complete Prolog database"
+            name="database", description="This config contains the complete Prolog database"
         ),
     ]
 
@@ -96,7 +92,7 @@ class PhantomWikiDatasetBuilder(datasets.GeneratorBasedBuilder):
                 {
                     "id": datasets.Value("string"),
                     "question": datasets.Value("string"),
-                    "intermediate_answers": datasets.Value("string"),
+                    "solution_traces": datasets.Value("string"),
                     "answer": datasets.Sequence(datasets.Value("string")),
                     "prolog": datasets.Features(
                         {

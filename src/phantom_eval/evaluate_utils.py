@@ -2,6 +2,7 @@
 """
 import logging
 import re
+import traceback
 from glob import glob
 
 import numpy as np
@@ -204,11 +205,15 @@ def get_evaluation_data(
     """
     df = get_predictions_with_qa(output_dir, method, dataset, from_local)
     # join the true answers with the appropriate separator since the scoring functions expect strings
-    df["EM"] = df.apply(lambda x: exact_match(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
-    df["precision"] = df.apply(lambda x: precision(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
-    df["recall"] = df.apply(lambda x: recall(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
-    df["f1"] = df.apply(lambda x: f1(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
-    return df
+    try:
+        df["EM"] = df.apply(lambda x: exact_match(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
+        df["precision"] = df.apply(lambda x: precision(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
+        df["recall"] = df.apply(lambda x: recall(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
+        df["f1"] = df.apply(lambda x: f1(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
+        return df
+    except ValueError:
+        logging.warning(f"Error in computing scores for {traceback.format_exc()}, returning empty dataframe.")
+        return pd.DataFrame()
 
 
 def mean(x):

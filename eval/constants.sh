@@ -84,8 +84,7 @@ elif [ "$DATASET" = "kilian-group/phantom-wiki-v1" ]; then
         done
     done
 else
-    echo "Unknown dataset: $DATASET. Cannot define SPLIT_LIST."
-    exit 1
+    echo "Unknown dataset: $DATASET. Please specify the split_list yourself with flags \`--split_list ...\`."
 fi
 
 # get list of support methods by running the following python command

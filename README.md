@@ -240,13 +240,15 @@ Example usages:
 > \[!TIP\]
 > To generate a slurm script for clusters at Cornell (g2, empire, aida) with the appropriate GPU allocation, run [`bash eval/create_eval.sh`](https://github.com/kilian-group/phantom-wiki/blob/main/eval/create_eval.sh) script and follow the prompted steps.
 
-📊 To generate the tables and figures, run the following command from the root directory:
+📊 To generate the tables and figures, run the following command from the root directory, replacing `METHODS` with a space-separated list of prompting techniques e.g. `"zeroshot cot zeroshot-rag cot-rag react"`.
 
 ```bash
-./eval/icml.sh OUTPUT_DIRECTORY METHOD
+./eval/evaluate.sh OUTPUT_DIRECTORY MODEL_NAME_OR_PATH METHODS
+# For local datasets, specify the dataset path and add the --from_local flag
+DATASET="/path/to/dataset/" ./eval/evaluate.sh OUTPUT_DIRECTORY MODEL_NAME_OR_PATH METHODS --from_local
 ```
 
-where OUTPUT_DIRECTORY and METHOD are the same as when generating the predictions. This script will create the following subdirectories in OUTPUT_DIRECTORY: `scores/` and `figures/`.
+Here, OUTPUT_DIRECTORY is the same as when generating the predictions. This script will create the following subdirectories in OUTPUT_DIRECTORY: `scores/` and `figures/`.
 
 ## 📃 Citation
 
