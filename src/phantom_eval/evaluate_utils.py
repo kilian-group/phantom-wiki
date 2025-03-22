@@ -21,6 +21,7 @@ MODELS = [
     "google/gemma-2-9b-it",
     "google/gemma-2-2b-it",
     "meta-llama/llama-3.3-70b-instruct",
+    "meta-llama/llama-3.3-70b-instruct-turbo",
     "meta-llama/llama-3.1-70b-instruct",
     "meta-llama/llama-3.1-8b-instruct",
     "meta-llama/llama-3.2-3b-instruct",
@@ -77,6 +78,8 @@ def _get_preds(output_dir, method):
     # NOTE: the actual filenames do not matter, since each row also contains
     # the model, split, batch_size, batch_number, and seed in the metadata and sampling params fields
     files = glob(f"{output_dir}/preds/{method}/*.json")
+    # sort the files by the batch number
+    files = sorted(files, key=lambda x: int(re.search(r"bn=(\d+)", x).group(1)))
 
     if len(files) == 0:
         logging.warning(f"No files found in {output_dir}/preds/{method}/*.json")
