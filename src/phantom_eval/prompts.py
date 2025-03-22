@@ -300,6 +300,48 @@ Question: How many uncles does the friend of Stacia Toombs have?
 Answer: First, I need to find the friends of Stacia Toombs. Based on the evidence, the friends of Stacia Toombs are Brian Beltran, Isiah Lutz, Leeann Hackworth, Lesley Lutz, Ryan Wang.  Now I need to find how many uncles they have.  An uncle is the brother of a parent.  Based on the evidence, Brian Beltran has no parents, Isiah Lutz has no parents, Leeann Hackworth has 2 parents, Lesley Lutz has 2 parents, and Ryan Wang has no parents.  Based on the evidence, the parents of Leeann Hackworth are Vicki Hackworth, Ricardo Hackworth. But both parents do not have brothers.  Based on the evidence, the parents of Lesley Lutz are Leisa Lutz, Isiah Lutz. The brother of Leisa Lutz is Virgil Hackworth, so he is an uncle of Lesley Lutz. Isiah Lutz has no brother.  So the friends of Stacia Toombs have 0, 0, 0, 1, 0 uncles. Unique is 0, 1. The answer is 0{constants.answer_sep}1.
 """
 
+COT_EXAMPLES_EASY_ONE_STEP = f"""\
+Example 1:
+Question: Who is the sister of Aida Wang?
+Answer: Based on the evidence, the sisters of Aida Wang are Barabara Beltran, Vicki Hackworth. The answer is Barabara Beltran{constants.answer_sep}Vicki Hackworth.
+
+Example 2:
+Question: Who is the child of Alvaro Smock?
+Answer: Based on the evidence, the children of Alvaro Smock are Eli Smock, Gene Smock. The answer is Eli Smock{constants.answer_sep}Gene Smock.
+
+Example 3:
+Question: How many friends does Ryan Wang have?
+Answer: Based on the evidence, the friends of Ryan Wang are Shelli Beltran, Stacia Toombs, Virgil Hackworth, Aida Wang. The answer is 4.
+
+Example 4:
+Question: Who is the husband of Lannie Smock?
+Answer: Based on the evidence, the husband of Lannie Smock is Alvaro Smock. The answer is Alvaro Smock.
+
+Example 5:
+Question: Who is the person whose occupation is biomedical scientist?
+Answer: Based on the evidence, the person whose occupation is biomedical scientist is Lannie Smock. The answer is Lannie Smock.
+
+Example 6:
+Question: Who is the brother of Aida Wang?
+Answer: Based on the evidence, Aida Wang has no brothers. The answer is .
+
+Example 7:
+Question: Who is the daughter of Alvaro Smock?
+Answer: Based on the evidence, Alvaro Smock has no daughters. The answer is .
+
+Example 8:
+Question: Who is the son of Ryan Wang?
+Answer: Based on the evidence, Ryan Wang has no sons. The answer is .
+
+Example 9:
+Question: Who is the person whose occupation is community education officer?
+Answer: Based on the evidence, there is no person whose occupation is community education officer. The answer is .
+
+Example 10:
+Question: Who is the person whose hobby is audiophile?
+Answer: Based on the evidence, there is no person whose hobby is audiophile. The answer is .
+"""
+
 
 class CoTLLMPrompt(LLMPrompt):
     COT_INSTRUCTION = f"""
