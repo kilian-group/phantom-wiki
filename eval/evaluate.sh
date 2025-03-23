@@ -1,61 +1,36 @@
 #!/bin/bash
-# Script to generate tables and plots for exploratory data analysis
-# Example usage (make sure you are in the repo root directory):
+# Script to generate tables and plots in the paper
+# Example usage (make sure you are in the repo root directory). Additional flags can be passed to the script after method list
 # ```bash
-# ./eval/evaluate.sh OUTPUT_DIRECTORY "zeroshot fewshot"
-# ./eval/evaluate.sh OUTPUT_DIRECTORY
+# ./eval/evaluate.sh OUTPUT_DIRECTORY MODEL_NAME_OR_PATH "zeroshot cot zeroshot-rag cot-rag react"
+# # For local datasets, specify the dataset path and add the --from_local flag
+# DATASET="/path/to/dataset/" ./eval/evaluate.sh OUTPUT_DIRECTORY MODEL_NAME_OR_PATH "zeroshot cot zeroshot-rag cot-rag react" --from_local
 # ```
-# The second command (without the method list) will use the default method list
 
-OUTPUT_DIR=$1
-
+# Load constants
 source eval/constants.sh
+# Parse command line arguments
+OUTPUT_DIR=$1
+MODEL=$2
+METHOD_LIST=$3
 
-# If second argument is provided, use that for METHOD_LIST
-if [ -z "$2" ]; then
-    echo "Using default method list"
-    METHOD_LIST=$METHODS
-else
-    METHOD_LIST=($2)
-fi
-
-echo "Splits: $SPLIT_LIST"
+# Get additional flags passed to the script
+shift 3
+cmd_args=$@
 
 echo "Dataset: $DATASET"
+echo "Model: $MODEL"
+echo "Methods: $METHOD_LIST"
+echo "Additional flags: $cmd_args"
 
-#
-# Figures for exporatory data analysis
-#
-for METHOD in "${METHOD_LIST[@]}"
-do
-    # csv results
-    python eval/format_split_accuracy.py -od $OUTPUT_DIR --method $METHOD --dataset $DATASET
-    python eval/format_split_type_accuracy.py -od $OUTPUT_DIR --method $METHOD --dataset $DATASET
+# Figure 1: Reasoning and retrieval heatmaps
+python eval/plot_reasoning_retrieval.py -od $OUTPUT_DIR --dataset $DATASET -m $MODEL $cmd_args
 
-    # plot results
-    python eval/plot_size_accuracy.py -od $OUTPUT_DIR --method $METHOD --dataset $DATASET
-    for data_size in $DATA_SIZE_LIST
-    do
-        python eval/plot_hops_accuracy.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_QUESTION_DEPTH --size $data_size --dataset $DATASET
-        python eval/plot_difficulty_accuracy.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_QUESTION_DEPTH --size $data_size --dataset $DATASET
-        python eval/plot_aggregation_accuracy.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_QUESTION_DEPTH --size $data_size --dataset $DATASET
-        python eval/plot_solutions_accuracy.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_QUESTION_DEPTH --size $data_size --dataset $DATASET
-        if [ $METHOD == "react" ] || [ $METHOD == "act" ]; then
-            python eval/plot_hops_interactions.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_QUESTION_DEPTH --size $data_size --dataset $DATASET
-            python eval/plot_difficulty_interactions.py -od $OUTPUT_DIR --method $METHOD --depth $DATA_QUESTION_DEPTH --size $data_size --dataset $DATASET
-        fi
-    done
+# Table 2: F1 scores
+python eval/format_leaderboard.py -od $OUTPUT_DIR --dataset $DATASET --model_list $MODEL --method_list $METHOD_LIST $cmd_args
 
-    # plot results for all splits
-    python eval/plot_difficulty_accuracy_all_splits.py -od $OUTPUT_DIR --method $METHOD --split_list $SPLIT_LIST --dataset $DATASET
+# Figure 3: F1 scores as a function of difficulty, as measured by reasoning steps
+python eval/plot_reasoning.py -od $OUTPUT_DIR --dataset $DATASET --model_list $MODEL $cmd_args
 
-    # plot precision-recall for all splits
-    python eval/plot_prec_recall_all_splits.py -od $OUTPUT_DIR --method $METHOD --split_list $SPLIT_LIST
-
-    # plot per-model contour plots
-    python eval/plot_size_hops_accuracy_per_model.py -od $OUTPUT_DIR --method $METHOD --dataset $DATASET
-    python eval/plot_size_difficulty_accuracy_per_model.py -od $OUTPUT_DIR --method $METHOD --dataset $DATASET
-    # plot pareto curves
-    python eval/plot_size_hops_accuracy.py -od $OUTPUT_DIR --method $METHOD --dataset $DATASET
-    python eval/plot_size_difficulty_accuracy.py -od $OUTPUT_DIR --method $METHOD --dataset $DATASET
-done
+# Figure 4: F1 scores as a function of universe size
+python eval/plot_retrieval.py -od $OUTPUT_DIR --dataset $DATASET --model_list $MODEL $cmd_args
