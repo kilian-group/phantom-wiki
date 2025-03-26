@@ -8,7 +8,7 @@ config_dict = {
     "dataset_name": "",
     "split": ['depth_20_size_50_seed_1'],
     "seed": 1,
-    "index_path": "indexes/",
+    "index_path": "indexes/bm25/",
     "corpus_path": "indexes/depth_20_size_50_seed_1.jsonl",
     # TODO: change to vllm later, using gpt-4o only for debugging purpose
     "framework": "openai",
