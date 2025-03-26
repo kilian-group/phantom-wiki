@@ -33,11 +33,13 @@ python save_corpus_as_jsonl.py -od indexes --split_list depth_20_size_50_seed_1
 
 2. Build index with BM25s:
 
-<!-- NOTE: using bm25s threw an error for me -->
-<!-- ```bash
-python -m flashrag.retriever.index_builder   --retrieval_method bm25   --corpus_path indexes/depth_20_size_50_seed_1.jsonl   --bm25_backend bm25s
-``` -->
+Upgrade bm25s: `pip install bm25s --upgrade`
 
+```bash
+python -m flashrag.retriever.index_builder --retrieval_method bm25 --corpus_path indexes/depth_20_size_50_seed_1.jsonl --bm25_backend bm25s
+```
+
+NOTE (Chao): curently pyserini backend does not work
 ```bash
 python -m flashrag.retriever.index_builder --retrieval_method bm25 --corpus_path indexes/depth_20_size_50_seed_1.jsonl --bm25_backend pyserini --save_dir indexes/
 ```
