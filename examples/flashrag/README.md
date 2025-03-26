@@ -25,11 +25,12 @@ References:
 
 ### Instructions to run IRCoT on PhantomWiki
 
-1. Save corpus to .jsonl format:
+1. Save corpus and QA pairs as .jsonl files:
 
 ```bash
-python save_corpus_as_jsonl.py -od indexes --split_list depth_20_size_50_seed_1
+python save_as_jsonl.py --split_list depth_20_size_50_seed_1
 ```
+NOTE: this will save the corpus to `indexes/depth_20_size_50_seed_1.jsonl` and the QA pairs to `dataset/phantom-wiki-v1/depth_20_size_50_seed_1.jsonl`.
 
 2. Build index with BM25s:
 

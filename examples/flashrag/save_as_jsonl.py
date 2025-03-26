@@ -11,6 +11,7 @@ If using local dataset, add the `--from_local` flag.
 
 import os
 import json
+from tqdm import tqdm
 
 from phantom_eval.utils import load_data
 from phantom_eval import get_parser
@@ -19,22 +20,32 @@ parser = get_parser()
 args = parser.parse_args()
 split_list = args.split_list
 dataset = args.dataset
-output_dir = args.output_dir
+index_dir = "indexes"  # args.output_dir
 from_local = args.from_local
 
 assert len(split_list) == 1, "Only one split is supported"
 split = split_list[0]
 
-os.makedirs(output_dir, exist_ok=True)
+os.makedirs(index_dir, exist_ok=True)
+dataset_dir = os.path.join("dataset", dataset.split("/")[-1])
+os.makedirs(dataset_dir, exist_ok=True)
 
 for split in split_list:
     ds = load_data(dataset, split, from_local)
 
-    save_path = os.path.join(output_dir, f"{split}.jsonl")
-    print(f"Saving corpus to {save_path}")
-    with open(save_path, "w") as f:
-        for item in ds['text'].to_list():
+    corpus_path = os.path.join(index_dir, f"{split}.jsonl")
+    with open(corpus_path, "w") as f:
+        for item in tqdm(ds['text'].to_list(), desc="Saving corpus"):
             f.write(json.dumps({
                 "id": item['title'],
                 "contents": item['article']
+            }) + "\n")
+
+    qa_path = os.path.join(dataset_dir, f"{split}.jsonl")
+    with open(qa_path, "w") as f:
+        for item in tqdm(ds['qa_pairs'].to_list(), desc="Saving question-answer pairs"):
+            f.write(json.dumps({
+                "id": item['id'],
+                "question": item['question'],
+                "golden_answers": item['answer']
             }) + "\n")
