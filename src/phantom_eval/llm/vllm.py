@@ -95,7 +95,7 @@ class VLLMChat(CommonLLMChat):
             for content in message.content:
                 match content:
                     case ContentTextMessage(text=text):
-                        formatted_messages.append({"role": "user", "content": text})
+                        formatted_messages.append({"role": message.role, "content": text})
         return formatted_messages
 
     def _parse_api_output(self, response: object) -> LLMChatResponse:
