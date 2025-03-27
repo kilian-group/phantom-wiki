@@ -27,7 +27,7 @@ def get_parser() -> argparse.ArgumentParser:
         type=str.lower,
         default="zeroshot",
         help="Evaluation method. " "NOTE: to add a new method, please submit a PR with the implementation",
-        choices=SUPPORTED_METHOD_NAMES,
+        # choices=SUPPORTED_METHOD_NAMES,
     )
 
     # Method params
