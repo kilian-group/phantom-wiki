@@ -27,6 +27,7 @@ from phantom_eval.utils import load_data
 def get_pipeline(method, config):
     match method:
         case "ircot":
+            # TODO: increase max_iter (current default is 2)
             return IRCOTPipeline(config)
         case "selfask":
             raise NotImplementedError("TODO: implement SelfAsk pipeline")
