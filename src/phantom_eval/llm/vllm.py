@@ -1,9 +1,11 @@
 import asyncio
 import logging
+import uuid
 
 import openai
 from transformers import AutoTokenizer
 from vllm import LLM, SamplingParams
+from vllm.lora.request import LoRARequest
 
 from phantom_eval._types import ContentTextMessage, Conversation, LLMChatResponse
 from phantom_eval.gpu_utils import get_gpu_count
@@ -18,6 +20,7 @@ class VLLMChat(CommonLLMChat):
         model_name: str,
         max_model_len: int | None = None,
         tensor_parallel_size: int | None = None,
+        lora_path: str | None = None,
         use_api: bool = False,
         port: int = 8000,
         is_deepseek_r1_model: bool = False,
@@ -28,6 +31,8 @@ class VLLMChat(CommonLLMChat):
                 Defaults to None.
             tensor_parallel_size (int): Number of GPUs to use for tensor parallelism.
                 Defaults to None (uses all available GPUs).
+            lora_path (str): Path to the LoRA weights.
+                Defaults to None.
             use_api (bool): Whether to use the vllm server or offline inference
                 Defaults to False.
                 NOTE: offline inference only works for batch_generate_response
@@ -49,7 +54,9 @@ class VLLMChat(CommonLLMChat):
         else:
             self.ADDITIONAL_STOP = ["<|eot_id|>"]
 
+        self.lora_path = lora_path
         self.use_api = use_api
+
         if self.use_api:
             logger.info("Using vLLM server for inference")
             try:
@@ -81,10 +88,13 @@ class VLLMChat(CommonLLMChat):
             else:
                 self.tensor_parallel_size = tensor_parallel_size
             # instead of initializing a client, we initialize the LLM object
+            if self.lora_path is not None:
+                logger.info(f"Using LoRA weights {self.lora_path} for inference")
             self.llm = LLM(
                 model=self.model_name,
                 max_model_len=self.max_model_len,
                 tensor_parallel_size=self.tensor_parallel_size,
+                enable_lora=self.lora_path is not None,
             )
             # get tokenizer for constructing prompt
             self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, trust_remote_code=True)
@@ -95,7 +105,7 @@ class VLLMChat(CommonLLMChat):
             for content in message.content:
                 match content:
                     case ContentTextMessage(text=text):
-                        formatted_messages.append({"role": "user", "content": text})
+                        formatted_messages.append({"role": message.role, "content": text})
         return formatted_messages
 
     def _parse_api_output(self, response: object) -> LLMChatResponse:
@@ -175,7 +185,17 @@ class VLLMChat(CommonLLMChat):
                 )
                 for conv in convs
             ]
-            responses = self.llm.generate(prompts, sampling_params)
+
+            if self.lora_path is None:
+                lora_request = None
+            else:
+                # https://docs.vllm.ai/en/latest/features/lora.html
+                # Arguments to LoRARequest are: (a human-identifiable name, a unique id for LoRA module,
+                # and the path to the LoRA weights)
+                unique_id = uuid.uuid4().int % (2**32)  # Unique 32-bit integer
+                lora_request = LoRARequest("lora", unique_id, self.lora_path)
+
+            responses = self.llm.generate(prompts, sampling_params, lora_request=lora_request)
             parsed_responses = [self._parse_batch_vllm_output(response) for response in responses]
             return parsed_responses
 
