@@ -1,4 +1,4 @@
-"""Script to run IRCoT on PhantomWiki.
+"""Script to obtain predictions from methods in FlashRAG on PhantomWiki.
 
 This script performs both the indexing and the inference.
 
