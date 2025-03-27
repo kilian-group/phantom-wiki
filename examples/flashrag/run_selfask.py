@@ -7,8 +7,8 @@ from flashrag.utils import get_dataset
 from flashrag.pipeline import SelfAskPipeline
 
 split_list = ["depth_20_size_50_seed_1"]
-# split_list = ["test_7"]
-model_name = "Llama-3.1-8B-Instruct"
+# model_name = "Qwen/Qwen2-7B-Instruct"
+model_name = "meta-llama/Llama-3.1-8B-Instruct"
 output_dir = "selfask_output"
 seed = 1
 
@@ -17,11 +17,13 @@ config_dict = {
     "dataset_name": "phantom-wiki-v1",
     "split": split_list,
     "seed": 1,
+    "gpu_id": "0,1,2,3,4,5,6,7",
     "index_path": "indexes/bm25/",
     "corpus_path": "indexes/depth_20_size_50_seed_1.jsonl",
     "model2path": {
-        model_name: "Llama-3.1-8B-Instruct"
+        # model_name: "Llama-3.1-8B-Instruct",
     },
+    # "framework": "openai",
     "generator_model": model_name,
     "retrieval_method": "bm25",
     "bm25_backend": "bm25s",
@@ -38,7 +40,7 @@ preds_dir = os.path.join(output_dir, "preds")
 os.makedirs(preds_dir, exist_ok=True)
 
 for split, test_data in all_split.items():
-    pipeline = SelfAskPipeline(config)
+    pipeline = SelfAskPipeline(config, max_iter=15, single_hop=False)
     output_dataset = pipeline.run(test_data,do_eval=True)
 
     # save the output dataset to a json file
