@@ -4,9 +4,9 @@ from flashrag.pipeline import SelfAskPipeline
 
 
 config_dict = {
-    "data_dir": "indexes/",
-    "dataset_name": "",
-    "split": ['depth_20_size_50_seed_1'],
+    "data_dir": "wiki-v1-easy/",
+    "dataset_name": "depth_20_size_50_seed_1",
+    "split": ['question'],
     "seed": 1,
     "index_path": "indexes/bm25/",
     "corpus_path": "indexes/depth_20_size_50_seed_1.jsonl",
