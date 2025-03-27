@@ -13,25 +13,25 @@ import logging
 # %%
 import os
 
-from phantom_eval import get_parser
-from phantom_eval.utils import setup_logging
-
-setup_logging("INFO")
 import matplotlib.lines as lines
 import matplotlib.pyplot as plt
 
-# utils for plotting
-plt.rcParams.update(
-    {
-        "font.family": "serif",
-        "font.serif": ["Times New Roman"],
-        "axes.spines.top": False,
-        "axes.spines.right": False,
-    }
-)
-
-from phantom_eval import plotting_utils
+from phantom_eval import get_parser, plotting_utils
 from phantom_eval.evaluate_utils import get_evaluation_data, mean, pivot_mean_std, std
+from phantom_eval.utils import setup_logging
+
+setup_logging("INFO")
+
+# utils for plotting
+# plt.rcParams.update(
+#     {
+#         "font.family": "serif",
+#         "font.serif": ["Times New Roman"],
+#         "axes.spines.top": False,
+#         "axes.spines.right": False,
+#     }
+# )
+
 
 parser = get_parser()
 parser.add_argument("--filter_by_depth", type=int, default=20, help="Depth to plot accuracies for")
@@ -104,7 +104,9 @@ for metric in METRICS:
 
             for size in sizes_in_preds:
                 acc_mean_std_size = acc_mean_std[acc_mean_std["_size"].astype(int) == size]
-                df_mean, df_std = pivot_mean_std(acc_mean_std_size, metric, independent_variable=DIFFICULTY)
+                df_mean, df_std = pivot_mean_std(
+                    acc_mean_std_size, metric, independent_variable=DIFFICULTY, enforce_order=False
+                )
                 x = df_mean.columns
                 for model_name, row in df_mean.iterrows():
                     if model_name not in model_list:
@@ -114,9 +116,9 @@ for metric in METRICS:
                     axs[i].plot(
                         x,
                         y,
-                        color=plotting_utils.COLORS[model_name],
+                        color=plotting_utils.COLORS.get(model_name.lower(), "black"),
                         # NOTE: determine the linestyle using the method
-                        linestyle=plotting_utils.METHOD_LINESTYLES[method],
+                        linestyle=plotting_utils.METHOD_LINESTYLES.get(method.lower(), "solid"),
                         linewidth=1,
                         alpha=plotting_utils.LINE_ALPHA,
                     )
@@ -124,7 +126,7 @@ for metric in METRICS:
                     axs[i].scatter(
                         x,
                         y,
-                        color=plotting_utils.COLORS[model_name],
+                        color=plotting_utils.COLORS.get(model_name.lower(), "black"),
                         s=plotting_utils.MARKER_SIZE,  # marker size
                         alpha=plotting_utils.MARKER_ALPHA,
                         clip_on=False,
@@ -138,11 +140,11 @@ for metric in METRICS:
                         y - yerr,
                         y + yerr,
                         alpha=color_intensity_for_fill,
-                        color=plotting_utils.COLORS[model_name],
+                        color=plotting_utils.COLORS.get(model_name.lower(), "black"),
                     )
 
             # Add method to legend
-            key = f"{plotting_utils.METHOD_ALIASES[method]}"
+            key = f"{plotting_utils.METHOD_ALIASES.get(method.lower(), method)}"
             if key not in method_handles:
                 method_handles[key] = lines.Line2D(
                     [0],
@@ -193,12 +195,12 @@ for metric in METRICS:
     # Having the combination of model and method in the legend is too crowded
     model_handles = []
     for model in model_list:
-        key = f"{plotting_utils.MODEL_ALIASES[model]}"
+        key = f"{plotting_utils.MODEL_ALIASES.get(model.lower(), model)}"
         model_handles.append(
             lines.Line2D(
                 [0],
                 [0],
-                color=plotting_utils.COLORS[model],
+                color=plotting_utils.COLORS.get(model.lower(), "black"),
                 label=key,
                 linewidth=1,
             )
