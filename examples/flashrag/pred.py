@@ -20,7 +20,7 @@ from flashrag.config import Config
 from flashrag.utils import get_dataset
 from flashrag.pipeline import IRCOTPipeline
 from flashrag.retriever.index_builder import Index_Builder
-from argparse import ArgumentParser
+
 from phantom_eval import get_parser
 from phantom_eval.utils import load_data
 
@@ -33,8 +33,7 @@ def get_pipeline(method, config):
         case _:
             raise ValueError(f"Method {method} not supported")
 
-parser = ArgumentParser(parents=[get_parser()], conflict_handler="resolve")
-parser.add_argument("--method", type=str.lower, default="ircot")
+parser = get_parser()
 args = parser.parse_args()
 output_dir = Path(args.output_dir)
 dataset = args.dataset
@@ -142,7 +141,9 @@ for split in split_list:
                         "batch_number": batch_number,
                         "type": None,
                     },
-                    "inference_params": {}, # inf_gen_config.model_dump(),
+                    "inference_params": {
+                        "seed": seed,
+                    },
                     "model_kwargs": {}, # model_kwargs,
                     "agent_kwargs": {}, # agent_kwargs,
                     "usage": {}, # responses[i].usage,
