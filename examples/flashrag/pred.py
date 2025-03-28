@@ -24,11 +24,11 @@ from flashrag.retriever.index_builder import Index_Builder
 from phantom_eval import get_parser
 from phantom_eval.utils import load_data
 
-def get_pipeline(method, config):
+def get_pipeline(method, config, max_iter=2):
     match method:
         case "ircot":
             # TODO: increase max_iter (current default is 2)
-            return IRCOTPipeline(config)
+            return IRCOTPipeline(config, max_iter=max_iter)
         case "selfask":
             raise NotImplementedError("TODO: implement SelfAsk pipeline")
         case _:
@@ -42,6 +42,7 @@ split_list = args.split_list
 model_name = args.model_name
 from_local = args.from_local
 method = args.method
+max_iter = args.react_max_steps  # NOTE (Albert): we use react_max_steps as an alias for max_iter
 
 index_dir = output_dir / "indexes"
 index_dir.mkdir(parents=True, exist_ok=True)
@@ -107,7 +108,7 @@ for split in split_list:
         all_split = get_dataset(config)
 
         for split, test_data in all_split.items():
-            pipeline = get_pipeline(method, config)
+            pipeline = get_pipeline(method, config, max_iter)
             output_dataset = pipeline.run(test_data,do_eval=True)
 
             # save the output dataset to a json file
@@ -146,7 +147,9 @@ for split in split_list:
                         "seed": seed,
                     },
                     "model_kwargs": {}, # model_kwargs,
-                    "agent_kwargs": {}, # agent_kwargs,
+                    "agent_kwargs": {
+                        'max_iter': max_iter,
+                    }, # agent_kwargs,
                     "usage": {}, # responses[i].usage,
                 }
 
