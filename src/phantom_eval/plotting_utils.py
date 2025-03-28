@@ -34,7 +34,7 @@ COLORS = {
     "qwen/qwen2.5-7b-instruct": "tab:red",
     "qwen/qwen2.5-3b-instruct": "tab:red",
     "qwen/qwen2.5-1.5b-instruct": "tab:red",
-    "qwen/qwen2.5-0.5b-instruct": "tab:red",
+    "qwen/qwen2.5-0.5b-instruct": "#ff9999",  # NOTE: light red
 }
 LINESTYLES = {
     "google/gemma-3-1b-it": "dotted",
