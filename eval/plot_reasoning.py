@@ -12,6 +12,7 @@ import logging
 
 # %%
 import os
+import random
 
 import matplotlib.lines as lines
 import matplotlib.pyplot as plt
@@ -38,12 +39,14 @@ parser.add_argument("--filter_by_depth", type=int, default=20, help="Depth to pl
 parser.add_argument(
     "--model_list", nargs="+", default=plotting_utils.DEFAULT_MODEL_LIST, help="List of models to plot"
 )
+parser.add_argument("--seed", type=int, default=42, help="Random seed for color generation")
 args = parser.parse_args()
 output_dir = args.output_dir
 model_list = args.model_list
 dataset = args.dataset
 filter_by_depth = args.filter_by_depth
 from_local = args.from_local
+seed = args.seed
 
 figures_dir = os.path.join(output_dir, "figures")
 os.makedirs(figures_dir, exist_ok=True)
@@ -58,6 +61,27 @@ METRICS = [
 MAX_DIFFICULTY = 15
 DIFFICULTY = "difficulty"
 
+random.seed(seed)
+
+
+def random_rgb_color():
+    """Generate a random RGB color tuple."""
+    return (random.random(), random.random(), random.random())
+
+
+COLORS = {}
+
+
+def get_color(model):
+    model_name = model.lower()
+    if model_name in plotting_utils.COLORS:
+        return plotting_utils.COLORS[model_name]
+    else:
+        if model_name not in COLORS:
+            COLORS[model_name] = random_rgb_color()
+        return COLORS[model_name]
+
+
 for metric in METRICS:
     # fig = plt.figure(figsize=(3.25, 2.75)) # exact dimensions of ICML single column width
     # replace this with a subplot figure with 1 rows and 3 columns
@@ -66,8 +90,8 @@ for metric in METRICS:
     for i, (name, methods) in enumerate(
         [
             ("In-Context", plotting_utils.INCONTEXT_METHODS),
-            ("RAG", plotting_utils.RAG_METHODS),
-            ("Agentic", plotting_utils.AGENTIC_METHODS),
+            # ("RAG", plotting_utils.RAG_METHODS),
+            # ("Agentic", plotting_utils.AGENTIC_METHODS),
         ]
     ):
         method_handles = {}
@@ -116,7 +140,7 @@ for metric in METRICS:
                     axs[i].plot(
                         x,
                         y,
-                        color=plotting_utils.COLORS.get(model_name.lower(), "black"),
+                        color=get_color(model_name),
                         # NOTE: determine the linestyle using the method
                         linestyle=plotting_utils.METHOD_LINESTYLES.get(method.lower(), "solid"),
                         linewidth=1,
@@ -126,7 +150,7 @@ for metric in METRICS:
                     axs[i].scatter(
                         x,
                         y,
-                        color=plotting_utils.COLORS.get(model_name.lower(), "black"),
+                        color=get_color(model_name),
                         s=plotting_utils.MARKER_SIZE,  # marker size
                         alpha=plotting_utils.MARKER_ALPHA,
                         clip_on=False,
@@ -140,7 +164,7 @@ for metric in METRICS:
                         y - yerr,
                         y + yerr,
                         alpha=color_intensity_for_fill,
-                        color=plotting_utils.COLORS.get(model_name.lower(), "black"),
+                        color=get_color(model_name),
                     )
 
             # Add method to legend
@@ -200,7 +224,7 @@ for metric in METRICS:
             lines.Line2D(
                 [0],
                 [0],
-                color=plotting_utils.COLORS.get(model.lower(), "black"),
+                color=get_color(model),
                 label=key,
                 linewidth=1,
             )
@@ -211,7 +235,7 @@ for metric in METRICS:
         handles=model_handles,
         fontsize=plotting_utils.LEGEND_FONT_SIZE,
         loc="lower center",
-        ncol=6,
+        ncol=2,
         handlelength=4,
         frameon=False,  # Remove bounding box around legend
         bbox_to_anchor=(0.5, 0.0),
