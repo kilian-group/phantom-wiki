@@ -3,8 +3,11 @@
 Generates a table with rows for each model, split, and seed combination.
 Prints out the leaderboard in latex and markdown formats -- used in the paper.
 
-Example:
-    python eval/format_leaderboard.py -od out --method_list zeroshot cot react
+Example usage:
+```bash
+python eval/format_leaderboard.py -od out --method_list zeroshot cot react \
+    --model_list meta-llama/llama-3.3-70b-instruct
+```
 """
 import os
 

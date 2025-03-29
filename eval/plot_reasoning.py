@@ -4,8 +4,10 @@ Generates a plot for each metric (EM, precision, recall, f1) with the difficulty
 on the y-axis.
 Saves the plots to the figures directory of the output directory.
 
-Example:
-    python eval/plot_reasoning.py -od out --filter_by_depth 20
+Example usage:
+```bash
+python eval/plot_reasoning.py -od out --filter_by_depth 20 --model_list meta-llama/llama-3.3-70b-instruct
+```
 """
 
 import logging
@@ -90,8 +92,8 @@ for metric in METRICS:
     for i, (name, methods) in enumerate(
         [
             ("In-Context", plotting_utils.INCONTEXT_METHODS),
-            # ("RAG", plotting_utils.RAG_METHODS),
-            # ("Agentic", plotting_utils.AGENTIC_METHODS),
+            ("RAG", plotting_utils.RAG_METHODS),
+            ("Agentic", plotting_utils.AGENTIC_METHODS),
         ]
     ):
         method_handles = {}
