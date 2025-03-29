@@ -39,7 +39,7 @@ All files except "articles.json" are copied from the original dataset at locatio
 Finally,
 run phantom_eval with this:
 ```
-python -m phantom_eval --server vllm --method zeroshot --dataset /share/nikola/phantom-wiki/data/wiki-llama-paraphrased/short-prompt --split_list depth_20_size_50_seed_1 depth_20_size_50_seed_2 depth_20_size_50_seed_3 -od out-0329-rephrased-short --model_name meta-llama/llama-3.3-70b-instruct
+python -m phantom_eval --server vllm --method zeroshot --dataset /share/nikola/phantom-wiki/data/wiki-llama-paraphrased/short-prompt --from_local --split_list depth_20_size_50_seed_1 depth_20_size_50_seed_2 depth_20_size_50_seed_3 -od out-0329-rephrased-short --model_name meta-llama/llama-3.3-70b-instruct
 ```
 """
 
