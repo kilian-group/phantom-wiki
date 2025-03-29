@@ -70,6 +70,8 @@ METHOD_LINESTYLES = {
     "cot-rag": "-",
     "act": "--",
     "react": "-",
+    "selfask": "dotted",
+    "ircot": "dashdot",
 }
 HATCHSTYLES = {
     "google/gemma-2-27b-it": "/",
@@ -165,8 +167,10 @@ INCONTEXT_METHODS = [
     "cot",
 ]
 RAG_METHODS = [
-    "zeroshot-rag",
-    "cot-rag",
+    # "zeroshot-rag",
+    # "cot-rag",
+    "selfask",
+    # "ircot",
 ]
 AGENTIC_METHODS = [
     "react",
