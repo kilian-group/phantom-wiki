@@ -72,12 +72,14 @@ class Generator:
             # decide what to do
             add_parents = add_child = False
             if can_add_parents and can_add_children:  # -> randomly add either a child or parents
-                add_parents = random.random() > 0.5
+                add_parents = (random.random() > 0.5) and (person_count <= max_family_tree_size - 2)
                 add_child = not add_parents
             else:
                 add_parents = can_add_parents
                 add_child = can_add_children
 
+            # NOTE: this block increases person_count by 1
+            # if current_person is already married and 2 if not
             if add_child:
                 # check whether the chosen person is married, if not -> add a partner
                 if current_person.married_to:
@@ -90,6 +92,9 @@ class Generator:
                     current_person.married_to = spouse
                     fam_tree.append(spouse)
                     person_count += 1
+                    # if person_count >= max_family_tree_size:
+                    #     import pdb; pdb.set_trace()
+                    #     break
 
                 # create child
                 child = self.person_factory.create_child(
@@ -107,7 +112,7 @@ class Generator:
                 max_level = max(max_level, child.tree_level)
                 person_count += 1
 
-            elif add_parents:
+            elif add_parents:  # NOTE: this block increases person_count by 2
                 # Create parents
                 dad, mom = self.person_factory.create_parents(current_person.tree_level - 1, current_person)
 
