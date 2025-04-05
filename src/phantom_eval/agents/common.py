@@ -12,6 +12,7 @@ using different LLM prompts and chat interfaces.
 """
 
 import abc
+import logging
 import subprocess
 from collections import Counter
 
@@ -25,6 +26,8 @@ from phantom_eval.gpu_utils import get_gpu_count
 from phantom_eval.llm import InferenceGenerationConfig, LLMChat, aggregate_usage
 from phantom_eval.prompts import LLMPrompt
 from phantom_eval.score import normalize_pred
+
+logger = logging.getLogger(__name__)
 
 
 class Agent(abc.ABC):
@@ -186,6 +189,7 @@ class RAGMixin:
             embedding_model_name (str): The embedding method for the vector database.
                 All embedding models available through huggingface and loadable by vLLM are supported.
                 Defaults to "whereisai/uae-large-v1".
+                BM25 is also supported, but requires running `pip install bm25s[full]`.
             retriever_num_documents (int): Number of documents retrieved.
                 Defaults to 4. See
                 "https://api.python.langchain.com/en/latest/vectorstores/langchain_community.vectorstores.faiss.FAISS.html#langchain_community.vectorstores.faiss.FAISS.as_retriever"
@@ -193,39 +197,76 @@ class RAGMixin:
             port (int): The port number to use for the embedding server.
                 Defaults to 8001.
         """
-
         self.embedding_model_name = embedding_model_name
-        texts = text_corpus["article"].tolist()
+        self.retriever_num_documents = retriever_num_documents
 
-        # Launch server on the last GPU
-        subprocess.call(
-            [
-                "./src/phantom_eval/launch_embedding_server.sh",
-                embedding_model_name,
-                str(port),
-                str(get_gpu_count() - 1),
-            ]
-        )
+        if self.embedding_model_name == "bm25":
+            from bm25s import BM25
+            from bm25s.tokenization import Tokenizer
+            from Stemmer import Stemmer
 
-        # Embed documents and build retriever
-        BASE_URL = f"http://0.0.0.0:{port}/v1"
-        API_KEY = "token-abc123"
-        client = openai.OpenAI(
-            base_url=BASE_URL,
-            api_key=API_KEY,
-        )
-        embeddings = CustomEmbeddings(client)
-        vectorstore = FAISS.from_texts(texts, embeddings)
-        self.retriever = vectorstore.as_retriever(search_kwargs={"k": retriever_num_documents})
+            logger.debug("Indexing text corpus...")
+            corpus_text = text_corpus["article"].tolist()
+            # Initialize BM25 retriever with corpus so that self.retriever.retrieve()
+            # will return documents instead of indices
+            self.retriever = BM25(corpus=corpus_text, backend="numba")
+            # Initialize tokenizer
+            self.tokenizer = Tokenizer(stopwords="en", stemmer=Stemmer("english"))
+            # Tokenize corpus
+            corpus_tokens = self.tokenizer.tokenize(corpus_text, return_as="tuple")
+            # Index corpus
+            self.retriever.index(corpus_tokens)
+        else:
+            texts = text_corpus["article"].tolist()
+
+            # Launch server on the last GPU
+            subprocess.call(
+                [
+                    "./src/phantom_eval/launch_embedding_server.sh",
+                    embedding_model_name,
+                    str(port),
+                    str(get_gpu_count() - 1),
+                ]
+            )
+
+            # Embed documents and build retriever
+            BASE_URL = f"http://0.0.0.0:{port}/v1"
+            API_KEY = "token-abc123"
+            client = openai.OpenAI(
+                base_url=BASE_URL,
+                api_key=API_KEY,
+            )
+            embeddings = CustomEmbeddings(client)
+            vectorstore = FAISS.from_texts(texts, embeddings)
+            self.retriever = vectorstore.as_retriever(search_kwargs={"k": retriever_num_documents})
 
     def get_RAG_evidence(self, question: str) -> str:
         """
         Returns retrieved articles given the question from the text corpus.
         The retrieved articles are concatenated as a string.
         """
-        self.format_RAG_docs = lambda docs: "\n================\n\n".join(doc.page_content for doc in docs)
-        evidence = self.format_RAG_docs(self.retriever.invoke(question))
-        return evidence
+        if self.embedding_model_name == "bm25":
+            # NOTE: tokenize() is a batch operation by default,
+            # but we only want to tokenize one question at a time,
+            # so we create a list with a single element
+            query_tokens = self.tokenizer.tokenize(
+                texts=[question],
+                return_as="tuple",
+                update_vocab=False,
+            )
+            # NOTE: retrieve() is a batch operation by default,
+            # but we pass in a list with a single element,
+            # so we index into the first element to get the single result
+            docs = list(
+                self.retriever.retrieve(
+                    query_tokens=query_tokens,
+                    k=self.retriever_num_documents,
+                    return_as="documents",
+                )[0]
+            )
+        else:
+            docs = [doc.page_content for doc in self.retriever.invoke(question)]
+        return "\n================\n\n".join(docs)
 
 
 def get_all_evidence(text_corpus: pd.DataFrame) -> str:

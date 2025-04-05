@@ -72,6 +72,7 @@ eval = [
     "tiktoken",
     "together",
     "transformers>=4.47.1",
+    "bm25s[full]",
 ]
 
 [project.scripts]
