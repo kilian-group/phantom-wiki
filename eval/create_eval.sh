@@ -12,6 +12,12 @@ if [[ ! " ${METHODS[@]} " =~ " ${METHOD} " ]]; then
     echo "Invalid method. Exiting..."
     exit 1
 fi
+# if model contains the word rag, prompt the user to enter the retriever method, else set it to the default value
+if [[ "$METHOD" =~ "rag" ]]; then
+    read -p "Enter the retriever method: " RETRIEVER_METHOD
+else
+    RETRIEVER_METHOD=""
+fi
 read -p "Enter the model name or absolute path: " MODEL_NAME_OR_PATH
 # Remove the final / if present, and get an alias for the model
 MODEL_ALIAS=$(basename ${MODEL_NAME_OR_PATH%/})
@@ -218,7 +224,7 @@ fi
 
 if [[ "$METHOD" =~ "rag" ]]; then
     cmd+=" \
-        --retriever_method whereisai/uae-large-v1"
+        --retriever_method $RETRIEVER_METHOD"
 fi
 echo \$cmd
 echo "##################################################"

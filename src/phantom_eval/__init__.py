@@ -42,7 +42,7 @@ def get_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--retriever_method",
-        type=str,
+        type=str.lower,
         default="whereisai/uae-large-v1",
         help="Model used for RAG's embeddings",
     )
