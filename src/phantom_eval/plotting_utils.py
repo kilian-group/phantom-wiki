@@ -72,6 +72,8 @@ METHOD_LINESTYLES = {
     "react": "-",
     "selfask": "dotted",
     "ircot": "dashdot",
+    "sft": "dotted",
+    "grpo": "dashdot",
 }
 HATCHSTYLES = {
     "google/gemma-2-27b-it": "/",
@@ -147,12 +149,16 @@ MODEL_ALIASES = {
     "qwen/qwen2.5-0.5b-instruct": "Qwen2.5-0.5B",
 }
 METHOD_LATEX_ALIASES = {
-    "zeroshot": "\\zeroshot",
-    "cot": "\\CoT",
-    "zeroshot-rag": "\\zeroshotrag",
-    "cot-rag": "\\cotrag",
-    "act": "\\act",
-    "react": "\\react",
+    "zeroshot": "\\textsc{Zeroshot}",
+    "cot": "\\textsc{CoT}",
+    "zeroshot-rag": "\\textsc{Zeroshot-RAG}",
+    "cot-rag": "\\textsc{CoT-RAG}",
+    "act": "\\textsc{Act}",
+    "react": "\\textsc{ReAct}",
+    "selfask": "\\textsc{Self-Ask}",
+    "ircot": "\\textsc{IRCoT}",
+    "sft": "\\textsc{SFT}",
+    "grpo": "\\textsc{GRPO}",
 }
 METHOD_ALIASES = {
     "zeroshot": "ZeroShot",
@@ -161,16 +167,20 @@ METHOD_ALIASES = {
     "cot-rag": "CoT-RAG",
     "act": "Act",
     "react": "ReAct",
+    "selfask": "Self-Ask",
+    "ircot": "IRCoT",
+    "sft": "SFT",
+    "grpo": "GRPO",
 }
 INCONTEXT_METHODS = [
     "zeroshot",
     "cot",
 ]
 RAG_METHODS = [
-    # "zeroshot-rag",
-    # "cot-rag",
+    "zeroshot-rag",
+    "cot-rag",
     "selfask",
-    # "ircot",
+    "ircot",
 ]
 AGENTIC_METHODS = [
     "react",
