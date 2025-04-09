@@ -38,6 +38,7 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
             model_kwargs = dict(
                 max_model_len=args.inf_vllm_max_model_len,
                 tensor_parallel_size=args.inf_vllm_tensor_parallel_size,
+                lora_path=args.inf_vllm_lora_path,
                 # If the method is zeroshot or fewshot, we do not need to use the API (for vLLM)
                 # This can be overridden by modifying the code below to `use_api=True`.
                 use_api=(
@@ -204,9 +205,15 @@ async def main(args: argparse.Namespace) -> None:
                 batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
 
             for batch_number in range(1, math.ceil(num_df_qa_pairs / batch_size) + 1):
+                lora_run_name = (
+                    f"__lora_path={args.inf_vllm_lora_path.replace('/', '--')}"
+                    if args.inf_vllm_lora_path
+                    else ""
+                )
                 run_name = (
                     f"split={split}"
                     + f"__model_name={args.model_name.replace('/', '--')}"
+                    + lora_run_name
                     + f"__bs={batch_size}"
                     + f"__bn={batch_number}"
                     + f"__seed={seed}"
