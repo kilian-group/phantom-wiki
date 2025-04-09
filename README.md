@@ -133,7 +133,6 @@ First, install dependencies and [vLLM](https://github.com/vllm-project/vllm) to 
 
 ```bash
 pip install phantom-wiki[eval]
-pip install "vllm>=0.6.6"
 ```
 
 If you're installing from source, use `pip install -e ".[eval]"`.
@@ -236,17 +235,20 @@ Example usages:
 - `METHOD` can be `zeroshot`, `fewshot`, `cot`, `react`, `zeroshot-rag` etc.
 - Evaluate GPT-4o through checkpoint names `--server openai --model_name gpt-4o-2024-11-20` or with name aliases `--server openai --model_name gpt-4o`. We pass on the model name to the API, so any LLM name supported by the API is supported by our interface. Similarly for Anthropic, Gemini, and Together.
 - Evaluate Huggingface LLMs through Model Card name `--server vllm --model_name deepseek-ai/DeepSeek-R1-Distill-Qwen-32B`, or through local weights path `--server vllm --model_name /absolute/path/to/weights/`.
+- Evaluate LoRA weights through Model Card name and path to LoRA `--server vllm --model_name deepseek-ai/DeepSeek-R1-Distill-Qwen-32B --inf_vllm_lora_path /path/to/lora/weights/`.
 
 > \[!TIP\]
 > To generate a slurm script for clusters at Cornell (g2, empire, aida) with the appropriate GPU allocation, run [`bash eval/create_eval.sh`](https://github.com/kilian-group/phantom-wiki/blob/main/eval/create_eval.sh) script and follow the prompted steps.
 
-📊 To generate the tables and figures, run the following command from the root directory:
+📊 To generate the tables and figures, run the following command from the root directory, replacing `METHODS` with a space-separated list of prompting techniques e.g. `"zeroshot cot zeroshot-rag cot-rag react"`.
 
 ```bash
-./eval/icml.sh OUTPUT_DIRECTORY METHOD
+./eval/evaluate.sh OUTPUT_DIRECTORY MODEL_NAME_OR_PATH METHODS
+# For local datasets, specify the dataset path and add the --from_local flag
+DATASET="/path/to/dataset/" ./eval/evaluate.sh OUTPUT_DIRECTORY MODEL_NAME_OR_PATH METHODS --from_local
 ```
 
-where OUTPUT_DIRECTORY and METHOD are the same as when generating the predictions. This script will create the following subdirectories in OUTPUT_DIRECTORY: `scores/` and `figures/`.
+Here, OUTPUT_DIRECTORY is the same as when generating the predictions. This script will create the following subdirectories in OUTPUT_DIRECTORY: `scores/` and `figures/`.
 
 ## 📃 Citation
 
