@@ -3,8 +3,11 @@
 Generates a table with rows for each model, split, and seed combination.
 Prints out the leaderboard in latex and markdown formats -- used in the paper.
 
-Example:
-    python eval/format_leaderboard.py -od out --method_list zeroshot cot react
+Example usage:
+```bash
+python eval/format_leaderboard.py -od out --method_list zeroshot cot react \
+    --model_list meta-llama/llama-3.3-70b-instruct
+```
 """
 import os
 
@@ -50,7 +53,7 @@ for method in method_list:
         print(f"No data found for method {method}")
         continue
     # filter by model
-    df = df[df["_model"].isin(model_list)]
+    df = df[df["_model"].str.lower().isin([m.lower() for m in model_list])]
     # filter by depth
     df = df[df["_depth"] == filter_by_depth]
     # group by model, split, and seed
@@ -80,7 +83,7 @@ df_all = df_all.reset_index(drop=True)
 # only consider universe sizes in SIZE_LIST
 results = df_all[df_all["_size"].isin(SIZE_LIST)]
 # use model aliases
-results["_model"] = results["_model"].apply(lambda x: plotting_utils.MODEL_ALIASES.get(x, x))
+results["_model"] = results["_model"].apply(lambda x: plotting_utils.MODEL_ALIASES.get(x.lower(), x))
 # create table with models as rows and methods as columns
 results = results.pivot_table(index=["_size", "_model"], columns="method", values=METRICS, aggfunc="first")
 # replace the column name _size with "Universe Size"
