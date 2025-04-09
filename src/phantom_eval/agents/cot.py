@@ -170,7 +170,8 @@ class CoTAgent(Agent):
         Parse the response to extract the answer using regex.
         The prediction should be of the form: "... The answer is <answer>." otherwise a ValueError is raised.
         """
-        pattern = r"[t|T]he answer is (.+)\.\s*$"
+        # NOTE: Allow for empty answer instead of throwing an error
+        pattern = r"[tT]he answer is (.*)\.\s*$"
         m = re.search(pattern, pred)
         if m:
             return m.group(1)
@@ -184,7 +185,8 @@ class CoTAgent(Agent):
         The prediction should be of the form: "</think>... The answer is <answer>."
         otherwise a ValueError is raised.
         """
-        pattern = r"</think>.*[tT]he answer is \s*(.+)\."
+        # NOTE: Allow for empty answer instead of throwing an error
+        pattern = r"</think>.*[tT]he answer is \s*(.*)\."
         m = re.search(pattern, pred, re.DOTALL)  # re.DOTALL to match newlines as well
         if m:
             return m.group(1)
