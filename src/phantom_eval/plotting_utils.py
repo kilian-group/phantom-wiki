@@ -181,10 +181,10 @@ INCONTEXT_METHODS = [
     "cot",
 ]
 RAG_METHODS = [
-    "zeroshot-rag",
+    # "zeroshot-rag",
     "cot-rag",
-    "selfask",
-    "ircot",
+    # "selfask",
+    # "ircot",
 ]
 AGENTIC_METHODS = [
     "react",
