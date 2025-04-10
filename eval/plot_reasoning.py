@@ -203,7 +203,7 @@ for metric in METRICS:
                 method_handles[key] = lines.Line2D(
                     [0],
                     [0],
-                    color=get_color(None, method),
+                    color=get_color(None, method, by_model=False),
                     label=key,
                     linestyle=plotting_utils.METHOD_LINESTYLES[method],
                     linewidth=1,
