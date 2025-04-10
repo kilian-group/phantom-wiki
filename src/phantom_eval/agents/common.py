@@ -176,6 +176,10 @@ class RAGMixin:
     Combine this with an agent class to implement RAG evaluation with prompting techniques like zeroshot, cot.
     """
 
+    # class variable to store the indices for each text corpus to avoid re-indexing across multiple instances
+    # implemented as a dict of text corpus id -> (retriever, tokenizer)
+    _indices = {}
+
     def __init__(
         self,
         text_corpus: pd.DataFrame,
@@ -205,17 +209,28 @@ class RAGMixin:
             from bm25s.tokenization import Tokenizer
             from Stemmer import Stemmer
 
-            logger.debug("Indexing text corpus...")
-            corpus_text = text_corpus["article"].tolist()
-            # Initialize BM25 retriever with corpus so that self.retriever.retrieve()
-            # will return documents instead of indices
-            self.retriever = BM25(corpus=corpus_text, backend="numba")
-            # Initialize tokenizer
-            self.tokenizer = Tokenizer(stopwords="en", stemmer=Stemmer("english"))
-            # Tokenize corpus
-            corpus_tokens = self.tokenizer.tokenize(corpus_text, return_as="tuple")
-            # Index corpus
-            self.retriever.index(corpus_tokens)
+            if id(text_corpus) in self._indices:
+                logger.debug("Using existing BM25 index...")
+                self.retriever, self.tokenizer = self._indices[id(text_corpus)]
+            else:
+                logger.debug("Indexing text corpus...")
+                corpus_text = text_corpus["article"].tolist()
+                # NOTE: Initialize BM25 retriever with corpus so that self.retriever.retrieve()
+                # will return documents instead of indices
+                retriever = BM25(corpus=corpus_text, backend="numba")
+                # Initialize tokenizer
+                tokenizer = Tokenizer(stopwords="en", stemmer=Stemmer("english"))
+                # Tokenize corpus
+                corpus_tokens = tokenizer.tokenize(corpus_text, return_as="tuple")
+                # Index corpus
+                retriever.index(corpus_tokens)
+
+                self.retriever = retriever
+                self.tokenizer = tokenizer
+                # Add the retriever and tokenizer to the global indices_ dict,
+                # so that we can always point to the same retriever and tokenizer
+                # for the same text corpus
+                self._indices[id(text_corpus)] = (retriever, tokenizer)
         else:
             texts = text_corpus["article"].tolist()
 
@@ -239,6 +254,14 @@ class RAGMixin:
             embeddings = CustomEmbeddings(client)
             vectorstore = FAISS.from_texts(texts, embeddings)
             self.retriever = vectorstore.as_retriever(search_kwargs={"k": retriever_num_documents})
+
+    # def __new__(cls, *args, **kwargs):
+    #     # Create a unique key based on the arguments
+    #     key = cls.get_hashable_key(*args, **kwargs)
+    #     # import pdb; pdb.set_trace()
+    #     if key not in cls._instances:
+    #         cls._instances[key] = super().__new__(cls)
+    #     return cls._instances[key]
 
     def get_RAG_evidence(self, question: str) -> str:
         """
