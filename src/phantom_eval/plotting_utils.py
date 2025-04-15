@@ -20,6 +20,7 @@ COLORS = {
     "meta-llama/llama-3.1-8b-instruct": "tab:orange",
     "meta-llama/llama-3.2-3b-instruct": "tab:orange",
     "meta-llama/llama-3.2-1b-instruct": "tab:orange",
+    "meta-llama/llama-vision-free": "tab:orange",
     "microsoft/phi-3.5-moe-instruct": "tab:green",
     "microsoft/phi-3.5-mini-instruct": "tab:green",
     "mistralai/mistral-7b-instruct-v0.3": "tab:red",
@@ -151,6 +152,7 @@ MODEL_ALIASES = {
     "qwen/qwen2.5-3b-instruct": "Qwen2.5-3B",
     "qwen/qwen2.5-1.5b-instruct": "Qwen2.5-1.5B",
     "qwen/qwen2.5-0.5b-instruct": "Qwen2.5-0.5B",
+    "meta-llama/llama-vision-free": "Llama-3.2-11B",
 }
 METHOD_LATEX_ALIASES = {
     "zeroshot": "\\textsc{Zeroshot}",
