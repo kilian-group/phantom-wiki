@@ -27,7 +27,7 @@ def get_parser() -> argparse.ArgumentParser:
         type=str.lower,
         default="zeroshot",
         help="Evaluation method. " "NOTE: to add a new method, please submit a PR with the implementation",
-        choices=SUPPORTED_METHOD_NAMES,
+        # choices=SUPPORTED_METHOD_NAMES,
     )
 
     # Method params
@@ -42,7 +42,7 @@ def get_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--retriever_method",
-        type=str,
+        type=str.lower,
         default="whereisai/uae-large-v1",
         help="Model used for RAG's embeddings",
     )
@@ -115,6 +115,12 @@ def get_parser() -> argparse.ArgumentParser:
         help="Flag to specify if the model is DeepSeek-R1, "
         "for correctly parsing <think>...</think> tags, "
         "and determining the additional stop token in vllm",
+    )
+    parser.add_argument(
+        "--inf_vllm_offline",
+        action="store_true",
+        help="Flag to use vLLM (batched) offline inference, "
+        "which can be substantially faster than using the server when supported by the method",
     )
 
     # Dataset params

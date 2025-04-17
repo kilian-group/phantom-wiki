@@ -254,6 +254,7 @@ Question: How many uncles does the maternal grandmother of the friend of Stacia 
 Answer: I can get the friend of Stacia Toombs with the query friend("Stacia Toombs", A). Since A is the friend of Stacia Toombs, I can get the maternal grandmother of A with the query mother(A, B), mother(B, C). Since D is the maternal grandmother of the friend of Stacia Toombs, I can get the number of uncles of D with the query findall(E, uncle(D, E), F), length(F, G). Therefore, the answer is friend("Stacia Toombs", A), mother(A, B), mother(B, C), findall(E, uncle(D, E), F), length(F, G).
 """
 
+# NOTE (Albert): Examples from kilian-group/phantom-wiki-v050 :: depth_20_size_50_seed_1
 COT_EXAMPLES = f"""
 Example 1:
 Question: Who is the sister of Aida Wang?

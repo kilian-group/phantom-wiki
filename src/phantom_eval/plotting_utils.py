@@ -10,6 +10,7 @@ plt.rcParams.update(
     }
 )
 COLORS = {
+    "google/gemma-3-1b-it": "tab:blue",
     "google/gemma-2-27b-it": "tab:blue",
     "google/gemma-2-9b-it": "tab:blue",
     "google/gemma-2-2b-it": "tab:blue",
@@ -19,6 +20,7 @@ COLORS = {
     "meta-llama/llama-3.1-8b-instruct": "tab:orange",
     "meta-llama/llama-3.2-3b-instruct": "tab:orange",
     "meta-llama/llama-3.2-1b-instruct": "tab:orange",
+    "meta-llama/llama-vision-free": "tab:orange",
     "microsoft/phi-3.5-moe-instruct": "tab:green",
     "microsoft/phi-3.5-mini-instruct": "tab:green",
     "mistralai/mistral-7b-instruct-v0.3": "tab:red",
@@ -30,8 +32,14 @@ COLORS = {
     "deepseek-ai/deepseek-r1-distill-qwen-32b": "tab:green",
     "deepseek-ai/deepseek-r1-distill-qwen-7b": "tab:green",
     "deepseek-ai/deepseek-r1-distill-qwen-1.5b": "tab:green",
+    "qwen/qwen2.5-32b-instruct": "tab:red",
+    "qwen/qwen2.5-7b-instruct": "tab:red",
+    "qwen/qwen2.5-3b-instruct": "tab:red",
+    "qwen/qwen2.5-1.5b-instruct": "tab:red",
+    "qwen/qwen2.5-0.5b-instruct": "#ff9999",  # NOTE: light red
 }
 LINESTYLES = {
+    "google/gemma-3-1b-it": "dotted",
     "google/gemma-2-27b-it": "-",
     "google/gemma-2-9b-it": "--",
     "google/gemma-2-2b-it": "dotted",
@@ -52,6 +60,11 @@ LINESTYLES = {
     "deepseek-ai/deepseek-r1-distill-qwen-32b": "-",
     "deepseek-ai/deepseek-r1-distill-qwen-7b": "-",
     "deepseek-ai/deepseek-r1-distill-qwen-1.5b": "-",
+    "qwen/qwen2.5-32b-instruct": "-",
+    "qwen/qwen2.5-7b-instruct": "--",
+    "qwen/qwen2.5-3b-instruct": "dotted",
+    "qwen/qwen2.5-1.5b-instruct": (10, (1, 10)),
+    "qwen/qwen2.5-0.5b-instruct": (10, (1, 10)),
 }
 METHOD_LINESTYLES = {
     "zeroshot": "--",
@@ -60,6 +73,10 @@ METHOD_LINESTYLES = {
     "cot-rag": "-",
     "act": "--",
     "react": "-",
+    "selfask": "dotted",
+    "ircot": "dashdot",
+    "sft": "dotted",
+    "grpo": "dashdot",
 }
 HATCHSTYLES = {
     "google/gemma-2-27b-it": "/",
@@ -82,6 +99,11 @@ HATCHSTYLES = {
     "deepseek-ai/deepseek-r1-distill-qwen-32b": "++",
     "deepseek-ai/deepseek-r1-distill-qwen-7b": "++",
     "deepseek-ai/deepseek-r1-distill-qwen-1.5b": "++",
+    "qwen/qwen2.5-32b-instruct": "/",
+    "qwen/qwen2.5-7b-instruct": "\\",
+    "qwen/qwen2.5-3b-instruct": "|",
+    "qwen/qwen2.5-1.5b-instruct": "|",
+    "qwen/qwen2.5-0.5b-instruct": "|",
 }
 # https://matplotlib.org/stable/gallery/lines_bars_and_markers/marker_reference.html#filled-markers
 MARKERS = {
@@ -104,6 +126,7 @@ LINE_ALPHA = 0.75
 OUTWARD = 4
 
 MODEL_ALIASES = {
+    "google/gemma-3-1b-it": "Gemma-3-1B",
     "google/gemma-2-27b-it": "Gemma-2-27B",
     "google/gemma-2-9b-it": "Gemma-2-9B",
     "google/gemma-2-2b-it": "Gemma-2-2B",
@@ -124,14 +147,24 @@ MODEL_ALIASES = {
     "deepseek-ai/deepseek-r1-distill-qwen-32b": "DeepSeek-R1-32B",
     "deepseek-ai/deepseek-r1-distill-qwen-7b": "DeepSeek-R1-7B",
     "deepseek-ai/deepseek-r1-distill-qwen-1.5b": "DeepSeek-R1-1.5B",
+    "qwen/qwen2.5-32b-instruct": "Qwen2.5-32B",
+    "qwen/qwen2.5-7b-instruct": "Qwen2.5-7B",
+    "qwen/qwen2.5-3b-instruct": "Qwen2.5-3B",
+    "qwen/qwen2.5-1.5b-instruct": "Qwen2.5-1.5B",
+    "qwen/qwen2.5-0.5b-instruct": "Qwen2.5-0.5B",
+    "meta-llama/llama-vision-free": "Llama-3.2-11B",
 }
 METHOD_LATEX_ALIASES = {
-    "zeroshot": "\\zeroshot",
-    "cot": "\\CoT",
-    "zeroshot-rag": "\\zeroshotrag",
-    "cot-rag": "\\cotrag",
-    "act": "\\act",
-    "react": "\\react",
+    "zeroshot": "\\textsc{Zeroshot}",
+    "cot": "\\textsc{CoT}",
+    "zeroshot-rag": "\\textsc{Zeroshot-RAG}",
+    "cot-rag": "\\textsc{CoT-RAG}",
+    "act": "\\textsc{Act}",
+    "react": "\\textsc{ReAct}",
+    "selfask": "\\textsc{Self-Ask}",
+    "ircot": "\\textsc{IRCoT}",
+    "sft": "\\textsc{SFT}",
+    "grpo": "\\textsc{GRPO}",
 }
 METHOD_ALIASES = {
     "zeroshot": "ZeroShot",
@@ -140,14 +173,20 @@ METHOD_ALIASES = {
     "cot-rag": "CoT-RAG",
     "act": "Act",
     "react": "ReAct",
+    "selfask": "Self-Ask",
+    "ircot": "IRCoT",
+    "sft": "SFT",
+    "grpo": "GRPO",
 }
 INCONTEXT_METHODS = [
     "zeroshot",
     "cot",
 ]
 RAG_METHODS = [
-    "zeroshot-rag",
+    # "zeroshot-rag",
     "cot-rag",
+    # "selfask",
+    # "ircot",
 ]
 AGENTIC_METHODS = [
     "react",

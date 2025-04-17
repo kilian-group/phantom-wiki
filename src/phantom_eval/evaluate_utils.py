@@ -18,6 +18,7 @@ from .utils import load_data
 # hard-code the order of the models for the plot
 # otherwise, the order will be alphabetical (and the model size will not be in order)
 MODELS = [
+    "google/gemma-3-1b-it",
     "google/gemma-2-27b-it",
     "google/gemma-2-9b-it",
     "google/gemma-2-2b-it",
@@ -36,11 +37,25 @@ MODELS = [
     "gpt-4o-mini-2024-07-18",
     "gpt-4o-2024-11-20",
     "deepseek-ai/deepseek-r1-distill-qwen-32b",
+    "deepseek-ai/deepseek-r1-distill-qwen-1.5b",
+    "qwen/qwen2.5-32b-instruct",
+    "qwen/qwen2.5-7b-instruct",
+    "qwen/qwen2.5-1.5b-instruct",
 ]
 
 
-def pivot_mean_std(acc_mean_std, metric, independent_variable="_split"):
-    """Pivot acc_mean_std so that the specified independent variable becomes the rows"""
+def pivot_mean_std(acc_mean_std, metric, independent_variable="_split", enforce_order=True):
+    """Pivot acc_mean_std so that the specified independent variable becomes the rows
+
+    Args:
+        acc_mean_std (pd.DataFrame): The dataframe to pivot
+        metric (str): The metric to pivot on
+        independent_variable (str): The independent variable to pivot on
+        enforce_order (bool): Whether to enforce the order of the models
+    Returns:
+        df_mean (pd.DataFrame): The mean of the metric
+        df_std (pd.DataFrame): The standard deviation of the metric
+    """
     assert (metric, "mean") in acc_mean_std.columns
     assert (metric, "std") in acc_mean_std.columns
     assert ("_model", "") in acc_mean_std.columns
@@ -51,15 +66,17 @@ def pivot_mean_std(acc_mean_std, metric, independent_variable="_split"):
     df_mean.columns = df_mean.columns.astype(int)
     # reorder the columns in ascending order
     df_mean = df_mean[sorted(df_mean.columns)]
-    row_order = [name for name in MODELS if name in df_mean.index]
-    df_mean = df_mean.loc[row_order]
+    if enforce_order:
+        row_order = [name for name in MODELS if name in df_mean.index]
+        df_mean = df_mean.loc[row_order]
 
     df_std = acc_mean_std.pivot(index="_model", columns=independent_variable, values=(metric, "std"))
     # change the column names to integers
     df_std.columns = df_std.columns.astype(int)
     df_std = df_std[sorted(df_std.columns)]
-    row_order = [name for name in MODELS if name in df_std.index]
-    df_std = df_std.loc[row_order]
+    if enforce_order:
+        row_order = [name for name in MODELS if name in df_std.index]
+        df_std = df_std.loc[row_order]
     return df_mean, df_std
 
 
