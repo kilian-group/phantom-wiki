@@ -45,6 +45,7 @@ class Database:
                     logger.debug(f"Attaching pack: {abs_subdir}")
                     # NOTE: the query method returns a generator and won't be evaluated until
                     # converted to a list
+                    # NOTE: see instructions in https://www.swi-prolog.org/pldoc/man?section=pack-install
                     _ = list(self.prolog.query(f'pack_attach("{abs_subdir}", [warning, last])'))
                     _ = list(self.prolog.query(f"use_module(library({d}))."))
 
