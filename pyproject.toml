@@ -73,6 +73,7 @@ eval = [
     "together",
     "transformers>=4.47.1",
     "bm25s[full]",
+    "vllm"
 ]
 
 [project.scripts]

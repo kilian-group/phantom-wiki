@@ -218,13 +218,13 @@ class FewshotLLMPrompt(LLMPrompt):
 
 
 ##### CoT method
-COT_EXAMPLES_PROLOG = f"""
+COT_EXAMPLES_PROLOG = """
 Example 1:
 Question: Who is the brother of Dino Beltran?
 Answer: I can get the brother of Dino Beltran with the query brother(X, "Dino Beltran"). Therefore, the answer is brother(X, "Dino Beltran").
 Example 2:
 Question: Who is the sibling of Barabara Beltran?
-Answer: I can get the sibling of Barbara Beltran with the query sibling(X, "Barabara Beltran"). Therefore, the answer is sibling(X, "Barabara Beltran").
+Answer: I can get the sibling of Barabara Beltran with the query sibling(X, "Barabara Beltran"). Therefore, the answer is sibling(X, "Barabara Beltran").
 Example 3:
 Question: Who is the mother of the sister of Stacia Toombs?
 Answer: I can get the sister of Stacia Toombs with the query sister("Stacia Toombs", Y). Since Y is the sister of Stacia Toombs, I can get the mother of Y with the query mother(Y, X). Therefore, the answer is sister("Stacia Toombs", Y), mother(Y, X).

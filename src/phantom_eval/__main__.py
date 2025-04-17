@@ -40,6 +40,7 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
                 tensor_parallel_size=args.inf_vllm_tensor_parallel_size,
                 use_api=not args.inf_vllm_offline
                 or args.method in ["react", "act", "react->cot-sc", "cot-sc->react"],
+                lora_path=args.inf_vllm_lora_path,
                 port=args.inf_vllm_port,
                 is_deepseek_r1_model=args.inf_is_deepseek_r1_model,
             )
@@ -197,9 +198,15 @@ async def main(args: argparse.Namespace) -> None:
                 batch_size = args.batch_size
 
             for batch_number in range(1, math.ceil(num_df_qa_pairs / batch_size) + 1):
+                lora_run_name = (
+                    f"__lora_path={args.inf_vllm_lora_path.replace('/', '--')}"
+                    if args.inf_vllm_lora_path
+                    else ""
+                )
                 run_name = (
                     f"split={split}"
                     + f"__model_name={args.model_name.replace('/', '--')}"
+                    + lora_run_name
                     + f"__bs={batch_size}"
                     + f"__bn={batch_number}"
                     + f"__seed={seed}"
