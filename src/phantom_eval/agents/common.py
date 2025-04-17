@@ -13,9 +13,11 @@ using different LLM prompts and chat interfaces.
 
 import abc
 import logging
+import os
 import subprocess
 from collections import Counter
 
+import datasets
 import openai
 import pandas as pd
 from langchain_community.vectorstores import FAISS
@@ -182,7 +184,7 @@ class RAGMixin:
 
     def __init__(
         self,
-        text_corpus: pd.DataFrame,
+        text_corpus: pd.DataFrame | os.PathLike,
         embedding_model_name: str = "whereisai/uae-large-v1",
         retriever_num_documents: int = 4,
         port: int = 8001,
@@ -213,17 +215,30 @@ class RAGMixin:
                 logger.debug("Using existing BM25 index...")
                 self.retriever, self.tokenizer = self._indices[id(text_corpus)]
             else:
-                logger.debug("Indexing text corpus...")
-                corpus_text = text_corpus["article"].tolist()
-                # NOTE: Initialize BM25 retriever with corpus so that self.retriever.retrieve()
-                # will return documents instead of indices
-                retriever = BM25(corpus=corpus_text, backend="numba")
-                # Initialize tokenizer
-                tokenizer = Tokenizer(stopwords="en", stemmer=Stemmer("english"))
-                # Tokenize corpus
-                corpus_tokens = tokenizer.tokenize(corpus_text, return_as="tuple")
-                # Index corpus
-                retriever.index(corpus_tokens)
+                if isinstance(text_corpus, pd.DataFrame):
+                    logger.debug("Indexing text corpus...")
+                    corpus_text = text_corpus["article"].tolist()
+                    # NOTE: Initialize BM25 retriever with corpus so that self.retriever.retrieve()
+                    # will return documents instead of indices
+                    retriever = BM25(corpus=corpus_text, backend="numba")
+                    # Initialize tokenizer
+                    tokenizer = Tokenizer(stopwords="en", stemmer=Stemmer("english"))
+                    # Tokenize corpus
+                    corpus_tokens = tokenizer.tokenize(corpus_text, return_as="tuple")
+                    # Index corpus
+                    retriever.index(corpus_tokens)
+                elif isinstance(text_corpus, str) and os.path.exists(text_corpus):
+                    # See reference implementation at https://github.com/RUC-NLPIR/FlashRAG/blob/
+                    # 237f696aafa210073fe35443a9b59dd91f42f811/flashrag/retriever/retriever.py#L249
+                    logger.debug(f"Loading index from {text_corpus}...")
+                    retriever = BM25.load(text_corpus, mmap=True, load_corpus=False)
+                    tokenizer = Tokenizer(stopwords="en", stemmer=Stemmer("english"))
+                    tokenizer.load_stopwords(text_corpus)
+                    tokenizer.load_vocab(text_corpus)
+                    retriever.corpus = self.load_corpus(text_corpus)
+                    retriever.backend = "numba"
+                else:
+                    raise ValueError(f"Unsupported text corpus type: {type(text_corpus)}")
 
                 self.retriever = retriever
                 self.tokenizer = tokenizer
@@ -262,6 +277,30 @@ class RAGMixin:
     #     if key not in cls._instances:
     #         cls._instances[key] = super().__new__(cls)
     #     return cls._instances[key]
+
+    @staticmethod
+    def load_corpus(corpus_path: str) -> datasets.Dataset:
+        """
+        Load the corpus from the given path.
+
+        Ref: https://github.com/RUC-NLPIR/FlashRAG/blob/
+        237f696aafa210073fe35443a9b59dd91f42f811/flashrag/retriever/utils.py#L128
+
+        """
+        if corpus_path.endswith(".jsonl"):
+            corpus = datasets.load_dataset("json", data_files=corpus_path, split="train")
+        elif corpus_path.endswith(".parquet"):
+            corpus = datasets.load_dataset("parquet", data_files=corpus_path, split="train")
+            corpus = corpus.cast_column("image", datasets.Image())
+        else:
+            raise NotImplementedError("Corpus format not supported!")
+        if "contents" not in corpus.features:
+            try:
+                logger.info("No `contents` field found in corpus, using `text` instead.")
+                corpus = corpus.map(lambda x: {"contents": x["text"]})
+            except Exception:
+                logger.warning("No `contents` & `text` field found in corpus.")
+        return corpus
 
     def get_RAG_evidence(self, question: str) -> str:
         """
