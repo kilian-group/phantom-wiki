@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "wheel", "setuptools-git-versioning"]
+requires = ["setuptools", "wheel", "setuptools-git-versioning", "flashrag"]
 build-backend = "setuptools.build_meta"
 
 [project]

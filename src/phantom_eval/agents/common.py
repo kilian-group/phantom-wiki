@@ -216,7 +216,11 @@ class RAGMixin:
         self.retriever_num_documents = retriever_num_documents
         self.retrieval_method = retrieval_method
 
-        if retrieval_method == "bm25":
+        if id(text_corpus) in self._indices:
+            logger.debug("Using existing BM25 index...")
+            self.retriever, _ = self._indices[id(text_corpus)]
+
+        elif self.retrieval_method == "bm25":
             bm25_config = {
                 "retrieval_method": "bm25",
                 "retrieval_topk": retriever_num_documents,
