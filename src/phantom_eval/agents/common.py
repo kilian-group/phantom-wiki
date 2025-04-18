@@ -27,6 +27,8 @@ from phantom_eval.llm import InferenceGenerationConfig, LLMChat, aggregate_usage
 from phantom_eval.prompts import LLMPrompt
 from phantom_eval.score import normalize_pred
 
+from .retriever import get_retriever
+
 logger = logging.getLogger(__name__)
 
 
@@ -186,6 +188,9 @@ class RAGMixin:
         embedding_model_name: str = "whereisai/uae-large-v1",
         retriever_num_documents: int = 4,
         port: int = 8001,
+        retrieval_method: str = None,
+        index_path: str = None,
+        corpus_path: str = None,
     ):
         """
         Args:
@@ -200,37 +205,57 @@ class RAGMixin:
                 for other options.
             port (int): The port number to use for the embedding server.
                 Defaults to 8001.
+            retrieval_method (str): The retrieval method to use. Can be "faiss", "bm25" or "dense".
+                Defaults to "faiss".
+            index_path (str): The path to the index file for the BM25 or dense retriever.
+                Defaults to None.
+            corpus_path (str): The path to the corpus file for the BM25 or dense retriever.
+                Defaults to None.
         """
         self.embedding_model_name = embedding_model_name
         self.retriever_num_documents = retriever_num_documents
+        self.retrieval_method = retrieval_method
 
-        if self.embedding_model_name == "bm25":
-            from bm25s import BM25
-            from bm25s.tokenization import Tokenizer
-            from Stemmer import Stemmer
+        if id(text_corpus) in self._indices:
+            logger.debug("Using existing BM25 index...")
+            self.retriever, _ = self._indices[id(text_corpus)]
 
-            if id(text_corpus) in self._indices:
-                logger.debug("Using existing BM25 index...")
-                self.retriever, self.tokenizer = self._indices[id(text_corpus)]
-            else:
-                logger.debug("Indexing text corpus...")
-                corpus_text = text_corpus["article"].tolist()
-                # NOTE: Initialize BM25 retriever with corpus so that self.retriever.retrieve()
-                # will return documents instead of indices
-                retriever = BM25(corpus=corpus_text, backend="numba")
-                # Initialize tokenizer
-                tokenizer = Tokenizer(stopwords="en", stemmer=Stemmer("english"))
-                # Tokenize corpus
-                corpus_tokens = tokenizer.tokenize(corpus_text, return_as="tuple")
-                # Index corpus
-                retriever.index(corpus_tokens)
+        elif self.retrieval_method == "bm25":
+            bm25_config = {
+                "retrieval_method": "bm25",
+                "retrieval_topk": retriever_num_documents,
+                "index_path": index_path,
+                "corpus_path": corpus_path,
+                # NOTE: currently not saving retrieval cache
+                "save_retrieval_cache": False,
+                "retrieval_cache_path": None,
+                "use_retrieval_cache": False,
+                "use_reranker": False,
+                "silent_retrieval": True,
+            }
+            # If the retriever_config is provided, use it to create the retriever
+            self.retriever = get_retriever(config=bm25_config)
 
-                self.retriever = retriever
-                self.tokenizer = tokenizer
-                # Add the retriever and tokenizer to the global indices_ dict,
-                # so that we can always point to the same retriever and tokenizer
-                # for the same text corpus
-                self._indices[id(text_corpus)] = (retriever, tokenizer)
+            # For debugging purposes, print the index path
+            logger.debug("Using an existing retriever object...")
+            self._indices[id(text_corpus)] = self.retriever
+
+        elif retrieval_method == "dense":
+            # dense_config = {
+            #     "retrieval_method": "dense",
+            #     "retrieval_topk": 4,
+            #     "index_path": index_path,
+            #     "corpus_path": corpus_path",
+            #     "retrieval_model_path": "/path/to/dense/model",
+            #     "retrieval_query_max_length": 128,
+            #     "retrieval_pooling_method": "mean",
+            #     "retrieval_use_fp16": True,
+            #     "retrieval_batch_size": 16,
+            #     "use_sentence_transformer": True,
+            #     "faiss_gpu": True,
+            #     "silent_retrieval": True,
+            # }
+            raise NotImplementedError("Dense retrieval is not yet implemented. Please use BM25 or FAISS.")
         else:
             texts = text_corpus["article"].tolist()
 
@@ -268,25 +293,9 @@ class RAGMixin:
         Returns retrieved articles given the question from the text corpus.
         The retrieved articles are concatenated as a string.
         """
-        if self.embedding_model_name == "bm25":
-            # NOTE: tokenize() is a batch operation by default,
-            # but we only want to tokenize one question at a time,
-            # so we create a list with a single element
-            query_tokens = self.tokenizer.tokenize(
-                texts=[question],
-                return_as="tuple",
-                update_vocab=False,
-            )
-            # NOTE: retrieve() is a batch operation by default,
-            # but we pass in a list with a single element,
-            # so we index into the first element to get the single result
-            docs = list(
-                self.retriever.retrieve(
-                    query_tokens=query_tokens,
-                    k=self.retriever_num_documents,
-                    return_as="documents",
-                )[0]
-            )
+        if self.retrieval_method == "bm25":
+            docs = self.retriever._search(question, num=self.retriever_num_documents, return_score=False)
+            docs = [doc["contents"] for doc in docs]
         else:
             docs = [doc.page_content for doc in self.retriever.invoke(question)]
         return "\n================\n\n".join(docs)
