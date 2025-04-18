@@ -235,6 +235,11 @@ class RAGMixin:
             }
             # If the retriever_config is provided, use it to create the retriever
             self.retriever = get_retriever(config=bm25_config)
+
+            # For debugging purposes, print the index path
+            logger.debug("Using an existing retriever object...")
+            self._indices[id(text_corpus)] = self.retriever
+
         elif retrieval_method == "dense":
             # dense_config = {
             #     "retrieval_method": "dense",

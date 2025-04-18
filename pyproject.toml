@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "wheel", "setuptools-git-versioning", "flashrag"]
+requires = ["setuptools", "wheel", "setuptools-git-versioning"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -73,7 +73,8 @@ eval = [
     "together",
     "transformers>=4.47.1",
     "bm25s[full]",
-    "vllm"
+    "vllm",
+    "flashrag"
 ]
 
 [project.scripts]
