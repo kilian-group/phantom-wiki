@@ -270,6 +270,9 @@ class CoTRAGAgent(CoTAgent, RAGMixin):
         embedding_model_name: str = "whereisai/uae-large-v1",
         retriever_num_documents: int = 4,
         port: int = 8001,
+        retrieval_method: str = "faiss",
+        index_path: str = None,
+        corpus_path: str = None,
     ):
         """
         Args:
@@ -284,9 +287,25 @@ class CoTRAGAgent(CoTAgent, RAGMixin):
                 Defaults to 4.
             port (int): The port to use for the retriever.
                 Defaults to 8001.
+            retrieval_method (str): The retrieval method to use. Can be "faiss", "bm25" or "dense".
+                Defaults to "faiss".
+            index_path (str): The path to the index file for the BM25 or dense retriever.
+                Defaults to None.
+            corpus_path (str): The path to the corpus file for the BM25 or dense retriever.
+                Defaults to None.
+
         """
         CoTAgent.__init__(self, text_corpus, llm_prompt, cot_examples)
-        RAGMixin.__init__(self, text_corpus, embedding_model_name, retriever_num_documents, port)
+        RAGMixin.__init__(
+            self,
+            text_corpus,
+            embedding_model_name,
+            retriever_num_documents,
+            port,
+            retrieval_method,
+            index_path,
+            corpus_path,
+        )
 
     def _build_agent_prompt(self, question):
         evidence = self.get_RAG_evidence(question)
