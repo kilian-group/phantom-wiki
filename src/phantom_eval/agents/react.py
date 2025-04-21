@@ -199,34 +199,30 @@ class ReactAgent(Agent):
                 self.step_round += 1
                 self.finished = True
                 return LLMChatResponse(pred=action_arg, usage={})
-            case "RetrieveArticle":
+            case "Search":
+                # First, try fetching the article by exact match on the title
                 try:
-                    # Fetch the article for the requested entity by looking up the title
                     # Indexing 0 raises IndexError if search is empty, i.e. no article found
                     article: str = self.text_corpus.loc[
                         self.text_corpus["title"].str.lower() == action_arg.lower(), "article"
                     ].values[0]
                     observation_str = format_pred(article)
+                # Fallback to BM25 search if no result is returned
                 except IndexError:
-                    observation_str = (
-                        "No article exists for the requested entity. "
-                        "Please try retrieving article for another entity."
-                    )
-            case "Search":
-                # Fetch all article titles that contain the requested attribute
-                article_titles: list[str] = self.text_corpus.loc[
-                    self.text_corpus["article"].str.lower().str.contains(action_arg.lower()), "title"
-                ].tolist()
-                if len(article_titles) == 0:
-                    observation_str = (
-                        "No articles contain the requested attribute. "
-                        "Please try searching for another attribute."
-                    )
-                else:
-                    enum_article_titles: str = "\n\n".join(
-                        f"({i+1}) {title}" for i, title in enumerate(article_titles)
-                    )
-                    observation_str = format_pred(enum_article_titles)
+                    raise NotImplementedError("BM25 isn't implemented yet.")
+                    articles: list[dict] = [{}]  # call BM25
+                    # If we don't get any results from BM25, add note to observation_str
+                    if len(articles) == 0:
+                        observation_str = (
+                            "No articles contain the requested attribute. "
+                            "Please try searching for another attribute."
+                        )
+                    else:
+                        enum_article_titles: str = "\n\n".join(
+                            f"({i + 1}) {obj}" for i, obj in enumerate(articles)
+                        )
+                        observation_str = format_pred(enum_article_titles)
+
             case _:
                 observation_str = (
                     "Invalid action. Valid actions are RetrieveArticle[{{entity}}], "
