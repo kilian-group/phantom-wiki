@@ -218,7 +218,7 @@ class RAGMixin:
 
         if id(text_corpus) in self._indices:
             logger.debug("Using existing BM25 index...")
-            self.retriever, _ = self._indices[id(text_corpus)]
+            self.retriever = self._indices[id(text_corpus)]
 
         elif self.retrieval_method == "bm25":
             bm25_config = {
