@@ -9,9 +9,11 @@ The module contains several agent classes:
     ReAct if CoTSC fails
 """
 
+import json
 import logging
 import re
 import traceback
+from pathlib import Path
 
 import pandas as pd
 
@@ -32,6 +34,42 @@ def format_pred(pred: str) -> str:
     return pred.strip("\n").strip().replace("\n", " ")
 
 
+class TextCorpus:
+    """Handles reading and searching JSONL corpus files."""
+
+    def __init__(self, filepath: str):
+        self.filepath = Path(filepath)
+        if not self.filepath.exists():
+            raise FileNotFoundError(f"Corpus file not found: {filepath}")
+
+    def get_article_by_title(self, title: str) -> str | None:
+        """
+        Retrieve article by exact title match (case insensitive).
+        If multiple chunks with same title exist, merges them into single string.
+        """
+        title_lower = title.lower()
+        article_chunks = []
+
+        with open(self.filepath) as f:
+            for line in f:
+                entry = json.loads(line)
+                content = entry["contents"]
+                # Split on first newline to separate title from article
+                parts = content.split("\n", 1)
+                current_title = parts[0].strip('"').lower()
+
+                if current_title == title_lower:
+                    chunk = parts[1] if len(parts) > 1 else ""
+                    article_chunks.append(chunk)
+
+        # If no chunks found, return None
+        if not article_chunks:
+            return None
+
+        # Merge all chunks with a newline between them
+        return "\n".join(article_chunks)
+
+
 class ReactAgent(Agent):
     """
     Agent that implements agentic react (thought, action, observation) evaluation.
@@ -42,21 +80,22 @@ class ReactAgent(Agent):
 
     def __init__(
         self,
-        text_corpus: pd.DataFrame,
+        text_corpus: str,
         llm_prompt: LLMPrompt,
         max_steps: int = 6,
         react_examples: str = "",
     ):
         """
         Args:
-            text_corpus (pd.DataFrame): The text corpus to search for answers.
-                Must contain two columns: 'title' and 'article'.
+            text_corpus (str): Path to JSONL corpus file
             llm_prompt (LLMPrompt): The prompt to be used by the agent.
             max_steps (int): The maximum number of steps the agent can take.
                 Defaults to 6.
             react_examples (str): Prompt examples to include in agent prompt.
                 Defaults to "".
         """
+        text_corpus = TextCorpus(text_corpus)
+
         super().__init__(text_corpus, llm_prompt)
         self.max_steps = max_steps
         self.react_examples = react_examples
