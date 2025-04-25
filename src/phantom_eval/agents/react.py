@@ -241,26 +241,17 @@ class ReactAgent(Agent):
             case "Search":
                 # First, try fetching the article by exact match on the title
                 try:
-                    # Indexing 0 raises IndexError if search is empty, i.e. no article found
-                    article: str = self.text_corpus.loc[
-                        self.text_corpus["title"].str.lower() == action_arg.lower(), "article"
-                    ].values[0]
-                    observation_str = format_pred(article)
-                # Fallback to BM25 search if no result is returned
-                except IndexError:
-                    raise NotImplementedError("BM25 isn't implemented yet.")
-                    articles: list[dict] = [{}]  # call BM25
-                    # If we don't get any results from BM25, add note to observation_str
-                    if len(articles) == 0:
+                    article = self.text_corpus.get_article_by_title(action_arg)
+                    if article is None:
                         observation_str = (
-                            "No articles contain the requested attribute. "
-                            "Please try searching for another attribute."
+                            "No article found with exact title match. " "Attempting BM25 search..."
                         )
+                        raise NotImplementedError("BM25 isn't implemented yet.")
                     else:
-                        enum_article_titles: str = "\n\n".join(
-                            f"({i + 1}) {obj}" for i, obj in enumerate(articles)
-                        )
-                        observation_str = format_pred(enum_article_titles)
+                        observation_str = format_pred(article)
+                except Exception as e:
+                    logger.error(f"Error during Search action with arg '{action_arg}': {e}")
+                    observation_str = "An error occurred during the search operation."
 
             case _:
                 observation_str = (
@@ -270,7 +261,7 @@ class ReactAgent(Agent):
         observation_for_round = f"Observation {self.step_round}: {observation_str}"
         logger.debug(f"\n\t>>> {observation_for_round}\n")
 
-        # Update scrachpad and agent's conversation
+        # Update scratchpad and agent's conversation
         self.scratchpad += "\n" + observation_for_round
         self.agent_interactions.messages.append(
             Message(role="user", content=[ContentTextMessage(text=observation_for_round)])
