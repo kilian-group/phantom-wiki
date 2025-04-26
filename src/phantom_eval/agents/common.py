@@ -18,6 +18,7 @@ from collections import Counter
 
 import openai
 import pandas as pd
+from flashrag.retriever import BM25Retriever, DenseRetriever
 from langchain_community.vectorstores import FAISS
 from langchain_core.embeddings import Embeddings
 
@@ -26,8 +27,6 @@ from phantom_eval.gpu_utils import get_gpu_count
 from phantom_eval.llm import InferenceGenerationConfig, LLMChat, aggregate_usage
 from phantom_eval.prompts import LLMPrompt
 from phantom_eval.score import normalize_pred
-
-from .retriever import get_retriever
 
 logger = logging.getLogger(__name__)
 
@@ -185,7 +184,7 @@ class RAGMixin:
     def __init__(
         self,
         text_corpus: pd.DataFrame,
-        embedding_model_name: str = "whereisai/uae-large-v1",
+        embedding_model_name: str = None,
         retriever_num_documents: int = 4,
         port: int = 8001,
         retrieval_method: str = None,
@@ -197,7 +196,7 @@ class RAGMixin:
             text_corpus (pd.DataFrame): The text corpus containing documents in the "article" column.
             embedding_model_name (str): The embedding method for the vector database.
                 All embedding models available through huggingface and loadable by vLLM are supported.
-                Defaults to "whereisai/uae-large-v1".
+                Defaults to None.
                 BM25 is also supported, but requires running `pip install bm25s[full]`.
             retriever_num_documents (int): Number of documents retrieved.
                 Defaults to 4. See
@@ -226,36 +225,41 @@ class RAGMixin:
                 "retrieval_topk": retriever_num_documents,
                 "index_path": index_path,
                 "corpus_path": corpus_path,
-                # NOTE: currently not saving retrieval cache
-                "save_retrieval_cache": False,
-                "retrieval_cache_path": None,
+                "save_retrieval_cache": True,
+                # set the cache path to the index_path
+                "retrieval_cache_path": index_path,
                 "use_retrieval_cache": False,
                 "use_reranker": False,
                 "silent_retrieval": True,
             }
             # If the retriever_config is provided, use it to create the retriever
-            self.retriever = get_retriever(config=bm25_config)
+            self.retriever = BM25Retriever(config=bm25_config)
 
             # For debugging purposes, print the index path
             logger.debug("Using an existing retriever object...")
             self._indices[id(text_corpus)] = self.retriever
 
         elif retrieval_method == "dense":
-            # dense_config = {
-            #     "retrieval_method": "dense",
-            #     "retrieval_topk": 4,
-            #     "index_path": index_path,
-            #     "corpus_path": corpus_path",
-            #     "retrieval_model_path": "/path/to/dense/model",
-            #     "retrieval_query_max_length": 128,
-            #     "retrieval_pooling_method": "mean",
-            #     "retrieval_use_fp16": True,
-            #     "retrieval_batch_size": 16,
-            #     "use_sentence_transformer": True,
-            #     "faiss_gpu": True,
-            #     "silent_retrieval": True,
-            # }
-            raise NotImplementedError("Dense retrieval is not yet implemented. Please use BM25 or FAISS.")
+            dense_config = {
+                "retrieval_method": "dense",
+                "retrieval_topk": 4,
+                "index_path": index_path,
+                "corpus_path": corpus_path,
+                # TODO
+                "retrieval_model_path": embedding_model_name,
+                "retrieval_query_max_length": 128,
+                "retrieval_pooling_method": "mean",
+                "retrieval_use_fp16": True,
+                "retrieval_batch_size": 16,
+                "use_sentence_transformer": True,
+                "faiss_gpu": True,
+                "silent_retrieval": True,
+            }
+
+            self.retriever = DenseRetriever(config=dense_config)
+
+            logger.debug("Using an existing retriever object...")
+            self._indices[id(text_corpus)] = self.retriever
         else:
             texts = text_corpus["article"].tolist()
 
