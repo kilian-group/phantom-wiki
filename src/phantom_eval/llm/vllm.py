@@ -1,8 +1,8 @@
-import asyncio
 import logging
 import uuid
 
 import openai
+from tqdm.asyncio import tqdm as tqdm_async
 from transformers import AutoTokenizer
 from vllm import LLM, SamplingParams
 from vllm.lora.request import LoRARequest
@@ -165,7 +165,7 @@ class VLLMChat(CommonLLMChat):
         if self.use_api:
             # When using api, we can use the parent class implementation
             # return await super().batch_generate_response(convs, inf_gen_config)
-            parsed_responses = await asyncio.gather(
+            parsed_responses = await tqdm_async.gather(
                 *[self.generate_response(conv, inf_gen_config) for conv in convs]
             )
             return parsed_responses
