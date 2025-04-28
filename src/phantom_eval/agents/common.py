@@ -15,6 +15,7 @@ import abc
 import logging
 import subprocess
 from collections import Counter
+from pprint import pformat
 
 import openai
 import pandas as pd
@@ -215,9 +216,18 @@ class RAGMixin:
         self.retriever_num_documents = retriever_num_documents
         self.retrieval_method = retrieval_method
 
-        if id(text_corpus) in self._indices:
-            logger.debug("Using existing BM25 index...")
-            self.retriever = self._indices[id(text_corpus)]
+        # TODO: deprecate the text_corpus argument. The new workflow is to index the text corpus separately,
+        # then pass the index path to the constructor.
+        # Use the following arguments to check for existing retriever objects.
+        key = (
+            self.retrieval_method,
+            self.embedding_model_name,
+            index_path,
+            corpus_path,
+        )
+        if key in self._indices:
+            logger.debug("Using an existing retriever object...")
+            self.retriever = self._indices[key]
 
         elif self.retrieval_method == "bm25":
             bm25_config = {
@@ -225,41 +235,51 @@ class RAGMixin:
                 "retrieval_topk": retriever_num_documents,
                 "index_path": index_path,
                 "corpus_path": corpus_path,
-                "save_retrieval_cache": True,
-                # set the cache path to the index_path
-                "retrieval_cache_path": index_path,
+                "silent_retrieval": True,
+                "bm25_backend": "bm25s",
+                # Additional retriever features
+                # See https://github.com/bogoliubon/FlashRAG/blob/5f6eeafbf86c959475c4989b699666e5ccaa1a21/
+                # docs/original_docs/basic_usage.md#additional-features-of-the-retriever
+                "save_retrieval_cache": False,
+                "retrieval_cache_path": "~",
                 "use_retrieval_cache": False,
                 "use_reranker": False,
-                "silent_retrieval": True,
             }
-            # If the retriever_config is provided, use it to create the retriever
             self.retriever = BM25Retriever(config=bm25_config)
-
-            # For debugging purposes, print the index path
-            logger.debug("Using an existing retriever object...")
-            self._indices[id(text_corpus)] = self.retriever
+            logger.info(f"Retriever config: {pformat(self.retriever.config)}")
+            # Store the retriever object in the _indices dict so that it can be reused across instances
+            self._indices[key] = self.retriever
 
         elif retrieval_method == "dense":
+            # Default: https://github.com/bogoliubon/FlashRAG/blob/5f6eeafbf86c959475c4989b699666e5ccaa1a21/
+            # flashrag/config/basic_config.yaml#L49
             dense_config = {
                 "retrieval_method": "dense",
-                "retrieval_topk": 4,
+                "retrieval_topk": retriever_num_documents,
                 "index_path": index_path,
                 "corpus_path": corpus_path,
-                # TODO
                 "retrieval_model_path": embedding_model_name,
                 "retrieval_query_max_length": 128,
                 "retrieval_pooling_method": "mean",
                 "retrieval_use_fp16": True,
                 "retrieval_batch_size": 16,
                 "use_sentence_transformer": True,
-                "faiss_gpu": True,
+                "faiss_gpu": False,
                 "silent_retrieval": True,
+                # Additional retriever features
+                # See https://github.com/bogoliubon/FlashRAG/blob/5f6eeafbf86c959475c4989b699666e5ccaa1a21/
+                # docs/original_docs/basic_usage.md#additional-features-of-the-retriever
+                "save_retrieval_cache": False,
+                "retrieval_cache_path": "~",
+                "use_retrieval_cache": False,
+                "use_reranker": False,
+                "instruction": "~",
             }
-
             self.retriever = DenseRetriever(config=dense_config)
+            logger.info(f"Retriever config: {pformat(self.retriever.config)}")
+            # Store the retriever object in the _indices dict so that it can be reused across instances
+            self._indices[key] = self.retriever
 
-            logger.debug("Using an existing retriever object...")
-            self._indices[id(text_corpus)] = self.retriever
         else:
             texts = text_corpus["article"].tolist()
 
@@ -284,20 +304,12 @@ class RAGMixin:
             vectorstore = FAISS.from_texts(texts, embeddings)
             self.retriever = vectorstore.as_retriever(search_kwargs={"k": retriever_num_documents})
 
-    # def __new__(cls, *args, **kwargs):
-    #     # Create a unique key based on the arguments
-    #     key = cls.get_hashable_key(*args, **kwargs)
-    #     # import pdb; pdb.set_trace()
-    #     if key not in cls._instances:
-    #         cls._instances[key] = super().__new__(cls)
-    #     return cls._instances[key]
-
     def get_RAG_evidence(self, question: str) -> str:
         """
         Returns retrieved articles given the question from the text corpus.
         The retrieved articles are concatenated as a string.
         """
-        if self.retrieval_method == "bm25":
+        if self.retrieval_method in ["bm25", "dense"]:
             docs = self.retriever._search(question, num=self.retriever_num_documents, return_score=False)
             docs = [doc["contents"] for doc in docs]
         else:
