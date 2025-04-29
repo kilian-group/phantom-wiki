@@ -219,66 +219,71 @@ class RAGMixin:
         # TODO: deprecate the text_corpus argument. The new workflow is to index the text corpus separately,
         # then pass the index path to the constructor.
         # Use the following arguments to check for existing retriever objects.
-        key = (
-            self.retrieval_method,
-            self.embedding_model_name,
-            index_path,
-            corpus_path,
-        )
-        if key in self._indices:
-            logger.debug("Using an existing retriever object...")
-            self.retriever = self._indices[key]
+        if self.retrieval_method in ["bm25", "dense"]:
+            key = (
+                self.retrieval_method,
+                self.embedding_model_name,
+                index_path,
+                corpus_path,
+            )
+            if key in self._indices:
+                logger.debug("Using an existing retriever object...")
+                self.retriever = self._indices[key]
+                return
 
-        elif self.retrieval_method == "bm25":
-            bm25_config = {
-                "retrieval_method": "bm25",
-                "retrieval_topk": retriever_num_documents,
-                "index_path": index_path,
-                "corpus_path": corpus_path,
-                "silent_retrieval": True,
-                "bm25_backend": "bm25s",
-                # Additional retriever features
-                # See https://github.com/bogoliubon/FlashRAG/blob/5f6eeafbf86c959475c4989b699666e5ccaa1a21/
-                # docs/original_docs/basic_usage.md#additional-features-of-the-retriever
-                "save_retrieval_cache": False,
-                "retrieval_cache_path": "~",
-                "use_retrieval_cache": False,
-                "use_reranker": False,
-            }
-            self.retriever = BM25Retriever(config=bm25_config)
-            logger.info(f"Retriever config: {pformat(self.retriever.config)}")
-            # Store the retriever object in the _indices dict so that it can be reused across instances
-            self._indices[key] = self.retriever
+            match self.retrieval_method:
+                case "bm25":
+                    bm25_config = {
+                        "retrieval_method": "bm25",
+                        "retrieval_topk": retriever_num_documents,
+                        "index_path": index_path,
+                        "corpus_path": corpus_path,
+                        "silent_retrieval": True,
+                        "bm25_backend": "bm25s",
+                        # Additional retriever features
+                        # See https://github.com/bogoliubon/FlashRAG/blob/
+                        # 5f6eeafbf86c959475c4989b699666e5ccaa1a21/docs/
+                        # original_docs/basic_usage.md#additional-features-of-the-retriever
+                        "save_retrieval_cache": False,
+                        "retrieval_cache_path": "~",
+                        "use_retrieval_cache": False,
+                        "use_reranker": False,
+                    }
+                    self.retriever = BM25Retriever(config=bm25_config)
+                    logger.info(f"Retriever config: {pformat(self.retriever.config)}")
+                    # Store the retriever object in the _indices dict for reuse across instances
+                    self._indices[key] = self.retriever
 
-        elif retrieval_method == "dense":
-            # Default: https://github.com/bogoliubon/FlashRAG/blob/5f6eeafbf86c959475c4989b699666e5ccaa1a21/
-            # flashrag/config/basic_config.yaml#L49
-            dense_config = {
-                "retrieval_method": "dense",
-                "retrieval_topk": retriever_num_documents,
-                "index_path": index_path,
-                "corpus_path": corpus_path,
-                "retrieval_model_path": embedding_model_name,
-                "retrieval_query_max_length": 128,
-                "retrieval_pooling_method": "mean",
-                "retrieval_use_fp16": True,
-                "retrieval_batch_size": 16,
-                "use_sentence_transformer": True,
-                "faiss_gpu": False,
-                "silent_retrieval": True,
-                # Additional retriever features
-                # See https://github.com/bogoliubon/FlashRAG/blob/5f6eeafbf86c959475c4989b699666e5ccaa1a21/
-                # docs/original_docs/basic_usage.md#additional-features-of-the-retriever
-                "save_retrieval_cache": False,
-                "retrieval_cache_path": "~",
-                "use_retrieval_cache": False,
-                "use_reranker": False,
-                "instruction": "~",
-            }
-            self.retriever = DenseRetriever(config=dense_config)
-            logger.info(f"Retriever config: {pformat(self.retriever.config)}")
-            # Store the retriever object in the _indices dict so that it can be reused across instances
-            self._indices[key] = self.retriever
+                case "dense":
+                    # Default: https://github.com/bogoliubon/FlashRAG/blob/
+                    # 5f6eeafbf86c959475c4989b699666e5ccaa1a21/flashrag/config/basic_config.yaml#L49
+                    dense_config = {
+                        "retrieval_method": "dense",
+                        "retrieval_topk": retriever_num_documents,
+                        "index_path": index_path,
+                        "corpus_path": corpus_path,
+                        "retrieval_model_path": embedding_model_name,
+                        "retrieval_query_max_length": 128,
+                        "retrieval_pooling_method": "mean",
+                        "retrieval_use_fp16": True,
+                        "retrieval_batch_size": 16,
+                        "use_sentence_transformer": True,
+                        "faiss_gpu": False,
+                        "silent_retrieval": True,
+                        # Additional retriever features
+                        # See https://github.com/bogoliubon/FlashRAG/blob/
+                        # 5f6eeafbf86c959475c4989b699666e5ccaa1a21/docs/
+                        # original_docs/basic_usage.md#additional-features-of-the-retriever
+                        "save_retrieval_cache": False,
+                        "retrieval_cache_path": "~",
+                        "use_retrieval_cache": False,
+                        "use_reranker": False,
+                        "instruction": "~",
+                    }
+                    self.retriever = DenseRetriever(config=dense_config)
+                    logger.info(f"Retriever config: {pformat(self.retriever.config)}")
+                    # Store the retriever object in the _indices dict for reuse across instances
+                    self._indices[key] = self.retriever
 
         else:
             texts = text_corpus["article"].tolist()
