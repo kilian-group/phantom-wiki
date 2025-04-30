@@ -188,28 +188,30 @@ class RAGMixin:
         embedding_model_name: str = None,
         retriever_num_documents: int = 4,
         port: int = 8001,
-        retrieval_method: str = None,
+        retrieval_method: str = "bm25",
         index_path: str = None,
         corpus_path: str = None,
     ):
         """
         Args:
             text_corpus (pd.DataFrame): The text corpus containing documents in the "article" column.
-            embedding_model_name (str): The embedding method for the vector database.
+            embedding_model_name (str): The embedding model name for dense and faiss retrieval methods.
                 All embedding models available through huggingface and loadable by vLLM are supported.
                 Defaults to None.
-                BM25 is also supported, but requires running `pip install bm25s[full]`.
+                NOTE: BM25 does not require passing an embedding model name.
             retriever_num_documents (int): Number of documents retrieved.
-                Defaults to 4. See
-                "https://api.python.langchain.com/en/latest/vectorstores/langchain_community.vectorstores.faiss.FAISS.html#langchain_community.vectorstores.faiss.FAISS.as_retriever"
-                for other options.
+                Defaults to 4.
             port (int): The port number to use for the embedding server.
                 Defaults to 8001.
-            retrieval_method (str): The retrieval method to use. Can be "faiss", "bm25" or "dense".
-                Defaults to "faiss".
+            retrieval_method (str): The retrieval method to use. Can be "bm25", "dense", or "faiss".
+                Defaults to "bm25".
             index_path (str): The path to the index file for the BM25 or dense retriever.
+                To build the index, please follow the instructions at
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
                 Defaults to None.
             corpus_path (str): The path to the corpus file for the BM25 or dense retriever.
+                To build the corpus, please follow the instructions at
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
                 Defaults to None.
         """
         self.embedding_model_name = embedding_model_name

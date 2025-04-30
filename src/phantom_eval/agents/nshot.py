@@ -254,7 +254,7 @@ class NshotRAGAgent(NshotAgent, RAGMixin):
         embedding_model_name: str = "whereisai/uae-large-v1",
         retriever_num_documents: int = 4,
         port: int = 8001,
-        retrieval_method=None,
+        retrieval_method: str = "bm25",
         index_path: str = None,
         corpus_path: str = None,
     ):
@@ -271,8 +271,8 @@ class NshotRAGAgent(NshotAgent, RAGMixin):
                 Defaults to 4.
             port (int): The port to use for the retriever.
                 Defaults to 8001.
-            retrieval_method (str): The retrieval method to use. Can be "faiss", "bm25" or "dense".
-                Defaults to "faiss".
+            retrieval_method (str): The retrieval method to use. Can be "bm25", "dense" or "faiss".
+                Defaults to "bm25".
             index_path (str): The path to the index file for the BM25 or dense retriever.
                 Defaults to None.
             corpus_path (str): The path to the corpus file for the BM25 or dense retriever.
