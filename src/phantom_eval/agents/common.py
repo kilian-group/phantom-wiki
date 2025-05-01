@@ -201,15 +201,21 @@ class RAGMixin:
                 NOTE: BM25 does not require passing an embedding model name.
             retriever_num_documents (int): Number of documents retrieved.
                 Defaults to 4.
-            port (int): The port number to use for the embedding server.
-                Defaults to 8001.
             retrieval_method (str): The retrieval method to use. Can be "bm25", "dense", or "faiss".
                 Defaults to "bm25".
-            index_path (str): The path to the index file for the BM25 or dense retriever.
+            retrieval_method (str): The retrieval method to use. Can be "bm25", "dense", or "faiss".
+                Defaults to "bm25".
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
                 To build the index, please follow the instructions at
                 https://github.com/kilian-group/phantom-wiki/wiki/RAG
                 Defaults to None.
             corpus_path (str): The path to the corpus file for the BM25 or dense retriever.
+                To build the corpus, please follow the instructions at
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
+                To build the corpus, please follow the instructions at
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
+                To build the corpus, please follow the instructions at
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
                 To build the corpus, please follow the instructions at
                 https://github.com/kilian-group/phantom-wiki/wiki/RAG
                 Defaults to None.
