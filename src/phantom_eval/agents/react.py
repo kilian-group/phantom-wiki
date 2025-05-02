@@ -173,21 +173,26 @@ class ReactAgent(Agent):
 
     def __init__(
         self,
-        text_corpus: str,
+        text_corpus: pd.DataFrame,
         llm_prompt: LLMPrompt,
         max_steps: int = 6,
         react_examples: str = "",
+        index_path: str = None,
+        corpus_path: str = None,
     ):
         """
         Args:
-            text_corpus (str): Path to JSONL corpus file
+            text_corpus (pd.DataFrame): The text corpus to search for answers.
+                Must contain two columns: 'title' and 'article'.
             llm_prompt (LLMPrompt): The prompt to be used by the agent.
             max_steps (int): The maximum number of steps the agent can take.
                 Defaults to 6.
             react_examples (str): Prompt examples to include in agent prompt.
                 Defaults to "".
+            index_path (str): Path to a JSONL index file. Defaults to None.
+            corpus_path (str): Path to a JSONL corpus file. Defaults to None.
         """
-        text_corpus = TextCorpus(text_corpus)
+        text_corpus = TextCorpus(corpus_path)
 
         super().__init__(text_corpus, llm_prompt)
         self.max_steps = max_steps
