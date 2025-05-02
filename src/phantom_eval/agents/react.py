@@ -9,11 +9,15 @@ The module contains several agent classes:
     ReAct if CoTSC fails
 """
 
+import json
 import logging
 import re
 import traceback
+from pathlib import Path
 
+import nltk
 import pandas as pd
+from nltk.tokenize import PunktSentenceTokenizer
 
 import phantom_eval.constants as constants
 from phantom_eval._types import ContentTextMessage, Conversation, LLMChatResponse, Message
@@ -32,6 +36,133 @@ def format_pred(pred: str) -> str:
     return pred.strip("\n").strip().replace("\n", " ")
 
 
+class TextCorpus:
+    """Handles reading and searching JSONL corpus files."""
+
+    def __init__(self, filepath: str):
+        self.filepath = Path(filepath)
+        if not self.filepath.exists():
+            raise FileNotFoundError(f"Corpus file not found: {filepath}")
+
+        # Initialize NLTK sentence tokenizer
+        try:
+            nltk.data.find("tokenizers/punkt")
+        except LookupError:
+            nltk.download("punkt")
+
+        self.sentence_tokenizer = PunktSentenceTokenizer()
+
+        # State for lookup operations
+        self.current_sentences = None
+        self.lookup_state = {"keyword": None, "last_match_index": -1}  # Index of last matched sentence
+
+    def _split_into_sentences(self, text: str) -> list[str]:
+        """
+        Split text into sentences using NLTK's Punkt tokenizer.
+
+        This tokenizer handles:
+        - Common abbreviations (Mr., Dr., Prof., etc.)
+        - Common technical abbreviations (e.g., i.e., etc.)
+        - Organizations (Corp., Inc., Ltd.)
+        - Multiple dots (...)
+        - Brackets and quotes
+
+        Args:
+            text (str): Text to split into sentences
+
+        Returns:
+            list[str]: List of sentences, with whitespace stripped
+        """
+        # Remove excessive whitespace and normalize line endings
+        text = " ".join(text.split())
+
+        # Tokenize into sentences
+        sentences = self.sentence_tokenizer.tokenize(text)
+
+        # Clean up sentences
+        return [s.strip() for s in sentences if s.strip()]
+
+    def get_article_by_title(self, title: str) -> str | None:
+        """
+        Retrieve article by exact title match (case insensitive).
+        If multiple chunks with same title exist, merges them into single string.
+        Also updates current_sentences for lookup operations.
+        """
+        title_lower = title.lower()
+        article_chunks = []
+
+        with open(self.filepath) as f:
+            for line in f:
+                entry = json.loads(line)
+                content = entry["contents"]
+                # Split on first newline to separate title from article
+                parts = content.split("\n", 1)
+                current_title = parts[0].strip('"').lower()
+
+                if current_title == title_lower:
+                    chunk = parts[1] if len(parts) > 1 else ""
+                    article_chunks.append(chunk)
+
+        # If no chunks found, reset state and return None
+        if not article_chunks:
+            self.current_sentences = None
+            self.lookup_state = {"keyword": None, "last_match_index": -1}
+            return None
+
+        # Merge all chunks and update state
+        article = "\n".join(article_chunks)
+        self.current_sentences = self._split_into_sentences(article)
+        self.lookup_state = {"keyword": None, "last_match_index": -1}
+        return article
+
+    def lookup_keyword(self, keyword: str) -> tuple[str | None, str]:
+        """
+        Looks up the next occurrence of keyword in current article and returns surrounding context.
+
+        Args:
+            keyword (str): The keyword to search for (case insensitive)
+
+        Returns:
+            tuple[str | None, str]: (context_window, status_message)
+            - context_window: String containing the matching sentence and surrounding context
+                            or None if no match/error
+            - status_message: Description of the result or error message
+        """
+        # Check if we have an article loaded
+        if not self.current_sentences:
+            return None, "No article currently loaded. Please search for an article first."
+
+        # Reset state if new keyword
+        if keyword != self.lookup_state["keyword"]:
+            self.lookup_state = {"keyword": keyword, "last_match_index": -1}
+
+        # Find next sentence containing the keyword (case insensitive)
+        keyword_lower = keyword.lower()
+
+        for i in range(self.lookup_state["last_match_index"] + 1, len(self.current_sentences)):
+            if keyword_lower in self.current_sentences[i].lower():
+                self.lookup_state["last_match_index"] = i
+
+                # Get context window (2 sentences before and after)
+                start_idx = max(0, i - 2)
+                end_idx = min(len(self.current_sentences), i + 3)
+                context = " ".join(self.current_sentences[start_idx:end_idx])
+
+                return context, f"Found match in sentence {i + 1} of {len(self.current_sentences)}"
+
+        # If we get here, no more matches were found
+        if self.lookup_state["last_match_index"] == -1:
+            return None, f"No occurrences of '{keyword}' found in the current article."
+        else:
+            return (
+                None,
+                (
+                    f"No more occurrences of '{keyword}' found after "
+                    f"sentence {self.lookup_state['last_match_index'] + 1}."
+                ),
+            )
+
+
 class ReactAgent(Agent):
     """
     Agent that implements agentic react (thought, action, observation) evaluation.
@@ -42,21 +173,22 @@ class ReactAgent(Agent):
 
     def __init__(
         self,
-        text_corpus: pd.DataFrame,
+        text_corpus: str,
         llm_prompt: LLMPrompt,
         max_steps: int = 6,
         react_examples: str = "",
     ):
         """
         Args:
-            text_corpus (pd.DataFrame): The text corpus to search for answers.
-                Must contain two columns: 'title' and 'article'.
+            text_corpus (str): Path to JSONL corpus file
             llm_prompt (LLMPrompt): The prompt to be used by the agent.
             max_steps (int): The maximum number of steps the agent can take.
                 Defaults to 6.
             react_examples (str): Prompt examples to include in agent prompt.
                 Defaults to "".
         """
+        text_corpus = TextCorpus(text_corpus)
+
         super().__init__(text_corpus, llm_prompt)
         self.max_steps = max_steps
         self.react_examples = react_examples
@@ -199,43 +331,31 @@ class ReactAgent(Agent):
                 self.step_round += 1
                 self.finished = True
                 return LLMChatResponse(pred=action_arg, usage={})
-            case "RetrieveArticle":
-                try:
-                    # Fetch the article for the requested entity by looking up the title
-                    # Indexing 0 raises IndexError if search is empty, i.e. no article found
-                    article: str = self.text_corpus.loc[
-                        self.text_corpus["title"].str.lower() == action_arg.lower(), "article"
-                    ].values[0]
-                    observation_str = format_pred(article)
-                except IndexError:
-                    observation_str = (
-                        "No article exists for the requested entity. "
-                        "Please try retrieving article for another entity."
-                    )
             case "Search":
-                # Fetch all article titles that contain the requested attribute
-                article_titles: list[str] = self.text_corpus.loc[
-                    self.text_corpus["article"].str.lower().str.contains(action_arg.lower()), "title"
-                ].tolist()
-                if len(article_titles) == 0:
-                    observation_str = (
-                        "No articles contain the requested attribute. "
-                        "Please try searching for another attribute."
-                    )
-                else:
-                    enum_article_titles: str = "\n\n".join(
-                        f"({i+1}) {title}" for i, title in enumerate(article_titles)
-                    )
-                    observation_str = format_pred(enum_article_titles)
+                # First, try fetching the article by exact match on the title
+                try:
+                    article = self.text_corpus.get_article_by_title(action_arg)
+                    if article is None:
+                        observation_str = (
+                            "No article found with exact title match. " "Attempting BM25 search..."
+                        )
+                        raise NotImplementedError("BM25 isn't implemented yet.")
+                    else:
+                        observation_str = format_pred(article)
+                except Exception as e:
+                    logger.error(f"Error during Search action with arg '{action_arg}': {e}")
+                    observation_str = "An error occurred during the search operation."
+            case "Lookup":
+                raise NotImplementedError("Lookup isn't implemented yet.")
             case _:
                 observation_str = (
-                    "Invalid action. Valid actions are RetrieveArticle[{{entity}}], "
-                    "Search[{{attribute}}], and Finish[{{answer}}]."
+                    "Invalid action. Valid actions are Search[{{attribute}}], "
+                    "Lookup[{{keyword}}], and Finish[{{answer}}]."
                 )
         observation_for_round = f"Observation {self.step_round}: {observation_str}"
         logger.debug(f"\n\t>>> {observation_for_round}\n")
 
-        # Update scrachpad and agent's conversation
+        # Update scratchpad and agent's conversation
         self.scratchpad += "\n" + observation_for_round
         self.agent_interactions.messages.append(
             Message(role="user", content=[ContentTextMessage(text=observation_for_round)])
