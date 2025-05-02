@@ -257,6 +257,7 @@ class RAGMixin:
                         "use_retrieval_cache": False,
                         "use_reranker": False,
                     }
+                    logger.info("Initializing BM25 retriever...")
                     self.retriever = BM25Retriever(config=bm25_config)
                     logger.info(f"Retriever config: {pformat(self.retriever.config)}")
                     # Store the retriever object in the _indices dict for reuse across instances
