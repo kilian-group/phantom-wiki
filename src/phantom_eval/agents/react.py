@@ -19,6 +19,8 @@ from pathlib import Path
 import nltk
 import pandas as pd
 import tqdm
+from flashrag.config import Config
+from flashrag.retriever import BM25Retriever
 from nltk.tokenize import PunktSentenceTokenizer
 
 import phantom_eval.constants as constants
@@ -43,8 +45,9 @@ class TextCorpus:
 
     _title_mappings = defaultdict(list)  # title -> list of ids
     _data = {}  # id -> data
+    retriever = None  # Static variable for BM25 retriever
 
-    def __init__(self, filepath: str):
+    def __init__(self, filepath: str, config_path: str):
         filepath = Path(filepath)
         if not filepath.exists():
             raise FileNotFoundError(f"Corpus file not found: {filepath}")
@@ -65,19 +68,28 @@ class TextCorpus:
         with open(filepath) as f:
             num_lines = sum(1 for _ in f)
 
+        corpus_data = []
+
         # Build title_mappings and data dictionary
         if TextCorpus._title_mappings == {} and TextCorpus._data == {}:
             with open(filepath) as f, tqdm.tqdm(f, total=num_lines, desc="Loading corpus") as pbar:
                 for line in pbar:
                     entry = json.loads(line)
-                    article_id = entry.get("id")
-                    content = entry.get("contents", "")
+                    corpus_data.append(entry)
+                    # article_id = entry.get("id")
+                    # content = entry.get("contents", "")
 
-                    # Extract title: first line, strip quotes and whitespace
-                    title = content.split("\n", 1)[0].strip().strip('"').lower()
-                    article = content.split("\n", 1)[1].strip()
-                    TextCorpus._title_mappings[title].append(article_id)
-                    TextCorpus._data[article_id] = article
+                    # # Extract title: first line, strip quotes and whitespace
+                    # title = content.split("\n", 1)[0].strip().strip('"').lower()
+                    # article = content.split("\n", 1)[1].strip()
+                    # TextCorpus._title_mappings[title].append(article_id)
+                    # TextCorpus._data[article_id] = article
+
+        # Initialize the BM25 retriever if not already done
+        if TextCorpus.retriever is None:
+            print(f"Loading config from {config_path}")
+            config = Config(config_path)
+            TextCorpus.retriever = BM25Retriever(config)
 
     def _split_into_sentences(self, text: str) -> list[str]:
         """
@@ -105,7 +117,7 @@ class TextCorpus:
         # Clean up sentences
         return [s.strip() for s in sentences if s.strip()]
 
-    def get_article_by_title(self, title: str) -> str | None:
+    def search_title_exact_match(self, title: str) -> str | None:
         """
         Retrieve article by exact title match (case insensitive).
         If multiple chunks with same title exist, merges them into single string.
@@ -114,26 +126,39 @@ class TextCorpus:
         # Normalize title to match how it's stored in title_mappings
         title = title.strip().strip('"').lower()
         article_ids = TextCorpus._title_mappings.get(title)
-        if not article_ids:
+        if article_ids:
+            # Use self.data for fast lookup
+            article_chunks = [
+                TextCorpus._data[article_id] for article_id in article_ids if article_id in TextCorpus._data
+            ]
+
+            # Merge all chunks and update state
+            article = "\n".join(article_chunks)
+            self.current_sentences = self._split_into_sentences(article)
+            self.lookup_state = {"keyword": None, "last_match_index": -1}
+            return article
+        else:
             self.current_sentences = None
             self.lookup_state = {"keyword": None, "last_match_index": -1}
             return None
 
-        # Use self.data for fast lookup
-        article_chunks = [
-            TextCorpus._data[article_id] for article_id in article_ids if article_id in TextCorpus._data
-        ]
+    def search_title_bm25(self, title: str) -> str | None:
+        results = self.retriever.search(title, k=2)
+        if results:
+            article_ids = [result["id"] for result in results]
+            article_chunks = [
+                TextCorpus._data[article_id] for article_id in article_ids if article_id in TextCorpus._data
+            ]
 
-        if not article_chunks:
+            # Merge all chunks and update state
+            article = "\n".join(article_chunks)
+            self.current_sentences = self._split_into_sentences(article)
+            self.lookup_state = {"keyword": None, "last_match_index": -1}
+            return article
+        else:
             self.current_sentences = None
             self.lookup_state = {"keyword": None, "last_match_index": -1}
             return None
-
-        # Merge all chunks and update state
-        article = "\n".join(article_chunks)
-        self.current_sentences = self._split_into_sentences(article)
-        self.lookup_state = {"keyword": None, "last_match_index": -1}
-        return article
 
     def lookup_keyword(self, keyword: str, get_contextual_sentences: bool = True) -> tuple[str | None, str]:
         """
@@ -207,6 +232,7 @@ class ReactAgent(Agent):
         react_examples: str = "",
         index_path: str = None,
         corpus_path: str = None,
+        config_path: str = None,
     ):
         """
         Args:
@@ -219,8 +245,9 @@ class ReactAgent(Agent):
                 Defaults to "".
             index_path (str): Path to a JSONL index file. Defaults to None.
             corpus_path (str): Path to a JSONL corpus file. Defaults to None.
+            config_path (str): Path to a config file. Defaults to None.
         """
-        text_corpus = TextCorpus(corpus_path)
+        text_corpus = TextCorpus(corpus_path, config_path)
 
         super().__init__(text_corpus, llm_prompt)
         self.max_steps = max_steps
@@ -367,12 +394,16 @@ class ReactAgent(Agent):
             case "Search":
                 # First, try fetching the article by exact match on the title
                 try:
-                    article = self.text_corpus.get_article_by_title(action_arg)
+                    article = self.text_corpus.search_title_exact_match(action_arg)
                     if article is None:
                         observation_str = (
                             "No article found with exact title match. " "Attempting BM25 search..."
                         )
-                        raise NotImplementedError("BM25 isn't implemented yet.")
+                        article = self.text_corpus.search_title_bm25(action_arg)
+                        if article is None:
+                            observation_str = "No article found with BM25 search."
+                        else:
+                            observation_str = format_pred(article)
                     else:
                         observation_str = format_pred(article)
                 except Exception as e:
