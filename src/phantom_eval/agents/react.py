@@ -13,10 +13,12 @@ import json
 import logging
 import re
 import traceback
+from collections import defaultdict
 from pathlib import Path
 
 import nltk
 import pandas as pd
+import tqdm
 from nltk.tokenize import PunktSentenceTokenizer
 
 import phantom_eval.constants as constants
@@ -39,9 +41,12 @@ def format_pred(pred: str) -> str:
 class TextCorpus:
     """Handles reading and searching JSONL corpus files."""
 
+    _title_mappings = defaultdict(list)  # title -> list of ids
+    _data = {}  # id -> data
+
     def __init__(self, filepath: str):
-        self.filepath = Path(filepath)
-        if not self.filepath.exists():
+        filepath = Path(filepath)
+        if not filepath.exists():
             raise FileNotFoundError(f"Corpus file not found: {filepath}")
 
         # Initialize NLTK sentence tokenizer
@@ -55,6 +60,24 @@ class TextCorpus:
         # State for lookup operations
         self.current_sentences = None
         self.lookup_state = {"keyword": None, "last_match_index": -1}  # Index of last matched sentence
+
+        # Count lines for tqdm total
+        with open(filepath) as f:
+            num_lines = sum(1 for _ in f)
+
+        # Build title_mappings and data dictionary
+        if TextCorpus._title_mappings == {} and TextCorpus._data == {}:
+            with open(filepath) as f, tqdm.tqdm(f, total=num_lines, desc="Loading corpus") as pbar:
+                for line in pbar:
+                    entry = json.loads(line)
+                    article_id = entry.get("id")
+                    content = entry.get("contents", "")
+
+                    # Extract title: first line, strip quotes and whitespace
+                    title = content.split("\n", 1)[0].strip().strip('"').lower()
+                    article = content.split("\n", 1)[1].strip()
+                    TextCorpus._title_mappings[title].append(article_id)
+                    TextCorpus._data[article_id] = article
 
     def _split_into_sentences(self, text: str) -> list[str]:
         """
@@ -88,22 +111,19 @@ class TextCorpus:
         If multiple chunks with same title exist, merges them into single string.
         Also updates current_sentences for lookup operations.
         """
-        title_lower = title.lower()
-        article_chunks = []
+        # Normalize title to match how it's stored in title_mappings
+        title = title.strip().strip('"').lower()
+        article_ids = TextCorpus._title_mappings.get(title)
+        if not article_ids:
+            self.current_sentences = None
+            self.lookup_state = {"keyword": None, "last_match_index": -1}
+            return None
 
-        with open(self.filepath) as f:
-            for line in f:
-                entry = json.loads(line)
-                content = entry["contents"]
-                # Split on first newline to separate title from article
-                parts = content.split("\n", 1)
-                current_title = parts[0].strip('"').lower()
+        # Use self.data for fast lookup
+        article_chunks = [
+            TextCorpus._data[article_id] for article_id in article_ids if article_id in TextCorpus._data
+        ]
 
-                if current_title == title_lower:
-                    chunk = parts[1] if len(parts) > 1 else ""
-                    article_chunks.append(chunk)
-
-        # If no chunks found, reset state and return None
         if not article_chunks:
             self.current_sentences = None
             self.lookup_state = {"keyword": None, "last_match_index": -1}
@@ -115,12 +135,15 @@ class TextCorpus:
         self.lookup_state = {"keyword": None, "last_match_index": -1}
         return article
 
-    def lookup_keyword(self, keyword: str) -> tuple[str | None, str]:
+    def lookup_keyword(self, keyword: str, get_contextual_sentences: bool = True) -> tuple[str | None, str]:
         """
-        Looks up the next occurrence of keyword in current article and returns surrounding context.
+        Looks up the next occurrence of keyword in current article and returns
+        sentence and surrounding context (if get_contextual_sentences is True).
 
         Args:
             keyword (str): The keyword to search for (case insensitive)
+            get_contextual_sentences (bool): Whether to return the contextual sentences
+                (sentence before and after)
 
         Returns:
             tuple[str | None, str]: (context_window, status_message)
@@ -142,14 +165,19 @@ class TextCorpus:
         for i in range(self.lookup_state["last_match_index"] + 1, len(self.current_sentences)):
             if keyword_lower in self.current_sentences[i].lower():
                 self.lookup_state["last_match_index"] = i
+                if get_contextual_sentences:
+                    # Get context window (2 sentences before and after)
+                    start_idx = max(0, i - 2)
+                    end_idx = min(len(self.current_sentences), i + 3)
+                    context = " ".join(self.current_sentences[start_idx:end_idx])
 
-                # Get context window (2 sentences before and after)
-                start_idx = max(0, i - 2)
-                end_idx = min(len(self.current_sentences), i + 3)
-                context = " ".join(self.current_sentences[start_idx:end_idx])
-
-                return context, f"Found match in sentence {i + 1} of {len(self.current_sentences)}"
-
+                    return context, f"Found match in sentence {i + 1} of {len(self.current_sentences)}"
+                else:
+                    # Return only the sentence containing the keyword
+                    return (
+                        self.current_sentences[i],
+                        f"Found match in sentence {i + 1} of {len(self.current_sentences)}",
+                    )
         # If we get here, no more matches were found
         if self.lookup_state["last_match_index"] == -1:
             return None, f"No occurrences of '{keyword}' found in the current article."
