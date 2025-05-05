@@ -19,7 +19,6 @@ from pathlib import Path
 import nltk
 import pandas as pd
 import tqdm
-from flashrag.config import Config
 from flashrag.retriever import BM25Retriever
 from nltk.tokenize import PunktSentenceTokenizer
 
@@ -45,12 +44,13 @@ class TextCorpus:
 
     _title_mappings = defaultdict(list)  # title -> list of ids
     _data = {}  # id -> data
-    retriever = None  # Static variable for BM25 retriever
+    _retriever = None  # Static variable for BM25 retriever
 
-    def __init__(self, filepath: str, config_path: str):
-        filepath = Path(filepath)
-        if not filepath.exists():
-            raise FileNotFoundError(f"Corpus file not found: {filepath}")
+    def __init__(self, corpus_path: str, index_path: str):
+        if not Path(corpus_path).exists():
+            raise FileNotFoundError(f"Corpus file not found: {Path(corpus_path)}")
+        if not Path(index_path).exists():
+            raise FileNotFoundError(f"Index file not found: {Path(index_path)}")
 
         # Initialize NLTK sentence tokenizer
         try:
@@ -65,31 +65,46 @@ class TextCorpus:
         self.lookup_state = {"keyword": None, "last_match_index": -1}  # Index of last matched sentence
 
         # Count lines for tqdm total
-        with open(filepath) as f:
+        with open(corpus_path) as f:
             num_lines = sum(1 for _ in f)
 
         corpus_data = []
 
         # Build title_mappings and data dictionary
         if TextCorpus._title_mappings == {} and TextCorpus._data == {}:
-            with open(filepath) as f, tqdm.tqdm(f, total=num_lines, desc="Loading corpus") as pbar:
+            with open(corpus_path) as f, tqdm.tqdm(f, total=num_lines, desc="Loading corpus") as pbar:
                 for line in pbar:
                     entry = json.loads(line)
                     corpus_data.append(entry)
-                    # article_id = entry.get("id")
-                    # content = entry.get("contents", "")
+                    article_id = entry.get("id")
+                    content = entry.get("contents", "")
 
-                    # # Extract title: first line, strip quotes and whitespace
-                    # title = content.split("\n", 1)[0].strip().strip('"').lower()
-                    # article = content.split("\n", 1)[1].strip()
-                    # TextCorpus._title_mappings[title].append(article_id)
-                    # TextCorpus._data[article_id] = article
+                    # Extract title: first line, strip quotes and whitespace
+                    title = content.split("\n", 1)[0].strip().strip('"').lower()
+                    article = content.split("\n", 1)[1].strip()
+                    TextCorpus._title_mappings[title].append(article_id)
+                    TextCorpus._data[article_id] = article
 
         # Initialize the BM25 retriever if not already done
-        if TextCorpus.retriever is None:
-            print(f"Loading config from {config_path}")
-            config = Config(config_path)
-            TextCorpus.retriever = BM25Retriever(config)
+        if TextCorpus._retriever is None:
+            bm25_config = {
+                "retrieval_method": "bm25",
+                "retrieval_topk": 4,  # default param here
+                "index_path": index_path,
+                "corpus_path": corpus_path,
+                "silent_retrieval": True,
+                "bm25_backend": "bm25s",
+                # Additional retriever features
+                # See https://github.com/bogoliubon/FlashRAG/blob/
+                # 5f6eeafbf86c959475c4989b699666e5ccaa1a21/docs/
+                # original_docs/basic_usage.md#additional-features-of-the-retriever
+                "save_retrieval_cache": False,
+                "retrieval_cache_path": "~",
+                "use_retrieval_cache": False,
+                "use_reranker": False,
+            }
+            logger.info("Initializing BM25 retriever...")
+            TextCorpus._retriever = BM25Retriever(config=bm25_config)
 
     def _split_into_sentences(self, text: str) -> list[str]:
         """
@@ -142,9 +157,9 @@ class TextCorpus:
             self.lookup_state = {"keyword": None, "last_match_index": -1}
             return None
 
-    def search_title_bm25(self, title: str) -> str | None:
-        results = self.retriever.search(title, k=2)
-        if results:
+    def search_title_bm25(self, title: str, k: int = 2) -> str | None:
+        results = TextCorpus._retriever.search(title, num=k)
+        if len(results) > 0:
             article_ids = [result["id"] for result in results]
             article_chunks = [
                 TextCorpus._data[article_id] for article_id in article_ids if article_id in TextCorpus._data
@@ -232,7 +247,6 @@ class ReactAgent(Agent):
         react_examples: str = "",
         index_path: str = None,
         corpus_path: str = None,
-        config_path: str = None,
     ):
         """
         Args:
@@ -245,9 +259,8 @@ class ReactAgent(Agent):
                 Defaults to "".
             index_path (str): Path to a JSONL index file. Defaults to None.
             corpus_path (str): Path to a JSONL corpus file. Defaults to None.
-            config_path (str): Path to a config file. Defaults to None.
         """
-        text_corpus = TextCorpus(corpus_path, config_path)
+        text_corpus = TextCorpus(corpus_path, index_path)
 
         super().__init__(text_corpus, llm_prompt)
         self.max_steps = max_steps
