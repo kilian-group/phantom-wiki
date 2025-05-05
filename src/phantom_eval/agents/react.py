@@ -11,15 +11,16 @@ The module contains several agent classes:
 
 import json
 import logging
+import multiprocessing as mp
 import re
 import traceback
-from collections import defaultdict
 from pathlib import Path
 
 import nltk
 import pandas as pd
 import tqdm
 from flashrag.retriever import BM25Retriever
+from joblib import Memory
 from nltk.tokenize import PunktSentenceTokenizer
 
 import phantom_eval.constants as constants
@@ -31,6 +32,8 @@ from phantom_eval.prompts import LLMPrompt
 
 logger = logging.getLogger(__name__)
 
+memory = Memory("cachedir")
+
 
 def format_pred(pred: str) -> str:
     """
@@ -40,10 +43,13 @@ def format_pred(pred: str) -> str:
 
 
 class TextCorpus:
-    """Handles reading and searching JSONL corpus files."""
+    """Handles reading and searching JSONL corpus files.
 
-    _title_mappings = defaultdict(list)  # title -> list of ids
-    _data = {}  # id -> data
+    NOTE: Assumes the id field in the corpus is 0-indexed, so that we can use the id as the index.
+    """
+
+    _title_mappings = {}  # title -> list of ids
+    # _data = {}  # id -> data
     _retriever = None  # Static variable for BM25 retriever
 
     def __init__(self, corpus_path: str, index_path: str):
@@ -65,25 +71,8 @@ class TextCorpus:
         self.lookup_state = {"keyword": None, "last_match_index": -1}  # Index of last matched sentence
 
         # Count lines for tqdm total
-        with open(corpus_path) as f:
-            num_lines = sum(1 for _ in f)
-
-        corpus_data = []
-
-        # Build title_mappings and data dictionary
-        if TextCorpus._title_mappings == {} and TextCorpus._data == {}:
-            with open(corpus_path) as f, tqdm.tqdm(f, total=num_lines, desc="Loading corpus") as pbar:
-                for line in pbar:
-                    entry = json.loads(line)
-                    corpus_data.append(entry)
-                    article_id = entry.get("id")
-                    content = entry.get("contents", "")
-
-                    # Extract title: first line, strip quotes and whitespace
-                    title = content.split("\n", 1)[0].strip().strip('"').lower()
-                    article = content.split("\n", 1)[1].strip()
-                    TextCorpus._title_mappings[title].append(article_id)
-                    TextCorpus._data[article_id] = article
+        # with open(corpus_path) as f:
+        #     num_lines = sum(1 for _ in f)
 
         # Initialize the BM25 retriever if not already done
         if TextCorpus._retriever is None:
@@ -105,6 +94,66 @@ class TextCorpus:
             }
             logger.info("Initializing BM25 retriever...")
             TextCorpus._retriever = BM25Retriever(config=bm25_config)
+
+            logger.info("Extracting titles and articles...")
+
+            # Use num_proc for parallel processing
+            def extract_title_article(x):
+                title, article = x["contents"].split("\n", 1)
+                title = title.strip().strip('"').lower()
+                article = article.strip()
+                return {"title": title, "article": article}
+
+            # Process in parallel with multiple workers
+            TextCorpus._retriever.corpus = TextCorpus._retriever.corpus.map(
+                extract_title_article,
+                num_proc=mp.cpu_count(),  # Use all available CPU cores
+                desc="Extracting titles and articles",
+            )
+
+        # Build title_mappings and data dictionary
+        if TextCorpus._title_mappings == {}:
+            if False:
+                corpus_data = []
+                with open(corpus_path) as f:
+                    for line in tqdm.tqdm(f, desc="Loading corpus"):
+                        entry = json.loads(line)
+                        corpus_data.append(entry)
+                        article_id = entry.get("id")
+                        content = entry.get("contents", "")
+
+                        # Extract title: first line, strip quotes and whitespace
+                        title = content.split("\n", 1)[0].strip().strip('"').lower()
+                        article = content.split("\n", 1)[1].strip()
+                        TextCorpus._title_mappings[title].append(article_id)
+                        TextCorpus._data[article_id] = article
+            else:
+                TextCorpus._title_mappings = TextCorpus._get_title_mappings(corpus_path, index_path)
+
+    @classmethod
+    @memory.cache
+    def _get_title_mappings(cls, corpus_path: str, index_path: str) -> None:
+        """
+        Construct the title mappings for the corpus.
+
+        This function is only called once, then cached in local disk for future use.
+        """
+        corpus = cls._retriever.corpus
+
+        # create a pandas dataframe with optimized types
+        df = pd.DataFrame(
+            {
+                "id": pd.Series(corpus["id"], dtype="int32"),
+                "title": pd.Series(corpus["title"], dtype="category"),
+            }
+        )
+        # Optimized groupby operation
+        return (
+            df.groupby("title", sort=False, as_index=False)
+            .agg({"id": list})
+            .set_index("title")["id"]
+            .to_dict()
+        )
 
     def _split_into_sentences(self, text: str) -> list[str]:
         """
@@ -143,9 +192,16 @@ class TextCorpus:
         article_ids = TextCorpus._title_mappings.get(title)
         if article_ids:
             # Use self.data for fast lookup
-            article_chunks = [
-                TextCorpus._data[article_id] for article_id in article_ids if article_id in TextCorpus._data
-            ]
+            if False:
+                article_chunks = [
+                    TextCorpus._data[article_id]
+                    for article_id in article_ids
+                    if article_id in TextCorpus._data
+                ]
+            else:
+                article_chunks = [
+                    TextCorpus._retriever.corpus[article_id]["article"] for article_id in article_ids
+                ]
 
             # Merge all chunks and update state
             article = "\n".join(article_chunks)
@@ -161,9 +217,16 @@ class TextCorpus:
         results = TextCorpus._retriever.search(title, num=k)
         if len(results) > 0:
             article_ids = [result["id"] for result in results]
-            article_chunks = [
-                TextCorpus._data[article_id] for article_id in article_ids if article_id in TextCorpus._data
-            ]
+            if False:
+                article_chunks = [
+                    TextCorpus._data[article_id]
+                    for article_id in article_ids
+                    if article_id in TextCorpus._data
+                ]
+            else:
+                article_chunks = [
+                    TextCorpus._retriever.corpus[article_id]["article"] for article_id in article_ids
+                ]
 
             # Merge all chunks and update state
             article = "\n".join(article_chunks)
