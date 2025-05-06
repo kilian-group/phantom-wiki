@@ -20,9 +20,13 @@ from flashrag.config import Config
 from flashrag.utils import get_dataset
 from flashrag.pipeline import IRCOTPipeline
 from flashrag.retriever.index_builder import Index_Builder
+import math
+import logging
 
 from phantom_eval import get_parser
 from phantom_eval.utils import load_data
+
+logger = logging.getLogger(__name__)
 
 def get_pipeline(method, config, max_iter=2):
     match method:
@@ -43,6 +47,7 @@ model_name = args.model_name
 from_local = args.from_local
 method = args.method
 max_iter = args.react_max_steps  # NOTE (Albert): we use react_max_steps as an alias for max_iter
+batch_size = args.batch_size
 
 index_dir = output_dir / "indexes"
 index_dir.mkdir(parents=True, exist_ok=True)
@@ -111,51 +116,64 @@ for split in split_list:
 
         for split, test_data in all_split.items():
             pipeline = get_pipeline(method, config, max_iter)
-            output_dataset = pipeline.run(test_data,do_eval=True)
+            
+            for batch_number in range(1, math.ceil(len(test_data) / batch_size) + 1):
+                # save the output dataset to a json file
+                run_name = (
+                    f"split={split}"
+                    + f"__model_name={model_name.replace('/', '--')}"
+                    + f"__bs={batch_size}"
+                    + f"__bn={batch_number}"
+                    + f"__seed={seed}"
+                )
+                pred_path = output_dir / "preds" / method / f"{run_name}.json"
+                pred_path.parent.mkdir(parents=True, exist_ok=True)
+                if (args.batch_number is not None) and (batch_number != args.batch_number):
+                    continue
+                # Skip if the output file already exists and --force is not set
+                if pred_path.exists() and not args.force:
+                    logger.info(f"Skipping {pred_path} as it already exists. Use --force to overwrite.")
+                    continue
 
-            # save the output dataset to a json file
-            batch_size = len(test_data)
-            batch_number = 1
-            run_name = (
-                f"split={split}"
-                + f"__model_name={model_name.replace('/', '--')}"
-                + f"__bs={batch_size}"
-                + f"__bn={batch_number}"
-                + f"__seed={seed}"
-            )
-            pred_path = output_dir / "preds" / method / f"{run_name}.json"
-            pred_path.parent.mkdir(parents=True, exist_ok=True)
-            # output_dataset.to_json(pred_path)
+                # Get batch
+                batch_start_idx = (batch_number - 1) * batch_size
+                batch_end_idx = batch_start_idx + batch_size
+                logger.info(
+                    f"Getting predictions for questions [{batch_start_idx}, {batch_end_idx}) "
+                    f"out of {len(test_data)}"
+                )
+                # import pdb; pdb.set_trace()
+                output_dataset = pipeline.run(test_data[batch_start_idx:batch_end_idx], do_eval=False)
 
-            preds = {}
-            for item in output_dataset.data:
-                item_dict = item.to_dict()
-                uid = item_dict['id']
-                preds[uid] = {
-                    "true": item_dict['golden_answers'],
-                    "pred": item_dict['output']['pred'],
-                    "error": None,  # responses[i].error,
-                    "interaction": [],  # interactions[i].model_dump() if interactions else [],
-                    "output": item_dict['output'],  # NOTE: save output from FlashRAG
-                    "metadata": {
-                        "model": model_name,
-                        "dataset": dataset,
-                        "split": split,
-                        "batch_size": batch_size,
-                        "batch_number": batch_number,
-                        "type": None,
-                    },
-                    "inference_params": {
-                        "seed": seed,
-                    },
-                    "model_kwargs": {}, # model_kwargs,
-                    "agent_kwargs": {
-                        'max_iter': max_iter,
-                    }, # agent_kwargs,
-                    "usage": {}, # responses[i].usage,
-                }
+                preds = {}
+                for item in output_dataset:
+                    item_dict = item.to_dict()
+                    uid = item_dict['id']
+                    preds[uid] = {
+                        "true": item_dict['golden_answers'],
+                        "pred": item_dict['output']['pred'],
+                        "error": None,  # responses[i].error,
+                        "interaction": [],  # interactions[i].model_dump() if interactions else [],
+                        "output": item_dict['output'],  # NOTE: save output from FlashRAG
+                        "metadata": {
+                            "model": model_name,
+                            "dataset": dataset,
+                            "split": split,
+                            "batch_size": batch_size,
+                            "batch_number": batch_number,
+                            "type": None,
+                        },
+                        "inference_params": {
+                            "seed": seed,
+                        },
+                        "model_kwargs": {}, # model_kwargs,
+                        "agent_kwargs": {
+                            'max_iter': max_iter,
+                        }, # agent_kwargs,
+                        "usage": {}, # responses[i].usage,
+                    }
 
-            print(f"Saving predictions to {pred_path}...")
-            with open(pred_path, "w") as f:
-                json.dump(preds, f, indent=4)
-                f.flush()
+                print(f"Saving predictions to {pred_path}...")
+                with open(pred_path, "w") as f:
+                    json.dump(preds, f, indent=4)
+                    f.flush()
