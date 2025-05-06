@@ -53,70 +53,34 @@ class TextCorpus:
     _retriever = None  # Static variable for BM25 retriever
 
     def __init__(self, corpus_path: str, index_path: str):
-        if not Path(corpus_path).exists():
-            raise FileNotFoundError(f"Corpus file not found: {Path(corpus_path)}")
-        if not Path(index_path).exists():
-            raise FileNotFoundError(f"Index file not found: {Path(index_path)}")
+        if True:
+            if not Path(corpus_path).exists():
+                raise FileNotFoundError(f"Corpus file not found: {Path(corpus_path)}")
+            if not Path(index_path).exists():
+                raise FileNotFoundError(f"Index file not found: {Path(index_path)}")
 
-        # Initialize NLTK sentence tokenizer
-        try:
-            nltk.data.find("tokenizers/punkt")
-        except LookupError:
-            nltk.download("punkt")
+            # Initialize NLTK sentence tokenizer
+            try:
+                nltk.data.find("tokenizers/punkt")
+            except LookupError:
+                nltk.download("punkt")
 
-        self.sentence_tokenizer = PunktSentenceTokenizer()
+            self.sentence_tokenizer = PunktSentenceTokenizer()
 
-        # State for lookup operations
-        self.current_sentences = None
-        self.lookup_state = {"keyword": None, "last_match_index": -1}  # Index of last matched sentence
+            # State for lookup operations
+            self.current_sentences = None
+            self.lookup_state = {"keyword": None, "last_match_index": -1}  # Index of last matched sentence
 
-        # Count lines for tqdm total
-        # with open(corpus_path) as f:
-        #     num_lines = sum(1 for _ in f)
+            # Count lines for tqdm total
+            with open(corpus_path) as f:
+                num_lines = sum(1 for _ in f)
 
-        # Initialize the BM25 retriever if not already done
-        if TextCorpus._retriever is None:
-            bm25_config = {
-                "retrieval_method": "bm25",
-                "retrieval_topk": 4,  # default param here
-                "index_path": index_path,
-                "corpus_path": corpus_path,
-                "silent_retrieval": True,
-                "bm25_backend": "bm25s",
-                # Additional retriever features
-                # See https://github.com/bogoliubon/FlashRAG/blob/
-                # 5f6eeafbf86c959475c4989b699666e5ccaa1a21/docs/
-                # original_docs/basic_usage.md#additional-features-of-the-retriever
-                "save_retrieval_cache": False,
-                "retrieval_cache_path": "~",
-                "use_retrieval_cache": False,
-                "use_reranker": False,
-            }
-            logger.info("Initializing BM25 retriever...")
-            TextCorpus._retriever = BM25Retriever(config=bm25_config)
+            corpus_data = []
 
-            logger.info("Extracting titles and articles...")
-
-            # Use num_proc for parallel processing
-            def extract_title_article(x):
-                title, article = x["contents"].split("\n", 1)
-                title = title.strip().strip('"').lower()
-                article = article.strip()
-                return {"title": title, "article": article}
-
-            # Process in parallel with multiple workers
-            TextCorpus._retriever.corpus = TextCorpus._retriever.corpus.map(
-                extract_title_article,
-                num_proc=mp.cpu_count(),  # Use all available CPU cores
-                desc="Extracting titles and articles",
-            )
-
-        # Build title_mappings and data dictionary
-        if TextCorpus._title_mappings == {}:
-            if False:
-                corpus_data = []
-                with open(corpus_path) as f:
-                    for line in tqdm.tqdm(f, desc="Loading corpus"):
+            # Build title_mappings and data dictionary
+            if TextCorpus._title_mappings == {} and TextCorpus._data == {}:
+                with open(corpus_path) as f, tqdm.tqdm(f, total=num_lines, desc="Loading corpus") as pbar:
+                    for line in pbar:
                         entry = json.loads(line)
                         corpus_data.append(entry)
                         article_id = entry.get("id")
@@ -127,7 +91,91 @@ class TextCorpus:
                         article = content.split("\n", 1)[1].strip()
                         TextCorpus._title_mappings[title].append(article_id)
                         TextCorpus._data[article_id] = article
-            else:
+
+            # Initialize the BM25 retriever if not already done
+            if TextCorpus._retriever is None:
+                bm25_config = {
+                    "retrieval_method": "bm25",
+                    "retrieval_topk": 4,  # default param here
+                    "index_path": index_path,
+                    "corpus_path": corpus_path,
+                    "silent_retrieval": True,
+                    "bm25_backend": "bm25s",
+                    # Additional retriever features
+                    # See https://github.com/bogoliubon/FlashRAG/blob/
+                    # 5f6eeafbf86c959475c4989b699666e5ccaa1a21/docs/
+                    # original_docs/basic_usage.md#additional-features-of-the-retriever
+                    "save_retrieval_cache": False,
+                    "retrieval_cache_path": "~",
+                    "use_retrieval_cache": False,
+                    "use_reranker": False,
+                }
+                logger.info("Initializing BM25 retriever...")
+                TextCorpus._retriever = BM25Retriever(config=bm25_config)
+        else:
+            if not Path(corpus_path).exists():
+                raise FileNotFoundError(f"Corpus file not found: {Path(corpus_path)}")
+            if not Path(index_path).exists():
+                raise FileNotFoundError(f"Index file not found: {Path(index_path)}")
+
+            # Initialize NLTK sentence tokenizer
+            try:
+                nltk.data.find("tokenizers/punkt")
+            except LookupError:
+                nltk.download("punkt")
+
+            self.sentence_tokenizer = PunktSentenceTokenizer()
+
+            # State for lookup operations
+            self.current_sentences = None
+            self.lookup_state = {"keyword": None, "last_match_index": -1}  # Index of last matched sentence
+
+            # Count lines for tqdm total
+            # with open(corpus_path) as f:
+            #     num_lines = sum(1 for _ in f)
+
+            # Initialize the BM25 retriever if not already done
+            if TextCorpus._retriever is None:
+                bm25_config = {
+                    "retrieval_method": "bm25",
+                    "retrieval_topk": 4,  # default param here
+                    "index_path": index_path,
+                    "corpus_path": corpus_path,
+                    "silent_retrieval": True,
+                    "bm25_backend": "bm25s",
+                    # Additional retriever features
+                    # See https://github.com/bogoliubon/FlashRAG/blob/
+                    # 5f6eeafbf86c959475c4989b699666e5ccaa1a21/docs/
+                    # original_docs/basic_usage.md#additional-features-of-the-retriever
+                    "save_retrieval_cache": False,
+                    "retrieval_cache_path": "~",
+                    "use_retrieval_cache": False,
+                    "use_reranker": False,
+                }
+                logger.info("Initializing BM25 retriever...")
+                TextCorpus._retriever = BM25Retriever(config=bm25_config)
+
+                logger.info("Extracting titles and articles...")
+
+                # Use num_proc for parallel processing
+                def extract_title_article(x):
+                    title, article = x["contents"].split("\n", 1)
+                    title = title.strip().strip('"').lower()
+                    article = article.strip()
+                    return {"title": title, "article": article}
+
+                # Process in parallel with multiple workers
+                TextCorpus._retriever.corpus = TextCorpus._retriever.corpus.map(
+                    extract_title_article,
+                    num_proc=mp.cpu_count(),  # Use all available CPU cores
+                    desc="Extracting titles and articles",
+                )
+                
+                # Cache the dataset in memory for faster access
+                TextCorpus._retriever.corpus = TextCorpus._retriever.corpus.with_format("numpy")
+
+            # Build title_mappings and data dictionary
+            if TextCorpus._title_mappings == {}:
                 TextCorpus._title_mappings = TextCorpus._get_title_mappings(corpus_path, index_path)
 
     @classmethod
@@ -192,16 +240,17 @@ class TextCorpus:
         article_ids = TextCorpus._title_mappings.get(title)
         if article_ids:
             # Use self.data for fast lookup
-            if False:
+            if True:
                 article_chunks = [
                     TextCorpus._data[article_id]
                     for article_id in article_ids
                     if article_id in TextCorpus._data
                 ]
             else:
-                article_chunks = [
-                    TextCorpus._retriever.corpus[article_id]["article"] for article_id in article_ids
-                ]
+                # article_chunks = [
+                #     TextCorpus._retriever.corpus["article"][article_id] for article_id in article_ids
+                # ]
+                article_chunks = TextCorpus._retriever.corpus.select(article_ids)["article"]
 
             # Merge all chunks and update state
             article = "\n".join(article_chunks)
@@ -217,16 +266,17 @@ class TextCorpus:
         results = TextCorpus._retriever.search(title, num=k)
         if len(results) > 0:
             article_ids = [result["id"] for result in results]
-            if False:
+            if True:
                 article_chunks = [
                     TextCorpus._data[article_id]
                     for article_id in article_ids
                     if article_id in TextCorpus._data
                 ]
             else:
-                article_chunks = [
-                    TextCorpus._retriever.corpus[article_id]["article"] for article_id in article_ids
-                ]
+                # article_chunks = [
+                #     TextCorpus._retriever.corpus["article"][article_id] for article_id in article_ids
+                # ]
+                article_chunks = TextCorpus._retriever.corpus.select(article_ids)["article"]
 
             # Merge all chunks and update state
             article = "\n".join(article_chunks)
