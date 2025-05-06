@@ -15,6 +15,7 @@ import multiprocessing as mp
 import re
 import traceback
 from pathlib import Path
+from collections import defaultdict
 
 import nltk
 import pandas as pd
@@ -48,8 +49,8 @@ class TextCorpus:
     NOTE: Assumes the id field in the corpus is 0-indexed, so that we can use the id as the index.
     """
 
-    _title_mappings = {}  # title -> list of ids
-    # _data = {}  # id -> data
+    _title_mappings = defaultdict(list)  # title -> list of ids
+    _data = {}  # id -> data
     _retriever = None  # Static variable for BM25 retriever
 
     def __init__(self, corpus_path: str, index_path: str):
