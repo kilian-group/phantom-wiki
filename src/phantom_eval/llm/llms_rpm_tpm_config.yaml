@@ -97,3 +97,23 @@ together:
     usage_tier=2:
       RPM: 1800
       TPM: 250000
+
+# Llama Models
+# https://llama.developer.meta.com/docs/rate-limits
+llama:
+  llama-4-scout-17b-16e-instruct-fp8:
+    usage_tier=1:
+      RPM: 3000
+      TPM: 1000000
+  llama-4-maverick-17b-128e-instruct-fp8:
+    usage_tier=1:
+      RPM: 3000
+      TPM: 1000000
+  llama-3.3-70b-instruct:
+    usage_tier=1:
+      RPM: 3000
+      TPM: 1000000
+  llama-3.3-8b-instruct:
+    usage_tier=1:
+      RPM: 3000
+      TPM: 1000000
