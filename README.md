@@ -172,6 +172,19 @@ conda env config vars set GEMINI_API_KEY=xxxxx
 </details>
 
 <details>
+<summary>Llama API</summary>
+
+1. Create an API key at https://llama.developer.meta.com/api-keys/?team_id=1032428561758393
+2. Set you Llama API key as an environment variable. Or in your conda environment:
+
+```bash
+export LLAMA_API_KEY="xxxx"
+# or
+conda env config vars set LLAMA_API_KEY="xxxxx"
+```
+</details>
+
+<details>
 <summary>OpenAI</summary>
 
 1. Create an API key at https://platform.openai.com/settings/organization/api-keys
