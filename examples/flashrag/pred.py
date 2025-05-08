@@ -27,7 +27,6 @@ from flashrag.retriever.index_builder import Index_Builder
 from phantom_eval import get_parser
 from phantom_eval.utils import load_data
 
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def get_pipeline(method, config, max_iter=2):
