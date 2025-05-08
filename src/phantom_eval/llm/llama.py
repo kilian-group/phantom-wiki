@@ -17,7 +17,7 @@ class LlamaChat(CommonLLMChat):
         super().__init__(model_name, **kwargs)
         self.client = openai.OpenAI(api_key=os.getenv("LLAMA_API_KEY"), base_url="https://api.llama.com/compat/v1/")
         self.async_client = openai.AsyncOpenAI(api_key=os.getenv("LLAMA_API_KEY"), base_url="https://api.llama.com/compat/v1/")
-        self.encoding = tiktoken.get_encoding("o200k_base")  # FIXME: what encoding to use for Llama-3.3-70B
+        self.encoding = tiktoken.get_encoding("cl100k_base")  # Using 'cl100k_base' as specified for Llama-3.3-70B
         self._update_rate_limits("llama", model_name, usage_tier)
 
     def _call_api(
@@ -43,9 +43,17 @@ class LlamaChat(CommonLLMChat):
         )
         return response
 
-    def _parse_api_output(self, response: object) -> LLMChatResponse:
+    def _parse_api_output(self, response: object, inf_gen_config: InferenceGenerationConfig | None = None) -> LLMChatResponse:
+        # NOTE: Llama API doesn't support stop_sequences
+        pred = response.choices[0].message.content
+        # HACK: truncate the prediction at the first occurrence of any stop sequence
+        if inf_gen_config and inf_gen_config.stop_sequences:
+            # Since the stop sequences are a list, we need to find the first occurrence of any of them
+            for stop_seq in inf_gen_config.stop_sequences:
+                if (idx := pred.find(stop_seq)) != -1:
+                    pred = pred[:idx]
         return LLMChatResponse(
-            pred=response.choices[0].message.content,
+            pred=pred,
             usage=response.usage.model_dump(),
         )
 
