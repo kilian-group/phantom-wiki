@@ -143,7 +143,12 @@ def normalize_pred(pred: str, sep: str) -> set[str]:
     Returns:
         set[str]: A set of normalized answers.
     """
-    return set(map(str.lower, map(str.strip, pred.split(sep))))
+    if False:
+        return set(map(str.lower, map(str.strip, pred.split(sep))))
+    else:
+        # remove trailing period
+        pred = pred.rstrip(".")
+        return set(map(str.lower, map(str.strip, pred.split(sep))))
 
 
 def setup_logging(log_level: str):
