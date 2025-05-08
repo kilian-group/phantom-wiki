@@ -1,4 +1,5 @@
 import logging
+import os
 from multiprocessing import Pool
 
 from pyswip import Prolog
@@ -6,6 +7,8 @@ from tqdm import tqdm
 
 from phantom_wiki.facts.family.constants import PERSON_TYPE
 from phantom_wiki.utils import decode
+
+logger = logging.getLogger(__name__)
 
 SAVE_ALL_CLAUSES_TO_FILE = """
 (save_all_clauses_to_file(File) :-
@@ -17,14 +20,34 @@ SAVE_ALL_CLAUSES_TO_FILE = """
 
 
 class Database:
-    def __init__(self, *rules: str):
+    def __init__(self, *rules: str, pack_dir: str = None):
+        """
+        Initializes a Prolog database.
+
+        Args:
+            rules (list[str], optional): list of Prolog files to consult
+            pack_dir (str, optional): path to a directory containing packs of Prolog files
+
+        """
         self.prolog = Prolog()
-        logging.debug("Consulting rules from:")
+        logger.debug("Consulting rules from:")
         for rule in rules:
-            logging.debug(f"- {rule}")
+            logger.debug(f"- {rule}")
             self.prolog.consult(rule)
         # Add ability to save clauses to a file
         self.prolog.assertz(SAVE_ALL_CLAUSES_TO_FILE)
+
+        self.pack_dir = pack_dir
+        if self.pack_dir:
+            for d in os.listdir(self.pack_dir):
+                if os.path.isdir(os.path.join(self.pack_dir, d)):
+                    abs_subdir = os.path.abspath(os.path.join(self.pack_dir, d))
+                    logger.debug(f"Attaching pack: {abs_subdir}")
+                    # NOTE: the query method returns a generator and won't be evaluated until
+                    # converted to a list
+                    # NOTE: see instructions in https://www.swi-prolog.org/pldoc/man?section=pack-install
+                    _ = list(self.prolog.query(f'pack_attach("{abs_subdir}", [warning, last])'))
+                    _ = list(self.prolog.query(f"use_module(library({d}))."))
 
     @classmethod
     def from_disk(cls, file: str):
@@ -102,9 +125,9 @@ class Database:
         Args:
             files: paths to Prolog files
         """
-        logging.debug("Consulting files:")
+        logger.debug("Consulting files:")
         for file in files:
-            logging.debug(f"- {file}")
+            logger.debug(f"- {file}")
             self.prolog.consult(file)
 
     def add(self, *facts: str) -> None:
@@ -118,9 +141,9 @@ class Database:
         Args:
             facts: list of Prolog fact strings
         """
-        logging.debug("Adding facts:")
+        logger.debug("Adding facts:")
         for fact in facts:
-            logging.debug(f"- {fact}")
+            logger.debug(f"- {fact}")
             self.prolog.assertz(fact)
 
     def remove(self, *facts: str) -> None:
@@ -134,9 +157,9 @@ class Database:
         Args:
             facts: list of Prolog fact strings
         """
-        logging.debug("Removing facts:")
+        logger.debug("Removing facts:")
         for fact in facts:
-            logging.debug(f"- {fact}")
+            logger.debug(f"- {fact}")
             self.prolog.retractall(fact)
 
     def define(self, *predicates: str) -> None:
@@ -148,9 +171,9 @@ class Database:
         Args:
             predicates: list of term signatures
         """
-        logging.debug("Defining rules:")
+        logger.debug("Defining rules:")
         for predicate in predicates:
-            logging.debug(f"- {predicate}")
+            logger.debug(f"- {predicate}")
             self.prolog.dynamic(predicate)
 
     def save_to_disk(self, file: str) -> None:

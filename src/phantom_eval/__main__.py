@@ -86,19 +86,28 @@ def get_agent_kwargs(args: argparse.Namespace) -> dict:
             )
         case "zeroshot-rag":
             agent_kwargs = dict(
-                embedding_model_name=args.retriever_method,
+                embedding_model_name=args.embedding_model_name,
                 retriever_num_documents=args.retriever_num_documents,
+                retrieval_method=args.retrieval_method,
+                index_path=args.index_path,
+                corpus_path=args.corpus_path,
             )
         case "fewshot-rag":
             agent_kwargs = dict(
-                embedding_model_name=args.retriever_method,
+                embedding_model_name=args.embedding_model_name,
                 retriever_num_documents=args.retriever_num_documents,
+                retrieval_method=args.retrieval_method,
+                index_path=args.index_path,
+                corpus_path=args.corpus_path,
                 fewshot_examples=FEWSHOT_EXAMPLES,
             )
         case "cot-rag":
             agent_kwargs = dict(
-                embedding_model_name=args.retriever_method,
+                embedding_model_name=args.embedding_model_name,
                 retriever_num_documents=args.retriever_num_documents,
+                retrieval_method=args.retrieval_method,
+                index_path=args.index_path,
+                corpus_path=args.corpus_path,
                 cot_examples=COT_EXAMPLES,
             )
         case "react":
