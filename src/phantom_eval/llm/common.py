@@ -306,7 +306,7 @@ class CommonLLMChat(LLMChat):
         """
 
     @abc.abstractmethod
-    def _parse_api_output(self, response: object) -> LLMChatResponse:
+    def _parse_api_output(self, response: object, inf_gen_config: InferenceGenerationConfig | None = None) -> LLMChatResponse:
         """
         Parse the response from the API and return the prediction and usage statistics.
         """
@@ -365,7 +365,7 @@ class CommonLLMChat(LLMChat):
             logger.debug(f"{self._display_curr_time()}: Released lock for {conv.uid}")
         # wait for the task to complete
         response = await t
-        parsed_response = self._parse_api_output(response)
+        parsed_response = self._parse_api_output(response, inf_gen_config)
         return parsed_response
 
     async def generate_response(
@@ -390,7 +390,7 @@ class CommonLLMChat(LLMChat):
             def _call_api_wrapper() -> str:
                 messages_api_format: list[dict] = self._convert_conv_to_api_format(conv)
                 response = self._call_api(messages_api_format, inf_gen_config)
-                parsed_response = self._parse_api_output(response)
+                parsed_response = self._parse_api_output(response, inf_gen_config)
                 return parsed_response
 
             return _call_api_wrapper()
