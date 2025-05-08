@@ -42,7 +42,7 @@ def get_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--retriever_method",
-        type=str,
+        type=str.lower,
         default="whereisai/uae-large-v1",
         help="Model used for RAG's embeddings",
     )
@@ -62,13 +62,19 @@ def get_parser() -> argparse.ArgumentParser:
         "--inf_vllm_max_model_len",
         type=int,
         default=None,
-        help="Maximum model length (vLLM param)" "if None, uses max model length specified in model config",
+        help="Maximum model length (vLLM param), if None, uses max model length specified in model config",
     )
     parser.add_argument(
         "--inf_vllm_tensor_parallel_size",
         type=int,
         default=None,
-        help="number of gpus (vLLM param)" "if None, uses all available gpus",
+        help="number of gpus (vLLM param), if None, uses all available gpus",
+    )
+    parser.add_argument(
+        "--inf_vllm_lora_path",
+        type=str,
+        default=None,
+        help="Path to the LoRA weights (vLLM param), if None, no LoRA adapters are used",
     )
     parser.add_argument("--inf_vllm_port", type=int, default=8000, help="vllm server port number")
     parser.add_argument(
@@ -109,6 +115,12 @@ def get_parser() -> argparse.ArgumentParser:
         help="Flag to specify if the model is DeepSeek-R1, "
         "for correctly parsing <think>...</think> tags, "
         "and determining the additional stop token in vllm",
+    )
+    parser.add_argument(
+        "--inf_vllm_offline",
+        action="store_true",
+        help="Flag to use vLLM (batched) offline inference, "
+        "which can be substantially faster than using the server when supported by the method",
     )
 
     # Dataset params

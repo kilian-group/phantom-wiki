@@ -38,17 +38,9 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
             model_kwargs = dict(
                 max_model_len=args.inf_vllm_max_model_len,
                 tensor_parallel_size=args.inf_vllm_tensor_parallel_size,
-                # If the method is zeroshot or fewshot, we do not need to use the API (for vLLM)
-                # This can be overridden by modifying the code below to `use_api=True`.
-                use_api=(
-                    args.method
-                    in [
-                        "react",
-                        "act",
-                        "react->cot-sc",
-                        "cot-sc->react",
-                    ]
-                ),
+                use_api=not args.inf_vllm_offline
+                or args.method in ["react", "act", "react->cot-sc", "cot-sc->react"],
+                lora_path=args.inf_vllm_lora_path,
                 port=args.inf_vllm_port,
                 is_deepseek_r1_model=args.inf_is_deepseek_r1_model,
             )
@@ -189,24 +181,32 @@ async def main(args: argparse.Namespace) -> None:
                     tmp.flush()
                     db = Database.from_disk(tmp.name)
 
-            # If the server is vllm, we can run on all QA examples
             num_df_qa_pairs = len(df_qa_pairs)
-            if args.batch_number is not None:
-                assert args.batch_number >= 1, "Batch number must be >= 1"
-                assert args.batch_number <= math.ceil(
-                    num_df_qa_pairs / args.batch_size
-                ), "Batch number must be <= ceil(num_df_qa_pairs / batch_size)"
-                batch_size = args.batch_size
+            if args.inf_vllm_offline and args.method not in [
+                "react",
+                "act",
+                "react->cot-sc",
+                "cot-sc->react",
+            ]:
+                batch_size = num_df_qa_pairs
             else:
-                can_process_full_batch = args.server == "vllm" and (
-                    args.method not in ["react", "act", "react->cot-sc", "cot-sc->react"]
-                )
-                batch_size = num_df_qa_pairs if can_process_full_batch else args.batch_size
+                if args.batch_number is not None:
+                    assert args.batch_number >= 1, "Batch number must be >= 1"
+                    assert args.batch_number <= math.ceil(
+                        num_df_qa_pairs / args.batch_size
+                    ), "Batch number must be <= ceil(num_df_qa_pairs / batch_size)"
+                batch_size = args.batch_size
 
             for batch_number in range(1, math.ceil(num_df_qa_pairs / batch_size) + 1):
+                lora_run_name = (
+                    f"__lora_path={args.inf_vllm_lora_path.replace('/', '--')}"
+                    if args.inf_vllm_lora_path
+                    else ""
+                )
                 run_name = (
                     f"split={split}"
                     + f"__model_name={args.model_name.replace('/', '--')}"
+                    + lora_run_name
                     + f"__bs={batch_size}"
                     + f"__bn={batch_number}"
                     + f"__seed={seed}"

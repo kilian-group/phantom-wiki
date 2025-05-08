@@ -15,10 +15,12 @@ COLORS = {
     "google/gemma-2-9b-it": "tab:blue",
     "google/gemma-2-2b-it": "tab:blue",
     "meta-llama/llama-3.3-70b-instruct": "tab:orange",
+    "meta-llama/llama-3.3-70b-instruct-turbo": "tab:orange",
     "meta-llama/llama-3.1-70b-instruct": "tab:orange",
     "meta-llama/llama-3.1-8b-instruct": "tab:orange",
     "meta-llama/llama-3.2-3b-instruct": "tab:orange",
     "meta-llama/llama-3.2-1b-instruct": "tab:orange",
+    "meta-llama/llama-vision-free": "tab:orange",
     "microsoft/phi-3.5-moe-instruct": "tab:green",
     "microsoft/phi-3.5-mini-instruct": "tab:green",
     "mistralai/mistral-7b-instruct-v0.3": "tab:red",
@@ -42,6 +44,7 @@ LINESTYLES = {
     "google/gemma-2-9b-it": "--",
     "google/gemma-2-2b-it": "dotted",
     "meta-llama/llama-3.3-70b-instruct": "dashdot",
+    "meta-llama/llama-3.3-70b-instruct-turbo": "dashdot",
     "meta-llama/llama-3.1-70b-instruct": "-",
     "meta-llama/llama-3.1-8b-instruct": "--",
     "meta-llama/llama-3.2-3b-instruct": "dotted",
@@ -80,6 +83,7 @@ HATCHSTYLES = {
     "google/gemma-2-9b-it": "\\",
     "google/gemma-2-2b-it": "|",
     "meta-llama/llama-3.3-70b-instruct": "-",
+    "meta-llama/llama-3.3-70b-instruct-turbo": "-",
     "meta-llama/llama-3.1-70b-instruct": "+",
     "meta-llama/llama-3.1-8b-instruct": "x",
     "meta-llama/llama-3.2-3b-instruct": "o",
@@ -127,6 +131,7 @@ MODEL_ALIASES = {
     "google/gemma-2-9b-it": "Gemma-2-9B",
     "google/gemma-2-2b-it": "Gemma-2-2B",
     "meta-llama/llama-3.3-70b-instruct": "Llama-3.3-70B",
+    "meta-llama/llama-3.3-70b-instruct-turbo": "Llama-3.3-70B",
     "meta-llama/llama-3.1-70b-instruct": "Llama-3.1-70B",
     "meta-llama/llama-3.1-8b-instruct": "Llama-3.1-8B",
     "meta-llama/llama-3.2-3b-instruct": "Llama-3.2-3B",
@@ -142,11 +147,6 @@ MODEL_ALIASES = {
     "deepseek-ai/deepseek-r1-distill-qwen-32b": "DeepSeek-R1-32B",
     "deepseek-ai/deepseek-r1-distill-qwen-7b": "DeepSeek-R1-7B",
     "deepseek-ai/deepseek-r1-distill-qwen-1.5b": "DeepSeek-R1-1.5B",
-    "qwen/qwen2.5-32b-instruct": "Qwen2.5-32B",
-    "qwen/qwen2.5-7b-instruct": "Qwen2.5-7B",
-    "qwen/qwen2.5-3b-instruct": "Qwen2.5-3B",
-    "qwen/qwen2.5-1.5b-instruct": "Qwen2.5-1.5B",
-    "qwen/qwen2.5-0.5b-instruct": "Qwen2.5-0.5B",
 }
 METHOD_LATEX_ALIASES = {
     "zeroshot": "\\textsc{Zeroshot}",
@@ -177,10 +177,8 @@ INCONTEXT_METHODS = [
     "cot",
 ]
 RAG_METHODS = [
-    "zeroshot-rag",
+    # "zeroshot-rag",
     "cot-rag",
-    "selfask",
-    "ircot",
 ]
 AGENTIC_METHODS = [
     "react",
