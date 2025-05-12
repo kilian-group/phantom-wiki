@@ -98,7 +98,9 @@ class TogetherChat(CommonLLMChat):
         )
         return response
 
-    def _parse_api_output(self, response: object) -> LLMChatResponse:
+    def _parse_api_output(
+        self, response: object, inf_gen_config: InferenceGenerationConfig | None = None
+    ) -> LLMChatResponse:
         return LLMChatResponse(
             pred=response.choices[0].message.content,
             usage=response.usage.model_dump(),
