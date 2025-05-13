@@ -14,8 +14,8 @@ import logging
 import multiprocessing as mp
 import re
 import traceback
-from pathlib import Path
 from collections import defaultdict
+from pathlib import Path
 
 import nltk
 import pandas as pd
@@ -72,26 +72,9 @@ class TextCorpus:
             self.current_sentences = None
             self.lookup_state = {"keyword": None, "last_match_index": -1}  # Index of last matched sentence
 
-            # Count lines for tqdm total
-            with open(corpus_path) as f:
-                num_lines = sum(1 for _ in f)
-
-            corpus_data = []
-
-            # Build title_mappings and data dictionary
+            # Build title_mappings and data dictionary if not already done
             if TextCorpus._title_mappings == {} and TextCorpus._data == {}:
-                with open(corpus_path) as f, tqdm.tqdm(f, total=num_lines, desc="Loading corpus") as pbar:
-                    for line in pbar:
-                        entry = json.loads(line)
-                        corpus_data.append(entry)
-                        article_id = entry.get("id")
-                        content = entry.get("contents", "")
-
-                        # Extract title: first line, strip quotes and whitespace
-                        title = content.split("\n", 1)[0].strip().strip('"').lower()
-                        article = content.split("\n", 1)[1].strip()
-                        TextCorpus._title_mappings[title].append(article_id)
-                        TextCorpus._data[article_id] = article
+                TextCorpus.load_corpus(corpus_path, index_path)
 
             # Initialize the BM25 retriever if not already done
             if TextCorpus._retriever is None:
@@ -171,13 +154,35 @@ class TextCorpus:
                     num_proc=mp.cpu_count(),  # Use all available CPU cores
                     desc="Extracting titles and articles",
                 )
-                
+
                 # Cache the dataset in memory for faster access
                 TextCorpus._retriever.corpus = TextCorpus._retriever.corpus.with_format("numpy")
 
             # Build title_mappings and data dictionary
             if TextCorpus._title_mappings == {}:
                 TextCorpus._title_mappings = TextCorpus._get_title_mappings(corpus_path, index_path)
+
+    @classmethod
+    @memory.cache
+    def load_corpus(cls, corpus_path: str, index_path: str) -> None:
+        # Count lines for tqdm total
+        with open(corpus_path) as f:
+            num_lines = sum(1 for _ in f)
+
+        # Build title_mappings and data dictionary
+        corpus_data = []
+        with open(corpus_path) as f, tqdm.tqdm(f, total=num_lines, desc="Loading corpus") as pbar:
+            for line in pbar:
+                entry = json.loads(line)
+                corpus_data.append(entry)
+                article_id = entry.get("id")
+                content = entry.get("contents", "")
+
+                # Extract title: first line, strip quotes and whitespace
+                title = content.split("\n", 1)[0].strip().strip('"').lower()
+                article = content.split("\n", 1)[1].strip()
+                TextCorpus._title_mappings[title].append(article_id)
+                TextCorpus._data[article_id] = article
 
     @classmethod
     @memory.cache
