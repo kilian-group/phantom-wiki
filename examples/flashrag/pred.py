@@ -21,7 +21,7 @@ import logging
 
 from flashrag.config import Config
 from flashrag.utils import get_dataset
-from flashrag.pipeline import IRCOTPipeline
+from flashrag.pipeline import IRCOTPipeline, SelfAskPipeline
 from flashrag.retriever.index_builder import Index_Builder
 
 from phantom_eval import get_parser
@@ -35,7 +35,7 @@ def get_pipeline(method, config, max_iter=2):
             # TODO: increase max_iter (current default is 2)
             return IRCOTPipeline(config, max_iter=max_iter)
         case "selfask":
-            raise NotImplementedError("TODO: implement SelfAsk pipeline")
+            return SelfAskPipeline(config, max_iter=max_iter, single_hop=False)
         case _:
             raise ValueError(f"Method {method} not supported")
 
@@ -104,7 +104,7 @@ config_dict = {
     "framework": "vllm",
     "generator_model": model_name,
     "generator_max_input_len": args.inf_vllm_max_model_len if args.inf_vllm_max_model_len else 131072,
-    "generator_max_output_len": {
+    "generation_params": {
         "max_tokens": args.inf_max_tokens,
     },
     "retrieval_method": "bm25",
@@ -170,9 +170,7 @@ for split, test_data in all_split.items():
                     "seed": seed,
                 },
                 "model_kwargs": {}, # model_kwargs,
-                "agent_kwargs": {
-                    'max_iter': max_iter,
-                }, # agent_kwargs,
+                "agent_kwargs": pipeline.config.final_config,
                 "usage": {}, # responses[i].usage,
             }
 
