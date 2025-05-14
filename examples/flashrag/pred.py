@@ -145,8 +145,13 @@ for split, test_data in all_split.items():
             f"Getting predictions for questions [{batch_start_idx}, {batch_end_idx}) "
             f"out of {len(test_data)}"
         )
-        # import pdb; pdb.set_trace()
-        output_dataset = pipeline.run(test_data[batch_start_idx:batch_end_idx], do_eval=False)
+        while True:
+            try:
+                output_dataset = pipeline.run(test_data[batch_start_idx:batch_end_idx], do_eval=False)
+                break
+            except Exception as e:
+                logger.error(f"Error in batch {batch_number}: {e}")
+                logger.info(f"Retrying questions [{batch_start_idx}, {batch_end_idx})")
 
         preds = {}
         for item in output_dataset:
