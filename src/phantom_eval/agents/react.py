@@ -74,7 +74,7 @@ class TextCorpus:
 
             # Build title_mappings and data dictionary if not already done
             if TextCorpus._title_mappings == {} and TextCorpus._data == {}:
-                TextCorpus.load_corpus(corpus_path, index_path)
+                TextCorpus._title_mappings, TextCorpus._data = TextCorpus.load_corpus(corpus_path, index_path)
 
             # Initialize the BM25 retriever if not already done
             if TextCorpus._retriever is None:
@@ -171,6 +171,8 @@ class TextCorpus:
 
         # Build title_mappings and data dictionary
         corpus_data = []
+        title_mappings = defaultdict(list)
+        data = {}
         with open(corpus_path) as f, tqdm.tqdm(f, total=num_lines, desc="Loading corpus") as pbar:
             for line in pbar:
                 entry = json.loads(line)
@@ -181,8 +183,10 @@ class TextCorpus:
                 # Extract title: first line, strip quotes and whitespace
                 title = content.split("\n", 1)[0].strip().strip('"').lower()
                 article = content.split("\n", 1)[1].strip()
-                TextCorpus._title_mappings[title].append(article_id)
-                TextCorpus._data[article_id] = article
+                title_mappings[title].append(article_id)
+                data[article_id] = article
+
+        return title_mappings, data
 
     @classmethod
     @memory.cache
@@ -366,7 +370,7 @@ class ReactAgent(Agent):
         react_examples: str = "",
         index_path: str = None,
         corpus_path: str = None,
-        prolog_query=None,
+        prolog_query: bool = False,
     ):
         """
         Args:
@@ -379,12 +383,14 @@ class ReactAgent(Agent):
                 Defaults to "".
             index_path (str): Path to a JSONL index file. Defaults to None.
             corpus_path (str): Path to a JSONL corpus file. Defaults to None.
+            prolog_query (bool): Whether to use prolog query. Defaults to False. Is not used in this agent.
         """
         text_corpus = TextCorpus(corpus_path, index_path)
 
         super().__init__(text_corpus, llm_prompt)
         self.max_steps = max_steps
         self.react_examples = react_examples
+        self.prolog_query = prolog_query
 
         self.reset()
 
@@ -518,12 +524,12 @@ class ReactAgent(Agent):
             response_action (LLMChatResponse): The response from the action step.
         """
         action_type, action_arg = ReactAgent.parse_action(response_action.pred)
-
         match action_type:
             case "Finish":
                 self.step_round += 1
                 self.finished = True
-                return LLMChatResponse(pred=action_arg, usage={})
+                x = LLMChatResponse(pred=action_arg, usage={})
+                return x
             case "Search":
                 # First, try fetching the article by exact match on the title
                 try:
@@ -543,7 +549,8 @@ class ReactAgent(Agent):
                     logger.error(f"Error during Search action with arg '{action_arg}': {e}")
                     observation_str = "An error occurred during the search operation."
             case "Lookup":
-                raise NotImplementedError("Lookup isn't implemented yet.")
+                sentence, observation_str = self.text_corpus.lookup_keyword(action_arg)
+                observation_str = format_pred(observation_str)
             case _:
                 observation_str = (
                     "Invalid action. Valid actions are Search[{{attribute}}], "
