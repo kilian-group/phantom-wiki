@@ -366,6 +366,7 @@ class ReactAgent(Agent):
         react_examples: str = "",
         index_path: str = None,
         corpus_path: str = None,
+        prolog_query=None,
     ):
         """
         Args:
