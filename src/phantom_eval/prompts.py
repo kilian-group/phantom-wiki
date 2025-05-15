@@ -1051,19 +1051,48 @@ class ReactLLMPrompt(LLMPrompt):
     {{scratchpad}}
     """
 
+    REACT_INSTRUCTION_PROLOG = f"""\
+Solve a question answering task with interleaving Thought, Action, Observation steps.
+Thought can reason about the current situation, and Action can be 3 types:
+(1) RetrieveArticle[{{{{entity}}}}]. This action retrieves the article about {{{{entity}}}} if it exists. If the article does not exist, the action will say so.
+(2) Search[{{{{attribute}}}}]. This action searches the database for {{{{attribute}}}} and retrieves all articles that contain {{{{attribute}}}}. If no article contains {{{{attribute}}}}, the action will say so.
+(3) Finish[{{{{answer}}}}]. This action answers the question with {{{{answer}}}}.
+If you cannot find the answer, output the empty answer like: Finish[].
+If there are multiple answers A,B,C, answer with a list like: Finish[A{constants.answer_sep}B{constants.answer_sep}C].
+If the answer is a string, output the string like: Finish["string"] or Finish["string1"{constants.answer_sep}"string2"].
+If the answer is a number, output the number like: Finish[5] or Finish[1{constants.answer_sep}2{constants.answer_sep}3].
+If you cannot find an answer to the numerical question, output the 0 answer like: Finish[0].
+
+You may take as many steps as necessary.
+Here are some examples:
+(START OF EXAMPLES)
+{{examples}}
+(END OF EXAMPLES)
+
+Now answer the following question:
+Question: {{question}}
+{{scratchpad}}
+"""
+
     def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
         """Get the ReAct prompt template.
 
         Args:
-            prolog_query: This parameter is not used for ReAct prompts, as they do not support Prolog query generation.
+            prolog_query: Whether to output the answer as a Prolog literal.
 
         Returns:
             A PromptTemplate object containing the ReAct prompt template.
         """
-        return PromptTemplate(
-            input_variables=["examples", "question", "scratchpad"],
-            template=self.REACT_INSTRUCTION,
-        )
+        if prolog_query:
+            return PromptTemplate(
+                input_variables=["examples", "question", "scratchpad"],
+                template=self.REACT_INSTRUCTION_PROLOG,
+            )
+        else:
+            return PromptTemplate(
+                input_variables=["examples", "question", "scratchpad"],
+                template=self.REACT_INSTRUCTION,
+            )
 
 
 ##### Act method
