@@ -152,4 +152,6 @@ def setup_logging(log_level: str):
     logging.getLogger("httpcore").setLevel(logging.WARNING)
     logging.getLogger("openai").setLevel(logging.WARNING)
     logging.getLogger("numba").setLevel(logging.WARNING)
+    logging.getLogger("jax").setLevel(logging.WARNING)
+    logging.getLogger("flashrag").setLevel(logging.WARNING)
     logging.basicConfig(level=log_level, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")

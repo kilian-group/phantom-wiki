@@ -171,8 +171,9 @@ class CoTAgent(Agent):
         The prediction should be of the form: "... The answer is <answer>." otherwise a ValueError is raised.
         """
         # NOTE: Allow for empty answer instead of throwing an error
-        # NOTE: .* at the start ensures that we take the last occurrence of the pattern in pred
-        pattern = r".*[tT]he answer is (.*)\.\s*$"
+        # NOTE: To ensure that we take the last occurrence of the pattern in pred,
+        # we use .* at the start and .*? at the end
+        pattern = r".*[tT]he answer is (.*?)\.\s*$"
         m = re.search(pattern, pred)
         if m:
             return m.group(1)

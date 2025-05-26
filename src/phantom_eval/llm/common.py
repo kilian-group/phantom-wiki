@@ -109,7 +109,7 @@ class InferenceGenerationConfig(BaseModel):
     # LLM inference params
     max_tokens: int = 4096
     repetition_penalty: int = 1.0
-    seed: int = 0
+    seed: int | None = 0
     stop_sequences: list[str] = []  # pydantic handles default values correctly
     temperature: float = 0.0
     top_p: float = 0.7
