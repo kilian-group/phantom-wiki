@@ -6,9 +6,6 @@ from flashrag.config import Config
 from flashrag.utils import get_dataset
 from flashrag.pipeline import SelfAskPipeline
 
-import sys
-sys.path.append("/home/cw862/FlashRAG")
-
 
 split = "depth_20_size_50_seed_1"
 split_list = [split]
