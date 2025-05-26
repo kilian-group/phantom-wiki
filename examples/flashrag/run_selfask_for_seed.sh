@@ -42,5 +42,5 @@ python -m flashrag.retriever.index_builder \
 cd $HOME/work/phantom-wiki-copy/examples/flashrag/
 python run_selfask.py \
     --split depth_20_size_${size}_seed_${seed} \
-    --model_name "meta-llama/Llama-3.1-8B-Instruct" \
+    --model_name "meta-llama/Llama-3.3-70B-Instruct" \
     --output_dir "selfask_output"

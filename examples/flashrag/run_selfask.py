@@ -46,7 +46,9 @@ config_dict = {
         # model_name: "Llama-3.1-8B-Instruct",
     },
     # "framework": "openai",
-    "generation_params" : {"max_tokens" : 1024},
+    "framework": "vllm",
+    "generation_params" : {"max_tokens" : 256},
+    "generator_max_input_len": 8192, # max length of the input
     "generator_model": model_name,
     "retrieval_method": "bm25",
     "bm25_backend": "bm25s",
