@@ -1,0 +1,10 @@
+torch
+vllm
+deepspeed
+trl[vllm]
+wandb
+accelerate
+datasets
+peft
+huggingface_hub[cli]
+phantom-wiki[eval]
