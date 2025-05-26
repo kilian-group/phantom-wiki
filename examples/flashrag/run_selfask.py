@@ -6,10 +6,15 @@ from flashrag.config import Config
 from flashrag.utils import get_dataset
 from flashrag.pipeline import SelfAskPipeline
 
-split_list = ["depth_20_size_50_seed_1"]
+import sys
+sys.path.append("/home/cw862/FlashRAG")
+
+
+split = "depth_20_size_50_seed_1"
+split_list = [split]
 # model_name = "Qwen/Qwen2-7B-Instruct"
 model_name = "meta-llama/Llama-3.1-8B-Instruct"
-output_dir = "selfask_output"
+output_dir = f"selfask_output/{split}"
 seed = 1
 
 config_dict = {
@@ -18,12 +23,13 @@ config_dict = {
     "split": split_list,
     "seed": 1,
     "gpu_id": "0,1,2,3,4,5,6,7",
-    "index_path": "indexes/bm25/",
-    "corpus_path": "indexes/depth_20_size_50_seed_1.jsonl",
+    "index_path": f"indexes/{split}/bm25/",
+    "corpus_path": f"indexes/{split}.jsonl",
     "model2path": {
         # model_name: "Llama-3.1-8B-Instruct",
     },
     # "framework": "openai",
+    "generation_params" : {"max_tokens" : 1024},
     "generator_model": model_name,
     "retrieval_method": "bm25",
     "bm25_backend": "bm25s",
