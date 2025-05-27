@@ -50,6 +50,13 @@ Then we run:
 ./scripts/train_grpo.sh recipes/qwen2.5-0.5b-instruct/grpo/config_base.yaml --prompt_method cot --output_dir /path/to/output_dir/
 ```
 
+We also finetune https://huggingface.co/Qwen/Qwen2.5-3B-Instruct model with LoRA by running the following.
+It saves LoRA adapter weights in the output directory, which can be evaluated via Huggingface and vLLM.
+
+```bash
+./scripts/train_grpo.sh recipes/qwen2.5-3b-instruct/grpo/config_lora.yaml --prompt_method cot --output_dir /path/to/output_dir/
+```
+
 ## SFT experiments
 
 PhantomWiki provides ground truth answers for each question, and hence we can Supervise FineTune LLMs on `(prompt=documents, output=answer list)` using the
@@ -58,6 +65,8 @@ Again we allocate a node of 4 A100s/H100s with 8 CPUs and 100GB RAM, and run:
 
 ```bash
 ./scripts/train_sft_on_docs.sh recipes/qwen2.5-0.5b-instruct/sft/config_on_docs_base.yaml --output_dir /path/to/output_dir/
+# LoRA on 3B model
+./scripts/train_sft_on_docs.sh recipes/qwen2.5-3b-instruct/sft/config_on_docs_lora.yaml --output_dir /path/to/output_dir/
 ```
 
 ## Evaluating GRPO/SFT finetuned LLMs on PhantomWiki
@@ -69,5 +78,34 @@ python -m phantom_eval \
 	--method cot \
 	--server vllm \
 	--model_name /path/to/model/checkpoint/ \
+	--dataset kilian-group/phantom-wiki-v1 \
+	--split_list depth_20_size_50_seed_1 depth_20_size_50_seed_2 depth_20_size_50_seed_3 \
 	-od /path/to/output_for_preds/
+```
+
+PhantomEval also supports evaluating LoRA-finetuned checkpoints in the following way:
+
+```bash
+python -m phantom_eval \
+	--method cot \
+	--server vllm \
+	--model_name Qwen/Qwen2.5-3B-Instruct \
+	--inf_vllm_lora_path /path/to/model/checkpoint/ \
+	--dataset kilian-group/phantom-wiki-v1 \
+	--split_list depth_20_size_50_seed_1 depth_20_size_50_seed_2 depth_20_size_50_seed_3 \
+	-od /path/to/output_for_preds/
+```
+
+> \[!NOTE\]
+> If you get vllm errors due to tensor parallel size, it means that vllm is unable to distribute your checkpoint across the GPUs. In this case, you can use just 1 GPU to run evaluation:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python -m phantom_eval \
+	--method cot \
+	--server vllm \
+	--model_name /path/to/model/checkpoint/ \
+	--dataset kilian-group/phantom-wiki-v1 \
+	--split_list depth_20_size_50_seed_1 depth_20_size_50_seed_2 depth_20_size_50_seed_3 \
+	-od /path/to/output_for_preds/ \
+	--inf_vllm_tensor_parallel_size 1
 ```

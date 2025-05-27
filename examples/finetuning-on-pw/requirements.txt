@@ -1,5 +1,5 @@
 torch
-vllm
+vllm==0.8.2
 deepspeed
 trl[vllm]
 wandb
