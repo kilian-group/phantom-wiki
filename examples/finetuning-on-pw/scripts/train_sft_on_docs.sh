@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-#SBATCH --job-name=grpo
-#SBATCH --output=logs/grpo-%j.out
-#SBATCH --error=logs/grpo-%j.err
+#SBATCH --job-name=sft_on_docs
+#SBATCH --output=slurm/sft_on_docs-%j.out
+#SBATCH --error=slurm/sft_on_docs-%j.err
 #SBATCH -p full
 #SBATCH -N 1
 #SBATCH -n 8
@@ -44,4 +44,4 @@ CUDA_VISIBLE_DEVICES=$CUDA_DEVICES_TRAINING ACCELERATE_LOG_LEVEL=info accelerate
     --config_file recipes/accelerate_configs/zero1.yaml \
 	sft_on_docs.py \
 	--config $SFT_CONFIG_FILE_PATH \
-    $@
+    $cmd_args
