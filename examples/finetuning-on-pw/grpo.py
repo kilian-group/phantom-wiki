@@ -23,7 +23,7 @@ from phantom_eval.constants import answer_sep
 from phantom_eval.prompts import COT_EXAMPLES, CoTLLMPrompt, ZeroshotLLMPrompt
 from phantom_eval.score import exact_match, f1, precision, recall
 from phantom_eval.utils import load_data, setup_logging
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, set_seed
 from transformers.trainer_utils import get_last_checkpoint
 from trl import (
     GRPOTrainer,
@@ -340,5 +340,6 @@ if __name__ == "__main__":
     parser = TrlParser((GRPOScriptArguments, GRPOConfig, ModelConfig))
     script_args, training_args, model_args = parser.parse_args_and_config()
     setup_logging(training_args.log_level.upper())
+    set_seed(training_args.seed)
 
     train_grpo(script_args, training_args, model_args)

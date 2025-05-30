@@ -20,7 +20,7 @@ from phantom_eval.agents.common import get_all_evidence
 from phantom_eval.prompts import ZeroshotLLMPrompt
 from phantom_eval.utils import load_data, setup_logging
 from phantom_eval.constants import answer_sep
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, set_seed
 from transformers.trainer_utils import get_last_checkpoint
 from trl import (
     ModelConfig,
@@ -194,5 +194,6 @@ if __name__ == "__main__":
     parser = TrlParser((ScriptArguments, SFTConfig, ModelConfig))
     script_args, training_args, model_args = parser.parse_args_and_config()
     setup_logging(training_args.log_level.upper())
+    set_seed(training_args.seed)
 
     train_sft_on_docs(script_args, training_args, model_args)
