@@ -77,6 +77,7 @@ Now, run phantom-eval on the saved checkpoints:
 python -m phantom_eval \
 	--method cot \
 	--server vllm \
+	--inf_vllm_offline \
 	--model_name /path/to/model/checkpoint/ \
 	--dataset kilian-group/phantom-wiki-v1 \
 	--split_list depth_20_size_50_seed_1 depth_20_size_50_seed_2 depth_20_size_50_seed_3 \
@@ -89,6 +90,7 @@ PhantomEval also supports evaluating LoRA-finetuned checkpoints in the following
 python -m phantom_eval \
 	--method cot \
 	--server vllm \
+	--inf_vllm_online \
 	--model_name Qwen/Qwen2.5-3B-Instruct \
 	--inf_vllm_lora_path /path/to/model/checkpoint/ \
 	--dataset kilian-group/phantom-wiki-v1 \
@@ -103,6 +105,7 @@ python -m phantom_eval \
 CUDA_VISIBLE_DEVICES=0 python -m phantom_eval \
 	--method cot \
 	--server vllm \
+	--inf_vllm_offline \
 	--model_name /path/to/model/checkpoint/ \
 	--dataset kilian-group/phantom-wiki-v1 \
 	--split_list depth_20_size_50_seed_1 depth_20_size_50_seed_2 depth_20_size_50_seed_3 \
