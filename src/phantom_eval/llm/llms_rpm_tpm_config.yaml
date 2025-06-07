@@ -26,6 +26,9 @@ openai:
     usage_tier=3:
       RPM: 5000
       TPM: 800000
+    usage_tier=4:
+      RPM: 10000
+      TPM: 2000000
 
 # Gemini Models
 # https://ai.google.dev/gemini-api/docs/rate-limits

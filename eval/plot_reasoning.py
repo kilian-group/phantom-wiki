@@ -111,9 +111,9 @@ def get_model_name(model):
 
 
 METHOD_LIST = [
-    # ("In-Context", plotting_utils.INCONTEXT_METHODS),
+    ("In-Context", plotting_utils.INCONTEXT_METHODS),
     ("RAG", plotting_utils.RAG_METHODS),
-    # ("Agentic", plotting_utils.AGENTIC_METHODS),
+    ("Agentic", plotting_utils.AGENTIC_METHODS),
 ]
 
 for metric in METRICS:
@@ -134,7 +134,7 @@ for metric in METRICS:
                 continue
             # ignore difficulty beyond 15
             df = df[df[DIFFICULTY] <= MAX_DIFFICULTY]
-            if False:
+            if True:
                 # NOTE: in the ICML submission, we include the reasoning figure controlling for the number of
                 # solutions
                 logging.warning(f"Filtering out {method} with more than 1 solution")
@@ -203,7 +203,7 @@ for metric in METRICS:
                 method_handles[key] = lines.Line2D(
                     [0],
                     [0],
-                    color=get_color(None, method, by_model=False),
+                    color="black",  # get_color(None, method, by_model=False),
                     label=key,
                     linestyle=plotting_utils.METHOD_LINESTYLES[method],
                     linewidth=1,
@@ -266,7 +266,7 @@ for metric in METRICS:
             handles=model_handles,
             fontsize=plotting_utils.LEGEND_FONT_SIZE,
             loc="lower center",
-            ncol=2,
+            ncol=len(model_handles),
             handlelength=4,
             frameon=False,  # Remove bounding box around legend
             bbox_to_anchor=(0.5, 0.0),

@@ -129,7 +129,7 @@ for metric in METRICS:
                 if model_name in [
                     "gpt-4o-2024-11-20",
                     "deepseek-ai/deepseek-r1-distill-qwen-32b",
-                ] and method in ["zeroshot-rag", "cot-rag", "react"]:
+                ] and method in ["react"]:
                     # import pdb; pdb.set_trace()
                     # Create interpolation function
                     valid_indices = ~np.isnan(log10x) & ~np.isnan(y)
