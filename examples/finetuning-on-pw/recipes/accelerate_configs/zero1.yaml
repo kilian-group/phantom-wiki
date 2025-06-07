@@ -1,0 +1,4 @@
+deepspeed_config:
+  zero_stage: 1
+distributed_type: DEEPSPEED
+mixed_precision: bf16
