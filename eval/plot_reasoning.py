@@ -244,9 +244,7 @@ for metric in METRICS:
         if len(METHOD_LIST) > 1:
             ax.set_title(name, fontsize=plotting_utils.LABEL_FONT_SIZE)
 
-    # Create separate handles for models and methods
-    # We will plot models on the left column and methods on the right column
-    # Having the combination of model and method in the legend is too crowded
+    # Model handles at the bottom of the figure
     model_handles = []
     for model in model_list:
         key = f"{plotting_utils.MODEL_ALIASES.get(model.lower(), model)}"
@@ -259,15 +257,15 @@ for metric in METRICS:
                 linewidth=1,
             )
         )
-    # attach the legend to the entire figure instead of any individual subplot
+    ncol = 1 if len(model_handles) <= 2 else 2
     fig.legend(
         handles=model_handles,
         fontsize=plotting_utils.LEGEND_FONT_SIZE,
         loc="lower center",
-        ncol=2,
+        ncol=ncol,
         handlelength=4,
         frameon=False,  # Remove bounding box around legend
-        bbox_to_anchor=(0.5, 0.0),
+        bbox_to_anchor=(0.5, -0.15),
     )
 
     plt.tight_layout()
@@ -282,6 +280,6 @@ for metric in METRICS:
 
     fig_path = os.path.join(figures_dir, f"{DIFFICULTY}-{metric}.pdf")
     print(f"Saving to {os.path.abspath(fig_path)}")
-    plt.savefig(fig_path)
+    plt.savefig(fig_path, bbox_inches="tight", dpi=300)
 
 # %%
