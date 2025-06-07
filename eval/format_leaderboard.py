@@ -162,8 +162,3 @@ for line in lines[2:]:
 print("\n".join(new_lines))
 
 print(tabulate(results, tablefmt="github", headers="keys", showindex=False))
-
-# # save to a csv file
-# scores_dir = os.path.join(output_dir, 'scores')
-# os.makedirs(scores_dir, exist_ok=True)
-# results.to_csv(os.path.join(scores_dir, "scores.csv"))

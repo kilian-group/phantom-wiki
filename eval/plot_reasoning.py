@@ -26,18 +26,21 @@ from phantom_eval.utils import setup_logging
 setup_logging("INFO")
 
 # utils for plotting
-# plt.rcParams.update(
-#     {
-#         "font.family": "serif",
-#         "font.serif": ["Times New Roman"],
-#         "axes.spines.top": False,
-#         "axes.spines.right": False,
-#     }
-# )
+plt.rcParams.update(
+    {
+        "font.family": "serif",
+        "font.serif": ["Times New Roman"],
+        "axes.spines.top": False,
+        "axes.spines.right": False,
+    }
+)
 
 
 parser = get_parser()
 parser.add_argument("--filter_by_depth", type=int, default=20, help="Depth to plot accuracies for")
+parser.add_argument(
+    "--filter_by_num_solutions", type=int, default=None, help="Number of solutions to filter by"
+)
 parser.add_argument(
     "--model_list", nargs="+", default=plotting_utils.DEFAULT_MODEL_LIST, help="List of models to plot"
 )
@@ -102,18 +105,10 @@ def get_color(model, method, by_model=True):
         return color
 
 
-def get_model_name(model):
-    model_name = model.lower()
-    if model_name in plotting_utils.MODEL_ALIASES:
-        return plotting_utils.MODEL_ALIASES[model_name]
-    else:
-        return model
-
-
 METHOD_LIST = [
-    # ("In-Context", plotting_utils.INCONTEXT_METHODS),
+    ("In-Context", plotting_utils.INCONTEXT_METHODS),
     ("RAG", plotting_utils.RAG_METHODS),
-    # ("Agentic", plotting_utils.AGENTIC_METHODS),
+    ("Agentic", plotting_utils.AGENTIC_METHODS),
 ]
 
 for metric in METRICS:
@@ -132,15 +127,17 @@ for metric in METRICS:
             if df.empty:
                 print(f"No data found for {method}")
                 continue
+
             # ignore difficulty beyond 15
             df = df[df[DIFFICULTY] <= MAX_DIFFICULTY]
-            if False:
-                # NOTE: in the ICML submission, we include the reasoning figure controlling for the number of
-                # solutions
+
+            if args.filter_by_num_solutions is not None:
                 logging.warning(f"Filtering out {method} with more than 1 solution")
-                df = df[df["solutions"] <= 1]
+                df = df[df["solutions"] <= args.filter_by_num_solutions]
+
             # filter by depth
             df = df[(df["_depth"] == filter_by_depth)]
+
             # get accuracies by model, split, difficulty, seed
             COLS = ["_model", "_size", "_data_seed", "_seed", DIFFICULTY]
             acc_by_type = df.groupby(COLS)[METRICS].mean()
@@ -151,9 +148,10 @@ for metric in METRICS:
             # second compute the mean and standard error across data generation seeds
             acc_mean_std = acc_mean_std.groupby(["_model", "_size", DIFFICULTY]).agg([mean, std])
             acc_mean_std = acc_mean_std.reset_index()
+
             # Get sorted list of universe sizes
             sizes_in_preds = sorted(acc_mean_std["_size"].unique().tolist())
-            # only plot a few sizes
+            # only plot the minimum size
             sizes_in_preds = [min(sizes_in_preds)]
 
             for size in sizes_in_preds:
@@ -163,7 +161,7 @@ for metric in METRICS:
                 )
                 x = df_mean.columns
                 for model_name, row in df_mean.iterrows():
-                    if model_name.lower() not in model_list:
+                    if model_name.lower() not in map(str.lower, model_list):
                         continue
                     y = row
                     color = get_color(model_name, method)
@@ -185,7 +183,8 @@ for metric in METRICS:
                         alpha=plotting_utils.MARKER_ALPHA,
                         clip_on=False,
                     )
-                    # NOTE: not plotting error bars for now because the figure looks crowded
+
+                    # Add error bars
                     yerr = df_std.loc[model_name]
                     # Change color intensity for fill to be between 0 and 0.25
                     color_intensity_for_fill = 0.1
@@ -248,29 +247,29 @@ for metric in METRICS:
     # Create separate handles for models and methods
     # We will plot models on the left column and methods on the right column
     # Having the combination of model and method in the legend is too crowded
-    if len(model_list) > 1:
-        model_handles = []
-        for model in model_list:
-            key = f"{get_model_name(model)}"
-            model_handles.append(
-                lines.Line2D(
-                    [0],
-                    [0],
-                    color=get_color(model, method),
-                    label=key,
-                    linewidth=1,
-                )
+    model_handles = []
+    for model in model_list:
+        key = f"{plotting_utils.MODEL_ALIASES.get(model.lower(), model)}"
+        model_handles.append(
+            lines.Line2D(
+                [0],
+                [0],
+                color=get_color(model, method),
+                label=key,
+                linewidth=1,
             )
-        # attach the legend to the entire figure instead of any individual subplot
-        fig.legend(
-            handles=model_handles,
-            fontsize=plotting_utils.LEGEND_FONT_SIZE,
-            loc="lower center",
-            ncol=2,
-            handlelength=4,
-            frameon=False,  # Remove bounding box around legend
-            bbox_to_anchor=(0.5, 0.0),
         )
+    # attach the legend to the entire figure instead of any individual subplot
+    fig.legend(
+        handles=model_handles,
+        fontsize=plotting_utils.LEGEND_FONT_SIZE,
+        loc="lower center",
+        ncol=2,
+        handlelength=4,
+        frameon=False,  # Remove bounding box around legend
+        bbox_to_anchor=(0.5, 0.0),
+    )
+
     plt.tight_layout()
     if len(METHOD_LIST) == 1:
         plt.subplots_adjust(
