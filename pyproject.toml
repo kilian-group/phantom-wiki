@@ -73,7 +73,8 @@ eval = [
     "together",
     "transformers>=4.47.1",
     "bm25s[full]",
-    "vllm"
+    "vllm",
+    "flashrag-dev @ git+https://github.com/bogoliubon/FlashRAG.git"
 ]
 
 [project.scripts]

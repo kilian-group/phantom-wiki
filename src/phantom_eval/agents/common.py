@@ -15,9 +15,11 @@ import abc
 import logging
 import subprocess
 from collections import Counter
+from pprint import pformat
 
 import openai
 import pandas as pd
+from flashrag.retriever import BM25Retriever, DenseRetriever
 from langchain_community.vectorstores import FAISS
 from langchain_core.embeddings import Embeddings
 
@@ -183,54 +185,115 @@ class RAGMixin:
     def __init__(
         self,
         text_corpus: pd.DataFrame,
-        embedding_model_name: str = "whereisai/uae-large-v1",
+        embedding_model_name: str = None,
         retriever_num_documents: int = 4,
         port: int = 8001,
+        retrieval_method: str = "bm25",
+        index_path: str = None,
+        corpus_path: str = None,
     ):
         """
         Args:
             text_corpus (pd.DataFrame): The text corpus containing documents in the "article" column.
-            embedding_model_name (str): The embedding method for the vector database.
+            embedding_model_name (str): The embedding model name for dense and faiss retrieval methods.
                 All embedding models available through huggingface and loadable by vLLM are supported.
-                Defaults to "whereisai/uae-large-v1".
-                BM25 is also supported, but requires running `pip install bm25s[full]`.
+                Defaults to None.
+                NOTE: BM25 does not require passing an embedding model name.
             retriever_num_documents (int): Number of documents retrieved.
-                Defaults to 4. See
-                "https://api.python.langchain.com/en/latest/vectorstores/langchain_community.vectorstores.faiss.FAISS.html#langchain_community.vectorstores.faiss.FAISS.as_retriever"
-                for other options.
-            port (int): The port number to use for the embedding server.
-                Defaults to 8001.
+                Defaults to 4.
+            retrieval_method (str): The retrieval method to use. Can be "bm25", "dense", or "faiss".
+                Defaults to "bm25".
+            retrieval_method (str): The retrieval method to use. Can be "bm25", "dense", or "faiss".
+                Defaults to "bm25".
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
+                To build the index, please follow the instructions at
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
+                Defaults to None.
+            corpus_path (str): The path to the corpus file for the BM25 or dense retriever.
+                To build the corpus, please follow the instructions at
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
+                To build the corpus, please follow the instructions at
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
+                To build the corpus, please follow the instructions at
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
+                To build the corpus, please follow the instructions at
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
+                Defaults to None.
         """
         self.embedding_model_name = embedding_model_name
         self.retriever_num_documents = retriever_num_documents
+        self.retrieval_method = retrieval_method
 
-        if self.embedding_model_name == "bm25":
-            from bm25s import BM25
-            from bm25s.tokenization import Tokenizer
-            from Stemmer import Stemmer
+        # TODO: deprecate the text_corpus argument. The new workflow is to index the text corpus separately,
+        # then pass the index path to the constructor.
+        # Use the following arguments to check for existing retriever objects.
+        if self.retrieval_method in ["bm25", "dense"]:
+            key = (
+                self.retrieval_method,
+                self.embedding_model_name,
+                index_path,
+                corpus_path,
+            )
+            if key in self._indices:
+                logger.debug("Using an existing retriever object...")
+                self.retriever = self._indices[key]
+                return
 
-            if id(text_corpus) in self._indices:
-                logger.debug("Using existing BM25 index...")
-                self.retriever, self.tokenizer = self._indices[id(text_corpus)]
-            else:
-                logger.debug("Indexing text corpus...")
-                corpus_text = text_corpus["article"].tolist()
-                # NOTE: Initialize BM25 retriever with corpus so that self.retriever.retrieve()
-                # will return documents instead of indices
-                retriever = BM25(corpus=corpus_text, backend="numba")
-                # Initialize tokenizer
-                tokenizer = Tokenizer(stopwords="en", stemmer=Stemmer("english"))
-                # Tokenize corpus
-                corpus_tokens = tokenizer.tokenize(corpus_text, return_as="tuple")
-                # Index corpus
-                retriever.index(corpus_tokens)
+            match self.retrieval_method:
+                case "bm25":
+                    bm25_config = {
+                        "retrieval_method": "bm25",
+                        "retrieval_topk": retriever_num_documents,
+                        "index_path": index_path,
+                        "corpus_path": corpus_path,
+                        "silent_retrieval": True,
+                        "bm25_backend": "bm25s",
+                        # Additional retriever features
+                        # See https://github.com/bogoliubon/FlashRAG/blob/
+                        # 5f6eeafbf86c959475c4989b699666e5ccaa1a21/docs/
+                        # original_docs/basic_usage.md#additional-features-of-the-retriever
+                        "save_retrieval_cache": False,
+                        "retrieval_cache_path": "~",
+                        "use_retrieval_cache": False,
+                        "use_reranker": False,
+                    }
+                    logger.info("Initializing BM25 retriever...")
+                    self.retriever = BM25Retriever(config=bm25_config)
+                    logger.info(f"Retriever config: {pformat(self.retriever.config)}")
+                    # Store the retriever object in the _indices dict for reuse across instances
+                    self._indices[key] = self.retriever
 
-                self.retriever = retriever
-                self.tokenizer = tokenizer
-                # Add the retriever and tokenizer to the global indices_ dict,
-                # so that we can always point to the same retriever and tokenizer
-                # for the same text corpus
-                self._indices[id(text_corpus)] = (retriever, tokenizer)
+                case "dense":
+                    # Default: https://github.com/bogoliubon/FlashRAG/blob/
+                    # 5f6eeafbf86c959475c4989b699666e5ccaa1a21/flashrag/config/basic_config.yaml#L49
+                    dense_config = {
+                        "retrieval_method": "dense",
+                        "retrieval_topk": retriever_num_documents,
+                        "index_path": index_path,
+                        "corpus_path": corpus_path,
+                        "retrieval_model_path": embedding_model_name,
+                        "retrieval_query_max_length": 128,
+                        "retrieval_pooling_method": "mean",
+                        "retrieval_use_fp16": True,
+                        "retrieval_batch_size": 16,
+                        "use_sentence_transformer": True,
+                        "faiss_gpu": False,
+                        "silent_retrieval": True,
+                        # Additional retriever features
+                        # See https://github.com/bogoliubon/FlashRAG/blob/
+                        # 5f6eeafbf86c959475c4989b699666e5ccaa1a21/docs/
+                        # original_docs/basic_usage.md#additional-features-of-the-retriever
+                        "save_retrieval_cache": False,
+                        "retrieval_cache_path": "~",
+                        "use_retrieval_cache": False,
+                        "use_reranker": False,
+                        "instruction": "~",
+                    }
+                    self.retriever = DenseRetriever(config=dense_config)
+                    logger.info(f"Retriever config: {pformat(self.retriever.config)}")
+                    # Store the retriever object in the _indices dict for reuse across instances
+                    self._indices[key] = self.retriever
+
         else:
             texts = text_corpus["article"].tolist()
 
@@ -255,38 +318,14 @@ class RAGMixin:
             vectorstore = FAISS.from_texts(texts, embeddings)
             self.retriever = vectorstore.as_retriever(search_kwargs={"k": retriever_num_documents})
 
-    # def __new__(cls, *args, **kwargs):
-    #     # Create a unique key based on the arguments
-    #     key = cls.get_hashable_key(*args, **kwargs)
-    #     # import pdb; pdb.set_trace()
-    #     if key not in cls._instances:
-    #         cls._instances[key] = super().__new__(cls)
-    #     return cls._instances[key]
-
     def get_RAG_evidence(self, question: str) -> str:
         """
         Returns retrieved articles given the question from the text corpus.
         The retrieved articles are concatenated as a string.
         """
-        if self.embedding_model_name == "bm25":
-            # NOTE: tokenize() is a batch operation by default,
-            # but we only want to tokenize one question at a time,
-            # so we create a list with a single element
-            query_tokens = self.tokenizer.tokenize(
-                texts=[question],
-                return_as="tuple",
-                update_vocab=False,
-            )
-            # NOTE: retrieve() is a batch operation by default,
-            # but we pass in a list with a single element,
-            # so we index into the first element to get the single result
-            docs = list(
-                self.retriever.retrieve(
-                    query_tokens=query_tokens,
-                    k=self.retriever_num_documents,
-                    return_as="documents",
-                )[0]
-            )
+        if self.retrieval_method in ["bm25", "dense"]:
+            docs = self.retriever._search(question, num=self.retriever_num_documents, return_score=False)
+            docs = [doc["contents"] for doc in docs]
         else:
             docs = [doc.page_content for doc in self.retriever.invoke(question)]
         return "\n================\n\n".join(docs)
