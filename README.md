@@ -5,7 +5,9 @@ PhantomWiki generates on-demand datasets to evaluate reasoning and retrieval cap
 - [Paper](https://arxiv.org/abs/2502.20377)
 - [Demo](https://github.com/kilian-group/phantom-wiki/blob/main/demo.ipynb)
 
-<center>You can evaluate your own model via vLLM on PhantomWiki with in <a name=#-evaluating-llms-on-phantomwiki>1 command</a>!</center>
+<p align="center">
+We provide a <a name="#-evaluating-llms-on-phantomwiki">single script</a> to evaluate your own model on PhantomWiki via vLLM.
+</p>
 
 ## Contents
 
