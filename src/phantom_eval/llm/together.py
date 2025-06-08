@@ -101,6 +101,7 @@ class TogetherChat(CommonLLMChat):
     def _parse_api_output(
         self, response: object, inf_gen_config: InferenceGenerationConfig | None = None
     ) -> LLMChatResponse:
+        # NOTE: we don't use inf_gen_config for parsing the output of the together server
         return LLMChatResponse(
             pred=response.choices[0].message.content,
             usage=response.usage.model_dump(),
