@@ -20,7 +20,7 @@ else
 fi
 
 # Override whichever dataset was specified in constants.sh
-DATASET=mlcore/phantom-wiki-v050
+DATASET=mlcore/phantom-wiki-v1
 echo "Dataset: $DATASET"
 MODEL="meta-llama/llama-3.3-70b-instruct"
 
