@@ -61,7 +61,10 @@ class MockChat(CommonLLMChat):
 
         return mock_api_call()
 
-    def _parse_api_output(self, response: object) -> LLMChatResponse:
+    def _parse_api_output(
+        self, response: object, inf_gen_config: InferenceGenerationConfig | None = None
+    ) -> LLMChatResponse:
+        # NOTE: we don't use inf_gen_config for parsing the output of the mock server
         return LLMChatResponse(pred=response, usage={})
 
 
