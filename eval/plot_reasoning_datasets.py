@@ -28,14 +28,14 @@ from phantom_eval.utils import setup_logging
 setup_logging("INFO")
 
 # utils for plotting
-# plt.rcParams.update(
-#     {
-#         "font.family": "serif",
-#         "font.serif": ["Times New Roman"],
-#         "axes.spines.top": False,
-#         "axes.spines.right": False,
-#     }
-# )
+plt.rcParams.update(
+    {
+        "font.family": "serif",
+        "font.serif": ["Times New Roman"],
+        "axes.spines.top": False,
+        "axes.spines.right": False,
+    }
+)
 
 
 parser = get_parser()
@@ -156,7 +156,7 @@ for metric in METRICS:
         for size in sizes_in_preds:
             acc_mean_std_size = acc_mean_std[acc_mean_std["_size"].astype(int) == size]
             df_mean, df_std = pivot_mean_std(
-                acc_mean_std_size, metric, independent_variable=DIFFICULTY, enforce_order=False
+                acc_mean_std_size, metric, independent_variable=DIFFICULTY  # , enforce_order=False
             )
             x = df_mean.columns
             for model_name, row in df_mean.iterrows():
