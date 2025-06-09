@@ -108,8 +108,12 @@ class VLLMChat(CommonLLMChat):
                         formatted_messages.append({"role": message.role, "content": text})
         return formatted_messages
 
-    def _parse_api_output(self, response: object) -> LLMChatResponse:
-        """Parse the output of vllm server when using the OpenAI compatible server"""
+    def _parse_api_output(
+        self, response: object, inf_gen_config: InferenceGenerationConfig | None = None
+    ) -> LLMChatResponse:
+        """Parse the output of vllm server when using the OpenAI compatible server
+
+        NOTE: we don't use inf_gen_config for parsing the output of the vllm server"""
         return LLMChatResponse(
             pred=response.choices[0].message.content,
             usage=response.usage.model_dump(),

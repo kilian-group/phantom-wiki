@@ -6,6 +6,10 @@ See the README for more information.
 
 import asyncio
 
+import nest_asyncio
+
+nest_asyncio.apply()
+
 from phantom_eval.llm import ContentTextMessage, Conversation, InferenceGenerationConfig, Message, get_llm
 
 EXAMPLE_PROMPT = """
@@ -23,7 +27,7 @@ def _test_llm(server: str, model_name: str):
     """
     Test for synchronous calls
     """
-    response = llm_chat.generate_response(example_conv, inf_gen_config)
+    response = asyncio.run(llm_chat.generate_response(example_conv, inf_gen_config))
     pred = response.pred.strip()
     assert pred == "2", f"Expected 2, got {pred}"
 
@@ -71,7 +75,7 @@ def test_vllm():
 
     NOTE: make sure to run the vllm server before running this test!!!
     ```bash
-    vllm serve meta-llama/llama-3.1-8b-instruct --dtype auto --api-key token-abc123 --tensor_parallel_size 4
+    vllm serve meta-llama/llama-3.1-8b-instruct --dtype auto --api-key token-abc123 --tensor_parallel_size 1
     ```
     """
     llm_chat = get_llm(
@@ -79,6 +83,10 @@ def test_vllm():
         model_name="meta-llama/llama-3.1-8b-instruct",
         model_kwargs=dict(use_api=True),
     )
-    response = llm_chat.generate_response(example_conv)
+    response = asyncio.run(llm_chat.generate_response(example_conv, inf_gen_config))
     pred = response.pred.strip()
     assert pred == "2", f"Expected 2, got {pred}"
+
+
+def test_llama():
+    _test_llm(server="llama", model_name="Llama-3.3-70B-Instruct")

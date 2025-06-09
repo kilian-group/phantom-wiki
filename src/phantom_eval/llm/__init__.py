@@ -12,6 +12,7 @@ SUPPORTED_LLM_SERVERS = [
     "openai",
     "together",
     "vllm",
+    "llama",
 ]
 
 
@@ -37,5 +38,9 @@ def get_llm(server: str, model_name: str, model_kwargs: dict) -> LLMChat:
             from phantom_eval.llm.vllm import VLLMChat
 
             return VLLMChat(model_name=model_name, **model_kwargs)
+        case "llama":
+            from phantom_eval.llm.llama import LlamaChat
+
+            return LlamaChat(model_name=model_name, **model_kwargs)
         case _:
             raise ValueError(f"Provider {server} not supported.")
