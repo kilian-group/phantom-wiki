@@ -4,7 +4,7 @@ import json
 from phantom_wiki.facts import Database
 
 # phantom wiki functionality
-from phantom_wiki.facts.templates import generate_templates
+from phantom_wiki.facts.templates import generate_templates, is_aggregation_question
 from phantom_wiki.utils import get_parser
 
 # testing utils
@@ -69,6 +69,94 @@ def test_template_depth_subsets():
     assert condensed_templates_depth_6 <= condensed_templates_depth_8
     assert condensed_templates_depth_8 <= condensed_templates_depth_10
     assert condensed_templates_depth_10 <= condensed_templates_depth_20
+
+
+def test_is_aggregation_question_valid():
+    """Test is_aggregation_question with exact "How many" matching."""
+
+    # Test exact "How many" pattern (should return True)
+    exact_how_many_questions = [
+        "How many children does John Doe have?",
+        "How many sons does Alice Doe have?",
+        "How many children does the son of John Doe have?",
+        "How many children does the person whose hobby is birdwatching have?",
+    ]
+
+    for question in exact_how_many_questions:
+        assert is_aggregation_question(
+            question
+        ), f"Expected True for 'How many' question: {' '.join(question)}"
+
+
+def test_is_aggregation_question_valid_w_whitespace():
+    """Test is_aggregation_question with exact "How many" matching with leading/ending whitespace."""
+
+    # Test exact "How many" pattern (should return True)
+    whitespace_how_many_questions = [
+        "   How many children does John Doe have?",
+        "How many children does John Doe have?   ",
+        "  How many children does John Doe have?  ",
+        "\tHow many children does John Doe have?",
+        "How many children does John Doe have?\n",
+        " \t How many children does John Doe have? \n ",
+    ]
+
+    for question in whitespace_how_many_questions:
+        assert is_aggregation_question(
+            question
+        ), f"Expected True for 'How many' question: {' '.join(question)}"
+
+
+def test_is_aggregation_question_invalid():
+    """Test questions with 'How' and 'many' in wrong order or positions or punctuation."""
+
+    # Test wrong order or positions (should return False)
+    invalid_aggregation_questions = [
+        "Many how children does John Doe have?",
+        "How much children does the son of John Doe have?",
+        "How MANY children does the son of John Doe have?",
+        "how many children does the son of John Doe have?",
+        "How are children does the person whose hobby is birdwatching have?",
+        "How big children does the person whose hobby is birdwatching have?",
+        "How?",
+    ]
+
+    for question in invalid_aggregation_questions:
+        assert not is_aggregation_question(
+            question
+        ), f"Expected False for invalid aggregation question: {' '.join(question)}"
+
+
+def test_is_aggregation_question_who_questions():
+    """Test is_aggregation_question with 'who is' questions."""
+
+    # Test 'who is' questions (should return False)
+    who_is_questions = [
+        "Who is the child of John Doe?",
+        "Who is the son of Alice Doe?",
+        "Who is the person whose hobby is birdwatching?",
+        "Who is the person whose age is 30?",
+    ]
+
+    for question in who_is_questions:
+        assert not is_aggregation_question(
+            question
+        ), f"Expected False for 'who is' question: {' '.join(question)}"
+
+
+def test_is_aggregation_question_whatis_questions():
+    """Test is_aggregation_question with 'what is' questions."""
+
+    # Test 'what is' questions (should return False)
+    what_is_questions = [
+        "What is the hobby of John Doe?",
+        "What is the job of son of John Doe?",
+    ]
+
+    for question in what_is_questions:
+        assert not is_aggregation_question(
+            question
+        ), f"Expected False for 'what is' question: {' '.join(question)}"
 
 
 #
