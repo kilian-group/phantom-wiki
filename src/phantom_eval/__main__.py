@@ -158,7 +158,12 @@ async def main(args: argparse.Namespace) -> None:
     for seed in args.inf_seed_list:
         logger.info(f"Running inference for method='{args.method}' with {seed=}")
         for split in args.split_list:
-            dataset = load_data(args.dataset, split, args.from_local)
+            dataset = load_data(
+                args.dataset,
+                split,
+                from_local=args.from_local,
+                exclude_aggregation_questions=args.exclude_aggregation_questions,
+            )
             logger.info(f"Loading dataset='{args.dataset}' :: {split=}")
             df_qa_pairs = pd.DataFrame(dataset["qa_pairs"])
             df_text = pd.DataFrame(dataset["text"])
@@ -354,6 +359,7 @@ def save_preds(
                 "batch_size": batch_size,
                 "batch_number": batch_number,
                 "type": int(qa_sample.type),
+                "difficulty": int(qa_sample.difficulty),
             },
             "inference_params": inf_gen_config.model_dump(),
             "model_kwargs": model_kwargs,
