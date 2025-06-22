@@ -30,6 +30,9 @@ parser.add_argument(
     "--model_list", nargs="+", default=plotting_utils.DEFAULT_MODEL_LIST, help="List of models to plot"
 )
 parser.add_argument("--filter_by_depth", default=20, type=int, help="Filter by depth")
+parser.add_argument(
+    "--size_list", nargs="+", default=[50, 500, 5000], help="List of universe sizes to include"
+)
 args = parser.parse_args()
 output_dir = args.output_dir
 method_list = args.method_list
@@ -37,13 +40,13 @@ model_list = args.model_list
 dataset = args.dataset
 from_local = args.from_local
 filter_by_depth = args.filter_by_depth
+size_list = list(map(int, args.size_list))
 METRICS = [
     # 'EM',
     # 'precision',
     # 'recall',
     "f1"
 ]
-SIZE_LIST = [50, 500, 5000]
 
 df_list = []
 for method in method_list:
@@ -80,8 +83,8 @@ df_all = pd.concat(df_list)
 # reset index
 df_all = df_all.reset_index(drop=True)
 
-# only consider universe sizes in SIZE_LIST
-results = df_all[df_all["_size"].isin(SIZE_LIST)]
+# only consider universe sizes in size_list
+results = df_all[df_all["_size"].isin(size_list)]
 # use model aliases
 results["_model"] = results["_model"].apply(lambda x: plotting_utils.MODEL_ALIASES.get(x.lower(), x))
 # create table with models as rows and methods as columns
