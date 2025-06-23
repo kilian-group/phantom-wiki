@@ -138,6 +138,11 @@ def get_parser() -> argparse.ArgumentParser:
         help="List of dataset splits to evaluate",
     )
     parser.add_argument("--from_local", action="store_true", help="Load the dataset from a local folder")
+    parser.add_argument(
+        "--exclude_aggregation_questions",
+        action="store_true",
+        help="If set, the evaluation will skip aggregation questions (e.g., 'How many ...')",
+    )
     parser.add_argument("--batch_size", "-bs", default=10, type=int, help="Batch size (>=1)")
     parser.add_argument(
         "--batch_number",
