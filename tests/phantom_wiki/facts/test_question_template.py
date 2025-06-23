@@ -83,9 +83,7 @@ def test_is_aggregation_question_valid():
     ]
 
     for question in exact_how_many_questions:
-        assert is_aggregation_question(
-            question
-        ), f"Expected True for 'How many' question: {' '.join(question)}"
+        assert is_aggregation_question(question), f"Expected True for 'How many' {question=}"
 
 
 def test_is_aggregation_question_valid_w_whitespace():
@@ -102,9 +100,7 @@ def test_is_aggregation_question_valid_w_whitespace():
     ]
 
     for question in whitespace_how_many_questions:
-        assert is_aggregation_question(
-            question
-        ), f"Expected True for 'How many' question: {' '.join(question)}"
+        assert is_aggregation_question(question), f"Expected True for 'How many' {question=}"
 
 
 def test_is_aggregation_question_invalid():
@@ -122,9 +118,7 @@ def test_is_aggregation_question_invalid():
     ]
 
     for question in invalid_aggregation_questions:
-        assert not is_aggregation_question(
-            question
-        ), f"Expected False for invalid aggregation question: {' '.join(question)}"
+        assert not is_aggregation_question(question), f"Expected False for invalid aggregation {question=}"
 
 
 def test_is_aggregation_question_who_questions():
@@ -139,9 +133,7 @@ def test_is_aggregation_question_who_questions():
     ]
 
     for question in who_is_questions:
-        assert not is_aggregation_question(
-            question
-        ), f"Expected False for 'who is' question: {' '.join(question)}"
+        assert not is_aggregation_question(question), f"Expected False for 'who is' {question=}"
 
 
 def test_is_aggregation_question_whatis_questions():
@@ -154,9 +146,7 @@ def test_is_aggregation_question_whatis_questions():
     ]
 
     for question in what_is_questions:
-        assert not is_aggregation_question(
-            question
-        ), f"Expected False for 'what is' question: {' '.join(question)}"
+        assert not is_aggregation_question(question), f"Expected False for 'what is' {question=}"
 
 
 #
