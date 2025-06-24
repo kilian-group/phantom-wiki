@@ -105,7 +105,7 @@ def _get_preds(output_dir, method):
 
     df_list = []
     # keys to create auxiliary columns that are useful for analysis
-    METADATA = ["model", "split", "batch_size", "batch_number", "type"]
+    METADATA = ["model", "dataset", "split", "batch_size", "batch_number", "type"]
     SAMPLING_PARAMS = ["seed"]
     for filename in files:
         logging.info(f"Reading from {filename}...")
