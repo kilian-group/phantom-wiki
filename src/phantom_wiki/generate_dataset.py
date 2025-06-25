@@ -15,7 +15,7 @@ from .facts.family import db_generate_family
 from .facts.friends import db_generate_friendships
 from .facts.question_difficulty import calculate_query_difficulty
 from .facts.sample import sample_question
-from .facts.templates import generate_templates
+from .facts.templates import generate_templates, is_aggregation_question
 from .utils import blue, generate_unique_id
 from .utils.get_answer import get_answer
 
@@ -268,20 +268,23 @@ def generate_dataset(
 
         for j in range(num_questions_per_type):
             # get the difficulty of the question
-            question_difficulty = calculate_query_difficulty(all_queries[i][j])
+            question = all_questions[i][j]
+            query = all_queries[i][j]
+            question_difficulty = calculate_query_difficulty(query)
 
             questions.append(
                 {
                     "id": generate_unique_id(),
-                    "question": all_questions[i][j],
+                    "question": question,
                     "solution_traces": json.dumps(
                         all_solution_traces[i][j]
                     ),  # NOTE: serialize list of dicts so that it can be saved on HF
                     "answer": all_final_results[i][j],
-                    "prolog": {"query": all_queries[i][j], "answer": answer},
+                    "prolog": {"query": query, "answer": answer},
                     "template": question_template,
                     "type": i,  # this references the template type
                     "difficulty": question_difficulty,
+                    "is_aggregation_question": is_aggregation_question(question),
                 }
             )
             if question_format == "json_by_type":
