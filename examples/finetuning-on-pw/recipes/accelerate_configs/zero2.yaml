@@ -1,0 +1,5 @@
+deepspeed_config:
+  zero_stage: 2
+  offload_optimizer_device: none
+distributed_type: DEEPSPEED
+mixed_precision: bf16

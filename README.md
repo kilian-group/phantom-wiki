@@ -5,6 +5,10 @@ PhantomWiki generates on-demand datasets to evaluate reasoning and retrieval cap
 - [Paper](https://arxiv.org/abs/2502.20377)
 - [Demo](https://github.com/kilian-group/phantom-wiki/blob/main/demo.ipynb)
 
+<p align="center">
+We provide a <a href="#-evaluating-llms-on-phantomwiki">single script</a> to evaluate your own model on PhantomWiki via vLLM.
+</p>
+
 ## Contents
 
 - [🚀 Quickstart](#-quickstart)
@@ -137,6 +141,18 @@ pip install phantom-wiki[eval]
 
 If you're installing from source, use `pip install -e ".[eval]"`.
 
+Then run the evaluation script to get F1 scores for your model and PhantomWiki reasoning plots:
+
+```bash
+# You can modify the script to add more flags to phantom_eval command
+./eval/evaluate_with_vllm_on_v1.sh OUTPUT_DIRECTORY MODEL_NAME_OR_PATHS METHODS
+
+# For example, evaluating Qwen/Qwen3-32B, DeepSeek-R1-32B models with Zeroshot, CoT prompt methods and saving in out/ directory,
+./eval/evaluate_with_vllm_on_v1.sh out/ "Qwen/Qwen3-32B deepseek-ai/DeepSeek-R1-Distill-Qwen-32B" "zeroshot cot"
+```
+
+The script creates a leaderboard with F1 scores on the PhantomWiki public datasets, and creates the reasoning plot (F1 vs difficulty) at `out/figures/difficulty-f1.pdf`.
+
 ### Setting up API keys
 
 <details>
@@ -169,6 +185,19 @@ export GEMINI_API_KEY=xxxx
 conda env config vars set GEMINI_API_KEY=xxxxx
 ```
 
+</details>
+
+<details>
+<summary>Llama API</summary>
+
+1. Create an API key at https://llama.developer.meta.com/api-keys/?team_id=1032428561758393
+2. Set you Llama API key as an environment variable. Or in your conda environment:
+
+```bash
+export LLAMA_API_KEY="xxxx"
+# or
+conda env config vars set LLAMA_API_KEY="xxxxx"
+```
 </details>
 
 <details>
@@ -218,27 +247,50 @@ The models and their configs are downloaded directly from HuggingFace and almost
 
 ### Reproducing LLM evaluation results in the paper
 
-> \[!NOTE\]
-> For vLLM inference, make sure to request access for Gemma, Llama 3.1, 3.2, and 3.3 models on HuggingFace before proceeding.
-
 🧪 To generate the predictions from an LLM with a prompting `METHOD`, run the following command:
 
 ```bash
 python -m phantom_eval --method METHOD --server SERVER --model_name MODEL_NAME_OR_PATH --split_list SPLIT_LIST -od OUTPUT_DIRECTORY
 ```
 
+#### Closed-source LLMs through Anthropic, OpenAI, Gemini etc.
+
 We implement lightweight interfaces to Anthropic, OpenAI, Gemini, and Together APIs, which you can select by specifying `SERVER`, e.g. `anthropic`, `openai`, `gemini`, `together` respectively.
-We also implement an interface to `vllm` server, to evaluate local LLMs.
 
 Example usages:
 
 - `METHOD` can be `zeroshot`, `fewshot`, `cot`, `react`, `zeroshot-rag` etc.
 - Evaluate GPT-4o through checkpoint names `--server openai --model_name gpt-4o-2024-11-20` or with name aliases `--server openai --model_name gpt-4o`. We pass on the model name to the API, so any LLM name supported by the API is supported by our interface. Similarly for Anthropic, Gemini, and Together.
-- Evaluate Huggingface LLMs through Model Card name `--server vllm --model_name deepseek-ai/DeepSeek-R1-Distill-Qwen-32B`, or through local weights path `--server vllm --model_name /absolute/path/to/weights/`.
-- Evaluate LoRA weights through Model Card name and path to LoRA `--server vllm --model_name deepseek-ai/DeepSeek-R1-Distill-Qwen-32B --inf_vllm_lora_path /path/to/lora/weights/`.
+
+#### Open-weights LLMs through vLLM
+
+We also implement an interface to `vllm` server to evaluate local LLMs on your GPUs.
+We use the API server mode by default, but offline batch evaluation can be faster for prompt methods `zeroshot`, `fewshot`, and `cot`.
+
+1. **API (online) server mode.** First, serve the LLM manually with `vllm serve MODEL_NAME_OR_PATH` and then run `phantom_eval` with flags `--server vllm`. For example:
+
+```bash
+python -m phantom_eval --method METHOD --server vllm --model_name MODEL_NAME_OR_PATH --split_list SPLIT_LIST -od OUTPUT_DIRECTORY
+```
+
+2. **Offline (batch) server mode.** Run `phantom_eval` with flags `--server vllm --inf_vllm_offline`. For example:
+
+```bash
+python -m phantom_eval --method METHOD --server vllm --inf_vllm_offline --model_name MODEL_NAME_OR_PATH --split_list SPLIT_LIST -od OUTPUT_DIRECTORY
+```
+
+Example usages:
+
+- Evaluate Huggingface LLMs through Model Card name `--server vllm --inf_vllm_offline --model_name deepseek-ai/DeepSeek-R1-Distill-Qwen-32B`, or through local weights path `--server vllm --inf_vllm_offline --model_name /absolute/path/to/weights/`.
+- Evaluate LoRA weights through Model Card name and path to LoRA `--server vllm --inf_vllm_offline --model_name deepseek-ai/DeepSeek-R1-Distill-Qwen-32B --inf_vllm_lora_path /path/to/lora/weights/`.
+
+> \[!NOTE\]
+> For vLLM inference, make sure to request access for Gemma, Llama 3.1, 3.2, and 3.3 models on HuggingFace before proceeding.
 
 > \[!TIP\]
 > To generate a slurm script for clusters at Cornell (g2, empire, aida) with the appropriate GPU allocation, run [`bash eval/create_eval.sh`](https://github.com/kilian-group/phantom-wiki/blob/main/eval/create_eval.sh) script and follow the prompted steps.
+
+#### Generating tables and figures
 
 📊 To generate the tables and figures, run the following command from the root directory, replacing `METHODS` with a space-separated list of prompting techniques e.g. `"zeroshot cot zeroshot-rag cot-rag react"`.
 
