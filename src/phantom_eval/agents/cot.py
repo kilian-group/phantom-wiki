@@ -91,10 +91,6 @@ class CoTAgent(Agent):
             Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
         )
 
-        if self.prolog_query:
-            response.pred = parse_prolog_query(response.pred)
-            return response
-
         # Parse the response to extract the answer
         try:
             if parse_thinking_output:
@@ -171,7 +167,8 @@ class CoTAgent(Agent):
         The prediction should be of the form: "... The answer is <answer>." otherwise a ValueError is raised.
         """
         # NOTE: Allow for empty answer instead of throwing an error
-        pattern = r"[tT]he answer is (.*)\.\s*$"
+        # NOTE: .* at the start ensures that we take the last occurrence of the pattern in pred
+        pattern = r".*[tT]he answer is (.*)\.\s*$"
         m = re.search(pattern, pred)
         if m:
             return m.group(1)
