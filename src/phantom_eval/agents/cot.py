@@ -91,10 +91,6 @@ class CoTAgent(Agent):
             Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
         )
 
-        # if self.prolog_query:
-        #     response.pred = parse_prolog_query(response.pred)
-        #     return response
-
         # Parse the response to extract the answer
         try:
             if parse_thinking_output:

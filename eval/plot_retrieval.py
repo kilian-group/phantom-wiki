@@ -12,6 +12,7 @@ import logging
 
 # %%
 import os
+import random
 
 from phantom_eval import get_parser
 from phantom_eval.utils import setup_logging
@@ -31,8 +32,12 @@ plt.rcParams.update(
     }
 )
 
+from nltk import CFG
+from scipy.interpolate import interp1d
+
 from phantom_eval import plotting_utils
 from phantom_eval.evaluate_utils import get_evaluation_data, mean, pivot_mean_std, std
+from phantom_wiki.facts.templates import QA_GRAMMAR_STRING, generate_templates
 
 # TODO: use LaTeX for rendering (need to have LaTeX installed locally)
 
@@ -40,11 +45,13 @@ parser = get_parser()
 parser.add_argument(
     "--model_list", nargs="+", default=plotting_utils.DEFAULT_MODEL_LIST, help="List of models to plot"
 )
+parser.add_argument("--seed", type=int, default=42, help="Random seed for color generation")
 args = parser.parse_args()
 output_dir = args.output_dir
 model_list = args.model_list
 dataset = args.dataset
 from_local = args.from_local
+seed = args.seed
 
 figures_dir = os.path.join(output_dir, "figures")
 os.makedirs(figures_dir, exist_ok=True)
@@ -61,13 +68,47 @@ METRICS = [
 # question-answer pairs by the template used to generate the question, which is
 # stored in the 'template' column of the dataframe.
 #
-from nltk import CFG
-from scipy.interpolate import interp1d
-
-from phantom_wiki.facts.templates import QA_GRAMMAR_STRING, generate_templates
-
 grammar = CFG.fromstring(QA_GRAMMAR_STRING)
 question_templates_10 = [" ".join(question) for question, _, _ in generate_templates(grammar, depth=10)]
+
+random.seed(seed)
+
+
+def random_rgb_color():
+    """Generate a random RGB color tuple."""
+    return (random.random(), random.random(), random.random())
+
+
+COLORS = {}
+
+
+def get_color(model, method, by_model=True):
+    if by_model:
+        model_name = model.lower()
+        if model_name in plotting_utils.COLORS:
+            return plotting_utils.COLORS[model_name]
+        else:
+            if model_name not in COLORS:
+                COLORS[model_name] = random_rgb_color()
+            return COLORS[model_name]
+    else:
+        match method.lower():
+            case "selfask":
+                color = "tab:blue"
+            case "ircot":
+                color = "tab:green"
+            case "sft":
+                color = "tab:blue"
+            case "grpo":
+                color = "tab:green"
+            case "zeroshot":
+                color = "tab:red"
+            case "cot":
+                color = "tab:red"
+            case _:
+                color = "black"
+        return color
+
 
 for metric in METRICS:
     fig = plt.figure(figsize=(3.25, 2.75))  # exact dimensions of ICML single column width
@@ -92,19 +133,17 @@ for metric in METRICS:
                 continue
 
             logging.warning(
-                """ Reducing the difficulty by only including those questions that are generated
-                    from depth=10 templates"""
+                "Reducing the difficulty by only including those questions that are generated"
+                "from depth=10 templates."
             )
             include = df.apply(lambda x: x["template"] in question_templates_10, axis=1)
             df = df[include]
 
             # group by model, size, data seed, and inference seed
             grouped = df.groupby(["_model", "_size", "_data_seed", "_seed"])
-            # print the accuracy
             acc = grouped[["EM", "precision", "recall", "f1"]].mean()
             # add a column that counts the number of elements in the group
             acc["count"] = grouped.size()
-            print(acc)
 
             # get the mean and std of the accuracy for each model and split as follows:
             # first compute the mean across inference generation seeds
@@ -120,10 +159,11 @@ for metric in METRICS:
             log10x = np.log10(df_mean.columns)
             # add the x values to a list
             for model_name, row in df_mean.iterrows():
-                if model_name not in model_list:
+                if model_name.lower() not in map(str.lower, model_list):
                     continue
                 y = row
                 yerr = df_std.loc[model_name]
+                color = get_color(model_name, method)
 
                 logging.debug(f"Plotting {method} for {model_name} with x={df_mean.columns} and y={y}")
                 if model_name in [
@@ -142,10 +182,8 @@ for metric in METRICS:
                         x_new,
                         y_new,
                         label=f"{method}+{model_name}",  # cot+gemini-1.5-flash-002
-                        color=plotting_utils.COLORS[model_name],
-                        linestyle=plotting_utils.METHOD_LINESTYLES[
-                            method
-                        ],  # NOTE: determine the linestyle using the method
+                        color=color,
+                        linestyle=plotting_utils.METHOD_LINESTYLES.get(method.lower(), "solid"),
                         linewidth=1,
                         alpha=plotting_utils.LINE_ALPHA,
                     )
@@ -153,34 +191,37 @@ for metric in METRICS:
                     axs[i].plot(
                         log10x,
                         y,
-                        color=plotting_utils.COLORS[model_name],
+                        color=color,
                         # NOTE: determine the linestyle using the method
-                        linestyle=plotting_utils.METHOD_LINESTYLES[method],
+                        linestyle=plotting_utils.METHOD_LINESTYLES.get(method.lower(), "solid"),
                         linewidth=1,
                         alpha=plotting_utils.LINE_ALPHA,
                     )
                 axs[i].fill_between(
-                    log10x, y - yerr, y + yerr, alpha=0.1, color=plotting_utils.COLORS[model_name]
+                    log10x,
+                    y - yerr,
+                    y + yerr,
+                    alpha=0.1,
+                    color=color,
                 )
                 # Add scatter plot
                 axs[i].scatter(
                     log10x,
                     y,
-                    color=plotting_utils.COLORS[model_name],
+                    color=color,
                     s=plotting_utils.MARKER_SIZE,  # marker size
                     alpha=plotting_utils.MARKER_ALPHA,
                     clip_on=False,
                 )
-            key = f"{plotting_utils.METHOD_ALIASES[method]}"
+
+            key = f"{plotting_utils.METHOD_ALIASES.get(method.lower(), method)}"
             if key not in method_handles:
                 method_handles[key] = lines.Line2D(
                     [0],
                     [0],
-                    color="black",
+                    color=get_color(None, method, by_model=False),
                     label=key,
-                    linestyle=plotting_utils.METHOD_LINESTYLES[
-                        method
-                    ],  # NOTE: determine the linestyle using the method
+                    linestyle=plotting_utils.METHOD_LINESTYLES[method],
                     markersize=4,
                 )
         axs[i].legend(
@@ -236,12 +277,12 @@ for metric in METRICS:
     # attach the model legend to the entire figure instead of any individual subplot
     model_handles = []
     for model in model_list:
-        key = f"{plotting_utils.MODEL_ALIASES[model]}"
+        key = f"{plotting_utils.MODEL_ALIASES.get(model.lower(), model)}"
         model_handles.append(
             lines.Line2D(
                 [0],
                 [0],
-                color=plotting_utils.COLORS[model],
+                color=get_color(model, method),
                 label=key,
                 linewidth=1,
             )
