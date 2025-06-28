@@ -23,9 +23,6 @@ dataset = args.dataset
 index_dir = "indexes"  # args.output_dir
 from_local = args.from_local
 
-assert len(split_list) == 1, "Only one split is supported"
-split = split_list[0]
-
 os.makedirs(index_dir, exist_ok=True)
 dataset_dir = os.path.join("dataset", dataset.split("/")[-1])
 os.makedirs(dataset_dir, exist_ok=True)
@@ -40,6 +37,7 @@ for split in split_list:
                 "id": item['title'],
                 "contents": item['article']
             }) + "\n")
+    print(f"Saved corpus to {corpus_path}")
 
     qa_path = os.path.join(dataset_dir, f"{split}.jsonl")
     with open(qa_path, "w") as f:
@@ -49,3 +47,4 @@ for split in split_list:
                 "question": item['question'],
                 "golden_answers": item['answer']
             }) + "\n")
+    print(f"Saved question-answer pairs to {qa_path}")
