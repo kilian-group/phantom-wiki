@@ -104,7 +104,11 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--inf_relax_rate_limits",
         action="store_true",
-        help="Flag to relax enforcing rate limits for the LLMs",
+        help="Flag to relax enforcing rate limits for the LLMs. "
+        "By default, the LLMChat class enforces rate limits according to the specified usage tier "
+        "(see --inf_usage_tier and --inf_llms_rpm_tpm_config_fpath). "
+        "To determine your usage tier, you can check on the console page of your specific LLM provider. "
+        "See README.md for links to the console pages.",
     )
     parser.add_argument(
         "--inf_llms_rpm_tpm_config_fpath",
