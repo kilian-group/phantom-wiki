@@ -49,9 +49,6 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--retriever_num_documents", type=int, default=4, help="Number of documents retrieved"
     )
-    parser.add_argument("--retrieval_method", type=str, default="faiss", help="Method used for retrieval")
-    parser.add_argument("--index_path", type=str, help="Path to the index for the retriever")
-    parser.add_argument("--corpus_path", type=str, help="Path to the corpus for the retriever")
     parser.add_argument(
         "--retrieval_method",
         type=str,
