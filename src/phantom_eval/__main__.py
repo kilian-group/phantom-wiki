@@ -390,6 +390,17 @@ if __name__ == "__main__":
             "When prolog_query is true, we can only evaluate one split at a time since only one Prolog "
             "database can be in memory at any given time due to limitations with pyswip"
         )
+    if args.method in ["zeroshot-rag", "fewshot-rag", "cot-rag"]:
+        if args.retrieval_method in ["bm25", "dense"]:
+            assert (
+                args.index_path is not None
+            ), "index_path must be specified when retrieval_method is bm25 or dense"
+            assert (
+                args.corpus_path is not None
+            ), "corpus_path must be specified when retrieval_method is bm25 or dense"
+            assert (
+                len(args.split_list) == 1
+            ), "When retrieval_method is bm25 or dense, we can only evaluate one split at a time"
 
     # NOTE: asyncio.run should only be called once in a single Python instance.
     # Thus, any high-level function containing awaits in its implementation

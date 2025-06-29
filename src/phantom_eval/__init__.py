@@ -49,7 +49,16 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--retriever_num_documents", type=int, default=4, help="Number of documents retrieved"
     )
-    parser.add_argument("--retrieval_method", type=str, default="bm25", help="Method used for retrieval")
+    parser.add_argument(
+        "--retrieval_method",
+        type=str,
+        default="bm25",
+        help="Method used for retrieval. "
+        "bm25 and dense use the retriever from FlashRAG and expects a pre-computed index. "
+        "vllm uses the retriever from LangChain and launches a vllm server for retrieval. "
+        "NOTE: bm25 and dense can only evaluate one split at a time.",
+        choices=["bm25", "dense", "vllm"],
+    )
     parser.add_argument("--index_path", type=str, help="Path to the index for the retriever")
     parser.add_argument("--corpus_path", type=str, help="Path to the corpus for the retriever")
     parser.add_argument(
