@@ -109,7 +109,7 @@ class InferenceGenerationConfig(BaseModel):
     # LLM inference params
     max_tokens: int = 4096
     repetition_penalty: int = 1.0
-    seed: int = 0
+    seed: int | None = 0
     stop_sequences: list[str] = []  # pydantic handles default values correctly
     temperature: float = 0.0
     top_p: float = 0.7
@@ -306,7 +306,9 @@ class CommonLLMChat(LLMChat):
         """
 
     @abc.abstractmethod
-    def _parse_api_output(self, response: object, inf_gen_config: InferenceGenerationConfig | None = None) -> LLMChatResponse:
+    def _parse_api_output(
+        self, response: object, inf_gen_config: InferenceGenerationConfig | None = None
+    ) -> LLMChatResponse:
         """
         Parse the response from the API and return the prediction and usage statistics.
         """
