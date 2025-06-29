@@ -1,0 +1,12 @@
+# newer versions raise various errors
+torch
+vllm==0.8.1
+deepspeed
+trl[vllm]==0.16.1
+wandb
+accelerate
+datasets
+peft
+huggingface_hub[cli]
+phantom-wiki[eval]
+transformers==4.51.1

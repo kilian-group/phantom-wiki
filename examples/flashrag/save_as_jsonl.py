@@ -4,7 +4,7 @@ Reference: https://github.com/RUC-NLPIR/FlashRAG?tab=readme-ov-file#corpus-const
 
 Example usage:
 ```bash
-python save_corpus_as_jsonl.py --dataset DATASET_NAME_OR_PATH --split_list SPLIT_LIST
+python save_corpus_as_jsonl.py --dataset DATASET_NAME_OR_PATH --split_list SPLIT_LIST --output_dir OUTPUT_DIR
 ```
 If using local dataset, add the `--from_local` flag.
 """
@@ -20,14 +20,13 @@ parser = get_parser()
 args = parser.parse_args()
 split_list = args.split_list
 dataset = args.dataset
-index_dir = "indexes"  # args.output_dir
+output_dir = args.output_dir
+index_dir = os.path.join(output_dir, "indexes")
+os.makedirs(output_dir, exist_ok=True)
 from_local = args.from_local
 
-assert len(split_list) == 1, "Only one split is supported"
-split = split_list[0]
-
 os.makedirs(index_dir, exist_ok=True)
-dataset_dir = os.path.join("dataset", dataset.split("/")[-1])
+dataset_dir = os.path.join(output_dir, "dataset", dataset.split("/")[-1])
 os.makedirs(dataset_dir, exist_ok=True)
 
 for split in split_list:
@@ -40,6 +39,7 @@ for split in split_list:
                 "id": item['title'],
                 "contents": item['article']
             }) + "\n")
+    print(f"Saved corpus to {corpus_path}")
 
     qa_path = os.path.join(dataset_dir, f"{split}.jsonl")
     with open(qa_path, "w") as f:
@@ -49,3 +49,4 @@ for split in split_list:
                 "question": item['question'],
                 "golden_answers": item['answer']
             }) + "\n")
+    print(f"Saved question-answer pairs to {qa_path}")

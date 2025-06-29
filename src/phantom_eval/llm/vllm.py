@@ -1,8 +1,8 @@
-import asyncio
 import logging
 import uuid
 
 import openai
+from tqdm.asyncio import tqdm as tqdm_async
 from transformers import AutoTokenizer
 from vllm import LLM, SamplingParams
 from vllm.lora.request import LoRARequest
@@ -108,8 +108,12 @@ class VLLMChat(CommonLLMChat):
                         formatted_messages.append({"role": message.role, "content": text})
         return formatted_messages
 
-    def _parse_api_output(self, response: object) -> LLMChatResponse:
-        """Parse the output of vllm server when using the OpenAI compatible server"""
+    def _parse_api_output(
+        self, response: object, inf_gen_config: InferenceGenerationConfig | None = None
+    ) -> LLMChatResponse:
+        """Parse the output of vllm server when using the OpenAI compatible server
+
+        NOTE: we don't use inf_gen_config for parsing the output of the vllm server"""
         return LLMChatResponse(
             pred=response.choices[0].message.content,
             usage=response.usage.model_dump(),
@@ -165,7 +169,7 @@ class VLLMChat(CommonLLMChat):
         if self.use_api:
             # When using api, we can use the parent class implementation
             # return await super().batch_generate_response(convs, inf_gen_config)
-            parsed_responses = await asyncio.gather(
+            parsed_responses = await tqdm_async.gather(
                 *[self.generate_response(conv, inf_gen_config) for conv in convs]
             )
             return parsed_responses

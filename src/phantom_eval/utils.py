@@ -12,15 +12,29 @@ from joblib import Memory, expires_after
 #
 from nltk import CFG
 
-from phantom_wiki.facts.templates import QA_GRAMMAR_STRING, generate_templates
+from phantom_wiki.facts.templates import QA_GRAMMAR_STRING, generate_templates, is_aggregation_question
 from phantom_wiki.utils.hf_datasets import PhantomWikiDatasetBuilder
 
 memory = Memory("cachedir")
-grammar = CFG.fromstring(QA_GRAMMAR_STRING)
+
+
+def dataset_entry_is_not_aggregation_question(entry: dict) -> bool:
+    """
+    Check if the question is NOT an aggregation question (e.g., "How many ...").
+
+    First check if the column "is_aggregation_question" exists, if so, use it.
+    Otherwise, use phantom_wiki's implementation of is_aggregation_question.
+    """
+    if "is_aggregation_question" in entry:
+        return not entry["is_aggregation_question"]
+    else:
+        return not is_aggregation_question(entry["question"])
 
 
 @memory.cache(cache_validation_callback=expires_after(hours=4))
-def load_data(dataset: str, split: str, from_local: bool = False) -> dict[str, Dataset]:
+def load_data(
+    dataset: str, split: str, from_local: bool = False, exclude_aggregation_questions: bool = False
+) -> dict[str, Dataset]:
     """Load the phantom-wiki dataset from HuggingFace for a specific split or load from a local folder.
 
     NOTE: Split does not necessarily have to exist on HF. We can dynamically construct
@@ -39,6 +53,8 @@ def load_data(dataset: str, split: str, from_local: bool = False) -> dict[str, D
             if from_local=False: The split of the dataset on HF to load.
             if from_local=True: The subdirectory of the local folder.
         from_local: Whether to load the dataset from a local folder.
+        exclude_aggregation_questions: If set, the returned dataset will not contain aggregation questions
+            (e.g., "How many ...").
 
     Returns:
         A dictionary containing the loaded datasets.
@@ -84,13 +100,17 @@ def load_data(dataset: str, split: str, from_local: bool = False) -> dict[str, D
 
     if split in available_splits:
         logging.info(f"Using split {split} from dataset {dataset}.")
+        qa_pairs = ds_question_answer[split]
+        if exclude_aggregation_questions:
+            qa_pairs = qa_pairs.filter(dataset_entry_is_not_aggregation_question)
         return {
-            "qa_pairs": ds_question_answer[split],
+            "qa_pairs": qa_pairs,
             "text": ds_text_corpus[split],
             "database": ds_database[split],
         }
     else:
         requested_depth, requested_size, requested_seed = _get_params(split)
+        grammar = CFG.fromstring(QA_GRAMMAR_STRING)
         requested_question_templates = [
             question for question, _, _ in generate_templates(grammar, depth=requested_depth)
         ]
@@ -104,6 +124,8 @@ def load_data(dataset: str, split: str, from_local: bool = False) -> dict[str, D
                 qa_pairs = ds_question_answer[s].filter(
                     lambda x: x["template"] in requested_question_templates
                 )
+                if exclude_aggregation_questions:
+                    qa_pairs = qa_pairs.filter(dataset_entry_is_not_aggregation_question)
                 return {
                     "qa_pairs": qa_pairs,
                     # the text corpus remains the same, since it is not generated from the CFG
@@ -151,4 +173,7 @@ def setup_logging(log_level: str):
     logging.getLogger("httpx").setLevel(logging.WARNING)
     logging.getLogger("httpcore").setLevel(logging.WARNING)
     logging.getLogger("openai").setLevel(logging.WARNING)
+    logging.getLogger("numba").setLevel(logging.WARNING)
+    logging.getLogger("jax").setLevel(logging.WARNING)
+    logging.getLogger("flashrag").setLevel(logging.WARNING)
     logging.basicConfig(level=log_level, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
