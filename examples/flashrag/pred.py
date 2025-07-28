@@ -21,7 +21,7 @@ import logging
 
 from flashrag.config import Config
 from flashrag.utils import get_dataset
-from flashrag.pipeline import IRCOTPipeline, SelfAskPipeline
+from flashrag.pipeline import IRCOTPipeline, SelfAskPipeline, SelfRAGPipeline
 from flashrag.retriever.index_builder import Index_Builder
 
 from phantom_eval import get_parser
@@ -36,6 +36,8 @@ def get_pipeline(method, config, max_iter=2):
             return IRCOTPipeline(config, max_iter=max_iter)
         case "selfask":
             return SelfAskPipeline(config, max_iter=max_iter, single_hop=False)
+        case "selfrag":
+            return SelfRAGPipeline(config)
         case _:
             raise ValueError(f"Method {method} not supported")
 
