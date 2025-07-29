@@ -151,12 +151,12 @@ for split, test_data in all_split.items():
             f"out of {len(test_data)}"
         )
         while True:
-            try:
-                output_dataset = pipeline.run(test_data[batch_start_idx:batch_end_idx], do_eval=False)
-                break
-            except Exception as e:
-                logger.error(f"Error in batch {batch_number}: {e}")
-                logger.info(f"Retrying questions [{batch_start_idx}, {batch_end_idx})")
+            output_dataset = pipeline.run(test_data[batch_start_idx:batch_end_idx], do_eval=False)
+            # try:
+            #     break
+            # except Exception as e:
+            #     logger.error(f"Error in batch {batch_number}: {e}")
+            #     logger.info(f"Retrying questions [{batch_start_idx}, {batch_end_idx})")
 
         preds = {}
         for item in output_dataset:
