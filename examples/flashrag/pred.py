@@ -124,67 +124,50 @@ config = Config(config_dict=config_dict)
 all_split = get_dataset(config)
 pipeline = get_pipeline(method, config, max_iter)
 
-for split, test_data in all_split.items():        
-    for batch_number in range(1, math.ceil(len(test_data) / batch_size) + 1):
-        # save the output dataset to a json file
-        run_name = (
-            f"split={split}"
-            + f"__model_name={model_name.replace('/', '--')}"
-            + f"__bs={batch_size}"
-            + f"__bn={batch_number}"
-            + f"__seed={seed}"
-        )
-        pred_path = output_dir / "preds" / method / f"{run_name}.json"
-        pred_path.parent.mkdir(parents=True, exist_ok=True)
-        if (args.batch_number is not None) and (batch_number != args.batch_number):
-            continue
-        # Skip if the output file already exists and --force is not set
-        if pred_path.exists() and not args.force:
-            logger.info(f"Skipping {pred_path} as it already exists. Use --force to overwrite.")
-            continue
+for split, test_data in all_split.items():
+    output_dataset = pipeline.run(test_data)
 
-        # Get batch
-        batch_start_idx = (batch_number - 1) * batch_size
-        batch_end_idx = batch_start_idx + batch_size
-        logger.info(
-            f"Getting predictions for questions [{batch_start_idx}, {batch_end_idx}) "
-            f"out of {len(test_data)}"
-        )
-        while True:
-            output_dataset = pipeline.run(test_data[batch_start_idx:batch_end_idx], do_eval=False)
-            # try:
-            #     break
-            # except Exception as e:
-            #     logger.error(f"Error in batch {batch_number}: {e}")
-            #     logger.info(f"Retrying questions [{batch_start_idx}, {batch_end_idx})")
+    # save the output dataset to a json file
+    batch_size = len(test_data)
+    batch_number = 1
+    run_name = (
+        f"split={split}"
+        + f"__model_name={args.model_name.replace('/', '--')}"
+        + f"__bs={batch_size}"
+        + f"__bn={batch_number}"
+        + f"__seed={args.seed}"
+    )
+    pred_path = Path(os.path.join(output_dir, "preds", method, f"{run_name}.json"))
+    pred_path.parent.mkdir(parents=True, exist_ok=True)
+    # output_dataset.to_json(pred_path)
 
-        preds = {}
-        for item in output_dataset:
-            item_dict = item.to_dict()
-            uid = item_dict['id']
-            preds[uid] = {
-                "true": item_dict['golden_answers'],
-                "pred": item_dict['output']['pred'],
-                "error": None,  # responses[i].error,
-                "interaction": [],  # interactions[i].model_dump() if interactions else [],
-                "output": item_dict['output'],  # NOTE: save output from FlashRAG
-                "metadata": {
-                    "model": model_name,
-                    "dataset": dataset,
-                    "split": split,
-                    "batch_size": batch_size,
-                    "batch_number": batch_number,
-                    "type": None,
-                },
-                "inference_params": {
-                    "seed": seed,
-                },
-                "model_kwargs": {}, # model_kwargs,
-                "agent_kwargs": pipeline.config.final_config,
-                "usage": {}, # responses[i].usage,
-            }
+    preds = {}
+    for item in output_dataset.data:
+        item_dict = item.to_dict()
+        uid = item_dict["id"]
+        preds[uid] = {
+            "true": item_dict["golden_answers"],
+            "pred": item_dict["output"]["pred"],
+            "error": None,  # responses[i].error,
+            "interaction": [],  # interactions[i].model_dump() if interactions else [],
+            "output": item_dict["output"],  # NOTE: save output from FlashRAG
+            "metadata": {
+                "model": args.model_name,
+                "dataset": args.dataset,
+                "split": split,
+                "batch_size": batch_size,
+                "batch_number": batch_number,
+                "type": None,
+            },
+            "inference_params": {
+                "seed": args.seed,
+            },
+            "model_kwargs": {},  # model_kwargs,
+            "agent_kwargs": pipeline.config.final_config,
+            "usage": {},  # responses[i].usage,
+        }
 
-        print(f"Saving predictions to {pred_path}...")
-        with open(pred_path, "w") as f:
-            json.dump(preds, f, indent=4)
-            f.flush()
+    print(f"Saving predictions to {pred_path}...")
+    with open(pred_path, "w") as f:
+        json.dump(preds, f, indent=4)
+        f.flush()
