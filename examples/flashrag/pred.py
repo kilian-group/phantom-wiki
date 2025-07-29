@@ -56,6 +56,9 @@ batch_size = args.batch_size
 seed_list = args.inf_seed_list
 assert len(seed_list) == 1, "Only one seed is supported"
 seed = seed_list[0]
+default_max_len = 131072
+if hasattr(args, "method") and args.method == "selfrag":
+    default_max_len = 4096
 
 index_dir = output_dir / "indexes"
 index_dir.mkdir(parents=True, exist_ok=True)
@@ -105,7 +108,7 @@ config_dict = {
     "corpus_path": corpus_path,
     "framework": "vllm",
     "generator_model": model_name,
-    "generator_max_input_len": args.inf_vllm_max_model_len if args.inf_vllm_max_model_len else 131072,
+    "generator_max_input_len": args.inf_vllm_max_model_len if args.inf_vllm_max_model_len else default_max_len,
     "generation_params": {
         "max_tokens": args.inf_max_tokens,
     },
