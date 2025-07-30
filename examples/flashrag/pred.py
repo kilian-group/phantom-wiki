@@ -135,7 +135,7 @@ for split, test_data in all_split.items():
         + f"__model_name={args.model_name.replace('/', '--')}"
         + f"__bs={batch_size}"
         + f"__bn={batch_number}"
-        + f"__seed={args.seed}"
+        + f"__seed={seed}"
     )
     pred_path = Path(os.path.join(output_dir, "preds", method, f"{run_name}.json"))
     pred_path.parent.mkdir(parents=True, exist_ok=True)
@@ -160,7 +160,7 @@ for split, test_data in all_split.items():
                 "type": None,
             },
             "inference_params": {
-                "seed": args.seed,
+                "seed": seed,
             },
             "model_kwargs": {},  # model_kwargs,
             "agent_kwargs": pipeline.config.final_config,
