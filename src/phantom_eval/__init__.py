@@ -143,6 +143,9 @@ def get_parser() -> argparse.ArgumentParser:
         help="Flag to use vLLM (batched) offline inference, "
         "which can be substantially faster than using the server when supported by the method",
     )
+    parser.add_argument(
+        "--inf_reasoning_effort", type=str, default=None, help="Reasoning effort for the model. "
+    )
 
     # Dataset params
     parser.add_argument(
