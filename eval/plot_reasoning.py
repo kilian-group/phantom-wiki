@@ -56,9 +56,9 @@ seed = args.seed
 figures_dir = os.path.join(output_dir, "figures")
 os.makedirs(figures_dir, exist_ok=True)
 METRICS = [
-    "EM",
-    "precision",
-    "recall",
+    # "EM",
+    # "precision",
+    # "recall",
     "f1",
 ]
 # Difficulty can either be 'difficulty' (i.e., reasoning steps) or 'solutions' (i.e., number of solutions to

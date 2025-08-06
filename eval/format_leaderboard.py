@@ -41,7 +41,12 @@ dataset = args.dataset
 from_local = args.from_local
 filter_by_depth = args.filter_by_depth
 size_list = list(map(int, args.size_list))
-METRICS = ["EM", "precision", "recall", "f1"]
+METRICS = [
+    # "EM",
+    # "precision",
+    # "recall",
+    "f1"
+]
 
 df_list = []
 for method in method_list:
