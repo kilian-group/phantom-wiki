@@ -47,7 +47,7 @@ parser.add_argument(
 parser.add_argument("--seed", type=int, default=42, help="Random seed for color generation")
 args = parser.parse_args()
 output_dir = args.output_dir
-model_list = args.model_list
+model_list = [m.lower() for m in args.model_list]
 dataset = args.dataset
 filter_by_depth = args.filter_by_depth
 from_local = args.from_local
@@ -56,9 +56,9 @@ seed = args.seed
 figures_dir = os.path.join(output_dir, "figures")
 os.makedirs(figures_dir, exist_ok=True)
 METRICS = [
-    # 'EM',
-    # 'precision',
-    # 'recall',
+    "EM",
+    "precision",
+    "recall",
     "f1",
 ]
 # Difficulty can either be 'difficulty' (i.e., reasoning steps) or 'solutions' (i.e., number of solutions to
@@ -111,6 +111,8 @@ METHOD_LIST = [
     ("Agentic", plotting_utils.AGENTIC_METHODS),
 ]
 
+plotted_model_list = set()
+
 for metric in METRICS:
     # fig = plt.figure(figsize=(3.25, 2.75)) # exact dimensions of ICML single column width
     # replace this with a subplot figure with 1 rows and 3 columns
@@ -138,6 +140,14 @@ for metric in METRICS:
             # filter by depth
             df = df[(df["_depth"] == filter_by_depth)]
 
+            # Append _reasoning_effort to _model if it exists
+            df["_model"] = df.apply(
+                lambda row: f"{row['_model']}:{row['_reasoning_effort']}"
+                if row["_reasoning_effort"]
+                else row["_model"],
+                axis=1,
+            )
+
             # get accuracies by model, split, difficulty, seed
             COLS = ["_model", "_size", "_data_seed", "_seed", DIFFICULTY]
             acc_by_type = df.groupby(COLS)[METRICS].mean()
@@ -161,9 +171,11 @@ for metric in METRICS:
                 )
                 x = df_mean.columns
                 for model_name, row in df_mean.iterrows():
-                    if model_name.lower() not in map(str.lower, model_list):
+                    if not any(m in model_name.lower() for m in model_list):
+                        # If no specified model matches a substring of the model name, skip it
                         continue
                     y = row
+                    plotted_model_list.add(model_name)
                     color = get_color(model_name, method)
                     ax.plot(
                         x,
@@ -246,7 +258,7 @@ for metric in METRICS:
 
     # Model handles at the bottom of the figure
     model_handles = []
-    for model in model_list:
+    for model in plotted_model_list:
         key = f"{plotting_utils.MODEL_ALIASES.get(model.lower(), model)}"
         model_handles.append(
             lines.Line2D(

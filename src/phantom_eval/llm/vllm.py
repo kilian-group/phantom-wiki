@@ -7,7 +7,7 @@ from transformers import AutoTokenizer
 from vllm import LLM, SamplingParams
 from vllm.lora.request import LoRARequest
 
-from phantom_eval._types import ContentTextMessage, Conversation, LLMChatResponse
+from phantom_eval._types import ContentTextMessage, Conversation, LLMChatResponse, Message
 from phantom_eval.gpu_utils import get_gpu_count
 from phantom_eval.llm.common import CommonLLMChat, InferenceGenerationConfig
 
@@ -111,11 +111,32 @@ class VLLMChat(CommonLLMChat):
     def _parse_api_output(
         self, response: object, inf_gen_config: InferenceGenerationConfig | None = None
     ) -> LLMChatResponse:
-        """Parse the output of vllm server when using the OpenAI compatible server
+        """
+        Parse the output of vllm server when using the OpenAI compatible server.
 
-        NOTE: we don't use inf_gen_config for parsing the output of the vllm server"""
+        NOTE: response is an OpenAI ChatCompletion object, and may contain `reasoning_content`.
+        https://docs.vllm.ai/en/v0.8.3/getting_started/examples/openai_chat_completion_with_reasoning.html
+
+        Then the `pred` field is:
+
+        ```python
+        <think> + reasoning_content + </think> + response.choices[0].message.content
+        ```
+
+        NOTE: we don't use inf_gen_config for parsing the output of the vllm server.
+        """
+        # If content is None, set pred to empty string
+        pred = response.choices[0].message.content or ""
+        if (
+            hasattr(response.choices[0].message, "reasoning_content")
+            and response.choices[0].message.reasoning_content
+        ):
+            # If reasoning_content is present, prepend it to the pred
+            reasoning_content = response.choices[0].message.reasoning_content
+            pred = f"<think>{reasoning_content}</think>{pred}"
+
         return LLMChatResponse(
-            pred=response.choices[0].message.content,
+            pred=pred,
             usage=response.usage.model_dump(),
         )
 
@@ -149,6 +170,7 @@ class VLLMChat(CommonLLMChat):
             max_completion_tokens=inf_gen_config.max_tokens,
             seed=inf_gen_config.seed,
             stop=inf_gen_config.stop_sequences,
+            reasoning_effort=inf_gen_config.reasoning_effort,
             # NOTE: top_k is not supported by OpenAI's API
             # NOTE: repetition_penalty is not supported by OpenAI's API
         )
@@ -158,6 +180,19 @@ class VLLMChat(CommonLLMChat):
         self, conv: Conversation, inf_gen_config: InferenceGenerationConfig
     ) -> LLMChatResponse:
         assert self.client is not None, "Client is not initialized."
+
+        # NOTE: openai/gpt-oss models mention that reasoning_effort should be specified as a system message
+        # in the conversation.
+        # https://openai.com/index/gpt-oss-model-card/
+        if inf_gen_config.reasoning_effort is not None and "openai/gpt-oss" in self.model_name:
+            conv.messages.insert(
+                0,
+                Message(
+                    role="system",
+                    content=[ContentTextMessage(text=f"Reasoning: {inf_gen_config.reasoning_effort}")],
+                ),
+            )
+
         messages_api_format: list[dict] = self._convert_conv_to_api_format(conv)
         response = await self._call_api(messages_api_format, inf_gen_config, use_async=True)
         parsed_response = self._parse_api_output(response)
@@ -183,6 +218,7 @@ class VLLMChat(CommonLLMChat):
                 max_tokens=inf_gen_config.max_tokens,
                 seed=inf_gen_config.seed,
             )
+            # TODO: support gpt-oss system prompt with reasoning_effort in batch vllm inference
             prompts = [
                 self.tokenizer.apply_chat_template(
                     self._convert_conv_to_api_format(conv), tokenize=False, add_generation_prompt=True
