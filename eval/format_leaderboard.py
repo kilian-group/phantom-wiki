@@ -59,6 +59,11 @@ for method in method_list:
     df = df[df["_model"].str.lower().isin([m.lower() for m in model_list])]
     # filter by depth
     df = df[df["_depth"] == filter_by_depth]
+
+    # if reasoning_effort is nan, fill it with "None"
+    # otherwise groupby on nan values will not work
+    df["_reasoning_effort"] = df["_reasoning_effort"].fillna("None")
+
     # group by model, split, and seed
     grouped = df.groupby(["_model", "_depth", "_size", "_data_seed", "_seed", "_reasoning_effort"])
     # print the accuracy
