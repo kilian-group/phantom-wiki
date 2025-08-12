@@ -76,9 +76,9 @@ def load_data(
                 raise ValueError(f"Invalid split format: {split}")
 
     if not from_local:
-        ds_text_corpus = load_dataset(dataset, "text-corpus", trust_remote_code=True)
-        ds_question_answer = load_dataset(dataset, "question-answer", trust_remote_code=True)
-        ds_database = load_dataset(dataset, "database", trust_remote_code=True)
+        ds_text_corpus = load_dataset(dataset, "text-corpus")
+        ds_question_answer = load_dataset(dataset, "question-answer")
+        ds_database = load_dataset(dataset, "database")
     else:
         builder_text_corpus = PhantomWikiDatasetBuilder(
             config_name="text-corpus", data_dir=f"{dataset}/{split}"

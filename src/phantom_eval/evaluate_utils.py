@@ -106,7 +106,7 @@ def _get_preds(output_dir, method):
     df_list = []
     # keys to create auxiliary columns that are useful for analysis
     METADATA = ["model", "dataset", "split", "batch_size", "batch_number", "type"]
-    SAMPLING_PARAMS = ["seed"]
+    SAMPLING_PARAMS = ["seed", "reasoning_effort"]
     for filename in files:
         logging.info(f"Reading from {filename}...")
         df = pd.read_json(filename, orient="index", dtype=False)
@@ -115,7 +115,11 @@ def _get_preds(output_dir, method):
             df["_" + key] = df["metadata"].apply(lambda x: x[key])
         # add new columns corresponding to the sampling parameters
         for key in SAMPLING_PARAMS:
-            df["_" + key] = df["inference_params"].apply(lambda x: x[key])
+            try:
+                df["_" + key] = df["inference_params"].apply(lambda x: x[key])
+            except KeyError:
+                # reasoning_effort is a new parameter, so it might not be present in old pred files
+                logging.warning(f"Key {key} not found in inference_params for {filename}, skipping.")
         # drop the metadata column
         df = df.drop(columns=["metadata"])
         df_list.append(df)

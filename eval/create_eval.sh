@@ -156,13 +156,14 @@ if [[ ! "\$@" =~ "--split_list" ]]; then
     cmd+=" --split_list \$SPLIT_LIST"
 fi
 
-# if the model is deepseek, add the temperature and top_p and inf_is_deepseek_r1_model flag
+# if the model is deepseek, add the temperature and top_p and inf_is_deepseek_r1_model and inf_parse_thinking_output flags
 if [[ "$IS_DEEPSEEK_R1" =~ ^[Yy]$ ]]; then
     TEMPERATURE=0.6
     TOP_P=0.95
     cmd+=" --inf_temperature \$TEMPERATURE \
            --inf_top_p \$TOP_P \
-           --inf_is_deepseek_r1_model"
+           --inf_is_deepseek_r1_model \
+           --inf_parse_thinking_output"
 else
     TEMPERATURE=0
     cmd+=" --inf_temperature \$TEMPERATURE"

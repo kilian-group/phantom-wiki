@@ -42,9 +42,9 @@ from_local = args.from_local
 filter_by_depth = args.filter_by_depth
 size_list = list(map(int, args.size_list))
 METRICS = [
-    # 'EM',
-    # 'precision',
-    # 'recall',
+    # "EM",
+    # "precision",
+    # "recall",
     "f1"
 ]
 
@@ -59,8 +59,13 @@ for method in method_list:
     df = df[df["_model"].str.lower().isin([m.lower() for m in model_list])]
     # filter by depth
     df = df[df["_depth"] == filter_by_depth]
+
+    # if reasoning_effort is nan, fill it with "None"
+    # otherwise groupby on nan values will not work
+    df["_reasoning_effort"] = df["_reasoning_effort"].fillna("None")
+
     # group by model, split, and seed
-    grouped = df.groupby(["_model", "_depth", "_size", "_data_seed", "_seed"])
+    grouped = df.groupby(["_model", "_depth", "_size", "_data_seed", "_seed", "_reasoning_effort"])
     # print the accuracy
     acc = grouped[METRICS].mean()
     # add a column that counts the number of elements in the group
@@ -68,11 +73,11 @@ for method in method_list:
     # Save the accuracy to a csv file
     acc.to_csv(os.path.join(output_dir, f"{method}_preds_stats.csv"))
     # print as markdown
-    acc_mean_std = acc.groupby(["_model", "_depth", "_size", "_data_seed"]).agg("mean")
+    acc_mean_std = acc.groupby(["_model", "_depth", "_size", "_data_seed", "_reasoning_effort"]).agg("mean")
     # second compute the mean and standard error across data generation seeds
     AGG = {m: lambda x: f"{mean(x)*100:.2f} ± {std(x)*100:.2f}" for m in METRICS}
     AGG = {**AGG, "count": lambda x: int(mean(x))}
-    acc_mean_std = acc_mean_std.groupby(["_model", "_depth", "_size"]).agg(AGG)
+    acc_mean_std = acc_mean_std.groupby(["_model", "_depth", "_size", "_reasoning_effort"]).agg(AGG)
     acc_mean_std = acc_mean_std.reset_index()
     # add a column at the end for the method
     acc_mean_std["method"] = method
@@ -88,9 +93,11 @@ results = df_all[df_all["_size"].isin(size_list)]
 # use model aliases
 results["_model"] = results["_model"].apply(lambda x: plotting_utils.MODEL_ALIASES.get(x.lower(), x))
 # create table with models as rows and methods as columns
-results = results.pivot_table(index=["_size", "_model"], columns="method", values=METRICS, aggfunc="first")
+results = results.pivot_table(
+    index=["_size", "_model", "_reasoning_effort"], columns="method", values=METRICS, aggfunc="first"
+)
 # replace the column name _size with "Universe Size"
-results = results.rename_axis(index=["Universe Size", "Model"])
+results = results.rename_axis(index=["Universe Size", "Model", "Reasoning Effort"])
 # currently the resulting columns are (metric, method)
 # we want them to be just (method)
 results.columns = results.columns.droplevel(0)
