@@ -97,10 +97,11 @@ class CoTAgent(Agent):
 
         # Parse the response to extract the answer
         try:
-            if parse_thinking_output:
-                pred = CoTAgent.parse_thinking_answer(response.pred)
-            else:
-                pred = CoTAgent.parse_answer(response.pred)
+            pred = CoTAgent.parse_answer(response.pred)
+            # if parse_thinking_output:
+            #     pred = CoTAgent.parse_thinking_answer(response.pred)
+            # else:
+            #     pred = CoTAgent.parse_answer(response.pred)
             error = None
         except Exception as e:
             pred = ""
@@ -153,10 +154,11 @@ class CoTAgent(Agent):
         for response in responses:
             # Try to parse the response, otherwise return an error
             try:
-                if parse_thinking_output:
-                    pred = CoTAgent.parse_thinking_answer(response.pred)
-                else:
-                    pred = CoTAgent.parse_answer(response.pred)
+                pred = CoTAgent.parse_answer(response.pred)
+                # if parse_thinking_output:
+                #     pred = CoTAgent.parse_thinking_answer(response.pred)
+                # else:
+                #     pred = CoTAgent.parse_answer(response.pred)
                 error = None
             except Exception:
                 pred = ""
@@ -168,30 +170,32 @@ class CoTAgent(Agent):
     def parse_answer(cls, pred: str) -> str:
         """
         Parse the response to extract the answer using regex.
-        The prediction should be of the form: "... The answer is <answer>." otherwise a ValueError is raised.
+        The prediction should be of the form: "<answer>...</answer>" otherwise a ValueError is raised.
         """
-        # NOTE: Allow for empty answer instead of throwing an error
-        pattern = r"[tT]he answer is (.*)\.\s*$"
-        m = re.search(pattern, pred)
-        if m:
-            return m.group(1)
+        # NOTE: LLM can generate multiple <answer>...</answer> tags, so we need to return the last one
+        # The .*? is a non-greedy match, so it will match the shortest possible string - suitable for multiple answers
+        # NOTE: Also allow for empty answer instead of throwing an error
+        pattern = r"<answer>(.*?)</answer>"
+        matches = re.findall(pattern, pred)
+        if matches:
+            return matches[-1]
         else:
             raise ValueError(f"Answer '{pred}' cannot be parsed.")
 
-    @classmethod
-    def parse_thinking_answer(cls, pred: str) -> str:
-        """
-        Parse the response to extract the answer using regex.
-        The prediction should be of the form: "</think>... The answer is <answer>."
-        otherwise a ValueError is raised.
-        """
-        # NOTE: Allow for empty answer instead of throwing an error
-        pattern = r"</think>.*[tT]he answer is \s*(.*)\."
-        m = re.search(pattern, pred, re.DOTALL)  # re.DOTALL to match newlines as well
-        if m:
-            return m.group(1)
-        else:
-            raise ValueError(f"Answer '{pred}' cannot be parsed.")
+    # @classmethod
+    # def parse_thinking_answer(cls, pred: str) -> str:
+    #     """
+    #     Parse the response to extract the answer using regex.
+    #     The prediction should be of the form: "</think>... The answer is <answer>."
+    #     otherwise a ValueError is raised.
+    #     """
+    #     # NOTE: Allow for empty answer instead of throwing an error
+    #     pattern = r"</think>.*[tT]he answer is \s*(.*)\."
+    #     m = re.search(pattern, pred, re.DOTALL)  # re.DOTALL to match newlines as well
+    #     if m:
+    #         return m.group(1)
+    #     else:
+    #         raise ValueError(f"Answer '{pred}' cannot be parsed.")
 
     def reset(self) -> None:
         self.agent_interactions: Conversation = Conversation(messages=[])
