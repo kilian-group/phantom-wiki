@@ -1,8 +1,15 @@
+import re
+import tqdm
+from collections import defaultdict
+
 import pandas as pd
 from datasets import load_dataset
 from pyswip import Prolog
-import tqdm
-import re
+from pyswip.easy import Variable
+
+from ..facts.friends.constants import FRIENDSHIP_FACT_TEMPLATES
+from ..facts.attributes.constants import ATTRIBUTE_FACT_TEMPLATES
+from ..facts.family.constants import FAMILY_FACT_TEMPLATES
 
 def prolog_query_all(pl_file: str, goal: str):
     return list(PROLOG.query(goal))
@@ -40,12 +47,11 @@ BASIC_TEMPLATES_DISTINCT = "The number of {A} {B} has is"
 
 
 # Load dataset
-# database = load_dataset("kilian-group/phantom-wiki-v1",'database')
-# text_corpus = load_dataset("kilian-group/phantom-wiki-v1",'text-corpus')
 question_answer = load_dataset("kilian-group/phantom-wiki-v1",'question-answer')
 question_answer_df = question_answer[SPLIT].to_pandas()
 
 # Load solutions
+## TODO: Include writing phrase
 fname = "/Users/godongyoung/Dropbox/2025-Fall/PostDoc(25-27)/Paper_Work/Phantom_reasoning/implementation/prolog/depth_20_size_50_seed_1.pl"
 PROLOG = Prolog()
 PROLOG.consult(fname)
@@ -90,16 +96,13 @@ ATTRIBUTE_FACT_TEMPLATES = {
 
 TEMPLATES = FRIENDSHIP_FACT_TEMPLATES | FAMILY_FACT_TEMPLATES #| ATTRIBUTE_FACT_TEMPLATES
 
-from pyswip.easy import Variable
-from collections import defaultdict
-
 def decode(x):
     if isinstance(x, bytes):
         return x.decode("utf-8")
     return x
 
 fin_cot_list = []
-agg_list = []
+
 # for prolog_idx,prolog in enumerate(tqdm.tqdm(question_answer_df['prolog'].values)):
 for prolog_idx,qd_data in tqdm.tqdm(question_answer_df.iterrows()):
     prolog = qd_data['prolog']
@@ -116,20 +119,17 @@ for prolog_idx,qd_data in tqdm.tqdm(question_answer_df.iterrows()):
     solutions = [eval(s) for s in list(set([str({k:v for k,v in s.items() if not isinstance(v,Variable)}) for s in solutions]))]
     solutions = [{k:str(decode(v))  for k,v in s.items()}for s in solutions]
 
-    if any(['aggregate_all' in query for query in reversed_query]):
-        agg_list.append(prolog_idx)
-    # Make CoT, by culmulating the intermediate CoT
-    intermediate_cot_list = []
+    # Make CoT, by culmulating the intermediate CoT with dictionary
+    cum_cot_list = []
     for s in reversed_query:
+        cum_cot_dict = defaultdict(set)
         _elements = extract_elements(s)
         assert len(elements) == 3
-
-
-        tmp_dict = defaultdict(set)
         for solution in solutions:
             elements = _elements[::] # Deep copy
             elements[1] = solution.get(elements[1],elements[1])
             elements[2] = solution.get(elements[2],elements[2])
+            # Make dictionary of intermediate CoT with the key as the predicate and the value as the cumulated answer
             if elements[0] in TEMPLATES:
                 cot_key = TEMPLATES[elements[0]].replace('<subject>',elements[1])
                 cot_value = elements[2]
@@ -144,22 +144,23 @@ for prolog_idx,qd_data in tqdm.tqdm(question_answer_df.iterrows()):
                 BASIC_TEMPLATE = BASIC_TEMPLATE_OF
                 cot_key = BASIC_TEMPLATE.format(A=elements[0].replace('_','-'), B=elements[1])
                 cot_value = elements[2]
-            tmp_dict[cot_key].add(cot_value)
-        intermediate_cot_list.append(tmp_dict)
-
-    tmp_dict = defaultdict(set) # tmp_dict for answer
+            cum_cot_dict[cot_key].add(cot_value)
+        cum_cot_list.append(cum_cot_dict)
+    # Make answer part of the CoT
+    cum_cot_dict = defaultdict(set)
     for solution in solutions:
         answer = solution[QUERY_ANSWER]
         assert answer in answers
-        tmp_dict["The answer is"].add(answer)
-    intermediate_cot_list.append(tmp_dict)
+        cum_cot_dict["The answer is"].add(answer)
+    assert sorted(cum_cot_dict["The answer is"]) == sorted(set(answers))
+    cum_cot_list.append(cum_cot_dict)
 
-    assert sorted(tmp_dict["The answer is"]) == sorted(set(answers))
-
+    # Merge the cumulated CoT into a single CoT
     fin_cot = ''
-    for cot_dict in intermediate_cot_list:
-        for key in sorted(cot_dict.keys()): # alphabetically sorted to match the order
-            _cot = key + ' ' + ', '.join(sorted(cot_dict[key])) + '. ' # alphabetically sorted to match the order
+    for cot_dict in cum_cot_list:
+        # alphabetically sorted to match the order
+        for key in sorted(cot_dict.keys()):
+            _cot = key + ' ' + ', '.join(sorted(cot_dict[key])) + '. '
             # Optional: Capitalize the first letter of each cot
             _cot = _cot[0].capitalize() + _cot[1:]
             fin_cot += _cot
