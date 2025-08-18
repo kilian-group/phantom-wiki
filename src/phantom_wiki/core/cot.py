@@ -5,7 +5,7 @@ import tqdm
 import re
 
 def prolog_query_all(pl_file: str, goal: str):
-    return list(PROLOG.query(goal,maxresult=1))
+    return list(PROLOG.query(goal))
 
 def extract_elements(s: str):
     start_idx = s.find("(")
@@ -118,7 +118,7 @@ for prolog_idx,qd_data in tqdm.tqdm(question_answer_df.iterrows()):
     if any(['aggregate_all' in query for query in reversed_query]):
         agg_list.append(prolog_idx)
     # Make CoT
-    cot_list = []
+    intermediate_cot_list = []
     for s in reversed_query:
         elements = extract_elements(s)
         assert len(elements) == 3
@@ -134,21 +134,27 @@ for prolog_idx,qd_data in tqdm.tqdm(question_answer_df.iterrows()):
             BASIC_TEMPLATE = BASIC_TEMPLATE_OF
             cot = BASIC_TEMPLATE.format(A=elements[0].replace('_','-'), B=elements[1], C=elements[2])
 
-        cot_list.append(cot)
+        intermediate_cot_list.append(cot)
     # Optional: Capitalize the first letter of each cot
-    for idx,cot in enumerate(cot_list):
+    for idx,cot in enumerate(intermediate_cot_list):
         cot = cot[0].capitalize() + cot[1:]
-        cot_list[idx] = cot
-    cot = ' '.join(cot_list)
+        intermediate_cot_list[idx] = cot
+    _cot = ' '.join(intermediate_cot_list)
 
     # Fill in the answer with solutions (You can also use all solutions)
-    solution = {k:str(v) for k,v in solutions[0].items()}
-    for k,v in solution.items():
-        cot = cot.replace(k,str(v))
-    
-    answer = solution[QUERY_ANSWER]
-    assert answer in answers
-    cot += f" The answer is {answer}."
-    fin_cot_list.append(cot)
+    cot_list = []
+    # solution = solutions[0]
+    for solution in solutions:
+        cot = _cot[:] # Deep copy
+        solution = {k:str(v) for k,v in solution.items()}
+        for k,v in solution.items():
+            cot = cot.replace(k,str(v))
+        
+        answer = solution[QUERY_ANSWER]
+        assert answer in answers
+        cot += f" The answer is {answer}."
+        cot_list.append(cot)
+    # fin_cot_list.append(cot)
+    fin_cot_list.append(cot_list)
 
 question_answer_df['cot'] = fin_cot_list
