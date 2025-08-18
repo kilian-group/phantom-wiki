@@ -42,7 +42,6 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
                 or args.method in ["react", "act", "react->cot-sc", "cot-sc->react"],
                 lora_path=args.inf_vllm_lora_path,
                 port=args.inf_vllm_port,
-                is_deepseek_r1_model=args.inf_is_deepseek_r1_model,
             )
         case _:
             model_kwargs = dict(

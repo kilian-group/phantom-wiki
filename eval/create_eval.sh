@@ -101,11 +101,6 @@ CPUS=${CPUS:-8}
 MEMORY=${MEMORY:-100}
 
 #
-# Add option to set if the model is deepseek r1
-#
-read -p "Is the model DeepSeek R1 (to correctly set DeepSeek R1-specific stop tokens in vllm)? (y/N): " IS_DEEPSEEK_R1
-
-#
 # Generate the slurm script
 #
 echo "Generating slurm script..."
@@ -156,17 +151,8 @@ if [[ ! "\$@" =~ "--split_list" ]]; then
     cmd+=" --split_list \$SPLIT_LIST"
 fi
 
-# if the model is deepseek, add the temperature and top_p and inf_is_deepseek_r1_model flag
-if [[ "$IS_DEEPSEEK_R1" =~ ^[Yy]$ ]]; then
-    TEMPERATURE=0.6
-    TOP_P=0.95
-    cmd+=" --inf_temperature \$TEMPERATURE \
-           --inf_top_p \$TOP_P \
-           --inf_is_deepseek_r1_model"
-else
-    TEMPERATURE=0
-    cmd+=" --inf_temperature \$TEMPERATURE"
-fi
+TEMPERATURE=0
+cmd+=" --inf_temperature \$TEMPERATURE"
 
 cmd+=" --inf_seed_list \$(get_inf_seed_list \$TEMPERATURE)"
 

@@ -110,12 +110,6 @@ def get_parser() -> argparse.ArgumentParser:
         help="Path to the config file with rate limits for the LLMs",
     )
     parser.add_argument(
-        "--inf_is_deepseek_r1_model",
-        action="store_true",
-        help="Flag to specify if the model is DeepSeek-R1, which determines the"
-        "additional stop token in vllm",
-    )
-    parser.add_argument(
         "--inf_vllm_offline",
         action="store_true",
         help="Flag to use vLLM (batched) offline inference, "
