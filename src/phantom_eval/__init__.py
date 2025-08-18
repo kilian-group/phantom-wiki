@@ -133,10 +133,18 @@ def get_parser() -> argparse.ArgumentParser:
         "and determining the additional stop token in vllm",
     )
     parser.add_argument(
+        "--inf_parse_thinking_output",
+        action="store_true",
+        help="Flag to parse the <think>...</think> tags in the model output.",
+    )
+    parser.add_argument(
         "--inf_vllm_offline",
         action="store_true",
         help="Flag to use vLLM (batched) offline inference, "
         "which can be substantially faster than using the server when supported by the method",
+    )
+    parser.add_argument(
+        "--inf_reasoning_effort", type=str, default=None, help="Reasoning effort for the model. "
     )
 
     # Dataset params

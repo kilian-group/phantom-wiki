@@ -4,7 +4,7 @@ import logging
 import time
 from copy import deepcopy
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 import yaml
 from pydantic import BaseModel
@@ -114,6 +114,9 @@ class InferenceGenerationConfig(BaseModel):
     temperature: float = 0.0
     top_p: float = 0.7
     top_k: int = 50
+    reasoning_effort: Literal[
+        "low", "medium", "high"
+    ] | None = None  # Reasoning effort for the model, if applicable
     # API retry params
     max_retries: int = 3
     wait_seconds: int = 2

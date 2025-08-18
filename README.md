@@ -119,10 +119,11 @@ conda install conda-forge::swi-prolog
 
 There are 2 options:
 
-1. (Recommended) Install the package in editable mode using pip:
+1. (Recommended) Install the package in editable mode using [uv](<>) and pippip:
 
    ```bash
-   pip install -e .
+   pip install uv
+   uv pip install -e .
    ```
 
 2. If you use VSCode, you can add to the python path without installing the package:
@@ -136,10 +137,10 @@ There are 2 options:
 First, install dependencies and [vLLM](https://github.com/vllm-project/vllm) to match your hardware (GPU, CPU, etc.):
 
 ```bash
-pip install phantom-wiki[eval]
+uv pip install phantom-wiki[eval]
 ```
 
-If you're installing from source, use `pip install -e ".[eval]"`.
+If you're installing from source, use `uv pip install -e ".[eval]"`.
 
 Then run the evaluation script to get F1 scores for your model and PhantomWiki reasoning plots:
 
@@ -198,6 +199,7 @@ export LLAMA_API_KEY="xxxx"
 # or
 conda env config vars set LLAMA_API_KEY="xxxxx"
 ```
+
 </details>
 
 <details>
@@ -289,6 +291,72 @@ Example usages:
 
 > \[!TIP\]
 > To generate a slurm script for clusters at Cornell (g2, empire, aida) with the appropriate GPU allocation, run [`bash eval/create_eval.sh`](https://github.com/kilian-group/phantom-wiki/blob/main/eval/create_eval.sh) script and follow the prompted steps.
+
+<details>
+<summary>OpenAI gpt-oss</summary>
+
+We support evaluating OpenAI's [gpt-oss](https://huggingface.co/openai/gpt-oss-120b) LLMs through vLLM API server in `phantom_eval`.
+
+1. Create a new conda environment with a [version of vLLM](https://cookbook.openai.com/articles/gpt-oss/run-vllm) that supports gpt-oss:
+
+```bash
+conda create -n pw-gpt-oss
+conda activate pw-gpt-oss
+
+conda install conda-forge::swi-prolog
+conda install python=3.12
+
+pip install uv
+uv pip install -e .[eval]
+uv pip install --pre vllm==0.10.1+gptoss \
+	--extra-index-url https://wheels.vllm.ai/gpt-oss/ \
+	--extra-index-url https://download.pytorch.org/whl/nightly/cu128 \
+	--index-strategy unsafe-best-match
+
+# Install flash-attn with pip. Does not work with uv
+pip install flash-attn --no-build-isolation
+```
+
+2. Launch a vLLM server for gpt-oss-20b LLM:
+
+> \[!NOTE\]
+> Ensure that you have gcc version 13 or less. For instance on the AIDA cluster, look for available versions with `module avail` and load the compiler with `module load gnu13`.
+
+```bash
+vllm serve openai/gpt-oss-20b --async-scheduling
+
+# or for gpt-oss-120b, you might need to specify higher vllm memory utilization
+vllm serve openai/gpt-oss-20b --async-scheduling --gpu-memory-utilization 0.95
+```
+
+3. Generate answers for the [PhantomWiki dataset on huggingface](https://huggingface.co/datasets/kilian-group/phantom-wiki-v1) using CoT prompting method. We include the reasoning_content from the API within `<think>...</think>` tags. These tags are removed during parsing by flag `--inf_parse_thinking_output`.
+
+```bash
+python -m phantom_eval \
+	--server vllm \
+	--method cot \
+	--dataset kilian-group/phantom-wiki-v1 \
+	--split_list depth_20_size_50_seed_1 depth_20_size_50_seed_2 depth_20_size_50_seed_3 \
+	--model_name openai/gpt-oss-20b \
+	--inf_reasoning_effort medium \
+	--inf_parse_thinking_output \
+	-od out-gpt-oss
+```
+
+4. Tabulate performance and get reasoning plots.
+
+```bash
+python eval/format_leaderboard.py \
+	--method_list cot \
+	--dataset kilian-group/phantom-wiki-v1 \
+	--model_list openai/gpt-oss-20b \
+	-od out-gpt-oss
+
+# Note to specify the reasoning effort for these models
+python eval/plot_reasoning.py --method_list openai/gpt-oss-20b -od out-gpt-oss
+```
+
+</details>
 
 #### Generating tables and figures
 

@@ -160,6 +160,7 @@ async def main(args: argparse.Namespace) -> None:
         top_k=args.inf_top_k,
         top_p=args.inf_top_p,
         repetition_penalty=args.inf_repetition_penalty,
+        reasoning_effort=args.inf_reasoning_effort,
         max_retries=args.inf_max_retries,
         wait_seconds=args.inf_wait_seconds,
     )
@@ -217,10 +218,14 @@ async def main(args: argparse.Namespace) -> None:
                     if args.inf_vllm_lora_path
                     else ""
                 )
+                reasoning_effort_name = (
+                    f"__reasoning_effort={args.inf_reasoning_effort}" if args.inf_reasoning_effort else ""
+                )
                 run_name = (
                     f"split={split}"
                     + f"__model_name={args.model_name.replace('/', '--')}"
                     + lora_run_name
+                    + reasoning_effort_name
                     + f"__bs={batch_size}"
                     + f"__bn={batch_number}"
                     + f"__seed={seed}"
@@ -267,7 +272,7 @@ async def main(args: argparse.Namespace) -> None:
                             llm_chat,
                             questions,
                             inf_gen_config,
-                            parse_thinking_output=args.inf_is_deepseek_r1_model,
+                            parse_thinking_output=args.inf_parse_thinking_output,
                         )
                         # NOTE: the agent interactions are just single Conversation objects containing the
                         # prompt for the self-consistency methods, we save the Conversation object from the
@@ -284,7 +289,7 @@ async def main(args: argparse.Namespace) -> None:
                                     llm_chat,
                                     qa_sample.question,
                                     inf_gen_config,
-                                    parse_thinking_output=args.inf_is_deepseek_r1_model,
+                                    parse_thinking_output=args.inf_parse_thinking_output,
                                 )
                                 for agent, qa_sample in zip(agents, batch_df_qa_pairs.itertuples())
                             ]
