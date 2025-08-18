@@ -103,7 +103,7 @@ MEMORY=${MEMORY:-100}
 #
 # Add option to set if the model is deepseek r1
 #
-read -p "Is the model DeepSeek R1 (to correctly parse <think> tags and set DeepSeek R1-specific stop tokens)? (y/N): " IS_DEEPSEEK_R1
+read -p "Is the model DeepSeek R1 (to correctly set DeepSeek R1-specific stop tokens in vllm)? (y/N): " IS_DEEPSEEK_R1
 
 #
 # Generate the slurm script

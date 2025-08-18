@@ -112,9 +112,8 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--inf_is_deepseek_r1_model",
         action="store_true",
-        help="Flag to specify if the model is DeepSeek-R1, "
-        "for correctly parsing <think>...</think> tags, "
-        "and determining the additional stop token in vllm",
+        help="Flag to specify if the model is DeepSeek-R1, which determines the"
+        "additional stop token in vllm",
     )
     parser.add_argument(
         "--inf_vllm_offline",

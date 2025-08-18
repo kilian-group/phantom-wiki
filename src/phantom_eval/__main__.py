@@ -258,7 +258,6 @@ async def main(args: argparse.Namespace) -> None:
                             llm_chat,
                             questions,
                             inf_gen_config,
-                            parse_thinking_output=args.inf_is_deepseek_r1_model,
                         )
                         # NOTE: the agent interactions are just single Conversation objects containing the
                         # prompt for the self-consistency methods, we save the Conversation object from the
@@ -275,7 +274,6 @@ async def main(args: argparse.Namespace) -> None:
                                     llm_chat,
                                     qa_sample.question,
                                     inf_gen_config,
-                                    parse_thinking_output=args.inf_is_deepseek_r1_model,
                                 )
                                 for agent, qa_sample in zip(agents, batch_df_qa_pairs.itertuples())
                             ]
