@@ -34,9 +34,9 @@ def extract_elements(s: str):
 # https://github.com/kilian-group/phantom-wiki/blob/main/src/phantom_wiki/facts/family/constants.py
 # https://github.com/kilian-group/phantom-wiki/blob/main/src/phantom_wiki/facts/attributes/constants.py#L8
 SPLIT = 'depth_20_size_50_seed_1'
-BASIC_TEMPLATE_OF = "{A} of {B} is {C}."
-BASIC_TEMPLATE_S = "{B}'s {A} is {C}."
-BASIC_TEMPLATES_DISTINCT = "The number of {A} {B} has is {C}."
+BASIC_TEMPLATE_OF = "The {A} of {B} is"
+BASIC_TEMPLATE_S = "{B}'s {A} is"
+BASIC_TEMPLATES_DISTINCT = "The number of {A} {B} has is"
 
 
 # Load dataset
@@ -91,6 +91,7 @@ ATTRIBUTE_FACT_TEMPLATES = {
 TEMPLATES = FRIENDSHIP_FACT_TEMPLATES | FAMILY_FACT_TEMPLATES #| ATTRIBUTE_FACT_TEMPLATES
 
 from pyswip.easy import Variable
+from collections import defaultdict
 
 def decode(x):
     if isinstance(x, bytes):
@@ -113,48 +114,56 @@ for prolog_idx,qd_data in tqdm.tqdm(question_answer_df.iterrows()):
 
     # Deduplicate solutions
     solutions = [eval(s) for s in list(set([str({k:v for k,v in s.items() if not isinstance(v,Variable)}) for s in solutions]))]
-    solutions = [{k:decode(v)  for k,v in s.items()}for s in solutions]
+    solutions = [{k:str(decode(v))  for k,v in s.items()}for s in solutions]
 
     if any(['aggregate_all' in query for query in reversed_query]):
         agg_list.append(prolog_idx)
-    # Make CoT
+    # Make CoT, by culmulating the intermediate CoT
     intermediate_cot_list = []
     for s in reversed_query:
-        elements = extract_elements(s)
+        _elements = extract_elements(s)
         assert len(elements) == 3
 
-        if elements[0] in TEMPLATES:
-            cot = TEMPLATES[elements[0]].replace('<subject>',elements[1]) + ' ' + elements[2] + '.'
-        elif 'distinct' in elements[0]:
-            cot = BASIC_TEMPLATES_DISTINCT.format(A=elements[0].replace('distinct_','').replace('_','-'), B=elements[1], C=elements[2])
-        elif elements[0] in ATTRIBUTE_FACT_TEMPLATES.keys():
-            BASIC_TEMPLATE = BASIC_TEMPLATE_S
-            cot = BASIC_TEMPLATE.format(A=elements[0].replace('_','-'), B=elements[1], C=elements[2])
-        else:
-            BASIC_TEMPLATE = BASIC_TEMPLATE_OF
-            cot = BASIC_TEMPLATE.format(A=elements[0].replace('_','-'), B=elements[1], C=elements[2])
 
-        intermediate_cot_list.append(cot)
-    # Optional: Capitalize the first letter of each cot
-    for idx,cot in enumerate(intermediate_cot_list):
-        cot = cot[0].capitalize() + cot[1:]
-        intermediate_cot_list[idx] = cot
-    _cot = ' '.join(intermediate_cot_list)
+        tmp_dict = defaultdict(set)
+        for solution in solutions:
+            elements = _elements[::] # Deep copy
+            elements[1] = solution.get(elements[1],elements[1])
+            elements[2] = solution.get(elements[2],elements[2])
+            if elements[0] in TEMPLATES:
+                cot_key = TEMPLATES[elements[0]].replace('<subject>',elements[1])
+                cot_value = elements[2]
+            elif 'distinct' in elements[0]:
+                cot_key = BASIC_TEMPLATES_DISTINCT.format(A=elements[0].replace('distinct_','').replace('_','-'), B=elements[1])
+                cot_value = elements[2]
+            elif elements[0] in ATTRIBUTE_FACT_TEMPLATES.keys():
+                BASIC_TEMPLATE = BASIC_TEMPLATE_S
+                cot_key = BASIC_TEMPLATE.format(A=elements[0].replace('_','-'), B=elements[1])
+                cot_value = elements[2]
+            else:
+                BASIC_TEMPLATE = BASIC_TEMPLATE_OF
+                cot_key = BASIC_TEMPLATE.format(A=elements[0].replace('_','-'), B=elements[1])
+                cot_value = elements[2]
+            tmp_dict[cot_key].add(cot_value)
+        intermediate_cot_list.append(tmp_dict)
 
-    # Fill in the answer with solutions (You can also use all solutions)
-    cot_list = []
-    # solution = solutions[0]
+    tmp_dict = defaultdict(set) # tmp_dict for answer
     for solution in solutions:
-        cot = _cot[:] # Deep copy
-        solution = {k:str(v) for k,v in solution.items()}
-        for k,v in solution.items():
-            cot = cot.replace(k,str(v))
-        
         answer = solution[QUERY_ANSWER]
         assert answer in answers
-        cot += f" The answer is {answer}."
-        cot_list.append(cot)
-    # fin_cot_list.append(cot)
-    fin_cot_list.append(cot_list)
+        tmp_dict["The answer is"].add(answer)
+    intermediate_cot_list.append(tmp_dict)
+
+    assert sorted(tmp_dict["The answer is"]) == sorted(set(answers))
+
+    fin_cot = ''
+    for cot_dict in intermediate_cot_list:
+        for key in sorted(cot_dict.keys()): # alphabetically sorted to match the order
+            _cot = key + ' ' + ', '.join(sorted(cot_dict[key])) + '. ' # alphabetically sorted to match the order
+            # Optional: Capitalize the first letter of each cot
+            _cot = _cot[0].capitalize() + _cot[1:]
+            fin_cot += _cot
+    fin_cot = fin_cot.strip()
+    fin_cot_list.append(fin_cot)
 
 question_answer_df['cot'] = fin_cot_list
