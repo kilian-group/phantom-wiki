@@ -8,14 +8,16 @@ from datasets import load_dataset, Dataset
 from pyswip import Prolog
 from pyswip.easy import Variable
 
-from ..facts.friends.constants import FRIENDSHIP_FACT_TEMPLATES
+from ..facts.friends.constants import FRIENDSHIP_FACT_TEMPLATES, FRIENDSHIP_FACT_TEMPLATES_PL
 from ..facts.attributes.constants import ATTRIBUTE_FACT_TEMPLATES
-from ..facts.family.constants import FAMILY_FACT_TEMPLATES
+from ..facts.family.constants import FAMILY_FACT_TEMPLATES, FAMILY_FACT_TEMPLATES_PL
 
 
 # Constants
 BASIC_TEMPLATE_OF = "The {A} of {B} is"
 BASIC_TEMPLATE_S = "{B}'s {A} is"
+BASIC_TEMPLATE_OF_PL = "The {A} of {B} are"
+BASIC_TEMPLATE_S_PL = "{B}'s {A} are"
 BASIC_TEMPLATES_DISTINCT = "The number of {A} {B} has is"
 
 # CoT formatting tags
@@ -26,6 +28,7 @@ ANSWER_E = '</answer>'
 
 # Combine templates
 TEMPLATES = FRIENDSHIP_FACT_TEMPLATES | FAMILY_FACT_TEMPLATES
+TEMPLATES_PL = FRIENDSHIP_FACT_TEMPLATES_PL | FAMILY_FACT_TEMPLATES_PL
 
 
 def extract_elements(s: str):
@@ -111,29 +114,30 @@ def generate_cot_for_dataset(dataset_name: str, split_name: str):
                 elements[2] = solution.get(elements[2], elements[2])
                 
                 # Make dictionary of intermediate CoT with the key as the predicate and the value as the accumulated answer
-                if elements[0] in TEMPLATES:
-                    cot_key = TEMPLATES[elements[0]].replace('<subject>', elements[1])
-                    cot_value = elements[2]
-                elif 'distinct' in elements[0]:
-                    cot_key = BASIC_TEMPLATES_DISTINCT.format(
-                        A=elements[0].replace('distinct_', '').replace('_', '-'), 
-                        B=elements[1]
-                    )
-                    cot_value = elements[2]
-                elif elements[0] in ATTRIBUTE_FACT_TEMPLATES.keys():
-                    basic_template = BASIC_TEMPLATE_S
-                    cot_key = basic_template.format(
-                        A=elements[0].replace('_', '-'), 
-                        B=elements[1]
-                    )
-                    cot_value = elements[2]
-                else:
-                    basic_template = BASIC_TEMPLATE_OF
-                    cot_key = basic_template.format(
-                        A=elements[0].replace('_', '-'), 
-                        B=elements[1]
-                    )
-                    cot_value = elements[2]
+                cot_key = (elements[0], elements[1])
+                cot_value = elements[2]
+                # if elements[0] in TEMPLATES:
+                #     cot_key = TEMPLATES[elements[0]].replace('<subject>', elements[1])
+                # elif 'distinct' in elements[0]:
+                #     cot_key = BASIC_TEMPLATES_DISTINCT.format(
+                #         A=elements[0].replace('distinct_', '').replace('_', '-'), 
+                #         B=elements[1]
+                #     )
+                #     cot_value = elements[2]
+                # elif elements[0] in ATTRIBUTE_FACT_TEMPLATES.keys():
+                #     basic_template = BASIC_TEMPLATE_S
+                #     cot_key = basic_template.format(
+                #         A=elements[0].replace('_', '-'), 
+                #         B=elements[1]
+                #     )
+                #     cot_value = elements[2]
+                # else:
+                #     basic_template = BASIC_TEMPLATE_OF
+                #     cot_key = basic_template.format(
+                #         A=elements[0].replace('_', '-'), 
+                #         B=elements[1]
+                #     )
+                #     cot_value = elements[2]
                 
                 cum_cot_dict[cot_key].add(cot_value)
             cum_cot_list.append(cum_cot_dict)
@@ -143,9 +147,9 @@ def generate_cot_for_dataset(dataset_name: str, split_name: str):
         for solution in solutions:
             answer = solution[query_answer]
             assert answer in answers, f"Answer {answer} not found in expected answers {answers}"
-            cum_cot_dict["The answer is"].add(answer)
+            cum_cot_dict[("The answer is", "")].add(answer)
         
-        assert sorted(cum_cot_dict["The answer is"]) == sorted(set(answers))
+        assert sorted(cum_cot_dict[("The answer is", "")]) == sorted(set(answers))
         cum_cot_list.append(cum_cot_dict)
         
         # Merge the accumulated CoT into a single CoT with proper formatting
@@ -153,12 +157,48 @@ def generate_cot_for_dataset(dataset_name: str, split_name: str):
         for cot_idx, cum_cot_dict in enumerate(cum_cot_list):
             _cum_cot = ''
             for key in sorted(cum_cot_dict.keys()):
-                head = key  # e.g. "The friend of xxx is"
+                predicate, subject = key  # e.g. "The friend of xxx is"
                 tail = ', '.join(sorted(cum_cot_dict[key]))  # e.g. "xxx, yyy"
                 
+                if 'distinct' in predicate:
+                    templates = BASIC_TEMPLATES_DISTINCT
+                    predicate = predicate.replace('distinct_', '').replace('_', '-')
+                # Directly answer the question
+                elif 'answer' in predicate:
+                    head = '' 
                 # Handle pluralization for multiple answers
-                if len(cum_cot_dict[key]) > 1:
-                    head = head.replace('is', 'are')  # Make plural
+                elif len(cum_cot_dict[key]) > 1:
+                    templates = TEMPLATES_PL
+                    if predicate in templates:
+                        head = templates[predicate].replace('<subject>', subject)
+                    elif predicate in ATTRIBUTE_FACT_TEMPLATES.keys():
+                        templates = BASIC_TEMPLATE_S_PL
+                        head = templates.format(
+                            A=predicate.replace('_', '-'), 
+                            B=subject
+                        )
+                    else:
+                        templates = BASIC_TEMPLATE_OF_PL
+                        head = templates.format(
+                            A=predicate.replace('_', '-'), 
+                            B=subject
+                        )
+                else:
+                    templates = TEMPLATES
+                    if predicate in templates:
+                        head = templates[predicate].replace('<subject>', subject)
+                    elif predicate in ATTRIBUTE_FACT_TEMPLATES.keys():
+                        templates = BASIC_TEMPLATE_S
+                        head = templates.format(
+                            A=predicate.replace('_', '-'), 
+                            B=subject
+                        )
+                    else:
+                        templates = BASIC_TEMPLATE_OF
+                        head = templates.format(
+                            A=predicate.replace('_', '-'), 
+                            B=subject
+                        )
                 
                 _cot = f'{head} {tail}. '
                 # Capitalize the first letter of each cot
@@ -188,8 +228,8 @@ def generate_cot_for_dataset(dataset_name: str, split_name: str):
     # question_answer_df.to_csv(f"{split_name}.csv", index=False)
     # Save to disk
     question_answer = Dataset.from_pandas(question_answer_df)
-    question_answer.save_to_disk(f"{split_name}_dataset")
-    print(f"Generated CoT for {len(fin_cot_list)} questions and saved to {split_name}_dataset")
+    question_answer.save_to_disk(f"{split_name}")
+    print(f"Generated CoT for {len(fin_cot_list)} questions and saved to {split_name}")
     
     return question_answer_df
 
