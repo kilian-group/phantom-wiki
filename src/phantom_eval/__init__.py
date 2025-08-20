@@ -41,7 +41,7 @@ def get_parser() -> argparse.ArgumentParser:
         help="Number of votes for an agent implementing self-consistency (majority votes)",
     )
     parser.add_argument(
-        "--retriever_method",
+        "--embedding_model_name",
         type=str.lower,
         default="whereisai/uae-large-v1",
         help="Model used for RAG's embeddings",
@@ -49,6 +49,18 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--retriever_num_documents", type=int, default=4, help="Number of documents retrieved"
     )
+    parser.add_argument(
+        "--retrieval_method",
+        type=str,
+        default="bm25",
+        help="Method used for retrieval. "
+        "bm25 and dense use the retriever from FlashRAG and expects a pre-computed index. "
+        "vllm uses the retriever from LangChain and launches a vllm server for retrieval. "
+        "NOTE: bm25 and dense can only evaluate one split at a time.",
+        choices=["bm25", "dense", "vllm"],
+    )
+    parser.add_argument("--index_path", type=str, help="Path to the index for the retriever")
+    parser.add_argument("--corpus_path", type=str, help="Path to the corpus for the retriever")
     parser.add_argument(
         "--prolog_query",
         action="store_true",
@@ -101,7 +113,11 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--inf_relax_rate_limits",
         action="store_true",
-        help="Flag to relax enforcing rate limits for the LLMs",
+        help="Flag to relax enforcing rate limits for the LLMs. "
+        "By default, the LLMChat class enforces rate limits according to the specified usage tier "
+        "(see --inf_usage_tier and --inf_llms_rpm_tpm_config_fpath). "
+        "To determine your usage tier, you can check on the console page of your specific LLM provider. "
+        "See README.md for links to the console pages.",
     )
     parser.add_argument(
         "--inf_llms_rpm_tpm_config_fpath",

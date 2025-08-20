@@ -353,6 +353,48 @@ Question: Who is the person whose hobby is audiophile?
 Answer: Based on the evidence, there is no person whose hobby is audiophile. <answer></answer>.
 """
 
+COT_EXAMPLES_EASY_ONE_STEP_PROLOG = f"""\
+Example 1:
+Question: Who is the sister of Aida Wang?
+Answer: Based on the evidence, the sisters of Aida Wang are Barabara Beltran, Vicki Hackworth. The answer is "Barabara Beltran"{constants.answer_sep}"Vicki Hackworth".
+
+Example 2:
+Question: Who is the child of Alvaro Smock?
+Answer: Based on the evidence, the children of Alvaro Smock are Eli Smock, Gene Smock. The answer is "Eli Smock"{constants.answer_sep}"Gene Smock".
+
+Example 3:
+Question: How many friends does Ryan Wang have?
+Answer: Based on the evidence, the friends of Ryan Wang are Shelli Beltran, Stacia Toombs, Virgil Hackworth, Aida Wang. The answer is 4.
+
+Example 4:
+Question: Who is the husband of Lannie Smock?
+Answer: Based on the evidence, the husband of Lannie Smock is Alvaro Smock. The answer is "Alvaro Smock".
+
+Example 5:
+Question: Who is the person whose occupation is biomedical scientist?
+Answer: Based on the evidence, the person whose occupation is biomedical scientist is Lannie Smock. The answer is "Lannie Smock".
+
+Example 6:
+Question: Who is the brother of Aida Wang?
+Answer: Based on the evidence, Aida Wang has no brothers. The answer is .
+
+Example 7:
+Question: Who is the daughter of Alvaro Smock?
+Answer: Based on the evidence, Alvaro Smock has no daughters. The answer is .
+
+Example 8:
+Question: Who is the son of Ryan Wang?
+Answer: Based on the evidence, Ryan Wang has no sons. The answer is .
+
+Example 9:
+Question: Who is the person whose occupation is community education officer?
+Answer: Based on the evidence, there is no person whose occupation is community education officer. The answer is .
+
+Example 10:
+Question: Who is the person whose hobby is audiophile?
+Answer: Based on the evidence, there is no person whose hobby is audiophile. The answer is .
+"""
+
 
 class CoTLLMPrompt(LLMPrompt):
     COT_INSTRUCTION = f"""
