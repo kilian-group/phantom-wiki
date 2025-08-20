@@ -42,7 +42,6 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
                 or args.method in ["react", "act", "react->cot-sc", "cot-sc->react"],
                 lora_path=args.inf_vllm_lora_path,
                 port=args.inf_vllm_port,
-                is_deepseek_r1_model=args.inf_is_deepseek_r1_model,
             )
         case _:
             model_kwargs = dict(
@@ -267,7 +266,6 @@ async def main(args: argparse.Namespace) -> None:
                             llm_chat,
                             questions,
                             inf_gen_config,
-                            parse_thinking_output=args.inf_is_deepseek_r1_model,
                         )
                         # NOTE: the agent interactions are just single Conversation objects containing the
                         # prompt for the self-consistency methods, we save the Conversation object from the
@@ -284,7 +282,6 @@ async def main(args: argparse.Namespace) -> None:
                                     llm_chat,
                                     qa_sample.question,
                                     inf_gen_config,
-                                    parse_thinking_output=args.inf_is_deepseek_r1_model,
                                 )
                                 for agent, qa_sample in zip(agents, batch_df_qa_pairs.itertuples())
                             ]
