@@ -151,6 +151,7 @@ class VLLMChat(CommonLLMChat):
             stop=inf_gen_config.stop_sequences,
             # NOTE: top_k is not supported by OpenAI's API
             # NOTE: repetition_penalty is not supported by OpenAI's API
+            extra_body=inf_gen_config.extra_body,
         )
         return response
 

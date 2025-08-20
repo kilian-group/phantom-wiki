@@ -114,6 +114,7 @@ class InferenceGenerationConfig(BaseModel):
     temperature: float = 0.0
     top_p: float = 0.7
     top_k: int = 50
+    extra_body: dict = {}  # extra body to be passed to vLLM chat completion API
     # API retry params
     max_retries: int = 3
     wait_seconds: int = 2
