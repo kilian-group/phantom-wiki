@@ -46,6 +46,7 @@ class ReactAgent(Agent):
         llm_prompt: LLMPrompt,
         max_steps: int = 6,
         react_examples: str = "",
+        prolog_query: bool = False,
     ):
         """
         Args:
@@ -56,10 +57,13 @@ class ReactAgent(Agent):
                 Defaults to 6.
             react_examples (str): Prompt examples to include in agent prompt.
                 Defaults to "".
+            prolog_query (bool): Whether to use the prolog version of the prompt.
+                Defaults to False.
         """
         super().__init__(text_corpus, llm_prompt)
         self.max_steps = max_steps
         self.react_examples = react_examples
+        self.prolog_query = prolog_query
 
         self.reset()
 
@@ -70,7 +74,7 @@ class ReactAgent(Agent):
         self.agent_interactions: Conversation = Conversation(messages=[])
 
     def _build_agent_prompt(self, question: str) -> str:
-        return self.llm_prompt.get_prompt().format(
+        return self.llm_prompt.get_prompt(prolog_query=self.prolog_query).format(
             examples=self.react_examples, question=question, scratchpad=self.scratchpad
         )
 
