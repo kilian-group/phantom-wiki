@@ -105,7 +105,7 @@ def _get_preds(output_dir, method):
 
     df_list = []
     # keys to create auxiliary columns that are useful for analysis
-    METADATA = ["model", "split", "batch_size", "batch_number", "type"]
+    METADATA = ["model", "dataset", "split", "batch_size", "batch_number", "type"]
     SAMPLING_PARAMS = ["seed"]
     for filename in files:
         logging.info(f"Reading from {filename}...")
@@ -201,6 +201,37 @@ def get_predictions_with_qa(
     return df
 
 
+def get_scores_for_predictions(df: pd.DataFrame, sep: str = constants.answer_sep) -> pd.DataFrame:
+    """
+    Get the scores for the predictions in the dataframe: exact match, f1, precision, recall.
+
+    Args:
+        df (pd.DataFrame): the dataframe containing the predictions
+        sep (str): separator when pre-processing pred/true strings.
+            Default is `constants.answer_sep`.
+
+    Returns:
+        pd.DataFrame: a dataframe containing the predictions with scores.
+            On failing to compute the scores, returns an empty dataframe.
+
+    """
+
+    def apply_score_function_to_df(df, score_func):
+        # join the true answers with the appropriate separator since the scoring functions expect strings
+        return df.apply(lambda x: score_func(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
+
+    try:
+        # compute the scores for each prediction
+        df["EM"] = apply_score_function_to_df(df, exact_match)
+        df["precision"] = apply_score_function_to_df(df, precision)
+        df["recall"] = apply_score_function_to_df(df, recall)
+        df["f1"] = apply_score_function_to_df(df, f1)
+        return df
+    except ValueError:
+        logging.warning(f"Error in computing scores for {traceback.format_exc()}, returning empty dataframe.")
+        return pd.DataFrame()
+
+
 @memory.cache(cache_validation_callback=expires_after(hours=4))
 def get_evaluation_data(
     output_dir: str,
@@ -224,16 +255,8 @@ def get_evaluation_data(
         pd.DataFrame: a dataframe containing the predictions with scores
     """
     df = get_predictions_with_qa(output_dir, method, dataset, from_local)
-    # join the true answers with the appropriate separator since the scoring functions expect strings
-    try:
-        df["EM"] = df.apply(lambda x: exact_match(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
-        df["precision"] = df.apply(lambda x: precision(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
-        df["recall"] = df.apply(lambda x: recall(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
-        df["f1"] = df.apply(lambda x: f1(x["pred"], sep.join(x["true"]), sep=sep), axis=1)
-        return df
-    except ValueError:
-        logging.warning(f"Error in computing scores for {traceback.format_exc()}, returning empty dataframe.")
-        return pd.DataFrame()
+    df = get_scores_for_predictions(df, sep)
+    return df
 
 
 def mean(x):

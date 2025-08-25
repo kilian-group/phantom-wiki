@@ -221,126 +221,178 @@ class FewshotLLMPrompt(LLMPrompt):
 COT_EXAMPLES_PROLOG = """
 Example 1:
 Question: Who is the brother of Dino Beltran?
-Answer: I can get the brother of Dino Beltran with the query brother(X, "Dino Beltran"). Therefore, the answer is brother(X, "Dino Beltran").
+Answer: I can get the brother of Dino Beltran with the query brother(X, "Dino Beltran"). <answer>brother(X, "Dino Beltran")</answer>.
+
 Example 2:
 Question: Who is the sibling of Barabara Beltran?
-Answer: I can get the sibling of Barabara Beltran with the query sibling(X, "Barabara Beltran"). Therefore, the answer is sibling(X, "Barabara Beltran").
+Answer: I can get the sibling of Barabara Beltran with the query sibling(X, "Barabara Beltran"). <answer>sibling(X, "Barabara Beltran")</answer>.
+
 Example 3:
 Question: Who is the mother of the sister of Stacia Toombs?
-Answer: I can get the sister of Stacia Toombs with the query sister("Stacia Toombs", Y). Since Y is the sister of Stacia Toombs, I can get the mother of Y with the query mother(Y, X). Therefore, the answer is sister("Stacia Toombs", Y), mother(Y, X).
+Answer: I can get the sister of Stacia Toombs with the query sister("Stacia Toombs", Y). Since Y is the sister of Stacia Toombs, I can get the mother of Y with the query mother(Y, X). <answer>sister("Stacia Toombs", Y), mother(Y, X)</answer>.
+
 Example 4:
 Question: Who is the male second cousin of the uncle of William Smock?
-Answer: I can get the uncle of William Smock with the query uncle("William Smock", X). Since X is the uncle of William Smock, I can get the male second cousin of X with the query male_second_cousin(X, Y). Therefore, the answer is uncle("William Smock", X), male_second_cousin(X, Y).
+Answer: I can get the uncle of William Smock with the query uncle("William Smock", X). Since X is the uncle of William Smock, I can get the male second cousin of X with the query male_second_cousin(X, Y). <answer>uncle("William Smock", X), male_second_cousin(X, Y)</answer>.
+
 Example 5:
 Question: What is the occupation of the sister of the grandmother of Virgil Hackworth?
-Answer: I can get the grandmother of Virgil Hackworth with the query grandmother("Virgil Hackworth", Z). Since Z is the grandmother of Virgil Hackworth, I can get the sister of Z with the query sister(Z, Y). Since Y is the sister of the grandmother of Virgil Hackworth, I can get the occupation of Y with the query job(Y, X). Therefore, the answer is grandmother("Virgil Hackworth", Z), sister(Z, Y), job(Y, X).
+Answer: I can get the grandmother of Virgil Hackworth with the query grandmother("Virgil Hackworth", Z). Since Z is the grandmother of Virgil Hackworth, I can get the sister of Z with the query sister(Z, Y). Since Y is the sister of the grandmother of Virgil Hackworth, I can get the occupation of Y with the query job(Y, X). <answer>grandmother("Virgil Hackworth", Z), sister(Z, Y), job(Y, X)</answer>.
+
 Example 6:
 Question: Who is the wife of the person whose occupation is associate professor?
-Answer: I can get the person whose occupation is associate professor with the query job(X, "associate professor"). Since X is the person whose occupation is associate professor, I can get the wife of X with the query wife(X, Y). Therefore, the answer is job(X, "associate professor"), wife(X, Y).
+Answer: I can get the person whose occupation is associate professor with the query job(X, "associate professor"). Since X is the person whose occupation is associate professor, I can get the wife of X with the query wife(X, Y). <answer>job(X, "associate professor"), wife(X, Y)</answer>.
+
 Example 7:
 Question: What is the date of birth of the person whose hobby is meteorology?
-Answer: I can get the person whose hobby is meteorology with the query hobby(X, "meteorology"). Since X is the person whose hobby is meteorology, I can get the date of birth of X with the query dob(X, Y). Therefore, the answer is hobby(X, "meteorology"), dob(X, Y).
+Answer: I can get the person whose hobby is meteorology with the query hobby(X, "meteorology"). Since X is the person whose hobby is meteorology, I can get the date of birth of X with the query dob(X, Y). <answer>hobby(X, "meteorology"), dob(X, Y)</answer>.
+
 Example 8:
 Question: Who is the cousin of the person whose hobby is broadcast engineer?
-Answer: I can get the person whose hobby is broadcast engineer with the query hobby(Y, "broadcast engineer"). Since Y is the person whose hobby is broadcast engineer, I can get the cousin of Y with the query cousin(Y, X). Therefore, the answer is hobby(Y, "broadcast engineer"), cousin(Y, X).
+Answer: I can get the person whose hobby is broadcast engineer with the query hobby(Y, "broadcast engineer"). Since Y is the person whose hobby is broadcast engineer, I can get the cousin of Y with the query cousin(Y, X). <answer>hobby(Y, "broadcast engineer"), cousin(Y, X)</answer>.
+
 Example 9:
 Question: Who is the granddaughter of the mother of the friend of the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager?
-Answer: I can get the person whose occupation is theatre manager with the query job(A, "theatre manager"). Since A is the person whose occupation is theatre manager, I can get the great-granddaughter of A with the query great_granddaughter(A, B). Since B is the great-granddaughter of the person whose occupation is theatre manager, I can get the friend of B with the query friend(B, C). Since C is the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the parent of C with the query parent(C, D). Since D is the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the mother of D with the query mother(D, E). Since E is the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the friend of E with the query friend(E, F). Since F is the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the friend of F with the query friend(F, G). Since G is the friend of the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the mother of G with the query mother(G, H). Since H is the mother of the friend of the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the granddaughter of H with the query granddaughter(H, I). Therefore, the answer is job(A, "theatre manager"), great_granddaughter(A, B), friend(B, C), parent(C, D), mother(D, E), friend(E, F), friend(F, G), mother(G, H), granddaughter(H, I).
-Example 9:
-Question: How many friends does the child of Alvaro Smock have?
-Answer: I can get the child of Alvaro Smock with the query child("Alvaro Smock", A). Since A is the child of Alvaro Smock, I can get the number of friends of A with the query findall(B, friend(A, B), C), length(C, D). Therefore, the answer is child("Alvaro Smock", A), findall(B, friend(A, B), C), length(C, D).
+Answer: I can get the person whose occupation is theatre manager with the query job(A, "theatre manager"). Since A is the person whose occupation is theatre manager, I can get the great-granddaughter of A with the query great_granddaughter(A, B). Since B is the great-granddaughter of the person whose occupation is theatre manager, I can get the friend of B with the query friend(B, C). Since C is the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the parent of C with the query parent(C, D). Since D is the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the mother of D with the query mother(D, E). Since E is the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the friend of E with the query friend(E, F). Since F is the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the friend of F with the query friend(F, G). Since G is the friend of the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the mother of G with the query mother(G, H). Since H is the mother of the friend of the friend of the mother of the parent of the friend of the great-granddaughter of the person whose occupation is theatre manager, I can get the granddaughter of H with the query granddaughter(H, I). <answer>job(A, "theatre manager"), great_granddaughter(A, B), friend(B, C), parent(C, D), mother(D, E), friend(E, F), friend(F, G), mother(G, H), granddaughter(H, I)</answer>.
+
 Example 10:
+Question: How many friends does the child of Alvaro Smock have?
+Answer: I can get the child of Alvaro Smock with the query child("Alvaro Smock", A). Since A is the child of Alvaro Smock, I can get the number of friends of A with the query findall(B, friend(A, B), C), length(C, D). <answer>child("Alvaro Smock", A), findall(B, friend(A, B), C), length(C, D)</answer>.
+
+Example 11:
 Question: How many uncles does the maternal grandmother of the friend of Stacia Toombs have?
-Answer: I can get the friend of Stacia Toombs with the query friend("Stacia Toombs", A). Since A is the friend of Stacia Toombs, I can get the maternal grandmother of A with the query mother(A, B), mother(B, C). Since D is the maternal grandmother of the friend of Stacia Toombs, I can get the number of uncles of D with the query findall(E, uncle(D, E), F), length(F, G). Therefore, the answer is friend("Stacia Toombs", A), mother(A, B), mother(B, C), findall(E, uncle(D, E), F), length(F, G).
+Answer: I can get the friend of Stacia Toombs with the query friend("Stacia Toombs", A). Since A is the friend of Stacia Toombs, I can get the maternal grandmother of A with the query mother(A, B), mother(B, C). Since D is the maternal grandmother of the friend of Stacia Toombs, I can get the number of uncles of D with the query findall(E, uncle(D, E), F), length(F, G). <answer>friend("Stacia Toombs", A), mother(A, B), mother(B, C), findall(E, uncle(D, E), F), length(F, G)</answer>.
 """
 
 # NOTE (Albert): Examples from kilian-group/phantom-wiki-v050 :: depth_20_size_50_seed_1
 COT_EXAMPLES = f"""
 Example 1:
 Question: Who is the sister of Aida Wang?
-Answer: Based on the evidence, the sisters of Aida Wang are Barabara Beltran, Vicki Hackworth. The answer is Barabara Beltran{constants.answer_sep}Vicki Hackworth.
+Answer: Based on the evidence, the sisters of Aida Wang are Barabara Beltran, Vicki Hackworth. <answer>Barabara Beltran{constants.answer_sep}Vicki Hackworth</answer>.
 
 Example 2:
 Question: Who is the child of Alvaro Smock?
-Answer: Based on the evidence, the children of Alvaro Smock are Eli Smock, Gene Smock. The answer is Eli Smock{constants.answer_sep}Gene Smock.
+Answer: Based on the evidence, the children of Alvaro Smock are Eli Smock, Gene Smock. <answer>Eli Smock{constants.answer_sep}Gene Smock</answer>.
 
 Example 3:
 Question: Who is the friend of the child of Alvaro Smock?
-Answer: First I need to find the children of Alvaro Smock. Based on the evidence, the children of Alvaro Smock are Eli Smock, Gene Smock. Now I need to find the friends of Eli Smock and Gene Smock. Based on the evidence, the friends of Eli Smock are Leisa Lutz, Shelli Beltran, Vicki Hackworth, Virgil Hackworth, Alison Smock, Brian Beltran. The friends of Gene Smock are Leeann Hackworth, Leisa Lutz, Ricardo Hackworth, Alvaro Smock, Dominique Smock. The answer is Leisa Lutz{constants.answer_sep}Shelli Beltran{constants.answer_sep}Vicki Hackworth{constants.answer_sep}Virgil Hackworth{constants.answer_sep}Alison Smock{constants.answer_sep}Brian Beltran{constants.answer_sep}Leeann Hackworth{constants.answer_sep}Ricardo Hackworth{constants.answer_sep}Dominique Smock.
+Answer: First I need to find the children of Alvaro Smock. Based on the evidence, the children of Alvaro Smock are Eli Smock, Gene Smock. Now I need to find the friends of Eli Smock and Gene Smock. Based on the evidence, the friends of Eli Smock are Leisa Lutz, Shelli Beltran, Vicki Hackworth, Virgil Hackworth, Alison Smock, Brian Beltran. The friends of Gene Smock are Leeann Hackworth, Leisa Lutz, Ricardo Hackworth, Alvaro Smock, Dominique Smock. <answer>Leisa Lutz{constants.answer_sep}Shelli Beltran{constants.answer_sep}Vicki Hackworth{constants.answer_sep}Virgil Hackworth{constants.answer_sep}Alison Smock{constants.answer_sep}Brian Beltran{constants.answer_sep}Leeann Hackworth{constants.answer_sep}Ricardo Hackworth{constants.answer_sep}Dominique Smock</answer>.
 
 Example 4:
 Question: Who is the aunt of Vicki Hackworth?
-Answer: An aunt is the sister of a parent. Based on the evidence, the parents of Vicki Hackworth are Shelli Beltran, Dino Beltran. To find the aunt of Vicki Hackworth, I need to find the sister of Shelli Beltran and Dino Beltran. Based on the evidence, Shelli Beltran has no sister, and the sister of Dino Beltran is Stacia Toombs. The answer is Stacia Toombs.
+Answer: An aunt is the sister of a parent. Based on the evidence, the parents of Vicki Hackworth are Shelli Beltran, Dino Beltran. To find the aunt of Vicki Hackworth, I need to find the sister of Shelli Beltran and Dino Beltran. Based on the evidence, Shelli Beltran has no sister, and the sister of Dino Beltran is Stacia Toombs. <answer>Stacia Toombs</answer>.
 
 Example 5:
 Question: What is the occupation of the husband of Stacia Toombs?
-Answer: Based on the evidence, the husband of Stacia Toombs is Wilbert Toombs. The occupation of Wilbert Toombs is theatre manager. The answer is theatre manager.
+Answer: Based on the evidence, the husband of Stacia Toombs is Wilbert Toombs. The occupation of Wilbert Toombs is theatre manager. <answer>theatre manager</answer>.
 
 Example 6:
 Question: What is the hobby of the daughter-in-law of Lannie Smock?
-Answer: A daughter-in-law is the wife of a child. Based on the evidence, the children of Lannie Smock are Eli Smock, Gene Smock. Eli Smock has no wife, and the wife of Gene Smock is Dominique Smock. The hobby of Dominique Smock is dominoes. The answer is dominoes.
+Answer: A daughter-in-law is the wife of a child. Based on the evidence, the children of Lannie Smock are Eli Smock, Gene Smock. Eli Smock has no wife, and the wife of Gene Smock is Dominique Smock. The hobby of Dominique Smock is dominoes. <answer>dominoes</answer>.
 
 Example 7:
 Question: What is the date of birth of the person whose hobby is finance?
-Answer: I need to search for people whose hobby is finance. Based on the evidence, the person whose hobby is finance is Stacia Toombs. The date of birth of Stacia Toombs is 0959-03-22. The answer is 0959-03-22.
+Answer: I need to search for people whose hobby is finance. Based on the evidence, the person whose hobby is finance is Stacia Toombs. The date of birth of Stacia Toombs is 0959-03-22. <answer>0959-03-22</answer>.
 
 Example 8:
 Question: Who is the great-granddaughter of the person whose occupation is biomedical scientist?
-Answer: I need to search for people whose occupation is biomedical scientist. Based on the evidence, the person whose occupation is biomedical scientist is Lannie Smock. To find the great-granddaughter of Lannie Smock, I need to find the daughter of the child of the child of Lannie Smock. Based on the evidence, the children of Lannie Smock are Eli Smock, Gene Smock. Eli Smock has no child, and the child of Gene Smock is Williams Smock. The daughters of Williams Smock are Shelli Beltran, Stacia Toombs. The answer is Shelli Beltran{constants.answer_sep}Stacia Toombs.
+Answer: I need to search for people whose occupation is biomedical scientist. Based on the evidence, the person whose occupation is biomedical scientist is Lannie Smock. To find the great-granddaughter of Lannie Smock, I need to find the daughter of the child of the child of Lannie Smock. Based on the evidence, the children of Lannie Smock are Eli Smock, Gene Smock. Eli Smock has no child, and the child of Gene Smock is Williams Smock. The daughters of Williams Smock are Shelli Beltran, Stacia Toombs. <answer>Shelli Beltran{constants.answer_sep}Stacia Toombs</answer>.
 
 Example 9:
 Question: How many friends does Ryan Wang have?
-Answer: Based on the evidence, the friends of Ryan Wang are Shelli Beltran, Stacia Toombs, Virgil Hackworth, Aida Wang. The answer is 4.
+Answer: Based on the evidence, the friends of Ryan Wang are Shelli Beltran, Stacia Toombs, Virgil Hackworth, Aida Wang. <answer>4</answer>.
 
 Example 10:
 Question: How many friends does the child of Alvaro Smock have?
-Answer: First, I need to find the children of Alvaro Smock. Based on the evidence, the children of Alvaro Smock are Eli Smock, Gene Smock. Now I need to find how many friends they have. Based on the evidence, the friends of Eli Smock are Leisa Lutz, Shelli Beltran, Vicki Hackworth, Virgil Hackworth, Alison Smock, Brian Beltran. The friends of Gene Smock are Leeann Hackworth, Leisa Lutz, Ricardo Hackworth, Alvaro Smock, Dominique Smock. The answer is 6{constants.answer_sep}5.
+Answer: First, I need to find the children of Alvaro Smock. Based on the evidence, the children of Alvaro Smock are Eli Smock, Gene Smock. Now I need to find how many friends they have. Based on the evidence, the friends of Eli Smock are Leisa Lutz, Shelli Beltran, Vicki Hackworth, Virgil Hackworth, Alison Smock, Brian Beltran. The friends of Gene Smock are Leeann Hackworth, Leisa Lutz, Ricardo Hackworth, Alvaro Smock, Dominique Smock. <answer>6{constants.answer_sep}5</answer>.
 
 Example 11:
 Question: How many uncles does the friend of Stacia Toombs have?
-Answer: First, I need to find the friends of Stacia Toombs. Based on the evidence, the friends of Stacia Toombs are Brian Beltran, Isiah Lutz, Leeann Hackworth, Lesley Lutz, Ryan Wang.  Now I need to find how many uncles they have.  An uncle is the brother of a parent.  Based on the evidence, Brian Beltran has no parents, Isiah Lutz has no parents, Leeann Hackworth has 2 parents, Lesley Lutz has 2 parents, and Ryan Wang has no parents.  Based on the evidence, the parents of Leeann Hackworth are Vicki Hackworth, Ricardo Hackworth. But both parents do not have brothers.  Based on the evidence, the parents of Lesley Lutz are Leisa Lutz, Isiah Lutz. The brother of Leisa Lutz is Virgil Hackworth, so he is an uncle of Lesley Lutz. Isiah Lutz has no brother.  So the friends of Stacia Toombs have 0, 0, 0, 1, 0 uncles. Unique is 0, 1. The answer is 0{constants.answer_sep}1.
+Answer: First, I need to find the friends of Stacia Toombs. Based on the evidence, the friends of Stacia Toombs are Brian Beltran, Isiah Lutz, Leeann Hackworth, Lesley Lutz, Ryan Wang.  Now I need to find how many uncles they have.  An uncle is the brother of a parent.  Based on the evidence, Brian Beltran has no parents, Isiah Lutz has no parents, Leeann Hackworth has 2 parents, Lesley Lutz has 2 parents, and Ryan Wang has no parents.  Based on the evidence, the parents of Leeann Hackworth are Vicki Hackworth, Ricardo Hackworth. But both parents do not have brothers.  Based on the evidence, the parents of Lesley Lutz are Leisa Lutz, Isiah Lutz. The brother of Leisa Lutz is Virgil Hackworth, so he is an uncle of Lesley Lutz. Isiah Lutz has no brother.  So the friends of Stacia Toombs have 0, 0, 0, 1, 0 uncles. Unique is 0, 1. <answer>0{constants.answer_sep}1</answer>.
 """
 
 COT_EXAMPLES_EASY_ONE_STEP = f"""\
 Example 1:
 Question: Who is the sister of Aida Wang?
-Answer: Based on the evidence, the sisters of Aida Wang are Barabara Beltran, Vicki Hackworth. The answer is Barabara Beltran{constants.answer_sep}Vicki Hackworth.
+Answer: Based on the evidence, the sisters of Aida Wang are Barabara Beltran, Vicki Hackworth. <answer>Barabara Beltran{constants.answer_sep}Vicki Hackworth</answer>.
 
 Example 2:
 Question: Who is the child of Alvaro Smock?
-Answer: Based on the evidence, the children of Alvaro Smock are Eli Smock, Gene Smock. The answer is Eli Smock{constants.answer_sep}Gene Smock.
+Answer: Based on the evidence, the children of Alvaro Smock are Eli Smock, Gene Smock. <answer>Eli Smock{constants.answer_sep}Gene Smock</answer>.
 
 Example 3:
 Question: How many friends does Ryan Wang have?
-Answer: Based on the evidence, the friends of Ryan Wang are Shelli Beltran, Stacia Toombs, Virgil Hackworth, Aida Wang. The answer is 4.
+Answer: Based on the evidence, the friends of Ryan Wang are Shelli Beltran, Stacia Toombs, Virgil Hackworth, Aida Wang. <answer>4</answer>.
 
 Example 4:
 Question: Who is the husband of Lannie Smock?
-Answer: Based on the evidence, the husband of Lannie Smock is Alvaro Smock. The answer is Alvaro Smock.
+Answer: Based on the evidence, the husband of Lannie Smock is Alvaro Smock. <answer>Alvaro Smock</answer>.
 
 Example 5:
 Question: Who is the person whose occupation is biomedical scientist?
-Answer: Based on the evidence, the person whose occupation is biomedical scientist is Lannie Smock. The answer is Lannie Smock.
+Answer: Based on the evidence, the person whose occupation is biomedical scientist is Lannie Smock. <answer>Lannie Smock</answer>.
 
 Example 6:
 Question: Who is the brother of Aida Wang?
-Answer: Based on the evidence, Aida Wang has no brothers. The answer is .
+Answer: Based on the evidence, Aida Wang has no brothers. <answer></answer>.
 
 Example 7:
 Question: Who is the daughter of Alvaro Smock?
-Answer: Based on the evidence, Alvaro Smock has no daughters. The answer is .
+Answer: Based on the evidence, Alvaro Smock has no daughters. <answer></answer>.
 
 Example 8:
 Question: Who is the son of Ryan Wang?
-Answer: Based on the evidence, Ryan Wang has no sons. The answer is .
+Answer: Based on the evidence, Ryan Wang has no sons. <answer></answer>.
 
 Example 9:
 Question: Who is the person whose occupation is community education officer?
-Answer: Based on the evidence, there is no person whose occupation is community education officer. The answer is .
+Answer: Based on the evidence, there is no person whose occupation is community education officer. <answer></answer>.
 
 Example 10:
 Question: Who is the person whose hobby is audiophile?
-Answer: Based on the evidence, there is no person whose hobby is audiophile. The answer is .
+Answer: Based on the evidence, there is no person whose hobby is audiophile. <answer></answer>.
+"""
+
+COT_EXAMPLES_EASY_ONE_STEP_PROLOG = f"""\
+Example 1:
+Question: Who is the sister of Aida Wang?
+Answer: Based on the evidence, the sisters of Aida Wang are Barabara Beltran, Vicki Hackworth. <answer>"Barabara Beltran"{constants.answer_sep}"Vicki Hackworth"</answer>.
+
+Example 2:
+Question: Who is the child of Alvaro Smock?
+Answer: Based on the evidence, the children of Alvaro Smock are Eli Smock, Gene Smock. <answer>"Eli Smock"{constants.answer_sep}"Gene Smock"</answer>.
+
+Example 3:
+Question: How many friends does Ryan Wang have?
+Answer: Based on the evidence, the friends of Ryan Wang are Shelli Beltran, Stacia Toombs, Virgil Hackworth, Aida Wang. <answer>4</answer>.
+
+Example 4:
+Question: Who is the husband of Lannie Smock?
+Answer: Based on the evidence, the husband of Lannie Smock is Alvaro Smock. <answer>"Alvaro Smock"</answer>.
+
+Example 5:
+Question: Who is the person whose occupation is biomedical scientist?
+Answer: Based on the evidence, the person whose occupation is biomedical scientist is Lannie Smock. <answer>"Lannie Smock"</answer>.
+
+Example 6:
+Question: Who is the brother of Aida Wang?
+Answer: Based on the evidence, Aida Wang has no brothers. <answer></answer>.
+
+Example 7:
+Question: Who is the daughter of Alvaro Smock?
+Answer: Based on the evidence, Alvaro Smock has no daughters. <answer></answer>.
+
+Example 8:
+Question: Who is the son of Ryan Wang?
+Answer: Based on the evidence, Ryan Wang has no sons. <answer></answer>.
+
+Example 9:
+Question: Who is the person whose occupation is community education officer?
+Answer: Based on the evidence, there is no person whose occupation is community education officer. <answer></answer>.
+
+Example 10:
+Question: Who is the person whose hobby is audiophile?
+Answer: Based on the evidence, there is no person whose hobby is audiophile. <answer></answer>.
 """
 
 COT_EXAMPLES_EASY_ONE_STEP_PROLOG = f"""\
@@ -393,11 +445,13 @@ class CoTLLMPrompt(LLMPrompt):
     {{evidence}}
     (END EVIDENCE)
 
-    You will be provided a question. Your response must end in the following sentence: The answer is <answer>.
-    Here, <answer> must be one of the following:
-    - a name (if there is only one correct answer); or
+    You will be provided a question. Your response must end with the final answer enclosed in tags: <answer>FINAL_ANSWER</answer>
+
+    Here, FINAL_ANSWER must be one of the following:
+    - a name (if there is only one correct answer);
     - a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or
-    - numbers separated by '{constants.answer_sep}' (if the answer is numerical).
+    - numbers separated by '{constants.answer_sep}' (if the answer is numerical); or
+    - empty string (if there is no answer).
 
     Here are some examples:
     (START OF EXAMPLES)
@@ -413,8 +467,9 @@ class CoTLLMPrompt(LLMPrompt):
     {{evidence}}
     (END EVIDENCE)
 
-    You will be provided a question. Your response must end in the following sentence: The answer is <answer>.
-    Here, <answer> must be the prolog query that will retrieve the answer to the question.
+    You will be provided a question. Your response must end with the final answer enclosed in tags: <answer>FINAL_ANSWER</answer>
+
+    Here, FINAL_ANSWER must be the prolog query that will retrieve the answer to the question.
     Make sure to double check the query to make sure it is syntactically correct using the following checks:
     - The query is a valid prolog query.
     - Fields that aren't variables should be enclosed in double quotes.
@@ -457,14 +512,16 @@ class RAGLLMPrompt(LLMPrompt):
     {{evidence}}
     (END EVIDENCE)
 
-    You will be provided a question. Your response must end in the following sentence: The answer is <answer>.
-    Here, <answer> must be one of the following:
+    You will be provided a question. Your response must end with the final answer enclosed in tags: <answer>FINAL_ANSWER</answer>
+
+    Here, FINAL_ANSWER must be one of the following:
     - a name (if there is only one correct answer);
     - a list of names separated by '{constants.answer_sep}' (if there are multiple correct answers); or
-    - numbers separated by '{constants.answer_sep}' (if the answer is numerical).
+    - numbers separated by '{constants.answer_sep}' (if the answer is numerical); or
+    - empty string (if there is no answer).
 
     Question: {{question}}
-    Answer (Your response must end in "The answer is <answer>."): """
+    Answer: """
 
     def get_prompt(self, prolog_query: bool = False) -> PromptTemplate:
         """Get the RAG prompt template.

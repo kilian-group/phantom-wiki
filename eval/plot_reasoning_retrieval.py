@@ -68,9 +68,14 @@ for metric in METRICS:
         [("cot", "In-Context"), ("cot-rag", "RAG"), ("react", "Agentic")]
     ):
         # get evaluation data from the specified output directory and method subdirectory
-        df = get_evaluation_data(output_dir, method, dataset, from_local)
-        # import pdb; pdb.set_trace()
-        df = df[df[DIFFICULTY] <= MAX_DIFFICULTY]
+        try:
+            df = get_evaluation_data(output_dir, method, dataset, from_local)
+            # import pdb; pdb.set_trace()
+            df = df[df[DIFFICULTY] <= MAX_DIFFICULTY]
+        except ValueError as e:
+            logging.warning(f"Error in loading data for {method}: {e}")
+            continue
+
         print(method)
         print(df[df["_model"] == model].groupby(["_size"])["_data_seed"].agg(lambda x: list(set(x))))
 

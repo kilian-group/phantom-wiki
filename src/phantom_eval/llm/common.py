@@ -306,7 +306,13 @@ class CommonLLMChat(LLMChat):
         """
 
     @abc.abstractmethod
+<<<<<<< HEAD
     def _parse_api_output(self, response: object, inf_gen_config: InferenceGenerationConfig | None = None) -> LLMChatResponse:
+=======
+    def _parse_api_output(
+        self, response: object, inf_gen_config: InferenceGenerationConfig | None = None
+    ) -> LLMChatResponse:
+>>>>>>> 849c94443842a96c6c36b97481a494c7a81a6c4d
         """
         Parse the response from the API and return the prediction and usage statistics.
         """

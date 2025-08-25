@@ -53,6 +53,18 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument("--index_path", type=str, help="Path to the index for the retriever")
     parser.add_argument("--corpus_path", type=str, help="Path to the corpus for the retriever")
     parser.add_argument(
+        "--retrieval_method",
+        type=str,
+        default="bm25",
+        help="Method used for retrieval. "
+        "bm25 and dense use the retriever from FlashRAG and expects a pre-computed index. "
+        "vllm uses the retriever from LangChain and launches a vllm server for retrieval. "
+        "NOTE: bm25 and dense can only evaluate one split at a time.",
+        choices=["bm25", "dense", "vllm"],
+    )
+    parser.add_argument("--index_path", type=str, help="Path to the index for the retriever")
+    parser.add_argument("--corpus_path", type=str, help="Path to the corpus for the retriever")
+    parser.add_argument(
         "--prolog_query",
         action="store_true",
         help="Whether to convert LLM output to Prolog queries and execute them. "
@@ -104,20 +116,17 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--inf_relax_rate_limits",
         action="store_true",
-        help="Flag to relax enforcing rate limits for the LLMs",
+        help="Flag to relax enforcing rate limits for the LLMs. "
+        "By default, the LLMChat class enforces rate limits according to the specified usage tier "
+        "(see --inf_usage_tier and --inf_llms_rpm_tpm_config_fpath). "
+        "To determine your usage tier, you can check on the console page of your specific LLM provider. "
+        "See README.md for links to the console pages.",
     )
     parser.add_argument(
         "--inf_llms_rpm_tpm_config_fpath",
         type=str,
         default=str(DEFAULT_LLMS_RPM_TPM_CONFIG_FPATH),
         help="Path to the config file with rate limits for the LLMs",
-    )
-    parser.add_argument(
-        "--inf_is_deepseek_r1_model",
-        action="store_true",
-        help="Flag to specify if the model is DeepSeek-R1, "
-        "for correctly parsing <think>...</think> tags, "
-        "and determining the additional stop token in vllm",
     )
     parser.add_argument(
         "--inf_vllm_offline",
@@ -141,6 +150,11 @@ def get_parser() -> argparse.ArgumentParser:
         help="List of dataset splits to evaluate",
     )
     parser.add_argument("--from_local", action="store_true", help="Load the dataset from a local folder")
+    parser.add_argument(
+        "--exclude_aggregation_questions",
+        action="store_true",
+        help="If set, the evaluation will skip aggregation questions (e.g., 'How many ...')",
+    )
     parser.add_argument("--batch_size", "-bs", default=10, type=int, help="Batch size (>=1)")
     parser.add_argument(
         "--batch_number",

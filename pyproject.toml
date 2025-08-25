@@ -71,10 +71,15 @@ eval = [
     "scipy",
     "tiktoken",
     "together",
-    "transformers>=4.47.1",
+    "transformers>=4.51.0",
     "bm25s[full]",
+<<<<<<< HEAD
     "vllm",
     "flashrag-dev @ git+https://github.com/bogoliubon/FlashRAG.git"
+=======
+    "vllm>=0.8.5",
+    "flashrag-dev"
+>>>>>>> 849c94443842a96c6c36b97481a494c7a81a6c4d
 ]
 
 [project.scripts]

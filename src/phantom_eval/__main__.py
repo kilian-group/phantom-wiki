@@ -42,7 +42,6 @@ def get_model_kwargs(args: argparse.Namespace) -> dict:
                 or args.method in ["react", "act", "react->cot-sc", "cot-sc->react"],
                 lora_path=args.inf_vllm_lora_path,
                 port=args.inf_vllm_port,
-                is_deepseek_r1_model=args.inf_is_deepseek_r1_model,
             )
         case _:
             model_kwargs = dict(
@@ -167,7 +166,12 @@ async def main(args: argparse.Namespace) -> None:
     for seed in args.inf_seed_list:
         logger.info(f"Running inference for method='{args.method}' with {seed=}")
         for split in args.split_list:
-            dataset = load_data(args.dataset, split, args.from_local)
+            dataset = load_data(
+                args.dataset,
+                split,
+                from_local=args.from_local,
+                exclude_aggregation_questions=args.exclude_aggregation_questions,
+            )
             logger.info(f"Loading dataset='{args.dataset}' :: {split=}")
             df_qa_pairs = pd.DataFrame(dataset["qa_pairs"])
             df_text = pd.DataFrame(dataset["text"])
@@ -262,7 +266,6 @@ async def main(args: argparse.Namespace) -> None:
                             llm_chat,
                             questions,
                             inf_gen_config,
-                            parse_thinking_output=args.inf_is_deepseek_r1_model,
                         )
                         # NOTE: the agent interactions are just single Conversation objects containing the
                         # prompt for the self-consistency methods, we save the Conversation object from the
@@ -279,7 +282,6 @@ async def main(args: argparse.Namespace) -> None:
                                     llm_chat,
                                     qa_sample.question,
                                     inf_gen_config,
-                                    parse_thinking_output=args.inf_is_deepseek_r1_model,
                                 )
                                 for agent, qa_sample in zip(agents, batch_df_qa_pairs.itertuples())
                             ]
@@ -363,6 +365,7 @@ def save_preds(
                 "batch_size": batch_size,
                 "batch_number": batch_number,
                 "type": int(qa_sample.type),
+                "difficulty": int(qa_sample.difficulty),
             },
             "inference_params": inf_gen_config.model_dump(),
             "model_kwargs": model_kwargs,
@@ -384,6 +387,17 @@ if __name__ == "__main__":
             "When prolog_query is true, we can only evaluate one split at a time since only one Prolog "
             "database can be in memory at any given time due to limitations with pyswip"
         )
+    if args.method in ["zeroshot-rag", "fewshot-rag", "cot-rag"]:
+        if args.retrieval_method in ["bm25", "dense"]:
+            assert (
+                args.index_path is not None
+            ), "index_path must be specified when retrieval_method is bm25 or dense"
+            assert (
+                args.corpus_path is not None
+            ), "corpus_path must be specified when retrieval_method is bm25 or dense"
+            assert (
+                len(args.split_list) == 1
+            ), "When retrieval_method is bm25 or dense, we can only evaluate one split at a time"
 
     # NOTE: asyncio.run should only be called once in a single Python instance.
     # Thus, any high-level function containing awaits in its implementation

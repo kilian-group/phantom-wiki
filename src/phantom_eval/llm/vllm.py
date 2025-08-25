@@ -23,7 +23,6 @@ class VLLMChat(CommonLLMChat):
         lora_path: str | None = None,
         use_api: bool = False,
         port: int = 8000,
-        is_deepseek_r1_model: bool = False,
     ):
         """
         Args:
@@ -39,20 +38,10 @@ class VLLMChat(CommonLLMChat):
                 To maximize performance, set `use_api=False` when running Nshot and CoT agents
             port (int): Port number for the vllm server.
                 Defaults to 8000.
-            is_deepseek_r1_model (bool): Whether the model is a distilled deepseek r1 model.
-                We add the stop token "<|end_of_sentence|>" for these models.
-                If False, we add the stop token "<|eot_id|>".
-                Defaults to False.
         """
         # NOTE: with vllm, we don't need to enforce rate limits. So we don't call self._update_rate_limits()
         # at the end __init__() either
         super().__init__(model_name, enforce_rate_limits=False)
-
-        # Handle additional stop token for all distilled deepseek r1 models
-        if is_deepseek_r1_model:
-            self.ADDITIONAL_STOP = ["<｜end▁of▁sentence｜>"]
-        else:
-            self.ADDITIONAL_STOP = ["<|eot_id|>"]
 
         self.lora_path = lora_path
         self.use_api = use_api
@@ -108,8 +97,12 @@ class VLLMChat(CommonLLMChat):
                         formatted_messages.append({"role": message.role, "content": text})
         return formatted_messages
 
-    def _parse_api_output(self, response: object) -> LLMChatResponse:
-        """Parse the output of vllm server when using the OpenAI compatible server"""
+    def _parse_api_output(
+        self, response: object, inf_gen_config: InferenceGenerationConfig | None = None
+    ) -> LLMChatResponse:
+        """Parse the output of vllm server when using the OpenAI compatible server
+
+        NOTE: we don't use inf_gen_config for parsing the output of the vllm server"""
         return LLMChatResponse(
             pred=response.choices[0].message.content,
             usage=response.usage.model_dump(),
@@ -170,12 +163,13 @@ class VLLMChat(CommonLLMChat):
             )
             return parsed_responses
         else:
+            # Additional stop token for all models is <|eot_id|>
             sampling_params = SamplingParams(
                 temperature=inf_gen_config.temperature,
                 top_p=inf_gen_config.top_p,
                 top_k=inf_gen_config.top_k,
                 repetition_penalty=inf_gen_config.repetition_penalty,
-                stop=inf_gen_config.stop_sequences + self.ADDITIONAL_STOP,
+                stop=inf_gen_config.stop_sequences + ["<|eot_id|>"],
                 max_tokens=inf_gen_config.max_tokens,
                 seed=inf_gen_config.seed,
             )
