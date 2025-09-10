@@ -297,16 +297,6 @@ class RAGMixin:
         else:
             texts = text_corpus["article"].tolist()
 
-            # Launch server on the last GPU
-            subprocess.call(
-                [
-                    "./src/phantom_eval/launch_embedding_server.sh",
-                    embedding_model_name,
-                    str(port),
-                    str(get_gpu_count() - 1),
-                ]
-            )
-
             # Embed documents and build retriever
             BASE_URL = f"http://0.0.0.0:{port}/v1"
             API_KEY = "token-abc123"
@@ -314,8 +304,23 @@ class RAGMixin:
                 base_url=BASE_URL,
                 api_key=API_KEY,
             )
+
+            if False:
+                # Launch server on the last GPU
+                subprocess.call(
+                    [
+                        "./src/phantom_eval/launch_embedding_server.sh",
+                        embedding_model_name,
+                        str(port),
+                        str(get_gpu_count() - 1),
+                    ]
+                )
+
             embeddings = CustomEmbeddings(client)
-            vectorstore = FAISS.from_texts(texts, embeddings)
+            if False:
+                vectorstore = FAISS.from_texts(texts, embeddings)
+            else:
+                vectorstore = FAISS.load_local(index_path, embeddings, allow_dangerous_deserialization=True)
             self.retriever = vectorstore.as_retriever(search_kwargs={"k": retriever_num_documents})
 
     def get_RAG_evidence(self, question: str) -> str:
@@ -329,6 +334,30 @@ class RAGMixin:
         else:
             docs = [doc.page_content for doc in self.retriever.invoke(question)]
         return "\n================\n\n".join(docs)
+
+    @staticmethod
+    def get_query_instruction(linking_method: str) -> str:
+        """
+        Return the instruction for the query to the retriever.
+        """
+        instructions = {
+            "ner_to_node": "Given a phrase, retrieve synonymous or relevant phrases that best match this phrase.",  # noqa: E501
+            "query_to_node": "Given a question, retrieve relevant phrases that are mentioned in this question.",  # noqa: E501
+            "query_to_fact": "Given a question, retrieve relevant triplet facts that matches this question.",  # noqa: E501
+            "query_to_sentence": "Given a question, retrieve relevant sentences that best answer the question.",  # noqa: E501
+            "query_to_passage": "Given a question, retrieve relevant documents that best answer the question.",  # noqa: E501
+        }
+        default_instruction = "Given a question, retrieve relevant documents that best answer the question."
+        return instructions.get(linking_method, default_instruction)
+
+    def _get_formated_instruction(self, instruction: str) -> str:
+        """
+        Return the formatted instruction for the query to the retriever.
+        """
+        if self.embedding_model_name in ["GritLM/GritLM-7B"]:
+            return "<|user|>\n" + instruction + "\n<|embed|>\n" if instruction else "<|embed|>\n"
+        else:
+            return instruction if instruction else ""
 
 
 def get_all_evidence(text_corpus: pd.DataFrame) -> str:
