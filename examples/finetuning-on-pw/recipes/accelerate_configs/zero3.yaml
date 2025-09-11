@@ -1,0 +1,8 @@
+deepspeed_config:
+  zero_stage: 3
+  offload_optimizer_device: none
+  offload_param_device: none
+  zero3_init_flag: true
+  zero3_save_16bit_model: true
+distributed_type: DEEPSPEED
+mixed_precision: bf16

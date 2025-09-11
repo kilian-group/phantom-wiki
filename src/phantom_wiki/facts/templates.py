@@ -64,17 +64,19 @@ QA_GRAMMAR_STRING = """
     AV -> '<attribute_value>'
     N -> '<name>'
     """
-# QA_GRAMMAR_STRING = """
-#     S -> 'Who is' R '?' | 'What is' A '?'
-#     R -> 'the' RN 'of' R_c | 'the person whose' AN 'is' AV
-#     R_c -> R | N
-#     A -> 'the' AN 'of' R
-#     RN -> '<relation>'
-#     RN_p -> '<relation_plural>'
-#     AN -> '<attribute_name>'
-#     AV -> '<attribute_value>'
-#     N -> '<name>'
-#     """
+
+
+def is_aggregation_question(question: str) -> bool:
+    """
+    Returns True if the question is an aggregation question.
+
+    Definition of aggregation question:
+    -----------------------------------
+    1. Starts with `"How many"`
+    -----------------------------------
+    For example, "How many children does John have?" is an aggregation question.
+    """
+    return question.strip().startswith("How many")
 
 
 def generate_templates(grammar: CFG = None, depth=4) -> Iterable:

@@ -47,7 +47,10 @@ class AnthropicChat(CommonLLMChat):
         )
         return response
 
-    def _parse_api_output(self, response: object) -> LLMChatResponse:
+    def _parse_api_output(
+        self, response: object, inf_gen_config: InferenceGenerationConfig | None = None
+    ) -> LLMChatResponse:
+        # NOTE: we don't use inf_gen_config for parsing the output of the anthropic server
         return LLMChatResponse(
             pred=response.content[0].text,
             usage=response.usage.model_dump(),

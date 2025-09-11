@@ -15,9 +15,11 @@ import abc
 import logging
 import subprocess
 from collections import Counter
+from pprint import pformat
 
 import openai
 import pandas as pd
+from flashrag.retriever import BM25Retriever, DenseRetriever
 from langchain_community.vectorstores import FAISS
 from langchain_core.embeddings import Embeddings
 
@@ -26,8 +28,6 @@ from phantom_eval.gpu_utils import get_gpu_count
 from phantom_eval.llm import InferenceGenerationConfig, LLMChat, aggregate_usage
 from phantom_eval.prompts import LLMPrompt
 from phantom_eval.score import normalize_pred
-
-from .retriever import get_retriever
 
 logger = logging.getLogger(__name__)
 
@@ -185,77 +185,115 @@ class RAGMixin:
     def __init__(
         self,
         text_corpus: pd.DataFrame,
-        embedding_model_name: str = "whereisai/uae-large-v1",
+        embedding_model_name: str = None,
         retriever_num_documents: int = 4,
         port: int = 8001,
-        retrieval_method: str = None,
+        retrieval_method: str = "bm25",
         index_path: str = None,
         corpus_path: str = None,
     ):
         """
         Args:
             text_corpus (pd.DataFrame): The text corpus containing documents in the "article" column.
-            embedding_model_name (str): The embedding method for the vector database.
+            embedding_model_name (str): The embedding model name for dense and faiss retrieval methods.
                 All embedding models available through huggingface and loadable by vLLM are supported.
-                Defaults to "whereisai/uae-large-v1".
-                BM25 is also supported, but requires running `pip install bm25s[full]`.
+                Defaults to None.
+                NOTE: BM25 does not require passing an embedding model name.
             retriever_num_documents (int): Number of documents retrieved.
-                Defaults to 4. See
-                "https://api.python.langchain.com/en/latest/vectorstores/langchain_community.vectorstores.faiss.FAISS.html#langchain_community.vectorstores.faiss.FAISS.as_retriever"
-                for other options.
-            port (int): The port number to use for the embedding server.
-                Defaults to 8001.
-            retrieval_method (str): The retrieval method to use. Can be "faiss", "bm25" or "dense".
-                Defaults to "faiss".
-            index_path (str): The path to the index file for the BM25 or dense retriever.
+                Defaults to 4.
+            retrieval_method (str): The retrieval method to use. Can be "bm25", "dense", or "faiss".
+                Defaults to "bm25".
+            retrieval_method (str): The retrieval method to use. Can be "bm25", "dense", or "faiss".
+                Defaults to "bm25".
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
+                To build the index, please follow the instructions at
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
                 Defaults to None.
             corpus_path (str): The path to the corpus file for the BM25 or dense retriever.
+                To build the corpus, please follow the instructions at
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
+                To build the corpus, please follow the instructions at
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
+                To build the corpus, please follow the instructions at
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
+                To build the corpus, please follow the instructions at
+                https://github.com/kilian-group/phantom-wiki/wiki/RAG
                 Defaults to None.
         """
         self.embedding_model_name = embedding_model_name
         self.retriever_num_documents = retriever_num_documents
         self.retrieval_method = retrieval_method
 
-        if id(text_corpus) in self._indices:
-            logger.debug("Using existing BM25 index...")
-            self.retriever, _ = self._indices[id(text_corpus)]
+        # TODO: deprecate the text_corpus argument. The new workflow is to index the text corpus separately,
+        # then pass the index path to the constructor.
+        # Use the following arguments to check for existing retriever objects.
+        if self.retrieval_method in ["bm25", "dense"]:
+            key = (
+                self.retrieval_method,
+                self.embedding_model_name,
+                index_path,
+                corpus_path,
+            )
+            if key in self._indices:
+                logger.debug("Using an existing retriever object...")
+                self.retriever = self._indices[key]
+                return
 
-        elif self.retrieval_method == "bm25":
-            bm25_config = {
-                "retrieval_method": "bm25",
-                "retrieval_topk": retriever_num_documents,
-                "index_path": index_path,
-                "corpus_path": corpus_path,
-                # NOTE: currently not saving retrieval cache
-                "save_retrieval_cache": False,
-                "retrieval_cache_path": None,
-                "use_retrieval_cache": False,
-                "use_reranker": False,
-                "silent_retrieval": True,
-            }
-            # If the retriever_config is provided, use it to create the retriever
-            self.retriever = get_retriever(config=bm25_config)
+            match self.retrieval_method:
+                case "bm25":
+                    bm25_config = {
+                        "retrieval_method": "bm25",
+                        "retrieval_topk": retriever_num_documents,
+                        "index_path": index_path,
+                        "corpus_path": corpus_path,
+                        "silent_retrieval": True,
+                        "bm25_backend": "bm25s",
+                        # Additional retriever features
+                        # See https://github.com/bogoliubon/FlashRAG/blob/
+                        # 5f6eeafbf86c959475c4989b699666e5ccaa1a21/docs/
+                        # original_docs/basic_usage.md#additional-features-of-the-retriever
+                        "save_retrieval_cache": False,
+                        "retrieval_cache_path": "~",
+                        "use_retrieval_cache": False,
+                        "use_reranker": False,
+                    }
+                    logger.info("Initializing BM25 retriever...")
+                    self.retriever = BM25Retriever(config=bm25_config)
+                    logger.info(f"Retriever config: {pformat(self.retriever.config)}")
+                    # Store the retriever object in the _indices dict for reuse across instances
+                    self._indices[key] = self.retriever
 
-            # For debugging purposes, print the index path
-            logger.debug("Using an existing retriever object...")
-            self._indices[id(text_corpus)] = self.retriever
+                case "dense":
+                    # Default: https://github.com/bogoliubon/FlashRAG/blob/
+                    # 5f6eeafbf86c959475c4989b699666e5ccaa1a21/flashrag/config/basic_config.yaml#L49
+                    dense_config = {
+                        "retrieval_method": "dense",
+                        "retrieval_topk": retriever_num_documents,
+                        "index_path": index_path,
+                        "corpus_path": corpus_path,
+                        "retrieval_model_path": embedding_model_name,
+                        "retrieval_query_max_length": 128,
+                        "retrieval_pooling_method": "mean",
+                        "retrieval_use_fp16": True,
+                        "retrieval_batch_size": 16,
+                        "use_sentence_transformer": True,
+                        "faiss_gpu": False,
+                        "silent_retrieval": True,
+                        # Additional retriever features
+                        # See https://github.com/bogoliubon/FlashRAG/blob/
+                        # 5f6eeafbf86c959475c4989b699666e5ccaa1a21/docs/
+                        # original_docs/basic_usage.md#additional-features-of-the-retriever
+                        "save_retrieval_cache": False,
+                        "retrieval_cache_path": "~",
+                        "use_retrieval_cache": False,
+                        "use_reranker": False,
+                        "instruction": "~",
+                    }
+                    self.retriever = DenseRetriever(config=dense_config)
+                    logger.info(f"Retriever config: {pformat(self.retriever.config)}")
+                    # Store the retriever object in the _indices dict for reuse across instances
+                    self._indices[key] = self.retriever
 
-        elif retrieval_method == "dense":
-            # dense_config = {
-            #     "retrieval_method": "dense",
-            #     "retrieval_topk": 4,
-            #     "index_path": index_path,
-            #     "corpus_path": corpus_path",
-            #     "retrieval_model_path": "/path/to/dense/model",
-            #     "retrieval_query_max_length": 128,
-            #     "retrieval_pooling_method": "mean",
-            #     "retrieval_use_fp16": True,
-            #     "retrieval_batch_size": 16,
-            #     "use_sentence_transformer": True,
-            #     "faiss_gpu": True,
-            #     "silent_retrieval": True,
-            # }
-            raise NotImplementedError("Dense retrieval is not yet implemented. Please use BM25 or FAISS.")
         else:
             texts = text_corpus["article"].tolist()
 
@@ -280,20 +318,12 @@ class RAGMixin:
             vectorstore = FAISS.from_texts(texts, embeddings)
             self.retriever = vectorstore.as_retriever(search_kwargs={"k": retriever_num_documents})
 
-    # def __new__(cls, *args, **kwargs):
-    #     # Create a unique key based on the arguments
-    #     key = cls.get_hashable_key(*args, **kwargs)
-    #     # import pdb; pdb.set_trace()
-    #     if key not in cls._instances:
-    #         cls._instances[key] = super().__new__(cls)
-    #     return cls._instances[key]
-
     def get_RAG_evidence(self, question: str) -> str:
         """
         Returns retrieved articles given the question from the text corpus.
         The retrieved articles are concatenated as a string.
         """
-        if self.retrieval_method == "bm25":
+        if self.retrieval_method in ["bm25", "dense"]:
             docs = self.retriever._search(question, num=self.retriever_num_documents, return_score=False)
             docs = [doc["contents"] for doc in docs]
         else:

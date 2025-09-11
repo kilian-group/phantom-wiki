@@ -61,7 +61,10 @@ class GeminiChat(CommonLLMChat):
         )
         return response
 
-    def _parse_api_output(self, response: object) -> LLMChatResponse:
+    def _parse_api_output(
+        self, response: object, inf_gen_config: InferenceGenerationConfig | None = None
+    ) -> LLMChatResponse:
+        # NOTE: we don't use inf_gen_config for parsing the output of the gemini server
         # Try to get response text. If failed due to any reason, output empty prediction
         # Example instance why Gemini can fail to return response.text:
         # "The candidate's [finish_reason](https://ai.google.dev/api/generate-content#finishreason) is 4.
