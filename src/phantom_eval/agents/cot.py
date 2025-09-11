@@ -83,13 +83,6 @@ class CoTAgent(Agent):
             Message(role="assistant", content=[ContentTextMessage(text=response.pred)])
         )
 
-<<<<<<< HEAD
-        # if self.prolog_query:
-        #     response.pred = parse_prolog_query(response.pred)
-        #     return response
-
-=======
->>>>>>> 849c94443842a96c6c36b97481a494c7a81a6c4d
         # Parse the response to extract the answer
         try:
             pred = CoTAgent.parse_answer(response.pred)
@@ -151,30 +144,6 @@ class CoTAgent(Agent):
         Parse the response to extract the answer using regex.
         The prediction should be of the form: "<answer>...</answer>" otherwise a ValueError is raised.
         """
-<<<<<<< HEAD
-        # NOTE: Allow for empty answer instead of throwing an error
-        # NOTE: To ensure that we take the last occurrence of the pattern in pred,
-        # we use .* at the start and .*? at the end
-        pattern = r".*[tT]he answer is (.*?)\.\s*$"
-        m = re.search(pattern, pred)
-        if m:
-            return m.group(1)
-        else:
-            raise ValueError(f"Answer '{pred}' cannot be parsed.")
-
-    @classmethod
-    def parse_thinking_answer(cls, pred: str) -> str:
-        """
-        Parse the response to extract the answer using regex.
-        The prediction should be of the form: "</think>... The answer is <answer>."
-        otherwise a ValueError is raised.
-        """
-        # NOTE: Allow for empty answer instead of throwing an error
-        pattern = r"</think>.*[tT]he answer is \s*(.*)\."
-        m = re.search(pattern, pred, re.DOTALL)  # re.DOTALL to match newlines as well
-        if m:
-            return m.group(1)
-=======
         # NOTE: LLM can generate multiple <answer>...</answer> tags, so we need to return the last one
         # The .*? is a non-greedy match, so it will match the shortest possible string - suitable for
         # multiple answers
@@ -183,7 +152,6 @@ class CoTAgent(Agent):
         matches = re.findall(pattern, pred)
         if matches:
             return matches[-1]
->>>>>>> 849c94443842a96c6c36b97481a494c7a81a6c4d
         else:
             raise ValueError(f"Answer '{pred}' cannot be parsed.")
 
