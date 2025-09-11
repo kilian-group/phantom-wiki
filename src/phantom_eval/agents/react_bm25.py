@@ -286,7 +286,7 @@ class TextCorpus:
             )
 
 
-class ReactAgent(Agent):
+class ReactBM25Agent(Agent):
     """
     Agent that implements agentic react (thought, action, observation) evaluation.
 
@@ -455,7 +455,7 @@ class ReactAgent(Agent):
         Args:
             response_action (LLMChatResponse): The response from the action step.
         """
-        action_type, action_arg = ReactAgent.parse_action(response_action.pred)
+        action_type, action_arg = self.parse_action(response_action.pred)
         match action_type:
             case "Finish":
                 self.step_round += 1
