@@ -182,17 +182,9 @@ class TextCorpus:
         article_ids = TextCorpus._title_mappings.get(title)
         if article_ids:
             # Use self.data for fast lookup
-            if True:
-                article_chunks = [
-                    TextCorpus._data[article_id]
-                    for article_id in article_ids
-                    if article_id in TextCorpus._data
-                ]
-            else:
-                # article_chunks = [
-                #     TextCorpus._retriever.corpus["article"][article_id] for article_id in article_ids
-                # ]
-                article_chunks = TextCorpus._retriever.corpus.select(article_ids)["article"]
+            article_chunks = [
+                TextCorpus._data[article_id] for article_id in article_ids if article_id in TextCorpus._data
+            ]
 
             # Merge all chunks and update state
             article = "\n".join(article_chunks)
@@ -208,17 +200,9 @@ class TextCorpus:
         results = TextCorpus._retriever.search(title, num=k)
         if len(results) > 0:
             article_ids = [result["id"] for result in results]
-            if True:
-                article_chunks = [
-                    TextCorpus._data[article_id]
-                    for article_id in article_ids
-                    if article_id in TextCorpus._data
-                ]
-            else:
-                # article_chunks = [
-                #     TextCorpus._retriever.corpus["article"][article_id] for article_id in article_ids
-                # ]
-                article_chunks = TextCorpus._retriever.corpus.select(article_ids)["article"]
+            article_chunks = [
+                TextCorpus._data[article_id] for article_id in article_ids if article_id in TextCorpus._data
+            ]
 
             # Merge all chunks and update state
             article = "\n".join(article_chunks)
