@@ -4,6 +4,7 @@ from phantom_eval.agents.common import Agent
 from phantom_eval.agents.cot import CoTAgent, CoTRAGAgent, CoTSCAgent
 from phantom_eval.agents.nshot import NshotAgent, NshotRAGAgent, NshotSCAgent
 from phantom_eval.agents.react import ActAgent, CoTSC_ReactAgent, React_CoTSCAgent, ReactAgent
+from phantom_eval.agents.react_bm25 import ReactBM25Agent
 from phantom_eval.prompts import LLMPrompt
 
 SUPPORTED_METHOD_NAMES: list[str] = [
@@ -20,6 +21,7 @@ SUPPORTED_METHOD_NAMES: list[str] = [
     "zeroshot-rag",
     "fewshot-rag",
     "cot-rag",
+    "react-bm25",
 ]
 
 
@@ -53,5 +55,7 @@ def get_agent(
             return NshotRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
         case "cot-rag":
             return CoTRAGAgent(text_corpus, llm_prompt, **agent_kwargs)
+        case "react-bm25":
+            return ReactBM25Agent(text_corpus, llm_prompt, **agent_kwargs)
         case _:
             raise ValueError(f"Invalid method: {method}")

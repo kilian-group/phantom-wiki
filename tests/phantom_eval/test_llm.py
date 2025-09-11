@@ -87,6 +87,5 @@ def test_vllm():
     pred = response.pred.strip()
     assert pred == "2", f"Expected 2, got {pred}"
 
-
 def test_llama():
     _test_llm(server="llama", model_name="Llama-3.3-70B-Instruct")
