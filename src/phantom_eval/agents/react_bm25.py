@@ -287,6 +287,7 @@ class ReactBM25Agent(Agent):
         index_path: str = None,
         corpus_path: str = None,
         prolog_query: bool = False,
+        **kwargs,
     ):
         """
         Args:
