@@ -301,6 +301,7 @@ class ReactBM25Agent(Agent):
             index_path (str): Path to a JSONL index file. Defaults to None.
             corpus_path (str): Path to a JSONL corpus file. Defaults to None.
             prolog_query (bool): Whether to use prolog query. Defaults to False. Is not used in this agent.
+            **kwargs: Additional keyword arguments (placeholder)
         """
         text_corpus = TextCorpus(corpus_path, index_path)
 
