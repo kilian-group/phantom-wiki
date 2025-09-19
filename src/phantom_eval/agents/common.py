@@ -19,6 +19,7 @@ from pprint import pformat
 
 import openai
 import pandas as pd
+import requests
 from flashrag.retriever import BM25Retriever, DenseRetriever
 from langchain_community.vectorstores import FAISS
 from langchain_core.embeddings import Embeddings
@@ -223,6 +224,7 @@ class RAGMixin:
         self.embedding_model_name = embedding_model_name
         self.retriever_num_documents = retriever_num_documents
         self.retrieval_method = retrieval_method
+        self.port = port
 
         # TODO: deprecate the text_corpus argument. The new workflow is to index the text corpus separately,
         # then pass the index path to the constructor.
@@ -293,7 +295,11 @@ class RAGMixin:
                     logger.info(f"Retriever config: {pformat(self.retriever.config)}")
                     # Store the retriever object in the _indices dict for reuse across instances
                     self._indices[key] = self.retriever
-
+        elif self.retrieval_method == "server":
+            # Check server health
+            response = requests.get(f"http://localhost:{port}/health")
+            response = response.json()
+            assert response["ready"], f"Server is not ready. Got response: {response=}."
         else:
             texts = text_corpus["article"].tolist()
 
@@ -326,6 +332,17 @@ class RAGMixin:
         if self.retrieval_method in ["bm25", "dense"]:
             docs = self.retriever._search(question, num=self.retriever_num_documents, return_score=False)
             docs = [doc["contents"] for doc in docs]
+        elif self.retrieval_method == "server":
+            payload = {"queries": [question], "top_k": self.retriever_num_documents}
+            response = requests.post(
+                f"http://localhost:{self.port}/retrieve",
+                json=payload,
+                headers={"Content-Type": "application/json"},
+            )
+            if response.status_code == 200:
+                docs = response.json()["results"][0]
+            else:
+                raise Exception(f"Error {response.status_code}: {response.text}")
         else:
             docs = [doc.page_content for doc in self.retriever.invoke(question)]
         return "\n================\n\n".join(docs)
