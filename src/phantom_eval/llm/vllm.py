@@ -54,10 +54,12 @@ class VLLMChat(CommonLLMChat):
                 self.client = openai.OpenAI(
                     base_url=BASE_URL,
                     api_key=API_KEY,
+                    timeout=30 * 60,  # 30 minutes
                 )
                 self.async_client = openai.AsyncOpenAI(
                     base_url=BASE_URL,
                     api_key=API_KEY,
+                    timeout=30 * 60,  # 30 minutes
                 )
             except openai.APIConnectionError as e:
                 logger.error(
