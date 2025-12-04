@@ -290,6 +290,9 @@ Example usages:
 > \[!TIP\]
 > To generate a slurm script for clusters at Cornell (g2, empire, aida) with the appropriate GPU allocation, run [`bash eval/create_eval.sh`](https://github.com/kilian-group/phantom-wiki/blob/main/eval/create_eval.sh) script and follow the prompted steps.
 
+#### Evaluation on a local dataset
+To load the dataset splits from the local path `DATASET_DIRECTORY`, use additional flags `--dataset DATASET_DIRECTORY --from_local` as opposed to defaulting to the pregenerated Huggingface dataset at `kilian-group/phantom-wiki-v1`.
+
 #### Generating tables and figures
 
 📊 To generate the tables and figures, run the following command from the root directory, replacing `METHODS` with a space-separated list of prompting techniques e.g. `"zeroshot cot zeroshot-rag cot-rag react"`.
