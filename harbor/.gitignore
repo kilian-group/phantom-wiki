@@ -1,0 +1,12 @@
+# Generated Harbor datasets and run outputs -- created on demand, never committed.
+runs/
+datasets/
+out/
+**/phantom-wiki-seed*/
+metadata.json
+
+# Diagnostics outputs
+figures/
+*.png
+*.pdf
+summary.csv
