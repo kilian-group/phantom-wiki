@@ -1,0 +1,19 @@
+# Harbor dataset registry entry for PhantomWiki.
+#
+# Lets the dataset be resolved by name (e.g. `harbor run -d phantom-wiki@1 ...`) once
+# registered with Harbor. Tasks are produced on demand by run_adapter.py -- no host
+# SWI-Prolog or phantom-wiki install is required (generation runs inside the task images).
+#
+# NOTE: confirm these keys against your installed Harbor version (`harbor --help`,
+# `harbor datasets --help`); the registry schema is still stabilizing upstream.
+name = "phantom-wiki"
+version = "1"
+description = """
+On-demand, contamination-resistant reasoning + retrieval evaluation. Generates a fresh \
+PhantomWiki universe per run inside Docker, has the agent answer questions from the \
+article corpus, and scores set-based F1 with F1-vs-difficulty diagnostics."""
+github_url = "https://github.com/kilian-group/phantom-wiki"
+
+[adapter]
+# Entry point that stamps the task directories.
+entrypoint = "run_adapter.py"
