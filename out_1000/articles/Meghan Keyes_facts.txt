@@ -1,0 +1,22 @@
+sister("Meghan Keyes", "Aida Ibarra").
+mother("Meghan Keyes", "Reyna Ibarra").
+father("Meghan Keyes", "Alton Ibarra").
+daughter("Meghan Keyes", "Anastasia Keyes").
+daughter("Meghan Keyes", "Brigette Keyes").
+husband("Meghan Keyes", "Maximilian Keyes").
+friend("Meghan Keyes", "Selena Donner").
+friend("Meghan Keyes", "Ellis Glass").
+friend("Meghan Keyes", "Otto Horan").
+friend("Meghan Keyes", "Winfred Basham").
+friend("Meghan Keyes", "Christen Weise").
+friend("Meghan Keyes", "Bert Simons").
+friend("Meghan Keyes", "Helga Simons").
+friend("Meghan Keyes", "Rickie Burdette").
+friend("Meghan Keyes", "Tyrone Linares").
+friend("Meghan Keyes", "Raul Younger").
+friend("Meghan Keyes", "Solomon Corwin").
+friend("Meghan Keyes", "King Goff").
+dob("Meghan Keyes", "0406-06-21").
+job("Meghan Keyes", "commercial horticulturist").
+hobby("Meghan Keyes", "psychology").
+gender("Meghan Keyes", "female").

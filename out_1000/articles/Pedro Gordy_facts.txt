@@ -1,0 +1,11 @@
+daughter("Pedro Gordy", "Lynette Gordy").
+wife("Pedro Gordy", "Eunice Gordy").
+friend("Pedro Gordy", "Millard Fordham").
+friend("Pedro Gordy", "Emery Scherer").
+friend("Pedro Gordy", "Lukas Mcdonald").
+friend("Pedro Gordy", "Eula Hollins").
+friend("Pedro Gordy", "Shelia Hollins").
+dob("Pedro Gordy", "0411-10-12").
+job("Pedro Gordy", "soil scientist").
+hobby("Pedro Gordy", "stone collecting").
+gender("Pedro Gordy", "male").

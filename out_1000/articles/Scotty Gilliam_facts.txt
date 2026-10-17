@@ -1,0 +1,21 @@
+sister("Scotty Gilliam", "Anna Broughton").
+sister("Scotty Gilliam", "Jenny Gilliam").
+sister("Scotty Gilliam", "Vada Littleton").
+mother("Scotty Gilliam", "Deidra Gilliam").
+father("Scotty Gilliam", "Darren Gilliam").
+daughter("Scotty Gilliam", "Deja Gilliam").
+daughter("Scotty Gilliam", "Shante Gilliam").
+wife("Scotty Gilliam", "Deanne Gilliam").
+friend("Scotty Gilliam", "Benjamin Crittenden").
+friend("Scotty Gilliam", "Hayden Fain").
+friend("Scotty Gilliam", "Tiesha Deville").
+friend("Scotty Gilliam", "Brian Galvan").
+friend("Scotty Gilliam", "Alexa Mckenna").
+friend("Scotty Gilliam", "Tena Beamon").
+friend("Scotty Gilliam", "Antwan Rudolph").
+friend("Scotty Gilliam", "Crysta Machado").
+friend("Scotty Gilliam", "Raul Younger").
+dob("Scotty Gilliam", "0374-04-11").
+job("Scotty Gilliam", "forensic psychologist").
+hobby("Scotty Gilliam", "meditation").
+gender("Scotty Gilliam", "male").

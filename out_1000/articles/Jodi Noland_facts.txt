@@ -1,0 +1,15 @@
+brother("Jodi Noland", "Johnathon Noland").
+mother("Jodi Noland", "Virgina Noland").
+father("Jodi Noland", "Keith Noland").
+friend("Jodi Noland", "Rodney Fordham").
+friend("Jodi Noland", "Dustin Sheridan").
+friend("Jodi Noland", "Iva Parish").
+friend("Jodi Noland", "Sharolyn Basham").
+friend("Jodi Noland", "Gregory Geter").
+friend("Jodi Noland", "Renate Brumbaugh").
+friend("Jodi Noland", "Lloyd Ingalls").
+friend("Jodi Noland", "Markus Gilliam").
+dob("Jodi Noland", "0403-09-05").
+job("Jodi Noland", "English as a second language teacher").
+hobby("Jodi Noland", "martial arts").
+gender("Jodi Noland", "female").

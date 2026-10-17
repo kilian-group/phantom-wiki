@@ -1,0 +1,19 @@
+daughter("Claudine Bales", "Shannon Flores").
+daughter("Claudine Bales", "Skye Swartz").
+husband("Claudine Bales", "Louie Bales").
+friend("Claudine Bales", "Shante Ruth").
+friend("Claudine Bales", "Eli Younger").
+friend("Claudine Bales", "Son Corwin").
+friend("Claudine Bales", "James Arteaga").
+friend("Claudine Bales", "Amanda Broughton").
+friend("Claudine Bales", "Toney Gibbs").
+friend("Claudine Bales", "Wilson Donner").
+friend("Claudine Bales", "Ardath Carswell").
+friend("Claudine Bales", "Wendell Monday").
+friend("Claudine Bales", "Viva Suh").
+friend("Claudine Bales", "Rudy Runnels").
+friend("Claudine Bales", "Cleo Peeler").
+dob("Claudine Bales", "0363-11-06").
+job("Claudine Bales", "sports development officer").
+hobby("Claudine Bales", "die-cast toy").
+gender("Claudine Bales", "female").

@@ -1,0 +1,24 @@
+sister("Randall Mcgough", "Addie Shilling").
+sister("Randall Mcgough", "Ophelia Mcgough").
+mother("Randall Mcgough", "Chrissy Mcgough").
+father("Randall Mcgough", "Elroy Mcgough").
+son("Randall Mcgough", "Donnie Mcgough").
+son("Randall Mcgough", "Julio Mcgough").
+son("Randall Mcgough", "Wilbur Mcgough").
+daughter("Randall Mcgough", "Larue Macias").
+daughter("Randall Mcgough", "Leonora Depriest").
+daughter("Randall Mcgough", "Racquel Horan").
+wife("Randall Mcgough", "Myrl Mcgough").
+friend("Randall Mcgough", "Randolph Osborn").
+friend("Randall Mcgough", "Rogelio Mckenna").
+friend("Randall Mcgough", "Pablo Cook").
+friend("Randall Mcgough", "Zora Morehead").
+friend("Randall Mcgough", "Nydia Hollins").
+friend("Randall Mcgough", "Dennis Marr").
+friend("Randall Mcgough", "Hayden Fain").
+friend("Randall Mcgough", "Kenneth Rinehart").
+friend("Randall Mcgough", "Ressie Capps").
+dob("Randall Mcgough", "0409-09-07").
+job("Randall Mcgough", "hospital doctor").
+hobby("Randall Mcgough", "herping").
+gender("Randall Mcgough", "male").

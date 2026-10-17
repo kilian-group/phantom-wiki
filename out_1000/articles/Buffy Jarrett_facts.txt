@@ -1,0 +1,15 @@
+sister("Buffy Jarrett", "Noreen Jarrett").
+mother("Buffy Jarrett", "Babette Jarrett").
+father("Buffy Jarrett", "Mose Jarrett").
+friend("Buffy Jarrett", "Randolph Osborn").
+friend("Buffy Jarrett", "Kent Corso").
+friend("Buffy Jarrett", "Vaughn Dangelo").
+friend("Buffy Jarrett", "Chelsie Peeler").
+friend("Buffy Jarrett", "Gerald Hartung").
+friend("Buffy Jarrett", "Kennith Towns").
+friend("Buffy Jarrett", "Shannon Flores").
+friend("Buffy Jarrett", "Josette Goff").
+dob("Buffy Jarrett", "0478-05-03").
+job("Buffy Jarrett", "best boy").
+hobby("Buffy Jarrett", "lotology").
+gender("Buffy Jarrett", "female").

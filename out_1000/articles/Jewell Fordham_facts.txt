@@ -1,0 +1,13 @@
+daughter("Jewell Fordham", "Rena Palm").
+daughter("Jewell Fordham", "Scottie Fordham").
+husband("Jewell Fordham", "Olin Fordham").
+friend("Jewell Fordham", "Vicki Osterman").
+friend("Jewell Fordham", "Tanner Holliman").
+friend("Jewell Fordham", "Tamara Wylie").
+friend("Jewell Fordham", "Ricky Carswell").
+friend("Jewell Fordham", "Brianne Layton").
+friend("Jewell Fordham", "Williams Alessi").
+dob("Jewell Fordham", "0303-05-21").
+job("Jewell Fordham", "media planner").
+hobby("Jewell Fordham", "bus spotting").
+gender("Jewell Fordham", "female").

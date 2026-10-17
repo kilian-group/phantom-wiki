@@ -1,0 +1,13 @@
+mother("Nestor Lasher", "Trudy Lasher").
+father("Nestor Lasher", "Grant Lasher").
+friend("Nestor Lasher", "Jackqueline Hollinger").
+friend("Nestor Lasher", "Monika Bennet").
+friend("Nestor Lasher", "Paula Gerber").
+friend("Nestor Lasher", "Glenda Dacosta").
+friend("Nestor Lasher", "Solomon Strong").
+friend("Nestor Lasher", "Elroy Mcgough").
+friend("Nestor Lasher", "Dino Layman").
+dob("Nestor Lasher", "0422-08-06").
+job("Nestor Lasher", "careers adviser").
+hobby("Nestor Lasher", "canoeing").
+gender("Nestor Lasher", "male").

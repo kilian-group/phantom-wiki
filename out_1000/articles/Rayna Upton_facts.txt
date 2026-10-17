@@ -1,0 +1,14 @@
+son("Rayna Upton", "Jamie Upton").
+son("Rayna Upton", "Louis Upton").
+husband("Rayna Upton", "Jamison Upton").
+friend("Rayna Upton", "Dorathy Harlow").
+friend("Rayna Upton", "Randolph Osborn").
+friend("Rayna Upton", "Shayne Lasher").
+friend("Rayna Upton", "Dan Mahoney").
+friend("Rayna Upton", "Calvin Holliman").
+friend("Rayna Upton", "Judith Holliman").
+friend("Rayna Upton", "Sang Cheney").
+dob("Rayna Upton", "0373-02-08").
+job("Rayna Upton", "surgeon").
+hobby("Rayna Upton", "vintage cars").
+gender("Rayna Upton", "female").

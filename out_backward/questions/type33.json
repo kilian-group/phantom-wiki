@@ -1,0 +1,412 @@
+[
+    {
+        "id": "4c8799a8-8595-4553-9338-20c9b0e17d7c",
+        "question": "Who is older, the friend of Ricardo Hackworth or the niece of Jeannine Wexler?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dino Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "friend(\"Ricardo Hackworth\", Y_2)",
+                "niece(\"Jeannine Wexler\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 33,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "58dfc603-21c4-4c1d-939f-328708133751",
+        "question": "Who is older, the friend of Saul Wexler or the sister of Aida Wang?",
+        "solution_traces": "[]",
+        "answer": [
+            "Alison Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "friend(\"Saul Wexler\", Y_2)",
+                "sister(\"Aida Wang\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 33,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "36249d96-362f-4b32-a960-b711f1354204",
+        "question": "Who is older, the granddaughter of Shelli Beltran or the sibling of Deane Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aubrey Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "granddaughter(\"Shelli Beltran\", Y_2)",
+                "sibling(\"Deane Smock\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 33,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "37925bd3-8b98-4dd9-a5ad-d04c6789b2b3",
+        "question": "Who is older, the sister of Deane Smock or the friend of Deane Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "sister(\"Deane Smock\", Y_2)",
+                "friend(\"Deane Smock\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 33,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "6e55b78a-3f76-4e9b-a0d2-10273ffbdc7d",
+        "question": "Who is older, the child of Alvaro Smock or the grandparent of Myrle Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aubrey Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "child(\"Alvaro Smock\", Y_2)",
+                "grandparent(\"Myrle Smock\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 33,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "c15a572b-269b-4056-b804-501d1171e391",
+        "question": "Who is older, the sister-in-law of Saul Wexler or the great-aunt of Shelli Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deane Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "sister_in_law(\"Saul Wexler\", Y_2)",
+                "great_aunt(\"Shelli Beltran\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 33,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "5f6dc861-255c-4655-a548-7c1548233b0a",
+        "question": "Who is older, the great-grandfather of Jeannine Wexler or the mother-in-law of Saul Wexler?",
+        "solution_traces": "[]",
+        "answer": [
+            "Gene Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "great_grandfather(\"Jeannine Wexler\", Y_2)",
+                "mother_in_law(\"Saul Wexler\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 33,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "4c3df88f-193b-441a-9022-b9d32f7ffa4e",
+        "question": "Who is older, the sister of Aubrey Smock or the sibling of Aubrey Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deane Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "sister(\"Aubrey Smock\", Y_2)",
+                "sibling(\"Aubrey Smock\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 33,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "a73ecd91-2604-45e6-a7ac-5ebfb7722752",
+        "question": "Who is older, the mother of Gene Smock or the child of Williams Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lannie Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "mother(\"Gene Smock\", Y_2)",
+                "child(\"Williams Smock\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 33,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "c5e4c85a-c350-4b7a-9ba6-532d30a9088e",
+        "question": "Who is older, the grandmother of Johnetta Wang or the aunt of Valentina Wexler?",
+        "solution_traces": "[]",
+        "answer": [
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "grandmother(\"Johnetta Wang\", Y_2)",
+                "aunt(\"Valentina Wexler\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 33,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    }
+]

@@ -1,0 +1,13 @@
+son("Jon Remillard", "Jaime Remillard").
+son("Jon Remillard", "Jude Remillard").
+daughter("Jon Remillard", "Wanita Remillard").
+wife("Jon Remillard", "Sherrie Remillard").
+friend("Jon Remillard", "Mai Remillard").
+friend("Jon Remillard", "Thomas Chrisman").
+friend("Jon Remillard", "Demarcus Narvaez").
+friend("Jon Remillard", "Kirsten Oberg").
+friend("Jon Remillard", "Jaime Remillard").
+dob("Jon Remillard", "0272-10-16").
+job("Jon Remillard", "professor emeritus").
+hobby("Jon Remillard", "foraging").
+gender("Jon Remillard", "male").

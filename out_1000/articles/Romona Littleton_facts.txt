@@ -1,0 +1,18 @@
+sister("Romona Littleton", "Myrl Murray").
+sister("Romona Littleton", "Susie Gillam").
+brother("Romona Littleton", "Phil Murray").
+mother("Romona Littleton", "Wanda Murray").
+father("Romona Littleton", "Harold Murray").
+son("Romona Littleton", "Lorenzo Littleton").
+son("Romona Littleton", "Milton Littleton").
+husband("Romona Littleton", "Christoper Littleton").
+friend("Romona Littleton", "Lakeshia Steadman").
+friend("Romona Littleton", "Jacque Greene").
+friend("Romona Littleton", "Solomon Strong").
+friend("Romona Littleton", "Roscoe Lindquist").
+friend("Romona Littleton", "Kieth Bigelow").
+friend("Romona Littleton", "Georgette Haygood").
+dob("Romona Littleton", "0434-01-10").
+job("Romona Littleton", "forensic psychologist").
+hobby("Romona Littleton", "disc golf").
+gender("Romona Littleton", "female").

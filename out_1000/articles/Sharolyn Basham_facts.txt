@@ -1,0 +1,17 @@
+sister("Sharolyn Basham", "Adah Schram").
+sister("Sharolyn Basham", "Geraldine Suh").
+sister("Sharolyn Basham", "Shawnta Basham").
+brother("Sharolyn Basham", "Winfred Basham").
+mother("Sharolyn Basham", "Ladawn Basham").
+father("Sharolyn Basham", "Javier Basham").
+friend("Sharolyn Basham", "Andrea Murchison").
+friend("Sharolyn Basham", "Karina Smart").
+friend("Sharolyn Basham", "Jodi Noland").
+friend("Sharolyn Basham", "Ricky Carswell").
+friend("Sharolyn Basham", "Dawn Rinehart").
+friend("Sharolyn Basham", "Julio Mcgough").
+friend("Sharolyn Basham", "Samuel Omara").
+dob("Sharolyn Basham", "0427-11-26").
+job("Sharolyn Basham", "advertising account planner").
+hobby("Sharolyn Basham", "trapshooting").
+gender("Sharolyn Basham", "female").

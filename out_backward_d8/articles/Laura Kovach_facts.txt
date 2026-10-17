@@ -1,0 +1,6 @@
+mother("Laura Kovach", "Ester Kovach").
+father("Laura Kovach", "Charlie Kovach").
+dob("Laura Kovach", "0305-04-28").
+job("Laura Kovach", "corporate investment banker").
+hobby("Laura Kovach", "whale watching").
+gender("Laura Kovach", "female").

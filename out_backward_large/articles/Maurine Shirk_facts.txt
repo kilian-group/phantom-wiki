@@ -1,0 +1,9 @@
+mother("Maurine Shirk", "Chelsie Bradberry").
+father("Maurine Shirk", "Bryant Bradberry").
+son("Maurine Shirk", "Clayton Shirk").
+husband("Maurine Shirk", "Jame Shirk").
+friend("Maurine Shirk", "Ivory Pannell").
+dob("Maurine Shirk", "0217-01-03").
+job("Maurine Shirk", "call centre manager").
+hobby("Maurine Shirk", "finance").
+gender("Maurine Shirk", "female").

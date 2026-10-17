@@ -1,0 +1,22 @@
+sister("Emory Layton", "Larue Speaks").
+sister("Emory Layton", "Lera Carty").
+brother("Emory Layton", "Andres Layton").
+brother("Emory Layton", "Bryan Layton").
+brother("Emory Layton", "Cary Layton").
+mother("Emory Layton", "Brianne Layton").
+father("Emory Layton", "Bernie Layton").
+daughter("Emory Layton", "Tashina Layton").
+wife("Emory Layton", "Rosalinda Layton").
+friend("Emory Layton", "Dortha Ingle").
+friend("Emory Layton", "Debora Murray").
+friend("Emory Layton", "Buffy Eaves").
+friend("Emory Layton", "Bruce Mathes").
+friend("Emory Layton", "Antonio Fitch").
+friend("Emory Layton", "Hubert Noland").
+friend("Emory Layton", "Andre Bowles").
+friend("Emory Layton", "Claudio Tyree").
+friend("Emory Layton", "Clay Vogt").
+dob("Emory Layton", "0402-01-06").
+job("Emory Layton", "best boy").
+hobby("Emory Layton", "perfume").
+gender("Emory Layton", "male").

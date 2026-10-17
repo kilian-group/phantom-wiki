@@ -1,0 +1,11 @@
+brother("Odelia Fredrick", "Anderson Fredrick").
+brother("Odelia Fredrick", "Malik Fredrick").
+mother("Odelia Fredrick", "Holley Fredrick").
+father("Odelia Fredrick", "Erik Fredrick").
+friend("Odelia Fredrick", "Porter Mckenna").
+friend("Odelia Fredrick", "Darren Gilliam").
+friend("Odelia Fredrick", "Dino Donner").
+dob("Odelia Fredrick", "0381-01-01").
+job("Odelia Fredrick", "garment technologist").
+hobby("Odelia Fredrick", "cribbage").
+gender("Odelia Fredrick", "female").

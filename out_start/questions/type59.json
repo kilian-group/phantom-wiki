@@ -1,0 +1,412 @@
+[
+    {
+        "id": "9e49705e-5cf1-411c-af6d-123e0ab4fa73",
+        "question": "Who is younger, the person whose hobby is dairy farming or the person whose occupation is early years teacher?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeannine Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "hobby(Y_2, \"dairy farming\")",
+                "job(Y_8, \"early years teacher\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 59,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "b242b2c2-6aab-4fdc-912f-1560a4b8d24b",
+        "question": "Who is younger, the person whose hobby is sociology or the person whose date of birth is 0295-05-30?",
+        "solution_traces": "[]",
+        "answer": [
+            "Saul Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "hobby(Y_2, \"sociology\")",
+                "dob(Y_8, \"0295-05-30\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 59,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "2e6cd94c-2bf2-462c-837e-71c0225c8706",
+        "question": "Who is younger, the person whose occupation is actuary or the person whose date of birth is 0204-03-12?",
+        "solution_traces": "[]",
+        "answer": [
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "job(Y_2, \"actuary\")",
+                "dob(Y_8, \"0204-03-12\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 59,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "4f1b157b-4561-4b4a-92b4-a3f56975d9eb",
+        "question": "Who is younger, the person whose occupation is associate professor or the person whose hobby is shogi?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deane Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "job(Y_2, \"associate professor\")",
+                "hobby(Y_8, \"shogi\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 59,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "31a8063c-34e8-4a0e-921c-a43a1e43fa1f",
+        "question": "Who is younger, the person whose date of birth is 0177-07-12 or the person whose occupation is barrister's clerk?",
+        "solution_traces": "[]",
+        "answer": [
+            "Myrle Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "dob(Y_2, \"0177-07-12\")",
+                "job(Y_8, \"barrister's clerk\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 59,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "c4a8031d-0d13-4b80-9a7e-7341c7ba3e70",
+        "question": "Who is younger, the person whose occupation is occupational therapist or the person whose hobby is finance?",
+        "solution_traces": "[]",
+        "answer": [
+            "Saul Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "job(Y_2, \"occupational therapist\")",
+                "hobby(Y_8, \"finance\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 59,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "61fa4f45-2d37-4dd8-883e-88bb5228a3ab",
+        "question": "Who is younger, the person whose hobby is trainspotting or the person whose date of birth is 0301-10-24?",
+        "solution_traces": "[]",
+        "answer": [
+            "Saul Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "hobby(Y_2, \"trainspotting\")",
+                "dob(Y_8, \"0301-10-24\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 59,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "a50c33b2-924b-4d95-8bab-1b2e359d509f",
+        "question": "Who is younger, the person whose occupation is broadcast engineer or the person whose date of birth is 0200-10-27?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aubrey Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "job(Y_2, \"broadcast engineer\")",
+                "dob(Y_8, \"0200-10-27\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 59,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "5bbfb3a8-57de-4e2f-9658-c76119c275aa",
+        "question": "Who is younger, the person whose occupation is immunologist or the person whose date of birth is 0236-04-04?",
+        "solution_traces": "[]",
+        "answer": [
+            "Williams Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "job(Y_2, \"immunologist\")",
+                "dob(Y_8, \"0236-04-04\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 59,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "b91db489-36ff-44c1-8055-1d137f5fa02d",
+        "question": "Who is younger, the person whose date of birth is 0324-07-03 or the person whose date of birth is 0326-06-13?",
+        "solution_traces": "[]",
+        "answer": [
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "dob(Y_2, \"0324-07-03\")",
+                "dob(Y_8, \"0326-06-13\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 59,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    }
+]

@@ -1,0 +1,17 @@
+son("Rosina Putnam", "Marvin Putnam").
+daughter("Rosina Putnam", "Lurline Tyree").
+husband("Rosina Putnam", "Justin Putnam").
+friend("Rosina Putnam", "Lauren Strong").
+friend("Rosina Putnam", "Maybelle Lester").
+friend("Rosina Putnam", "Bernardo Briscoe").
+friend("Rosina Putnam", "Tabetha Hsu").
+friend("Rosina Putnam", "Nellie Niles").
+friend("Rosina Putnam", "Kenton Dunlap").
+friend("Rosina Putnam", "Shante Gilliam").
+friend("Rosina Putnam", "Bertram Wylie").
+friend("Rosina Putnam", "Elicia Fordham").
+friend("Rosina Putnam", "Morgan Perrine").
+dob("Rosina Putnam", "0438-01-23").
+job("Rosina Putnam", "chartered management accountant").
+hobby("Rosina Putnam", "people-watching").
+gender("Rosina Putnam", "female").

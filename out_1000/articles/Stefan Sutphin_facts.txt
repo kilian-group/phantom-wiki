@@ -1,0 +1,14 @@
+son("Stefan Sutphin", "Andrew Sutphin").
+wife("Stefan Sutphin", "Bridget Sutphin").
+friend("Stefan Sutphin", "Buffy Mccurry").
+friend("Stefan Sutphin", "Tianna Goff").
+friend("Stefan Sutphin", "Vernon Peabody").
+friend("Stefan Sutphin", "Dino Donner").
+friend("Stefan Sutphin", "Susie Medellin").
+friend("Stefan Sutphin", "Evelia Waltz").
+friend("Stefan Sutphin", "Sylvester Hamlin").
+friend("Stefan Sutphin", "Shemika Hirsch").
+dob("Stefan Sutphin", "0295-09-15").
+job("Stefan Sutphin", "music tutor").
+hobby("Stefan Sutphin", "benchmarking").
+gender("Stefan Sutphin", "male").

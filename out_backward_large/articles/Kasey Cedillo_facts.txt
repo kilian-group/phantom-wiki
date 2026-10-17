@@ -1,0 +1,14 @@
+mother("Kasey Cedillo", "Bee Cedillo").
+father("Kasey Cedillo", "Ned Cedillo").
+son("Kasey Cedillo", "Adalberto Cedillo").
+son("Kasey Cedillo", "Ron Cedillo").
+daughter("Kasey Cedillo", "Elissa Cedillo").
+wife("Kasey Cedillo", "Domonique Cedillo").
+friend("Kasey Cedillo", "Zoila Decosta").
+friend("Kasey Cedillo", "Mercedes Shirk").
+friend("Kasey Cedillo", "Lenore Hackworth").
+friend("Kasey Cedillo", "Sol Cormier").
+dob("Kasey Cedillo", "0273-02-08").
+job("Kasey Cedillo", "transport planner").
+hobby("Kasey Cedillo", "butterfly watching").
+gender("Kasey Cedillo", "male").

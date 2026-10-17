@@ -1,0 +1,14 @@
+mother("Zoila Mason", "Lauretta Mason").
+father("Zoila Mason", "Bruce Mason").
+friend("Zoila Mason", "Hunter Saari").
+friend("Zoila Mason", "Edythe Nicolas").
+friend("Zoila Mason", "Aurelio Wasserman").
+friend("Zoila Mason", "Gerardo Hornback").
+friend("Zoila Mason", "Roman Palermo").
+friend("Zoila Mason", "Elwood Decosta").
+friend("Zoila Mason", "Niesha Decosta").
+friend("Zoila Mason", "Olivia Griffiths").
+dob("Zoila Mason", "0325-07-05").
+job("Zoila Mason", "civil service administrator").
+hobby("Zoila Mason", "audiophile").
+gender("Zoila Mason", "female").

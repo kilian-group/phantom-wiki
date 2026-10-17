@@ -1,0 +1,11 @@
+brother("Nickolas Dacosta", "Adalberto Dacosta").
+mother("Nickolas Dacosta", "Ai Dacosta").
+father("Nickolas Dacosta", "Desmond Dacosta").
+friend("Nickolas Dacosta", "Anastacia Cordova").
+friend("Nickolas Dacosta", "Luther Peeler").
+friend("Nickolas Dacosta", "Emmanuel Swartz").
+friend("Nickolas Dacosta", "Winfred Molina").
+dob("Nickolas Dacosta", "0451-07-22").
+job("Nickolas Dacosta", "technical author").
+hobby("Nickolas Dacosta", "frisbee").
+gender("Nickolas Dacosta", "male").

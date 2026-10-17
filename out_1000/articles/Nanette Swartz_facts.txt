@@ -1,0 +1,13 @@
+son("Nanette Swartz", "Blake Swartz").
+son("Nanette Swartz", "Ramon Swartz").
+husband("Nanette Swartz", "Emmanuel Swartz").
+friend("Nanette Swartz", "Irwin Dalton").
+friend("Nanette Swartz", "Son Corwin").
+friend("Nanette Swartz", "Bruce Mathes").
+friend("Nanette Swartz", "Emma Wellington").
+friend("Nanette Swartz", "Royce Callender").
+friend("Nanette Swartz", "Winfred Basham").
+dob("Nanette Swartz", "0423-05-03").
+job("Nanette Swartz", "adult nurse").
+hobby("Nanette Swartz", "railway studies").
+gender("Nanette Swartz", "female").

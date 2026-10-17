@@ -1,0 +1,13 @@
+daughter("Sheena Dame", "Dorathy Hamlin").
+husband("Sheena Dame", "Paul Dame").
+friend("Sheena Dame", "Hershel Ingalls").
+friend("Sheena Dame", "Katherine Corwin").
+friend("Sheena Dame", "Josette Goff").
+friend("Sheena Dame", "Tianna Goff").
+friend("Sheena Dame", "Anna Broughton").
+friend("Sheena Dame", "Bruce Burger").
+friend("Sheena Dame", "Johanna Sanborn").
+dob("Sheena Dame", "0287-07-11").
+job("Sheena Dame", "advice worker").
+hobby("Sheena Dame", "animation").
+gender("Sheena Dame", "female").

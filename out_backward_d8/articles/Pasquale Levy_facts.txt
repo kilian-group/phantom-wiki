@@ -1,0 +1,10 @@
+mother("Pasquale Levy", "Lea Levy").
+father("Pasquale Levy", "Jules Levy").
+friend("Pasquale Levy", "Clayton Shirk").
+friend("Pasquale Levy", "Brian Beltran").
+friend("Pasquale Levy", "Milton Henderson").
+friend("Pasquale Levy", "Ned Cedillo").
+dob("Pasquale Levy", "0289-04-03").
+job("Pasquale Levy", "economist").
+hobby("Pasquale Levy", "table tennis").
+gender("Pasquale Levy", "male").

@@ -1,0 +1,15 @@
+mother("Carolyn Whitford", "Carlotta Gossett").
+father("Carolyn Whitford", "Steve Gossett").
+daughter("Carolyn Whitford", "Johanna Mathes").
+husband("Carolyn Whitford", "Kenton Whitford").
+friend("Carolyn Whitford", "Romona Fordham").
+friend("Carolyn Whitford", "Alina Bowles").
+friend("Carolyn Whitford", "Coral Putnam").
+friend("Carolyn Whitford", "Preston Booth").
+friend("Carolyn Whitford", "Carmine Mckenna").
+friend("Carolyn Whitford", "Chelsie Peeler").
+friend("Carolyn Whitford", "Alice Dana").
+dob("Carolyn Whitford", "0294-11-19").
+job("Carolyn Whitford", "transport planner").
+hobby("Carolyn Whitford", "sailing").
+gender("Carolyn Whitford", "female").

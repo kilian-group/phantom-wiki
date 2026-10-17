@@ -1,0 +1,14 @@
+son("Valentin Vandenberg", "Charley Vandenberg").
+son("Valentin Vandenberg", "Eli Vandenberg").
+son("Valentin Vandenberg", "Fernando Vandenberg").
+daughter("Valentin Vandenberg", "Amy Wilke").
+daughter("Valentin Vandenberg", "Thelma Vandenberg").
+wife("Valentin Vandenberg", "Jackie Vandenberg").
+friend("Valentin Vandenberg", "Chris Harlow").
+friend("Valentin Vandenberg", "Luis Simons").
+friend("Valentin Vandenberg", "Irwin Dalton").
+friend("Valentin Vandenberg", "Hayden Fain").
+dob("Valentin Vandenberg", "0322-09-10").
+job("Valentin Vandenberg", "exhibitions officer").
+hobby("Valentin Vandenberg", "leaves").
+gender("Valentin Vandenberg", "male").

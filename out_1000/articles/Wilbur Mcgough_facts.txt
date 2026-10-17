@@ -1,0 +1,12 @@
+sister("Wilbur Mcgough", "Larue Macias").
+sister("Wilbur Mcgough", "Leonora Depriest").
+sister("Wilbur Mcgough", "Racquel Horan").
+brother("Wilbur Mcgough", "Donnie Mcgough").
+brother("Wilbur Mcgough", "Julio Mcgough").
+mother("Wilbur Mcgough", "Myrl Mcgough").
+father("Wilbur Mcgough", "Randall Mcgough").
+friend("Wilbur Mcgough", "Genesis Alarcon").
+dob("Wilbur Mcgough", "0437-03-12").
+job("Wilbur Mcgough", "facilities manager").
+hobby("Wilbur Mcgough", "biology").
+gender("Wilbur Mcgough", "male").

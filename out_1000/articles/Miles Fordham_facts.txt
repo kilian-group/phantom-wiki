@@ -1,0 +1,22 @@
+brother("Miles Fordham", "Millard Fordham").
+mother("Miles Fordham", "Elicia Fordham").
+father("Miles Fordham", "Edmundo Fordham").
+son("Miles Fordham", "Aaron Fordham").
+son("Miles Fordham", "Mitchell Fordham").
+son("Miles Fordham", "Sung Fordham").
+daughter("Miles Fordham", "Kris Fordham").
+wife("Miles Fordham", "Domonique Fordham").
+friend("Miles Fordham", "Donnie Crocker").
+friend("Miles Fordham", "Tabetha Lasher").
+friend("Miles Fordham", "Evelia Senn").
+friend("Miles Fordham", "Gerald Hartung").
+friend("Miles Fordham", "Miki Peabody").
+friend("Miles Fordham", "Yoshiko Niles").
+friend("Miles Fordham", "Anna Broughton").
+friend("Miles Fordham", "Kip Murdoch").
+friend("Miles Fordham", "Cora Fordham").
+friend("Miles Fordham", "Hal Greene").
+dob("Miles Fordham", "0462-09-17").
+job("Miles Fordham", "lexicographer").
+hobby("Miles Fordham", "orienteering").
+gender("Miles Fordham", "male").

@@ -1,0 +1,20 @@
+sister("Gayla Holder", "Lara Jansen").
+sister("Gayla Holder", "Paula Rudolph").
+sister("Gayla Holder", "Rebecka Schlosser").
+sister("Gayla Holder", "Wanda Murray").
+mother("Gayla Holder", "Annette Rudolph").
+father("Gayla Holder", "Antwan Rudolph").
+daughter("Gayla Holder", "Jody Valladares").
+husband("Gayla Holder", "Jimmy Holder").
+friend("Gayla Holder", "Jerald Murray").
+friend("Gayla Holder", "Luis Simons").
+friend("Gayla Holder", "Frankie Mahoney").
+friend("Gayla Holder", "Georgina Lebrun").
+friend("Gayla Holder", "Buck Smart").
+friend("Gayla Holder", "Avery Nolasco").
+friend("Gayla Holder", "Daisy Autry").
+friend("Gayla Holder", "Anastacia Cordova").
+dob("Gayla Holder", "0413-03-03").
+job("Gayla Holder", "oceanographer").
+hobby("Gayla Holder", "role-playing games").
+gender("Gayla Holder", "female").

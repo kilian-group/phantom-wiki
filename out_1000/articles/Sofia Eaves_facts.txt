@@ -1,0 +1,22 @@
+sister("Sofia Eaves", "Geri Dana").
+sister("Sofia Eaves", "Ivette Eaves").
+brother("Sofia Eaves", "Denny Eaves").
+brother("Sofia Eaves", "Foster Eaves").
+brother("Sofia Eaves", "Mickey Eaves").
+mother("Sofia Eaves", "Juanita Eaves").
+father("Sofia Eaves", "Russel Eaves").
+friend("Sofia Eaves", "Mallory Schatz").
+friend("Sofia Eaves", "Scotty Broughton").
+friend("Sofia Eaves", "Lashanda Salem").
+friend("Sofia Eaves", "Dawn Rinehart").
+friend("Sofia Eaves", "Eli Vandenberg").
+friend("Sofia Eaves", "Sophie Wilke").
+friend("Sofia Eaves", "Emil Wendel").
+friend("Sofia Eaves", "Vaughn Dangelo").
+friend("Sofia Eaves", "Wallace Brumbaugh").
+friend("Sofia Eaves", "Katy Flores").
+friend("Sofia Eaves", "Geri Dana").
+dob("Sofia Eaves", "0375-11-12").
+job("Sofia Eaves", "commercial art gallery manager").
+hobby("Sofia Eaves", "antiquing").
+gender("Sofia Eaves", "female").

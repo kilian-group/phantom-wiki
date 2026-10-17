@@ -1,0 +1,17 @@
+mother("Rogelio Mckenna", "Belia Mckenna").
+father("Rogelio Mckenna", "Nevin Mckenna").
+friend("Rogelio Mckenna", "Ladawn Basham").
+friend("Rogelio Mckenna", "Winfred Basham").
+friend("Rogelio Mckenna", "Skye Swartz").
+friend("Rogelio Mckenna", "Jerry Mahoney").
+friend("Rogelio Mckenna", "Jarrod Ibarra").
+friend("Rogelio Mckenna", "Julius Niles").
+friend("Rogelio Mckenna", "Kory Gibbs").
+friend("Rogelio Mckenna", "Karina Smart").
+friend("Rogelio Mckenna", "Randall Mcgough").
+friend("Rogelio Mckenna", "Micheal Speaks").
+friend("Rogelio Mckenna", "Tommy Booth").
+dob("Rogelio Mckenna", "0474-03-29").
+job("Rogelio Mckenna", "food technologist").
+hobby("Rogelio Mckenna", "life science").
+gender("Rogelio Mckenna", "male").

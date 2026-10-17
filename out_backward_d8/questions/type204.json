@@ -1,0 +1,426 @@
+[
+    {
+        "id": "b02adbf1-262b-4ff1-a5ba-8187c0682ef3",
+        "question": "Who is the oldest friend of the male cousin of the person whose occupation is advice worker?",
+        "solution_traces": "[]",
+        "answer": [
+            "Alison Smock",
+            "Lila Petry"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (friend(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "friend(Y_2, Y_9)",
+                "male_cousin(Y_4, Y_2)",
+                "job(Y_4, \"advice worker\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 204,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "915e5be6-0077-422f-8130-5df6dac43c5e",
+        "question": "Who is the oldest friend of the great-grandchild of the person whose date of birth is 0207-09-08?",
+        "solution_traces": "[]",
+        "answer": [
+            "Gerardo Hornback",
+            "Ora Lizotte"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (friend(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "friend(Y_2, Y_9)",
+                "great_grandchild(Y_4, Y_2)",
+                "dob(Y_4, \"0207-09-08\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 204,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "dbfa7c86-5a68-4357-a20f-b9d8a67c33ae",
+        "question": "Who is the oldest great-grandchild of the great-grandfather of the person whose date of birth is 0305-06-19?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeanelle Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (great_grandchild(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "great_grandchild(Y_2, Y_9)",
+                "great_grandfather(Y_4, Y_2)",
+                "dob(Y_4, \"0305-06-19\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 204,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 1,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "873adfd7-fa81-4643-b1ac-cebfd7c0a134",
+        "question": "Who is the oldest wife of the sibling of the person whose hobby is gongoozling?",
+        "solution_traces": "[]",
+        "answer": [
+            "Noelia Henderson"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (wife(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "wife(Y_2, Y_9)",
+                "sibling(Y_4, Y_2)",
+                "hobby(Y_4, \"gongoozling\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 204,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "079ba856-f9dc-4dd2-b7af-ae0f855718e5",
+        "question": "Who is the oldest parent of the child of the person whose occupation is editorial assistant?",
+        "solution_traces": "[]",
+        "answer": [
+            "Karla Hornback",
+            "Niesha Decosta"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (parent(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "parent(Y_2, Y_9)",
+                "child(Y_4, Y_2)",
+                "job(Y_4, \"editorial assistant\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 204,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "f447872d-dc8a-4f5e-9d90-e226ef4da050",
+        "question": "Who is the oldest grandchild of the great-grandparent of the person whose hobby is martial arts?",
+        "solution_traces": "[]",
+        "answer": [
+            "Abraham Decosta",
+            "Adolph Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandchild(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "grandchild(Y_2, Y_9)",
+                "great_grandparent(Y_4, Y_2)",
+                "hobby(Y_4, \"martial arts\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 204,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "1aec39e3-c4c1-4f04-842c-d60563919af0",
+        "question": "Who is the oldest great-grandparent of the aunt of the person whose date of birth is 0277-07-02?",
+        "solution_traces": "[]",
+        "answer": [
+            "Zoila Decosta"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (great_grandparent(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "great_grandparent(Y_2, Y_9)",
+                "aunt(Y_4, Y_2)",
+                "dob(Y_4, \"0277-07-02\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 204,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "84856181-cd4d-4d53-a93b-0c9ac10f3c38",
+        "question": "Who is the oldest great-grandparent of the child of the person whose date of birth is 0262-06-04?",
+        "solution_traces": "[]",
+        "answer": [
+            "Andy Clemons"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (great_grandparent(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "great_grandparent(Y_2, Y_9)",
+                "child(Y_4, Y_2)",
+                "dob(Y_4, \"0262-06-04\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 204,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "ed2614b2-4f1f-42e6-ba08-c13a90875bbb",
+        "question": "Who is the oldest husband of the mother-in-law of the person whose date of birth is 0287-04-22?",
+        "solution_traces": "[]",
+        "answer": [
+            "Elton Griffiths"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (husband(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "husband(Y_2, Y_9)",
+                "mother_in_law(Y_4, Y_2)",
+                "dob(Y_4, \"0287-04-22\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 204,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "4cc289fd-6c0a-4ae9-8444-f2e452894e9b",
+        "question": "Who is the oldest grandchild of the father-in-law of the person whose date of birth is 0286-10-11?",
+        "solution_traces": "[]",
+        "answer": [
+            "Roger Griffiths"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandchild(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "grandchild(Y_2, Y_9)",
+                "father_in_law(Y_4, Y_2)",
+                "dob(Y_4, \"0286-10-11\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 204,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    }
+]

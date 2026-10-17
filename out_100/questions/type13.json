@@ -1,0 +1,452 @@
+[
+    {
+        "id": "b3623cd5-3f26-49cb-8e5a-2ab9d824c157",
+        "question": "Who is older, the child of the person whose hobby is dairy farming or the niece of Jeannine Wexler?",
+        "solution_traces": "[]",
+        "answer": [
+            "Leeann Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "child(Y_4, Y_2)",
+                "hobby(Y_4, \"dairy farming\")",
+                "niece(\"Jeannine Wexler\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 13,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "78788299-1d59-4d60-b04a-9a4f0b3e2c45",
+        "question": "Who is older, the daughter of the person whose date of birth is 0295-05-30 or the nephew of Aubrey Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Williams Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "daughter(Y_4, Y_2)",
+                "dob(Y_4, \"0295-05-30\")",
+                "nephew(\"Aubrey Smock\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 13,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "d3057c78-d91d-40cf-bde1-55068f7b1a65",
+        "question": "Who is older, the sibling of the person whose hobby is shogi or the granddaughter of Shelli Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aubrey Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "sibling(Y_4, Y_2)",
+                "hobby(Y_4, \"shogi\")",
+                "granddaughter(\"Shelli Beltran\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 13,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "daa53f65-546e-4da6-979a-dd8a857bf850",
+        "question": "Who is older, the child of the person whose date of birth is 0177-08-24 or the brother of Isabell Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aubrey Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "child(Y_4, Y_2)",
+                "dob(Y_4, \"0177-08-24\")",
+                "brother(\"Isabell Smock\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 13,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "550c2819-3dd6-43aa-9bc7-78292900b3ab",
+        "question": "Who is older, the friend of the person whose occupation is occupational therapist or the great-aunt of Shelli Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lannie Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "friend(Y_4, Y_2)",
+                "job(Y_4, \"occupational therapist\")",
+                "great_aunt(\"Shelli Beltran\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 13,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "c18ff016-9de7-4c9c-b648-8dcb8c93878c",
+        "question": "Who is older, the father-in-law of the person whose date of birth is 0292-03-17 or the sister-in-law of Dominique Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deane Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "father_in_law(Y_4, Y_2)",
+                "dob(Y_4, \"0292-03-17\")",
+                "sister_in_law(\"Dominique Smock\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 13,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "ca923f74-7467-4fe4-ac42-ac81b65555a2",
+        "question": "Who is older, the uncle of the person whose date of birth is 0236-04-04 or the sister of Aubrey Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aubrey Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "uncle(Y_4, Y_2)",
+                "dob(Y_4, \"0236-04-04\")",
+                "sister(\"Aubrey Smock\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 13,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "aa0c8ef9-bc76-4712-b735-d5a4a666c63e",
+        "question": "Who is older, the grandchild of the person whose occupation is warehouse manager or the friend of Isabell Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "grandchild(Y_4, Y_2)",
+                "job(Y_4, \"warehouse manager\")",
+                "friend(\"Isabell Smock\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 13,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "6ac21191-10ce-460e-998b-244e4d391922",
+        "question": "Who is older, the mother-in-law of the person whose date of birth is 0239-10-28 or the great-grandmother of Aida Wang?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dominique Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "mother_in_law(Y_4, Y_2)",
+                "dob(Y_4, \"0239-10-28\")",
+                "great_grandmother(\"Aida Wang\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 13,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "62159c73-3dd0-42b0-a314-4c882aeb3f8a",
+        "question": "Who is older, the great-granddaughter of the person whose hobby is radio-controlled car racing or the aunt of Johnetta Wang?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeannine Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "great_granddaughter(Y_4, Y_2)",
+                "hobby(Y_4, \"radio-controlled car racing\")",
+                "aunt(\"Johnetta Wang\", Y_8)"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_9",
+            "of",
+            "<name>_10",
+            "?"
+        ],
+        "type": 13,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    }
+]

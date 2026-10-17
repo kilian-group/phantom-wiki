@@ -1,0 +1,20 @@
+sister("Wesley Courson", "Trudy Lennox").
+brother("Wesley Courson", "Lenny Courson").
+mother("Wesley Courson", "Mattie Courson").
+father("Wesley Courson", "Claude Courson").
+son("Wesley Courson", "Everett Courson").
+wife("Wesley Courson", "Phylis Courson").
+friend("Wesley Courson", "Tommy Booth").
+friend("Wesley Courson", "Michael Mckenna").
+friend("Wesley Courson", "Olivia Briscoe").
+friend("Wesley Courson", "Louie Bales").
+friend("Wesley Courson", "Tiffany Mcdonald").
+friend("Wesley Courson", "Myra Eaves").
+friend("Wesley Courson", "Madalene Lebrun").
+friend("Wesley Courson", "Amy Wilke").
+friend("Wesley Courson", "Delbert Courson").
+friend("Wesley Courson", "Mose Jarrett").
+dob("Wesley Courson", "0450-01-01").
+job("Wesley Courson", "public librarian").
+hobby("Wesley Courson", "water sports").
+gender("Wesley Courson", "male").

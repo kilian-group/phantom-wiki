@@ -1,0 +1,17 @@
+mother("Paris Cordova", "Ai Cordova").
+father("Paris Cordova", "Jesus Cordova").
+friend("Paris Cordova", "Milton Littleton").
+friend("Paris Cordova", "Jann Ruth").
+friend("Paris Cordova", "Katy Flores").
+friend("Paris Cordova", "Bill Clement").
+friend("Paris Cordova", "Virgina Noland").
+friend("Paris Cordova", "Rubye Forester").
+friend("Paris Cordova", "Emery Scherer").
+friend("Paris Cordova", "Chris Harlow").
+friend("Paris Cordova", "Lester Bauman").
+friend("Paris Cordova", "Guillermo Lasher").
+friend("Paris Cordova", "Cortez Kinsella").
+dob("Paris Cordova", "0412-10-05").
+job("Paris Cordova", "surveyor").
+hobby("Paris Cordova", "geography").
+gender("Paris Cordova", "male").

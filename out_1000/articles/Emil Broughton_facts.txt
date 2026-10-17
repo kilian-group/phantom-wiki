@@ -1,0 +1,19 @@
+sister("Emil Broughton", "Amanda Broughton").
+brother("Emil Broughton", "Scotty Broughton").
+mother("Emil Broughton", "Anna Broughton").
+father("Emil Broughton", "Darrell Broughton").
+friend("Emil Broughton", "Sharron Palomo").
+friend("Emil Broughton", "Cleveland Capps").
+friend("Emil Broughton", "Jan Estrella").
+friend("Emil Broughton", "Lorenz Deville").
+friend("Emil Broughton", "Seth Mounts").
+friend("Emil Broughton", "Niki Vanmeter").
+friend("Emil Broughton", "Larae Kirksey").
+friend("Emil Broughton", "Maegan Cordova").
+friend("Emil Broughton", "Rickie Burdette").
+friend("Emil Broughton", "Georgina Lebrun").
+friend("Emil Broughton", "Calvin Holliman").
+dob("Emil Broughton", "0407-12-09").
+job("Emil Broughton", "games developer").
+hobby("Emil Broughton", "ant farming").
+gender("Emil Broughton", "male").

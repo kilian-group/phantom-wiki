@@ -1,0 +1,10 @@
+mother("Belva Resendez", "Kerrie Resendez").
+father("Belva Resendez", "Keith Resendez").
+friend("Belva Resendez", "Jacque Haygood").
+friend("Belva Resendez", "Allie Gillam").
+friend("Belva Resendez", "Anna Broughton").
+friend("Belva Resendez", "Zachariah Galvan").
+dob("Belva Resendez", "0515-05-11").
+job("Belva Resendez", "advice worker").
+hobby("Belva Resendez", "photography").
+gender("Belva Resendez", "female").

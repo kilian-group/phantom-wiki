@@ -1,0 +1,16 @@
+sister("Shawnta Plumley", "Janey Plumley").
+mother("Shawnta Plumley", "Lea Plumley").
+father("Shawnta Plumley", "Salvador Plumley").
+friend("Shawnta Plumley", "Eunice Gordy").
+friend("Shawnta Plumley", "Jimmie Smart").
+friend("Shawnta Plumley", "Verona Medellin").
+friend("Shawnta Plumley", "Hollis Theriot").
+friend("Shawnta Plumley", "Valentina Beamon").
+friend("Shawnta Plumley", "Arnulfo Kinsella").
+friend("Shawnta Plumley", "Audra Lester").
+friend("Shawnta Plumley", "Daisy Cordova").
+friend("Shawnta Plumley", "Lukas Mcdonald").
+dob("Shawnta Plumley", "0459-04-02").
+job("Shawnta Plumley", "environmental consultant").
+hobby("Shawnta Plumley", "satellite watching").
+gender("Shawnta Plumley", "female").

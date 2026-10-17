@@ -1,0 +1,11 @@
+daughter("Tashina Vandenberg", "Anna Vandenberg").
+husband("Tashina Vandenberg", "Eli Vandenberg").
+friend("Tashina Vandenberg", "Richard Oberg").
+friend("Tashina Vandenberg", "Aurelia Dishman").
+friend("Tashina Vandenberg", "Charley Vandenberg").
+friend("Tashina Vandenberg", "Chrissy Mcgough").
+friend("Tashina Vandenberg", "Marion Wilke").
+dob("Tashina Vandenberg", "0255-11-11").
+job("Tashina Vandenberg", "astronomer").
+hobby("Tashina Vandenberg", "base jumping").
+gender("Tashina Vandenberg", "female").

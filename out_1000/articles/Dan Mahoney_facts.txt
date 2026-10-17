@@ -1,0 +1,16 @@
+sister("Dan Mahoney", "Alix Mahoney").
+sister("Dan Mahoney", "Lynda Mahoney").
+brother("Dan Mahoney", "Jerry Mahoney").
+mother("Dan Mahoney", "Germaine Mahoney").
+father("Dan Mahoney", "Frankie Mahoney").
+friend("Dan Mahoney", "Luisa Oliveira").
+friend("Dan Mahoney", "Annabell Horan").
+friend("Dan Mahoney", "Chrissy Mcgough").
+friend("Dan Mahoney", "Jackie Vandenberg").
+friend("Dan Mahoney", "Rayna Upton").
+friend("Dan Mahoney", "Anneliese Pellegrino").
+friend("Dan Mahoney", "Noreen Cordova").
+dob("Dan Mahoney", "0381-07-09").
+job("Dan Mahoney", "public relations account executive").
+hobby("Dan Mahoney", "lotology").
+gender("Dan Mahoney", "male").

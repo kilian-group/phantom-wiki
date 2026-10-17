@@ -1,0 +1,9 @@
+son("Johnnie Pannell", "Quincy Pannell").
+daughter("Johnnie Pannell", "Samantha Earnest").
+husband("Johnnie Pannell", "Ian Pannell").
+friend("Johnnie Pannell", "Effie Schoonmaker").
+friend("Johnnie Pannell", "Trevor Saari").
+dob("Johnnie Pannell", "0289-11-01").
+job("Johnnie Pannell", "rural practice surveyor").
+hobby("Johnnie Pannell", "gymnastics").
+gender("Johnnie Pannell", "female").

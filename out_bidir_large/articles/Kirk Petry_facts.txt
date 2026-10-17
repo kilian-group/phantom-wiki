@@ -1,0 +1,15 @@
+daughter("Kirk Petry", "Lila Petry").
+wife("Kirk Petry", "Reyna Petry").
+friend("Kirk Petry", "Rosendo Skaggs").
+friend("Kirk Petry", "Windy Mckenna").
+friend("Kirk Petry", "Reggie Earnest").
+friend("Kirk Petry", "Rosanna Palermo").
+friend("Kirk Petry", "Charlie Kovach").
+friend("Kirk Petry", "Jules Levy").
+friend("Kirk Petry", "Olivia Griffiths").
+friend("Kirk Petry", "Ricardo Hackworth").
+friend("Kirk Petry", "Rufus Brook").
+dob("Kirk Petry", "0265-12-24").
+job("Kirk Petry", "hospital pharmacist").
+hobby("Kirk Petry", "entrepreneurship").
+gender("Kirk Petry", "male").

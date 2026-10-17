@@ -1,0 +1,15 @@
+brother("Christen Weise", "Graham Weise").
+mother("Christen Weise", "Edwina Weise").
+father("Christen Weise", "Juan Weise").
+friend("Christen Weise", "Annette Rudolph").
+friend("Christen Weise", "Janis Younger").
+friend("Christen Weise", "Mari Carreon").
+friend("Christen Weise", "Tabetha Hsu").
+friend("Christen Weise", "Meghan Keyes").
+friend("Christen Weise", "Artie Putnam").
+friend("Christen Weise", "Jamal Marr").
+friend("Christen Weise", "Lindy Dillion").
+dob("Christen Weise", "0483-01-18").
+job("Christen Weise", "archivist").
+hobby("Christen Weise", "field hockey").
+gender("Christen Weise", "female").

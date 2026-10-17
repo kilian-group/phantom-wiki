@@ -1,0 +1,14 @@
+mother("Domonique Cedillo", "Shirleen Abraham").
+father("Domonique Cedillo", "Dillon Abraham").
+son("Domonique Cedillo", "Adalberto Cedillo").
+son("Domonique Cedillo", "Ron Cedillo").
+daughter("Domonique Cedillo", "Elissa Cedillo").
+husband("Domonique Cedillo", "Kasey Cedillo").
+friend("Domonique Cedillo", "Cary Etheridge").
+friend("Domonique Cedillo", "Rae Mcnew").
+friend("Domonique Cedillo", "Eduardo Earnest").
+friend("Domonique Cedillo", "Bee Cedillo").
+dob("Domonique Cedillo", "0271-10-05").
+job("Domonique Cedillo", "chiropractor").
+hobby("Domonique Cedillo", "hobby horsing").
+gender("Domonique Cedillo", "female").

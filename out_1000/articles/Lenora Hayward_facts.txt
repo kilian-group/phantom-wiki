@@ -1,0 +1,17 @@
+mother("Lenora Hayward", "Alexandria Hayward").
+father("Lenora Hayward", "Bradford Hayward").
+friend("Lenora Hayward", "Fredrick Cordova").
+friend("Lenora Hayward", "Milton Littleton").
+friend("Lenora Hayward", "Dani Dalton").
+friend("Lenora Hayward", "Karin Machado").
+friend("Lenora Hayward", "Alphonso Goff").
+friend("Lenora Hayward", "Bertram Wylie").
+friend("Lenora Hayward", "Keith Noland").
+friend("Lenora Hayward", "Shelly Fredrick").
+friend("Lenora Hayward", "Luisa Estrella").
+friend("Lenora Hayward", "Zona Jarrett").
+friend("Lenora Hayward", "Garrett Bauman").
+dob("Lenora Hayward", "0509-04-20").
+job("Lenora Hayward", "corporate investment banker").
+hobby("Lenora Hayward", "fishkeeping").
+gender("Lenora Hayward", "female").

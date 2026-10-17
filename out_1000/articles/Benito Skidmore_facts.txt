@@ -1,0 +1,13 @@
+daughter("Benito Skidmore", "Ardath Skidmore").
+daughter("Benito Skidmore", "Chelsea Skidmore").
+daughter("Benito Skidmore", "Velia Capps").
+wife("Benito Skidmore", "Tamala Skidmore").
+friend("Benito Skidmore", "Williams Alessi").
+friend("Benito Skidmore", "Perry Kell").
+friend("Benito Skidmore", "Irwin Dalton").
+friend("Benito Skidmore", "Drew Smart").
+friend("Benito Skidmore", "Sang Cheney").
+dob("Benito Skidmore", "0347-10-09").
+job("Benito Skidmore", "tour manager").
+hobby("Benito Skidmore", "beauty pageants").
+gender("Benito Skidmore", "male").

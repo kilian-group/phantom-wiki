@@ -1,0 +1,14 @@
+mother("Ethan Younger", "Toshiko Younger").
+father("Ethan Younger", "Al Younger").
+friend("Ethan Younger", "Lona Corwin").
+friend("Ethan Younger", "Dino Donner").
+friend("Ethan Younger", "Tamara Wylie").
+friend("Ethan Younger", "Luke Wilke").
+friend("Ethan Younger", "Javier Scherer").
+friend("Ethan Younger", "Edris Best").
+friend("Ethan Younger", "Faith Linden").
+friend("Ethan Younger", "Kyong Eaves").
+dob("Ethan Younger", "0487-04-29").
+job("Ethan Younger", "soil scientist").
+hobby("Ethan Younger", "learning").
+gender("Ethan Younger", "male").

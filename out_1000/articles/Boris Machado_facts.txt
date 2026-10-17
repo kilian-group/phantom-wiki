@@ -1,0 +1,24 @@
+mother("Boris Machado", "Tawana Machado").
+father("Boris Machado", "Jonas Machado").
+son("Boris Machado", "Olin Machado").
+wife("Boris Machado", "Karin Machado").
+friend("Boris Machado", "Jenniffer Younger").
+friend("Boris Machado", "Elroy Goff").
+friend("Boris Machado", "Glenn Levine").
+friend("Boris Machado", "Kip Murdoch").
+friend("Boris Machado", "Holley Fredrick").
+friend("Boris Machado", "Millard Fordham").
+friend("Boris Machado", "Sona Fredrick").
+friend("Boris Machado", "Tracy Fredrick").
+friend("Boris Machado", "Gena Shaw").
+friend("Boris Machado", "Jann Upton").
+friend("Boris Machado", "Rashad Nolasco").
+friend("Boris Machado", "Jennifer Paynter").
+friend("Boris Machado", "Jonathon Callender").
+friend("Boris Machado", "Sammy Dillion").
+friend("Boris Machado", "Cleo Dangelo").
+friend("Boris Machado", "Derek Valladares").
+dob("Boris Machado", "0466-01-12").
+job("Boris Machado", "exhibition designer").
+hobby("Boris Machado", "amateur astronomy").
+gender("Boris Machado", "male").

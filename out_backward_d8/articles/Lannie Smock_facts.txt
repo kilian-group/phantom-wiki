@@ -1,0 +1,12 @@
+son("Lannie Smock", "Aubrey Smock").
+son("Lannie Smock", "Gene Smock").
+daughter("Lannie Smock", "Deane Smock").
+daughter("Lannie Smock", "Isabell Smock").
+husband("Lannie Smock", "Alvaro Smock").
+friend("Lannie Smock", "Marcelino Mcnew").
+friend("Lannie Smock", "Randell Pannell").
+friend("Lannie Smock", "Ned Cedillo").
+dob("Lannie Smock", "0177-08-24").
+job("Lannie Smock", "music tutor").
+hobby("Lannie Smock", "research").
+gender("Lannie Smock", "female").

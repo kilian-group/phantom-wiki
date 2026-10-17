@@ -1,0 +1,10 @@
+mother("Ligia Wylie", "Tamara Wylie").
+father("Ligia Wylie", "Bertram Wylie").
+friend("Ligia Wylie", "Susie Medellin").
+friend("Ligia Wylie", "Gregory Keister").
+friend("Ligia Wylie", "Jame Carty").
+friend("Ligia Wylie", "Josette Goff").
+dob("Ligia Wylie", "0462-11-27").
+job("Ligia Wylie", "advertising account executive").
+hobby("Ligia Wylie", "beekeeping").
+gender("Ligia Wylie", "female").

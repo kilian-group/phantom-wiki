@@ -1,0 +1,21 @@
+son("Ricky Carswell", "Derek Carswell").
+wife("Ricky Carswell", "Katherine Carswell").
+friend("Ricky Carswell", "Sheila Putnam").
+friend("Ricky Carswell", "Tamala Skidmore").
+friend("Ricky Carswell", "Emma Wellington").
+friend("Ricky Carswell", "Ollie Kell").
+friend("Ricky Carswell", "Jewell Fordham").
+friend("Ricky Carswell", "Sharolyn Basham").
+friend("Ricky Carswell", "Viva Jefferson").
+friend("Ricky Carswell", "Wanda Murray").
+friend("Ricky Carswell", "Adella Townsend").
+friend("Ricky Carswell", "James Arteaga").
+friend("Ricky Carswell", "Adalberto Dacosta").
+friend("Ricky Carswell", "Boris Gilliam").
+friend("Ricky Carswell", "Emory Bond").
+friend("Ricky Carswell", "Jacinta Gilliam").
+friend("Ricky Carswell", "Lashawnda Fordham").
+dob("Ricky Carswell", "0494-05-05").
+job("Ricky Carswell", "civil service administrator").
+hobby("Ricky Carswell", "fusilately").
+gender("Ricky Carswell", "male").

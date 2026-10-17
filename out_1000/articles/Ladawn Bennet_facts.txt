@@ -1,0 +1,13 @@
+sister("Ladawn Bennet", "Keri Bennet").
+mother("Ladawn Bennet", "Monika Bennet").
+father("Ladawn Bennet", "Clement Bennet").
+friend("Ladawn Bennet", "Gayla Sanborn").
+friend("Ladawn Bennet", "Marilyn Sutphin").
+friend("Ladawn Bennet", "Maurice Kirksey").
+friend("Ladawn Bennet", "Cordelia Murray").
+friend("Ladawn Bennet", "Danny Cowart").
+friend("Ladawn Bennet", "Jorge Murray").
+dob("Ladawn Bennet", "0434-04-06").
+job("Ladawn Bennet", "product development scientist").
+hobby("Ladawn Bennet", "footbag").
+gender("Ladawn Bennet", "female").

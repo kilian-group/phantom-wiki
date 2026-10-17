@@ -1,0 +1,13 @@
+sister("Matilda Chou", "Scottie Steadman").
+mother("Matilda Chou", "Ginger Chou").
+father("Matilda Chou", "Jamel Chou").
+friend("Matilda Chou", "Marguerite Putnam").
+friend("Matilda Chou", "Jana Galvan").
+friend("Matilda Chou", "Chauncey Wilkie").
+friend("Matilda Chou", "Patty Kell").
+friend("Matilda Chou", "Kimberely Corso").
+friend("Matilda Chou", "Loren Littleton").
+dob("Matilda Chou", "0415-03-27").
+job("Matilda Chou", "politician's assistant").
+hobby("Matilda Chou", "research").
+gender("Matilda Chou", "female").

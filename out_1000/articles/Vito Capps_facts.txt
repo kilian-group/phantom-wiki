@@ -1,0 +1,16 @@
+brother("Vito Capps", "Rogelio Capps").
+mother("Vito Capps", "Marilynn Capps").
+father("Vito Capps", "Brandon Capps").
+daughter("Vito Capps", "Eunice Prater").
+wife("Vito Capps", "Iluminada Capps").
+friend("Vito Capps", "Luke Wilke").
+friend("Vito Capps", "Rheba Winn").
+friend("Vito Capps", "Sheila Conner").
+friend("Vito Capps", "Annette Rudolph").
+friend("Vito Capps", "Wilson Donner").
+friend("Vito Capps", "Delbert Fredrick").
+friend("Vito Capps", "Hollis Theriot").
+dob("Vito Capps", "0384-06-27").
+job("Vito Capps", "materials engineer").
+hobby("Vito Capps", "pickleball").
+gender("Vito Capps", "male").

@@ -1,0 +1,20 @@
+sister("Juanita Eaves", "Germaine Mahoney").
+mother("Juanita Eaves", "Lera Clement").
+father("Juanita Eaves", "Bill Clement").
+son("Juanita Eaves", "Denny Eaves").
+son("Juanita Eaves", "Foster Eaves").
+son("Juanita Eaves", "Mickey Eaves").
+daughter("Juanita Eaves", "Geri Dana").
+daughter("Juanita Eaves", "Ivette Eaves").
+daughter("Juanita Eaves", "Sofia Eaves").
+husband("Juanita Eaves", "Russel Eaves").
+friend("Juanita Eaves", "Katina Younger").
+friend("Juanita Eaves", "Latrina Mathes").
+friend("Juanita Eaves", "Roxy Niles").
+friend("Juanita Eaves", "Bess Autry").
+friend("Juanita Eaves", "Antionette Hamann").
+friend("Juanita Eaves", "Georgine Mahoney").
+dob("Juanita Eaves", "0347-12-17").
+job("Juanita Eaves", "pensions consultant").
+hobby("Juanita Eaves", "cartophily").
+gender("Juanita Eaves", "female").

@@ -1,0 +1,17 @@
+mother("Olin Fordham", "Desiree Fordham").
+father("Olin Fordham", "Hans Fordham").
+daughter("Olin Fordham", "Rena Palm").
+daughter("Olin Fordham", "Scottie Fordham").
+wife("Olin Fordham", "Jewell Fordham").
+friend("Olin Fordham", "Barabara Peeler").
+friend("Olin Fordham", "Shante Ruth").
+friend("Olin Fordham", "Shizuko Eaves").
+friend("Olin Fordham", "Brad Ballard").
+friend("Olin Fordham", "Deangelo Marr").
+friend("Olin Fordham", "Krystal Joubert").
+friend("Olin Fordham", "Stan Kell").
+friend("Olin Fordham", "Desiree Fordham").
+dob("Olin Fordham", "0305-03-12").
+job("Olin Fordham", "pension scheme manager").
+hobby("Olin Fordham", "auto audiophilia").
+gender("Olin Fordham", "male").

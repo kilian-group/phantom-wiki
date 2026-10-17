@@ -1,0 +1,12 @@
+mother("Geoffrey Musick", "Nedra Musick").
+father("Geoffrey Musick", "Ricky Musick").
+friend("Geoffrey Musick", "Ester Yarbrough").
+friend("Geoffrey Musick", "Brian Galvan").
+friend("Geoffrey Musick", "Levi Kell").
+friend("Geoffrey Musick", "Derek Murchison").
+friend("Geoffrey Musick", "Annabell Molina").
+friend("Geoffrey Musick", "Mac Goff").
+dob("Geoffrey Musick", "0429-10-17").
+job("Geoffrey Musick", "banker").
+hobby("Geoffrey Musick", "orienteering").
+gender("Geoffrey Musick", "male").

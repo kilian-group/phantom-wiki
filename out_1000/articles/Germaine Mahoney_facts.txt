@@ -1,0 +1,19 @@
+sister("Germaine Mahoney", "Juanita Eaves").
+mother("Germaine Mahoney", "Lera Clement").
+father("Germaine Mahoney", "Bill Clement").
+son("Germaine Mahoney", "Dan Mahoney").
+son("Germaine Mahoney", "Jerry Mahoney").
+daughter("Germaine Mahoney", "Alix Mahoney").
+daughter("Germaine Mahoney", "Lynda Mahoney").
+husband("Germaine Mahoney", "Frankie Mahoney").
+friend("Germaine Mahoney", "Lura Leclair").
+friend("Germaine Mahoney", "Paula Gerber").
+friend("Germaine Mahoney", "Deshawn Medellin").
+friend("Germaine Mahoney", "Ardath Skidmore").
+friend("Germaine Mahoney", "Ashleigh Galvan").
+friend("Germaine Mahoney", "Seth Mounts").
+friend("Germaine Mahoney", "Elyse Mahoney").
+dob("Germaine Mahoney", "0350-04-10").
+job("Germaine Mahoney", "general practice doctor").
+hobby("Germaine Mahoney", "thru-hiking").
+gender("Germaine Mahoney", "female").

@@ -1,0 +1,19 @@
+brother("Cordelia Murray", "Ellis Brumbaugh").
+brother("Cordelia Murray", "Paris Brumbaugh").
+mother("Cordelia Murray", "Renate Brumbaugh").
+father("Cordelia Murray", "Wallace Brumbaugh").
+son("Cordelia Murray", "Dane Murray").
+son("Cordelia Murray", "Jerald Murray").
+son("Cordelia Murray", "Jorge Murray").
+daughter("Cordelia Murray", "Jo Murray").
+husband("Cordelia Murray", "Phil Murray").
+friend("Cordelia Murray", "Ty Mahoney").
+friend("Cordelia Murray", "Ladawn Bennet").
+friend("Cordelia Murray", "Glenn Levine").
+friend("Cordelia Murray", "Selena Donner").
+friend("Cordelia Murray", "Ardath Carswell").
+friend("Cordelia Murray", "Earle Harlow").
+dob("Cordelia Murray", "0443-06-04").
+job("Cordelia Murray", "actuary").
+hobby("Cordelia Murray", "mineral collecting").
+gender("Cordelia Murray", "female").

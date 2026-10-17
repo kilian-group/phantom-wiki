@@ -1,0 +1,27 @@
+sister("Donnie Mcgough", "Larue Macias").
+sister("Donnie Mcgough", "Leonora Depriest").
+sister("Donnie Mcgough", "Racquel Horan").
+brother("Donnie Mcgough", "Julio Mcgough").
+brother("Donnie Mcgough", "Wilbur Mcgough").
+mother("Donnie Mcgough", "Myrl Mcgough").
+father("Donnie Mcgough", "Randall Mcgough").
+son("Donnie Mcgough", "Danilo Mcgough").
+wife("Donnie Mcgough", "Tonia Mcgough").
+friend("Donnie Mcgough", "Naomi Lai").
+friend("Donnie Mcgough", "Rheba Winn").
+friend("Donnie Mcgough", "Drema Jefferson").
+friend("Donnie Mcgough", "Hector Autry").
+friend("Donnie Mcgough", "Janiece Cordova").
+friend("Donnie Mcgough", "Christina Barrows").
+friend("Donnie Mcgough", "Jamie Bellows").
+friend("Donnie Mcgough", "Deloris Swartz").
+friend("Donnie Mcgough", "Buffy Mccurry").
+friend("Donnie Mcgough", "Charles Levine").
+friend("Donnie Mcgough", "Anderson Fredrick").
+friend("Donnie Mcgough", "Brandon Capps").
+friend("Donnie Mcgough", "Dawn Rinehart").
+friend("Donnie Mcgough", "Kenneth Rinehart").
+dob("Donnie Mcgough", "0441-08-09").
+job("Donnie Mcgough", "firefighter").
+hobby("Donnie Mcgough", "video game collecting").
+gender("Donnie Mcgough", "male").

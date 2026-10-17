@@ -1,0 +1,14 @@
+son("Solomon Strong", "Stuart Strong").
+daughter("Solomon Strong", "Lauren Strong").
+wife("Solomon Strong", "Stacy Strong").
+friend("Solomon Strong", "Diane Burkhalter").
+friend("Solomon Strong", "Nestor Lasher").
+friend("Solomon Strong", "Dortha Ingle").
+friend("Solomon Strong", "Romona Littleton").
+friend("Solomon Strong", "Antionette Hamann").
+friend("Solomon Strong", "Alix Mahoney").
+friend("Solomon Strong", "Judith Holliman").
+dob("Solomon Strong", "0432-03-12").
+job("Solomon Strong", "chartered certified accountant").
+hobby("Solomon Strong", "ant farming").
+gender("Solomon Strong", "male").

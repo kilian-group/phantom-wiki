@@ -1,0 +1,13 @@
+daughter("Frederic Staten", "Coral Staten").
+wife("Frederic Staten", "Lavern Staten").
+friend("Frederic Staten", "Hollis Keyes").
+friend("Frederic Staten", "Bruce Burger").
+friend("Frederic Staten", "Addie Shilling").
+friend("Frederic Staten", "Hosea Hamlin").
+friend("Frederic Staten", "Kanesha Booth").
+friend("Frederic Staten", "Viva Jefferson").
+friend("Frederic Staten", "Veronica Cowart").
+dob("Frederic Staten", "0439-03-25").
+job("Frederic Staten", "lawyer").
+hobby("Frederic Staten", "poker").
+gender("Frederic Staten", "male").

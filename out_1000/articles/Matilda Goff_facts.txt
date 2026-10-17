@@ -1,0 +1,11 @@
+son("Matilda Goff", "Michael Goff").
+daughter("Matilda Goff", "Marguerite Lebrun").
+husband("Matilda Goff", "Mac Goff").
+friend("Matilda Goff", "Shannon Fredrick").
+friend("Matilda Goff", "Valentina Robinett").
+friend("Matilda Goff", "Antony Machado").
+friend("Matilda Goff", "Buffy Mccurry").
+dob("Matilda Goff", "0365-07-21").
+job("Matilda Goff", "town planner").
+hobby("Matilda Goff", "snowshoeing").
+gender("Matilda Goff", "female").

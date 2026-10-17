@@ -1,0 +1,10 @@
+brother("Luisa Hornback", "Reinaldo Hornback").
+mother("Luisa Hornback", "Karla Hornback").
+father("Luisa Hornback", "Gerardo Hornback").
+friend("Luisa Hornback", "Zoraida Palermo").
+friend("Luisa Hornback", "Ulysses Nicolas").
+friend("Luisa Hornback", "Mickey Earnest").
+dob("Luisa Hornback", "0213-12-12").
+job("Luisa Hornback", "psychotherapist").
+hobby("Luisa Hornback", "films").
+gender("Luisa Hornback", "female").

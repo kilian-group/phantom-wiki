@@ -1,0 +1,21 @@
+mother("Nickolas Holtz", "Jeana Holtz").
+father("Nickolas Holtz", "Preston Holtz").
+son("Nickolas Holtz", "Truman Holtz").
+wife("Nickolas Holtz", "Fatimah Holtz").
+friend("Nickolas Holtz", "Rubye Forester").
+friend("Nickolas Holtz", "Moshe Macias").
+friend("Nickolas Holtz", "Wade Sheridan").
+friend("Nickolas Holtz", "Nelly Jarrett").
+friend("Nickolas Holtz", "Donnie Crocker").
+friend("Nickolas Holtz", "Zelda Sharma").
+friend("Nickolas Holtz", "Juanita Dana").
+friend("Nickolas Holtz", "Ramiro Dana").
+friend("Nickolas Holtz", "Lance Carreon").
+friend("Nickolas Holtz", "Patrice Dunlap").
+friend("Nickolas Holtz", "Evelia Waltz").
+friend("Nickolas Holtz", "Jacque Greene").
+friend("Nickolas Holtz", "Brad Ballard").
+dob("Nickolas Holtz", "0450-12-22").
+job("Nickolas Holtz", "secondary school teacher").
+hobby("Nickolas Holtz", "cribbage").
+gender("Nickolas Holtz", "male").

@@ -1,0 +1,17 @@
+daughter("Rhea Burnett", "Ashleigh Galvan").
+husband("Rhea Burnett", "Gene Burnett").
+friend("Rhea Burnett", "Everett Courson").
+friend("Rhea Burnett", "Kimberely Corso").
+friend("Rhea Burnett", "Sammie Simons").
+friend("Rhea Burnett", "Louie Bales").
+friend("Rhea Burnett", "Jonathan Goff").
+friend("Rhea Burnett", "Tim Goff").
+friend("Rhea Burnett", "Vernon Peabody").
+friend("Rhea Burnett", "Hank Gerber").
+friend("Rhea Burnett", "Katherine Carswell").
+friend("Rhea Burnett", "Rogelio Capps").
+friend("Rhea Burnett", "Brianne Layton").
+dob("Rhea Burnett", "0320-02-20").
+job("Rhea Burnett", "insurance broker").
+hobby("Rhea Burnett", "radio-controlled model playing").
+gender("Rhea Burnett", "female").

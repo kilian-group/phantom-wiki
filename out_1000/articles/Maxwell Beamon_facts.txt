@@ -1,0 +1,19 @@
+sister("Maxwell Beamon", "Goldie Beamon").
+mother("Maxwell Beamon", "Valentina Beamon").
+father("Maxwell Beamon", "Mickey Beamon").
+daughter("Maxwell Beamon", "Evelia Senn").
+daughter("Maxwell Beamon", "Georgette Haygood").
+daughter("Maxwell Beamon", "Kenda Beamon").
+wife("Maxwell Beamon", "Karol Beamon").
+friend("Maxwell Beamon", "Nelly Kinsella").
+friend("Maxwell Beamon", "Jacinta Simons").
+friend("Maxwell Beamon", "Juanita Dana").
+friend("Maxwell Beamon", "Shizuko Eaves").
+friend("Maxwell Beamon", "Anna Broughton").
+friend("Maxwell Beamon", "Elaine Marr").
+friend("Maxwell Beamon", "Mattie Courson").
+friend("Maxwell Beamon", "Iva Parish").
+dob("Maxwell Beamon", "0423-12-14").
+job("Maxwell Beamon", "dancer").
+hobby("Maxwell Beamon", "shortwave listening").
+gender("Maxwell Beamon", "male").

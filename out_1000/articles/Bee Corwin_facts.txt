@@ -1,0 +1,16 @@
+sister("Bee Corwin", "Delpha Younger").
+brother("Bee Corwin", "Nathan Corwin").
+brother("Bee Corwin", "Solomon Corwin").
+mother("Bee Corwin", "Rochelle Corwin").
+father("Bee Corwin", "Spencer Corwin").
+friend("Bee Corwin", "Jimmie Smart").
+friend("Bee Corwin", "Morgan Perrine").
+friend("Bee Corwin", "Rogelio Capps").
+friend("Bee Corwin", "Noreen Sanborn").
+friend("Bee Corwin", "Desmond Lester").
+friend("Bee Corwin", "Shannon Flores").
+friend("Bee Corwin", "Ty Mahoney").
+dob("Bee Corwin", "0375-05-26").
+job("Bee Corwin", "network engineer").
+hobby("Bee Corwin", "shooting sports").
+gender("Bee Corwin", "female").

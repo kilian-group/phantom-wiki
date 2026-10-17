@@ -1,0 +1,492 @@
+[
+    {
+        "id": "d87b52ce-00c3-41db-82ac-601b252b4d79",
+        "question": "Who was born first, the mother of the person whose date of birth is 0292-04-16 or the cousin of the cousin of Rolland Mckenna?",
+        "solution_traces": "[]",
+        "answer": [
+            "Hanh Boutte"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "mother(Y_4, Y_2)",
+                "dob(Y_4, \"0292-04-16\")",
+                "cousin(Y_12, Y_10)",
+                "cousin(\"Rolland Mckenna\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 81,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 1,
+            "composite": 8,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "d67f4fa7-a7b2-4cb2-9bd7-b3b837af804a",
+        "question": "Who was born first, the brother of the person whose hobby is snowmobiling or the sister of the friend of Daniel Brannan?",
+        "solution_traces": "[]",
+        "answer": [
+            "Anthony Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "brother(Y_4, Y_2)",
+                "hobby(Y_4, \"snowmobiling\")",
+                "sister(Y_12, Y_10)",
+                "friend(\"Daniel Brannan\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 81,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "f1dce2f8-6e0b-4655-a33b-80d5ed6a96e9",
+        "question": "Who was born first, the wife of the person whose occupation is music therapist or the husband of the friend of Maxwell Henderson?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeana Clemons"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "wife(Y_4, Y_2)",
+                "job(Y_4, \"music therapist\")",
+                "husband(Y_12, Y_10)",
+                "friend(\"Maxwell Henderson\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 81,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "7c71e92b-9aa1-4e3c-814e-b8d2071a3a01",
+        "question": "Who was born first, the brother of the person whose hobby is phillumeny or the great-granddaughter of the parent of Shelli Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Anibal Schoonmaker"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "brother(Y_4, Y_2)",
+                "hobby(Y_4, \"phillumeny\")",
+                "great_granddaughter(Y_12, Y_10)",
+                "parent(\"Shelli Beltran\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 81,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "4db8ca7d-cebb-414e-bc99-0496cdcb3bc1",
+        "question": "Who was born first, the brother of the person whose date of birth is 0337-08-25 or the father-in-law of the father of Charlie Kovach?",
+        "solution_traces": "[]",
+        "answer": [
+            "Adolph Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "brother(Y_4, Y_2)",
+                "dob(Y_4, \"0337-08-25\")",
+                "father_in_law(Y_12, Y_10)",
+                "father(\"Charlie Kovach\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 81,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "8c40c5b1-ab05-4a2e-975f-71a3b5dc36e6",
+        "question": "Who was born first, the wife of the person whose occupation is chief marketing officer or the great-grandfather of the father-in-law of Deborah Cormier?",
+        "solution_traces": "[]",
+        "answer": [
+            "Bert Deluna"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "wife(Y_4, Y_2)",
+                "job(Y_4, \"chief marketing officer\")",
+                "great_grandfather(Y_12, Y_10)",
+                "father_in_law(\"Deborah Cormier\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 81,
+        "reasoning_steps": 8,
+        "difficulty": {
+            "hops": 8,
+            "constraints": 1,
+            "composite": 9,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "47217c3f-da4c-4584-b8fc-aa926df97f75",
+        "question": "Who was born first, the great-grandparent of the person whose date of birth is 0311-12-14 or the granddaughter of the father of Bruce Mason?",
+        "solution_traces": "[]",
+        "answer": [
+            "Caleb Haber"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "great_grandparent(Y_4, Y_2)",
+                "dob(Y_4, \"0311-12-14\")",
+                "granddaughter(Y_12, Y_10)",
+                "father(\"Bruce Mason\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 81,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 1,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "8fb261e6-70fd-48ae-8718-088101129118",
+        "question": "Who was born first, the friend of the person whose date of birth is 0356-03-30 or the niece of the aunt of Lenore Hackworth?",
+        "solution_traces": "[]",
+        "answer": [
+            "Bryant Bradberry"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "friend(Y_4, Y_2)",
+                "dob(Y_4, \"0356-03-30\")",
+                "niece(Y_12, Y_10)",
+                "aunt(\"Lenore Hackworth\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 81,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "c8cfc9cc-9214-45fa-8c8f-53620569f700",
+        "question": "Who was born first, the son-in-law of the person whose date of birth is 0259-07-27 or the child of the great-grandmother of Joel Palermo?",
+        "solution_traces": "[]",
+        "answer": [
+            "Cary Etheridge"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "son_in_law(Y_4, Y_2)",
+                "dob(Y_4, \"0259-07-27\")",
+                "child(Y_12, Y_10)",
+                "great_grandmother(\"Joel Palermo\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 81,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 1,
+            "composite": 8,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "87587634-84b5-4f27-8aab-d73f66626c45",
+        "question": "Who was born first, the friend of the person whose date of birth is 0283-09-15 or the great-grandchild of the father of Darin Shirk?",
+        "solution_traces": "[]",
+        "answer": [
+            "Hanh Mohan"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "friend(Y_4, Y_2)",
+                "dob(Y_4, \"0283-09-15\")",
+                "great_grandchild(Y_12, Y_10)",
+                "father(\"Darin Shirk\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 81,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    }
+]

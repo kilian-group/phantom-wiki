@@ -1,0 +1,19 @@
+brother("Jamie Upton", "Louis Upton").
+mother("Jamie Upton", "Rayna Upton").
+father("Jamie Upton", "Jamison Upton").
+friend("Jamie Upton", "Mattie Courson").
+friend("Jamie Upton", "Zackary Wilkie").
+friend("Jamie Upton", "Luther Peeler").
+friend("Jamie Upton", "Nelly Kinsella").
+friend("Jamie Upton", "Bert Simons").
+friend("Jamie Upton", "Viva Simons").
+friend("Jamie Upton", "Austin Boutte").
+friend("Jamie Upton", "Hope Arteaga").
+friend("Jamie Upton", "Deja Gilliam").
+friend("Jamie Upton", "Lindy Kavanaugh").
+friend("Jamie Upton", "Brigette Medeiros").
+friend("Jamie Upton", "Johnna Macias").
+dob("Jamie Upton", "0398-11-16").
+job("Jamie Upton", "oncologist").
+hobby("Jamie Upton", "gold prospecting").
+gender("Jamie Upton", "male").

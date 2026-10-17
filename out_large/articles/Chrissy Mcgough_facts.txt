@@ -1,0 +1,11 @@
+son("Chrissy Mcgough", "Randall Mcgough").
+daughter("Chrissy Mcgough", "Ophelia Mcgough").
+husband("Chrissy Mcgough", "Elroy Mcgough").
+friend("Chrissy Mcgough", "Tashina Vandenberg").
+friend("Chrissy Mcgough", "Kirsten Oberg").
+friend("Chrissy Mcgough", "Mason Oberg").
+friend("Chrissy Mcgough", "Sherrie Remillard").
+dob("Chrissy Mcgough", "0289-07-11").
+job("Chrissy Mcgough", "geoscientist").
+hobby("Chrissy Mcgough", "stone collecting").
+gender("Chrissy Mcgough", "female").

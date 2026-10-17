@@ -1,0 +1,11 @@
+son("Jeanelle Resendez", "Keith Resendez").
+husband("Jeanelle Resendez", "Salvatore Resendez").
+friend("Jeanelle Resendez", "Scottie Fordham").
+friend("Jeanelle Resendez", "Nicholle Dana").
+friend("Jeanelle Resendez", "Xiao Gailey").
+friend("Jeanelle Resendez", "Reita Pugliese").
+friend("Jeanelle Resendez", "Connie Cushman").
+dob("Jeanelle Resendez", "0453-10-22").
+job("Jeanelle Resendez", "planning and development surveyor").
+hobby("Jeanelle Resendez", "web design").
+gender("Jeanelle Resendez", "female").

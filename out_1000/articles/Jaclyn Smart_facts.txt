@@ -1,0 +1,12 @@
+son("Jaclyn Smart", "Juan Smart").
+son("Jaclyn Smart", "Manuel Smart").
+daughter("Jaclyn Smart", "Nelly Smart").
+husband("Jaclyn Smart", "Buck Smart").
+friend("Jaclyn Smart", "Eugene Geter").
+friend("Jaclyn Smart", "Bridget Lester").
+friend("Jaclyn Smart", "Shamika Mahoney").
+friend("Jaclyn Smart", "Emanuel Mccall").
+dob("Jaclyn Smart", "0456-02-13").
+job("Jaclyn Smart", "music therapist").
+hobby("Jaclyn Smart", "sports science").
+gender("Jaclyn Smart", "female").

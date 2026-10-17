@@ -1,0 +1,8 @@
+sister("Jimmy Cedillo", "Yvette Cedillo").
+brother("Jimmy Cedillo", "Murray Cedillo").
+mother("Jimmy Cedillo", "Lucienne Cedillo").
+father("Jimmy Cedillo", "Ron Cedillo").
+dob("Jimmy Cedillo", "0332-12-16").
+job("Jimmy Cedillo", "company secretary").
+hobby("Jimmy Cedillo", "volleyball").
+gender("Jimmy Cedillo", "male").

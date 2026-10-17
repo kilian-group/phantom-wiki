@@ -1,0 +1,15 @@
+sister("Maurine Layman", "Jann Upton").
+brother("Maurine Layman", "Hyman Layman").
+mother("Maurine Layman", "Essie Layman").
+father("Maurine Layman", "Nico Layman").
+friend("Maurine Layman", "Wyatt Mckenna").
+friend("Maurine Layman", "Miki Mcdonald").
+friend("Maurine Layman", "Chance Mahoney").
+friend("Maurine Layman", "Flora Cushman").
+friend("Maurine Layman", "Pedro Waltz").
+friend("Maurine Layman", "Lynette Macias").
+friend("Maurine Layman", "Kerrie Resendez").
+dob("Maurine Layman", "0343-07-07").
+job("Maurine Layman", "ecologist").
+hobby("Maurine Layman", "dog walking").
+gender("Maurine Layman", "female").

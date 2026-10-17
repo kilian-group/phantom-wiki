@@ -1,0 +1,20 @@
+sister("Ben Sheridan", "Shawna Sheridan").
+brother("Ben Sheridan", "Jayson Sheridan").
+brother("Ben Sheridan", "Wade Sheridan").
+mother("Ben Sheridan", "Shizuko Sheridan").
+father("Ben Sheridan", "Dustin Sheridan").
+friend("Ben Sheridan", "Shandi Jarrett").
+friend("Ben Sheridan", "Aurelia Gordon").
+friend("Ben Sheridan", "Emma Wellington").
+friend("Ben Sheridan", "Geraldine Suh").
+friend("Ben Sheridan", "Ambrose Cordova").
+friend("Ben Sheridan", "Seymour Simons").
+friend("Ben Sheridan", "Karla Linares").
+friend("Ben Sheridan", "Wilson Younger").
+friend("Ben Sheridan", "Kenton Dunlap").
+friend("Ben Sheridan", "Lucienne Gilliam").
+friend("Ben Sheridan", "Kip Murdoch").
+dob("Ben Sheridan", "0428-05-18").
+job("Ben Sheridan", "occupational hygienist").
+hobby("Ben Sheridan", "sociology").
+gender("Ben Sheridan", "male").

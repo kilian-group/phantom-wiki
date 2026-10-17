@@ -1,0 +1,16 @@
+daughter("Andrea Murchison", "Annette Rudolph").
+husband("Andrea Murchison", "Keith Murchison").
+friend("Andrea Murchison", "Brigette Bales").
+friend("Andrea Murchison", "Louie Bales").
+friend("Andrea Murchison", "Geri Dana").
+friend("Andrea Murchison", "Torrie Goff").
+friend("Andrea Murchison", "Sharron Palomo").
+friend("Andrea Murchison", "Almeta Forester").
+friend("Andrea Murchison", "Martin Deville").
+friend("Andrea Murchison", "Belia Mckenna").
+friend("Andrea Murchison", "Sharolyn Basham").
+friend("Andrea Murchison", "Leonora Cordova").
+dob("Andrea Murchison", "0354-11-14").
+job("Andrea Murchison", "higher education careers adviser").
+hobby("Andrea Murchison", "eating").
+gender("Andrea Murchison", "female").

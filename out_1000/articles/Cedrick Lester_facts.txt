@@ -1,0 +1,14 @@
+mother("Cedrick Lester", "Maybelle Lester").
+father("Cedrick Lester", "Desmond Lester").
+daughter("Cedrick Lester", "Bridget Lester").
+wife("Cedrick Lester", "Audra Lester").
+friend("Cedrick Lester", "Irwin Dalton").
+friend("Cedrick Lester", "James Arteaga").
+friend("Cedrick Lester", "Manuel Smart").
+friend("Cedrick Lester", "Harry Hudgens").
+friend("Cedrick Lester", "Levi Kell").
+friend("Cedrick Lester", "Wilber Storey").
+dob("Cedrick Lester", "0460-04-21").
+job("Cedrick Lester", "newspaper journalist").
+hobby("Cedrick Lester", "audiophile").
+gender("Cedrick Lester", "male").

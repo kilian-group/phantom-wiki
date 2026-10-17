@@ -1,0 +1,18 @@
+mother("Sasha Simons", "Zelda Sharma").
+father("Sasha Simons", "Kevin Sharma").
+son("Sasha Simons", "Raleigh Simons").
+son("Sasha Simons", "Roderick Simons").
+son("Sasha Simons", "Sung Simons").
+daughter("Sasha Simons", "Shelba Simons").
+husband("Sasha Simons", "Sammie Simons").
+friend("Sasha Simons", "Colin Corwin").
+friend("Sasha Simons", "Freeda Jarrett").
+friend("Sasha Simons", "Patty Kell").
+friend("Sasha Simons", "Alexandria Hayward").
+friend("Sasha Simons", "Charley Weise").
+friend("Sasha Simons", "Manda Cordova").
+friend("Sasha Simons", "Nelly Kinsella").
+dob("Sasha Simons", "0407-07-03").
+job("Sasha Simons", "architectural technologist").
+hobby("Sasha Simons", "antiquities").
+gender("Sasha Simons", "female").

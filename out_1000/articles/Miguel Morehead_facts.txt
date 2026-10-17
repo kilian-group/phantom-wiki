@@ -1,0 +1,20 @@
+mother("Miguel Morehead", "Pauletta Morehead").
+father("Miguel Morehead", "Abdul Morehead").
+son("Miguel Morehead", "Homer Morehead").
+son("Miguel Morehead", "Maynard Morehead").
+daughter("Miguel Morehead", "Dena Morehead").
+wife("Miguel Morehead", "Zora Morehead").
+friend("Miguel Morehead", "Aida Ibarra").
+friend("Miguel Morehead", "Lela Correia").
+friend("Miguel Morehead", "Valeria Medellin").
+friend("Miguel Morehead", "Artie Putnam").
+friend("Miguel Morehead", "Gayla Sanborn").
+friend("Miguel Morehead", "Babara Arnold").
+friend("Miguel Morehead", "Jamie Bellows").
+friend("Miguel Morehead", "Christen Boutte").
+friend("Miguel Morehead", "Davis Eaves").
+friend("Miguel Morehead", "Shamika Mahoney").
+dob("Miguel Morehead", "0451-09-23").
+job("Miguel Morehead", "teacher").
+hobby("Miguel Morehead", "book collecting").
+gender("Miguel Morehead", "male").

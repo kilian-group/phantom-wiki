@@ -1,0 +1,14 @@
+mother("Laurence Knepper", "Evette Knepper").
+father("Laurence Knepper", "Samual Knepper").
+friend("Laurence Knepper", "Daisy Autry").
+friend("Laurence Knepper", "Samatha Weise").
+friend("Laurence Knepper", "Milton Littleton").
+friend("Laurence Knepper", "Hal Osterman").
+friend("Laurence Knepper", "Tyrell Resendez").
+friend("Laurence Knepper", "Vada Littleton").
+friend("Laurence Knepper", "Noel Chisholm").
+friend("Laurence Knepper", "Belia Mckenna").
+dob("Laurence Knepper", "0396-09-08").
+job("Laurence Knepper", "museum education officer").
+hobby("Laurence Knepper", "magnet fishing").
+gender("Laurence Knepper", "male").

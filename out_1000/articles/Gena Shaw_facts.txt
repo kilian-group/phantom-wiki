@@ -1,0 +1,16 @@
+sister("Gena Shaw", "Nydia Monday").
+mother("Gena Shaw", "Coral Monday").
+father("Gena Shaw", "Wendell Monday").
+son("Gena Shaw", "Irvin Shaw").
+husband("Gena Shaw", "Kieth Shaw").
+friend("Gena Shaw", "Zackary Wilkie").
+friend("Gena Shaw", "Donnie Crocker").
+friend("Gena Shaw", "Anibal Cordova").
+friend("Gena Shaw", "Gavin Cordova").
+friend("Gena Shaw", "Boris Machado").
+friend("Gena Shaw", "Annabell Molina").
+friend("Gena Shaw", "Shannon Fredrick").
+dob("Gena Shaw", "0451-11-17").
+job("Gena Shaw", "pharmacologist").
+hobby("Gena Shaw", "research").
+gender("Gena Shaw", "female").

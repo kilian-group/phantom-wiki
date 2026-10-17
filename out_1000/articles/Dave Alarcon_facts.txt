@@ -1,0 +1,14 @@
+daughter("Dave Alarcon", "Chante Corso").
+wife("Dave Alarcon", "Genesis Alarcon").
+friend("Dave Alarcon", "Emil Wendel").
+friend("Dave Alarcon", "Annmarie Kinsella").
+friend("Dave Alarcon", "Sarah Steadman").
+friend("Dave Alarcon", "Karin Machado").
+friend("Dave Alarcon", "Gina Goff").
+friend("Dave Alarcon", "Kenneth Rinehart").
+friend("Dave Alarcon", "Danilo Mcgough").
+friend("Dave Alarcon", "Aurelia Gordon").
+dob("Dave Alarcon", "0381-04-13").
+job("Dave Alarcon", "museum curator").
+hobby("Dave Alarcon", "religious studies").
+gender("Dave Alarcon", "male").

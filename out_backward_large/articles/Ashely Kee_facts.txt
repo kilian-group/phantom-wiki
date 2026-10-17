@@ -1,0 +1,9 @@
+mother("Ashely Kee", "Kristi Schreiner").
+father("Ashely Kee", "Edmond Schreiner").
+daughter("Ashely Kee", "Ivory Pannell").
+husband("Ashely Kee", "Dane Kee").
+friend("Ashely Kee", "Brian Beltran").
+dob("Ashely Kee", "0230-04-26").
+job("Ashely Kee", "building services engineer").
+hobby("Ashely Kee", "book collecting").
+gender("Ashely Kee", "female").

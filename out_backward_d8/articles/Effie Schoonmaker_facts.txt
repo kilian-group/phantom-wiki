@@ -1,0 +1,10 @@
+daughter("Effie Schoonmaker", "Blair Etheridge").
+husband("Effie Schoonmaker", "Anibal Schoonmaker").
+friend("Effie Schoonmaker", "Marlana Boutte").
+friend("Effie Schoonmaker", "Hanh Mohan").
+friend("Effie Schoonmaker", "Johnnie Pannell").
+friend("Effie Schoonmaker", "Gerardo Hornback").
+dob("Effie Schoonmaker", "0259-07-27").
+job("Effie Schoonmaker", "product development scientist").
+hobby("Effie Schoonmaker", "disc golf").
+gender("Effie Schoonmaker", "female").

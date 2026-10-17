@@ -1,0 +1,10 @@
+son("Audra Carreon", "Miguel Carreon").
+daughter("Audra Carreon", "Livia Corwin").
+husband("Audra Carreon", "Roger Carreon").
+friend("Audra Carreon", "Markus Gilliam").
+friend("Audra Carreon", "Lora Vanmeter").
+friend("Audra Carreon", "Jackqueline Hollinger").
+dob("Audra Carreon", "0297-08-05").
+job("Audra Carreon", "database administrator").
+hobby("Audra Carreon", "amateur astronomy").
+gender("Audra Carreon", "female").

@@ -1,0 +1,13 @@
+sister("Aubrey Smock", "Deane Smock").
+sister("Aubrey Smock", "Isabell Smock").
+brother("Aubrey Smock", "Gene Smock").
+mother("Aubrey Smock", "Lannie Smock").
+father("Aubrey Smock", "Alvaro Smock").
+friend("Aubrey Smock", "Trevor Saari").
+friend("Aubrey Smock", "Karla Hornback").
+friend("Aubrey Smock", "Murray Cedillo").
+friend("Aubrey Smock", "Laverna Kovach").
+dob("Aubrey Smock", "0200-10-27").
+job("Aubrey Smock", "broadcast engineer").
+hobby("Aubrey Smock", "meteorology").
+gender("Aubrey Smock", "male").

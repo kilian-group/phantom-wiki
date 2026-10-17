@@ -1,0 +1,13 @@
+mother("Collin Lively", "Coleen Lively").
+father("Collin Lively", "Charley Lively").
+friend("Collin Lively", "Sarah Steadman").
+friend("Collin Lively", "Drew Dana").
+friend("Collin Lively", "Lynda Mahoney").
+friend("Collin Lively", "Lazaro Hsu").
+friend("Collin Lively", "Dorathy Harlow").
+friend("Collin Lively", "Belia Mckenna").
+friend("Collin Lively", "Samuel Omara").
+dob("Collin Lively", "0436-11-23").
+job("Collin Lively", "land surveyor").
+hobby("Collin Lively", "astronomy").
+gender("Collin Lively", "male").

@@ -1,0 +1,452 @@
+[
+    {
+        "id": "2751c4a3-e261-48fd-9444-dc539cc7ea73",
+        "question": "Who is younger, the child of the person whose hobby is dairy farming or the person whose occupation is early years teacher?",
+        "solution_traces": "[]",
+        "answer": [
+            "Leeann Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "child(Y_4, Y_2)",
+                "hobby(Y_4, \"dairy farming\")",
+                "job(Y_8, \"early years teacher\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 19,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 2,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "3c9c97cb-e3cf-4fea-bf15-16a5d907cd47",
+        "question": "Who is younger, the daughter of the person whose date of birth is 0295-05-30 or the person whose hobby is meteorology?",
+        "solution_traces": "[]",
+        "answer": [
+            "Johnetta Wang"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "daughter(Y_4, Y_2)",
+                "dob(Y_4, \"0295-05-30\")",
+                "hobby(Y_8, \"meteorology\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 19,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 2,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "5888e174-af2b-4b5f-9548-3991109f4901",
+        "question": "Who is younger, the sibling of the person whose hobby is shogi or the person whose occupation is actuary?",
+        "solution_traces": "[]",
+        "answer": [
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "sibling(Y_4, Y_2)",
+                "hobby(Y_4, \"shogi\")",
+                "job(Y_8, \"actuary\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 19,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 2,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "36132ad7-7f91-41ed-a9ea-372b163490bb",
+        "question": "Who is younger, the child of the person whose date of birth is 0177-08-24 or the person whose occupation is education administrator?",
+        "solution_traces": "[]",
+        "answer": [
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "child(Y_4, Y_2)",
+                "dob(Y_4, \"0177-08-24\")",
+                "job(Y_8, \"education administrator\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 19,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 2,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "3a8e5fe1-4e74-4a02-807c-493bba403b93",
+        "question": "Who is younger, the friend of the person whose occupation is occupational therapist or the person whose hobby is finance?",
+        "solution_traces": "[]",
+        "answer": [
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "friend(Y_4, Y_2)",
+                "job(Y_4, \"occupational therapist\")",
+                "hobby(Y_8, \"finance\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 19,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 2,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "91d446d6-ec90-4c67-9556-396feb47a1a7",
+        "question": "Who is younger, the father-in-law of the person whose date of birth is 0292-03-17 or the person whose occupation is retail manager?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dino Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "father_in_law(Y_4, Y_2)",
+                "dob(Y_4, \"0292-03-17\")",
+                "job(Y_8, \"retail manager\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 19,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 2,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "7963bc54-beb8-4c4e-854f-e9205a75afcd",
+        "question": "Who is younger, the uncle of the person whose date of birth is 0236-04-04 or the person whose occupation is broadcast engineer?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aubrey Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "uncle(Y_4, Y_2)",
+                "dob(Y_4, \"0236-04-04\")",
+                "job(Y_8, \"broadcast engineer\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 19,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 2,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "3a05d30c-670b-4e88-94bc-f9357c5f6cb4",
+        "question": "Who is younger, the grandchild of the person whose occupation is warehouse manager or the person whose hobby is geocaching?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "grandchild(Y_4, Y_2)",
+                "job(Y_4, \"warehouse manager\")",
+                "hobby(Y_8, \"geocaching\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 19,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 2,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "703759b6-840c-4195-892d-893d94203003",
+        "question": "Who is younger, the mother-in-law of the person whose date of birth is 0239-10-28 or the person whose hobby is meditation?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "mother_in_law(Y_4, Y_2)",
+                "dob(Y_4, \"0239-10-28\")",
+                "hobby(Y_8, \"meditation\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 19,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 2,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "305789a3-4443-4a13-bfe4-d24df742b397",
+        "question": "Who is younger, the great-granddaughter of the person whose hobby is radio-controlled car racing or the person whose date of birth is 0324-07-03?",
+        "solution_traces": "[]",
+        "answer": [
+            "Johnetta Wang"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "great_granddaughter(Y_4, Y_2)",
+                "hobby(Y_4, \"radio-controlled car racing\")",
+                "dob(Y_8, \"0324-07-03\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 19,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 2,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    }
+]

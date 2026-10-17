@@ -1,0 +1,19 @@
+sister("Marlene Ingalls", "Earlean Ingalls").
+sister("Marlene Ingalls", "Sharon Ingalls").
+brother("Marlene Ingalls", "Lloyd Ingalls").
+mother("Marlene Ingalls", "Gloria Ingalls").
+father("Marlene Ingalls", "Hershel Ingalls").
+friend("Marlene Ingalls", "Gwendolyn Townsend").
+friend("Marlene Ingalls", "Jennie Towns").
+friend("Marlene Ingalls", "Rob Eaves").
+friend("Marlene Ingalls", "Kareem Goff").
+friend("Marlene Ingalls", "Monika Bennet").
+friend("Marlene Ingalls", "Lesley Medellin").
+friend("Marlene Ingalls", "Isabell Shank").
+friend("Marlene Ingalls", "Pansy Sutphin").
+friend("Marlene Ingalls", "Vernon Joubert").
+friend("Marlene Ingalls", "Lara Jansen").
+dob("Marlene Ingalls", "0362-05-15").
+job("Marlene Ingalls", "gaffer").
+hobby("Marlene Ingalls", "magnet fishing").
+gender("Marlene Ingalls", "female").

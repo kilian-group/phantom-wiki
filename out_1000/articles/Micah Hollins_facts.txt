@@ -1,0 +1,19 @@
+mother("Micah Hollins", "Shelia Hollins").
+father("Micah Hollins", "Adolph Hollins").
+son("Micah Hollins", "Harold Hollins").
+daughter("Micah Hollins", "Renate Gailey").
+daughter("Micah Hollins", "Robbie Hollins").
+wife("Micah Hollins", "Eula Hollins").
+friend("Micah Hollins", "Boris Gilliam").
+friend("Micah Hollins", "Patrick Broughton").
+friend("Micah Hollins", "Shelly Fredrick").
+friend("Micah Hollins", "Cleveland Capps").
+friend("Micah Hollins", "Doyle Valladares").
+friend("Micah Hollins", "Sung Simons").
+friend("Micah Hollins", "Nicholle Dana").
+friend("Micah Hollins", "Livia Corwin").
+friend("Micah Hollins", "Buffy Mccurry").
+dob("Micah Hollins", "0380-03-19").
+job("Micah Hollins", "general practice doctor").
+hobby("Micah Hollins", "action figure").
+gender("Micah Hollins", "male").

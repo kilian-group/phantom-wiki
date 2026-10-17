@@ -1,0 +1,385 @@
+[
+    {
+        "id": "40202d5c-6528-4e79-905c-f8109f6cce61",
+        "question": "Who is the oldest great-grandparent of the person whose occupation is early years teacher?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dominique Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (great_grandparent(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "great_grandparent(Y_2, Y_7)",
+                "job(Y_2, \"early years teacher\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 98,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "b5e2f7c7-6436-4c12-b04a-f1f18b1f5a04",
+        "question": "Who is the oldest sister of the person whose date of birth is 0295-05-30?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "sister(Y_2, Y_7)",
+                "dob(Y_2, \"0295-05-30\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 98,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "af424758-7b60-4a6c-a9f0-b4337c4d7a59",
+        "question": "Who is the oldest father-in-law of the person whose hobby is sociology?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dino Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (father_in_law(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "father_in_law(Y_2, Y_7)",
+                "hobby(Y_2, \"sociology\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 98,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "5b785946-f5be-4ffe-b052-44d68255ef16",
+        "question": "Who is the oldest grandchild of the person whose hobby is dominoes?",
+        "solution_traces": "[]",
+        "answer": [
+            "Leeann Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandchild(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "grandchild(Y_2, Y_7)",
+                "hobby(Y_2, \"dominoes\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 98,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "c3c36ceb-771f-46d1-a036-aee6fca02a27",
+        "question": "Who is the oldest sibling of the person whose hobby is shogi?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aubrey Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sibling(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "sibling(Y_2, Y_7)",
+                "hobby(Y_2, \"shogi\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 98,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "2b024540-ce8e-4809-b6fb-9452d8b3ca8d",
+        "question": "Who is the oldest brother of the person whose occupation is education administrator?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aubrey Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (brother(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "brother(Y_2, Y_7)",
+                "job(Y_2, \"education administrator\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 98,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "7ea3cfa0-d9ce-404e-a671-3b17f0aa4601",
+        "question": "Who is the oldest friend of the person whose date of birth is 0177-07-12?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (friend(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "friend(Y_2, Y_7)",
+                "dob(Y_2, \"0177-07-12\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 98,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "801cb3cc-092f-456d-8c36-9aa1e746da20",
+        "question": "Who is the oldest sister-in-law of the person whose hobby is dairy farming?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister_in_law(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "sister_in_law(Y_2, Y_7)",
+                "hobby(Y_2, \"dairy farming\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 98,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "b73a6e0c-8376-4bc9-a71d-15de22075ffd",
+        "question": "Who is the oldest sister-in-law of the person whose date of birth is 0301-10-24?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister_in_law(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "sister_in_law(Y_2, Y_7)",
+                "dob(Y_2, \"0301-10-24\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 98,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "08af120c-8633-4786-baba-3f4f03f8e304",
+        "question": "Who is the oldest father-in-law of the person whose date of birth is 0292-03-17?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dino Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (father_in_law(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "father_in_law(Y_2, Y_7)",
+                "dob(Y_2, \"0292-03-17\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 98,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    }
+]

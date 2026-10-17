@@ -1,0 +1,462 @@
+[
+    {
+        "id": "02e60d97-6d5a-4562-acd7-45c2f199ecf6",
+        "question": "Who is older, Chrissy Mcgough or Jon Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jon Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Chrissy Mcgough\", D1)",
+                "dob(\"Jon Remillard\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "0d3c97bb-cc99-4004-b8ad-5c348c74e14c",
+        "question": "Who is older, Colby Narvaez or Willie Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Colby Narvaez"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Colby Narvaez\", D1)",
+                "dob(\"Willie Remillard\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "35bc3a96-95ab-4b45-b4de-c37730e53b2e",
+        "question": "Who is older, Chrissy Remillard or Chrissy Mcgough?",
+        "solution_traces": "[]",
+        "answer": [
+            "Chrissy Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Chrissy Remillard\", D1)",
+                "dob(\"Chrissy Mcgough\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "97e7d67a-e3e2-415e-8a02-8513773e8535",
+        "question": "Who is older, Chrissy Mcgough or Mason Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Chrissy Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Chrissy Mcgough\", D1)",
+                "dob(\"Mason Oberg\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "37f31aa6-3036-45e6-a3e5-35e81a2c9a4b",
+        "question": "Who is older, Dorinda Chrisman or Jaime Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jaime Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Dorinda Chrisman\", D1)",
+                "dob(\"Jaime Remillard\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "aa13cbc4-fc21-4cb4-bc94-75f8121a5bcd",
+        "question": "Who is older, Marlo Oberg or Jon Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jon Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Marlo Oberg\", D1)",
+                "dob(\"Jon Remillard\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "e8b7f649-c72f-433e-9685-6636fc4aa2c8",
+        "question": "Who is older, King Dishman or Demarcus Narvaez?",
+        "solution_traces": "[]",
+        "answer": [
+            "King Dishman"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"King Dishman\", D1)",
+                "dob(\"Demarcus Narvaez\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "8374148e-0e41-4533-993f-c5e120fdef79",
+        "question": "Who is older, Brigida Oberg or Luke Wilke?",
+        "solution_traces": "[]",
+        "answer": [
+            "Brigida Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Brigida Oberg\", D1)",
+                "dob(\"Luke Wilke\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "08c5bb1f-ea6b-4c74-9b08-3ed46cfa808c",
+        "question": "Who is older, Twila Oberg or Jaime Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jaime Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Twila Oberg\", D1)",
+                "dob(\"Jaime Remillard\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "89e6f6c6-6575-4e6f-b321-2a638b1c8705",
+        "question": "Who is older, Monte Oberg or Justine Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Monte Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Monte Oberg\", D1)",
+                "dob(\"Justine Remillard\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "bd42b3f7-5472-41cf-ac7c-656b76d687b9",
+        "question": "Who is older, Myrl Mcgough or Demarcus Narvaez?",
+        "solution_traces": "[]",
+        "answer": [
+            "Myrl Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Myrl Mcgough\", D1)",
+                "dob(\"Demarcus Narvaez\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "2de4451d-09b0-4d6f-8c1c-9ac618904e65",
+        "question": "Who is older, Margie Remillard or Monte Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Monte Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Margie Remillard\", D1)",
+                "dob(\"Monte Oberg\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "aad2da56-c984-4a28-bb22-149e16bd9fe3",
+        "question": "Who is older, King Dishman or Kori Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "King Dishman"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"King Dishman\", D1)",
+                "dob(\"Kori Remillard\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "693fbb69-a8d3-4670-98dc-2cb337f8a44b",
+        "question": "Who is older, Richard Oberg or Jackie Vandenberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jackie Vandenberg"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Richard Oberg\", D1)",
+                "dob(\"Jackie Vandenberg\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "6857eba5-4088-4f0c-a242-2478bb9ff865",
+        "question": "Who is older, Amos Oberg or Chrissy Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Chrissy Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Amos Oberg\", D1)",
+                "dob(\"Chrissy Remillard\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "415a65c3-1ebd-4605-936f-23de28782b96",
+        "question": "Who is older, Tianna Remillard or Demarcus Narvaez?",
+        "solution_traces": "[]",
+        "answer": [
+            "Tianna Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Tianna Remillard\", D1)",
+                "dob(\"Demarcus Narvaez\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "2ed204ea-dc87-4ecd-844a-ebcfd06a4fbd",
+        "question": "Who is older, Aurelia Dishman or Jon Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aurelia Dishman"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Aurelia Dishman\", D1)",
+                "dob(\"Jon Remillard\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "f3d5034e-3bb4-45cb-ae0a-573d40682b3a",
+        "question": "Who is older, Brigida Oberg or Luke Wilke?",
+        "solution_traces": "[]",
+        "answer": [
+            "Brigida Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Brigida Oberg\", D1)",
+                "dob(\"Luke Wilke\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "957b842b-8955-45dd-999c-d1195a90da88",
+        "question": "Who is older, Luisa Narvaez or Anna Vandenberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Anna Vandenberg"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Luisa Narvaez\", D1)",
+                "dob(\"Anna Vandenberg\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "4e5b6e75-85b6-426a-97dd-f090254dbcb1",
+        "question": "Who is older, Elroy Mcgough or Hunter Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Elroy Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Elroy Mcgough\", D1)",
+                "dob(\"Hunter Remillard\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    }
+]

@@ -1,0 +1,19 @@
+sister("Maegan Cordova", "Lea Cordova").
+brother("Maegan Cordova", "Ambrose Cordova").
+brother("Maegan Cordova", "Errol Cordova").
+mother("Maegan Cordova", "Enedina Cordova").
+father("Maegan Cordova", "Raleigh Cordova").
+friend("Maegan Cordova", "Lara Jansen").
+friend("Maegan Cordova", "Lashanda Hartung").
+friend("Maegan Cordova", "Ella Mathes").
+friend("Maegan Cordova", "Emil Broughton").
+friend("Maegan Cordova", "Glenn Levine").
+friend("Maegan Cordova", "Deloris Robinett").
+friend("Maegan Cordova", "Graciela Burger").
+friend("Maegan Cordova", "Gayla Dorn").
+friend("Maegan Cordova", "Roscoe Vanmeter").
+friend("Maegan Cordova", "Newton Lasher").
+dob("Maegan Cordova", "0284-11-26").
+job("Maegan Cordova", "insurance account manager").
+hobby("Maegan Cordova", "microscopy").
+gender("Maegan Cordova", "female").

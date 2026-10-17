@@ -1,0 +1,14 @@
+sister("Marilyn Nicolas", "Connie Nicolas").
+sister("Marilyn Nicolas", "Lera Brook").
+brother("Marilyn Nicolas", "Eldon Nicolas").
+mother("Marilyn Nicolas", "Edythe Nicolas").
+father("Marilyn Nicolas", "Anthony Nicolas").
+friend("Marilyn Nicolas", "Ali Schoonmaker").
+friend("Marilyn Nicolas", "Elwood Decosta").
+friend("Marilyn Nicolas", "Freddy Shirk").
+friend("Marilyn Nicolas", "Leda Cormier").
+friend("Marilyn Nicolas", "Rae Mcnew").
+dob("Marilyn Nicolas", "0298-11-15").
+job("Marilyn Nicolas", "trading standards officer").
+hobby("Marilyn Nicolas", "bus spotting").
+gender("Marilyn Nicolas", "female").

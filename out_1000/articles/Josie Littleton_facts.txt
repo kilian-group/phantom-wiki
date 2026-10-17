@@ -1,0 +1,16 @@
+son("Josie Littleton", "Theron Littleton").
+husband("Josie Littleton", "Loren Littleton").
+friend("Josie Littleton", "Patricia Towns").
+friend("Josie Littleton", "Chance Mahoney").
+friend("Josie Littleton", "Chang Eaves").
+friend("Josie Littleton", "Matthew Dana").
+friend("Josie Littleton", "Jenniffer Younger").
+friend("Josie Littleton", "Bryan Resendez").
+friend("Josie Littleton", "Shawna Sheridan").
+friend("Josie Littleton", "Rolf Booth").
+friend("Josie Littleton", "Tabetha Lasher").
+friend("Josie Littleton", "Noreen Cordova").
+dob("Josie Littleton", "0371-01-18").
+job("Josie Littleton", "animator").
+hobby("Josie Littleton", "research").
+gender("Josie Littleton", "female").

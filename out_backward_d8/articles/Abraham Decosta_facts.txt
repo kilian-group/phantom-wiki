@@ -1,0 +1,8 @@
+mother("Abraham Decosta", "Niesha Decosta").
+father("Abraham Decosta", "Elwood Decosta").
+friend("Abraham Decosta", "Jules Levy").
+friend("Abraham Decosta", "Esteban Schoonmaker").
+dob("Abraham Decosta", "0217-07-23").
+job("Abraham Decosta", "pharmacologist").
+hobby("Abraham Decosta", "lacrosse").
+gender("Abraham Decosta", "male").

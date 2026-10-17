@@ -1,0 +1,15 @@
+son("Romona Fordham", "Donald Fordham").
+son("Romona Fordham", "Rodney Fordham").
+daughter("Romona Fordham", "Shaunna Fordham").
+husband("Romona Fordham", "Aaron Fordham").
+friend("Romona Fordham", "Natalie Ballard").
+friend("Romona Fordham", "Rory Hamlin").
+friend("Romona Fordham", "Carroll Lindquist").
+friend("Romona Fordham", "Gavin Cordova").
+friend("Romona Fordham", "Lera Clement").
+friend("Romona Fordham", "Mickey Eaves").
+friend("Romona Fordham", "Carolyn Whitford").
+dob("Romona Fordham", "0491-04-16").
+job("Romona Fordham", "engineering geologist").
+hobby("Romona Fordham", "microscopy").
+gender("Romona Fordham", "female").

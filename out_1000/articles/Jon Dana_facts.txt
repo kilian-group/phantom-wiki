@@ -1,0 +1,18 @@
+sister("Jon Dana", "Alice Dana").
+sister("Jon Dana", "Estella Dana").
+sister("Jon Dana", "Marybeth Dana").
+brother("Jon Dana", "Gale Dana").
+mother("Jon Dana", "Addie Dana").
+father("Jon Dana", "Drew Dana").
+friend("Jon Dana", "Mari Carreon").
+friend("Jon Dana", "Darwin Kavanaugh").
+friend("Jon Dana", "Brandon Winn").
+friend("Jon Dana", "Herbert Storey").
+friend("Jon Dana", "Bridget Lester").
+friend("Jon Dana", "Bernardo Briscoe").
+friend("Jon Dana", "Jann Ruth").
+friend("Jon Dana", "Logan Swartz").
+dob("Jon Dana", "0430-10-11").
+job("Jon Dana", "sub").
+hobby("Jon Dana", "birdwatching").
+gender("Jon Dana", "male").

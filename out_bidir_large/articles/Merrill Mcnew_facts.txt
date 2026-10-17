@@ -1,0 +1,13 @@
+sister("Merrill Mcnew", "Jeanelle Mcnew").
+brother("Merrill Mcnew", "Cole Mcnew").
+brother("Merrill Mcnew", "Marcelino Mcnew").
+mother("Merrill Mcnew", "Lorelei Mcnew").
+father("Merrill Mcnew", "Don Mcnew").
+son("Merrill Mcnew", "Haywood Mcnew").
+wife("Merrill Mcnew", "Amanda Mcnew").
+friend("Merrill Mcnew", "Hazel Earnest").
+friend("Merrill Mcnew", "Roland Earnest").
+dob("Merrill Mcnew", "0310-10-20").
+job("Merrill Mcnew", "sales promotion account executive").
+hobby("Merrill Mcnew", "vehicle restoration").
+gender("Merrill Mcnew", "male").

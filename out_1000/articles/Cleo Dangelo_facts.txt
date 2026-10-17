@@ -1,0 +1,16 @@
+sister("Cleo Dangelo", "Alexandria Hayward").
+sister("Cleo Dangelo", "Lona Geter").
+mother("Cleo Dangelo", "Georgette Haygood").
+father("Cleo Dangelo", "Jeff Haygood").
+son("Cleo Dangelo", "Vaughn Dangelo").
+daughter("Cleo Dangelo", "Manuela Runnels").
+husband("Cleo Dangelo", "Mason Dangelo").
+friend("Cleo Dangelo", "Karla Linares").
+friend("Cleo Dangelo", "Boris Machado").
+friend("Cleo Dangelo", "Maybelle Oliveira").
+friend("Cleo Dangelo", "Ester Yarbrough").
+friend("Cleo Dangelo", "Stuart Strong").
+dob("Cleo Dangelo", "0477-08-01").
+job("Cleo Dangelo", "ecologist").
+hobby("Cleo Dangelo", "people-watching").
+gender("Cleo Dangelo", "female").

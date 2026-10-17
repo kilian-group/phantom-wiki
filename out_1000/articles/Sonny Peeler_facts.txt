@@ -1,0 +1,17 @@
+mother("Sonny Peeler", "Maryann Peeler").
+father("Sonny Peeler", "Luther Peeler").
+son("Sonny Peeler", "Dustin Peeler").
+son("Sonny Peeler", "Melvin Peeler").
+wife("Sonny Peeler", "Chau Peeler").
+friend("Sonny Peeler", "Melina Simons").
+friend("Sonny Peeler", "Sung Simons").
+friend("Sonny Peeler", "Gloria Shoulders").
+friend("Sonny Peeler", "Boris Gilliam").
+friend("Sonny Peeler", "Darrell Broughton").
+friend("Sonny Peeler", "Bruce Burger").
+friend("Sonny Peeler", "Freeda Jarrett").
+friend("Sonny Peeler", "Rudy Runnels").
+dob("Sonny Peeler", "0378-07-27").
+job("Sonny Peeler", "energy engineer").
+hobby("Sonny Peeler", "fingerprint collecting").
+gender("Sonny Peeler", "male").

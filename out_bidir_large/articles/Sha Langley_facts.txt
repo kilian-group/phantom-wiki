@@ -1,0 +1,11 @@
+mother("Sha Langley", "Rosalinda Francois").
+father("Sha Langley", "Preston Francois").
+son("Sha Langley", "Dwayne Langley").
+husband("Sha Langley", "Barney Langley").
+friend("Sha Langley", "Marko Henderson").
+friend("Sha Langley", "Milton Henderson").
+friend("Sha Langley", "Rufus Brook").
+dob("Sha Langley", "0295-10-01").
+job("Sha Langley", "actuary").
+hobby("Sha Langley", "leaves").
+gender("Sha Langley", "female").

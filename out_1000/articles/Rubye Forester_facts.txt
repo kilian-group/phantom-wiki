@@ -1,0 +1,14 @@
+daughter("Rubye Forester", "Robyn Forester").
+daughter("Rubye Forester", "Tyesha Marr").
+husband("Rubye Forester", "Isaias Forester").
+friend("Rubye Forester", "Zachery Upton").
+friend("Rubye Forester", "Rudy Runnels").
+friend("Rubye Forester", "Anneliese Pellegrino").
+friend("Rubye Forester", "Paris Cordova").
+friend("Rubye Forester", "Jimmy Holder").
+friend("Rubye Forester", "Major Bales").
+friend("Rubye Forester", "Nickolas Holtz").
+dob("Rubye Forester", "0346-06-28").
+job("Rubye Forester", "catering manager").
+hobby("Rubye Forester", "volleyball").
+gender("Rubye Forester", "female").

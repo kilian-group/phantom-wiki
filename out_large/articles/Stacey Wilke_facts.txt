@@ -1,0 +1,13 @@
+son("Stacey Wilke", "Luke Wilke").
+son("Stacey Wilke", "Marion Wilke").
+daughter("Stacey Wilke", "Belva Murphey").
+wife("Stacey Wilke", "Amy Wilke").
+friend("Stacey Wilke", "Demarcus Narvaez").
+friend("Stacey Wilke", "Aurelia Dishman").
+friend("Stacey Wilke", "Chrissy Remillard").
+friend("Stacey Wilke", "Kori Remillard").
+friend("Stacey Wilke", "Belva Murphey").
+dob("Stacey Wilke", "0255-02-12").
+job("Stacey Wilke", "health promotion specialist").
+hobby("Stacey Wilke", "philosophy").
+gender("Stacey Wilke", "male").

@@ -1,0 +1,18 @@
+sister("Shandi Jarrett", "Mallory Scherer").
+sister("Shandi Jarrett", "Mia Resendez").
+brother("Shandi Jarrett", "Claude Courson").
+brother("Shandi Jarrett", "Erick Courson").
+brother("Shandi Jarrett", "Leslie Courson").
+mother("Shandi Jarrett", "Harriette Courson").
+father("Shandi Jarrett", "Delbert Courson").
+son("Shandi Jarrett", "Jamel Jarrett").
+son("Shandi Jarrett", "Mose Jarrett").
+daughter("Shandi Jarrett", "Freeda Jarrett").
+daughter("Shandi Jarrett", "Zona Jarrett").
+husband("Shandi Jarrett", "Anthony Jarrett").
+friend("Shandi Jarrett", "Latisha Smart").
+friend("Shandi Jarrett", "Ben Sheridan").
+dob("Shandi Jarrett", "0419-04-27").
+job("Shandi Jarrett", "lighting technician").
+hobby("Shandi Jarrett", "unicycling").
+gender("Shandi Jarrett", "female").

@@ -1,0 +1,22 @@
+sister("Jamal Marr", "Deloris Marr").
+brother("Jamal Marr", "Deangelo Marr").
+mother("Jamal Marr", "Thomasena Marr").
+father("Jamal Marr", "Dennis Marr").
+son("Jamal Marr", "Lyman Marr").
+son("Jamal Marr", "Randal Marr").
+wife("Jamal Marr", "Tyesha Marr").
+friend("Jamal Marr", "Belva Murphey").
+friend("Jamal Marr", "Micheal Speaks").
+friend("Jamal Marr", "Fredrick Mckenna").
+friend("Jamal Marr", "Newton Lasher").
+friend("Jamal Marr", "Christen Weise").
+friend("Jamal Marr", "Bridget Sutphin").
+friend("Jamal Marr", "Kenny Kinsella").
+friend("Jamal Marr", "Gena Brumbaugh").
+friend("Jamal Marr", "Toney Gibbs").
+friend("Jamal Marr", "Lashanda Salem").
+friend("Jamal Marr", "Preston Holtz").
+dob("Jamal Marr", "0376-11-15").
+job("Jamal Marr", "probation officer").
+hobby("Jamal Marr", "squash").
+gender("Jamal Marr", "male").

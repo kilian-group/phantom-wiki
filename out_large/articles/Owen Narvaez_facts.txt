@@ -1,0 +1,13 @@
+mother("Owen Narvaez", "Rhoda Narvaez").
+father("Owen Narvaez", "Demarcus Narvaez").
+friend("Owen Narvaez", "Rhoda Narvaez").
+friend("Owen Narvaez", "Dani Remillard").
+friend("Owen Narvaez", "Justine Remillard").
+friend("Owen Narvaez", "Amy Wilke").
+friend("Owen Narvaez", "Ophelia Mcgough").
+friend("Owen Narvaez", "Valentin Vandenberg").
+friend("Owen Narvaez", "Lyman Oberg").
+dob("Owen Narvaez", "0387-12-26").
+job("Owen Narvaez", "psychotherapist").
+hobby("Owen Narvaez", "mycology").
+gender("Owen Narvaez", "male").

@@ -1,0 +1,15 @@
+sister("Margo Brannan", "Laurel Decosta").
+brother("Margo Brannan", "Elwood Decosta").
+brother("Margo Brannan", "Jacques Decosta").
+mother("Margo Brannan", "Zoila Decosta").
+father("Margo Brannan", "Stuart Decosta").
+son("Margo Brannan", "Adolph Brannan").
+husband("Margo Brannan", "Marcel Brannan").
+friend("Margo Brannan", "Dominique Smock").
+friend("Margo Brannan", "Ricardo Hackworth").
+friend("Margo Brannan", "Julia Cormier").
+friend("Margo Brannan", "Rosendo Skaggs").
+dob("Margo Brannan", "0192-09-26").
+job("Margo Brannan", "clinical cytogeneticist").
+hobby("Margo Brannan", "publishing").
+gender("Margo Brannan", "female").

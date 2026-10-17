@@ -1,0 +1,11 @@
+mother("Ian Pannell", "Ivory Pannell").
+father("Ian Pannell", "Lanny Pannell").
+son("Ian Pannell", "Quincy Pannell").
+daughter("Ian Pannell", "Samantha Earnest").
+wife("Ian Pannell", "Johnnie Pannell").
+friend("Ian Pannell", "Spencer Griffiths").
+friend("Ian Pannell", "Williams Smock").
+dob("Ian Pannell", "0291-11-08").
+job("Ian Pannell", "wellsite geologist").
+hobby("Ian Pannell", "table tennis").
+gender("Ian Pannell", "male").

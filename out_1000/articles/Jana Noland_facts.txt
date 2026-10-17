@@ -1,0 +1,19 @@
+sister("Jana Noland", "Lynette Fredrick").
+sister("Jana Noland", "Sona Fredrick").
+brother("Jana Noland", "Murray Fredrick").
+mother("Jana Noland", "Shannon Fredrick").
+father("Jana Noland", "Anderson Fredrick").
+son("Jana Noland", "Hugh Noland").
+husband("Jana Noland", "Johnathon Noland").
+friend("Jana Noland", "Katherine Carswell").
+friend("Jana Noland", "Belva Murphey").
+friend("Jana Noland", "Bo Frink").
+friend("Jana Noland", "Alexandria Hayward").
+friend("Jana Noland", "Chau Peeler").
+friend("Jana Noland", "Bernardo Briscoe").
+friend("Jana Noland", "Goldie Schlosser").
+friend("Jana Noland", "Amy Smart").
+dob("Jana Noland", "0407-05-08").
+job("Jana Noland", "telecommunications researcher").
+hobby("Jana Noland", "cheerleading").
+gender("Jana Noland", "female").

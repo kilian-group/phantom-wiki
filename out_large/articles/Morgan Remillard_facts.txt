@@ -1,0 +1,19 @@
+son("Morgan Remillard", "Hunter Remillard").
+daughter("Morgan Remillard", "Chrissy Remillard").
+daughter("Morgan Remillard", "Margie Remillard").
+husband("Morgan Remillard", "Jaime Remillard").
+friend("Morgan Remillard", "Alvaro Murphey").
+friend("Morgan Remillard", "Anna Vandenberg").
+friend("Morgan Remillard", "Belva Murphey").
+friend("Morgan Remillard", "Charley Vandenberg").
+friend("Morgan Remillard", "Amos Oberg").
+friend("Morgan Remillard", "Clyde Oberg").
+friend("Morgan Remillard", "Demarcus Narvaez").
+friend("Morgan Remillard", "Twila Oberg").
+friend("Morgan Remillard", "Dorinda Chrisman").
+friend("Morgan Remillard", "Hunter Remillard").
+friend("Morgan Remillard", "Jude Remillard").
+dob("Morgan Remillard", "0289-11-21").
+job("Morgan Remillard", "interpreter").
+hobby("Morgan Remillard", "radio-controlled model playing").
+gender("Morgan Remillard", "female").

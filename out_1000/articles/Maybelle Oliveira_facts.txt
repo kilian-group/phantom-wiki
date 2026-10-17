@@ -1,0 +1,13 @@
+sister("Maybelle Oliveira", "Maryann Oliveira").
+sister("Maybelle Oliveira", "Shannon Fredrick").
+mother("Maybelle Oliveira", "Luisa Oliveira").
+father("Maybelle Oliveira", "Bradford Oliveira").
+friend("Maybelle Oliveira", "Genesis Alarcon").
+friend("Maybelle Oliveira", "Cleo Dangelo").
+friend("Maybelle Oliveira", "Julio Mcdonald").
+friend("Maybelle Oliveira", "Vita Resendez").
+friend("Maybelle Oliveira", "Pierre Mcpeak").
+dob("Maybelle Oliveira", "0376-11-13").
+job("Maybelle Oliveira", "estate manager").
+hobby("Maybelle Oliveira", "leaves").
+gender("Maybelle Oliveira", "female").

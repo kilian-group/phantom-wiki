@@ -1,0 +1,11 @@
+son("Anastasia Eaves", "Russel Eaves").
+husband("Anastasia Eaves", "Kurtis Eaves").
+friend("Anastasia Eaves", "Karin Machado").
+friend("Anastasia Eaves", "Sheila Putnam").
+friend("Anastasia Eaves", "Roni Jarrett").
+friend("Anastasia Eaves", "Kelvin Autry").
+friend("Anastasia Eaves", "Paula Lazar").
+dob("Anastasia Eaves", "0326-04-26").
+job("Anastasia Eaves", "solicitor").
+hobby("Anastasia Eaves", "fishing").
+gender("Anastasia Eaves", "female").

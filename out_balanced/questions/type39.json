@@ -1,0 +1,412 @@
+[
+    {
+        "id": "21228264-27b9-470f-a82f-5c89061afa01",
+        "question": "Who is younger, the friend of Ricardo Hackworth or the person whose occupation is early years teacher?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeannine Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "friend(\"Ricardo Hackworth\", Y_2)",
+                "job(Y_8, \"early years teacher\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 39,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "2f325211-59b2-4a78-bd1c-47bd68773bb3",
+        "question": "Who is younger, the friend of Saul Wexler or the person whose date of birth is 0295-05-30?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "friend(\"Saul Wexler\", Y_2)",
+                "dob(Y_8, \"0295-05-30\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 39,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "81ed8004-bd65-496c-816d-b76e05e92c58",
+        "question": "Who is younger, the granddaughter of Shelli Beltran or the person whose date of birth is 0204-03-12?",
+        "solution_traces": "[]",
+        "answer": [
+            "Johnetta Wang"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "granddaughter(\"Shelli Beltran\", Y_2)",
+                "dob(Y_8, \"0204-03-12\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 39,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "a3d6f047-0382-4ad7-ab44-79197151f5ee",
+        "question": "Who is younger, the sister of Deane Smock or the person whose hobby is shogi?",
+        "solution_traces": "[]",
+        "answer": [
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "sister(\"Deane Smock\", Y_2)",
+                "hobby(Y_8, \"shogi\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 39,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "395e1011-9eaf-4b3a-884b-335f3201a60d",
+        "question": "Who is younger, the child of Alvaro Smock or the person whose occupation is barrister's clerk?",
+        "solution_traces": "[]",
+        "answer": [
+            "Myrle Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "child(\"Alvaro Smock\", Y_2)",
+                "job(Y_8, \"barrister's clerk\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 39,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "1cb8b2b0-1f6e-4fae-ad2f-7a8a16515487",
+        "question": "Who is younger, the sister-in-law of Saul Wexler or the person whose hobby is finance?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "sister_in_law(\"Saul Wexler\", Y_2)",
+                "hobby(Y_8, \"finance\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 39,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "8f2db5f8-5b49-4593-be93-326a44b59fe0",
+        "question": "Who is younger, the great-grandfather of Jeannine Wexler or the person whose date of birth is 0301-10-24?",
+        "solution_traces": "[]",
+        "answer": [
+            "Saul Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "great_grandfather(\"Jeannine Wexler\", Y_2)",
+                "dob(Y_8, \"0301-10-24\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 39,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "c9c339a0-efb6-4cd0-9dd4-ffaed8e94fbe",
+        "question": "Who is younger, the sister of Aubrey Smock or the person whose date of birth is 0200-10-27?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deane Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "sister(\"Aubrey Smock\", Y_2)",
+                "dob(Y_8, \"0200-10-27\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 39,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "a97c3a0e-13e4-4278-9000-f4ded0f34203",
+        "question": "Who is younger, the mother of Gene Smock or the person whose date of birth is 0236-04-04?",
+        "solution_traces": "[]",
+        "answer": [
+            "Williams Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "mother(\"Gene Smock\", Y_2)",
+                "dob(Y_8, \"0236-04-04\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 39,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "6b792db1-af45-47c4-83b1-a500a0e85cd1",
+        "question": "Who is younger, the grandmother of Johnetta Wang or the person whose date of birth is 0326-06-13?",
+        "solution_traces": "[]",
+        "answer": [
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_6 @< CmpDR_6",
+                "dob(Y_2, CmpDL_6)",
+                "dob(Y_8, CmpDR_6)",
+                "grandmother(\"Johnetta Wang\", Y_2)",
+                "dob(Y_8, \"0326-06-13\")"
+            ],
+            "answer": "('Y_2', 'Y_8')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the person whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 39,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    }
+]

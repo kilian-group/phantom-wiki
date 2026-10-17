@@ -1,0 +1,25 @@
+brother("Chrissy Mcgough", "Martin Deville").
+mother("Chrissy Mcgough", "Tiesha Deville").
+father("Chrissy Mcgough", "Lorenz Deville").
+son("Chrissy Mcgough", "Randall Mcgough").
+daughter("Chrissy Mcgough", "Addie Shilling").
+daughter("Chrissy Mcgough", "Ophelia Mcgough").
+husband("Chrissy Mcgough", "Elroy Mcgough").
+friend("Chrissy Mcgough", "Rheba Winn").
+friend("Chrissy Mcgough", "Donald Autry").
+friend("Chrissy Mcgough", "Rudy Runnels").
+friend("Chrissy Mcgough", "Leonora Cordova").
+friend("Chrissy Mcgough", "Dan Mahoney").
+friend("Chrissy Mcgough", "Matthew Dana").
+friend("Chrissy Mcgough", "Irwin Dalton").
+friend("Chrissy Mcgough", "Katina Younger").
+friend("Chrissy Mcgough", "Ai Dacosta").
+friend("Chrissy Mcgough", "Lera Mcpeak").
+friend("Chrissy Mcgough", "Alina Bowles").
+friend("Chrissy Mcgough", "Luisa Estrella").
+friend("Chrissy Mcgough", "Nelly Theriot").
+friend("Chrissy Mcgough", "Sammy Yarbrough").
+dob("Chrissy Mcgough", "0381-07-11").
+job("Chrissy Mcgough", "gaffer").
+hobby("Chrissy Mcgough", "photography").
+gender("Chrissy Mcgough", "female").

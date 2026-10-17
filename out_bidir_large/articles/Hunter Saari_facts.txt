@@ -1,0 +1,11 @@
+son("Hunter Saari", "Trevor Saari").
+wife("Hunter Saari", "Virgie Saari").
+friend("Hunter Saari", "Thurman Crain").
+friend("Hunter Saari", "Quincy Pannell").
+friend("Hunter Saari", "Madelyn Palermo").
+friend("Hunter Saari", "Roman Palermo").
+friend("Hunter Saari", "Zoila Mason").
+dob("Hunter Saari", "0231-01-11").
+job("Hunter Saari", "pension scheme manager").
+hobby("Hunter Saari", "tennis polo").
+gender("Hunter Saari", "male").

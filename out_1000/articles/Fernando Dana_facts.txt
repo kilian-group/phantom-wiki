@@ -1,0 +1,14 @@
+brother("Fernando Dana", "Felton Dana").
+mother("Fernando Dana", "Nicholle Dana").
+father("Fernando Dana", "Matthew Dana").
+friend("Fernando Dana", "Michaela Corwin").
+friend("Fernando Dana", "Taylor Schatz").
+friend("Fernando Dana", "Nedra Musick").
+friend("Fernando Dana", "Connie Cushman").
+friend("Fernando Dana", "Donny Speaks").
+friend("Fernando Dana", "Emery Scherer").
+friend("Fernando Dana", "Lakeshia Steadman").
+dob("Fernando Dana", "0429-10-07").
+job("Fernando Dana", "software engineer").
+hobby("Fernando Dana", "scuba diving").
+gender("Fernando Dana", "male").

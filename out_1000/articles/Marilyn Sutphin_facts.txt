@@ -1,0 +1,12 @@
+sister("Marilyn Sutphin", "Leonora Cordova").
+mother("Marilyn Sutphin", "Tammy Sutphin").
+father("Marilyn Sutphin", "Andrew Sutphin").
+friend("Marilyn Sutphin", "Ladawn Bennet").
+friend("Marilyn Sutphin", "Paula Gerber").
+friend("Marilyn Sutphin", "Boris Gilliam").
+friend("Marilyn Sutphin", "Aaron Bowles").
+friend("Marilyn Sutphin", "Ilona Klink").
+dob("Marilyn Sutphin", "0344-01-20").
+job("Marilyn Sutphin", "field trials officer").
+hobby("Marilyn Sutphin", "shortwave listening").
+gender("Marilyn Sutphin", "female").

@@ -1,0 +1,462 @@
+[
+    {
+        "id": "a3a0f871-9805-4a30-9220-59bbfc1581d9",
+        "question": "How many nieces does Orlando Beltran have?",
+        "solution_traces": "[{\"Count_1\": 3}]",
+        "answer": [
+            "3"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(niece(\"Orlando Beltran\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Jeannine Wexler",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "6b2f5938-499e-4fa2-b73c-722b54f12007",
+        "question": "How many friends does Myrle Smock have?",
+        "solution_traces": "[{\"Count_1\": 1}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(friend(\"Myrle Smock\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Ricardo Hackworth",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "26f0863c-b689-48d0-801e-297f341b84c4",
+        "question": "How many sisters does Jeannine Wexler have?",
+        "solution_traces": "[{\"Count_1\": 2}]",
+        "answer": [
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sister(\"Jeannine Wexler\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Aida Wang",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "24be35e1-78ab-4f99-b92d-81c944dc7377",
+        "question": "How many friends does Lenore Hackworth have?",
+        "solution_traces": "[{\"Count_1\": 3}]",
+        "answer": [
+            "3"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(friend(\"Lenore Hackworth\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Saul Wexler",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "af6c721d-c2d4-4017-8fb7-02ff5b395894",
+        "question": "How many sisters does Isabell Smock have?",
+        "solution_traces": "[{\"Count_1\": 1}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sister(\"Isabell Smock\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Deane Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "17aee24e-cb3a-4d10-b474-42533d388c29",
+        "question": "How many grandparents does Valentina Wexler have?",
+        "solution_traces": "[{\"Count_1\": 2}]",
+        "answer": [
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(grandparent(\"Valentina Wexler\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Shelli Beltran",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "703490e2-c203-4573-b687-99a43c3f0fa2",
+        "question": "How many second aunts does Vicki Hackworth have?",
+        "solution_traces": "[{\"Count_1\": 2}]",
+        "answer": [
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(second_aunt(\"Vicki Hackworth\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Deane Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "659a7183-94cf-45c4-849d-05aade95ab78",
+        "question": "How many children does Lannie Smock have?",
+        "solution_traces": "[{\"Count_1\": 4}]",
+        "answer": [
+            "4"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(child(\"Lannie Smock\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Deane Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "5bdca271-ec7f-4f7c-9d68-0d7b41231c00",
+        "question": "How many sisters-in-law does Dino Beltran have?",
+        "solution_traces": "[{\"Count_1\": 1}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sister_in_law(\"Dino Beltran\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Myrle Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "28524a48-6a35-4b77-b91b-16e6003078bf",
+        "question": "How many parents does Aubrey Smock have?",
+        "solution_traces": "[{\"Count_1\": 2}]",
+        "answer": [
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(parent(\"Aubrey Smock\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Alvaro Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    }
+]

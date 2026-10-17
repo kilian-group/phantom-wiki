@@ -1,0 +1,13 @@
+mother("Foster Cormier", "Alycia Cormier").
+father("Foster Cormier", "Christoper Cormier").
+son("Foster Cormier", "Dion Cormier").
+son("Foster Cormier", "Earle Cormier").
+daughter("Foster Cormier", "Sherry Cormier").
+wife("Foster Cormier", "Leda Cormier").
+friend("Foster Cormier", "Marcelino Mcnew").
+friend("Foster Cormier", "Mickey Earnest").
+friend("Foster Cormier", "Samantha Earnest").
+dob("Foster Cormier", "0204-12-10").
+job("Foster Cormier", "medical sales representative").
+hobby("Foster Cormier", "hiking/backpacking").
+gender("Foster Cormier", "male").

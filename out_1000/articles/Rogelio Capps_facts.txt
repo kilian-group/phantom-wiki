@@ -1,0 +1,23 @@
+brother("Rogelio Capps", "Vito Capps").
+mother("Rogelio Capps", "Marilynn Capps").
+father("Rogelio Capps", "Brandon Capps").
+son("Rogelio Capps", "Cleveland Capps").
+son("Rogelio Capps", "Deandre Capps").
+daughter("Rogelio Capps", "Elaine Marr").
+wife("Rogelio Capps", "Velia Capps").
+friend("Rogelio Capps", "Stuart Strong").
+friend("Rogelio Capps", "Rhea Burnett").
+friend("Rogelio Capps", "Newton Lasher").
+friend("Rogelio Capps", "Frankie Peeler").
+friend("Rogelio Capps", "Paula Rudolph").
+friend("Rogelio Capps", "Jacinta Simons").
+friend("Rogelio Capps", "Lucio Townsend").
+friend("Rogelio Capps", "Bee Corwin").
+friend("Rogelio Capps", "Dorothea Goff").
+friend("Rogelio Capps", "Virgie Niles").
+friend("Rogelio Capps", "Yoshiko Niles").
+friend("Rogelio Capps", "Brigette Medeiros").
+dob("Rogelio Capps", "0376-11-02").
+job("Rogelio Capps", "administrator").
+hobby("Rogelio Capps", "ticket collecting").
+gender("Rogelio Capps", "male").

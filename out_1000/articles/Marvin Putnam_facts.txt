@@ -1,0 +1,24 @@
+sister("Marvin Putnam", "Lurline Tyree").
+mother("Marvin Putnam", "Rosina Putnam").
+father("Marvin Putnam", "Justin Putnam").
+daughter("Marvin Putnam", "Katherine Carswell").
+daughter("Marvin Putnam", "Lora Vogt").
+daughter("Marvin Putnam", "Marguerite Putnam").
+daughter("Marvin Putnam", "Sheila Putnam").
+wife("Marvin Putnam", "Coral Putnam").
+friend("Marvin Putnam", "Ester Yarbrough").
+friend("Marvin Putnam", "Anthony Jarrett").
+friend("Marvin Putnam", "Dorathy Harlow").
+friend("Marvin Putnam", "Carmine Mckenna").
+friend("Marvin Putnam", "Kendrick Jefferson").
+friend("Marvin Putnam", "Rudy Runnels").
+friend("Marvin Putnam", "Melvin Peeler").
+friend("Marvin Putnam", "Emanuel Mccall").
+friend("Marvin Putnam", "Deshawn Medellin").
+friend("Marvin Putnam", "Lucile Hurt").
+friend("Marvin Putnam", "Wm Salem").
+friend("Marvin Putnam", "Leeann Blanton").
+dob("Marvin Putnam", "0466-03-23").
+job("Marvin Putnam", "public house manager").
+hobby("Marvin Putnam", "neuroscience").
+gender("Marvin Putnam", "male").

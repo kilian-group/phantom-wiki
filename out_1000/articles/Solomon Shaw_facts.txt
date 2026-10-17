@@ -1,0 +1,14 @@
+mother("Solomon Shaw", "Lynette Shaw").
+father("Solomon Shaw", "Irvin Shaw").
+friend("Solomon Shaw", "Erik Mounts").
+friend("Solomon Shaw", "Jerrold Harlow").
+friend("Solomon Shaw", "Dennis Hamann").
+friend("Solomon Shaw", "Seymour Simons").
+friend("Solomon Shaw", "Miles Burdette").
+friend("Solomon Shaw", "Irwin Arteaga").
+friend("Solomon Shaw", "Shaunna Fordham").
+friend("Solomon Shaw", "Drew Carty").
+dob("Solomon Shaw", "0502-10-24").
+job("Solomon Shaw", "barista").
+hobby("Solomon Shaw", "disc golf").
+gender("Solomon Shaw", "male").

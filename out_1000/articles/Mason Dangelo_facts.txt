@@ -1,0 +1,14 @@
+son("Mason Dangelo", "Vaughn Dangelo").
+daughter("Mason Dangelo", "Manuela Runnels").
+wife("Mason Dangelo", "Cleo Dangelo").
+friend("Mason Dangelo", "Shizuko Eaves").
+friend("Mason Dangelo", "Jenny Gilliam").
+friend("Mason Dangelo", "Dixie Murdoch").
+friend("Mason Dangelo", "Lashanda Salem").
+friend("Mason Dangelo", "Beatriz Theriot").
+friend("Mason Dangelo", "Gayla Dorn").
+friend("Mason Dangelo", "Malissa Kell").
+dob("Mason Dangelo", "0479-02-17").
+job("Mason Dangelo", "architectural technologist").
+hobby("Mason Dangelo", "knife throwing").
+gender("Mason Dangelo", "male").

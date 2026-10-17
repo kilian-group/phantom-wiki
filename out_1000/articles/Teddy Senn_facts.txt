@@ -1,0 +1,9 @@
+daughter("Teddy Senn", "Odette Senn").
+wife("Teddy Senn", "Evelia Senn").
+friend("Teddy Senn", "Milford Simons").
+friend("Teddy Senn", "Isabell Shank").
+friend("Teddy Senn", "Samuel Omara").
+dob("Teddy Senn", "0455-08-25").
+job("Teddy Senn", "paediatric nurse").
+hobby("Teddy Senn", "ant farming").
+gender("Teddy Senn", "male").

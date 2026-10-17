@@ -1,0 +1,23 @@
+sister("Harley Simons", "Christina Barrows").
+sister("Harley Simons", "Helga Simons").
+mother("Harley Simons", "Dinah Simons").
+father("Harley Simons", "Luis Simons").
+son("Harley Simons", "Bryon Simons").
+wife("Harley Simons", "Melina Simons").
+friend("Harley Simons", "Timothy Shoulders").
+friend("Harley Simons", "Katelyn Corwin").
+friend("Harley Simons", "Tawana Machado").
+friend("Harley Simons", "Amanda Broughton").
+friend("Harley Simons", "Dino Donner").
+friend("Harley Simons", "Nelly Smart").
+friend("Harley Simons", "Isabell Shank").
+friend("Harley Simons", "Max Bauman").
+friend("Harley Simons", "Ofelia Callender").
+friend("Harley Simons", "Daisy Cordova").
+friend("Harley Simons", "Edris Best").
+friend("Harley Simons", "Latisha Murchison").
+friend("Harley Simons", "Babara Arnold").
+dob("Harley Simons", "0444-01-24").
+job("Harley Simons", "retail manager").
+hobby("Harley Simons", "antiquities").
+gender("Harley Simons", "male").

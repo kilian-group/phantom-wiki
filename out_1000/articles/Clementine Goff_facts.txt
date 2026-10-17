@@ -1,0 +1,15 @@
+mother("Clementine Goff", "Gina Goff").
+father("Clementine Goff", "King Goff").
+friend("Clementine Goff", "Justine Gibbs").
+friend("Clementine Goff", "Evette Hamlin").
+friend("Clementine Goff", "Lenny Courson").
+friend("Clementine Goff", "Kieth Bigelow").
+friend("Clementine Goff", "Desiree Fordham").
+friend("Clementine Goff", "Sona Lasher").
+friend("Clementine Goff", "Hector Autry").
+friend("Clementine Goff", "Lara Jansen").
+friend("Clementine Goff", "Gena Cook").
+dob("Clementine Goff", "0444-12-23").
+job("Clementine Goff", "oceanographer").
+hobby("Clementine Goff", "leaves").
+gender("Clementine Goff", "female").

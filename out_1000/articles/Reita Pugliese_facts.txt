@@ -1,0 +1,17 @@
+sister("Reita Pugliese", "Latrina Mathes").
+sister("Reita Pugliese", "Virgie Niles").
+brother("Reita Pugliese", "Israel Mathes").
+mother("Reita Pugliese", "Ella Mathes").
+father("Reita Pugliese", "Neal Mathes").
+daughter("Reita Pugliese", "Monika Bennet").
+daughter("Reita Pugliese", "Monique Pugliese").
+husband("Reita Pugliese", "Brock Pugliese").
+friend("Reita Pugliese", "Tracy Fredrick").
+friend("Reita Pugliese", "Alex Burger").
+friend("Reita Pugliese", "Jeanelle Resendez").
+friend("Reita Pugliese", "Tonia Bauman").
+friend("Reita Pugliese", "John Schlosser").
+dob("Reita Pugliese", "0373-01-10").
+job("Reita Pugliese", "artist").
+hobby("Reita Pugliese", "exhibition drill").
+gender("Reita Pugliese", "female").

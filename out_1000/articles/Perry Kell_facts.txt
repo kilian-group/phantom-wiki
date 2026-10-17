@@ -1,0 +1,16 @@
+sister("Perry Kell", "Winnie Harlow").
+brother("Perry Kell", "Felton Kell").
+brother("Perry Kell", "Simon Kell").
+mother("Perry Kell", "Jackqueline Kell").
+father("Perry Kell", "Kurtis Kell").
+friend("Perry Kell", "Mayra Geter").
+friend("Perry Kell", "Melina Simons").
+friend("Perry Kell", "Rolf Osterman").
+friend("Perry Kell", "Shizuko Eaves").
+friend("Perry Kell", "Son Corwin").
+friend("Perry Kell", "Noel Chisholm").
+friend("Perry Kell", "Benito Skidmore").
+dob("Perry Kell", "0392-06-26").
+job("Perry Kell", "print production planner").
+hobby("Perry Kell", "lapel pins").
+gender("Perry Kell", "male").

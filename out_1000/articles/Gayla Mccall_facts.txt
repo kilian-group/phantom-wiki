@@ -1,0 +1,11 @@
+daughter("Gayla Mccall", "Torrie Goff").
+husband("Gayla Mccall", "Emanuel Mccall").
+friend("Gayla Mccall", "Lera Mcpeak").
+friend("Gayla Mccall", "Pamala Vanmeter").
+friend("Gayla Mccall", "Rolf Osterman").
+friend("Gayla Mccall", "Jenniffer Younger").
+friend("Gayla Mccall", "Shirley Dalton").
+dob("Gayla Mccall", "0297-11-20").
+job("Gayla Mccall", "television floor manager").
+hobby("Gayla Mccall", "bus spotting").
+gender("Gayla Mccall", "female").

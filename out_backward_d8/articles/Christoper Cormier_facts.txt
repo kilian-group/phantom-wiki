@@ -1,0 +1,10 @@
+mother("Christoper Cormier", "Patsy Cormier").
+father("Christoper Cormier", "Sol Cormier").
+son("Christoper Cormier", "Foster Cormier").
+wife("Christoper Cormier", "Alycia Cormier").
+friend("Christoper Cormier", "Johnathan Boutte").
+friend("Christoper Cormier", "Orlando Beltran").
+dob("Christoper Cormier", "0181-01-08").
+job("Christoper Cormier", "building surveyor").
+hobby("Christoper Cormier", "weightlifting").
+gender("Christoper Cormier", "male").

@@ -1,0 +1,452 @@
+[
+    {
+        "id": "30f84d63-071f-4f09-b9f4-9c0e9b2d3d9d",
+        "question": "Who was born first, the parent of the friend of Liane Schoonmaker or the person whose occupation is advice worker?",
+        "solution_traces": "[]",
+        "answer": [
+            "Alvaro Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "parent(Y_4, Y_2)",
+                "friend(\"Liane Schoonmaker\", Y_4)",
+                "job(Y_10, \"advice worker\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the person whose",
+            "<attribute_name>_11",
+            "is",
+            "<attribute_value>_11",
+            "?"
+        ],
+        "type": 66,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "c511a42c-ee83-410d-9c0e-4d0786e08002",
+        "question": "Who was born first, the grandmother of the child of Johnathan Boutte or the person whose hobby is audiophile?",
+        "solution_traces": "[]",
+        "answer": [
+            "Hanh Boutte"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "grandmother(Y_4, Y_2)",
+                "child(\"Johnathan Boutte\", Y_4)",
+                "hobby(Y_10, \"audiophile\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the person whose",
+            "<attribute_name>_11",
+            "is",
+            "<attribute_value>_11",
+            "?"
+        ],
+        "type": 66,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "ed63ecc8-58b8-40a8-9af0-f501ed74277d",
+        "question": "Who was born first, the husband of the friend of Maxwell Henderson or the person whose occupation is telecommunications researcher?",
+        "solution_traces": "[]",
+        "answer": [
+            "Ulysses Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "husband(Y_4, Y_2)",
+                "friend(\"Maxwell Henderson\", Y_4)",
+                "job(Y_10, \"telecommunications researcher\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the person whose",
+            "<attribute_name>_11",
+            "is",
+            "<attribute_value>_11",
+            "?"
+        ],
+        "type": 66,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "1475f29c-fb83-4a1b-bfde-132599aa10b3",
+        "question": "Who was born first, the parent of the mother of Ivory Pannell or the person whose occupation is music therapist?",
+        "solution_traces": "[]",
+        "answer": [
+            "Kristi Schreiner"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "parent(Y_4, Y_2)",
+                "mother(\"Ivory Pannell\", Y_4)",
+                "job(Y_10, \"music therapist\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the person whose",
+            "<attribute_name>_11",
+            "is",
+            "<attribute_value>_11",
+            "?"
+        ],
+        "type": 66,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "7be69962-ce65-41bc-9679-d28de3a10d0f",
+        "question": "Who was born first, the second aunt of the brother-in-law of Ester Kovach or the person whose hobby is martial arts?",
+        "solution_traces": "[]",
+        "answer": [
+            "Laurel Decosta"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "second_aunt(Y_4, Y_2)",
+                "brother_in_law(\"Ester Kovach\", Y_4)",
+                "hobby(Y_10, \"martial arts\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the person whose",
+            "<attribute_name>_11",
+            "is",
+            "<attribute_value>_11",
+            "?"
+        ],
+        "type": 66,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 1,
+            "composite": 8,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "03e08d95-30b0-4ac3-abd4-75670bcd3ce3",
+        "question": "Who was born first, the child of the sibling of Rosanna Palermo or the person whose occupation is commercial horticulturist?",
+        "solution_traces": "[]",
+        "answer": [
+            "Edythe Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "child(Y_4, Y_2)",
+                "sibling(\"Rosanna Palermo\", Y_4)",
+                "job(Y_10, \"commercial horticulturist\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the person whose",
+            "<attribute_name>_11",
+            "is",
+            "<attribute_value>_11",
+            "?"
+        ],
+        "type": 66,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "e3c6051a-6108-4177-801f-d726ffbd0397",
+        "question": "Who was born first, the grandparent of the son of Monique Griffiths or the person whose occupation is oceanographer?",
+        "solution_traces": "[]",
+        "answer": [
+            "Elton Griffiths"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "grandparent(Y_4, Y_2)",
+                "son(\"Monique Griffiths\", Y_4)",
+                "job(Y_10, \"oceanographer\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the person whose",
+            "<attribute_name>_11",
+            "is",
+            "<attribute_value>_11",
+            "?"
+        ],
+        "type": 66,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "8003b4eb-9ea9-44e1-90f4-b6a6e0368cad",
+        "question": "Who was born first, the brother of the great-aunt of Amberly Mcnew or the person whose hobby is fusilately?",
+        "solution_traces": "[]",
+        "answer": [
+            "Carey Mckenna"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "brother(Y_4, Y_2)",
+                "great_aunt(\"Amberly Mcnew\", Y_4)",
+                "hobby(Y_10, \"fusilately\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the person whose",
+            "<attribute_name>_11",
+            "is",
+            "<attribute_value>_11",
+            "?"
+        ],
+        "type": 66,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "853e5609-a1ee-4e9d-a452-970f22621b36",
+        "question": "Who was born first, the niece of the aunt of Lenore Hackworth or the person whose hobby is dolls?",
+        "solution_traces": "[]",
+        "answer": [
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "niece(Y_4, Y_2)",
+                "aunt(\"Lenore Hackworth\", Y_4)",
+                "hobby(Y_10, \"dolls\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the person whose",
+            "<attribute_name>_11",
+            "is",
+            "<attribute_value>_11",
+            "?"
+        ],
+        "type": 66,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "7a339eef-69f0-4cdd-b53c-27d648ecb5c6",
+        "question": "Who was born first, the friend of the great-grandchild of Nada Shirk or the person whose date of birth is 0356-03-30?",
+        "solution_traces": "[]",
+        "answer": [
+            "Ricardo Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "friend(Y_4, Y_2)",
+                "great_grandchild(\"Nada Shirk\", Y_4)",
+                "dob(Y_10, \"0356-03-30\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the person whose",
+            "<attribute_name>_11",
+            "is",
+            "<attribute_value>_11",
+            "?"
+        ],
+        "type": 66,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    }
+]

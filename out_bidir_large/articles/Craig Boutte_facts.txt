@@ -1,0 +1,13 @@
+mother("Craig Boutte", "Marlana Boutte").
+father("Craig Boutte", "Johnathan Boutte").
+friend("Craig Boutte", "Ricardo Hackworth").
+friend("Craig Boutte", "Alberto Saari").
+friend("Craig Boutte", "Rosalinda Francois").
+friend("Craig Boutte", "Yoshiko Crain").
+friend("Craig Boutte", "Hoa Skaggs").
+friend("Craig Boutte", "Madelyn Palermo").
+friend("Craig Boutte", "Margaret Kovach").
+dob("Craig Boutte", "0318-06-06").
+job("Craig Boutte", "astronomer").
+hobby("Craig Boutte", "fencing").
+gender("Craig Boutte", "male").

@@ -1,0 +1,14 @@
+son("Kurtis Eaves", "Russel Eaves").
+wife("Kurtis Eaves", "Anastasia Eaves").
+friend("Kurtis Eaves", "Darby Latham").
+friend("Kurtis Eaves", "Flora Noland").
+friend("Kurtis Eaves", "Sylvester Hamlin").
+friend("Kurtis Eaves", "Hank Paynter").
+friend("Kurtis Eaves", "Daisy Autry").
+friend("Kurtis Eaves", "Edwina Weise").
+friend("Kurtis Eaves", "Cortez Kinsella").
+friend("Kurtis Eaves", "Jacque Simons").
+dob("Kurtis Eaves", "0324-01-06").
+job("Kurtis Eaves", "astronomer").
+hobby("Kurtis Eaves", "geography").
+gender("Kurtis Eaves", "male").

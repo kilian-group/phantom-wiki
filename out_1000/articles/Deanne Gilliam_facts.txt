@@ -1,0 +1,16 @@
+mother("Deanne Gilliam", "Gay Fitch").
+father("Deanne Gilliam", "Antonio Fitch").
+daughter("Deanne Gilliam", "Deja Gilliam").
+daughter("Deanne Gilliam", "Shante Gilliam").
+husband("Deanne Gilliam", "Scotty Gilliam").
+friend("Deanne Gilliam", "Sona Fredrick").
+friend("Deanne Gilliam", "Bruce Burger").
+friend("Deanne Gilliam", "Derek Carswell").
+friend("Deanne Gilliam", "Theodore Vanmeter").
+friend("Deanne Gilliam", "Ofelia Callender").
+friend("Deanne Gilliam", "Tammy Sutphin").
+friend("Deanne Gilliam", "Alton Ibarra").
+dob("Deanne Gilliam", "0374-12-09").
+job("Deanne Gilliam", "electrical engineer").
+hobby("Deanne Gilliam", "notaphily").
+gender("Deanne Gilliam", "female").

@@ -1,0 +1,25 @@
+sister("Anna Broughton", "Jenny Gilliam").
+sister("Anna Broughton", "Vada Littleton").
+brother("Anna Broughton", "Scotty Gilliam").
+mother("Anna Broughton", "Deidra Gilliam").
+father("Anna Broughton", "Darren Gilliam").
+son("Anna Broughton", "Emil Broughton").
+son("Anna Broughton", "Scotty Broughton").
+daughter("Anna Broughton", "Amanda Broughton").
+husband("Anna Broughton", "Darrell Broughton").
+friend("Anna Broughton", "Glenda Dacosta").
+friend("Anna Broughton", "Miles Fordham").
+friend("Anna Broughton", "Belva Murphey").
+friend("Anna Broughton", "Evette Hamlin").
+friend("Anna Broughton", "Sheena Dame").
+friend("Anna Broughton", "Belva Resendez").
+friend("Anna Broughton", "Belia Mckenna").
+friend("Anna Broughton", "Maxwell Beamon").
+friend("Anna Broughton", "Logan Swartz").
+friend("Anna Broughton", "Oralia Burdette").
+friend("Anna Broughton", "Shannon Flores").
+friend("Anna Broughton", "Janis Younger").
+dob("Anna Broughton", "0377-03-14").
+job("Anna Broughton", "tax adviser").
+hobby("Anna Broughton", "hiking/backpacking").
+gender("Anna Broughton", "female").

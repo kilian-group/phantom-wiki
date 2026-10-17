@@ -1,0 +1,21 @@
+brother("Valeria Medellin", "Charles Levine").
+mother("Valeria Medellin", "Amberly Levine").
+father("Valeria Medellin", "Glenn Levine").
+son("Valeria Medellin", "Kieth Medellin").
+son("Valeria Medellin", "Reggie Medellin").
+daughter("Valeria Medellin", "Eunice Gordy").
+husband("Valeria Medellin", "Robt Medellin").
+friend("Valeria Medellin", "Anita Fain").
+friend("Valeria Medellin", "Barbar Kell").
+friend("Valeria Medellin", "Ollie Kell").
+friend("Valeria Medellin", "Terrell Lai").
+friend("Valeria Medellin", "Jacque Simons").
+friend("Valeria Medellin", "Pearl Hamann").
+friend("Valeria Medellin", "Vicki Ruth").
+friend("Valeria Medellin", "Addie Dana").
+friend("Valeria Medellin", "Juanita Dana").
+friend("Valeria Medellin", "Miguel Morehead").
+dob("Valeria Medellin", "0381-04-09").
+job("Valeria Medellin", "restaurant manager").
+hobby("Valeria Medellin", "meditation").
+gender("Valeria Medellin", "female").

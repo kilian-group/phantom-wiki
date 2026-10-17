@@ -1,0 +1,15 @@
+brother("Shaunna Fordham", "Donald Fordham").
+brother("Shaunna Fordham", "Rodney Fordham").
+mother("Shaunna Fordham", "Romona Fordham").
+father("Shaunna Fordham", "Aaron Fordham").
+friend("Shaunna Fordham", "Erik Capps").
+friend("Shaunna Fordham", "Leena Estrella").
+friend("Shaunna Fordham", "Goldie Alessi").
+friend("Shaunna Fordham", "Solomon Shaw").
+friend("Shaunna Fordham", "Bernardo Briscoe").
+friend("Shaunna Fordham", "Crysta Machado").
+friend("Shaunna Fordham", "Murray Fredrick").
+dob("Shaunna Fordham", "0520-05-27").
+job("Shaunna Fordham", "buyer").
+hobby("Shaunna Fordham", "shortwave listening").
+gender("Shaunna Fordham", "female").

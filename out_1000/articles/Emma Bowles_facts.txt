@@ -1,0 +1,13 @@
+mother("Emma Bowles", "Toni Glass").
+father("Emma Bowles", "Ellis Glass").
+daughter("Emma Bowles", "Fatimah Holtz").
+daughter("Emma Bowles", "Valentina Robinett").
+husband("Emma Bowles", "Aaron Bowles").
+friend("Emma Bowles", "Larue Macias").
+friend("Emma Bowles", "Carroll Lindquist").
+friend("Emma Bowles", "Fredrick Mckenna").
+friend("Emma Bowles", "Emery Linden").
+dob("Emma Bowles", "0418-07-08").
+job("Emma Bowles", "higher education careers adviser").
+hobby("Emma Bowles", "medical science").
+gender("Emma Bowles", "female").

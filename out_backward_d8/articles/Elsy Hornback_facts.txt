@@ -1,0 +1,10 @@
+daughter("Elsy Hornback", "Lorine Wasserman").
+daughter("Elsy Hornback", "Shirleen Abraham").
+husband("Elsy Hornback", "Reinaldo Hornback").
+friend("Elsy Hornback", "Rosalinda Brannan").
+friend("Elsy Hornback", "Ming Cormier").
+friend("Elsy Hornback", "Aletha Nicolas").
+dob("Elsy Hornback", "0222-07-07").
+job("Elsy Hornback", "musician").
+hobby("Elsy Hornback", "life science").
+gender("Elsy Hornback", "female").

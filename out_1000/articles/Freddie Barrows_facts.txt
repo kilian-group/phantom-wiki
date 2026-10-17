@@ -1,0 +1,21 @@
+son("Freddie Barrows", "Ignacio Barrows").
+wife("Freddie Barrows", "Christina Barrows").
+friend("Freddie Barrows", "Marcelina Simons").
+friend("Freddie Barrows", "Carlene Corwin").
+friend("Freddie Barrows", "Ruben Corwin").
+friend("Freddie Barrows", "Carlotta Gossett").
+friend("Freddie Barrows", "Justine Gibbs").
+friend("Freddie Barrows", "Shelly Donner").
+friend("Freddie Barrows", "Katherine Carswell").
+friend("Freddie Barrows", "Thomasena Marr").
+friend("Freddie Barrows", "Sylvia Carty").
+friend("Freddie Barrows", "Everett Courson").
+friend("Freddie Barrows", "Patty Kell").
+friend("Freddie Barrows", "Kent Corso").
+friend("Freddie Barrows", "Frederic Cordova").
+friend("Freddie Barrows", "Debora Murray").
+friend("Freddie Barrows", "Rebecka Schlosser").
+dob("Freddie Barrows", "0440-09-06").
+job("Freddie Barrows", "advertising account planner").
+hobby("Freddie Barrows", "whale watching").
+gender("Freddie Barrows", "male").

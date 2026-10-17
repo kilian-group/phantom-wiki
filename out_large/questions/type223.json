@@ -1,0 +1,462 @@
+[
+    {
+        "id": "f9c1ab9f-d077-418d-bcca-f6ddf5178f99",
+        "question": "Who is the oldest grandparent of Chrissy Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Sherrie Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "grandparent(\"Chrissy Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (grandparent(\"Chrissy Remillard\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "f6a220d1-21de-4803-b780-97bd3d04c3e3",
+        "question": "Who is the oldest daughter of Jaime Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Margie Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "daughter(\"Jaime Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (daughter(\"Jaime Remillard\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "d7d00848-a838-40df-a559-1d309ed660c0",
+        "question": "Who is the oldest sibling of Lyman Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Monte Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "sibling(\"Lyman Oberg\", X)",
+                "dob(X, D)",
+                "\\+ (sibling(\"Lyman Oberg\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "f46df785-609f-42d1-befb-47b31c5d487a",
+        "question": "Who is the oldest child of Monte Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Sarah Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "child(\"Monte Oberg\", X)",
+                "dob(X, D)",
+                "\\+ (child(\"Monte Oberg\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "0127a076-8a7c-4cba-8ddd-916b13ca70e6",
+        "question": "Who is the oldest great-granddaughter of Sherrie Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Louann Chrisman"
+        ],
+        "prolog": {
+            "query": [
+                "great_granddaughter(\"Sherrie Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (great_granddaughter(\"Sherrie Remillard\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 4,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "8fcf959a-b056-4013-b2e1-3140517f134c",
+        "question": "Who is the oldest nephew of Clyde Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Mason Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "nephew(\"Clyde Oberg\", X)",
+                "dob(X, D)",
+                "\\+ (nephew(\"Clyde Oberg\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "86b414b2-4b98-433f-9ed9-9be746e30236",
+        "question": "Who is the oldest niece of Jude Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Margie Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "niece(\"Jude Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (niece(\"Jude Remillard\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "6ef89788-ccbb-404d-bdbb-bf422b998b67",
+        "question": "Who is the oldest great-grandparent of Willie Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Sherrie Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandparent(\"Willie Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (great_grandparent(\"Willie Remillard\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 4,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "87256842-33c4-4d96-ad7c-3fdb3a6dfba7",
+        "question": "Who is the oldest son of Valentin Vandenberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Eli Vandenberg"
+        ],
+        "prolog": {
+            "query": [
+                "son(\"Valentin Vandenberg\", X)",
+                "dob(X, D)",
+                "\\+ (son(\"Valentin Vandenberg\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "9f36f3cb-e087-4f7b-b1f8-85e1bcddf9e4",
+        "question": "Who is the oldest great-grandchild of Jon Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Louann Chrisman"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandchild(\"Jon Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (great_grandchild(\"Jon Remillard\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 4,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "e0717902-0658-412c-b451-4806d1f58ccb",
+        "question": "Who is the oldest niece of Ophelia Mcgough?",
+        "solution_traces": "[]",
+        "answer": [
+            "Clara Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "niece(\"Ophelia Mcgough\", X)",
+                "dob(X, D)",
+                "\\+ (niece(\"Ophelia Mcgough\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "6ca4eca1-4977-4e1c-b4f0-f7fedde6f927",
+        "question": "Who is the oldest grandchild of Jaime Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Louann Chrisman"
+        ],
+        "prolog": {
+            "query": [
+                "grandchild(\"Jaime Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (grandchild(\"Jaime Remillard\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "b9ecd412-6f74-4336-b83f-973e02d919cd",
+        "question": "Who is the oldest sibling of Jude Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jaime Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "sibling(\"Jude Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (sibling(\"Jude Remillard\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "bc0fa7ba-e69f-4585-b7c9-ce9525cd31c7",
+        "question": "Who is the oldest grandparent of Demarcus Narvaez?",
+        "solution_traces": "[]",
+        "answer": [
+            "Monte Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "grandparent(\"Demarcus Narvaez\", X)",
+                "dob(X, D)",
+                "\\+ (grandparent(\"Demarcus Narvaez\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "3721c0f9-a344-4d60-a49c-ca332b3ceb0c",
+        "question": "Who is the oldest daughter-in-law of Richard Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Marlo Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "daughter_in_law(\"Richard Oberg\", X)",
+                "dob(X, D)",
+                "\\+ (daughter_in_law(\"Richard Oberg\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "3a919eff-ea22-4c97-8848-3c0c4a81f46f",
+        "question": "Who is the oldest brother of Belva Murphey?",
+        "solution_traces": "[]",
+        "answer": [
+            "Marion Wilke"
+        ],
+        "prolog": {
+            "query": [
+                "brother(\"Belva Murphey\", X)",
+                "dob(X, D)",
+                "\\+ (brother(\"Belva Murphey\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "c9f65d9b-4ff4-4b84-8bcd-5e9d266f1e7f",
+        "question": "Who is the oldest child of Monte Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Sarah Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "child(\"Monte Oberg\", X)",
+                "dob(X, D)",
+                "\\+ (child(\"Monte Oberg\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "7aa390b6-2a79-4cf7-a3bd-f3cea182e990",
+        "question": "Who is the oldest friend of Wanita Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Alvaro Murphey"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Wanita Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (friend(\"Wanita Remillard\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "563680fd-db9f-46aa-b858-32c0b6519d36",
+        "question": "Who is the oldest daughter of Hunter Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Louann Chrisman"
+        ],
+        "prolog": {
+            "query": [
+                "daughter(\"Hunter Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (daughter(\"Hunter Remillard\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "11d80d54-8261-4f3c-802c-8a923d1ed4d1",
+        "question": "Who is the oldest daughter-in-law of Brigida Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Marlo Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "daughter_in_law(\"Brigida Oberg\", X)",
+                "dob(X, D)",
+                "\\+ (daughter_in_law(\"Brigida Oberg\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    }
+]

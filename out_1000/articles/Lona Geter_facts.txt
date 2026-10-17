@@ -1,0 +1,13 @@
+sister("Lona Geter", "Alexandria Hayward").
+sister("Lona Geter", "Cleo Dangelo").
+mother("Lona Geter", "Georgette Haygood").
+father("Lona Geter", "Jeff Haygood").
+son("Lona Geter", "Byron Geter").
+husband("Lona Geter", "Gregory Geter").
+friend("Lona Geter", "Dinah Simons").
+friend("Lona Geter", "Homer Morehead").
+friend("Lona Geter", "Cary Layton").
+dob("Lona Geter", "0489-03-17").
+job("Lona Geter", "further education lecturer").
+hobby("Lona Geter", "kitesurfing").
+gender("Lona Geter", "female").

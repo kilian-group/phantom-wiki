@@ -1,0 +1,12 @@
+daughter("Saul Wexler", "Valentina Wexler").
+wife("Saul Wexler", "Jeannine Wexler").
+friend("Saul Wexler", "Alison Smock").
+friend("Saul Wexler", "Daisy Beltran").
+friend("Saul Wexler", "Dino Beltran").
+friend("Saul Wexler", "Johnetta Wang").
+friend("Saul Wexler", "Lannie Smock").
+friend("Saul Wexler", "Lenore Hackworth").
+dob("Saul Wexler", "0301-10-24").
+job("Saul Wexler", "occupational therapist").
+hobby("Saul Wexler", "sociology").
+gender("Saul Wexler", "male").

@@ -1,0 +1,17 @@
+daughter("Antwan Rudolph", "Gayla Holder").
+daughter("Antwan Rudolph", "Lara Jansen").
+daughter("Antwan Rudolph", "Paula Rudolph").
+daughter("Antwan Rudolph", "Rebecka Schlosser").
+daughter("Antwan Rudolph", "Wanda Murray").
+wife("Antwan Rudolph", "Annette Rudolph").
+friend("Antwan Rudolph", "Milford Simons").
+friend("Antwan Rudolph", "Augustine Linden").
+friend("Antwan Rudolph", "Blake Swartz").
+friend("Antwan Rudolph", "Mireya Ibarra").
+friend("Antwan Rudolph", "Scotty Gilliam").
+friend("Antwan Rudolph", "Belva Murphey").
+friend("Antwan Rudolph", "Gabriele Wilke").
+dob("Antwan Rudolph", "0385-01-24").
+job("Antwan Rudolph", "microbiologist").
+hobby("Antwan Rudolph", "crystals").
+gender("Antwan Rudolph", "male").

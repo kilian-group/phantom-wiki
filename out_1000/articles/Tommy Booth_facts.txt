@@ -1,0 +1,18 @@
+brother("Tommy Booth", "Rolf Booth").
+mother("Tommy Booth", "Kanesha Booth").
+father("Tommy Booth", "Preston Booth").
+daughter("Tommy Booth", "Macy Booth").
+wife("Tommy Booth", "Noreen Booth").
+friend("Tommy Booth", "Rogelio Mckenna").
+friend("Tommy Booth", "Jodi Cordova").
+friend("Tommy Booth", "Georgine Mahoney").
+friend("Tommy Booth", "Mireya Ibarra").
+friend("Tommy Booth", "Deja Gilliam").
+friend("Tommy Booth", "Normand Wilke").
+friend("Tommy Booth", "Son Sutphin").
+friend("Tommy Booth", "Wesley Courson").
+friend("Tommy Booth", "Mac Mounts").
+dob("Tommy Booth", "0434-05-21").
+job("Tommy Booth", "lecturer").
+hobby("Tommy Booth", "video game collecting").
+gender("Tommy Booth", "male").

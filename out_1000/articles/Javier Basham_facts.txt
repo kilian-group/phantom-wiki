@@ -1,0 +1,16 @@
+son("Javier Basham", "Winfred Basham").
+daughter("Javier Basham", "Adah Schram").
+daughter("Javier Basham", "Geraldine Suh").
+daughter("Javier Basham", "Sharolyn Basham").
+daughter("Javier Basham", "Shawnta Basham").
+wife("Javier Basham", "Ladawn Basham").
+friend("Javier Basham", "Trevor Frink").
+friend("Javier Basham", "Paula Lazar").
+friend("Javier Basham", "Deshawn Medellin").
+friend("Javier Basham", "Jacque Greene").
+friend("Javier Basham", "Luisa Estrella").
+friend("Javier Basham", "Jenni Kell").
+dob("Javier Basham", "0395-03-15").
+job("Javier Basham", "camera operator").
+hobby("Javier Basham", "meteorology").
+gender("Javier Basham", "male").

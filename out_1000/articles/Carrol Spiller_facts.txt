@@ -1,0 +1,14 @@
+son("Carrol Spiller", "Perry Spiller").
+wife("Carrol Spiller", "Ashleigh Spiller").
+friend("Carrol Spiller", "Tiffany Simons").
+friend("Carrol Spiller", "Zelda Sharma").
+friend("Carrol Spiller", "Ginger Chou").
+friend("Carrol Spiller", "Rob Lebrun").
+friend("Carrol Spiller", "Tabetha Hsu").
+friend("Carrol Spiller", "Chelsea Skidmore").
+friend("Carrol Spiller", "Eva Kell").
+friend("Carrol Spiller", "Katharine Willoughby").
+dob("Carrol Spiller", "0424-07-27").
+job("Carrol Spiller", "banker").
+hobby("Carrol Spiller", "pickleball").
+gender("Carrol Spiller", "male").

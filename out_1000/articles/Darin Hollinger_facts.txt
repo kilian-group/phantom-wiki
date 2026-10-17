@@ -1,0 +1,18 @@
+son("Darin Hollinger", "Amos Hollinger").
+wife("Darin Hollinger", "Jackqueline Hollinger").
+friend("Darin Hollinger", "Jennie Towns").
+friend("Darin Hollinger", "Miki Mcdonald").
+friend("Darin Hollinger", "Anastasia Keyes").
+friend("Darin Hollinger", "Ollie Minnick").
+friend("Darin Hollinger", "Lindy Kavanaugh").
+friend("Darin Hollinger", "Sang Cheney").
+friend("Darin Hollinger", "Erik Capps").
+friend("Darin Hollinger", "Cedric Wilke").
+friend("Darin Hollinger", "Tashina Vandenberg").
+friend("Darin Hollinger", "Fredrick Mckenna").
+friend("Darin Hollinger", "Garrett Bauman").
+friend("Darin Hollinger", "Roseanna Mckenna").
+dob("Darin Hollinger", "0396-07-02").
+job("Darin Hollinger", "marine scientist").
+hobby("Darin Hollinger", "beauty pageants").
+gender("Darin Hollinger", "male").

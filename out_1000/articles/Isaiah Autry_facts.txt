@@ -1,0 +1,17 @@
+sister("Isaiah Autry", "Ashleigh Spiller").
+sister("Isaiah Autry", "Karol Beamon").
+sister("Isaiah Autry", "Magdalena Hollinger").
+brother("Isaiah Autry", "Donald Autry").
+mother("Isaiah Autry", "Daisy Autry").
+father("Isaiah Autry", "Kelvin Autry").
+friend("Isaiah Autry", "Arnulfo Kinsella").
+friend("Isaiah Autry", "Janiece Cordova").
+friend("Isaiah Autry", "Jermaine Gilliam").
+friend("Isaiah Autry", "Anthony Jarrett").
+friend("Isaiah Autry", "Hyman Layman").
+friend("Isaiah Autry", "Claudio Winn").
+friend("Isaiah Autry", "Emil Wendel").
+dob("Isaiah Autry", "0422-07-31").
+job("Isaiah Autry", "professor emeritus").
+hobby("Isaiah Autry", "ant farming").
+gender("Isaiah Autry", "male").

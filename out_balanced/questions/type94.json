@@ -1,0 +1,388 @@
+[
+    {
+        "id": "ac470c61-a23e-41fc-a855-4e6d39f912f5",
+        "question": "Who is the oldest cousin of the niece of Jeannine Wexler?",
+        "solution_traces": "[]",
+        "answer": [
+            "Johnetta Wang",
+            "Leeann Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (cousin(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "cousin(Y_2, Y_7)",
+                "niece(\"Jeannine Wexler\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 94,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "ef1411c1-7964-4182-8c4b-e925a0819dd4",
+        "question": "Who is the oldest child of the parent of Vicki Hackworth?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (child(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "child(Y_2, Y_7)",
+                "parent(\"Vicki Hackworth\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 94,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "61f1162e-b09a-4b7f-9ae1-d5b0048f96e4",
+        "question": "Who is the oldest aunt of the friend of Saul Wexler?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (aunt(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "aunt(Y_2, Y_7)",
+                "friend(\"Saul Wexler\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 94,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "31fb672f-f3c7-41d3-8522-07348026c859",
+        "question": "Who is the oldest sister-in-law of the son-in-law of Dino Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister_in_law(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "sister_in_law(Y_2, Y_7)",
+                "son_in_law(\"Dino Beltran\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 94,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "3b2822f0-51d7-4b89-a35c-09b8dadffbd8",
+        "question": "Who is the oldest sister of the friend of Deane Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deane Smock",
+            "Myrle Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "sister(Y_2, Y_7)",
+                "friend(\"Deane Smock\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 94,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "8223078d-9895-4335-9111-7b2ff2360de2",
+        "question": "Who is the oldest grandchild of the brother of Isabell Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandchild(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "grandchild(Y_2, Y_7)",
+                "brother(\"Isabell Smock\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 94,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "9a6cea07-2cdb-4b02-bdfb-37868c55c884",
+        "question": "Who is the oldest nephew of the child of Alvaro Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Williams Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (nephew(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "nephew(Y_2, Y_7)",
+                "child(\"Alvaro Smock\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 94,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "4c4a4d93-9e00-4a08-8924-faf05d757eb4",
+        "question": "Who is the oldest granddaughter of the friend of Ricardo Hackworth?",
+        "solution_traces": "[]",
+        "answer": [
+            "Leeann Hackworth",
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (granddaughter(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "granddaughter(Y_2, Y_7)",
+                "friend(\"Ricardo Hackworth\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 94,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "305668f9-6f93-406f-880b-f1782c12772b",
+        "question": "Who is the oldest granddaughter of the mother-in-law of Saul Wexler?",
+        "solution_traces": "[]",
+        "answer": [
+            "Leeann Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (granddaughter(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "granddaughter(Y_2, Y_7)",
+                "mother_in_law(\"Saul Wexler\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 94,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "8f51616a-a657-42f6-bd82-a8f389a94656",
+        "question": "Who is the oldest grandfather of the daughter of Ryan Wang?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dino Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandfather(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @< SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "grandfather(Y_2, Y_7)",
+                "daughter(\"Ryan Wang\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 94,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    }
+]

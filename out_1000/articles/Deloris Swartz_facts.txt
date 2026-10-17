@@ -1,0 +1,12 @@
+son("Deloris Swartz", "Heath Swartz").
+husband("Deloris Swartz", "Logan Swartz").
+friend("Deloris Swartz", "Alisha Fredrick").
+friend("Deloris Swartz", "Ardath Carswell").
+friend("Deloris Swartz", "Donnie Mcgough").
+friend("Deloris Swartz", "Jacques Cordova").
+friend("Deloris Swartz", "Jesus Cordova").
+friend("Deloris Swartz", "Rebecka Schlosser").
+dob("Deloris Swartz", "0365-12-15").
+job("Deloris Swartz", "retail manager").
+hobby("Deloris Swartz", "scuba diving").
+gender("Deloris Swartz", "female").

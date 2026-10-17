@@ -1,0 +1,12 @@
+daughter("Scotty Correia", "Darby Latham").
+wife("Scotty Correia", "Lela Correia").
+friend("Scotty Correia", "Lashanda Salem").
+friend("Scotty Correia", "Reggie Medellin").
+friend("Scotty Correia", "Alberto Wellington").
+friend("Scotty Correia", "Anastacia Cordova").
+friend("Scotty Correia", "Augustine Linden").
+friend("Scotty Correia", "Sarah Steadman").
+dob("Scotty Correia", "0232-09-08").
+job("Scotty Correia", "copywriter").
+hobby("Scotty Correia", "meditation").
+gender("Scotty Correia", "male").

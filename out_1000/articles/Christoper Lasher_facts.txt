@@ -1,0 +1,16 @@
+sister("Christoper Lasher", "Ladawn Basham").
+sister("Christoper Lasher", "Madaline Callender").
+mother("Christoper Lasher", "Audie Lasher").
+father("Christoper Lasher", "Collin Lasher").
+friend("Christoper Lasher", "Adolph Hollins").
+friend("Christoper Lasher", "Sebastian Minnick").
+friend("Christoper Lasher", "Glenn Levine").
+friend("Christoper Lasher", "Evelia Waltz").
+friend("Christoper Lasher", "Dustin Sheridan").
+friend("Christoper Lasher", "Jayson Hudgens").
+friend("Christoper Lasher", "Kristen Kell").
+friend("Christoper Lasher", "James Maness").
+dob("Christoper Lasher", "0393-04-01").
+job("Christoper Lasher", "television floor manager").
+hobby("Christoper Lasher", "people-watching").
+gender("Christoper Lasher", "male").

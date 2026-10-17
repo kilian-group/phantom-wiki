@@ -1,0 +1,14 @@
+sister("Brigette Bales", "Jann Ruth").
+sister("Brigette Bales", "Vicki Ruth").
+brother("Brigette Bales", "Benito Ruth").
+mother("Brigette Bales", "Shante Ruth").
+father("Brigette Bales", "Roman Ruth").
+son("Brigette Bales", "Louie Bales").
+husband("Brigette Bales", "Major Bales").
+friend("Brigette Bales", "Catina Linden").
+friend("Brigette Bales", "Mireya Ibarra").
+friend("Brigette Bales", "Andrea Murchison").
+dob("Brigette Bales", "0335-09-04").
+job("Brigette Bales", "data processing manager").
+hobby("Brigette Bales", "photography").
+gender("Brigette Bales", "female").

@@ -1,0 +1,10 @@
+son("Renate Oberg", "Bryce Oberg").
+son("Renate Oberg", "Richard Oberg").
+husband("Renate Oberg", "Abel Oberg").
+friend("Renate Oberg", "Sarah Oberg").
+friend("Renate Oberg", "Thomas Chrisman").
+friend("Renate Oberg", "Brigida Oberg").
+dob("Renate Oberg", "0250-03-15").
+job("Renate Oberg", "optometrist").
+hobby("Renate Oberg", "benchmarking").
+gender("Renate Oberg", "female").

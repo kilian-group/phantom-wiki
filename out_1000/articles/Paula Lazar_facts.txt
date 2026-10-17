@@ -1,0 +1,18 @@
+sister("Paula Lazar", "Dortha Ingle").
+sister("Paula Lazar", "Larae Kirksey").
+mother("Paula Lazar", "Florence Ingle").
+father("Paula Lazar", "Elliott Ingle").
+daughter("Paula Lazar", "Rowena Lazar").
+husband("Paula Lazar", "Lon Lazar").
+friend("Paula Lazar", "Anastasia Eaves").
+friend("Paula Lazar", "Gale Dana").
+friend("Paula Lazar", "Son Corwin").
+friend("Paula Lazar", "Amanda Rinehart").
+friend("Paula Lazar", "Marilynn Capps").
+friend("Paula Lazar", "Larue Macias").
+friend("Paula Lazar", "Irvin Shaw").
+friend("Paula Lazar", "Javier Basham").
+dob("Paula Lazar", "0349-08-24").
+job("Paula Lazar", "psychologist").
+hobby("Paula Lazar", "leaves").
+gender("Paula Lazar", "female").

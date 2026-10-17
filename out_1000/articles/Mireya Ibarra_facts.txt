@@ -1,0 +1,21 @@
+brother("Mireya Ibarra", "Alton Ibarra").
+mother("Mireya Ibarra", "Nydia Ibarra").
+father("Mireya Ibarra", "Jarrod Ibarra").
+friend("Mireya Ibarra", "Nydia Ibarra").
+friend("Mireya Ibarra", "Stevie Joiner").
+friend("Mireya Ibarra", "Johnathon Noland").
+friend("Mireya Ibarra", "Marguerite Putnam").
+friend("Mireya Ibarra", "Coral Monday").
+friend("Mireya Ibarra", "Dustin Sheridan").
+friend("Mireya Ibarra", "Jenni Kell").
+friend("Mireya Ibarra", "Tommy Booth").
+friend("Mireya Ibarra", "Samual Knepper").
+friend("Mireya Ibarra", "Lea Cordova").
+friend("Mireya Ibarra", "Antwan Rudolph").
+friend("Mireya Ibarra", "Edris Best").
+friend("Mireya Ibarra", "Timothy Simons").
+friend("Mireya Ibarra", "Brigette Bales").
+dob("Mireya Ibarra", "0378-02-01").
+job("Mireya Ibarra", "nature conservation officer").
+hobby("Mireya Ibarra", "magnet fishing").
+gender("Mireya Ibarra", "female").

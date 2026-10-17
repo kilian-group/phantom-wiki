@@ -1,0 +1,13 @@
+son("Theodore Vanmeter", "Denny Vanmeter").
+wife("Theodore Vanmeter", "Pamala Vanmeter").
+friend("Theodore Vanmeter", "Blake Swartz").
+friend("Theodore Vanmeter", "Vicki Osterman").
+friend("Theodore Vanmeter", "Vernon Peabody").
+friend("Theodore Vanmeter", "Carlotta Gossett").
+friend("Theodore Vanmeter", "Roxy Niles").
+friend("Theodore Vanmeter", "Deanne Gilliam").
+friend("Theodore Vanmeter", "Clay Vogt").
+dob("Theodore Vanmeter", "0412-06-06").
+job("Theodore Vanmeter", "psychiatric nurse").
+hobby("Theodore Vanmeter", "role-playing games").
+gender("Theodore Vanmeter", "male").

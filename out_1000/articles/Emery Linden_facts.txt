@@ -1,0 +1,17 @@
+sister("Emery Linden", "Brunilda Linden").
+sister("Emery Linden", "Catina Linden").
+sister("Emery Linden", "Genny Burdette").
+sister("Emery Linden", "Patricia Towns").
+brother("Emery Linden", "Augustine Linden").
+mother("Emery Linden", "Barb Linden").
+father("Emery Linden", "Jarvis Linden").
+friend("Emery Linden", "Lashandra Gilliam").
+friend("Emery Linden", "Jefferson Murdoch").
+friend("Emery Linden", "Emma Bowles").
+friend("Emery Linden", "Rhonda Theriot").
+friend("Emery Linden", "Cary Layton").
+friend("Emery Linden", "Kent Corso").
+dob("Emery Linden", "0467-05-14").
+job("Emery Linden", "make").
+hobby("Emery Linden", "rugby league football").
+gender("Emery Linden", "male").

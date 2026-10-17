@@ -1,0 +1,9 @@
+son("Lucienne Cedillo", "Jimmy Cedillo").
+son("Lucienne Cedillo", "Murray Cedillo").
+daughter("Lucienne Cedillo", "Yvette Cedillo").
+husband("Lucienne Cedillo", "Ron Cedillo").
+friend("Lucienne Cedillo", "Ron Woodman").
+dob("Lucienne Cedillo", "0301-03-22").
+job("Lucienne Cedillo", "camera operator").
+hobby("Lucienne Cedillo", "insect collecting").
+gender("Lucienne Cedillo", "female").

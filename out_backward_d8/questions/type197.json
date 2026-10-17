@@ -1,0 +1,473 @@
+[
+    {
+        "id": "55fb68cf-4ba9-4af8-884a-9094b6403d1e",
+        "question": "Who is the youngest child of the friend of the male cousin of the person whose occupation is advice worker?",
+        "solution_traces": "[]",
+        "answer": [
+            "Minerva Wilkie",
+            "Myrle Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (child(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "child(Y_2, Y_9)",
+                "friend(Y_4, Y_2)",
+                "male_cousin(Y_6, Y_4)",
+                "job(Y_6, \"advice worker\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 197,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "e9f62078-e879-4d31-a0cf-7ba61eb772f4",
+        "question": "Who is the youngest daughter of the husband of the friend of the person whose hobby is audiophile?",
+        "solution_traces": "[]",
+        "answer": [
+            "Alberta Abraham",
+            "Connie Nicolas",
+            "Edythe Earnest",
+            "Jeanelle Mcnew",
+            "Jeannine Wexler",
+            "Lea Levy",
+            "Marlana Boutte",
+            "Sha Langley",
+            "Sherry Cormier"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (daughter(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "daughter(Y_2, Y_9)",
+                "husband(Y_4, Y_2)",
+                "friend(Y_6, Y_4)",
+                "hobby(Y_6, \"audiophile\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 197,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "bfcc0c78-1cb6-4b89-85a6-957c86753e8c",
+        "question": "Who is the youngest aunt of the great-grandchild of the father of the person whose occupation is telecommunications researcher?",
+        "solution_traces": "[]",
+        "answer": [
+            "Laverna Kovach"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (aunt(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "aunt(Y_2, Y_9)",
+                "great_grandchild(Y_4, Y_2)",
+                "father(Y_6, Y_4)",
+                "job(Y_6, \"telecommunications researcher\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 197,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 1,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "77bd9853-55bc-49b4-90a2-ea2a31229a43",
+        "question": "Who is the youngest parent of the child of the wife of the person whose occupation is music therapist?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dwain Lizotte",
+            "Jeana Clemons"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (parent(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "parent(Y_2, Y_9)",
+                "child(Y_4, Y_2)",
+                "wife(Y_6, Y_4)",
+                "job(Y_6, \"music therapist\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 197,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "1f7e8e7a-c7c5-40a3-909a-e382f77349e8",
+        "question": "Who is the youngest son-in-law of the grandchild of the great-grandparent of the person whose hobby is martial arts?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jules Levy"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (son_in_law(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "son_in_law(Y_2, Y_9)",
+                "grandchild(Y_4, Y_2)",
+                "great_grandparent(Y_6, Y_4)",
+                "hobby(Y_6, \"martial arts\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 197,
+        "reasoning_steps": 8,
+        "difficulty": {
+            "hops": 8,
+            "constraints": 1,
+            "composite": 9,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "d463aa03-0999-4356-964a-d5dffe4dd73a",
+        "question": "Who is the youngest sister of the sibling of the sister-in-law of the person whose occupation is commercial horticulturist?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aletha Nicolas",
+            "Rosalinda Francois"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "sister(Y_2, Y_9)",
+                "sibling(Y_4, Y_2)",
+                "sister_in_law(Y_6, Y_4)",
+                "job(Y_6, \"commercial horticulturist\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 197,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "a8c8d45b-1386-48cf-b936-fd217aeeff4b",
+        "question": "Who is the youngest uncle of the brother of the sister-in-law of the person whose occupation is oceanographer?",
+        "solution_traces": "[]",
+        "answer": [
+            "Earle Cormier"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (uncle(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "uncle(Y_2, Y_9)",
+                "brother(Y_4, Y_2)",
+                "sister_in_law(Y_6, Y_4)",
+                "job(Y_6, \"oceanographer\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 197,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 1,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "70925e35-6a9e-479f-8fd6-1aab73554ba8",
+        "question": "Who is the youngest wife of the husband of the wife of the person whose hobby is fusilately?",
+        "solution_traces": "[]",
+        "answer": [
+            "Windy Mckenna"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (wife(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "wife(Y_2, Y_9)",
+                "husband(Y_4, Y_2)",
+                "wife(Y_6, Y_4)",
+                "hobby(Y_6, \"fusilately\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 197,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 1,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "582516ce-4b69-4e9f-b7da-3058c8607e9c",
+        "question": "Who is the youngest grandchild of the brother of the child of the person whose hobby is dolls?",
+        "solution_traces": "[]",
+        "answer": [
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandchild(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "grandchild(Y_2, Y_9)",
+                "brother(Y_4, Y_2)",
+                "child(Y_6, Y_4)",
+                "hobby(Y_6, \"dolls\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 197,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "e28c20f6-7a3b-4f89-a40c-5cbbd10dcccb",
+        "question": "Who is the youngest friend of the great-grandson of the friend of the person whose date of birth is 0356-03-30?",
+        "solution_traces": "[]",
+        "answer": [
+            "Rosendo Skaggs"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (friend(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "friend(Y_2, Y_9)",
+                "great_grandson(Y_4, Y_2)",
+                "friend(Y_6, Y_4)",
+                "dob(Y_6, \"0356-03-30\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 197,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    }
+]

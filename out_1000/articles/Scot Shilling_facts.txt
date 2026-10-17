@@ -1,0 +1,9 @@
+mother("Scot Shilling", "Addie Shilling").
+father("Scot Shilling", "Hershel Shilling").
+friend("Scot Shilling", "Shawna Sheridan").
+friend("Scot Shilling", "Emerson Willoughby").
+friend("Scot Shilling", "Eugene Geter").
+dob("Scot Shilling", "0436-01-13").
+job("Scot Shilling", "professor emeritus").
+hobby("Scot Shilling", "foraging").
+gender("Scot Shilling", "male").

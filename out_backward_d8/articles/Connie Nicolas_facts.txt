@@ -1,0 +1,10 @@
+sister("Connie Nicolas", "Lera Brook").
+sister("Connie Nicolas", "Marilyn Nicolas").
+brother("Connie Nicolas", "Eldon Nicolas").
+mother("Connie Nicolas", "Edythe Nicolas").
+father("Connie Nicolas", "Anthony Nicolas").
+friend("Connie Nicolas", "Monique Griffiths").
+dob("Connie Nicolas", "0301-02-09").
+job("Connie Nicolas", "arboriculturist").
+hobby("Connie Nicolas", "cooking").
+gender("Connie Nicolas", "female").

@@ -1,0 +1,19 @@
+sister("Avery Nolasco", "Jackqueline Kell").
+mother("Avery Nolasco", "Xiao Nolasco").
+father("Avery Nolasco", "Rashad Nolasco").
+friend("Avery Nolasco", "Dorathy Harlow").
+friend("Avery Nolasco", "Gayla Holder").
+friend("Avery Nolasco", "Keith Murchison").
+friend("Avery Nolasco", "Gaye Swartz").
+friend("Avery Nolasco", "Ivette Eaves").
+friend("Avery Nolasco", "Renate Gailey").
+friend("Avery Nolasco", "Adalberto Dacosta").
+friend("Avery Nolasco", "Patrick Broughton").
+friend("Avery Nolasco", "Vance Fredrick").
+friend("Avery Nolasco", "Gerry Shank").
+friend("Avery Nolasco", "Ricky Forester").
+friend("Avery Nolasco", "Zachariah Galvan").
+dob("Avery Nolasco", "0363-02-24").
+job("Avery Nolasco", "nurse").
+hobby("Avery Nolasco", "learning").
+gender("Avery Nolasco", "male").

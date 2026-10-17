@@ -1,0 +1,20 @@
+daughter("Sang Cheney", "Kimberely Cheney").
+wife("Sang Cheney", "Kelley Cheney").
+friend("Sang Cheney", "Rueben Bowles").
+friend("Sang Cheney", "Benito Skidmore").
+friend("Sang Cheney", "Brandon Capps").
+friend("Sang Cheney", "Dorathy Hamlin").
+friend("Sang Cheney", "Jann Upton").
+friend("Sang Cheney", "Rayna Upton").
+friend("Sang Cheney", "Therese Mckenna").
+friend("Sang Cheney", "Adah Schram").
+friend("Sang Cheney", "Darin Hollinger").
+friend("Sang Cheney", "Rowena Lazar").
+friend("Sang Cheney", "Jody Valladares").
+friend("Sang Cheney", "Rickie Burdette").
+friend("Sang Cheney", "Boris Gilliam").
+friend("Sang Cheney", "Oscar Medellin").
+dob("Sang Cheney", "0404-07-09").
+job("Sang Cheney", "web designer").
+hobby("Sang Cheney", "bus spotting").
+gender("Sang Cheney", "male").

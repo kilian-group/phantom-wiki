@@ -1,0 +1,19 @@
+sister("Jacque Simons", "Gena Cook").
+brother("Jacque Simons", "Milford Simons").
+brother("Jacque Simons", "Reggie Simons").
+mother("Jacque Simons", "Jacinta Simons").
+father("Jacque Simons", "Timothy Simons").
+friend("Jacque Simons", "Kurtis Eaves").
+friend("Jacque Simons", "Michaela Corwin").
+friend("Jacque Simons", "Valeria Medellin").
+friend("Jacque Simons", "Kelley Cheney").
+friend("Jacque Simons", "Anthony Jarrett").
+friend("Jacque Simons", "Sergio Parish").
+friend("Jacque Simons", "Adah Schram").
+friend("Jacque Simons", "Geraldine Suh").
+friend("Jacque Simons", "Grady Valladares").
+friend("Jacque Simons", "Milton Littleton").
+dob("Jacque Simons", "0443-03-06").
+job("Jacque Simons", "broadcast presenter").
+hobby("Jacque Simons", "rock balancing").
+gender("Jacque Simons", "female").

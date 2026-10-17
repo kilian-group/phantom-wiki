@@ -1,0 +1,17 @@
+mother("Lavern Staten", "Nydia Hollins").
+father("Lavern Staten", "Harold Hollins").
+daughter("Lavern Staten", "Coral Staten").
+husband("Lavern Staten", "Frederic Staten").
+friend("Lavern Staten", "Beatriz Theriot").
+friend("Lavern Staten", "Ashely Speaks").
+friend("Lavern Staten", "Erik Mounts").
+friend("Lavern Staten", "Jenni Kell").
+friend("Lavern Staten", "Sergio Parish").
+friend("Lavern Staten", "Maybelle Lester").
+friend("Lavern Staten", "Milford Simons").
+friend("Lavern Staten", "Rob Eaves").
+friend("Lavern Staten", "Son Corwin").
+dob("Lavern Staten", "0437-03-02").
+job("Lavern Staten", "web designer").
+hobby("Lavern Staten", "seashell collecting").
+gender("Lavern Staten", "female").

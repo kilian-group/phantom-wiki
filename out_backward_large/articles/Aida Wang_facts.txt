@@ -1,0 +1,15 @@
+sister("Aida Wang", "Jeannine Wexler").
+sister("Aida Wang", "Vicki Hackworth").
+mother("Aida Wang", "Shelli Beltran").
+father("Aida Wang", "Dino Beltran").
+daughter("Aida Wang", "Johnetta Wang").
+husband("Aida Wang", "Ryan Wang").
+friend("Aida Wang", "Garry Mcnew").
+friend("Aida Wang", "Harold Wilkie").
+friend("Aida Wang", "Ora Lizotte").
+friend("Aida Wang", "Gerardo Hornback").
+friend("Aida Wang", "Taneka Abraham").
+dob("Aida Wang", "0295-05-30").
+job("Aida Wang", "personal assistant").
+hobby("Aida Wang", "meditation").
+gender("Aida Wang", "female").

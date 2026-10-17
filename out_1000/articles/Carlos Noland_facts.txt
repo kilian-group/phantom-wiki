@@ -1,0 +1,19 @@
+sister("Carlos Noland", "Domonique Fordham").
+brother("Carlos Noland", "Hubert Noland").
+mother("Carlos Noland", "Flora Noland").
+father("Carlos Noland", "Hugh Noland").
+friend("Carlos Noland", "Ashleigh Galvan").
+friend("Carlos Noland", "Lera Carty").
+friend("Carlos Noland", "Wendell Monday").
+friend("Carlos Noland", "Enedina Cordova").
+friend("Carlos Noland", "Lona Corwin").
+friend("Carlos Noland", "Tawana Machado").
+friend("Carlos Noland", "Annabell Molina").
+friend("Carlos Noland", "Tim Goff").
+friend("Carlos Noland", "Nedra Musick").
+friend("Carlos Noland", "Nora Resendez").
+friend("Carlos Noland", "Antonio Fitch").
+dob("Carlos Noland", "0460-04-16").
+job("Carlos Noland", "biochemist").
+hobby("Carlos Noland", "eating").
+gender("Carlos Noland", "male").

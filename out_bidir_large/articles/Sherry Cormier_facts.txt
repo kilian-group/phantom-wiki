@@ -1,0 +1,13 @@
+brother("Sherry Cormier", "Dion Cormier").
+brother("Sherry Cormier", "Earle Cormier").
+mother("Sherry Cormier", "Leda Cormier").
+father("Sherry Cormier", "Foster Cormier").
+friend("Sherry Cormier", "Lanny Pannell").
+friend("Sherry Cormier", "Mickey Earnest").
+friend("Sherry Cormier", "Jules Levy").
+friend("Sherry Cormier", "Marlana Boutte").
+friend("Sherry Cormier", "Ella Saari").
+dob("Sherry Cormier", "0231-03-14").
+job("Sherry Cormier", "water engineer").
+hobby("Sherry Cormier", "magnet fishing").
+gender("Sherry Cormier", "female").

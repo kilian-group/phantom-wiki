@@ -1,0 +1,11 @@
+son("Tristan Niles", "Julius Niles").
+wife("Tristan Niles", "Roxy Niles").
+friend("Tristan Niles", "Jenny Gilliam").
+friend("Tristan Niles", "Marilynn Capps").
+friend("Tristan Niles", "Johnna Macias").
+friend("Tristan Niles", "Cortez Kinsella").
+friend("Tristan Niles", "Blake Swartz").
+dob("Tristan Niles", "0347-07-24").
+job("Tristan Niles", "musician").
+hobby("Tristan Niles", "mycology").
+gender("Tristan Niles", "male").

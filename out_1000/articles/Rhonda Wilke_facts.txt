@@ -1,0 +1,17 @@
+son("Rhonda Wilke", "Normand Wilke").
+husband("Rhonda Wilke", "Cedric Wilke").
+friend("Rhonda Wilke", "Sophie Wilke").
+friend("Rhonda Wilke", "Trudy Lennox").
+friend("Rhonda Wilke", "Wilber Storey").
+friend("Rhonda Wilke", "Annmarie Kinsella").
+friend("Rhonda Wilke", "Desmond Lester").
+friend("Rhonda Wilke", "Tony Gillam").
+friend("Rhonda Wilke", "Christina Barrows").
+friend("Rhonda Wilke", "Major Bales").
+friend("Rhonda Wilke", "Shamika Mahoney").
+friend("Rhonda Wilke", "Bryan Resendez").
+friend("Rhonda Wilke", "Alyssa Salem").
+dob("Rhonda Wilke", "0393-08-28").
+job("Rhonda Wilke", "paediatric nurse").
+hobby("Rhonda Wilke", "research").
+gender("Rhonda Wilke", "female").

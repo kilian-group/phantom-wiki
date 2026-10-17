@@ -1,0 +1,18 @@
+son("Kieth Shaw", "Irvin Shaw").
+wife("Kieth Shaw", "Gena Shaw").
+friend("Kieth Shaw", "Lynette Shaw").
+friend("Kieth Shaw", "Zachery Upton").
+friend("Kieth Shaw", "Nevin Mckenna").
+friend("Kieth Shaw", "Christoper Littleton").
+friend("Kieth Shaw", "Jorge Murray").
+friend("Kieth Shaw", "Latisha Murchison").
+friend("Kieth Shaw", "Adolph Hollins").
+friend("Kieth Shaw", "Shelia Hollins").
+friend("Kieth Shaw", "Jeromy Ibarra").
+friend("Kieth Shaw", "Vita Resendez").
+friend("Kieth Shaw", "Valentina Robinett").
+friend("Kieth Shaw", "Stacy Strong").
+dob("Kieth Shaw", "0448-02-24").
+job("Kieth Shaw", "radiation protection practitioner").
+hobby("Kieth Shaw", "films").
+gender("Kieth Shaw", "male").

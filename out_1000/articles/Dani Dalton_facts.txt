@@ -1,0 +1,19 @@
+brother("Dani Dalton", "Wilson Younger").
+mother("Dani Dalton", "Jenniffer Younger").
+father("Dani Dalton", "Eli Younger").
+daughter("Dani Dalton", "Enid Dalton").
+daughter("Dani Dalton", "Shirley Dalton").
+husband("Dani Dalton", "Irwin Dalton").
+friend("Dani Dalton", "Tyrell Resendez").
+friend("Dani Dalton", "Sylvia Gilliam").
+friend("Dani Dalton", "Jeana Chisholm").
+friend("Dani Dalton", "Lashandra Bowles").
+friend("Dani Dalton", "Ester Yarbrough").
+friend("Dani Dalton", "Jann Upton").
+friend("Dani Dalton", "Evette Knepper").
+friend("Dani Dalton", "Emil Wendel").
+friend("Dani Dalton", "Lenora Hayward").
+dob("Dani Dalton", "0432-05-29").
+job("Dani Dalton", "chartered certified accountant").
+hobby("Dani Dalton", "research").
+gender("Dani Dalton", "female").

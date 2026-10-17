@@ -1,0 +1,11 @@
+son("Theodore Crain", "Lucas Crain").
+son("Theodore Crain", "Thurman Crain").
+daughter("Theodore Crain", "Edythe Nicolas").
+daughter("Theodore Crain", "Zulema Crain").
+wife("Theodore Crain", "Yoshiko Crain").
+friend("Theodore Crain", "Kevin Boutte").
+friend("Theodore Crain", "Monique Griffiths").
+dob("Theodore Crain", "0244-06-10").
+job("Theodore Crain", "industrial designer").
+hobby("Theodore Crain", "auto audiophilia").
+gender("Theodore Crain", "male").

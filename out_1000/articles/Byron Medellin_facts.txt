@@ -1,0 +1,15 @@
+sister("Byron Medellin", "Tamara Wylie").
+brother("Byron Medellin", "Oscar Medellin").
+mother("Byron Medellin", "Verona Medellin").
+father("Byron Medellin", "Kieth Medellin").
+friend("Byron Medellin", "Alvaro Murphey").
+friend("Byron Medellin", "Levi Macias").
+friend("Byron Medellin", "Martin Deville").
+friend("Byron Medellin", "Shizuko Sheridan").
+friend("Byron Medellin", "Lloyd Ingalls").
+friend("Byron Medellin", "Jasmine Corwin").
+friend("Byron Medellin", "Boris Gilliam").
+dob("Byron Medellin", "0439-11-13").
+job("Byron Medellin", "legal secretary").
+hobby("Byron Medellin", "picnicking").
+gender("Byron Medellin", "male").

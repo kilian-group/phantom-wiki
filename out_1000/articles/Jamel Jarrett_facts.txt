@@ -1,0 +1,18 @@
+sister("Jamel Jarrett", "Freeda Jarrett").
+sister("Jamel Jarrett", "Zona Jarrett").
+brother("Jamel Jarrett", "Mose Jarrett").
+mother("Jamel Jarrett", "Shandi Jarrett").
+father("Jamel Jarrett", "Anthony Jarrett").
+daughter("Jamel Jarrett", "Lindy Hudgens").
+daughter("Jamel Jarrett", "Nelly Jarrett").
+wife("Jamel Jarrett", "Roni Jarrett").
+friend("Jamel Jarrett", "Leslie Courson").
+friend("Jamel Jarrett", "Alexander Corwin").
+friend("Jamel Jarrett", "Rochelle Corwin").
+friend("Jamel Jarrett", "Marcus Lebrun").
+friend("Jamel Jarrett", "Millard Fordham").
+friend("Jamel Jarrett", "Kenneth Rinehart").
+dob("Jamel Jarrett", "0443-11-15").
+job("Jamel Jarrett", "insurance risk surveyor").
+hobby("Jamel Jarrett", "birdwatching").
+gender("Jamel Jarrett", "male").

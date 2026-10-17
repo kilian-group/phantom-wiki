@@ -1,0 +1,13 @@
+sister("Lindy Hudgens", "Nelly Jarrett").
+mother("Lindy Hudgens", "Roni Jarrett").
+father("Lindy Hudgens", "Jamel Jarrett").
+son("Lindy Hudgens", "Jayson Hudgens").
+husband("Lindy Hudgens", "Harry Hudgens").
+friend("Lindy Hudgens", "Ollie Omara").
+friend("Lindy Hudgens", "Zora Simons").
+friend("Lindy Hudgens", "Ollie Minnick").
+friend("Lindy Hudgens", "Nellie Hamlin").
+dob("Lindy Hudgens", "0475-08-18").
+job("Lindy Hudgens", "insurance claims handler").
+hobby("Lindy Hudgens", "rail transport modelling").
+gender("Lindy Hudgens", "female").

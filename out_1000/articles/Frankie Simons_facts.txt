@@ -1,0 +1,15 @@
+sister("Frankie Simons", "Cherlyn Simons").
+sister("Frankie Simons", "Pearl Hamann").
+mother("Frankie Simons", "Viva Simons").
+father("Frankie Simons", "Roderick Simons").
+friend("Frankie Simons", "Brunilda Linden").
+friend("Frankie Simons", "Dena Morehead").
+friend("Frankie Simons", "Verona Arteaga").
+friend("Frankie Simons", "Brigette Medeiros").
+friend("Frankie Simons", "Vanessa Keister").
+friend("Frankie Simons", "Vaughn Dangelo").
+friend("Frankie Simons", "Renate Brumbaugh").
+dob("Frankie Simons", "0467-08-22").
+job("Frankie Simons", "lecturer").
+hobby("Frankie Simons", "herping").
+gender("Frankie Simons", "male").

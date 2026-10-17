@@ -1,0 +1,20 @@
+sister("Latrina Mathes", "Reita Pugliese").
+sister("Latrina Mathes", "Virgie Niles").
+brother("Latrina Mathes", "Israel Mathes").
+mother("Latrina Mathes", "Ella Mathes").
+father("Latrina Mathes", "Neal Mathes").
+friend("Latrina Mathes", "Gerry Shank").
+friend("Latrina Mathes", "Danilo Mcgough").
+friend("Latrina Mathes", "Karl Depriest").
+friend("Latrina Mathes", "Haley Layman").
+friend("Latrina Mathes", "Taylor Layman").
+friend("Latrina Mathes", "Vernon Joubert").
+friend("Latrina Mathes", "Roscoe Lindquist").
+friend("Latrina Mathes", "Kimberely Corso").
+friend("Latrina Mathes", "Jacque Haygood").
+friend("Latrina Mathes", "Juanita Eaves").
+friend("Latrina Mathes", "Lazaro Hsu").
+dob("Latrina Mathes", "0368-09-30").
+job("Latrina Mathes", "exhibitions officer").
+hobby("Latrina Mathes", "laser tag").
+gender("Latrina Mathes", "female").

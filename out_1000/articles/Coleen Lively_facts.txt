@@ -1,0 +1,14 @@
+brother("Coleen Lively", "Luis Simons").
+brother("Coleen Lively", "Sammie Simons").
+brother("Coleen Lively", "Timothy Simons").
+mother("Coleen Lively", "Zora Simons").
+father("Coleen Lively", "Bert Simons").
+son("Coleen Lively", "Collin Lively").
+husband("Coleen Lively", "Charley Lively").
+friend("Coleen Lively", "Zora Simons").
+friend("Coleen Lively", "Nydia Ibarra").
+friend("Coleen Lively", "Gabriele Wilke").
+dob("Coleen Lively", "0410-03-06").
+job("Coleen Lively", "purchasing manager").
+hobby("Coleen Lively", "transit map collecting").
+gender("Coleen Lively", "female").

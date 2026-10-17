@@ -1,0 +1,13 @@
+daughter("Gene Burnett", "Ashleigh Galvan").
+wife("Gene Burnett", "Rhea Burnett").
+friend("Gene Burnett", "Keith Resendez").
+friend("Gene Burnett", "Matthias Lennox").
+friend("Gene Burnett", "Jodi Cordova").
+friend("Gene Burnett", "Elyse Mahoney").
+friend("Gene Burnett", "Jennette Holliman").
+friend("Gene Burnett", "Barabara Wilke").
+friend("Gene Burnett", "Elroy Hamlin").
+dob("Gene Burnett", "0321-05-02").
+job("Gene Burnett", "financial controller").
+hobby("Gene Burnett", "billiards").
+gender("Gene Burnett", "male").

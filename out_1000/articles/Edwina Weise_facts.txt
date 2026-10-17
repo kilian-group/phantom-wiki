@@ -1,0 +1,15 @@
+son("Edwina Weise", "Graham Weise").
+daughter("Edwina Weise", "Christen Weise").
+husband("Edwina Weise", "Juan Weise").
+friend("Edwina Weise", "Rebecka Schlosser").
+friend("Edwina Weise", "Charlie Ingalls").
+friend("Edwina Weise", "Kurtis Eaves").
+friend("Edwina Weise", "Hugh Noland").
+friend("Edwina Weise", "Shannon Fredrick").
+friend("Edwina Weise", "Felton Kell").
+friend("Edwina Weise", "Stan Kell").
+friend("Edwina Weise", "Naomi Lai").
+dob("Edwina Weise", "0454-11-10").
+job("Edwina Weise", "airline pilot").
+hobby("Edwina Weise", "jurisprudential").
+gender("Edwina Weise", "female").

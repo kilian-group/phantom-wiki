@@ -1,0 +1,21 @@
+daughter("Irwin Dalton", "Enid Dalton").
+daughter("Irwin Dalton", "Shirley Dalton").
+wife("Irwin Dalton", "Dani Dalton").
+friend("Irwin Dalton", "Toshiko Younger").
+friend("Irwin Dalton", "Benito Skidmore").
+friend("Irwin Dalton", "Kenneth Rinehart").
+friend("Irwin Dalton", "Chrissy Mcgough").
+friend("Irwin Dalton", "Johanna Sanborn").
+friend("Irwin Dalton", "Valentin Vandenberg").
+friend("Irwin Dalton", "Lester Bauman").
+friend("Irwin Dalton", "Teresita Bauman").
+friend("Irwin Dalton", "Madaline Callender").
+friend("Irwin Dalton", "Viva Jefferson").
+friend("Irwin Dalton", "Anibal Cordova").
+friend("Irwin Dalton", "Cedrick Lester").
+friend("Irwin Dalton", "Edythe Littleton").
+friend("Irwin Dalton", "Nanette Swartz").
+dob("Irwin Dalton", "0431-02-11").
+job("Irwin Dalton", "geochemist").
+hobby("Irwin Dalton", "research").
+gender("Irwin Dalton", "male").

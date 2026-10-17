@@ -1,0 +1,6 @@
+daughter("Jarrod Mohan", "Margot Skaggs").
+wife("Jarrod Mohan", "Hanh Mohan").
+dob("Jarrod Mohan", "0296-07-06").
+job("Jarrod Mohan", "editor").
+hobby("Jarrod Mohan", "benchmarking").
+gender("Jarrod Mohan", "male").

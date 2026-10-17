@@ -1,0 +1,13 @@
+mother("Miles Corso", "Kimberely Corso").
+father("Miles Corso", "Kent Corso").
+friend("Miles Corso", "Newton Pellegrino").
+friend("Miles Corso", "Cedric Towns").
+friend("Miles Corso", "Alice Dana").
+friend("Miles Corso", "Vanessa Broughton").
+friend("Miles Corso", "Laverna Macias").
+friend("Miles Corso", "Cary Layton").
+friend("Miles Corso", "Lynetta Mckenna").
+dob("Miles Corso", "0472-03-02").
+job("Miles Corso", "patent examiner").
+hobby("Miles Corso", "ant farming").
+gender("Miles Corso", "male").

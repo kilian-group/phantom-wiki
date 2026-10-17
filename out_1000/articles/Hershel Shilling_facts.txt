@@ -1,0 +1,16 @@
+son("Hershel Shilling", "Scot Shilling").
+wife("Hershel Shilling", "Addie Shilling").
+friend("Hershel Shilling", "Douglass Resendez").
+friend("Hershel Shilling", "Collin Lasher").
+friend("Hershel Shilling", "Jesus Cordova").
+friend("Hershel Shilling", "Jimmy Holder").
+friend("Hershel Shilling", "Milford Simons").
+friend("Hershel Shilling", "Pablo Cook").
+friend("Hershel Shilling", "Miki Mcdonald").
+friend("Hershel Shilling", "Terrance Townsend").
+friend("Hershel Shilling", "Alexander Corwin").
+friend("Hershel Shilling", "Flora Noland").
+dob("Hershel Shilling", "0406-01-06").
+job("Hershel Shilling", "trading standards officer").
+hobby("Hershel Shilling", "herping").
+gender("Hershel Shilling", "male").

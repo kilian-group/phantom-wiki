@@ -1,0 +1,19 @@
+sister("Sylvester Hamlin", "Goldie Alessi").
+sister("Sylvester Hamlin", "Nellie Hamlin").
+sister("Sylvester Hamlin", "Shizuko Sheridan").
+brother("Sylvester Hamlin", "Elroy Hamlin").
+brother("Sylvester Hamlin", "Hosea Hamlin").
+mother("Sylvester Hamlin", "Raina Hamlin").
+father("Sylvester Hamlin", "Felix Hamlin").
+friend("Sylvester Hamlin", "Vaughn Dangelo").
+friend("Sylvester Hamlin", "Stefan Sutphin").
+friend("Sylvester Hamlin", "Dennis Hamann").
+friend("Sylvester Hamlin", "Lucio Townsend").
+friend("Sylvester Hamlin", "Kurtis Eaves").
+friend("Sylvester Hamlin", "Katelyn Corwin").
+friend("Sylvester Hamlin", "Johanna Mathes").
+friend("Sylvester Hamlin", "Lashawnda Fordham").
+dob("Sylvester Hamlin", "0409-01-05").
+job("Sylvester Hamlin", "automotive engineer").
+hobby("Sylvester Hamlin", "trainspotting").
+gender("Sylvester Hamlin", "male").

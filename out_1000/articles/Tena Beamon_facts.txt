@@ -1,0 +1,12 @@
+son("Tena Beamon", "Mickey Beamon").
+husband("Tena Beamon", "Wesley Beamon").
+friend("Tena Beamon", "Keisha Mcdonald").
+friend("Tena Beamon", "Glenda Dacosta").
+friend("Tena Beamon", "Scotty Gilliam").
+friend("Tena Beamon", "Shawna Sheridan").
+friend("Tena Beamon", "Aurelia Gordon").
+friend("Tena Beamon", "Alexandria Hayward").
+dob("Tena Beamon", "0369-08-20").
+job("Tena Beamon", "cytogeneticist").
+hobby("Tena Beamon", "gongoozling").
+gender("Tena Beamon", "female").

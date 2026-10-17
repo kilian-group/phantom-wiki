@@ -1,0 +1,9 @@
+son("Stephan Prater", "Steven Prater").
+wife("Stephan Prater", "Eunice Prater").
+friend("Stephan Prater", "Drew Carty").
+friend("Stephan Prater", "Gerald Hartung").
+friend("Stephan Prater", "Tamara Wylie").
+dob("Stephan Prater", "0415-05-08").
+job("Stephan Prater", "fashion designer").
+hobby("Stephan Prater", "microscopy").
+gender("Stephan Prater", "male").

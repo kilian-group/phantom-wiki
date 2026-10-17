@@ -1,0 +1,13 @@
+son("Mickey Earnest", "Roland Earnest").
+wife("Mickey Earnest", "Hazel Earnest").
+friend("Mickey Earnest", "Tamala Pannell").
+friend("Mickey Earnest", "Luisa Hornback").
+friend("Mickey Earnest", "Laurel Decosta").
+friend("Mickey Earnest", "Foster Cormier").
+friend("Mickey Earnest", "Patsy Cormier").
+friend("Mickey Earnest", "Sherry Cormier").
+friend("Mickey Earnest", "Therese Cormier").
+dob("Mickey Earnest", "0258-03-16").
+job("Mickey Earnest", "textile designer").
+hobby("Mickey Earnest", "baton twirling").
+gender("Mickey Earnest", "male").

@@ -1,0 +1,27 @@
+brother("Daisy Autry", "Herbert Storey").
+brother("Daisy Autry", "Mack Storey").
+mother("Daisy Autry", "Joanne Storey").
+father("Daisy Autry", "Steve Storey").
+son("Daisy Autry", "Donald Autry").
+son("Daisy Autry", "Isaiah Autry").
+daughter("Daisy Autry", "Ashleigh Spiller").
+daughter("Daisy Autry", "Karol Beamon").
+daughter("Daisy Autry", "Magdalena Hollinger").
+husband("Daisy Autry", "Kelvin Autry").
+friend("Daisy Autry", "Jeff Haygood").
+friend("Daisy Autry", "Janiece Cordova").
+friend("Daisy Autry", "Manda Cordova").
+friend("Daisy Autry", "Gayla Holder").
+friend("Daisy Autry", "Otto Arnold").
+friend("Daisy Autry", "Kurtis Eaves").
+friend("Daisy Autry", "Winfred Molina").
+friend("Daisy Autry", "Oscar Medellin").
+friend("Daisy Autry", "Cathy Alessi").
+friend("Daisy Autry", "Jana Galvan").
+friend("Daisy Autry", "Shemika Hirsch").
+friend("Daisy Autry", "Dale Jefferson").
+friend("Daisy Autry", "Laurence Knepper").
+dob("Daisy Autry", "0399-05-27").
+job("Daisy Autry", "chief strategy officer").
+hobby("Daisy Autry", "insect collecting").
+gender("Daisy Autry", "female").

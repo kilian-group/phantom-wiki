@@ -1,0 +1,17 @@
+mother("Wallace Brumbaugh", "Gena Brumbaugh").
+father("Wallace Brumbaugh", "Clair Brumbaugh").
+son("Wallace Brumbaugh", "Ellis Brumbaugh").
+son("Wallace Brumbaugh", "Paris Brumbaugh").
+daughter("Wallace Brumbaugh", "Cordelia Murray").
+wife("Wallace Brumbaugh", "Renate Brumbaugh").
+friend("Wallace Brumbaugh", "Sofia Eaves").
+friend("Wallace Brumbaugh", "Crysta Machado").
+friend("Wallace Brumbaugh", "Janis Younger").
+friend("Wallace Brumbaugh", "Malissa Corwin").
+friend("Wallace Brumbaugh", "Mallory Scherer").
+friend("Wallace Brumbaugh", "Walter Kell").
+friend("Wallace Brumbaugh", "Audra Lester").
+dob("Wallace Brumbaugh", "0417-06-05").
+job("Wallace Brumbaugh", "plant breeder").
+hobby("Wallace Brumbaugh", "netball").
+gender("Wallace Brumbaugh", "male").

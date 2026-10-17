@@ -1,0 +1,12 @@
+son("Taneka Abraham", "Dillon Abraham").
+son("Taneka Abraham", "Stuart Abraham").
+daughter("Taneka Abraham", "Alberta Abraham").
+husband("Taneka Abraham", "Oliver Abraham").
+friend("Taneka Abraham", "Aida Wang").
+friend("Taneka Abraham", "Geri Deluna").
+friend("Taneka Abraham", "Ernesto Mcnew").
+friend("Taneka Abraham", "Samantha Earnest").
+dob("Taneka Abraham", "0213-08-11").
+job("Taneka Abraham", "garment technologist").
+hobby("Taneka Abraham", "table tennis").
+gender("Taneka Abraham", "female").

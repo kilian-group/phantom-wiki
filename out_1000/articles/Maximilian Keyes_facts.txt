@@ -1,0 +1,15 @@
+mother("Maximilian Keyes", "Delma Keyes").
+father("Maximilian Keyes", "Hollis Keyes").
+daughter("Maximilian Keyes", "Anastasia Keyes").
+daughter("Maximilian Keyes", "Brigette Keyes").
+wife("Maximilian Keyes", "Meghan Keyes").
+friend("Maximilian Keyes", "Desmond Dacosta").
+friend("Maximilian Keyes", "Toney Gibbs").
+friend("Maximilian Keyes", "Addie Shilling").
+friend("Maximilian Keyes", "Jennifer Paynter").
+friend("Maximilian Keyes", "John Schlosser").
+friend("Maximilian Keyes", "Shannon Flores").
+dob("Maximilian Keyes", "0404-06-18").
+job("Maximilian Keyes", "clinical research associate").
+hobby("Maximilian Keyes", "learning").
+gender("Maximilian Keyes", "male").

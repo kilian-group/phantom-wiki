@@ -1,0 +1,11 @@
+son("Robyn Schoonmaker", "Anibal Schoonmaker").
+son("Robyn Schoonmaker", "Esteban Schoonmaker").
+daughter("Robyn Schoonmaker", "Annabelle Schoonmaker").
+daughter("Robyn Schoonmaker", "Jona Carrell").
+daughter("Robyn Schoonmaker", "Liane Schoonmaker").
+husband("Robyn Schoonmaker", "Ali Schoonmaker").
+friend("Robyn Schoonmaker", "Amanda Mcnew").
+dob("Robyn Schoonmaker", "0234-12-15").
+job("Robyn Schoonmaker", "arts administrator").
+hobby("Robyn Schoonmaker", "learning").
+gender("Robyn Schoonmaker", "female").

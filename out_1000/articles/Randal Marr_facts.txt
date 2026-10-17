@@ -1,0 +1,12 @@
+brother("Randal Marr", "Lyman Marr").
+mother("Randal Marr", "Tyesha Marr").
+father("Randal Marr", "Jamal Marr").
+friend("Randal Marr", "Zachary Theriot").
+friend("Randal Marr", "Brent Macias").
+friend("Randal Marr", "Lorenz Deville").
+friend("Randal Marr", "Larue Speaks").
+friend("Randal Marr", "Jimmy Holder").
+dob("Randal Marr", "0402-03-29").
+job("Randal Marr", "horticulturist").
+hobby("Randal Marr", "roller derby").
+gender("Randal Marr", "male").

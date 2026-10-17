@@ -1,0 +1,9 @@
+mother("Blair Etheridge", "Effie Schoonmaker").
+father("Blair Etheridge", "Anibal Schoonmaker").
+daughter("Blair Etheridge", "Sylvia Palermo").
+husband("Blair Etheridge", "Cary Etheridge").
+friend("Blair Etheridge", "Clarence Mason").
+dob("Blair Etheridge", "0288-08-04").
+job("Blair Etheridge", "marketing executive").
+hobby("Blair Etheridge", "rock balancing").
+gender("Blair Etheridge", "female").

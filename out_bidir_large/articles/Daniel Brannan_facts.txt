@@ -1,0 +1,11 @@
+sister("Daniel Brannan", "Lea Levy").
+sister("Daniel Brannan", "Margaret Kovach").
+mother("Daniel Brannan", "Rosalinda Brannan").
+father("Daniel Brannan", "Adolph Brannan").
+friend("Daniel Brannan", "Hanh Mohan").
+friend("Daniel Brannan", "Jeannine Skaggs").
+friend("Daniel Brannan", "Duncan Pannell").
+dob("Daniel Brannan", "0254-01-20").
+job("Daniel Brannan", "bookseller").
+hobby("Daniel Brannan", "chess").
+gender("Daniel Brannan", "male").

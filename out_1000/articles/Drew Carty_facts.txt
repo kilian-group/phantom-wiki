@@ -1,0 +1,15 @@
+brother("Drew Carty", "Raymond Carty").
+mother("Drew Carty", "Lera Carty").
+father("Drew Carty", "Calvin Carty").
+friend("Drew Carty", "Solomon Shaw").
+friend("Drew Carty", "Rudy Runnels").
+friend("Drew Carty", "John Schlosser").
+friend("Drew Carty", "Tanya Molina").
+friend("Drew Carty", "Israel Mathes").
+friend("Drew Carty", "Ardath Carswell").
+friend("Drew Carty", "Beatriz Theriot").
+friend("Drew Carty", "Stephan Prater").
+dob("Drew Carty", "0427-01-13").
+job("Drew Carty", "sports development officer").
+hobby("Drew Carty", "aircraft spotting").
+gender("Drew Carty", "male").

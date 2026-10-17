@@ -1,0 +1,13 @@
+daughter("Barabara Wilke", "Sophie Wilke").
+husband("Barabara Wilke", "Marion Wilke").
+friend("Barabara Wilke", "Larue Macias").
+friend("Barabara Wilke", "Moshe Macias").
+friend("Barabara Wilke", "Gene Burnett").
+friend("Barabara Wilke", "Larue Speaks").
+friend("Barabara Wilke", "Skye Swartz").
+friend("Barabara Wilke", "Nikki Bond").
+friend("Barabara Wilke", "Sylvia Gilliam").
+dob("Barabara Wilke", "0369-10-03").
+job("Barabara Wilke", "newspaper journalist").
+hobby("Barabara Wilke", "book collecting").
+gender("Barabara Wilke", "female").

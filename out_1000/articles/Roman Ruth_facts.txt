@@ -1,0 +1,18 @@
+son("Roman Ruth", "Benito Ruth").
+daughter("Roman Ruth", "Brigette Bales").
+daughter("Roman Ruth", "Jann Ruth").
+daughter("Roman Ruth", "Vicki Ruth").
+wife("Roman Ruth", "Shante Ruth").
+friend("Roman Ruth", "Al Younger").
+friend("Roman Ruth", "Nellie Niles").
+friend("Roman Ruth", "Donnie Dunlap").
+friend("Roman Ruth", "Jenny Gilliam").
+friend("Roman Ruth", "Buck Smart").
+friend("Roman Ruth", "Hugh Noland").
+friend("Roman Ruth", "Valentina Robinett").
+friend("Roman Ruth", "Julianne Hamlin").
+friend("Roman Ruth", "Graham Weise").
+dob("Roman Ruth", "0306-11-27").
+job("Roman Ruth", "pilot").
+hobby("Roman Ruth", "people-watching").
+gender("Roman Ruth", "male").

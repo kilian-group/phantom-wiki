@@ -1,0 +1,16 @@
+sister("Dane Murray", "Jo Murray").
+brother("Dane Murray", "Jerald Murray").
+brother("Dane Murray", "Jorge Murray").
+mother("Dane Murray", "Cordelia Murray").
+father("Dane Murray", "Phil Murray").
+daughter("Dane Murray", "Debora Murray").
+wife("Dane Murray", "Patsy Murray").
+friend("Dane Murray", "Jonas Machado").
+friend("Dane Murray", "Tania Younger").
+friend("Dane Murray", "Elroy Goff").
+friend("Dane Murray", "Natalie Ballard").
+friend("Dane Murray", "Nydia Monday").
+dob("Dane Murray", "0476-12-11").
+job("Dane Murray", "ranger").
+hobby("Dane Murray", "sports memorabilia").
+gender("Dane Murray", "male").

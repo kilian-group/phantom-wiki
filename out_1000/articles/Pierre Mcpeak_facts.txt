@@ -1,0 +1,19 @@
+brother("Pierre Mcpeak", "Roger Mcpeak").
+mother("Pierre Mcpeak", "Lera Mcpeak").
+father("Pierre Mcpeak", "Edmundo Mcpeak").
+friend("Pierre Mcpeak", "Aaron Fordham").
+friend("Pierre Mcpeak", "Maybelle Oliveira").
+friend("Pierre Mcpeak", "Aron Robinett").
+friend("Pierre Mcpeak", "Lera Carty").
+friend("Pierre Mcpeak", "Paul Dame").
+friend("Pierre Mcpeak", "Gregory Geter").
+friend("Pierre Mcpeak", "Mickey Beamon").
+friend("Pierre Mcpeak", "Edythe Osterman").
+friend("Pierre Mcpeak", "Nicholle Dana").
+friend("Pierre Mcpeak", "Clara Corwin").
+friend("Pierre Mcpeak", "Spencer Corwin").
+friend("Pierre Mcpeak", "Nedra Musick").
+dob("Pierre Mcpeak", "0407-03-23").
+job("Pierre Mcpeak", "metallurgist").
+hobby("Pierre Mcpeak", "insect collecting").
+gender("Pierre Mcpeak", "male").

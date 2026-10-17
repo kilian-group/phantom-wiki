@@ -1,0 +1,9 @@
+sister("Anastasia Keyes", "Brigette Keyes").
+mother("Anastasia Keyes", "Meghan Keyes").
+father("Anastasia Keyes", "Maximilian Keyes").
+friend("Anastasia Keyes", "Darin Hollinger").
+friend("Anastasia Keyes", "Salvador Plumley").
+dob("Anastasia Keyes", "0434-06-18").
+job("Anastasia Keyes", "licensed conveyancer").
+hobby("Anastasia Keyes", "vr gaming").
+gender("Anastasia Keyes", "female").

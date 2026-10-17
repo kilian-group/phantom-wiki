@@ -1,0 +1,14 @@
+daughter("Myra Eaves", "Shizuko Eaves").
+husband("Myra Eaves", "Mickey Eaves").
+friend("Myra Eaves", "Rob Eaves").
+friend("Myra Eaves", "Jenniffer Younger").
+friend("Myra Eaves", "Karin Machado").
+friend("Myra Eaves", "Manuel Smart").
+friend("Myra Eaves", "Normand Wilke").
+friend("Myra Eaves", "Tashina Layton").
+friend("Myra Eaves", "Keith Resendez").
+friend("Myra Eaves", "Wesley Courson").
+dob("Myra Eaves", "0376-07-07").
+job("Myra Eaves", "hydrologist").
+hobby("Myra Eaves", "rughooking").
+gender("Myra Eaves", "female").

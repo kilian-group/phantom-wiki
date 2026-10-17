@@ -1,0 +1,10 @@
+son("Patsy Cormier", "Christoper Cormier").
+husband("Patsy Cormier", "Sol Cormier").
+friend("Patsy Cormier", "Lila Petry").
+friend("Patsy Cormier", "Kristi Schreiner").
+friend("Patsy Cormier", "Mickey Earnest").
+friend("Patsy Cormier", "Spencer Griffiths").
+dob("Patsy Cormier", "0150-04-21").
+job("Patsy Cormier", "further education lecturer").
+hobby("Patsy Cormier", "birdwatching").
+gender("Patsy Cormier", "female").

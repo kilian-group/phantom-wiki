@@ -1,0 +1,11 @@
+mother("Wilber Storey", "Bonnie Storey").
+father("Wilber Storey", "Mack Storey").
+friend("Wilber Storey", "Cedrick Lester").
+friend("Wilber Storey", "Erik Fredrick").
+friend("Wilber Storey", "Rhonda Wilke").
+friend("Wilber Storey", "Dorathy Hamlin").
+friend("Wilber Storey", "Tomasa Kell").
+dob("Wilber Storey", "0430-07-30").
+job("Wilber Storey", "recycling officer").
+hobby("Wilber Storey", "automobilism").
+gender("Wilber Storey", "male").

@@ -1,0 +1,19 @@
+mother("Jerrold Harlow", "Kristie Harlow").
+father("Jerrold Harlow", "Earle Harlow").
+son("Jerrold Harlow", "Chris Harlow").
+daughter("Jerrold Harlow", "Dorathy Harlow").
+wife("Jerrold Harlow", "Winnie Harlow").
+friend("Jerrold Harlow", "Mickey Beamon").
+friend("Jerrold Harlow", "Phil Murray").
+friend("Jerrold Harlow", "Kevin Sharma").
+friend("Jerrold Harlow", "Ramiro Dana").
+friend("Jerrold Harlow", "Tamara Wylie").
+friend("Jerrold Harlow", "Flora Noland").
+friend("Jerrold Harlow", "Felix Hamlin").
+friend("Jerrold Harlow", "Gerry Dorn").
+friend("Jerrold Harlow", "Hosea Hamlin").
+friend("Jerrold Harlow", "Solomon Shaw").
+dob("Jerrold Harlow", "0387-08-04").
+job("Jerrold Harlow", "veterinary surgeon").
+hobby("Jerrold Harlow", "ant farming").
+gender("Jerrold Harlow", "male").

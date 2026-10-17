@@ -1,0 +1,13 @@
+brother("Monte Oberg", "Clyde Oberg").
+brother("Monte Oberg", "Lyman Oberg").
+mother("Monte Oberg", "Brigida Oberg").
+father("Monte Oberg", "Richard Oberg").
+daughter("Monte Oberg", "Luisa Narvaez").
+daughter("Monte Oberg", "Sarah Oberg").
+wife("Monte Oberg", "Cherlyn Oberg").
+friend("Monte Oberg", "Clara Mcgough").
+friend("Monte Oberg", "Myrl Mcgough").
+dob("Monte Oberg", "0301-01-28").
+job("Monte Oberg", "chemist").
+hobby("Monte Oberg", "herbalism").
+gender("Monte Oberg", "male").

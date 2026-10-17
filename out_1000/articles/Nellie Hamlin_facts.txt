@@ -1,0 +1,18 @@
+sister("Nellie Hamlin", "Goldie Alessi").
+sister("Nellie Hamlin", "Shizuko Sheridan").
+brother("Nellie Hamlin", "Elroy Hamlin").
+brother("Nellie Hamlin", "Hosea Hamlin").
+brother("Nellie Hamlin", "Sylvester Hamlin").
+mother("Nellie Hamlin", "Raina Hamlin").
+father("Nellie Hamlin", "Felix Hamlin").
+friend("Nellie Hamlin", "Lindy Hudgens").
+friend("Nellie Hamlin", "Veronica Cowart").
+friend("Nellie Hamlin", "Maynard Morehead").
+friend("Nellie Hamlin", "Charles Levine").
+friend("Nellie Hamlin", "Lynette Fredrick").
+friend("Nellie Hamlin", "Bradley Blanton").
+friend("Nellie Hamlin", "Jo Medeiros").
+dob("Nellie Hamlin", "0403-01-31").
+job("Nellie Hamlin", "electrical engineer").
+hobby("Nellie Hamlin", "ballroom dancing").
+gender("Nellie Hamlin", "female").

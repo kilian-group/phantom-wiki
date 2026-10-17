@@ -1,0 +1,25 @@
+sister("Leslie Courson", "Mallory Scherer").
+sister("Leslie Courson", "Mia Resendez").
+sister("Leslie Courson", "Shandi Jarrett").
+brother("Leslie Courson", "Claude Courson").
+brother("Leslie Courson", "Erick Courson").
+mother("Leslie Courson", "Harriette Courson").
+father("Leslie Courson", "Delbert Courson").
+friend("Leslie Courson", "Rubie Upton").
+friend("Leslie Courson", "Aletha Crocker").
+friend("Leslie Courson", "Drema Jefferson").
+friend("Leslie Courson", "Valentina Beamon").
+friend("Leslie Courson", "Wesley Beamon").
+friend("Leslie Courson", "Christina Barrows").
+friend("Leslie Courson", "Felton Dana").
+friend("Leslie Courson", "Herbert Dana").
+friend("Leslie Courson", "Vicente Mccurry").
+friend("Leslie Courson", "Kenton Gilliam").
+friend("Leslie Courson", "Bret Smart").
+friend("Leslie Courson", "Katherine Carswell").
+friend("Leslie Courson", "Rory Hamlin").
+friend("Leslie Courson", "Jamel Jarrett").
+dob("Leslie Courson", "0422-09-11").
+job("Leslie Courson", "multimedia specialist").
+hobby("Leslie Courson", "finance").
+gender("Leslie Courson", "male").

@@ -1,0 +1,15 @@
+sister("Maryann Oliveira", "Maybelle Oliveira").
+sister("Maryann Oliveira", "Shannon Fredrick").
+mother("Maryann Oliveira", "Luisa Oliveira").
+father("Maryann Oliveira", "Bradford Oliveira").
+friend("Maryann Oliveira", "Almeta Forester").
+friend("Maryann Oliveira", "Jo Medeiros").
+friend("Maryann Oliveira", "Porter Mckenna").
+friend("Maryann Oliveira", "Therese Mckenna").
+friend("Maryann Oliveira", "Alexander Corwin").
+friend("Maryann Oliveira", "Mac Goff").
+friend("Maryann Oliveira", "Jefferson Murdoch").
+dob("Maryann Oliveira", "0371-03-25").
+job("Maryann Oliveira", "dietitian").
+hobby("Maryann Oliveira", "antiquities").
+gender("Maryann Oliveira", "female").

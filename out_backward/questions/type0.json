@@ -1,0 +1,365 @@
+[
+    {
+        "id": "06b8ac73-fcc0-4e1a-b09e-ea08ad1c1d79",
+        "question": "Who is the great-grandparent of the person whose occupation is early years teacher?",
+        "solution_traces": "[{\"Y_2\": \"Dominique Smock\", \"Y_4\": \"Jeannine Wexler\"}, {\"Y_2\": \"Gene Smock\", \"Y_4\": \"Jeannine Wexler\"}]",
+        "answer": [
+            "Dominique Smock",
+            "Gene Smock"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandparent(Y_4, Y_2)",
+                "job(Y_4, \"early years teacher\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "8f920c82-1548-4d80-8442-85fd36e33b9d",
+        "question": "Who is the sister of the person whose date of birth is 0295-05-30?",
+        "solution_traces": "[{\"Y_2\": \"Vicki Hackworth\", \"Y_4\": \"Aida Wang\"}, {\"Y_2\": \"Aida Wang\", \"Y_4\": \"Vicki Hackworth\"}, {\"Y_2\": \"Jeannine Wexler\", \"Y_4\": \"Aida Wang\"}, {\"Y_2\": \"Jeannine Wexler\", \"Y_4\": \"Vicki Hackworth\"}]",
+        "answer": [
+            "Aida Wang",
+            "Jeannine Wexler",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "sister(Y_4, Y_2)",
+                "dob(Y_4, \"0295-05-30\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "e6b95f30-ca97-4c68-8146-ebeb9f4f0bf0",
+        "question": "Who is the father-in-law of the person whose hobby is sociology?",
+        "solution_traces": "[{\"Y_4\": \"Saul Wexler\", \"Y_2\": \"Dino Beltran\"}]",
+        "answer": [
+            "Dino Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "father_in_law(Y_4, Y_2)",
+                "hobby(Y_4, \"sociology\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "e8d57615-692f-4137-bc70-f68df99162cf",
+        "question": "Who is the grandchild of the person whose hobby is dominoes?",
+        "solution_traces": "[{\"Y_2\": \"Valentina Wexler\", \"Y_4\": \"Dino Beltran\"}, {\"Y_2\": \"Lenore Hackworth\", \"Y_4\": \"Dino Beltran\"}, {\"Y_2\": \"Johnetta Wang\", \"Y_4\": \"Dino Beltran\"}, {\"Y_2\": \"Leeann Hackworth\", \"Y_4\": \"Dino Beltran\"}]",
+        "answer": [
+            "Johnetta Wang",
+            "Leeann Hackworth",
+            "Lenore Hackworth",
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "grandchild(Y_4, Y_2)",
+                "hobby(Y_4, \"dominoes\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "45368b23-addf-4d5e-878b-3fee1790afd4",
+        "question": "Who is the sibling of the person whose hobby is shogi?",
+        "solution_traces": "[{\"Y_4\": \"Deane Smock\", \"Y_2\": \"Aubrey Smock\"}, {\"Y_4\": \"Deane Smock\", \"Y_2\": \"Gene Smock\"}, {\"Y_4\": \"Deane Smock\", \"Y_2\": \"Isabell Smock\"}]",
+        "answer": [
+            "Aubrey Smock",
+            "Gene Smock",
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "sibling(Y_4, Y_2)",
+                "hobby(Y_4, \"shogi\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "abccfe1a-c164-42e8-863f-653ec0b26ee1",
+        "question": "Who is the brother of the person whose occupation is education administrator?",
+        "solution_traces": "[{\"Y_2\": \"Aubrey Smock\", \"Y_4\": \"Isabell Smock\"}, {\"Y_2\": \"Gene Smock\", \"Y_4\": \"Isabell Smock\"}]",
+        "answer": [
+            "Aubrey Smock",
+            "Gene Smock"
+        ],
+        "prolog": {
+            "query": [
+                "brother(Y_4, Y_2)",
+                "job(Y_4, \"education administrator\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "ce9ab5e7-f71d-4552-aae1-69ca84ef201d",
+        "question": "Who is the friend of the person whose date of birth is 0177-07-12?",
+        "solution_traces": "[{\"Y_2\": \"Vicki Hackworth\", \"Y_4\": \"Alvaro Smock\"}, {\"Y_2\": \"Aida Wang\", \"Y_4\": \"Alvaro Smock\"}, {\"Y_2\": \"Valentina Wexler\", \"Y_4\": \"Alvaro Smock\"}]",
+        "answer": [
+            "Aida Wang",
+            "Valentina Wexler",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "friend(Y_4, Y_2)",
+                "dob(Y_4, \"0177-07-12\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "5c77d6da-74f9-40e0-be71-f5b0be6b4add",
+        "question": "Who is the sister-in-law of the person whose hobby is dairy farming?",
+        "solution_traces": "[{\"Y_2\": \"Aida Wang\", \"Y_4\": \"Ricardo Hackworth\"}, {\"Y_4\": \"Ricardo Hackworth\", \"Y_2\": \"Jeannine Wexler\"}]",
+        "answer": [
+            "Aida Wang",
+            "Jeannine Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "sister_in_law(Y_4, Y_2)",
+                "hobby(Y_4, \"dairy farming\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "0dd34f1c-f2ec-4634-8e75-4e64eb232b47",
+        "question": "Who is the sister-in-law of the person whose date of birth is 0301-10-24?",
+        "solution_traces": "[{\"Y_2\": \"Vicki Hackworth\", \"Y_4\": \"Saul Wexler\"}, {\"Y_2\": \"Aida Wang\", \"Y_4\": \"Saul Wexler\"}]",
+        "answer": [
+            "Aida Wang",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "sister_in_law(Y_4, Y_2)",
+                "dob(Y_4, \"0301-10-24\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "64bf9b1f-0622-425a-8989-28d4071069d1",
+        "question": "Who is the father-in-law of the person whose date of birth is 0292-03-17?",
+        "solution_traces": "[{\"Y_4\": \"Ryan Wang\", \"Y_2\": \"Dino Beltran\"}]",
+        "answer": [
+            "Dino Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "father_in_law(Y_4, Y_2)",
+                "dob(Y_4, \"0292-03-17\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    }
+]

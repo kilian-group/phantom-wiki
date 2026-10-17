@@ -1,0 +1,18 @@
+sister("Barbar Kell", "Alysa Lindquist").
+sister("Barbar Kell", "Ladonna Klink").
+mother("Barbar Kell", "Ilona Klink").
+father("Barbar Kell", "Johnathan Klink").
+son("Barbar Kell", "Dewitt Kell").
+son("Barbar Kell", "Stan Kell").
+daughter("Barbar Kell", "Eva Kell").
+daughter("Barbar Kell", "Malissa Kell").
+daughter("Barbar Kell", "Tomasa Kell").
+husband("Barbar Kell", "Felton Kell").
+friend("Barbar Kell", "Ambrose Cordova").
+friend("Barbar Kell", "Geraldine Valladares").
+friend("Barbar Kell", "Valeria Medellin").
+friend("Barbar Kell", "Trudy Lennox").
+dob("Barbar Kell", "0385-04-07").
+job("Barbar Kell", "mining engineer").
+hobby("Barbar Kell", "birdwatching").
+gender("Barbar Kell", "female").

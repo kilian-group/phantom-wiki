@@ -1,0 +1,16 @@
+mother("Floyd Cook", "Phylis Cook").
+father("Floyd Cook", "Pablo Cook").
+daughter("Floyd Cook", "Pansy Cook").
+wife("Floyd Cook", "Gena Cook").
+friend("Floyd Cook", "Maynard Morehead").
+friend("Floyd Cook", "Hollis Keyes").
+friend("Floyd Cook", "Nydia Monday").
+friend("Floyd Cook", "Zackary Wilkie").
+friend("Floyd Cook", "Janey Kell").
+friend("Floyd Cook", "Tomasa Kell").
+friend("Floyd Cook", "Vilma Callender").
+friend("Floyd Cook", "Danny Cowart").
+dob("Floyd Cook", "0439-11-20").
+job("Floyd Cook", "interpreter").
+hobby("Floyd Cook", "cooking").
+gender("Floyd Cook", "male").

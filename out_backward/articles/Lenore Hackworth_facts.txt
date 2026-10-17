@@ -1,0 +1,10 @@
+sister("Lenore Hackworth", "Leeann Hackworth").
+mother("Lenore Hackworth", "Vicki Hackworth").
+father("Lenore Hackworth", "Ricardo Hackworth").
+friend("Lenore Hackworth", "Saul Wexler").
+friend("Lenore Hackworth", "Isabell Smock").
+friend("Lenore Hackworth", "Lannie Smock").
+dob("Lenore Hackworth", "0325-11-20").
+job("Lenore Hackworth", "ecologist").
+hobby("Lenore Hackworth", "microbiology").
+gender("Lenore Hackworth", "female").

@@ -1,0 +1,607 @@
+[
+    {
+        "id": "661efafe-86ba-4bc1-b5d1-588558bd021c",
+        "question": "What is the occupation of the friend of Chrissy Mcgough?",
+        "solution_traces": "[{\"Y_2\": \"speech and language therapist\", \"Y_3\": \"Mason Oberg\"}, {\"Y_3\": \"Kirsten Oberg\", \"Y_2\": \"data scientist\"}, {\"Y_2\": \"exhibitions officer\", \"Y_3\": \"Sherrie Remillard\"}, {\"Y_2\": \"astronomer\", \"Y_3\": \"Tashina Vandenberg\"}]",
+        "answer": [
+            "astronomer",
+            "data scientist",
+            "exhibitions officer",
+            "speech and language therapist"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "friend(\"Chrissy Mcgough\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "0b8dd3c1-7406-441e-a222-5bc96d76c9a2",
+        "question": "What is the hobby of the mother-in-law of Colby Narvaez?",
+        "solution_traces": "[{\"Y_3\": \"Cherlyn Oberg\", \"Y_2\": \"knife throwing\"}]",
+        "answer": [
+            "knife throwing"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "mother_in_law(\"Colby Narvaez\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "964e12c8-9d59-44e6-9f40-f240e61a04a1",
+        "question": "What is the date of birth of the daughter-in-law of Chrissy Mcgough?",
+        "solution_traces": "[{\"Y_3\": \"Myrl Mcgough\", \"Y_2\": \"0317-02-01\"}]",
+        "answer": [
+            "0317-02-01"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "daughter_in_law(\"Chrissy Mcgough\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "e994a9d1-4fd1-4b8b-a000-eb155057df6b",
+        "question": "What is the hobby of the granddaughter of Chrissy Mcgough?",
+        "solution_traces": "[{\"Y_3\": \"Delsie Mcgough\", \"Y_2\": \"lacrosse\"}, {\"Y_3\": \"Clara Mcgough\", \"Y_2\": \"kart racing\"}]",
+        "answer": [
+            "kart racing",
+            "lacrosse"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "granddaughter(\"Chrissy Mcgough\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "59d18428-99aa-4015-9b04-a33d4c8de6d0",
+        "question": "What is the hobby of the second aunt of Dorinda Chrisman?",
+        "solution_traces": "[{\"Y_3\": \"Wanita Remillard\", \"Y_2\": \"button collecting\"}]",
+        "answer": [
+            "button collecting"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "second_aunt(\"Dorinda Chrisman\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 5,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "9542c16e-2cdb-4198-b681-7d6324271874",
+        "question": "What is the date of birth of the father-in-law of Jon Remillard?",
+        "solution_traces": "[{\"Y_3\": \"King Dishman\", \"Y_2\": \"0247-09-28\"}]",
+        "answer": [
+            "0247-09-28"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "father_in_law(\"Jon Remillard\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "76946385-5b5b-4e0a-9d6e-a1c4287836d0",
+        "question": "What is the occupation of the cousin of Kori Remillard?",
+        "solution_traces": "[{\"Y_2\": \"paediatric nurse\", \"Y_3\": \"Hunter Remillard\"}, {\"Y_2\": \"film editor\", \"Y_3\": \"Margie Remillard\"}, {\"Y_2\": \"veterinary surgeon\", \"Y_3\": \"Chrissy Remillard\"}]",
+        "answer": [
+            "film editor",
+            "paediatric nurse",
+            "veterinary surgeon"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "cousin(\"Kori Remillard\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 4,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "c0c158f4-062e-4141-b6d9-8ba81749edd1",
+        "question": "What is the hobby of the husband of Brigida Oberg?",
+        "solution_traces": "[{\"Y_3\": \"Richard Oberg\", \"Y_2\": \"surfing\"}]",
+        "answer": [
+            "surfing"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "husband(\"Brigida Oberg\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "f5eef479-174a-47f9-9e4b-e29cfe71676b",
+        "question": "What is the occupation of the daughter-in-law of Jon Remillard?",
+        "solution_traces": "[{\"Y_2\": \"interpreter\", \"Y_3\": \"Morgan Remillard\"}, {\"Y_3\": \"Tianna Remillard\", \"Y_2\": \"facilities manager\"}]",
+        "answer": [
+            "facilities manager",
+            "interpreter"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "daughter_in_law(\"Jon Remillard\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "1b8569b5-6a2c-43b6-87b1-600c9abed457",
+        "question": "What is the occupation of the great-grandchild of King Dishman?",
+        "solution_traces": "[{\"Y_2\": \"paediatric nurse\", \"Y_3\": \"Hunter Remillard\"}, {\"Y_2\": \"film editor\", \"Y_3\": \"Margie Remillard\"}, {\"Y_2\": \"veterinary surgeon\", \"Y_3\": \"Chrissy Remillard\"}, {\"Y_3\": \"Kori Remillard\", \"Y_2\": \"scientist\"}]",
+        "answer": [
+            "film editor",
+            "paediatric nurse",
+            "scientist",
+            "veterinary surgeon"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "great_grandchild(\"King Dishman\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 4,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "f1a8105f-aeb1-4969-9f58-ab27b14469e2",
+        "question": "What is the date of birth of the wife of Demarcus Narvaez?",
+        "solution_traces": "[{\"Y_3\": \"Rhoda Narvaez\", \"Y_2\": \"0362-09-25\"}]",
+        "answer": [
+            "0362-09-25"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "wife(\"Demarcus Narvaez\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "df6c68d7-e128-4fdc-96a3-9f02d5f0dc8f",
+        "question": "What is the date of birth of the son-in-law of Monte Oberg?",
+        "solution_traces": "[{\"Y_3\": \"Colby Narvaez\", \"Y_2\": \"0331-03-22\"}]",
+        "answer": [
+            "0331-03-22"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "son_in_law(\"Monte Oberg\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "44233c32-b5b7-4928-b144-31dadd81e84a",
+        "question": "What is the date of birth of the friend of Louann Chrisman?",
+        "solution_traces": "[{\"Y_3\": \"Thelma Vandenberg\", \"Y_2\": \"0253-04-23\"}, {\"Y_2\": \"0230-09-10\", \"Y_3\": \"Valentin Vandenberg\"}, {\"Y_3\": \"Bryce Oberg\", \"Y_2\": \"0274-08-26\"}, {\"Y_3\": \"Jackie Vandenberg\", \"Y_2\": \"0229-11-20\"}, {\"Y_3\": \"Colby Narvaez\", \"Y_2\": \"0331-03-22\"}, {\"Y_3\": \"Richard Oberg\", \"Y_2\": \"0277-09-28\"}, {\"Y_3\": \"Sherrie Remillard\", \"Y_2\": \"0271-04-26\"}]",
+        "answer": [
+            "0229-11-20",
+            "0230-09-10",
+            "0253-04-23",
+            "0271-04-26",
+            "0274-08-26",
+            "0277-09-28",
+            "0331-03-22"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "friend(\"Louann Chrisman\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "5080ed18-be4a-4620-90af-639ebf7aa515",
+        "question": "What is the hobby of the mother of Sarah Oberg?",
+        "solution_traces": "[{\"Y_3\": \"Cherlyn Oberg\", \"Y_2\": \"knife throwing\"}]",
+        "answer": [
+            "knife throwing"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "mother(\"Sarah Oberg\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "51e53567-a486-41fe-b727-d560d02e285c",
+        "question": "What is the date of birth of the aunt of Chrissy Remillard?",
+        "solution_traces": "[{\"Y_2\": \"0299-11-29\", \"Y_3\": \"Wanita Remillard\"}]",
+        "answer": [
+            "0299-11-29"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "aunt(\"Chrissy Remillard\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "1c5ae78b-2bda-4610-aae9-26e4571905bb",
+        "question": "What is the hobby of the niece of Wanita Remillard?",
+        "solution_traces": "[{\"Y_2\": \"aircraft spotting\", \"Y_3\": \"Kori Remillard\"}, {\"Y_2\": \"reading\", \"Y_3\": \"Margie Remillard\"}, {\"Y_2\": \"horsemanship\", \"Y_3\": \"Chrissy Remillard\"}]",
+        "answer": [
+            "aircraft spotting",
+            "horsemanship",
+            "reading"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "niece(\"Wanita Remillard\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "fe96fcc5-f2d1-4557-8e49-7eadf377f62e",
+        "question": "What is the hobby of the great-aunt of Celestine Remillard?",
+        "solution_traces": "[{\"Y_3\": \"Wanita Remillard\", \"Y_2\": \"button collecting\"}]",
+        "answer": [
+            "button collecting"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "great_aunt(\"Celestine Remillard\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 4,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "0cafc07d-4c78-4781-9e55-b31b889ee0ca",
+        "question": "What is the occupation of the father of Luke Wilke?",
+        "solution_traces": "[{\"Y_2\": \"health promotion specialist\", \"Y_3\": \"Stacey Wilke\"}]",
+        "answer": [
+            "health promotion specialist"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "father(\"Luke Wilke\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "83cf54e9-2b52-45f2-86c2-2b85f35d3b94",
+        "question": "What is the occupation of the parent of Lyman Oberg?",
+        "solution_traces": "[{\"Y_2\": \"environmental manager\", \"Y_3\": \"Brigida Oberg\"}, {\"Y_3\": \"Richard Oberg\", \"Y_2\": \"music tutor\"}]",
+        "answer": [
+            "environmental manager",
+            "music tutor"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "parent(\"Lyman Oberg\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "ef3e3ee1-c345-4f3e-a223-72543e26e624",
+        "question": "What is the hobby of the friend of Elroy Mcgough?",
+        "solution_traces": "[{\"Y_2\": \"ant farming\", \"Y_3\": \"Rhoda Narvaez\"}, {\"Y_2\": \"auto audiophilia\", \"Y_3\": \"Eli Vandenberg\"}, {\"Y_3\": \"Sherrie Remillard\", \"Y_2\": \"leaves\"}, {\"Y_3\": \"Charley Vandenberg\", \"Y_2\": \"book collecting\"}, {\"Y_3\": \"Mai Remillard\", \"Y_2\": \"butterfly watching\"}, {\"Y_3\": \"Dorinda Chrisman\", \"Y_2\": \"herping\"}, {\"Y_3\": \"Colby Narvaez\", \"Y_2\": \"figure skating\"}]",
+        "answer": [
+            "ant farming",
+            "auto audiophilia",
+            "book collecting",
+            "butterfly watching",
+            "figure skating",
+            "herping",
+            "leaves"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "friend(\"Elroy Mcgough\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    }
+]

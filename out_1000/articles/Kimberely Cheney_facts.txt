@@ -1,0 +1,8 @@
+mother("Kimberely Cheney", "Kelley Cheney").
+father("Kimberely Cheney", "Sang Cheney").
+friend("Kimberely Cheney", "Rolf Osterman").
+friend("Kimberely Cheney", "Johanna Mathes").
+dob("Kimberely Cheney", "0433-05-16").
+job("Kimberely Cheney", "immunologist").
+hobby("Kimberely Cheney", "rock balancing").
+gender("Kimberely Cheney", "female").

@@ -1,0 +1,292 @@
+[
+    {
+        "id": "7a0cfaaf-7af8-479b-b589-aae3777b7c19",
+        "question": "Who has the most great-grandchildren among the siblings of Isabell Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Gene Smock"
+        ],
+        "prolog": {
+            "query": [
+                "sibling(\"Isabell Smock\", X)",
+                "aggregate_all(count, distinct(great_grandchild(X, Z)), C)",
+                "\\+ (sibling(\"Isabell Smock\", Y), Y \\= X, aggregate_all(count, distinct(great_grandchild(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "c4c6141a-fccf-4620-ac0e-8c3359cfdbea",
+        "question": "Who has the most parents among the parents of Johnetta Wang?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang"
+        ],
+        "prolog": {
+            "query": [
+                "parent(\"Johnetta Wang\", X)",
+                "aggregate_all(count, distinct(parent(X, Z)), C)",
+                "\\+ (parent(\"Johnetta Wang\", Y), Y \\= X, aggregate_all(count, distinct(parent(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "444b42d1-813e-41b7-a1d6-8f0099824080",
+        "question": "Who has the most grandfathers among the friends of Isabell Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeannine Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Isabell Smock\", X)",
+                "aggregate_all(count, distinct(grandfather(X, Z)), C)",
+                "\\+ (friend(\"Isabell Smock\", Y), Y \\= X, aggregate_all(count, distinct(grandfather(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "74cfb566-63ff-450b-8f2a-545d20c8a10e",
+        "question": "Who has the most sons-in-law among the children of Daisy Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dino Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "child(\"Daisy Beltran\", X)",
+                "aggregate_all(count, distinct(son_in_law(X, Z)), C)",
+                "\\+ (child(\"Daisy Beltran\", Y), Y \\= X, aggregate_all(count, distinct(son_in_law(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "a18751bf-fa3a-49fd-a01b-b894fe707719",
+        "question": "Who has the most fathers among the friends of Lenore Hackworth?",
+        "solution_traces": "[]",
+        "answer": [
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Lenore Hackworth\", X)",
+                "aggregate_all(count, distinct(father(X, Z)), C)",
+                "\\+ (friend(\"Lenore Hackworth\", Y), Y \\= X, aggregate_all(count, distinct(father(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "68564a71-d661-4b29-b984-d7a8f2e6a017",
+        "question": "Who has the most daughters-in-law among the great-grandfathers of Lenore Hackworth?",
+        "solution_traces": "[]",
+        "answer": [
+            "Brian Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandfather(\"Lenore Hackworth\", X)",
+                "aggregate_all(count, distinct(daughter_in_law(X, Z)), C)",
+                "\\+ (great_grandfather(\"Lenore Hackworth\", Y), Y \\= X, aggregate_all(count, distinct(daughter_in_law(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "25d33d10-99dd-463b-b665-133bfd207e91",
+        "question": "Who has the most mothers-in-law among the great-grandparents of Leeann Hackworth?",
+        "solution_traces": "[]",
+        "answer": [
+            "Alison Smock"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandparent(\"Leeann Hackworth\", X)",
+                "aggregate_all(count, distinct(mother_in_law(X, Z)), C)",
+                "\\+ (great_grandparent(\"Leeann Hackworth\", Y), Y \\= X, aggregate_all(count, distinct(mother_in_law(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "718d3451-d933-4bb9-8a7f-c746b19e265c",
+        "question": "Who has the most great-grandparents among the friends of Dominique Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Leeann Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Dominique Smock\", X)",
+                "aggregate_all(count, distinct(great_grandparent(X, Z)), C)",
+                "\\+ (friend(\"Dominique Smock\", Y), Y \\= X, aggregate_all(count, distinct(great_grandparent(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "ed344f65-0e52-4d16-afca-9dfa080c9467",
+        "question": "Who has the most great-granddaughters among the friends of Aubrey Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dominique Smock"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Aubrey Smock\", X)",
+                "aggregate_all(count, distinct(great_granddaughter(X, Z)), C)",
+                "\\+ (friend(\"Aubrey Smock\", Y), Y \\= X, aggregate_all(count, distinct(great_granddaughter(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "3d466504-c468-4f86-99d5-bc9e5b3179cf",
+        "question": "Who has the most fathers among the great-grandfathers of Johnetta Wang?",
+        "solution_traces": "[]",
+        "answer": [
+            "Williams Smock"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandfather(\"Johnetta Wang\", X)",
+                "aggregate_all(count, distinct(father(X, Z)), C)",
+                "\\+ (great_grandfather(\"Johnetta Wang\", Y), Y \\= X, aggregate_all(count, distinct(father(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    }
+]

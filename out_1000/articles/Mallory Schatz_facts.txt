@@ -1,0 +1,17 @@
+sister("Mallory Schatz", "Dorothea Goff").
+sister("Mallory Schatz", "Drema Schatz").
+mother("Mallory Schatz", "Krystyna Schatz").
+father("Mallory Schatz", "Taylor Schatz").
+friend("Mallory Schatz", "Beatriz Theriot").
+friend("Mallory Schatz", "Elaine Marr").
+friend("Mallory Schatz", "Evette Hamlin").
+friend("Mallory Schatz", "Dorathy Harlow").
+friend("Mallory Schatz", "Rodrigo Mckenna").
+friend("Mallory Schatz", "Christoper Littleton").
+friend("Mallory Schatz", "Lashanda Hartung").
+friend("Mallory Schatz", "Pearl Hamann").
+friend("Mallory Schatz", "Sofia Eaves").
+dob("Mallory Schatz", "0381-06-06").
+job("Mallory Schatz", "museum exhibitions officer").
+hobby("Mallory Schatz", "australian rules football").
+gender("Mallory Schatz", "female").

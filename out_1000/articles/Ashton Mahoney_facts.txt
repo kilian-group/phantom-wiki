@@ -1,0 +1,9 @@
+mother("Ashton Mahoney", "Elyse Mahoney").
+father("Ashton Mahoney", "Ty Mahoney").
+friend("Ashton Mahoney", "Estella Dana").
+friend("Ashton Mahoney", "Erik Fredrick").
+friend("Ashton Mahoney", "Dino Bowles").
+dob("Ashton Mahoney", "0434-01-29").
+job("Ashton Mahoney", "health service manager").
+hobby("Ashton Mahoney", "people-watching").
+gender("Ashton Mahoney", "female").

@@ -1,0 +1,17 @@
+mother("Hector Autry", "Bess Autry").
+father("Hector Autry", "Donald Autry").
+friend("Hector Autry", "Dustin Peeler").
+friend("Hector Autry", "Lara Jansen").
+friend("Hector Autry", "Eliza Ingalls").
+friend("Hector Autry", "Janis Younger").
+friend("Hector Autry", "Clementine Goff").
+friend("Hector Autry", "Krystyna Schatz").
+friend("Hector Autry", "Sung Fordham").
+friend("Hector Autry", "Leeann Blanton").
+friend("Hector Autry", "Rueben Bowles").
+friend("Hector Autry", "Eunice Prater").
+friend("Hector Autry", "Donnie Mcgough").
+dob("Hector Autry", "0452-06-25").
+job("Hector Autry", "librarian").
+hobby("Hector Autry", "roller derby").
+gender("Hector Autry", "male").

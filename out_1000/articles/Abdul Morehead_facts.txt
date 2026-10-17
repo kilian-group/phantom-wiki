@@ -1,0 +1,13 @@
+son("Abdul Morehead", "Miguel Morehead").
+wife("Abdul Morehead", "Pauletta Morehead").
+friend("Abdul Morehead", "Domonique Fordham").
+friend("Abdul Morehead", "Zona Jarrett").
+friend("Abdul Morehead", "Samual Knepper").
+friend("Abdul Morehead", "Bonnie Storey").
+friend("Abdul Morehead", "Magdalena Hollinger").
+friend("Abdul Morehead", "Benito Ruth").
+friend("Abdul Morehead", "Heath Swartz").
+dob("Abdul Morehead", "0420-05-05").
+job("Abdul Morehead", "lighting technician").
+hobby("Abdul Morehead", "entrepreneurship").
+gender("Abdul Morehead", "male").

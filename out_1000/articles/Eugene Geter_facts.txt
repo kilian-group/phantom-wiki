@@ -1,0 +1,12 @@
+son("Eugene Geter", "Gregory Geter").
+wife("Eugene Geter", "Mayra Geter").
+friend("Eugene Geter", "Patsy Murray").
+friend("Eugene Geter", "Ricardo Dacosta").
+friend("Eugene Geter", "Jaclyn Smart").
+friend("Eugene Geter", "Beatriz Theriot").
+friend("Eugene Geter", "Scot Shilling").
+friend("Eugene Geter", "Nevin Mckenna").
+dob("Eugene Geter", "0459-09-09").
+job("Eugene Geter", "mining engineer").
+hobby("Eugene Geter", "shooting sports").
+gender("Eugene Geter", "male").

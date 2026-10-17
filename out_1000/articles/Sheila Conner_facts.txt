@@ -1,0 +1,15 @@
+daughter("Sheila Conner", "Joanne Storey").
+husband("Sheila Conner", "Carol Conner").
+friend("Sheila Conner", "Gaye Swartz").
+friend("Sheila Conner", "Mickey Eaves").
+friend("Sheila Conner", "Tianna Goff").
+friend("Sheila Conner", "Vita Resendez").
+friend("Sheila Conner", "Tracy Fredrick").
+friend("Sheila Conner", "Vito Capps").
+friend("Sheila Conner", "Shawna Sheridan").
+friend("Sheila Conner", "Evette Knepper").
+friend("Sheila Conner", "Kenda Beamon").
+dob("Sheila Conner", "0352-11-11").
+job("Sheila Conner", "hotel manager").
+hobby("Sheila Conner", "aircraft spotting").
+gender("Sheila Conner", "female").

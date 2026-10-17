@@ -1,0 +1,21 @@
+sister("Felton Kell", "Winnie Harlow").
+brother("Felton Kell", "Perry Kell").
+brother("Felton Kell", "Simon Kell").
+mother("Felton Kell", "Jackqueline Kell").
+father("Felton Kell", "Kurtis Kell").
+son("Felton Kell", "Dewitt Kell").
+son("Felton Kell", "Stan Kell").
+daughter("Felton Kell", "Eva Kell").
+daughter("Felton Kell", "Malissa Kell").
+daughter("Felton Kell", "Tomasa Kell").
+wife("Felton Kell", "Barbar Kell").
+friend("Felton Kell", "Werner Kell").
+friend("Felton Kell", "Edwina Weise").
+friend("Felton Kell", "Dustin Peeler").
+friend("Felton Kell", "Florence Ingle").
+friend("Felton Kell", "Bert Simons").
+friend("Felton Kell", "Chauncey Wilkie").
+dob("Felton Kell", "0383-09-02").
+job("Felton Kell", "product designer").
+hobby("Felton Kell", "knowledge/word games").
+gender("Felton Kell", "male").

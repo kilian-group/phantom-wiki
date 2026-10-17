@@ -1,0 +1,14 @@
+mother("Carmine Mckenna", "Annita Mckenna").
+father("Carmine Mckenna", "Michael Mckenna").
+friend("Carmine Mckenna", "Joanne Storey").
+friend("Carmine Mckenna", "Raleigh Simons").
+friend("Carmine Mckenna", "Karin Machado").
+friend("Carmine Mckenna", "Vernon Peabody").
+friend("Carmine Mckenna", "Carolyn Whitford").
+friend("Carmine Mckenna", "Daisy Cushman").
+friend("Carmine Mckenna", "Lashandra Bowles").
+friend("Carmine Mckenna", "Marvin Putnam").
+dob("Carmine Mckenna", "0491-11-10").
+job("Carmine Mckenna", "television camera operator").
+hobby("Carmine Mckenna", "dominoes").
+gender("Carmine Mckenna", "male").

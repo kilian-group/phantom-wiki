@@ -1,0 +1,13 @@
+son("Jasmine Corwin", "Josef Corwin").
+daughter("Jasmine Corwin", "Carlene Corwin").
+husband("Jasmine Corwin", "Colin Corwin").
+friend("Jasmine Corwin", "Byron Medellin").
+friend("Jasmine Corwin", "Kris Fordham").
+friend("Jasmine Corwin", "Avery Ballard").
+friend("Jasmine Corwin", "Gayla Sanborn").
+friend("Jasmine Corwin", "Roscoe Vanmeter").
+friend("Jasmine Corwin", "Larae Kirksey").
+dob("Jasmine Corwin", "0406-06-18").
+job("Jasmine Corwin", "maintenance engineer").
+hobby("Jasmine Corwin", "dolls").
+gender("Jasmine Corwin", "female").

@@ -27,7 +27,7 @@ with open(TEMPLATES_DEPTH_10_PATH) as f:
 
 
 def test_generate_templates_depth_6():
-    templates = generate_templates(depth=6)
+    templates = generate_templates(max_hops=1, max_constraints=2)
     for template, (question, query, answer) in zip(templates, DATA_DEPTH_6):
         assert template[0] == question
         assert template[1] == query
@@ -35,7 +35,7 @@ def test_generate_templates_depth_6():
 
 
 def test_generate_templates_depth_8():
-    templates = generate_templates(depth=8)
+    templates = generate_templates(max_hops=2, max_constraints=2)
     for template, (question, query, answer) in zip(templates, DATA_DEPTH_8):
         assert template[0] == question
         assert template[1] == query
@@ -43,7 +43,7 @@ def test_generate_templates_depth_8():
 
 
 def test_generate_templates_depth_10():
-    templates = generate_templates(depth=10)
+    templates = generate_templates(max_hops=3, max_constraints=2)
     for template, (question, query, answer) in zip(templates, DATA_DEPTH_10):
         assert template[0] == question
         assert template[1] == query
@@ -52,10 +52,10 @@ def test_generate_templates_depth_10():
 
 def test_template_depth_subsets():
     """Templates at depth 6 are a subset of templates at depth 8."""
-    templates_depth_6 = generate_templates(depth=6)
-    templates_depth_8 = generate_templates(depth=8)
-    templates_depth_10 = generate_templates(depth=10)
-    templates_depth_20 = generate_templates(depth=20)
+    templates_depth_6 = generate_templates(max_hops=1, max_constraints=2)
+    templates_depth_8 = generate_templates(max_hops=2, max_constraints=2)
+    templates_depth_10 = generate_templates(max_hops=3, max_constraints=2)
+    templates_depth_20 = generate_templates(max_hops=8, max_constraints=2)
 
     # Hashable representation
     def condense_templates(q):

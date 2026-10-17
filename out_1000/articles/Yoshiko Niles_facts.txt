@@ -1,0 +1,15 @@
+sister("Yoshiko Niles", "Deirdre Niles").
+sister("Yoshiko Niles", "Nedra Musick").
+sister("Yoshiko Niles", "Nellie Niles").
+sister("Yoshiko Niles", "Tabetha Niles").
+mother("Yoshiko Niles", "Virgie Niles").
+father("Yoshiko Niles", "Julius Niles").
+friend("Yoshiko Niles", "Miles Fordham").
+friend("Yoshiko Niles", "Rogelio Capps").
+friend("Yoshiko Niles", "Pansy Sutphin").
+friend("Yoshiko Niles", "Claude Courson").
+friend("Yoshiko Niles", "Stan Gailey").
+dob("Yoshiko Niles", "0400-08-13").
+job("Yoshiko Niles", "air traffic controller").
+hobby("Yoshiko Niles", "board sports").
+gender("Yoshiko Niles", "female").

@@ -1,0 +1,11 @@
+mother("Dorinda Chrisman", "Louann Chrisman").
+father("Dorinda Chrisman", "Thomas Chrisman").
+friend("Dorinda Chrisman", "Morgan Remillard").
+friend("Dorinda Chrisman", "Thomas Chrisman").
+friend("Dorinda Chrisman", "Elroy Mcgough").
+friend("Dorinda Chrisman", "Valentin Vandenberg").
+friend("Dorinda Chrisman", "Dani Remillard").
+dob("Dorinda Chrisman", "0377-10-29").
+job("Dorinda Chrisman", "hospital doctor").
+hobby("Dorinda Chrisman", "herping").
+gender("Dorinda Chrisman", "female").

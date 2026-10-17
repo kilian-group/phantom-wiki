@@ -1,0 +1,14 @@
+sister("Danny Cowart", "Veronica Cowart").
+mother("Danny Cowart", "Windy Cowart").
+father("Danny Cowart", "Curt Cowart").
+friend("Danny Cowart", "Floyd Cook").
+friend("Danny Cowart", "Denny Eaves").
+friend("Danny Cowart", "Homer Morehead").
+friend("Danny Cowart", "Ladawn Bennet").
+friend("Danny Cowart", "Lynelle Smart").
+friend("Danny Cowart", "Millard Fordham").
+friend("Danny Cowart", "Rena Palm").
+dob("Danny Cowart", "0455-03-28").
+job("Danny Cowart", "copywriter").
+hobby("Danny Cowart", "judo").
+gender("Danny Cowart", "male").

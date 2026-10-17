@@ -1,0 +1,13 @@
+mother("Rhonda Theriot", "Elaine Marr").
+father("Rhonda Theriot", "Lyman Marr").
+daughter("Rhonda Theriot", "Beatriz Theriot").
+husband("Rhonda Theriot", "Hollis Theriot").
+friend("Rhonda Theriot", "Zachery Upton").
+friend("Rhonda Theriot", "Christina Barrows").
+friend("Rhonda Theriot", "Emery Linden").
+friend("Rhonda Theriot", "Verona Arteaga").
+friend("Rhonda Theriot", "Calvin Holliman").
+dob("Rhonda Theriot", "0433-05-26").
+job("Rhonda Theriot", "insurance account manager").
+hobby("Rhonda Theriot", "railway journeys").
+gender("Rhonda Theriot", "female").

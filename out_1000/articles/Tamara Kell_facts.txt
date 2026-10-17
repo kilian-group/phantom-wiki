@@ -1,0 +1,13 @@
+mother("Tamara Kell", "Janey Kell").
+father("Tamara Kell", "Walter Kell").
+friend("Tamara Kell", "Edythe Littleton").
+friend("Tamara Kell", "Lura Leclair").
+friend("Tamara Kell", "Jermaine Gilliam").
+friend("Tamara Kell", "Kenton Gilliam").
+friend("Tamara Kell", "Darwin Kavanaugh").
+friend("Tamara Kell", "Dino Bowles").
+friend("Tamara Kell", "Macy Booth").
+dob("Tamara Kell", "0467-01-14").
+job("Tamara Kell", "medical illustrator").
+hobby("Tamara Kell", "publishing").
+gender("Tamara Kell", "female").

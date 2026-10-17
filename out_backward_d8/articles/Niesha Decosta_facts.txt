@@ -1,0 +1,7 @@
+son("Niesha Decosta", "Abraham Decosta").
+husband("Niesha Decosta", "Elwood Decosta").
+friend("Niesha Decosta", "Zoila Mason").
+dob("Niesha Decosta", "0188-11-25").
+job("Niesha Decosta", "immunologist").
+hobby("Niesha Decosta", "beekeeping").
+gender("Niesha Decosta", "female").

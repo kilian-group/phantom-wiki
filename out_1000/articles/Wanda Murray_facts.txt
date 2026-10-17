@@ -1,0 +1,22 @@
+sister("Wanda Murray", "Gayla Holder").
+sister("Wanda Murray", "Lara Jansen").
+sister("Wanda Murray", "Paula Rudolph").
+sister("Wanda Murray", "Rebecka Schlosser").
+mother("Wanda Murray", "Annette Rudolph").
+father("Wanda Murray", "Antwan Rudolph").
+son("Wanda Murray", "Phil Murray").
+daughter("Wanda Murray", "Myrl Murray").
+daughter("Wanda Murray", "Romona Littleton").
+daughter("Wanda Murray", "Susie Gillam").
+husband("Wanda Murray", "Harold Murray").
+friend("Wanda Murray", "Denny Eaves").
+friend("Wanda Murray", "Alisha Fredrick").
+friend("Wanda Murray", "Demetra Palomo").
+friend("Wanda Murray", "Ricky Carswell").
+friend("Wanda Murray", "Matthias Lennox").
+friend("Wanda Murray", "Trudy Lennox").
+friend("Wanda Murray", "Hans Fordham").
+dob("Wanda Murray", "0411-09-05").
+job("Wanda Murray", "scientist").
+hobby("Wanda Murray", "stuffed toy collecting").
+gender("Wanda Murray", "female").

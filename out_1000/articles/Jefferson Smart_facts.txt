@@ -1,0 +1,14 @@
+sister("Jefferson Smart", "Dixie Murdoch").
+mother("Jefferson Smart", "Amy Smart").
+father("Jefferson Smart", "Drew Smart").
+son("Jefferson Smart", "Jimmie Smart").
+wife("Jefferson Smart", "Christina Smart").
+friend("Jefferson Smart", "Zachery Upton").
+friend("Jefferson Smart", "Bridget Sutphin").
+friend("Jefferson Smart", "Conrad Molina").
+friend("Jefferson Smart", "Kenton Whitford").
+friend("Jefferson Smart", "Lou Dunlap").
+dob("Jefferson Smart", "0404-03-25").
+job("Jefferson Smart", "corporate investment banker").
+hobby("Jefferson Smart", "lacrosse").
+gender("Jefferson Smart", "male").

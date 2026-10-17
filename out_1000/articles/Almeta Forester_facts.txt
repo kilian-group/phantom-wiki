@@ -1,0 +1,15 @@
+mother("Almeta Forester", "Isabell Shank").
+father("Almeta Forester", "Gerry Shank").
+son("Almeta Forester", "Isaias Forester").
+husband("Almeta Forester", "Ricky Forester").
+friend("Almeta Forester", "Bryan Layton").
+friend("Almeta Forester", "Harry Hudgens").
+friend("Almeta Forester", "Rashad Nolasco").
+friend("Almeta Forester", "Andrea Murchison").
+friend("Almeta Forester", "Pauletta Morehead").
+friend("Almeta Forester", "Ella Mathes").
+friend("Almeta Forester", "Maryann Oliveira").
+dob("Almeta Forester", "0321-07-01").
+job("Almeta Forester", "private music teacher").
+hobby("Almeta Forester", "lotology").
+gender("Almeta Forester", "female").

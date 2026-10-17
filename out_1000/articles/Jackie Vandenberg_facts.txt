@@ -1,0 +1,17 @@
+son("Jackie Vandenberg", "Charley Vandenberg").
+son("Jackie Vandenberg", "Eli Vandenberg").
+son("Jackie Vandenberg", "Fernando Vandenberg").
+daughter("Jackie Vandenberg", "Amy Wilke").
+daughter("Jackie Vandenberg", "Thelma Vandenberg").
+husband("Jackie Vandenberg", "Valentin Vandenberg").
+friend("Jackie Vandenberg", "Noreen Sanborn").
+friend("Jackie Vandenberg", "Emma Wellington").
+friend("Jackie Vandenberg", "James Maness").
+friend("Jackie Vandenberg", "Maryann Peeler").
+friend("Jackie Vandenberg", "John Schlosser").
+friend("Jackie Vandenberg", "Dan Mahoney").
+friend("Jackie Vandenberg", "Lona Corwin").
+dob("Jackie Vandenberg", "0321-11-20").
+job("Jackie Vandenberg", "leisure centre manager").
+hobby("Jackie Vandenberg", "magic").
+gender("Jackie Vandenberg", "female").

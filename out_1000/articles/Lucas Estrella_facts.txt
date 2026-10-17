@@ -1,0 +1,13 @@
+sister("Lucas Estrella", "Luisa Estrella").
+mother("Lucas Estrella", "Leena Estrella").
+father("Lucas Estrella", "Jan Estrella").
+friend("Lucas Estrella", "Velia Capps").
+friend("Lucas Estrella", "Niki Vanmeter").
+friend("Lucas Estrella", "Lindy Dillion").
+friend("Lucas Estrella", "Melina Resendez").
+friend("Lucas Estrella", "Vance Fredrick").
+friend("Lucas Estrella", "Deloris Marr").
+dob("Lucas Estrella", "0363-01-22").
+job("Lucas Estrella", "investment banker").
+hobby("Lucas Estrella", "amateur astronomy").
+gender("Lucas Estrella", "male").

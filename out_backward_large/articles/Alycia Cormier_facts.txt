@@ -1,0 +1,9 @@
+mother("Alycia Cormier", "Geri Deluna").
+father("Alycia Cormier", "Bert Deluna").
+son("Alycia Cormier", "Foster Cormier").
+husband("Alycia Cormier", "Christoper Cormier").
+friend("Alycia Cormier", "Bruce Mason").
+dob("Alycia Cormier", "0183-01-13").
+job("Alycia Cormier", "public relations officer").
+hobby("Alycia Cormier", "judo").
+gender("Alycia Cormier", "female").

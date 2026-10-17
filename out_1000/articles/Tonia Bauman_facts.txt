@@ -1,0 +1,17 @@
+mother("Tonia Bauman", "Deja Bigelow").
+father("Tonia Bauman", "Kieth Bigelow").
+son("Tonia Bauman", "Garrett Bauman").
+daughter("Tonia Bauman", "Lora Vanmeter").
+husband("Tonia Bauman", "Max Bauman").
+friend("Tonia Bauman", "Donald Autry").
+friend("Tonia Bauman", "Cedric Towns").
+friend("Tonia Bauman", "Russel Eaves").
+friend("Tonia Bauman", "Delpha Younger").
+friend("Tonia Bauman", "Reita Pugliese").
+friend("Tonia Bauman", "Jeana Chisholm").
+friend("Tonia Bauman", "Dustin Sheridan").
+friend("Tonia Bauman", "Deja Bigelow").
+dob("Tonia Bauman", "0406-09-24").
+job("Tonia Bauman", "surgeon").
+hobby("Tonia Bauman", "volleyball").
+gender("Tonia Bauman", "female").

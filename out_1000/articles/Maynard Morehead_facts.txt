@@ -1,0 +1,16 @@
+sister("Maynard Morehead", "Dena Morehead").
+brother("Maynard Morehead", "Homer Morehead").
+mother("Maynard Morehead", "Zora Morehead").
+father("Maynard Morehead", "Miguel Morehead").
+friend("Maynard Morehead", "Kory Gibbs").
+friend("Maynard Morehead", "Jeana Holtz").
+friend("Maynard Morehead", "Anita Fain").
+friend("Maynard Morehead", "Nellie Hamlin").
+friend("Maynard Morehead", "Rosalinda Layton").
+friend("Maynard Morehead", "Adah Schram").
+friend("Maynard Morehead", "Floyd Cook").
+friend("Maynard Morehead", "Ramon Swartz").
+dob("Maynard Morehead", "0487-06-11").
+job("Maynard Morehead", "barista").
+hobby("Maynard Morehead", "archaeology").
+gender("Maynard Morehead", "male").

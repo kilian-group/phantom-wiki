@@ -1,0 +1,13 @@
+mother("Rosella Simons", "Tiffany Simons").
+father("Rosella Simons", "Sung Simons").
+friend("Rosella Simons", "Zelda Sharma").
+friend("Rosella Simons", "Patricia Towns").
+friend("Rosella Simons", "Flora Noland").
+friend("Rosella Simons", "Isabell Shank").
+friend("Rosella Simons", "Thelma Vandenberg").
+friend("Rosella Simons", "Donald Autry").
+friend("Rosella Simons", "Maryann Peeler").
+dob("Rosella Simons", "0459-11-04").
+job("Rosella Simons", "medical technical officer").
+hobby("Rosella Simons", "fishkeeping").
+gender("Rosella Simons", "female").

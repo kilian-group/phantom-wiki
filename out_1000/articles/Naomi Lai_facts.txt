@@ -1,0 +1,15 @@
+brother("Naomi Lai", "Claudio Winn").
+mother("Naomi Lai", "Rheba Winn").
+father("Naomi Lai", "Brandon Winn").
+son("Naomi Lai", "Rudolf Lai").
+husband("Naomi Lai", "Terrell Lai").
+friend("Naomi Lai", "Oscar Schram").
+friend("Naomi Lai", "Edwina Weise").
+friend("Naomi Lai", "Allie Gillam").
+friend("Naomi Lai", "Rogelio Dunlap").
+friend("Naomi Lai", "Hal Greene").
+friend("Naomi Lai", "Donnie Mcgough").
+dob("Naomi Lai", "0555-08-17").
+job("Naomi Lai", "sales executive").
+hobby("Naomi Lai", "dowsing").
+gender("Naomi Lai", "female").

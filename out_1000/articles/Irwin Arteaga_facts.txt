@@ -1,0 +1,13 @@
+son("Irwin Arteaga", "James Arteaga").
+daughter("Irwin Arteaga", "Verona Arteaga").
+wife("Irwin Arteaga", "Hope Arteaga").
+friend("Irwin Arteaga", "Martin Deville").
+friend("Irwin Arteaga", "Pansy Sutphin").
+friend("Irwin Arteaga", "Solomon Shaw").
+friend("Irwin Arteaga", "Ladonna Klink").
+friend("Irwin Arteaga", "Jonathon Callender").
+friend("Irwin Arteaga", "Scottie Steadman").
+dob("Irwin Arteaga", "0397-03-05").
+job("Irwin Arteaga", "data scientist").
+hobby("Irwin Arteaga", "horseback riding").
+gender("Irwin Arteaga", "male").

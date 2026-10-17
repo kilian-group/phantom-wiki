@@ -1,0 +1,16 @@
+sister("Rodrigo Mckenna", "Kimberely Corso").
+brother("Rodrigo Mckenna", "Ira Mckenna").
+brother("Rodrigo Mckenna", "Nevin Mckenna").
+brother("Rodrigo Mckenna", "Porter Mckenna").
+mother("Rodrigo Mckenna", "Dorathy Mckenna").
+father("Rodrigo Mckenna", "Cameron Mckenna").
+son("Rodrigo Mckenna", "Michael Mckenna").
+son("Rodrigo Mckenna", "Wyatt Mckenna").
+daughter("Rodrigo Mckenna", "Iva Parish").
+daughter("Rodrigo Mckenna", "Lynetta Mckenna").
+wife("Rodrigo Mckenna", "Therese Mckenna").
+friend("Rodrigo Mckenna", "Mallory Schatz").
+dob("Rodrigo Mckenna", "0441-10-13").
+job("Rodrigo Mckenna", "personal assistant").
+hobby("Rodrigo Mckenna", "blacksmithing").
+gender("Rodrigo Mckenna", "male").

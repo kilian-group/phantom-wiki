@@ -1,0 +1,16 @@
+son("Bess Autry", "Hector Autry").
+husband("Bess Autry", "Donald Autry").
+friend("Bess Autry", "Juan Weise").
+friend("Bess Autry", "Myrl Murray").
+friend("Bess Autry", "Hershel Ingalls").
+friend("Bess Autry", "Oralia Burdette").
+friend("Bess Autry", "Juanita Dana").
+friend("Bess Autry", "Juanita Eaves").
+friend("Bess Autry", "Alec Dacosta").
+friend("Bess Autry", "Leena Estrella").
+friend("Bess Autry", "Haley Layman").
+friend("Bess Autry", "Mose Jarrett").
+dob("Bess Autry", "0422-04-05").
+job("Bess Autry", "clinical molecular geneticist").
+hobby("Bess Autry", "microscopy").
+gender("Bess Autry", "female").

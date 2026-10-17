@@ -1,0 +1,19 @@
+mother("Hollis Theriot", "Nelly Theriot").
+father("Hollis Theriot", "Zachary Theriot").
+daughter("Hollis Theriot", "Beatriz Theriot").
+wife("Hollis Theriot", "Rhonda Theriot").
+friend("Hollis Theriot", "Vito Capps").
+friend("Hollis Theriot", "Leonora Depriest").
+friend("Hollis Theriot", "Ashleigh Galvan").
+friend("Hollis Theriot", "Christen Resendez").
+friend("Hollis Theriot", "Noelia Lasher").
+friend("Hollis Theriot", "Helga Simons").
+friend("Hollis Theriot", "Sammie Simons").
+friend("Hollis Theriot", "Heath Swartz").
+friend("Hollis Theriot", "Shawnta Plumley").
+friend("Hollis Theriot", "Judith Lebrun").
+friend("Hollis Theriot", "Paul Gilliam").
+dob("Hollis Theriot", "0435-03-02").
+job("Hollis Theriot", "warden").
+hobby("Hollis Theriot", "fossil hunting").
+gender("Hollis Theriot", "male").

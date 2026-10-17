@@ -1,0 +1,335 @@
+[
+    {
+        "id": "7487bc60-fa1c-4b91-bfbc-e39481312323",
+        "question": "Who is the niece of Jeannine Wexler?",
+        "solution_traces": "[{\"Y_2\": \"Leeann Hackworth\"}, {\"Y_2\": \"Johnetta Wang\"}, {\"Y_2\": \"Lenore Hackworth\"}]",
+        "answer": [
+            "Johnetta Wang",
+            "Leeann Hackworth",
+            "Lenore Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "niece(\"Jeannine Wexler\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "78a549b6-7b8f-4fe3-978f-4cfbbc2ed4f7",
+        "question": "Who is the friend of Ricardo Hackworth?",
+        "solution_traces": "[{\"Y_2\": \"Gene Smock\"}, {\"Y_2\": \"Myrle Smock\"}, {\"Y_2\": \"Dominique Smock\"}, {\"Y_2\": \"Dino Beltran\"}]",
+        "answer": [
+            "Dino Beltran",
+            "Dominique Smock",
+            "Gene Smock",
+            "Myrle Smock"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Ricardo Hackworth\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "9bb6df53-8aa3-44af-88f4-048fbbdd7a39",
+        "question": "Who is the sister of Aida Wang?",
+        "solution_traces": "[{\"Y_2\": \"Jeannine Wexler\"}, {\"Y_2\": \"Vicki Hackworth\"}]",
+        "answer": [
+            "Jeannine Wexler",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "sister(\"Aida Wang\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "b60fae1d-9aee-4f2b-96c7-4184e41e8412",
+        "question": "Who is the friend of Saul Wexler?",
+        "solution_traces": "[{\"Y_2\": \"Johnetta Wang\"}, {\"Y_2\": \"Daisy Beltran\"}, {\"Y_2\": \"Alison Smock\"}, {\"Y_2\": \"Lenore Hackworth\"}, {\"Y_2\": \"Dino Beltran\"}, {\"Y_2\": \"Lannie Smock\"}]",
+        "answer": [
+            "Alison Smock",
+            "Daisy Beltran",
+            "Dino Beltran",
+            "Johnetta Wang",
+            "Lannie Smock",
+            "Lenore Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Saul Wexler\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "bad10c6b-a2f0-4585-a9a5-44bfc6a14511",
+        "question": "Who is the sibling of Deane Smock?",
+        "solution_traces": "[{\"Y_2\": \"Gene Smock\"}, {\"Y_2\": \"Aubrey Smock\"}, {\"Y_2\": \"Isabell Smock\"}]",
+        "answer": [
+            "Aubrey Smock",
+            "Gene Smock",
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "sibling(\"Deane Smock\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "41e65481-0dd6-4f02-a7f6-e7e6196950b4",
+        "question": "Who is the granddaughter of Shelli Beltran?",
+        "solution_traces": "[{\"Y_2\": \"Leeann Hackworth\"}, {\"Y_2\": \"Johnetta Wang\"}, {\"Y_2\": \"Lenore Hackworth\"}, {\"Y_2\": \"Valentina Wexler\"}]",
+        "answer": [
+            "Johnetta Wang",
+            "Leeann Hackworth",
+            "Lenore Hackworth",
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "granddaughter(\"Shelli Beltran\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "cd0e560f-67fd-4644-8832-a3e7858b4f9f",
+        "question": "Who is the friend of Deane Smock?",
+        "solution_traces": "[{\"Y_2\": \"Gene Smock\"}, {\"Y_2\": \"Alison Smock\"}, {\"Y_2\": \"Shelli Beltran\"}, {\"Y_2\": \"Isabell Smock\"}]",
+        "answer": [
+            "Alison Smock",
+            "Gene Smock",
+            "Isabell Smock",
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Deane Smock\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "e4eda50d-a334-4413-b57c-dd6f8327ba34",
+        "question": "Who is the sister of Deane Smock?",
+        "solution_traces": "[{\"Y_2\": \"Isabell Smock\"}]",
+        "answer": [
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "sister(\"Deane Smock\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "8ae1c169-2747-483d-b3ca-dce736a8addf",
+        "question": "Who is the grandparent of Myrle Smock?",
+        "solution_traces": "[{\"Y_2\": \"Gene Smock\"}, {\"Y_2\": \"Dominique Smock\"}]",
+        "answer": [
+            "Dominique Smock",
+            "Gene Smock"
+        ],
+        "prolog": {
+            "query": [
+                "grandparent(\"Myrle Smock\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "ddfd8751-4cab-4210-8ab2-12ecd1d8f55a",
+        "question": "Who is the child of Alvaro Smock?",
+        "solution_traces": "[{\"Y_2\": \"Gene Smock\"}, {\"Y_2\": \"Deane Smock\"}, {\"Y_2\": \"Aubrey Smock\"}, {\"Y_2\": \"Isabell Smock\"}]",
+        "answer": [
+            "Aubrey Smock",
+            "Deane Smock",
+            "Gene Smock",
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "child(\"Alvaro Smock\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    }
+]

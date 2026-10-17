@@ -1,0 +1,16 @@
+son("Ardath Carswell", "Cary Carswell").
+husband("Ardath Carswell", "Derek Carswell").
+friend("Ardath Carswell", "Drew Carty").
+friend("Ardath Carswell", "Freeda Jarrett").
+friend("Ardath Carswell", "Randolph Osborn").
+friend("Ardath Carswell", "Cordelia Murray").
+friend("Ardath Carswell", "Shelba Simons").
+friend("Ardath Carswell", "Claudine Bales").
+friend("Ardath Carswell", "Deloris Swartz").
+friend("Ardath Carswell", "Solomon Corwin").
+friend("Ardath Carswell", "Harold Hollins").
+friend("Ardath Carswell", "Verona Medellin").
+dob("Ardath Carswell", "0521-09-22").
+job("Ardath Carswell", "warden").
+hobby("Ardath Carswell", "checkers (draughts)").
+gender("Ardath Carswell", "female").

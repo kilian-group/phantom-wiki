@@ -1,0 +1,11 @@
+daughter("Marlo Oberg", "Twila Oberg").
+husband("Marlo Oberg", "Clyde Oberg").
+friend("Marlo Oberg", "Twila Oberg").
+friend("Marlo Oberg", "Willie Remillard").
+friend("Marlo Oberg", "Amy Wilke").
+friend("Marlo Oberg", "Clara Mcgough").
+friend("Marlo Oberg", "Amos Oberg").
+dob("Marlo Oberg", "0301-09-01").
+job("Marlo Oberg", "multimedia programmer").
+hobby("Marlo Oberg", "vr gaming").
+gender("Marlo Oberg", "female").

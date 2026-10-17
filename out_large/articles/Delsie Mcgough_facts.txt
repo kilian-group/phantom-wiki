@@ -1,0 +1,11 @@
+sister("Delsie Mcgough", "Clara Mcgough").
+mother("Delsie Mcgough", "Myrl Mcgough").
+father("Delsie Mcgough", "Randall Mcgough").
+friend("Delsie Mcgough", "Jackie Vandenberg").
+friend("Delsie Mcgough", "Cherlyn Oberg").
+friend("Delsie Mcgough", "Aurelia Dishman").
+friend("Delsie Mcgough", "Anna Vandenberg").
+dob("Delsie Mcgough", "0348-09-23").
+job("Delsie Mcgough", "animal nutritionist").
+hobby("Delsie Mcgough", "lacrosse").
+gender("Delsie Mcgough", "female").

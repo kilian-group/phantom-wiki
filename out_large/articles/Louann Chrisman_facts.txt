@@ -1,0 +1,17 @@
+sister("Louann Chrisman", "Celestine Remillard").
+brother("Louann Chrisman", "Willie Remillard").
+mother("Louann Chrisman", "Dani Remillard").
+father("Louann Chrisman", "Hunter Remillard").
+daughter("Louann Chrisman", "Dorinda Chrisman").
+husband("Louann Chrisman", "Thomas Chrisman").
+friend("Louann Chrisman", "Sherrie Remillard").
+friend("Louann Chrisman", "Jackie Vandenberg").
+friend("Louann Chrisman", "Thelma Vandenberg").
+friend("Louann Chrisman", "Valentin Vandenberg").
+friend("Louann Chrisman", "Bryce Oberg").
+friend("Louann Chrisman", "Colby Narvaez").
+friend("Louann Chrisman", "Richard Oberg").
+dob("Louann Chrisman", "0349-07-04").
+job("Louann Chrisman", "chartered loss adjuster").
+hobby("Louann Chrisman", "gongoozling").
+gender("Louann Chrisman", "female").

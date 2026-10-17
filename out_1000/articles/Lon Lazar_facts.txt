@@ -1,0 +1,14 @@
+daughter("Lon Lazar", "Rowena Lazar").
+wife("Lon Lazar", "Paula Lazar").
+friend("Lon Lazar", "Maryann Peeler").
+friend("Lon Lazar", "Maybelle Lester").
+friend("Lon Lazar", "Paula Rudolph").
+friend("Lon Lazar", "Heather Ingalls").
+friend("Lon Lazar", "Buffy Eaves").
+friend("Lon Lazar", "Rubie Upton").
+friend("Lon Lazar", "Dorathy Mckenna").
+friend("Lon Lazar", "Vaughn Dangelo").
+dob("Lon Lazar", "0350-10-12").
+job("Lon Lazar", "doctor").
+hobby("Lon Lazar", "vintage cars").
+gender("Lon Lazar", "male").

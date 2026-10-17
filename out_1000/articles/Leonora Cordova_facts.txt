@@ -1,0 +1,20 @@
+sister("Leonora Cordova", "Marilyn Sutphin").
+mother("Leonora Cordova", "Tammy Sutphin").
+father("Leonora Cordova", "Andrew Sutphin").
+son("Leonora Cordova", "Anibal Cordova").
+son("Leonora Cordova", "Jacques Cordova").
+son("Leonora Cordova", "Jesus Cordova").
+husband("Leonora Cordova", "Galen Cordova").
+friend("Leonora Cordova", "Andrea Murchison").
+friend("Leonora Cordova", "Roxy Niles").
+friend("Leonora Cordova", "Eunice Gordy").
+friend("Leonora Cordova", "Chrissy Mcgough").
+friend("Leonora Cordova", "Anthony Jarrett").
+friend("Leonora Cordova", "Dino Layman").
+friend("Leonora Cordova", "Garland Hirsch").
+friend("Leonora Cordova", "Maryam Maness").
+friend("Leonora Cordova", "Dwight Palm").
+dob("Leonora Cordova", "0351-05-19").
+job("Leonora Cordova", "teacher").
+hobby("Leonora Cordova", "ant farming").
+gender("Leonora Cordova", "female").

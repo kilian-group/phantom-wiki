@@ -1,0 +1,492 @@
+[
+    {
+        "id": "3740c12b-a4d1-47a0-a7da-9038a96e3ac0",
+        "question": "Who is younger, the son of the parent of Johnathan Boutte or the male cousin of the person whose occupation is advice worker?",
+        "solution_traces": "[]",
+        "answer": [
+            "Chuck Lizotte"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "son(Y_4, Y_2)",
+                "parent(\"Johnathan Boutte\", Y_4)",
+                "male_cousin(Y_12, Y_10)",
+                "job(Y_12, \"advice worker\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 55,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "7d2436b9-42d7-4ada-a1f0-030b16cbaad1",
+        "question": "Who is younger, the cousin of the niece of Bradford Nicolas or the mother of the person whose hobby is chess?",
+        "solution_traces": "[]",
+        "answer": [
+            "Carrol Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "cousin(Y_4, Y_2)",
+                "niece(\"Bradford Nicolas\", Y_4)",
+                "mother(Y_12, Y_10)",
+                "hobby(Y_12, \"chess\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 55,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 1,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "76cae820-2159-4412-955b-9f1ea7e79685",
+        "question": "Who is younger, the cousin of the nephew of Dwain Lizotte or the sibling of the person whose hobby is gongoozling?",
+        "solution_traces": "[]",
+        "answer": [
+            "Chuck Lizotte"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "cousin(Y_4, Y_2)",
+                "nephew(\"Dwain Lizotte\", Y_4)",
+                "sibling(Y_12, Y_10)",
+                "hobby(Y_12, \"gongoozling\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 55,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 1,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "745dfaf3-88c1-48cb-8b6c-53249a6cd9ab",
+        "question": "Who is younger, the granddaughter of the niece of Jona Carrell or the great-uncle of the person whose date of birth is 0268-03-07?",
+        "solution_traces": "[]",
+        "answer": [
+            "Hannah Palermo"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "granddaughter(Y_4, Y_2)",
+                "niece(\"Jona Carrell\", Y_4)",
+                "great_uncle(Y_12, Y_10)",
+                "dob(Y_12, \"0268-03-07\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 55,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 1,
+            "composite": 8,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "cc6d0df7-29ac-4c60-9834-1aa3aebbae06",
+        "question": "Who is younger, the child of the sibling of Rosanna Palermo or the aunt of the person whose date of birth is 0277-07-02?",
+        "solution_traces": "[]",
+        "answer": [
+            "Joel Palermo"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "child(Y_4, Y_2)",
+                "sibling(\"Rosanna Palermo\", Y_4)",
+                "aunt(Y_12, Y_10)",
+                "dob(Y_12, \"0277-07-02\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 55,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "2067715b-3b69-4d86-a447-233b3d916ca6",
+        "question": "Who is younger, the great-grandparent of the daughter of Earle Cormier or the sister-in-law of the person whose occupation is oceanographer?",
+        "solution_traces": "[]",
+        "answer": [
+            "Shawnta Saari"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "great_grandparent(Y_4, Y_2)",
+                "daughter(\"Earle Cormier\", Y_4)",
+                "sister_in_law(Y_12, Y_10)",
+                "job(Y_12, \"oceanographer\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 55,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 1,
+            "composite": 8,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "a5cdd421-cd24-4dfd-a048-4ec93803ebf9",
+        "question": "Who is younger, the sister-in-law of the parent of Marcelino Mcnew or the father-in-law of the person whose date of birth is 0286-10-11?",
+        "solution_traces": "[]",
+        "answer": [
+            "Goldie Henderson"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "sister_in_law(Y_4, Y_2)",
+                "parent(\"Marcelino Mcnew\", Y_4)",
+                "father_in_law(Y_12, Y_10)",
+                "dob(Y_12, \"0286-10-11\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 55,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 1,
+            "composite": 8,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "1c9f98e8-2936-4b7e-a77c-9c289c64e3d6",
+        "question": "Who is younger, the friend of the father of Shirley Skaggs or the great-grandparent of the person whose date of birth is 0325-11-20?",
+        "solution_traces": "[]",
+        "answer": [
+            "Brian Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "friend(Y_4, Y_2)",
+                "father(\"Shirley Skaggs\", Y_4)",
+                "great_grandparent(Y_12, Y_10)",
+                "dob(Y_12, \"0325-11-20\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 55,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "4d709e5a-4fa7-4efe-9150-ac0b63899548",
+        "question": "Who is younger, the sister of the brother-in-law of Effie Schoonmaker or the sibling of the person whose hobby is tea bag collecting?",
+        "solution_traces": "[]",
+        "answer": [
+            "Garry Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "sister(Y_4, Y_2)",
+                "brother_in_law(\"Effie Schoonmaker\", Y_4)",
+                "sibling(Y_12, Y_10)",
+                "hobby(Y_12, \"tea bag collecting\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 55,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "d13a8084-245e-45fd-8532-58544ceb6170",
+        "question": "Who is younger, the friend of the great-aunt of Leann Cormier or the grandmother of the person whose date of birth is 0264-05-03?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lanny Pannell"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "friend(Y_4, Y_2)",
+                "great_aunt(\"Leann Cormier\", Y_4)",
+                "grandmother(Y_12, Y_10)",
+                "dob(Y_12, \"0264-05-03\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 55,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 1,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    }
+]

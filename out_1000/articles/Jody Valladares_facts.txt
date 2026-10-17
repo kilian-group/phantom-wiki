@@ -1,0 +1,19 @@
+mother("Jody Valladares", "Gayla Holder").
+father("Jody Valladares", "Jimmy Holder").
+son("Jody Valladares", "Derek Valladares").
+husband("Jody Valladares", "Jarvis Valladares").
+friend("Jody Valladares", "Scottie Steadman").
+friend("Jody Valladares", "Carlotta Gossett").
+friend("Jody Valladares", "Murray Fredrick").
+friend("Jody Valladares", "Sang Cheney").
+friend("Jody Valladares", "Tyesha Marr").
+friend("Jody Valladares", "Louis Upton").
+friend("Jody Valladares", "Deja Bigelow").
+friend("Jody Valladares", "Nevin Mckenna").
+friend("Jody Valladares", "Ofelia Callender").
+friend("Jody Valladares", "Jimmy Holder").
+friend("Jody Valladares", "Jo Murray").
+dob("Jody Valladares", "0438-01-23").
+job("Jody Valladares", "chartered management accountant").
+hobby("Jody Valladares", "fitness").
+gender("Jody Valladares", "female").

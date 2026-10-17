@@ -1,0 +1,492 @@
+[
+    {
+        "id": "5bd93b96-2866-4686-943f-bedf51e49c8e",
+        "question": "Who is older, the grandchild of Dominique Smock or the friend of the male cousin of the person whose occupation is advice worker?",
+        "solution_traces": "[]",
+        "answer": [
+            "Myrle Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "grandchild(\"Dominique Smock\", Y_2)",
+                "friend(Y_12, Y_10)",
+                "male_cousin(Y_14, Y_12)",
+                "job(Y_14, \"advice worker\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 104,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 1,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "83566774-aecd-46bc-869e-3f90bd99a885",
+        "question": "Who is older, the niece of Lea Levy or the grandchild of the mother of the person whose hobby is chess?",
+        "solution_traces": "[]",
+        "answer": [
+            "Elissa Kovach"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "niece(\"Lea Levy\", Y_2)",
+                "grandchild(Y_12, Y_10)",
+                "mother(Y_14, Y_12)",
+                "hobby(Y_14, \"chess\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 104,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "2daac9d8-ccd1-47a6-b5f9-458053b62023",
+        "question": "Who is older, the granddaughter of Karla Hornback or the wife of the sibling of the person whose hobby is gongoozling?",
+        "solution_traces": "[]",
+        "answer": [
+            "Shirleen Abraham"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "granddaughter(\"Karla Hornback\", Y_2)",
+                "wife(Y_12, Y_10)",
+                "sibling(Y_14, Y_12)",
+                "hobby(Y_14, \"gongoozling\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 104,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "ad2646dd-76ca-464f-8de2-bdc69e78a88d",
+        "question": "Who is older, the brother-in-law of Ester Kovach or the nephew of the great-uncle of the person whose date of birth is 0268-03-07?",
+        "solution_traces": "[]",
+        "answer": [
+            "Williams Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "brother_in_law(\"Ester Kovach\", Y_2)",
+                "nephew(Y_12, Y_10)",
+                "great_uncle(Y_14, Y_12)",
+                "dob(Y_14, \"0268-03-07\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 104,
+        "reasoning_steps": 8,
+        "difficulty": {
+            "hops": 8,
+            "constraints": 1,
+            "composite": 9,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "810b755a-30f2-4363-93ed-04c5fb9f4010",
+        "question": "Who is older, the husband of Deborah Cormier or the great-grandparent of the aunt of the person whose date of birth is 0277-07-02?",
+        "solution_traces": "[]",
+        "answer": [
+            "Casey Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "husband(\"Deborah Cormier\", Y_2)",
+                "great_grandparent(Y_12, Y_10)",
+                "aunt(Y_14, Y_12)",
+                "dob(Y_14, \"0277-07-02\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 104,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 1,
+            "composite": 8,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "82e7ff43-e1a6-4575-afe3-a7abf0424082",
+        "question": "Who is older, the grandchild of Theodore Crain or the brother of the sister-in-law of the person whose occupation is oceanographer?",
+        "solution_traces": "[]",
+        "answer": [
+            "Clifford Cormier"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "grandchild(\"Theodore Crain\", Y_2)",
+                "brother(Y_12, Y_10)",
+                "sister_in_law(Y_14, Y_12)",
+                "job(Y_14, \"oceanographer\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 104,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 1,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "d96f2605-2d21-4570-ad15-4f655944894d",
+        "question": "Who is older, the great-granddaughter of Brian Beltran or the grandchild of the father-in-law of the person whose date of birth is 0286-10-11?",
+        "solution_traces": "[]",
+        "answer": [
+            "Johnetta Wang"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "great_granddaughter(\"Brian Beltran\", Y_2)",
+                "grandchild(Y_12, Y_10)",
+                "father_in_law(Y_14, Y_12)",
+                "dob(Y_14, \"0286-10-11\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 104,
+        "reasoning_steps": 8,
+        "difficulty": {
+            "hops": 8,
+            "constraints": 1,
+            "composite": 9,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "9898f252-c400-4199-a9c4-73f6e6aa38b0",
+        "question": "Who is older, the friend of Christoper Cormier or the daughter-in-law of the great-grandparent of the person whose date of birth is 0325-11-20?",
+        "solution_traces": "[]",
+        "answer": [
+            "Orlando Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "friend(\"Christoper Cormier\", Y_2)",
+                "daughter_in_law(Y_12, Y_10)",
+                "great_grandparent(Y_14, Y_12)",
+                "dob(Y_14, \"0325-11-20\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 104,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 1,
+            "composite": 8,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "c49e7fe5-ad67-43c4-b68a-4edd0a1a18bf",
+        "question": "Who is older, the brother-in-law of Roxy Mcnew or the great-grandparent of the sibling of the person whose hobby is tea bag collecting?",
+        "solution_traces": "[]",
+        "answer": [
+            "Noelia Henderson"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "brother_in_law(\"Roxy Mcnew\", Y_2)",
+                "great_grandparent(Y_12, Y_10)",
+                "sibling(Y_14, Y_12)",
+                "hobby(Y_14, \"tea bag collecting\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 104,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 1,
+            "composite": 8,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "5e35ea1f-7d8d-45dd-bc1d-beb7f85ac4a3",
+        "question": "Who is older, the male first cousin once removed of Connie Nicolas or the father of the grandmother of the person whose date of birth is 0264-05-03?",
+        "solution_traces": "[]",
+        "answer": [
+            "Bryant Bradberry"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "male_first_cousin_once_removed(\"Connie Nicolas\", Y_2)",
+                "father(Y_12, Y_10)",
+                "grandmother(Y_14, Y_12)",
+                "dob(Y_14, \"0264-05-03\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 104,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 1,
+            "composite": 8,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    }
+]

@@ -1,0 +1,14 @@
+sister("Graciela Weise", "Samatha Weise").
+brother("Graciela Weise", "Charley Weise").
+mother("Graciela Weise", "Shauna Weise").
+father("Graciela Weise", "Graham Weise").
+friend("Graciela Weise", "Phil Murray").
+friend("Graciela Weise", "Austin Boutte").
+friend("Graciela Weise", "Rob Eaves").
+friend("Graciela Weise", "Jo Corwin").
+friend("Graciela Weise", "Dustin Sheridan").
+friend("Graciela Weise", "Terrell Lai").
+dob("Graciela Weise", "0511-07-23").
+job("Graciela Weise", "sports therapist").
+hobby("Graciela Weise", "radio-controlled model playing").
+gender("Graciela Weise", "female").

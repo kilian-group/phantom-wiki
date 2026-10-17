@@ -1,0 +1,14 @@
+sister("Shante Gilliam", "Deja Gilliam").
+mother("Shante Gilliam", "Deanne Gilliam").
+father("Shante Gilliam", "Scotty Gilliam").
+friend("Shante Gilliam", "Rosina Putnam").
+friend("Shante Gilliam", "Rueben Bowles").
+friend("Shante Gilliam", "Tamala Hamlin").
+friend("Shante Gilliam", "Zackary Wilkie").
+friend("Shante Gilliam", "Evette Knepper").
+friend("Shante Gilliam", "Clair Brumbaugh").
+friend("Shante Gilliam", "Evette Gibbs").
+dob("Shante Gilliam", "0401-09-22").
+job("Shante Gilliam", "trading standards officer").
+hobby("Shante Gilliam", "baton twirling").
+gender("Shante Gilliam", "female").

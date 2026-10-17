@@ -1,0 +1,17 @@
+mother("Mac Goff", "Tianna Goff").
+father("Mac Goff", "Kareem Goff").
+son("Mac Goff", "Michael Goff").
+daughter("Mac Goff", "Marguerite Lebrun").
+wife("Mac Goff", "Matilda Goff").
+friend("Mac Goff", "Geoffrey Musick").
+friend("Mac Goff", "Maryann Oliveira").
+friend("Mac Goff", "Julio Mcgough").
+friend("Mac Goff", "Williams Alessi").
+friend("Mac Goff", "Felipe Vanmeter").
+friend("Mac Goff", "Lora Vanmeter").
+friend("Mac Goff", "Jeff Haygood").
+friend("Mac Goff", "Eliza Ingalls").
+dob("Mac Goff", "0363-07-09").
+job("Mac Goff", "electronics engineer").
+hobby("Mac Goff", "phillumeny").
+gender("Mac Goff", "male").

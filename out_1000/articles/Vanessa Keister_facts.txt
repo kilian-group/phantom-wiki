@@ -1,0 +1,10 @@
+daughter("Vanessa Keister", "Leena Estrella").
+daughter("Vanessa Keister", "Thomasena Marr").
+husband("Vanessa Keister", "Gregory Keister").
+friend("Vanessa Keister", "Lynette Shaw").
+friend("Vanessa Keister", "Christina Barrows").
+friend("Vanessa Keister", "Frankie Simons").
+dob("Vanessa Keister", "0309-03-05").
+job("Vanessa Keister", "theme park manager").
+hobby("Vanessa Keister", "audiophile").
+gender("Vanessa Keister", "female").

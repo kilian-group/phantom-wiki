@@ -1,0 +1,12 @@
+son("Earle Harlow", "Jerrold Harlow").
+wife("Earle Harlow", "Kristie Harlow").
+friend("Earle Harlow", "Ilona Klink").
+friend("Earle Harlow", "Annmarie Kinsella").
+friend("Earle Harlow", "Daisy Cordova").
+friend("Earle Harlow", "Cordelia Murray").
+friend("Earle Harlow", "Miguel Carreon").
+friend("Earle Harlow", "Delbert Fredrick").
+dob("Earle Harlow", "0360-03-08").
+job("Earle Harlow", "publishing rights manager").
+hobby("Earle Harlow", "aerospace").
+gender("Earle Harlow", "male").

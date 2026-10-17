@@ -1,0 +1,16 @@
+son("Jackie Vandenberg", "Charley Vandenberg").
+son("Jackie Vandenberg", "Eli Vandenberg").
+daughter("Jackie Vandenberg", "Amy Wilke").
+daughter("Jackie Vandenberg", "Thelma Vandenberg").
+husband("Jackie Vandenberg", "Valentin Vandenberg").
+friend("Jackie Vandenberg", "Thelma Vandenberg").
+friend("Jackie Vandenberg", "Brigida Oberg").
+friend("Jackie Vandenberg", "Clyde Oberg").
+friend("Jackie Vandenberg", "Colby Narvaez").
+friend("Jackie Vandenberg", "Chrissy Remillard").
+friend("Jackie Vandenberg", "Louann Chrisman").
+friend("Jackie Vandenberg", "Delsie Mcgough").
+dob("Jackie Vandenberg", "0229-11-20").
+job("Jackie Vandenberg", "production engineer").
+hobby("Jackie Vandenberg", "insect collecting").
+gender("Jackie Vandenberg", "female").

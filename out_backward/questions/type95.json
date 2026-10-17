@@ -1,0 +1,387 @@
+[
+    {
+        "id": "39f869b9-4f4d-4bbd-aeff-e4fb77bd3dcb",
+        "question": "Who is the youngest cousin of the niece of Jeannine Wexler?",
+        "solution_traces": "[]",
+        "answer": [
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (cousin(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "cousin(Y_2, Y_7)",
+                "niece(\"Jeannine Wexler\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 95,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "a1b6abcf-c59f-4f19-ab85-041da36f1e12",
+        "question": "Who is the youngest child of the parent of Vicki Hackworth?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeannine Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (child(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "child(Y_2, Y_7)",
+                "parent(\"Vicki Hackworth\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 95,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "f36d1d22-cefd-4a03-b27f-da3028618b94",
+        "question": "Who is the youngest aunt of the friend of Saul Wexler?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeannine Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (aunt(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "aunt(Y_2, Y_7)",
+                "friend(\"Saul Wexler\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 95,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "3cc7db5c-67de-4bf3-83ee-18f637f95e80",
+        "question": "Who is the youngest sister-in-law of the son-in-law of Dino Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang",
+            "Jeannine Wexler",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister_in_law(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "sister_in_law(Y_2, Y_7)",
+                "son_in_law(\"Dino Beltran\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 95,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "16680b1c-c147-47eb-9a7a-7f50de091e8e",
+        "question": "Who is the youngest sister of the friend of Deane Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deane Smock",
+            "Isabell Smock",
+            "Myrle Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "sister(Y_2, Y_7)",
+                "friend(\"Deane Smock\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 95,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "d45040de-5ee7-42d4-974c-f257792e36e5",
+        "question": "Who is the youngest grandchild of the brother of Isabell Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Myrle Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandchild(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "grandchild(Y_2, Y_7)",
+                "brother(\"Isabell Smock\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 95,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "3d4a0088-5dc8-4eab-94df-c80159d64561",
+        "question": "Who is the youngest nephew of the child of Alvaro Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Williams Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (nephew(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "nephew(Y_2, Y_7)",
+                "child(\"Alvaro Smock\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 95,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "d711649c-5db4-4c7c-a9e0-44f632ae2dc4",
+        "question": "Who is the youngest granddaughter of the friend of Ricardo Hackworth?",
+        "solution_traces": "[]",
+        "answer": [
+            "Myrle Smock",
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (granddaughter(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "granddaughter(Y_2, Y_7)",
+                "friend(\"Ricardo Hackworth\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 95,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "f9585bd0-276a-4d3b-81c9-926c6cb97491",
+        "question": "Who is the youngest granddaughter of the mother-in-law of Saul Wexler?",
+        "solution_traces": "[]",
+        "answer": [
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (granddaughter(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "granddaughter(Y_2, Y_7)",
+                "mother_in_law(\"Saul Wexler\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 95,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "0a6ea42b-99f2-44bb-9d5b-bfe0443046e7",
+        "question": "Who is the youngest grandfather of the daughter of Ryan Wang?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dino Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandfather(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "grandfather(Y_2, Y_7)",
+                "daughter(\"Ryan Wang\", Y_2)"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 95,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    }
+]

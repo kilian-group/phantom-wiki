@@ -1,0 +1,10 @@
+mother("Odette Senn", "Evelia Senn").
+father("Odette Senn", "Teddy Senn").
+friend("Odette Senn", "Katina Younger").
+friend("Odette Senn", "Tim Goff").
+friend("Odette Senn", "Nydia Ibarra").
+friend("Odette Senn", "Nydia Monday").
+dob("Odette Senn", "0486-05-29").
+job("Odette Senn", "warehouse manager").
+hobby("Odette Senn", "herping").
+gender("Odette Senn", "female").

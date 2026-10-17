@@ -1,0 +1,12 @@
+mother("Darrell Broughton", "Vanessa Broughton").
+father("Darrell Broughton", "Patrick Broughton").
+son("Darrell Broughton", "Emil Broughton").
+son("Darrell Broughton", "Scotty Broughton").
+daughter("Darrell Broughton", "Amanda Broughton").
+wife("Darrell Broughton", "Anna Broughton").
+friend("Darrell Broughton", "Sonny Peeler").
+friend("Darrell Broughton", "Brunilda Linden").
+dob("Darrell Broughton", "0376-03-02").
+job("Darrell Broughton", "surveyor").
+hobby("Darrell Broughton", "ant farming").
+gender("Darrell Broughton", "male").

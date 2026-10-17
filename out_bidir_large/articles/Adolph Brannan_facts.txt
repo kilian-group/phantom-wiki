@@ -1,0 +1,13 @@
+mother("Adolph Brannan", "Margo Brannan").
+father("Adolph Brannan", "Marcel Brannan").
+son("Adolph Brannan", "Daniel Brannan").
+daughter("Adolph Brannan", "Lea Levy").
+daughter("Adolph Brannan", "Margaret Kovach").
+wife("Adolph Brannan", "Rosalinda Brannan").
+friend("Adolph Brannan", "Jacques Decosta").
+friend("Adolph Brannan", "Jules Levy").
+friend("Adolph Brannan", "Caleb Haber").
+dob("Adolph Brannan", "0224-12-03").
+job("Adolph Brannan", "training and development officer").
+hobby("Adolph Brannan", "metal detecting").
+gender("Adolph Brannan", "male").

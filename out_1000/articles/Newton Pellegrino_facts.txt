@@ -1,0 +1,12 @@
+daughter("Newton Pellegrino", "Manda Cordova").
+wife("Newton Pellegrino", "Anneliese Pellegrino").
+friend("Newton Pellegrino", "Alice Dana").
+friend("Newton Pellegrino", "Bruce Mathes").
+friend("Newton Pellegrino", "Larue Macias").
+friend("Newton Pellegrino", "Rashad Nolasco").
+friend("Newton Pellegrino", "Miles Corso").
+friend("Newton Pellegrino", "Aldo Paynter").
+dob("Newton Pellegrino", "0262-11-07").
+job("Newton Pellegrino", "structural engineer").
+hobby("Newton Pellegrino", "canoeing").
+gender("Newton Pellegrino", "male").

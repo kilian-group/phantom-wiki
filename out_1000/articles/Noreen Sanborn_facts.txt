@@ -1,0 +1,14 @@
+daughter("Noreen Sanborn", "Johanna Sanborn").
+husband("Noreen Sanborn", "Thaddeus Sanborn").
+friend("Noreen Sanborn", "Tamala Hamlin").
+friend("Noreen Sanborn", "Noreen Jarrett").
+friend("Noreen Sanborn", "Gena Cook").
+friend("Noreen Sanborn", "Denny Eaves").
+friend("Noreen Sanborn", "Bee Corwin").
+friend("Noreen Sanborn", "Evelia Waltz").
+friend("Noreen Sanborn", "Rodney Fordham").
+friend("Noreen Sanborn", "Jackie Vandenberg").
+dob("Noreen Sanborn", "0426-10-03").
+job("Noreen Sanborn", "government social research officer").
+hobby("Noreen Sanborn", "mineral collecting").
+gender("Noreen Sanborn", "female").

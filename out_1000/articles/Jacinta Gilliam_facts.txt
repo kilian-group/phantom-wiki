@@ -1,0 +1,19 @@
+brother("Jacinta Gilliam", "Boris Gilliam").
+brother("Jacinta Gilliam", "Darren Gilliam").
+brother("Jacinta Gilliam", "Hershel Gilliam").
+brother("Jacinta Gilliam", "Jermaine Gilliam").
+brother("Jacinta Gilliam", "Markus Gilliam").
+mother("Jacinta Gilliam", "Lucienne Gilliam").
+father("Jacinta Gilliam", "Kenton Gilliam").
+friend("Jacinta Gilliam", "Nora Noland").
+friend("Jacinta Gilliam", "Ricky Carswell").
+friend("Jacinta Gilliam", "Kristie Harlow").
+friend("Jacinta Gilliam", "Bridget Lester").
+friend("Jacinta Gilliam", "Helga Simons").
+friend("Jacinta Gilliam", "Zora Morehead").
+friend("Jacinta Gilliam", "Brock Pugliese").
+friend("Jacinta Gilliam", "Glenda Dacosta").
+dob("Jacinta Gilliam", "0347-07-04").
+job("Jacinta Gilliam", "clinical cytogeneticist").
+hobby("Jacinta Gilliam", "people-watching").
+gender("Jacinta Gilliam", "female").

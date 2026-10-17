@@ -1,0 +1,17 @@
+mother("Luisa Oliveira", "Aura Crittenden").
+father("Luisa Oliveira", "Benjamin Crittenden").
+daughter("Luisa Oliveira", "Maryann Oliveira").
+daughter("Luisa Oliveira", "Maybelle Oliveira").
+daughter("Luisa Oliveira", "Shannon Fredrick").
+husband("Luisa Oliveira", "Bradford Oliveira").
+friend("Luisa Oliveira", "Luke Wilke").
+friend("Luisa Oliveira", "Zoraida Sanborn").
+friend("Luisa Oliveira", "Dorathy Harlow").
+friend("Luisa Oliveira", "Seth Mounts").
+friend("Luisa Oliveira", "Mike Schram").
+friend("Luisa Oliveira", "Dan Mahoney").
+friend("Luisa Oliveira", "Raul Younger").
+dob("Luisa Oliveira", "0345-12-03").
+job("Luisa Oliveira", "actuary").
+hobby("Luisa Oliveira", "history").
+gender("Luisa Oliveira", "female").

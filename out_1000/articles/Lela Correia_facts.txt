@@ -1,0 +1,12 @@
+daughter("Lela Correia", "Darby Latham").
+husband("Lela Correia", "Scotty Correia").
+friend("Lela Correia", "Chelsie Wilkie").
+friend("Lela Correia", "Emery Scherer").
+friend("Lela Correia", "Maria Lindquist").
+friend("Lela Correia", "Maybelle Lester").
+friend("Lela Correia", "Christoper Littleton").
+friend("Lela Correia", "Miguel Morehead").
+dob("Lela Correia", "0233-03-17").
+job("Lela Correia", "medical physicist").
+hobby("Lela Correia", "flower collecting and pressing").
+gender("Lela Correia", "female").

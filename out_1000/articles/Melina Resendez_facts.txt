@@ -1,0 +1,14 @@
+brother("Melina Resendez", "Isaiah Resendez").
+brother("Melina Resendez", "Sung Resendez").
+brother("Melina Resendez", "Tyrell Resendez").
+mother("Melina Resendez", "Vita Resendez").
+father("Melina Resendez", "Bryan Resendez").
+friend("Melina Resendez", "Deidra Gilliam").
+friend("Melina Resendez", "Logan Cushman").
+friend("Melina Resendez", "Lucas Estrella").
+friend("Melina Resendez", "Tashina Layton").
+friend("Melina Resendez", "Roderick Simons").
+dob("Melina Resendez", "0376-06-28").
+job("Melina Resendez", "outdoor activities manager").
+hobby("Melina Resendez", "stone collecting").
+gender("Melina Resendez", "female").

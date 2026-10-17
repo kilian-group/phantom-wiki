@@ -1,0 +1,452 @@
+[
+    {
+        "id": "13966f08-a99f-456b-896b-eddb1a9eb09b",
+        "question": "Who is older, the person whose date of birth is 0292-04-16 or the male cousin of the person whose occupation is advice worker?",
+        "solution_traces": "[]",
+        "answer": [
+            "Johnathan Boutte"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "dob(Y_2, \"0292-04-16\")",
+                "male_cousin(Y_12, Y_10)",
+                "job(Y_12, \"advice worker\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 144,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 2,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "05e426c1-22e2-45ef-abb1-3a47bb531684",
+        "question": "Who is older, the person whose date of birth is 0305-06-19 or the friend of the person whose hobby is audiophile?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeanelle Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "dob(Y_2, \"0305-06-19\")",
+                "friend(Y_12, Y_10)",
+                "hobby(Y_12, \"audiophile\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 144,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 2,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "546f7bc9-7370-4013-8f2e-965ebde20e82",
+        "question": "Who is older, the person whose date of birth is 0160-02-03 or the father of the person whose occupation is telecommunications researcher?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deborah Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "dob(Y_2, \"0160-02-03\")",
+                "father(Y_12, Y_10)",
+                "job(Y_12, \"telecommunications researcher\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 144,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 2,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "50985b46-d5de-40dc-86ac-f5e614d48bd0",
+        "question": "Who is older, the person whose date of birth is 0268-03-07 or the wife of the person whose occupation is music therapist?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeana Clemons"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "dob(Y_2, \"0268-03-07\")",
+                "wife(Y_12, Y_10)",
+                "job(Y_12, \"music therapist\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 144,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 2,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "6525ac08-f663-45e0-a885-0c1aa7dadda7",
+        "question": "Who is older, the person whose hobby is kart racing or the great-grandparent of the person whose hobby is martial arts?",
+        "solution_traces": "[]",
+        "answer": [
+            "Casey Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "hobby(Y_2, \"kart racing\")",
+                "great_grandparent(Y_12, Y_10)",
+                "hobby(Y_12, \"martial arts\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 144,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 2,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "3f72f5f6-0f59-4e5a-823e-8485e17d1774",
+        "question": "Who is older, the person whose date of birth is 0262-06-04 or the sister-in-law of the person whose occupation is commercial horticulturist?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deborah Cormier"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "dob(Y_2, \"0262-06-04\")",
+                "sister_in_law(Y_12, Y_10)",
+                "job(Y_12, \"commercial horticulturist\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 144,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 2,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "db74024c-de7f-4d01-85ce-ff9e4a28b54e",
+        "question": "Who is older, the person whose occupation is chief marketing officer or the sister-in-law of the person whose occupation is oceanographer?",
+        "solution_traces": "[]",
+        "answer": [
+            "Earle Cormier"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "job(Y_2, \"chief marketing officer\")",
+                "sister_in_law(Y_12, Y_10)",
+                "job(Y_12, \"oceanographer\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 144,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 2,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "81242694-29b0-4b1c-ac1b-bc73a71d8b52",
+        "question": "Who is older, the person whose date of birth is 0230-04-26 or the wife of the person whose hobby is fusilately?",
+        "solution_traces": "[]",
+        "answer": [
+            "Ashely Kee"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "dob(Y_2, \"0230-04-26\")",
+                "wife(Y_12, Y_10)",
+                "hobby(Y_12, \"fusilately\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 144,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 2,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "cbb64463-08e7-4b4d-b2c5-5bb05a737c68",
+        "question": "Who is older, the person whose occupation is banker or the child of the person whose hobby is dolls?",
+        "solution_traces": "[]",
+        "answer": [
+            "Milton Henderson"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "job(Y_2, \"banker\")",
+                "child(Y_12, Y_10)",
+                "hobby(Y_12, \"dolls\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 144,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 2,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "482a5da1-2de3-4f4f-b29e-93f512b26015",
+        "question": "Who is older, the person whose hobby is tea bag collecting or the friend of the person whose date of birth is 0356-03-30?",
+        "solution_traces": "[]",
+        "answer": [
+            "Bryant Bradberry"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "hobby(Y_2, \"tea bag collecting\")",
+                "friend(Y_12, Y_10)",
+                "dob(Y_12, \"0356-03-30\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is older,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the person whose",
+            "<attribute_name>_13",
+            "is",
+            "<attribute_value>_13",
+            "?"
+        ],
+        "type": 144,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 2,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    }
+]

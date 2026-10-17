@@ -1,0 +1,9 @@
+son("Ron Woodman", "Calvin Woodman").
+wife("Ron Woodman", "Geri Woodman").
+friend("Ron Woodman", "Lucienne Cedillo").
+friend("Ron Woodman", "Clarence Mason").
+friend("Ron Woodman", "Windy Mckenna").
+dob("Ron Woodman", "0316-12-15").
+job("Ron Woodman", "furniture designer").
+hobby("Ron Woodman", "carrier pigeons").
+gender("Ron Woodman", "male").

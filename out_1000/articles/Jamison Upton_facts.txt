@@ -1,0 +1,22 @@
+sister("Jamison Upton", "Krystal Joubert").
+sister("Jamison Upton", "Rubie Upton").
+mother("Jamison Upton", "Jann Upton").
+father("Jamison Upton", "Zachery Upton").
+son("Jamison Upton", "Jamie Upton").
+son("Jamison Upton", "Louis Upton").
+wife("Jamison Upton", "Rayna Upton").
+friend("Jamison Upton", "Tosha Osborn").
+friend("Jamison Upton", "Ramiro Dana").
+friend("Jamison Upton", "Verona Arteaga").
+friend("Jamison Upton", "Evette Gibbs").
+friend("Jamison Upton", "Nelly Smart").
+friend("Jamison Upton", "Hubert Noland").
+friend("Jamison Upton", "Demetra Palomo").
+friend("Jamison Upton", "Morgan Perrine").
+friend("Jamison Upton", "Eli Vandenberg").
+friend("Jamison Upton", "Irvin Shaw").
+friend("Jamison Upton", "Wade Sheridan").
+dob("Jamison Upton", "0369-07-01").
+job("Jamison Upton", "higher education careers adviser").
+hobby("Jamison Upton", "magnet fishing").
+gender("Jamison Upton", "male").

@@ -1,0 +1,19 @@
+brother("Manuela Runnels", "Vaughn Dangelo").
+mother("Manuela Runnels", "Cleo Dangelo").
+father("Manuela Runnels", "Mason Dangelo").
+son("Manuela Runnels", "Rudy Runnels").
+husband("Manuela Runnels", "Ricardo Runnels").
+friend("Manuela Runnels", "Errol Cordova").
+friend("Manuela Runnels", "Addie Dana").
+friend("Manuela Runnels", "Geri Dana").
+friend("Manuela Runnels", "Neal Mathes").
+friend("Manuela Runnels", "Ricardo Dacosta").
+friend("Manuela Runnels", "Lashanda Salem").
+friend("Manuela Runnels", "Sharron Palomo").
+friend("Manuela Runnels", "Johanna Sanborn").
+friend("Manuela Runnels", "Rory Hamlin").
+friend("Manuela Runnels", "Ashleigh Kell").
+dob("Manuela Runnels", "0507-10-01").
+job("Manuela Runnels", "broadcast journalist").
+hobby("Manuela Runnels", "seashell collecting").
+gender("Manuela Runnels", "female").

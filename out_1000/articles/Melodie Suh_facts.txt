@@ -1,0 +1,15 @@
+sister("Melodie Suh", "Viva Suh").
+mother("Melodie Suh", "Geraldine Suh").
+father("Melodie Suh", "Stanford Suh").
+friend("Melodie Suh", "Mack Storey").
+friend("Melodie Suh", "Anastacia Cordova").
+friend("Melodie Suh", "Ellis Brumbaugh").
+friend("Melodie Suh", "Augustine Linden").
+friend("Melodie Suh", "Zora Morehead").
+friend("Melodie Suh", "Jeromy Ibarra").
+friend("Melodie Suh", "Beatriz Theriot").
+friend("Melodie Suh", "Desiree Fordham").
+dob("Melodie Suh", "0453-05-17").
+job("Melodie Suh", "youth worker").
+hobby("Melodie Suh", "rock balancing").
+gender("Melodie Suh", "female").

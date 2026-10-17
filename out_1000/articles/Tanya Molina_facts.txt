@@ -1,0 +1,13 @@
+son("Tanya Molina", "Winfred Molina").
+husband("Tanya Molina", "Conrad Molina").
+friend("Tanya Molina", "Harold Waltz").
+friend("Tanya Molina", "Drew Carty").
+friend("Tanya Molina", "Deja Bigelow").
+friend("Tanya Molina", "Emil Wendel").
+friend("Tanya Molina", "Kelvin Autry").
+friend("Tanya Molina", "Helga Simons").
+friend("Tanya Molina", "Marybeth Dana").
+dob("Tanya Molina", "0300-05-28").
+job("Tanya Molina", "environmental health practitioner").
+hobby("Tanya Molina", "pole dancing").
+gender("Tanya Molina", "female").

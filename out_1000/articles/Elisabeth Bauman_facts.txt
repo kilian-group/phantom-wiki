@@ -1,0 +1,14 @@
+son("Elisabeth Bauman", "Gustavo Bauman").
+son("Elisabeth Bauman", "Kendrick Bauman").
+husband("Elisabeth Bauman", "Lester Bauman").
+friend("Elisabeth Bauman", "Rena Palm").
+friend("Elisabeth Bauman", "Scottie Steadman").
+friend("Elisabeth Bauman", "Skye Swartz").
+friend("Elisabeth Bauman", "Felton Dana").
+friend("Elisabeth Bauman", "Marguerite Lebrun").
+friend("Elisabeth Bauman", "Thaddeus Sanborn").
+friend("Elisabeth Bauman", "Irvin Shaw").
+dob("Elisabeth Bauman", "0350-03-05").
+job("Elisabeth Bauman", "secretary").
+hobby("Elisabeth Bauman", "gongoozling").
+gender("Elisabeth Bauman", "female").

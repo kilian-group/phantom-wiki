@@ -1,0 +1,11 @@
+daughter("Eula Crain", "Rubye Crain").
+husband("Eula Crain", "Lucas Crain").
+friend("Eula Crain", "Rufus Brook").
+friend("Eula Crain", "Hazel Earnest").
+friend("Eula Crain", "Elissa Cedillo").
+friend("Eula Crain", "Lenore Hackworth").
+friend("Eula Crain", "Jacinta Wise").
+dob("Eula Crain", "0272-12-21").
+job("Eula Crain", "wellsite geologist").
+hobby("Eula Crain", "herping").
+gender("Eula Crain", "female").

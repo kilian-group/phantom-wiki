@@ -1,0 +1,14 @@
+sister("Pamala Medellin", "Latisha Smart").
+sister("Pamala Medellin", "Susie Medellin").
+mother("Pamala Medellin", "Demetra Medellin").
+father("Pamala Medellin", "Reggie Medellin").
+friend("Pamala Medellin", "Nico Layman").
+friend("Pamala Medellin", "Aldo Paynter").
+friend("Pamala Medellin", "Jackqueline Hollinger").
+friend("Pamala Medellin", "Monique Pugliese").
+friend("Pamala Medellin", "Karina Smart").
+friend("Pamala Medellin", "Kip Murdoch").
+dob("Pamala Medellin", "0433-09-04").
+job("Pamala Medellin", "transport planner").
+hobby("Pamala Medellin", "mycology").
+gender("Pamala Medellin", "female").

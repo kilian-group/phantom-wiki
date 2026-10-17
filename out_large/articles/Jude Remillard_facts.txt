@@ -1,0 +1,13 @@
+sister("Jude Remillard", "Wanita Remillard").
+brother("Jude Remillard", "Jaime Remillard").
+mother("Jude Remillard", "Sherrie Remillard").
+father("Jude Remillard", "Jon Remillard").
+daughter("Jude Remillard", "Kori Remillard").
+wife("Jude Remillard", "Tianna Remillard").
+friend("Jude Remillard", "Morgan Remillard").
+friend("Jude Remillard", "Abel Oberg").
+friend("Jude Remillard", "Jaime Remillard").
+dob("Jude Remillard", "0298-02-17").
+job("Jude Remillard", "secretary").
+hobby("Jude Remillard", "record collecting").
+gender("Jude Remillard", "male").

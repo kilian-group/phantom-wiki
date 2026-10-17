@@ -1,0 +1,15 @@
+daughter("Ressie Capps", "Jo Medeiros").
+daughter("Ressie Capps", "Stacy Strong").
+husband("Ressie Capps", "Cleveland Capps").
+friend("Ressie Capps", "Randall Mcgough").
+friend("Ressie Capps", "James Maness").
+friend("Ressie Capps", "Shawnta Basham").
+friend("Ressie Capps", "Homer Morehead").
+friend("Ressie Capps", "Josette Goff").
+friend("Ressie Capps", "Edythe Gilliam").
+friend("Ressie Capps", "Hal Ballard").
+friend("Ressie Capps", "Leena Estrella").
+dob("Ressie Capps", "0405-07-27").
+job("Ressie Capps", "communications engineer").
+hobby("Ressie Capps", "beekeeping").
+gender("Ressie Capps", "female").

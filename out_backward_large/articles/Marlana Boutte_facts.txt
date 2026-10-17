@@ -1,0 +1,12 @@
+sister("Marlana Boutte", "Lauretta Mason").
+brother("Marlana Boutte", "Spencer Griffiths").
+mother("Marlana Boutte", "Olivia Griffiths").
+father("Marlana Boutte", "Elton Griffiths").
+son("Marlana Boutte", "Craig Boutte").
+husband("Marlana Boutte", "Johnathan Boutte").
+friend("Marlana Boutte", "Sherry Cormier").
+friend("Marlana Boutte", "Effie Schoonmaker").
+dob("Marlana Boutte", "0293-08-27").
+job("Marlana Boutte", "trading standards officer").
+hobby("Marlana Boutte", "pickleball").
+gender("Marlana Boutte", "female").

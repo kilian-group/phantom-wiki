@@ -1,0 +1,13 @@
+son("Avery Ballard", "Brad Ballard").
+wife("Avery Ballard", "Natalie Ballard").
+friend("Avery Ballard", "Jerald Murray").
+friend("Avery Ballard", "Tiffany Mcdonald").
+friend("Avery Ballard", "Victor Steadman").
+friend("Avery Ballard", "Foster Eaves").
+friend("Avery Ballard", "Lea Plumley").
+friend("Avery Ballard", "Jasmine Corwin").
+friend("Avery Ballard", "Amanda Broughton").
+dob("Avery Ballard", "0385-10-08").
+job("Avery Ballard", "web designer").
+hobby("Avery Ballard", "boxing").
+gender("Avery Ballard", "male").

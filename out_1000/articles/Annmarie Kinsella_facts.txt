@@ -1,0 +1,12 @@
+son("Annmarie Kinsella", "Cortez Kinsella").
+daughter("Annmarie Kinsella", "Nelly Kinsella").
+husband("Annmarie Kinsella", "Kenny Kinsella").
+friend("Annmarie Kinsella", "Phil Murray").
+friend("Annmarie Kinsella", "Rhonda Wilke").
+friend("Annmarie Kinsella", "Earle Harlow").
+friend("Annmarie Kinsella", "Dave Alarcon").
+friend("Annmarie Kinsella", "Noelia Lasher").
+dob("Annmarie Kinsella", "0468-12-24").
+job("Annmarie Kinsella", "museum exhibitions officer").
+hobby("Annmarie Kinsella", "ant-keeping").
+gender("Annmarie Kinsella", "female").

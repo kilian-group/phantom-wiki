@@ -1,0 +1,13 @@
+son("Artie Putnam", "Justin Putnam").
+husband("Artie Putnam", "Hiram Putnam").
+friend("Artie Putnam", "Roscoe Lindquist").
+friend("Artie Putnam", "Christen Weise").
+friend("Artie Putnam", "Rebecka Schlosser").
+friend("Artie Putnam", "Miguel Morehead").
+friend("Artie Putnam", "Delma Keyes").
+friend("Artie Putnam", "Isaiah Resendez").
+friend("Artie Putnam", "Reyna Ibarra").
+dob("Artie Putnam", "0414-05-25").
+job("Artie Putnam", "product manager").
+hobby("Artie Putnam", "dominoes").
+gender("Artie Putnam", "female").

@@ -1,0 +1,11 @@
+daughter("Janey Kell", "Tamara Kell").
+husband("Janey Kell", "Walter Kell").
+friend("Janey Kell", "Jesus Gregory").
+friend("Janey Kell", "Floyd Cook").
+friend("Janey Kell", "Gale Dana").
+friend("Janey Kell", "Bret Smart").
+friend("Janey Kell", "Harriette Courson").
+dob("Janey Kell", "0442-02-15").
+job("Janey Kell", "geographical information systems officer").
+hobby("Janey Kell", "shuffleboard").
+gender("Janey Kell", "female").

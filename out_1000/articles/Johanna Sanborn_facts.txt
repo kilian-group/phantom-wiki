@@ -1,0 +1,14 @@
+mother("Johanna Sanborn", "Noreen Sanborn").
+father("Johanna Sanborn", "Thaddeus Sanborn").
+friend("Johanna Sanborn", "Sheena Dame").
+friend("Johanna Sanborn", "Shemika Hirsch").
+friend("Johanna Sanborn", "Ashleigh Spiller").
+friend("Johanna Sanborn", "Manuela Runnels").
+friend("Johanna Sanborn", "Janiece Cordova").
+friend("Johanna Sanborn", "Jerry Mahoney").
+friend("Johanna Sanborn", "Irwin Dalton").
+friend("Johanna Sanborn", "Sammy Dunlap").
+dob("Johanna Sanborn", "0454-09-06").
+job("Johanna Sanborn", "ceramics designer").
+hobby("Johanna Sanborn", "rugby league football").
+gender("Johanna Sanborn", "female").

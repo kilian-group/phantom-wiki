@@ -1,0 +1,15 @@
+daughter("Paula Gerber", "Judith Holliman").
+husband("Paula Gerber", "Hank Gerber").
+friend("Paula Gerber", "Amanda Broughton").
+friend("Paula Gerber", "Bertram Wylie").
+friend("Paula Gerber", "Karina Smart").
+friend("Paula Gerber", "Yasmin Gordon").
+friend("Paula Gerber", "Delores Bauman").
+friend("Paula Gerber", "Nestor Lasher").
+friend("Paula Gerber", "Marilyn Sutphin").
+friend("Paula Gerber", "Raleigh Cordova").
+friend("Paula Gerber", "Germaine Mahoney").
+dob("Paula Gerber", "0292-05-18").
+job("Paula Gerber", "conservator").
+hobby("Paula Gerber", "publishing").
+gender("Paula Gerber", "female").

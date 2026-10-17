@@ -1,0 +1,19 @@
+mother("Trudy Lasher", "Ollie Omara").
+father("Trudy Lasher", "Samuel Omara").
+son("Trudy Lasher", "Nestor Lasher").
+husband("Trudy Lasher", "Grant Lasher").
+friend("Trudy Lasher", "Maurine Wendel").
+friend("Trudy Lasher", "Arnulfo Kinsella").
+friend("Trudy Lasher", "Nicholle Dana").
+friend("Trudy Lasher", "King Goff").
+friend("Trudy Lasher", "Kareem Gilliam").
+friend("Trudy Lasher", "Lou Hurt").
+friend("Trudy Lasher", "Major Ballard").
+friend("Trudy Lasher", "Alvaro Murphey").
+friend("Trudy Lasher", "Christen Resendez").
+friend("Trudy Lasher", "Rena Palm").
+friend("Trudy Lasher", "Sona Lasher").
+dob("Trudy Lasher", "0396-10-05").
+job("Trudy Lasher", "clinical psychologist").
+hobby("Trudy Lasher", "kart racing").
+gender("Trudy Lasher", "female").

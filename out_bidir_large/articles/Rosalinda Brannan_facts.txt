@@ -1,0 +1,15 @@
+son("Rosalinda Brannan", "Daniel Brannan").
+daughter("Rosalinda Brannan", "Lea Levy").
+daughter("Rosalinda Brannan", "Margaret Kovach").
+husband("Rosalinda Brannan", "Adolph Brannan").
+friend("Rosalinda Brannan", "Geri Deluna").
+friend("Rosalinda Brannan", "Jeanelle Mcnew").
+friend("Rosalinda Brannan", "Calvin Woodman").
+friend("Rosalinda Brannan", "Elsy Hornback").
+friend("Rosalinda Brannan", "Enoch Palermo").
+friend("Rosalinda Brannan", "Madelyn Palermo").
+friend("Rosalinda Brannan", "Marcel Brannan").
+dob("Rosalinda Brannan", "0227-05-14").
+job("Rosalinda Brannan", "adult guidance worker").
+hobby("Rosalinda Brannan", "cornhole").
+gender("Rosalinda Brannan", "female").

@@ -1,0 +1,19 @@
+sister("Jayson Sheridan", "Shawna Sheridan").
+brother("Jayson Sheridan", "Ben Sheridan").
+brother("Jayson Sheridan", "Wade Sheridan").
+mother("Jayson Sheridan", "Shizuko Sheridan").
+father("Jayson Sheridan", "Dustin Sheridan").
+friend("Jayson Sheridan", "Lora Vanmeter").
+friend("Jayson Sheridan", "Roscoe Vanmeter").
+friend("Jayson Sheridan", "Gavin Cordova").
+friend("Jayson Sheridan", "Estella Dana").
+friend("Jayson Sheridan", "Russel Eaves").
+friend("Jayson Sheridan", "Amberly Levine").
+friend("Jayson Sheridan", "Lucile Hurt").
+friend("Jayson Sheridan", "Gwenn Tyree").
+friend("Jayson Sheridan", "Amy Wilke").
+friend("Jayson Sheridan", "Brent Macias").
+dob("Jayson Sheridan", "0425-02-07").
+job("Jayson Sheridan", "wellsite geologist").
+hobby("Jayson Sheridan", "reading").
+gender("Jayson Sheridan", "male").

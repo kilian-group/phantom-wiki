@@ -1,0 +1,11 @@
+sister("Dillon Abraham", "Alberta Abraham").
+brother("Dillon Abraham", "Stuart Abraham").
+mother("Dillon Abraham", "Taneka Abraham").
+father("Dillon Abraham", "Oliver Abraham").
+daughter("Dillon Abraham", "Domonique Cedillo").
+wife("Dillon Abraham", "Shirleen Abraham").
+friend("Dillon Abraham", "Rufus Brook").
+dob("Dillon Abraham", "0244-12-22").
+job("Dillon Abraham", "broadcast engineer").
+hobby("Dillon Abraham", "cycling").
+gender("Dillon Abraham", "male").

@@ -1,0 +1,9 @@
+daughter("Bryant Bradberry", "Maurine Shirk").
+wife("Bryant Bradberry", "Chelsie Bradberry").
+friend("Bryant Bradberry", "Shirley Skaggs").
+friend("Bryant Bradberry", "Lorine Wasserman").
+friend("Bryant Bradberry", "Rigoberto Carrell").
+dob("Bryant Bradberry", "0189-07-04").
+job("Bryant Bradberry", "air traffic controller").
+hobby("Bryant Bradberry", "architecture").
+gender("Bryant Bradberry", "male").

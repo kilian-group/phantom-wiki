@@ -1,0 +1,7 @@
+son("Bee Cedillo", "Kasey Cedillo").
+husband("Bee Cedillo", "Ned Cedillo").
+friend("Bee Cedillo", "Domonique Cedillo").
+dob("Bee Cedillo", "0252-01-02").
+job("Bee Cedillo", "solicitor").
+hobby("Bee Cedillo", "sailing").
+gender("Bee Cedillo", "female").

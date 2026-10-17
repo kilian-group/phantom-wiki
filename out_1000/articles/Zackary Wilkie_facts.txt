@@ -1,0 +1,17 @@
+son("Zackary Wilkie", "Chauncey Wilkie").
+wife("Zackary Wilkie", "Chelsie Wilkie").
+friend("Zackary Wilkie", "Brandon Winn").
+friend("Zackary Wilkie", "Roseanna Mckenna").
+friend("Zackary Wilkie", "Ofelia Callender").
+friend("Zackary Wilkie", "Alexandria Hayward").
+friend("Zackary Wilkie", "Floyd Cook").
+friend("Zackary Wilkie", "Foster Eaves").
+friend("Zackary Wilkie", "Shante Gilliam").
+friend("Zackary Wilkie", "Keith Noland").
+friend("Zackary Wilkie", "Fernando Vandenberg").
+friend("Zackary Wilkie", "Gena Shaw").
+friend("Zackary Wilkie", "Jamie Upton").
+dob("Zackary Wilkie", "0394-09-08").
+job("Zackary Wilkie", "charity fundraiser").
+hobby("Zackary Wilkie", "sociology").
+gender("Zackary Wilkie", "male").

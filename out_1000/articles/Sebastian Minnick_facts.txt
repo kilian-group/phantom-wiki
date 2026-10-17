@@ -1,0 +1,11 @@
+daughter("Sebastian Minnick", "Lera Dunlap").
+wife("Sebastian Minnick", "Ollie Minnick").
+friend("Sebastian Minnick", "Demetra Medellin").
+friend("Sebastian Minnick", "Christoper Lasher").
+friend("Sebastian Minnick", "Nicholle Dana").
+friend("Sebastian Minnick", "Ruben Corwin").
+friend("Sebastian Minnick", "Taylor Schatz").
+dob("Sebastian Minnick", "0284-01-13").
+job("Sebastian Minnick", "child psychotherapist").
+hobby("Sebastian Minnick", "photography").
+gender("Sebastian Minnick", "male").

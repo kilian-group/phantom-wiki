@@ -1,0 +1,18 @@
+brother("Elaine Marr", "Cleveland Capps").
+brother("Elaine Marr", "Deandre Capps").
+mother("Elaine Marr", "Velia Capps").
+father("Elaine Marr", "Rogelio Capps").
+daughter("Elaine Marr", "Rhonda Theriot").
+husband("Elaine Marr", "Lyman Marr").
+friend("Elaine Marr", "Kent Corso").
+friend("Elaine Marr", "Ofelia Callender").
+friend("Elaine Marr", "Maxwell Beamon").
+friend("Elaine Marr", "Mayra Geter").
+friend("Elaine Marr", "Charissa Boutte").
+friend("Elaine Marr", "Mallory Schatz").
+friend("Elaine Marr", "Alton Ibarra").
+friend("Elaine Marr", "Karina Smart").
+dob("Elaine Marr", "0403-06-19").
+job("Elaine Marr", "production designer").
+hobby("Elaine Marr", "biology").
+gender("Elaine Marr", "female").

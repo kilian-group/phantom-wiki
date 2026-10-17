@@ -1,0 +1,21 @@
+sister("Maybelle Lester", "Cleo Peeler").
+sister("Maybelle Lester", "Rayna Kinsella").
+mother("Maybelle Lester", "Chelsie Peeler").
+father("Maybelle Lester", "Melvin Peeler").
+son("Maybelle Lester", "Cedrick Lester").
+husband("Maybelle Lester", "Desmond Lester").
+friend("Maybelle Lester", "Derek Murchison").
+friend("Maybelle Lester", "Gale Dana").
+friend("Maybelle Lester", "Lavern Staten").
+friend("Maybelle Lester", "Lela Correia").
+friend("Maybelle Lester", "Rosina Putnam").
+friend("Maybelle Lester", "Krystal Joubert").
+friend("Maybelle Lester", "Mattie Courson").
+friend("Maybelle Lester", "Maggie Vanmeter").
+friend("Maybelle Lester", "Bonnie Storey").
+friend("Maybelle Lester", "Herbert Storey").
+friend("Maybelle Lester", "Lon Lazar").
+dob("Maybelle Lester", "0437-01-30").
+job("Maybelle Lester", "airline pilot").
+hobby("Maybelle Lester", "skiing").
+gender("Maybelle Lester", "female").

@@ -1,0 +1,16 @@
+mother("Rae Mcnew", "Jacinta Wise").
+father("Rae Mcnew", "Dudley Wise").
+daughter("Rae Mcnew", "Amberly Mcnew").
+husband("Rae Mcnew", "Haywood Mcnew").
+friend("Rae Mcnew", "Marilyn Nicolas").
+friend("Rae Mcnew", "Yoshiko Crain").
+friend("Rae Mcnew", "Domonique Cedillo").
+friend("Rae Mcnew", "Enoch Palermo").
+friend("Rae Mcnew", "Casey Brannan").
+friend("Rae Mcnew", "Johnathan Boutte").
+friend("Rae Mcnew", "Ella Saari").
+friend("Rae Mcnew", "Caleb Haber").
+dob("Rae Mcnew", "0343-09-09").
+job("Rae Mcnew", "chief financial officer").
+hobby("Rae Mcnew", "table football").
+gender("Rae Mcnew", "female").

@@ -1,0 +1,18 @@
+sister("Calvin Carty", "Shelia Carty").
+mother("Calvin Carty", "Sylvia Carty").
+father("Calvin Carty", "Jame Carty").
+son("Calvin Carty", "Drew Carty").
+son("Calvin Carty", "Raymond Carty").
+wife("Calvin Carty", "Lera Carty").
+friend("Calvin Carty", "Noreen Cordova").
+friend("Calvin Carty", "Keith Murchison").
+friend("Calvin Carty", "Helga Simons").
+friend("Calvin Carty", "Katy Flores").
+friend("Calvin Carty", "Drema Schatz").
+friend("Calvin Carty", "Krystyna Schatz").
+friend("Calvin Carty", "Sylvia Gilliam").
+friend("Calvin Carty", "Cora Fordham").
+dob("Calvin Carty", "0398-06-14").
+job("Calvin Carty", "telecommunications researcher").
+hobby("Calvin Carty", "antiquities").
+gender("Calvin Carty", "male").

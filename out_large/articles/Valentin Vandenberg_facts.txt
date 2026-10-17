@@ -1,0 +1,14 @@
+son("Valentin Vandenberg", "Charley Vandenberg").
+son("Valentin Vandenberg", "Eli Vandenberg").
+daughter("Valentin Vandenberg", "Amy Wilke").
+daughter("Valentin Vandenberg", "Thelma Vandenberg").
+wife("Valentin Vandenberg", "Jackie Vandenberg").
+friend("Valentin Vandenberg", "Amos Oberg").
+friend("Valentin Vandenberg", "Owen Narvaez").
+friend("Valentin Vandenberg", "Chrissy Remillard").
+friend("Valentin Vandenberg", "Dorinda Chrisman").
+friend("Valentin Vandenberg", "Louann Chrisman").
+dob("Valentin Vandenberg", "0230-09-10").
+job("Valentin Vandenberg", "leisure centre manager").
+hobby("Valentin Vandenberg", "magic").
+gender("Valentin Vandenberg", "male").

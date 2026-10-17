@@ -1,0 +1,14 @@
+brother("Jermaine Wilke", "Cedric Wilke").
+mother("Jermaine Wilke", "Gabriele Wilke").
+father("Jermaine Wilke", "Luke Wilke").
+friend("Jermaine Wilke", "Emmanuel Swartz").
+friend("Jermaine Wilke", "Lynda Mahoney").
+friend("Jermaine Wilke", "Lance Carreon").
+friend("Jermaine Wilke", "Rueben Younger").
+friend("Jermaine Wilke", "Torrie Goff").
+friend("Jermaine Wilke", "Aida Ibarra").
+friend("Jermaine Wilke", "Stevie Joiner").
+dob("Jermaine Wilke", "0393-06-24").
+job("Jermaine Wilke", "charity fundraiser").
+hobby("Jermaine Wilke", "slot car").
+gender("Jermaine Wilke", "male").

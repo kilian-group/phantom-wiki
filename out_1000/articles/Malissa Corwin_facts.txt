@@ -1,0 +1,14 @@
+sister("Malissa Corwin", "Katherine Corwin").
+brother("Malissa Corwin", "Colin Corwin").
+brother("Malissa Corwin", "Robby Corwin").
+mother("Malissa Corwin", "Christen Corwin").
+father("Malissa Corwin", "Solomon Corwin").
+friend("Malissa Corwin", "Dino Donner").
+friend("Malissa Corwin", "Eunice Gordy").
+friend("Malissa Corwin", "Jeana Holtz").
+friend("Malissa Corwin", "Nico Layman").
+friend("Malissa Corwin", "Wallace Brumbaugh").
+dob("Malissa Corwin", "0408-01-18").
+job("Malissa Corwin", "analytical chemist").
+hobby("Malissa Corwin", "baton twirling").
+gender("Malissa Corwin", "female").

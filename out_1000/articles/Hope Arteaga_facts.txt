@@ -1,0 +1,17 @@
+brother("Hope Arteaga", "Marcus Lebrun").
+mother("Hope Arteaga", "Judith Lebrun").
+father("Hope Arteaga", "Rob Lebrun").
+son("Hope Arteaga", "James Arteaga").
+daughter("Hope Arteaga", "Verona Arteaga").
+husband("Hope Arteaga", "Irwin Arteaga").
+friend("Hope Arteaga", "Dino Layman").
+friend("Hope Arteaga", "Jamie Upton").
+friend("Hope Arteaga", "Genesis Alarcon").
+friend("Hope Arteaga", "Ignacio Haygood").
+friend("Hope Arteaga", "Rudy Runnels").
+friend("Hope Arteaga", "Rowena Lazar").
+friend("Hope Arteaga", "Edythe Littleton").
+dob("Hope Arteaga", "0401-09-25").
+job("Hope Arteaga", "computer games developer").
+hobby("Hope Arteaga", "beekeeping").
+gender("Hope Arteaga", "female").

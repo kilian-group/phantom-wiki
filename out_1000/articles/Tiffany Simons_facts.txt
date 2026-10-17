@@ -1,0 +1,13 @@
+daughter("Tiffany Simons", "Rosella Simons").
+husband("Tiffany Simons", "Sung Simons").
+friend("Tiffany Simons", "Adolph Hollins").
+friend("Tiffany Simons", "Rheba Resendez").
+friend("Tiffany Simons", "Kenneth Rinehart").
+friend("Tiffany Simons", "Stacey Wilke").
+friend("Tiffany Simons", "Tashina Layton").
+friend("Tiffany Simons", "Harry Hudgens").
+friend("Tiffany Simons", "Carrol Spiller").
+dob("Tiffany Simons", "0431-02-01").
+job("Tiffany Simons", "international aid worker").
+hobby("Tiffany Simons", "whale watching").
+gender("Tiffany Simons", "female").

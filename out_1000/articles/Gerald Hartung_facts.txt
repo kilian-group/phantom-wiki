@@ -1,0 +1,19 @@
+daughter("Gerald Hartung", "Dinah Simons").
+wife("Gerald Hartung", "Lashanda Hartung").
+friend("Gerald Hartung", "Blake Swartz").
+friend("Gerald Hartung", "Cedric Towns").
+friend("Gerald Hartung", "Matthew Dana").
+friend("Gerald Hartung", "Dorothea Goff").
+friend("Gerald Hartung", "Kareem Gilliam").
+friend("Gerald Hartung", "Dino Donner").
+friend("Gerald Hartung", "Miles Fordham").
+friend("Gerald Hartung", "Stephan Prater").
+friend("Gerald Hartung", "Buffy Jarrett").
+friend("Gerald Hartung", "Audie Lasher").
+friend("Gerald Hartung", "Wesley Beamon").
+friend("Gerald Hartung", "Audra Lester").
+friend("Gerald Hartung", "Clair Brumbaugh").
+dob("Gerald Hartung", "0389-06-15").
+job("Gerald Hartung", "technical sales engineer").
+hobby("Gerald Hartung", "reading").
+gender("Gerald Hartung", "male").

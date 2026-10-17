@@ -1,0 +1,10 @@
+son("Lynelle Smart", "Hiram Smart").
+husband("Lynelle Smart", "Juan Smart").
+friend("Lynelle Smart", "Kelley Cheney").
+friend("Lynelle Smart", "Annette Rudolph").
+friend("Lynelle Smart", "Danny Cowart").
+friend("Lynelle Smart", "Johanna Mathes").
+dob("Lynelle Smart", "0477-06-26").
+job("Lynelle Smart", "educational psychologist").
+hobby("Lynelle Smart", "video game collecting").
+gender("Lynelle Smart", "female").

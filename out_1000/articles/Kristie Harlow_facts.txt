@@ -1,0 +1,12 @@
+son("Kristie Harlow", "Jerrold Harlow").
+husband("Kristie Harlow", "Earle Harlow").
+friend("Kristie Harlow", "Derek Valladares").
+friend("Kristie Harlow", "Cherlyn Simons").
+friend("Kristie Harlow", "Harold Hollins").
+friend("Kristie Harlow", "Nedra Musick").
+friend("Kristie Harlow", "Jacinta Gilliam").
+friend("Kristie Harlow", "Julio Mcgough").
+dob("Kristie Harlow", "0364-08-21").
+job("Kristie Harlow", "paediatric nurse").
+hobby("Kristie Harlow", "research").
+gender("Kristie Harlow", "female").

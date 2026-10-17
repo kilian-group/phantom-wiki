@@ -1,0 +1,17 @@
+mother("Dorathy Hamlin", "Sheena Dame").
+father("Dorathy Hamlin", "Paul Dame").
+son("Dorathy Hamlin", "Elijah Hamlin").
+husband("Dorathy Hamlin", "Rory Hamlin").
+friend("Dorathy Hamlin", "Goldie Alessi").
+friend("Dorathy Hamlin", "Emil Wendel").
+friend("Dorathy Hamlin", "Wilber Storey").
+friend("Dorathy Hamlin", "Glen Towns").
+friend("Dorathy Hamlin", "Chance Mahoney").
+friend("Dorathy Hamlin", "Carlene Corwin").
+friend("Dorathy Hamlin", "James Arteaga").
+friend("Dorathy Hamlin", "Dino Donner").
+friend("Dorathy Hamlin", "Sang Cheney").
+dob("Dorathy Hamlin", "0320-02-27").
+job("Dorathy Hamlin", "logistics and distribution manager").
+hobby("Dorathy Hamlin", "entrepreneurship").
+gender("Dorathy Hamlin", "female").

@@ -1,0 +1,19 @@
+sister("Chang Eaves", "Edwina Eaves").
+sister("Chang Eaves", "Karla Linares").
+brother("Chang Eaves", "Davis Eaves").
+mother("Chang Eaves", "Buffy Eaves").
+father("Chang Eaves", "Denny Eaves").
+friend("Chang Eaves", "Juanita Dana").
+friend("Chang Eaves", "Ramiro Dana").
+friend("Chang Eaves", "Bruce Mathes").
+friend("Chang Eaves", "Dino Donner").
+friend("Chang Eaves", "Leena Estrella").
+friend("Chang Eaves", "Drema Jefferson").
+friend("Chang Eaves", "Noelia Lasher").
+friend("Chang Eaves", "Tamara Lasher").
+friend("Chang Eaves", "Samatha Weise").
+friend("Chang Eaves", "Josie Littleton").
+dob("Chang Eaves", "0404-08-23").
+job("Chang Eaves", "social researcher").
+hobby("Chang Eaves", "trapshooting").
+gender("Chang Eaves", "male").

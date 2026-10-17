@@ -1,0 +1,14 @@
+sister("Cordell Younger", "Katina Younger").
+sister("Cordell Younger", "Zora Morehead").
+brother("Cordell Younger", "Al Younger").
+mother("Cordell Younger", "Janis Younger").
+father("Cordell Younger", "Wilson Younger").
+friend("Cordell Younger", "Nellie Niles").
+friend("Cordell Younger", "Patrice Dunlap").
+friend("Cordell Younger", "Clair Brumbaugh").
+friend("Cordell Younger", "Elyse Mahoney").
+friend("Cordell Younger", "Salvador Plumley").
+dob("Cordell Younger", "0465-02-14").
+job("Cordell Younger", "adult guidance worker").
+hobby("Cordell Younger", "fingerprint collecting").
+gender("Cordell Younger", "male").

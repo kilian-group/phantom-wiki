@@ -1,0 +1,19 @@
+sister("Gale Dana", "Alice Dana").
+sister("Gale Dana", "Estella Dana").
+sister("Gale Dana", "Marybeth Dana").
+brother("Gale Dana", "Jon Dana").
+mother("Gale Dana", "Addie Dana").
+father("Gale Dana", "Drew Dana").
+friend("Gale Dana", "Ella Mathes").
+friend("Gale Dana", "Verona Medellin").
+friend("Gale Dana", "Janey Kell").
+friend("Gale Dana", "Malissa Kell").
+friend("Gale Dana", "Maybelle Lester").
+friend("Gale Dana", "Paula Lazar").
+friend("Gale Dana", "Reggie Simons").
+friend("Gale Dana", "Heath Swartz").
+friend("Gale Dana", "Davis Eaves").
+dob("Gale Dana", "0421-07-21").
+job("Gale Dana", "aid worker").
+hobby("Gale Dana", "table football").
+gender("Gale Dana", "male").

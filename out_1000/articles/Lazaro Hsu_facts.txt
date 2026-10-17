@@ -1,0 +1,20 @@
+daughter("Lazaro Hsu", "Elaine Hsu").
+wife("Lazaro Hsu", "Tabetha Hsu").
+friend("Lazaro Hsu", "Latrina Mathes").
+friend("Lazaro Hsu", "Eunice Gordy").
+friend("Lazaro Hsu", "Sung Fordham").
+friend("Lazaro Hsu", "Annita Mckenna").
+friend("Lazaro Hsu", "Nydia Willoughby").
+friend("Lazaro Hsu", "Cortez Kinsella").
+friend("Lazaro Hsu", "Milton Littleton").
+friend("Lazaro Hsu", "Cherlyn Simons").
+friend("Lazaro Hsu", "Collin Lively").
+friend("Lazaro Hsu", "Kevin Sharma").
+friend("Lazaro Hsu", "Jamel Chou").
+friend("Lazaro Hsu", "Tyrone Linares").
+friend("Lazaro Hsu", "Almeta Younger").
+friend("Lazaro Hsu", "Crysta Machado").
+dob("Lazaro Hsu", "0437-01-11").
+job("Lazaro Hsu", "interpreter").
+hobby("Lazaro Hsu", "web design").
+gender("Lazaro Hsu", "male").

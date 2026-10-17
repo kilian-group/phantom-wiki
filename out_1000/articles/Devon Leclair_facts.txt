@@ -1,0 +1,18 @@
+daughter("Devon Leclair", "Rheba Resendez").
+wife("Devon Leclair", "Lura Leclair").
+friend("Devon Leclair", "Demetra Medellin").
+friend("Devon Leclair", "Eunice Gordy").
+friend("Devon Leclair", "Lurline Tyree").
+friend("Devon Leclair", "Marilynn Capps").
+friend("Devon Leclair", "Levi Macias").
+friend("Devon Leclair", "Dino Layman").
+friend("Devon Leclair", "Racquel Wendel").
+friend("Devon Leclair", "Frederic Cordova").
+friend("Devon Leclair", "Janiece Cordova").
+friend("Devon Leclair", "Jerry Mahoney").
+friend("Devon Leclair", "Solomon Corwin").
+friend("Devon Leclair", "Coral Staten").
+dob("Devon Leclair", "0344-04-11").
+job("Devon Leclair", "local government officer").
+hobby("Devon Leclair", "iceboat racing").
+gender("Devon Leclair", "male").

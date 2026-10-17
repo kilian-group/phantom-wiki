@@ -1,0 +1,23 @@
+sister("Cleo Peeler", "Maybelle Lester").
+sister("Cleo Peeler", "Rayna Kinsella").
+mother("Cleo Peeler", "Chelsie Peeler").
+father("Cleo Peeler", "Melvin Peeler").
+friend("Cleo Peeler", "Tammy Sutphin").
+friend("Cleo Peeler", "Marcelina Simons").
+friend("Cleo Peeler", "Pablo Cook").
+friend("Cleo Peeler", "Claudine Bales").
+friend("Cleo Peeler", "Victor Steadman").
+friend("Cleo Peeler", "Antony Machado").
+friend("Cleo Peeler", "Adalberto Dacosta").
+friend("Cleo Peeler", "Hugh Noland").
+friend("Cleo Peeler", "Alex Burger").
+friend("Cleo Peeler", "Marguerite Putnam").
+friend("Cleo Peeler", "Jo Medeiros").
+friend("Cleo Peeler", "Tamala Skidmore").
+friend("Cleo Peeler", "Hank Paynter").
+friend("Cleo Peeler", "Tamara Lasher").
+friend("Cleo Peeler", "Winfred Basham").
+dob("Cleo Peeler", "0435-06-22").
+job("Cleo Peeler", "local government officer").
+hobby("Cleo Peeler", "table tennis").
+gender("Cleo Peeler", "female").

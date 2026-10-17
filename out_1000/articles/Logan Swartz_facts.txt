@@ -1,0 +1,20 @@
+son("Logan Swartz", "Heath Swartz").
+wife("Logan Swartz", "Deloris Swartz").
+friend("Logan Swartz", "Jon Dana").
+friend("Logan Swartz", "Katina Younger").
+friend("Logan Swartz", "Kareem Goff").
+friend("Logan Swartz", "Anna Broughton").
+friend("Logan Swartz", "Tracey Medellin").
+friend("Logan Swartz", "Donald Fordham").
+friend("Logan Swartz", "Aaron Bowles").
+friend("Logan Swartz", "Johnna Macias").
+friend("Logan Swartz", "Micheal Speaks").
+friend("Logan Swartz", "Delbert Courson").
+friend("Logan Swartz", "Maryam Maness").
+friend("Logan Swartz", "Roscoe Vanmeter").
+friend("Logan Swartz", "Lorenzo Littleton").
+friend("Logan Swartz", "Rebecka Schlosser").
+dob("Logan Swartz", "0365-01-25").
+job("Logan Swartz", "audiological scientist").
+hobby("Logan Swartz", "renaissance fair").
+gender("Logan Swartz", "male").

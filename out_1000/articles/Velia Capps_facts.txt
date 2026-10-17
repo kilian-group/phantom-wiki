@@ -1,0 +1,19 @@
+sister("Velia Capps", "Ardath Skidmore").
+sister("Velia Capps", "Chelsea Skidmore").
+mother("Velia Capps", "Tamala Skidmore").
+father("Velia Capps", "Benito Skidmore").
+son("Velia Capps", "Cleveland Capps").
+son("Velia Capps", "Deandre Capps").
+daughter("Velia Capps", "Elaine Marr").
+husband("Velia Capps", "Rogelio Capps").
+friend("Velia Capps", "Dustin Sheridan").
+friend("Velia Capps", "Roscoe Vanmeter").
+friend("Velia Capps", "Newton Lasher").
+friend("Velia Capps", "Gloria Ingalls").
+friend("Velia Capps", "Tyrone Linares").
+friend("Velia Capps", "Julius Niles").
+friend("Velia Capps", "Lucas Estrella").
+dob("Velia Capps", "0377-06-18").
+job("Velia Capps", "community pharmacist").
+hobby("Velia Capps", "antiquities").
+gender("Velia Capps", "female").

@@ -1,0 +1,13 @@
+sister("Kenny Kinsella", "Colette Kinsella").
+mother("Kenny Kinsella", "Rayna Kinsella").
+father("Kenny Kinsella", "Arnulfo Kinsella").
+son("Kenny Kinsella", "Cortez Kinsella").
+daughter("Kenny Kinsella", "Nelly Kinsella").
+wife("Kenny Kinsella", "Annmarie Kinsella").
+friend("Kenny Kinsella", "Georgine Mahoney").
+friend("Kenny Kinsella", "Jamal Marr").
+friend("Kenny Kinsella", "Aletha Crocker").
+dob("Kenny Kinsella", "0467-09-21").
+job("Kenny Kinsella", "trading standards officer").
+hobby("Kenny Kinsella", "sea glass collecting").
+gender("Kenny Kinsella", "male").

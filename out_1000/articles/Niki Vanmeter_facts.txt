@@ -1,0 +1,12 @@
+brother("Niki Vanmeter", "Roscoe Vanmeter").
+mother("Niki Vanmeter", "Maggie Vanmeter").
+father("Niki Vanmeter", "Felipe Vanmeter").
+friend("Niki Vanmeter", "Bradford Hayward").
+friend("Niki Vanmeter", "Roger Carreon").
+friend("Niki Vanmeter", "Kenton Whitford").
+friend("Niki Vanmeter", "Emil Broughton").
+friend("Niki Vanmeter", "Lucas Estrella").
+dob("Niki Vanmeter", "0490-05-11").
+job("Niki Vanmeter", "loss adjuster").
+hobby("Niki Vanmeter", "tour skating").
+gender("Niki Vanmeter", "female").

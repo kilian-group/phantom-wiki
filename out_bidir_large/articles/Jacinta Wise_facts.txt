@@ -1,0 +1,8 @@
+daughter("Jacinta Wise", "Rae Mcnew").
+husband("Jacinta Wise", "Dudley Wise").
+friend("Jacinta Wise", "Kris Haber").
+friend("Jacinta Wise", "Eula Crain").
+dob("Jacinta Wise", "0313-04-10").
+job("Jacinta Wise", "production designer").
+hobby("Jacinta Wise", "airsoft").
+gender("Jacinta Wise", "female").

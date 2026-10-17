@@ -1,0 +1,20 @@
+mother("Roxy Niles", "Dena Joiner").
+father("Roxy Niles", "Stevie Joiner").
+son("Roxy Niles", "Julius Niles").
+husband("Roxy Niles", "Tristan Niles").
+friend("Roxy Niles", "Nelly Smart").
+friend("Roxy Niles", "Martin Deville").
+friend("Roxy Niles", "Felix Hamlin").
+friend("Roxy Niles", "Dino Layman").
+friend("Roxy Niles", "Erick Courson").
+friend("Roxy Niles", "Javier Scherer").
+friend("Roxy Niles", "Theodore Vanmeter").
+friend("Roxy Niles", "Leonora Cordova").
+friend("Roxy Niles", "Doug Jansen").
+friend("Roxy Niles", "Juanita Eaves").
+friend("Roxy Niles", "Antony Machado").
+friend("Roxy Niles", "Georgina Lebrun").
+dob("Roxy Niles", "0345-02-04").
+job("Roxy Niles", "immigration officer").
+hobby("Roxy Niles", "cheerleading").
+gender("Roxy Niles", "female").

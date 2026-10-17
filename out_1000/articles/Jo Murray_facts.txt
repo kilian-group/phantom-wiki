@@ -1,0 +1,16 @@
+brother("Jo Murray", "Dane Murray").
+brother("Jo Murray", "Jerald Murray").
+brother("Jo Murray", "Jorge Murray").
+mother("Jo Murray", "Cordelia Murray").
+father("Jo Murray", "Phil Murray").
+friend("Jo Murray", "Jody Valladares").
+friend("Jo Murray", "Bruce Mathes").
+friend("Jo Murray", "Lucienne Gilliam").
+friend("Jo Murray", "Brent Macias").
+friend("Jo Murray", "Cameron Mckenna").
+friend("Jo Murray", "Evelia Senn").
+friend("Jo Murray", "Herbert Storey").
+dob("Jo Murray", "0469-04-15").
+job("Jo Murray", "operations geologist").
+hobby("Jo Murray", "ant farming").
+gender("Jo Murray", "female").

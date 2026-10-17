@@ -1,0 +1,23 @@
+sister("Erik Fredrick", "Tracy Fredrick").
+mother("Erik Fredrick", "Alisha Fredrick").
+father("Erik Fredrick", "Vance Fredrick").
+son("Erik Fredrick", "Anderson Fredrick").
+son("Erik Fredrick", "Malik Fredrick").
+daughter("Erik Fredrick", "Odelia Fredrick").
+wife("Erik Fredrick", "Holley Fredrick").
+friend("Erik Fredrick", "Clay Vogt").
+friend("Erik Fredrick", "Morgan Perrine").
+friend("Erik Fredrick", "Brent Macias").
+friend("Erik Fredrick", "Salvatore Resendez").
+friend("Erik Fredrick", "Mozelle Mounts").
+friend("Erik Fredrick", "Roscoe Vanmeter").
+friend("Erik Fredrick", "Alexandria Hayward").
+friend("Erik Fredrick", "Wilber Storey").
+friend("Erik Fredrick", "Paula Rudolph").
+friend("Erik Fredrick", "Ashton Mahoney").
+friend("Erik Fredrick", "Earle Boutte").
+friend("Erik Fredrick", "Selena Donner").
+dob("Erik Fredrick", "0348-02-18").
+job("Erik Fredrick", "energy manager").
+hobby("Erik Fredrick", "animal fancy").
+gender("Erik Fredrick", "male").

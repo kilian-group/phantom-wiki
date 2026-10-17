@@ -1,0 +1,11 @@
+brother("Ella Saari", "Alberto Saari").
+mother("Ella Saari", "Shawnta Saari").
+father("Ella Saari", "Trevor Saari").
+friend("Ella Saari", "Sherry Cormier").
+friend("Ella Saari", "Rae Mcnew").
+friend("Ella Saari", "Cherry Nicolas").
+friend("Ella Saari", "Edythe Earnest").
+dob("Ella Saari", "0289-12-11").
+job("Ella Saari", "waste management officer").
+hobby("Ella Saari", "laser tag").
+gender("Ella Saari", "female").

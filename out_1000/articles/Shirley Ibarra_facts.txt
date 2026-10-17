@@ -1,0 +1,13 @@
+son("Shirley Ibarra", "Jarrod Ibarra").
+husband("Shirley Ibarra", "Jeromy Ibarra").
+friend("Shirley Ibarra", "Edmundo Fordham").
+friend("Shirley Ibarra", "Zoraida Sanborn").
+friend("Shirley Ibarra", "Pamala Vanmeter").
+friend("Shirley Ibarra", "Emil Wendel").
+friend("Shirley Ibarra", "Heath Swartz").
+friend("Shirley Ibarra", "Ty Mahoney").
+friend("Shirley Ibarra", "Nellie Niles").
+dob("Shirley Ibarra", "0319-06-10").
+job("Shirley Ibarra", "plant breeder").
+hobby("Shirley Ibarra", "ant farming").
+gender("Shirley Ibarra", "female").

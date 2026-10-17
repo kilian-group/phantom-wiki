@@ -1,0 +1,15 @@
+son("Lon Macias", "Laurence Macias").
+son("Lon Macias", "Levi Macias").
+son("Lon Macias", "Moshe Macias").
+wife("Lon Macias", "Larue Macias").
+friend("Lon Macias", "Goldie Alessi").
+friend("Lon Macias", "Chauncey Wilkie").
+friend("Lon Macias", "Xiao Nolasco").
+friend("Lon Macias", "Nelly Kinsella").
+friend("Lon Macias", "Phil Murray").
+friend("Lon Macias", "Kennith Towns").
+friend("Lon Macias", "Robt Medellin").
+dob("Lon Macias", "0442-03-05").
+job("Lon Macias", "leisure centre manager").
+hobby("Lon Macias", "scouting").
+gender("Lon Macias", "male").

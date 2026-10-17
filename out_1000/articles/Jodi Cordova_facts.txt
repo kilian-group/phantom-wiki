@@ -1,0 +1,12 @@
+mother("Jodi Cordova", "Magdalena Cordova").
+father("Jodi Cordova", "Fredrick Cordova").
+friend("Jodi Cordova", "Babette Simons").
+friend("Jodi Cordova", "Bruce Mathes").
+friend("Jodi Cordova", "Millard Fordham").
+friend("Jodi Cordova", "Charley Vandenberg").
+friend("Jodi Cordova", "Gene Burnett").
+friend("Jodi Cordova", "Tommy Booth").
+dob("Jodi Cordova", "0368-09-12").
+job("Jodi Cordova", "chartered certified accountant").
+hobby("Jodi Cordova", "leaves").
+gender("Jodi Cordova", "female").

@@ -1,0 +1,15 @@
+brother("Lurline Tyree", "Marvin Putnam").
+mother("Lurline Tyree", "Rosina Putnam").
+father("Lurline Tyree", "Justin Putnam").
+daughter("Lurline Tyree", "Gwenn Tyree").
+husband("Lurline Tyree", "Claudio Tyree").
+friend("Lurline Tyree", "Pamala Vanmeter").
+friend("Lurline Tyree", "Christina Barrows").
+friend("Lurline Tyree", "Tania Younger").
+friend("Lurline Tyree", "Devon Leclair").
+friend("Lurline Tyree", "Deja Gilliam").
+friend("Lurline Tyree", "Bertram Wylie").
+dob("Lurline Tyree", "0470-01-28").
+job("Lurline Tyree", "electrical engineer").
+hobby("Lurline Tyree", "model racing").
+gender("Lurline Tyree", "female").

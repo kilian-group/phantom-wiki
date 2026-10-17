@@ -1,0 +1,15 @@
+brother("Angela Younger", "Rueben Younger").
+mother("Angela Younger", "Tania Younger").
+father("Angela Younger", "Dan Younger").
+friend("Angela Younger", "Marguerite Lebrun").
+friend("Angela Younger", "Stan Gailey").
+friend("Angela Younger", "Keith Noland").
+friend("Angela Younger", "Deangelo Marr").
+friend("Angela Younger", "Brent Macias").
+friend("Angela Younger", "Stacey Wilke").
+friend("Angela Younger", "Guillermo Lasher").
+friend("Angela Younger", "Katy Flores").
+dob("Angela Younger", "0378-09-08").
+job("Angela Younger", "higher education lecturer").
+hobby("Angela Younger", "bus spotting").
+gender("Angela Younger", "female").

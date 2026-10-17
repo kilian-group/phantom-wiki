@@ -1,0 +1,17 @@
+mother("Deshawn Medellin", "Tracey Medellin").
+father("Deshawn Medellin", "Oscar Medellin").
+friend("Deshawn Medellin", "Lashanda Salem").
+friend("Deshawn Medellin", "Marvin Putnam").
+friend("Deshawn Medellin", "Morgan Perrine").
+friend("Deshawn Medellin", "Jann Upton").
+friend("Deshawn Medellin", "Javier Basham").
+friend("Deshawn Medellin", "Vilma Callender").
+friend("Deshawn Medellin", "Otto Arnold").
+friend("Deshawn Medellin", "Kennith Towns").
+friend("Deshawn Medellin", "Drew Dana").
+friend("Deshawn Medellin", "Germaine Mahoney").
+friend("Deshawn Medellin", "Torrie Goff").
+dob("Deshawn Medellin", "0464-02-10").
+job("Deshawn Medellin", "furniture designer").
+hobby("Deshawn Medellin", "meteorology").
+gender("Deshawn Medellin", "male").

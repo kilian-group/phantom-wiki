@@ -1,0 +1,13 @@
+daughter("Tianna Remillard", "Kori Remillard").
+husband("Tianna Remillard", "Jude Remillard").
+friend("Tianna Remillard", "Amy Wilke").
+friend("Tianna Remillard", "Amos Oberg").
+friend("Tianna Remillard", "Brigida Oberg").
+friend("Tianna Remillard", "Bryce Oberg").
+friend("Tianna Remillard", "Clyde Oberg").
+friend("Tianna Remillard", "Aurelia Dishman").
+friend("Tianna Remillard", "Dani Remillard").
+dob("Tianna Remillard", "0298-07-09").
+job("Tianna Remillard", "facilities manager").
+hobby("Tianna Remillard", "biology").
+gender("Tianna Remillard", "female").

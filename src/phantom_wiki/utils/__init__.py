@@ -55,12 +55,14 @@ def get_parser(parents: list) -> argparse.ArgumentParser:
         "--visualize", action="store_true", help="Whether or not to visualize the friendship & family graphs."
     )
     parser.add_argument(
-        "--use-multithreading",
-        action="store_true",
+        "--num-multiprocesses",
+        type=int,
+        default=1,
         help=(
-            "Use multithreading for querying the database when generating questions/answers. "
-            "Note: This flag worked for windows and Linux, but not for MacOS."
-            "Also very intensive for high universe size."
+            "Number of worker processes for batched Prolog queries. 1 (default) runs serially; "
+            "values >1 use multiprocessing.Pool(processes=N) to parallelize. "
+            "Note: multiprocessing works on Windows and Linux but not on macOS; "
+            "also memory-intensive for high universe sizes."
         ),
     )
     parser.add_argument("--seed", "-s", default=1, type=int, help="Global seed for random number generator")

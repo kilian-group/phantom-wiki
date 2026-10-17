@@ -1,0 +1,17 @@
+sister("Pearl Hamann", "Cherlyn Simons").
+brother("Pearl Hamann", "Frankie Simons").
+mother("Pearl Hamann", "Viva Simons").
+father("Pearl Hamann", "Roderick Simons").
+daughter("Pearl Hamann", "Antionette Hamann").
+husband("Pearl Hamann", "Dennis Hamann").
+friend("Pearl Hamann", "Foster Eaves").
+friend("Pearl Hamann", "Mallory Schatz").
+friend("Pearl Hamann", "Valeria Medellin").
+friend("Pearl Hamann", "Hayden Fain").
+friend("Pearl Hamann", "Ashleigh Kell").
+friend("Pearl Hamann", "Cameron Mckenna").
+friend("Pearl Hamann", "Lloyd Ingalls").
+dob("Pearl Hamann", "0461-05-21").
+job("Pearl Hamann", "seismic interpreter").
+hobby("Pearl Hamann", "linguistics").
+gender("Pearl Hamann", "female").

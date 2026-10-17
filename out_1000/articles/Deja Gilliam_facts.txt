@@ -1,0 +1,17 @@
+sister("Deja Gilliam", "Shante Gilliam").
+mother("Deja Gilliam", "Deanne Gilliam").
+father("Deja Gilliam", "Scotty Gilliam").
+friend("Deja Gilliam", "Jeana Chisholm").
+friend("Deja Gilliam", "Lurline Tyree").
+friend("Deja Gilliam", "Jamie Upton").
+friend("Deja Gilliam", "Keith Resendez").
+friend("Deja Gilliam", "Mose Jarrett").
+friend("Deja Gilliam", "Tommy Booth").
+friend("Deja Gilliam", "Garrett Bauman").
+friend("Deja Gilliam", "Ginger Chou").
+friend("Deja Gilliam", "Mickey Eaves").
+friend("Deja Gilliam", "Winfred Molina").
+dob("Deja Gilliam", "0398-04-11").
+job("Deja Gilliam", "financial adviser").
+hobby("Deja Gilliam", "herping").
+gender("Deja Gilliam", "female").

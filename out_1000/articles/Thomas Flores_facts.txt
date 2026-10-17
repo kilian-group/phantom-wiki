@@ -1,0 +1,10 @@
+daughter("Thomas Flores", "Katy Flores").
+wife("Thomas Flores", "Shannon Flores").
+friend("Thomas Flores", "Bret Smart").
+friend("Thomas Flores", "Genesis Alarcon").
+friend("Thomas Flores", "Roscoe Vanmeter").
+friend("Thomas Flores", "Guillermo Lasher").
+dob("Thomas Flores", "0397-01-04").
+job("Thomas Flores", "energy engineer").
+hobby("Thomas Flores", "learning").
+gender("Thomas Flores", "male").

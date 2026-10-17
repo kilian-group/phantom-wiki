@@ -1,0 +1,16 @@
+brother("Deloris Marr", "Deangelo Marr").
+brother("Deloris Marr", "Jamal Marr").
+mother("Deloris Marr", "Thomasena Marr").
+father("Deloris Marr", "Dennis Marr").
+friend("Deloris Marr", "Lucas Estrella").
+friend("Deloris Marr", "Thaddeus Sanborn").
+friend("Deloris Marr", "Chauncey Wilkie").
+friend("Deloris Marr", "Bradford Hayward").
+friend("Deloris Marr", "Reggie Simons").
+friend("Deloris Marr", "Tim Goff").
+friend("Deloris Marr", "Rheba Resendez").
+friend("Deloris Marr", "Guadalupe Palomo").
+dob("Deloris Marr", "0372-02-13").
+job("Deloris Marr", "psychologist").
+hobby("Deloris Marr", "long-distance running").
+gender("Deloris Marr", "female").

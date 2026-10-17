@@ -1,0 +1,18 @@
+daughter("Stanford Suh", "Melodie Suh").
+daughter("Stanford Suh", "Viva Suh").
+wife("Stanford Suh", "Geraldine Suh").
+friend("Stanford Suh", "Samatha Weise").
+friend("Stanford Suh", "Adrianna Gregory").
+friend("Stanford Suh", "Ella Valladares").
+friend("Stanford Suh", "Gwendolyn Townsend").
+friend("Stanford Suh", "Drew Dana").
+friend("Stanford Suh", "Bret Smart").
+friend("Stanford Suh", "Willie Hurt").
+friend("Stanford Suh", "Kayla Ballard").
+friend("Stanford Suh", "Jan Estrella").
+friend("Stanford Suh", "Walter Depriest").
+friend("Stanford Suh", "Shawnta Basham").
+dob("Stanford Suh", "0424-04-18").
+job("Stanford Suh", "podiatrist").
+hobby("Stanford Suh", "perfume").
+gender("Stanford Suh", "male").

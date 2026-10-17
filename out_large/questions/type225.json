@@ -1,0 +1,462 @@
+[
+    {
+        "id": "a3187ec0-97eb-4923-94cf-59966ec06427",
+        "question": "Who has the most children among the friends of Wanita Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Cherlyn Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Wanita Remillard\", X)",
+                "aggregate_all(count, distinct(child(X, Z)), C)",
+                "\\+ (friend(\"Wanita Remillard\", Y), Y \\= X, aggregate_all(count, distinct(child(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "5ef092ea-09ed-4e24-97e1-7b3157e99fcf",
+        "question": "Who has the most great-grandsons among the friends of Thelma Vandenberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Cherlyn Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Thelma Vandenberg\", X)",
+                "aggregate_all(count, distinct(great_grandson(X, Z)), C)",
+                "\\+ (friend(\"Thelma Vandenberg\", Y), Y \\= X, aggregate_all(count, distinct(great_grandson(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "552c9bb0-0553-4cf6-a5c2-89fca78ed2c0",
+        "question": "Who has the most daughters among the grandchildren of Renate Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Monte Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "grandchild(\"Renate Oberg\", X)",
+                "aggregate_all(count, distinct(daughter(X, Z)), C)",
+                "\\+ (grandchild(\"Renate Oberg\", Y), Y \\= X, aggregate_all(count, distinct(daughter(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "a835a026-2971-4c70-9d41-88cf1c0af07b",
+        "question": "Who has the most grandsons among the children of Renate Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Richard Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "child(\"Renate Oberg\", X)",
+                "aggregate_all(count, distinct(grandson(X, Z)), C)",
+                "\\+ (child(\"Renate Oberg\", Y), Y \\= X, aggregate_all(count, distinct(grandson(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "78d5efe9-7a96-4561-b37a-30c4cf7ebb8e",
+        "question": "Who has the most grandchildren among the great-grandchildren of Aurelia Dishman?",
+        "solution_traces": "[]",
+        "answer": [
+            "Hunter Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandchild(\"Aurelia Dishman\", X)",
+                "aggregate_all(count, distinct(grandchild(X, Z)), C)",
+                "\\+ (great_grandchild(\"Aurelia Dishman\", Y), Y \\= X, aggregate_all(count, distinct(grandchild(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 4,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "095f81a9-f626-4ff0-90b2-f2d35f781224",
+        "question": "Who has the most friends among the grandfathers of Clara Mcgough?",
+        "solution_traces": "[]",
+        "answer": [
+            "Elroy Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "grandfather(\"Clara Mcgough\", X)",
+                "aggregate_all(count, distinct(friend(X, Z)), C)",
+                "\\+ (grandfather(\"Clara Mcgough\", Y), Y \\= X, aggregate_all(count, distinct(friend(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "32bdacf6-93b8-474a-a36b-6f97b9f4827e",
+        "question": "Who has the most parents among the parents of Anna Vandenberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Eli Vandenberg"
+        ],
+        "prolog": {
+            "query": [
+                "parent(\"Anna Vandenberg\", X)",
+                "aggregate_all(count, distinct(parent(X, Z)), C)",
+                "\\+ (parent(\"Anna Vandenberg\", Y), Y \\= X, aggregate_all(count, distinct(parent(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "398c274f-8d7f-4e43-a8e8-ca019d724763",
+        "question": "Who has the most female cousins among the friends of Rhoda Narvaez?",
+        "solution_traces": "[]",
+        "answer": [
+            "Luisa Narvaez"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Rhoda Narvaez\", X)",
+                "aggregate_all(count, distinct(female_cousin(X, Z)), C)",
+                "\\+ (friend(\"Rhoda Narvaez\", Y), Y \\= X, aggregate_all(count, distinct(female_cousin(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "6626af7f-5efb-43a4-80c1-2fa6b7bfbb54",
+        "question": "Who has the most husbands among the children of Dani Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Louann Chrisman"
+        ],
+        "prolog": {
+            "query": [
+                "child(\"Dani Remillard\", X)",
+                "aggregate_all(count, distinct(husband(X, Z)), C)",
+                "\\+ (child(\"Dani Remillard\", Y), Y \\= X, aggregate_all(count, distinct(husband(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "bf93819b-a8b4-4a94-8481-974ecfbda0a3",
+        "question": "Who has the most male cousins among the grandchildren of Jackie Vandenberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Anna Vandenberg"
+        ],
+        "prolog": {
+            "query": [
+                "grandchild(\"Jackie Vandenberg\", X)",
+                "aggregate_all(count, distinct(male_cousin(X, Z)), C)",
+                "\\+ (grandchild(\"Jackie Vandenberg\", Y), Y \\= X, aggregate_all(count, distinct(male_cousin(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "bce7bfd0-c9ba-4b5c-a6a7-e06c1deff433",
+        "question": "Who has the most brothers among the parents of Lyman Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Richard Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "parent(\"Lyman Oberg\", X)",
+                "aggregate_all(count, distinct(brother(X, Z)), C)",
+                "\\+ (parent(\"Lyman Oberg\", Y), Y \\= X, aggregate_all(count, distinct(brother(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "7b9d3c36-8bb5-4962-b7d8-f212abd8aea7",
+        "question": "Who has the most second uncles among the friends of Cherlyn Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Delsie Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Cherlyn Oberg\", X)",
+                "aggregate_all(count, distinct(second_uncle(X, Z)), C)",
+                "\\+ (friend(\"Cherlyn Oberg\", Y), Y \\= X, aggregate_all(count, distinct(second_uncle(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "598b85e0-f928-4516-ad0a-e9f7f8bc946a",
+        "question": "Who has the most husbands among the friends of Valentin Vandenberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Louann Chrisman"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Valentin Vandenberg\", X)",
+                "aggregate_all(count, distinct(husband(X, Z)), C)",
+                "\\+ (friend(\"Valentin Vandenberg\", Y), Y \\= X, aggregate_all(count, distinct(husband(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "86829f63-b8f1-4e0b-8c1f-cef6dc29250d",
+        "question": "Who has the most great-grandchildren among the grandsons of Abel Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Monte Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "grandson(\"Abel Oberg\", X)",
+                "aggregate_all(count, distinct(great_grandchild(X, Z)), C)",
+                "\\+ (grandson(\"Abel Oberg\", Y), Y \\= X, aggregate_all(count, distinct(great_grandchild(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "cdd1f86b-60fb-41ca-9c6b-eba140d7e5b2",
+        "question": "Who has the most grandchildren among the grandsons of Abel Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Monte Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "grandson(\"Abel Oberg\", X)",
+                "aggregate_all(count, distinct(grandchild(X, Z)), C)",
+                "\\+ (grandson(\"Abel Oberg\", Y), Y \\= X, aggregate_all(count, distinct(grandchild(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "5e21fa51-972f-4e8f-90db-5c70cdfe20a6",
+        "question": "Who has the most husbands among the grandparents of Celestine Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Morgan Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "grandparent(\"Celestine Remillard\", X)",
+                "aggregate_all(count, distinct(husband(X, Z)), C)",
+                "\\+ (grandparent(\"Celestine Remillard\", Y), Y \\= X, aggregate_all(count, distinct(husband(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "ef76d87d-70d0-460f-a3d6-600d50e3ed4d",
+        "question": "Who has the most children among the daughters of Dani Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Louann Chrisman"
+        ],
+        "prolog": {
+            "query": [
+                "daughter(\"Dani Remillard\", X)",
+                "aggregate_all(count, distinct(child(X, Z)), C)",
+                "\\+ (daughter(\"Dani Remillard\", Y), Y \\= X, aggregate_all(count, distinct(child(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "220a3c7d-906e-42e4-85ac-19bc2f62e50e",
+        "question": "Who has the most grandfathers among the grandparents of Dorinda Chrisman?",
+        "solution_traces": "[]",
+        "answer": [
+            "Hunter Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "grandparent(\"Dorinda Chrisman\", X)",
+                "aggregate_all(count, distinct(grandfather(X, Z)), C)",
+                "\\+ (grandparent(\"Dorinda Chrisman\", Y), Y \\= X, aggregate_all(count, distinct(grandfather(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "010d7d9e-2318-484a-8a71-8bec7acf8002",
+        "question": "Who has the most female first cousins once removed among the great-grandchildren of Aurelia Dishman?",
+        "solution_traces": "[]",
+        "answer": [
+            "Kori Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandchild(\"Aurelia Dishman\", X)",
+                "aggregate_all(count, distinct(female_first_cousin_once_removed(X, Z)), C)",
+                "\\+ (great_grandchild(\"Aurelia Dishman\", Y), Y \\= X, aggregate_all(count, distinct(female_first_cousin_once_removed(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 4,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "8d3b4c23-7cb5-4de4-bbe8-7cac172ea77f",
+        "question": "Who has the most sisters among the parents of Luke Wilke?",
+        "solution_traces": "[]",
+        "answer": [
+            "Amy Wilke"
+        ],
+        "prolog": {
+            "query": [
+                "parent(\"Luke Wilke\", X)",
+                "aggregate_all(count, distinct(sister(X, Z)), C)",
+                "\\+ (parent(\"Luke Wilke\", Y), Y \\= X, aggregate_all(count, distinct(sister(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 225,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    }
+]

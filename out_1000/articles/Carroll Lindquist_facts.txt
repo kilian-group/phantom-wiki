@@ -1,0 +1,15 @@
+son("Carroll Lindquist", "Roscoe Lindquist").
+daughter("Carroll Lindquist", "Maria Lindquist").
+wife("Carroll Lindquist", "Alysa Lindquist").
+friend("Carroll Lindquist", "Sung Simons").
+friend("Carroll Lindquist", "Benito Ruth").
+friend("Carroll Lindquist", "Thalia Linden").
+friend("Carroll Lindquist", "Israel Mathes").
+friend("Carroll Lindquist", "Kip Murdoch").
+friend("Carroll Lindquist", "Romona Fordham").
+friend("Carroll Lindquist", "Emma Bowles").
+friend("Carroll Lindquist", "Justin Putnam").
+dob("Carroll Lindquist", "0377-11-05").
+job("Carroll Lindquist", "medical technical officer").
+hobby("Carroll Lindquist", "jukskei").
+gender("Carroll Lindquist", "male").

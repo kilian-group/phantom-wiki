@@ -1,0 +1,13 @@
+sister("Esteban Schoonmaker", "Annabelle Schoonmaker").
+sister("Esteban Schoonmaker", "Jona Carrell").
+sister("Esteban Schoonmaker", "Liane Schoonmaker").
+brother("Esteban Schoonmaker", "Anibal Schoonmaker").
+mother("Esteban Schoonmaker", "Robyn Schoonmaker").
+father("Esteban Schoonmaker", "Ali Schoonmaker").
+friend("Esteban Schoonmaker", "Abraham Decosta").
+friend("Esteban Schoonmaker", "Elissa Kovach").
+friend("Esteban Schoonmaker", "Leda Cormier").
+dob("Esteban Schoonmaker", "0259-12-15").
+job("Esteban Schoonmaker", "sales professional").
+hobby("Esteban Schoonmaker", "audiophile").
+gender("Esteban Schoonmaker", "male").

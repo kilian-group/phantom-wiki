@@ -1,0 +1,15 @@
+mother("Aldo Paynter", "Jennifer Paynter").
+father("Aldo Paynter", "Hank Paynter").
+friend("Aldo Paynter", "Newton Pellegrino").
+friend("Aldo Paynter", "Derek Valladares").
+friend("Aldo Paynter", "Phylis Cook").
+friend("Aldo Paynter", "Alix Mahoney").
+friend("Aldo Paynter", "Lona Corwin").
+friend("Aldo Paynter", "Vita Resendez").
+friend("Aldo Paynter", "Manuel Smart").
+friend("Aldo Paynter", "Pamala Medellin").
+friend("Aldo Paynter", "Flora Cushman").
+dob("Aldo Paynter", "0481-04-22").
+job("Aldo Paynter", "estate manager").
+hobby("Aldo Paynter", "trainspotting").
+gender("Aldo Paynter", "male").

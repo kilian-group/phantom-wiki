@@ -1,0 +1,14 @@
+son("Ricardo Runnels", "Rudy Runnels").
+wife("Ricardo Runnels", "Manuela Runnels").
+friend("Ricardo Runnels", "Kyong Eaves").
+friend("Ricardo Runnels", "Tyrone Linares").
+friend("Ricardo Runnels", "Holley Fredrick").
+friend("Ricardo Runnels", "Nora Noland").
+friend("Ricardo Runnels", "Kayla Ballard").
+friend("Ricardo Runnels", "Morgan Perrine").
+friend("Ricardo Runnels", "Karl Depriest").
+friend("Ricardo Runnels", "Max Bauman").
+dob("Ricardo Runnels", "0502-03-27").
+job("Ricardo Runnels", "air traffic controller").
+hobby("Ricardo Runnels", "religious studies").
+gender("Ricardo Runnels", "male").

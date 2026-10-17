@@ -1,0 +1,15 @@
+sister("Janey Plumley", "Shawnta Plumley").
+mother("Janey Plumley", "Lea Plumley").
+father("Janey Plumley", "Salvador Plumley").
+friend("Janey Plumley", "Ella Mathes").
+friend("Janey Plumley", "Lura Leclair").
+friend("Janey Plumley", "Donnie Dunlap").
+friend("Janey Plumley", "Truman Holtz").
+friend("Janey Plumley", "Shizuko Sheridan").
+friend("Janey Plumley", "Yasmin Gordon").
+friend("Janey Plumley", "Rebecka Schlosser").
+friend("Janey Plumley", "Glen Towns").
+dob("Janey Plumley", "0461-08-24").
+job("Janey Plumley", "broadcast presenter").
+hobby("Janey Plumley", "mineral collecting").
+gender("Janey Plumley", "female").

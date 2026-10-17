@@ -1,0 +1,11 @@
+mother("Rudolf Lai", "Naomi Lai").
+father("Rudolf Lai", "Terrell Lai").
+friend("Rudolf Lai", "Shaunte Gilliam").
+friend("Rudolf Lai", "Domonique Fordham").
+friend("Rudolf Lai", "Flora Cushman").
+friend("Rudolf Lai", "Hubert Noland").
+friend("Rudolf Lai", "Vance Fredrick").
+dob("Rudolf Lai", "0582-05-16").
+job("Rudolf Lai", "producer").
+hobby("Rudolf Lai", "beach volleyball").
+gender("Rudolf Lai", "male").

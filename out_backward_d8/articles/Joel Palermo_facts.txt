@@ -1,0 +1,9 @@
+sister("Joel Palermo", "Madelyn Palermo").
+sister("Joel Palermo", "Zoraida Palermo").
+brother("Joel Palermo", "Roman Palermo").
+mother("Joel Palermo", "Ester Palermo").
+father("Joel Palermo", "Francisco Palermo").
+dob("Joel Palermo", "0366-02-03").
+job("Joel Palermo", "chartered certified accountant").
+hobby("Joel Palermo", "tea bag collecting").
+gender("Joel Palermo", "male").

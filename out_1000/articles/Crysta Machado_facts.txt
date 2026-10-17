@@ -1,0 +1,18 @@
+son("Crysta Machado", "Antony Machado").
+husband("Crysta Machado", "Olin Machado").
+friend("Crysta Machado", "Dan Younger").
+friend("Crysta Machado", "Zora Morehead").
+friend("Crysta Machado", "Judith Lebrun").
+friend("Crysta Machado", "Lazaro Hsu").
+friend("Crysta Machado", "Scotty Gilliam").
+friend("Crysta Machado", "Shaunna Fordham").
+friend("Crysta Machado", "Aaron Bowles").
+friend("Crysta Machado", "Alex Burger").
+friend("Crysta Machado", "Cleveland Capps").
+friend("Crysta Machado", "Rudolf Sanborn").
+friend("Crysta Machado", "Wallace Brumbaugh").
+friend("Crysta Machado", "Ramon Swartz").
+dob("Crysta Machado", "0495-09-13").
+job("Crysta Machado", "theatre manager").
+hobby("Crysta Machado", "action figure").
+gender("Crysta Machado", "female").

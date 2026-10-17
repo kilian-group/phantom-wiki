@@ -1,0 +1,19 @@
+mother("Winfred Molina", "Tanya Molina").
+father("Winfred Molina", "Conrad Molina").
+daughter("Winfred Molina", "Krystyna Schatz").
+wife("Winfred Molina", "Annabell Molina").
+friend("Winfred Molina", "Delma Keyes").
+friend("Winfred Molina", "Sung Resendez").
+friend("Winfred Molina", "Deja Gilliam").
+friend("Winfred Molina", "Nickolas Dacosta").
+friend("Winfred Molina", "Sung Fordham").
+friend("Winfred Molina", "Audie Lasher").
+friend("Winfred Molina", "Daisy Autry").
+friend("Winfred Molina", "Davis Eaves").
+friend("Winfred Molina", "Clara Corwin").
+friend("Winfred Molina", "Rochelle Corwin").
+friend("Winfred Molina", "Madalene Lebrun").
+dob("Winfred Molina", "0335-04-05").
+job("Winfred Molina", "drilling engineer").
+hobby("Winfred Molina", "hiking/backpacking").
+gender("Winfred Molina", "male").

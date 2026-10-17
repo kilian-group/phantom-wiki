@@ -1,0 +1,12 @@
+sister("Dale Jefferson", "Drema Jefferson").
+mother("Dale Jefferson", "Viva Jefferson").
+father("Dale Jefferson", "Kendrick Jefferson").
+friend("Dale Jefferson", "Drema Jefferson").
+friend("Dale Jefferson", "Daisy Autry").
+friend("Dale Jefferson", "Maranda Goff").
+friend("Dale Jefferson", "Lura Leclair").
+friend("Dale Jefferson", "Karina Smart").
+dob("Dale Jefferson", "0341-11-17").
+job("Dale Jefferson", "soil scientist").
+hobby("Dale Jefferson", "deltiology").
+gender("Dale Jefferson", "male").

@@ -1,0 +1,16 @@
+sister("Gene Smock", "Deane Smock").
+sister("Gene Smock", "Isabell Smock").
+brother("Gene Smock", "Aubrey Smock").
+mother("Gene Smock", "Lannie Smock").
+father("Gene Smock", "Alvaro Smock").
+son("Gene Smock", "Williams Smock").
+wife("Gene Smock", "Dominique Smock").
+friend("Gene Smock", "Jeannine Wexler").
+friend("Gene Smock", "Ricardo Hackworth").
+friend("Gene Smock", "Shelli Beltran").
+friend("Gene Smock", "Alison Smock").
+friend("Gene Smock", "Deane Smock").
+dob("Gene Smock", "0208-08-16").
+job("Gene Smock", "immunologist").
+hobby("Gene Smock", "architecture").
+gender("Gene Smock", "male").

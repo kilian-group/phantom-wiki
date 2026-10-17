@@ -1,0 +1,16 @@
+daughter("Bill Clement", "Germaine Mahoney").
+daughter("Bill Clement", "Juanita Eaves").
+wife("Bill Clement", "Lera Clement").
+friend("Bill Clement", "Homer Morehead").
+friend("Bill Clement", "Dixie Murdoch").
+friend("Bill Clement", "Alisha Fredrick").
+friend("Bill Clement", "Donald Fordham").
+friend("Bill Clement", "Claudio Tyree").
+friend("Bill Clement", "Royce Callender").
+friend("Bill Clement", "Mayra Geter").
+friend("Bill Clement", "Paris Cordova").
+friend("Bill Clement", "Sharon Ingalls").
+dob("Bill Clement", "0323-10-05").
+job("Bill Clement", "media planner").
+hobby("Bill Clement", "physics").
+gender("Bill Clement", "male").

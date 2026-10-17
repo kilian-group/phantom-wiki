@@ -1,0 +1,20 @@
+sister("Seymour Simons", "Babette Simons").
+sister("Seymour Simons", "Naomi Bellows").
+mother("Seymour Simons", "Marcelina Simons").
+father("Seymour Simons", "Bryon Simons").
+friend("Seymour Simons", "Marguerite Lebrun").
+friend("Seymour Simons", "Holley Fredrick").
+friend("Seymour Simons", "Claudio Tyree").
+friend("Seymour Simons", "Sammy Yarbrough").
+friend("Seymour Simons", "Ashleigh Galvan").
+friend("Seymour Simons", "Ben Sheridan").
+friend("Seymour Simons", "Cathy Alessi").
+friend("Seymour Simons", "Irvin Shaw").
+friend("Seymour Simons", "Solomon Shaw").
+friend("Seymour Simons", "Noreen Booth").
+friend("Seymour Simons", "Nydia Willoughby").
+friend("Seymour Simons", "Mike Schram").
+dob("Seymour Simons", "0501-05-29").
+job("Seymour Simons", "toxicologist").
+hobby("Seymour Simons", "fishkeeping").
+gender("Seymour Simons", "male").

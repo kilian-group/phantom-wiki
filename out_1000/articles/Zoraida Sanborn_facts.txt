@@ -1,0 +1,20 @@
+son("Zoraida Sanborn", "Thaddeus Sanborn").
+husband("Zoraida Sanborn", "Rudolf Sanborn").
+friend("Zoraida Sanborn", "Elroy Hamlin").
+friend("Zoraida Sanborn", "Ilona Klink").
+friend("Zoraida Sanborn", "Terrell Lai").
+friend("Zoraida Sanborn", "Ofelia Callender").
+friend("Zoraida Sanborn", "Jamie Bellows").
+friend("Zoraida Sanborn", "Marybeth Dana").
+friend("Zoraida Sanborn", "Michaela Corwin").
+friend("Zoraida Sanborn", "Shirley Dalton").
+friend("Zoraida Sanborn", "Jarrod Ibarra").
+friend("Zoraida Sanborn", "Shirley Ibarra").
+friend("Zoraida Sanborn", "Evette Gibbs").
+friend("Zoraida Sanborn", "Luisa Oliveira").
+friend("Zoraida Sanborn", "Moshe Macias").
+friend("Zoraida Sanborn", "Myrl Mcgough").
+dob("Zoraida Sanborn", "0398-01-04").
+job("Zoraida Sanborn", "radiographer").
+hobby("Zoraida Sanborn", "button collecting").
+gender("Zoraida Sanborn", "female").

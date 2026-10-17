@@ -1,0 +1,16 @@
+mother("Drew Smart", "Karina Smart").
+father("Drew Smart", "Bret Smart").
+son("Drew Smart", "Jefferson Smart").
+daughter("Drew Smart", "Dixie Murdoch").
+wife("Drew Smart", "Amy Smart").
+friend("Drew Smart", "Benito Skidmore").
+friend("Drew Smart", "Marilynn Capps").
+friend("Drew Smart", "Amy Wilke").
+friend("Drew Smart", "Annabell Horan").
+friend("Drew Smart", "Gerry Dorn").
+friend("Drew Smart", "Shemika Hirsch").
+friend("Drew Smart", "Christen Corwin").
+dob("Drew Smart", "0373-11-27").
+job("Drew Smart", "horticultural therapist").
+hobby("Drew Smart", "figure skating").
+gender("Drew Smart", "male").

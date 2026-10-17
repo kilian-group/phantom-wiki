@@ -1,0 +1,8 @@
+daughter("Preston Francois", "Sha Langley").
+wife("Preston Francois", "Rosalinda Francois").
+friend("Preston Francois", "Ester Kovach").
+friend("Preston Francois", "Laverna Kovach").
+dob("Preston Francois", "0267-11-18").
+job("Preston Francois", "immigration officer").
+hobby("Preston Francois", "croquet").
+gender("Preston Francois", "male").

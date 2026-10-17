@@ -1,0 +1,20 @@
+sister("Solomon Corwin", "Bee Corwin").
+sister("Solomon Corwin", "Delpha Younger").
+brother("Solomon Corwin", "Nathan Corwin").
+mother("Solomon Corwin", "Rochelle Corwin").
+father("Solomon Corwin", "Spencer Corwin").
+son("Solomon Corwin", "Colin Corwin").
+son("Solomon Corwin", "Robby Corwin").
+daughter("Solomon Corwin", "Katherine Corwin").
+daughter("Solomon Corwin", "Malissa Corwin").
+wife("Solomon Corwin", "Christen Corwin").
+friend("Solomon Corwin", "Devon Leclair").
+friend("Solomon Corwin", "Meghan Keyes").
+friend("Solomon Corwin", "Ardath Carswell").
+friend("Solomon Corwin", "Maryann Peeler").
+friend("Solomon Corwin", "Douglass Ingalls").
+friend("Solomon Corwin", "Keisha Mcdonald").
+dob("Solomon Corwin", "0378-12-02").
+job("Solomon Corwin", "educational psychologist").
+hobby("Solomon Corwin", "storm chasing").
+gender("Solomon Corwin", "male").

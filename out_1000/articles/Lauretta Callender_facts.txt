@@ -1,0 +1,14 @@
+sister("Lauretta Callender", "Ofelia Callender").
+sister("Lauretta Callender", "Randi Crocker").
+sister("Lauretta Callender", "Vilma Callender").
+brother("Lauretta Callender", "Jonathon Callender").
+mother("Lauretta Callender", "Madaline Callender").
+father("Lauretta Callender", "Royce Callender").
+friend("Lauretta Callender", "Melina Simons").
+friend("Lauretta Callender", "Lucio Townsend").
+friend("Lauretta Callender", "Johnathon Noland").
+friend("Lauretta Callender", "Emma Wellington").
+dob("Lauretta Callender", "0422-07-04").
+job("Lauretta Callender", "teacher").
+hobby("Lauretta Callender", "whale watching").
+gender("Lauretta Callender", "female").

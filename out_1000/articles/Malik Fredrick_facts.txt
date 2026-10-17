@@ -1,0 +1,16 @@
+sister("Malik Fredrick", "Odelia Fredrick").
+brother("Malik Fredrick", "Anderson Fredrick").
+mother("Malik Fredrick", "Holley Fredrick").
+father("Malik Fredrick", "Erik Fredrick").
+son("Malik Fredrick", "Delbert Fredrick").
+son("Malik Fredrick", "Levi Fredrick").
+daughter("Malik Fredrick", "Kelley Cheney").
+wife("Malik Fredrick", "Shelly Fredrick").
+friend("Malik Fredrick", "Yasmin Gordon").
+friend("Malik Fredrick", "Brock Pugliese").
+friend("Malik Fredrick", "Lashanda Salem").
+friend("Malik Fredrick", "Harold Waltz").
+dob("Malik Fredrick", "0374-05-22").
+job("Malik Fredrick", "arboriculturist").
+hobby("Malik Fredrick", "reading").
+gender("Malik Fredrick", "male").

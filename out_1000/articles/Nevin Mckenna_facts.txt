@@ -1,0 +1,20 @@
+sister("Nevin Mckenna", "Kimberely Corso").
+brother("Nevin Mckenna", "Ira Mckenna").
+brother("Nevin Mckenna", "Porter Mckenna").
+brother("Nevin Mckenna", "Rodrigo Mckenna").
+mother("Nevin Mckenna", "Dorathy Mckenna").
+father("Nevin Mckenna", "Cameron Mckenna").
+son("Nevin Mckenna", "Rogelio Mckenna").
+wife("Nevin Mckenna", "Belia Mckenna").
+friend("Nevin Mckenna", "Eugene Geter").
+friend("Nevin Mckenna", "Jody Valladares").
+friend("Nevin Mckenna", "Shelba Simons").
+friend("Nevin Mckenna", "Adella Townsend").
+friend("Nevin Mckenna", "Katerine Dunlap").
+friend("Nevin Mckenna", "Aron Robinett").
+friend("Nevin Mckenna", "Kieth Shaw").
+friend("Nevin Mckenna", "Nelly Jarrett").
+dob("Nevin Mckenna", "0445-10-15").
+job("Nevin Mckenna", "retail banker").
+hobby("Nevin Mckenna", "deltiology").
+gender("Nevin Mckenna", "male").

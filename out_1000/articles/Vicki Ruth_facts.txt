@@ -1,0 +1,14 @@
+sister("Vicki Ruth", "Brigette Bales").
+sister("Vicki Ruth", "Jann Ruth").
+brother("Vicki Ruth", "Benito Ruth").
+mother("Vicki Ruth", "Shante Ruth").
+father("Vicki Ruth", "Roman Ruth").
+friend("Vicki Ruth", "Austin Boutte").
+friend("Vicki Ruth", "Vanessa Broughton").
+friend("Vicki Ruth", "Valeria Medellin").
+friend("Vicki Ruth", "Tomasa Kell").
+friend("Vicki Ruth", "Jarvis Valladares").
+dob("Vicki Ruth", "0339-02-04").
+job("Vicki Ruth", "pension scheme manager").
+hobby("Vicki Ruth", "baseball").
+gender("Vicki Ruth", "female").

@@ -1,0 +1,13 @@
+daughter("Gerry Shank", "Almeta Forester").
+wife("Gerry Shank", "Isabell Shank").
+friend("Gerry Shank", "Avery Nolasco").
+friend("Gerry Shank", "Paula Rudolph").
+friend("Gerry Shank", "Miles Burdette").
+friend("Gerry Shank", "Elyse Mahoney").
+friend("Gerry Shank", "Ruben Corwin").
+friend("Gerry Shank", "Latrina Mathes").
+friend("Gerry Shank", "Glenn Levine").
+dob("Gerry Shank", "0293-12-06").
+job("Gerry Shank", "systems developer").
+hobby("Gerry Shank", "animation").
+gender("Gerry Shank", "male").

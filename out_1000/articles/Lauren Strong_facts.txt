@@ -1,0 +1,14 @@
+brother("Lauren Strong", "Stuart Strong").
+mother("Lauren Strong", "Stacy Strong").
+father("Lauren Strong", "Solomon Strong").
+friend("Lauren Strong", "Mia Resendez").
+friend("Lauren Strong", "Zachery Upton").
+friend("Lauren Strong", "Elyse Mahoney").
+friend("Lauren Strong", "Elroy Goff").
+friend("Lauren Strong", "Nelly Smart").
+friend("Lauren Strong", "Elicia Fordham").
+friend("Lauren Strong", "Rosina Putnam").
+dob("Lauren Strong", "0454-06-26").
+job("Lauren Strong", "publishing rights manager").
+hobby("Lauren Strong", "jukskei").
+gender("Lauren Strong", "female").

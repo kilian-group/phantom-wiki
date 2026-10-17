@@ -1,0 +1,19 @@
+mother("Thaddeus Sanborn", "Zoraida Sanborn").
+father("Thaddeus Sanborn", "Rudolf Sanborn").
+daughter("Thaddeus Sanborn", "Johanna Sanborn").
+wife("Thaddeus Sanborn", "Noreen Sanborn").
+friend("Thaddeus Sanborn", "Elisabeth Bauman").
+friend("Thaddeus Sanborn", "Denny Eaves").
+friend("Thaddeus Sanborn", "Jo Corwin").
+friend("Thaddeus Sanborn", "Reggie Medellin").
+friend("Thaddeus Sanborn", "Bradford Oliveira").
+friend("Thaddeus Sanborn", "Sona Fredrick").
+friend("Thaddeus Sanborn", "Jeana Holtz").
+friend("Thaddeus Sanborn", "Rueben Bowles").
+friend("Thaddeus Sanborn", "Dawn Rinehart").
+friend("Thaddeus Sanborn", "Deloris Marr").
+friend("Thaddeus Sanborn", "Hayden Fain").
+dob("Thaddeus Sanborn", "0425-01-07").
+job("Thaddeus Sanborn", "scientist").
+hobby("Thaddeus Sanborn", "aircraft spotting").
+gender("Thaddeus Sanborn", "male").

@@ -1,0 +1,11 @@
+mother("Jarvis Valladares", "Ella Valladares").
+father("Jarvis Valladares", "Doyle Valladares").
+son("Jarvis Valladares", "Derek Valladares").
+wife("Jarvis Valladares", "Jody Valladares").
+friend("Jarvis Valladares", "Vicki Ruth").
+friend("Jarvis Valladares", "Steve Gossett").
+friend("Jarvis Valladares", "Ellis Glass").
+dob("Jarvis Valladares", "0436-04-24").
+job("Jarvis Valladares", "product development scientist").
+hobby("Jarvis Valladares", "herping").
+gender("Jarvis Valladares", "male").

@@ -1,0 +1,429 @@
+[
+    {
+        "id": "410810fd-cc34-4677-be7c-ba54771a6ce4",
+        "question": "Who is the youngest friend of the great-grandparent of the person whose occupation is early years teacher?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeannine Wexler",
+            "Leeann Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (friend(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "friend(Y_2, Y_7)",
+                "great_grandparent(Y_4, Y_2)",
+                "job(Y_4, \"early years teacher\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 91,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "7f185f4a-6949-4bf3-9659-5e06aa56112e",
+        "question": "Who is the youngest friend of the second aunt of the person whose date of birth is 0295-05-30?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lenore Hackworth",
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (friend(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "friend(Y_2, Y_7)",
+                "second_aunt(Y_4, Y_2)",
+                "dob(Y_4, \"0295-05-30\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 91,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "0d402855-8b0f-4ac7-aa01-417d3f0d2a72",
+        "question": "Who is the youngest sister of the friend of the person whose date of birth is 0204-03-12?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deane Smock",
+            "Isabell Smock",
+            "Myrle Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "sister(Y_2, Y_7)",
+                "friend(Y_4, Y_2)",
+                "dob(Y_4, \"0204-03-12\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 91,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "d8c82540-734d-4d7d-8886-db13fb2c426c",
+        "question": "Who is the youngest sister of the sibling of the person whose hobby is shogi?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deane Smock",
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "sister(Y_2, Y_7)",
+                "sibling(Y_4, Y_2)",
+                "hobby(Y_4, \"shogi\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 91,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "393e95b5-dbda-4f8b-845d-26cdb698e714",
+        "question": "Who is the youngest parent of the sibling of the person whose occupation is barrister's clerk?",
+        "solution_traces": "[]",
+        "answer": [
+            "Alison Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (parent(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "parent(Y_2, Y_7)",
+                "sibling(Y_4, Y_2)",
+                "job(Y_4, \"barrister's clerk\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 91,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "b319b335-4248-4b2e-9c42-5a95e22f336d",
+        "question": "Who is the youngest wife of the great-grandparent of the person whose hobby is finance?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lannie Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (wife(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "wife(Y_2, Y_7)",
+                "great_grandparent(Y_4, Y_2)",
+                "hobby(Y_4, \"finance\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 91,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "ecbd139a-a5fa-41fb-9c46-ab5d40a83e3e",
+        "question": "Who is the youngest great-grandfather of the sister-in-law of the person whose date of birth is 0301-10-24?",
+        "solution_traces": "[]",
+        "answer": [
+            "Gene Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (great_grandfather(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "great_grandfather(Y_2, Y_7)",
+                "sister_in_law(Y_4, Y_2)",
+                "dob(Y_4, \"0301-10-24\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 91,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 1,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "ce870012-8fb5-4e78-9df8-9d7f9145db9c",
+        "question": "Who is the youngest sister of the sibling of the person whose date of birth is 0200-10-27?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deane Smock",
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "sister(Y_2, Y_7)",
+                "sibling(Y_4, Y_2)",
+                "dob(Y_4, \"0200-10-27\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 91,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "dcd92c4e-0788-4200-9f3d-5ad0ef27604d",
+        "question": "Who is the youngest sister of the uncle of the person whose date of birth is 0236-04-04?",
+        "solution_traces": "[]",
+        "answer": [
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "sister(Y_2, Y_7)",
+                "uncle(Y_4, Y_2)",
+                "dob(Y_4, \"0236-04-04\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 91,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "c1d2265c-8e60-499f-b21b-d875c78ff48d",
+        "question": "Who is the youngest wife of the great-grandparent of the person whose date of birth is 0326-06-13?",
+        "solution_traces": "[]",
+        "answer": [
+            "Alison Smock",
+            "Daisy Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (wife(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "wife(Y_2, Y_7)",
+                "great_grandparent(Y_4, Y_2)",
+                "dob(Y_4, \"0326-06-13\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 91,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    }
+]

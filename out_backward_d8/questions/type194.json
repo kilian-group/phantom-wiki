@@ -1,0 +1,372 @@
+[
+    {
+        "id": "bf68df1b-b3ca-4827-bf3a-36cc9318aa21",
+        "question": "Who is the person whose hobby is leaves and whose occupation is advice worker?",
+        "solution_traces": "[]",
+        "answer": [
+            "Rolland Mckenna"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_8, \"leaves\")",
+                "job(Y_8, \"advice worker\")"
+            ],
+            "answer": "Y_8"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_8",
+            "is",
+            "<attribute_value>_8",
+            "and whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 194,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "cd1620a8-3891-48ad-b7bb-2a2c4b1ce9b7",
+        "question": "Who is the person whose occupation is print production planner and whose date of birth is 0292-04-16?",
+        "solution_traces": "[]",
+        "answer": [
+            "Johnathan Boutte"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_8, \"print production planner\")",
+                "dob(Y_8, \"0292-04-16\")"
+            ],
+            "answer": "Y_8"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_8",
+            "is",
+            "<attribute_value>_8",
+            "and whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 194,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "1ad8bd6e-0bb8-47aa-ae63-bc5ac2bfbc01",
+        "question": "Who is the person whose date of birth is 0254-01-20 and whose hobby is chess?",
+        "solution_traces": "[]",
+        "answer": [
+            "Daniel Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_8, \"0254-01-20\")",
+                "hobby(Y_8, \"chess\")"
+            ],
+            "answer": "Y_8"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_8",
+            "is",
+            "<attribute_value>_8",
+            "and whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 194,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "f9b5b745-9ac3-4aba-ad04-cd9c180ee826",
+        "question": "Who is the person whose date of birth is 0276-06-18 and whose hobby is snowmobiling?",
+        "solution_traces": "[]",
+        "answer": [
+            "Bradford Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_8, \"0276-06-18\")",
+                "hobby(Y_8, \"snowmobiling\")"
+            ],
+            "answer": "Y_8"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_8",
+            "is",
+            "<attribute_value>_8",
+            "and whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 194,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "1dccd65b-79e9-4789-b55d-7cdbcaa4951b",
+        "question": "Who is the person whose date of birth is 0251-06-10 and whose hobby is gongoozling?",
+        "solution_traces": "[]",
+        "answer": [
+            "Maxwell Henderson"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_8, \"0251-06-10\")",
+                "hobby(Y_8, \"gongoozling\")"
+            ],
+            "answer": "Y_8"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_8",
+            "is",
+            "<attribute_value>_8",
+            "and whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 194,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "7e0e44a6-a20e-43df-bd12-5c04b00581a3",
+        "question": "Who is the person whose hobby is magic and whose occupation is music therapist?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dwain Lizotte"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_8, \"magic\")",
+                "job(Y_8, \"music therapist\")"
+            ],
+            "answer": "Y_8"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_8",
+            "is",
+            "<attribute_value>_8",
+            "and whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 194,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "b45384e9-cf76-4b26-b732-adbda970c20f",
+        "question": "Who is the person whose hobby is finance and whose date of birth is 0268-03-07?",
+        "solution_traces": "[]",
+        "answer": [
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_8, \"finance\")",
+                "dob(Y_8, \"0268-03-07\")"
+            ],
+            "answer": "Y_8"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_8",
+            "is",
+            "<attribute_value>_8",
+            "and whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 194,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "68e08a65-2d2f-4ed5-af8a-35ebf3a71a1a",
+        "question": "Who is the person whose occupation is environmental education officer and whose hobby is phillumeny?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jona Carrell"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_8, \"environmental education officer\")",
+                "hobby(Y_8, \"phillumeny\")"
+            ],
+            "answer": "Y_8"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_8",
+            "is",
+            "<attribute_value>_8",
+            "and whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 194,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "afa39c51-aafc-45b0-9a7e-6858fe27218d",
+        "question": "Who is the person whose occupation is probation officer and whose date of birth is 0277-07-02?",
+        "solution_traces": "[]",
+        "answer": [
+            "Charlie Kovach"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_8, \"probation officer\")",
+                "dob(Y_8, \"0277-07-02\")"
+            ],
+            "answer": "Y_8"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_8",
+            "is",
+            "<attribute_value>_8",
+            "and whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 194,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "0280715e-b16f-4acf-849a-c40055625c12",
+        "question": "Who is the person whose occupation is museum exhibitions officer and whose date of birth is 0337-08-25?",
+        "solution_traces": "[]",
+        "answer": [
+            "Rosanna Palermo"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_8, \"museum exhibitions officer\")",
+                "dob(Y_8, \"0337-08-25\")"
+            ],
+            "answer": "Y_8"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_8",
+            "is",
+            "<attribute_value>_8",
+            "and whose",
+            "<attribute_name>_9",
+            "is",
+            "<attribute_value>_9",
+            "?"
+        ],
+        "type": 194,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    }
+]

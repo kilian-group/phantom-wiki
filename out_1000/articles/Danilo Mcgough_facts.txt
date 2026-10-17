@@ -1,0 +1,13 @@
+mother("Danilo Mcgough", "Tonia Mcgough").
+father("Danilo Mcgough", "Donnie Mcgough").
+friend("Danilo Mcgough", "Chelsie Wilkie").
+friend("Danilo Mcgough", "Brandon Winn").
+friend("Danilo Mcgough", "Dave Alarcon").
+friend("Danilo Mcgough", "Dennis Hamann").
+friend("Danilo Mcgough", "Lakeshia Steadman").
+friend("Danilo Mcgough", "Latrina Mathes").
+friend("Danilo Mcgough", "Glenn Levine").
+dob("Danilo Mcgough", "0471-04-01").
+job("Danilo Mcgough", "production engineer").
+hobby("Danilo Mcgough", "insect collecting").
+gender("Danilo Mcgough", "male").

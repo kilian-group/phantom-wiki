@@ -1,0 +1,8 @@
+son("Mercedes Shirk", "Freddy Shirk").
+husband("Mercedes Shirk", "Darin Shirk").
+friend("Mercedes Shirk", "Trevor Saari").
+friend("Mercedes Shirk", "Kasey Cedillo").
+dob("Mercedes Shirk", "0262-04-11").
+job("Mercedes Shirk", "forensic scientist").
+hobby("Mercedes Shirk", "field hockey").
+gender("Mercedes Shirk", "female").

@@ -1,0 +1,13 @@
+son("Madalene Waltz", "Pedro Waltz").
+daughter("Madalene Waltz", "Evelia Waltz").
+daughter("Madalene Waltz", "Flora Noland").
+husband("Madalene Waltz", "Harold Waltz").
+friend("Madalene Waltz", "Morgan Perrine").
+friend("Madalene Waltz", "Pablo Cook").
+friend("Madalene Waltz", "Gaye Swartz").
+friend("Madalene Waltz", "Ramiro Dana").
+friend("Madalene Waltz", "Holley Fredrick").
+dob("Madalene Waltz", "0412-12-15").
+job("Madalene Waltz", "accommodation manager").
+hobby("Madalene Waltz", "leaves").
+gender("Madalene Waltz", "female").

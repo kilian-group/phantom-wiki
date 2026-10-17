@@ -1,0 +1,20 @@
+sister("Estella Dana", "Alice Dana").
+sister("Estella Dana", "Marybeth Dana").
+brother("Estella Dana", "Gale Dana").
+brother("Estella Dana", "Jon Dana").
+mother("Estella Dana", "Addie Dana").
+father("Estella Dana", "Drew Dana").
+friend("Estella Dana", "Georgine Mahoney").
+friend("Estella Dana", "Vita Resendez").
+friend("Estella Dana", "Buck Smart").
+friend("Estella Dana", "Lashawnda Fordham").
+friend("Estella Dana", "Lashandra Bowles").
+friend("Estella Dana", "Iluminada Capps").
+friend("Estella Dana", "Cedric Wilke").
+friend("Estella Dana", "Jayson Sheridan").
+friend("Estella Dana", "Lakeshia Steadman").
+friend("Estella Dana", "Ashton Mahoney").
+dob("Estella Dana", "0422-06-30").
+job("Estella Dana", "chemical engineer").
+hobby("Estella Dana", "learning").
+gender("Estella Dana", "female").

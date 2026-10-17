@@ -1,0 +1,357 @@
+[
+    {
+        "id": "11c00d1f-962f-487d-b3b6-1de333755655",
+        "question": "How many cousins does the cousin of Rolland Mckenna have?",
+        "solution_traces": "[{\"Y_3\": \"Yoko Wilkie\", \"Count_1\": 3}, {\"Count_1\": 7, \"Y_3\": \"Lila Petry\"}, {\"Count_1\": 3, \"Y_3\": \"Nathanial Lizotte\"}, {\"Y_3\": \"Hanh Mohan\", \"Count_1\": 3}, {\"Y_3\": \"Maranda Lizotte\", \"Count_1\": 3}, {\"Y_3\": \"Chuck Lizotte\", \"Count_1\": 3}]",
+        "answer": [
+            "3",
+            "7"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(cousin(Y_3, Y_1)), Count_1)",
+                "cousin(\"Rolland Mckenna\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "8da3b715-af37-4103-9668-eea86887d3c6",
+        "question": "How many sons does the parent of Johnathan Boutte have?",
+        "solution_traces": "[{\"Y_3\": \"Kevin Boutte\", \"Count_1\": 1}, {\"Count_1\": 1, \"Y_3\": \"Hanh Boutte\"}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(son(Y_3, Y_1)), Count_1)",
+                "parent(\"Johnathan Boutte\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "fcc08e5c-0a6f-4e59-96a6-5aa63b647ab2",
+        "question": "How many sisters does the friend of Daniel Brannan have?",
+        "solution_traces": "[{\"Count_1\": 0, \"Y_3\": \"Jeannine Skaggs\"}, {\"Y_3\": \"Hanh Mohan\", \"Count_1\": 2}, {\"Count_1\": 0, \"Y_3\": \"Duncan Pannell\"}]",
+        "answer": [
+            "0",
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sister(Y_3, Y_1)), Count_1)",
+                "friend(\"Daniel Brannan\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "84d77689-e964-49d3-973b-e7ed9a3939fd",
+        "question": "How many cousins does the niece of Bradford Nicolas have?",
+        "solution_traces": "[{\"Y_3\": \"Sha Langley\", \"Count_1\": 5}, {\"Count_1\": 3, \"Y_3\": \"Connie Nicolas\"}, {\"Count_1\": 3, \"Y_3\": \"Lera Brook\"}, {\"Count_1\": 3, \"Y_3\": \"Marilyn Nicolas\"}]",
+        "answer": [
+            "3",
+            "5"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(cousin(Y_3, Y_1)), Count_1)",
+                "niece(\"Bradford Nicolas\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "19735748-a8e6-4f92-9c4d-d80e77f313cd",
+        "question": "How many husbands does the friend of Maxwell Henderson have?",
+        "solution_traces": "[{\"Count_1\": 0, \"Y_3\": \"Brian Beltran\"}, {\"Count_1\": 1, \"Y_3\": \"Cherry Nicolas\"}, {\"Count_1\": 0, \"Y_3\": \"Ulysses Nicolas\"}, {\"Count_1\": 0, \"Y_3\": \"Deane Smock\"}]",
+        "answer": [
+            "0",
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(husband(Y_3, Y_1)), Count_1)",
+                "friend(\"Maxwell Henderson\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "e7d2149d-0994-4a8f-84eb-78b32d1f40a0",
+        "question": "How many cousins does the nephew of Dwain Lizotte have?",
+        "solution_traces": "[{\"Count_1\": 6, \"Y_3\": \"Lucas Mckenna\"}, {\"Y_3\": \"Rolland Mckenna\", \"Count_1\": 6}]",
+        "answer": [
+            "6"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(cousin(Y_3, Y_1)), Count_1)",
+                "nephew(\"Dwain Lizotte\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "6c666444-a4d4-4004-b6fb-49b2647dc7dd",
+        "question": "How many great-granddaughters does the parent of Shelli Beltran have?",
+        "solution_traces": "[{\"Y_3\": \"Williams Smock\", \"Count_1\": 4}, {\"Count_1\": 4, \"Y_3\": \"Alison Smock\"}]",
+        "answer": [
+            "4"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(great_granddaughter(Y_3, Y_1)), Count_1)",
+                "parent(\"Shelli Beltran\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "4aff383b-c877-4c74-aef0-3f5fef3e7fb3",
+        "question": "How many granddaughters does the niece of Jona Carrell have?",
+        "solution_traces": "[{\"Count_1\": 3, \"Y_3\": \"Blair Etheridge\"}]",
+        "answer": [
+            "3"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(granddaughter(Y_3, Y_1)), Count_1)",
+                "niece(\"Jona Carrell\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "ff1091e4-658b-46c4-9a86-412521328f80",
+        "question": "How many fathers-in-law does the father of Charlie Kovach have?",
+        "solution_traces": "[{\"Count_1\": 1, \"Y_3\": \"Everett Kovach\"}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(father_in_law(Y_3, Y_1)), Count_1)",
+                "father(\"Charlie Kovach\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "f02045f5-59ea-4b8a-8359-b638b8cc17ea",
+        "question": "How many children does the sibling of Rosanna Palermo have?",
+        "solution_traces": "[{\"Y_3\": \"Francisco Palermo\", \"Count_1\": 4}, {\"Count_1\": 0, \"Y_3\": \"Monique Palermo\"}, {\"Count_1\": 0, \"Y_3\": \"Hannah Palermo\"}]",
+        "answer": [
+            "0",
+            "4"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(child(Y_3, Y_1)), Count_1)",
+                "sibling(\"Rosanna Palermo\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": true
+    }
+]

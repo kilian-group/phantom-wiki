@@ -1,0 +1,12 @@
+son("Rashad Nolasco", "Avery Nolasco").
+daughter("Rashad Nolasco", "Jackqueline Kell").
+wife("Rashad Nolasco", "Xiao Nolasco").
+friend("Rashad Nolasco", "Newton Pellegrino").
+friend("Rashad Nolasco", "Charley Lively").
+friend("Rashad Nolasco", "Milford Simons").
+friend("Rashad Nolasco", "Boris Machado").
+friend("Rashad Nolasco", "Almeta Forester").
+dob("Rashad Nolasco", "0334-07-02").
+job("Rashad Nolasco", "lighting technician").
+hobby("Rashad Nolasco", "fossil hunting").
+gender("Rashad Nolasco", "male").

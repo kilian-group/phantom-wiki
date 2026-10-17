@@ -1,0 +1,11 @@
+daughter("Wm Salem", "Alyssa Salem").
+wife("Wm Salem", "Lashanda Salem").
+friend("Wm Salem", "Marvin Putnam").
+friend("Wm Salem", "Lynetta Mckenna").
+friend("Wm Salem", "Roger Carreon").
+friend("Wm Salem", "Vada Littleton").
+friend("Wm Salem", "Noel Chisholm").
+dob("Wm Salem", "0402-10-04").
+job("Wm Salem", "further education lecturer").
+hobby("Wm Salem", "rowing").
+gender("Wm Salem", "male").

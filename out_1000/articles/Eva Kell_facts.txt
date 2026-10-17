@@ -1,0 +1,19 @@
+sister("Eva Kell", "Malissa Kell").
+sister("Eva Kell", "Tomasa Kell").
+brother("Eva Kell", "Dewitt Kell").
+brother("Eva Kell", "Stan Kell").
+mother("Eva Kell", "Barbar Kell").
+father("Eva Kell", "Felton Kell").
+friend("Eva Kell", "Diane Burkhalter").
+friend("Eva Kell", "Oscar Schram").
+friend("Eva Kell", "Carrol Spiller").
+friend("Eva Kell", "Ai Dacosta").
+friend("Eva Kell", "Jimmie Smart").
+friend("Eva Kell", "Rocky Perrine").
+friend("Eva Kell", "Walter Depriest").
+friend("Eva Kell", "Goldie Alessi").
+friend("Eva Kell", "Elbert Layman").
+dob("Eva Kell", "0406-02-09").
+job("Eva Kell", "merchant navy officer").
+hobby("Eva Kell", "croquet").
+gender("Eva Kell", "female").

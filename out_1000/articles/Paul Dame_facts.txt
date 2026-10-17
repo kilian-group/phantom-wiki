@@ -1,0 +1,16 @@
+daughter("Paul Dame", "Dorathy Hamlin").
+wife("Paul Dame", "Sheena Dame").
+friend("Paul Dame", "Essie Layman").
+friend("Paul Dame", "Chris Harlow").
+friend("Paul Dame", "Roscoe Vanmeter").
+friend("Paul Dame", "Frankie Peeler").
+friend("Paul Dame", "Goldie Schlosser").
+friend("Paul Dame", "Alexander Corwin").
+friend("Paul Dame", "Ella Mathes").
+friend("Paul Dame", "Noel Chisholm").
+friend("Paul Dame", "Pierre Mcpeak").
+friend("Paul Dame", "Toni Glass").
+dob("Paul Dame", "0289-08-01").
+job("Paul Dame", "civil service fast streamer").
+hobby("Paul Dame", "reading").
+gender("Paul Dame", "male").

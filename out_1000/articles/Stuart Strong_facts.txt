@@ -1,0 +1,15 @@
+sister("Stuart Strong", "Lauren Strong").
+mother("Stuart Strong", "Stacy Strong").
+father("Stuart Strong", "Solomon Strong").
+friend("Stuart Strong", "Mia Resendez").
+friend("Stuart Strong", "Cleo Dangelo").
+friend("Stuart Strong", "Cleo Gregory").
+friend("Stuart Strong", "Debora Murray").
+friend("Stuart Strong", "Dalton Arnold").
+friend("Stuart Strong", "Bruce Mathes").
+friend("Stuart Strong", "Israel Mathes").
+friend("Stuart Strong", "Rogelio Capps").
+dob("Stuart Strong", "0457-08-14").
+job("Stuart Strong", "social researcher").
+hobby("Stuart Strong", "poker").
+gender("Stuart Strong", "male").

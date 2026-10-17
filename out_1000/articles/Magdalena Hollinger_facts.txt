@@ -1,0 +1,20 @@
+sister("Magdalena Hollinger", "Ashleigh Spiller").
+sister("Magdalena Hollinger", "Karol Beamon").
+brother("Magdalena Hollinger", "Donald Autry").
+brother("Magdalena Hollinger", "Isaiah Autry").
+mother("Magdalena Hollinger", "Daisy Autry").
+father("Magdalena Hollinger", "Kelvin Autry").
+daughter("Magdalena Hollinger", "Maurine Wendel").
+husband("Magdalena Hollinger", "Amos Hollinger").
+friend("Magdalena Hollinger", "Abdul Morehead").
+friend("Magdalena Hollinger", "Marguerite Lebrun").
+friend("Magdalena Hollinger", "Dino Donner").
+friend("Magdalena Hollinger", "Gayla Sanborn").
+friend("Magdalena Hollinger", "Mia Resendez").
+friend("Magdalena Hollinger", "Major Burkhalter").
+friend("Magdalena Hollinger", "Samual Knepper").
+friend("Magdalena Hollinger", "Samuel Omara").
+dob("Magdalena Hollinger", "0425-11-16").
+job("Magdalena Hollinger", "claims inspector").
+hobby("Magdalena Hollinger", "geography").
+gender("Magdalena Hollinger", "female").

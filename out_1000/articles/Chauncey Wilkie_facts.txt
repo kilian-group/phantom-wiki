@@ -1,0 +1,17 @@
+mother("Chauncey Wilkie", "Chelsie Wilkie").
+father("Chauncey Wilkie", "Zackary Wilkie").
+friend("Chauncey Wilkie", "Taylor Layman").
+friend("Chauncey Wilkie", "Felton Kell").
+friend("Chauncey Wilkie", "Johnathan Klink").
+friend("Chauncey Wilkie", "Simon Kell").
+friend("Chauncey Wilkie", "Anneliese Pellegrino").
+friend("Chauncey Wilkie", "Cedric Shoulders").
+friend("Chauncey Wilkie", "Matilda Chou").
+friend("Chauncey Wilkie", "Harold Hollins").
+friend("Chauncey Wilkie", "Eunice Gordy").
+friend("Chauncey Wilkie", "Deloris Marr").
+friend("Chauncey Wilkie", "Lon Macias").
+dob("Chauncey Wilkie", "0420-05-29").
+job("Chauncey Wilkie", "archaeologist").
+hobby("Chauncey Wilkie", "dolls").
+gender("Chauncey Wilkie", "male").

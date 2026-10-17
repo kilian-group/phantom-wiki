@@ -1,0 +1,12 @@
+son("Renate Brumbaugh", "Ellis Brumbaugh").
+son("Renate Brumbaugh", "Paris Brumbaugh").
+daughter("Renate Brumbaugh", "Cordelia Murray").
+husband("Renate Brumbaugh", "Wallace Brumbaugh").
+friend("Renate Brumbaugh", "Frankie Simons").
+friend("Renate Brumbaugh", "Josef Corwin").
+friend("Renate Brumbaugh", "Jodi Noland").
+friend("Renate Brumbaugh", "Lyman Marr").
+dob("Renate Brumbaugh", "0415-05-07").
+job("Renate Brumbaugh", "dealer").
+hobby("Renate Brumbaugh", "air hockey").
+gender("Renate Brumbaugh", "female").

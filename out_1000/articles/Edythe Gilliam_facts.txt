@@ -1,0 +1,17 @@
+son("Edythe Gilliam", "Kareem Gilliam").
+son("Edythe Gilliam", "Paul Gilliam").
+husband("Edythe Gilliam", "Monroe Gilliam").
+friend("Edythe Gilliam", "Ricardo Dacosta").
+friend("Edythe Gilliam", "Bev Medellin").
+friend("Edythe Gilliam", "Isaias Forester").
+friend("Edythe Gilliam", "Ressie Capps").
+friend("Edythe Gilliam", "Jennifer Paynter").
+friend("Edythe Gilliam", "Juanita Dana").
+friend("Edythe Gilliam", "Homer Morehead").
+friend("Edythe Gilliam", "Maranda Goff").
+friend("Edythe Gilliam", "Tianna Goff").
+friend("Edythe Gilliam", "Boris Gilliam").
+dob("Edythe Gilliam", "0264-11-20").
+job("Edythe Gilliam", "chiropodist").
+hobby("Edythe Gilliam", "entrepreneurship").
+gender("Edythe Gilliam", "female").

@@ -1,0 +1,14 @@
+son("Elroy Mcgough", "Randall Mcgough").
+daughter("Elroy Mcgough", "Addie Shilling").
+daughter("Elroy Mcgough", "Ophelia Mcgough").
+wife("Elroy Mcgough", "Chrissy Mcgough").
+friend("Elroy Mcgough", "Elijah Hamlin").
+friend("Elroy Mcgough", "Nicky Gordon").
+friend("Elroy Mcgough", "Nestor Lasher").
+friend("Elroy Mcgough", "Toshiko Younger").
+friend("Elroy Mcgough", "Josette Goff").
+friend("Elroy Mcgough", "Derek Carswell").
+dob("Elroy Mcgough", "0382-03-23").
+job("Elroy Mcgough", "diagnostic radiographer").
+hobby("Elroy Mcgough", "research").
+gender("Elroy Mcgough", "male").

@@ -1,0 +1,18 @@
+sister("Ardath Skidmore", "Chelsea Skidmore").
+sister("Ardath Skidmore", "Velia Capps").
+mother("Ardath Skidmore", "Tamala Skidmore").
+father("Ardath Skidmore", "Benito Skidmore").
+friend("Ardath Skidmore", "Raina Hamlin").
+friend("Ardath Skidmore", "Rory Hamlin").
+friend("Ardath Skidmore", "Rolf Booth").
+friend("Ardath Skidmore", "Aletha Crocker").
+friend("Ardath Skidmore", "Cedric Towns").
+friend("Ardath Skidmore", "Foster Eaves").
+friend("Ardath Skidmore", "Germaine Mahoney").
+friend("Ardath Skidmore", "Christen Corwin").
+friend("Ardath Skidmore", "Harold Waltz").
+friend("Ardath Skidmore", "Anita Fain").
+dob("Ardath Skidmore", "0375-07-06").
+job("Ardath Skidmore", "chief technology officer").
+hobby("Ardath Skidmore", "seashell collecting").
+gender("Ardath Skidmore", "female").

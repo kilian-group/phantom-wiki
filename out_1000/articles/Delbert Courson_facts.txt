@@ -1,0 +1,19 @@
+son("Delbert Courson", "Claude Courson").
+son("Delbert Courson", "Erick Courson").
+son("Delbert Courson", "Leslie Courson").
+daughter("Delbert Courson", "Mallory Scherer").
+daughter("Delbert Courson", "Mia Resendez").
+daughter("Delbert Courson", "Shandi Jarrett").
+wife("Delbert Courson", "Harriette Courson").
+friend("Delbert Courson", "Wesley Courson").
+friend("Delbert Courson", "Porter Mckenna").
+friend("Delbert Courson", "Jennie Towns").
+friend("Delbert Courson", "Logan Swartz").
+friend("Delbert Courson", "Ruben Corwin").
+friend("Delbert Courson", "Brock Pugliese").
+friend("Delbert Courson", "Patrice Dunlap").
+friend("Delbert Courson", "Stacey Wilke").
+dob("Delbert Courson", "0392-01-09").
+job("Delbert Courson", "best boy").
+hobby("Delbert Courson", "beekeeping").
+gender("Delbert Courson", "male").

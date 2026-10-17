@@ -1,0 +1,12 @@
+son("Kirsten Oberg", "Amos Oberg").
+son("Kirsten Oberg", "Mason Oberg").
+husband("Kirsten Oberg", "Lyman Oberg").
+friend("Kirsten Oberg", "Chrissy Remillard").
+friend("Kirsten Oberg", "Jon Remillard").
+friend("Kirsten Oberg", "Mai Remillard").
+friend("Kirsten Oberg", "Anna Vandenberg").
+friend("Kirsten Oberg", "Chrissy Mcgough").
+dob("Kirsten Oberg", "0302-08-17").
+job("Kirsten Oberg", "data scientist").
+hobby("Kirsten Oberg", "flower collecting and pressing").
+gender("Kirsten Oberg", "female").

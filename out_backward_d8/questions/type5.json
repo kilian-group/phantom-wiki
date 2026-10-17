@@ -1,0 +1,403 @@
+[
+    {
+        "id": "0b6a67a6-c056-4245-859c-c23c244cf92e",
+        "question": "What is the hobby of the cousin of the cousin of Rolland Mckenna?",
+        "solution_traces": "[{\"Y_3\": \"Rolland Mckenna\", \"Y_5\": \"Nathanial Lizotte\", \"Y_2\": \"leaves\"}, {\"Y_5\": \"Hanh Mohan\", \"Y_3\": \"Lila Petry\", \"Y_2\": \"deltiology\"}, {\"Y_2\": \"flag football\", \"Y_5\": \"Lila Petry\", \"Y_3\": \"Maranda Lizotte\"}, {\"Y_5\": \"Chuck Lizotte\", \"Y_3\": \"Lila Petry\", \"Y_2\": \"deltiology\"}, {\"Y_2\": \"leaves\", \"Y_3\": \"Rolland Mckenna\", \"Y_5\": \"Lila Petry\"}, {\"Y_2\": \"badminton\", \"Y_5\": \"Lila Petry\", \"Y_3\": \"Lucas Mckenna\"}, {\"Y_2\": \"story writing\", \"Y_5\": \"Lila Petry\", \"Y_3\": \"Hanh Mohan\"}, {\"Y_5\": \"Yoko Wilkie\", \"Y_3\": \"Lila Petry\", \"Y_2\": \"deltiology\"}, {\"Y_2\": \"badminton\", \"Y_5\": \"Nathanial Lizotte\", \"Y_3\": \"Lucas Mckenna\"}, {\"Y_5\": \"Lila Petry\", \"Y_2\": \"insect collecting\", \"Y_3\": \"Yoko Wilkie\"}, {\"Y_5\": \"Hanh Mohan\", \"Y_2\": \"badminton\", \"Y_3\": \"Lucas Mckenna\"}, {\"Y_3\": \"Lila Petry\", \"Y_5\": \"Nathanial Lizotte\", \"Y_2\": \"deltiology\"}, {\"Y_5\": \"Chuck Lizotte\", \"Y_2\": \"badminton\", \"Y_3\": \"Lucas Mckenna\"}, {\"Y_5\": \"Chuck Lizotte\", \"Y_3\": \"Rolland Mckenna\", \"Y_2\": \"leaves\"}, {\"Y_2\": \"beekeeping\", \"Y_3\": \"Nathanial Lizotte\", \"Y_5\": \"Lila Petry\"}, {\"Y_2\": \"leaves\", \"Y_3\": \"Rolland Mckenna\", \"Y_5\": \"Maranda Lizotte\"}, {\"Y_2\": \"badminton\", \"Y_5\": \"Maranda Lizotte\", \"Y_3\": \"Lucas Mckenna\"}, {\"Y_2\": \"deltiology\", \"Y_3\": \"Lila Petry\", \"Y_5\": \"Maranda Lizotte\"}, {\"Y_5\": \"Yoko Wilkie\", \"Y_3\": \"Rolland Mckenna\", \"Y_2\": \"leaves\"}, {\"Y_5\": \"Hanh Mohan\", \"Y_3\": \"Rolland Mckenna\", \"Y_2\": \"leaves\"}, {\"Y_2\": \"surfing\", \"Y_5\": \"Lila Petry\", \"Y_3\": \"Chuck Lizotte\"}, {\"Y_5\": \"Yoko Wilkie\", \"Y_2\": \"badminton\", \"Y_3\": \"Lucas Mckenna\"}]",
+        "answer": [
+            "badminton",
+            "beekeeping",
+            "deltiology",
+            "flag football",
+            "insect collecting",
+            "leaves",
+            "story writing",
+            "surfing"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "cousin(Y_5, Y_3)",
+                "cousin(\"Rolland Mckenna\", Y_5)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "1deacde8-89dc-41b5-b80f-640e7862131f",
+        "question": "What is the hobby of the great-grandfather of the grandchild of Dominique Smock?",
+        "solution_traces": "[{\"Y_2\": \"biology\", \"Y_3\": \"Alvaro Smock\", \"Y_5\": \"Myrle Smock\"}, {\"Y_5\": \"Shelli Beltran\", \"Y_3\": \"Alvaro Smock\", \"Y_2\": \"biology\"}]",
+        "answer": [
+            "biology"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "great_grandfather(Y_5, Y_3)",
+                "grandchild(\"Dominique Smock\", Y_5)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "857932bb-0338-4f4c-8683-27bbd8164832",
+        "question": "What is the occupation of the daughter-in-law of the mother of Jeanelle Mcnew?",
+        "solution_traces": "[{\"Y_5\": \"Lorelei Mcnew\", \"Y_2\": \"speech and language therapist\", \"Y_3\": \"Amanda Mcnew\"}, {\"Y_5\": \"Lorelei Mcnew\", \"Y_3\": \"Roxy Mcnew\", \"Y_2\": \"regulatory affairs officer\"}]",
+        "answer": [
+            "regulatory affairs officer",
+            "speech and language therapist"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "daughter_in_law(Y_5, Y_3)",
+                "mother(\"Jeanelle Mcnew\", Y_5)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "0a165d10-41a3-491b-90cb-6d007f4b2893",
+        "question": "What is the occupation of the husband of the friend of Maxwell Henderson?",
+        "solution_traces": "[{\"Y_2\": \"data scientist\", \"Y_5\": \"Cherry Nicolas\", \"Y_3\": \"Ulysses Nicolas\"}]",
+        "answer": [
+            "data scientist"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "husband(Y_5, Y_3)",
+                "friend(\"Maxwell Henderson\", Y_5)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "4c955205-1977-4eb2-913c-d64dc41aef97",
+        "question": "What is the date of birth of the sibling of the granddaughter of Karla Hornback?",
+        "solution_traces": "[{\"Y_3\": \"Shirleen Abraham\", \"Y_2\": \"0248-01-02\", \"Y_5\": \"Lorine Wasserman\"}, {\"Y_2\": \"0250-09-12\", \"Y_5\": \"Shirleen Abraham\", \"Y_3\": \"Lorine Wasserman\"}]",
+        "answer": [
+            "0248-01-02",
+            "0250-09-12"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "sibling(Y_5, Y_3)",
+                "granddaughter(\"Karla Hornback\", Y_5)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "46d35e5a-64a3-439a-a1f1-28a6944f461f",
+        "question": "What is the occupation of the nephew of the great-uncle of Lea Levy?",
+        "solution_traces": "[{\"Y_3\": \"Abraham Decosta\", \"Y_2\": \"pharmacologist\", \"Y_5\": \"Jacques Decosta\"}, {\"Y_3\": \"Adolph Brannan\", \"Y_2\": \"training and development officer\", \"Y_5\": \"Jacques Decosta\"}, {\"Y_5\": \"Elwood Decosta\", \"Y_3\": \"Adolph Brannan\", \"Y_2\": \"training and development officer\"}]",
+        "answer": [
+            "pharmacologist",
+            "training and development officer"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "nephew(Y_5, Y_3)",
+                "great_uncle(\"Lea Levy\", Y_5)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "92281fc3-32cd-4627-b080-bb5adcd3fa63",
+        "question": "What is the hobby of the father-in-law of the father of Charlie Kovach?",
+        "solution_traces": "[{\"Y_3\": \"Adolph Brannan\", \"Y_5\": \"Everett Kovach\", \"Y_2\": \"metal detecting\"}]",
+        "answer": [
+            "metal detecting"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "father_in_law(Y_5, Y_3)",
+                "father(\"Charlie Kovach\", Y_5)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "d94428e7-9bcb-4340-89fe-96624640c4e8",
+        "question": "What is the occupation of the sister of the husband of Deborah Cormier?",
+        "solution_traces": "[{\"Y_2\": \"dancer\", \"Y_3\": \"Shawnta Saari\", \"Y_5\": \"Clifford Cormier\"}]",
+        "answer": [
+            "dancer"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "sister(Y_5, Y_3)",
+                "husband(\"Deborah Cormier\", Y_5)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "6ba7fcf3-4e19-4bcf-9e73-98f8cce00295",
+        "question": "What is the occupation of the grandparent of the son of Monique Griffiths?",
+        "solution_traces": "[{\"Y_2\": \"hospital doctor\", \"Y_5\": \"Roger Griffiths\", \"Y_3\": \"Elton Griffiths\"}, {\"Y_5\": \"Hilton Griffiths\", \"Y_3\": \"Olivia Griffiths\", \"Y_2\": \"planning and development surveyor\"}, {\"Y_5\": \"Roger Griffiths\", \"Y_3\": \"Olivia Griffiths\", \"Y_2\": \"planning and development surveyor\"}, {\"Y_2\": \"hospital doctor\", \"Y_5\": \"Hilton Griffiths\", \"Y_3\": \"Elton Griffiths\"}]",
+        "answer": [
+            "hospital doctor",
+            "planning and development surveyor"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "grandparent(Y_5, Y_3)",
+                "son(\"Monique Griffiths\", Y_5)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "1a3b462a-34e2-43ba-9d2d-9d871dbfc801",
+        "question": "What is the date of birth of the granddaughter of the father of Bruce Mason?",
+        "solution_traces": "[{\"Y_3\": \"Zoila Mason\", \"Y_2\": \"0325-07-05\", \"Y_5\": \"Clarence Mason\"}]",
+        "answer": [
+            "0325-07-05"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "granddaughter(Y_5, Y_3)",
+                "father(\"Bruce Mason\", Y_5)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    }
+]

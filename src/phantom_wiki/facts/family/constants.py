@@ -137,25 +137,6 @@ FAMILY_RELATION_ALIAS = {
     "daughter_in_law": "daughter-in-law",
 }
 
-FAMILY_RELATION_HARD_PLURALS = [
-    "nieces",
-    "nephews",
-    "grandParents",
-    "grandMothers",
-    "grandFathers",
-    "greatAunts",
-    "greatUncles",
-    "grandChildren",
-    "grandDaughters",
-    "grandSons",
-    "father_in_laws",
-    "mother_in_laws",
-    "brother_in_laws",
-    "sister_in_laws",
-    "son_in_laws",
-    "daughter_in_laws",
-]
-
 """Intrinsic difficulty for different family relations.
 
 For all the predicates that occur in the articles the difficulty is 1.

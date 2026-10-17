@@ -1,0 +1,11 @@
+daughter("Aurelio Wasserman", "Shanda Wasserman").
+wife("Aurelio Wasserman", "Lorine Wasserman").
+friend("Aurelio Wasserman", "Marcel Brannan").
+friend("Aurelio Wasserman", "Zoila Mason").
+friend("Aurelio Wasserman", "Daisy Beltran").
+friend("Aurelio Wasserman", "Noelia Henderson").
+friend("Aurelio Wasserman", "Rosalinda Francois").
+dob("Aurelio Wasserman", "0250-05-01").
+job("Aurelio Wasserman", "public relations officer").
+hobby("Aurelio Wasserman", "beekeeping").
+gender("Aurelio Wasserman", "male").

@@ -11,7 +11,7 @@ def get_answer(
     db: Database,
     answers: list[str],
     skip_solution_traces: bool = False,
-    multi_threading: bool = False,
+    num_procs: int = 1,
 ) -> tuple[list[list[list[dict[str, str]]]], list[list[list[str]]]]:
     """Retrieves answers for a given set of logical queries from the database.
 
@@ -41,8 +41,8 @@ def get_answer(
         skip_solution_traces (bool, optional): Flag to skip solution traces, which describe the
             intermediate steps towards final answer. Defaults to False, in which case the
             returned list is non-empty.
-        multi_threading (bool, optional): If `True`, enables parallel query execution for
-            performance improvements. Defaults to `False`.
+        num_procs (int, optional): Number of worker processes for batched query execution.
+            1 (default) runs serially; values >1 parallelize via multiprocessing.Pool.
 
 
     Returns: (tuple)
@@ -119,7 +119,7 @@ def get_answer(
 
     # We flatten the list of queries to be able to batch query them
     flattened_all_queries = [item for sublist in all_queries for item in sublist]
-    temp_query_results = db.batch_query(flattened_all_queries, multi_threading)
+    temp_query_results = db.batch_query(flattened_all_queries, num_procs)
 
     # We then restructure the query results to match the original structure
     all_query_results = []

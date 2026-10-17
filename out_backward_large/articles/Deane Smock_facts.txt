@@ -1,0 +1,11 @@
+sister("Deane Smock", "Isabell Smock").
+brother("Deane Smock", "Aubrey Smock").
+brother("Deane Smock", "Gene Smock").
+mother("Deane Smock", "Lannie Smock").
+father("Deane Smock", "Alvaro Smock").
+friend("Deane Smock", "Maxwell Henderson").
+friend("Deane Smock", "Gerardo Hornback").
+dob("Deane Smock", "0204-03-12").
+job("Deane Smock", "associate professor").
+hobby("Deane Smock", "shogi").
+gender("Deane Smock", "female").

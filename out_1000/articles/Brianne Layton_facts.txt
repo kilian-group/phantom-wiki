@@ -1,0 +1,24 @@
+sister("Brianne Layton", "Helena Hamlin").
+sister("Brianne Layton", "Julianne Hamlin").
+brother("Brianne Layton", "Felix Hamlin").
+mother("Brianne Layton", "Evette Hamlin").
+father("Brianne Layton", "Elijah Hamlin").
+son("Brianne Layton", "Andres Layton").
+son("Brianne Layton", "Bryan Layton").
+son("Brianne Layton", "Cary Layton").
+son("Brianne Layton", "Emory Layton").
+daughter("Brianne Layton", "Larue Speaks").
+daughter("Brianne Layton", "Lera Carty").
+husband("Brianne Layton", "Bernie Layton").
+friend("Brianne Layton", "Rhea Burnett").
+friend("Brianne Layton", "Iva Parish").
+friend("Brianne Layton", "Maryam Maness").
+friend("Brianne Layton", "Jewell Fordham").
+friend("Brianne Layton", "Janis Younger").
+friend("Brianne Layton", "Krystyna Schatz").
+friend("Brianne Layton", "Marguerite Putnam").
+friend("Brianne Layton", "Robyn Forester").
+dob("Brianne Layton", "0371-06-07").
+job("Brianne Layton", "geophysicist").
+hobby("Brianne Layton", "philosophy").
+gender("Brianne Layton", "female").

@@ -1,0 +1,12 @@
+son("Kyong Eaves", "Rob Eaves").
+husband("Kyong Eaves", "Foster Eaves").
+friend("Kyong Eaves", "Ethan Younger").
+friend("Kyong Eaves", "Raina Hamlin").
+friend("Kyong Eaves", "Ricardo Runnels").
+friend("Kyong Eaves", "Errol Cordova").
+friend("Kyong Eaves", "Larae Kirksey").
+friend("Kyong Eaves", "Rowena Lazar").
+dob("Kyong Eaves", "0378-02-02").
+job("Kyong Eaves", "best boy").
+hobby("Kyong Eaves", "philosophy").
+gender("Kyong Eaves", "female").

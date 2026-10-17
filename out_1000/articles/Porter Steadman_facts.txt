@@ -1,0 +1,19 @@
+sister("Porter Steadman", "Tiffany Mcdonald").
+mother("Porter Steadman", "Scottie Steadman").
+father("Porter Steadman", "Victor Steadman").
+daughter("Porter Steadman", "Sarah Steadman").
+wife("Porter Steadman", "Lakeshia Steadman").
+friend("Porter Steadman", "Wilson Younger").
+friend("Porter Steadman", "Kurt Goff").
+friend("Porter Steadman", "Verona Arteaga").
+friend("Porter Steadman", "Mike Schram").
+friend("Porter Steadman", "Trevor Frink").
+friend("Porter Steadman", "Babara Arnold").
+friend("Porter Steadman", "Reggie Simons").
+friend("Porter Steadman", "Roderick Simons").
+friend("Porter Steadman", "Catina Linden").
+friend("Porter Steadman", "Oralia Burdette").
+dob("Porter Steadman", "0442-01-04").
+job("Porter Steadman", "hydrographic surveyor").
+hobby("Porter Steadman", "motorcycling").
+gender("Porter Steadman", "male").

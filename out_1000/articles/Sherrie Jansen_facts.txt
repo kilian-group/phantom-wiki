@@ -1,0 +1,12 @@
+sister("Sherrie Jansen", "Windy Cowart").
+mother("Sherrie Jansen", "Lara Jansen").
+father("Sherrie Jansen", "Doug Jansen").
+friend("Sherrie Jansen", "Hershel Ingalls").
+friend("Sherrie Jansen", "Anita Fain").
+friend("Sherrie Jansen", "Sophie Wilke").
+friend("Sherrie Jansen", "Rolf Booth").
+friend("Sherrie Jansen", "Drema Jefferson").
+dob("Sherrie Jansen", "0435-05-02").
+job("Sherrie Jansen", "print production planner").
+hobby("Sherrie Jansen", "satellite watching").
+gender("Sherrie Jansen", "female").

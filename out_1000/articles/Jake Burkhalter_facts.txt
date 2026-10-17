@@ -1,0 +1,13 @@
+sister("Jake Burkhalter", "Alexa Mckenna").
+mother("Jake Burkhalter", "Diane Burkhalter").
+father("Jake Burkhalter", "Major Burkhalter").
+friend("Jake Burkhalter", "Lorenzo Littleton").
+friend("Jake Burkhalter", "Felton Dana").
+friend("Jake Burkhalter", "Katina Younger").
+friend("Jake Burkhalter", "Drema Schatz").
+friend("Jake Burkhalter", "Johanna Mathes").
+friend("Jake Burkhalter", "Levi Fredrick").
+dob("Jake Burkhalter", "0461-03-01").
+job("Jake Burkhalter", "orthoptist").
+hobby("Jake Burkhalter", "flower collecting and pressing").
+gender("Jake Burkhalter", "male").

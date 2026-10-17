@@ -1,0 +1,20 @@
+sister("Collin Lasher", "Evette Knepper").
+brother("Collin Lasher", "Shayne Lasher").
+mother("Collin Lasher", "Sona Lasher").
+father("Collin Lasher", "Newton Lasher").
+son("Collin Lasher", "Christoper Lasher").
+daughter("Collin Lasher", "Ladawn Basham").
+daughter("Collin Lasher", "Madaline Callender").
+wife("Collin Lasher", "Audie Lasher").
+friend("Collin Lasher", "Rudy Runnels").
+friend("Collin Lasher", "Ramiro Dana").
+friend("Collin Lasher", "Delma Keyes").
+friend("Collin Lasher", "Kenton Gilliam").
+friend("Collin Lasher", "Dino Donner").
+friend("Collin Lasher", "Latisha Smart").
+friend("Collin Lasher", "Hershel Shilling").
+friend("Collin Lasher", "Adah Schram").
+dob("Collin Lasher", "0362-06-08").
+job("Collin Lasher", "press sub").
+hobby("Collin Lasher", "volleyball").
+gender("Collin Lasher", "male").

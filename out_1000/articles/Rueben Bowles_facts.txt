@@ -1,0 +1,22 @@
+sister("Rueben Bowles", "Romelia Bowles").
+brother("Rueben Bowles", "Dino Bowles").
+mother("Rueben Bowles", "Alina Bowles").
+father("Rueben Bowles", "Ryan Bowles").
+daughter("Rueben Bowles", "Coral Putnam").
+daughter("Rueben Bowles", "Graciela Burger").
+wife("Rueben Bowles", "Lashandra Bowles").
+friend("Rueben Bowles", "Stacey Wilke").
+friend("Rueben Bowles", "Thaddeus Sanborn").
+friend("Rueben Bowles", "Hector Autry").
+friend("Rueben Bowles", "Victor Steadman").
+friend("Rueben Bowles", "Kurt Goff").
+friend("Rueben Bowles", "Taylor Schatz").
+friend("Rueben Bowles", "Ella Mathes").
+friend("Rueben Bowles", "Shante Gilliam").
+friend("Rueben Bowles", "Jefferson Murdoch").
+friend("Rueben Bowles", "Edmundo Fordham").
+friend("Rueben Bowles", "Sang Cheney").
+dob("Rueben Bowles", "0445-08-10").
+job("Rueben Bowles", "public affairs consultant").
+hobby("Rueben Bowles", "radio-controlled model playing").
+gender("Rueben Bowles", "male").

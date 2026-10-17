@@ -1,0 +1,16 @@
+brother("Ryan Bowles", "Aaron Bowles").
+mother("Ryan Bowles", "Nelly Bowles").
+father("Ryan Bowles", "Andre Bowles").
+son("Ryan Bowles", "Dino Bowles").
+son("Ryan Bowles", "Rueben Bowles").
+daughter("Ryan Bowles", "Romelia Bowles").
+wife("Ryan Bowles", "Alina Bowles").
+friend("Ryan Bowles", "Mallory Scherer").
+friend("Ryan Bowles", "Landon Dillion").
+friend("Ryan Bowles", "Alexandria Hayward").
+friend("Ryan Bowles", "James Arteaga").
+friend("Ryan Bowles", "Maynard Latham").
+dob("Ryan Bowles", "0414-08-18").
+job("Ryan Bowles", "accounting technician").
+hobby("Ryan Bowles", "marching band").
+gender("Ryan Bowles", "male").

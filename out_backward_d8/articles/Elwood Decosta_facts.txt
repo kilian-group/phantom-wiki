@@ -1,0 +1,14 @@
+sister("Elwood Decosta", "Laurel Decosta").
+sister("Elwood Decosta", "Margo Brannan").
+brother("Elwood Decosta", "Jacques Decosta").
+mother("Elwood Decosta", "Zoila Decosta").
+father("Elwood Decosta", "Stuart Decosta").
+son("Elwood Decosta", "Abraham Decosta").
+wife("Elwood Decosta", "Niesha Decosta").
+friend("Elwood Decosta", "Zoila Mason").
+friend("Elwood Decosta", "Marilyn Nicolas").
+friend("Elwood Decosta", "Yoshiko Crain").
+dob("Elwood Decosta", "0189-04-06").
+job("Elwood Decosta", "editorial assistant").
+hobby("Elwood Decosta", "antiquities").
+gender("Elwood Decosta", "male").

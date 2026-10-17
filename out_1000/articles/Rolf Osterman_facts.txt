@@ -1,0 +1,22 @@
+sister("Rolf Osterman", "Edythe Osterman").
+mother("Rolf Osterman", "Vicki Osterman").
+father("Rolf Osterman", "Hal Osterman").
+friend("Rolf Osterman", "Gayla Mccall").
+friend("Rolf Osterman", "Judith Lebrun").
+friend("Rolf Osterman", "Virgie Niles").
+friend("Rolf Osterman", "Scotty Broughton").
+friend("Rolf Osterman", "Keith Noland").
+friend("Rolf Osterman", "Kimberely Cheney").
+friend("Rolf Osterman", "Sheila Putnam").
+friend("Rolf Osterman", "Tashina Vandenberg").
+friend("Rolf Osterman", "Roni Jarrett").
+friend("Rolf Osterman", "Ollie Kell").
+friend("Rolf Osterman", "Perry Kell").
+friend("Rolf Osterman", "Maryam Maness").
+friend("Rolf Osterman", "Roseanna Mckenna").
+friend("Rolf Osterman", "Karol Beamon").
+friend("Rolf Osterman", "Doug Jansen").
+dob("Rolf Osterman", "0491-06-07").
+job("Rolf Osterman", "metallurgist").
+hobby("Rolf Osterman", "perfume").
+gender("Rolf Osterman", "male").

@@ -1,0 +1,19 @@
+mother("Edythe Littleton", "Edris Best").
+father("Edythe Littleton", "Luis Best").
+son("Edythe Littleton", "Christoper Littleton").
+husband("Edythe Littleton", "Theron Littleton").
+friend("Edythe Littleton", "Ginger Chou").
+friend("Edythe Littleton", "Irwin Dalton").
+friend("Edythe Littleton", "Hope Arteaga").
+friend("Edythe Littleton", "Karl Depriest").
+friend("Edythe Littleton", "Luke Wilke").
+friend("Edythe Littleton", "Sophie Wilke").
+friend("Edythe Littleton", "Noreen Jarrett").
+friend("Edythe Littleton", "Malissa Kell").
+friend("Edythe Littleton", "Tamara Kell").
+friend("Edythe Littleton", "Maryam Maness").
+friend("Edythe Littleton", "Arnulfo Kinsella").
+dob("Edythe Littleton", "0403-07-19").
+job("Edythe Littleton", "chartered accountant").
+hobby("Edythe Littleton", "video game collecting").
+gender("Edythe Littleton", "female").

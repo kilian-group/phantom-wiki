@@ -1,0 +1,16 @@
+brother("Milton Littleton", "Lorenzo Littleton").
+mother("Milton Littleton", "Romona Littleton").
+father("Milton Littleton", "Christoper Littleton").
+friend("Milton Littleton", "Jacque Simons").
+friend("Milton Littleton", "Salvador Plumley").
+friend("Milton Littleton", "Lazaro Hsu").
+friend("Milton Littleton", "Alina Bowles").
+friend("Milton Littleton", "Addie Shilling").
+friend("Milton Littleton", "Jeannette Mounts").
+friend("Milton Littleton", "Laurence Knepper").
+friend("Milton Littleton", "Lenora Hayward").
+friend("Milton Littleton", "Paris Cordova").
+dob("Milton Littleton", "0459-03-18").
+job("Milton Littleton", "press photographer").
+hobby("Milton Littleton", "stone collecting").
+gender("Milton Littleton", "male").

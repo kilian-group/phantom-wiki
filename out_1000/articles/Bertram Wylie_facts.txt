@@ -1,0 +1,16 @@
+daughter("Bertram Wylie", "Ligia Wylie").
+wife("Bertram Wylie", "Tamara Wylie").
+friend("Bertram Wylie", "Lurline Tyree").
+friend("Bertram Wylie", "Rosina Putnam").
+friend("Bertram Wylie", "Dennis Marr").
+friend("Bertram Wylie", "Karl Depriest").
+friend("Bertram Wylie", "Sergio Parish").
+friend("Bertram Wylie", "Lenora Hayward").
+friend("Bertram Wylie", "Andrew Sutphin").
+friend("Bertram Wylie", "Jenniffer Younger").
+friend("Bertram Wylie", "Katina Younger").
+friend("Bertram Wylie", "Paula Gerber").
+dob("Bertram Wylie", "0438-10-21").
+job("Bertram Wylie", "engineering geologist").
+hobby("Bertram Wylie", "aircraft spotting").
+gender("Bertram Wylie", "male").

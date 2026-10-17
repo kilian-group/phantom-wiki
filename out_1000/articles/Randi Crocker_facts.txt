@@ -1,0 +1,17 @@
+sister("Randi Crocker", "Lauretta Callender").
+sister("Randi Crocker", "Ofelia Callender").
+sister("Randi Crocker", "Vilma Callender").
+brother("Randi Crocker", "Jonathon Callender").
+mother("Randi Crocker", "Madaline Callender").
+father("Randi Crocker", "Royce Callender").
+daughter("Randi Crocker", "Aletha Crocker").
+daughter("Randi Crocker", "Jennifer Paynter").
+husband("Randi Crocker", "Donnie Crocker").
+friend("Randi Crocker", "Galen Cordova").
+friend("Randi Crocker", "Lora Vogt").
+friend("Randi Crocker", "Wade Sheridan").
+friend("Randi Crocker", "Grant Lasher").
+dob("Randi Crocker", "0424-10-05").
+job("Randi Crocker", "estate agent").
+hobby("Randi Crocker", "vehicle restoration").
+gender("Randi Crocker", "female").

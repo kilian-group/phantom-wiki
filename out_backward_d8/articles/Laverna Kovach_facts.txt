@@ -1,0 +1,13 @@
+sister("Laverna Kovach", "Elissa Kovach").
+brother("Laverna Kovach", "Carson Kovach").
+brother("Laverna Kovach", "Charlie Kovach").
+mother("Laverna Kovach", "Margaret Kovach").
+father("Laverna Kovach", "Everett Kovach").
+friend("Laverna Kovach", "Aubrey Smock").
+friend("Laverna Kovach", "Cole Mcnew").
+friend("Laverna Kovach", "Errol Brook").
+friend("Laverna Kovach", "Preston Francois").
+dob("Laverna Kovach", "0282-09-16").
+job("Laverna Kovach", "claims inspector").
+hobby("Laverna Kovach", "croquet").
+gender("Laverna Kovach", "female").

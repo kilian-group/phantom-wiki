@@ -1,0 +1,13 @@
+sister("Quincy Pannell", "Samantha Earnest").
+mother("Quincy Pannell", "Johnnie Pannell").
+father("Quincy Pannell", "Ian Pannell").
+friend("Quincy Pannell", "Shirleen Abraham").
+friend("Quincy Pannell", "Clifford Cormier").
+friend("Quincy Pannell", "Hunter Saari").
+friend("Quincy Pannell", "Caleb Haber").
+friend("Quincy Pannell", "Nathanial Lizotte").
+friend("Quincy Pannell", "Duncan Pannell").
+dob("Quincy Pannell", "0320-03-05").
+job("Quincy Pannell", "meteorologist").
+hobby("Quincy Pannell", "radio-controlled model playing").
+gender("Quincy Pannell", "male").

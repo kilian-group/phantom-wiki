@@ -1,0 +1,14 @@
+daughter("Reyna Ibarra", "Aida Ibarra").
+daughter("Reyna Ibarra", "Meghan Keyes").
+husband("Reyna Ibarra", "Alton Ibarra").
+friend("Reyna Ibarra", "Artie Putnam").
+friend("Reyna Ibarra", "Andres Layton").
+friend("Reyna Ibarra", "Keith Resendez").
+friend("Reyna Ibarra", "Garrett Bauman").
+friend("Reyna Ibarra", "Reggie Simons").
+friend("Reyna Ibarra", "Lance Carreon").
+friend("Reyna Ibarra", "Josette Goff").
+dob("Reyna Ibarra", "0377-11-27").
+job("Reyna Ibarra", "special effects artist").
+hobby("Reyna Ibarra", "book collecting").
+gender("Reyna Ibarra", "female").

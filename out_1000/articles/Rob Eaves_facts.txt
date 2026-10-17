@@ -1,0 +1,14 @@
+mother("Rob Eaves", "Kyong Eaves").
+father("Rob Eaves", "Foster Eaves").
+friend("Rob Eaves", "Lavern Staten").
+friend("Rob Eaves", "Darby Latham").
+friend("Rob Eaves", "Isabell Shank").
+friend("Rob Eaves", "Lester Bauman").
+friend("Rob Eaves", "Graciela Weise").
+friend("Rob Eaves", "Daisy Cordova").
+friend("Rob Eaves", "Marlene Ingalls").
+friend("Rob Eaves", "Myra Eaves").
+dob("Rob Eaves", "0413-01-26").
+job("Rob Eaves", "arts development officer").
+hobby("Rob Eaves", "ant farming").
+gender("Rob Eaves", "male").

@@ -1,0 +1,12 @@
+sister("Luke Wilke", "Belva Murphey").
+brother("Luke Wilke", "Marion Wilke").
+mother("Luke Wilke", "Amy Wilke").
+father("Luke Wilke", "Stacey Wilke").
+friend("Luke Wilke", "Randall Mcgough").
+friend("Luke Wilke", "Abel Oberg").
+friend("Luke Wilke", "King Dishman").
+friend("Luke Wilke", "Charley Vandenberg").
+dob("Luke Wilke", "0279-08-11").
+job("Luke Wilke", "firefighter").
+hobby("Luke Wilke", "video game collecting").
+gender("Luke Wilke", "male").

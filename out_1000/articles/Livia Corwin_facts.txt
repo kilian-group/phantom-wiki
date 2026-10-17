@@ -1,0 +1,15 @@
+brother("Livia Corwin", "Miguel Carreon").
+mother("Livia Corwin", "Audra Carreon").
+father("Livia Corwin", "Roger Carreon").
+son("Livia Corwin", "Spencer Corwin").
+husband("Livia Corwin", "Alexander Corwin").
+friend("Livia Corwin", "Micah Hollins").
+friend("Livia Corwin", "Sammy Dunlap").
+friend("Livia Corwin", "Mitchell Fordham").
+friend("Livia Corwin", "Romelia Bowles").
+friend("Livia Corwin", "Deangelo Marr").
+friend("Livia Corwin", "Cameron Mckenna").
+dob("Livia Corwin", "0324-10-08").
+job("Livia Corwin", "press sub").
+hobby("Livia Corwin", "cartophily").
+gender("Livia Corwin", "female").

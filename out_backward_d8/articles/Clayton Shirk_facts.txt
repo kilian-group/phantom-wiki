@@ -1,0 +1,14 @@
+mother("Clayton Shirk", "Maurine Shirk").
+father("Clayton Shirk", "Jame Shirk").
+son("Clayton Shirk", "Darin Shirk").
+daughter("Clayton Shirk", "Olivia Griffiths").
+wife("Clayton Shirk", "Nada Shirk").
+friend("Clayton Shirk", "Amanda Mcnew").
+friend("Clayton Shirk", "Weldon Skaggs").
+friend("Clayton Shirk", "Sylvia Palermo").
+friend("Clayton Shirk", "Pasquale Levy").
+friend("Clayton Shirk", "Stuart Decosta").
+dob("Clayton Shirk", "0240-04-24").
+job("Clayton Shirk", "astronomer").
+hobby("Clayton Shirk", "tennis polo").
+gender("Clayton Shirk", "male").

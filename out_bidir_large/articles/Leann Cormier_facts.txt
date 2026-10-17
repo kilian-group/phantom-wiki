@@ -1,0 +1,8 @@
+mother("Leann Cormier", "Deborah Cormier").
+father("Leann Cormier", "Clifford Cormier").
+friend("Leann Cormier", "Hanh Mohan").
+friend("Leann Cormier", "Alberto Saari").
+dob("Leann Cormier", "0283-09-15").
+job("Leann Cormier", "medical illustrator").
+hobby("Leann Cormier", "microscopy").
+gender("Leann Cormier", "female").

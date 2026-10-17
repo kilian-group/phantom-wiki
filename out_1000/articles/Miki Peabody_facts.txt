@@ -1,0 +1,13 @@
+daughter("Miki Peabody", "Eula Hollins").
+husband("Miki Peabody", "Vernon Peabody").
+friend("Miki Peabody", "Miles Fordham").
+friend("Miki Peabody", "Brian Galvan").
+friend("Miki Peabody", "Stan Kell").
+friend("Miki Peabody", "Dwight Palm").
+friend("Miki Peabody", "Annette Rudolph").
+friend("Miki Peabody", "Glen Towns").
+friend("Miki Peabody", "Shizuko Eaves").
+dob("Miki Peabody", "0354-02-16").
+job("Miki Peabody", "occupational psychologist").
+hobby("Miki Peabody", "crystals").
+gender("Miki Peabody", "female").

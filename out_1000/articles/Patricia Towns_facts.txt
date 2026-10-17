@@ -1,0 +1,20 @@
+sister("Patricia Towns", "Brunilda Linden").
+sister("Patricia Towns", "Catina Linden").
+sister("Patricia Towns", "Genny Burdette").
+brother("Patricia Towns", "Augustine Linden").
+brother("Patricia Towns", "Emery Linden").
+mother("Patricia Towns", "Barb Linden").
+father("Patricia Towns", "Jarvis Linden").
+son("Patricia Towns", "Cedric Towns").
+daughter("Patricia Towns", "Shawna Towns").
+husband("Patricia Towns", "Glen Towns").
+friend("Patricia Towns", "Lance Carreon").
+friend("Patricia Towns", "Flora Cushman").
+friend("Patricia Towns", "Dustin Sheridan").
+friend("Patricia Towns", "Genesis Alarcon").
+friend("Patricia Towns", "Josie Littleton").
+friend("Patricia Towns", "Rosella Simons").
+dob("Patricia Towns", "0473-10-17").
+job("Patricia Towns", "careers adviser").
+hobby("Patricia Towns", "audiophile").
+gender("Patricia Towns", "female").

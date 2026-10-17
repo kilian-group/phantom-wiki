@@ -1,0 +1,16 @@
+daughter("Nydia Willoughby", "Belia Mckenna").
+daughter("Nydia Willoughby", "Katharine Willoughby").
+husband("Nydia Willoughby", "Emerson Willoughby").
+friend("Nydia Willoughby", "Chelsie Peeler").
+friend("Nydia Willoughby", "Seymour Simons").
+friend("Nydia Willoughby", "Roger Carreon").
+friend("Nydia Willoughby", "Lazaro Hsu").
+friend("Nydia Willoughby", "Julius Niles").
+friend("Nydia Willoughby", "Lashandra Gilliam").
+friend("Nydia Willoughby", "Chuck Medeiros").
+friend("Nydia Willoughby", "Iluminada Capps").
+friend("Nydia Willoughby", "Christen Resendez").
+dob("Nydia Willoughby", "0417-06-14").
+job("Nydia Willoughby", "analytical chemist").
+hobby("Nydia Willoughby", "hunting").
+gender("Nydia Willoughby", "female").

@@ -1,0 +1,11 @@
+sister("Eldon Nicolas", "Connie Nicolas").
+sister("Eldon Nicolas", "Lera Brook").
+sister("Eldon Nicolas", "Marilyn Nicolas").
+mother("Eldon Nicolas", "Edythe Nicolas").
+father("Eldon Nicolas", "Anthony Nicolas").
+friend("Eldon Nicolas", "Ora Lizotte").
+friend("Eldon Nicolas", "Anibal Schoonmaker").
+dob("Eldon Nicolas", "0298-11-15").
+job("Eldon Nicolas", "conference centre manager").
+hobby("Eldon Nicolas", "herping").
+gender("Eldon Nicolas", "male").

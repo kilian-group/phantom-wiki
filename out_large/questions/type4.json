@@ -1,0 +1,505 @@
+[
+    {
+        "id": "94b727c8-3ead-46d8-88ee-b6e750af3933",
+        "question": "Who is the person whose hobby is stone collecting?",
+        "solution_traces": "[{\"Y_2\": \"Chrissy Mcgough\"}]",
+        "answer": [
+            "Chrissy Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_2, \"stone collecting\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "a27dcf71-d34c-47bf-bc8d-7fa863a98f2e",
+        "question": "Who is the person whose occupation is government social research officer?",
+        "solution_traces": "[{\"Y_2\": \"Twila Oberg\"}]",
+        "answer": [
+            "Twila Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_2, \"government social research officer\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "939ad10e-fa47-4483-a438-723807a1de71",
+        "question": "Who is the person whose hobby is figure skating?",
+        "solution_traces": "[{\"Y_2\": \"Colby Narvaez\"}]",
+        "answer": [
+            "Colby Narvaez"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_2, \"figure skating\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "71f75c48-a53e-4c7b-893a-77e1d0787582",
+        "question": "Who is the person whose hobby is stone collecting?",
+        "solution_traces": "[{\"Y_2\": \"Chrissy Mcgough\"}]",
+        "answer": [
+            "Chrissy Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_2, \"stone collecting\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "c5f455e9-a9b3-49e2-8ff4-48969885fb33",
+        "question": "Who is the person whose date of birth is 0277-08-23?",
+        "solution_traces": "[{\"Y_2\": \"Marion Wilke\"}]",
+        "answer": [
+            "Marion Wilke"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_2, \"0277-08-23\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "59126a92-5608-474c-b02c-ecb8ceb56a16",
+        "question": "Who is the person whose hobby is fishkeeping?",
+        "solution_traces": "[{\"Y_2\": \"Mason Oberg\"}, {\"Y_2\": \"Randall Mcgough\"}]",
+        "answer": [
+            "Mason Oberg",
+            "Randall Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_2, \"fishkeeping\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "623ac0ec-27dc-4ec7-a0be-e471a1ac8c39",
+        "question": "Who is the person whose hobby is herping?",
+        "solution_traces": "[{\"Y_2\": \"Thelma Vandenberg\"}, {\"Y_2\": \"Dorinda Chrisman\"}]",
+        "answer": [
+            "Dorinda Chrisman",
+            "Thelma Vandenberg"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_2, \"herping\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "b0df88b5-6c2b-490e-ad81-9becec9cba18",
+        "question": "Who is the person whose hobby is history?",
+        "solution_traces": "[{\"Y_2\": \"Dani Remillard\"}]",
+        "answer": [
+            "Dani Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_2, \"history\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "23942c5e-ff8b-4b45-93cf-d321c2782d7a",
+        "question": "Who is the person whose date of birth is 0301-09-01?",
+        "solution_traces": "[{\"Y_2\": \"Marlo Oberg\"}]",
+        "answer": [
+            "Marlo Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_2, \"0301-09-01\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "eb8c206c-ed22-4a32-b57e-376fd66b374c",
+        "question": "Who is the person whose occupation is scientist?",
+        "solution_traces": "[{\"Y_2\": \"Kori Remillard\"}]",
+        "answer": [
+            "Kori Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_2, \"scientist\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "4c1389b2-dc96-40b5-9a53-d28dc47bc70b",
+        "question": "Who is the person whose occupation is leisure centre manager?",
+        "solution_traces": "[{\"Y_2\": \"Valentin Vandenberg\"}, {\"Y_2\": \"Lyman Oberg\"}]",
+        "answer": [
+            "Lyman Oberg",
+            "Valentin Vandenberg"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_2, \"leisure centre manager\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "28798582-0da6-41e0-9a50-25f9ebcb3ded",
+        "question": "Who is the person whose hobby is video game collecting?",
+        "solution_traces": "[{\"Y_2\": \"Luke Wilke\"}]",
+        "answer": [
+            "Luke Wilke"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_2, \"video game collecting\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "35ceda4d-45ef-433e-95e8-1f36c130caba",
+        "question": "Who is the person whose occupation is professor emeritus?",
+        "solution_traces": "[{\"Y_2\": \"Jon Remillard\"}]",
+        "answer": [
+            "Jon Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_2, \"professor emeritus\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "a2c3025d-5256-4846-9dc3-d42783442c45",
+        "question": "Who is the person whose hobby is knife throwing?",
+        "solution_traces": "[{\"Y_2\": \"Cherlyn Oberg\"}]",
+        "answer": [
+            "Cherlyn Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_2, \"knife throwing\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "d5c0da10-1c8d-4870-b7df-d3018c02c3a4",
+        "question": "Who is the person whose occupation is chemist?",
+        "solution_traces": "[{\"Y_2\": \"Monte Oberg\"}]",
+        "answer": [
+            "Monte Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_2, \"chemist\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "c5b03bb8-21fa-4a0b-adad-5622b862afd6",
+        "question": "Who is the person whose date of birth is 0358-04-15?",
+        "solution_traces": "[{\"Y_2\": \"Demarcus Narvaez\"}]",
+        "answer": [
+            "Demarcus Narvaez"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_2, \"0358-04-15\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "fb5258a8-079b-4ea4-9f6f-091fa00af7d8",
+        "question": "Who is the person whose occupation is geoscientist?",
+        "solution_traces": "[{\"Y_2\": \"Chrissy Mcgough\"}]",
+        "answer": [
+            "Chrissy Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_2, \"geoscientist\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "57165bf2-6988-45da-990d-5c058b827cf8",
+        "question": "Who is the person whose date of birth is 0320-07-24?",
+        "solution_traces": "[{\"Y_2\": \"Margie Remillard\"}]",
+        "answer": [
+            "Margie Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_2, \"0320-07-24\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "a78c553e-6436-4d6f-9eca-da6027f3e549",
+        "question": "Who is the person whose hobby is gongoozling?",
+        "solution_traces": "[{\"Y_2\": \"Louann Chrisman\"}]",
+        "answer": [
+            "Louann Chrisman"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_2, \"gongoozling\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "55a6111d-2246-419c-95c6-630f0113e1e4",
+        "question": "Who is the person whose occupation is health promotion specialist?",
+        "solution_traces": "[{\"Y_2\": \"Stacey Wilke\"}]",
+        "answer": [
+            "Stacey Wilke"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_2, \"health promotion specialist\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 4,
+        "difficulty": 1,
+        "is_aggregation_question": false
+    }
+]

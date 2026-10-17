@@ -1,0 +1,17 @@
+mother("Normand Wilke", "Rhonda Wilke").
+father("Normand Wilke", "Cedric Wilke").
+friend("Normand Wilke", "Sophie Wilke").
+friend("Normand Wilke", "Jana Galvan").
+friend("Normand Wilke", "Anthony Jarrett").
+friend("Normand Wilke", "Tommy Booth").
+friend("Normand Wilke", "Maggie Vanmeter").
+friend("Normand Wilke", "Bridget Sutphin").
+friend("Normand Wilke", "Derek Murchison").
+friend("Normand Wilke", "Ella Valladares").
+friend("Normand Wilke", "Reggie Simons").
+friend("Normand Wilke", "Lucio Townsend").
+friend("Normand Wilke", "Myra Eaves").
+dob("Normand Wilke", "0423-08-09").
+job("Normand Wilke", "nurse").
+hobby("Normand Wilke", "karting").
+gender("Normand Wilke", "male").

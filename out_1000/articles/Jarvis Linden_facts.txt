@@ -1,0 +1,12 @@
+son("Jarvis Linden", "Augustine Linden").
+son("Jarvis Linden", "Emery Linden").
+daughter("Jarvis Linden", "Brunilda Linden").
+daughter("Jarvis Linden", "Catina Linden").
+daughter("Jarvis Linden", "Genny Burdette").
+daughter("Jarvis Linden", "Patricia Towns").
+wife("Jarvis Linden", "Barb Linden").
+friend("Jarvis Linden", "Tamala Hamlin").
+dob("Jarvis Linden", "0443-06-28").
+job("Jarvis Linden", "civil service administrator").
+hobby("Jarvis Linden", "sea glass collecting").
+gender("Jarvis Linden", "male").

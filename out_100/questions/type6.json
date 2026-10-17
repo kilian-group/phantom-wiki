@@ -1,0 +1,503 @@
+[
+    {
+        "id": "ee54dcd7-6603-4d97-8244-ce90836262bc",
+        "question": "How many cousins does the person whose hobby is bus spotting have?",
+        "solution_traces": "[{\"Count_1\": 3, \"Y_3\": \"Johnetta Wang\"}]",
+        "answer": [
+            "3"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(cousin(Y_3, Y_1)), Count_1)",
+                "hobby(Y_3, \"bus spotting\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Johnetta Wang",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "705bf6cb-51a9-4ae8-8f4b-dbe4afc10049",
+        "question": "How many nephews does the person whose hobby is meteorology have?",
+        "solution_traces": "[{\"Y_3\": \"Aubrey Smock\", \"Count_1\": 1}, {\"Count_1\": 0, \"Y_3\": \"Alison Smock\"}]",
+        "answer": [
+            "0",
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(nephew(Y_3, Y_1)), Count_1)",
+                "hobby(Y_3, \"meteorology\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Aubrey Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 2
+        }
+    },
+    {
+        "id": "f2228035-684d-401c-9346-06274b7c9498",
+        "question": "How many sons-in-law does the person whose occupation is sports therapist have?",
+        "solution_traces": "[{\"Count_1\": 3, \"Y_3\": \"Dino Beltran\"}]",
+        "answer": [
+            "3"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(son_in_law(Y_3, Y_1)), Count_1)",
+                "job(Y_3, \"sports therapist\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Dino Beltran",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "b6ef436f-899c-43ba-8dde-bacd34172389",
+        "question": "How many fathers-in-law does the person whose occupation is occupational therapist have?",
+        "solution_traces": "[{\"Count_1\": 1, \"Y_3\": \"Saul Wexler\"}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(father_in_law(Y_3, Y_1)), Count_1)",
+                "job(Y_3, \"occupational therapist\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Saul Wexler",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "6eee7a32-af7c-4317-9a08-2abc33e9adb3",
+        "question": "How many parents does the person whose date of birth is 0208-08-16 have?",
+        "solution_traces": "[{\"Y_3\": \"Gene Smock\", \"Count_1\": 2}]",
+        "answer": [
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(parent(Y_3, Y_1)), Count_1)",
+                "dob(Y_3, \"0208-08-16\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Lannie Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "85717d05-2400-4ddc-ae9f-d7463ec3586f",
+        "question": "How many friends does the person whose occupation is retail manager have?",
+        "solution_traces": "[{\"Count_1\": 5, \"Y_3\": \"Dominique Smock\"}]",
+        "answer": [
+            "5"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(friend(Y_3, Y_1)), Count_1)",
+                "job(Y_3, \"retail manager\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Ricardo Hackworth",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "03ed2f51-2bbf-4cb3-8282-583b49e3339f",
+        "question": "How many daughters-in-law does the person whose hobby is biology have?",
+        "solution_traces": "[{\"Y_3\": \"Alvaro Smock\", \"Count_1\": 1}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(daughter_in_law(Y_3, Y_1)), Count_1)",
+                "hobby(Y_3, \"biology\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Dominique Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "b4401cbe-1894-442f-9122-e234d0e57aae",
+        "question": "How many brothers does the person whose occupation is sports therapist have?",
+        "solution_traces": "[{\"Count_1\": 1, \"Y_3\": \"Dino Beltran\"}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(brother(Y_3, Y_1)), Count_1)",
+                "job(Y_3, \"sports therapist\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Dino Beltran",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "3db0f6a5-a95b-41dd-8af5-410a0a522832",
+        "question": "How many children does the person whose occupation is osteopath have?",
+        "solution_traces": "[{\"Count_1\": 4, \"Y_3\": \"Alvaro Smock\"}]",
+        "answer": [
+            "4"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(child(Y_3, Y_1)), Count_1)",
+                "job(Y_3, \"osteopath\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Aubrey Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "a3a65cea-ff05-4eb3-9c72-cdc3e79905a8",
+        "question": "How many mothers-in-law does the person whose date of birth is 0268-03-07 have?",
+        "solution_traces": "[{\"Y_3\": \"Shelli Beltran\", \"Count_1\": 1}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(mother_in_law(Y_3, Y_1)), Count_1)",
+                "dob(Y_3, \"0268-03-07\")"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "have",
+            "?"
+        ],
+        "type": 6,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": true,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Daisy Beltran",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_1"
+            ],
+            "prolog_solutions_found": 1
+        }
+    }
+]

@@ -1,0 +1,17 @@
+daughter("Bernardo Briscoe", "Geraldine Valladares").
+wife("Bernardo Briscoe", "Olivia Briscoe").
+friend("Bernardo Briscoe", "Jon Dana").
+friend("Bernardo Briscoe", "Tim Goff").
+friend("Bernardo Briscoe", "Kenton Dunlap").
+friend("Bernardo Briscoe", "Dino Donner").
+friend("Bernardo Briscoe", "Hal Greene").
+friend("Bernardo Briscoe", "Jana Noland").
+friend("Bernardo Briscoe", "Shaunna Fordham").
+friend("Bernardo Briscoe", "Jennie Burger").
+friend("Bernardo Briscoe", "Rosina Putnam").
+friend("Bernardo Briscoe", "Sylvia Carty").
+friend("Bernardo Briscoe", "Macy Booth").
+dob("Bernardo Briscoe", "0345-12-19").
+job("Bernardo Briscoe", "geneticist").
+hobby("Bernardo Briscoe", "physics").
+gender("Bernardo Briscoe", "male").

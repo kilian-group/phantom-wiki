@@ -1,0 +1,16 @@
+mother("Amanda Rinehart", "Dawn Rinehart").
+father("Amanda Rinehart", "Kenneth Rinehart").
+friend("Amanda Rinehart", "Cedric Wilke").
+friend("Amanda Rinehart", "Lera Carty").
+friend("Amanda Rinehart", "Annita Mckenna").
+friend("Amanda Rinehart", "Gregory Geter").
+friend("Amanda Rinehart", "Paula Lazar").
+friend("Amanda Rinehart", "Jamie Bellows").
+friend("Amanda Rinehart", "Judith Holliman").
+friend("Amanda Rinehart", "Jenny Gilliam").
+friend("Amanda Rinehart", "Shelly Fredrick").
+friend("Amanda Rinehart", "Deloris Robinett").
+dob("Amanda Rinehart", "0513-03-24").
+job("Amanda Rinehart", "commercial horticulturist").
+hobby("Amanda Rinehart", "transit map collecting").
+gender("Amanda Rinehart", "female").

@@ -1,0 +1,15 @@
+son("Johnna Macias", "Brent Macias").
+husband("Johnna Macias", "Laurence Macias").
+friend("Johnna Macias", "Jamie Upton").
+friend("Johnna Macias", "Garland Hirsch").
+friend("Johnna Macias", "Logan Swartz").
+friend("Johnna Macias", "Adolph Hollins").
+friend("Johnna Macias", "Marcus Lebrun").
+friend("Johnna Macias", "Tristan Niles").
+friend("Johnna Macias", "Lucile Hurt").
+friend("Johnna Macias", "Murray Fredrick").
+friend("Johnna Macias", "Lyman Marr").
+dob("Johnna Macias", "0466-08-26").
+job("Johnna Macias", "environmental manager").
+hobby("Johnna Macias", "publishing").
+gender("Johnna Macias", "female").

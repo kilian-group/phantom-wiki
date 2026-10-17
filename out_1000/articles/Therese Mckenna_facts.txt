@@ -1,0 +1,15 @@
+son("Therese Mckenna", "Michael Mckenna").
+son("Therese Mckenna", "Wyatt Mckenna").
+daughter("Therese Mckenna", "Iva Parish").
+daughter("Therese Mckenna", "Lynetta Mckenna").
+husband("Therese Mckenna", "Rodrigo Mckenna").
+friend("Therese Mckenna", "Janiece Cordova").
+friend("Therese Mckenna", "Javier Kirksey").
+friend("Therese Mckenna", "Gloria Shoulders").
+friend("Therese Mckenna", "Maryann Oliveira").
+friend("Therese Mckenna", "Sang Cheney").
+friend("Therese Mckenna", "Dorathy Mckenna").
+dob("Therese Mckenna", "0437-08-08").
+job("Therese Mckenna", "applications developer").
+hobby("Therese Mckenna", "sea glass collecting").
+gender("Therese Mckenna", "female").

@@ -1,0 +1,15 @@
+brother("Lorenzo Littleton", "Milton Littleton").
+mother("Lorenzo Littleton", "Romona Littleton").
+father("Lorenzo Littleton", "Christoper Littleton").
+friend("Lorenzo Littleton", "Logan Swartz").
+friend("Lorenzo Littleton", "Shante Ruth").
+friend("Lorenzo Littleton", "Karina Smart").
+friend("Lorenzo Littleton", "Erik Capps").
+friend("Lorenzo Littleton", "Kenneth Rinehart").
+friend("Lorenzo Littleton", "Goldie Alessi").
+friend("Lorenzo Littleton", "Son Sutphin").
+friend("Lorenzo Littleton", "Jake Burkhalter").
+dob("Lorenzo Littleton", "0463-04-11").
+job("Lorenzo Littleton", "purchasing manager").
+hobby("Lorenzo Littleton", "capoeira").
+gender("Lorenzo Littleton", "male").

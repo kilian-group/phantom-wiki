@@ -1,0 +1,9 @@
+mother("Allyson Burger", "Jennie Burger").
+father("Allyson Burger", "Bruce Burger").
+friend("Allyson Burger", "Truman Holtz").
+friend("Allyson Burger", "Amanda Broughton").
+friend("Allyson Burger", "Kieth Medellin").
+dob("Allyson Burger", "0532-10-17").
+job("Allyson Burger", "outdoor activities manager").
+hobby("Allyson Burger", "mineral collecting").
+gender("Allyson Burger", "female").

@@ -1,0 +1,17 @@
+son("Jefferson Murdoch", "Kip Murdoch").
+wife("Jefferson Murdoch", "Dixie Murdoch").
+friend("Jefferson Murdoch", "Robt Medellin").
+friend("Jefferson Murdoch", "Maryann Oliveira").
+friend("Jefferson Murdoch", "Rueben Bowles").
+friend("Jefferson Murdoch", "Mac Mounts").
+friend("Jefferson Murdoch", "Chante Corso").
+friend("Jefferson Murdoch", "Bryon Simons").
+friend("Jefferson Murdoch", "Dalton Arnold").
+friend("Jefferson Murdoch", "Emery Linden").
+friend("Jefferson Murdoch", "Emmanuel Swartz").
+friend("Jefferson Murdoch", "Dorothea Goff").
+friend("Jefferson Murdoch", "Kenton Dunlap").
+dob("Jefferson Murdoch", "0400-11-04").
+job("Jefferson Murdoch", "petroleum engineer").
+hobby("Jefferson Murdoch", "sociology").
+gender("Jefferson Murdoch", "male").

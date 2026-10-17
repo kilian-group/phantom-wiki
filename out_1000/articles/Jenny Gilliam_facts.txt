@@ -1,0 +1,15 @@
+sister("Jenny Gilliam", "Anna Broughton").
+sister("Jenny Gilliam", "Vada Littleton").
+brother("Jenny Gilliam", "Scotty Gilliam").
+mother("Jenny Gilliam", "Deidra Gilliam").
+father("Jenny Gilliam", "Darren Gilliam").
+friend("Jenny Gilliam", "Amanda Rinehart").
+friend("Jenny Gilliam", "Belva Murphey").
+friend("Jenny Gilliam", "Mason Dangelo").
+friend("Jenny Gilliam", "Roman Ruth").
+friend("Jenny Gilliam", "Lance Carreon").
+friend("Jenny Gilliam", "Tristan Niles").
+dob("Jenny Gilliam", "0372-02-01").
+job("Jenny Gilliam", "theme park manager").
+hobby("Jenny Gilliam", "sociology").
+gender("Jenny Gilliam", "female").

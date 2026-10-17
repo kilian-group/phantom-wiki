@@ -1,0 +1,14 @@
+sister("Deandre Capps", "Elaine Marr").
+brother("Deandre Capps", "Cleveland Capps").
+mother("Deandre Capps", "Velia Capps").
+father("Deandre Capps", "Rogelio Capps").
+friend("Deandre Capps", "Nelly Theriot").
+friend("Deandre Capps", "Foster Eaves").
+friend("Deandre Capps", "Shizuko Eaves").
+friend("Deandre Capps", "Alexander Corwin").
+friend("Deandre Capps", "Neal Mathes").
+friend("Deandre Capps", "Lucile Hurt").
+dob("Deandre Capps", "0407-12-03").
+job("Deandre Capps", "colour technologist").
+hobby("Deandre Capps", "architecture").
+gender("Deandre Capps", "male").

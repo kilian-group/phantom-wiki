@@ -1,0 +1,16 @@
+son("Vance Fredrick", "Erik Fredrick").
+daughter("Vance Fredrick", "Tracy Fredrick").
+wife("Vance Fredrick", "Alisha Fredrick").
+friend("Vance Fredrick", "Andre Bowles").
+friend("Vance Fredrick", "Lucas Estrella").
+friend("Vance Fredrick", "Avery Nolasco").
+friend("Vance Fredrick", "Rudolf Lai").
+friend("Vance Fredrick", "Carol Conner").
+friend("Vance Fredrick", "Harold Murray").
+friend("Vance Fredrick", "Salvador Plumley").
+friend("Vance Fredrick", "Taylor Schatz").
+friend("Vance Fredrick", "Juan Smart").
+dob("Vance Fredrick", "0321-08-22").
+job("Vance Fredrick", "toxicologist").
+hobby("Vance Fredrick", "shooting").
+gender("Vance Fredrick", "male").

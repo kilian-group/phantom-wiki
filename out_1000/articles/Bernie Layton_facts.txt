@@ -1,0 +1,14 @@
+son("Bernie Layton", "Andres Layton").
+son("Bernie Layton", "Bryan Layton").
+son("Bernie Layton", "Cary Layton").
+son("Bernie Layton", "Emory Layton").
+daughter("Bernie Layton", "Larue Speaks").
+daughter("Bernie Layton", "Lera Carty").
+wife("Bernie Layton", "Brianne Layton").
+friend("Bernie Layton", "Kenneth Rinehart").
+friend("Bernie Layton", "Fernando Vandenberg").
+friend("Bernie Layton", "Tonia Mcgough").
+dob("Bernie Layton", "0369-07-18").
+job("Bernie Layton", "ecologist").
+hobby("Bernie Layton", "mineral collecting").
+gender("Bernie Layton", "male").

@@ -1,0 +1,17 @@
+sister("Aaron Fordham", "Kris Fordham").
+brother("Aaron Fordham", "Mitchell Fordham").
+brother("Aaron Fordham", "Sung Fordham").
+mother("Aaron Fordham", "Domonique Fordham").
+father("Aaron Fordham", "Miles Fordham").
+son("Aaron Fordham", "Donald Fordham").
+son("Aaron Fordham", "Rodney Fordham").
+daughter("Aaron Fordham", "Shaunna Fordham").
+wife("Aaron Fordham", "Romona Fordham").
+friend("Aaron Fordham", "Cleveland Capps").
+friend("Aaron Fordham", "Scottie Fordham").
+friend("Aaron Fordham", "Shawnta Basham").
+friend("Aaron Fordham", "Pierre Mcpeak").
+dob("Aaron Fordham", "0490-04-20").
+job("Aaron Fordham", "best boy").
+hobby("Aaron Fordham", "iceboat racing").
+gender("Aaron Fordham", "male").

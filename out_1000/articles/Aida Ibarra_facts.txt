@@ -1,0 +1,17 @@
+sister("Aida Ibarra", "Meghan Keyes").
+mother("Aida Ibarra", "Reyna Ibarra").
+father("Aida Ibarra", "Alton Ibarra").
+friend("Aida Ibarra", "Carlotta Gossett").
+friend("Aida Ibarra", "Roger Mcpeak").
+friend("Aida Ibarra", "Holley Fredrick").
+friend("Aida Ibarra", "Amy Wilke").
+friend("Aida Ibarra", "Jermaine Wilke").
+friend("Aida Ibarra", "Erik Mounts").
+friend("Aida Ibarra", "Tony Gillam").
+friend("Aida Ibarra", "Miguel Morehead").
+friend("Aida Ibarra", "Nathan Corwin").
+friend("Aida Ibarra", "Michael Goff").
+dob("Aida Ibarra", "0406-06-21").
+job("Aida Ibarra", "fisheries officer").
+hobby("Aida Ibarra", "record collecting").
+gender("Aida Ibarra", "female").

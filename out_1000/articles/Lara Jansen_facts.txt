@@ -1,0 +1,21 @@
+sister("Lara Jansen", "Gayla Holder").
+sister("Lara Jansen", "Paula Rudolph").
+sister("Lara Jansen", "Rebecka Schlosser").
+sister("Lara Jansen", "Wanda Murray").
+mother("Lara Jansen", "Annette Rudolph").
+father("Lara Jansen", "Antwan Rudolph").
+daughter("Lara Jansen", "Sherrie Jansen").
+daughter("Lara Jansen", "Windy Cowart").
+husband("Lara Jansen", "Doug Jansen").
+friend("Lara Jansen", "Marlene Ingalls").
+friend("Lara Jansen", "Clementine Goff").
+friend("Lara Jansen", "Julius Niles").
+friend("Lara Jansen", "Keri Bennet").
+friend("Lara Jansen", "Derek Carswell").
+friend("Lara Jansen", "Katherine Carswell").
+friend("Lara Jansen", "Hector Autry").
+friend("Lara Jansen", "Maegan Cordova").
+dob("Lara Jansen", "0406-11-07").
+job("Lara Jansen", "advertising art director").
+hobby("Lara Jansen", "learning").
+gender("Lara Jansen", "female").

@@ -1,0 +1,17 @@
+mother("Derek Carswell", "Katherine Carswell").
+father("Derek Carswell", "Ricky Carswell").
+son("Derek Carswell", "Cary Carswell").
+wife("Derek Carswell", "Ardath Carswell").
+friend("Derek Carswell", "Hiram Putnam").
+friend("Derek Carswell", "Elroy Mcgough").
+friend("Derek Carswell", "Jayson Hudgens").
+friend("Derek Carswell", "Teresita Bauman").
+friend("Derek Carswell", "Galen Cordova").
+friend("Derek Carswell", "Lara Jansen").
+friend("Derek Carswell", "Dennis Hamann").
+friend("Derek Carswell", "Deanne Gilliam").
+friend("Derek Carswell", "Toney Gibbs").
+dob("Derek Carswell", "0522-08-23").
+job("Derek Carswell", "illustrator").
+hobby("Derek Carswell", "mathematics").
+gender("Derek Carswell", "male").

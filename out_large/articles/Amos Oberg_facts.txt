@@ -1,0 +1,14 @@
+brother("Amos Oberg", "Mason Oberg").
+mother("Amos Oberg", "Kirsten Oberg").
+father("Amos Oberg", "Lyman Oberg").
+friend("Amos Oberg", "Bryce Oberg").
+friend("Amos Oberg", "Clyde Oberg").
+friend("Amos Oberg", "Marlo Oberg").
+friend("Amos Oberg", "Morgan Remillard").
+friend("Amos Oberg", "Tianna Remillard").
+friend("Amos Oberg", "Valentin Vandenberg").
+friend("Amos Oberg", "Abel Oberg").
+dob("Amos Oberg", "0336-02-04").
+job("Amos Oberg", "ceramics designer").
+hobby("Amos Oberg", "rugby league football").
+gender("Amos Oberg", "male").

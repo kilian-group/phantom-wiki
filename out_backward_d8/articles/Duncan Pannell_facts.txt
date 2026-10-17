@@ -1,0 +1,13 @@
+mother("Duncan Pannell", "Tamala Pannell").
+father("Duncan Pannell", "Randell Pannell").
+son("Duncan Pannell", "Lanny Pannell").
+wife("Duncan Pannell", "Mona Pannell").
+friend("Duncan Pannell", "Eduardo Earnest").
+friend("Duncan Pannell", "Quincy Pannell").
+friend("Duncan Pannell", "Roman Palermo").
+friend("Duncan Pannell", "Daniel Brannan").
+friend("Duncan Pannell", "Ester Kovach").
+dob("Duncan Pannell", "0234-12-03").
+job("Duncan Pannell", "planning and development surveyor").
+hobby("Duncan Pannell", "paintball").
+gender("Duncan Pannell", "male").

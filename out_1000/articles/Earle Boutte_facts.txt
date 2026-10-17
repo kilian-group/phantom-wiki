@@ -1,0 +1,13 @@
+son("Earle Boutte", "Austin Boutte").
+daughter("Earle Boutte", "Charissa Boutte").
+daughter("Earle Boutte", "Vicki Osterman").
+wife("Earle Boutte", "Christen Boutte").
+friend("Earle Boutte", "Dorothea Goff").
+friend("Earle Boutte", "Elroy Goff").
+friend("Earle Boutte", "Bev Medellin").
+friend("Earle Boutte", "Erik Fredrick").
+friend("Earle Boutte", "Yasmin Gordon").
+dob("Earle Boutte", "0427-10-06").
+job("Earle Boutte", "mental health nurse").
+hobby("Earle Boutte", "bowling").
+gender("Earle Boutte", "male").

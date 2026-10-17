@@ -1,0 +1,19 @@
+mother("Keith Resendez", "Jeanelle Resendez").
+father("Keith Resendez", "Salvatore Resendez").
+daughter("Keith Resendez", "Belva Resendez").
+wife("Keith Resendez", "Kerrie Resendez").
+friend("Keith Resendez", "Alberto Wellington").
+friend("Keith Resendez", "Jackqueline Hollinger").
+friend("Keith Resendez", "Adrianna Gregory").
+friend("Keith Resendez", "Myra Eaves").
+friend("Keith Resendez", "Adolph Hollins").
+friend("Keith Resendez", "Brock Pugliese").
+friend("Keith Resendez", "Reyna Ibarra").
+friend("Keith Resendez", "Deja Gilliam").
+friend("Keith Resendez", "Lynette Fredrick").
+friend("Keith Resendez", "Chelsea Skidmore").
+friend("Keith Resendez", "Gene Burnett").
+dob("Keith Resendez", "0484-02-27").
+job("Keith Resendez", "systems developer").
+hobby("Keith Resendez", "auto audiophilia").
+gender("Keith Resendez", "male").

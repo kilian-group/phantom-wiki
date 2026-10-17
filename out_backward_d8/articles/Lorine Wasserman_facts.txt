@@ -1,0 +1,12 @@
+sister("Lorine Wasserman", "Shirleen Abraham").
+mother("Lorine Wasserman", "Elsy Hornback").
+father("Lorine Wasserman", "Reinaldo Hornback").
+daughter("Lorine Wasserman", "Shanda Wasserman").
+husband("Lorine Wasserman", "Aurelio Wasserman").
+friend("Lorine Wasserman", "Bryant Bradberry").
+friend("Lorine Wasserman", "Therese Cormier").
+friend("Lorine Wasserman", "Carrol Nicolas").
+dob("Lorine Wasserman", "0250-09-12").
+job("Lorine Wasserman", "customer service manager").
+hobby("Lorine Wasserman", "magnet fishing").
+gender("Lorine Wasserman", "female").

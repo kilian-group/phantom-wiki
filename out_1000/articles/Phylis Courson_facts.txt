@@ -1,0 +1,14 @@
+son("Phylis Courson", "Everett Courson").
+husband("Phylis Courson", "Wesley Courson").
+friend("Phylis Courson", "Vilma Callender").
+friend("Phylis Courson", "Drew Dana").
+friend("Phylis Courson", "Christen Corwin").
+friend("Phylis Courson", "Jarrod Ibarra").
+friend("Phylis Courson", "Julius Niles").
+friend("Phylis Courson", "Virgina Noland").
+friend("Phylis Courson", "Steven Prater").
+friend("Phylis Courson", "Dino Layman").
+dob("Phylis Courson", "0447-06-12").
+job("Phylis Courson", "dietitian").
+hobby("Phylis Courson", "gardening").
+gender("Phylis Courson", "female").

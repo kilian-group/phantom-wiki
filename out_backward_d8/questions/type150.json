@@ -1,0 +1,412 @@
+[
+    {
+        "id": "13253b8e-40d3-4db5-bd1f-1911ab51875d",
+        "question": "Who is younger, the person whose hobby is stamp collecting or the cousin of Rolland Mckenna?",
+        "solution_traces": "[]",
+        "answer": [
+            "Chuck Lizotte"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "hobby(Y_2, \"stamp collecting\")",
+                "cousin(\"Rolland Mckenna\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 150,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "9185a078-5308-4e52-a22e-9b2d1391024c",
+        "question": "Who is younger, the person whose hobby is chess or the grandchild of Dominique Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Myrle Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "hobby(Y_2, \"chess\")",
+                "grandchild(\"Dominique Smock\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 150,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "ae2904f8-674a-4176-be36-efc06db24502",
+        "question": "Who is younger, the person whose occupation is telecommunications researcher or the mother of Jeanelle Mcnew?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lorelei Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "job(Y_2, \"telecommunications researcher\")",
+                "mother(\"Jeanelle Mcnew\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 150,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "00e4f09c-f000-47d2-9f8c-ecea46c28aa0",
+        "question": "Who is younger, the person whose occupation is set designer or the friend of Maxwell Henderson?",
+        "solution_traces": "[]",
+        "answer": [
+            "Cherry Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "job(Y_2, \"set designer\")",
+                "friend(\"Maxwell Henderson\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 150,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "8f3298e5-2b31-45ec-b101-89df0fe349f1",
+        "question": "Who is younger, the person whose date of birth is 0268-03-07 or the granddaughter of Karla Hornback?",
+        "solution_traces": "[]",
+        "answer": [
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "dob(Y_2, \"0268-03-07\")",
+                "granddaughter(\"Karla Hornback\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 150,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "857ce18c-c8ac-4ca5-ba9a-1b6dda1583cd",
+        "question": "Who is younger, the person whose occupation is product designer or the great-uncle of Lea Levy?",
+        "solution_traces": "[]",
+        "answer": [
+            "Ester Kovach"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "job(Y_2, \"product designer\")",
+                "great_uncle(\"Lea Levy\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 150,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "d3bc63e0-0735-404a-80c1-516b26338d8a",
+        "question": "Who is younger, the person whose hobby is rock tumbling or the father of Charlie Kovach?",
+        "solution_traces": "[]",
+        "answer": [
+            "Minerva Wilkie"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "hobby(Y_2, \"rock tumbling\")",
+                "father(\"Charlie Kovach\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 150,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "b2eec5d7-b29b-47d5-95ee-812bae246916",
+        "question": "Who is younger, the person whose occupation is oceanographer or the husband of Deborah Cormier?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deborah Cormier"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "job(Y_2, \"oceanographer\")",
+                "husband(\"Deborah Cormier\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 150,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "d8991e06-f0f5-41a8-b424-9587d1f24b04",
+        "question": "Who is younger, the person whose occupation is industrial designer or the son of Monique Griffiths?",
+        "solution_traces": "[]",
+        "answer": [
+            "Hilton Griffiths"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "job(Y_2, \"industrial designer\")",
+                "son(\"Monique Griffiths\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 150,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "375b9dad-7b71-447c-8c6c-45de9d1b6264",
+        "question": "Who is younger, the person whose date of birth is 0230-04-26 or the father of Bruce Mason?",
+        "solution_traces": "[]",
+        "answer": [
+            "Clarence Mason"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "dob(Y_2, \"0230-04-26\")",
+                "father(\"Bruce Mason\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 150,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    }
+]

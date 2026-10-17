@@ -1,0 +1,17 @@
+sister("Herbert Storey", "Daisy Autry").
+brother("Herbert Storey", "Mack Storey").
+mother("Herbert Storey", "Joanne Storey").
+father("Herbert Storey", "Steve Storey").
+friend("Herbert Storey", "Bridget Sutphin").
+friend("Herbert Storey", "Maybelle Lester").
+friend("Herbert Storey", "Jo Murray").
+friend("Herbert Storey", "Jon Dana").
+friend("Herbert Storey", "Katharine Resendez").
+friend("Herbert Storey", "Steve Gossett").
+friend("Herbert Storey", "Bradford Oliveira").
+friend("Herbert Storey", "Dino Layman").
+friend("Herbert Storey", "Scottie Fordham").
+dob("Herbert Storey", "0408-01-13").
+job("Herbert Storey", "biochemist").
+hobby("Herbert Storey", "science and technology studies").
+gender("Herbert Storey", "male").

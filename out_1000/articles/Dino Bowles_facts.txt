@@ -1,0 +1,13 @@
+sister("Dino Bowles", "Romelia Bowles").
+brother("Dino Bowles", "Rueben Bowles").
+mother("Dino Bowles", "Alina Bowles").
+father("Dino Bowles", "Ryan Bowles").
+friend("Dino Bowles", "Babette Jarrett").
+friend("Dino Bowles", "Tamara Kell").
+friend("Dino Bowles", "Chau Peeler").
+friend("Dino Bowles", "Ashton Mahoney").
+friend("Dino Bowles", "Jimmie Smart").
+dob("Dino Bowles", "0447-08-15").
+job("Dino Bowles", "publishing copy").
+hobby("Dino Bowles", "shortwave listening").
+gender("Dino Bowles", "male").

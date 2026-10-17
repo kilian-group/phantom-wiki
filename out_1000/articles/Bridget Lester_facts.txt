@@ -1,0 +1,12 @@
+mother("Bridget Lester", "Audra Lester").
+father("Bridget Lester", "Cedrick Lester").
+friend("Bridget Lester", "Elijah Linares").
+friend("Bridget Lester", "Ivette Eaves").
+friend("Bridget Lester", "Jon Dana").
+friend("Bridget Lester", "Jacinta Gilliam").
+friend("Bridget Lester", "Jaclyn Smart").
+friend("Bridget Lester", "Lynetta Mckenna").
+dob("Bridget Lester", "0490-07-21").
+job("Bridget Lester", "chiropractor").
+hobby("Bridget Lester", "butterfly watching").
+gender("Bridget Lester", "female").

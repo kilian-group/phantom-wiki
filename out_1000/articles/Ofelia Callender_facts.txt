@@ -1,0 +1,24 @@
+sister("Ofelia Callender", "Lauretta Callender").
+sister("Ofelia Callender", "Randi Crocker").
+sister("Ofelia Callender", "Vilma Callender").
+brother("Ofelia Callender", "Jonathon Callender").
+mother("Ofelia Callender", "Madaline Callender").
+father("Ofelia Callender", "Royce Callender").
+friend("Ofelia Callender", "Jody Valladares").
+friend("Ofelia Callender", "Harley Simons").
+friend("Ofelia Callender", "Heather Ingalls").
+friend("Ofelia Callender", "Monika Bennet").
+friend("Ofelia Callender", "Deanne Gilliam").
+friend("Ofelia Callender", "Kory Gibbs").
+friend("Ofelia Callender", "Elaine Marr").
+friend("Ofelia Callender", "Isabell Shank").
+friend("Ofelia Callender", "Zoraida Sanborn").
+friend("Ofelia Callender", "Cary Layton").
+friend("Ofelia Callender", "Erick Courson").
+friend("Ofelia Callender", "Louis Upton").
+friend("Ofelia Callender", "Zackary Wilkie").
+friend("Ofelia Callender", "Rolf Booth").
+dob("Ofelia Callender", "0425-04-02").
+job("Ofelia Callender", "probation officer").
+hobby("Ofelia Callender", "rock balancing").
+gender("Ofelia Callender", "female").

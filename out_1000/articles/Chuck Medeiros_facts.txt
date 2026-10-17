@@ -1,0 +1,10 @@
+daughter("Chuck Medeiros", "Brigette Medeiros").
+daughter("Chuck Medeiros", "Enid Yarbrough").
+wife("Chuck Medeiros", "Jo Medeiros").
+friend("Chuck Medeiros", "Nydia Willoughby").
+friend("Chuck Medeiros", "Curt Cowart").
+friend("Chuck Medeiros", "Jerry Mahoney").
+dob("Chuck Medeiros", "0430-07-10").
+job("Chuck Medeiros", "educational psychologist").
+hobby("Chuck Medeiros", "action figure").
+gender("Chuck Medeiros", "male").

@@ -1,0 +1,20 @@
+sister("Michael Mckenna", "Iva Parish").
+sister("Michael Mckenna", "Lynetta Mckenna").
+brother("Michael Mckenna", "Wyatt Mckenna").
+mother("Michael Mckenna", "Therese Mckenna").
+father("Michael Mckenna", "Rodrigo Mckenna").
+son("Michael Mckenna", "Carmine Mckenna").
+wife("Michael Mckenna", "Annita Mckenna").
+friend("Michael Mckenna", "Wyatt Mckenna").
+friend("Michael Mckenna", "Bryon Simons").
+friend("Michael Mckenna", "Addie Dana").
+friend("Michael Mckenna", "Karin Machado").
+friend("Michael Mckenna", "Evette Gibbs").
+friend("Michael Mckenna", "Sammy Yarbrough").
+friend("Michael Mckenna", "Wesley Courson").
+friend("Michael Mckenna", "Garrett Bauman").
+friend("Michael Mckenna", "Max Bauman").
+dob("Michael Mckenna", "0468-02-26").
+job("Michael Mckenna", "conservation officer").
+hobby("Michael Mckenna", "antiquities").
+gender("Michael Mckenna", "male").

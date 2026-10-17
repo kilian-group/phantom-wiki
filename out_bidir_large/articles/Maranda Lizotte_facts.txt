@@ -1,0 +1,11 @@
+sister("Maranda Lizotte", "Hanh Mohan").
+sister("Maranda Lizotte", "Yoko Wilkie").
+brother("Maranda Lizotte", "Chuck Lizotte").
+brother("Maranda Lizotte", "Nathanial Lizotte").
+mother("Maranda Lizotte", "Rosina Lizotte").
+father("Maranda Lizotte", "Dwain Lizotte").
+friend("Maranda Lizotte", "Francisco Palermo").
+dob("Maranda Lizotte", "0294-09-02").
+job("Maranda Lizotte", "chief executive officer").
+hobby("Maranda Lizotte", "flag football").
+gender("Maranda Lizotte", "female").

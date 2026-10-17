@@ -1,0 +1,18 @@
+brother("Veronica Cowart", "Danny Cowart").
+mother("Veronica Cowart", "Windy Cowart").
+father("Veronica Cowart", "Curt Cowart").
+friend("Veronica Cowart", "Katherine Corwin").
+friend("Veronica Cowart", "Coral Staten").
+friend("Veronica Cowart", "Frederic Staten").
+friend("Veronica Cowart", "Bret Smart").
+friend("Veronica Cowart", "Morgan Perrine").
+friend("Veronica Cowart", "Tamala Skidmore").
+friend("Veronica Cowart", "Tobias Sanborn").
+friend("Veronica Cowart", "Larue Speaks").
+friend("Veronica Cowart", "Nellie Hamlin").
+friend("Veronica Cowart", "Harriette Courson").
+friend("Veronica Cowart", "Alexa Mckenna").
+dob("Veronica Cowart", "0452-12-27").
+job("Veronica Cowart", "energy manager").
+hobby("Veronica Cowart", "water sports").
+gender("Veronica Cowart", "female").

@@ -1,0 +1,12 @@
+son("Conrad Molina", "Winfred Molina").
+wife("Conrad Molina", "Tanya Molina").
+friend("Conrad Molina", "Jefferson Smart").
+friend("Conrad Molina", "Hubert Noland").
+friend("Conrad Molina", "Amy Wilke").
+friend("Conrad Molina", "Vilma Callender").
+friend("Conrad Molina", "Jacinta Simons").
+friend("Conrad Molina", "Katy Flores").
+dob("Conrad Molina", "0300-06-17").
+job("Conrad Molina", "lighting technician").
+hobby("Conrad Molina", "footbag").
+gender("Conrad Molina", "male").

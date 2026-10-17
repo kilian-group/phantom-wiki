@@ -1,0 +1,22 @@
+sister("Davis Eaves", "Edwina Eaves").
+sister("Davis Eaves", "Karla Linares").
+brother("Davis Eaves", "Chang Eaves").
+mother("Davis Eaves", "Buffy Eaves").
+father("Davis Eaves", "Denny Eaves").
+friend("Davis Eaves", "Gale Dana").
+friend("Davis Eaves", "Antony Machado").
+friend("Davis Eaves", "Miguel Morehead").
+friend("Davis Eaves", "Nydia Hollins").
+friend("Davis Eaves", "Wade Lebrun").
+friend("Davis Eaves", "Winfred Molina").
+friend("Davis Eaves", "Brigette Keyes").
+friend("Davis Eaves", "Benjamin Crittenden").
+friend("Davis Eaves", "Bradley Blanton").
+friend("Davis Eaves", "Thomasena Marr").
+friend("Davis Eaves", "Jermaine Lasher").
+friend("Davis Eaves", "Dortha Ingle").
+friend("Davis Eaves", "Ignacio Barrows").
+dob("Davis Eaves", "0396-07-20").
+job("Davis Eaves", "artist").
+hobby("Davis Eaves", "baton twirling").
+gender("Davis Eaves", "male").

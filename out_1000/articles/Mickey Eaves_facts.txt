@@ -1,0 +1,19 @@
+sister("Mickey Eaves", "Geri Dana").
+sister("Mickey Eaves", "Ivette Eaves").
+sister("Mickey Eaves", "Sofia Eaves").
+brother("Mickey Eaves", "Denny Eaves").
+brother("Mickey Eaves", "Foster Eaves").
+mother("Mickey Eaves", "Juanita Eaves").
+father("Mickey Eaves", "Russel Eaves").
+daughter("Mickey Eaves", "Shizuko Eaves").
+wife("Mickey Eaves", "Myra Eaves").
+friend("Mickey Eaves", "Deja Gilliam").
+friend("Mickey Eaves", "Romona Fordham").
+friend("Mickey Eaves", "Lester Bauman").
+friend("Mickey Eaves", "Sheila Conner").
+friend("Mickey Eaves", "Earlean Ingalls").
+friend("Mickey Eaves", "Marybeth Dana").
+dob("Mickey Eaves", "0378-03-24").
+job("Mickey Eaves", "artist").
+hobby("Mickey Eaves", "mineral collecting").
+gender("Mickey Eaves", "male").

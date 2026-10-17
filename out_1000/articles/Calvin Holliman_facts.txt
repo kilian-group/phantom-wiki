@@ -1,0 +1,21 @@
+son("Calvin Holliman", "Tanner Holliman").
+daughter("Calvin Holliman", "Ella Mathes").
+daughter("Calvin Holliman", "Jennette Holliman").
+daughter("Calvin Holliman", "Nydia Ibarra").
+daughter("Calvin Holliman", "Vita Resendez").
+wife("Calvin Holliman", "Judith Holliman").
+friend("Calvin Holliman", "Emil Broughton").
+friend("Calvin Holliman", "Truman Holtz").
+friend("Calvin Holliman", "Isabell Shank").
+friend("Calvin Holliman", "Luisa Estrella").
+friend("Calvin Holliman", "Rhonda Theriot").
+friend("Calvin Holliman", "Rayna Upton").
+friend("Calvin Holliman", "Hank Paynter").
+friend("Calvin Holliman", "Josef Corwin").
+friend("Calvin Holliman", "Shirley Dalton").
+friend("Calvin Holliman", "Eula Hollins").
+friend("Calvin Holliman", "Bruce Mathes").
+dob("Calvin Holliman", "0320-02-21").
+job("Calvin Holliman", "energy engineer").
+hobby("Calvin Holliman", "compact discs").
+gender("Calvin Holliman", "male").

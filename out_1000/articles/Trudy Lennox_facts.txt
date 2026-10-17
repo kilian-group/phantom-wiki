@@ -1,0 +1,18 @@
+brother("Trudy Lennox", "Lenny Courson").
+brother("Trudy Lennox", "Wesley Courson").
+mother("Trudy Lennox", "Mattie Courson").
+father("Trudy Lennox", "Claude Courson").
+daughter("Trudy Lennox", "Eunice Lennox").
+husband("Trudy Lennox", "Matthias Lennox").
+friend("Trudy Lennox", "Barbar Kell").
+friend("Trudy Lennox", "Yasmin Gordon").
+friend("Trudy Lennox", "Newton Lasher").
+friend("Trudy Lennox", "Wanda Murray").
+friend("Trudy Lennox", "Glenda Dacosta").
+friend("Trudy Lennox", "Maynard Latham").
+friend("Trudy Lennox", "Monty Depriest").
+friend("Trudy Lennox", "Rhonda Wilke").
+dob("Trudy Lennox", "0445-12-17").
+job("Trudy Lennox", "risk manager").
+hobby("Trudy Lennox", "antiquities").
+gender("Trudy Lennox", "female").

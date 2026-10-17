@@ -1,0 +1,10 @@
+brother("Shelia Carty", "Calvin Carty").
+mother("Shelia Carty", "Sylvia Carty").
+father("Shelia Carty", "Jame Carty").
+friend("Shelia Carty", "Perry Spiller").
+friend("Shelia Carty", "Rocky Perrine").
+friend("Shelia Carty", "Rosalinda Layton").
+dob("Shelia Carty", "0407-11-15").
+job("Shelia Carty", "sport and exercise psychologist").
+hobby("Shelia Carty", "shortwave listening").
+gender("Shelia Carty", "female").

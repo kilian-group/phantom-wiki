@@ -1,0 +1,15 @@
+mother("Kip Murdoch", "Dixie Murdoch").
+father("Kip Murdoch", "Jefferson Murdoch").
+friend("Kip Murdoch", "Pamala Medellin").
+friend("Kip Murdoch", "Miles Fordham").
+friend("Kip Murdoch", "Ben Sheridan").
+friend("Kip Murdoch", "Carroll Lindquist").
+friend("Kip Murdoch", "Ollie Kell").
+friend("Kip Murdoch", "Ladawn Basham").
+friend("Kip Murdoch", "Derek Murchison").
+friend("Kip Murdoch", "Ramiro Dana").
+friend("Kip Murdoch", "Boris Machado").
+dob("Kip Murdoch", "0430-08-19").
+job("Kip Murdoch", "pharmacist").
+hobby("Kip Murdoch", "aircraft spotting").
+gender("Kip Murdoch", "male").

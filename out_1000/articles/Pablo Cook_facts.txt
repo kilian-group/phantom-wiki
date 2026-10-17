@@ -1,0 +1,14 @@
+son("Pablo Cook", "Floyd Cook").
+wife("Pablo Cook", "Phylis Cook").
+friend("Pablo Cook", "Foster Eaves").
+friend("Pablo Cook", "Tanner Holliman").
+friend("Pablo Cook", "Lera Mcpeak").
+friend("Pablo Cook", "Madalene Waltz").
+friend("Pablo Cook", "Hershel Shilling").
+friend("Pablo Cook", "Randall Mcgough").
+friend("Pablo Cook", "Shauna Weise").
+friend("Pablo Cook", "Cleo Peeler").
+dob("Pablo Cook", "0409-08-20").
+job("Pablo Cook", "accommodation manager").
+hobby("Pablo Cook", "volleyball").
+gender("Pablo Cook", "male").

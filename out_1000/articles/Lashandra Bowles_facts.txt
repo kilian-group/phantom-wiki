@@ -1,0 +1,19 @@
+brother("Lashandra Bowles", "Hal Ballard").
+brother("Lashandra Bowles", "Major Ballard").
+mother("Lashandra Bowles", "Kayla Ballard").
+father("Lashandra Bowles", "Brad Ballard").
+daughter("Lashandra Bowles", "Coral Putnam").
+daughter("Lashandra Bowles", "Graciela Burger").
+husband("Lashandra Bowles", "Rueben Bowles").
+friend("Lashandra Bowles", "Helena Hamlin").
+friend("Lashandra Bowles", "Carmine Mckenna").
+friend("Lashandra Bowles", "Madaline Callender").
+friend("Lashandra Bowles", "Lakeshia Steadman").
+friend("Lashandra Bowles", "Major Bales").
+friend("Lashandra Bowles", "Estella Dana").
+friend("Lashandra Bowles", "Herbert Dana").
+friend("Lashandra Bowles", "Dani Dalton").
+dob("Lashandra Bowles", "0445-06-28").
+job("Lashandra Bowles", "trading standards officer").
+hobby("Lashandra Bowles", "fusilately").
+gender("Lashandra Bowles", "female").

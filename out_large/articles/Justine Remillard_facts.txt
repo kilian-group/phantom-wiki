@@ -1,0 +1,11 @@
+daughter("Justine Remillard", "Mai Remillard").
+husband("Justine Remillard", "Willie Remillard").
+friend("Justine Remillard", "King Dishman").
+friend("Justine Remillard", "Kori Remillard").
+friend("Justine Remillard", "Ophelia Mcgough").
+friend("Justine Remillard", "Owen Narvaez").
+friend("Justine Remillard", "Dani Remillard").
+dob("Justine Remillard", "0351-10-03").
+job("Justine Remillard", "broadcast journalist").
+hobby("Justine Remillard", "climbing").
+gender("Justine Remillard", "female").

@@ -1,0 +1,16 @@
+brother("Annabell Horan", "Otto Horan").
+mother("Annabell Horan", "Racquel Horan").
+father("Annabell Horan", "Federico Horan").
+friend("Annabell Horan", "Elliott Ingle").
+friend("Annabell Horan", "Dan Mahoney").
+friend("Annabell Horan", "Vicki Osterman").
+friend("Annabell Horan", "Monika Bennet").
+friend("Annabell Horan", "Alec Dacosta").
+friend("Annabell Horan", "Drew Smart").
+friend("Annabell Horan", "Kieth Medellin").
+friend("Annabell Horan", "Roger Mcpeak").
+friend("Annabell Horan", "Rocky Perrine").
+dob("Annabell Horan", "0471-09-25").
+job("Annabell Horan", "psychiatric nurse").
+hobby("Annabell Horan", "science and technology studies").
+gender("Annabell Horan", "female").

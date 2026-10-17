@@ -1,0 +1,22 @@
+mother("Judith Holliman", "Paula Gerber").
+father("Judith Holliman", "Hank Gerber").
+son("Judith Holliman", "Tanner Holliman").
+daughter("Judith Holliman", "Ella Mathes").
+daughter("Judith Holliman", "Jennette Holliman").
+daughter("Judith Holliman", "Nydia Ibarra").
+daughter("Judith Holliman", "Vita Resendez").
+husband("Judith Holliman", "Calvin Holliman").
+friend("Judith Holliman", "Monroe Gilliam").
+friend("Judith Holliman", "Amanda Rinehart").
+friend("Judith Holliman", "Solomon Strong").
+friend("Judith Holliman", "Rayna Upton").
+friend("Judith Holliman", "Gustavo Bauman").
+friend("Judith Holliman", "Evelia Senn").
+friend("Judith Holliman", "Samatha Weise").
+friend("Judith Holliman", "Janiece Cordova").
+friend("Judith Holliman", "Cleo Gregory").
+friend("Judith Holliman", "Katy Flores").
+dob("Judith Holliman", "0319-01-02").
+job("Judith Holliman", "chartered legal executive").
+hobby("Judith Holliman", "vinyl records").
+gender("Judith Holliman", "female").

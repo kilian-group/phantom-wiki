@@ -1,0 +1,19 @@
+brother("Eunice Gordy", "Kieth Medellin").
+brother("Eunice Gordy", "Reggie Medellin").
+mother("Eunice Gordy", "Valeria Medellin").
+father("Eunice Gordy", "Robt Medellin").
+daughter("Eunice Gordy", "Lynette Gordy").
+husband("Eunice Gordy", "Pedro Gordy").
+friend("Eunice Gordy", "Cleveland Capps").
+friend("Eunice Gordy", "Chauncey Wilkie").
+friend("Eunice Gordy", "Roscoe Vanmeter").
+friend("Eunice Gordy", "Kendrick Jefferson").
+friend("Eunice Gordy", "Leonora Cordova").
+friend("Eunice Gordy", "Shawnta Plumley").
+friend("Eunice Gordy", "Malissa Corwin").
+friend("Eunice Gordy", "Lazaro Hsu").
+friend("Eunice Gordy", "Devon Leclair").
+dob("Eunice Gordy", "0410-07-05").
+job("Eunice Gordy", "air cabin crew").
+hobby("Eunice Gordy", "hiking/backpacking").
+gender("Eunice Gordy", "female").

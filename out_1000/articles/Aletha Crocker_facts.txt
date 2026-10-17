@@ -1,0 +1,18 @@
+sister("Aletha Crocker", "Jennifer Paynter").
+mother("Aletha Crocker", "Randi Crocker").
+father("Aletha Crocker", "Donnie Crocker").
+friend("Aletha Crocker", "Ai Cordova").
+friend("Aletha Crocker", "Kenny Kinsella").
+friend("Aletha Crocker", "Naomi Bellows").
+friend("Aletha Crocker", "Augustine Linden").
+friend("Aletha Crocker", "Cedric Towns").
+friend("Aletha Crocker", "Harold Hollins").
+friend("Aletha Crocker", "Murray Fredrick").
+friend("Aletha Crocker", "Truman Holtz").
+friend("Aletha Crocker", "Ardath Skidmore").
+friend("Aletha Crocker", "Leslie Courson").
+friend("Aletha Crocker", "Cameron Mckenna").
+dob("Aletha Crocker", "0453-07-02").
+job("Aletha Crocker", "occupational psychologist").
+hobby("Aletha Crocker", "ice hockey").
+gender("Aletha Crocker", "female").

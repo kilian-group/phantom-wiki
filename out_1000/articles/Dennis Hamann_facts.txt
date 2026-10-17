@@ -1,0 +1,12 @@
+daughter("Dennis Hamann", "Antionette Hamann").
+wife("Dennis Hamann", "Pearl Hamann").
+friend("Dennis Hamann", "Denny Eaves").
+friend("Dennis Hamann", "Kieth Medellin").
+friend("Dennis Hamann", "Derek Carswell").
+friend("Dennis Hamann", "Danilo Mcgough").
+friend("Dennis Hamann", "Solomon Shaw").
+friend("Dennis Hamann", "Sylvester Hamlin").
+dob("Dennis Hamann", "0462-07-13").
+job("Dennis Hamann", "biomedical engineer").
+hobby("Dennis Hamann", "digital hoarding").
+gender("Dennis Hamann", "male").

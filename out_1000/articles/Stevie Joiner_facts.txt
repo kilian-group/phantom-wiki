@@ -1,0 +1,18 @@
+daughter("Stevie Joiner", "Roxy Niles").
+wife("Stevie Joiner", "Dena Joiner").
+friend("Stevie Joiner", "Rodney Fordham").
+friend("Stevie Joiner", "Jermaine Wilke").
+friend("Stevie Joiner", "Laurence Macias").
+friend("Stevie Joiner", "Levi Macias").
+friend("Stevie Joiner", "Martin Deville").
+friend("Stevie Joiner", "Julianne Hamlin").
+friend("Stevie Joiner", "Ladonna Klink").
+friend("Stevie Joiner", "Tamara Lasher").
+friend("Stevie Joiner", "Myrl Murray").
+friend("Stevie Joiner", "Patsy Murray").
+friend("Stevie Joiner", "Verona Arteaga").
+friend("Stevie Joiner", "Mireya Ibarra").
+dob("Stevie Joiner", "0313-08-11").
+job("Stevie Joiner", "ambulance person").
+hobby("Stevie Joiner", "meditation").
+gender("Stevie Joiner", "male").

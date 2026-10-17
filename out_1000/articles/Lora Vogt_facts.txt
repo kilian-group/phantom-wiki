@@ -1,0 +1,18 @@
+sister("Lora Vogt", "Katherine Carswell").
+sister("Lora Vogt", "Marguerite Putnam").
+sister("Lora Vogt", "Sheila Putnam").
+mother("Lora Vogt", "Coral Putnam").
+father("Lora Vogt", "Marvin Putnam").
+daughter("Lora Vogt", "Kimiko Vogt").
+husband("Lora Vogt", "Clay Vogt").
+friend("Lora Vogt", "Jo Medeiros").
+friend("Lora Vogt", "Randi Crocker").
+friend("Lora Vogt", "Tamara Lasher").
+friend("Lora Vogt", "Manda Cordova").
+friend("Lora Vogt", "Rob Lebrun").
+friend("Lora Vogt", "Lashandra Gilliam").
+friend("Lora Vogt", "Willie Hurt").
+dob("Lora Vogt", "0501-07-24").
+job("Lora Vogt", "insurance risk surveyor").
+hobby("Lora Vogt", "lotology").
+gender("Lora Vogt", "female").

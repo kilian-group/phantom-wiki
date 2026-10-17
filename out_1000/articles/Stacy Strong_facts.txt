@@ -1,0 +1,20 @@
+sister("Stacy Strong", "Jo Medeiros").
+mother("Stacy Strong", "Ressie Capps").
+father("Stacy Strong", "Cleveland Capps").
+son("Stacy Strong", "Stuart Strong").
+daughter("Stacy Strong", "Lauren Strong").
+husband("Stacy Strong", "Solomon Strong").
+friend("Stacy Strong", "Walter Depriest").
+friend("Stacy Strong", "Kieth Shaw").
+friend("Stacy Strong", "Mozelle Mounts").
+friend("Stacy Strong", "Javier Kirksey").
+friend("Stacy Strong", "Christoper Littleton").
+friend("Stacy Strong", "Tony Gillam").
+friend("Stacy Strong", "Genny Burdette").
+friend("Stacy Strong", "Coral Staten").
+friend("Stacy Strong", "Rodney Fordham").
+friend("Stacy Strong", "Marguerite Putnam").
+dob("Stacy Strong", "0431-10-02").
+job("Stacy Strong", "programmer").
+hobby("Stacy Strong", "flower collecting and pressing").
+gender("Stacy Strong", "female").

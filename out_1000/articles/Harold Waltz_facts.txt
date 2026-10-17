@@ -1,0 +1,18 @@
+son("Harold Waltz", "Pedro Waltz").
+daughter("Harold Waltz", "Evelia Waltz").
+daughter("Harold Waltz", "Flora Noland").
+wife("Harold Waltz", "Madalene Waltz").
+friend("Harold Waltz", "Hugh Noland").
+friend("Harold Waltz", "Malik Fredrick").
+friend("Harold Waltz", "Ardath Skidmore").
+friend("Harold Waltz", "Brigette Medeiros").
+friend("Harold Waltz", "Gregory Keister").
+friend("Harold Waltz", "Keisha Mcdonald").
+friend("Harold Waltz", "Dan Younger").
+friend("Harold Waltz", "Michael Goff").
+friend("Harold Waltz", "Tanya Molina").
+friend("Harold Waltz", "Anderson Fredrick").
+dob("Harold Waltz", "0414-10-09").
+job("Harold Waltz", "forest manager").
+hobby("Harold Waltz", "birdwatching").
+gender("Harold Waltz", "male").

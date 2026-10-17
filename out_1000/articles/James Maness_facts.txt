@@ -1,0 +1,20 @@
+daughter("James Maness", "Rheba Winn").
+wife("James Maness", "Maryam Maness").
+friend("James Maness", "Christoper Lasher").
+friend("James Maness", "Donnie Crocker").
+friend("James Maness", "Guillermo Lasher").
+friend("James Maness", "Antony Machado").
+friend("James Maness", "Nathan Corwin").
+friend("James Maness", "Alphonso Goff").
+friend("James Maness", "Elroy Goff").
+friend("James Maness", "Patrick Broughton").
+friend("James Maness", "Bret Smart").
+friend("James Maness", "Anderson Fredrick").
+friend("James Maness", "Leeann Blanton").
+friend("James Maness", "Ressie Capps").
+friend("James Maness", "Jackie Vandenberg").
+friend("James Maness", "Denny Vanmeter").
+dob("James Maness", "0495-05-15").
+job("James Maness", "clothing technologist").
+hobby("James Maness", "die-cast toy").
+gender("James Maness", "male").

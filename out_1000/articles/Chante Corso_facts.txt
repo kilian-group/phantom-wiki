@@ -1,0 +1,13 @@
+mother("Chante Corso", "Genesis Alarcon").
+father("Chante Corso", "Dave Alarcon").
+son("Chante Corso", "Kent Corso").
+husband("Chante Corso", "Ben Corso").
+friend("Chante Corso", "Jeana Chisholm").
+friend("Chante Corso", "Jefferson Murdoch").
+friend("Chante Corso", "Donald Fordham").
+friend("Chante Corso", "Zachariah Galvan").
+friend("Chante Corso", "Ashleigh Kell").
+dob("Chante Corso", "0411-11-13").
+job("Chante Corso", "music therapist").
+hobby("Chante Corso", "literature").
+gender("Chante Corso", "female").

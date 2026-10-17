@@ -1,0 +1,12 @@
+sister("Lucas Crain", "Edythe Nicolas").
+sister("Lucas Crain", "Zulema Crain").
+brother("Lucas Crain", "Thurman Crain").
+mother("Lucas Crain", "Yoshiko Crain").
+father("Lucas Crain", "Theodore Crain").
+daughter("Lucas Crain", "Rubye Crain").
+wife("Lucas Crain", "Eula Crain").
+friend("Lucas Crain", "Geri Deluna").
+dob("Lucas Crain", "0272-01-09").
+job("Lucas Crain", "investment analyst").
+hobby("Lucas Crain", "ephemera collecting").
+gender("Lucas Crain", "male").

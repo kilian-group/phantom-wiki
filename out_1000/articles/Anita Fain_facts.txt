@@ -1,0 +1,16 @@
+daughter("Anita Fain", "Tamala Skidmore").
+husband("Anita Fain", "Hayden Fain").
+friend("Anita Fain", "Ardath Skidmore").
+friend("Anita Fain", "Paris Brumbaugh").
+friend("Anita Fain", "Sherrie Jansen").
+friend("Anita Fain", "Maynard Morehead").
+friend("Anita Fain", "Coral Staten").
+friend("Anita Fain", "Ricardo Dacosta").
+friend("Anita Fain", "Rogelio Dunlap").
+friend("Anita Fain", "Robt Medellin").
+friend("Anita Fain", "Valeria Medellin").
+friend("Anita Fain", "Demetra Palomo").
+dob("Anita Fain", "0322-11-25").
+job("Anita Fain", "trade union research officer").
+hobby("Anita Fain", "beauty pageants").
+gender("Anita Fain", "female").

@@ -1,0 +1,18 @@
+brother("Ophelia Mcgough", "Randall Mcgough").
+mother("Ophelia Mcgough", "Chrissy Mcgough").
+father("Ophelia Mcgough", "Elroy Mcgough").
+friend("Ophelia Mcgough", "Thelma Vandenberg").
+friend("Ophelia Mcgough", "Cherlyn Oberg").
+friend("Ophelia Mcgough", "Clyde Oberg").
+friend("Ophelia Mcgough", "Owen Narvaez").
+friend("Ophelia Mcgough", "Jaime Remillard").
+friend("Ophelia Mcgough", "Justine Remillard").
+friend("Ophelia Mcgough", "Margie Remillard").
+friend("Ophelia Mcgough", "Wanita Remillard").
+friend("Ophelia Mcgough", "Alvaro Murphey").
+friend("Ophelia Mcgough", "Anna Vandenberg").
+friend("Ophelia Mcgough", "Belva Murphey").
+dob("Ophelia Mcgough", "0319-06-24").
+job("Ophelia Mcgough", "architect").
+hobby("Ophelia Mcgough", "leaves").
+gender("Ophelia Mcgough", "female").

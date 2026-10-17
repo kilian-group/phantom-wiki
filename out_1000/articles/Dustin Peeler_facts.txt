@@ -1,0 +1,17 @@
+brother("Dustin Peeler", "Melvin Peeler").
+mother("Dustin Peeler", "Chau Peeler").
+father("Dustin Peeler", "Sonny Peeler").
+friend("Dustin Peeler", "Keith Murchison").
+friend("Dustin Peeler", "Wade Lebrun").
+friend("Dustin Peeler", "Ricky Musick").
+friend("Dustin Peeler", "Connie Cushman").
+friend("Dustin Peeler", "Brad Ballard").
+friend("Dustin Peeler", "Beatriz Theriot").
+friend("Dustin Peeler", "Levi Macias").
+friend("Dustin Peeler", "Matthias Lennox").
+friend("Dustin Peeler", "Felton Kell").
+friend("Dustin Peeler", "Hector Autry").
+dob("Dustin Peeler", "0406-03-24").
+job("Dustin Peeler", "pilot").
+hobby("Dustin Peeler", "business").
+gender("Dustin Peeler", "male").

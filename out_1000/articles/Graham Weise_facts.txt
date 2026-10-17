@@ -1,0 +1,17 @@
+sister("Graham Weise", "Christen Weise").
+mother("Graham Weise", "Edwina Weise").
+father("Graham Weise", "Juan Weise").
+son("Graham Weise", "Charley Weise").
+daughter("Graham Weise", "Graciela Weise").
+daughter("Graham Weise", "Samatha Weise").
+wife("Graham Weise", "Shauna Weise").
+friend("Graham Weise", "Roman Ruth").
+friend("Graham Weise", "Shelly Fredrick").
+friend("Graham Weise", "Otto Horan").
+friend("Graham Weise", "Tamala Hamlin").
+friend("Graham Weise", "Nico Layman").
+friend("Graham Weise", "Ashleigh Kell").
+dob("Graham Weise", "0480-12-21").
+job("Graham Weise", "operational researcher").
+hobby("Graham Weise", "magnet fishing").
+gender("Graham Weise", "male").

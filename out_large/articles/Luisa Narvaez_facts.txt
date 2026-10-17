@@ -1,0 +1,12 @@
+sister("Luisa Narvaez", "Sarah Oberg").
+mother("Luisa Narvaez", "Cherlyn Oberg").
+father("Luisa Narvaez", "Monte Oberg").
+son("Luisa Narvaez", "Demarcus Narvaez").
+husband("Luisa Narvaez", "Colby Narvaez").
+friend("Luisa Narvaez", "Lyman Oberg").
+friend("Luisa Narvaez", "Rhoda Narvaez").
+friend("Luisa Narvaez", "Sarah Oberg").
+dob("Luisa Narvaez", "0331-11-11").
+job("Luisa Narvaez", "horticultural consultant").
+hobby("Luisa Narvaez", "handball").
+gender("Luisa Narvaez", "female").

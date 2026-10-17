@@ -1,0 +1,10 @@
+son("Abel Oberg", "Bryce Oberg").
+son("Abel Oberg", "Richard Oberg").
+wife("Abel Oberg", "Renate Oberg").
+friend("Abel Oberg", "Amos Oberg").
+friend("Abel Oberg", "Jude Remillard").
+friend("Abel Oberg", "Luke Wilke").
+dob("Abel Oberg", "0250-05-14").
+job("Abel Oberg", "charity fundraiser").
+hobby("Abel Oberg", "slot car").
+gender("Abel Oberg", "male").

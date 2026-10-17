@@ -1,0 +1,14 @@
+mother("Gaye Swartz", "Damaris Swartz").
+father("Gaye Swartz", "Ramon Swartz").
+friend("Gaye Swartz", "Katelyn Corwin").
+friend("Gaye Swartz", "King Goff").
+friend("Gaye Swartz", "Cora Fordham").
+friend("Gaye Swartz", "Madalene Waltz").
+friend("Gaye Swartz", "Avery Nolasco").
+friend("Gaye Swartz", "Shayne Lasher").
+friend("Gaye Swartz", "Sheila Conner").
+friend("Gaye Swartz", "Jesus Cordova").
+dob("Gaye Swartz", "0476-05-12").
+job("Gaye Swartz", "newspaper journalist").
+hobby("Gaye Swartz", "sea glass collecting").
+gender("Gaye Swartz", "female").

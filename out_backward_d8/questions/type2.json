@@ -1,0 +1,356 @@
+[
+    {
+        "id": "ace8c707-abd6-4b07-97f6-1945f0a3f1f7",
+        "question": "Who is the male cousin of the person whose occupation is advice worker?",
+        "solution_traces": "[{\"Y_4\": \"Rolland Mckenna\", \"Y_2\": \"Nathanial Lizotte\"}, {\"Y_4\": \"Rolland Mckenna\", \"Y_2\": \"Chuck Lizotte\"}]",
+        "answer": [
+            "Chuck Lizotte",
+            "Nathanial Lizotte"
+        ],
+        "prolog": {
+            "query": [
+                "male_cousin(Y_4, Y_2)",
+                "job(Y_4, \"advice worker\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "a008140c-7e00-4615-bea8-834b56437777",
+        "question": "Who is the mother of the person whose date of birth is 0292-04-16?",
+        "solution_traces": "[{\"Y_2\": \"Hanh Boutte\", \"Y_4\": \"Johnathan Boutte\"}]",
+        "answer": [
+            "Hanh Boutte"
+        ],
+        "prolog": {
+            "query": [
+                "mother(Y_4, Y_2)",
+                "dob(Y_4, \"0292-04-16\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "8389cb7a-0c7a-40c3-af05-e747e1723200",
+        "question": "Who is the mother of the person whose hobby is chess?",
+        "solution_traces": "[{\"Y_2\": \"Rosalinda Brannan\", \"Y_4\": \"Daniel Brannan\"}]",
+        "answer": [
+            "Rosalinda Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "mother(Y_4, Y_2)",
+                "hobby(Y_4, \"chess\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "4f3174c9-bb34-4e67-b513-ce189fef7d62",
+        "question": "Who is the brother of the person whose hobby is snowmobiling?",
+        "solution_traces": "[{\"Y_2\": \"Anthony Nicolas\", \"Y_4\": \"Bradford Nicolas\"}]",
+        "answer": [
+            "Anthony Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "brother(Y_4, Y_2)",
+                "hobby(Y_4, \"snowmobiling\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "2b6f8d0f-15ca-4d5a-82a5-0847cd35dac5",
+        "question": "Who is the sibling of the person whose hobby is gongoozling?",
+        "solution_traces": "[{\"Y_2\": \"Stefan Henderson\", \"Y_4\": \"Maxwell Henderson\"}, {\"Y_2\": \"Milton Henderson\", \"Y_4\": \"Maxwell Henderson\"}]",
+        "answer": [
+            "Milton Henderson",
+            "Stefan Henderson"
+        ],
+        "prolog": {
+            "query": [
+                "sibling(Y_4, Y_2)",
+                "hobby(Y_4, \"gongoozling\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "9825fddc-d984-4914-b267-de16e57b6a1f",
+        "question": "Who is the wife of the person whose occupation is music therapist?",
+        "solution_traces": "[{\"Y_2\": \"Rosina Lizotte\", \"Y_4\": \"Dwain Lizotte\"}, {\"Y_4\": \"Andy Clemons\", \"Y_2\": \"Jeana Clemons\"}]",
+        "answer": [
+            "Jeana Clemons",
+            "Rosina Lizotte"
+        ],
+        "prolog": {
+            "query": [
+                "wife(Y_4, Y_2)",
+                "job(Y_4, \"music therapist\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "40c337ef-37da-4689-be77-02d697b9fc37",
+        "question": "Who is the great-uncle of the person whose date of birth is 0268-03-07?",
+        "solution_traces": "[{\"Y_4\": \"Shelli Beltran\", \"Y_2\": \"Aubrey Smock\"}]",
+        "answer": [
+            "Aubrey Smock"
+        ],
+        "prolog": {
+            "query": [
+                "great_uncle(Y_4, Y_2)",
+                "dob(Y_4, \"0268-03-07\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "7a2f6d52-f5b2-4984-9cf4-72bdfa1a3ecb",
+        "question": "Who is the brother of the person whose hobby is phillumeny?",
+        "solution_traces": "[{\"Y_2\": \"Esteban Schoonmaker\", \"Y_4\": \"Jona Carrell\"}, {\"Y_2\": \"Anibal Schoonmaker\", \"Y_4\": \"Jona Carrell\"}]",
+        "answer": [
+            "Anibal Schoonmaker",
+            "Esteban Schoonmaker"
+        ],
+        "prolog": {
+            "query": [
+                "brother(Y_4, Y_2)",
+                "hobby(Y_4, \"phillumeny\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "9e35e9f8-4be6-485d-9bce-53545c51634c",
+        "question": "Who is the aunt of the person whose date of birth is 0277-07-02?",
+        "solution_traces": "[{\"Y_2\": \"Lea Levy\", \"Y_4\": \"Charlie Kovach\"}]",
+        "answer": [
+            "Lea Levy"
+        ],
+        "prolog": {
+            "query": [
+                "aunt(Y_4, Y_2)",
+                "dob(Y_4, \"0277-07-02\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "f11df69b-19cb-428e-9328-a3603354a759",
+        "question": "Who is the brother of the person whose date of birth is 0337-08-25?",
+        "solution_traces": "[{\"Y_2\": \"Francisco Palermo\", \"Y_4\": \"Rosanna Palermo\"}]",
+        "answer": [
+            "Francisco Palermo"
+        ],
+        "prolog": {
+            "query": [
+                "brother(Y_4, Y_2)",
+                "dob(Y_4, \"0337-08-25\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    }
+]

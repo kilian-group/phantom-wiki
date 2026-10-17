@@ -1,0 +1,18 @@
+brother("Romelia Bowles", "Dino Bowles").
+brother("Romelia Bowles", "Rueben Bowles").
+mother("Romelia Bowles", "Alina Bowles").
+father("Romelia Bowles", "Ryan Bowles").
+friend("Romelia Bowles", "Mia Resendez").
+friend("Romelia Bowles", "Alysa Lindquist").
+friend("Romelia Bowles", "Denny Vanmeter").
+friend("Romelia Bowles", "Jesus Gregory").
+friend("Romelia Bowles", "Bryon Simons").
+friend("Romelia Bowles", "Delpha Younger").
+friend("Romelia Bowles", "Livia Corwin").
+friend("Romelia Bowles", "Reggie Medellin").
+friend("Romelia Bowles", "Kris Fordham").
+friend("Romelia Bowles", "Deloris Robinett").
+dob("Romelia Bowles", "0443-05-13").
+job("Romelia Bowles", "landscape architect").
+hobby("Romelia Bowles", "martial arts").
+gender("Romelia Bowles", "female").

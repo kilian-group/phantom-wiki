@@ -1,0 +1,16 @@
+sister("Juan Smart", "Nelly Smart").
+brother("Juan Smart", "Manuel Smart").
+mother("Juan Smart", "Jaclyn Smart").
+father("Juan Smart", "Buck Smart").
+son("Juan Smart", "Hiram Smart").
+wife("Juan Smart", "Lynelle Smart").
+friend("Juan Smart", "Vance Fredrick").
+friend("Juan Smart", "Anthony Jarrett").
+friend("Juan Smart", "Cleo Gregory").
+friend("Juan Smart", "Emmanuel Swartz").
+friend("Juan Smart", "Georgina Lebrun").
+friend("Juan Smart", "Marcus Lebrun").
+dob("Juan Smart", "0482-10-24").
+job("Juan Smart", "microbiologist").
+hobby("Juan Smart", "video game collecting").
+gender("Juan Smart", "male").

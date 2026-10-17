@@ -1,0 +1,16 @@
+son("Desmond Lester", "Cedrick Lester").
+wife("Desmond Lester", "Maybelle Lester").
+friend("Desmond Lester", "Bee Corwin").
+friend("Desmond Lester", "Josef Corwin").
+friend("Desmond Lester", "Darren Gilliam").
+friend("Desmond Lester", "Jeana Holtz").
+friend("Desmond Lester", "Laurence Macias").
+friend("Desmond Lester", "Rhonda Wilke").
+friend("Desmond Lester", "Randolph Osborn").
+friend("Desmond Lester", "Xiao Nolasco").
+friend("Desmond Lester", "Guillermo Lasher").
+friend("Desmond Lester", "Vaughn Dangelo").
+dob("Desmond Lester", "0437-11-10").
+job("Desmond Lester", "television floor manager").
+hobby("Desmond Lester", "ant farming").
+gender("Desmond Lester", "male").

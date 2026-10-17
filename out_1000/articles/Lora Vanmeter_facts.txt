@@ -1,0 +1,16 @@
+brother("Lora Vanmeter", "Garrett Bauman").
+mother("Lora Vanmeter", "Tonia Bauman").
+father("Lora Vanmeter", "Max Bauman").
+son("Lora Vanmeter", "Felipe Vanmeter").
+husband("Lora Vanmeter", "Denny Vanmeter").
+friend("Lora Vanmeter", "Audra Carreon").
+friend("Lora Vanmeter", "Rueben Younger").
+friend("Lora Vanmeter", "Harold Hollins").
+friend("Lora Vanmeter", "Mac Goff").
+friend("Lora Vanmeter", "Keith Noland").
+friend("Lora Vanmeter", "Otto Horan").
+friend("Lora Vanmeter", "Jayson Sheridan").
+dob("Lora Vanmeter", "0439-03-13").
+job("Lora Vanmeter", "engineering geologist").
+hobby("Lora Vanmeter", "mineral collecting").
+gender("Lora Vanmeter", "female").

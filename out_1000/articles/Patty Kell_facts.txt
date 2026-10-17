@@ -1,0 +1,14 @@
+son("Patty Kell", "Kurtis Kell").
+husband("Patty Kell", "Werner Kell").
+friend("Patty Kell", "Chau Peeler").
+friend("Patty Kell", "Freddie Barrows").
+friend("Patty Kell", "Sasha Simons").
+friend("Patty Kell", "Matilda Chou").
+friend("Patty Kell", "Katharine Resendez").
+friend("Patty Kell", "Dominick Palomo").
+friend("Patty Kell", "Karl Depriest").
+friend("Patty Kell", "Felix Hamlin").
+dob("Patty Kell", "0330-05-15").
+job("Patty Kell", "multimedia specialist").
+hobby("Patty Kell", "freestyle football").
+gender("Patty Kell", "female").

@@ -1,0 +1,10 @@
+son("Hank Paynter", "Aldo Paynter").
+wife("Hank Paynter", "Jennifer Paynter").
+friend("Hank Paynter", "Cleo Peeler").
+friend("Hank Paynter", "Kurtis Eaves").
+friend("Hank Paynter", "Calvin Holliman").
+friend("Hank Paynter", "Kanesha Booth").
+dob("Hank Paynter", "0453-08-02").
+job("Hank Paynter", "hydrologist").
+hobby("Hank Paynter", "record collecting").
+gender("Hank Paynter", "male").

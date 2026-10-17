@@ -1,0 +1,24 @@
+son("Jacinta Simons", "Milford Simons").
+son("Jacinta Simons", "Reggie Simons").
+daughter("Jacinta Simons", "Gena Cook").
+daughter("Jacinta Simons", "Jacque Simons").
+husband("Jacinta Simons", "Timothy Simons").
+friend("Jacinta Simons", "Adella Townsend").
+friend("Jacinta Simons", "Jerry Mahoney").
+friend("Jacinta Simons", "Conrad Molina").
+friend("Jacinta Simons", "Maynard Latham").
+friend("Jacinta Simons", "Mitchell Fordham").
+friend("Jacinta Simons", "Andre Bowles").
+friend("Jacinta Simons", "Rogelio Capps").
+friend("Jacinta Simons", "Laverna Macias").
+friend("Jacinta Simons", "Jana Galvan").
+friend("Jacinta Simons", "Shemika Hirsch").
+friend("Jacinta Simons", "Ollie Omara").
+friend("Jacinta Simons", "Royce Callender").
+friend("Jacinta Simons", "Maxwell Beamon").
+friend("Jacinta Simons", "Anneliese Pellegrino").
+friend("Jacinta Simons", "Melvin Peeler").
+dob("Jacinta Simons", "0413-05-15").
+job("Jacinta Simons", "planning and development surveyor").
+hobby("Jacinta Simons", "go").
+gender("Jacinta Simons", "female").

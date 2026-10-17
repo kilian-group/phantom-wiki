@@ -1,0 +1,20 @@
+mother("Jeana Chisholm", "Lindy Kavanaugh").
+father("Jeana Chisholm", "Darwin Kavanaugh").
+daughter("Jeana Chisholm", "Amberly Levine").
+husband("Jeana Chisholm", "Noel Chisholm").
+friend("Jeana Chisholm", "Sharron Palomo").
+friend("Jeana Chisholm", "Raymond Carty").
+friend("Jeana Chisholm", "Chante Corso").
+friend("Jeana Chisholm", "Tonia Bauman").
+friend("Jeana Chisholm", "Shawnta Basham").
+friend("Jeana Chisholm", "Miki Mcdonald").
+friend("Jeana Chisholm", "Dani Dalton").
+friend("Jeana Chisholm", "Miguel Carreon").
+friend("Jeana Chisholm", "Steve Gossett").
+friend("Jeana Chisholm", "Deja Gilliam").
+friend("Jeana Chisholm", "Hershel Gilliam").
+friend("Jeana Chisholm", "Christina Smart").
+dob("Jeana Chisholm", "0315-10-06").
+job("Jeana Chisholm", "product designer").
+hobby("Jeana Chisholm", "ultimate frisbee").
+gender("Jeana Chisholm", "female").

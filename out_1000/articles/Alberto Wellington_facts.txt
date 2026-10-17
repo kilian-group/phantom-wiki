@@ -1,0 +1,14 @@
+daughter("Alberto Wellington", "Mozelle Mounts").
+wife("Alberto Wellington", "Emma Wellington").
+friend("Alberto Wellington", "Garland Hirsch").
+friend("Alberto Wellington", "Paula Rudolph").
+friend("Alberto Wellington", "Shelia Hollins").
+friend("Alberto Wellington", "Scotty Correia").
+friend("Alberto Wellington", "Federico Horan").
+friend("Alberto Wellington", "Shawna Sheridan").
+friend("Alberto Wellington", "Son Sutphin").
+friend("Alberto Wellington", "Keith Resendez").
+dob("Alberto Wellington", "0440-09-12").
+job("Alberto Wellington", "film editor").
+hobby("Alberto Wellington", "neuroscience").
+gender("Alberto Wellington", "male").

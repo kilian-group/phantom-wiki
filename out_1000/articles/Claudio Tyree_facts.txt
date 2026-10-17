@@ -1,0 +1,10 @@
+daughter("Claudio Tyree", "Gwenn Tyree").
+wife("Claudio Tyree", "Lurline Tyree").
+friend("Claudio Tyree", "Emory Layton").
+friend("Claudio Tyree", "Larue Speaks").
+friend("Claudio Tyree", "Seymour Simons").
+friend("Claudio Tyree", "Bill Clement").
+dob("Claudio Tyree", "0470-11-16").
+job("Claudio Tyree", "solicitor").
+hobby("Claudio Tyree", "research").
+gender("Claudio Tyree", "male").

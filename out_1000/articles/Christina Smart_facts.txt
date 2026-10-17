@@ -1,0 +1,16 @@
+son("Christina Smart", "Jimmie Smart").
+husband("Christina Smart", "Jefferson Smart").
+friend("Christina Smart", "Jeana Chisholm").
+friend("Christina Smart", "Lera Mcpeak").
+friend("Christina Smart", "Jo Medeiros").
+friend("Christina Smart", "Jimmy Holder").
+friend("Christina Smart", "Lashanda Hartung").
+friend("Christina Smart", "Matthew Dana").
+friend("Christina Smart", "Kareem Goff").
+friend("Christina Smart", "Xiao Gailey").
+friend("Christina Smart", "Paul Gilliam").
+friend("Christina Smart", "Amberly Levine").
+dob("Christina Smart", "0401-09-05").
+job("Christina Smart", "financial adviser").
+hobby("Christina Smart", "hobby tunneling").
+gender("Christina Smart", "female").

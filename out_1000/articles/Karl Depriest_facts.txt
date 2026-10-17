@@ -1,0 +1,20 @@
+son("Karl Depriest", "Monty Depriest").
+son("Karl Depriest", "Walter Depriest").
+wife("Karl Depriest", "Leonora Depriest").
+friend("Karl Depriest", "Coral Monday").
+friend("Karl Depriest", "Patty Kell").
+friend("Karl Depriest", "Maryam Maness").
+friend("Karl Depriest", "Desiree Fordham").
+friend("Karl Depriest", "Noelia Lasher").
+friend("Karl Depriest", "Emil Wendel").
+friend("Karl Depriest", "Ricardo Runnels").
+friend("Karl Depriest", "Edythe Littleton").
+friend("Karl Depriest", "Hershel Ingalls").
+friend("Karl Depriest", "Annabell Molina").
+friend("Karl Depriest", "Latrina Mathes").
+friend("Karl Depriest", "Bertram Wylie").
+friend("Karl Depriest", "Ricky Forester").
+dob("Karl Depriest", "0433-06-08").
+job("Karl Depriest", "computer games developer").
+hobby("Karl Depriest", "knife throwing").
+gender("Karl Depriest", "male").

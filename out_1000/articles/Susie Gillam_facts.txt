@@ -1,0 +1,17 @@
+sister("Susie Gillam", "Myrl Murray").
+sister("Susie Gillam", "Romona Littleton").
+brother("Susie Gillam", "Phil Murray").
+mother("Susie Gillam", "Wanda Murray").
+father("Susie Gillam", "Harold Murray").
+daughter("Susie Gillam", "Allie Gillam").
+husband("Susie Gillam", "Tony Gillam").
+friend("Susie Gillam", "Christen Boutte").
+friend("Susie Gillam", "Ivette Eaves").
+friend("Susie Gillam", "Alvaro Murphey").
+friend("Susie Gillam", "Raina Hamlin").
+friend("Susie Gillam", "Roseanna Mckenna").
+friend("Susie Gillam", "Karol Beamon").
+dob("Susie Gillam", "0439-03-03").
+job("Susie Gillam", "clinical molecular geneticist").
+hobby("Susie Gillam", "ant farming").
+gender("Susie Gillam", "female").

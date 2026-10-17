@@ -1,0 +1,11 @@
+sister("Darin Shirk", "Olivia Griffiths").
+mother("Darin Shirk", "Nada Shirk").
+father("Darin Shirk", "Clayton Shirk").
+son("Darin Shirk", "Freddy Shirk").
+wife("Darin Shirk", "Mercedes Shirk").
+friend("Darin Shirk", "Rosendo Skaggs").
+friend("Darin Shirk", "Ali Schoonmaker").
+dob("Darin Shirk", "0264-05-03").
+job("Darin Shirk", "tax adviser").
+hobby("Darin Shirk", "vegetable farming").
+gender("Darin Shirk", "male").

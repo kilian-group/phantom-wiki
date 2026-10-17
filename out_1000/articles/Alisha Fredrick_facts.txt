@@ -1,0 +1,17 @@
+son("Alisha Fredrick", "Erik Fredrick").
+daughter("Alisha Fredrick", "Tracy Fredrick").
+husband("Alisha Fredrick", "Vance Fredrick").
+friend("Alisha Fredrick", "Bryan Layton").
+friend("Alisha Fredrick", "Tamala Hamlin").
+friend("Alisha Fredrick", "Colette Kinsella").
+friend("Alisha Fredrick", "Wanda Murray").
+friend("Alisha Fredrick", "Deloris Swartz").
+friend("Alisha Fredrick", "Bill Clement").
+friend("Alisha Fredrick", "Jo Corwin").
+friend("Alisha Fredrick", "Elaine Hsu").
+friend("Alisha Fredrick", "Vita Resendez").
+friend("Alisha Fredrick", "Jimmie Smart").
+dob("Alisha Fredrick", "0315-08-19").
+job("Alisha Fredrick", "dietitian").
+hobby("Alisha Fredrick", "learning").
+gender("Alisha Fredrick", "female").

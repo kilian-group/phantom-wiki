@@ -1,0 +1,15 @@
+daughter("Brock Pugliese", "Monika Bennet").
+daughter("Brock Pugliese", "Monique Pugliese").
+wife("Brock Pugliese", "Reita Pugliese").
+friend("Brock Pugliese", "Darby Latham").
+friend("Brock Pugliese", "Jacinta Gilliam").
+friend("Brock Pugliese", "Evelia Waltz").
+friend("Brock Pugliese", "Malik Fredrick").
+friend("Brock Pugliese", "Delbert Courson").
+friend("Brock Pugliese", "Keith Resendez").
+friend("Brock Pugliese", "Enedina Cordova").
+friend("Brock Pugliese", "Zelda Sharma").
+dob("Brock Pugliese", "0373-09-03").
+job("Brock Pugliese", "toxicologist").
+hobby("Brock Pugliese", "cycling").
+gender("Brock Pugliese", "male").

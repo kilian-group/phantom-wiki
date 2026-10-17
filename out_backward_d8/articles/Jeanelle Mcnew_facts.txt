@@ -1,0 +1,14 @@
+brother("Jeanelle Mcnew", "Cole Mcnew").
+brother("Jeanelle Mcnew", "Marcelino Mcnew").
+brother("Jeanelle Mcnew", "Merrill Mcnew").
+mother("Jeanelle Mcnew", "Lorelei Mcnew").
+father("Jeanelle Mcnew", "Don Mcnew").
+friend("Jeanelle Mcnew", "Malik Loftus").
+friend("Jeanelle Mcnew", "Rosalinda Brannan").
+friend("Jeanelle Mcnew", "Johnathan Boutte").
+friend("Jeanelle Mcnew", "Daisy Beltran").
+friend("Jeanelle Mcnew", "Sol Cormier").
+dob("Jeanelle Mcnew", "0305-06-19").
+job("Jeanelle Mcnew", "community development worker").
+hobby("Jeanelle Mcnew", "whale watching").
+gender("Jeanelle Mcnew", "female").

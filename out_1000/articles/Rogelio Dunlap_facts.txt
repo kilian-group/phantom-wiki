@@ -1,0 +1,14 @@
+mother("Rogelio Dunlap", "Lou Dunlap").
+father("Rogelio Dunlap", "Brendon Dunlap").
+friend("Rogelio Dunlap", "Anita Fain").
+friend("Rogelio Dunlap", "Charley Vandenberg").
+friend("Rogelio Dunlap", "Julianne Hamlin").
+friend("Rogelio Dunlap", "Tashina Layton").
+friend("Rogelio Dunlap", "Naomi Lai").
+friend("Rogelio Dunlap", "Windy Cowart").
+friend("Rogelio Dunlap", "Marybeth Dana").
+friend("Rogelio Dunlap", "Nikki Bond").
+dob("Rogelio Dunlap", "0375-07-24").
+job("Rogelio Dunlap", "special educational needs teacher").
+hobby("Rogelio Dunlap", "sports science").
+gender("Rogelio Dunlap", "male").

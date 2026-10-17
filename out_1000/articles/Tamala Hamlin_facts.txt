@@ -1,0 +1,11 @@
+daughter("Tamala Hamlin", "Coral Monday").
+husband("Tamala Hamlin", "Hosea Hamlin").
+friend("Tamala Hamlin", "Graham Weise").
+friend("Tamala Hamlin", "Jarvis Linden").
+friend("Tamala Hamlin", "Shante Gilliam").
+friend("Tamala Hamlin", "Alisha Fredrick").
+friend("Tamala Hamlin", "Noreen Sanborn").
+dob("Tamala Hamlin", "0399-03-15").
+job("Tamala Hamlin", "IT sales professional").
+hobby("Tamala Hamlin", "research").
+gender("Tamala Hamlin", "female").

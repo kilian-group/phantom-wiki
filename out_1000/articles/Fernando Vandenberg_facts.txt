@@ -1,0 +1,16 @@
+sister("Fernando Vandenberg", "Amy Wilke").
+sister("Fernando Vandenberg", "Thelma Vandenberg").
+brother("Fernando Vandenberg", "Charley Vandenberg").
+brother("Fernando Vandenberg", "Eli Vandenberg").
+mother("Fernando Vandenberg", "Jackie Vandenberg").
+father("Fernando Vandenberg", "Valentin Vandenberg").
+friend("Fernando Vandenberg", "Bernie Layton").
+friend("Fernando Vandenberg", "Zackary Wilkie").
+friend("Fernando Vandenberg", "Rena Palm").
+friend("Fernando Vandenberg", "Amos Hollinger").
+friend("Fernando Vandenberg", "Clara Corwin").
+friend("Fernando Vandenberg", "Katherine Corwin").
+dob("Fernando Vandenberg", "0354-04-04").
+job("Fernando Vandenberg", "careers information officer").
+hobby("Fernando Vandenberg", "fishkeeping").
+gender("Fernando Vandenberg", "male").

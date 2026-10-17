@@ -1,0 +1,523 @@
+[
+    {
+        "id": "280ae229-c9d0-463f-b8ad-9de44ae8d8f6",
+        "question": "What is the occupation of the sister-in-law of Ryan Wang?",
+        "solution_traces": "[{\"Y_3\": \"Jeannine Wexler\", \"Y_2\": \"early years teacher\"}, {\"Y_3\": \"Vicki Hackworth\", \"Y_2\": \"sound technician\"}]",
+        "answer": [
+            "early years teacher",
+            "sound technician"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "sister_in_law(\"Ryan Wang\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Jeannine Wexler",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 4
+        }
+    },
+    {
+        "id": "369ccf9c-b8aa-4a05-91e6-da6faca442a8",
+        "question": "What is the date of birth of the sister of Aida Wang?",
+        "solution_traces": "[{\"Y_3\": \"Jeannine Wexler\", \"Y_2\": \"0299-06-11\"}, {\"Y_3\": \"Vicki Hackworth\", \"Y_2\": \"0295-05-30\"}]",
+        "answer": [
+            "0295-05-30",
+            "0299-06-11"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "sister(\"Aida Wang\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Vicki Hackworth",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 4
+        }
+    },
+    {
+        "id": "2ed60d6b-18a3-449e-8187-3edcaa0fc9e1",
+        "question": "What is the hobby of the husband of Jeannine Wexler?",
+        "solution_traces": "[{\"Y_3\": \"Saul Wexler\", \"Y_2\": \"sociology\"}]",
+        "answer": [
+            "sociology"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "husband(\"Jeannine Wexler\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Saul Wexler",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "c38bff67-9025-444c-9e7b-915067deff94",
+        "question": "What is the hobby of the husband of Shelli Beltran?",
+        "solution_traces": "[{\"Y_2\": \"dominoes\", \"Y_3\": \"Dino Beltran\"}]",
+        "answer": [
+            "dominoes"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "husband(\"Shelli Beltran\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Dino Beltran",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 3
+        }
+    },
+    {
+        "id": "a55d504f-16d2-4256-a338-a45dba337c18",
+        "question": "What is the hobby of the sister of Gene Smock?",
+        "solution_traces": "[{\"Y_2\": \"geocaching\", \"Y_3\": \"Isabell Smock\"}, {\"Y_3\": \"Deane Smock\", \"Y_2\": \"shogi\"}]",
+        "answer": [
+            "geocaching",
+            "shogi"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "sister(\"Gene Smock\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Deane Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 4
+        }
+    },
+    {
+        "id": "28c7204d-9516-4205-a58c-9fc2eebd8628",
+        "question": "What is the occupation of the sister-in-law of Dominique Smock?",
+        "solution_traces": "[{\"Y_3\": \"Deane Smock\", \"Y_2\": \"associate professor\"}, {\"Y_2\": \"education administrator\", \"Y_3\": \"Isabell Smock\"}]",
+        "answer": [
+            "associate professor",
+            "education administrator"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "sister_in_law(\"Dominique Smock\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Isabell Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 4
+        }
+    },
+    {
+        "id": "d7de7723-fd5a-44d0-b346-e871810fb36f",
+        "question": "What is the date of birth of the friend of Aida Wang?",
+        "solution_traces": "[{\"Y_3\": \"Shelli Beltran\", \"Y_2\": \"0268-03-07\"}, {\"Y_3\": \"Alvaro Smock\", \"Y_2\": \"0177-07-12\"}, {\"Y_2\": \"0324-07-03\", \"Y_3\": \"Johnetta Wang\"}, {\"Y_3\": \"Dominique Smock\", \"Y_2\": \"0207-09-08\"}]",
+        "answer": [
+            "0177-07-12",
+            "0207-09-08",
+            "0268-03-07",
+            "0324-07-03"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "friend(\"Aida Wang\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Alvaro Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 4
+        }
+    },
+    {
+        "id": "46373589-4878-42da-beb9-d6d29a5b284e",
+        "question": "What is the hobby of the son-in-law of Dino Beltran?",
+        "solution_traces": "[{\"Y_3\": \"Ryan Wang\", \"Y_2\": \"fossil hunting\"}, {\"Y_3\": \"Saul Wexler\", \"Y_2\": \"sociology\"}, {\"Y_2\": \"dairy farming\", \"Y_3\": \"Ricardo Hackworth\"}]",
+        "answer": [
+            "dairy farming",
+            "fossil hunting",
+            "sociology"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "son_in_law(\"Dino Beltran\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Ricardo Hackworth",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 4
+        }
+    },
+    {
+        "id": "1034e436-824c-471f-92db-cb3d14576b12",
+        "question": "What is the date of birth of the son-in-law of Shelli Beltran?",
+        "solution_traces": "[{\"Y_3\": \"Saul Wexler\", \"Y_2\": \"0301-10-24\"}, {\"Y_2\": \"0293-02-24\", \"Y_3\": \"Ricardo Hackworth\"}, {\"Y_2\": \"0292-03-17\", \"Y_3\": \"Ryan Wang\"}]",
+        "answer": [
+            "0292-03-17",
+            "0293-02-24",
+            "0301-10-24"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "son_in_law(\"Shelli Beltran\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Saul Wexler",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 4
+        }
+    },
+    {
+        "id": "3bd91ed1-9c6d-4cc1-8d52-86decaa4f96b",
+        "question": "What is the date of birth of the father of Johnetta Wang?",
+        "solution_traces": "[{\"Y_2\": \"0292-03-17\", \"Y_3\": \"Ryan Wang\"}]",
+        "answer": [
+            "0292-03-17"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "father(\"Johnetta Wang\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Ryan Wang",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 1
+        }
+    }
+]

@@ -1,0 +1,19 @@
+sister("Gena Cook", "Jacque Simons").
+brother("Gena Cook", "Milford Simons").
+brother("Gena Cook", "Reggie Simons").
+mother("Gena Cook", "Jacinta Simons").
+father("Gena Cook", "Timothy Simons").
+daughter("Gena Cook", "Pansy Cook").
+husband("Gena Cook", "Floyd Cook").
+friend("Gena Cook", "Clementine Goff").
+friend("Gena Cook", "Eula Hollins").
+friend("Gena Cook", "Sung Resendez").
+friend("Gena Cook", "Noreen Sanborn").
+friend("Gena Cook", "Erick Courson").
+friend("Gena Cook", "Ilona Klink").
+friend("Gena Cook", "Ollie Omara").
+friend("Gena Cook", "Charley Weise").
+dob("Gena Cook", "0441-01-05").
+job("Gena Cook", "psychotherapist").
+hobby("Gena Cook", "mineral collecting").
+gender("Gena Cook", "female").

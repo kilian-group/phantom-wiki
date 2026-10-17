@@ -1,0 +1,13 @@
+sister("Noreen Jarrett", "Buffy Jarrett").
+mother("Noreen Jarrett", "Babette Jarrett").
+father("Noreen Jarrett", "Mose Jarrett").
+friend("Noreen Jarrett", "Ladonna Klink").
+friend("Noreen Jarrett", "Belia Mckenna").
+friend("Noreen Jarrett", "Diane Burkhalter").
+friend("Noreen Jarrett", "Edythe Littleton").
+friend("Noreen Jarrett", "Hershel Ingalls").
+friend("Noreen Jarrett", "Noreen Sanborn").
+dob("Noreen Jarrett", "0471-03-23").
+job("Noreen Jarrett", "pensions consultant").
+hobby("Noreen Jarrett", "research").
+gender("Noreen Jarrett", "female").

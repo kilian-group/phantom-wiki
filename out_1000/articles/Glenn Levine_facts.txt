@@ -1,0 +1,22 @@
+son("Glenn Levine", "Charles Levine").
+daughter("Glenn Levine", "Valeria Medellin").
+wife("Glenn Levine", "Amberly Levine").
+friend("Glenn Levine", "Logan Cushman").
+friend("Glenn Levine", "Dominick Palomo").
+friend("Glenn Levine", "Gerry Shank").
+friend("Glenn Levine", "Lyman Marr").
+friend("Glenn Levine", "Danilo Mcgough").
+friend("Glenn Levine", "Christoper Lasher").
+friend("Glenn Levine", "Ai Cordova").
+friend("Glenn Levine", "Anibal Cordova").
+friend("Glenn Levine", "Maegan Cordova").
+friend("Glenn Levine", "Cordelia Murray").
+friend("Glenn Levine", "Cherlyn Simons").
+friend("Glenn Levine", "Luis Simons").
+friend("Glenn Levine", "Boris Machado").
+friend("Glenn Levine", "Keri Bennet").
+friend("Glenn Levine", "Nikki Bond").
+dob("Glenn Levine", "0348-03-24").
+job("Glenn Levine", "probation officer").
+hobby("Glenn Levine", "antiquities").
+gender("Glenn Levine", "male").

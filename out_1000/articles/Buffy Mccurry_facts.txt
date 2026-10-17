@@ -1,0 +1,23 @@
+sister("Buffy Mccurry", "Shelia Hollins").
+brother("Buffy Mccurry", "Kareem Goff").
+mother("Buffy Mccurry", "Torrie Goff").
+father("Buffy Mccurry", "Kurt Goff").
+daughter("Buffy Mccurry", "Lora Mccurry").
+husband("Buffy Mccurry", "Vicente Mccurry").
+friend("Buffy Mccurry", "Matilda Goff").
+friend("Buffy Mccurry", "Micah Hollins").
+friend("Buffy Mccurry", "Tim Goff").
+friend("Buffy Mccurry", "Deirdre Niles").
+friend("Buffy Mccurry", "Dino Donner").
+friend("Buffy Mccurry", "Ricky Forester").
+friend("Buffy Mccurry", "Donnie Mcgough").
+friend("Buffy Mccurry", "Erick Courson").
+friend("Buffy Mccurry", "Porter Mckenna").
+friend("Buffy Mccurry", "Stefan Sutphin").
+friend("Buffy Mccurry", "Tony Gillam").
+friend("Buffy Mccurry", "Charissa Boutte").
+friend("Buffy Mccurry", "Nathan Corwin").
+dob("Buffy Mccurry", "0345-05-30").
+job("Buffy Mccurry", "therapist").
+hobby("Buffy Mccurry", "boxing").
+gender("Buffy Mccurry", "female").

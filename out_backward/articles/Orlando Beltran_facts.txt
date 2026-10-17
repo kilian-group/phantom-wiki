@@ -1,0 +1,9 @@
+brother("Orlando Beltran", "Dino Beltran").
+mother("Orlando Beltran", "Daisy Beltran").
+father("Orlando Beltran", "Brian Beltran").
+friend("Orlando Beltran", "Valentina Wexler").
+friend("Orlando Beltran", "Daisy Beltran").
+dob("Orlando Beltran", "0263-10-24").
+job("Orlando Beltran", "petroleum engineer").
+hobby("Orlando Beltran", "learning").
+gender("Orlando Beltran", "male").

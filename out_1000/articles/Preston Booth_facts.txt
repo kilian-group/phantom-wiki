@@ -1,0 +1,12 @@
+son("Preston Booth", "Rolf Booth").
+son("Preston Booth", "Tommy Booth").
+wife("Preston Booth", "Kanesha Booth").
+friend("Preston Booth", "Lester Bauman").
+friend("Preston Booth", "Vicente Mccurry").
+friend("Preston Booth", "Carolyn Whitford").
+friend("Preston Booth", "Nora Noland").
+friend("Preston Booth", "Ashely Speaks").
+dob("Preston Booth", "0410-05-21").
+job("Preston Booth", "sport and exercise psychologist").
+hobby("Preston Booth", "mineral collecting").
+gender("Preston Booth", "male").

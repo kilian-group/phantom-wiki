@@ -1,0 +1,16 @@
+brother("Gustavo Bauman", "Kendrick Bauman").
+mother("Gustavo Bauman", "Elisabeth Bauman").
+father("Gustavo Bauman", "Lester Bauman").
+son("Gustavo Bauman", "Max Bauman").
+daughter("Gustavo Bauman", "Dorathy Mckenna").
+daughter("Gustavo Bauman", "Teresita Bauman").
+wife("Gustavo Bauman", "Delores Bauman").
+friend("Gustavo Bauman", "Donnie Crocker").
+friend("Gustavo Bauman", "Kendrick Jefferson").
+friend("Gustavo Bauman", "Judith Holliman").
+friend("Gustavo Bauman", "Donnie Dunlap").
+friend("Gustavo Bauman", "Enid Yarbrough").
+dob("Gustavo Bauman", "0380-10-14").
+job("Gustavo Bauman", "podiatrist").
+hobby("Gustavo Bauman", "color guard").
+gender("Gustavo Bauman", "male").

@@ -1,0 +1,16 @@
+sister("Nydia Monday", "Gena Shaw").
+mother("Nydia Monday", "Coral Monday").
+father("Nydia Monday", "Wendell Monday").
+friend("Nydia Monday", "Johnathan Klink").
+friend("Nydia Monday", "Levi Kell").
+friend("Nydia Monday", "Odette Senn").
+friend("Nydia Monday", "Dane Murray").
+friend("Nydia Monday", "Bert Simons").
+friend("Nydia Monday", "Floyd Cook").
+friend("Nydia Monday", "Alice Dana").
+friend("Nydia Monday", "Wilson Donner").
+friend("Nydia Monday", "Hayden Fain").
+dob("Nydia Monday", "0455-09-01").
+job("Nydia Monday", "teacher").
+hobby("Nydia Monday", "vr gaming").
+gender("Nydia Monday", "female").

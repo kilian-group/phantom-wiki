@@ -1,0 +1,21 @@
+brother("Shawna Sheridan", "Ben Sheridan").
+brother("Shawna Sheridan", "Jayson Sheridan").
+brother("Shawna Sheridan", "Wade Sheridan").
+mother("Shawna Sheridan", "Shizuko Sheridan").
+father("Shawna Sheridan", "Dustin Sheridan").
+friend("Shawna Sheridan", "Alberto Wellington").
+friend("Shawna Sheridan", "Sheila Conner").
+friend("Shawna Sheridan", "Tena Beamon").
+friend("Shawna Sheridan", "Audra Lester").
+friend("Shawna Sheridan", "Colette Kinsella").
+friend("Shawna Sheridan", "Josie Littleton").
+friend("Shawna Sheridan", "Helga Simons").
+friend("Shawna Sheridan", "Hershel Ingalls").
+friend("Shawna Sheridan", "Delpha Younger").
+friend("Shawna Sheridan", "Virgie Niles").
+friend("Shawna Sheridan", "Scot Shilling").
+friend("Shawna Sheridan", "Bryan Layton").
+dob("Shawna Sheridan", "0426-10-30").
+job("Shawna Sheridan", "electronics engineer").
+hobby("Shawna Sheridan", "figure skating").
+gender("Shawna Sheridan", "female").

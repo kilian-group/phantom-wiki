@@ -1,0 +1,11 @@
+daughter("Stan Gailey", "Xiao Gailey").
+wife("Stan Gailey", "Renate Gailey").
+friend("Stan Gailey", "Yoshiko Niles").
+friend("Stan Gailey", "Leonora Depriest").
+friend("Stan Gailey", "Stacey Wilke").
+friend("Stan Gailey", "Cedric Towns").
+friend("Stan Gailey", "Angela Younger").
+dob("Stan Gailey", "0405-03-24").
+job("Stan Gailey", "insurance risk surveyor").
+hobby("Stan Gailey", "rock balancing").
+gender("Stan Gailey", "male").

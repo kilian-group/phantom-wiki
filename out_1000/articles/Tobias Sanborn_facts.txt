@@ -1,0 +1,8 @@
+son("Tobias Sanborn", "Rudolf Sanborn").
+wife("Tobias Sanborn", "Gayla Sanborn").
+friend("Tobias Sanborn", "Veronica Cowart").
+friend("Tobias Sanborn", "Federico Horan").
+dob("Tobias Sanborn", "0371-02-28").
+job("Tobias Sanborn", "film editor").
+hobby("Tobias Sanborn", "reading").
+gender("Tobias Sanborn", "male").

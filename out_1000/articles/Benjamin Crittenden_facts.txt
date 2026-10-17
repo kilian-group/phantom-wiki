@@ -1,0 +1,9 @@
+daughter("Benjamin Crittenden", "Luisa Oliveira").
+wife("Benjamin Crittenden", "Aura Crittenden").
+friend("Benjamin Crittenden", "Walter Depriest").
+friend("Benjamin Crittenden", "Davis Eaves").
+friend("Benjamin Crittenden", "Scotty Gilliam").
+dob("Benjamin Crittenden", "0320-10-19").
+job("Benjamin Crittenden", "manufacturing engineer").
+hobby("Benjamin Crittenden", "magnet fishing").
+gender("Benjamin Crittenden", "male").

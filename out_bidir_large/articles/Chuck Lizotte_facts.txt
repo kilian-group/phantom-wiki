@@ -1,0 +1,13 @@
+sister("Chuck Lizotte", "Hanh Mohan").
+sister("Chuck Lizotte", "Maranda Lizotte").
+sister("Chuck Lizotte", "Yoko Wilkie").
+brother("Chuck Lizotte", "Nathanial Lizotte").
+mother("Chuck Lizotte", "Rosina Lizotte").
+father("Chuck Lizotte", "Dwain Lizotte").
+friend("Chuck Lizotte", "Harold Wilkie").
+friend("Chuck Lizotte", "Lila Petry").
+friend("Chuck Lizotte", "Lenore Hackworth").
+dob("Chuck Lizotte", "0294-09-02").
+job("Chuck Lizotte", "midwife").
+hobby("Chuck Lizotte", "surfing").
+gender("Chuck Lizotte", "male").

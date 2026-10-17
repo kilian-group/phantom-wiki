@@ -1,0 +1,26 @@
+sister("Shizuko Sheridan", "Goldie Alessi").
+sister("Shizuko Sheridan", "Nellie Hamlin").
+brother("Shizuko Sheridan", "Elroy Hamlin").
+brother("Shizuko Sheridan", "Hosea Hamlin").
+brother("Shizuko Sheridan", "Sylvester Hamlin").
+mother("Shizuko Sheridan", "Raina Hamlin").
+father("Shizuko Sheridan", "Felix Hamlin").
+son("Shizuko Sheridan", "Ben Sheridan").
+son("Shizuko Sheridan", "Jayson Sheridan").
+son("Shizuko Sheridan", "Wade Sheridan").
+daughter("Shizuko Sheridan", "Shawna Sheridan").
+husband("Shizuko Sheridan", "Dustin Sheridan").
+friend("Shizuko Sheridan", "Noreen Booth").
+friend("Shizuko Sheridan", "Milford Simons").
+friend("Shizuko Sheridan", "Janey Plumley").
+friend("Shizuko Sheridan", "Ruben Corwin").
+friend("Shizuko Sheridan", "Nydia Hollins").
+friend("Shizuko Sheridan", "Brigette Keyes").
+friend("Shizuko Sheridan", "Byron Medellin").
+friend("Shizuko Sheridan", "Manuel Smart").
+friend("Shizuko Sheridan", "Nelly Smart").
+friend("Shizuko Sheridan", "Mitchell Fordham").
+dob("Shizuko Sheridan", "0401-12-08").
+job("Shizuko Sheridan", "conservation officer").
+hobby("Shizuko Sheridan", "knife collecting").
+gender("Shizuko Sheridan", "female").

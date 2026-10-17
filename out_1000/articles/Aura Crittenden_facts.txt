@@ -1,0 +1,9 @@
+daughter("Aura Crittenden", "Luisa Oliveira").
+husband("Aura Crittenden", "Benjamin Crittenden").
+friend("Aura Crittenden", "Sharika Kell").
+friend("Aura Crittenden", "Dinah Simons").
+friend("Aura Crittenden", "Ginger Chou").
+dob("Aura Crittenden", "0319-07-28").
+job("Aura Crittenden", "air traffic controller").
+hobby("Aura Crittenden", "scutelliphily").
+gender("Aura Crittenden", "female").

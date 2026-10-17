@@ -1,0 +1,20 @@
+mother("Sherrie Remillard", "Aurelia Dishman").
+father("Sherrie Remillard", "King Dishman").
+son("Sherrie Remillard", "Jaime Remillard").
+son("Sherrie Remillard", "Jude Remillard").
+daughter("Sherrie Remillard", "Wanita Remillard").
+husband("Sherrie Remillard", "Jon Remillard").
+friend("Sherrie Remillard", "Willie Remillard").
+friend("Sherrie Remillard", "Anna Vandenberg").
+friend("Sherrie Remillard", "Chrissy Mcgough").
+friend("Sherrie Remillard", "Elroy Mcgough").
+friend("Sherrie Remillard", "Cherlyn Oberg").
+friend("Sherrie Remillard", "Mason Oberg").
+friend("Sherrie Remillard", "Richard Oberg").
+friend("Sherrie Remillard", "Hunter Remillard").
+friend("Sherrie Remillard", "Jaime Remillard").
+friend("Sherrie Remillard", "Louann Chrisman").
+dob("Sherrie Remillard", "0271-04-26").
+job("Sherrie Remillard", "exhibitions officer").
+hobby("Sherrie Remillard", "leaves").
+gender("Sherrie Remillard", "female").

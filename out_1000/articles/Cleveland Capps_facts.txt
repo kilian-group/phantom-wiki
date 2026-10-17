@@ -1,0 +1,27 @@
+sister("Cleveland Capps", "Elaine Marr").
+brother("Cleveland Capps", "Deandre Capps").
+mother("Cleveland Capps", "Velia Capps").
+father("Cleveland Capps", "Rogelio Capps").
+daughter("Cleveland Capps", "Jo Medeiros").
+daughter("Cleveland Capps", "Stacy Strong").
+wife("Cleveland Capps", "Ressie Capps").
+friend("Cleveland Capps", "Stan Kell").
+friend("Cleveland Capps", "Cameron Mckenna").
+friend("Cleveland Capps", "Drema Jefferson").
+friend("Cleveland Capps", "Mack Storey").
+friend("Cleveland Capps", "Tammy Sutphin").
+friend("Cleveland Capps", "Scottie Steadman").
+friend("Cleveland Capps", "Crysta Machado").
+friend("Cleveland Capps", "King Goff").
+friend("Cleveland Capps", "Lora Mccurry").
+friend("Cleveland Capps", "Micah Hollins").
+friend("Cleveland Capps", "Emil Broughton").
+friend("Cleveland Capps", "Eunice Gordy").
+friend("Cleveland Capps", "Willie Hurt").
+friend("Cleveland Capps", "Aaron Fordham").
+friend("Cleveland Capps", "Edmundo Fordham").
+friend("Cleveland Capps", "Millard Fordham").
+dob("Cleveland Capps", "0405-09-30").
+job("Cleveland Capps", "personnel officer").
+hobby("Cleveland Capps", "microbiology").
+gender("Cleveland Capps", "male").

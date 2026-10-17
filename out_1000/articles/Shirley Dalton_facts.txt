@@ -1,0 +1,18 @@
+sister("Shirley Dalton", "Enid Dalton").
+mother("Shirley Dalton", "Dani Dalton").
+father("Shirley Dalton", "Irwin Dalton").
+friend("Shirley Dalton", "Gayla Mccall").
+friend("Shirley Dalton", "Calvin Holliman").
+friend("Shirley Dalton", "Zoraida Sanborn").
+friend("Shirley Dalton", "Dustin Sheridan").
+friend("Shirley Dalton", "Javier Scherer").
+friend("Shirley Dalton", "Winnie Harlow").
+friend("Shirley Dalton", "Kendrick Bauman").
+friend("Shirley Dalton", "Viva Suh").
+friend("Shirley Dalton", "Ramon Swartz").
+friend("Shirley Dalton", "Shante Ruth").
+friend("Shirley Dalton", "Felton Dana").
+dob("Shirley Dalton", "0458-12-16").
+job("Shirley Dalton", "hydrogeologist").
+hobby("Shirley Dalton", "shuffleboard").
+gender("Shirley Dalton", "female").

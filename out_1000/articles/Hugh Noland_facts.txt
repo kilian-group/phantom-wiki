@@ -1,0 +1,21 @@
+mother("Hugh Noland", "Jana Noland").
+father("Hugh Noland", "Johnathon Noland").
+son("Hugh Noland", "Carlos Noland").
+son("Hugh Noland", "Hubert Noland").
+daughter("Hugh Noland", "Domonique Fordham").
+wife("Hugh Noland", "Flora Noland").
+friend("Hugh Noland", "Gregory Keister").
+friend("Hugh Noland", "Ilona Klink").
+friend("Hugh Noland", "Macy Booth").
+friend("Hugh Noland", "Nicky Gordon").
+friend("Hugh Noland", "Noelia Lasher").
+friend("Hugh Noland", "Edwina Weise").
+friend("Hugh Noland", "Cleo Peeler").
+friend("Hugh Noland", "Lakeshia Steadman").
+friend("Hugh Noland", "Roman Ruth").
+friend("Hugh Noland", "Alyssa Salem").
+friend("Hugh Noland", "Harold Waltz").
+dob("Hugh Noland", "0436-10-18").
+job("Hugh Noland", "charity fundraiser").
+hobby("Hugh Noland", "birdwatching").
+gender("Hugh Noland", "male").

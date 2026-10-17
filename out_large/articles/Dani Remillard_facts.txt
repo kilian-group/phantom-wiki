@@ -1,0 +1,13 @@
+son("Dani Remillard", "Willie Remillard").
+daughter("Dani Remillard", "Celestine Remillard").
+daughter("Dani Remillard", "Louann Chrisman").
+husband("Dani Remillard", "Hunter Remillard").
+friend("Dani Remillard", "Dorinda Chrisman").
+friend("Dani Remillard", "Justine Remillard").
+friend("Dani Remillard", "Tianna Remillard").
+friend("Dani Remillard", "Willie Remillard").
+friend("Dani Remillard", "Owen Narvaez").
+dob("Dani Remillard", "0318-04-07").
+job("Dani Remillard", "research scientist").
+hobby("Dani Remillard", "history").
+gender("Dani Remillard", "female").

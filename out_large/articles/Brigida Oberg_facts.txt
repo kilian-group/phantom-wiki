@@ -1,0 +1,14 @@
+son("Brigida Oberg", "Clyde Oberg").
+son("Brigida Oberg", "Lyman Oberg").
+son("Brigida Oberg", "Monte Oberg").
+husband("Brigida Oberg", "Richard Oberg").
+friend("Brigida Oberg", "Renate Oberg").
+friend("Brigida Oberg", "Jaime Remillard").
+friend("Brigida Oberg", "Kori Remillard").
+friend("Brigida Oberg", "Tianna Remillard").
+friend("Brigida Oberg", "Alvaro Murphey").
+friend("Brigida Oberg", "Jackie Vandenberg").
+dob("Brigida Oberg", "0275-01-22").
+job("Brigida Oberg", "environmental manager").
+hobby("Brigida Oberg", "publishing").
+gender("Brigida Oberg", "female").

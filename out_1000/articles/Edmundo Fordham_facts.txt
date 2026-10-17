@@ -1,0 +1,18 @@
+son("Edmundo Fordham", "Miles Fordham").
+son("Edmundo Fordham", "Millard Fordham").
+wife("Edmundo Fordham", "Elicia Fordham").
+friend("Edmundo Fordham", "Rueben Bowles").
+friend("Edmundo Fordham", "Sheila Putnam").
+friend("Edmundo Fordham", "Cleveland Capps").
+friend("Edmundo Fordham", "Ester Yarbrough").
+friend("Edmundo Fordham", "Randolph Osborn").
+friend("Edmundo Fordham", "Perry Spiller").
+friend("Edmundo Fordham", "Curt Cowart").
+friend("Edmundo Fordham", "Eliza Ingalls").
+friend("Edmundo Fordham", "Shirley Ibarra").
+friend("Edmundo Fordham", "Evette Gibbs").
+friend("Edmundo Fordham", "Lucienne Gilliam").
+dob("Edmundo Fordham", "0436-09-01").
+job("Edmundo Fordham", "programme researcher").
+hobby("Edmundo Fordham", "martial arts").
+gender("Edmundo Fordham", "male").

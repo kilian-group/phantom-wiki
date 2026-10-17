@@ -1,0 +1,6 @@
+son("Barney Langley", "Dwayne Langley").
+wife("Barney Langley", "Sha Langley").
+dob("Barney Langley", "0296-11-08").
+job("Barney Langley", "careers adviser").
+hobby("Barney Langley", "shortwave listening").
+gender("Barney Langley", "male").

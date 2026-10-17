@@ -1,0 +1,16 @@
+brother("Carlene Corwin", "Josef Corwin").
+mother("Carlene Corwin", "Jasmine Corwin").
+father("Carlene Corwin", "Colin Corwin").
+friend("Carlene Corwin", "Keith Noland").
+friend("Carlene Corwin", "Dorathy Hamlin").
+friend("Carlene Corwin", "Genesis Alarcon").
+friend("Carlene Corwin", "Pamala Vanmeter").
+friend("Carlene Corwin", "Evelia Senn").
+friend("Carlene Corwin", "Olivia Briscoe").
+friend("Carlene Corwin", "Charlie Ingalls").
+friend("Carlene Corwin", "Freddie Barrows").
+friend("Carlene Corwin", "Lea Plumley").
+dob("Carlene Corwin", "0445-02-27").
+job("Carlene Corwin", "sales executive").
+hobby("Carlene Corwin", "rock painting").
+gender("Carlene Corwin", "female").

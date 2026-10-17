@@ -1,0 +1,22 @@
+sister("Cedric Towns", "Shawna Towns").
+mother("Cedric Towns", "Patricia Towns").
+father("Cedric Towns", "Glen Towns").
+son("Cedric Towns", "Kennith Towns").
+wife("Cedric Towns", "Jennie Towns").
+friend("Cedric Towns", "Keisha Mcdonald").
+friend("Cedric Towns", "Herbert Dana").
+friend("Cedric Towns", "Rochelle Corwin").
+friend("Cedric Towns", "Stan Gailey").
+friend("Cedric Towns", "Ardath Skidmore").
+friend("Cedric Towns", "Ashleigh Kell").
+friend("Cedric Towns", "Ladonna Klink").
+friend("Cedric Towns", "Miles Corso").
+friend("Cedric Towns", "Tonia Bauman").
+friend("Cedric Towns", "Aletha Crocker").
+friend("Cedric Towns", "Grant Lasher").
+friend("Cedric Towns", "Samuel Omara").
+friend("Cedric Towns", "Gerald Hartung").
+dob("Cedric Towns", "0500-10-02").
+job("Cedric Towns", "personnel officer").
+hobby("Cedric Towns", "wikipedia editing").
+gender("Cedric Towns", "male").

@@ -1,0 +1,18 @@
+sister("Kieth Medellin", "Eunice Gordy").
+brother("Kieth Medellin", "Reggie Medellin").
+mother("Kieth Medellin", "Valeria Medellin").
+father("Kieth Medellin", "Robt Medellin").
+son("Kieth Medellin", "Byron Medellin").
+son("Kieth Medellin", "Oscar Medellin").
+daughter("Kieth Medellin", "Tamara Wylie").
+wife("Kieth Medellin", "Verona Medellin").
+friend("Kieth Medellin", "Willie Hurt").
+friend("Kieth Medellin", "Allyson Burger").
+friend("Kieth Medellin", "Annabell Horan").
+friend("Kieth Medellin", "Denny Vanmeter").
+friend("Kieth Medellin", "Dennis Hamann").
+friend("Kieth Medellin", "Jann Ruth").
+dob("Kieth Medellin", "0409-06-20").
+job("Kieth Medellin", "production engineer").
+hobby("Kieth Medellin", "mahjong").
+gender("Kieth Medellin", "male").

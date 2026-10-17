@@ -1,0 +1,17 @@
+sister("Abe Kell", "Jeannette Mounts").
+sister("Abe Kell", "Jenni Kell").
+brother("Abe Kell", "Walter Kell").
+mother("Abe Kell", "Kristen Kell").
+father("Abe Kell", "Dewitt Kell").
+daughter("Abe Kell", "Ashleigh Kell").
+wife("Abe Kell", "Ollie Kell").
+friend("Abe Kell", "Bridget Sutphin").
+friend("Abe Kell", "Marguerite Lebrun").
+friend("Abe Kell", "Bryan Resendez").
+friend("Abe Kell", "Paul Gilliam").
+friend("Abe Kell", "Shannon Fredrick").
+friend("Abe Kell", "Thelma Vandenberg").
+dob("Abe Kell", "0439-05-28").
+job("Abe Kell", "clinical psychologist").
+hobby("Abe Kell", "transit map collecting").
+gender("Abe Kell", "male").

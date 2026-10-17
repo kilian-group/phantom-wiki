@@ -1,0 +1,16 @@
+sister("Chelsea Skidmore", "Ardath Skidmore").
+sister("Chelsea Skidmore", "Velia Capps").
+mother("Chelsea Skidmore", "Tamala Skidmore").
+father("Chelsea Skidmore", "Benito Skidmore").
+friend("Chelsea Skidmore", "Keith Resendez").
+friend("Chelsea Skidmore", "Werner Kell").
+friend("Chelsea Skidmore", "Felipe Vanmeter").
+friend("Chelsea Skidmore", "Carrol Spiller").
+friend("Chelsea Skidmore", "Debora Murray").
+friend("Chelsea Skidmore", "Nicholle Dana").
+friend("Chelsea Skidmore", "Tania Younger").
+friend("Chelsea Skidmore", "Leeann Blanton").
+dob("Chelsea Skidmore", "0378-05-14").
+job("Chelsea Skidmore", "cytogeneticist").
+hobby("Chelsea Skidmore", "antiquities").
+gender("Chelsea Skidmore", "female").

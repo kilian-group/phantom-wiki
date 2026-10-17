@@ -1,0 +1,412 @@
+[
+    {
+        "id": "8434859d-20b6-4482-ab33-aa5e98e38dac",
+        "question": "Who was born first, the friend of Liane Schoonmaker or the cousin of Rolland Mckenna?",
+        "solution_traces": "[]",
+        "answer": [
+            "Chelsie Bradberry"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "friend(\"Liane Schoonmaker\", Y_2)",
+                "cousin(\"Rolland Mckenna\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 121,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "aadc9a5c-8328-4267-92c3-cc9866926d98",
+        "question": "Who was born first, the friend of Daniel Brannan or the grandchild of Dominique Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Duncan Pannell"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "friend(\"Daniel Brannan\", Y_2)",
+                "grandchild(\"Dominique Smock\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 121,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "9bf32f1f-6b4a-417a-88b7-92a5ccd15f1b",
+        "question": "Who was born first, the niece of Lea Levy or the mother of Jeanelle Mcnew?",
+        "solution_traces": "[]",
+        "answer": [
+            "Elissa Kovach"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "niece(\"Lea Levy\", Y_2)",
+                "mother(\"Jeanelle Mcnew\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 121,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "fe9b2cd0-12e2-44bd-ab5f-729eaedc7819",
+        "question": "Who was born first, the son-in-law of Kris Haber or the friend of Maxwell Henderson?",
+        "solution_traces": "[]",
+        "answer": [
+            "Cherry Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "son_in_law(\"Kris Haber\", Y_2)",
+                "friend(\"Maxwell Henderson\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 121,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "65f89517-40fe-448e-8c3e-969a15b86e86",
+        "question": "Who was born first, the parent of Shelli Beltran or the granddaughter of Karla Hornback?",
+        "solution_traces": "[]",
+        "answer": [
+            "Alison Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "parent(\"Shelli Beltran\", Y_2)",
+                "granddaughter(\"Karla Hornback\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 121,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "b06ab386-ed33-4ed0-9b92-03d791884798",
+        "question": "Who was born first, the brother-in-law of Ester Kovach or the great-uncle of Lea Levy?",
+        "solution_traces": "[]",
+        "answer": [
+            "Elwood Decosta"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "brother_in_law(\"Ester Kovach\", Y_2)",
+                "great_uncle(\"Lea Levy\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 121,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "64ad970b-ba83-4e0a-bb8e-39d00b55f56f",
+        "question": "Who was born first, the great-grandfather of Minerva Wilkie or the father of Charlie Kovach?",
+        "solution_traces": "[]",
+        "answer": [
+            "Odis Lizotte"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "great_grandfather(\"Minerva Wilkie\", Y_2)",
+                "father(\"Charlie Kovach\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 121,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "c8063043-cfbf-4e66-b36c-cf66cc7c03fd",
+        "question": "Who was born first, the father-in-law of Deborah Cormier or the husband of Deborah Cormier?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dion Cormier"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "father_in_law(\"Deborah Cormier\", Y_2)",
+                "husband(\"Deborah Cormier\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 121,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "f503f6fd-99d8-4c2e-ac91-da0af7034ddf",
+        "question": "Who was born first, the grandchild of Theodore Crain or the son of Monique Griffiths?",
+        "solution_traces": "[]",
+        "answer": [
+            "Connie Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "grandchild(\"Theodore Crain\", Y_2)",
+                "son(\"Monique Griffiths\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 121,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "de0675d7-0377-4fa0-aadf-d563b9be38dc",
+        "question": "Who was born first, the father of Ashely Kee or the father of Bruce Mason?",
+        "solution_traces": "[]",
+        "answer": [
+            "Edmond Schreiner"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "father(\"Ashely Kee\", Y_2)",
+                "father(\"Bruce Mason\", Y_10)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "<name>_12",
+            "?"
+        ],
+        "type": 121,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    }
+]

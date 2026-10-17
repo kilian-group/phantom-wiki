@@ -1,0 +1,12 @@
+son("Pauletta Morehead", "Miguel Morehead").
+husband("Pauletta Morehead", "Abdul Morehead").
+friend("Pauletta Morehead", "Bradley Blanton").
+friend("Pauletta Morehead", "Truman Holtz").
+friend("Pauletta Morehead", "Almeta Forester").
+friend("Pauletta Morehead", "Anneliese Pellegrino").
+friend("Pauletta Morehead", "Florence Ingle").
+friend("Pauletta Morehead", "Curt Cowart").
+dob("Pauletta Morehead", "0422-03-24").
+job("Pauletta Morehead", "actor").
+hobby("Pauletta Morehead", "physics").
+gender("Pauletta Morehead", "female").

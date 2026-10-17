@@ -1,0 +1,17 @@
+sister("Luke Wilke", "Belva Murphey").
+brother("Luke Wilke", "Marion Wilke").
+mother("Luke Wilke", "Amy Wilke").
+father("Luke Wilke", "Stacey Wilke").
+son("Luke Wilke", "Cedric Wilke").
+son("Luke Wilke", "Jermaine Wilke").
+wife("Luke Wilke", "Gabriele Wilke").
+friend("Luke Wilke", "Edythe Littleton").
+friend("Luke Wilke", "Ethan Younger").
+friend("Luke Wilke", "Jarrod Ibarra").
+friend("Luke Wilke", "Luisa Oliveira").
+friend("Luke Wilke", "Vito Capps").
+friend("Luke Wilke", "Laurence Macias").
+dob("Luke Wilke", "0371-08-11").
+job("Luke Wilke", "speech and language therapist").
+hobby("Luke Wilke", "fishkeeping").
+gender("Luke Wilke", "male").

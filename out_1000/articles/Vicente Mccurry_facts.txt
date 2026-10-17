@@ -1,0 +1,12 @@
+daughter("Vicente Mccurry", "Lora Mccurry").
+wife("Vicente Mccurry", "Buffy Mccurry").
+friend("Vicente Mccurry", "Susie Medellin").
+friend("Vicente Mccurry", "Zachary Theriot").
+friend("Vicente Mccurry", "Jana Galvan").
+friend("Vicente Mccurry", "Leslie Courson").
+friend("Vicente Mccurry", "Preston Booth").
+friend("Vicente Mccurry", "Pansy Cook").
+dob("Vicente Mccurry", "0342-08-07").
+job("Vicente Mccurry", "photographer").
+hobby("Vicente Mccurry", "learning").
+gender("Vicente Mccurry", "male").

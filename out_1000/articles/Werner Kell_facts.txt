@@ -1,0 +1,14 @@
+sister("Werner Kell", "Sharika Kell").
+mother("Werner Kell", "Laverna Kell").
+father("Werner Kell", "Levi Kell").
+son("Werner Kell", "Kurtis Kell").
+wife("Werner Kell", "Patty Kell").
+friend("Werner Kell", "Oralia Burdette").
+friend("Werner Kell", "Chelsea Skidmore").
+friend("Werner Kell", "Lorenz Deville").
+friend("Werner Kell", "Essie Layman").
+friend("Werner Kell", "Felton Kell").
+dob("Werner Kell", "0330-09-05").
+job("Werner Kell", "training and development officer").
+hobby("Werner Kell", "knife throwing").
+gender("Werner Kell", "male").

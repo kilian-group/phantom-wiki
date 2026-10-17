@@ -1,0 +1,19 @@
+brother("King Goff", "Alphonso Goff").
+brother("King Goff", "Elroy Goff").
+brother("King Goff", "Jonathan Goff").
+brother("King Goff", "Tim Goff").
+mother("King Goff", "Dorothea Goff").
+father("King Goff", "Michael Goff").
+daughter("King Goff", "Clementine Goff").
+wife("King Goff", "Gina Goff").
+friend("King Goff", "Meghan Keyes").
+friend("King Goff", "Cleveland Capps").
+friend("King Goff", "Gerry Dorn").
+friend("King Goff", "Shemika Hirsch").
+friend("King Goff", "Trudy Lasher").
+friend("King Goff", "Bonnie Storey").
+friend("King Goff", "Gaye Swartz").
+dob("King Goff", "0413-03-24").
+job("King Goff", "social research officer").
+hobby("King Goff", "stone collecting").
+gender("King Goff", "male").

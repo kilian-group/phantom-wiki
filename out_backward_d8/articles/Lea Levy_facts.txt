@@ -1,0 +1,11 @@
+sister("Lea Levy", "Margaret Kovach").
+brother("Lea Levy", "Daniel Brannan").
+mother("Lea Levy", "Rosalinda Brannan").
+father("Lea Levy", "Adolph Brannan").
+son("Lea Levy", "Pasquale Levy").
+husband("Lea Levy", "Jules Levy").
+friend("Lea Levy", "Carrol Nicolas").
+dob("Lea Levy", "0256-04-20").
+job("Lea Levy", "telecommunications researcher").
+hobby("Lea Levy", "martial arts").
+gender("Lea Levy", "female").

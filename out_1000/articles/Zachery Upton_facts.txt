@@ -1,0 +1,21 @@
+son("Zachery Upton", "Jamison Upton").
+daughter("Zachery Upton", "Krystal Joubert").
+daughter("Zachery Upton", "Rubie Upton").
+wife("Zachery Upton", "Jann Upton").
+friend("Zachery Upton", "Garland Hirsch").
+friend("Zachery Upton", "Garrett Bauman").
+friend("Zachery Upton", "Jacque Haygood").
+friend("Zachery Upton", "Melvin Peeler").
+friend("Zachery Upton", "Antionette Hamann").
+friend("Zachery Upton", "Marcelina Simons").
+friend("Zachery Upton", "Rob Lebrun").
+friend("Zachery Upton", "Shaunte Gilliam").
+friend("Zachery Upton", "Jefferson Smart").
+friend("Zachery Upton", "Lauren Strong").
+friend("Zachery Upton", "Rhonda Theriot").
+friend("Zachery Upton", "Rubye Forester").
+friend("Zachery Upton", "Kieth Shaw").
+dob("Zachery Upton", "0338-10-01").
+job("Zachery Upton", "volunteer coordinator").
+hobby("Zachery Upton", "transit map collecting").
+gender("Zachery Upton", "male").

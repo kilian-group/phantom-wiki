@@ -1,0 +1,13 @@
+son("Hal Osterman", "Rolf Osterman").
+daughter("Hal Osterman", "Edythe Osterman").
+wife("Hal Osterman", "Vicki Osterman").
+friend("Hal Osterman", "Elroy Hamlin").
+friend("Hal Osterman", "Ira Mckenna").
+friend("Hal Osterman", "Laurence Knepper").
+friend("Hal Osterman", "Ollie Omara").
+friend("Hal Osterman", "Ai Cordova").
+friend("Hal Osterman", "Augustine Linden").
+dob("Hal Osterman", "0460-09-14").
+job("Hal Osterman", "building services engineer").
+hobby("Hal Osterman", "ice skating").
+gender("Hal Osterman", "male").

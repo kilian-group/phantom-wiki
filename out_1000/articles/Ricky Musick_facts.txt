@@ -1,0 +1,10 @@
+son("Ricky Musick", "Geoffrey Musick").
+wife("Ricky Musick", "Nedra Musick").
+friend("Ricky Musick", "Coral Monday").
+friend("Ricky Musick", "Katharine Willoughby").
+friend("Ricky Musick", "Charley Weise").
+friend("Ricky Musick", "Dustin Peeler").
+dob("Ricky Musick", "0399-10-04").
+job("Ricky Musick", "chief operating officer").
+hobby("Ricky Musick", "seashell collecting").
+gender("Ricky Musick", "male").

@@ -1,0 +1,13 @@
+sister("Anibal Schoonmaker", "Annabelle Schoonmaker").
+sister("Anibal Schoonmaker", "Jona Carrell").
+sister("Anibal Schoonmaker", "Liane Schoonmaker").
+brother("Anibal Schoonmaker", "Esteban Schoonmaker").
+mother("Anibal Schoonmaker", "Robyn Schoonmaker").
+father("Anibal Schoonmaker", "Ali Schoonmaker").
+daughter("Anibal Schoonmaker", "Blair Etheridge").
+wife("Anibal Schoonmaker", "Effie Schoonmaker").
+friend("Anibal Schoonmaker", "Eldon Nicolas").
+dob("Anibal Schoonmaker", "0263-08-17").
+job("Anibal Schoonmaker", "IT consultant").
+hobby("Anibal Schoonmaker", "stone collecting").
+gender("Anibal Schoonmaker", "male").

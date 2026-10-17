@@ -1,0 +1,14 @@
+sister("Lenny Courson", "Trudy Lennox").
+brother("Lenny Courson", "Wesley Courson").
+mother("Lenny Courson", "Mattie Courson").
+father("Lenny Courson", "Claude Courson").
+friend("Lenny Courson", "Kendrick Bauman").
+friend("Lenny Courson", "Ollie Omara").
+friend("Lenny Courson", "Tyrone Linares").
+friend("Lenny Courson", "Delpha Younger").
+friend("Lenny Courson", "Clementine Goff").
+friend("Lenny Courson", "Ricardo Dacosta").
+dob("Lenny Courson", "0454-07-15").
+job("Lenny Courson", "archivist").
+hobby("Lenny Courson", "handball").
+gender("Lenny Courson", "male").

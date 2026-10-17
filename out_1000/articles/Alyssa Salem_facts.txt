@@ -1,0 +1,18 @@
+mother("Alyssa Salem", "Lashanda Salem").
+father("Alyssa Salem", "Wm Salem").
+friend("Alyssa Salem", "Wilson Donner").
+friend("Alyssa Salem", "Hugh Noland").
+friend("Alyssa Salem", "Rhonda Wilke").
+friend("Alyssa Salem", "Kurtis Kell").
+friend("Alyssa Salem", "Brandon Winn").
+friend("Alyssa Salem", "Adah Schram").
+friend("Alyssa Salem", "Anastacia Cordova").
+friend("Alyssa Salem", "Audra Lester").
+friend("Alyssa Salem", "Allie Gillam").
+friend("Alyssa Salem", "Salvador Plumley").
+friend("Alyssa Salem", "Lona Corwin").
+friend("Alyssa Salem", "Deidra Gilliam").
+dob("Alyssa Salem", "0426-04-28").
+job("Alyssa Salem", "solicitor").
+hobby("Alyssa Salem", "judo").
+gender("Alyssa Salem", "female").

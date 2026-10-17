@@ -1,0 +1,6 @@
+daughter("Deborah Cormier", "Leann Cormier").
+husband("Deborah Cormier", "Clifford Cormier").
+dob("Deborah Cormier", "0262-06-04").
+job("Deborah Cormier", "oceanographer").
+hobby("Deborah Cormier", "ballroom dancing").
+gender("Deborah Cormier", "female").

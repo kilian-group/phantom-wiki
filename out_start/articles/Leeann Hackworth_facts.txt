@@ -1,0 +1,11 @@
+sister("Leeann Hackworth", "Lenore Hackworth").
+mother("Leeann Hackworth", "Vicki Hackworth").
+father("Leeann Hackworth", "Ricardo Hackworth").
+friend("Leeann Hackworth", "Shelli Beltran").
+friend("Leeann Hackworth", "Dino Beltran").
+friend("Leeann Hackworth", "Dominique Smock").
+friend("Leeann Hackworth", "Lannie Smock").
+dob("Leeann Hackworth", "0321-10-24").
+job("Leeann Hackworth", "clinical cytogeneticist").
+hobby("Leeann Hackworth", "geography").
+gender("Leeann Hackworth", "female").

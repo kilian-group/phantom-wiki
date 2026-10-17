@@ -1,0 +1,17 @@
+sister("Gwendolyn Townsend", "Thalia Linden").
+mother("Gwendolyn Townsend", "Faith Linden").
+father("Gwendolyn Townsend", "Augustine Linden").
+son("Gwendolyn Townsend", "Tomas Townsend").
+husband("Gwendolyn Townsend", "Terrance Townsend").
+friend("Gwendolyn Townsend", "Logan Cushman").
+friend("Gwendolyn Townsend", "Steven Prater").
+friend("Gwendolyn Townsend", "Lynette Macias").
+friend("Gwendolyn Townsend", "Emma Wellington").
+friend("Gwendolyn Townsend", "Desiree Fordham").
+friend("Gwendolyn Townsend", "Stanford Suh").
+friend("Gwendolyn Townsend", "Marlene Ingalls").
+friend("Gwendolyn Townsend", "Timothy Simons").
+dob("Gwendolyn Townsend", "0497-12-19").
+job("Gwendolyn Townsend", "higher education careers adviser").
+hobby("Gwendolyn Townsend", "fingerprint collecting").
+gender("Gwendolyn Townsend", "female").

@@ -1,0 +1,17 @@
+daughter("Randolph Osborn", "Xiao Nolasco").
+wife("Randolph Osborn", "Tosha Osborn").
+friend("Randolph Osborn", "Desmond Lester").
+friend("Randolph Osborn", "Elijah Linares").
+friend("Randolph Osborn", "Felton Dana").
+friend("Randolph Osborn", "Michaela Corwin").
+friend("Randolph Osborn", "Dorothea Goff").
+friend("Randolph Osborn", "Edmundo Fordham").
+friend("Randolph Osborn", "Ardath Carswell").
+friend("Randolph Osborn", "Randall Mcgough").
+friend("Randolph Osborn", "Buffy Jarrett").
+friend("Randolph Osborn", "Rayna Upton").
+friend("Randolph Osborn", "Rubie Upton").
+dob("Randolph Osborn", "0307-02-14").
+job("Randolph Osborn", "pension scheme manager").
+hobby("Randolph Osborn", "vr gaming").
+gender("Randolph Osborn", "male").

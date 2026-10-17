@@ -1,0 +1,15 @@
+sister("Jermaine Lasher", "Tabetha Lasher").
+brother("Jermaine Lasher", "Newton Lasher").
+mother("Jermaine Lasher", "Tamara Lasher").
+father("Jermaine Lasher", "Guillermo Lasher").
+friend("Jermaine Lasher", "Steve Storey").
+friend("Jermaine Lasher", "Milford Simons").
+friend("Jermaine Lasher", "Davis Eaves").
+friend("Jermaine Lasher", "Enid Dalton").
+friend("Jermaine Lasher", "Tabetha Niles").
+friend("Jermaine Lasher", "Tanner Holliman").
+friend("Jermaine Lasher", "Charley Vandenberg").
+dob("Jermaine Lasher", "0325-12-02").
+job("Jermaine Lasher", "merchandiser").
+hobby("Jermaine Lasher", "satellite watching").
+gender("Jermaine Lasher", "male").

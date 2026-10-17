@@ -1,0 +1,14 @@
+mother("Sylvia Gilliam", "Lashandra Gilliam").
+father("Sylvia Gilliam", "Jermaine Gilliam").
+friend("Sylvia Gilliam", "Barabara Wilke").
+friend("Sylvia Gilliam", "Calvin Carty").
+friend("Sylvia Gilliam", "Williams Alessi").
+friend("Sylvia Gilliam", "Bettina Courson").
+friend("Sylvia Gilliam", "Garrett Bauman").
+friend("Sylvia Gilliam", "Nicholle Dana").
+friend("Sylvia Gilliam", "Dani Dalton").
+friend("Sylvia Gilliam", "Paul Gilliam").
+dob("Sylvia Gilliam", "0378-10-02").
+job("Sylvia Gilliam", "sports therapist").
+hobby("Sylvia Gilliam", "vintage cars").
+gender("Sylvia Gilliam", "female").

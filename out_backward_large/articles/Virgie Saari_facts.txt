@@ -1,0 +1,6 @@
+son("Virgie Saari", "Trevor Saari").
+husband("Virgie Saari", "Hunter Saari").
+dob("Virgie Saari", "0229-10-28").
+job("Virgie Saari", "chartered accountant").
+hobby("Virgie Saari", "sea glass collecting").
+gender("Virgie Saari", "female").

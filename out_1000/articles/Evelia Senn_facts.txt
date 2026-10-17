@@ -1,0 +1,19 @@
+sister("Evelia Senn", "Georgette Haygood").
+sister("Evelia Senn", "Kenda Beamon").
+mother("Evelia Senn", "Karol Beamon").
+father("Evelia Senn", "Maxwell Beamon").
+daughter("Evelia Senn", "Odette Senn").
+husband("Evelia Senn", "Teddy Senn").
+friend("Evelia Senn", "Mayra Geter").
+friend("Evelia Senn", "Jo Murray").
+friend("Evelia Senn", "Carlene Corwin").
+friend("Evelia Senn", "Shelia Hollins").
+friend("Evelia Senn", "Carlotta Gossett").
+friend("Evelia Senn", "Judith Holliman").
+friend("Evelia Senn", "Holley Fredrick").
+friend("Evelia Senn", "Miles Fordham").
+friend("Evelia Senn", "Krystal Joubert").
+dob("Evelia Senn", "0456-07-14").
+job("Evelia Senn", "environmental education officer").
+hobby("Evelia Senn", "scutelliphily").
+gender("Evelia Senn", "female").

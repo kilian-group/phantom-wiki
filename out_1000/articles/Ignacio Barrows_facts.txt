@@ -1,0 +1,8 @@
+mother("Ignacio Barrows", "Christina Barrows").
+father("Ignacio Barrows", "Freddie Barrows").
+friend("Ignacio Barrows", "Davis Eaves").
+friend("Ignacio Barrows", "Rheba Resendez").
+dob("Ignacio Barrows", "0460-08-24").
+job("Ignacio Barrows", "television camera operator").
+hobby("Ignacio Barrows", "stone skipping").
+gender("Ignacio Barrows", "male").

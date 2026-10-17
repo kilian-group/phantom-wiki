@@ -1,0 +1,19 @@
+sister("Jennette Holliman", "Ella Mathes").
+sister("Jennette Holliman", "Nydia Ibarra").
+sister("Jennette Holliman", "Vita Resendez").
+brother("Jennette Holliman", "Tanner Holliman").
+mother("Jennette Holliman", "Judith Holliman").
+father("Jennette Holliman", "Calvin Holliman").
+friend("Jennette Holliman", "Jeromy Ibarra").
+friend("Jennette Holliman", "Latisha Smart").
+friend("Jennette Holliman", "Gene Burnett").
+friend("Jennette Holliman", "Simon Kell").
+friend("Jennette Holliman", "Rheba Winn").
+friend("Jennette Holliman", "Ramon Swartz").
+friend("Jennette Holliman", "Elijah Linares").
+friend("Jennette Holliman", "Frankie Mahoney").
+friend("Jennette Holliman", "Al Younger").
+dob("Jennette Holliman", "0342-02-17").
+job("Jennette Holliman", "regulatory affairs officer").
+hobby("Jennette Holliman", "business").
+gender("Jennette Holliman", "female").

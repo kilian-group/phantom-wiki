@@ -1,0 +1,12 @@
+daughter("Hank Gerber", "Judith Holliman").
+wife("Hank Gerber", "Paula Gerber").
+friend("Hank Gerber", "Dixie Murdoch").
+friend("Hank Gerber", "Major Ballard").
+friend("Hank Gerber", "Rhea Burnett").
+friend("Hank Gerber", "Vaughn Dangelo").
+friend("Hank Gerber", "Luther Peeler").
+friend("Hank Gerber", "Zora Simons").
+dob("Hank Gerber", "0292-11-26").
+job("Hank Gerber", "commercial art gallery manager").
+hobby("Hank Gerber", "audiophile").
+gender("Hank Gerber", "male").

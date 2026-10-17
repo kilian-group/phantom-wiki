@@ -1,0 +1,16 @@
+son("Tracey Capps", "Brandon Capps").
+husband("Tracey Capps", "Erik Capps").
+friend("Tracey Capps", "Amy Wilke").
+friend("Tracey Capps", "Charley Vandenberg").
+friend("Tracey Capps", "Chelsie Peeler").
+friend("Tracey Capps", "Zelda Sharma").
+friend("Tracey Capps", "Jamel Chou").
+friend("Tracey Capps", "Julio Mcdonald").
+friend("Tracey Capps", "Vernon Peabody").
+friend("Tracey Capps", "Boris Gilliam").
+friend("Tracey Capps", "Kareem Gilliam").
+friend("Tracey Capps", "Clay Vogt").
+dob("Tracey Capps", "0317-02-01").
+job("Tracey Capps", "air broker").
+hobby("Tracey Capps", "research").
+gender("Tracey Capps", "female").

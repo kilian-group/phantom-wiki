@@ -1,0 +1,10 @@
+daughter("Carol Conner", "Joanne Storey").
+wife("Carol Conner", "Sheila Conner").
+friend("Carol Conner", "Galen Cordova").
+friend("Carol Conner", "Otto Arnold").
+friend("Carol Conner", "Vance Fredrick").
+friend("Carol Conner", "Levi Macias").
+dob("Carol Conner", "0351-01-28").
+job("Carol Conner", "surgeon").
+hobby("Carol Conner", "frisbee").
+gender("Carol Conner", "male").

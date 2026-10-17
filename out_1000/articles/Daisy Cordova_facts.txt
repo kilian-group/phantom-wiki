@@ -1,0 +1,12 @@
+son("Daisy Cordova", "Gavin Cordova").
+husband("Daisy Cordova", "Errol Cordova").
+friend("Daisy Cordova", "Harley Simons").
+friend("Daisy Cordova", "Rob Eaves").
+friend("Daisy Cordova", "Shawnta Plumley").
+friend("Daisy Cordova", "Shizuko Eaves").
+friend("Daisy Cordova", "Christen Resendez").
+friend("Daisy Cordova", "Earle Harlow").
+dob("Daisy Cordova", "0290-05-23").
+job("Daisy Cordova", "social worker").
+hobby("Daisy Cordova", "teaching").
+gender("Daisy Cordova", "female").

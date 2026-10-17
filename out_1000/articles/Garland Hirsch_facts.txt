@@ -1,0 +1,16 @@
+daughter("Garland Hirsch", "Laverna Kell").
+wife("Garland Hirsch", "Shemika Hirsch").
+friend("Garland Hirsch", "Leonora Cordova").
+friend("Garland Hirsch", "Jimmy Holder").
+friend("Garland Hirsch", "Earlean Ingalls").
+friend("Garland Hirsch", "Luis Simons").
+friend("Garland Hirsch", "Alice Dana").
+friend("Garland Hirsch", "Christen Corwin").
+friend("Garland Hirsch", "Johnna Macias").
+friend("Garland Hirsch", "Gayla Dorn").
+friend("Garland Hirsch", "Zachery Upton").
+friend("Garland Hirsch", "Alberto Wellington").
+dob("Garland Hirsch", "0274-08-26").
+job("Garland Hirsch", "intelligence analyst").
+hobby("Garland Hirsch", "orienteering").
+gender("Garland Hirsch", "male").

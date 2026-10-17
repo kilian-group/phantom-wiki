@@ -1,0 +1,14 @@
+brother("Ashely Speaks", "Donny Speaks").
+mother("Ashely Speaks", "Larue Speaks").
+father("Ashely Speaks", "Micheal Speaks").
+friend("Ashely Speaks", "Preston Booth").
+friend("Ashely Speaks", "Genny Burdette").
+friend("Ashely Speaks", "Dena Morehead").
+friend("Ashely Speaks", "Lona Corwin").
+friend("Ashely Speaks", "Lavern Staten").
+friend("Ashely Speaks", "Kayla Ballard").
+friend("Ashely Speaks", "Charley Vandenberg").
+dob("Ashely Speaks", "0429-09-07").
+job("Ashely Speaks", "product development scientist").
+hobby("Ashely Speaks", "squash").
+gender("Ashely Speaks", "female").

@@ -1,0 +1,18 @@
+daughter("Connie Cushman", "Flora Cushman").
+husband("Connie Cushman", "Eldon Cushman").
+friend("Connie Cushman", "Evelia Waltz").
+friend("Connie Cushman", "Jeanelle Resendez").
+friend("Connie Cushman", "Mattie Courson").
+friend("Connie Cushman", "Denny Vanmeter").
+friend("Connie Cushman", "Dustin Peeler").
+friend("Connie Cushman", "Katy Flores").
+friend("Connie Cushman", "Fernando Dana").
+friend("Connie Cushman", "Matthew Dana").
+friend("Connie Cushman", "Dorothea Goff").
+friend("Connie Cushman", "Ella Mathes").
+friend("Connie Cushman", "Patrice Dunlap").
+friend("Connie Cushman", "Lucile Hurt").
+dob("Connie Cushman", "0517-11-18").
+job("Connie Cushman", "facilities manager").
+hobby("Connie Cushman", "rail transport modelling").
+gender("Connie Cushman", "female").

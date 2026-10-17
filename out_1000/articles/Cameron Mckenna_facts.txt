@@ -1,0 +1,19 @@
+son("Cameron Mckenna", "Ira Mckenna").
+son("Cameron Mckenna", "Nevin Mckenna").
+son("Cameron Mckenna", "Porter Mckenna").
+son("Cameron Mckenna", "Rodrigo Mckenna").
+daughter("Cameron Mckenna", "Kimberely Corso").
+wife("Cameron Mckenna", "Dorathy Mckenna").
+friend("Cameron Mckenna", "Aletha Crocker").
+friend("Cameron Mckenna", "Joanne Storey").
+friend("Cameron Mckenna", "Jo Murray").
+friend("Cameron Mckenna", "Pearl Hamann").
+friend("Cameron Mckenna", "Livia Corwin").
+friend("Cameron Mckenna", "Mari Carreon").
+friend("Cameron Mckenna", "Brendon Dunlap").
+friend("Cameron Mckenna", "Cleveland Capps").
+friend("Cameron Mckenna", "Kurtis Kell").
+dob("Cameron Mckenna", "0409-08-23").
+job("Cameron Mckenna", "IT consultant").
+hobby("Cameron Mckenna", "whale watching").
+gender("Cameron Mckenna", "male").

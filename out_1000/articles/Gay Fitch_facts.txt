@@ -1,0 +1,12 @@
+daughter("Gay Fitch", "Deanne Gilliam").
+husband("Gay Fitch", "Antonio Fitch").
+friend("Gay Fitch", "Jimmie Smart").
+friend("Gay Fitch", "Ashleigh Kell").
+friend("Gay Fitch", "Ashleigh Spiller").
+friend("Gay Fitch", "Luis Simons").
+friend("Gay Fitch", "Pansy Cook").
+friend("Gay Fitch", "Tim Goff").
+dob("Gay Fitch", "0352-09-15").
+job("Gay Fitch", "cabin crew").
+hobby("Gay Fitch", "rock balancing").
+gender("Gay Fitch", "female").

@@ -1,0 +1,17 @@
+sister("Dawn Rinehart", "Ester Yarbrough").
+mother("Dawn Rinehart", "Enid Yarbrough").
+father("Dawn Rinehart", "Sammy Yarbrough").
+daughter("Dawn Rinehart", "Amanda Rinehart").
+husband("Dawn Rinehart", "Kenneth Rinehart").
+friend("Dawn Rinehart", "Donnie Mcgough").
+friend("Dawn Rinehart", "Thaddeus Sanborn").
+friend("Dawn Rinehart", "Hyman Layman").
+friend("Dawn Rinehart", "Sharolyn Basham").
+friend("Dawn Rinehart", "Winfred Basham").
+friend("Dawn Rinehart", "Grady Valladares").
+friend("Dawn Rinehart", "Sofia Eaves").
+friend("Dawn Rinehart", "Pedro Waltz").
+dob("Dawn Rinehart", "0482-06-20").
+job("Dawn Rinehart", "building control surveyor").
+hobby("Dawn Rinehart", "gongoozling").
+gender("Dawn Rinehart", "female").

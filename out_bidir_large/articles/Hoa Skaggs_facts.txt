@@ -1,0 +1,9 @@
+brother("Hoa Skaggs", "Rosendo Skaggs").
+mother("Hoa Skaggs", "Jeannine Skaggs").
+father("Hoa Skaggs", "Weldon Skaggs").
+friend("Hoa Skaggs", "Dane Kee").
+friend("Hoa Skaggs", "Craig Boutte").
+dob("Hoa Skaggs", "0332-08-05").
+job("Hoa Skaggs", "chemist").
+hobby("Hoa Skaggs", "museum visiting").
+gender("Hoa Skaggs", "female").

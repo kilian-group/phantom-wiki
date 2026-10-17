@@ -1,0 +1,17 @@
+mother("Seth Mounts", "Mozelle Mounts").
+father("Seth Mounts", "Erik Mounts").
+friend("Seth Mounts", "Kendrick Bauman").
+friend("Seth Mounts", "Bridget Sutphin").
+friend("Seth Mounts", "Germaine Mahoney").
+friend("Seth Mounts", "Alexander Corwin").
+friend("Seth Mounts", "Katharine Resendez").
+friend("Seth Mounts", "Emil Broughton").
+friend("Seth Mounts", "Kenton Dunlap").
+friend("Seth Mounts", "Shaunte Gilliam").
+friend("Seth Mounts", "Luisa Oliveira").
+friend("Seth Mounts", "Sung Fordham").
+friend("Seth Mounts", "Clay Vogt").
+dob("Seth Mounts", "0492-02-21").
+job("Seth Mounts", "cabin crew").
+hobby("Seth Mounts", "metal detecting").
+gender("Seth Mounts", "male").

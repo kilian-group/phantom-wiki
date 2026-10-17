@@ -1,0 +1,16 @@
+daughter("Ginger Chou", "Matilda Chou").
+daughter("Ginger Chou", "Scottie Steadman").
+husband("Ginger Chou", "Jamel Chou").
+friend("Ginger Chou", "Monique Pugliese").
+friend("Ginger Chou", "Deja Gilliam").
+friend("Ginger Chou", "Aura Crittenden").
+friend("Ginger Chou", "Cora Fordham").
+friend("Ginger Chou", "Keith Noland").
+friend("Ginger Chou", "Ollie Omara").
+friend("Ginger Chou", "Carrol Spiller").
+friend("Ginger Chou", "Edythe Littleton").
+friend("Ginger Chou", "Catina Linden").
+dob("Ginger Chou", "0384-12-13").
+job("Ginger Chou", "nurse").
+hobby("Ginger Chou", "walking").
+gender("Ginger Chou", "female").

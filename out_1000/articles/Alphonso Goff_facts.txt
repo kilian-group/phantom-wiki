@@ -1,0 +1,21 @@
+brother("Alphonso Goff", "Elroy Goff").
+brother("Alphonso Goff", "Jonathan Goff").
+brother("Alphonso Goff", "King Goff").
+brother("Alphonso Goff", "Tim Goff").
+mother("Alphonso Goff", "Dorothea Goff").
+father("Alphonso Goff", "Michael Goff").
+daughter("Alphonso Goff", "Maranda Goff").
+wife("Alphonso Goff", "Salley Goff").
+friend("Alphonso Goff", "Lashanda Salem").
+friend("Alphonso Goff", "Leena Estrella").
+friend("Alphonso Goff", "Tonia Mcgough").
+friend("Alphonso Goff", "James Maness").
+friend("Alphonso Goff", "Teresita Bauman").
+friend("Alphonso Goff", "Lenora Hayward").
+friend("Alphonso Goff", "Annette Rudolph").
+friend("Alphonso Goff", "Marcelina Simons").
+friend("Alphonso Goff", "Herbert Dana").
+dob("Alphonso Goff", "0414-09-04").
+job("Alphonso Goff", "comptroller").
+hobby("Alphonso Goff", "sea glass collecting").
+gender("Alphonso Goff", "male").

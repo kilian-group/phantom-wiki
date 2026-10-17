@@ -1,0 +1,292 @@
+[
+    {
+        "id": "7010e72c-6ebb-4d6a-a940-0716c885e23f",
+        "question": "Who is older, Jeannine Wexler or Johnetta Wang?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeannine Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Jeannine Wexler\", D1)",
+                "dob(\"Johnetta Wang\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 106,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "c75b3cc8-2c3e-47fa-b47b-d3f0402c2970",
+        "question": "Who is older, Aida Wang or Valentina Wexler?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Aida Wang\", D1)",
+                "dob(\"Valentina Wexler\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 106,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "6e5170f5-c6df-4b23-9e70-3ab87b958027",
+        "question": "Who is older, Vicki Hackworth or Ryan Wang?",
+        "solution_traces": "[]",
+        "answer": [
+            "Ryan Wang"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Vicki Hackworth\", D1)",
+                "dob(\"Ryan Wang\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 106,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "83f5631e-b180-4711-b954-87acc532343c",
+        "question": "Who is older, Shelli Beltran or Dino Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Shelli Beltran\", D1)",
+                "dob(\"Dino Beltran\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 106,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "5f9a36f0-6366-4733-8fd2-956d21c34643",
+        "question": "Who is older, Saul Wexler or Deane Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deane Smock"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Saul Wexler\", D1)",
+                "dob(\"Deane Smock\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 106,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "e572a3ab-8b8a-4300-9a75-9d48ecc798f2",
+        "question": "Who is older, Gene Smock or Myrle Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Gene Smock"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Gene Smock\", D1)",
+                "dob(\"Myrle Smock\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 106,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "cf104ddc-15e4-470b-b900-135a75877c98",
+        "question": "Who is older, Alvaro Smock or Aida Wang?",
+        "solution_traces": "[]",
+        "answer": [
+            "Alvaro Smock"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Alvaro Smock\", D1)",
+                "dob(\"Aida Wang\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 106,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "3775dd5e-16bf-4b13-b3cb-b63b2afbe394",
+        "question": "Who is older, Ricardo Hackworth or Saul Wexler?",
+        "solution_traces": "[]",
+        "answer": [
+            "Ricardo Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Ricardo Hackworth\", D1)",
+                "dob(\"Saul Wexler\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 106,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "79e1de95-067a-4dfb-8b66-5358eb72bcae",
+        "question": "Who is older, Dominique Smock or Ryan Wang?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dominique Smock"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Dominique Smock\", D1)",
+                "dob(\"Ryan Wang\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 106,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "450d6bbf-bd50-471e-93fa-3c0fa7e9d385",
+        "question": "Who is older, Aubrey Smock or Ricardo Hackworth?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aubrey Smock"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Aubrey Smock\", D1)",
+                "dob(\"Ricardo Hackworth\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 106,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    }
+]

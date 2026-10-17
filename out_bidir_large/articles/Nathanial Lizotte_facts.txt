@@ -1,0 +1,13 @@
+sister("Nathanial Lizotte", "Hanh Mohan").
+sister("Nathanial Lizotte", "Maranda Lizotte").
+sister("Nathanial Lizotte", "Yoko Wilkie").
+brother("Nathanial Lizotte", "Chuck Lizotte").
+mother("Nathanial Lizotte", "Rosina Lizotte").
+father("Nathanial Lizotte", "Dwain Lizotte").
+friend("Nathanial Lizotte", "Quincy Pannell").
+friend("Nathanial Lizotte", "Alison Smock").
+friend("Nathanial Lizotte", "Marcelino Mcnew").
+dob("Nathanial Lizotte", "0297-06-03").
+job("Nathanial Lizotte", "sports coach").
+hobby("Nathanial Lizotte", "beekeeping").
+gender("Nathanial Lizotte", "male").

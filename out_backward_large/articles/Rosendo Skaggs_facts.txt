@@ -1,0 +1,13 @@
+sister("Rosendo Skaggs", "Hoa Skaggs").
+mother("Rosendo Skaggs", "Jeannine Skaggs").
+father("Rosendo Skaggs", "Weldon Skaggs").
+daughter("Rosendo Skaggs", "Shirley Skaggs").
+wife("Rosendo Skaggs", "Margot Skaggs").
+friend("Rosendo Skaggs", "Margo Brannan").
+friend("Rosendo Skaggs", "Darin Shirk").
+friend("Rosendo Skaggs", "Garry Mcnew").
+friend("Rosendo Skaggs", "Kirk Petry").
+dob("Rosendo Skaggs", "0329-04-09").
+job("Rosendo Skaggs", "ambulance person").
+hobby("Rosendo Skaggs", "philately").
+gender("Rosendo Skaggs", "male").

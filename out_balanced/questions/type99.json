@@ -1,0 +1,383 @@
+[
+    {
+        "id": "02908c5b-4e9a-4bc0-95b9-20ec8dbaf389",
+        "question": "Who is the youngest great-grandparent of the person whose occupation is early years teacher?",
+        "solution_traces": "[]",
+        "answer": [
+            "Gene Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (great_grandparent(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "great_grandparent(Y_2, Y_7)",
+                "job(Y_2, \"early years teacher\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 99,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "490d975b-e8ff-4c8f-8085-0f516076b75c",
+        "question": "Who is the youngest sister of the person whose date of birth is 0295-05-30?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeannine Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "sister(Y_2, Y_7)",
+                "dob(Y_2, \"0295-05-30\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 99,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "3f220543-b442-4d3f-b554-a86e8f8a304a",
+        "question": "Who is the youngest father-in-law of the person whose hobby is sociology?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dino Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (father_in_law(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "father_in_law(Y_2, Y_7)",
+                "hobby(Y_2, \"sociology\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 99,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "6f9ca73a-3004-41b2-98ad-0447b492f0a7",
+        "question": "Who is the youngest grandchild of the person whose hobby is dominoes?",
+        "solution_traces": "[]",
+        "answer": [
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandchild(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "grandchild(Y_2, Y_7)",
+                "hobby(Y_2, \"dominoes\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 99,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "f97b7af8-16a0-4990-a6f6-9b1f7f3c193f",
+        "question": "Who is the youngest sibling of the person whose hobby is shogi?",
+        "solution_traces": "[]",
+        "answer": [
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sibling(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "sibling(Y_2, Y_7)",
+                "hobby(Y_2, \"shogi\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 99,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "c8a77993-4e07-4aa9-86da-48ceaf6a1ffb",
+        "question": "Who is the youngest brother of the person whose occupation is education administrator?",
+        "solution_traces": "[]",
+        "answer": [
+            "Gene Smock"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (brother(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "brother(Y_2, Y_7)",
+                "job(Y_2, \"education administrator\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 99,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "0b1c9675-2b84-40be-9438-0d1dca9fb091",
+        "question": "Who is the youngest friend of the person whose date of birth is 0177-07-12?",
+        "solution_traces": "[]",
+        "answer": [
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (friend(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "friend(Y_2, Y_7)",
+                "dob(Y_2, \"0177-07-12\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 99,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "68b46774-6905-4730-bc97-8fe370b56a00",
+        "question": "Who is the youngest sister-in-law of the person whose hobby is dairy farming?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeannine Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister_in_law(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "sister_in_law(Y_2, Y_7)",
+                "hobby(Y_2, \"dairy farming\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 99,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "4a45d363-1dec-4f43-8e98-0f46b967fcf7",
+        "question": "Who is the youngest sister-in-law of the person whose date of birth is 0301-10-24?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister_in_law(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "sister_in_law(Y_2, Y_7)",
+                "dob(Y_2, \"0301-10-24\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 99,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "e0fc8115-68da-4646-8773-1d122e78aa24",
+        "question": "Who is the youngest father-in-law of the person whose date of birth is 0292-03-17?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dino Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (father_in_law(Y_2, SupZ_6), dob(SupZ_6, SupD2_6), SupZ_6 \\= Y_7, SupD2_6 @> SupD_6)",
+                "dob(Y_7, SupD_6)",
+                "father_in_law(Y_2, Y_7)",
+                "dob(Y_2, \"0292-03-17\")"
+            ],
+            "answer": "Y_7"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_7",
+            "of",
+            "the person whose",
+            "<attribute_name>_3",
+            "is",
+            "<attribute_value>_3",
+            "?"
+        ],
+        "type": 99,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    }
+]

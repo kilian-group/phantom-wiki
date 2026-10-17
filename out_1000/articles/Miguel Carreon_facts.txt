@@ -1,0 +1,14 @@
+sister("Miguel Carreon", "Livia Corwin").
+mother("Miguel Carreon", "Audra Carreon").
+father("Miguel Carreon", "Roger Carreon").
+son("Miguel Carreon", "Lance Carreon").
+wife("Miguel Carreon", "Mari Carreon").
+friend("Miguel Carreon", "Hershel Gilliam").
+friend("Miguel Carreon", "Jeana Chisholm").
+friend("Miguel Carreon", "Eldon Cushman").
+friend("Miguel Carreon", "Earle Harlow").
+friend("Miguel Carreon", "Terrance Townsend").
+dob("Miguel Carreon", "0332-05-01").
+job("Miguel Carreon", "learning disability nurse").
+hobby("Miguel Carreon", "aircraft spotting").
+gender("Miguel Carreon", "male").

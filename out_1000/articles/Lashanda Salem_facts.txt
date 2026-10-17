@@ -1,0 +1,22 @@
+sister("Lashanda Salem", "Demetra Medellin").
+sister("Lashanda Salem", "Lucile Hurt").
+mother("Lashanda Salem", "Lou Hurt").
+father("Lashanda Salem", "Willie Hurt").
+daughter("Lashanda Salem", "Alyssa Salem").
+husband("Lashanda Salem", "Wm Salem").
+friend("Lashanda Salem", "Malik Fredrick").
+friend("Lashanda Salem", "Jamal Marr").
+friend("Lashanda Salem", "Tamala Skidmore").
+friend("Lashanda Salem", "Maryam Maness").
+friend("Lashanda Salem", "Manuela Runnels").
+friend("Lashanda Salem", "Mason Dangelo").
+friend("Lashanda Salem", "Jacques Cordova").
+friend("Lashanda Salem", "Sofia Eaves").
+friend("Lashanda Salem", "Antony Machado").
+friend("Lashanda Salem", "Alphonso Goff").
+friend("Lashanda Salem", "Scotty Correia").
+friend("Lashanda Salem", "Deshawn Medellin").
+dob("Lashanda Salem", "0404-06-19").
+job("Lashanda Salem", "chartered accountant").
+hobby("Lashanda Salem", "stone collecting").
+gender("Lashanda Salem", "female").

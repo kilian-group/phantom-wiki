@@ -1,0 +1,372 @@
+[
+    {
+        "id": "ea935a83-5ebf-481e-bd04-e20be4f5a625",
+        "question": "Who is the person whose hobby is trainspotting and whose occupation is early years teacher?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeannine Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_6, \"trainspotting\")",
+                "job(Y_6, \"early years teacher\")"
+            ],
+            "answer": "Y_6"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_6",
+            "is",
+            "<attribute_value>_6",
+            "and whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 88,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "2ddd16de-ee73-42d3-b502-5e79028b25d6",
+        "question": "Who is the person whose occupation is sound technician and whose date of birth is 0295-05-30?",
+        "solution_traces": "[]",
+        "answer": [
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_6, \"sound technician\")",
+                "dob(Y_6, \"0295-05-30\")"
+            ],
+            "answer": "Y_6"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_6",
+            "is",
+            "<attribute_value>_6",
+            "and whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 88,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "c10a5146-00f1-4032-ae93-d1823481fe8e",
+        "question": "Who is the person whose date of birth is 0301-10-24 and whose hobby is sociology?",
+        "solution_traces": "[]",
+        "answer": [
+            "Saul Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_6, \"0301-10-24\")",
+                "hobby(Y_6, \"sociology\")"
+            ],
+            "answer": "Y_6"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_6",
+            "is",
+            "<attribute_value>_6",
+            "and whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 88,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "1219a422-4f59-4c2e-9fac-587c01e568bb",
+        "question": "Who is the person whose date of birth is 0268-08-09 and whose hobby is dominoes?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dino Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_6, \"0268-08-09\")",
+                "hobby(Y_6, \"dominoes\")"
+            ],
+            "answer": "Y_6"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_6",
+            "is",
+            "<attribute_value>_6",
+            "and whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 88,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "a367c883-cb9b-4e73-bc1c-20af026f4008",
+        "question": "Who is the person whose date of birth is 0204-03-12 and whose hobby is shogi?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deane Smock"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_6, \"0204-03-12\")",
+                "hobby(Y_6, \"shogi\")"
+            ],
+            "answer": "Y_6"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_6",
+            "is",
+            "<attribute_value>_6",
+            "and whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 88,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "bdf45291-b1e2-4fe9-add1-7c44870ec731",
+        "question": "Who is the person whose hobby is geocaching and whose occupation is education administrator?",
+        "solution_traces": "[]",
+        "answer": [
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_6, \"geocaching\")",
+                "job(Y_6, \"education administrator\")"
+            ],
+            "answer": "Y_6"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_6",
+            "is",
+            "<attribute_value>_6",
+            "and whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 88,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "352659a6-a152-419f-900a-c1902b879d12",
+        "question": "Who is the person whose hobby is biology and whose date of birth is 0177-07-12?",
+        "solution_traces": "[]",
+        "answer": [
+            "Alvaro Smock"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_6, \"biology\")",
+                "dob(Y_6, \"0177-07-12\")"
+            ],
+            "answer": "Y_6"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_6",
+            "is",
+            "<attribute_value>_6",
+            "and whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 88,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "bd8f9044-605c-4f81-937d-9402f54c0b53",
+        "question": "Who is the person whose occupation is clinical research associate and whose hobby is dairy farming?",
+        "solution_traces": "[]",
+        "answer": [
+            "Ricardo Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_6, \"clinical research associate\")",
+                "hobby(Y_6, \"dairy farming\")"
+            ],
+            "answer": "Y_6"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_6",
+            "is",
+            "<attribute_value>_6",
+            "and whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 88,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "157b657b-f36e-4a2f-9992-0bdb1730b303",
+        "question": "Who is the person whose occupation is occupational therapist and whose date of birth is 0301-10-24?",
+        "solution_traces": "[]",
+        "answer": [
+            "Saul Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_6, \"occupational therapist\")",
+                "dob(Y_6, \"0301-10-24\")"
+            ],
+            "answer": "Y_6"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_6",
+            "is",
+            "<attribute_value>_6",
+            "and whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 88,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    },
+    {
+        "id": "b9377ff0-6402-45dc-9311-43b5747832c5",
+        "question": "Who is the person whose occupation is chief of staff and whose date of birth is 0292-03-17?",
+        "solution_traces": "[]",
+        "answer": [
+            "Ryan Wang"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_6, \"chief of staff\")",
+                "dob(Y_6, \"0292-03-17\")"
+            ],
+            "answer": "Y_6"
+        },
+        "template": [
+            "Who is",
+            "the person whose",
+            "<attribute_name>_6",
+            "is",
+            "<attribute_value>_6",
+            "and whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 88,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint_2"
+    }
+]

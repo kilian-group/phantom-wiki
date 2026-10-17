@@ -1,0 +1,16 @@
+son("Tianna Goff", "Mac Goff").
+husband("Tianna Goff", "Kareem Goff").
+friend("Tianna Goff", "Edythe Gilliam").
+friend("Tianna Goff", "Sheena Dame").
+friend("Tianna Goff", "Annita Mckenna").
+friend("Tianna Goff", "Sheila Conner").
+friend("Tianna Goff", "Errol Cordova").
+friend("Tianna Goff", "Javier Kirksey").
+friend("Tianna Goff", "Noreen Cordova").
+friend("Tianna Goff", "Stefan Sutphin").
+friend("Tianna Goff", "Zora Simons").
+friend("Tianna Goff", "Thalia Linden").
+dob("Tianna Goff", "0341-05-27").
+job("Tianna Goff", "health and safety adviser").
+hobby("Tianna Goff", "fingerprint collecting").
+gender("Tianna Goff", "female").

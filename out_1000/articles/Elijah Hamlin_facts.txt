@@ -1,0 +1,20 @@
+mother("Elijah Hamlin", "Dorathy Hamlin").
+father("Elijah Hamlin", "Rory Hamlin").
+son("Elijah Hamlin", "Felix Hamlin").
+daughter("Elijah Hamlin", "Brianne Layton").
+daughter("Elijah Hamlin", "Helena Hamlin").
+daughter("Elijah Hamlin", "Julianne Hamlin").
+wife("Elijah Hamlin", "Evette Hamlin").
+friend("Elijah Hamlin", "Malissa Kell").
+friend("Elijah Hamlin", "Elyse Mahoney").
+friend("Elijah Hamlin", "Ai Dacosta").
+friend("Elijah Hamlin", "Clay Vogt").
+friend("Elijah Hamlin", "Preston Holtz").
+friend("Elijah Hamlin", "Marilynn Capps").
+friend("Elijah Hamlin", "Charley Vandenberg").
+friend("Elijah Hamlin", "Elroy Mcgough").
+friend("Elijah Hamlin", "Gayla Sanborn").
+dob("Elijah Hamlin", "0346-02-24").
+job("Elijah Hamlin", "clinical biochemist").
+hobby("Elijah Hamlin", "fossicking").
+gender("Elijah Hamlin", "male").

@@ -1,0 +1,20 @@
+brother("Marguerite Lebrun", "Michael Goff").
+mother("Marguerite Lebrun", "Matilda Goff").
+father("Marguerite Lebrun", "Mac Goff").
+daughter("Marguerite Lebrun", "Madalene Lebrun").
+husband("Marguerite Lebrun", "Marcus Lebrun").
+friend("Marguerite Lebrun", "Brigette Medeiros").
+friend("Marguerite Lebrun", "Gregory Keister").
+friend("Marguerite Lebrun", "Walter Depriest").
+friend("Marguerite Lebrun", "Abe Kell").
+friend("Marguerite Lebrun", "Elisabeth Bauman").
+friend("Marguerite Lebrun", "Ira Mckenna").
+friend("Marguerite Lebrun", "Magdalena Hollinger").
+friend("Marguerite Lebrun", "Frederic Cordova").
+friend("Marguerite Lebrun", "Seymour Simons").
+friend("Marguerite Lebrun", "Edwina Eaves").
+friend("Marguerite Lebrun", "Angela Younger").
+dob("Marguerite Lebrun", "0398-01-26").
+job("Marguerite Lebrun", "theme park manager").
+hobby("Marguerite Lebrun", "marbles").
+gender("Marguerite Lebrun", "female").

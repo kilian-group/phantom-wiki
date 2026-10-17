@@ -1,0 +1,23 @@
+brother("Lera Mcpeak", "Lesley Medellin").
+brother("Lera Mcpeak", "Robt Medellin").
+mother("Lera Mcpeak", "Bev Medellin").
+father("Lera Mcpeak", "Foster Medellin").
+son("Lera Mcpeak", "Pierre Mcpeak").
+son("Lera Mcpeak", "Roger Mcpeak").
+husband("Lera Mcpeak", "Edmundo Mcpeak").
+friend("Lera Mcpeak", "Chrissy Mcgough").
+friend("Lera Mcpeak", "Rudolf Sanborn").
+friend("Lera Mcpeak", "Babette Jarrett").
+friend("Lera Mcpeak", "Mickey Beamon").
+friend("Lera Mcpeak", "Chau Peeler").
+friend("Lera Mcpeak", "Errol Cordova").
+friend("Lera Mcpeak", "Charlie Ingalls").
+friend("Lera Mcpeak", "Pablo Cook").
+friend("Lera Mcpeak", "Katherine Corwin").
+friend("Lera Mcpeak", "Gayla Mccall").
+friend("Lera Mcpeak", "Shelia Hollins").
+friend("Lera Mcpeak", "Christina Smart").
+dob("Lera Mcpeak", "0383-05-20").
+job("Lera Mcpeak", "environmental health practitioner").
+hobby("Lera Mcpeak", "base jumping").
+gender("Lera Mcpeak", "female").

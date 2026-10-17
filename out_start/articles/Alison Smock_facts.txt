@@ -1,0 +1,11 @@
+daughter("Alison Smock", "Myrle Smock").
+daughter("Alison Smock", "Shelli Beltran").
+husband("Alison Smock", "Williams Smock").
+friend("Alison Smock", "Deane Smock").
+friend("Alison Smock", "Gene Smock").
+friend("Alison Smock", "Saul Wexler").
+friend("Alison Smock", "Valentina Wexler").
+dob("Alison Smock", "0239-10-28").
+job("Alison Smock", "health promotion specialist").
+hobby("Alison Smock", "meteorology").
+gender("Alison Smock", "female").

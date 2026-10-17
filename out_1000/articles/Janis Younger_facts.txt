@@ -1,0 +1,19 @@
+son("Janis Younger", "Al Younger").
+son("Janis Younger", "Cordell Younger").
+daughter("Janis Younger", "Katina Younger").
+daughter("Janis Younger", "Zora Morehead").
+husband("Janis Younger", "Wilson Younger").
+friend("Janis Younger", "Marcus Lebrun").
+friend("Janis Younger", "Ai Dacosta").
+friend("Janis Younger", "Anna Broughton").
+friend("Janis Younger", "Kenton Gilliam").
+friend("Janis Younger", "Brianne Layton").
+friend("Janis Younger", "Christen Weise").
+friend("Janis Younger", "Hector Autry").
+friend("Janis Younger", "Wallace Brumbaugh").
+friend("Janis Younger", "Jamie Bellows").
+friend("Janis Younger", "Lucio Townsend").
+dob("Janis Younger", "0431-06-03").
+job("Janis Younger", "chartered accountant").
+hobby("Janis Younger", "fossil hunting").
+gender("Janis Younger", "female").

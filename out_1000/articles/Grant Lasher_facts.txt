@@ -1,0 +1,13 @@
+mother("Grant Lasher", "Noelia Lasher").
+father("Grant Lasher", "Shayne Lasher").
+son("Grant Lasher", "Nestor Lasher").
+wife("Grant Lasher", "Trudy Lasher").
+friend("Grant Lasher", "Randi Crocker").
+friend("Grant Lasher", "Raleigh Cordova").
+friend("Grant Lasher", "Cedric Towns").
+friend("Grant Lasher", "Williams Alessi").
+friend("Grant Lasher", "Douglass Resendez").
+dob("Grant Lasher", "0393-01-08").
+job("Grant Lasher", "company secretary").
+hobby("Grant Lasher", "footbag").
+gender("Grant Lasher", "male").

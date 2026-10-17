@@ -1,0 +1,12 @@
+brother("Milton Henderson", "Maxwell Henderson").
+brother("Milton Henderson", "Stefan Henderson").
+mother("Milton Henderson", "Jung Henderson").
+father("Milton Henderson", "Marko Henderson").
+friend("Milton Henderson", "Sha Langley").
+friend("Milton Henderson", "Lanny Pannell").
+friend("Milton Henderson", "Pasquale Levy").
+friend("Milton Henderson", "Shelli Beltran").
+dob("Milton Henderson", "0252-12-19").
+job("Milton Henderson", "banker").
+hobby("Milton Henderson", "car riding").
+gender("Milton Henderson", "male").

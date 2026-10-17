@@ -1,0 +1,16 @@
+brother("Christen Resendez", "Salvatore Resendez").
+mother("Christen Resendez", "Mia Resendez").
+father("Christen Resendez", "Douglass Resendez").
+friend("Christen Resendez", "Nydia Willoughby").
+friend("Christen Resendez", "Trudy Lasher").
+friend("Christen Resendez", "Daisy Cordova").
+friend("Christen Resendez", "Kurt Goff").
+friend("Christen Resendez", "Hollis Theriot").
+friend("Christen Resendez", "Iluminada Capps").
+friend("Christen Resendez", "Gayla Sanborn").
+friend("Christen Resendez", "Julio Mcgough").
+friend("Christen Resendez", "Brian Galvan").
+dob("Christen Resendez", "0454-05-08").
+job("Christen Resendez", "curator").
+hobby("Christen Resendez", "breakdancing").
+gender("Christen Resendez", "female").

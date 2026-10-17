@@ -1,0 +1,24 @@
+brother("Dino Layman", "Nico Layman").
+brother("Dino Layman", "Taylor Layman").
+mother("Dino Layman", "Haley Layman").
+father("Dino Layman", "Elbert Layman").
+friend("Dino Layman", "Phylis Courson").
+friend("Dino Layman", "Madaline Callender").
+friend("Dino Layman", "Nestor Lasher").
+friend("Dino Layman", "Herbert Storey").
+friend("Dino Layman", "Leonora Cordova").
+friend("Dino Layman", "Adella Townsend").
+friend("Dino Layman", "Heath Swartz").
+friend("Dino Layman", "Toshiko Younger").
+friend("Dino Layman", "Hope Arteaga").
+friend("Dino Layman", "Devon Leclair").
+friend("Dino Layman", "Roxy Niles").
+friend("Dino Layman", "Nora Noland").
+friend("Dino Layman", "Clay Vogt").
+friend("Dino Layman", "Beatriz Theriot").
+friend("Dino Layman", "Addie Shilling").
+friend("Dino Layman", "Levi Macias").
+dob("Dino Layman", "0307-08-13").
+job("Dino Layman", "press sub").
+hobby("Dino Layman", "volleyball").
+gender("Dino Layman", "male").

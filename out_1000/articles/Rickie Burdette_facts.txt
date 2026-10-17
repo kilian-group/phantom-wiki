@@ -1,0 +1,16 @@
+mother("Rickie Burdette", "Oralia Burdette").
+father("Rickie Burdette", "Miles Burdette").
+daughter("Rickie Burdette", "Gloria Shoulders").
+wife("Rickie Burdette", "Genny Burdette").
+friend("Rickie Burdette", "Meghan Keyes").
+friend("Rickie Burdette", "Emil Broughton").
+friend("Rickie Burdette", "Sang Cheney").
+friend("Rickie Burdette", "Cary Carswell").
+friend("Rickie Burdette", "Brandon Capps").
+friend("Rickie Burdette", "Gerry Dorn").
+friend("Rickie Burdette", "Delores Bauman").
+friend("Rickie Burdette", "Lakeshia Steadman").
+dob("Rickie Burdette", "0467-01-13").
+job("Rickie Burdette", "psychologist").
+hobby("Rickie Burdette", "antiquities").
+gender("Rickie Burdette", "male").

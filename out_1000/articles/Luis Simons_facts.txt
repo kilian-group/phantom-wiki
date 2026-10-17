@@ -1,0 +1,21 @@
+sister("Luis Simons", "Coleen Lively").
+brother("Luis Simons", "Sammie Simons").
+brother("Luis Simons", "Timothy Simons").
+mother("Luis Simons", "Zora Simons").
+father("Luis Simons", "Bert Simons").
+son("Luis Simons", "Harley Simons").
+daughter("Luis Simons", "Christina Barrows").
+daughter("Luis Simons", "Helga Simons").
+wife("Luis Simons", "Dinah Simons").
+friend("Luis Simons", "Ramon Swartz").
+friend("Luis Simons", "Antonio Fitch").
+friend("Luis Simons", "Gay Fitch").
+friend("Luis Simons", "Glenn Levine").
+friend("Luis Simons", "Macy Burger").
+friend("Luis Simons", "Valentin Vandenberg").
+friend("Luis Simons", "Garland Hirsch").
+friend("Luis Simons", "Gayla Holder").
+dob("Luis Simons", "0415-08-08").
+job("Luis Simons", "meteorologist").
+hobby("Luis Simons", "teaching").
+gender("Luis Simons", "male").

@@ -1,0 +1,21 @@
+son("Hershel Ingalls", "Lloyd Ingalls").
+daughter("Hershel Ingalls", "Earlean Ingalls").
+daughter("Hershel Ingalls", "Marlene Ingalls").
+daughter("Hershel Ingalls", "Sharon Ingalls").
+wife("Hershel Ingalls", "Gloria Ingalls").
+friend("Hershel Ingalls", "Lance Carreon").
+friend("Hershel Ingalls", "Nydia Ibarra").
+friend("Hershel Ingalls", "Edmundo Mcpeak").
+friend("Hershel Ingalls", "Karl Depriest").
+friend("Hershel Ingalls", "Shawna Sheridan").
+friend("Hershel Ingalls", "Sheena Dame").
+friend("Hershel Ingalls", "Son Sutphin").
+friend("Hershel Ingalls", "Noreen Jarrett").
+friend("Hershel Ingalls", "Drema Jefferson").
+friend("Hershel Ingalls", "Ladawn Basham").
+friend("Hershel Ingalls", "Bess Autry").
+friend("Hershel Ingalls", "Sherrie Jansen").
+dob("Hershel Ingalls", "0332-12-26").
+job("Hershel Ingalls", "sports therapist").
+hobby("Hershel Ingalls", "graffiti").
+gender("Hershel Ingalls", "male").

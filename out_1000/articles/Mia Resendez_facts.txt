@@ -1,0 +1,19 @@
+sister("Mia Resendez", "Mallory Scherer").
+sister("Mia Resendez", "Shandi Jarrett").
+brother("Mia Resendez", "Claude Courson").
+brother("Mia Resendez", "Erick Courson").
+brother("Mia Resendez", "Leslie Courson").
+mother("Mia Resendez", "Harriette Courson").
+father("Mia Resendez", "Delbert Courson").
+son("Mia Resendez", "Salvatore Resendez").
+daughter("Mia Resendez", "Christen Resendez").
+husband("Mia Resendez", "Douglass Resendez").
+friend("Mia Resendez", "Magdalena Hollinger").
+friend("Mia Resendez", "Gavin Cordova").
+friend("Mia Resendez", "Romelia Bowles").
+friend("Mia Resendez", "Lauren Strong").
+friend("Mia Resendez", "Stuart Strong").
+dob("Mia Resendez", "0425-06-12").
+job("Mia Resendez", "chemical engineer").
+hobby("Mia Resendez", "antiquing").
+gender("Mia Resendez", "female").

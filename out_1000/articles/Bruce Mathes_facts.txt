@@ -1,0 +1,17 @@
+son("Bruce Mathes", "Neal Mathes").
+wife("Bruce Mathes", "Johanna Mathes").
+friend("Bruce Mathes", "Calvin Holliman").
+friend("Bruce Mathes", "Stuart Strong").
+friend("Bruce Mathes", "Emory Layton").
+friend("Bruce Mathes", "Garrett Bauman").
+friend("Bruce Mathes", "Scottie Fordham").
+friend("Bruce Mathes", "Jodi Cordova").
+friend("Bruce Mathes", "Newton Pellegrino").
+friend("Bruce Mathes", "Jo Murray").
+friend("Bruce Mathes", "Nanette Swartz").
+friend("Bruce Mathes", "Chang Eaves").
+friend("Bruce Mathes", "Dan Younger").
+dob("Bruce Mathes", "0323-08-24").
+job("Bruce Mathes", "rural practice surveyor").
+hobby("Bruce Mathes", "sun bathing").
+gender("Bruce Mathes", "male").

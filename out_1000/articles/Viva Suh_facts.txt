@@ -1,0 +1,14 @@
+sister("Viva Suh", "Melodie Suh").
+mother("Viva Suh", "Geraldine Suh").
+father("Viva Suh", "Stanford Suh").
+friend("Viva Suh", "Tammy Sutphin").
+friend("Viva Suh", "Antionette Hamann").
+friend("Viva Suh", "Claudine Bales").
+friend("Viva Suh", "Shirley Dalton").
+friend("Viva Suh", "Lynette Fredrick").
+friend("Viva Suh", "Racquel Horan").
+friend("Viva Suh", "Tashina Vandenberg").
+dob("Viva Suh", "0446-07-14").
+job("Viva Suh", "doctor").
+hobby("Viva Suh", "philately").
+gender("Viva Suh", "female").

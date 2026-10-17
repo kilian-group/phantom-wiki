@@ -1,0 +1,20 @@
+brother("Dorathy Harlow", "Chris Harlow").
+mother("Dorathy Harlow", "Winnie Harlow").
+father("Dorathy Harlow", "Jerrold Harlow").
+friend("Dorathy Harlow", "Kristen Kell").
+friend("Dorathy Harlow", "Collin Lively").
+friend("Dorathy Harlow", "Mallory Schatz").
+friend("Dorathy Harlow", "Maynard Latham").
+friend("Dorathy Harlow", "Patrice Dunlap").
+friend("Dorathy Harlow", "Luisa Oliveira").
+friend("Dorathy Harlow", "Marvin Putnam").
+friend("Dorathy Harlow", "Tamala Skidmore").
+friend("Dorathy Harlow", "Addie Shilling").
+friend("Dorathy Harlow", "Rayna Upton").
+friend("Dorathy Harlow", "Alysa Lindquist").
+friend("Dorathy Harlow", "Avery Nolasco").
+friend("Dorathy Harlow", "Chris Harlow").
+dob("Dorathy Harlow", "0413-01-10").
+job("Dorathy Harlow", "government social research officer").
+hobby("Dorathy Harlow", "driving").
+gender("Dorathy Harlow", "female").

@@ -1,0 +1,18 @@
+sister("Belia Mckenna", "Katharine Willoughby").
+mother("Belia Mckenna", "Nydia Willoughby").
+father("Belia Mckenna", "Emerson Willoughby").
+son("Belia Mckenna", "Rogelio Mckenna").
+husband("Belia Mckenna", "Nevin Mckenna").
+friend("Belia Mckenna", "Laurence Knepper").
+friend("Belia Mckenna", "Andrea Murchison").
+friend("Belia Mckenna", "Collin Lively").
+friend("Belia Mckenna", "Clement Bennet").
+friend("Belia Mckenna", "Anna Broughton").
+friend("Belia Mckenna", "Aaron Bowles").
+friend("Belia Mckenna", "Nelly Bowles").
+friend("Belia Mckenna", "Preston Holtz").
+friend("Belia Mckenna", "Noreen Jarrett").
+dob("Belia Mckenna", "0446-08-03").
+job("Belia Mckenna", "theme park manager").
+hobby("Belia Mckenna", "ice skating").
+gender("Belia Mckenna", "female").

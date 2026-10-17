@@ -1,0 +1,15 @@
+daughter("Wendell Monday", "Gena Shaw").
+daughter("Wendell Monday", "Nydia Monday").
+wife("Wendell Monday", "Coral Monday").
+friend("Wendell Monday", "Rena Palm").
+friend("Wendell Monday", "Royce Callender").
+friend("Wendell Monday", "Dortha Ingle").
+friend("Wendell Monday", "Claudine Bales").
+friend("Wendell Monday", "Dena Joiner").
+friend("Wendell Monday", "Carlos Noland").
+friend("Wendell Monday", "Nelly Bowles").
+friend("Wendell Monday", "Ophelia Mcgough").
+dob("Wendell Monday", "0424-03-26").
+job("Wendell Monday", "transport planner").
+hobby("Wendell Monday", "softball").
+gender("Wendell Monday", "male").

@@ -1,0 +1,14 @@
+son("Gabriele Wilke", "Cedric Wilke").
+son("Gabriele Wilke", "Jermaine Wilke").
+husband("Gabriele Wilke", "Luke Wilke").
+friend("Gabriele Wilke", "Racquel Horan").
+friend("Gabriele Wilke", "Porter Mckenna").
+friend("Gabriele Wilke", "Antwan Rudolph").
+friend("Gabriele Wilke", "Coleen Lively").
+friend("Gabriele Wilke", "Verona Medellin").
+friend("Gabriele Wilke", "Daisy Cushman").
+friend("Gabriele Wilke", "Guadalupe Palomo").
+dob("Gabriele Wilke", "0371-06-04").
+job("Gabriele Wilke", "health promotion specialist").
+hobby("Gabriele Wilke", "philosophy").
+gender("Gabriele Wilke", "female").

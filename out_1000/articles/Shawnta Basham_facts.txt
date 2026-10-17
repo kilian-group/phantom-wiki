@@ -1,0 +1,16 @@
+sister("Shawnta Basham", "Adah Schram").
+sister("Shawnta Basham", "Geraldine Suh").
+sister("Shawnta Basham", "Sharolyn Basham").
+brother("Shawnta Basham", "Winfred Basham").
+mother("Shawnta Basham", "Ladawn Basham").
+father("Shawnta Basham", "Javier Basham").
+friend("Shawnta Basham", "Stanford Suh").
+friend("Shawnta Basham", "Jeana Chisholm").
+friend("Shawnta Basham", "Aaron Fordham").
+friend("Shawnta Basham", "Ressie Capps").
+friend("Shawnta Basham", "Tonia Mcgough").
+friend("Shawnta Basham", "Tomasa Kell").
+dob("Shawnta Basham", "0419-01-11").
+job("Shawnta Basham", "garment technologist").
+hobby("Shawnta Basham", "animation").
+gender("Shawnta Basham", "female").

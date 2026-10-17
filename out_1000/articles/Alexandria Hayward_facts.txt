@@ -1,0 +1,19 @@
+sister("Alexandria Hayward", "Cleo Dangelo").
+sister("Alexandria Hayward", "Lona Geter").
+mother("Alexandria Hayward", "Georgette Haygood").
+father("Alexandria Hayward", "Jeff Haygood").
+daughter("Alexandria Hayward", "Lenora Hayward").
+husband("Alexandria Hayward", "Bradford Hayward").
+friend("Alexandria Hayward", "Tena Beamon").
+friend("Alexandria Hayward", "Colette Kinsella").
+friend("Alexandria Hayward", "Sasha Simons").
+friend("Alexandria Hayward", "Dino Donner").
+friend("Alexandria Hayward", "Erik Fredrick").
+friend("Alexandria Hayward", "Jana Noland").
+friend("Alexandria Hayward", "Ryan Bowles").
+friend("Alexandria Hayward", "Zackary Wilkie").
+friend("Alexandria Hayward", "Ligia Frink").
+dob("Alexandria Hayward", "0482-04-06").
+job("Alexandria Hayward", "risk analyst").
+hobby("Alexandria Hayward", "beekeeping").
+gender("Alexandria Hayward", "female").

@@ -1,0 +1,11 @@
+daughter("Bradford Hayward", "Lenora Hayward").
+wife("Bradford Hayward", "Alexandria Hayward").
+friend("Bradford Hayward", "Emanuel Mccall").
+friend("Bradford Hayward", "Brigette Keyes").
+friend("Bradford Hayward", "Deloris Marr").
+friend("Bradford Hayward", "Raina Hamlin").
+friend("Bradford Hayward", "Niki Vanmeter").
+dob("Bradford Hayward", "0479-08-10").
+job("Bradford Hayward", "neurosurgeon").
+hobby("Bradford Hayward", "shuffleboard").
+gender("Bradford Hayward", "male").

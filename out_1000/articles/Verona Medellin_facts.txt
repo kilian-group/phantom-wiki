@@ -1,0 +1,17 @@
+son("Verona Medellin", "Byron Medellin").
+son("Verona Medellin", "Oscar Medellin").
+daughter("Verona Medellin", "Tamara Wylie").
+husband("Verona Medellin", "Kieth Medellin").
+friend("Verona Medellin", "Ardath Carswell").
+friend("Verona Medellin", "Gabriele Wilke").
+friend("Verona Medellin", "Mose Jarrett").
+friend("Verona Medellin", "Zona Jarrett").
+friend("Verona Medellin", "Wesley Beamon").
+friend("Verona Medellin", "Lakeshia Steadman").
+friend("Verona Medellin", "Gale Dana").
+friend("Verona Medellin", "Shawnta Plumley").
+friend("Verona Medellin", "Deidra Gilliam").
+dob("Verona Medellin", "0408-07-08").
+job("Verona Medellin", "associate professor").
+hobby("Verona Medellin", "butterfly watching").
+gender("Verona Medellin", "female").

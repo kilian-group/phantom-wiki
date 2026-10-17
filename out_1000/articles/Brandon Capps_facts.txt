@@ -1,0 +1,18 @@
+mother("Brandon Capps", "Tracey Capps").
+father("Brandon Capps", "Erik Capps").
+son("Brandon Capps", "Rogelio Capps").
+son("Brandon Capps", "Vito Capps").
+wife("Brandon Capps", "Marilynn Capps").
+friend("Brandon Capps", "Gregory Keister").
+friend("Brandon Capps", "Donnie Mcgough").
+friend("Brandon Capps", "Eli Vandenberg").
+friend("Brandon Capps", "Larue Speaks").
+friend("Brandon Capps", "Essie Layman").
+friend("Brandon Capps", "Kurtis Kell").
+friend("Brandon Capps", "Ella Valladares").
+friend("Brandon Capps", "Rickie Burdette").
+friend("Brandon Capps", "Sang Cheney").
+dob("Brandon Capps", "0352-12-23").
+job("Brandon Capps", "development worker").
+hobby("Brandon Capps", "ice skating").
+gender("Brandon Capps", "male").

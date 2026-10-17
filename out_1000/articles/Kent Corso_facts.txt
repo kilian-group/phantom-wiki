@@ -1,0 +1,20 @@
+mother("Kent Corso", "Chante Corso").
+father("Kent Corso", "Ben Corso").
+son("Kent Corso", "Miles Corso").
+wife("Kent Corso", "Kimberely Corso").
+friend("Kent Corso", "Jeff Haygood").
+friend("Kent Corso", "Freddie Barrows").
+friend("Kent Corso", "Emery Linden").
+friend("Kent Corso", "Major Bales").
+friend("Kent Corso", "Gina Goff").
+friend("Kent Corso", "Rheba Resendez").
+friend("Kent Corso", "Alina Bowles").
+friend("Kent Corso", "Elaine Marr").
+friend("Kent Corso", "Helena Hamlin").
+friend("Kent Corso", "Buffy Jarrett").
+friend("Kent Corso", "Eunice Lennox").
+friend("Kent Corso", "Aurelia Gordon").
+dob("Kent Corso", "0440-09-19").
+job("Kent Corso", "corporate treasurer").
+hobby("Kent Corso", "australian rules football").
+gender("Kent Corso", "male").

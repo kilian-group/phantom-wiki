@@ -1,0 +1,14 @@
+daughter("Josette Goff", "Tabetha Hsu").
+husband("Josette Goff", "Jonathan Goff").
+friend("Josette Goff", "Reyna Ibarra").
+friend("Josette Goff", "Ligia Wylie").
+friend("Josette Goff", "Ressie Capps").
+friend("Josette Goff", "Elroy Mcgough").
+friend("Josette Goff", "Lorenz Deville").
+friend("Josette Goff", "Sheena Dame").
+friend("Josette Goff", "Buffy Jarrett").
+friend("Josette Goff", "Guillermo Lasher").
+dob("Josette Goff", "0412-05-21").
+job("Josette Goff", "claims inspector").
+hobby("Josette Goff", "wikipedia editing").
+gender("Josette Goff", "female").

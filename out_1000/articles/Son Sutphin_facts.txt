@@ -1,0 +1,13 @@
+daughter("Son Sutphin", "Evette Hamlin").
+wife("Son Sutphin", "Pansy Sutphin").
+friend("Son Sutphin", "Alberto Wellington").
+friend("Son Sutphin", "Tommy Booth").
+friend("Son Sutphin", "Lorenzo Littleton").
+friend("Son Sutphin", "Hershel Ingalls").
+friend("Son Sutphin", "Wilson Younger").
+friend("Son Sutphin", "Monique Pugliese").
+friend("Son Sutphin", "Shelly Donner").
+dob("Son Sutphin", "0323-02-25").
+job("Son Sutphin", "chemist").
+hobby("Son Sutphin", "fitness").
+gender("Son Sutphin", "male").

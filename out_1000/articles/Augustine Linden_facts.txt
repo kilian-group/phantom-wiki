@@ -1,0 +1,21 @@
+sister("Augustine Linden", "Brunilda Linden").
+sister("Augustine Linden", "Catina Linden").
+sister("Augustine Linden", "Genny Burdette").
+sister("Augustine Linden", "Patricia Towns").
+brother("Augustine Linden", "Emery Linden").
+mother("Augustine Linden", "Barb Linden").
+father("Augustine Linden", "Jarvis Linden").
+daughter("Augustine Linden", "Gwendolyn Townsend").
+daughter("Augustine Linden", "Thalia Linden").
+wife("Augustine Linden", "Faith Linden").
+friend("Augustine Linden", "Hal Osterman").
+friend("Augustine Linden", "Bryan Resendez").
+friend("Augustine Linden", "Scotty Correia").
+friend("Augustine Linden", "Aletha Crocker").
+friend("Augustine Linden", "Melodie Suh").
+friend("Augustine Linden", "Antwan Rudolph").
+friend("Augustine Linden", "Phylis Cook").
+dob("Augustine Linden", "0471-10-18").
+job("Augustine Linden", "hydrographic surveyor").
+hobby("Augustine Linden", "sea glass collecting").
+gender("Augustine Linden", "male").

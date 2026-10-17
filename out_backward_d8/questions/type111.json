@@ -1,0 +1,452 @@
+[
+    {
+        "id": "f31ba539-ff5a-4207-87a8-f14e7454bf40",
+        "question": "Who was born first, the parent of Johnathan Boutte or the cousin of the cousin of Rolland Mckenna?",
+        "solution_traces": "[]",
+        "answer": [
+            "Hanh Boutte"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "parent(\"Johnathan Boutte\", Y_2)",
+                "cousin(Y_12, Y_10)",
+                "cousin(\"Rolland Mckenna\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 111,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "10f6d271-b834-4164-bae5-f00585cf73b1",
+        "question": "Who was born first, the mother of Jeanelle Mcnew or the friend of the friend of Geri Deluna?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lorelei Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "mother(\"Jeanelle Mcnew\", Y_2)",
+                "friend(Y_12, Y_10)",
+                "friend(\"Geri Deluna\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 111,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "22a8ffdc-b593-4faa-aead-9df90302588f",
+        "question": "Who was born first, the grandchild of Deborah Brannan or the brother of the niece of Lea Levy?",
+        "solution_traces": "[]",
+        "answer": [
+            "Adolph Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "grandchild(\"Deborah Brannan\", Y_2)",
+                "brother(Y_12, Y_10)",
+                "niece(\"Lea Levy\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 111,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "a1f39ca5-5a1c-4945-be3f-e9ee8ac8f45b",
+        "question": "Who was born first, the parent of Shelli Beltran or the cousin of the nephew of Dwain Lizotte?",
+        "solution_traces": "[]",
+        "answer": [
+            "Alison Smock"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "parent(\"Shelli Beltran\", Y_2)",
+                "cousin(Y_12, Y_10)",
+                "nephew(\"Dwain Lizotte\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 111,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "50a8f388-5e9c-4e73-a7f9-34e94dba9d73",
+        "question": "Who was born first, the grandmother of Geri Woodman or the nephew of the great-uncle of Lea Levy?",
+        "solution_traces": "[]",
+        "answer": [
+            "Adolph Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "grandmother(\"Geri Woodman\", Y_2)",
+                "nephew(Y_12, Y_10)",
+                "great_uncle(\"Lea Levy\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 111,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "038b1e18-d22a-47e3-93e2-a06efce5e7c4",
+        "question": "Who was born first, the husband of Deborah Cormier or the great-grandparent of the grandson of Edythe Nicolas?",
+        "solution_traces": "[]",
+        "answer": [
+            "Cherry Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "husband(\"Deborah Cormier\", Y_2)",
+                "great_grandparent(Y_12, Y_10)",
+                "grandson(\"Edythe Nicolas\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 111,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "ccd49db6-54e3-440b-a338-a9355b3d48fb",
+        "question": "Who was born first, the daughter of Earle Cormier or the great-grandfather of the father-in-law of Deborah Cormier?",
+        "solution_traces": "[]",
+        "answer": [
+            "Bert Deluna"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "daughter(\"Earle Cormier\", Y_2)",
+                "great_grandfather(Y_12, Y_10)",
+                "father_in_law(\"Deborah Cormier\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 111,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "bbc9ac04-4b7f-4e1b-9687-9434c70e2c90",
+        "question": "Who was born first, the father of Ashely Kee or the sister of the friend of Carey Mckenna?",
+        "solution_traces": "[]",
+        "answer": [
+            "Edmond Schreiner"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "father(\"Ashely Kee\", Y_2)",
+                "sister(Y_12, Y_10)",
+                "friend(\"Carey Mckenna\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 111,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "760cab5c-5b2d-4400-b20c-b1f980778890",
+        "question": "Who was born first, the brother of Milton Henderson or the mother of the great-granddaughter of Brian Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Maxwell Henderson"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "brother(\"Milton Henderson\", Y_2)",
+                "mother(Y_12, Y_10)",
+                "great_granddaughter(\"Brian Beltran\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 111,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    },
+    {
+        "id": "f8e09e1d-eaf8-464e-b335-832e067c8cd1",
+        "question": "Who was born first, the great-grandmother of Joel Palermo or the friend of the father of Shirley Skaggs?",
+        "solution_traces": "[]",
+        "answer": [
+            "Blair Etheridge"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "great_grandmother(\"Joel Palermo\", Y_2)",
+                "friend(Y_12, Y_10)",
+                "father(\"Shirley Skaggs\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who was born first,",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 111,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_born_first"
+    }
+]

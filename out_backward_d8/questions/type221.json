@@ -1,0 +1,292 @@
+[
+    {
+        "id": "fb61b416-a9d4-4de6-9206-067a433fd056",
+        "question": "Who has more grandchildren, Deborah Brannan or Maxwell Henderson?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deborah Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(grandchild(\"Deborah Brannan\", X)), C1)",
+                "aggregate_all(count, distinct(grandchild(\"Maxwell Henderson\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "13beba8c-8172-47c5-8132-825824d37a01",
+        "question": "Who has more siblings, Ivory Pannell or Jimmy Cedillo?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jimmy Cedillo"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sibling(\"Ivory Pannell\", X)), C1)",
+                "aggregate_all(count, distinct(sibling(\"Jimmy Cedillo\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "9db31b63-5a61-452e-8b7d-b3576748c0a9",
+        "question": "Who has more grandsons, Anthony Nicolas or Deborah Cormier?",
+        "solution_traces": "[]",
+        "answer": [
+            "Anthony Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(grandson(\"Anthony Nicolas\", X)), C1)",
+                "aggregate_all(count, distinct(grandson(\"Deborah Cormier\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "e89d270d-8cf0-40a1-930f-41043bc4c236",
+        "question": "Who has more brothers-in-law, Jarrod Mohan or Gene Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jarrod Mohan"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(brother_in_law(\"Jarrod Mohan\", X)), C1)",
+                "aggregate_all(count, distinct(brother_in_law(\"Gene Smock\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "547e6ba2-c72f-41e0-acc2-2fba5e414679",
+        "question": "Who has more sisters, Nathanial Lizotte or Lea Levy?",
+        "solution_traces": "[]",
+        "answer": [
+            "Nathanial Lizotte"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sister(\"Nathanial Lizotte\", X)), C1)",
+                "aggregate_all(count, distinct(sister(\"Lea Levy\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "12a1a081-1acc-4300-9507-babc4b095fde",
+        "question": "Who has more female first cousins once removed, Minerva Wilkie or Jimmy Cedillo?",
+        "solution_traces": "[]",
+        "answer": [
+            "Minerva Wilkie"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(female_first_cousin_once_removed(\"Minerva Wilkie\", X)), C1)",
+                "aggregate_all(count, distinct(female_first_cousin_once_removed(\"Jimmy Cedillo\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "reasoning_steps": 8,
+        "difficulty": {
+            "hops": 8,
+            "constraints": 0,
+            "composite": 8,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "fc1d14ee-1eb0-49dd-a4cb-be26bcd8b6dd",
+        "question": "Who has more aunts, Cole Mcnew or Ron Woodman?",
+        "solution_traces": "[]",
+        "answer": [
+            "Cole Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(aunt(\"Cole Mcnew\", X)), C1)",
+                "aggregate_all(count, distinct(aunt(\"Ron Woodman\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "3d2d456e-e17a-4f8e-b251-97678b882dbd",
+        "question": "Who has more great-granddaughters, Oliver Abraham or Calvin Woodman?",
+        "solution_traces": "[]",
+        "answer": [
+            "Oliver Abraham"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(great_granddaughter(\"Oliver Abraham\", X)), C1)",
+                "aggregate_all(count, distinct(great_granddaughter(\"Calvin Woodman\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "f96b84ac-b2e0-416f-9444-e18af892bfd8",
+        "question": "Who has more cousins, Orlando Beltran or Shanda Wasserman?",
+        "solution_traces": "[]",
+        "answer": [
+            "Shanda Wasserman"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(cousin(\"Orlando Beltran\", X)), C1)",
+                "aggregate_all(count, distinct(cousin(\"Shanda Wasserman\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "3c7549b7-d860-4581-88fb-7f6bb56f9d6f",
+        "question": "Who has more brothers, Trevor Saari or Marilyn Nicolas?",
+        "solution_traces": "[]",
+        "answer": [
+            "Marilyn Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(brother(\"Trevor Saari\", X)), C1)",
+                "aggregate_all(count, distinct(brother(\"Marilyn Nicolas\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    }
+]

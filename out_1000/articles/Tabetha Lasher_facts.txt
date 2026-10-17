@@ -1,0 +1,14 @@
+brother("Tabetha Lasher", "Jermaine Lasher").
+brother("Tabetha Lasher", "Newton Lasher").
+mother("Tabetha Lasher", "Tamara Lasher").
+father("Tabetha Lasher", "Guillermo Lasher").
+friend("Tabetha Lasher", "Mickey Beamon").
+friend("Tabetha Lasher", "Josie Littleton").
+friend("Tabetha Lasher", "Phil Murray").
+friend("Tabetha Lasher", "Shante Ruth").
+friend("Tabetha Lasher", "Miles Fordham").
+friend("Tabetha Lasher", "Ollie Omara").
+dob("Tabetha Lasher", "0331-08-23").
+job("Tabetha Lasher", "medical laboratory scientific officer").
+hobby("Tabetha Lasher", "physics").
+gender("Tabetha Lasher", "female").

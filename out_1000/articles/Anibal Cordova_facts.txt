@@ -1,0 +1,17 @@
+brother("Anibal Cordova", "Jacques Cordova").
+brother("Anibal Cordova", "Jesus Cordova").
+mother("Anibal Cordova", "Leonora Cordova").
+father("Anibal Cordova", "Galen Cordova").
+daughter("Anibal Cordova", "Chelsie Peeler").
+wife("Anibal Cordova", "Anastacia Cordova").
+friend("Anibal Cordova", "Jerald Murray").
+friend("Anibal Cordova", "Irwin Dalton").
+friend("Anibal Cordova", "Glenn Levine").
+friend("Anibal Cordova", "Evelia Waltz").
+friend("Anibal Cordova", "Bruce Burger").
+friend("Anibal Cordova", "Gena Shaw").
+friend("Anibal Cordova", "Karen Mckenna").
+dob("Anibal Cordova", "0379-10-17").
+job("Anibal Cordova", "education officer").
+hobby("Anibal Cordova", "dowsing").
+gender("Anibal Cordova", "male").

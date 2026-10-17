@@ -1,0 +1,16 @@
+sister("Stan Kell", "Eva Kell").
+sister("Stan Kell", "Malissa Kell").
+sister("Stan Kell", "Tomasa Kell").
+brother("Stan Kell", "Dewitt Kell").
+mother("Stan Kell", "Barbar Kell").
+father("Stan Kell", "Felton Kell").
+friend("Stan Kell", "Olin Fordham").
+friend("Stan Kell", "Edwina Weise").
+friend("Stan Kell", "Sung Simons").
+friend("Stan Kell", "Miki Peabody").
+friend("Stan Kell", "Hiram Smart").
+friend("Stan Kell", "Cleveland Capps").
+dob("Stan Kell", "0416-07-07").
+job("Stan Kell", "data processing manager").
+hobby("Stan Kell", "sled dog racing").
+gender("Stan Kell", "male").

@@ -1,0 +1,13 @@
+son("Georgina Lebrun", "Rob Lebrun").
+husband("Georgina Lebrun", "Wade Lebrun").
+friend("Georgina Lebrun", "Katharine Resendez").
+friend("Georgina Lebrun", "Lura Leclair").
+friend("Georgina Lebrun", "Roxy Niles").
+friend("Georgina Lebrun", "Emil Broughton").
+friend("Georgina Lebrun", "Juan Smart").
+friend("Georgina Lebrun", "Gayla Holder").
+friend("Georgina Lebrun", "Phil Murray").
+dob("Georgina Lebrun", "0344-04-24").
+job("Georgina Lebrun", "production designer").
+hobby("Georgina Lebrun", "web design").
+gender("Georgina Lebrun", "female").

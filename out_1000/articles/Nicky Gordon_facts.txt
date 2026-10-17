@@ -1,0 +1,16 @@
+daughter("Nicky Gordon", "Kanesha Booth").
+daughter("Nicky Gordon", "Kristen Kell").
+daughter("Nicky Gordon", "Yasmin Gordon").
+wife("Nicky Gordon", "Aurelia Gordon").
+friend("Nicky Gordon", "Ben Corso").
+friend("Nicky Gordon", "Rena Palm").
+friend("Nicky Gordon", "Elyse Mahoney").
+friend("Nicky Gordon", "Lindy Kavanaugh").
+friend("Nicky Gordon", "Hugh Noland").
+friend("Nicky Gordon", "Millard Fordham").
+friend("Nicky Gordon", "Aaron Bowles").
+friend("Nicky Gordon", "Elroy Mcgough").
+dob("Nicky Gordon", "0385-05-11").
+job("Nicky Gordon", "therapist").
+hobby("Nicky Gordon", "ant farming").
+gender("Nicky Gordon", "male").

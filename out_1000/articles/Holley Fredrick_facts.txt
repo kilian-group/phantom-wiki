@@ -1,0 +1,18 @@
+son("Holley Fredrick", "Anderson Fredrick").
+son("Holley Fredrick", "Malik Fredrick").
+daughter("Holley Fredrick", "Odelia Fredrick").
+husband("Holley Fredrick", "Erik Fredrick").
+friend("Holley Fredrick", "Madalene Waltz").
+friend("Holley Fredrick", "Iva Parish").
+friend("Holley Fredrick", "Evelia Senn").
+friend("Holley Fredrick", "Ricardo Runnels").
+friend("Holley Fredrick", "Seymour Simons").
+friend("Holley Fredrick", "Jamel Chou").
+friend("Holley Fredrick", "Georgine Mahoney").
+friend("Holley Fredrick", "Boris Machado").
+friend("Holley Fredrick", "Aida Ibarra").
+friend("Holley Fredrick", "Lucile Hurt").
+dob("Holley Fredrick", "0350-02-17").
+job("Holley Fredrick", "immigration officer").
+hobby("Holley Fredrick", "rappelling").
+gender("Holley Fredrick", "female").

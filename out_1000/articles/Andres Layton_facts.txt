@@ -1,0 +1,17 @@
+sister("Andres Layton", "Larue Speaks").
+sister("Andres Layton", "Lera Carty").
+brother("Andres Layton", "Bryan Layton").
+brother("Andres Layton", "Cary Layton").
+brother("Andres Layton", "Emory Layton").
+mother("Andres Layton", "Brianne Layton").
+father("Andres Layton", "Bernie Layton").
+friend("Andres Layton", "Doyle Valladares").
+friend("Andres Layton", "Tony Gillam").
+friend("Andres Layton", "Lynda Mahoney").
+friend("Andres Layton", "Tawana Machado").
+friend("Andres Layton", "Reyna Ibarra").
+friend("Andres Layton", "Brendon Dunlap").
+dob("Andres Layton", "0402-10-03").
+job("Andres Layton", "press photographer").
+hobby("Andres Layton", "reading").
+gender("Andres Layton", "male").

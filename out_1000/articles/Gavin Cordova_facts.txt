@@ -1,0 +1,15 @@
+mother("Gavin Cordova", "Daisy Cordova").
+father("Gavin Cordova", "Errol Cordova").
+friend("Gavin Cordova", "Madalene Lebrun").
+friend("Gavin Cordova", "Anderson Fredrick").
+friend("Gavin Cordova", "Romona Fordham").
+friend("Gavin Cordova", "Demetra Palomo").
+friend("Gavin Cordova", "Gena Shaw").
+friend("Gavin Cordova", "Jayson Sheridan").
+friend("Gavin Cordova", "Mia Resendez").
+friend("Gavin Cordova", "Ashleigh Kell").
+friend("Gavin Cordova", "Maryam Maness").
+dob("Gavin Cordova", "0320-03-22").
+job("Gavin Cordova", "dancer").
+hobby("Gavin Cordova", "reading").
+gender("Gavin Cordova", "male").

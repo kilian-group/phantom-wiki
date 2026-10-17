@@ -1,0 +1,372 @@
+[
+    {
+        "id": "fb76523d-86ac-4774-8989-ccbf20e3516f",
+        "question": "What is the hobby of the niece of Jeannine Wexler?",
+        "solution_traces": "[{\"Y_3\": \"Lenore Hackworth\", \"Y_2\": \"microbiology\"}, {\"Y_3\": \"Johnetta Wang\", \"Y_2\": \"bus spotting\"}, {\"Y_2\": \"geography\", \"Y_3\": \"Leeann Hackworth\"}]",
+        "answer": [
+            "bus spotting",
+            "geography",
+            "microbiology"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "niece(\"Jeannine Wexler\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "afb6c6f0-5e42-4334-bd60-08b14f3a2b88",
+        "question": "What is the date of birth of the parent of Vicki Hackworth?",
+        "solution_traces": "[{\"Y_2\": \"0268-03-07\", \"Y_3\": \"Shelli Beltran\"}, {\"Y_2\": \"0268-08-09\", \"Y_3\": \"Dino Beltran\"}]",
+        "answer": [
+            "0268-03-07",
+            "0268-08-09"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "parent(\"Vicki Hackworth\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "89cad864-2291-4f31-a8e3-1cedf7c46c86",
+        "question": "What is the date of birth of the friend of Saul Wexler?",
+        "solution_traces": "[{\"Y_2\": \"0177-08-24\", \"Y_3\": \"Lannie Smock\"}, {\"Y_3\": \"Daisy Beltran\", \"Y_2\": \"0241-09-21\"}, {\"Y_3\": \"Johnetta Wang\", \"Y_2\": \"0324-07-03\"}, {\"Y_2\": \"0268-08-09\", \"Y_3\": \"Dino Beltran\"}, {\"Y_3\": \"Lenore Hackworth\", \"Y_2\": \"0325-11-20\"}, {\"Y_3\": \"Alison Smock\", \"Y_2\": \"0239-10-28\"}]",
+        "answer": [
+            "0177-08-24",
+            "0239-10-28",
+            "0241-09-21",
+            "0268-08-09",
+            "0324-07-03",
+            "0325-11-20"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "friend(\"Saul Wexler\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "04db4fa5-4489-4a4b-a269-cd2164c58d7e",
+        "question": "What is the occupation of the son-in-law of Dino Beltran?",
+        "solution_traces": "[{\"Y_3\": \"Ricardo Hackworth\", \"Y_2\": \"clinical research associate\"}, {\"Y_2\": \"occupational therapist\", \"Y_3\": \"Saul Wexler\"}, {\"Y_3\": \"Ryan Wang\", \"Y_2\": \"chief of staff\"}]",
+        "answer": [
+            "chief of staff",
+            "clinical research associate",
+            "occupational therapist"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "son_in_law(\"Dino Beltran\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "be8170a0-7b47-40b7-9f47-10cf85ac0a42",
+        "question": "What is the date of birth of the friend of Deane Smock?",
+        "solution_traces": "[{\"Y_3\": \"Isabell Smock\", \"Y_2\": \"0211-01-18\"}, {\"Y_3\": \"Alison Smock\", \"Y_2\": \"0239-10-28\"}, {\"Y_2\": \"0268-03-07\", \"Y_3\": \"Shelli Beltran\"}, {\"Y_3\": \"Gene Smock\", \"Y_2\": \"0208-08-16\"}]",
+        "answer": [
+            "0208-08-16",
+            "0211-01-18",
+            "0239-10-28",
+            "0268-03-07"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "friend(\"Deane Smock\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "02c60237-8b29-43c3-8bfe-85580622eae6",
+        "question": "What is the occupation of the brother of Isabell Smock?",
+        "solution_traces": "[{\"Y_2\": \"broadcast engineer\", \"Y_3\": \"Aubrey Smock\"}, {\"Y_2\": \"immunologist\", \"Y_3\": \"Gene Smock\"}]",
+        "answer": [
+            "broadcast engineer",
+            "immunologist"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "brother(\"Isabell Smock\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "a4f710aa-a788-496b-82e3-a4df769acff2",
+        "question": "What is the hobby of the child of Alvaro Smock?",
+        "solution_traces": "[{\"Y_2\": \"meteorology\", \"Y_3\": \"Aubrey Smock\"}, {\"Y_2\": \"architecture\", \"Y_3\": \"Gene Smock\"}, {\"Y_3\": \"Deane Smock\", \"Y_2\": \"shogi\"}, {\"Y_3\": \"Isabell Smock\", \"Y_2\": \"geocaching\"}]",
+        "answer": [
+            "architecture",
+            "geocaching",
+            "meteorology",
+            "shogi"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "child(\"Alvaro Smock\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "766dc6f1-5d81-428b-ac0f-715a3c88973b",
+        "question": "What is the occupation of the friend of Ricardo Hackworth?",
+        "solution_traces": "[{\"Y_3\": \"Myrle Smock\", \"Y_2\": \"barrister's clerk\"}, {\"Y_2\": \"immunologist\", \"Y_3\": \"Gene Smock\"}, {\"Y_2\": \"retail manager\", \"Y_3\": \"Dominique Smock\"}, {\"Y_2\": \"sports therapist\", \"Y_3\": \"Dino Beltran\"}]",
+        "answer": [
+            "barrister's clerk",
+            "immunologist",
+            "retail manager",
+            "sports therapist"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "friend(\"Ricardo Hackworth\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "0a64a49c-bd69-4bd5-b51f-149d6c2bbc1c",
+        "question": "What is the occupation of the mother-in-law of Saul Wexler?",
+        "solution_traces": "[{\"Y_3\": \"Shelli Beltran\", \"Y_2\": \"actuary\"}]",
+        "answer": [
+            "actuary"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "mother_in_law(\"Saul Wexler\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "6f8ba39f-02f1-49d0-8be5-624e970c538c",
+        "question": "What is the date of birth of the daughter of Ryan Wang?",
+        "solution_traces": "[{\"Y_3\": \"Johnetta Wang\", \"Y_2\": \"0324-07-03\"}]",
+        "answer": [
+            "0324-07-03"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "daughter(\"Ryan Wang\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    }
+]

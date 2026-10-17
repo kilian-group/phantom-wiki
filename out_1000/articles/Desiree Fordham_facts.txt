@@ -1,0 +1,18 @@
+son("Desiree Fordham", "Olin Fordham").
+husband("Desiree Fordham", "Hans Fordham").
+friend("Desiree Fordham", "Donnie Crocker").
+friend("Desiree Fordham", "Melodie Suh").
+friend("Desiree Fordham", "Olin Fordham").
+friend("Desiree Fordham", "Gwendolyn Townsend").
+friend("Desiree Fordham", "Clementine Goff").
+friend("Desiree Fordham", "Andre Bowles").
+friend("Desiree Fordham", "Kimiko Vogt").
+friend("Desiree Fordham", "Isabell Shank").
+friend("Desiree Fordham", "Karl Depriest").
+friend("Desiree Fordham", "Evette Hamlin").
+friend("Desiree Fordham", "Haley Layman").
+friend("Desiree Fordham", "Garrett Bauman").
+dob("Desiree Fordham", "0278-07-03").
+job("Desiree Fordham", "herbalist").
+hobby("Desiree Fordham", "biology").
+gender("Desiree Fordham", "female").

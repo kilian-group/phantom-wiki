@@ -1,0 +1,21 @@
+brother("Nelly Smart", "Juan Smart").
+brother("Nelly Smart", "Manuel Smart").
+mother("Nelly Smart", "Jaclyn Smart").
+father("Nelly Smart", "Buck Smart").
+friend("Nelly Smart", "Lauren Strong").
+friend("Nelly Smart", "Laurence Macias").
+friend("Nelly Smart", "Shizuko Sheridan").
+friend("Nelly Smart", "Jamison Upton").
+friend("Nelly Smart", "Wesley Beamon").
+friend("Nelly Smart", "Latisha Murchison").
+friend("Nelly Smart", "Phil Murray").
+friend("Nelly Smart", "Harley Simons").
+friend("Nelly Smart", "Homer Morehead").
+friend("Nelly Smart", "Harold Hollins").
+friend("Nelly Smart", "Deirdre Niles").
+friend("Nelly Smart", "Rheba Resendez").
+friend("Nelly Smart", "Roxy Niles").
+dob("Nelly Smart", "0485-10-02").
+job("Nelly Smart", "sub").
+hobby("Nelly Smart", "squash").
+gender("Nelly Smart", "female").

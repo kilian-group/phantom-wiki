@@ -1,0 +1,11 @@
+daughter("Caleb Haber", "Noelia Henderson").
+wife("Caleb Haber", "Kris Haber").
+friend("Caleb Haber", "Rae Mcnew").
+friend("Caleb Haber", "Ivory Pannell").
+friend("Caleb Haber", "Quincy Pannell").
+friend("Caleb Haber", "Yvette Cedillo").
+friend("Caleb Haber", "Adolph Brannan").
+dob("Caleb Haber", "0226-05-12").
+job("Caleb Haber", "community development worker").
+hobby("Caleb Haber", "benchmarking").
+gender("Caleb Haber", "male").

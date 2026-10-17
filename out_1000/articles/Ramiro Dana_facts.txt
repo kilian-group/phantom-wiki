@@ -1,0 +1,18 @@
+son("Ramiro Dana", "Drew Dana").
+son("Ramiro Dana", "Matthew Dana").
+wife("Ramiro Dana", "Geri Dana").
+friend("Ramiro Dana", "Jermaine Gilliam").
+friend("Ramiro Dana", "Kip Murdoch").
+friend("Ramiro Dana", "Madalene Waltz").
+friend("Ramiro Dana", "Nickolas Holtz").
+friend("Ramiro Dana", "Jamison Upton").
+friend("Ramiro Dana", "Jerrold Harlow").
+friend("Ramiro Dana", "Collin Lasher").
+friend("Ramiro Dana", "Raleigh Cordova").
+friend("Ramiro Dana", "Tammy Sutphin").
+friend("Ramiro Dana", "Christina Barrows").
+friend("Ramiro Dana", "Chang Eaves").
+dob("Ramiro Dana", "0377-11-21").
+job("Ramiro Dana", "solicitor").
+hobby("Ramiro Dana", "radio-controlled model playing").
+gender("Ramiro Dana", "male").

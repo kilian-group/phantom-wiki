@@ -1,0 +1,16 @@
+sister("Deangelo Marr", "Deloris Marr").
+brother("Deangelo Marr", "Jamal Marr").
+mother("Deangelo Marr", "Thomasena Marr").
+father("Deangelo Marr", "Dennis Marr").
+friend("Deangelo Marr", "Jeannette Mounts").
+friend("Deangelo Marr", "Olin Fordham").
+friend("Deangelo Marr", "Sung Simons").
+friend("Deangelo Marr", "Timothy Simons").
+friend("Deangelo Marr", "Herbert Dana").
+friend("Deangelo Marr", "Angela Younger").
+friend("Deangelo Marr", "Livia Corwin").
+friend("Deangelo Marr", "Robby Corwin").
+dob("Deangelo Marr", "0375-11-03").
+job("Deangelo Marr", "dancer").
+hobby("Deangelo Marr", "marbles").
+gender("Deangelo Marr", "male").

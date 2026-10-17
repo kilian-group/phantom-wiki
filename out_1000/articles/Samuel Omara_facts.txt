@@ -1,0 +1,19 @@
+daughter("Samuel Omara", "Trudy Lasher").
+wife("Samuel Omara", "Ollie Omara").
+friend("Samuel Omara", "Sharolyn Basham").
+friend("Samuel Omara", "Karol Beamon").
+friend("Samuel Omara", "Magdalena Hollinger").
+friend("Samuel Omara", "Teddy Senn").
+friend("Samuel Omara", "Collin Lively").
+friend("Samuel Omara", "Cedric Towns").
+friend("Samuel Omara", "Nora Resendez").
+friend("Samuel Omara", "Justine Gibbs").
+friend("Samuel Omara", "Alina Bowles").
+friend("Samuel Omara", "Laurence Macias").
+friend("Samuel Omara", "Marion Wilke").
+friend("Samuel Omara", "Rudolf Sanborn").
+friend("Samuel Omara", "Krystal Joubert").
+dob("Samuel Omara", "0373-09-11").
+job("Samuel Omara", "consulting civil engineer").
+hobby("Samuel Omara", "urban exploration").
+gender("Samuel Omara", "male").

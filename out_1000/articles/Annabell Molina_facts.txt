@@ -1,0 +1,13 @@
+daughter("Annabell Molina", "Krystyna Schatz").
+husband("Annabell Molina", "Winfred Molina").
+friend("Annabell Molina", "Geoffrey Musick").
+friend("Annabell Molina", "Carlos Noland").
+friend("Annabell Molina", "Kris Fordham").
+friend("Annabell Molina", "Bradley Blanton").
+friend("Annabell Molina", "Karl Depriest").
+friend("Annabell Molina", "Gena Shaw").
+friend("Annabell Molina", "Sammy Dillion").
+dob("Annabell Molina", "0334-09-25").
+job("Annabell Molina", "lawyer").
+hobby("Annabell Molina", "psychology").
+gender("Annabell Molina", "female").

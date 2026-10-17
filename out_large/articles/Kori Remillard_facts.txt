@@ -1,0 +1,12 @@
+mother("Kori Remillard", "Tianna Remillard").
+father("Kori Remillard", "Jude Remillard").
+friend("Kori Remillard", "Eli Vandenberg").
+friend("Kori Remillard", "Stacey Wilke").
+friend("Kori Remillard", "Brigida Oberg").
+friend("Kori Remillard", "Demarcus Narvaez").
+friend("Kori Remillard", "Richard Oberg").
+friend("Kori Remillard", "Justine Remillard").
+dob("Kori Remillard", "0325-09-08").
+job("Kori Remillard", "scientist").
+hobby("Kori Remillard", "aircraft spotting").
+gender("Kori Remillard", "female").

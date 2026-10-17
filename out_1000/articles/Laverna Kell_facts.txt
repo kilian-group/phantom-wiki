@@ -1,0 +1,17 @@
+mother("Laverna Kell", "Shemika Hirsch").
+father("Laverna Kell", "Garland Hirsch").
+son("Laverna Kell", "Werner Kell").
+daughter("Laverna Kell", "Sharika Kell").
+husband("Laverna Kell", "Levi Kell").
+friend("Laverna Kell", "Maggie Vanmeter").
+friend("Laverna Kell", "Shauna Weise").
+friend("Laverna Kell", "Steve Storey").
+friend("Laverna Kell", "Zora Simons").
+friend("Laverna Kell", "Buffy Eaves").
+friend("Laverna Kell", "Brad Ballard").
+friend("Laverna Kell", "Bruce Burger").
+friend("Laverna Kell", "Jackqueline Kell").
+dob("Laverna Kell", "0302-03-15").
+job("Laverna Kell", "community education officer").
+hobby("Laverna Kell", "rock climbing").
+gender("Laverna Kell", "female").

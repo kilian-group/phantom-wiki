@@ -1,0 +1,18 @@
+sister("Bryan Layton", "Larue Speaks").
+sister("Bryan Layton", "Lera Carty").
+brother("Bryan Layton", "Andres Layton").
+brother("Bryan Layton", "Cary Layton").
+brother("Bryan Layton", "Emory Layton").
+mother("Bryan Layton", "Brianne Layton").
+father("Bryan Layton", "Bernie Layton").
+friend("Bryan Layton", "Shawna Sheridan").
+friend("Bryan Layton", "Freeda Jarrett").
+friend("Bryan Layton", "Viva Jefferson").
+friend("Bryan Layton", "Mayra Geter").
+friend("Bryan Layton", "Jamie Bellows").
+friend("Bryan Layton", "Alisha Fredrick").
+friend("Bryan Layton", "Almeta Forester").
+dob("Bryan Layton", "0395-04-06").
+job("Bryan Layton", "ceramics designer").
+hobby("Bryan Layton", "bus spotting").
+gender("Bryan Layton", "male").

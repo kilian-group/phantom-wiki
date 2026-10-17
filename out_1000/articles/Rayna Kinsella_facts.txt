@@ -1,0 +1,17 @@
+sister("Rayna Kinsella", "Cleo Peeler").
+sister("Rayna Kinsella", "Maybelle Lester").
+mother("Rayna Kinsella", "Chelsie Peeler").
+father("Rayna Kinsella", "Melvin Peeler").
+son("Rayna Kinsella", "Kenny Kinsella").
+daughter("Rayna Kinsella", "Colette Kinsella").
+husband("Rayna Kinsella", "Arnulfo Kinsella").
+friend("Rayna Kinsella", "Edythe Osterman").
+friend("Rayna Kinsella", "Colin Corwin").
+friend("Rayna Kinsella", "Lou Hurt").
+friend("Rayna Kinsella", "Jacque Greene").
+friend("Rayna Kinsella", "Jann Upton").
+friend("Rayna Kinsella", "Winnie Harlow").
+dob("Rayna Kinsella", "0438-09-03").
+job("Rayna Kinsella", "freight forwarder").
+hobby("Rayna Kinsella", "microscopy").
+gender("Rayna Kinsella", "female").

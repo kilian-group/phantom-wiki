@@ -1,0 +1,13 @@
+brother("Roger Mcpeak", "Pierre Mcpeak").
+mother("Roger Mcpeak", "Lera Mcpeak").
+father("Roger Mcpeak", "Edmundo Mcpeak").
+friend("Roger Mcpeak", "Isaias Forester").
+friend("Roger Mcpeak", "Annabell Horan").
+friend("Roger Mcpeak", "Moshe Macias").
+friend("Roger Mcpeak", "Adella Townsend").
+friend("Roger Mcpeak", "Alix Mahoney").
+friend("Roger Mcpeak", "Aida Ibarra").
+dob("Roger Mcpeak", "0409-09-16").
+job("Roger Mcpeak", "lecturer").
+hobby("Roger Mcpeak", "stone skipping").
+gender("Roger Mcpeak", "male").

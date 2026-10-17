@@ -1,0 +1,15 @@
+daughter("Vernon Joubert", "Chelsie Wilkie").
+daughter("Vernon Joubert", "Harriette Courson").
+wife("Vernon Joubert", "Krystal Joubert").
+friend("Vernon Joubert", "Viva Jefferson").
+friend("Vernon Joubert", "Marlene Ingalls").
+friend("Vernon Joubert", "Catina Linden").
+friend("Vernon Joubert", "Felton Dana").
+friend("Vernon Joubert", "Latrina Mathes").
+friend("Vernon Joubert", "Tanner Holliman").
+friend("Vernon Joubert", "Donnie Dunlap").
+friend("Vernon Joubert", "Hal Greene").
+dob("Vernon Joubert", "0367-02-21").
+job("Vernon Joubert", "architect").
+hobby("Vernon Joubert", "esports").
+gender("Vernon Joubert", "male").

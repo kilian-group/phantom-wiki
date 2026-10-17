@@ -1,0 +1,14 @@
+sister("Enid Dalton", "Shirley Dalton").
+mother("Enid Dalton", "Dani Dalton").
+father("Enid Dalton", "Irwin Dalton").
+friend("Enid Dalton", "Gina Goff").
+friend("Enid Dalton", "Ai Dacosta").
+friend("Enid Dalton", "Jenni Kell").
+friend("Enid Dalton", "Rolf Booth").
+friend("Enid Dalton", "Iva Parish").
+friend("Enid Dalton", "Jermaine Lasher").
+friend("Enid Dalton", "Arnulfo Kinsella").
+dob("Enid Dalton", "0457-11-03").
+job("Enid Dalton", "television producer").
+hobby("Enid Dalton", "history").
+gender("Enid Dalton", "female").

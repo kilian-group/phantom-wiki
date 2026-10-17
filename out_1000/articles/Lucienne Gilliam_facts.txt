@@ -1,0 +1,24 @@
+sister("Lucienne Gilliam", "Evette Gibbs").
+brother("Lucienne Gilliam", "Kory Gibbs").
+mother("Lucienne Gilliam", "Justine Gibbs").
+father("Lucienne Gilliam", "Toney Gibbs").
+son("Lucienne Gilliam", "Boris Gilliam").
+son("Lucienne Gilliam", "Darren Gilliam").
+son("Lucienne Gilliam", "Hershel Gilliam").
+son("Lucienne Gilliam", "Jermaine Gilliam").
+son("Lucienne Gilliam", "Markus Gilliam").
+daughter("Lucienne Gilliam", "Jacinta Gilliam").
+husband("Lucienne Gilliam", "Kenton Gilliam").
+friend("Lucienne Gilliam", "Edmundo Fordham").
+friend("Lucienne Gilliam", "Preston Holtz").
+friend("Lucienne Gilliam", "Marion Wilke").
+friend("Lucienne Gilliam", "Ben Sheridan").
+friend("Lucienne Gilliam", "Ligia Frink").
+friend("Lucienne Gilliam", "Mickey Beamon").
+friend("Lucienne Gilliam", "Jo Murray").
+friend("Lucienne Gilliam", "Karin Machado").
+friend("Lucienne Gilliam", "Desmond Dacosta").
+dob("Lucienne Gilliam", "0317-11-06").
+job("Lucienne Gilliam", "forest manager").
+hobby("Lucienne Gilliam", "deltiology").
+gender("Lucienne Gilliam", "female").

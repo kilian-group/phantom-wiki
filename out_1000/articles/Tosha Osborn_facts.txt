@@ -1,0 +1,14 @@
+daughter("Tosha Osborn", "Xiao Nolasco").
+husband("Tosha Osborn", "Randolph Osborn").
+friend("Tosha Osborn", "Yasmin Gordon").
+friend("Tosha Osborn", "Frederic Cordova").
+friend("Tosha Osborn", "Doyle Valladares").
+friend("Tosha Osborn", "Scottie Steadman").
+friend("Tosha Osborn", "Drema Schatz").
+friend("Tosha Osborn", "Nellie Niles").
+friend("Tosha Osborn", "Jamison Upton").
+friend("Tosha Osborn", "Tomasa Kell").
+dob("Tosha Osborn", "0308-02-25").
+job("Tosha Osborn", "futures trader").
+hobby("Tosha Osborn", "longboarding").
+gender("Tosha Osborn", "female").

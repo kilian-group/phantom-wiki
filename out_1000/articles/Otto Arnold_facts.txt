@@ -1,0 +1,13 @@
+son("Otto Arnold", "Dalton Arnold").
+wife("Otto Arnold", "Babara Arnold").
+friend("Otto Arnold", "Timothy Simons").
+friend("Otto Arnold", "Deshawn Medellin").
+friend("Otto Arnold", "Addie Shilling").
+friend("Otto Arnold", "Erik Mounts").
+friend("Otto Arnold", "Carol Conner").
+friend("Otto Arnold", "Daisy Autry").
+friend("Otto Arnold", "Arnulfo Kinsella").
+dob("Otto Arnold", "0527-05-20").
+job("Otto Arnold", "medical sales representative").
+hobby("Otto Arnold", "tourism").
+gender("Otto Arnold", "male").

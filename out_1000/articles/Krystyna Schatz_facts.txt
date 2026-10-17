@@ -1,0 +1,16 @@
+mother("Krystyna Schatz", "Annabell Molina").
+father("Krystyna Schatz", "Winfred Molina").
+daughter("Krystyna Schatz", "Dorothea Goff").
+daughter("Krystyna Schatz", "Drema Schatz").
+daughter("Krystyna Schatz", "Mallory Schatz").
+husband("Krystyna Schatz", "Taylor Schatz").
+friend("Krystyna Schatz", "Brianne Layton").
+friend("Krystyna Schatz", "Calvin Carty").
+friend("Krystyna Schatz", "Kerrie Resendez").
+friend("Krystyna Schatz", "Hector Autry").
+friend("Krystyna Schatz", "Manda Cordova").
+friend("Krystyna Schatz", "Lona Corwin").
+dob("Krystyna Schatz", "0358-04-09").
+job("Krystyna Schatz", "applications developer").
+hobby("Krystyna Schatz", "metal detecting").
+gender("Krystyna Schatz", "female").

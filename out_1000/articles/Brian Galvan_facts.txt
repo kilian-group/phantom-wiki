@@ -1,0 +1,17 @@
+son("Brian Galvan", "Zachariah Galvan").
+daughter("Brian Galvan", "Jana Galvan").
+daughter("Brian Galvan", "Raina Hamlin").
+wife("Brian Galvan", "Ashleigh Galvan").
+friend("Brian Galvan", "Christen Resendez").
+friend("Brian Galvan", "Vaughn Dangelo").
+friend("Brian Galvan", "Ella Valladares").
+friend("Brian Galvan", "Naomi Bellows").
+friend("Brian Galvan", "Tiffany Mcdonald").
+friend("Brian Galvan", "Kareem Goff").
+friend("Brian Galvan", "Miki Peabody").
+friend("Brian Galvan", "Geoffrey Musick").
+friend("Brian Galvan", "Scotty Gilliam").
+dob("Brian Galvan", "0348-02-01").
+job("Brian Galvan", "financial risk analyst").
+hobby("Brian Galvan", "metal detecting").
+gender("Brian Galvan", "male").

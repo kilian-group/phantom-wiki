@@ -1,0 +1,19 @@
+brother("Elroy Goff", "Alphonso Goff").
+brother("Elroy Goff", "Jonathan Goff").
+brother("Elroy Goff", "King Goff").
+brother("Elroy Goff", "Tim Goff").
+mother("Elroy Goff", "Dorothea Goff").
+father("Elroy Goff", "Michael Goff").
+friend("Elroy Goff", "Nedra Musick").
+friend("Elroy Goff", "Lauren Strong").
+friend("Elroy Goff", "Sharika Kell").
+friend("Elroy Goff", "James Maness").
+friend("Elroy Goff", "Major Burkhalter").
+friend("Elroy Goff", "Wesley Beamon").
+friend("Elroy Goff", "Dane Murray").
+friend("Elroy Goff", "Earle Boutte").
+friend("Elroy Goff", "Boris Machado").
+dob("Elroy Goff", "0417-01-18").
+job("Elroy Goff", "automotive engineer").
+hobby("Elroy Goff", "cricket").
+gender("Elroy Goff", "male").

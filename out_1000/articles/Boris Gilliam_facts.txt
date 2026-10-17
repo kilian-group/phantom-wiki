@@ -1,0 +1,22 @@
+sister("Boris Gilliam", "Jacinta Gilliam").
+brother("Boris Gilliam", "Darren Gilliam").
+brother("Boris Gilliam", "Hershel Gilliam").
+brother("Boris Gilliam", "Jermaine Gilliam").
+brother("Boris Gilliam", "Markus Gilliam").
+mother("Boris Gilliam", "Lucienne Gilliam").
+father("Boris Gilliam", "Kenton Gilliam").
+friend("Boris Gilliam", "Edythe Gilliam").
+friend("Boris Gilliam", "Byron Medellin").
+friend("Boris Gilliam", "Sang Cheney").
+friend("Boris Gilliam", "Ricky Carswell").
+friend("Boris Gilliam", "Tracey Capps").
+friend("Boris Gilliam", "Joanne Storey").
+friend("Boris Gilliam", "Marilyn Sutphin").
+friend("Boris Gilliam", "Sonny Peeler").
+friend("Boris Gilliam", "Clara Corwin").
+friend("Boris Gilliam", "Micah Hollins").
+friend("Boris Gilliam", "Nydia Ibarra").
+dob("Boris Gilliam", "0348-12-15").
+job("Boris Gilliam", "journalist").
+hobby("Boris Gilliam", "stone collecting").
+gender("Boris Gilliam", "male").

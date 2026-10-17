@@ -1,0 +1,8 @@
+sister("Myrle Smock", "Shelli Beltran").
+mother("Myrle Smock", "Alison Smock").
+father("Myrle Smock", "Williams Smock").
+friend("Myrle Smock", "Ricardo Hackworth").
+dob("Myrle Smock", "0269-03-21").
+job("Myrle Smock", "barrister's clerk").
+hobby("Myrle Smock", "canoeing").
+gender("Myrle Smock", "female").

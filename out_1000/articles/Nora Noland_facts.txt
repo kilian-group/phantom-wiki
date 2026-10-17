@@ -1,0 +1,16 @@
+daughter("Nora Noland", "Daisy Cushman").
+husband("Nora Noland", "Hubert Noland").
+friend("Nora Noland", "Aaron Bowles").
+friend("Nora Noland", "Aron Robinett").
+friend("Nora Noland", "Dustin Sheridan").
+friend("Nora Noland", "Dino Layman").
+friend("Nora Noland", "Preston Booth").
+friend("Nora Noland", "Pamala Vanmeter").
+friend("Nora Noland", "Ricardo Runnels").
+friend("Nora Noland", "Errol Cordova").
+friend("Nora Noland", "Jacinta Gilliam").
+friend("Nora Noland", "Dino Donner").
+dob("Nora Noland", "0464-02-13").
+job("Nora Noland", "diplomatic services operational officer").
+hobby("Nora Noland", "herping").
+gender("Nora Noland", "female").

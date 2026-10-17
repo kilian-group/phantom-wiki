@@ -1,0 +1,11 @@
+son("Jeana Holtz", "Nickolas Holtz").
+husband("Jeana Holtz", "Preston Holtz").
+friend("Jeana Holtz", "Thaddeus Sanborn").
+friend("Jeana Holtz", "Desmond Lester").
+friend("Jeana Holtz", "Malissa Corwin").
+friend("Jeana Holtz", "Maynard Morehead").
+friend("Jeana Holtz", "Johnathon Noland").
+dob("Jeana Holtz", "0420-04-01").
+job("Jeana Holtz", "clinical embryologist").
+hobby("Jeana Holtz", "die-cast toy").
+gender("Jeana Holtz", "female").

@@ -1,0 +1,10 @@
+brother("Mason Oberg", "Amos Oberg").
+mother("Mason Oberg", "Kirsten Oberg").
+father("Mason Oberg", "Lyman Oberg").
+friend("Mason Oberg", "Aurelia Dishman").
+friend("Mason Oberg", "Sherrie Remillard").
+friend("Mason Oberg", "Chrissy Mcgough").
+dob("Mason Oberg", "0333-10-28").
+job("Mason Oberg", "speech and language therapist").
+hobby("Mason Oberg", "fishkeeping").
+gender("Mason Oberg", "male").

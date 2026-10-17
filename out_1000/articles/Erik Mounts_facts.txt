@@ -1,0 +1,18 @@
+mother("Erik Mounts", "Jeannette Mounts").
+father("Erik Mounts", "Mac Mounts").
+son("Erik Mounts", "Seth Mounts").
+wife("Erik Mounts", "Mozelle Mounts").
+friend("Erik Mounts", "Geraldine Suh").
+friend("Erik Mounts", "Otto Arnold").
+friend("Erik Mounts", "Katy Flores").
+friend("Erik Mounts", "Alexander Corwin").
+friend("Erik Mounts", "Lavern Staten").
+friend("Erik Mounts", "Aida Ibarra").
+friend("Erik Mounts", "Monty Depriest").
+friend("Erik Mounts", "Pansy Sutphin").
+friend("Erik Mounts", "Solomon Shaw").
+friend("Erik Mounts", "Eunice Lennox").
+dob("Erik Mounts", "0466-08-13").
+job("Erik Mounts", "proofreader").
+hobby("Erik Mounts", "car riding").
+gender("Erik Mounts", "male").

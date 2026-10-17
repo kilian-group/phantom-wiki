@@ -1,0 +1,15 @@
+brother("Lyman Oberg", "Clyde Oberg").
+brother("Lyman Oberg", "Monte Oberg").
+mother("Lyman Oberg", "Brigida Oberg").
+father("Lyman Oberg", "Richard Oberg").
+son("Lyman Oberg", "Amos Oberg").
+son("Lyman Oberg", "Mason Oberg").
+wife("Lyman Oberg", "Kirsten Oberg").
+friend("Lyman Oberg", "Owen Narvaez").
+friend("Lyman Oberg", "Rhoda Narvaez").
+friend("Lyman Oberg", "Clara Mcgough").
+friend("Lyman Oberg", "Luisa Narvaez").
+dob("Lyman Oberg", "0305-04-10").
+job("Lyman Oberg", "leisure centre manager").
+hobby("Lyman Oberg", "scouting").
+gender("Lyman Oberg", "male").

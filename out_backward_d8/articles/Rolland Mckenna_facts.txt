@@ -1,0 +1,11 @@
+brother("Rolland Mckenna", "Lucas Mckenna").
+mother("Rolland Mckenna", "Windy Mckenna").
+father("Rolland Mckenna", "Carey Mckenna").
+friend("Rolland Mckenna", "Cherise Earnest").
+friend("Rolland Mckenna", "Annabelle Schoonmaker").
+friend("Rolland Mckenna", "Hanh Boutte").
+friend("Rolland Mckenna", "Hanh Mohan").
+dob("Rolland Mckenna", "0302-01-12").
+job("Rolland Mckenna", "advice worker").
+hobby("Rolland Mckenna", "leaves").
+gender("Rolland Mckenna", "male").

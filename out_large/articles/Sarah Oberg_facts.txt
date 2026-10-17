@@ -1,0 +1,11 @@
+sister("Sarah Oberg", "Luisa Narvaez").
+mother("Sarah Oberg", "Cherlyn Oberg").
+father("Sarah Oberg", "Monte Oberg").
+friend("Sarah Oberg", "Alvaro Murphey").
+friend("Sarah Oberg", "Randall Mcgough").
+friend("Sarah Oberg", "Luisa Narvaez").
+friend("Sarah Oberg", "Renate Oberg").
+dob("Sarah Oberg", "0328-04-20").
+job("Sarah Oberg", "conservation officer").
+hobby("Sarah Oberg", "bridge").
+gender("Sarah Oberg", "female").

@@ -1,0 +1,14 @@
+sister("Annabelle Schoonmaker", "Jona Carrell").
+sister("Annabelle Schoonmaker", "Liane Schoonmaker").
+brother("Annabelle Schoonmaker", "Anibal Schoonmaker").
+brother("Annabelle Schoonmaker", "Esteban Schoonmaker").
+mother("Annabelle Schoonmaker", "Robyn Schoonmaker").
+father("Annabelle Schoonmaker", "Ali Schoonmaker").
+friend("Annabelle Schoonmaker", "Ulysses Nicolas").
+friend("Annabelle Schoonmaker", "Zulema Crain").
+friend("Annabelle Schoonmaker", "Rolland Mckenna").
+friend("Annabelle Schoonmaker", "Alberta Abraham").
+dob("Annabelle Schoonmaker", "0260-10-17").
+job("Annabelle Schoonmaker", "probation officer").
+hobby("Annabelle Schoonmaker", "birdwatching").
+gender("Annabelle Schoonmaker", "female").

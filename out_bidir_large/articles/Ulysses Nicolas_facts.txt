@@ -1,0 +1,15 @@
+son("Ulysses Nicolas", "Anthony Nicolas").
+son("Ulysses Nicolas", "Bradford Nicolas").
+daughter("Ulysses Nicolas", "Aletha Nicolas").
+daughter("Ulysses Nicolas", "Rosalinda Francois").
+wife("Ulysses Nicolas", "Cherry Nicolas").
+friend("Ulysses Nicolas", "Adalberto Cedillo").
+friend("Ulysses Nicolas", "Luisa Hornback").
+friend("Ulysses Nicolas", "Annabelle Schoonmaker").
+friend("Ulysses Nicolas", "Monique Palermo").
+friend("Ulysses Nicolas", "Alison Smock").
+friend("Ulysses Nicolas", "Maxwell Henderson").
+dob("Ulysses Nicolas", "0245-06-16").
+job("Ulysses Nicolas", "data scientist").
+hobby("Ulysses Nicolas", "people-watching").
+gender("Ulysses Nicolas", "male").

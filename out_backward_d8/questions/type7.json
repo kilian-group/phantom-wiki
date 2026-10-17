@@ -1,0 +1,370 @@
+[
+    {
+        "id": "dd434f6c-7786-44e4-a02c-a578465fd62a",
+        "question": "What is the hobby of the cousin of Rolland Mckenna?",
+        "solution_traces": "[{\"Y_2\": \"insect collecting\", \"Y_3\": \"Yoko Wilkie\"}, {\"Y_2\": \"story writing\", \"Y_3\": \"Hanh Mohan\"}, {\"Y_2\": \"flag football\", \"Y_3\": \"Maranda Lizotte\"}, {\"Y_2\": \"deltiology\", \"Y_3\": \"Lila Petry\"}, {\"Y_2\": \"surfing\", \"Y_3\": \"Chuck Lizotte\"}, {\"Y_2\": \"beekeeping\", \"Y_3\": \"Nathanial Lizotte\"}]",
+        "answer": [
+            "beekeeping",
+            "deltiology",
+            "flag football",
+            "insect collecting",
+            "story writing",
+            "surfing"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "cousin(\"Rolland Mckenna\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "1fe19eb2-bdb5-46f1-973c-6df4a7d55359",
+        "question": "What is the date of birth of the parent of Johnathan Boutte?",
+        "solution_traces": "[{\"Y_2\": \"0261-03-02\", \"Y_3\": \"Hanh Boutte\"}, {\"Y_2\": \"0264-08-18\", \"Y_3\": \"Kevin Boutte\"}]",
+        "answer": [
+            "0261-03-02",
+            "0264-08-18"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "parent(\"Johnathan Boutte\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "0f5811c4-b072-4b2c-935d-a22c9dfdef18",
+        "question": "What is the date of birth of the friend of Daniel Brannan?",
+        "solution_traces": "[{\"Y_3\": \"Duncan Pannell\", \"Y_2\": \"0234-12-03\"}, {\"Y_2\": \"0293-04-14\", \"Y_3\": \"Hanh Mohan\"}, {\"Y_3\": \"Jeannine Skaggs\", \"Y_2\": \"0303-04-19\"}]",
+        "answer": [
+            "0234-12-03",
+            "0293-04-14",
+            "0303-04-19"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "friend(\"Daniel Brannan\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "4a3b8730-c0e3-43fa-a168-ca16b2f98637",
+        "question": "What is the occupation of the niece of Bradford Nicolas?",
+        "solution_traces": "[{\"Y_2\": \"arboriculturist\", \"Y_3\": \"Connie Nicolas\"}, {\"Y_2\": \"actuary\", \"Y_3\": \"Sha Langley\"}, {\"Y_2\": \"community education officer\", \"Y_3\": \"Lera Brook\"}, {\"Y_2\": \"trading standards officer\", \"Y_3\": \"Marilyn Nicolas\"}]",
+        "answer": [
+            "actuary",
+            "arboriculturist",
+            "community education officer",
+            "trading standards officer"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "niece(\"Bradford Nicolas\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "df9510c7-f8d2-4d99-a09f-d0b2fcd2fbca",
+        "question": "What is the date of birth of the friend of Maxwell Henderson?",
+        "solution_traces": "[{\"Y_2\": \"0245-06-16\", \"Y_3\": \"Ulysses Nicolas\"}, {\"Y_3\": \"Cherry Nicolas\", \"Y_2\": \"0245-08-28\"}, {\"Y_2\": \"0204-03-12\", \"Y_3\": \"Deane Smock\"}, {\"Y_2\": \"0237-07-27\", \"Y_3\": \"Brian Beltran\"}]",
+        "answer": [
+            "0204-03-12",
+            "0237-07-27",
+            "0245-06-16",
+            "0245-08-28"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "friend(\"Maxwell Henderson\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "a1a7be7a-6ee3-4e5e-83d5-494bb29ce088",
+        "question": "What is the occupation of the nephew of Dwain Lizotte?",
+        "solution_traces": "[{\"Y_3\": \"Lucas Mckenna\", \"Y_2\": \"financial manager\"}, {\"Y_2\": \"advice worker\", \"Y_3\": \"Rolland Mckenna\"}]",
+        "answer": [
+            "advice worker",
+            "financial manager"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "nephew(\"Dwain Lizotte\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "6d0e3b40-1f8e-46a9-baf4-b31815d90f8e",
+        "question": "What is the hobby of the parent of Shelli Beltran?",
+        "solution_traces": "[{\"Y_3\": \"Alison Smock\", \"Y_2\": \"meteorology\"}, {\"Y_3\": \"Williams Smock\", \"Y_2\": \"radio-controlled car racing\"}]",
+        "answer": [
+            "meteorology",
+            "radio-controlled car racing"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "parent(\"Shelli Beltran\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "814f9037-8770-46ea-8f74-97ac8d96c27c",
+        "question": "What is the occupation of the niece of Jona Carrell?",
+        "solution_traces": "[{\"Y_2\": \"marketing executive\", \"Y_3\": \"Blair Etheridge\"}]",
+        "answer": [
+            "marketing executive"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "niece(\"Jona Carrell\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "718b09e6-9069-45bf-b201-b588d922806f",
+        "question": "What is the occupation of the father of Charlie Kovach?",
+        "solution_traces": "[{\"Y_2\": \"accountant\", \"Y_3\": \"Everett Kovach\"}]",
+        "answer": [
+            "accountant"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "father(\"Charlie Kovach\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "bb3bc2a1-2bf7-4293-9f97-1853f6df09cc",
+        "question": "What is the date of birth of the sibling of Rosanna Palermo?",
+        "solution_traces": "[{\"Y_3\": \"Francisco Palermo\", \"Y_2\": \"0340-08-15\"}, {\"Y_3\": \"Hannah Palermo\", \"Y_2\": \"0339-01-11\"}, {\"Y_2\": \"0341-01-09\", \"Y_3\": \"Monique Palermo\"}]",
+        "answer": [
+            "0339-01-11",
+            "0340-08-15",
+            "0341-01-09"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "sibling(\"Rosanna Palermo\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 7,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    }
+]

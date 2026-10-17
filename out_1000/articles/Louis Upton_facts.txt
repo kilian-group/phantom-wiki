@@ -1,0 +1,15 @@
+brother("Louis Upton", "Jamie Upton").
+mother("Louis Upton", "Rayna Upton").
+father("Louis Upton", "Jamison Upton").
+friend("Louis Upton", "Jonathon Callender").
+friend("Louis Upton", "Ofelia Callender").
+friend("Louis Upton", "Donald Autry").
+friend("Louis Upton", "Jody Valladares").
+friend("Louis Upton", "Oralia Burdette").
+friend("Louis Upton", "Bret Smart").
+friend("Louis Upton", "Demetra Palomo").
+friend("Louis Upton", "Iluminada Capps").
+dob("Louis Upton", "0400-07-26").
+job("Louis Upton", "chief technology officer").
+hobby("Louis Upton", "horseshoes").
+gender("Louis Upton", "male").

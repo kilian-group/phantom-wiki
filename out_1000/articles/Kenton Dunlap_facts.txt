@@ -1,0 +1,15 @@
+sister("Kenton Dunlap", "Patrice Dunlap").
+brother("Kenton Dunlap", "Donnie Dunlap").
+mother("Kenton Dunlap", "Katerine Dunlap").
+father("Kenton Dunlap", "Sammy Dunlap").
+friend("Kenton Dunlap", "Jefferson Murdoch").
+friend("Kenton Dunlap", "Rosina Putnam").
+friend("Kenton Dunlap", "Ben Sheridan").
+friend("Kenton Dunlap", "Seth Mounts").
+friend("Kenton Dunlap", "Mike Schram").
+friend("Kenton Dunlap", "Bernardo Briscoe").
+friend("Kenton Dunlap", "Jann Ruth").
+dob("Kenton Dunlap", "0320-07-25").
+job("Kenton Dunlap", "risk manager").
+hobby("Kenton Dunlap", "transit map collecting").
+gender("Kenton Dunlap", "male").

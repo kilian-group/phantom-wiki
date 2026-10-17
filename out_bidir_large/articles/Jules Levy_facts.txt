@@ -1,0 +1,14 @@
+son("Jules Levy", "Pasquale Levy").
+wife("Jules Levy", "Lea Levy").
+friend("Jules Levy", "Clarence Mason").
+friend("Jules Levy", "Saul Wexler").
+friend("Jules Levy", "Sherry Cormier").
+friend("Jules Levy", "Zulema Crain").
+friend("Jules Levy", "Kirk Petry").
+friend("Jules Levy", "Rosanna Palermo").
+friend("Jules Levy", "Abraham Decosta").
+friend("Jules Levy", "Adolph Brannan").
+dob("Jules Levy", "0258-01-19").
+job("Jules Levy", "naval architect").
+hobby("Jules Levy", "neuroscience").
+gender("Jules Levy", "male").

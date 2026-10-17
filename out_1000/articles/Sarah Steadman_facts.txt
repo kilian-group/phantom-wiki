@@ -1,0 +1,17 @@
+mother("Sarah Steadman", "Lakeshia Steadman").
+father("Sarah Steadman", "Porter Steadman").
+friend("Sarah Steadman", "Almeta Younger").
+friend("Sarah Steadman", "Patrice Dunlap").
+friend("Sarah Steadman", "Scotty Correia").
+friend("Sarah Steadman", "Bret Smart").
+friend("Sarah Steadman", "Latisha Smart").
+friend("Sarah Steadman", "Hal Ballard").
+friend("Sarah Steadman", "Dave Alarcon").
+friend("Sarah Steadman", "Melvin Peeler").
+friend("Sarah Steadman", "Collin Lively").
+friend("Sarah Steadman", "Zelda Sharma").
+friend("Sarah Steadman", "Emmanuel Swartz").
+dob("Sarah Steadman", "0470-10-22").
+job("Sarah Steadman", "air cabin crew").
+hobby("Sarah Steadman", "pickleball").
+gender("Sarah Steadman", "female").

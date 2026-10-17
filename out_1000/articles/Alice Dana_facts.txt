@@ -1,0 +1,18 @@
+sister("Alice Dana", "Estella Dana").
+sister("Alice Dana", "Marybeth Dana").
+brother("Alice Dana", "Gale Dana").
+brother("Alice Dana", "Jon Dana").
+mother("Alice Dana", "Addie Dana").
+father("Alice Dana", "Drew Dana").
+friend("Alice Dana", "Carolyn Whitford").
+friend("Alice Dana", "Nydia Monday").
+friend("Alice Dana", "Garland Hirsch").
+friend("Alice Dana", "Miles Corso").
+friend("Alice Dana", "Steve Storey").
+friend("Alice Dana", "Newton Pellegrino").
+friend("Alice Dana", "Derek Valladares").
+friend("Alice Dana", "Katy Flores").
+dob("Alice Dana", "0420-03-23").
+job("Alice Dana", "armed forces logistics officer").
+hobby("Alice Dana", "research").
+gender("Alice Dana", "female").

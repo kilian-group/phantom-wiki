@@ -1,0 +1,14 @@
+mother("Dinah Simons", "Lashanda Hartung").
+father("Dinah Simons", "Gerald Hartung").
+son("Dinah Simons", "Harley Simons").
+daughter("Dinah Simons", "Christina Barrows").
+daughter("Dinah Simons", "Helga Simons").
+husband("Dinah Simons", "Luis Simons").
+friend("Dinah Simons", "Dixie Murdoch").
+friend("Dinah Simons", "Aura Crittenden").
+friend("Dinah Simons", "Walter Kell").
+friend("Dinah Simons", "Lona Geter").
+dob("Dinah Simons", "0416-08-16").
+job("Dinah Simons", "naval architect").
+hobby("Dinah Simons", "lotology").
+gender("Dinah Simons", "female").

@@ -1,0 +1,18 @@
+mother("Rudy Runnels", "Manuela Runnels").
+father("Rudy Runnels", "Ricardo Runnels").
+friend("Rudy Runnels", "Chau Peeler").
+friend("Rudy Runnels", "Sonny Peeler").
+friend("Rudy Runnels", "Tammy Sutphin").
+friend("Rudy Runnels", "Claudine Bales").
+friend("Rudy Runnels", "Hope Arteaga").
+friend("Rudy Runnels", "Bruce Burger").
+friend("Rudy Runnels", "Marvin Putnam").
+friend("Rudy Runnels", "Rubye Forester").
+friend("Rudy Runnels", "Chrissy Mcgough").
+friend("Rudy Runnels", "Drew Carty").
+friend("Rudy Runnels", "Anthony Jarrett").
+friend("Rudy Runnels", "Collin Lasher").
+dob("Rudy Runnels", "0538-07-13").
+job("Rudy Runnels", "dentist").
+hobby("Rudy Runnels", "rail transport modelling").
+gender("Rudy Runnels", "male").

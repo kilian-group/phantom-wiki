@@ -1,0 +1,16 @@
+daughter("Babette Jarrett", "Buffy Jarrett").
+daughter("Babette Jarrett", "Noreen Jarrett").
+husband("Babette Jarrett", "Mose Jarrett").
+friend("Babette Jarrett", "Haley Layman").
+friend("Babette Jarrett", "Roni Jarrett").
+friend("Babette Jarrett", "Shelba Simons").
+friend("Babette Jarrett", "Drew Dana").
+friend("Babette Jarrett", "Matthew Dana").
+friend("Babette Jarrett", "Desmond Dacosta").
+friend("Babette Jarrett", "Lera Mcpeak").
+friend("Babette Jarrett", "Donald Fordham").
+friend("Babette Jarrett", "Dino Bowles").
+dob("Babette Jarrett", "0450-10-10").
+job("Babette Jarrett", "fine artist").
+hobby("Babette Jarrett", "baseball").
+gender("Babette Jarrett", "female").

@@ -1,0 +1,17 @@
+son("Georgine Mahoney", "Ty Mahoney").
+husband("Georgine Mahoney", "Jerry Mahoney").
+friend("Georgine Mahoney", "Juanita Eaves").
+friend("Georgine Mahoney", "Shizuko Eaves").
+friend("Georgine Mahoney", "Holley Fredrick").
+friend("Georgine Mahoney", "Jame Carty").
+friend("Georgine Mahoney", "Mallory Scherer").
+friend("Georgine Mahoney", "Tommy Booth").
+friend("Georgine Mahoney", "Karol Beamon").
+friend("Georgine Mahoney", "Anneliese Pellegrino").
+friend("Georgine Mahoney", "Kenny Kinsella").
+friend("Georgine Mahoney", "Katy Flores").
+friend("Georgine Mahoney", "Estella Dana").
+dob("Georgine Mahoney", "0381-04-15").
+job("Georgine Mahoney", "accounting technician").
+hobby("Georgine Mahoney", "fishkeeping").
+gender("Georgine Mahoney", "female").

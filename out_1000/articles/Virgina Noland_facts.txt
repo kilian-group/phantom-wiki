@@ -1,0 +1,19 @@
+mother("Virgina Noland", "Jacque Greene").
+father("Virgina Noland", "Hal Greene").
+son("Virgina Noland", "Johnathon Noland").
+daughter("Virgina Noland", "Jodi Noland").
+husband("Virgina Noland", "Keith Noland").
+friend("Virgina Noland", "Alex Burger").
+friend("Virgina Noland", "Zachary Theriot").
+friend("Virgina Noland", "Gayla Dorn").
+friend("Virgina Noland", "Phylis Courson").
+friend("Virgina Noland", "Noreen Booth").
+friend("Virgina Noland", "Xiao Nolasco").
+friend("Virgina Noland", "Maurine Wendel").
+friend("Virgina Noland", "Paris Cordova").
+friend("Virgina Noland", "Katerine Dunlap").
+friend("Virgina Noland", "Foster Medellin").
+dob("Virgina Noland", "0378-10-11").
+job("Virgina Noland", "consulting civil engineer").
+hobby("Virgina Noland", "slot car").
+gender("Virgina Noland", "female").

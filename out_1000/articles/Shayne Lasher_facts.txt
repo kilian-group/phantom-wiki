@@ -1,0 +1,17 @@
+sister("Shayne Lasher", "Evette Knepper").
+brother("Shayne Lasher", "Collin Lasher").
+mother("Shayne Lasher", "Sona Lasher").
+father("Shayne Lasher", "Newton Lasher").
+son("Shayne Lasher", "Grant Lasher").
+wife("Shayne Lasher", "Noelia Lasher").
+friend("Shayne Lasher", "Phil Murray").
+friend("Shayne Lasher", "Gaye Swartz").
+friend("Shayne Lasher", "Julio Mcdonald").
+friend("Shayne Lasher", "Louie Bales").
+friend("Shayne Lasher", "Steven Prater").
+friend("Shayne Lasher", "Rayna Upton").
+friend("Shayne Lasher", "Xiao Nolasco").
+dob("Shayne Lasher", "0362-10-31").
+job("Shayne Lasher", "haematologist").
+hobby("Shayne Lasher", "mineral collecting").
+gender("Shayne Lasher", "male").

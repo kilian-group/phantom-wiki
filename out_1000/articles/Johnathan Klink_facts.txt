@@ -1,0 +1,16 @@
+daughter("Johnathan Klink", "Alysa Lindquist").
+daughter("Johnathan Klink", "Barbar Kell").
+daughter("Johnathan Klink", "Ladonna Klink").
+wife("Johnathan Klink", "Ilona Klink").
+friend("Johnathan Klink", "Kendrick Jefferson").
+friend("Johnathan Klink", "Viva Jefferson").
+friend("Johnathan Klink", "Latisha Murchison").
+friend("Johnathan Klink", "Drew Dana").
+friend("Johnathan Klink", "Patrick Broughton").
+friend("Johnathan Klink", "Noel Chisholm").
+friend("Johnathan Klink", "Nydia Monday").
+friend("Johnathan Klink", "Chauncey Wilkie").
+dob("Johnathan Klink", "0355-11-27").
+job("Johnathan Klink", "automotive engineer").
+hobby("Johnathan Klink", "amateur geology").
+gender("Johnathan Klink", "male").

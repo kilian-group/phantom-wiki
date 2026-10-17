@@ -1,0 +1,7 @@
+daughter("Jeana Clemons", "Ming Cormier").
+husband("Jeana Clemons", "Andy Clemons").
+friend("Jeana Clemons", "Eduardo Earnest").
+dob("Jeana Clemons", "0203-12-20").
+job("Jeana Clemons", "armed forces logistics officer").
+hobby("Jeana Clemons", "photography").
+gender("Jeana Clemons", "female").

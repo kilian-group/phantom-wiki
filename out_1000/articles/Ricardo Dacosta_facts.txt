@@ -1,0 +1,15 @@
+brother("Ricardo Dacosta", "Desmond Dacosta").
+mother("Ricardo Dacosta", "Glenda Dacosta").
+father("Ricardo Dacosta", "Alec Dacosta").
+friend("Ricardo Dacosta", "Anita Fain").
+friend("Ricardo Dacosta", "Lenny Courson").
+friend("Ricardo Dacosta", "Eugene Geter").
+friend("Ricardo Dacosta", "Manuela Runnels").
+friend("Ricardo Dacosta", "Faith Linden").
+friend("Ricardo Dacosta", "Kennith Towns").
+friend("Ricardo Dacosta", "Keri Bennet").
+friend("Ricardo Dacosta", "Edythe Gilliam").
+dob("Ricardo Dacosta", "0423-06-12").
+job("Ricardo Dacosta", "chief operating officer").
+hobby("Ricardo Dacosta", "web design").
+gender("Ricardo Dacosta", "male").

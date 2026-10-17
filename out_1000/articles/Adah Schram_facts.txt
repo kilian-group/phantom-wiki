@@ -1,0 +1,22 @@
+sister("Adah Schram", "Geraldine Suh").
+sister("Adah Schram", "Sharolyn Basham").
+sister("Adah Schram", "Shawnta Basham").
+brother("Adah Schram", "Winfred Basham").
+mother("Adah Schram", "Ladawn Basham").
+father("Adah Schram", "Javier Basham").
+son("Adah Schram", "Oscar Schram").
+husband("Adah Schram", "Mike Schram").
+friend("Adah Schram", "Collin Lasher").
+friend("Adah Schram", "Jacque Simons").
+friend("Adah Schram", "Maynard Morehead").
+friend("Adah Schram", "Alyssa Salem").
+friend("Adah Schram", "Sang Cheney").
+friend("Adah Schram", "Sheila Putnam").
+friend("Adah Schram", "Monty Depriest").
+friend("Adah Schram", "Evette Hamlin").
+friend("Adah Schram", "Julianne Hamlin").
+friend("Adah Schram", "Harriette Courson").
+dob("Adah Schram", "0416-08-18").
+job("Adah Schram", "chiropractor").
+hobby("Adah Schram", "climbing").
+gender("Adah Schram", "female").

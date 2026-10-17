@@ -1,0 +1,11 @@
+son("Douglass Ingalls", "Charlie Ingalls").
+wife("Douglass Ingalls", "Eliza Ingalls").
+friend("Douglass Ingalls", "Solomon Corwin").
+friend("Douglass Ingalls", "Tamara Wylie").
+friend("Douglass Ingalls", "Alina Bowles").
+friend("Douglass Ingalls", "Steven Prater").
+friend("Douglass Ingalls", "Tomasa Kell").
+dob("Douglass Ingalls", "0334-08-05").
+job("Douglass Ingalls", "ergonomist").
+hobby("Douglass Ingalls", "paragliding").
+gender("Douglass Ingalls", "male").

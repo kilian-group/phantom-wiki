@@ -1,0 +1,15 @@
+sister("Sharon Ingalls", "Earlean Ingalls").
+sister("Sharon Ingalls", "Marlene Ingalls").
+brother("Sharon Ingalls", "Lloyd Ingalls").
+mother("Sharon Ingalls", "Gloria Ingalls").
+father("Sharon Ingalls", "Hershel Ingalls").
+daughter("Sharon Ingalls", "Heather Ingalls").
+daughter("Sharon Ingalls", "Zora Simons").
+husband("Sharon Ingalls", "Charlie Ingalls").
+friend("Sharon Ingalls", "Bill Clement").
+friend("Sharon Ingalls", "Guadalupe Palomo").
+friend("Sharon Ingalls", "Vilma Callender").
+dob("Sharon Ingalls", "0358-07-25").
+job("Sharon Ingalls", "cabin crew").
+hobby("Sharon Ingalls", "rock tumbling").
+gender("Sharon Ingalls", "female").

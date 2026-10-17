@@ -1,0 +1,462 @@
+[
+    {
+        "id": "2ce677cc-f4fe-4843-8403-5d35f6847b19",
+        "question": "Who has more granddaughters, Chrissy Mcgough or Jon Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jon Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(granddaughter(\"Chrissy Mcgough\", X)), C1)",
+                "aggregate_all(count, distinct(granddaughter(\"Jon Remillard\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "43ef525f-32e6-48d5-bb3c-18b03e662e15",
+        "question": "Who has more great-grandfathers, Louann Chrisman or Clyde Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Louann Chrisman"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(great_grandfather(\"Louann Chrisman\", X)), C1)",
+                "aggregate_all(count, distinct(great_grandfather(\"Clyde Oberg\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "ec3d0e47-3e5b-4111-bf82-b4b3982aa678",
+        "question": "Who has more cousins, Dorinda Chrisman or Jaime Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dorinda Chrisman"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(cousin(\"Dorinda Chrisman\", X)), C1)",
+                "aggregate_all(count, distinct(cousin(\"Jaime Remillard\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "2e7dba88-1738-43bc-82ab-acdbbf22999a",
+        "question": "Who has more male cousins, Twila Oberg or Jaime Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Twila Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(male_cousin(\"Twila Oberg\", X)), C1)",
+                "aggregate_all(count, distinct(male_cousin(\"Jaime Remillard\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "44e29a64-5881-4fbd-a8a4-a3cb1e5a86e7",
+        "question": "Who has more grandparents, Elroy Mcgough or Jaime Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jaime Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(grandparent(\"Elroy Mcgough\", X)), C1)",
+                "aggregate_all(count, distinct(grandparent(\"Jaime Remillard\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "27c6225a-0083-452a-98af-a41aca4cb2e5",
+        "question": "Who has more siblings, Kirsten Oberg or Amos Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Amos Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sibling(\"Kirsten Oberg\", X)), C1)",
+                "aggregate_all(count, distinct(sibling(\"Amos Oberg\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "ada2b0b7-d5de-4c3e-83e1-63cc45f2c392",
+        "question": "Who has more great-grandmothers, Mason Oberg or Elroy Mcgough?",
+        "solution_traces": "[]",
+        "answer": [
+            "Mason Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(great_grandmother(\"Mason Oberg\", X)), C1)",
+                "aggregate_all(count, distinct(great_grandmother(\"Elroy Mcgough\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "043784a6-5ea1-4382-a992-eb6f69467ba6",
+        "question": "Who has more great-grandmothers, Valentin Vandenberg or Myrl Mcgough?",
+        "solution_traces": "[]",
+        "answer": [
+            "Myrl Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(great_grandmother(\"Valentin Vandenberg\", X)), C1)",
+                "aggregate_all(count, distinct(great_grandmother(\"Myrl Mcgough\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "77026a24-e0ee-4137-a3f0-b7dd0ecf6a59",
+        "question": "Who has more nephews, Chrissy Remillard or Richard Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Chrissy Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(nephew(\"Chrissy Remillard\", X)), C1)",
+                "aggregate_all(count, distinct(nephew(\"Richard Oberg\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "41e41c3e-234a-47ec-9e6b-3d1afdbd0109",
+        "question": "Who has more parents, Justine Remillard or Marion Wilke?",
+        "solution_traces": "[]",
+        "answer": [
+            "Marion Wilke"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(parent(\"Justine Remillard\", X)), C1)",
+                "aggregate_all(count, distinct(parent(\"Marion Wilke\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "686535e1-4c65-47da-b8ed-83d7d89b0781",
+        "question": "Who has more sons-in-law, Monte Oberg or Demarcus Narvaez?",
+        "solution_traces": "[]",
+        "answer": [
+            "Monte Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(son_in_law(\"Monte Oberg\", X)), C1)",
+                "aggregate_all(count, distinct(son_in_law(\"Demarcus Narvaez\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "29868b1c-93c7-4e8a-98b4-e31d73dc61e4",
+        "question": "Who has more fathers-in-law, Colby Narvaez or Aurelia Dishman?",
+        "solution_traces": "[]",
+        "answer": [
+            "Colby Narvaez"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(father_in_law(\"Colby Narvaez\", X)), C1)",
+                "aggregate_all(count, distinct(father_in_law(\"Aurelia Dishman\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "9a14e879-c3ba-4f6a-8a65-39d66145d484",
+        "question": "Who has more granddaughters, Amy Wilke or Rhoda Narvaez?",
+        "solution_traces": "[]",
+        "answer": [
+            "Amy Wilke"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(granddaughter(\"Amy Wilke\", X)), C1)",
+                "aggregate_all(count, distinct(granddaughter(\"Rhoda Narvaez\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "550fcf72-42bb-4f21-8f2b-895f5e0ee2ae",
+        "question": "Who has more husbands, Louann Chrisman or Wanita Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Louann Chrisman"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(husband(\"Louann Chrisman\", X)), C1)",
+                "aggregate_all(count, distinct(husband(\"Wanita Remillard\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "04d78f32-204b-4e08-92db-4ab9718b7b47",
+        "question": "Who has more uncles, Justine Remillard or Belva Murphey?",
+        "solution_traces": "[]",
+        "answer": [
+            "Belva Murphey"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(uncle(\"Justine Remillard\", X)), C1)",
+                "aggregate_all(count, distinct(uncle(\"Belva Murphey\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "613390f6-2ef5-4b42-a68d-c94064357041",
+        "question": "Who has more grandchildren, Aurelia Dishman or Wanita Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aurelia Dishman"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(grandchild(\"Aurelia Dishman\", X)), C1)",
+                "aggregate_all(count, distinct(grandchild(\"Wanita Remillard\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "0087716a-300f-4a8d-bdb0-71faa4c3d25c",
+        "question": "Who has more mothers, Amy Wilke or Abel Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Amy Wilke"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(mother(\"Amy Wilke\", X)), C1)",
+                "aggregate_all(count, distinct(mother(\"Abel Oberg\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "42f2751d-62fc-4da6-879f-a25ee7ac0f55",
+        "question": "Who has more grandsons, Jaime Remillard or Dorinda Chrisman?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jaime Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(grandson(\"Jaime Remillard\", X)), C1)",
+                "aggregate_all(count, distinct(grandson(\"Dorinda Chrisman\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "217b4fac-a891-46d0-bdff-763c5d279fc2",
+        "question": "Who has more mothers-in-law, Dani Remillard or Elroy Mcgough?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dani Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(mother_in_law(\"Dani Remillard\", X)), C1)",
+                "aggregate_all(count, distinct(mother_in_law(\"Elroy Mcgough\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "932b45ad-e74c-4249-8d46-681ab1897617",
+        "question": "Who has more great-grandfathers, Morgan Remillard or Amos Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Amos Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(great_grandfather(\"Morgan Remillard\", X)), C1)",
+                "aggregate_all(count, distinct(great_grandfather(\"Amos Oberg\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 221,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    }
+]

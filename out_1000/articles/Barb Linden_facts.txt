@@ -1,0 +1,24 @@
+brother("Barb Linden", "Lukas Mcdonald").
+mother("Barb Linden", "Keisha Mcdonald").
+father("Barb Linden", "Julio Mcdonald").
+son("Barb Linden", "Augustine Linden").
+son("Barb Linden", "Emery Linden").
+daughter("Barb Linden", "Brunilda Linden").
+daughter("Barb Linden", "Catina Linden").
+daughter("Barb Linden", "Genny Burdette").
+daughter("Barb Linden", "Patricia Towns").
+husband("Barb Linden", "Jarvis Linden").
+friend("Barb Linden", "Jann Ruth").
+friend("Barb Linden", "Julio Mcdonald").
+friend("Barb Linden", "Chance Mahoney").
+friend("Barb Linden", "Denny Eaves").
+friend("Barb Linden", "Karla Linares").
+friend("Barb Linden", "Kenton Whitford").
+friend("Barb Linden", "Latisha Smart").
+friend("Barb Linden", "Sung Fordham").
+friend("Barb Linden", "Rudolf Sanborn").
+friend("Barb Linden", "Tomasa Kell").
+dob("Barb Linden", "0441-07-01").
+job("Barb Linden", "dance movement psychotherapist").
+hobby("Barb Linden", "research").
+gender("Barb Linden", "female").

@@ -1,0 +1,16 @@
+sister("Charlie Kovach", "Elissa Kovach").
+sister("Charlie Kovach", "Laverna Kovach").
+brother("Charlie Kovach", "Carson Kovach").
+mother("Charlie Kovach", "Margaret Kovach").
+father("Charlie Kovach", "Everett Kovach").
+daughter("Charlie Kovach", "Laura Kovach").
+wife("Charlie Kovach", "Ester Kovach").
+friend("Charlie Kovach", "Leeann Hackworth").
+friend("Charlie Kovach", "Myrle Smock").
+friend("Charlie Kovach", "Kirk Petry").
+friend("Charlie Kovach", "Reyna Petry").
+friend("Charlie Kovach", "Cherise Earnest").
+dob("Charlie Kovach", "0277-07-02").
+job("Charlie Kovach", "probation officer").
+hobby("Charlie Kovach", "psychology").
+gender("Charlie Kovach", "male").

@@ -1,0 +1,17 @@
+brother("Jesus Cordova", "Anibal Cordova").
+brother("Jesus Cordova", "Jacques Cordova").
+mother("Jesus Cordova", "Leonora Cordova").
+father("Jesus Cordova", "Galen Cordova").
+son("Jesus Cordova", "Paris Cordova").
+wife("Jesus Cordova", "Ai Cordova").
+friend("Jesus Cordova", "Deloris Swartz").
+friend("Jesus Cordova", "Gaye Swartz").
+friend("Jesus Cordova", "Edythe Osterman").
+friend("Jesus Cordova", "Bev Medellin").
+friend("Jesus Cordova", "Deloris Robinett").
+friend("Jesus Cordova", "Hershel Shilling").
+friend("Jesus Cordova", "Wyatt Mckenna").
+dob("Jesus Cordova", "0382-12-20").
+job("Jesus Cordova", "maintenance engineer").
+hobby("Jesus Cordova", "shortwave listening").
+gender("Jesus Cordova", "male").

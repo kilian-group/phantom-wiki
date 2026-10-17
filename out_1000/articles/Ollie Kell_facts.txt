@@ -1,0 +1,16 @@
+daughter("Ollie Kell", "Ashleigh Kell").
+husband("Ollie Kell", "Abe Kell").
+friend("Ollie Kell", "Donnie Crocker").
+friend("Ollie Kell", "Jennifer Paynter").
+friend("Ollie Kell", "Jackqueline Hollinger").
+friend("Ollie Kell", "Keisha Mcdonald").
+friend("Ollie Kell", "Timothy Shoulders").
+friend("Ollie Kell", "Rolf Osterman").
+friend("Ollie Kell", "Shizuko Eaves").
+friend("Ollie Kell", "Kip Murdoch").
+friend("Ollie Kell", "Valeria Medellin").
+friend("Ollie Kell", "Ricky Carswell").
+dob("Ollie Kell", "0436-08-10").
+job("Ollie Kell", "runner").
+hobby("Ollie Kell", "mathematics").
+gender("Ollie Kell", "female").

@@ -1,0 +1,384 @@
+[
+    {
+        "id": "2d40768f-e766-4e6c-abbd-b87c3e4fe9a9",
+        "question": "Who is the oldest cousin of the cousin of Rolland Mckenna?",
+        "solution_traces": "[]",
+        "answer": [
+            "Hanh Mohan",
+            "Lila Petry"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (cousin(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "cousin(Y_2, Y_9)",
+                "cousin(\"Rolland Mckenna\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 208,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "c70c105e-bc7b-47cf-82f9-a2d17a0debba",
+        "question": "Who is the oldest son of the parent of Johnathan Boutte?",
+        "solution_traces": "[]",
+        "answer": [
+            "Johnathan Boutte"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (son(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "son(Y_2, Y_9)",
+                "parent(\"Johnathan Boutte\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 208,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "63d03ead-3c59-4937-bd03-1c64c025e431",
+        "question": "Who is the oldest sister of the friend of Daniel Brannan?",
+        "solution_traces": "[]",
+        "answer": [
+            "Maranda Lizotte"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "sister(Y_2, Y_9)",
+                "friend(\"Daniel Brannan\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 208,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "c96c8d37-3934-493d-815e-021754aaa4c9",
+        "question": "Who is the oldest cousin of the niece of Bradford Nicolas?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lera Brook",
+            "Sha Langley"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (cousin(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "cousin(Y_2, Y_9)",
+                "niece(\"Bradford Nicolas\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 208,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "252868a7-e8d4-428a-879e-13be64a6cfbb",
+        "question": "Who is the oldest husband of the friend of Maxwell Henderson?",
+        "solution_traces": "[]",
+        "answer": [
+            "Ulysses Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (husband(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "husband(Y_2, Y_9)",
+                "friend(\"Maxwell Henderson\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 208,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "4e46eafb-4dae-4dd3-9441-3e9103dbb32a",
+        "question": "Who is the oldest cousin of the nephew of Dwain Lizotte?",
+        "solution_traces": "[]",
+        "answer": [
+            "Hanh Mohan"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (cousin(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "cousin(Y_2, Y_9)",
+                "nephew(\"Dwain Lizotte\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 208,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "50290b17-6ccb-41d4-84ad-e27deac3fe04",
+        "question": "Who is the oldest great-granddaughter of the parent of Shelli Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Leeann Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (great_granddaughter(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "great_granddaughter(Y_2, Y_9)",
+                "parent(\"Shelli Beltran\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 208,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "8959785e-0dda-4633-9cd2-a1ed54b1bca5",
+        "question": "Who is the oldest granddaughter of the niece of Jona Carrell?",
+        "solution_traces": "[]",
+        "answer": [
+            "Rosanna Palermo"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (granddaughter(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "granddaughter(Y_2, Y_9)",
+                "niece(\"Jona Carrell\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 208,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "4c461f4c-c21d-4535-a5ce-1c2d9370d997",
+        "question": "Who is the oldest father-in-law of the father of Charlie Kovach?",
+        "solution_traces": "[]",
+        "answer": [
+            "Adolph Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (father_in_law(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "father_in_law(Y_2, Y_9)",
+                "father(\"Charlie Kovach\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 208,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "dcc2329e-9cdf-46f8-9c5f-fe83273f2878",
+        "question": "Who is the oldest child of the sibling of Rosanna Palermo?",
+        "solution_traces": "[]",
+        "answer": [
+            "Joel Palermo"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (child(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "child(Y_2, Y_9)",
+                "sibling(\"Rosanna Palermo\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 208,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    }
+]

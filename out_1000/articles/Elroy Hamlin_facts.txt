@@ -1,0 +1,16 @@
+sister("Elroy Hamlin", "Goldie Alessi").
+sister("Elroy Hamlin", "Nellie Hamlin").
+sister("Elroy Hamlin", "Shizuko Sheridan").
+brother("Elroy Hamlin", "Hosea Hamlin").
+brother("Elroy Hamlin", "Sylvester Hamlin").
+mother("Elroy Hamlin", "Raina Hamlin").
+father("Elroy Hamlin", "Felix Hamlin").
+friend("Elroy Hamlin", "Gene Burnett").
+friend("Elroy Hamlin", "Terrell Lai").
+friend("Elroy Hamlin", "Evette Knepper").
+friend("Elroy Hamlin", "Hal Osterman").
+friend("Elroy Hamlin", "Zoraida Sanborn").
+dob("Elroy Hamlin", "0398-05-06").
+job("Elroy Hamlin", "multimedia programmer").
+hobby("Elroy Hamlin", "microscopy").
+gender("Elroy Hamlin", "male").

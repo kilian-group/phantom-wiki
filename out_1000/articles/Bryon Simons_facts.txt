@@ -1,0 +1,15 @@
+mother("Bryon Simons", "Melina Simons").
+father("Bryon Simons", "Harley Simons").
+son("Bryon Simons", "Seymour Simons").
+daughter("Bryon Simons", "Babette Simons").
+daughter("Bryon Simons", "Naomi Bellows").
+wife("Bryon Simons", "Marcelina Simons").
+friend("Bryon Simons", "Keisha Mcdonald").
+friend("Bryon Simons", "Jefferson Murdoch").
+friend("Bryon Simons", "Romelia Bowles").
+friend("Bryon Simons", "Michael Mckenna").
+friend("Bryon Simons", "Jesus Gregory").
+dob("Bryon Simons", "0472-12-27").
+job("Bryon Simons", "production designer").
+hobby("Bryon Simons", "geocaching").
+gender("Bryon Simons", "male").

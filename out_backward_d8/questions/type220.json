@@ -1,0 +1,292 @@
+[
+    {
+        "id": "25ef5ed6-c151-46c1-91b9-ab9c740c7bfd",
+        "question": "Who is older, Reyna Petry or Calvin Woodman?",
+        "solution_traces": "[]",
+        "answer": [
+            "Reyna Petry"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Reyna Petry\", D1)",
+                "dob(\"Calvin Woodman\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "b6fea826-ee3f-40ce-b126-47625fb0c0cc",
+        "question": "Who is older, Dominique Smock or Jame Shirk?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dominique Smock"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Dominique Smock\", D1)",
+                "dob(\"Jame Shirk\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "7d688427-8b30-4c16-93b2-2c5f1965647e",
+        "question": "Who is older, Johnathan Boutte or Charlie Kovach?",
+        "solution_traces": "[]",
+        "answer": [
+            "Charlie Kovach"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Johnathan Boutte\", D1)",
+                "dob(\"Charlie Kovach\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "580b0594-6b82-43b9-950d-8c8dc24a4d70",
+        "question": "Who is older, Lea Levy or Bradford Nicolas?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lea Levy"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Lea Levy\", D1)",
+                "dob(\"Bradford Nicolas\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "5b62b879-e107-4be8-893a-2760199167a0",
+        "question": "Who is older, Deborah Brannan or Maxwell Henderson?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deborah Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Deborah Brannan\", D1)",
+                "dob(\"Maxwell Henderson\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "313664b6-82c2-4aca-b19c-132f87fec290",
+        "question": "Who is older, Chuck Lizotte or Karla Hornback?",
+        "solution_traces": "[]",
+        "answer": [
+            "Karla Hornback"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Chuck Lizotte\", D1)",
+                "dob(\"Karla Hornback\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "8d01f6d9-84d1-41ec-80da-d88d605ae267",
+        "question": "Who is older, Shelli Beltran or Deane Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deane Smock"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Shelli Beltran\", D1)",
+                "dob(\"Deane Smock\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "96610c63-8bd6-4695-be5d-19c66456a0a6",
+        "question": "Who is older, Jona Carrell or Ester Kovach?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jona Carrell"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Jona Carrell\", D1)",
+                "dob(\"Ester Kovach\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "65b45461-2e09-4f53-9f4e-e20997a9ec3a",
+        "question": "Who is older, Edythe Nicolas or Casey Brannan?",
+        "solution_traces": "[]",
+        "answer": [
+            "Casey Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Edythe Nicolas\", D1)",
+                "dob(\"Casey Brannan\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    },
+    {
+        "id": "6a5a1bac-5f40-4b12-809d-57659bab2353",
+        "question": "Who is older, Deborah Cormier or Roman Palermo?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deborah Cormier"
+        ],
+        "prolog": {
+            "query": [
+                "dob(\"Deborah Cormier\", D1)",
+                "dob(\"Roman Palermo\", D2)",
+                "D1 @< D2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_age"
+        ],
+        "type": 220,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 0,
+            "composite": 0,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age"
+    }
+]

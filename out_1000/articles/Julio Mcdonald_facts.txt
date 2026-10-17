@@ -1,0 +1,18 @@
+son("Julio Mcdonald", "Lukas Mcdonald").
+daughter("Julio Mcdonald", "Barb Linden").
+wife("Julio Mcdonald", "Keisha Mcdonald").
+friend("Julio Mcdonald", "Shannon Flores").
+friend("Julio Mcdonald", "Jeromy Ibarra").
+friend("Julio Mcdonald", "Maybelle Oliveira").
+friend("Julio Mcdonald", "Tracey Capps").
+friend("Julio Mcdonald", "Tonia Mcgough").
+friend("Julio Mcdonald", "Eugene Courson").
+friend("Julio Mcdonald", "Nelly Jarrett").
+friend("Julio Mcdonald", "Alexa Mckenna").
+friend("Julio Mcdonald", "Guillermo Lasher").
+friend("Julio Mcdonald", "Shayne Lasher").
+friend("Julio Mcdonald", "Barb Linden").
+dob("Julio Mcdonald", "0413-07-23").
+job("Julio Mcdonald", "financial risk analyst").
+hobby("Julio Mcdonald", "research").
+gender("Julio Mcdonald", "male").

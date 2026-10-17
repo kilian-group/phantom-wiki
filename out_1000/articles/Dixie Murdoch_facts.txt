@@ -1,0 +1,19 @@
+brother("Dixie Murdoch", "Jefferson Smart").
+mother("Dixie Murdoch", "Amy Smart").
+father("Dixie Murdoch", "Drew Smart").
+son("Dixie Murdoch", "Kip Murdoch").
+husband("Dixie Murdoch", "Jefferson Murdoch").
+friend("Dixie Murdoch", "Kayla Ballard").
+friend("Dixie Murdoch", "Ester Yarbrough").
+friend("Dixie Murdoch", "Alvaro Murphey").
+friend("Dixie Murdoch", "Simon Kell").
+friend("Dixie Murdoch", "Mason Dangelo").
+friend("Dixie Murdoch", "Dinah Simons").
+friend("Dixie Murdoch", "Bill Clement").
+friend("Dixie Murdoch", "Hank Gerber").
+friend("Dixie Murdoch", "Tanner Holliman").
+friend("Dixie Murdoch", "Dino Donner").
+dob("Dixie Murdoch", "0402-02-13").
+job("Dixie Murdoch", "exhibitions officer").
+hobby("Dixie Murdoch", "geocaching").
+gender("Dixie Murdoch", "female").

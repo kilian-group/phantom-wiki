@@ -1,0 +1,16 @@
+brother("Luisa Estrella", "Lucas Estrella").
+mother("Luisa Estrella", "Leena Estrella").
+father("Luisa Estrella", "Jan Estrella").
+friend("Luisa Estrella", "Chrissy Mcgough").
+friend("Luisa Estrella", "Tonia Mcgough").
+friend("Luisa Estrella", "Emery Scherer").
+friend("Luisa Estrella", "Javier Basham").
+friend("Luisa Estrella", "Lenora Hayward").
+friend("Luisa Estrella", "Mickey Beamon").
+friend("Luisa Estrella", "Vaughn Dangelo").
+friend("Luisa Estrella", "Vernon Peabody").
+friend("Luisa Estrella", "Calvin Holliman").
+dob("Luisa Estrella", "0364-12-06").
+job("Luisa Estrella", "outdoor activities manager").
+hobby("Luisa Estrella", "book folding").
+gender("Luisa Estrella", "female").

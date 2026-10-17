@@ -1,0 +1,12 @@
+son("Bonnie Storey", "Wilber Storey").
+husband("Bonnie Storey", "Mack Storey").
+friend("Bonnie Storey", "Maybelle Lester").
+friend("Bonnie Storey", "Abdul Morehead").
+friend("Bonnie Storey", "King Goff").
+friend("Bonnie Storey", "Justin Putnam").
+friend("Bonnie Storey", "Laurence Macias").
+friend("Bonnie Storey", "Audie Lasher").
+dob("Bonnie Storey", "0404-01-28").
+job("Bonnie Storey", "metallurgist").
+hobby("Bonnie Storey", "sled dog racing").
+gender("Bonnie Storey", "female").

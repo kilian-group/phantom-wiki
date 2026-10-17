@@ -1,0 +1,19 @@
+sister("Porter Mckenna", "Kimberely Corso").
+brother("Porter Mckenna", "Ira Mckenna").
+brother("Porter Mckenna", "Nevin Mckenna").
+brother("Porter Mckenna", "Rodrigo Mckenna").
+mother("Porter Mckenna", "Dorathy Mckenna").
+father("Porter Mckenna", "Cameron Mckenna").
+friend("Porter Mckenna", "Ramon Swartz").
+friend("Porter Mckenna", "Buffy Mccurry").
+friend("Porter Mckenna", "Emanuel Mccall").
+friend("Porter Mckenna", "Brigette Keyes").
+friend("Porter Mckenna", "Maryann Oliveira").
+friend("Porter Mckenna", "Odelia Fredrick").
+friend("Porter Mckenna", "Gabriele Wilke").
+friend("Porter Mckenna", "Sylvia Carty").
+friend("Porter Mckenna", "Delbert Courson").
+dob("Porter Mckenna", "0439-09-16").
+job("Porter Mckenna", "financial adviser").
+hobby("Porter Mckenna", "literature").
+gender("Porter Mckenna", "male").

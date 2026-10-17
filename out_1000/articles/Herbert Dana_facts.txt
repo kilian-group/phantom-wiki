@@ -1,0 +1,14 @@
+mother("Herbert Dana", "Juanita Dana").
+father("Herbert Dana", "Felton Dana").
+friend("Herbert Dana", "Alphonso Goff").
+friend("Herbert Dana", "Dennis Littleton").
+friend("Herbert Dana", "Ollie Minnick").
+friend("Herbert Dana", "Susie Medellin").
+friend("Herbert Dana", "Lashandra Bowles").
+friend("Herbert Dana", "Deangelo Marr").
+friend("Herbert Dana", "Leslie Courson").
+friend("Herbert Dana", "Cedric Towns").
+dob("Herbert Dana", "0454-07-16").
+job("Herbert Dana", "lighting technician").
+hobby("Herbert Dana", "sand art").
+gender("Herbert Dana", "male").

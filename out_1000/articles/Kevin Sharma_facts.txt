@@ -1,0 +1,14 @@
+daughter("Kevin Sharma", "Sasha Simons").
+wife("Kevin Sharma", "Zelda Sharma").
+friend("Kevin Sharma", "Jamel Chou").
+friend("Kevin Sharma", "Lazaro Hsu").
+friend("Kevin Sharma", "Cedric Wilke").
+friend("Kevin Sharma", "Mattie Courson").
+friend("Kevin Sharma", "Jerrold Harlow").
+friend("Kevin Sharma", "Donald Autry").
+friend("Kevin Sharma", "Anastacia Cordova").
+friend("Kevin Sharma", "Rebecka Schlosser").
+dob("Kevin Sharma", "0380-10-16").
+job("Kevin Sharma", "chief strategy officer").
+hobby("Kevin Sharma", "gymnastics").
+gender("Kevin Sharma", "male").

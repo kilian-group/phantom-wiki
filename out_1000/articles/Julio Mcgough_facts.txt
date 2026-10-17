@@ -1,0 +1,23 @@
+sister("Julio Mcgough", "Larue Macias").
+sister("Julio Mcgough", "Leonora Depriest").
+sister("Julio Mcgough", "Racquel Horan").
+brother("Julio Mcgough", "Donnie Mcgough").
+brother("Julio Mcgough", "Wilbur Mcgough").
+mother("Julio Mcgough", "Myrl Mcgough").
+father("Julio Mcgough", "Randall Mcgough").
+friend("Julio Mcgough", "Christen Resendez").
+friend("Julio Mcgough", "Kristie Harlow").
+friend("Julio Mcgough", "Sharolyn Basham").
+friend("Julio Mcgough", "Ambrose Cordova").
+friend("Julio Mcgough", "Patsy Murray").
+friend("Julio Mcgough", "Heather Ingalls").
+friend("Julio Mcgough", "Felton Dana").
+friend("Julio Mcgough", "Katherine Corwin").
+friend("Julio Mcgough", "Emanuel Mccall").
+friend("Julio Mcgough", "Mac Goff").
+friend("Julio Mcgough", "Hiram Putnam").
+friend("Julio Mcgough", "Tyesha Marr").
+dob("Julio Mcgough", "0434-01-31").
+job("Julio Mcgough", "local government officer").
+hobby("Julio Mcgough", "shortwave listening").
+gender("Julio Mcgough", "male").

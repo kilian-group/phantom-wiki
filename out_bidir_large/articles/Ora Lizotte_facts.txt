@@ -1,0 +1,13 @@
+son("Ora Lizotte", "Dwain Lizotte").
+daughter("Ora Lizotte", "Reyna Petry").
+daughter("Ora Lizotte", "Windy Mckenna").
+husband("Ora Lizotte", "Odis Lizotte").
+friend("Ora Lizotte", "Randell Pannell").
+friend("Ora Lizotte", "Roman Palermo").
+friend("Ora Lizotte", "Aida Wang").
+friend("Ora Lizotte", "Vicki Hackworth").
+friend("Ora Lizotte", "Eldon Nicolas").
+dob("Ora Lizotte", "0238-10-27").
+job("Ora Lizotte", "physiological scientist").
+hobby("Ora Lizotte", "medical science").
+gender("Ora Lizotte", "female").

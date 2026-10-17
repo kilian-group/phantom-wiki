@@ -1,0 +1,21 @@
+sister("Jaime Remillard", "Wanita Remillard").
+brother("Jaime Remillard", "Jude Remillard").
+mother("Jaime Remillard", "Sherrie Remillard").
+father("Jaime Remillard", "Jon Remillard").
+son("Jaime Remillard", "Hunter Remillard").
+daughter("Jaime Remillard", "Chrissy Remillard").
+daughter("Jaime Remillard", "Margie Remillard").
+wife("Jaime Remillard", "Morgan Remillard").
+friend("Jaime Remillard", "Jon Remillard").
+friend("Jaime Remillard", "Jude Remillard").
+friend("Jaime Remillard", "King Dishman").
+friend("Jaime Remillard", "Sherrie Remillard").
+friend("Jaime Remillard", "Belva Murphey").
+friend("Jaime Remillard", "Ophelia Mcgough").
+friend("Jaime Remillard", "Brigida Oberg").
+friend("Jaime Remillard", "Colby Narvaez").
+friend("Jaime Remillard", "Rhoda Narvaez").
+dob("Jaime Remillard", "0293-09-03").
+job("Jaime Remillard", "software engineer").
+hobby("Jaime Remillard", "people-watching").
+gender("Jaime Remillard", "male").

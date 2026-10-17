@@ -1,0 +1,13 @@
+son("Charley Lively", "Collin Lively").
+wife("Charley Lively", "Coleen Lively").
+friend("Charley Lively", "Frankie Mahoney").
+friend("Charley Lively", "Harold Hollins").
+friend("Charley Lively", "Erick Courson").
+friend("Charley Lively", "Javier Scherer").
+friend("Charley Lively", "Rashad Nolasco").
+friend("Charley Lively", "Jeff Haygood").
+friend("Charley Lively", "Elliott Ingle").
+dob("Charley Lively", "0406-03-22").
+job("Charley Lively", "primary school teacher").
+hobby("Charley Lively", "medical science").
+gender("Charley Lively", "male").

@@ -1,0 +1,293 @@
+[
+    {
+        "id": "f801b04d-a6b8-4772-a402-e81d7a71d387",
+        "question": "Who is the youngest nephew of Jeanelle Mcnew?",
+        "solution_traces": "[]",
+        "answer": [
+            "Haywood Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "nephew(\"Jeanelle Mcnew\", X)",
+                "dob(X, D)",
+                "\\+ (nephew(\"Jeanelle Mcnew\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "cb8904d3-a638-4e9c-a792-9784b4a5ccd1",
+        "question": "Who is the youngest grandchild of Kris Haber?",
+        "solution_traces": "[]",
+        "answer": [
+            "Goldie Henderson",
+            "Lorelei Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "grandchild(\"Kris Haber\", X)",
+                "dob(X, D)",
+                "\\+ (grandchild(\"Kris Haber\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "878941e6-44fe-4a2a-9959-0d2382e4c383",
+        "question": "Who is the youngest sister-in-law of Ester Kovach?",
+        "solution_traces": "[]",
+        "answer": [
+            "Laverna Kovach"
+        ],
+        "prolog": {
+            "query": [
+                "sister_in_law(\"Ester Kovach\", X)",
+                "dob(X, D)",
+                "\\+ (sister_in_law(\"Ester Kovach\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "8f32b14a-1287-4d8d-8444-52cc994f2fb9",
+        "question": "Who is the youngest child of Monique Griffiths?",
+        "solution_traces": "[]",
+        "answer": [
+            "Hilton Griffiths"
+        ],
+        "prolog": {
+            "query": [
+                "child(\"Monique Griffiths\", X)",
+                "dob(X, D)",
+                "\\+ (child(\"Monique Griffiths\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "40e682e8-467c-447d-bc7b-aac0e1fff181",
+        "question": "Who is the youngest grandchild of Theodore Crain?",
+        "solution_traces": "[]",
+        "answer": [
+            "Rubye Crain"
+        ],
+        "prolog": {
+            "query": [
+                "grandchild(\"Theodore Crain\", X)",
+                "dob(X, D)",
+                "\\+ (grandchild(\"Theodore Crain\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "85956ccb-7f73-462a-9d4e-99efae4e8edd",
+        "question": "Who is the youngest great-granddaughter of Brian Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "great_granddaughter(\"Brian Beltran\", X)",
+                "dob(X, D)",
+                "\\+ (great_granddaughter(\"Brian Beltran\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "356f1aed-db05-44ee-b8e2-6b11480c579d",
+        "question": "Who is the youngest friend of Christoper Cormier?",
+        "solution_traces": "[]",
+        "answer": [
+            "Johnathan Boutte"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Christoper Cormier\", X)",
+                "dob(X, D)",
+                "\\+ (friend(\"Christoper Cormier\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "b3b1b551-c3ef-4acc-903b-889bd26a7578",
+        "question": "Who is the youngest daughter-in-law of Don Mcnew?",
+        "solution_traces": "[]",
+        "answer": [
+            "Amanda Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "daughter_in_law(\"Don Mcnew\", X)",
+                "dob(X, D)",
+                "\\+ (daughter_in_law(\"Don Mcnew\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "cb3fffa5-05ed-42dc-b674-3499647cb859",
+        "question": "Who is the youngest aunt of Abraham Decosta?",
+        "solution_traces": "[]",
+        "answer": [
+            "Margo Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "aunt(\"Abraham Decosta\", X)",
+                "dob(X, D)",
+                "\\+ (aunt(\"Abraham Decosta\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "0e4b8a38-9ff5-4161-aa8c-7b882e932797",
+        "question": "Who is the youngest child of Lannie Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "child(\"Lannie Smock\", X)",
+                "dob(X, D)",
+                "\\+ (child(\"Lannie Smock\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    }
+]

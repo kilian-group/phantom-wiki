@@ -1,0 +1,429 @@
+[
+    {
+        "id": "9053f64e-18d1-41f0-87a0-8a0e6657cdad",
+        "question": "Who is the youngest friend of the cousin of the cousin of Rolland Mckenna?",
+        "solution_traces": "[]",
+        "answer": [
+            "Cherise Earnest",
+            "Chuck Lizotte",
+            "Francisco Palermo",
+            "Lenore Hackworth",
+            "Quincy Pannell",
+            "Reggie Earnest",
+            "Tamala Pannell",
+            "Weldon Skaggs"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (friend(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "friend(Y_2, Y_9)",
+                "cousin(Y_4, Y_2)",
+                "cousin(\"Rolland Mckenna\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 201,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "71d8fb15-47f1-420e-8729-5e58a7544ad8",
+        "question": "Who is the youngest friend of the great-grandfather of the grandchild of Dominique Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Murray Cedillo"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (friend(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "friend(Y_2, Y_9)",
+                "great_grandfather(Y_4, Y_2)",
+                "grandchild(\"Dominique Smock\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 201,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "a861fab8-8c44-44c0-9084-23b9afee53ce",
+        "question": "Who is the youngest mother-in-law of the daughter-in-law of the mother of Jeanelle Mcnew?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lorelei Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (mother_in_law(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "mother_in_law(Y_2, Y_9)",
+                "daughter_in_law(Y_4, Y_2)",
+                "mother(\"Jeanelle Mcnew\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 201,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "4037ac5e-67a6-482d-a5a0-1df39c8c28cf",
+        "question": "Who is the youngest grandchild of the husband of the friend of Maxwell Henderson?",
+        "solution_traces": "[]",
+        "answer": [
+            "Carrol Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandchild(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "grandchild(Y_2, Y_9)",
+                "husband(Y_4, Y_2)",
+                "friend(\"Maxwell Henderson\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 201,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "6387c86b-d18a-4057-b8a1-b78029527bd5",
+        "question": "Who is the youngest parent of the sibling of the granddaughter of Karla Hornback?",
+        "solution_traces": "[]",
+        "answer": [
+            "Elsy Hornback"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (parent(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "parent(Y_2, Y_9)",
+                "sibling(Y_4, Y_2)",
+                "granddaughter(\"Karla Hornback\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 201,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "487c8464-8aa0-453e-bc14-88926bae3c2f",
+        "question": "Who is the youngest grandchild of the nephew of the great-uncle of Lea Levy?",
+        "solution_traces": "[]",
+        "answer": [
+            "Pasquale Levy"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandchild(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "grandchild(Y_2, Y_9)",
+                "nephew(Y_4, Y_2)",
+                "great_uncle(\"Lea Levy\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 201,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "7a530a23-91fc-4a8c-af1d-8d0b28a4d3c2",
+        "question": "Who is the youngest son-in-law of the father-in-law of the father of Charlie Kovach?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jules Levy"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (son_in_law(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "son_in_law(Y_2, Y_9)",
+                "father_in_law(Y_4, Y_2)",
+                "father(\"Charlie Kovach\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 201,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "f65c04a4-97a4-401b-b6da-627d425f7089",
+        "question": "Who is the youngest niece of the sister of the husband of Deborah Cormier?",
+        "solution_traces": "[]",
+        "answer": [
+            "Leann Cormier"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (niece(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "niece(Y_2, Y_9)",
+                "sister(Y_4, Y_2)",
+                "husband(\"Deborah Cormier\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 201,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "ebbf43e4-f576-45c6-a70b-f20800640b33",
+        "question": "Who is the youngest grandson of the grandparent of the son of Monique Griffiths?",
+        "solution_traces": "[]",
+        "answer": [
+            "Craig Boutte"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandson(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "grandson(Y_2, Y_9)",
+                "grandparent(Y_4, Y_2)",
+                "son(\"Monique Griffiths\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 201,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "740bb9dc-f5d2-4db7-81b4-fb3df35d365e",
+        "question": "Who is the youngest grandparent of the granddaughter of the father of Bruce Mason?",
+        "solution_traces": "[]",
+        "answer": [
+            "Olivia Griffiths"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandparent(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "grandparent(Y_2, Y_9)",
+                "granddaughter(Y_4, Y_2)",
+                "father(\"Bruce Mason\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 201,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    }
+]

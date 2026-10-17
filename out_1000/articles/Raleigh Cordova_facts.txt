@@ -1,0 +1,16 @@
+son("Raleigh Cordova", "Ambrose Cordova").
+son("Raleigh Cordova", "Errol Cordova").
+daughter("Raleigh Cordova", "Lea Cordova").
+daughter("Raleigh Cordova", "Maegan Cordova").
+wife("Raleigh Cordova", "Enedina Cordova").
+friend("Raleigh Cordova", "Ramiro Dana").
+friend("Raleigh Cordova", "Keri Bennet").
+friend("Raleigh Cordova", "Paula Gerber").
+friend("Raleigh Cordova", "Oscar Medellin").
+friend("Raleigh Cordova", "Grant Lasher").
+friend("Raleigh Cordova", "Frankie Peeler").
+friend("Raleigh Cordova", "Magdalena Cordova").
+dob("Raleigh Cordova", "0258-12-22").
+job("Raleigh Cordova", "hotel manager").
+hobby("Raleigh Cordova", "whale watching").
+gender("Raleigh Cordova", "male").

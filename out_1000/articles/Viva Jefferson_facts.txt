@@ -1,0 +1,20 @@
+sister("Viva Jefferson", "Tamara Lasher").
+brother("Viva Jefferson", "Sammy Dillion").
+mother("Viva Jefferson", "Lindy Dillion").
+father("Viva Jefferson", "Landon Dillion").
+son("Viva Jefferson", "Dale Jefferson").
+daughter("Viva Jefferson", "Drema Jefferson").
+husband("Viva Jefferson", "Kendrick Jefferson").
+friend("Viva Jefferson", "Skye Swartz").
+friend("Viva Jefferson", "Irwin Dalton").
+friend("Viva Jefferson", "Frederic Staten").
+friend("Viva Jefferson", "Dena Joiner").
+friend("Viva Jefferson", "Ricky Carswell").
+friend("Viva Jefferson", "Amy Wilke").
+friend("Viva Jefferson", "Bryan Layton").
+friend("Viva Jefferson", "Vernon Joubert").
+friend("Viva Jefferson", "Johnathan Klink").
+dob("Viva Jefferson", "0313-01-03").
+job("Viva Jefferson", "general practice doctor").
+hobby("Viva Jefferson", "magnet fishing").
+gender("Viva Jefferson", "female").

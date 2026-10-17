@@ -1,0 +1,16 @@
+son("Brandon Winn", "Claudio Winn").
+daughter("Brandon Winn", "Naomi Lai").
+wife("Brandon Winn", "Rheba Winn").
+friend("Brandon Winn", "Iva Parish").
+friend("Brandon Winn", "Trevor Frink").
+friend("Brandon Winn", "Harold Murray").
+friend("Brandon Winn", "Jon Dana").
+friend("Brandon Winn", "Tabetha Niles").
+friend("Brandon Winn", "Alyssa Salem").
+friend("Brandon Winn", "Zachary Theriot").
+friend("Brandon Winn", "Danilo Mcgough").
+friend("Brandon Winn", "Zackary Wilkie").
+dob("Brandon Winn", "0530-08-13").
+job("Brandon Winn", "public relations account executive").
+hobby("Brandon Winn", "surfing").
+gender("Brandon Winn", "male").

@@ -1,0 +1,12 @@
+son("Ignacio Haygood", "Jeff Haygood").
+wife("Ignacio Haygood", "Jacque Haygood").
+friend("Ignacio Haygood", "Mack Storey").
+friend("Ignacio Haygood", "Ramon Swartz").
+friend("Ignacio Haygood", "Hope Arteaga").
+friend("Ignacio Haygood", "Alton Ibarra").
+friend("Ignacio Haygood", "Evelia Waltz").
+friend("Ignacio Haygood", "Hiram Putnam").
+dob("Ignacio Haygood", "0425-01-03").
+job("Ignacio Haygood", "geologist").
+hobby("Ignacio Haygood", "meteorology").
+gender("Ignacio Haygood", "male").

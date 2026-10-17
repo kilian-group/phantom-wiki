@@ -1,0 +1,11 @@
+sister("Kenda Beamon", "Evelia Senn").
+sister("Kenda Beamon", "Georgette Haygood").
+mother("Kenda Beamon", "Karol Beamon").
+father("Kenda Beamon", "Maxwell Beamon").
+friend("Kenda Beamon", "Sheila Conner").
+friend("Kenda Beamon", "Levi Kell").
+friend("Kenda Beamon", "Bo Frink").
+dob("Kenda Beamon", "0456-07-20").
+job("Kenda Beamon", "commercial surveyor").
+hobby("Kenda Beamon", "long-distance running").
+gender("Kenda Beamon", "female").

@@ -1,0 +1,24 @@
+brother("Drew Dana", "Matthew Dana").
+mother("Drew Dana", "Geri Dana").
+father("Drew Dana", "Ramiro Dana").
+son("Drew Dana", "Gale Dana").
+son("Drew Dana", "Jon Dana").
+daughter("Drew Dana", "Alice Dana").
+daughter("Drew Dana", "Estella Dana").
+daughter("Drew Dana", "Marybeth Dana").
+wife("Drew Dana", "Addie Dana").
+friend("Drew Dana", "Deidra Gilliam").
+friend("Drew Dana", "Deshawn Medellin").
+friend("Drew Dana", "Morgan Perrine").
+friend("Drew Dana", "Ricky Forester").
+friend("Drew Dana", "Babette Jarrett").
+friend("Drew Dana", "Phylis Courson").
+friend("Drew Dana", "Johnathan Klink").
+friend("Drew Dana", "Denny Vanmeter").
+friend("Drew Dana", "Stanford Suh").
+friend("Drew Dana", "Collin Lively").
+friend("Drew Dana", "Blake Swartz").
+dob("Drew Dana", "0398-01-11").
+job("Drew Dana", "clinical embryologist").
+hobby("Drew Dana", "astronomy").
+gender("Drew Dana", "male").

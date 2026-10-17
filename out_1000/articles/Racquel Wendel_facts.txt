@@ -1,0 +1,13 @@
+sister("Racquel Wendel", "Shauna Weise").
+mother("Racquel Wendel", "Maurine Wendel").
+father("Racquel Wendel", "Emil Wendel").
+friend("Racquel Wendel", "Lukas Mcdonald").
+friend("Racquel Wendel", "Devon Leclair").
+friend("Racquel Wendel", "Hollis Keyes").
+friend("Racquel Wendel", "Patrick Broughton").
+friend("Racquel Wendel", "Gregory Keister").
+friend("Racquel Wendel", "Macy Booth").
+dob("Racquel Wendel", "0472-11-09").
+job("Racquel Wendel", "health and safety adviser").
+hobby("Racquel Wendel", "roller derby").
+gender("Racquel Wendel", "female").

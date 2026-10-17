@@ -1,0 +1,14 @@
+daughter("Matthias Lennox", "Eunice Lennox").
+wife("Matthias Lennox", "Trudy Lennox").
+friend("Matthias Lennox", "Dustin Peeler").
+friend("Matthias Lennox", "Wanda Murray").
+friend("Matthias Lennox", "Edythe Osterman").
+friend("Matthias Lennox", "Elijah Linares").
+friend("Matthias Lennox", "Hiram Smart").
+friend("Matthias Lennox", "Reggie Medellin").
+friend("Matthias Lennox", "Dominick Palomo").
+friend("Matthias Lennox", "Gene Burnett").
+dob("Matthias Lennox", "0445-05-11").
+job("Matthias Lennox", "English as a second language teacher").
+hobby("Matthias Lennox", "ballet dancing").
+gender("Matthias Lennox", "male").

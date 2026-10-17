@@ -1,0 +1,18 @@
+mother("Torrie Goff", "Gayla Mccall").
+father("Torrie Goff", "Emanuel Mccall").
+son("Torrie Goff", "Kareem Goff").
+daughter("Torrie Goff", "Buffy Mccurry").
+daughter("Torrie Goff", "Shelia Hollins").
+husband("Torrie Goff", "Kurt Goff").
+friend("Torrie Goff", "Delma Keyes").
+friend("Torrie Goff", "Deshawn Medellin").
+friend("Torrie Goff", "Anderson Fredrick").
+friend("Torrie Goff", "Jermaine Wilke").
+friend("Torrie Goff", "Jayson Hudgens").
+friend("Torrie Goff", "Emma Wellington").
+friend("Torrie Goff", "Andrea Murchison").
+friend("Torrie Goff", "Phil Murray").
+dob("Torrie Goff", "0315-08-25").
+job("Torrie Goff", "ranger").
+hobby("Torrie Goff", "amateur geology").
+gender("Torrie Goff", "female").

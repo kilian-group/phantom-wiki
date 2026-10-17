@@ -1,0 +1,17 @@
+sister("Charley Vandenberg", "Amy Wilke").
+sister("Charley Vandenberg", "Thelma Vandenberg").
+brother("Charley Vandenberg", "Eli Vandenberg").
+mother("Charley Vandenberg", "Jackie Vandenberg").
+father("Charley Vandenberg", "Valentin Vandenberg").
+friend("Charley Vandenberg", "Elroy Mcgough").
+friend("Charley Vandenberg", "Luke Wilke").
+friend("Charley Vandenberg", "Tashina Vandenberg").
+friend("Charley Vandenberg", "Cherlyn Oberg").
+friend("Charley Vandenberg", "Colby Narvaez").
+friend("Charley Vandenberg", "Twila Oberg").
+friend("Charley Vandenberg", "King Dishman").
+friend("Charley Vandenberg", "Morgan Remillard").
+dob("Charley Vandenberg", "0260-11-29").
+job("Charley Vandenberg", "newspaper journalist").
+hobby("Charley Vandenberg", "book collecting").
+gender("Charley Vandenberg", "male").

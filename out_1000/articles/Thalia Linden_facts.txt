@@ -1,0 +1,14 @@
+sister("Thalia Linden", "Gwendolyn Townsend").
+mother("Thalia Linden", "Faith Linden").
+father("Thalia Linden", "Augustine Linden").
+friend("Thalia Linden", "Tianna Goff").
+friend("Thalia Linden", "Lura Leclair").
+friend("Thalia Linden", "Foster Medellin").
+friend("Thalia Linden", "Carroll Lindquist").
+friend("Thalia Linden", "Jackqueline Kell").
+friend("Thalia Linden", "Dalton Arnold").
+friend("Thalia Linden", "Ramon Swartz").
+dob("Thalia Linden", "0501-05-21").
+job("Thalia Linden", "economist").
+hobby("Thalia Linden", "trapshooting").
+gender("Thalia Linden", "female").

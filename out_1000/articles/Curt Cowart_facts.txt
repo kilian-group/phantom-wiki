@@ -1,0 +1,17 @@
+son("Curt Cowart", "Danny Cowart").
+daughter("Curt Cowart", "Veronica Cowart").
+wife("Curt Cowart", "Windy Cowart").
+friend("Curt Cowart", "Kennith Towns").
+friend("Curt Cowart", "Juanita Dana").
+friend("Curt Cowart", "Pauletta Morehead").
+friend("Curt Cowart", "Edmundo Fordham").
+friend("Curt Cowart", "Bryce Palomo").
+friend("Curt Cowart", "Chuck Medeiros").
+friend("Curt Cowart", "Goldie Alessi").
+friend("Curt Cowart", "Ligia Frink").
+friend("Curt Cowart", "Sona Lasher").
+friend("Curt Cowart", "Luther Peeler").
+dob("Curt Cowart", "0426-07-26").
+job("Curt Cowart", "translator").
+hobby("Curt Cowart", "insect collecting").
+gender("Curt Cowart", "male").

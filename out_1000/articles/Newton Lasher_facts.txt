@@ -1,0 +1,26 @@
+sister("Newton Lasher", "Tabetha Lasher").
+brother("Newton Lasher", "Jermaine Lasher").
+mother("Newton Lasher", "Tamara Lasher").
+father("Newton Lasher", "Guillermo Lasher").
+son("Newton Lasher", "Collin Lasher").
+son("Newton Lasher", "Shayne Lasher").
+daughter("Newton Lasher", "Evette Knepper").
+wife("Newton Lasher", "Sona Lasher").
+friend("Newton Lasher", "Maegan Cordova").
+friend("Newton Lasher", "Major Bales").
+friend("Newton Lasher", "Coral Staten").
+friend("Newton Lasher", "Nydia Ibarra").
+friend("Newton Lasher", "Kory Gibbs").
+friend("Newton Lasher", "Patrice Dunlap").
+friend("Newton Lasher", "Alex Burger").
+friend("Newton Lasher", "Jamal Marr").
+friend("Newton Lasher", "Rogelio Capps").
+friend("Newton Lasher", "Velia Capps").
+friend("Newton Lasher", "Gerry Dorn").
+friend("Newton Lasher", "Trudy Lennox").
+friend("Newton Lasher", "Deja Bigelow").
+friend("Newton Lasher", "Geraldine Suh").
+dob("Newton Lasher", "0333-06-12").
+job("Newton Lasher", "environmental health practitioner").
+hobby("Newton Lasher", "podcast hosting").
+gender("Newton Lasher", "male").

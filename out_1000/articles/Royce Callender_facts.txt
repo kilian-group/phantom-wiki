@@ -1,0 +1,16 @@
+son("Royce Callender", "Jonathon Callender").
+daughter("Royce Callender", "Lauretta Callender").
+daughter("Royce Callender", "Ofelia Callender").
+daughter("Royce Callender", "Randi Crocker").
+daughter("Royce Callender", "Vilma Callender").
+wife("Royce Callender", "Madaline Callender").
+friend("Royce Callender", "Jacinta Simons").
+friend("Royce Callender", "Nanette Swartz").
+friend("Royce Callender", "Bill Clement").
+friend("Royce Callender", "Clara Corwin").
+friend("Royce Callender", "Sammy Dunlap").
+friend("Royce Callender", "Wendell Monday").
+dob("Royce Callender", "0393-08-15").
+job("Royce Callender", "materials engineer").
+hobby("Royce Callender", "microscopy").
+gender("Royce Callender", "male").

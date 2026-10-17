@@ -1,0 +1,15 @@
+mother("Everett Courson", "Phylis Courson").
+father("Everett Courson", "Wesley Courson").
+son("Everett Courson", "Eugene Courson").
+wife("Everett Courson", "Bettina Courson").
+friend("Everett Courson", "Nelly Jarrett").
+friend("Everett Courson", "Joanne Storey").
+friend("Everett Courson", "Elliott Ingle").
+friend("Everett Courson", "Freddie Barrows").
+friend("Everett Courson", "Dena Joiner").
+friend("Everett Courson", "Leonora Depriest").
+friend("Everett Courson", "Rhea Burnett").
+dob("Everett Courson", "0479-03-29").
+job("Everett Courson", "contractor").
+hobby("Everett Courson", "animation").
+gender("Everett Courson", "male").

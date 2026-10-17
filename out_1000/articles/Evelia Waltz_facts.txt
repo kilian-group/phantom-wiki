@@ -1,0 +1,20 @@
+sister("Evelia Waltz", "Flora Noland").
+brother("Evelia Waltz", "Pedro Waltz").
+mother("Evelia Waltz", "Madalene Waltz").
+father("Evelia Waltz", "Harold Waltz").
+friend("Evelia Waltz", "Nickolas Holtz").
+friend("Evelia Waltz", "Noreen Sanborn").
+friend("Evelia Waltz", "Alexa Mckenna").
+friend("Evelia Waltz", "Christoper Lasher").
+friend("Evelia Waltz", "Landon Dillion").
+friend("Evelia Waltz", "Ignacio Haygood").
+friend("Evelia Waltz", "Anibal Cordova").
+friend("Evelia Waltz", "Stefan Sutphin").
+friend("Evelia Waltz", "Ramon Swartz").
+friend("Evelia Waltz", "Madalene Lebrun").
+friend("Evelia Waltz", "Brock Pugliese").
+friend("Evelia Waltz", "Connie Cushman").
+dob("Evelia Waltz", "0441-07-18").
+job("Evelia Waltz", "forensic psychologist").
+hobby("Evelia Waltz", "ghost hunting").
+gender("Evelia Waltz", "female").

@@ -1,0 +1,12 @@
+daughter("Alvaro Murphey", "Myrl Mcgough").
+wife("Alvaro Murphey", "Belva Murphey").
+friend("Alvaro Murphey", "Anna Vandenberg").
+friend("Alvaro Murphey", "Ophelia Mcgough").
+friend("Alvaro Murphey", "Brigida Oberg").
+friend("Alvaro Murphey", "Sarah Oberg").
+friend("Alvaro Murphey", "Morgan Remillard").
+friend("Alvaro Murphey", "Wanita Remillard").
+dob("Alvaro Murphey", "0287-02-19").
+job("Alvaro Murphey", "general practice doctor").
+hobby("Alvaro Murphey", "sports science").
+gender("Alvaro Murphey", "male").

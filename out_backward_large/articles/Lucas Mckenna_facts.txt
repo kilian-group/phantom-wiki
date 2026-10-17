@@ -1,0 +1,10 @@
+brother("Lucas Mckenna", "Rolland Mckenna").
+mother("Lucas Mckenna", "Windy Mckenna").
+father("Lucas Mckenna", "Carey Mckenna").
+friend("Lucas Mckenna", "Dane Kee").
+friend("Lucas Mckenna", "Edmond Schreiner").
+friend("Lucas Mckenna", "Reggie Earnest").
+dob("Lucas Mckenna", "0296-07-04").
+job("Lucas Mckenna", "financial manager").
+hobby("Lucas Mckenna", "badminton").
+gender("Lucas Mckenna", "male").

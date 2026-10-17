@@ -1,0 +1,20 @@
+sister("Manuel Smart", "Nelly Smart").
+brother("Manuel Smart", "Juan Smart").
+mother("Manuel Smart", "Jaclyn Smart").
+father("Manuel Smart", "Buck Smart").
+friend("Manuel Smart", "Shizuko Sheridan").
+friend("Manuel Smart", "Kanesha Booth").
+friend("Manuel Smart", "Maggie Vanmeter").
+friend("Manuel Smart", "Aldo Paynter").
+friend("Manuel Smart", "Noelia Lasher").
+friend("Manuel Smart", "Cedrick Lester").
+friend("Manuel Smart", "Allie Gillam").
+friend("Manuel Smart", "Keith Murchison").
+friend("Manuel Smart", "Tomas Townsend").
+friend("Manuel Smart", "Myra Eaves").
+friend("Manuel Smart", "Dino Donner").
+friend("Manuel Smart", "Karina Smart").
+dob("Manuel Smart", "0486-09-13").
+job("Manuel Smart", "glass blower").
+hobby("Manuel Smart", "reading").
+gender("Manuel Smart", "male").

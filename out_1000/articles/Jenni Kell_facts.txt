@@ -1,0 +1,17 @@
+sister("Jenni Kell", "Jeannette Mounts").
+brother("Jenni Kell", "Abe Kell").
+brother("Jenni Kell", "Walter Kell").
+mother("Jenni Kell", "Kristen Kell").
+father("Jenni Kell", "Dewitt Kell").
+friend("Jenni Kell", "Javier Basham").
+friend("Jenni Kell", "Enid Dalton").
+friend("Jenni Kell", "Ruben Corwin").
+friend("Jenni Kell", "Adolph Hollins").
+friend("Jenni Kell", "Lavern Staten").
+friend("Jenni Kell", "Taylor Schatz").
+friend("Jenni Kell", "Mireya Ibarra").
+friend("Jenni Kell", "Laurence Macias").
+dob("Jenni Kell", "0445-05-08").
+job("Jenni Kell", "trade mark attorney").
+hobby("Jenni Kell", "meditation").
+gender("Jenni Kell", "female").

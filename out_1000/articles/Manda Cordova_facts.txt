@@ -1,0 +1,12 @@
+mother("Manda Cordova", "Anneliese Pellegrino").
+father("Manda Cordova", "Newton Pellegrino").
+son("Manda Cordova", "Frederic Cordova").
+husband("Manda Cordova", "Ambrose Cordova").
+friend("Manda Cordova", "Sasha Simons").
+friend("Manda Cordova", "Krystyna Schatz").
+friend("Manda Cordova", "Lora Vogt").
+friend("Manda Cordova", "Daisy Autry").
+dob("Manda Cordova", "0284-11-08").
+job("Manda Cordova", "nurse").
+hobby("Manda Cordova", "mahjong").
+gender("Manda Cordova", "female").

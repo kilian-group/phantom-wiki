@@ -1,0 +1,17 @@
+mother("Ashleigh Galvan", "Rhea Burnett").
+father("Ashleigh Galvan", "Gene Burnett").
+son("Ashleigh Galvan", "Zachariah Galvan").
+daughter("Ashleigh Galvan", "Jana Galvan").
+daughter("Ashleigh Galvan", "Raina Hamlin").
+husband("Ashleigh Galvan", "Brian Galvan").
+friend("Ashleigh Galvan", "Lindy Dillion").
+friend("Ashleigh Galvan", "Goldie Beamon").
+friend("Ashleigh Galvan", "Milford Simons").
+friend("Ashleigh Galvan", "Seymour Simons").
+friend("Ashleigh Galvan", "Germaine Mahoney").
+friend("Ashleigh Galvan", "Carlos Noland").
+friend("Ashleigh Galvan", "Hollis Theriot").
+dob("Ashleigh Galvan", "0349-08-20").
+job("Ashleigh Galvan", "civil service administrator").
+hobby("Ashleigh Galvan", "trainspotting").
+gender("Ashleigh Galvan", "female").

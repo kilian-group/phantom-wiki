@@ -1,0 +1,19 @@
+mother("Frankie Mahoney", "Shamika Mahoney").
+father("Frankie Mahoney", "Chance Mahoney").
+son("Frankie Mahoney", "Dan Mahoney").
+son("Frankie Mahoney", "Jerry Mahoney").
+daughter("Frankie Mahoney", "Alix Mahoney").
+daughter("Frankie Mahoney", "Lynda Mahoney").
+wife("Frankie Mahoney", "Germaine Mahoney").
+friend("Frankie Mahoney", "Drema Schatz").
+friend("Frankie Mahoney", "Jennette Holliman").
+friend("Frankie Mahoney", "Justin Putnam").
+friend("Frankie Mahoney", "Doyle Valladares").
+friend("Frankie Mahoney", "Gayla Holder").
+friend("Frankie Mahoney", "Charley Lively").
+friend("Frankie Mahoney", "Austin Boutte").
+friend("Frankie Mahoney", "Buffy Eaves").
+dob("Frankie Mahoney", "0352-05-25").
+job("Frankie Mahoney", "claims inspector").
+hobby("Frankie Mahoney", "flying model planes").
+gender("Frankie Mahoney", "male").

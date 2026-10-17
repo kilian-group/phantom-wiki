@@ -1,0 +1,12 @@
+daughter("Kenton Whitford", "Johanna Mathes").
+wife("Kenton Whitford", "Carolyn Whitford").
+friend("Kenton Whitford", "Jefferson Smart").
+friend("Kenton Whitford", "Niki Vanmeter").
+friend("Kenton Whitford", "Barabara Peeler").
+friend("Kenton Whitford", "Barb Linden").
+friend("Kenton Whitford", "Robby Corwin").
+friend("Kenton Whitford", "Rueben Younger").
+dob("Kenton Whitford", "0297-08-15").
+job("Kenton Whitford", "chief technology officer").
+hobby("Kenton Whitford", "taekwondo").
+gender("Kenton Whitford", "male").

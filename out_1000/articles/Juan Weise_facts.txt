@@ -1,0 +1,15 @@
+son("Juan Weise", "Graham Weise").
+daughter("Juan Weise", "Christen Weise").
+wife("Juan Weise", "Edwina Weise").
+friend("Juan Weise", "Vaughn Dangelo").
+friend("Juan Weise", "Anastacia Cordova").
+friend("Juan Weise", "Errol Cordova").
+friend("Juan Weise", "Janiece Cordova").
+friend("Juan Weise", "Allie Gillam").
+friend("Juan Weise", "Theron Littleton").
+friend("Juan Weise", "Otto Horan").
+friend("Juan Weise", "Bess Autry").
+dob("Juan Weise", "0450-09-10").
+job("Juan Weise", "amenity horticulturist").
+hobby("Juan Weise", "research").
+gender("Juan Weise", "male").

@@ -1,0 +1,14 @@
+mother("Luther Peeler", "Barabara Peeler").
+father("Luther Peeler", "Frankie Peeler").
+son("Luther Peeler", "Sonny Peeler").
+wife("Luther Peeler", "Maryann Peeler").
+friend("Luther Peeler", "Curt Cowart").
+friend("Luther Peeler", "Phylis Cook").
+friend("Luther Peeler", "Hank Gerber").
+friend("Luther Peeler", "Nickolas Dacosta").
+friend("Luther Peeler", "Jamie Upton").
+friend("Luther Peeler", "Sona Lasher").
+dob("Luther Peeler", "0355-05-02").
+job("Luther Peeler", "phytotherapist").
+hobby("Luther Peeler", "fossil hunting").
+gender("Luther Peeler", "male").

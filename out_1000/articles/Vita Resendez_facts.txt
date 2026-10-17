@@ -1,0 +1,26 @@
+sister("Vita Resendez", "Ella Mathes").
+sister("Vita Resendez", "Jennette Holliman").
+sister("Vita Resendez", "Nydia Ibarra").
+brother("Vita Resendez", "Tanner Holliman").
+mother("Vita Resendez", "Judith Holliman").
+father("Vita Resendez", "Calvin Holliman").
+son("Vita Resendez", "Isaiah Resendez").
+son("Vita Resendez", "Sung Resendez").
+son("Vita Resendez", "Tyrell Resendez").
+daughter("Vita Resendez", "Melina Resendez").
+husband("Vita Resendez", "Bryan Resendez").
+friend("Vita Resendez", "Lashandra Gilliam").
+friend("Vita Resendez", "Patrice Dunlap").
+friend("Vita Resendez", "Alisha Fredrick").
+friend("Vita Resendez", "Maybelle Oliveira").
+friend("Vita Resendez", "Kieth Shaw").
+friend("Vita Resendez", "Aldo Paynter").
+friend("Vita Resendez", "Ligia Frink").
+friend("Vita Resendez", "Sheila Conner").
+friend("Vita Resendez", "Estella Dana").
+friend("Vita Resendez", "Coral Staten").
+friend("Vita Resendez", "Sung Resendez").
+dob("Vita Resendez", "0345-06-07").
+job("Vita Resendez", "copywriter").
+hobby("Vita Resendez", "swimming").
+gender("Vita Resendez", "female").

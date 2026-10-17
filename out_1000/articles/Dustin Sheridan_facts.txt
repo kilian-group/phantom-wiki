@@ -1,0 +1,20 @@
+son("Dustin Sheridan", "Ben Sheridan").
+son("Dustin Sheridan", "Jayson Sheridan").
+son("Dustin Sheridan", "Wade Sheridan").
+daughter("Dustin Sheridan", "Shawna Sheridan").
+wife("Dustin Sheridan", "Shizuko Sheridan").
+friend("Dustin Sheridan", "Helena Hamlin").
+friend("Dustin Sheridan", "Jann Upton").
+friend("Dustin Sheridan", "Tonia Bauman").
+friend("Dustin Sheridan", "Christoper Lasher").
+friend("Dustin Sheridan", "Graciela Weise").
+friend("Dustin Sheridan", "Patricia Towns").
+friend("Dustin Sheridan", "Shirley Dalton").
+friend("Dustin Sheridan", "Mireya Ibarra").
+friend("Dustin Sheridan", "Jodi Noland").
+friend("Dustin Sheridan", "Nora Noland").
+friend("Dustin Sheridan", "Velia Capps").
+dob("Dustin Sheridan", "0401-11-28").
+job("Dustin Sheridan", "retail buyer").
+hobby("Dustin Sheridan", "birdwatching").
+gender("Dustin Sheridan", "male").

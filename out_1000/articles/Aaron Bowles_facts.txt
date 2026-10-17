@@ -1,0 +1,21 @@
+brother("Aaron Bowles", "Ryan Bowles").
+mother("Aaron Bowles", "Nelly Bowles").
+father("Aaron Bowles", "Andre Bowles").
+daughter("Aaron Bowles", "Fatimah Holtz").
+daughter("Aaron Bowles", "Valentina Robinett").
+wife("Aaron Bowles", "Emma Bowles").
+friend("Aaron Bowles", "Claude Courson").
+friend("Aaron Bowles", "Nicky Gordon").
+friend("Aaron Bowles", "Belia Mckenna").
+friend("Aaron Bowles", "Hans Fordham").
+friend("Aaron Bowles", "Marilyn Sutphin").
+friend("Aaron Bowles", "Logan Swartz").
+friend("Aaron Bowles", "Juanita Dana").
+friend("Aaron Bowles", "Crysta Machado").
+friend("Aaron Bowles", "Michaela Corwin").
+friend("Aaron Bowles", "Tanner Holliman").
+friend("Aaron Bowles", "Nora Noland").
+dob("Aaron Bowles", "0415-10-03").
+job("Aaron Bowles", "theme park manager").
+hobby("Aaron Bowles", "mycology").
+gender("Aaron Bowles", "male").

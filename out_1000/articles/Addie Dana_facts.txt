@@ -1,0 +1,16 @@
+son("Addie Dana", "Gale Dana").
+son("Addie Dana", "Jon Dana").
+daughter("Addie Dana", "Alice Dana").
+daughter("Addie Dana", "Estella Dana").
+daughter("Addie Dana", "Marybeth Dana").
+husband("Addie Dana", "Drew Dana").
+friend("Addie Dana", "Maranda Goff").
+friend("Addie Dana", "Tim Goff").
+friend("Addie Dana", "Valeria Medellin").
+friend("Addie Dana", "Ricky Forester").
+friend("Addie Dana", "Michael Mckenna").
+friend("Addie Dana", "Manuela Runnels").
+dob("Addie Dana", "0393-12-17").
+job("Addie Dana", "recycling officer").
+hobby("Addie Dana", "reading").
+gender("Addie Dana", "female").

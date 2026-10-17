@@ -1,0 +1,18 @@
+son("Judith Lebrun", "Marcus Lebrun").
+daughter("Judith Lebrun", "Hope Arteaga").
+husband("Judith Lebrun", "Rob Lebrun").
+friend("Judith Lebrun", "Bryan Resendez").
+friend("Judith Lebrun", "Ella Mathes").
+friend("Judith Lebrun", "Karina Smart").
+friend("Judith Lebrun", "Domonique Fordham").
+friend("Judith Lebrun", "Natalie Ballard").
+friend("Judith Lebrun", "Hollis Theriot").
+friend("Judith Lebrun", "Max Bauman").
+friend("Judith Lebrun", "Jeff Haygood").
+friend("Judith Lebrun", "Charlie Ingalls").
+friend("Judith Lebrun", "Rolf Osterman").
+friend("Judith Lebrun", "Crysta Machado").
+dob("Judith Lebrun", "0371-06-09").
+job("Judith Lebrun", "interpreter").
+hobby("Judith Lebrun", "air hockey").
+gender("Judith Lebrun", "female").

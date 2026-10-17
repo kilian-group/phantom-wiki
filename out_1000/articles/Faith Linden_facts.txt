@@ -1,0 +1,13 @@
+daughter("Faith Linden", "Gwendolyn Townsend").
+daughter("Faith Linden", "Thalia Linden").
+husband("Faith Linden", "Augustine Linden").
+friend("Faith Linden", "Terrance Townsend").
+friend("Faith Linden", "Ethan Younger").
+friend("Faith Linden", "Lona Corwin").
+friend("Faith Linden", "Keri Bennet").
+friend("Faith Linden", "Ricardo Dacosta").
+friend("Faith Linden", "Florence Ingle").
+dob("Faith Linden", "0472-06-18").
+job("Faith Linden", "teacher").
+hobby("Faith Linden", "axe throwing").
+gender("Faith Linden", "female").

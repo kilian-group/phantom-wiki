@@ -1,0 +1,13 @@
+son("Dan Younger", "Rueben Younger").
+daughter("Dan Younger", "Angela Younger").
+wife("Dan Younger", "Tania Younger").
+friend("Dan Younger", "Bruce Mathes").
+friend("Dan Younger", "Darwin Kavanaugh").
+friend("Dan Younger", "Harold Waltz").
+friend("Dan Younger", "Mozelle Mounts").
+friend("Dan Younger", "Harold Murray").
+friend("Dan Younger", "Crysta Machado").
+dob("Dan Younger", "0354-10-19").
+job("Dan Younger", "paramedic").
+hobby("Dan Younger", "ballroom dancing").
+gender("Dan Younger", "male").

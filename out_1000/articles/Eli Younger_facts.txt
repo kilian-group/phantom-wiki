@@ -1,0 +1,23 @@
+sister("Eli Younger", "Almeta Younger").
+brother("Eli Younger", "Raul Younger").
+mother("Eli Younger", "Delpha Younger").
+father("Eli Younger", "Rueben Younger").
+son("Eli Younger", "Wilson Younger").
+daughter("Eli Younger", "Dani Dalton").
+wife("Eli Younger", "Jenniffer Younger").
+friend("Eli Younger", "Jenniffer Younger").
+friend("Eli Younger", "Robby Corwin").
+friend("Eli Younger", "Nydia Ibarra").
+friend("Eli Younger", "Adalberto Dacosta").
+friend("Eli Younger", "Lera Dunlap").
+friend("Eli Younger", "Mitchell Fordham").
+friend("Eli Younger", "Jonathon Callender").
+friend("Eli Younger", "Ellis Brumbaugh").
+friend("Eli Younger", "Gena Brumbaugh").
+friend("Eli Younger", "Latisha Murchison").
+friend("Eli Younger", "Antionette Hamann").
+friend("Eli Younger", "Claudine Bales").
+dob("Eli Younger", "0401-10-17").
+job("Eli Younger", "chartered loss adjuster").
+hobby("Eli Younger", "go").
+gender("Eli Younger", "male").

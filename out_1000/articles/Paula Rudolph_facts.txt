@@ -1,0 +1,22 @@
+sister("Paula Rudolph", "Gayla Holder").
+sister("Paula Rudolph", "Lara Jansen").
+sister("Paula Rudolph", "Rebecka Schlosser").
+sister("Paula Rudolph", "Wanda Murray").
+mother("Paula Rudolph", "Annette Rudolph").
+father("Paula Rudolph", "Antwan Rudolph").
+friend("Paula Rudolph", "Benito Ruth").
+friend("Paula Rudolph", "Ramon Swartz").
+friend("Paula Rudolph", "Shante Ruth").
+friend("Paula Rudolph", "Austin Boutte").
+friend("Paula Rudolph", "Matthew Dana").
+friend("Paula Rudolph", "Robby Corwin").
+friend("Paula Rudolph", "Erik Fredrick").
+friend("Paula Rudolph", "Gerry Shank").
+friend("Paula Rudolph", "Rogelio Capps").
+friend("Paula Rudolph", "Alberto Wellington").
+friend("Paula Rudolph", "Denny Vanmeter").
+friend("Paula Rudolph", "Lon Lazar").
+dob("Paula Rudolph", "0409-09-23").
+job("Paula Rudolph", "nurse").
+hobby("Paula Rudolph", "rock tumbling").
+gender("Paula Rudolph", "female").

@@ -1,0 +1,18 @@
+mother("Maurine Wendel", "Magdalena Hollinger").
+father("Maurine Wendel", "Amos Hollinger").
+daughter("Maurine Wendel", "Racquel Wendel").
+daughter("Maurine Wendel", "Shauna Weise").
+husband("Maurine Wendel", "Emil Wendel").
+friend("Maurine Wendel", "John Schlosser").
+friend("Maurine Wendel", "Adella Townsend").
+friend("Maurine Wendel", "Catina Linden").
+friend("Maurine Wendel", "Coral Staten").
+friend("Maurine Wendel", "Gina Goff").
+friend("Maurine Wendel", "Sammy Dunlap").
+friend("Maurine Wendel", "Virgina Noland").
+friend("Maurine Wendel", "Eli Vandenberg").
+friend("Maurine Wendel", "Trudy Lasher").
+dob("Maurine Wendel", "0449-04-22").
+job("Maurine Wendel", "recruitment consultant").
+hobby("Maurine Wendel", "auto audiophilia").
+gender("Maurine Wendel", "female").

@@ -1,0 +1,11 @@
+daughter("Olivia Briscoe", "Geraldine Valladares").
+husband("Olivia Briscoe", "Bernardo Briscoe").
+friend("Olivia Briscoe", "Carlene Corwin").
+friend("Olivia Briscoe", "Nedra Musick").
+friend("Olivia Briscoe", "Monroe Gilliam").
+friend("Olivia Briscoe", "Wesley Courson").
+friend("Olivia Briscoe", "Sammy Dillion").
+dob("Olivia Briscoe", "0349-08-09").
+job("Olivia Briscoe", "politician's assistant").
+hobby("Olivia Briscoe", "reading").
+gender("Olivia Briscoe", "female").

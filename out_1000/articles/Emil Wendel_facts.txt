@@ -1,0 +1,17 @@
+daughter("Emil Wendel", "Racquel Wendel").
+daughter("Emil Wendel", "Shauna Weise").
+wife("Emil Wendel", "Maurine Wendel").
+friend("Emil Wendel", "Isaiah Autry").
+friend("Emil Wendel", "Dortha Ingle").
+friend("Emil Wendel", "Sofia Eaves").
+friend("Emil Wendel", "Dani Dalton").
+friend("Emil Wendel", "Tanya Molina").
+friend("Emil Wendel", "Shirley Ibarra").
+friend("Emil Wendel", "Karl Depriest").
+friend("Emil Wendel", "Dorathy Hamlin").
+friend("Emil Wendel", "Kristen Kell").
+friend("Emil Wendel", "Dave Alarcon").
+dob("Emil Wendel", "0451-12-15").
+job("Emil Wendel", "writer").
+hobby("Emil Wendel", "leaves").
+gender("Emil Wendel", "male").

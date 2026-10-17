@@ -1,0 +1,14 @@
+son("Samual Knepper", "Laurence Knepper").
+wife("Samual Knepper", "Evette Knepper").
+friend("Samual Knepper", "Magdalena Hollinger").
+friend("Samual Knepper", "Lea Cordova").
+friend("Samual Knepper", "Adrianna Gregory").
+friend("Samual Knepper", "Abdul Morehead").
+friend("Samual Knepper", "Jonathan Goff").
+friend("Samual Knepper", "Mireya Ibarra").
+friend("Samual Knepper", "Nelly Jarrett").
+friend("Samual Knepper", "Malissa Kell").
+dob("Samual Knepper", "0360-08-15").
+job("Samual Knepper", "clinical cytogeneticist").
+hobby("Samual Knepper", "skimboarding").
+gender("Samual Knepper", "male").

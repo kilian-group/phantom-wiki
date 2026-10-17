@@ -1,0 +1,15 @@
+mother("Truman Holtz", "Fatimah Holtz").
+father("Truman Holtz", "Nickolas Holtz").
+friend("Truman Holtz", "Aletha Crocker").
+friend("Truman Holtz", "Hans Fordham").
+friend("Truman Holtz", "Rena Palm").
+friend("Truman Holtz", "Janey Plumley").
+friend("Truman Holtz", "Pauletta Morehead").
+friend("Truman Holtz", "Calvin Holliman").
+friend("Truman Holtz", "Jacque Greene").
+friend("Truman Holtz", "Allyson Burger").
+friend("Truman Holtz", "Gwenn Tyree").
+dob("Truman Holtz", "0477-09-24").
+job("Truman Holtz", "television producer").
+hobby("Truman Holtz", "shoes").
+gender("Truman Holtz", "male").

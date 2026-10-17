@@ -1,0 +1,15 @@
+sister("Wade Sheridan", "Shawna Sheridan").
+brother("Wade Sheridan", "Ben Sheridan").
+brother("Wade Sheridan", "Jayson Sheridan").
+mother("Wade Sheridan", "Shizuko Sheridan").
+father("Wade Sheridan", "Dustin Sheridan").
+friend("Wade Sheridan", "Jamison Upton").
+friend("Wade Sheridan", "Krystal Joubert").
+friend("Wade Sheridan", "Randi Crocker").
+friend("Wade Sheridan", "Trevor Frink").
+friend("Wade Sheridan", "Tabetha Hsu").
+friend("Wade Sheridan", "Nickolas Holtz").
+dob("Wade Sheridan", "0428-05-18").
+job("Wade Sheridan", "teacher").
+hobby("Wade Sheridan", "reading").
+gender("Wade Sheridan", "male").

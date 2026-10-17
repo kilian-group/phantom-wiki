@@ -1,0 +1,14 @@
+daughter("Antonio Fitch", "Deanne Gilliam").
+wife("Antonio Fitch", "Gay Fitch").
+friend("Antonio Fitch", "Amberly Levine").
+friend("Antonio Fitch", "Carlos Noland").
+friend("Antonio Fitch", "Otto Horan").
+friend("Antonio Fitch", "Emory Layton").
+friend("Antonio Fitch", "Maria Lindquist").
+friend("Antonio Fitch", "Tomasa Kell").
+friend("Antonio Fitch", "Luis Simons").
+friend("Antonio Fitch", "Nydia Ibarra").
+dob("Antonio Fitch", "0353-06-17").
+job("Antonio Fitch", "special effects artist").
+hobby("Antonio Fitch", "wikipedia editing").
+gender("Antonio Fitch", "male").

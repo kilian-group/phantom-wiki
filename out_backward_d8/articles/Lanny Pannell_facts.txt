@@ -1,0 +1,10 @@
+mother("Lanny Pannell", "Mona Pannell").
+father("Lanny Pannell", "Duncan Pannell").
+son("Lanny Pannell", "Ian Pannell").
+wife("Lanny Pannell", "Ivory Pannell").
+friend("Lanny Pannell", "Sherry Cormier").
+friend("Lanny Pannell", "Milton Henderson").
+dob("Lanny Pannell", "0261-11-17").
+job("Lanny Pannell", "farm manager").
+hobby("Lanny Pannell", "myrmecology").
+gender("Lanny Pannell", "male").

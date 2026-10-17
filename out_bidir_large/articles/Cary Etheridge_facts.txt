@@ -1,0 +1,8 @@
+daughter("Cary Etheridge", "Sylvia Palermo").
+wife("Cary Etheridge", "Blair Etheridge").
+friend("Cary Etheridge", "Ofelia Carrell").
+friend("Cary Etheridge", "Domonique Cedillo").
+dob("Cary Etheridge", "0287-07-19").
+job("Cary Etheridge", "investment banker").
+hobby("Cary Etheridge", "karting").
+gender("Cary Etheridge", "male").

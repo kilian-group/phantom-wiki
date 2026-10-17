@@ -1,0 +1,18 @@
+sister("Donald Fordham", "Shaunna Fordham").
+brother("Donald Fordham", "Rodney Fordham").
+mother("Donald Fordham", "Romona Fordham").
+father("Donald Fordham", "Aaron Fordham").
+friend("Donald Fordham", "Sammy Yarbrough").
+friend("Donald Fordham", "Babette Jarrett").
+friend("Donald Fordham", "Alysa Lindquist").
+friend("Donald Fordham", "Chante Corso").
+friend("Donald Fordham", "Katharine Willoughby").
+friend("Donald Fordham", "Jesus Gregory").
+friend("Donald Fordham", "Logan Swartz").
+friend("Donald Fordham", "Bill Clement").
+friend("Donald Fordham", "Alec Dacosta").
+friend("Donald Fordham", "Wilson Donner").
+dob("Donald Fordham", "0516-02-16").
+job("Donald Fordham", "physicist").
+hobby("Donald Fordham", "amateur astronomy").
+gender("Donald Fordham", "male").

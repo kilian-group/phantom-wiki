@@ -1,0 +1,13 @@
+daughter("Nikki Bond", "Lou Dunlap").
+husband("Nikki Bond", "Emory Bond").
+friend("Nikki Bond", "Rogelio Dunlap").
+friend("Nikki Bond", "Glenn Levine").
+friend("Nikki Bond", "Graciela Burger").
+friend("Nikki Bond", "Barabara Wilke").
+friend("Nikki Bond", "Madaline Callender").
+friend("Nikki Bond", "Jenniffer Younger").
+friend("Nikki Bond", "Maranda Goff").
+dob("Nikki Bond", "0322-11-18").
+job("Nikki Bond", "gaffer").
+hobby("Nikki Bond", "magnet fishing").
+gender("Nikki Bond", "female").

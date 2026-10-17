@@ -1,0 +1,11 @@
+daughter("Jo Corwin", "Lona Corwin").
+husband("Jo Corwin", "Robby Corwin").
+friend("Jo Corwin", "Alisha Fredrick").
+friend("Jo Corwin", "Ellis Glass").
+friend("Jo Corwin", "Thaddeus Sanborn").
+friend("Jo Corwin", "Dorathy Mckenna").
+friend("Jo Corwin", "Graciela Weise").
+dob("Jo Corwin", "0398-02-03").
+job("Jo Corwin", "analytical chemist").
+hobby("Jo Corwin", "lomography").
+gender("Jo Corwin", "female").

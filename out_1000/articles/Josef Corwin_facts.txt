@@ -1,0 +1,18 @@
+sister("Josef Corwin", "Carlene Corwin").
+mother("Josef Corwin", "Jasmine Corwin").
+father("Josef Corwin", "Colin Corwin").
+daughter("Josef Corwin", "Karin Machado").
+wife("Josef Corwin", "Katelyn Corwin").
+friend("Josef Corwin", "Lora Mccurry").
+friend("Josef Corwin", "Calvin Holliman").
+friend("Josef Corwin", "Macy Booth").
+friend("Josef Corwin", "Rena Palm").
+friend("Josef Corwin", "Desmond Lester").
+friend("Josef Corwin", "Latisha Murchison").
+friend("Josef Corwin", "Renate Brumbaugh").
+friend("Josef Corwin", "Antionette Hamann").
+friend("Josef Corwin", "Lea Plumley").
+dob("Josef Corwin", "0440-05-11").
+job("Josef Corwin", "contractor").
+hobby("Josef Corwin", "bridge").
+gender("Josef Corwin", "male").

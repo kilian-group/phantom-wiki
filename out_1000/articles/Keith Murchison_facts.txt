@@ -1,0 +1,15 @@
+mother("Keith Murchison", "Latisha Murchison").
+father("Keith Murchison", "Derek Murchison").
+daughter("Keith Murchison", "Annette Rudolph").
+wife("Keith Murchison", "Andrea Murchison").
+friend("Keith Murchison", "Timothy Simons").
+friend("Keith Murchison", "Cedric Shoulders").
+friend("Keith Murchison", "Elaine Hsu").
+friend("Keith Murchison", "Manuel Smart").
+friend("Keith Murchison", "Calvin Carty").
+friend("Keith Murchison", "Avery Nolasco").
+friend("Keith Murchison", "Dustin Peeler").
+dob("Keith Murchison", "0357-03-21").
+job("Keith Murchison", "technical brewer").
+hobby("Keith Murchison", "mini golf").
+gender("Keith Murchison", "male").

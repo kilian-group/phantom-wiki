@@ -1,0 +1,15 @@
+son("Mayra Geter", "Gregory Geter").
+husband("Mayra Geter", "Eugene Geter").
+friend("Mayra Geter", "Shauna Weise").
+friend("Mayra Geter", "Lakeshia Steadman").
+friend("Mayra Geter", "Bill Clement").
+friend("Mayra Geter", "Jenniffer Younger").
+friend("Mayra Geter", "Macy Burger").
+friend("Mayra Geter", "Elaine Marr").
+friend("Mayra Geter", "Bryan Layton").
+friend("Mayra Geter", "Perry Kell").
+friend("Mayra Geter", "Evelia Senn").
+dob("Mayra Geter", "0458-03-21").
+job("Mayra Geter", "charity fundraiser").
+hobby("Mayra Geter", "web design").
+gender("Mayra Geter", "female").

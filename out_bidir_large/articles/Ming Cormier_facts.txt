@@ -1,0 +1,12 @@
+mother("Ming Cormier", "Jeana Clemons").
+father("Ming Cormier", "Andy Clemons").
+son("Ming Cormier", "Clifford Cormier").
+daughter("Ming Cormier", "Shawnta Saari").
+husband("Ming Cormier", "Dion Cormier").
+friend("Ming Cormier", "Marko Henderson").
+friend("Ming Cormier", "Elsy Hornback").
+friend("Ming Cormier", "Yvette Cedillo").
+dob("Ming Cormier", "0231-01-26").
+job("Ming Cormier", "optometrist").
+hobby("Ming Cormier", "philately").
+gender("Ming Cormier", "female").

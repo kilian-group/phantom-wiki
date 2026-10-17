@@ -1,0 +1,14 @@
+brother("Jacques Cordova", "Anibal Cordova").
+brother("Jacques Cordova", "Jesus Cordova").
+mother("Jacques Cordova", "Leonora Cordova").
+father("Jacques Cordova", "Galen Cordova").
+friend("Jacques Cordova", "Deloris Swartz").
+friend("Jacques Cordova", "Lashanda Salem").
+friend("Jacques Cordova", "Flora Noland").
+friend("Jacques Cordova", "Sona Fredrick").
+friend("Jacques Cordova", "Brigette Medeiros").
+friend("Jacques Cordova", "Raina Hamlin").
+dob("Jacques Cordova", "0377-06-04").
+job("Jacques Cordova", "museum exhibitions officer").
+hobby("Jacques Cordova", "ant farming").
+gender("Jacques Cordova", "male").

@@ -1,0 +1,13 @@
+mother("Daisy Cushman", "Nora Noland").
+father("Daisy Cushman", "Hubert Noland").
+son("Daisy Cushman", "Eldon Cushman").
+husband("Daisy Cushman", "Logan Cushman").
+friend("Daisy Cushman", "Gabriele Wilke").
+friend("Daisy Cushman", "Carmine Mckenna").
+friend("Daisy Cushman", "Garrett Bauman").
+friend("Daisy Cushman", "Patrice Dunlap").
+friend("Daisy Cushman", "Patrick Broughton").
+dob("Daisy Cushman", "0491-07-25").
+job("Daisy Cushman", "health and safety adviser").
+hobby("Daisy Cushman", "skiing").
+gender("Daisy Cushman", "female").

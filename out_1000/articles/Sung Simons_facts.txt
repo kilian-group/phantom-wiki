@@ -1,0 +1,19 @@
+sister("Sung Simons", "Shelba Simons").
+brother("Sung Simons", "Raleigh Simons").
+brother("Sung Simons", "Roderick Simons").
+mother("Sung Simons", "Sasha Simons").
+father("Sung Simons", "Sammie Simons").
+daughter("Sung Simons", "Rosella Simons").
+wife("Sung Simons", "Tiffany Simons").
+friend("Sung Simons", "Jonathan Goff").
+friend("Sung Simons", "Micah Hollins").
+friend("Sung Simons", "Taylor Schatz").
+friend("Sung Simons", "Deangelo Marr").
+friend("Sung Simons", "Carroll Lindquist").
+friend("Sung Simons", "Stan Kell").
+friend("Sung Simons", "Sonny Peeler").
+friend("Sung Simons", "Latisha Murchison").
+dob("Sung Simons", "0433-08-21").
+job("Sung Simons", "embryologist").
+hobby("Sung Simons", "radio-controlled model playing").
+gender("Sung Simons", "male").

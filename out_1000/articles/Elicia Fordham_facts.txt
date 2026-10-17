@@ -1,0 +1,11 @@
+son("Elicia Fordham", "Miles Fordham").
+son("Elicia Fordham", "Millard Fordham").
+husband("Elicia Fordham", "Edmundo Fordham").
+friend("Elicia Fordham", "Rosina Putnam").
+friend("Elicia Fordham", "Lauren Strong").
+friend("Elicia Fordham", "Paul Gilliam").
+friend("Elicia Fordham", "Domonique Fordham").
+dob("Elicia Fordham", "0434-12-27").
+job("Elicia Fordham", "chief strategy officer").
+hobby("Elicia Fordham", "golfing").
+gender("Elicia Fordham", "female").

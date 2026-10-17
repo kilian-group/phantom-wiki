@@ -1,0 +1,12 @@
+mother("Steven Prater", "Eunice Prater").
+father("Steven Prater", "Stephan Prater").
+friend("Steven Prater", "Hosea Hamlin").
+friend("Steven Prater", "Phylis Courson").
+friend("Steven Prater", "Shayne Lasher").
+friend("Steven Prater", "Frederic Cordova").
+friend("Steven Prater", "Douglass Ingalls").
+friend("Steven Prater", "Gwendolyn Townsend").
+dob("Steven Prater", "0444-06-27").
+job("Steven Prater", "editor").
+hobby("Steven Prater", "foraging").
+gender("Steven Prater", "male").

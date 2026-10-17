@@ -1,0 +1,23 @@
+sister("Timothy Simons", "Coleen Lively").
+brother("Timothy Simons", "Luis Simons").
+brother("Timothy Simons", "Sammie Simons").
+mother("Timothy Simons", "Zora Simons").
+father("Timothy Simons", "Bert Simons").
+son("Timothy Simons", "Milford Simons").
+son("Timothy Simons", "Reggie Simons").
+daughter("Timothy Simons", "Gena Cook").
+daughter("Timothy Simons", "Jacque Simons").
+wife("Timothy Simons", "Jacinta Simons").
+friend("Timothy Simons", "Gwendolyn Townsend").
+friend("Timothy Simons", "Michaela Corwin").
+friend("Timothy Simons", "Israel Mathes").
+friend("Timothy Simons", "Mireya Ibarra").
+friend("Timothy Simons", "Deangelo Marr").
+friend("Timothy Simons", "Hyman Layman").
+friend("Timothy Simons", "Jeannette Mounts").
+friend("Timothy Simons", "Keith Murchison").
+friend("Timothy Simons", "Otto Arnold").
+dob("Timothy Simons", "0413-10-29").
+job("Timothy Simons", "ambulance person").
+hobby("Timothy Simons", "letterboxing").
+gender("Timothy Simons", "male").

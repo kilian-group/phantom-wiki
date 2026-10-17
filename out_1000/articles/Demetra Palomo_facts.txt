@@ -1,0 +1,14 @@
+son("Demetra Palomo", "Bryce Palomo").
+husband("Demetra Palomo", "Guadalupe Palomo").
+friend("Demetra Palomo", "Anita Fain").
+friend("Demetra Palomo", "Jamison Upton").
+friend("Demetra Palomo", "Louis Upton").
+friend("Demetra Palomo", "Nelly Jarrett").
+friend("Demetra Palomo", "Deja Bigelow").
+friend("Demetra Palomo", "Gavin Cordova").
+friend("Demetra Palomo", "Wanda Murray").
+friend("Demetra Palomo", "Eula Hollins").
+dob("Demetra Palomo", "0409-05-02").
+job("Demetra Palomo", "chartered public finance accountant").
+hobby("Demetra Palomo", "auto audiophilia").
+gender("Demetra Palomo", "female").

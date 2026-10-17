@@ -1,0 +1,13 @@
+mother("Goldie Schlosser", "Rebecka Schlosser").
+father("Goldie Schlosser", "John Schlosser").
+friend("Goldie Schlosser", "Russel Eaves").
+friend("Goldie Schlosser", "Gina Goff").
+friend("Goldie Schlosser", "Jana Noland").
+friend("Goldie Schlosser", "Gayla Sanborn").
+friend("Goldie Schlosser", "Paul Dame").
+friend("Goldie Schlosser", "Kieth Bigelow").
+friend("Goldie Schlosser", "Jacque Haygood").
+dob("Goldie Schlosser", "0450-07-27").
+job("Goldie Schlosser", "editorial assistant").
+hobby("Goldie Schlosser", "meditation").
+gender("Goldie Schlosser", "female").

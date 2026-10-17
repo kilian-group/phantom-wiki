@@ -1,0 +1,11 @@
+daughter("Harold Wilkie", "Minerva Wilkie").
+wife("Harold Wilkie", "Yoko Wilkie").
+friend("Harold Wilkie", "Margot Skaggs").
+friend("Harold Wilkie", "Tessie Loftus").
+friend("Harold Wilkie", "Joslyn Mason").
+friend("Harold Wilkie", "Aida Wang").
+friend("Harold Wilkie", "Chuck Lizotte").
+dob("Harold Wilkie", "0298-08-04").
+job("Harold Wilkie", "hospital pharmacist").
+hobby("Harold Wilkie", "curling").
+gender("Harold Wilkie", "male").

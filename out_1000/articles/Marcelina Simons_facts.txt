@@ -1,0 +1,17 @@
+son("Marcelina Simons", "Seymour Simons").
+daughter("Marcelina Simons", "Babette Simons").
+daughter("Marcelina Simons", "Naomi Bellows").
+husband("Marcelina Simons", "Bryon Simons").
+friend("Marcelina Simons", "Vicki Osterman").
+friend("Marcelina Simons", "Alphonso Goff").
+friend("Marcelina Simons", "Johanna Mathes").
+friend("Marcelina Simons", "Scotty Broughton").
+friend("Marcelina Simons", "Brent Macias").
+friend("Marcelina Simons", "Zachery Upton").
+friend("Marcelina Simons", "Kendrick Jefferson").
+friend("Marcelina Simons", "Cleo Peeler").
+friend("Marcelina Simons", "Freddie Barrows").
+dob("Marcelina Simons", "0473-11-16").
+job("Marcelina Simons", "systems analyst").
+hobby("Marcelina Simons", "learning").
+gender("Marcelina Simons", "female").

@@ -1,0 +1,22 @@
+sister("Nedra Musick", "Deirdre Niles").
+sister("Nedra Musick", "Nellie Niles").
+sister("Nedra Musick", "Tabetha Niles").
+sister("Nedra Musick", "Yoshiko Niles").
+mother("Nedra Musick", "Virgie Niles").
+father("Nedra Musick", "Julius Niles").
+son("Nedra Musick", "Geoffrey Musick").
+husband("Nedra Musick", "Ricky Musick").
+friend("Nedra Musick", "Pierre Mcpeak").
+friend("Nedra Musick", "Carlos Noland").
+friend("Nedra Musick", "Racquel Horan").
+friend("Nedra Musick", "Kristie Harlow").
+friend("Nedra Musick", "Jorge Murray").
+friend("Nedra Musick", "Olivia Briscoe").
+friend("Nedra Musick", "Roderick Simons").
+friend("Nedra Musick", "Fernando Dana").
+friend("Nedra Musick", "Elroy Goff").
+friend("Nedra Musick", "Isaiah Resendez").
+dob("Nedra Musick", "0403-05-06").
+job("Nedra Musick", "brewing technologist").
+hobby("Nedra Musick", "beekeeping").
+gender("Nedra Musick", "female").

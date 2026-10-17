@@ -1,0 +1,12 @@
+son("Sylvia Carty", "Calvin Carty").
+daughter("Sylvia Carty", "Shelia Carty").
+husband("Sylvia Carty", "Jame Carty").
+friend("Sylvia Carty", "Porter Mckenna").
+friend("Sylvia Carty", "Terrell Lai").
+friend("Sylvia Carty", "Ollie Omara").
+friend("Sylvia Carty", "Bernardo Briscoe").
+friend("Sylvia Carty", "Freddie Barrows").
+dob("Sylvia Carty", "0378-12-17").
+job("Sylvia Carty", "chief technology officer").
+hobby("Sylvia Carty", "flower collecting and pressing").
+gender("Sylvia Carty", "female").

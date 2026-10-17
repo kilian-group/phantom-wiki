@@ -1,0 +1,7 @@
+daughter("Malik Loftus", "Ester Palermo").
+wife("Malik Loftus", "Tessie Loftus").
+friend("Malik Loftus", "Jeanelle Mcnew").
+dob("Malik Loftus", "0309-01-05").
+job("Malik Loftus", "dispensing optician").
+hobby("Malik Loftus", "learning").
+gender("Malik Loftus", "male").

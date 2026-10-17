@@ -1,0 +1,22 @@
+sister("Madaline Callender", "Ladawn Basham").
+brother("Madaline Callender", "Christoper Lasher").
+mother("Madaline Callender", "Audie Lasher").
+father("Madaline Callender", "Collin Lasher").
+son("Madaline Callender", "Jonathon Callender").
+daughter("Madaline Callender", "Lauretta Callender").
+daughter("Madaline Callender", "Ofelia Callender").
+daughter("Madaline Callender", "Randi Crocker").
+daughter("Madaline Callender", "Vilma Callender").
+husband("Madaline Callender", "Royce Callender").
+friend("Madaline Callender", "Irwin Dalton").
+friend("Madaline Callender", "Carlotta Gossett").
+friend("Madaline Callender", "Katharine Resendez").
+friend("Madaline Callender", "Nikki Bond").
+friend("Madaline Callender", "Lashandra Bowles").
+friend("Madaline Callender", "Hosea Hamlin").
+friend("Madaline Callender", "Dino Layman").
+friend("Madaline Callender", "Harriette Courson").
+dob("Madaline Callender", "0392-02-14").
+job("Madaline Callender", "ceramics designer").
+hobby("Madaline Callender", "business").
+gender("Madaline Callender", "female").

@@ -1,0 +1,12 @@
+son("Shelly Donner", "Wilson Donner").
+husband("Shelly Donner", "Dino Donner").
+friend("Shelly Donner", "Son Sutphin").
+friend("Shelly Donner", "Kerrie Resendez").
+friend("Shelly Donner", "Gena Brumbaugh").
+friend("Shelly Donner", "Windy Cowart").
+friend("Shelly Donner", "Freddie Barrows").
+friend("Shelly Donner", "Toshiko Younger").
+dob("Shelly Donner", "0381-09-14").
+job("Shelly Donner", "clinical molecular geneticist").
+hobby("Shelly Donner", "kite flying").
+gender("Shelly Donner", "female").

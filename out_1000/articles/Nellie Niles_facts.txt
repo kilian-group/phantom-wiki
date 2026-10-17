@@ -1,0 +1,16 @@
+sister("Nellie Niles", "Deirdre Niles").
+sister("Nellie Niles", "Nedra Musick").
+sister("Nellie Niles", "Tabetha Niles").
+sister("Nellie Niles", "Yoshiko Niles").
+mother("Nellie Niles", "Virgie Niles").
+father("Nellie Niles", "Julius Niles").
+friend("Nellie Niles", "Shirley Ibarra").
+friend("Nellie Niles", "Rosina Putnam").
+friend("Nellie Niles", "Tosha Osborn").
+friend("Nellie Niles", "Byron Geter").
+friend("Nellie Niles", "Roman Ruth").
+friend("Nellie Niles", "Cordell Younger").
+dob("Nellie Niles", "0402-02-14").
+job("Nellie Niles", "patent attorney").
+hobby("Nellie Niles", "billiards").
+gender("Nellie Niles", "female").

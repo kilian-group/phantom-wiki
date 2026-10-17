@@ -1,0 +1,23 @@
+sister("Tanner Holliman", "Ella Mathes").
+sister("Tanner Holliman", "Jennette Holliman").
+sister("Tanner Holliman", "Nydia Ibarra").
+sister("Tanner Holliman", "Vita Resendez").
+mother("Tanner Holliman", "Judith Holliman").
+father("Tanner Holliman", "Calvin Holliman").
+friend("Tanner Holliman", "Dixie Murdoch").
+friend("Tanner Holliman", "Rodney Fordham").
+friend("Tanner Holliman", "Aaron Bowles").
+friend("Tanner Holliman", "Macy Burger").
+friend("Tanner Holliman", "Vernon Joubert").
+friend("Tanner Holliman", "Mozelle Mounts").
+friend("Tanner Holliman", "Roseanna Mckenna").
+friend("Tanner Holliman", "Jermaine Lasher").
+friend("Tanner Holliman", "Jewell Fordham").
+friend("Tanner Holliman", "Cortez Kinsella").
+friend("Tanner Holliman", "Pablo Cook").
+friend("Tanner Holliman", "Cedric Shoulders").
+friend("Tanner Holliman", "Neal Mathes").
+dob("Tanner Holliman", "0348-01-13").
+job("Tanner Holliman", "chief executive officer").
+hobby("Tanner Holliman", "ant-keeping").
+gender("Tanner Holliman", "male").

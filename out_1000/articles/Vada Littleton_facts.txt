@@ -1,0 +1,17 @@
+sister("Vada Littleton", "Anna Broughton").
+sister("Vada Littleton", "Jenny Gilliam").
+brother("Vada Littleton", "Scotty Gilliam").
+mother("Vada Littleton", "Deidra Gilliam").
+father("Vada Littleton", "Darren Gilliam").
+daughter("Vada Littleton", "Glenda Dacosta").
+husband("Vada Littleton", "Dennis Littleton").
+friend("Vada Littleton", "Wm Salem").
+friend("Vada Littleton", "Stacey Wilke").
+friend("Vada Littleton", "Laurence Knepper").
+friend("Vada Littleton", "Anastacia Cordova").
+friend("Vada Littleton", "Shelia Hollins").
+friend("Vada Littleton", "Kareem Gilliam").
+dob("Vada Littleton", "0368-09-24").
+job("Vada Littleton", "optician").
+hobby("Vada Littleton", "meteorology").
+gender("Vada Littleton", "female").

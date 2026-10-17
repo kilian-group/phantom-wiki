@@ -1,0 +1,19 @@
+mother("Lance Carreon", "Mari Carreon").
+father("Lance Carreon", "Miguel Carreon").
+friend("Lance Carreon", "Clement Bennet").
+friend("Lance Carreon", "Reyna Ibarra").
+friend("Lance Carreon", "Jenny Gilliam").
+friend("Lance Carreon", "Monroe Gilliam").
+friend("Lance Carreon", "Patrick Broughton").
+friend("Lance Carreon", "Nickolas Holtz").
+friend("Lance Carreon", "Ester Yarbrough").
+friend("Lance Carreon", "Jermaine Wilke").
+friend("Lance Carreon", "Douglass Resendez").
+friend("Lance Carreon", "Felipe Vanmeter").
+friend("Lance Carreon", "Hershel Ingalls").
+friend("Lance Carreon", "Patricia Towns").
+friend("Lance Carreon", "Christen Corwin").
+dob("Lance Carreon", "0359-06-24").
+job("Lance Carreon", "television production assistant").
+hobby("Lance Carreon", "geocaching").
+gender("Lance Carreon", "male").

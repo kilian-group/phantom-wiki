@@ -1,0 +1,11 @@
+mother("Myrl Mcgough", "Belva Murphey").
+father("Myrl Mcgough", "Alvaro Murphey").
+daughter("Myrl Mcgough", "Clara Mcgough").
+daughter("Myrl Mcgough", "Delsie Mcgough").
+husband("Myrl Mcgough", "Randall Mcgough").
+friend("Myrl Mcgough", "Monte Oberg").
+friend("Myrl Mcgough", "Twila Oberg").
+dob("Myrl Mcgough", "0317-02-01").
+job("Myrl Mcgough", "diagnostic radiographer").
+hobby("Myrl Mcgough", "research").
+gender("Myrl Mcgough", "female").

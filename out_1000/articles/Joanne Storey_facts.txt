@@ -1,0 +1,21 @@
+mother("Joanne Storey", "Sheila Conner").
+father("Joanne Storey", "Carol Conner").
+son("Joanne Storey", "Herbert Storey").
+son("Joanne Storey", "Mack Storey").
+daughter("Joanne Storey", "Daisy Autry").
+husband("Joanne Storey", "Steve Storey").
+friend("Joanne Storey", "Maryann Peeler").
+friend("Joanne Storey", "Edwina Eaves").
+friend("Joanne Storey", "Emanuel Mccall").
+friend("Joanne Storey", "Boris Gilliam").
+friend("Joanne Storey", "Shannon Fredrick").
+friend("Joanne Storey", "Macy Burger").
+friend("Joanne Storey", "Everett Courson").
+friend("Joanne Storey", "Levi Kell").
+friend("Joanne Storey", "Cameron Mckenna").
+friend("Joanne Storey", "Carmine Mckenna").
+friend("Joanne Storey", "Terrell Lai").
+dob("Joanne Storey", "0377-02-23").
+job("Joanne Storey", "civil service administrator").
+hobby("Joanne Storey", "microscopy").
+gender("Joanne Storey", "female").

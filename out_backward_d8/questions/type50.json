@@ -1,0 +1,492 @@
+[
+    {
+        "id": "694a79cc-b427-40b6-8f9d-1935ad5933f4",
+        "question": "Who is younger, the son of the parent of Johnathan Boutte or the cousin of the cousin of Rolland Mckenna?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lila Petry"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "son(Y_4, Y_2)",
+                "parent(\"Johnathan Boutte\", Y_4)",
+                "cousin(Y_12, Y_10)",
+                "cousin(\"Rolland Mckenna\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 50,
+        "reasoning_steps": 8,
+        "difficulty": {
+            "hops": 8,
+            "constraints": 0,
+            "composite": 8,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "c7830e33-0c92-4189-9b59-c80d9f45ba48",
+        "question": "Who is younger, the cousin of the niece of Bradford Nicolas or the sister of the friend of Daniel Brannan?",
+        "solution_traces": "[]",
+        "answer": [
+            "Maranda Lizotte"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "cousin(Y_4, Y_2)",
+                "niece(\"Bradford Nicolas\", Y_4)",
+                "sister(Y_12, Y_10)",
+                "friend(\"Daniel Brannan\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 50,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "4a3b26da-c8bf-4dff-a079-0faa219f258a",
+        "question": "Who is younger, the cousin of the nephew of Dwain Lizotte or the husband of the friend of Maxwell Henderson?",
+        "solution_traces": "[]",
+        "answer": [
+            "Chuck Lizotte"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "cousin(Y_4, Y_2)",
+                "nephew(\"Dwain Lizotte\", Y_4)",
+                "husband(Y_12, Y_10)",
+                "friend(\"Maxwell Henderson\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 50,
+        "reasoning_steps": 8,
+        "difficulty": {
+            "hops": 8,
+            "constraints": 0,
+            "composite": 8,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "8de2c8b0-e4c0-4328-88bf-2a2d53c49795",
+        "question": "Who is younger, the granddaughter of the niece of Jona Carrell or the great-granddaughter of the parent of Shelli Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Hannah Palermo"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "granddaughter(Y_4, Y_2)",
+                "niece(\"Jona Carrell\", Y_4)",
+                "great_granddaughter(Y_12, Y_10)",
+                "parent(\"Shelli Beltran\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 50,
+        "reasoning_steps": 8,
+        "difficulty": {
+            "hops": 8,
+            "constraints": 0,
+            "composite": 8,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "18b96e07-f585-4d63-b41e-2bf4d03370c3",
+        "question": "Who is younger, the child of the sibling of Rosanna Palermo or the father-in-law of the father of Charlie Kovach?",
+        "solution_traces": "[]",
+        "answer": [
+            "Joel Palermo"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "child(Y_4, Y_2)",
+                "sibling(\"Rosanna Palermo\", Y_4)",
+                "father_in_law(Y_12, Y_10)",
+                "father(\"Charlie Kovach\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 50,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "34bd6669-7b16-4bc8-84e5-1d0aa1325bb6",
+        "question": "Who is younger, the great-grandparent of the daughter of Earle Cormier or the great-grandfather of the father-in-law of Deborah Cormier?",
+        "solution_traces": "[]",
+        "answer": [
+            "Alycia Cormier"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "great_grandparent(Y_4, Y_2)",
+                "daughter(\"Earle Cormier\", Y_4)",
+                "great_grandfather(Y_12, Y_10)",
+                "father_in_law(\"Deborah Cormier\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 50,
+        "reasoning_steps": 10,
+        "difficulty": {
+            "hops": 10,
+            "constraints": 0,
+            "composite": 10,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "25dcca94-3c1d-448b-83e5-e7054537a1ac",
+        "question": "Who is younger, the sister-in-law of the parent of Marcelino Mcnew or the granddaughter of the father of Bruce Mason?",
+        "solution_traces": "[]",
+        "answer": [
+            "Zoila Mason"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "sister_in_law(Y_4, Y_2)",
+                "parent(\"Marcelino Mcnew\", Y_4)",
+                "granddaughter(Y_12, Y_10)",
+                "father(\"Bruce Mason\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 50,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "5215de12-e118-4e2b-9d9e-a2916541aa85",
+        "question": "Who is younger, the friend of the father of Shirley Skaggs or the niece of the aunt of Lenore Hackworth?",
+        "solution_traces": "[]",
+        "answer": [
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "friend(Y_4, Y_2)",
+                "father(\"Shirley Skaggs\", Y_4)",
+                "niece(Y_12, Y_10)",
+                "aunt(\"Lenore Hackworth\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 50,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "e5ca6585-9feb-41ae-a264-757e8ff80840",
+        "question": "Who is younger, the sister of the brother-in-law of Effie Schoonmaker or the child of the great-grandmother of Joel Palermo?",
+        "solution_traces": "[]",
+        "answer": [
+            "Sylvia Palermo"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "sister(Y_4, Y_2)",
+                "brother_in_law(\"Effie Schoonmaker\", Y_4)",
+                "child(Y_12, Y_10)",
+                "great_grandmother(\"Joel Palermo\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 50,
+        "reasoning_steps": 8,
+        "difficulty": {
+            "hops": 8,
+            "constraints": 0,
+            "composite": 8,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "66196a89-b20d-4373-acc0-cdc470bd415f",
+        "question": "Who is younger, the friend of the great-aunt of Leann Cormier or the great-grandchild of the father of Darin Shirk?",
+        "solution_traces": "[]",
+        "answer": [
+            "Craig Boutte"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "friend(Y_4, Y_2)",
+                "great_aunt(\"Leann Cormier\", Y_4)",
+                "great_grandchild(Y_12, Y_10)",
+                "father(\"Darin Shirk\", Y_12)"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "<name>_14",
+            "?"
+        ],
+        "type": 50,
+        "reasoning_steps": 8,
+        "difficulty": {
+            "hops": 8,
+            "constraints": 0,
+            "composite": 8,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    }
+]

@@ -1,0 +1,15 @@
+sister("Willie Remillard", "Celestine Remillard").
+sister("Willie Remillard", "Louann Chrisman").
+mother("Willie Remillard", "Dani Remillard").
+father("Willie Remillard", "Hunter Remillard").
+daughter("Willie Remillard", "Mai Remillard").
+wife("Willie Remillard", "Justine Remillard").
+friend("Willie Remillard", "Marion Wilke").
+friend("Willie Remillard", "Marlo Oberg").
+friend("Willie Remillard", "Aurelia Dishman").
+friend("Willie Remillard", "Dani Remillard").
+friend("Willie Remillard", "Sherrie Remillard").
+dob("Willie Remillard", "0351-02-21").
+job("Willie Remillard", "press photographer").
+hobby("Willie Remillard", "reading").
+gender("Willie Remillard", "male").

@@ -1,0 +1,21 @@
+sister("Milford Simons", "Gena Cook").
+sister("Milford Simons", "Jacque Simons").
+brother("Milford Simons", "Reggie Simons").
+mother("Milford Simons", "Jacinta Simons").
+father("Milford Simons", "Timothy Simons").
+friend("Milford Simons", "Geri Dana").
+friend("Milford Simons", "Marybeth Dana").
+friend("Milford Simons", "Lavern Staten").
+friend("Milford Simons", "Jermaine Gilliam").
+friend("Milford Simons", "Hershel Shilling").
+friend("Milford Simons", "Ashleigh Galvan").
+friend("Milford Simons", "Shizuko Sheridan").
+friend("Milford Simons", "Rashad Nolasco").
+friend("Milford Simons", "Jermaine Lasher").
+friend("Milford Simons", "Mack Storey").
+friend("Milford Simons", "Teddy Senn").
+friend("Milford Simons", "Antwan Rudolph").
+dob("Milford Simons", "0445-04-03").
+job("Milford Simons", "merchandiser").
+hobby("Milford Simons", "auto audiophilia").
+gender("Milford Simons", "male").

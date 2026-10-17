@@ -1,0 +1,11 @@
+daughter("John Schlosser", "Goldie Schlosser").
+wife("John Schlosser", "Rebecka Schlosser").
+friend("John Schlosser", "Maximilian Keyes").
+friend("John Schlosser", "Reita Pugliese").
+friend("John Schlosser", "Jackie Vandenberg").
+friend("John Schlosser", "Drew Carty").
+friend("John Schlosser", "Maurine Wendel").
+dob("John Schlosser", "0415-08-04").
+job("John Schlosser", "biochemist").
+hobby("John Schlosser", "social studies").
+gender("John Schlosser", "male").

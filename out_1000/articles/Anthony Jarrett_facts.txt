@@ -1,0 +1,20 @@
+son("Anthony Jarrett", "Jamel Jarrett").
+son("Anthony Jarrett", "Mose Jarrett").
+daughter("Anthony Jarrett", "Freeda Jarrett").
+daughter("Anthony Jarrett", "Zona Jarrett").
+wife("Anthony Jarrett", "Shandi Jarrett").
+friend("Anthony Jarrett", "Sharika Kell").
+friend("Anthony Jarrett", "Sergio Parish").
+friend("Anthony Jarrett", "Isaiah Autry").
+friend("Anthony Jarrett", "Rudy Runnels").
+friend("Anthony Jarrett", "Anneliese Pellegrino").
+friend("Anthony Jarrett", "Leonora Cordova").
+friend("Anthony Jarrett", "Jacque Simons").
+friend("Anthony Jarrett", "Julius Niles").
+friend("Anthony Jarrett", "Juan Smart").
+friend("Anthony Jarrett", "Marvin Putnam").
+friend("Anthony Jarrett", "Normand Wilke").
+dob("Anthony Jarrett", "0420-02-26").
+job("Anthony Jarrett", "printmaker").
+hobby("Anthony Jarrett", "religious studies").
+gender("Anthony Jarrett", "male").

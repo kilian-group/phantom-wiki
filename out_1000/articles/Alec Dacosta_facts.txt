@@ -1,0 +1,12 @@
+son("Alec Dacosta", "Desmond Dacosta").
+son("Alec Dacosta", "Ricardo Dacosta").
+wife("Alec Dacosta", "Glenda Dacosta").
+friend("Alec Dacosta", "Donald Fordham").
+friend("Alec Dacosta", "Annabell Horan").
+friend("Alec Dacosta", "Stacey Wilke").
+friend("Alec Dacosta", "Bess Autry").
+friend("Alec Dacosta", "Jeff Haygood").
+dob("Alec Dacosta", "0396-11-13").
+job("Alec Dacosta", "adult nurse").
+hobby("Alec Dacosta", "pool").
+gender("Alec Dacosta", "male").

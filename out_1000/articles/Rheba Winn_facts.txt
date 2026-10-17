@@ -1,0 +1,17 @@
+mother("Rheba Winn", "Maryam Maness").
+father("Rheba Winn", "James Maness").
+son("Rheba Winn", "Claudio Winn").
+daughter("Rheba Winn", "Naomi Lai").
+husband("Rheba Winn", "Brandon Winn").
+friend("Rheba Winn", "Dalton Arnold").
+friend("Rheba Winn", "Israel Mathes").
+friend("Rheba Winn", "Jennette Holliman").
+friend("Rheba Winn", "Isabell Shank").
+friend("Rheba Winn", "Vito Capps").
+friend("Rheba Winn", "Amy Wilke").
+friend("Rheba Winn", "Chrissy Mcgough").
+friend("Rheba Winn", "Donnie Mcgough").
+dob("Rheba Winn", "0528-09-20").
+job("Rheba Winn", "games developer").
+hobby("Rheba Winn", "motor sports").
+gender("Rheba Winn", "female").

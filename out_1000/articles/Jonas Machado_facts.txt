@@ -1,0 +1,9 @@
+son("Jonas Machado", "Boris Machado").
+wife("Jonas Machado", "Tawana Machado").
+friend("Jonas Machado", "Ella Mathes").
+friend("Jonas Machado", "Dane Murray").
+friend("Jonas Machado", "Kennith Towns").
+dob("Jonas Machado", "0439-03-21").
+job("Jonas Machado", "chemist").
+hobby("Jonas Machado", "butterfly watching").
+gender("Jonas Machado", "male").

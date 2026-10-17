@@ -1,0 +1,13 @@
+son("Frankie Peeler", "Luther Peeler").
+wife("Frankie Peeler", "Barabara Peeler").
+friend("Frankie Peeler", "Raleigh Cordova").
+friend("Frankie Peeler", "Harold Hollins").
+friend("Frankie Peeler", "Rogelio Capps").
+friend("Frankie Peeler", "Racquel Horan").
+friend("Frankie Peeler", "Paul Dame").
+friend("Frankie Peeler", "Taylor Layman").
+friend("Frankie Peeler", "Bo Frink").
+dob("Frankie Peeler", "0329-11-13").
+job("Frankie Peeler", "sub").
+hobby("Frankie Peeler", "antiquities").
+gender("Frankie Peeler", "male").

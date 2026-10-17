@@ -1,0 +1,15 @@
+son("Gena Brumbaugh", "Wallace Brumbaugh").
+husband("Gena Brumbaugh", "Clair Brumbaugh").
+friend("Gena Brumbaugh", "Louie Bales").
+friend("Gena Brumbaugh", "Eli Younger").
+friend("Gena Brumbaugh", "Lona Corwin").
+friend("Gena Brumbaugh", "Michaela Corwin").
+friend("Gena Brumbaugh", "Shelly Donner").
+friend("Gena Brumbaugh", "Katherine Carswell").
+friend("Gena Brumbaugh", "Jamal Marr").
+friend("Gena Brumbaugh", "Denny Vanmeter").
+friend("Gena Brumbaugh", "Jeff Haygood").
+dob("Gena Brumbaugh", "0385-07-14").
+job("Gena Brumbaugh", "television producer").
+hobby("Gena Brumbaugh", "dolls").
+gender("Gena Brumbaugh", "female").

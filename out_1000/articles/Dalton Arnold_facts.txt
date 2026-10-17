@@ -1,0 +1,15 @@
+mother("Dalton Arnold", "Babara Arnold").
+father("Dalton Arnold", "Otto Arnold").
+friend("Dalton Arnold", "Thalia Linden").
+friend("Dalton Arnold", "Evette Gibbs").
+friend("Dalton Arnold", "Jefferson Murdoch").
+friend("Dalton Arnold", "Kris Fordham").
+friend("Dalton Arnold", "Stuart Strong").
+friend("Dalton Arnold", "Douglass Resendez").
+friend("Dalton Arnold", "Deja Bigelow").
+friend("Dalton Arnold", "Rheba Winn").
+friend("Dalton Arnold", "Ella Valladares").
+dob("Dalton Arnold", "0556-11-18").
+job("Dalton Arnold", "chief technology officer").
+hobby("Dalton Arnold", "equestrianism").
+gender("Dalton Arnold", "male").

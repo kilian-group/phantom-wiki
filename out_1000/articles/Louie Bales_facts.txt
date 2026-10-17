@@ -1,0 +1,17 @@
+mother("Louie Bales", "Brigette Bales").
+father("Louie Bales", "Major Bales").
+daughter("Louie Bales", "Shannon Flores").
+daughter("Louie Bales", "Skye Swartz").
+wife("Louie Bales", "Claudine Bales").
+friend("Louie Bales", "Salvador Plumley").
+friend("Louie Bales", "Rhea Burnett").
+friend("Louie Bales", "Wesley Courson").
+friend("Louie Bales", "Shayne Lasher").
+friend("Louie Bales", "Andrea Murchison").
+friend("Louie Bales", "Gena Brumbaugh").
+friend("Louie Bales", "Glen Towns").
+friend("Louie Bales", "Lakeshia Steadman").
+dob("Louie Bales", "0366-09-23").
+job("Louie Bales", "senior tax professional").
+hobby("Louie Bales", "geocaching").
+gender("Louie Bales", "male").

@@ -1,0 +1,10 @@
+son("Hazel Earnest", "Roland Earnest").
+husband("Hazel Earnest", "Mickey Earnest").
+friend("Hazel Earnest", "Shawnta Saari").
+friend("Hazel Earnest", "Therese Cormier").
+friend("Hazel Earnest", "Merrill Mcnew").
+friend("Hazel Earnest", "Eula Crain").
+dob("Hazel Earnest", "0258-05-28").
+job("Hazel Earnest", "psychiatrist").
+hobby("Hazel Earnest", "trapshooting").
+gender("Hazel Earnest", "female").

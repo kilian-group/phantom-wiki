@@ -1,0 +1,11 @@
+mother("Noelia Henderson", "Kris Haber").
+father("Noelia Henderson", "Caleb Haber").
+daughter("Noelia Henderson", "Goldie Henderson").
+daughter("Noelia Henderson", "Lorelei Mcnew").
+husband("Noelia Henderson", "Stefan Henderson").
+friend("Noelia Henderson", "Aurelio Wasserman").
+friend("Noelia Henderson", "Ryan Wang").
+dob("Noelia Henderson", "0250-04-09").
+job("Noelia Henderson", "systems developer").
+hobby("Noelia Henderson", "mycology").
+gender("Noelia Henderson", "female").

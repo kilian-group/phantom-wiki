@@ -1,0 +1,15 @@
+brother("Edythe Osterman", "Rolf Osterman").
+mother("Edythe Osterman", "Vicki Osterman").
+father("Edythe Osterman", "Hal Osterman").
+friend("Edythe Osterman", "Maranda Goff").
+friend("Edythe Osterman", "Pierre Mcpeak").
+friend("Edythe Osterman", "Millard Fordham").
+friend("Edythe Osterman", "Matthias Lennox").
+friend("Edythe Osterman", "Jesus Cordova").
+friend("Edythe Osterman", "Rayna Kinsella").
+friend("Edythe Osterman", "Gloria Ingalls").
+friend("Edythe Osterman", "Lakeshia Steadman").
+dob("Edythe Osterman", "0488-04-17").
+job("Edythe Osterman", "TEFL teacher").
+hobby("Edythe Osterman", "fencing").
+gender("Edythe Osterman", "female").

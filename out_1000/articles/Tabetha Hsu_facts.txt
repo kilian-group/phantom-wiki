@@ -1,0 +1,15 @@
+mother("Tabetha Hsu", "Josette Goff").
+father("Tabetha Hsu", "Jonathan Goff").
+daughter("Tabetha Hsu", "Elaine Hsu").
+husband("Tabetha Hsu", "Lazaro Hsu").
+friend("Tabetha Hsu", "Rosina Putnam").
+friend("Tabetha Hsu", "Wade Sheridan").
+friend("Tabetha Hsu", "Iva Parish").
+friend("Tabetha Hsu", "Lynetta Mckenna").
+friend("Tabetha Hsu", "Carrol Spiller").
+friend("Tabetha Hsu", "Christen Weise").
+friend("Tabetha Hsu", "Valentina Beamon").
+dob("Tabetha Hsu", "0437-08-03").
+job("Tabetha Hsu", "equality and diversity officer").
+hobby("Tabetha Hsu", "trainspotting").
+gender("Tabetha Hsu", "female").

@@ -1,0 +1,8 @@
+son("Jeannine Skaggs", "Rosendo Skaggs").
+daughter("Jeannine Skaggs", "Hoa Skaggs").
+husband("Jeannine Skaggs", "Weldon Skaggs").
+friend("Jeannine Skaggs", "Daniel Brannan").
+dob("Jeannine Skaggs", "0303-04-19").
+job("Jeannine Skaggs", "technical brewer").
+hobby("Jeannine Skaggs", "meteorology").
+gender("Jeannine Skaggs", "female").

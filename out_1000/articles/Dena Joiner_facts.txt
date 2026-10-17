@@ -1,0 +1,9 @@
+daughter("Dena Joiner", "Roxy Niles").
+husband("Dena Joiner", "Stevie Joiner").
+friend("Dena Joiner", "Wendell Monday").
+friend("Dena Joiner", "Everett Courson").
+friend("Dena Joiner", "Viva Jefferson").
+dob("Dena Joiner", "0310-06-27").
+job("Dena Joiner", "occupational hygienist").
+hobby("Dena Joiner", "social studies").
+gender("Dena Joiner", "female").

@@ -1,0 +1,14 @@
+sister("Samatha Weise", "Graciela Weise").
+brother("Samatha Weise", "Charley Weise").
+mother("Samatha Weise", "Shauna Weise").
+father("Samatha Weise", "Graham Weise").
+friend("Samatha Weise", "Shauna Weise").
+friend("Samatha Weise", "Chang Eaves").
+friend("Samatha Weise", "Judith Holliman").
+friend("Samatha Weise", "Kurtis Kell").
+friend("Samatha Weise", "Laurence Knepper").
+friend("Samatha Weise", "Stanford Suh").
+dob("Samatha Weise", "0511-04-03").
+job("Samatha Weise", "further education lecturer").
+hobby("Samatha Weise", "auto audiophilia").
+gender("Samatha Weise", "female").

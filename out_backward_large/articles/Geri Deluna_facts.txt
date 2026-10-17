@@ -1,0 +1,14 @@
+daughter("Geri Deluna", "Alycia Cormier").
+husband("Geri Deluna", "Bert Deluna").
+friend("Geri Deluna", "Edythe Nicolas").
+friend("Geri Deluna", "Lucas Crain").
+friend("Geri Deluna", "Gerardo Hornback").
+friend("Geri Deluna", "Taneka Abraham").
+friend("Geri Deluna", "Rosalinda Brannan").
+friend("Geri Deluna", "Johnetta Wang").
+friend("Geri Deluna", "Shelli Beltran").
+friend("Geri Deluna", "Williams Smock").
+dob("Geri Deluna", "0156-05-03").
+job("Geri Deluna", "community pharmacist").
+hobby("Geri Deluna", "audiophile").
+gender("Geri Deluna", "female").

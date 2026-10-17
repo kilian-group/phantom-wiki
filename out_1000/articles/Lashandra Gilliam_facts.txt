@@ -1,0 +1,15 @@
+daughter("Lashandra Gilliam", "Sylvia Gilliam").
+husband("Lashandra Gilliam", "Jermaine Gilliam").
+friend("Lashandra Gilliam", "Lora Vogt").
+friend("Lashandra Gilliam", "Nydia Willoughby").
+friend("Lashandra Gilliam", "Georgette Haygood").
+friend("Lashandra Gilliam", "Brunilda Linden").
+friend("Lashandra Gilliam", "Emery Linden").
+friend("Lashandra Gilliam", "Jennie Towns").
+friend("Lashandra Gilliam", "Monika Bennet").
+friend("Lashandra Gilliam", "Sung Resendez").
+friend("Lashandra Gilliam", "Vita Resendez").
+dob("Lashandra Gilliam", "0342-10-17").
+job("Lashandra Gilliam", "medical sales representative").
+hobby("Lashandra Gilliam", "tea bag collecting").
+gender("Lashandra Gilliam", "female").

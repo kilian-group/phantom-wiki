@@ -1,0 +1,8 @@
+son("Karla Hornback", "Reinaldo Hornback").
+daughter("Karla Hornback", "Luisa Hornback").
+husband("Karla Hornback", "Gerardo Hornback").
+friend("Karla Hornback", "Aubrey Smock").
+dob("Karla Hornback", "0190-10-06").
+job("Karla Hornback", "editorial assistant").
+hobby("Karla Hornback", "railway studies").
+gender("Karla Hornback", "female").

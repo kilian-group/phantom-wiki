@@ -1,0 +1,20 @@
+sister("Roderick Simons", "Shelba Simons").
+brother("Roderick Simons", "Raleigh Simons").
+brother("Roderick Simons", "Sung Simons").
+mother("Roderick Simons", "Sasha Simons").
+father("Roderick Simons", "Sammie Simons").
+son("Roderick Simons", "Frankie Simons").
+daughter("Roderick Simons", "Cherlyn Simons").
+daughter("Roderick Simons", "Pearl Hamann").
+wife("Roderick Simons", "Viva Simons").
+friend("Roderick Simons", "Porter Steadman").
+friend("Roderick Simons", "Kareem Goff").
+friend("Roderick Simons", "Melina Resendez").
+friend("Roderick Simons", "Nedra Musick").
+friend("Roderick Simons", "Roscoe Vanmeter").
+friend("Roderick Simons", "Errol Cordova").
+friend("Roderick Simons", "Jorge Murray").
+dob("Roderick Simons", "0435-10-30").
+job("Roderick Simons", "runner").
+hobby("Roderick Simons", "speed skating").
+gender("Roderick Simons", "male").

@@ -1,0 +1,10 @@
+mother("Bruce Mason", "Joslyn Mason").
+father("Bruce Mason", "Clarence Mason").
+daughter("Bruce Mason", "Zoila Mason").
+wife("Bruce Mason", "Lauretta Mason").
+friend("Bruce Mason", "Alycia Cormier").
+friend("Bruce Mason", "Margot Skaggs").
+dob("Bruce Mason", "0286-10-11").
+job("Bruce Mason", "paramedic").
+hobby("Bruce Mason", "ant farming").
+gender("Bruce Mason", "male").

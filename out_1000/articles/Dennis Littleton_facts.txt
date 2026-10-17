@@ -1,0 +1,9 @@
+daughter("Dennis Littleton", "Glenda Dacosta").
+wife("Dennis Littleton", "Vada Littleton").
+friend("Dennis Littleton", "Charley Vandenberg").
+friend("Dennis Littleton", "Audie Lasher").
+friend("Dennis Littleton", "Herbert Dana").
+dob("Dennis Littleton", "0365-02-12").
+job("Dennis Littleton", "clothing technologist").
+hobby("Dennis Littleton", "ultimate frisbee").
+gender("Dennis Littleton", "male").

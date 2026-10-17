@@ -1,0 +1,18 @@
+son("Adolph Hollins", "Micah Hollins").
+wife("Adolph Hollins", "Shelia Hollins").
+friend("Adolph Hollins", "Sona Fredrick").
+friend("Adolph Hollins", "Kimiko Vogt").
+friend("Adolph Hollins", "Johnna Macias").
+friend("Adolph Hollins", "Kieth Shaw").
+friend("Adolph Hollins", "Keith Resendez").
+friend("Adolph Hollins", "Jenni Kell").
+friend("Adolph Hollins", "Kanesha Booth").
+friend("Adolph Hollins", "Christoper Lasher").
+friend("Adolph Hollins", "Kelvin Autry").
+friend("Adolph Hollins", "Tiffany Simons").
+friend("Adolph Hollins", "Shante Ruth").
+friend("Adolph Hollins", "Wilson Younger").
+dob("Adolph Hollins", "0352-11-06").
+job("Adolph Hollins", "sports development officer").
+hobby("Adolph Hollins", "dolls").
+gender("Adolph Hollins", "male").

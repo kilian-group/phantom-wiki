@@ -1,0 +1,8 @@
+daughter("Luis Best", "Edythe Littleton").
+wife("Luis Best", "Edris Best").
+friend("Luis Best", "Jann Ruth").
+friend("Luis Best", "Kory Gibbs").
+dob("Luis Best", "0376-07-03").
+job("Luis Best", "immunologist").
+hobby("Luis Best", "insect collecting").
+gender("Luis Best", "male").

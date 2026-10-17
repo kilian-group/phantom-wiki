@@ -1,0 +1,9 @@
+daughter("Emerson Willoughby", "Belia Mckenna").
+daughter("Emerson Willoughby", "Katharine Willoughby").
+wife("Emerson Willoughby", "Nydia Willoughby").
+friend("Emerson Willoughby", "Scot Shilling").
+friend("Emerson Willoughby", "Aurelia Gordon").
+dob("Emerson Willoughby", "0417-09-04").
+job("Emerson Willoughby", "equities trader").
+hobby("Emerson Willoughby", "bmx").
+gender("Emerson Willoughby", "male").

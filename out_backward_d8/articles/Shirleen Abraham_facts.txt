@@ -1,0 +1,10 @@
+sister("Shirleen Abraham", "Lorine Wasserman").
+mother("Shirleen Abraham", "Elsy Hornback").
+father("Shirleen Abraham", "Reinaldo Hornback").
+daughter("Shirleen Abraham", "Domonique Cedillo").
+husband("Shirleen Abraham", "Dillon Abraham").
+friend("Shirleen Abraham", "Quincy Pannell").
+dob("Shirleen Abraham", "0248-01-02").
+job("Shirleen Abraham", "media buyer").
+hobby("Shirleen Abraham", "shooting sports").
+gender("Shirleen Abraham", "female").

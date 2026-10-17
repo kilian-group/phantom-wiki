@@ -1,0 +1,14 @@
+daughter("Shemika Hirsch", "Laverna Kell").
+husband("Shemika Hirsch", "Garland Hirsch").
+friend("Shemika Hirsch", "Daisy Autry").
+friend("Shemika Hirsch", "Stefan Sutphin").
+friend("Shemika Hirsch", "Jacinta Simons").
+friend("Shemika Hirsch", "King Goff").
+friend("Shemika Hirsch", "Scotty Broughton").
+friend("Shemika Hirsch", "Drew Smart").
+friend("Shemika Hirsch", "Johanna Sanborn").
+friend("Shemika Hirsch", "Tashina Vandenberg").
+dob("Shemika Hirsch", "0277-05-24").
+job("Shemika Hirsch", "theatre director").
+hobby("Shemika Hirsch", "amateur astronomy").
+gender("Shemika Hirsch", "female").

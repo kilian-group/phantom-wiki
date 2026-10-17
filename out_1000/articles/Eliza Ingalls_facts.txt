@@ -1,0 +1,12 @@
+son("Eliza Ingalls", "Charlie Ingalls").
+husband("Eliza Ingalls", "Douglass Ingalls").
+friend("Eliza Ingalls", "Mac Goff").
+friend("Eliza Ingalls", "Edmundo Fordham").
+friend("Eliza Ingalls", "Rosalinda Layton").
+friend("Eliza Ingalls", "Hector Autry").
+friend("Eliza Ingalls", "Andrew Sutphin").
+friend("Eliza Ingalls", "Noreen Cordova").
+dob("Eliza Ingalls", "0332-11-10").
+job("Eliza Ingalls", "hydrographic surveyor").
+hobby("Eliza Ingalls", "animation").
+gender("Eliza Ingalls", "female").

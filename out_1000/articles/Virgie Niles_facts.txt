@@ -1,0 +1,24 @@
+sister("Virgie Niles", "Latrina Mathes").
+sister("Virgie Niles", "Reita Pugliese").
+brother("Virgie Niles", "Israel Mathes").
+mother("Virgie Niles", "Ella Mathes").
+father("Virgie Niles", "Neal Mathes").
+daughter("Virgie Niles", "Deirdre Niles").
+daughter("Virgie Niles", "Nedra Musick").
+daughter("Virgie Niles", "Nellie Niles").
+daughter("Virgie Niles", "Tabetha Niles").
+daughter("Virgie Niles", "Yoshiko Niles").
+husband("Virgie Niles", "Julius Niles").
+friend("Virgie Niles", "Aron Robinett").
+friend("Virgie Niles", "Rogelio Capps").
+friend("Virgie Niles", "Laverna Macias").
+friend("Virgie Niles", "Shawna Sheridan").
+friend("Virgie Niles", "Maria Lindquist").
+friend("Virgie Niles", "Ira Mckenna").
+friend("Virgie Niles", "Ladawn Basham").
+friend("Virgie Niles", "Rolf Osterman").
+friend("Virgie Niles", "Almeta Younger").
+dob("Virgie Niles", "0373-01-10").
+job("Virgie Niles", "conservator").
+hobby("Virgie Niles", "rail transport modelling").
+gender("Virgie Niles", "female").

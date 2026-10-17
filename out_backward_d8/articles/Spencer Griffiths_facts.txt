@@ -1,0 +1,17 @@
+sister("Spencer Griffiths", "Lauretta Mason").
+sister("Spencer Griffiths", "Marlana Boutte").
+mother("Spencer Griffiths", "Olivia Griffiths").
+father("Spencer Griffiths", "Elton Griffiths").
+son("Spencer Griffiths", "Hilton Griffiths").
+son("Spencer Griffiths", "Roger Griffiths").
+wife("Spencer Griffiths", "Monique Griffiths").
+friend("Spencer Griffiths", "Patsy Cormier").
+friend("Spencer Griffiths", "Rufus Brook").
+friend("Spencer Griffiths", "Ian Pannell").
+friend("Spencer Griffiths", "Shanda Wasserman").
+friend("Spencer Griffiths", "Roman Palermo").
+friend("Spencer Griffiths", "Tessie Loftus").
+dob("Spencer Griffiths", "0288-01-14").
+job("Spencer Griffiths", "financial adviser").
+hobby("Spencer Griffiths", "psychology").
+gender("Spencer Griffiths", "male").

@@ -1,0 +1,11 @@
+son("Loren Littleton", "Theron Littleton").
+wife("Loren Littleton", "Josie Littleton").
+friend("Loren Littleton", "Matilda Chou").
+friend("Loren Littleton", "Jeromy Ibarra").
+friend("Loren Littleton", "Ai Dacosta").
+friend("Loren Littleton", "Erik Capps").
+friend("Loren Littleton", "Racquel Horan").
+dob("Loren Littleton", "0373-08-01").
+job("Loren Littleton", "media buyer").
+hobby("Loren Littleton", "phillumeny").
+gender("Loren Littleton", "male").

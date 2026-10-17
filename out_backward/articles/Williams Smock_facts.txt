@@ -1,0 +1,9 @@
+mother("Williams Smock", "Dominique Smock").
+father("Williams Smock", "Gene Smock").
+daughter("Williams Smock", "Myrle Smock").
+daughter("Williams Smock", "Shelli Beltran").
+wife("Williams Smock", "Alison Smock").
+dob("Williams Smock", "0236-04-04").
+job("Williams Smock", "theatre manager").
+hobby("Williams Smock", "radio-controlled car racing").
+gender("Williams Smock", "male").

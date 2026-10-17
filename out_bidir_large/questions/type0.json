@@ -1,0 +1,510 @@
+[
+    {
+        "id": "8ab8e91d-ed59-47f6-addf-b56e594f5dc3",
+        "question": "Who is the female cousin of the person whose hobby is fishkeeping?",
+        "solution_traces": "[{\"Y_4\": \"Calvin Woodman\", \"Y_2\": \"Edythe Earnest\"}, {\"Y_2\": \"Cherise Earnest\", \"Y_4\": \"Calvin Woodman\"}]",
+        "answer": [
+            "Cherise Earnest",
+            "Edythe Earnest"
+        ],
+        "prolog": {
+            "query": [
+                "female_cousin(Y_4, Y_2)",
+                "hobby(Y_4, \"fishkeeping\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Calvin Woodman",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 4
+        }
+    },
+    {
+        "id": "b45f1b0a-1852-474e-9d05-35e83994a540",
+        "question": "Who is the friend of the person whose date of birth is 0254-01-20?",
+        "solution_traces": "[{\"Y_4\": \"Daniel Brannan\", \"Y_2\": \"Duncan Pannell\"}, {\"Y_4\": \"Daniel Brannan\", \"Y_2\": \"Hanh Mohan\"}, {\"Y_4\": \"Daniel Brannan\", \"Y_2\": \"Jeannine Skaggs\"}]",
+        "answer": [
+            "Duncan Pannell",
+            "Hanh Mohan",
+            "Jeannine Skaggs"
+        ],
+        "prolog": {
+            "query": [
+                "friend(Y_4, Y_2)",
+                "dob(Y_4, \"0254-01-20\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Daniel Brannan",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 3
+        }
+    },
+    {
+        "id": "45c6fa80-b44b-47ca-afe5-3e9c61494a66",
+        "question": "Who is the sister of the person whose hobby is philately?",
+        "solution_traces": "[{\"Y_2\": \"Hoa Skaggs\", \"Y_4\": \"Rosendo Skaggs\"}]",
+        "answer": [
+            "Hoa Skaggs"
+        ],
+        "prolog": {
+            "query": [
+                "sister(Y_4, Y_2)",
+                "hobby(Y_4, \"philately\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Hoa Skaggs",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    },
+    {
+        "id": "1adf96c4-5a34-4c41-8bfa-242ad2f38509",
+        "question": "Who is the granddaughter of the person whose date of birth is 0190-10-06?",
+        "solution_traces": "[{\"Y_4\": \"Karla Hornback\", \"Y_2\": \"Shirleen Abraham\"}, {\"Y_4\": \"Karla Hornback\", \"Y_2\": \"Lorine Wasserman\"}]",
+        "answer": [
+            "Lorine Wasserman",
+            "Shirleen Abraham"
+        ],
+        "prolog": {
+            "query": [
+                "granddaughter(Y_4, Y_2)",
+                "dob(Y_4, \"0190-10-06\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Karla Hornback",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    },
+    {
+        "id": "6e068684-c3f6-49f5-b831-9e75e87c7259",
+        "question": "Who is the second aunt of the person whose occupation is operations geologist?",
+        "solution_traces": "[{\"Y_4\": \"Monique Palermo\", \"Y_2\": \"Liane Schoonmaker\"}, {\"Y_2\": \"Annabelle Schoonmaker\", \"Y_4\": \"Monique Palermo\"}, {\"Y_2\": \"Jona Carrell\", \"Y_4\": \"Monique Palermo\"}]",
+        "answer": [
+            "Annabelle Schoonmaker",
+            "Jona Carrell",
+            "Liane Schoonmaker"
+        ],
+        "prolog": {
+            "query": [
+                "second_aunt(Y_4, Y_2)",
+                "job(Y_4, \"operations geologist\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Jona Carrell",
+            "answer_position": "tail",
+            "answer_slot_index": 1,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 6
+        }
+    },
+    {
+        "id": "a474c688-3b4e-4cf0-bf7f-ad9cebcdd8ef",
+        "question": "Who is the great-grandfather of the person whose date of birth is 0324-04-23?",
+        "solution_traces": "[{\"Y_4\": \"Minerva Wilkie\", \"Y_2\": \"Odis Lizotte\"}]",
+        "answer": [
+            "Odis Lizotte"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandfather(Y_4, Y_2)",
+                "dob(Y_4, \"0324-04-23\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Minerva Wilkie",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "4fdfac26-98e5-417e-bcae-b7ad03d0c4b4",
+        "question": "Who is the female first cousin once removed of the person whose date of birth is 0324-04-23?",
+        "solution_traces": "[{\"Y_4\": \"Minerva Wilkie\", \"Y_2\": \"Shirley Skaggs\"}]",
+        "answer": [
+            "Shirley Skaggs"
+        ],
+        "prolog": {
+            "query": [
+                "female_first_cousin_once_removed(Y_4, Y_2)",
+                "dob(Y_4, \"0324-04-23\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Minerva Wilkie",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    },
+    {
+        "id": "15d733c0-d4ed-423f-b246-dd4ae23749b8",
+        "question": "Who is the father of the person whose occupation is paramedic?",
+        "solution_traces": "[{\"Y_2\": \"Clarence Mason\", \"Y_4\": \"Bruce Mason\"}]",
+        "answer": [
+            "Clarence Mason"
+        ],
+        "prolog": {
+            "query": [
+                "father(Y_4, Y_2)",
+                "job(Y_4, \"paramedic\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Bruce Mason",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "6b540618-0646-4437-b8cb-27571f10c067",
+        "question": "Who is the parent of the person whose date of birth is 0263-06-16?",
+        "solution_traces": "[{\"Y_2\": \"Ali Schoonmaker\", \"Y_4\": \"Jona Carrell\"}, {\"Y_2\": \"Robyn Schoonmaker\", \"Y_4\": \"Jona Carrell\"}]",
+        "answer": [
+            "Ali Schoonmaker",
+            "Robyn Schoonmaker"
+        ],
+        "prolog": {
+            "query": [
+                "parent(Y_4, Y_2)",
+                "dob(Y_4, \"0263-06-16\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Jona Carrell",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    },
+    {
+        "id": "1bb21b42-acd4-4409-a802-6a4808ada88e",
+        "question": "Who is the friend of the person whose hobby is weightlifting?",
+        "solution_traces": "[{\"Y_4\": \"Christoper Cormier\", \"Y_2\": \"Orlando Beltran\"}, {\"Y_4\": \"Christoper Cormier\", \"Y_2\": \"Johnathan Boutte\"}]",
+        "answer": [
+            "Johnathan Boutte",
+            "Orlando Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "friend(Y_4, Y_2)",
+                "hobby(Y_4, \"weightlifting\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Christoper Cormier",
+            "answer_position": "tail",
+            "answer_slot_index": 1,
+            "polarity": "same_side",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    }
+]

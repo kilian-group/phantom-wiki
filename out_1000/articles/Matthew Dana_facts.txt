@@ -1,0 +1,19 @@
+brother("Matthew Dana", "Drew Dana").
+mother("Matthew Dana", "Geri Dana").
+father("Matthew Dana", "Ramiro Dana").
+son("Matthew Dana", "Felton Dana").
+son("Matthew Dana", "Fernando Dana").
+wife("Matthew Dana", "Nicholle Dana").
+friend("Matthew Dana", "Christina Smart").
+friend("Matthew Dana", "Connie Cushman").
+friend("Matthew Dana", "Toni Glass").
+friend("Matthew Dana", "Chrissy Mcgough").
+friend("Matthew Dana", "Babette Jarrett").
+friend("Matthew Dana", "Mozelle Mounts").
+friend("Matthew Dana", "Josie Littleton").
+friend("Matthew Dana", "Paula Rudolph").
+friend("Matthew Dana", "Gerald Hartung").
+dob("Matthew Dana", "0400-08-15").
+job("Matthew Dana", "customer service manager").
+hobby("Matthew Dana", "zoo visiting").
+gender("Matthew Dana", "male").

@@ -1,0 +1,10 @@
+son("Vanessa Broughton", "Darrell Broughton").
+husband("Vanessa Broughton", "Patrick Broughton").
+friend("Vanessa Broughton", "Justin Putnam").
+friend("Vanessa Broughton", "Tashina Vandenberg").
+friend("Vanessa Broughton", "Miles Corso").
+friend("Vanessa Broughton", "Vicki Ruth").
+dob("Vanessa Broughton", "0349-03-10").
+job("Vanessa Broughton", "probation officer").
+hobby("Vanessa Broughton", "coin collecting").
+gender("Vanessa Broughton", "female").

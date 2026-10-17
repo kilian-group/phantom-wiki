@@ -1,0 +1,16 @@
+son("Maryann Peeler", "Sonny Peeler").
+husband("Maryann Peeler", "Luther Peeler").
+friend("Maryann Peeler", "Debora Murray").
+friend("Maryann Peeler", "Rosella Simons").
+friend("Maryann Peeler", "Solomon Corwin").
+friend("Maryann Peeler", "Coral Putnam").
+friend("Maryann Peeler", "Jackie Vandenberg").
+friend("Maryann Peeler", "Leonora Depriest").
+friend("Maryann Peeler", "Racquel Horan").
+friend("Maryann Peeler", "Terrell Lai").
+friend("Maryann Peeler", "Joanne Storey").
+friend("Maryann Peeler", "Lon Lazar").
+dob("Maryann Peeler", "0356-01-10").
+job("Maryann Peeler", "advertising account planner").
+hobby("Maryann Peeler", "cartophily").
+gender("Maryann Peeler", "female").

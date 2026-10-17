@@ -1,0 +1,10 @@
+mother("Carrol Nicolas", "Phylis Nicolas").
+father("Carrol Nicolas", "Bradford Nicolas").
+friend("Carrol Nicolas", "Roland Earnest").
+friend("Carrol Nicolas", "Lorine Wasserman").
+friend("Carrol Nicolas", "Lea Levy").
+friend("Carrol Nicolas", "Nada Shirk").
+dob("Carrol Nicolas", "0302-06-14").
+job("Carrol Nicolas", "optometrist").
+hobby("Carrol Nicolas", "research").
+gender("Carrol Nicolas", "male").

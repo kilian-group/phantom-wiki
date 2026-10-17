@@ -1,0 +1,16 @@
+mother("Son Corwin", "Clara Corwin").
+father("Son Corwin", "Nathan Corwin").
+son("Son Corwin", "Ruben Corwin").
+wife("Son Corwin", "Michaela Corwin").
+friend("Son Corwin", "Lavern Staten").
+friend("Son Corwin", "Deidra Gilliam").
+friend("Son Corwin", "Bev Medellin").
+friend("Son Corwin", "Perry Kell").
+friend("Son Corwin", "Florence Ingle").
+friend("Son Corwin", "Paula Lazar").
+friend("Son Corwin", "Claudine Bales").
+friend("Son Corwin", "Nanette Swartz").
+dob("Son Corwin", "0402-07-29").
+job("Son Corwin", "English as a foreign language teacher").
+hobby("Son Corwin", "checkers (draughts)").
+gender("Son Corwin", "male").

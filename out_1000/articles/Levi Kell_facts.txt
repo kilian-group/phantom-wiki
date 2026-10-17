@@ -1,0 +1,16 @@
+son("Levi Kell", "Werner Kell").
+daughter("Levi Kell", "Sharika Kell").
+wife("Levi Kell", "Laverna Kell").
+friend("Levi Kell", "Denny Vanmeter").
+friend("Levi Kell", "Landon Dillion").
+friend("Levi Kell", "Joanne Storey").
+friend("Levi Kell", "Kenda Beamon").
+friend("Levi Kell", "Cedrick Lester").
+friend("Levi Kell", "Geoffrey Musick").
+friend("Levi Kell", "Sharron Palomo").
+friend("Levi Kell", "Nydia Monday").
+friend("Levi Kell", "Eunice Lennox").
+dob("Levi Kell", "0305-11-16").
+job("Levi Kell", "dramatherapist").
+hobby("Levi Kell", "trainspotting").
+gender("Levi Kell", "male").

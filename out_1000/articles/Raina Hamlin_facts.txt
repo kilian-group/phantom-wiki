@@ -1,0 +1,25 @@
+sister("Raina Hamlin", "Jana Galvan").
+brother("Raina Hamlin", "Zachariah Galvan").
+mother("Raina Hamlin", "Ashleigh Galvan").
+father("Raina Hamlin", "Brian Galvan").
+son("Raina Hamlin", "Elroy Hamlin").
+son("Raina Hamlin", "Hosea Hamlin").
+son("Raina Hamlin", "Sylvester Hamlin").
+daughter("Raina Hamlin", "Goldie Alessi").
+daughter("Raina Hamlin", "Nellie Hamlin").
+daughter("Raina Hamlin", "Shizuko Sheridan").
+husband("Raina Hamlin", "Felix Hamlin").
+friend("Raina Hamlin", "Audie Lasher").
+friend("Raina Hamlin", "Bradford Hayward").
+friend("Raina Hamlin", "Jacques Cordova").
+friend("Raina Hamlin", "Susie Gillam").
+friend("Raina Hamlin", "Gloria Ingalls").
+friend("Raina Hamlin", "Kyong Eaves").
+friend("Raina Hamlin", "Delpha Younger").
+friend("Raina Hamlin", "Johanna Mathes").
+friend("Raina Hamlin", "Rodney Fordham").
+friend("Raina Hamlin", "Ardath Skidmore").
+dob("Raina Hamlin", "0376-10-08").
+job("Raina Hamlin", "wellsite geologist").
+hobby("Raina Hamlin", "fishkeeping").
+gender("Raina Hamlin", "female").

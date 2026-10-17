@@ -1,0 +1,11 @@
+sister("Chelsie Wilkie", "Harriette Courson").
+mother("Chelsie Wilkie", "Krystal Joubert").
+father("Chelsie Wilkie", "Vernon Joubert").
+son("Chelsie Wilkie", "Chauncey Wilkie").
+husband("Chelsie Wilkie", "Zackary Wilkie").
+friend("Chelsie Wilkie", "Lela Correia").
+friend("Chelsie Wilkie", "Danilo Mcgough").
+dob("Chelsie Wilkie", "0393-03-07").
+job("Chelsie Wilkie", "geneticist").
+hobby("Chelsie Wilkie", "cornhole").
+gender("Chelsie Wilkie", "female").

@@ -1,0 +1,15 @@
+daughter("Jesus Gregory", "Adrianna Gregory").
+daughter("Jesus Gregory", "Patsy Murray").
+wife("Jesus Gregory", "Cleo Gregory").
+friend("Jesus Gregory", "Bryon Simons").
+friend("Jesus Gregory", "Marybeth Dana").
+friend("Jesus Gregory", "Dorothea Goff").
+friend("Jesus Gregory", "Donald Fordham").
+friend("Jesus Gregory", "Kayla Ballard").
+friend("Jesus Gregory", "Romelia Bowles").
+friend("Jesus Gregory", "Janey Kell").
+friend("Jesus Gregory", "Ai Cordova").
+dob("Jesus Gregory", "0450-08-24").
+job("Jesus Gregory", "theatre manager").
+hobby("Jesus Gregory", "finance").
+gender("Jesus Gregory", "male").

@@ -1,0 +1,18 @@
+son("Mattie Courson", "Lenny Courson").
+son("Mattie Courson", "Wesley Courson").
+daughter("Mattie Courson", "Trudy Lennox").
+husband("Mattie Courson", "Claude Courson").
+friend("Mattie Courson", "Mac Mounts").
+friend("Mattie Courson", "Maxwell Beamon").
+friend("Mattie Courson", "Maybelle Lester").
+friend("Mattie Courson", "Nelly Kinsella").
+friend("Mattie Courson", "Paris Brumbaugh").
+friend("Mattie Courson", "Kevin Sharma").
+friend("Mattie Courson", "Noel Chisholm").
+friend("Mattie Courson", "Connie Cushman").
+friend("Mattie Courson", "Tiesha Deville").
+friend("Mattie Courson", "Jamie Upton").
+dob("Mattie Courson", "0421-03-20").
+job("Mattie Courson", "freight forwarder").
+hobby("Mattie Courson", "seashell collecting").
+gender("Mattie Courson", "female").

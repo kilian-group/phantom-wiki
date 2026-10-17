@@ -1,0 +1,9 @@
+son("Everett Kovach", "Carson Kovach").
+son("Everett Kovach", "Charlie Kovach").
+daughter("Everett Kovach", "Elissa Kovach").
+daughter("Everett Kovach", "Laverna Kovach").
+wife("Everett Kovach", "Margaret Kovach").
+dob("Everett Kovach", "0251-07-20").
+job("Everett Kovach", "accountant").
+hobby("Everett Kovach", "judo").
+gender("Everett Kovach", "male").

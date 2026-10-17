@@ -1,0 +1,20 @@
+sister("Harriette Courson", "Chelsie Wilkie").
+mother("Harriette Courson", "Krystal Joubert").
+father("Harriette Courson", "Vernon Joubert").
+son("Harriette Courson", "Claude Courson").
+son("Harriette Courson", "Erick Courson").
+son("Harriette Courson", "Leslie Courson").
+daughter("Harriette Courson", "Mallory Scherer").
+daughter("Harriette Courson", "Mia Resendez").
+daughter("Harriette Courson", "Shandi Jarrett").
+husband("Harriette Courson", "Delbert Courson").
+friend("Harriette Courson", "Ilona Klink").
+friend("Harriette Courson", "Janey Kell").
+friend("Harriette Courson", "Adah Schram").
+friend("Harriette Courson", "Madaline Callender").
+friend("Harriette Courson", "Veronica Cowart").
+friend("Harriette Courson", "Mari Carreon").
+dob("Harriette Courson", "0394-12-06").
+job("Harriette Courson", "conservation officer").
+hobby("Harriette Courson", "shortwave listening").
+gender("Harriette Courson", "female").

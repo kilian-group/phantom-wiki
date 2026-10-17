@@ -1,0 +1,12 @@
+daughter("Thomas Chrisman", "Dorinda Chrisman").
+wife("Thomas Chrisman", "Louann Chrisman").
+friend("Thomas Chrisman", "Belva Murphey").
+friend("Thomas Chrisman", "Clara Mcgough").
+friend("Thomas Chrisman", "Eli Vandenberg").
+friend("Thomas Chrisman", "Renate Oberg").
+friend("Thomas Chrisman", "Dorinda Chrisman").
+friend("Thomas Chrisman", "Jon Remillard").
+dob("Thomas Chrisman", "0348-02-02").
+job("Thomas Chrisman", "forensic psychologist").
+hobby("Thomas Chrisman", "metal detecting").
+gender("Thomas Chrisman", "male").

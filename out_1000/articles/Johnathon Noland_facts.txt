@@ -1,0 +1,15 @@
+sister("Johnathon Noland", "Jodi Noland").
+mother("Johnathon Noland", "Virgina Noland").
+father("Johnathon Noland", "Keith Noland").
+son("Johnathon Noland", "Hugh Noland").
+wife("Johnathon Noland", "Jana Noland").
+friend("Johnathon Noland", "Sona Fredrick").
+friend("Johnathon Noland", "Jeana Holtz").
+friend("Johnathon Noland", "Lauretta Callender").
+friend("Johnathon Noland", "Xiao Gailey").
+friend("Johnathon Noland", "Mireya Ibarra").
+friend("Johnathon Noland", "Kareem Gilliam").
+dob("Johnathon Noland", "0409-01-26").
+job("Johnathon Noland", "outdoor activities manager").
+hobby("Johnathon Noland", "topiary").
+gender("Johnathon Noland", "male").

@@ -1,0 +1,15 @@
+daughter("Hayden Fain", "Tamala Skidmore").
+wife("Hayden Fain", "Anita Fain").
+friend("Hayden Fain", "Randall Mcgough").
+friend("Hayden Fain", "Thaddeus Sanborn").
+friend("Hayden Fain", "Valentin Vandenberg").
+friend("Hayden Fain", "Nydia Monday").
+friend("Hayden Fain", "Sergio Parish").
+friend("Hayden Fain", "Karol Beamon").
+friend("Hayden Fain", "Pearl Hamann").
+friend("Hayden Fain", "Scotty Gilliam").
+friend("Hayden Fain", "Lynette Fredrick").
+dob("Hayden Fain", "0320-10-01").
+job("Hayden Fain", "government social research officer").
+hobby("Hayden Fain", "rock balancing").
+gender("Hayden Fain", "male").

@@ -1,0 +1,13 @@
+daughter("Jennie Burger", "Allyson Burger").
+husband("Jennie Burger", "Bruce Burger").
+friend("Jennie Burger", "Eli Vandenberg").
+friend("Jennie Burger", "Bernardo Briscoe").
+friend("Jennie Burger", "Derek Valladares").
+friend("Jennie Burger", "Rueben Younger").
+friend("Jennie Burger", "Monique Pugliese").
+friend("Jennie Burger", "Jermaine Gilliam").
+friend("Jennie Burger", "Cora Fordham").
+dob("Jennie Burger", "0501-12-08").
+job("Jennie Burger", "lecturer").
+hobby("Jennie Burger", "research").
+gender("Jennie Burger", "female").

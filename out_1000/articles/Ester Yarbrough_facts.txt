@@ -1,0 +1,21 @@
+sister("Ester Yarbrough", "Dawn Rinehart").
+mother("Ester Yarbrough", "Enid Yarbrough").
+father("Ester Yarbrough", "Sammy Yarbrough").
+friend("Ester Yarbrough", "Ladonna Klink").
+friend("Ester Yarbrough", "Garrett Bauman").
+friend("Ester Yarbrough", "Cleo Dangelo").
+friend("Ester Yarbrough", "Dani Dalton").
+friend("Ester Yarbrough", "Lance Carreon").
+friend("Ester Yarbrough", "Robby Corwin").
+friend("Ester Yarbrough", "Emanuel Mccall").
+friend("Ester Yarbrough", "Shelia Hollins").
+friend("Ester Yarbrough", "Geoffrey Musick").
+friend("Ester Yarbrough", "Jarrod Ibarra").
+friend("Ester Yarbrough", "Rheba Resendez").
+friend("Ester Yarbrough", "Dixie Murdoch").
+friend("Ester Yarbrough", "Edmundo Fordham").
+friend("Ester Yarbrough", "Marvin Putnam").
+dob("Ester Yarbrough", "0482-06-20").
+job("Ester Yarbrough", "graphic designer").
+hobby("Ester Yarbrough", "metal detecting").
+gender("Ester Yarbrough", "female").

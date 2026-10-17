@@ -1,0 +1,13 @@
+son("Wesley Beamon", "Mickey Beamon").
+wife("Wesley Beamon", "Tena Beamon").
+friend("Wesley Beamon", "Gerald Hartung").
+friend("Wesley Beamon", "Elroy Goff").
+friend("Wesley Beamon", "Nelly Smart").
+friend("Wesley Beamon", "Verona Medellin").
+friend("Wesley Beamon", "Helena Hamlin").
+friend("Wesley Beamon", "Leslie Courson").
+friend("Wesley Beamon", "Iva Parish").
+dob("Wesley Beamon", "0368-01-10").
+job("Wesley Beamon", "local government officer").
+hobby("Wesley Beamon", "marbles").
+gender("Wesley Beamon", "male").

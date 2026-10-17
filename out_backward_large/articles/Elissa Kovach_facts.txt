@@ -1,0 +1,14 @@
+sister("Elissa Kovach", "Laverna Kovach").
+brother("Elissa Kovach", "Carson Kovach").
+brother("Elissa Kovach", "Charlie Kovach").
+mother("Elissa Kovach", "Margaret Kovach").
+father("Elissa Kovach", "Everett Kovach").
+friend("Elissa Kovach", "Lera Brook").
+friend("Elissa Kovach", "Eduardo Earnest").
+friend("Elissa Kovach", "Mona Pannell").
+friend("Elissa Kovach", "Gerardo Hornback").
+friend("Elissa Kovach", "Esteban Schoonmaker").
+dob("Elissa Kovach", "0279-06-27").
+job("Elissa Kovach", "academic librarian").
+hobby("Elissa Kovach", "birdwatching").
+gender("Elissa Kovach", "female").

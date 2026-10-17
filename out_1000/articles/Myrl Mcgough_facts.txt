@@ -1,0 +1,18 @@
+mother("Myrl Mcgough", "Belva Murphey").
+father("Myrl Mcgough", "Alvaro Murphey").
+son("Myrl Mcgough", "Donnie Mcgough").
+son("Myrl Mcgough", "Julio Mcgough").
+son("Myrl Mcgough", "Wilbur Mcgough").
+daughter("Myrl Mcgough", "Larue Macias").
+daughter("Myrl Mcgough", "Leonora Depriest").
+daughter("Myrl Mcgough", "Racquel Horan").
+husband("Myrl Mcgough", "Randall Mcgough").
+friend("Myrl Mcgough", "Zoraida Sanborn").
+friend("Myrl Mcgough", "James Arteaga").
+friend("Myrl Mcgough", "Markus Gilliam").
+friend("Myrl Mcgough", "Patrick Broughton").
+friend("Myrl Mcgough", "Isabell Shank").
+dob("Myrl Mcgough", "0409-02-01").
+job("Myrl Mcgough", "conservation officer").
+hobby("Myrl Mcgough", "bridge").
+gender("Myrl Mcgough", "female").

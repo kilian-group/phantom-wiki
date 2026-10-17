@@ -1,0 +1,20 @@
+sister("Reggie Medellin", "Eunice Gordy").
+brother("Reggie Medellin", "Kieth Medellin").
+mother("Reggie Medellin", "Valeria Medellin").
+father("Reggie Medellin", "Robt Medellin").
+daughter("Reggie Medellin", "Latisha Smart").
+daughter("Reggie Medellin", "Pamala Medellin").
+daughter("Reggie Medellin", "Susie Medellin").
+wife("Reggie Medellin", "Demetra Medellin").
+friend("Reggie Medellin", "Romelia Bowles").
+friend("Reggie Medellin", "Thaddeus Sanborn").
+friend("Reggie Medellin", "Matthias Lennox").
+friend("Reggie Medellin", "Salvatore Resendez").
+friend("Reggie Medellin", "Damaris Swartz").
+friend("Reggie Medellin", "Nydia Ibarra").
+friend("Reggie Medellin", "Scotty Correia").
+friend("Reggie Medellin", "Toney Gibbs").
+dob("Reggie Medellin", "0406-06-08").
+job("Reggie Medellin", "police officer").
+hobby("Reggie Medellin", "flower collecting and pressing").
+gender("Reggie Medellin", "male").

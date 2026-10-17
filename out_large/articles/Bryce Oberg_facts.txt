@@ -1,0 +1,10 @@
+brother("Bryce Oberg", "Richard Oberg").
+mother("Bryce Oberg", "Renate Oberg").
+father("Bryce Oberg", "Abel Oberg").
+friend("Bryce Oberg", "Louann Chrisman").
+friend("Bryce Oberg", "Tianna Remillard").
+friend("Bryce Oberg", "Amos Oberg").
+dob("Bryce Oberg", "0274-08-26").
+job("Bryce Oberg", "local government officer").
+hobby("Bryce Oberg", "shortwave listening").
+gender("Bryce Oberg", "male").

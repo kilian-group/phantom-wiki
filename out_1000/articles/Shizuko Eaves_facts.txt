@@ -1,0 +1,20 @@
+mother("Shizuko Eaves", "Myra Eaves").
+father("Shizuko Eaves", "Mickey Eaves").
+friend("Shizuko Eaves", "Miki Peabody").
+friend("Shizuko Eaves", "Deandre Capps").
+friend("Shizuko Eaves", "Kurtis Kell").
+friend("Shizuko Eaves", "Ollie Kell").
+friend("Shizuko Eaves", "Perry Kell").
+friend("Shizuko Eaves", "Olin Fordham").
+friend("Shizuko Eaves", "Mack Storey").
+friend("Shizuko Eaves", "Mason Dangelo").
+friend("Shizuko Eaves", "Maxwell Beamon").
+friend("Shizuko Eaves", "Daisy Cordova").
+friend("Shizuko Eaves", "Noreen Cordova").
+friend("Shizuko Eaves", "Myrl Murray").
+friend("Shizuko Eaves", "Ramon Swartz").
+friend("Shizuko Eaves", "Georgine Mahoney").
+dob("Shizuko Eaves", "0407-12-20").
+job("Shizuko Eaves", "accounting technician").
+hobby("Shizuko Eaves", "jumping rope").
+gender("Shizuko Eaves", "female").

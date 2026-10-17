@@ -1,0 +1,14 @@
+sister("Windy Mckenna", "Reyna Petry").
+brother("Windy Mckenna", "Dwain Lizotte").
+mother("Windy Mckenna", "Ora Lizotte").
+father("Windy Mckenna", "Odis Lizotte").
+son("Windy Mckenna", "Lucas Mckenna").
+son("Windy Mckenna", "Rolland Mckenna").
+husband("Windy Mckenna", "Carey Mckenna").
+friend("Windy Mckenna", "Ron Woodman").
+friend("Windy Mckenna", "Elton Griffiths").
+friend("Windy Mckenna", "Kirk Petry").
+dob("Windy Mckenna", "0267-06-05").
+job("Windy Mckenna", "police officer").
+hobby("Windy Mckenna", "fencing").
+gender("Windy Mckenna", "female").

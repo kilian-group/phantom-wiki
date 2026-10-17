@@ -1,0 +1,14 @@
+daughter("Williams Alessi", "Cathy Alessi").
+wife("Williams Alessi", "Goldie Alessi").
+friend("Williams Alessi", "Grant Lasher").
+friend("Williams Alessi", "Jewell Fordham").
+friend("Williams Alessi", "Jimmy Holder").
+friend("Williams Alessi", "Mac Goff").
+friend("Williams Alessi", "Sylvia Gilliam").
+friend("Williams Alessi", "Benito Skidmore").
+friend("Williams Alessi", "Ricky Forester").
+friend("Williams Alessi", "Jana Galvan").
+dob("Williams Alessi", "0405-04-09").
+job("Williams Alessi", "clinical molecular geneticist").
+hobby("Williams Alessi", "magic").
+gender("Williams Alessi", "male").

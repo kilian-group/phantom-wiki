@@ -1,0 +1,14 @@
+sister("Hershel Gilliam", "Jacinta Gilliam").
+brother("Hershel Gilliam", "Boris Gilliam").
+brother("Hershel Gilliam", "Darren Gilliam").
+brother("Hershel Gilliam", "Jermaine Gilliam").
+brother("Hershel Gilliam", "Markus Gilliam").
+mother("Hershel Gilliam", "Lucienne Gilliam").
+father("Hershel Gilliam", "Kenton Gilliam").
+friend("Hershel Gilliam", "Jeana Chisholm").
+friend("Hershel Gilliam", "Mari Carreon").
+friend("Hershel Gilliam", "Miguel Carreon").
+dob("Hershel Gilliam", "0344-04-20").
+job("Hershel Gilliam", "veterinary surgeon").
+hobby("Hershel Gilliam", "people-watching").
+gender("Hershel Gilliam", "male").

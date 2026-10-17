@@ -1,0 +1,14 @@
+son("Lorenz Deville", "Martin Deville").
+daughter("Lorenz Deville", "Chrissy Mcgough").
+wife("Lorenz Deville", "Tiesha Deville").
+friend("Lorenz Deville", "Gerry Dorn").
+friend("Lorenz Deville", "Walter Kell").
+friend("Lorenz Deville", "Werner Kell").
+friend("Lorenz Deville", "Chelsie Peeler").
+friend("Lorenz Deville", "Josette Goff").
+friend("Lorenz Deville", "Emil Broughton").
+friend("Lorenz Deville", "Randal Marr").
+dob("Lorenz Deville", "0354-07-20").
+job("Lorenz Deville", "multimedia programmer").
+hobby("Lorenz Deville", "vr gaming").
+gender("Lorenz Deville", "male").

@@ -1,0 +1,12 @@
+son("Diane Burkhalter", "Jake Burkhalter").
+daughter("Diane Burkhalter", "Alexa Mckenna").
+husband("Diane Burkhalter", "Major Burkhalter").
+friend("Diane Burkhalter", "Eunice Prater").
+friend("Diane Burkhalter", "Solomon Strong").
+friend("Diane Burkhalter", "Kerrie Resendez").
+friend("Diane Burkhalter", "Noreen Jarrett").
+friend("Diane Burkhalter", "Eva Kell").
+dob("Diane Burkhalter", "0437-02-25").
+job("Diane Burkhalter", "company secretary").
+hobby("Diane Burkhalter", "bridge").
+gender("Diane Burkhalter", "female").

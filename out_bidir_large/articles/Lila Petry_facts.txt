@@ -1,0 +1,10 @@
+mother("Lila Petry", "Reyna Petry").
+father("Lila Petry", "Kirk Petry").
+friend("Lila Petry", "Elton Griffiths").
+friend("Lila Petry", "Andy Clemons").
+friend("Lila Petry", "Patsy Cormier").
+friend("Lila Petry", "Chuck Lizotte").
+dob("Lila Petry", "0295-02-15").
+job("Lila Petry", "learning disability nurse").
+hobby("Lila Petry", "deltiology").
+gender("Lila Petry", "female").

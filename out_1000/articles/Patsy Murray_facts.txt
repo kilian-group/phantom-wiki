@@ -1,0 +1,17 @@
+sister("Patsy Murray", "Adrianna Gregory").
+mother("Patsy Murray", "Cleo Gregory").
+father("Patsy Murray", "Jesus Gregory").
+daughter("Patsy Murray", "Debora Murray").
+husband("Patsy Murray", "Dane Murray").
+friend("Patsy Murray", "Lashanda Hartung").
+friend("Patsy Murray", "Raul Younger").
+friend("Patsy Murray", "Stevie Joiner").
+friend("Patsy Murray", "Noel Chisholm").
+friend("Patsy Murray", "Julio Mcgough").
+friend("Patsy Murray", "Bo Frink").
+friend("Patsy Murray", "Eugene Geter").
+friend("Patsy Murray", "Nelly Kinsella").
+dob("Patsy Murray", "0475-08-08").
+job("Patsy Murray", "horticulturist").
+hobby("Patsy Murray", "butterfly watching").
+gender("Patsy Murray", "female").

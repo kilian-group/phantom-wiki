@@ -1,0 +1,14 @@
+son("Justine Gibbs", "Kory Gibbs").
+daughter("Justine Gibbs", "Evette Gibbs").
+daughter("Justine Gibbs", "Lucienne Gilliam").
+husband("Justine Gibbs", "Toney Gibbs").
+friend("Justine Gibbs", "Lynette Fredrick").
+friend("Justine Gibbs", "Samuel Omara").
+friend("Justine Gibbs", "Jeff Haygood").
+friend("Justine Gibbs", "Freddie Barrows").
+friend("Justine Gibbs", "Clementine Goff").
+friend("Justine Gibbs", "Isaiah Resendez").
+dob("Justine Gibbs", "0292-09-10").
+job("Justine Gibbs", "publishing copy").
+hobby("Justine Gibbs", "chemistry").
+gender("Justine Gibbs", "female").

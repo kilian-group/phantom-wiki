@@ -1,0 +1,18 @@
+sister("Vaughn Dangelo", "Manuela Runnels").
+mother("Vaughn Dangelo", "Cleo Dangelo").
+father("Vaughn Dangelo", "Mason Dangelo").
+friend("Vaughn Dangelo", "Desmond Lester").
+friend("Vaughn Dangelo", "Lon Lazar").
+friend("Vaughn Dangelo", "Frankie Simons").
+friend("Vaughn Dangelo", "Miki Mcdonald").
+friend("Vaughn Dangelo", "Sofia Eaves").
+friend("Vaughn Dangelo", "Hank Gerber").
+friend("Vaughn Dangelo", "Luisa Estrella").
+friend("Vaughn Dangelo", "Brian Galvan").
+friend("Vaughn Dangelo", "Sylvester Hamlin").
+friend("Vaughn Dangelo", "Buffy Jarrett").
+friend("Vaughn Dangelo", "Juan Weise").
+dob("Vaughn Dangelo", "0505-07-04").
+job("Vaughn Dangelo", "community arts worker").
+hobby("Vaughn Dangelo", "engineering").
+gender("Vaughn Dangelo", "male").

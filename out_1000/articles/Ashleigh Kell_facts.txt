@@ -1,0 +1,19 @@
+mother("Ashleigh Kell", "Ollie Kell").
+father("Ashleigh Kell", "Abe Kell").
+friend("Ashleigh Kell", "Chante Corso").
+friend("Ashleigh Kell", "Graham Weise").
+friend("Ashleigh Kell", "Manuela Runnels").
+friend("Ashleigh Kell", "Gavin Cordova").
+friend("Ashleigh Kell", "Phil Murray").
+friend("Ashleigh Kell", "Naomi Bellows").
+friend("Ashleigh Kell", "Pearl Hamann").
+friend("Ashleigh Kell", "Benito Ruth").
+friend("Ashleigh Kell", "Cedric Towns").
+friend("Ashleigh Kell", "Harold Hollins").
+friend("Ashleigh Kell", "Gay Fitch").
+friend("Ashleigh Kell", "Katherine Carswell").
+friend("Ashleigh Kell", "Robyn Forester").
+dob("Ashleigh Kell", "0460-11-03").
+job("Ashleigh Kell", "trade mark attorney").
+hobby("Ashleigh Kell", "sports science").
+gender("Ashleigh Kell", "female").

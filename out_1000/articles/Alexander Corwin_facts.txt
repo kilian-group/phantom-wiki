@@ -1,0 +1,18 @@
+son("Alexander Corwin", "Spencer Corwin").
+wife("Alexander Corwin", "Livia Corwin").
+friend("Alexander Corwin", "Mari Carreon").
+friend("Alexander Corwin", "Maryann Oliveira").
+friend("Alexander Corwin", "Deandre Capps").
+friend("Alexander Corwin", "Hershel Shilling").
+friend("Alexander Corwin", "Paul Dame").
+friend("Alexander Corwin", "Jamel Jarrett").
+friend("Alexander Corwin", "Jayson Hudgens").
+friend("Alexander Corwin", "Erik Mounts").
+friend("Alexander Corwin", "Seth Mounts").
+friend("Alexander Corwin", "Roseanna Mckenna").
+friend("Alexander Corwin", "Gregory Geter").
+friend("Alexander Corwin", "Ivette Eaves").
+dob("Alexander Corwin", "0324-01-08").
+job("Alexander Corwin", "patent examiner").
+hobby("Alexander Corwin", "kitesurfing").
+gender("Alexander Corwin", "male").

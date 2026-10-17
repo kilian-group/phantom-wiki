@@ -1,0 +1,12 @@
+son("Jacque Haygood", "Jeff Haygood").
+husband("Jacque Haygood", "Ignacio Haygood").
+friend("Jacque Haygood", "Goldie Schlosser").
+friend("Jacque Haygood", "Latrina Mathes").
+friend("Jacque Haygood", "Lynette Macias").
+friend("Jacque Haygood", "Belva Resendez").
+friend("Jacque Haygood", "Zachery Upton").
+friend("Jacque Haygood", "Dorathy Mckenna").
+dob("Jacque Haygood", "0424-11-21").
+job("Jacque Haygood", "writer").
+hobby("Jacque Haygood", "qigong").
+gender("Jacque Haygood", "female").

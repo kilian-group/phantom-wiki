@@ -1,0 +1,17 @@
+daughter("Emanuel Mccall", "Torrie Goff").
+wife("Emanuel Mccall", "Gayla Mccall").
+friend("Emanuel Mccall", "Jaclyn Smart").
+friend("Emanuel Mccall", "Dominick Palomo").
+friend("Emanuel Mccall", "Marvin Putnam").
+friend("Emanuel Mccall", "Ester Yarbrough").
+friend("Emanuel Mccall", "Julio Mcgough").
+friend("Emanuel Mccall", "Kimberely Corso").
+friend("Emanuel Mccall", "Porter Mckenna").
+friend("Emanuel Mccall", "Bradford Hayward").
+friend("Emanuel Mccall", "Joanne Storey").
+friend("Emanuel Mccall", "Geraldine Valladares").
+friend("Emanuel Mccall", "Lea Plumley").
+dob("Emanuel Mccall", "0297-06-18").
+job("Emanuel Mccall", "soil scientist").
+hobby("Emanuel Mccall", "horseshoes").
+gender("Emanuel Mccall", "male").

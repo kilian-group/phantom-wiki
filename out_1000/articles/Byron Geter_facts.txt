@@ -1,0 +1,8 @@
+mother("Byron Geter", "Lona Geter").
+father("Byron Geter", "Gregory Geter").
+friend("Byron Geter", "Nellie Niles").
+friend("Byron Geter", "Cedric Wilke").
+dob("Byron Geter", "0512-09-22").
+job("Byron Geter", "probation officer").
+hobby("Byron Geter", "record collecting").
+gender("Byron Geter", "male").

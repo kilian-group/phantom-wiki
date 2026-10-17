@@ -1,0 +1,19 @@
+daughter("Jimmy Holder", "Jody Valladares").
+wife("Jimmy Holder", "Gayla Holder").
+friend("Jimmy Holder", "Jody Valladares").
+friend("Jimmy Holder", "Michael Goff").
+friend("Jimmy Holder", "Maynard Latham").
+friend("Jimmy Holder", "Bev Medellin").
+friend("Jimmy Holder", "Christina Smart").
+friend("Jimmy Holder", "Sona Fredrick").
+friend("Jimmy Holder", "Alina Bowles").
+friend("Jimmy Holder", "Bradley Blanton").
+friend("Jimmy Holder", "Randal Marr").
+friend("Jimmy Holder", "Rubye Forester").
+friend("Jimmy Holder", "Hershel Shilling").
+friend("Jimmy Holder", "Williams Alessi").
+friend("Jimmy Holder", "Garland Hirsch").
+dob("Jimmy Holder", "0412-01-25").
+job("Jimmy Holder", "TEFL teacher").
+hobby("Jimmy Holder", "insect collecting").
+gender("Jimmy Holder", "male").

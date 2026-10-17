@@ -1,0 +1,17 @@
+sister("Hubert Noland", "Domonique Fordham").
+brother("Hubert Noland", "Carlos Noland").
+mother("Hubert Noland", "Flora Noland").
+father("Hubert Noland", "Hugh Noland").
+daughter("Hubert Noland", "Daisy Cushman").
+wife("Hubert Noland", "Nora Noland").
+friend("Hubert Noland", "Emory Layton").
+friend("Hubert Noland", "Rosalinda Layton").
+friend("Hubert Noland", "Jamison Upton").
+friend("Hubert Noland", "Aurelia Gordon").
+friend("Hubert Noland", "Rudolf Lai").
+friend("Hubert Noland", "Conrad Molina").
+friend("Hubert Noland", "Patrick Broughton").
+dob("Hubert Noland", "0464-08-02").
+job("Hubert Noland", "geographical information systems officer").
+hobby("Hubert Noland", "button collecting").
+gender("Hubert Noland", "male").

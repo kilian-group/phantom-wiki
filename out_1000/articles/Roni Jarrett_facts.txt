@@ -1,0 +1,12 @@
+daughter("Roni Jarrett", "Lindy Hudgens").
+daughter("Roni Jarrett", "Nelly Jarrett").
+husband("Roni Jarrett", "Jamel Jarrett").
+friend("Roni Jarrett", "Denny Vanmeter").
+friend("Roni Jarrett", "Anastasia Eaves").
+friend("Roni Jarrett", "Rolf Osterman").
+friend("Roni Jarrett", "Preston Holtz").
+friend("Roni Jarrett", "Babette Jarrett").
+dob("Roni Jarrett", "0443-06-04").
+job("Roni Jarrett", "operations geologist").
+hobby("Roni Jarrett", "fishing").
+gender("Roni Jarrett", "female").

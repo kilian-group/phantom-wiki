@@ -1,0 +1,15 @@
+sister("Austin Boutte", "Charissa Boutte").
+sister("Austin Boutte", "Vicki Osterman").
+mother("Austin Boutte", "Christen Boutte").
+father("Austin Boutte", "Earle Boutte").
+friend("Austin Boutte", "Frankie Mahoney").
+friend("Austin Boutte", "Jamie Upton").
+friend("Austin Boutte", "Graciela Weise").
+friend("Austin Boutte", "Jerald Murray").
+friend("Austin Boutte", "Paula Rudolph").
+friend("Austin Boutte", "Tiffany Mcdonald").
+friend("Austin Boutte", "Vicki Ruth").
+dob("Austin Boutte", "0460-11-08").
+job("Austin Boutte", "visual merchandiser").
+hobby("Austin Boutte", "auto audiophilia").
+gender("Austin Boutte", "male").

@@ -1,0 +1,17 @@
+daughter("Vernon Peabody", "Eula Hollins").
+wife("Vernon Peabody", "Miki Peabody").
+friend("Vernon Peabody", "Deirdre Niles").
+friend("Vernon Peabody", "Luisa Estrella").
+friend("Vernon Peabody", "Tracey Capps").
+friend("Vernon Peabody", "Pansy Sutphin").
+friend("Vernon Peabody", "Rhea Burnett").
+friend("Vernon Peabody", "Carmine Mckenna").
+friend("Vernon Peabody", "Theodore Vanmeter").
+friend("Vernon Peabody", "Karol Beamon").
+friend("Vernon Peabody", "Stefan Sutphin").
+friend("Vernon Peabody", "Antony Machado").
+friend("Vernon Peabody", "Lona Corwin").
+dob("Vernon Peabody", "0353-05-15").
+job("Vernon Peabody", "production manager").
+hobby("Vernon Peabody", "story writing").
+gender("Vernon Peabody", "male").

@@ -1,0 +1,21 @@
+mother("Amberly Levine", "Jeana Chisholm").
+father("Amberly Levine", "Noel Chisholm").
+son("Amberly Levine", "Charles Levine").
+daughter("Amberly Levine", "Valeria Medellin").
+husband("Amberly Levine", "Glenn Levine").
+friend("Amberly Levine", "Christina Smart").
+friend("Amberly Levine", "Cedric Wilke").
+friend("Amberly Levine", "Levi Macias").
+friend("Amberly Levine", "Jayson Sheridan").
+friend("Amberly Levine", "Jayson Hudgens").
+friend("Amberly Levine", "Jackqueline Kell").
+friend("Amberly Levine", "Dorathy Mckenna").
+friend("Amberly Levine", "Keisha Mcdonald").
+friend("Amberly Levine", "Lona Corwin").
+friend("Amberly Levine", "Isaiah Resendez").
+friend("Amberly Levine", "Antonio Fitch").
+friend("Amberly Levine", "Toney Gibbs").
+dob("Amberly Levine", "0346-12-16").
+job("Amberly Levine", "photographer").
+hobby("Amberly Levine", "dandyism").
+gender("Amberly Levine", "female").

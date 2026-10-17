@@ -1,0 +1,15 @@
+son("Terrell Lai", "Rudolf Lai").
+wife("Terrell Lai", "Naomi Lai").
+friend("Terrell Lai", "Graciela Weise").
+friend("Terrell Lai", "Joanne Storey").
+friend("Terrell Lai", "Maryann Peeler").
+friend("Terrell Lai", "Rob Lebrun").
+friend("Terrell Lai", "Valeria Medellin").
+friend("Terrell Lai", "Zoraida Sanborn").
+friend("Terrell Lai", "Elroy Hamlin").
+friend("Terrell Lai", "Sylvia Carty").
+friend("Terrell Lai", "Fredrick Mckenna").
+dob("Terrell Lai", "0554-01-20").
+job("Terrell Lai", "educational psychologist").
+hobby("Terrell Lai", "vinyl records").
+gender("Terrell Lai", "male").

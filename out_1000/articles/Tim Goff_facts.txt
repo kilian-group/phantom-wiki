@@ -1,0 +1,24 @@
+brother("Tim Goff", "Alphonso Goff").
+brother("Tim Goff", "Elroy Goff").
+brother("Tim Goff", "Jonathan Goff").
+brother("Tim Goff", "King Goff").
+mother("Tim Goff", "Dorothea Goff").
+father("Tim Goff", "Michael Goff").
+friend("Tim Goff", "Gay Fitch").
+friend("Tim Goff", "Lindy Kavanaugh").
+friend("Tim Goff", "Carlos Noland").
+friend("Tim Goff", "Hal Greene").
+friend("Tim Goff", "Deloris Marr").
+friend("Tim Goff", "Thelma Vandenberg").
+friend("Tim Goff", "Evette Hamlin").
+friend("Tim Goff", "Rhea Burnett").
+friend("Tim Goff", "Odette Senn").
+friend("Tim Goff", "Ai Cordova").
+friend("Tim Goff", "Bernardo Briscoe").
+friend("Tim Goff", "Addie Dana").
+friend("Tim Goff", "Buffy Mccurry").
+friend("Tim Goff", "Taylor Schatz").
+dob("Tim Goff", "0415-07-06").
+job("Tim Goff", "tour manager").
+hobby("Tim Goff", "motorcycling").
+gender("Tim Goff", "male").

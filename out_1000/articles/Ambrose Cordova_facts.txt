@@ -1,0 +1,16 @@
+sister("Ambrose Cordova", "Lea Cordova").
+sister("Ambrose Cordova", "Maegan Cordova").
+brother("Ambrose Cordova", "Errol Cordova").
+mother("Ambrose Cordova", "Enedina Cordova").
+father("Ambrose Cordova", "Raleigh Cordova").
+son("Ambrose Cordova", "Frederic Cordova").
+wife("Ambrose Cordova", "Manda Cordova").
+friend("Ambrose Cordova", "Leeann Blanton").
+friend("Ambrose Cordova", "Julio Mcgough").
+friend("Ambrose Cordova", "Ben Sheridan").
+friend("Ambrose Cordova", "Barbar Kell").
+friend("Ambrose Cordova", "Mozelle Mounts").
+dob("Ambrose Cordova", "0287-03-27").
+job("Ambrose Cordova", "orthoptist").
+hobby("Ambrose Cordova", "ant-keeping").
+gender("Ambrose Cordova", "male").

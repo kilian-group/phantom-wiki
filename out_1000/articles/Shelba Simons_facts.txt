@@ -1,0 +1,17 @@
+brother("Shelba Simons", "Raleigh Simons").
+brother("Shelba Simons", "Roderick Simons").
+brother("Shelba Simons", "Sung Simons").
+mother("Shelba Simons", "Sasha Simons").
+father("Shelba Simons", "Sammie Simons").
+friend("Shelba Simons", "Salvador Plumley").
+friend("Shelba Simons", "Clement Bennet").
+friend("Shelba Simons", "Edmundo Mcpeak").
+friend("Shelba Simons", "Karina Smart").
+friend("Shelba Simons", "Ardath Carswell").
+friend("Shelba Simons", "Babette Jarrett").
+friend("Shelba Simons", "Nevin Mckenna").
+friend("Shelba Simons", "Myrl Murray").
+dob("Shelba Simons", "0438-03-01").
+job("Shelba Simons", "barista").
+hobby("Shelba Simons", "mineral collecting").
+gender("Shelba Simons", "female").

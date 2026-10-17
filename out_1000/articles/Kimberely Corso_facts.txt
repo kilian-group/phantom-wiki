@@ -1,0 +1,17 @@
+brother("Kimberely Corso", "Ira Mckenna").
+brother("Kimberely Corso", "Nevin Mckenna").
+brother("Kimberely Corso", "Porter Mckenna").
+brother("Kimberely Corso", "Rodrigo Mckenna").
+mother("Kimberely Corso", "Dorathy Mckenna").
+father("Kimberely Corso", "Cameron Mckenna").
+son("Kimberely Corso", "Miles Corso").
+husband("Kimberely Corso", "Kent Corso").
+friend("Kimberely Corso", "Sona Lasher").
+friend("Kimberely Corso", "Matilda Chou").
+friend("Kimberely Corso", "Emanuel Mccall").
+friend("Kimberely Corso", "Latrina Mathes").
+friend("Kimberely Corso", "Rhea Burnett").
+dob("Kimberely Corso", "0444-05-25").
+job("Kimberely Corso", "clinical psychologist").
+hobby("Kimberely Corso", "aircraft spotting").
+gender("Kimberely Corso", "female").

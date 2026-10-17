@@ -1,0 +1,20 @@
+sister("Sammie Simons", "Coleen Lively").
+brother("Sammie Simons", "Luis Simons").
+brother("Sammie Simons", "Timothy Simons").
+mother("Sammie Simons", "Zora Simons").
+father("Sammie Simons", "Bert Simons").
+son("Sammie Simons", "Raleigh Simons").
+son("Sammie Simons", "Roderick Simons").
+son("Sammie Simons", "Sung Simons").
+daughter("Sammie Simons", "Shelba Simons").
+wife("Sammie Simons", "Sasha Simons").
+friend("Sammie Simons", "Clement Bennet").
+friend("Sammie Simons", "Shannon Fredrick").
+friend("Sammie Simons", "Hollis Theriot").
+friend("Sammie Simons", "Rhea Burnett").
+friend("Sammie Simons", "Annita Mckenna").
+friend("Sammie Simons", "Ladawn Basham").
+dob("Sammie Simons", "0406-07-30").
+job("Sammie Simons", "special effects artist").
+hobby("Sammie Simons", "philately").
+gender("Sammie Simons", "male").

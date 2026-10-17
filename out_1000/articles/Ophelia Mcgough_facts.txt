@@ -1,0 +1,10 @@
+sister("Ophelia Mcgough", "Addie Shilling").
+brother("Ophelia Mcgough", "Randall Mcgough").
+mother("Ophelia Mcgough", "Chrissy Mcgough").
+father("Ophelia Mcgough", "Elroy Mcgough").
+friend("Ophelia Mcgough", "Wendell Monday").
+friend("Ophelia Mcgough", "Kory Gibbs").
+dob("Ophelia Mcgough", "0411-06-24").
+job("Ophelia Mcgough", "midwife").
+hobby("Ophelia Mcgough", "stuffed toy collecting").
+gender("Ophelia Mcgough", "female").

@@ -1,0 +1,20 @@
+sister("Garrett Bauman", "Lora Vanmeter").
+mother("Garrett Bauman", "Tonia Bauman").
+father("Garrett Bauman", "Max Bauman").
+friend("Garrett Bauman", "Michael Mckenna").
+friend("Garrett Bauman", "Desiree Fordham").
+friend("Garrett Bauman", "Darin Hollinger").
+friend("Garrett Bauman", "Lenora Hayward").
+friend("Garrett Bauman", "Bruce Mathes").
+friend("Garrett Bauman", "Reyna Ibarra").
+friend("Garrett Bauman", "Deja Gilliam").
+friend("Garrett Bauman", "Jermaine Gilliam").
+friend("Garrett Bauman", "Sylvia Gilliam").
+friend("Garrett Bauman", "Daisy Cushman").
+friend("Garrett Bauman", "Erik Capps").
+friend("Garrett Bauman", "Ester Yarbrough").
+friend("Garrett Bauman", "Zachery Upton").
+dob("Garrett Bauman", "0434-06-12").
+job("Garrett Bauman", "ergonomist").
+hobby("Garrett Bauman", "beauty pageants").
+gender("Garrett Bauman", "male").

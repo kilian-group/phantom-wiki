@@ -1,0 +1,19 @@
+son("Harold Murray", "Phil Murray").
+daughter("Harold Murray", "Myrl Murray").
+daughter("Harold Murray", "Romona Littleton").
+daughter("Harold Murray", "Susie Gillam").
+wife("Harold Murray", "Wanda Murray").
+friend("Harold Murray", "Gloria Ingalls").
+friend("Harold Murray", "Dan Younger").
+friend("Harold Murray", "Jenniffer Younger").
+friend("Harold Murray", "Marcus Lebrun").
+friend("Harold Murray", "Pedro Waltz").
+friend("Harold Murray", "Vance Fredrick").
+friend("Harold Murray", "Isabell Shank").
+friend("Harold Murray", "Tashina Vandenberg").
+friend("Harold Murray", "Brandon Winn").
+friend("Harold Murray", "Doug Jansen").
+dob("Harold Murray", "0408-08-28").
+job("Harold Murray", "English as a second language teacher").
+hobby("Harold Murray", "astronomy").
+gender("Harold Murray", "male").

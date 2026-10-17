@@ -1,0 +1,17 @@
+sister("Julianne Hamlin", "Brianne Layton").
+sister("Julianne Hamlin", "Helena Hamlin").
+brother("Julianne Hamlin", "Felix Hamlin").
+mother("Julianne Hamlin", "Evette Hamlin").
+father("Julianne Hamlin", "Elijah Hamlin").
+friend("Julianne Hamlin", "Adah Schram").
+friend("Julianne Hamlin", "Javier Kirksey").
+friend("Julianne Hamlin", "Phil Murray").
+friend("Julianne Hamlin", "Melina Simons").
+friend("Julianne Hamlin", "Roman Ruth").
+friend("Julianne Hamlin", "Stevie Joiner").
+friend("Julianne Hamlin", "Rogelio Dunlap").
+friend("Julianne Hamlin", "Kayla Ballard").
+dob("Julianne Hamlin", "0376-07-01").
+job("Julianne Hamlin", "restaurant manager").
+hobby("Julianne Hamlin", "meditation").
+gender("Julianne Hamlin", "female").

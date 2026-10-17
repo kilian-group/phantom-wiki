@@ -1,0 +1,13 @@
+son("Rufus Brook", "Errol Brook").
+wife("Rufus Brook", "Lera Brook").
+friend("Rufus Brook", "Sha Langley").
+friend("Rufus Brook", "Kirk Petry").
+friend("Rufus Brook", "Eduardo Earnest").
+friend("Rufus Brook", "Dillon Abraham").
+friend("Rufus Brook", "Spencer Griffiths").
+friend("Rufus Brook", "Andy Clemons").
+friend("Rufus Brook", "Eula Crain").
+dob("Rufus Brook", "0293-11-12").
+job("Rufus Brook", "fashion designer").
+hobby("Rufus Brook", "field hockey").
+gender("Rufus Brook", "male").

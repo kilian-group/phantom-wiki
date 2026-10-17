@@ -1,0 +1,473 @@
+[
+    {
+        "id": "9cddc73c-0765-4b87-8c0b-20d8c020e98b",
+        "question": "Who is the niece of Orlando Beltran?",
+        "solution_traces": "[{\"Y_2\": \"Vicki Hackworth\"}, {\"Y_2\": \"Aida Wang\"}, {\"Y_2\": \"Jeannine Wexler\"}]",
+        "answer": [
+            "Aida Wang",
+            "Jeannine Wexler",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "niece(\"Orlando Beltran\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Jeannine Wexler",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 6
+        }
+    },
+    {
+        "id": "d8354286-4e0a-4f38-aa27-9ea0e571f628",
+        "question": "Who is the friend of Myrle Smock?",
+        "solution_traces": "[{\"Y_2\": \"Ricardo Hackworth\"}]",
+        "answer": [
+            "Ricardo Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Myrle Smock\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Ricardo Hackworth",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "22812e1b-3ea6-4563-b84b-10cf90bbaade",
+        "question": "Who is the sister of Jeannine Wexler?",
+        "solution_traces": "[{\"Y_2\": \"Vicki Hackworth\"}, {\"Y_2\": \"Aida Wang\"}]",
+        "answer": [
+            "Aida Wang",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "sister(\"Jeannine Wexler\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Aida Wang",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 4
+        }
+    },
+    {
+        "id": "3502d544-1124-4f0e-b195-f285c376402e",
+        "question": "Who is the friend of Lenore Hackworth?",
+        "solution_traces": "[{\"Y_2\": \"Saul Wexler\"}, {\"Y_2\": \"Isabell Smock\"}, {\"Y_2\": \"Lannie Smock\"}]",
+        "answer": [
+            "Isabell Smock",
+            "Lannie Smock",
+            "Saul Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Lenore Hackworth\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Saul Wexler",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 3
+        }
+    },
+    {
+        "id": "d0d2f7c1-8403-4ae0-a54a-f2058f8e5880",
+        "question": "Who is the sister of Isabell Smock?",
+        "solution_traces": "[{\"Y_2\": \"Deane Smock\"}]",
+        "answer": [
+            "Deane Smock"
+        ],
+        "prolog": {
+            "query": [
+                "sister(\"Isabell Smock\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Deane Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    },
+    {
+        "id": "232152a9-5bdd-4ceb-aee7-76e439311b4d",
+        "question": "Who is the grandparent of Valentina Wexler?",
+        "solution_traces": "[{\"Y_2\": \"Shelli Beltran\"}, {\"Y_2\": \"Dino Beltran\"}]",
+        "answer": [
+            "Dino Beltran",
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "grandparent(\"Valentina Wexler\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Shelli Beltran",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    },
+    {
+        "id": "38e640ef-ad23-44db-b25f-9473a4391d10",
+        "question": "Who is the second aunt of Vicki Hackworth?",
+        "solution_traces": "[{\"Y_2\": \"Isabell Smock\"}, {\"Y_2\": \"Deane Smock\"}]",
+        "answer": [
+            "Deane Smock",
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "second_aunt(\"Vicki Hackworth\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Deane Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 4
+        }
+    },
+    {
+        "id": "407bb65c-e8a8-4ab6-8d72-34fcbacf61d7",
+        "question": "Who is the child of Lannie Smock?",
+        "solution_traces": "[{\"Y_2\": \"Gene Smock\"}, {\"Y_2\": \"Aubrey Smock\"}, {\"Y_2\": \"Isabell Smock\"}, {\"Y_2\": \"Deane Smock\"}]",
+        "answer": [
+            "Aubrey Smock",
+            "Deane Smock",
+            "Gene Smock",
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "child(\"Lannie Smock\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Deane Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 4
+        }
+    },
+    {
+        "id": "231c05ea-de44-4a3f-a5cb-58ccbc47d440",
+        "question": "Who is the sister-in-law of Dino Beltran?",
+        "solution_traces": "[{\"Y_2\": \"Myrle Smock\"}]",
+        "answer": [
+            "Myrle Smock"
+        ],
+        "prolog": {
+            "query": [
+                "sister_in_law(\"Dino Beltran\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Myrle Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 6
+        }
+    },
+    {
+        "id": "58bfa000-1032-4aca-a78a-688aca5a905f",
+        "question": "Who is the parent of Aubrey Smock?",
+        "solution_traces": "[{\"Y_2\": \"Alvaro Smock\"}, {\"Y_2\": \"Lannie Smock\"}]",
+        "answer": [
+            "Alvaro Smock",
+            "Lannie Smock"
+        ],
+        "prolog": {
+            "query": [
+                "parent(\"Aubrey Smock\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Alvaro Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    }
+]

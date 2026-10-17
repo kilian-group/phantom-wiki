@@ -1,0 +1,13 @@
+sister("Clara Mcgough", "Delsie Mcgough").
+mother("Clara Mcgough", "Myrl Mcgough").
+father("Clara Mcgough", "Randall Mcgough").
+friend("Clara Mcgough", "Marion Wilke").
+friend("Clara Mcgough", "Demarcus Narvaez").
+friend("Clara Mcgough", "Lyman Oberg").
+friend("Clara Mcgough", "Marlo Oberg").
+friend("Clara Mcgough", "Monte Oberg").
+friend("Clara Mcgough", "Thomas Chrisman").
+dob("Clara Mcgough", "0342-04-12").
+job("Clara Mcgough", "clinical research associate").
+hobby("Clara Mcgough", "kart racing").
+gender("Clara Mcgough", "female").

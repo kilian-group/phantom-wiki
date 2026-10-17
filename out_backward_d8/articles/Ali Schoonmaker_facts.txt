@@ -1,0 +1,13 @@
+son("Ali Schoonmaker", "Anibal Schoonmaker").
+son("Ali Schoonmaker", "Esteban Schoonmaker").
+daughter("Ali Schoonmaker", "Annabelle Schoonmaker").
+daughter("Ali Schoonmaker", "Jona Carrell").
+daughter("Ali Schoonmaker", "Liane Schoonmaker").
+wife("Ali Schoonmaker", "Robyn Schoonmaker").
+friend("Ali Schoonmaker", "Darin Shirk").
+friend("Ali Schoonmaker", "Ernesto Mcnew").
+friend("Ali Schoonmaker", "Marilyn Nicolas").
+dob("Ali Schoonmaker", "0234-07-25").
+job("Ali Schoonmaker", "market researcher").
+hobby("Ali Schoonmaker", "lotology").
+gender("Ali Schoonmaker", "male").

@@ -1,0 +1,10 @@
+son("Amanda Mcnew", "Haywood Mcnew").
+husband("Amanda Mcnew", "Merrill Mcnew").
+friend("Amanda Mcnew", "Ernesto Mcnew").
+friend("Amanda Mcnew", "Robyn Schoonmaker").
+friend("Amanda Mcnew", "Roman Palermo").
+friend("Amanda Mcnew", "Clayton Shirk").
+dob("Amanda Mcnew", "0311-02-11").
+job("Amanda Mcnew", "speech and language therapist").
+hobby("Amanda Mcnew", "research").
+gender("Amanda Mcnew", "female").

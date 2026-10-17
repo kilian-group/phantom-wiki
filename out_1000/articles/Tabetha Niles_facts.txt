@@ -1,0 +1,15 @@
+sister("Tabetha Niles", "Deirdre Niles").
+sister("Tabetha Niles", "Nedra Musick").
+sister("Tabetha Niles", "Nellie Niles").
+sister("Tabetha Niles", "Yoshiko Niles").
+mother("Tabetha Niles", "Virgie Niles").
+father("Tabetha Niles", "Julius Niles").
+friend("Tabetha Niles", "Hiram Putnam").
+friend("Tabetha Niles", "Elbert Layman").
+friend("Tabetha Niles", "Eugene Courson").
+friend("Tabetha Niles", "Brandon Winn").
+friend("Tabetha Niles", "Jermaine Lasher").
+dob("Tabetha Niles", "0397-09-26").
+job("Tabetha Niles", "minerals surveyor").
+hobby("Tabetha Niles", "fishkeeping").
+gender("Tabetha Niles", "female").

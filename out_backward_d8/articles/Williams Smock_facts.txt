@@ -1,0 +1,14 @@
+mother("Williams Smock", "Dominique Smock").
+father("Williams Smock", "Gene Smock").
+daughter("Williams Smock", "Myrle Smock").
+daughter("Williams Smock", "Shelli Beltran").
+wife("Williams Smock", "Alison Smock").
+friend("Williams Smock", "Geri Deluna").
+friend("Williams Smock", "Ian Pannell").
+friend("Williams Smock", "Hannah Palermo").
+friend("Williams Smock", "Monique Palermo").
+friend("Williams Smock", "Leeann Hackworth").
+dob("Williams Smock", "0236-04-04").
+job("Williams Smock", "theatre manager").
+hobby("Williams Smock", "radio-controlled car racing").
+gender("Williams Smock", "male").

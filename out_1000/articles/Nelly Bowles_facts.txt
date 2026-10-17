@@ -1,0 +1,11 @@
+son("Nelly Bowles", "Aaron Bowles").
+son("Nelly Bowles", "Ryan Bowles").
+husband("Nelly Bowles", "Andre Bowles").
+friend("Nelly Bowles", "Wendell Monday").
+friend("Nelly Bowles", "Belia Mckenna").
+friend("Nelly Bowles", "Kris Fordham").
+friend("Nelly Bowles", "Alex Burger").
+dob("Nelly Bowles", "0389-03-01").
+job("Nelly Bowles", "sales promotion account executive").
+hobby("Nelly Bowles", "wikipedia editing").
+gender("Nelly Bowles", "female").

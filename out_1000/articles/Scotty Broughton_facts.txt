@@ -1,0 +1,14 @@
+sister("Scotty Broughton", "Amanda Broughton").
+brother("Scotty Broughton", "Emil Broughton").
+mother("Scotty Broughton", "Anna Broughton").
+father("Scotty Broughton", "Darrell Broughton").
+friend("Scotty Broughton", "Foster Medellin").
+friend("Scotty Broughton", "Shemika Hirsch").
+friend("Scotty Broughton", "Marcelina Simons").
+friend("Scotty Broughton", "Rolf Osterman").
+friend("Scotty Broughton", "Shamika Mahoney").
+friend("Scotty Broughton", "Sofia Eaves").
+dob("Scotty Broughton", "0404-02-07").
+job("Scotty Broughton", "recruitment consultant").
+hobby("Scotty Broughton", "go").
+gender("Scotty Broughton", "male").

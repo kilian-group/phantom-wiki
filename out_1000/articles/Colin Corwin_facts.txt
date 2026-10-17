@@ -1,0 +1,19 @@
+sister("Colin Corwin", "Katherine Corwin").
+sister("Colin Corwin", "Malissa Corwin").
+brother("Colin Corwin", "Robby Corwin").
+mother("Colin Corwin", "Christen Corwin").
+father("Colin Corwin", "Solomon Corwin").
+son("Colin Corwin", "Josef Corwin").
+daughter("Colin Corwin", "Carlene Corwin").
+wife("Colin Corwin", "Jasmine Corwin").
+friend("Colin Corwin", "Darren Gilliam").
+friend("Colin Corwin", "Selena Donner").
+friend("Colin Corwin", "Genesis Alarcon").
+friend("Colin Corwin", "Chau Peeler").
+friend("Colin Corwin", "Errol Cordova").
+friend("Colin Corwin", "Rayna Kinsella").
+friend("Colin Corwin", "Sasha Simons").
+dob("Colin Corwin", "0410-03-05").
+job("Colin Corwin", "airline pilot").
+hobby("Colin Corwin", "learning").
+gender("Colin Corwin", "male").

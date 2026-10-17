@@ -1,0 +1,16 @@
+son("Nicholle Dana", "Felton Dana").
+son("Nicholle Dana", "Fernando Dana").
+husband("Nicholle Dana", "Matthew Dana").
+friend("Nicholle Dana", "Micah Hollins").
+friend("Nicholle Dana", "Sebastian Minnick").
+friend("Nicholle Dana", "Sylvia Gilliam").
+friend("Nicholle Dana", "Pierre Mcpeak").
+friend("Nicholle Dana", "Chelsea Skidmore").
+friend("Nicholle Dana", "Jeanelle Resendez").
+friend("Nicholle Dana", "Trudy Lasher").
+friend("Nicholle Dana", "Charissa Boutte").
+friend("Nicholle Dana", "Christen Boutte").
+dob("Nicholle Dana", "0399-01-14").
+job("Nicholle Dana", "geneticist").
+hobby("Nicholle Dana", "powerboat racing").
+gender("Nicholle Dana", "female").

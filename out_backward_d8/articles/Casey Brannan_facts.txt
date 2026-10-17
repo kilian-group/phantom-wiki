@@ -1,0 +1,7 @@
+son("Casey Brannan", "Marcel Brannan").
+wife("Casey Brannan", "Deborah Brannan").
+friend("Casey Brannan", "Rae Mcnew").
+dob("Casey Brannan", "0160-12-14").
+job("Casey Brannan", "advertising copywriter").
+hobby("Casey Brannan", "scutelliphily").
+gender("Casey Brannan", "male").

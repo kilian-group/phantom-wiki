@@ -1,0 +1,24 @@
+sister("Darren Gilliam", "Jacinta Gilliam").
+brother("Darren Gilliam", "Boris Gilliam").
+brother("Darren Gilliam", "Hershel Gilliam").
+brother("Darren Gilliam", "Jermaine Gilliam").
+brother("Darren Gilliam", "Markus Gilliam").
+mother("Darren Gilliam", "Lucienne Gilliam").
+father("Darren Gilliam", "Kenton Gilliam").
+son("Darren Gilliam", "Scotty Gilliam").
+daughter("Darren Gilliam", "Anna Broughton").
+daughter("Darren Gilliam", "Jenny Gilliam").
+daughter("Darren Gilliam", "Vada Littleton").
+wife("Darren Gilliam", "Deidra Gilliam").
+friend("Darren Gilliam", "Odelia Fredrick").
+friend("Darren Gilliam", "Eunice Prater").
+friend("Darren Gilliam", "Rolf Booth").
+friend("Darren Gilliam", "Claudio Winn").
+friend("Darren Gilliam", "Desmond Lester").
+friend("Darren Gilliam", "Shamika Mahoney").
+friend("Darren Gilliam", "Colin Corwin").
+friend("Darren Gilliam", "Robby Corwin").
+dob("Darren Gilliam", "0347-12-18").
+job("Darren Gilliam", "industrial buyer").
+hobby("Darren Gilliam", "freestyle football").
+gender("Darren Gilliam", "male").

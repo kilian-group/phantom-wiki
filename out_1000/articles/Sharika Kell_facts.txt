@@ -1,0 +1,16 @@
+brother("Sharika Kell", "Werner Kell").
+mother("Sharika Kell", "Laverna Kell").
+father("Sharika Kell", "Levi Kell").
+friend("Sharika Kell", "Chelsie Peeler").
+friend("Sharika Kell", "Elroy Goff").
+friend("Sharika Kell", "Delma Keyes").
+friend("Sharika Kell", "Jimmie Smart").
+friend("Sharika Kell", "Selena Donner").
+friend("Sharika Kell", "Aura Crittenden").
+friend("Sharika Kell", "Bryce Palomo").
+friend("Sharika Kell", "Kenneth Rinehart").
+friend("Sharika Kell", "Anthony Jarrett").
+dob("Sharika Kell", "0332-07-28").
+job("Sharika Kell", "exhibitions officer").
+hobby("Sharika Kell", "radio-controlled model collecting").
+gender("Sharika Kell", "female").

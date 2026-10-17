@@ -1,0 +1,13 @@
+mother("Gloria Shoulders", "Genny Burdette").
+father("Gloria Shoulders", "Rickie Burdette").
+son("Gloria Shoulders", "Timothy Shoulders").
+husband("Gloria Shoulders", "Cedric Shoulders").
+friend("Gloria Shoulders", "Robby Corwin").
+friend("Gloria Shoulders", "Gwenn Tyree").
+friend("Gloria Shoulders", "Raymond Carty").
+friend("Gloria Shoulders", "Therese Mckenna").
+friend("Gloria Shoulders", "Sonny Peeler").
+dob("Gloria Shoulders", "0492-09-12").
+job("Gloria Shoulders", "translator").
+hobby("Gloria Shoulders", "weightlifting").
+gender("Gloria Shoulders", "female").

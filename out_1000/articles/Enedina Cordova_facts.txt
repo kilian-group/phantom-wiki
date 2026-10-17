@@ -1,0 +1,16 @@
+son("Enedina Cordova", "Ambrose Cordova").
+son("Enedina Cordova", "Errol Cordova").
+daughter("Enedina Cordova", "Lea Cordova").
+daughter("Enedina Cordova", "Maegan Cordova").
+husband("Enedina Cordova", "Raleigh Cordova").
+friend("Enedina Cordova", "Brock Pugliese").
+friend("Enedina Cordova", "Ollie Minnick").
+friend("Enedina Cordova", "Patrick Broughton").
+friend("Enedina Cordova", "Dino Donner").
+friend("Enedina Cordova", "Carlos Noland").
+friend("Enedina Cordova", "Lynette Fredrick").
+friend("Enedina Cordova", "Walter Depriest").
+dob("Enedina Cordova", "0259-11-26").
+job("Enedina Cordova", "freight forwarder").
+hobby("Enedina Cordova", "science and technology studies").
+gender("Enedina Cordova", "female").

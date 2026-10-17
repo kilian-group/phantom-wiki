@@ -1,0 +1,19 @@
+sister("Jermaine Gilliam", "Jacinta Gilliam").
+brother("Jermaine Gilliam", "Boris Gilliam").
+brother("Jermaine Gilliam", "Darren Gilliam").
+brother("Jermaine Gilliam", "Hershel Gilliam").
+brother("Jermaine Gilliam", "Markus Gilliam").
+mother("Jermaine Gilliam", "Lucienne Gilliam").
+father("Jermaine Gilliam", "Kenton Gilliam").
+daughter("Jermaine Gilliam", "Sylvia Gilliam").
+wife("Jermaine Gilliam", "Lashandra Gilliam").
+friend("Jermaine Gilliam", "Jennie Burger").
+friend("Jermaine Gilliam", "Tamara Kell").
+friend("Jermaine Gilliam", "Garrett Bauman").
+friend("Jermaine Gilliam", "Isaiah Autry").
+friend("Jermaine Gilliam", "Milford Simons").
+friend("Jermaine Gilliam", "Ramiro Dana").
+dob("Jermaine Gilliam", "0344-09-06").
+job("Jermaine Gilliam", "horticultural consultant").
+hobby("Jermaine Gilliam", "sports science").
+gender("Jermaine Gilliam", "male").

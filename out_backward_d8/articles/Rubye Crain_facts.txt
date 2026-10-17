@@ -1,0 +1,6 @@
+mother("Rubye Crain", "Eula Crain").
+father("Rubye Crain", "Lucas Crain").
+dob("Rubye Crain", "0302-01-19").
+job("Rubye Crain", "agricultural consultant").
+hobby("Rubye Crain", "antiquities").
+gender("Rubye Crain", "female").

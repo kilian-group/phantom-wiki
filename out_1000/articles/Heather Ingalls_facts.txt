@@ -1,0 +1,13 @@
+sister("Heather Ingalls", "Zora Simons").
+mother("Heather Ingalls", "Sharon Ingalls").
+father("Heather Ingalls", "Charlie Ingalls").
+friend("Heather Ingalls", "Amy Smart").
+friend("Heather Ingalls", "Julio Mcgough").
+friend("Heather Ingalls", "Moshe Macias").
+friend("Heather Ingalls", "Krystal Joubert").
+friend("Heather Ingalls", "Ofelia Callender").
+friend("Heather Ingalls", "Lon Lazar").
+dob("Heather Ingalls", "0392-04-27").
+job("Heather Ingalls", "international aid worker").
+hobby("Heather Ingalls", "rowing").
+gender("Heather Ingalls", "female").

@@ -1,0 +1,14 @@
+brother("Olivia Griffiths", "Darin Shirk").
+mother("Olivia Griffiths", "Nada Shirk").
+father("Olivia Griffiths", "Clayton Shirk").
+son("Olivia Griffiths", "Spencer Griffiths").
+daughter("Olivia Griffiths", "Lauretta Mason").
+daughter("Olivia Griffiths", "Marlana Boutte").
+husband("Olivia Griffiths", "Elton Griffiths").
+friend("Olivia Griffiths", "Zoila Mason").
+friend("Olivia Griffiths", "Kirk Petry").
+friend("Olivia Griffiths", "Nada Shirk").
+dob("Olivia Griffiths", "0266-03-04").
+job("Olivia Griffiths", "planning and development surveyor").
+hobby("Olivia Griffiths", "geocaching").
+gender("Olivia Griffiths", "female").

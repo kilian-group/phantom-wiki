@@ -1,0 +1,12 @@
+sister("Edythe Earnest", "Cherise Earnest").
+brother("Edythe Earnest", "Eduardo Earnest").
+brother("Edythe Earnest", "Reggie Earnest").
+mother("Edythe Earnest", "Samantha Earnest").
+father("Edythe Earnest", "Benton Earnest").
+friend("Edythe Earnest", "Stuart Abraham").
+friend("Edythe Earnest", "Ella Saari").
+friend("Edythe Earnest", "Yoshiko Crain").
+dob("Edythe Earnest", "0349-05-12").
+job("Edythe Earnest", "quarry manager").
+hobby("Edythe Earnest", "sports memorabilia").
+gender("Edythe Earnest", "female").

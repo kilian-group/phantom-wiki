@@ -1,0 +1,12 @@
+son("Monique Griffiths", "Hilton Griffiths").
+son("Monique Griffiths", "Roger Griffiths").
+husband("Monique Griffiths", "Spencer Griffiths").
+friend("Monique Griffiths", "Myrle Smock").
+friend("Monique Griffiths", "Earle Cormier").
+friend("Monique Griffiths", "Connie Nicolas").
+friend("Monique Griffiths", "Theodore Crain").
+friend("Monique Griffiths", "Zoraida Palermo").
+dob("Monique Griffiths", "0287-04-22").
+job("Monique Griffiths", "financial adviser").
+hobby("Monique Griffiths", "birdwatching").
+gender("Monique Griffiths", "female").

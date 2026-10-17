@@ -1,0 +1,20 @@
+son("Christen Corwin", "Colin Corwin").
+son("Christen Corwin", "Robby Corwin").
+daughter("Christen Corwin", "Katherine Corwin").
+daughter("Christen Corwin", "Malissa Corwin").
+husband("Christen Corwin", "Solomon Corwin").
+friend("Christen Corwin", "Lance Carreon").
+friend("Christen Corwin", "Katharine Resendez").
+friend("Christen Corwin", "Sammy Dunlap").
+friend("Christen Corwin", "Drew Smart").
+friend("Christen Corwin", "Ardath Skidmore").
+friend("Christen Corwin", "Eli Vandenberg").
+friend("Christen Corwin", "Phylis Courson").
+friend("Christen Corwin", "Garland Hirsch").
+friend("Christen Corwin", "Christoper Littleton").
+friend("Christen Corwin", "Babara Arnold").
+friend("Christen Corwin", "Jennie Towns").
+dob("Christen Corwin", "0376-06-05").
+job("Christen Corwin", "higher education lecturer").
+hobby("Christen Corwin", "ant farming").
+gender("Christen Corwin", "female").

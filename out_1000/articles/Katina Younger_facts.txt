@@ -1,0 +1,19 @@
+sister("Katina Younger", "Zora Morehead").
+brother("Katina Younger", "Al Younger").
+brother("Katina Younger", "Cordell Younger").
+mother("Katina Younger", "Janis Younger").
+father("Katina Younger", "Wilson Younger").
+friend("Katina Younger", "Bertram Wylie").
+friend("Katina Younger", "Millard Fordham").
+friend("Katina Younger", "Sammy Yarbrough").
+friend("Katina Younger", "Chrissy Mcgough").
+friend("Katina Younger", "Erick Courson").
+friend("Katina Younger", "Jake Burkhalter").
+friend("Katina Younger", "Odette Senn").
+friend("Katina Younger", "Lloyd Ingalls").
+friend("Katina Younger", "Logan Swartz").
+friend("Katina Younger", "Juanita Eaves").
+dob("Katina Younger", "0457-08-19").
+job("Katina Younger", "higher education lecturer").
+hobby("Katina Younger", "meditation").
+gender("Katina Younger", "female").

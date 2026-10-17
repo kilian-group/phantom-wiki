@@ -1,0 +1,11 @@
+sister("Margie Remillard", "Chrissy Remillard").
+brother("Margie Remillard", "Hunter Remillard").
+mother("Margie Remillard", "Morgan Remillard").
+father("Margie Remillard", "Jaime Remillard").
+friend("Margie Remillard", "Ophelia Mcgough").
+friend("Margie Remillard", "Thelma Vandenberg").
+friend("Margie Remillard", "Aurelia Dishman").
+dob("Margie Remillard", "0320-07-24").
+job("Margie Remillard", "film editor").
+hobby("Margie Remillard", "reading").
+gender("Margie Remillard", "female").

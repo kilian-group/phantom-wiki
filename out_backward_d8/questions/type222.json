@@ -1,0 +1,282 @@
+[
+    {
+        "id": "2eca895b-60ef-42e8-99e8-6716eb4cfe52",
+        "question": "Who is the person whose occupation is advice worker and whose hobby is leaves?",
+        "solution_traces": "[]",
+        "answer": [
+            "Rolland Mckenna"
+        ],
+        "prolog": {
+            "query": [
+                "job(X, \"advice worker\")",
+                "hobby(X, \"leaves\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "62d26919-6724-4a38-b4a9-6112fcc47fb0",
+        "question": "Who is the person whose date of birth is 0207-09-08 and whose hobby is tether car?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dominique Smock"
+        ],
+        "prolog": {
+            "query": [
+                "dob(X, \"0207-09-08\")",
+                "hobby(X, \"tether car\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "b9e9e6f4-aa0b-4711-a0c2-e60b589a8dfb",
+        "question": "Who is the person whose hobby is whale watching and whose date of birth is 0305-06-19?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeanelle Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(X, \"whale watching\")",
+                "dob(X, \"0305-06-19\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "f3400e07-d415-466e-a7c0-bce06fa05224",
+        "question": "Who is the person whose date of birth is 0251-06-10 and whose occupation is chartered loss adjuster?",
+        "solution_traces": "[]",
+        "answer": [
+            "Maxwell Henderson"
+        ],
+        "prolog": {
+            "query": [
+                "dob(X, \"0251-06-10\")",
+                "job(X, \"chartered loss adjuster\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "a7903d8b-a94b-426b-833d-7b3a5fa9a4ed",
+        "question": "Who is the person whose date of birth is 0190-10-06 and whose occupation is editorial assistant?",
+        "solution_traces": "[]",
+        "answer": [
+            "Karla Hornback"
+        ],
+        "prolog": {
+            "query": [
+                "dob(X, \"0190-10-06\")",
+                "job(X, \"editorial assistant\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "6b25870b-f728-4542-bfde-5a743d776abf",
+        "question": "Who is the person whose occupation is telecommunications researcher and whose hobby is martial arts?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lea Levy"
+        ],
+        "prolog": {
+            "query": [
+                "job(X, \"telecommunications researcher\")",
+                "hobby(X, \"martial arts\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "6c8a0b20-ea01-40cc-97f0-0d8c662f1a36",
+        "question": "Who is the person whose date of birth is 0277-07-02 and whose occupation is probation officer?",
+        "solution_traces": "[]",
+        "answer": [
+            "Charlie Kovach"
+        ],
+        "prolog": {
+            "query": [
+                "dob(X, \"0277-07-02\")",
+                "job(X, \"probation officer\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "c72fb942-a100-4034-b8e4-199241ac0cf9",
+        "question": "Who is the person whose hobby is ballroom dancing and whose date of birth is 0262-06-04?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deborah Cormier"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(X, \"ballroom dancing\")",
+                "dob(X, \"0262-06-04\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "fa3a17c7-6509-42bf-9cb3-36a2b6ff7a88",
+        "question": "Who is the person whose occupation is financial adviser and whose date of birth is 0287-04-22?",
+        "solution_traces": "[]",
+        "answer": [
+            "Monique Griffiths"
+        ],
+        "prolog": {
+            "query": [
+                "job(X, \"financial adviser\")",
+                "dob(X, \"0287-04-22\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "182f8b47-1403-44e0-8239-d9ad6165c7db",
+        "question": "Who is the person whose occupation is paramedic and whose date of birth is 0286-10-11?",
+        "solution_traces": "[]",
+        "answer": [
+            "Bruce Mason"
+        ],
+        "prolog": {
+            "query": [
+                "job(X, \"paramedic\")",
+                "dob(X, \"0286-10-11\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 2,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    }
+]

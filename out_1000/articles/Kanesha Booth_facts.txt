@@ -1,0 +1,24 @@
+sister("Kanesha Booth", "Kristen Kell").
+sister("Kanesha Booth", "Yasmin Gordon").
+mother("Kanesha Booth", "Aurelia Gordon").
+father("Kanesha Booth", "Nicky Gordon").
+son("Kanesha Booth", "Rolf Booth").
+son("Kanesha Booth", "Tommy Booth").
+husband("Kanesha Booth", "Preston Booth").
+friend("Kanesha Booth", "Felipe Vanmeter").
+friend("Kanesha Booth", "Pamala Vanmeter").
+friend("Kanesha Booth", "Hank Paynter").
+friend("Kanesha Booth", "Lea Cordova").
+friend("Kanesha Booth", "Heath Swartz").
+friend("Kanesha Booth", "Adolph Hollins").
+friend("Kanesha Booth", "Frederic Staten").
+friend("Kanesha Booth", "Maranda Goff").
+friend("Kanesha Booth", "Alton Ibarra").
+friend("Kanesha Booth", "Maynard Latham").
+friend("Kanesha Booth", "Manuel Smart").
+friend("Kanesha Booth", "Bryce Palomo").
+friend("Kanesha Booth", "Rosalinda Layton").
+dob("Kanesha Booth", "0405-01-29").
+job("Kanesha Booth", "make").
+hobby("Kanesha Booth", "crystals").
+gender("Kanesha Booth", "female").

@@ -1,0 +1,21 @@
+mother("Julius Niles", "Roxy Niles").
+father("Julius Niles", "Tristan Niles").
+daughter("Julius Niles", "Deirdre Niles").
+daughter("Julius Niles", "Nedra Musick").
+daughter("Julius Niles", "Nellie Niles").
+daughter("Julius Niles", "Tabetha Niles").
+daughter("Julius Niles", "Yoshiko Niles").
+wife("Julius Niles", "Virgie Niles").
+friend("Julius Niles", "Amanda Broughton").
+friend("Julius Niles", "Velia Capps").
+friend("Julius Niles", "Anthony Jarrett").
+friend("Julius Niles", "Phylis Courson").
+friend("Julius Niles", "Tomasa Kell").
+friend("Julius Niles", "Nydia Willoughby").
+friend("Julius Niles", "Rogelio Mckenna").
+friend("Julius Niles", "Roseanna Mckenna").
+friend("Julius Niles", "Lara Jansen").
+dob("Julius Niles", "0374-11-05").
+job("Julius Niles", "fitness centre manager").
+hobby("Julius Niles", "herping").
+gender("Julius Niles", "male").

@@ -1,0 +1,11 @@
+sister("Laurel Decosta", "Margo Brannan").
+brother("Laurel Decosta", "Elwood Decosta").
+brother("Laurel Decosta", "Jacques Decosta").
+mother("Laurel Decosta", "Zoila Decosta").
+father("Laurel Decosta", "Stuart Decosta").
+friend("Laurel Decosta", "Margot Skaggs").
+friend("Laurel Decosta", "Mickey Earnest").
+dob("Laurel Decosta", "0186-12-01").
+job("Laurel Decosta", "midwife").
+hobby("Laurel Decosta", "antiquities").
+gender("Laurel Decosta", "female").

@@ -1,0 +1,16 @@
+sister("Earlean Ingalls", "Marlene Ingalls").
+sister("Earlean Ingalls", "Sharon Ingalls").
+brother("Earlean Ingalls", "Lloyd Ingalls").
+mother("Earlean Ingalls", "Gloria Ingalls").
+father("Earlean Ingalls", "Hershel Ingalls").
+friend("Earlean Ingalls", "Mickey Eaves").
+friend("Earlean Ingalls", "Shamika Mahoney").
+friend("Earlean Ingalls", "Lynette Gordy").
+friend("Earlean Ingalls", "Garland Hirsch").
+friend("Earlean Ingalls", "Ben Corso").
+friend("Earlean Ingalls", "Amos Hollinger").
+friend("Earlean Ingalls", "Fredrick Cordova").
+dob("Earlean Ingalls", "0360-11-10").
+job("Earlean Ingalls", "commercial horticulturist").
+hobby("Earlean Ingalls", "swimming").
+gender("Earlean Ingalls", "female").

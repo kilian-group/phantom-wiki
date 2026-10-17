@@ -1,0 +1,14 @@
+son("Derek Murchison", "Keith Murchison").
+wife("Derek Murchison", "Latisha Murchison").
+friend("Derek Murchison", "Renate Gailey").
+friend("Derek Murchison", "Geoffrey Musick").
+friend("Derek Murchison", "Evette Gibbs").
+friend("Derek Murchison", "Kip Murdoch").
+friend("Derek Murchison", "Lou Hurt").
+friend("Derek Murchison", "Rocky Perrine").
+friend("Derek Murchison", "Normand Wilke").
+friend("Derek Murchison", "Maybelle Lester").
+dob("Derek Murchison", "0331-10-24").
+job("Derek Murchison", "market researcher").
+hobby("Derek Murchison", "mineral collecting").
+gender("Derek Murchison", "male").

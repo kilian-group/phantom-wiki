@@ -1,0 +1,13 @@
+sister("Thurman Crain", "Edythe Nicolas").
+sister("Thurman Crain", "Zulema Crain").
+brother("Thurman Crain", "Lucas Crain").
+mother("Thurman Crain", "Yoshiko Crain").
+father("Thurman Crain", "Theodore Crain").
+friend("Thurman Crain", "Hanh Mohan").
+friend("Thurman Crain", "Reinaldo Hornback").
+friend("Thurman Crain", "Hunter Saari").
+friend("Thurman Crain", "Dwayne Langley").
+dob("Thurman Crain", "0271-03-06").
+job("Thurman Crain", "maintenance engineer").
+hobby("Thurman Crain", "magic").
+gender("Thurman Crain", "male").

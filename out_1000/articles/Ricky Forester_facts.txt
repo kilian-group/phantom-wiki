@@ -1,0 +1,12 @@
+son("Ricky Forester", "Isaias Forester").
+wife("Ricky Forester", "Almeta Forester").
+friend("Ricky Forester", "Karl Depriest").
+friend("Ricky Forester", "Williams Alessi").
+friend("Ricky Forester", "Avery Nolasco").
+friend("Ricky Forester", "Addie Dana").
+friend("Ricky Forester", "Drew Dana").
+friend("Ricky Forester", "Buffy Mccurry").
+dob("Ricky Forester", "0322-08-15").
+job("Ricky Forester", "television camera operator").
+hobby("Ricky Forester", "knife collecting").
+gender("Ricky Forester", "male").

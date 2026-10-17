@@ -1,0 +1,14 @@
+mother("Derek Valladares", "Jody Valladares").
+father("Derek Valladares", "Jarvis Valladares").
+friend("Derek Valladares", "Alice Dana").
+friend("Derek Valladares", "Boris Machado").
+friend("Derek Valladares", "Alex Burger").
+friend("Derek Valladares", "Jennie Burger").
+friend("Derek Valladares", "Major Ballard").
+friend("Derek Valladares", "Claude Courson").
+friend("Derek Valladares", "Kristie Harlow").
+friend("Derek Valladares", "Aldo Paynter").
+dob("Derek Valladares", "0459-09-12").
+job("Derek Valladares", "local government officer").
+hobby("Derek Valladares", "insect collecting").
+gender("Derek Valladares", "male").

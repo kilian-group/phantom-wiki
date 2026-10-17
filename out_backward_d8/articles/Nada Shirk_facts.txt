@@ -1,0 +1,11 @@
+son("Nada Shirk", "Darin Shirk").
+daughter("Nada Shirk", "Olivia Griffiths").
+husband("Nada Shirk", "Clayton Shirk").
+friend("Nada Shirk", "Olivia Griffiths").
+friend("Nada Shirk", "Trevor Saari").
+friend("Nada Shirk", "Roxy Mcnew").
+friend("Nada Shirk", "Carrol Nicolas").
+dob("Nada Shirk", "0237-06-02").
+job("Nada Shirk", "geographical information systems officer").
+hobby("Nada Shirk", "beach volleyball").
+gender("Nada Shirk", "female").

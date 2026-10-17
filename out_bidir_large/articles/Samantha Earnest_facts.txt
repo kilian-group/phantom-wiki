@@ -1,0 +1,16 @@
+brother("Samantha Earnest", "Quincy Pannell").
+mother("Samantha Earnest", "Johnnie Pannell").
+father("Samantha Earnest", "Ian Pannell").
+son("Samantha Earnest", "Eduardo Earnest").
+son("Samantha Earnest", "Reggie Earnest").
+daughter("Samantha Earnest", "Cherise Earnest").
+daughter("Samantha Earnest", "Edythe Earnest").
+husband("Samantha Earnest", "Benton Earnest").
+friend("Samantha Earnest", "Taneka Abraham").
+friend("Samantha Earnest", "Foster Cormier").
+friend("Samantha Earnest", "Dudley Wise").
+friend("Samantha Earnest", "Eduardo Earnest").
+dob("Samantha Earnest", "0318-07-16").
+job("Samantha Earnest", "risk analyst").
+hobby("Samantha Earnest", "publishing").
+gender("Samantha Earnest", "female").

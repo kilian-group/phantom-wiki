@@ -1,0 +1,17 @@
+brother("Kris Fordham", "Aaron Fordham").
+brother("Kris Fordham", "Mitchell Fordham").
+brother("Kris Fordham", "Sung Fordham").
+mother("Kris Fordham", "Domonique Fordham").
+father("Kris Fordham", "Miles Fordham").
+friend("Kris Fordham", "Coral Putnam").
+friend("Kris Fordham", "Nelly Bowles").
+friend("Kris Fordham", "Romelia Bowles").
+friend("Kris Fordham", "Jackqueline Kell").
+friend("Kris Fordham", "Lynetta Mckenna").
+friend("Kris Fordham", "Dalton Arnold").
+friend("Kris Fordham", "Jasmine Corwin").
+friend("Kris Fordham", "Annabell Molina").
+dob("Kris Fordham", "0488-06-20").
+job("Kris Fordham", "adult nurse").
+hobby("Kris Fordham", "meteorology").
+gender("Kris Fordham", "female").

@@ -1,0 +1,14 @@
+son("Elroy Mcgough", "Randall Mcgough").
+daughter("Elroy Mcgough", "Ophelia Mcgough").
+wife("Elroy Mcgough", "Chrissy Mcgough").
+friend("Elroy Mcgough", "Colby Narvaez").
+friend("Elroy Mcgough", "Rhoda Narvaez").
+friend("Elroy Mcgough", "Dorinda Chrisman").
+friend("Elroy Mcgough", "Mai Remillard").
+friend("Elroy Mcgough", "Sherrie Remillard").
+friend("Elroy Mcgough", "Charley Vandenberg").
+friend("Elroy Mcgough", "Eli Vandenberg").
+dob("Elroy Mcgough", "0290-03-23").
+job("Elroy Mcgough", "gaffer").
+hobby("Elroy Mcgough", "photography").
+gender("Elroy Mcgough", "male").

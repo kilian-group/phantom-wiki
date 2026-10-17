@@ -1,0 +1,15 @@
+daughter("Sammy Yarbrough", "Dawn Rinehart").
+daughter("Sammy Yarbrough", "Ester Yarbrough").
+wife("Sammy Yarbrough", "Enid Yarbrough").
+friend("Sammy Yarbrough", "Chrissy Mcgough").
+friend("Sammy Yarbrough", "Michael Mckenna").
+friend("Sammy Yarbrough", "Pamala Vanmeter").
+friend("Sammy Yarbrough", "Janiece Cordova").
+friend("Sammy Yarbrough", "Paris Brumbaugh").
+friend("Sammy Yarbrough", "Seymour Simons").
+friend("Sammy Yarbrough", "Katina Younger").
+friend("Sammy Yarbrough", "Donald Fordham").
+dob("Sammy Yarbrough", "0457-04-08").
+job("Sammy Yarbrough", "production engineer").
+hobby("Sammy Yarbrough", "survivalism").
+gender("Sammy Yarbrough", "male").

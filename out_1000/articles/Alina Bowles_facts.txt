@@ -1,0 +1,24 @@
+sister("Alina Bowles", "Leeann Blanton").
+mother("Alina Bowles", "Morgan Perrine").
+father("Alina Bowles", "Rocky Perrine").
+son("Alina Bowles", "Dino Bowles").
+son("Alina Bowles", "Rueben Bowles").
+daughter("Alina Bowles", "Romelia Bowles").
+husband("Alina Bowles", "Ryan Bowles").
+friend("Alina Bowles", "Morgan Perrine").
+friend("Alina Bowles", "Chrissy Mcgough").
+friend("Alina Bowles", "Kent Corso").
+friend("Alina Bowles", "Samuel Omara").
+friend("Alina Bowles", "Jimmy Holder").
+friend("Alina Bowles", "Milton Littleton").
+friend("Alina Bowles", "Myrl Murray").
+friend("Alina Bowles", "Phil Murray").
+friend("Alina Bowles", "Antionette Hamann").
+friend("Alina Bowles", "Douglass Ingalls").
+friend("Alina Bowles", "Carolyn Whitford").
+friend("Alina Bowles", "Charles Levine").
+friend("Alina Bowles", "Foster Medellin").
+dob("Alina Bowles", "0411-05-24").
+job("Alina Bowles", "armed forces logistics officer").
+hobby("Alina Bowles", "equestrianism").
+gender("Alina Bowles", "female").

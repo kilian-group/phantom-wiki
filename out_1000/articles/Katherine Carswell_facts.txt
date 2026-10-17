@@ -1,0 +1,22 @@
+sister("Katherine Carswell", "Lora Vogt").
+sister("Katherine Carswell", "Marguerite Putnam").
+sister("Katherine Carswell", "Sheila Putnam").
+mother("Katherine Carswell", "Coral Putnam").
+father("Katherine Carswell", "Marvin Putnam").
+son("Katherine Carswell", "Derek Carswell").
+husband("Katherine Carswell", "Ricky Carswell").
+friend("Katherine Carswell", "Coral Monday").
+friend("Katherine Carswell", "Rhea Burnett").
+friend("Katherine Carswell", "Eunice Lennox").
+friend("Katherine Carswell", "Leslie Courson").
+friend("Katherine Carswell", "Ashleigh Kell").
+friend("Katherine Carswell", "Karen Mckenna").
+friend("Katherine Carswell", "Drema Jefferson").
+friend("Katherine Carswell", "Gena Brumbaugh").
+friend("Katherine Carswell", "Lara Jansen").
+friend("Katherine Carswell", "Freddie Barrows").
+friend("Katherine Carswell", "Jana Noland").
+dob("Katherine Carswell", "0490-03-17").
+job("Katherine Carswell", "public relations account executive").
+hobby("Katherine Carswell", "ant farming").
+gender("Katherine Carswell", "female").

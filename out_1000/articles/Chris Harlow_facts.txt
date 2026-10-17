@@ -1,0 +1,14 @@
+sister("Chris Harlow", "Dorathy Harlow").
+mother("Chris Harlow", "Winnie Harlow").
+father("Chris Harlow", "Jerrold Harlow").
+friend("Chris Harlow", "Dorathy Harlow").
+friend("Chris Harlow", "Paris Cordova").
+friend("Chris Harlow", "Israel Mathes").
+friend("Chris Harlow", "Darby Latham").
+friend("Chris Harlow", "Lera Dunlap").
+friend("Chris Harlow", "Valentin Vandenberg").
+friend("Chris Harlow", "Paul Dame").
+dob("Chris Harlow", "0410-02-17").
+job("Chris Harlow", "television floor manager").
+hobby("Chris Harlow", "fishkeeping").
+gender("Chris Harlow", "male").

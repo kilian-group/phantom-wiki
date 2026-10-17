@@ -1,0 +1,22 @@
+sister("Brunilda Linden", "Catina Linden").
+sister("Brunilda Linden", "Genny Burdette").
+sister("Brunilda Linden", "Patricia Towns").
+brother("Brunilda Linden", "Augustine Linden").
+brother("Brunilda Linden", "Emery Linden").
+mother("Brunilda Linden", "Barb Linden").
+father("Brunilda Linden", "Jarvis Linden").
+friend("Brunilda Linden", "Kennith Towns").
+friend("Brunilda Linden", "Brendon Dunlap").
+friend("Brunilda Linden", "Darrell Broughton").
+friend("Brunilda Linden", "Lashandra Gilliam").
+friend("Brunilda Linden", "Sammy Dunlap").
+friend("Brunilda Linden", "Bradford Oliveira").
+friend("Brunilda Linden", "Moshe Macias").
+friend("Brunilda Linden", "Kendrick Bauman").
+friend("Brunilda Linden", "Ashleigh Spiller").
+friend("Brunilda Linden", "Larae Kirksey").
+friend("Brunilda Linden", "Frankie Simons").
+dob("Brunilda Linden", "0470-06-22").
+job("Brunilda Linden", "mechanical engineer").
+hobby("Brunilda Linden", "tether car").
+gender("Brunilda Linden", "female").

@@ -1,0 +1,18 @@
+sister("Leena Estrella", "Thomasena Marr").
+mother("Leena Estrella", "Vanessa Keister").
+father("Leena Estrella", "Gregory Keister").
+son("Leena Estrella", "Lucas Estrella").
+daughter("Leena Estrella", "Luisa Estrella").
+husband("Leena Estrella", "Jan Estrella").
+friend("Leena Estrella", "Ressie Capps").
+friend("Leena Estrella", "Alysa Lindquist").
+friend("Leena Estrella", "Alexa Mckenna").
+friend("Leena Estrella", "Bess Autry").
+friend("Leena Estrella", "Chang Eaves").
+friend("Leena Estrella", "Alphonso Goff").
+friend("Leena Estrella", "Sung Resendez").
+friend("Leena Estrella", "Shaunna Fordham").
+dob("Leena Estrella", "0335-10-31").
+job("Leena Estrella", "local government officer").
+hobby("Leena Estrella", "bodybuilding").
+gender("Leena Estrella", "female").

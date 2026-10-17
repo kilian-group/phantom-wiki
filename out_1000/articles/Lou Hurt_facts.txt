@@ -1,0 +1,13 @@
+daughter("Lou Hurt", "Demetra Medellin").
+daughter("Lou Hurt", "Lashanda Salem").
+daughter("Lou Hurt", "Lucile Hurt").
+husband("Lou Hurt", "Willie Hurt").
+friend("Lou Hurt", "Kenneth Rinehart").
+friend("Lou Hurt", "Trudy Lasher").
+friend("Lou Hurt", "Rayna Kinsella").
+friend("Lou Hurt", "Derek Murchison").
+friend("Lou Hurt", "Marcus Lebrun").
+dob("Lou Hurt", "0372-09-09").
+job("Lou Hurt", "astronomer").
+hobby("Lou Hurt", "whale watching").
+gender("Lou Hurt", "female").

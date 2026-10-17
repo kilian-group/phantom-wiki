@@ -1,0 +1,18 @@
+daughter("Maynard Latham", "Ollie Minnick").
+wife("Maynard Latham", "Darby Latham").
+friend("Maynard Latham", "Cora Fordham").
+friend("Maynard Latham", "Ryan Bowles").
+friend("Maynard Latham", "Martin Deville").
+friend("Maynard Latham", "Racquel Horan").
+friend("Maynard Latham", "Rudolf Sanborn").
+friend("Maynard Latham", "Trudy Lennox").
+friend("Maynard Latham", "Dorathy Harlow").
+friend("Maynard Latham", "Kanesha Booth").
+friend("Maynard Latham", "Jimmy Holder").
+friend("Maynard Latham", "Latisha Murchison").
+friend("Maynard Latham", "Jacinta Simons").
+friend("Maynard Latham", "Jamel Chou").
+dob("Maynard Latham", "0257-11-12").
+job("Maynard Latham", "chief marketing officer").
+hobby("Maynard Latham", "tea bag collecting").
+gender("Maynard Latham", "male").

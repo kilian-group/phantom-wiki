@@ -1,0 +1,13 @@
+sister("Keri Bennet", "Ladawn Bennet").
+mother("Keri Bennet", "Monika Bennet").
+father("Keri Bennet", "Clement Bennet").
+friend("Keri Bennet", "Ricardo Dacosta").
+friend("Keri Bennet", "Glenn Levine").
+friend("Keri Bennet", "Raleigh Cordova").
+friend("Keri Bennet", "Tammy Sutphin").
+friend("Keri Bennet", "Lara Jansen").
+friend("Keri Bennet", "Faith Linden").
+dob("Keri Bennet", "0430-01-24").
+job("Keri Bennet", "landscape architect").
+hobby("Keri Bennet", "skateboarding").
+gender("Keri Bennet", "female").

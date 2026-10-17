@@ -1,0 +1,11 @@
+sister("Rosanna Palermo", "Hannah Palermo").
+sister("Rosanna Palermo", "Monique Palermo").
+brother("Rosanna Palermo", "Francisco Palermo").
+mother("Rosanna Palermo", "Sylvia Palermo").
+father("Rosanna Palermo", "Enoch Palermo").
+friend("Rosanna Palermo", "Jules Levy").
+friend("Rosanna Palermo", "Kirk Petry").
+dob("Rosanna Palermo", "0337-08-25").
+job("Rosanna Palermo", "museum exhibitions officer").
+hobby("Rosanna Palermo", "beekeeping").
+gender("Rosanna Palermo", "female").

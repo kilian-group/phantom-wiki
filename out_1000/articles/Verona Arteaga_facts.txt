@@ -1,0 +1,14 @@
+brother("Verona Arteaga", "James Arteaga").
+mother("Verona Arteaga", "Hope Arteaga").
+father("Verona Arteaga", "Irwin Arteaga").
+friend("Verona Arteaga", "Stevie Joiner").
+friend("Verona Arteaga", "Rhonda Theriot").
+friend("Verona Arteaga", "Haley Layman").
+friend("Verona Arteaga", "Jamison Upton").
+friend("Verona Arteaga", "Wyatt Mckenna").
+friend("Verona Arteaga", "Frankie Simons").
+friend("Verona Arteaga", "Porter Steadman").
+dob("Verona Arteaga", "0431-11-19").
+job("Verona Arteaga", "tour manager").
+hobby("Verona Arteaga", "ice hockey").
+gender("Verona Arteaga", "female").

@@ -1,0 +1,14 @@
+sister("Margaret Kovach", "Lea Levy").
+brother("Margaret Kovach", "Daniel Brannan").
+mother("Margaret Kovach", "Rosalinda Brannan").
+father("Margaret Kovach", "Adolph Brannan").
+son("Margaret Kovach", "Carson Kovach").
+son("Margaret Kovach", "Charlie Kovach").
+daughter("Margaret Kovach", "Elissa Kovach").
+daughter("Margaret Kovach", "Laverna Kovach").
+husband("Margaret Kovach", "Everett Kovach").
+friend("Margaret Kovach", "Craig Boutte").
+dob("Margaret Kovach", "0252-01-08").
+job("Margaret Kovach", "advertising art director").
+hobby("Margaret Kovach", "flower collecting and pressing").
+gender("Margaret Kovach", "female").

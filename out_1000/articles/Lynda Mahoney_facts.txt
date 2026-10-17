@@ -1,0 +1,13 @@
+sister("Lynda Mahoney", "Alix Mahoney").
+brother("Lynda Mahoney", "Dan Mahoney").
+brother("Lynda Mahoney", "Jerry Mahoney").
+mother("Lynda Mahoney", "Germaine Mahoney").
+father("Lynda Mahoney", "Frankie Mahoney").
+friend("Lynda Mahoney", "Ruben Corwin").
+friend("Lynda Mahoney", "Jermaine Wilke").
+friend("Lynda Mahoney", "Andres Layton").
+friend("Lynda Mahoney", "Collin Lively").
+dob("Lynda Mahoney", "0377-04-22").
+job("Lynda Mahoney", "retail buyer").
+hobby("Lynda Mahoney", "softball").
+gender("Lynda Mahoney", "female").

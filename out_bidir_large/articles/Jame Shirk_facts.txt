@@ -1,0 +1,7 @@
+son("Jame Shirk", "Clayton Shirk").
+wife("Jame Shirk", "Maurine Shirk").
+friend("Jame Shirk", "Weldon Skaggs").
+dob("Jame Shirk", "0216-03-27").
+job("Jame Shirk", "financial adviser").
+hobby("Jame Shirk", "shortwave listening").
+gender("Jame Shirk", "male").

@@ -1,0 +1,12 @@
+son("Toshiko Younger", "Ethan Younger").
+husband("Toshiko Younger", "Al Younger").
+friend("Toshiko Younger", "Shelly Donner").
+friend("Toshiko Younger", "Elroy Mcgough").
+friend("Toshiko Younger", "Dino Layman").
+friend("Toshiko Younger", "Maria Lindquist").
+friend("Toshiko Younger", "Babara Arnold").
+friend("Toshiko Younger", "Irwin Dalton").
+dob("Toshiko Younger", "0456-09-22").
+job("Toshiko Younger", "clinical scientist").
+hobby("Toshiko Younger", "walking").
+gender("Toshiko Younger", "female").

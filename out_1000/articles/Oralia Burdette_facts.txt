@@ -1,0 +1,14 @@
+son("Oralia Burdette", "Rickie Burdette").
+husband("Oralia Burdette", "Miles Burdette").
+friend("Oralia Burdette", "Porter Steadman").
+friend("Oralia Burdette", "Anna Broughton").
+friend("Oralia Burdette", "Brent Macias").
+friend("Oralia Burdette", "Louis Upton").
+friend("Oralia Burdette", "Jeannette Mounts").
+friend("Oralia Burdette", "Werner Kell").
+friend("Oralia Burdette", "Sammy Dillion").
+friend("Oralia Burdette", "Bess Autry").
+dob("Oralia Burdette", "0436-03-14").
+job("Oralia Burdette", "holiday representative").
+hobby("Oralia Burdette", "tea bag collecting").
+gender("Oralia Burdette", "female").

@@ -1,0 +1,16 @@
+daughter("Aurelia Dishman", "Sherrie Remillard").
+husband("Aurelia Dishman", "King Dishman").
+friend("Aurelia Dishman", "Celestine Remillard").
+friend("Aurelia Dishman", "Margie Remillard").
+friend("Aurelia Dishman", "Tianna Remillard").
+friend("Aurelia Dishman", "Willie Remillard").
+friend("Aurelia Dishman", "Amy Wilke").
+friend("Aurelia Dishman", "Delsie Mcgough").
+friend("Aurelia Dishman", "Randall Mcgough").
+friend("Aurelia Dishman", "Stacey Wilke").
+friend("Aurelia Dishman", "Tashina Vandenberg").
+friend("Aurelia Dishman", "Mason Oberg").
+dob("Aurelia Dishman", "0247-09-06").
+job("Aurelia Dishman", "nurse").
+hobby("Aurelia Dishman", "karting").
+gender("Aurelia Dishman", "female").

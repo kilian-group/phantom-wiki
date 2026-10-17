@@ -1,0 +1,16 @@
+sister("Cortez Kinsella", "Nelly Kinsella").
+mother("Cortez Kinsella", "Annmarie Kinsella").
+father("Cortez Kinsella", "Kenny Kinsella").
+friend("Cortez Kinsella", "Paris Cordova").
+friend("Cortez Kinsella", "Kurtis Eaves").
+friend("Cortez Kinsella", "Raul Younger").
+friend("Cortez Kinsella", "Lazaro Hsu").
+friend("Cortez Kinsella", "Tanner Holliman").
+friend("Cortez Kinsella", "Tristan Niles").
+friend("Cortez Kinsella", "Foster Medellin").
+friend("Cortez Kinsella", "Tracy Fredrick").
+friend("Cortez Kinsella", "Anastacia Cordova").
+dob("Cortez Kinsella", "0492-06-28").
+job("Cortez Kinsella", "graphic designer").
+hobby("Cortez Kinsella", "mineral collecting").
+gender("Cortez Kinsella", "male").

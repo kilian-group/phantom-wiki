@@ -1,0 +1,16 @@
+sister("Mack Storey", "Daisy Autry").
+brother("Mack Storey", "Herbert Storey").
+mother("Mack Storey", "Joanne Storey").
+father("Mack Storey", "Steve Storey").
+son("Mack Storey", "Wilber Storey").
+wife("Mack Storey", "Bonnie Storey").
+friend("Mack Storey", "Milford Simons").
+friend("Mack Storey", "Shizuko Eaves").
+friend("Mack Storey", "Amy Smart").
+friend("Mack Storey", "Cleveland Capps").
+friend("Mack Storey", "Melodie Suh").
+friend("Mack Storey", "Ignacio Haygood").
+dob("Mack Storey", "0405-10-01").
+job("Mack Storey", "immunologist").
+hobby("Mack Storey", "esports").
+gender("Mack Storey", "male").

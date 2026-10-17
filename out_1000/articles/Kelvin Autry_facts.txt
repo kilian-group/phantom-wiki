@@ -1,0 +1,13 @@
+son("Kelvin Autry", "Donald Autry").
+son("Kelvin Autry", "Isaiah Autry").
+daughter("Kelvin Autry", "Ashleigh Spiller").
+daughter("Kelvin Autry", "Karol Beamon").
+daughter("Kelvin Autry", "Magdalena Hollinger").
+wife("Kelvin Autry", "Daisy Autry").
+friend("Kelvin Autry", "Anastasia Eaves").
+friend("Kelvin Autry", "Adolph Hollins").
+friend("Kelvin Autry", "Tanya Molina").
+dob("Kelvin Autry", "0397-08-13").
+job("Kelvin Autry", "naval architect").
+hobby("Kelvin Autry", "microbiology").
+gender("Kelvin Autry", "male").

@@ -1,0 +1,17 @@
+sister("Genny Burdette", "Brunilda Linden").
+sister("Genny Burdette", "Catina Linden").
+sister("Genny Burdette", "Patricia Towns").
+brother("Genny Burdette", "Augustine Linden").
+brother("Genny Burdette", "Emery Linden").
+mother("Genny Burdette", "Barb Linden").
+father("Genny Burdette", "Jarvis Linden").
+daughter("Genny Burdette", "Gloria Shoulders").
+husband("Genny Burdette", "Rickie Burdette").
+friend("Genny Burdette", "James Arteaga").
+friend("Genny Burdette", "Stacy Strong").
+friend("Genny Burdette", "Ashely Speaks").
+friend("Genny Burdette", "Noreen Cordova").
+dob("Genny Burdette", "0469-06-05").
+job("Genny Burdette", "clinical scientist").
+hobby("Genny Burdette", "longboarding").
+gender("Genny Burdette", "female").

@@ -1,0 +1,15 @@
+son("Zachary Theriot", "Hollis Theriot").
+wife("Zachary Theriot", "Nelly Theriot").
+friend("Zachary Theriot", "Brandon Winn").
+friend("Zachary Theriot", "Dorathy Mckenna").
+friend("Zachary Theriot", "Cherlyn Simons").
+friend("Zachary Theriot", "Victor Steadman").
+friend("Zachary Theriot", "Zora Morehead").
+friend("Zachary Theriot", "Vicente Mccurry").
+friend("Zachary Theriot", "Logan Cushman").
+friend("Zachary Theriot", "Virgina Noland").
+friend("Zachary Theriot", "Randal Marr").
+dob("Zachary Theriot", "0412-11-01").
+job("Zachary Theriot", "futures trader").
+hobby("Zachary Theriot", "go").
+gender("Zachary Theriot", "male").

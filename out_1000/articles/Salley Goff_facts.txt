@@ -1,0 +1,10 @@
+daughter("Salley Goff", "Maranda Goff").
+husband("Salley Goff", "Alphonso Goff").
+friend("Salley Goff", "Israel Mathes").
+friend("Salley Goff", "Shaunte Gilliam").
+friend("Salley Goff", "Rocky Perrine").
+friend("Salley Goff", "Lucio Townsend").
+dob("Salley Goff", "0413-05-07").
+job("Salley Goff", "public relations officer").
+hobby("Salley Goff", "leaves").
+gender("Salley Goff", "female").

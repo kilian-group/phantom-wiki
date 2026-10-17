@@ -1,0 +1,23 @@
+sister("Dorothea Goff", "Drema Schatz").
+sister("Dorothea Goff", "Mallory Schatz").
+mother("Dorothea Goff", "Krystyna Schatz").
+father("Dorothea Goff", "Taylor Schatz").
+son("Dorothea Goff", "Alphonso Goff").
+son("Dorothea Goff", "Elroy Goff").
+son("Dorothea Goff", "Jonathan Goff").
+son("Dorothea Goff", "King Goff").
+son("Dorothea Goff", "Tim Goff").
+husband("Dorothea Goff", "Michael Goff").
+friend("Dorothea Goff", "Jefferson Murdoch").
+friend("Dorothea Goff", "Connie Cushman").
+friend("Dorothea Goff", "Kimiko Vogt").
+friend("Dorothea Goff", "Rogelio Capps").
+friend("Dorothea Goff", "Randolph Osborn").
+friend("Dorothea Goff", "Jesus Gregory").
+friend("Dorothea Goff", "Gerald Hartung").
+friend("Dorothea Goff", "Adella Townsend").
+friend("Dorothea Goff", "Earle Boutte").
+dob("Dorothea Goff", "0386-06-23").
+job("Dorothea Goff", "training and development officer").
+hobby("Dorothea Goff", "aircraft spotting").
+gender("Dorothea Goff", "female").

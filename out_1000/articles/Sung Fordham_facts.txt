@@ -1,0 +1,17 @@
+sister("Sung Fordham", "Kris Fordham").
+brother("Sung Fordham", "Aaron Fordham").
+brother("Sung Fordham", "Mitchell Fordham").
+mother("Sung Fordham", "Domonique Fordham").
+father("Sung Fordham", "Miles Fordham").
+friend("Sung Fordham", "Seth Mounts").
+friend("Sung Fordham", "Guillermo Lasher").
+friend("Sung Fordham", "Hector Autry").
+friend("Sung Fordham", "Barb Linden").
+friend("Sung Fordham", "Shamika Mahoney").
+friend("Sung Fordham", "Lazaro Hsu").
+friend("Sung Fordham", "Winfred Molina").
+friend("Sung Fordham", "Robt Medellin").
+dob("Sung Fordham", "0486-03-19").
+job("Sung Fordham", "civil service fast streamer").
+hobby("Sung Fordham", "volunteering").
+gender("Sung Fordham", "male").

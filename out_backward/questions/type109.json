@@ -1,0 +1,294 @@
+[
+    {
+        "id": "1a0359e0-256e-4afd-815a-602e69ec47c3",
+        "question": "Who is the oldest granddaughter of Shelli Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Leeann Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "granddaughter(\"Shelli Beltran\", X)",
+                "dob(X, D)",
+                "\\+ (granddaughter(\"Shelli Beltran\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 109,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "0ccfdf2b-692c-499e-8860-7dd221281a42",
+        "question": "Who is the oldest sister-in-law of Saul Wexler?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "sister_in_law(\"Saul Wexler\", X)",
+                "dob(X, D)",
+                "\\+ (sister_in_law(\"Saul Wexler\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 109,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "20b770a0-8cc9-4632-b175-af7fcabf61d1",
+        "question": "Who is the oldest child of Williams Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "child(\"Williams Smock\", X)",
+                "dob(X, D)",
+                "\\+ (child(\"Williams Smock\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 109,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "94853e75-44b8-4d80-a556-2ac6de38fdfe",
+        "question": "Who is the oldest grandchild of Gene Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "grandchild(\"Gene Smock\", X)",
+                "dob(X, D)",
+                "\\+ (grandchild(\"Gene Smock\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 109,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "96ba7b44-4bdb-4632-af44-f90ad7e9f448",
+        "question": "Who is the oldest aunt of Johnetta Wang?",
+        "solution_traces": "[]",
+        "answer": [
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "aunt(\"Johnetta Wang\", X)",
+                "dob(X, D)",
+                "\\+ (aunt(\"Johnetta Wang\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 109,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "cbcc4e40-6380-4f91-a536-e66f2f213689",
+        "question": "Who is the oldest friend of Alvaro Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Alvaro Smock\", X)",
+                "dob(X, D)",
+                "\\+ (friend(\"Alvaro Smock\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 109,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "9b43c98a-ad61-4844-94c1-f62c0fda5429",
+        "question": "Who is the oldest great-grandchild of Alvaro Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandchild(\"Alvaro Smock\", X)",
+                "dob(X, D)",
+                "\\+ (great_grandchild(\"Alvaro Smock\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 109,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "62a86cf6-e85f-4df9-9eca-b803cdfdd212",
+        "question": "Who is the oldest sibling of Isabell Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aubrey Smock"
+        ],
+        "prolog": {
+            "query": [
+                "sibling(\"Isabell Smock\", X)",
+                "dob(X, D)",
+                "\\+ (sibling(\"Isabell Smock\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 109,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "1240849a-0dff-4b94-a211-afe64d3e08bb",
+        "question": "Who is the oldest sister of Gene Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Deane Smock"
+        ],
+        "prolog": {
+            "query": [
+                "sister(\"Gene Smock\", X)",
+                "dob(X, D)",
+                "\\+ (sister(\"Gene Smock\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 109,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "f0f37dc7-7613-4443-b320-61ebdd4427cb",
+        "question": "Who is the oldest great-granddaughter of Williams Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Leeann Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "great_granddaughter(\"Williams Smock\", X)",
+                "dob(X, D)",
+                "\\+ (great_granddaughter(\"Williams Smock\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 109,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    }
+]

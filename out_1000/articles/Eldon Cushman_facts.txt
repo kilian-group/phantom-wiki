@@ -1,0 +1,13 @@
+mother("Eldon Cushman", "Daisy Cushman").
+father("Eldon Cushman", "Logan Cushman").
+daughter("Eldon Cushman", "Flora Cushman").
+wife("Eldon Cushman", "Connie Cushman").
+friend("Eldon Cushman", "Pedro Waltz").
+friend("Eldon Cushman", "Jackqueline Kell").
+friend("Eldon Cushman", "Donald Autry").
+friend("Eldon Cushman", "Miguel Carreon").
+friend("Eldon Cushman", "Ai Dacosta").
+dob("Eldon Cushman", "0517-04-07").
+job("Eldon Cushman", "television camera operator").
+hobby("Eldon Cushman", "rail transport modelling").
+gender("Eldon Cushman", "male").

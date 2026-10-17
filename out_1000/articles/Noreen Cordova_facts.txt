@@ -1,0 +1,17 @@
+son("Noreen Cordova", "Fredrick Cordova").
+son("Noreen Cordova", "Galen Cordova").
+daughter("Noreen Cordova", "Janiece Cordova").
+husband("Noreen Cordova", "Frederic Cordova").
+friend("Noreen Cordova", "Josie Littleton").
+friend("Noreen Cordova", "Eliza Ingalls").
+friend("Noreen Cordova", "Genny Burdette").
+friend("Noreen Cordova", "Dan Mahoney").
+friend("Noreen Cordova", "Shizuko Eaves").
+friend("Noreen Cordova", "Tianna Goff").
+friend("Noreen Cordova", "Willie Hurt").
+friend("Noreen Cordova", "Calvin Carty").
+friend("Noreen Cordova", "Guillermo Lasher").
+dob("Noreen Cordova", "0319-01-12").
+job("Noreen Cordova", "chartered certified accountant").
+hobby("Noreen Cordova", "flying disc").
+gender("Noreen Cordova", "female").

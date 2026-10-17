@@ -1,0 +1,22 @@
+sister("Ivette Eaves", "Geri Dana").
+sister("Ivette Eaves", "Sofia Eaves").
+brother("Ivette Eaves", "Denny Eaves").
+brother("Ivette Eaves", "Foster Eaves").
+brother("Ivette Eaves", "Mickey Eaves").
+mother("Ivette Eaves", "Juanita Eaves").
+father("Ivette Eaves", "Russel Eaves").
+friend("Ivette Eaves", "Jerry Mahoney").
+friend("Ivette Eaves", "Alexander Corwin").
+friend("Ivette Eaves", "Toney Gibbs").
+friend("Ivette Eaves", "Oscar Medellin").
+friend("Ivette Eaves", "Isaias Forester").
+friend("Ivette Eaves", "Lyman Marr").
+friend("Ivette Eaves", "Avery Nolasco").
+friend("Ivette Eaves", "Drema Jefferson").
+friend("Ivette Eaves", "Bridget Lester").
+friend("Ivette Eaves", "Susie Gillam").
+friend("Ivette Eaves", "Lakeshia Steadman").
+dob("Ivette Eaves", "0374-01-19").
+job("Ivette Eaves", "furniture designer").
+hobby("Ivette Eaves", "philately").
+gender("Ivette Eaves", "female").

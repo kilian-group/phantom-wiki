@@ -1,0 +1,16 @@
+mother("Rob Lebrun", "Georgina Lebrun").
+father("Rob Lebrun", "Wade Lebrun").
+son("Rob Lebrun", "Marcus Lebrun").
+daughter("Rob Lebrun", "Hope Arteaga").
+wife("Rob Lebrun", "Judith Lebrun").
+friend("Rob Lebrun", "Carlotta Gossett").
+friend("Rob Lebrun", "Lynette Fredrick").
+friend("Rob Lebrun", "Lora Vogt").
+friend("Rob Lebrun", "Zachery Upton").
+friend("Rob Lebrun", "Terrell Lai").
+friend("Rob Lebrun", "Sona Lasher").
+friend("Rob Lebrun", "Carrol Spiller").
+dob("Rob Lebrun", "0370-12-15").
+job("Rob Lebrun", "transport planner").
+hobby("Rob Lebrun", "metal detecting").
+gender("Rob Lebrun", "male").

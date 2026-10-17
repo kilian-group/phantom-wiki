@@ -1,0 +1,13 @@
+sister("Reggie Earnest", "Cherise Earnest").
+sister("Reggie Earnest", "Edythe Earnest").
+brother("Reggie Earnest", "Eduardo Earnest").
+mother("Reggie Earnest", "Samantha Earnest").
+father("Reggie Earnest", "Benton Earnest").
+friend("Reggie Earnest", "Valentina Wexler").
+friend("Reggie Earnest", "Dudley Wise").
+friend("Reggie Earnest", "Kirk Petry").
+friend("Reggie Earnest", "Lucas Mckenna").
+dob("Reggie Earnest", "0348-06-30").
+job("Reggie Earnest", "early years teacher").
+hobby("Reggie Earnest", "shopping").
+gender("Reggie Earnest", "male").

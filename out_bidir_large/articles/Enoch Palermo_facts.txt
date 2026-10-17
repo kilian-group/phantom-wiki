@@ -1,0 +1,12 @@
+son("Enoch Palermo", "Francisco Palermo").
+daughter("Enoch Palermo", "Hannah Palermo").
+daughter("Enoch Palermo", "Monique Palermo").
+daughter("Enoch Palermo", "Rosanna Palermo").
+wife("Enoch Palermo", "Sylvia Palermo").
+friend("Enoch Palermo", "Rosalinda Brannan").
+friend("Enoch Palermo", "Elton Griffiths").
+friend("Enoch Palermo", "Rae Mcnew").
+dob("Enoch Palermo", "0311-09-01").
+job("Enoch Palermo", "museum curator").
+hobby("Enoch Palermo", "shortwave listening").
+gender("Enoch Palermo", "male").

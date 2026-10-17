@@ -1,0 +1,24 @@
+sister("Addie Shilling", "Ophelia Mcgough").
+brother("Addie Shilling", "Randall Mcgough").
+mother("Addie Shilling", "Chrissy Mcgough").
+father("Addie Shilling", "Elroy Mcgough").
+son("Addie Shilling", "Scot Shilling").
+husband("Addie Shilling", "Hershel Shilling").
+friend("Addie Shilling", "Cedric Wilke").
+friend("Addie Shilling", "Dino Layman").
+friend("Addie Shilling", "Krystal Joubert").
+friend("Addie Shilling", "Alysa Lindquist").
+friend("Addie Shilling", "Dorathy Harlow").
+friend("Addie Shilling", "Ira Mckenna").
+friend("Addie Shilling", "Larae Kirksey").
+friend("Addie Shilling", "Clair Brumbaugh").
+friend("Addie Shilling", "Milton Littleton").
+friend("Addie Shilling", "Otto Arnold").
+friend("Addie Shilling", "Frederic Staten").
+friend("Addie Shilling", "Kareem Goff").
+friend("Addie Shilling", "Maximilian Keyes").
+friend("Addie Shilling", "Glenda Dacosta").
+dob("Addie Shilling", "0406-01-28").
+job("Addie Shilling", "general practice doctor").
+hobby("Addie Shilling", "sports science").
+gender("Addie Shilling", "female").

@@ -1,0 +1,19 @@
+son("Maggie Vanmeter", "Roscoe Vanmeter").
+daughter("Maggie Vanmeter", "Niki Vanmeter").
+husband("Maggie Vanmeter", "Felipe Vanmeter").
+friend("Maggie Vanmeter", "Gregory Geter").
+friend("Maggie Vanmeter", "Chelsie Peeler").
+friend("Maggie Vanmeter", "Maybelle Lester").
+friend("Maggie Vanmeter", "Almeta Younger").
+friend("Maggie Vanmeter", "Nathan Corwin").
+friend("Maggie Vanmeter", "Manuel Smart").
+friend("Maggie Vanmeter", "Murray Fredrick").
+friend("Maggie Vanmeter", "Normand Wilke").
+friend("Maggie Vanmeter", "Otto Horan").
+friend("Maggie Vanmeter", "Laverna Kell").
+friend("Maggie Vanmeter", "Rolf Booth").
+friend("Maggie Vanmeter", "Ben Corso").
+dob("Maggie Vanmeter", "0465-06-25").
+job("Maggie Vanmeter", "structural engineer").
+hobby("Maggie Vanmeter", "bus spotting").
+gender("Maggie Vanmeter", "female").

@@ -1,0 +1,16 @@
+sister("Fatimah Holtz", "Valentina Robinett").
+mother("Fatimah Holtz", "Emma Bowles").
+father("Fatimah Holtz", "Aaron Bowles").
+son("Fatimah Holtz", "Truman Holtz").
+husband("Fatimah Holtz", "Nickolas Holtz").
+friend("Fatimah Holtz", "Toni Glass").
+friend("Fatimah Holtz", "Jackqueline Kell").
+friend("Fatimah Holtz", "Charley Weise").
+friend("Fatimah Holtz", "Lukas Mcdonald").
+friend("Fatimah Holtz", "Ruben Corwin").
+friend("Fatimah Holtz", "Robbie Hollins").
+friend("Fatimah Holtz", "Murray Fredrick").
+dob("Fatimah Holtz", "0449-03-17").
+job("Fatimah Holtz", "brewing technologist").
+hobby("Fatimah Holtz", "microscopy").
+gender("Fatimah Holtz", "female").

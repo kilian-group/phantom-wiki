@@ -1,0 +1,19 @@
+sister("Leeann Blanton", "Alina Bowles").
+mother("Leeann Blanton", "Morgan Perrine").
+father("Leeann Blanton", "Rocky Perrine").
+daughter("Leeann Blanton", "Sharron Palomo").
+husband("Leeann Blanton", "Bradley Blanton").
+friend("Leeann Blanton", "Marvin Putnam").
+friend("Leeann Blanton", "Chelsea Skidmore").
+friend("Leeann Blanton", "Genesis Alarcon").
+friend("Leeann Blanton", "James Maness").
+friend("Leeann Blanton", "Hector Autry").
+friend("Leeann Blanton", "Ambrose Cordova").
+friend("Leeann Blanton", "Jamel Chou").
+friend("Leeann Blanton", "Shante Ruth").
+friend("Leeann Blanton", "Delma Keyes").
+friend("Leeann Blanton", "Amy Smart").
+dob("Leeann Blanton", "0409-04-08").
+job("Leeann Blanton", "psychiatrist").
+hobby("Leeann Blanton", "metal detecting").
+gender("Leeann Blanton", "female").

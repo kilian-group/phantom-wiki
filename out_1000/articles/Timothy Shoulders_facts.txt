@@ -1,0 +1,10 @@
+mother("Timothy Shoulders", "Gloria Shoulders").
+father("Timothy Shoulders", "Cedric Shoulders").
+friend("Timothy Shoulders", "Isabell Shank").
+friend("Timothy Shoulders", "Ollie Kell").
+friend("Timothy Shoulders", "Cleo Gregory").
+friend("Timothy Shoulders", "Harley Simons").
+dob("Timothy Shoulders", "0517-08-25").
+job("Timothy Shoulders", "biomedical engineer").
+hobby("Timothy Shoulders", "seashell collecting").
+gender("Timothy Shoulders", "male").

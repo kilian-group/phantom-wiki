@@ -1,0 +1,18 @@
+sister("Jann Upton", "Maurine Layman").
+brother("Jann Upton", "Hyman Layman").
+mother("Jann Upton", "Essie Layman").
+father("Jann Upton", "Nico Layman").
+son("Jann Upton", "Jamison Upton").
+daughter("Jann Upton", "Krystal Joubert").
+daughter("Jann Upton", "Rubie Upton").
+husband("Jann Upton", "Zachery Upton").
+friend("Jann Upton", "Rayna Kinsella").
+friend("Jann Upton", "Boris Machado").
+friend("Jann Upton", "Dani Dalton").
+friend("Jann Upton", "Deshawn Medellin").
+friend("Jann Upton", "Sang Cheney").
+friend("Jann Upton", "Dustin Sheridan").
+dob("Jann Upton", "0339-05-19").
+job("Jann Upton", "health visitor").
+hobby("Jann Upton", "photography").
+gender("Jann Upton", "female").

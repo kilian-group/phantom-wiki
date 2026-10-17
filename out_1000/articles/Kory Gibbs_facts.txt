@@ -1,0 +1,19 @@
+sister("Kory Gibbs", "Evette Gibbs").
+sister("Kory Gibbs", "Lucienne Gilliam").
+mother("Kory Gibbs", "Justine Gibbs").
+father("Kory Gibbs", "Toney Gibbs").
+friend("Kory Gibbs", "Federico Horan").
+friend("Kory Gibbs", "Ophelia Mcgough").
+friend("Kory Gibbs", "Emma Wellington").
+friend("Kory Gibbs", "Alexa Mckenna").
+friend("Kory Gibbs", "Rogelio Mckenna").
+friend("Kory Gibbs", "Newton Lasher").
+friend("Kory Gibbs", "Ofelia Callender").
+friend("Kory Gibbs", "Vilma Callender").
+friend("Kory Gibbs", "Luis Best").
+friend("Kory Gibbs", "Maynard Morehead").
+friend("Kory Gibbs", "Tawana Machado").
+dob("Kory Gibbs", "0321-02-07").
+job("Kory Gibbs", "investment banker").
+hobby("Kory Gibbs", "fishkeeping").
+gender("Kory Gibbs", "male").

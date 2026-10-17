@@ -1,0 +1,14 @@
+son("Jackqueline Hollinger", "Amos Hollinger").
+husband("Jackqueline Hollinger", "Darin Hollinger").
+friend("Jackqueline Hollinger", "Audra Carreon").
+friend("Jackqueline Hollinger", "Jimmie Smart").
+friend("Jackqueline Hollinger", "Pamala Medellin").
+friend("Jackqueline Hollinger", "Rudolf Sanborn").
+friend("Jackqueline Hollinger", "Keith Resendez").
+friend("Jackqueline Hollinger", "Ollie Kell").
+friend("Jackqueline Hollinger", "Mike Schram").
+friend("Jackqueline Hollinger", "Nestor Lasher").
+dob("Jackqueline Hollinger", "0394-10-18").
+job("Jackqueline Hollinger", "forensic psychologist").
+hobby("Jackqueline Hollinger", "slot car racing").
+gender("Jackqueline Hollinger", "female").

@@ -1,0 +1,510 @@
+[
+    {
+        "id": "eda7ee05-ae79-44c3-b486-5493792cbf27",
+        "question": "What is the occupation of the person whose hobby is leaves?",
+        "solution_traces": "[{\"Y_2\": \"actuary\", \"Y_3\": \"Sha Langley\"}, {\"Y_3\": \"Rosalinda Francois\", \"Y_2\": \"human resources officer\"}, {\"Y_2\": \"advice worker\", \"Y_3\": \"Rolland Mckenna\"}, {\"Y_2\": \"economist\", \"Y_3\": \"Gerardo Hornback\"}]",
+        "answer": [
+            "actuary",
+            "advice worker",
+            "economist",
+            "human resources officer"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "hobby(Y_3, \"leaves\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 1,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Rolland Mckenna",
+            "answer_position": "tail",
+            "answer_slot_index": 1,
+            "polarity": "same_side",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 4
+        }
+    },
+    {
+        "id": "840f8117-6a69-4991-85cb-d716b3ff4007",
+        "question": "What is the date of birth of the person whose hobby is tether car?",
+        "solution_traces": "[{\"Y_2\": \"0207-09-08\", \"Y_3\": \"Dominique Smock\"}]",
+        "answer": [
+            "0207-09-08"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "hobby(Y_3, \"tether car\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 1,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Dominique Smock",
+            "answer_position": "tail",
+            "answer_slot_index": 1,
+            "polarity": "same_side",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "228efa7e-b517-48bd-992e-e94aedfd15f2",
+        "question": "What is the date of birth of the person whose hobby is whale watching?",
+        "solution_traces": "[{\"Y_3\": \"Shanda Wasserman\", \"Y_2\": \"0276-02-21\"}, {\"Y_2\": \"0305-06-19\", \"Y_3\": \"Jeanelle Mcnew\"}, {\"Y_3\": \"Laura Kovach\", \"Y_2\": \"0305-04-28\"}]",
+        "answer": [
+            "0276-02-21",
+            "0305-04-28",
+            "0305-06-19"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "hobby(Y_3, \"whale watching\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 1,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Jeanelle Mcnew",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 3
+        }
+    },
+    {
+        "id": "930f0fd5-0593-4e22-8e57-1a700e8d7d9a",
+        "question": "What is the hobby of the person whose date of birth is 0251-06-10?",
+        "solution_traces": "[{\"Y_3\": \"Maxwell Henderson\", \"Y_2\": \"gongoozling\"}]",
+        "answer": [
+            "gongoozling"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "dob(Y_3, \"0251-06-10\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 1,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Maxwell Henderson",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "193c222d-3f74-4326-b245-aa44b148eb04",
+        "question": "What is the occupation of the person whose date of birth is 0190-10-06?",
+        "solution_traces": "[{\"Y_2\": \"editorial assistant\", \"Y_3\": \"Karla Hornback\"}]",
+        "answer": [
+            "editorial assistant"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "dob(Y_3, \"0190-10-06\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 1,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Karla Hornback",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "635589ba-af76-476a-9144-e55f7fbe354b",
+        "question": "What is the hobby of the person whose hobby is martial arts?",
+        "solution_traces": "[{\"Y_2\": \"martial arts\", \"Y_3\": \"Lea Levy\"}, {\"Y_2\": \"martial arts\", \"Y_3\": \"Hanh Boutte\"}]",
+        "answer": [
+            "martial arts"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "hobby(Y_3, \"martial arts\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 1,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Lea Levy",
+            "answer_position": "tail",
+            "answer_slot_index": 1,
+            "polarity": "same_side",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    },
+    {
+        "id": "ed0e9c87-ff9b-463f-ba8b-36464ba96b8f",
+        "question": "What is the date of birth of the person whose occupation is probation officer?",
+        "solution_traces": "[{\"Y_2\": \"0277-07-02\", \"Y_3\": \"Charlie Kovach\"}, {\"Y_3\": \"Annabelle Schoonmaker\", \"Y_2\": \"0260-10-17\"}]",
+        "answer": [
+            "0260-10-17",
+            "0277-07-02"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "job(Y_3, \"probation officer\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 1,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Charlie Kovach",
+            "answer_position": "tail",
+            "answer_slot_index": 1,
+            "polarity": "same_side",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    },
+    {
+        "id": "1a3289c3-bda7-4a84-adfd-f99c4281dc6f",
+        "question": "What is the date of birth of the person whose date of birth is 0262-06-04?",
+        "solution_traces": "[{\"Y_2\": \"0262-06-04\", \"Y_3\": \"Deborah Cormier\"}]",
+        "answer": [
+            "0262-06-04"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "dob(Y_3, \"0262-06-04\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 1,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Deborah Cormier",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "371e8453-5d29-4d36-8771-9ca5380a5b46",
+        "question": "What is the date of birth of the person whose occupation is financial adviser?",
+        "solution_traces": "[{\"Y_2\": \"0288-01-14\", \"Y_3\": \"Spencer Griffiths\"}, {\"Y_2\": \"0287-04-22\", \"Y_3\": \"Monique Griffiths\"}, {\"Y_3\": \"Jame Shirk\", \"Y_2\": \"0216-03-27\"}]",
+        "answer": [
+            "0216-03-27",
+            "0287-04-22",
+            "0288-01-14"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "job(Y_3, \"financial adviser\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 1,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Monique Griffiths",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 3
+        }
+    },
+    {
+        "id": "224d64ff-7e31-4411-b99a-9dd7b55b8a93",
+        "question": "What is the date of birth of the person whose occupation is paramedic?",
+        "solution_traces": "[{\"Y_3\": \"Bruce Mason\", \"Y_2\": \"0286-10-11\"}]",
+        "answer": [
+            "0286-10-11"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "job(Y_3, \"paramedic\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_4",
+            "is",
+            "<attribute_value>_4",
+            "?"
+        ],
+        "type": 4,
+        "reasoning_steps": 0,
+        "difficulty": {
+            "hops": 0,
+            "constraints": 1,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Bruce Mason",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 1
+        }
+    }
+]

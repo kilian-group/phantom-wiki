@@ -1,0 +1,10 @@
+son("Don Mcnew", "Cole Mcnew").
+son("Don Mcnew", "Marcelino Mcnew").
+son("Don Mcnew", "Merrill Mcnew").
+daughter("Don Mcnew", "Jeanelle Mcnew").
+wife("Don Mcnew", "Lorelei Mcnew").
+friend("Don Mcnew", "Jung Henderson").
+dob("Don Mcnew", "0280-09-16").
+job("Don Mcnew", "accommodation manager").
+hobby("Don Mcnew", "bowling").
+gender("Don Mcnew", "male").

@@ -1,0 +1,14 @@
+mother("Trevor Saari", "Virgie Saari").
+father("Trevor Saari", "Hunter Saari").
+son("Trevor Saari", "Alberto Saari").
+daughter("Trevor Saari", "Ella Saari").
+wife("Trevor Saari", "Shawnta Saari").
+friend("Trevor Saari", "Johnnie Pannell").
+friend("Trevor Saari", "Mercedes Shirk").
+friend("Trevor Saari", "Nada Shirk").
+friend("Trevor Saari", "Aubrey Smock").
+friend("Trevor Saari", "Alberto Saari").
+dob("Trevor Saari", "0261-02-26").
+job("Trevor Saari", "doctor").
+hobby("Trevor Saari", "biology").
+gender("Trevor Saari", "male").

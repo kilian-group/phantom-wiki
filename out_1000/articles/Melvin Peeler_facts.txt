@@ -1,0 +1,17 @@
+brother("Melvin Peeler", "Dustin Peeler").
+mother("Melvin Peeler", "Chau Peeler").
+father("Melvin Peeler", "Sonny Peeler").
+daughter("Melvin Peeler", "Cleo Peeler").
+daughter("Melvin Peeler", "Maybelle Lester").
+daughter("Melvin Peeler", "Rayna Kinsella").
+wife("Melvin Peeler", "Chelsie Peeler").
+friend("Melvin Peeler", "Jerald Murray").
+friend("Melvin Peeler", "Jacinta Simons").
+friend("Melvin Peeler", "Sarah Steadman").
+friend("Melvin Peeler", "Darwin Kavanaugh").
+friend("Melvin Peeler", "Marvin Putnam").
+friend("Melvin Peeler", "Zachery Upton").
+dob("Melvin Peeler", "0409-08-17").
+job("Melvin Peeler", "wellsite geologist").
+hobby("Melvin Peeler", "letterboxing").
+gender("Melvin Peeler", "male").

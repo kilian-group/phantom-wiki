@@ -1,0 +1,13 @@
+daughter("Florence Ingle", "Dortha Ingle").
+daughter("Florence Ingle", "Larae Kirksey").
+daughter("Florence Ingle", "Paula Lazar").
+husband("Florence Ingle", "Elliott Ingle").
+friend("Florence Ingle", "Faith Linden").
+friend("Florence Ingle", "Pauletta Morehead").
+friend("Florence Ingle", "Robby Corwin").
+friend("Florence Ingle", "Son Corwin").
+friend("Florence Ingle", "Felton Kell").
+dob("Florence Ingle", "0316-09-26").
+job("Florence Ingle", "geophysical data processor").
+hobby("Florence Ingle", "triathlon").
+gender("Florence Ingle", "female").

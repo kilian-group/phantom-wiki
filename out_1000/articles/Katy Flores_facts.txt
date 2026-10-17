@@ -1,0 +1,19 @@
+mother("Katy Flores", "Shannon Flores").
+father("Katy Flores", "Thomas Flores").
+friend("Katy Flores", "Alice Dana").
+friend("Katy Flores", "Georgine Mahoney").
+friend("Katy Flores", "Lea Plumley").
+friend("Katy Flores", "Sofia Eaves").
+friend("Katy Flores", "Angela Younger").
+friend("Katy Flores", "Conrad Molina").
+friend("Katy Flores", "Kareem Goff").
+friend("Katy Flores", "Judith Holliman").
+friend("Katy Flores", "Connie Cushman").
+friend("Katy Flores", "Racquel Horan").
+friend("Katy Flores", "Calvin Carty").
+friend("Katy Flores", "Erik Mounts").
+friend("Katy Flores", "Paris Cordova").
+dob("Katy Flores", "0422-07-07").
+job("Katy Flores", "newspaper journalist").
+hobby("Katy Flores", "antiquing").
+gender("Katy Flores", "female").

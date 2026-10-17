@@ -1,0 +1,10 @@
+sister("Murray Cedillo", "Yvette Cedillo").
+brother("Murray Cedillo", "Jimmy Cedillo").
+mother("Murray Cedillo", "Lucienne Cedillo").
+father("Murray Cedillo", "Ron Cedillo").
+friend("Murray Cedillo", "Alvaro Smock").
+friend("Murray Cedillo", "Aubrey Smock").
+dob("Murray Cedillo", "0330-03-22").
+job("Murray Cedillo", "scientific laboratory technician").
+hobby("Murray Cedillo", "race walking").
+gender("Murray Cedillo", "male").

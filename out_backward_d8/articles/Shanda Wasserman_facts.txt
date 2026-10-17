@@ -1,0 +1,8 @@
+mother("Shanda Wasserman", "Lorine Wasserman").
+father("Shanda Wasserman", "Aurelio Wasserman").
+friend("Shanda Wasserman", "Spencer Griffiths").
+friend("Shanda Wasserman", "Johnetta Wang").
+dob("Shanda Wasserman", "0276-02-21").
+job("Shanda Wasserman", "banker").
+hobby("Shanda Wasserman", "whale watching").
+gender("Shanda Wasserman", "female").

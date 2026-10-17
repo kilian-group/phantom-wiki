@@ -1,0 +1,8 @@
+daughter("Julia Cormier", "Therese Cormier").
+husband("Julia Cormier", "Earle Cormier").
+friend("Julia Cormier", "Dwain Lizotte").
+friend("Julia Cormier", "Margo Brannan").
+dob("Julia Cormier", "0228-12-06").
+job("Julia Cormier", "environmental education officer").
+hobby("Julia Cormier", "backgammon").
+gender("Julia Cormier", "female").

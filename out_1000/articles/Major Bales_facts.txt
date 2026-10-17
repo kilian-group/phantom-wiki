@@ -1,0 +1,14 @@
+son("Major Bales", "Louie Bales").
+wife("Major Bales", "Brigette Bales").
+friend("Major Bales", "Lashandra Bowles").
+friend("Major Bales", "Rubye Forester").
+friend("Major Bales", "Rhonda Wilke").
+friend("Major Bales", "Gerry Dorn").
+friend("Major Bales", "Kent Corso").
+friend("Major Bales", "Newton Lasher").
+friend("Major Bales", "Galen Cordova").
+friend("Major Bales", "Magdalena Cordova").
+dob("Major Bales", "0339-08-18").
+job("Major Bales", "sales executive").
+hobby("Major Bales", "iceboat racing").
+gender("Major Bales", "male").

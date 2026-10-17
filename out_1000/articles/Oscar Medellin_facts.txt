@@ -1,0 +1,17 @@
+sister("Oscar Medellin", "Tamara Wylie").
+brother("Oscar Medellin", "Byron Medellin").
+mother("Oscar Medellin", "Verona Medellin").
+father("Oscar Medellin", "Kieth Medellin").
+son("Oscar Medellin", "Deshawn Medellin").
+wife("Oscar Medellin", "Tracey Medellin").
+friend("Oscar Medellin", "Sang Cheney").
+friend("Oscar Medellin", "Charley Weise").
+friend("Oscar Medellin", "Daisy Autry").
+friend("Oscar Medellin", "Raleigh Cordova").
+friend("Oscar Medellin", "Lloyd Ingalls").
+friend("Oscar Medellin", "Ivette Eaves").
+friend("Oscar Medellin", "Spencer Corwin").
+dob("Oscar Medellin", "0436-09-26").
+job("Oscar Medellin", "arts development officer").
+hobby("Oscar Medellin", "trapshooting").
+gender("Oscar Medellin", "male").

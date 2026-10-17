@@ -1,0 +1,10 @@
+mother("Xiao Gailey", "Renate Gailey").
+father("Xiao Gailey", "Stan Gailey").
+friend("Xiao Gailey", "Christina Smart").
+friend("Xiao Gailey", "Johnathon Noland").
+friend("Xiao Gailey", "Jeanelle Resendez").
+friend("Xiao Gailey", "Clara Corwin").
+dob("Xiao Gailey", "0433-11-09").
+job("Xiao Gailey", "nature conservation officer").
+hobby("Xiao Gailey", "skateboarding").
+gender("Xiao Gailey", "female").

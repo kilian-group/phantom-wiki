@@ -1,0 +1,10 @@
+sister("Adalberto Cedillo", "Elissa Cedillo").
+brother("Adalberto Cedillo", "Ron Cedillo").
+mother("Adalberto Cedillo", "Domonique Cedillo").
+father("Adalberto Cedillo", "Kasey Cedillo").
+friend("Adalberto Cedillo", "Ulysses Nicolas").
+friend("Adalberto Cedillo", "Margot Skaggs").
+dob("Adalberto Cedillo", "0300-05-18").
+job("Adalberto Cedillo", "pilot").
+hobby("Adalberto Cedillo", "fishing").
+gender("Adalberto Cedillo", "male").

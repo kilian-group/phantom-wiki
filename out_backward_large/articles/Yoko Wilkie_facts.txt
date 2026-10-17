@@ -1,0 +1,13 @@
+sister("Yoko Wilkie", "Hanh Mohan").
+sister("Yoko Wilkie", "Maranda Lizotte").
+brother("Yoko Wilkie", "Chuck Lizotte").
+brother("Yoko Wilkie", "Nathanial Lizotte").
+mother("Yoko Wilkie", "Rosina Lizotte").
+father("Yoko Wilkie", "Dwain Lizotte").
+daughter("Yoko Wilkie", "Minerva Wilkie").
+husband("Yoko Wilkie", "Harold Wilkie").
+friend("Yoko Wilkie", "Tamala Pannell").
+dob("Yoko Wilkie", "0300-02-20").
+job("Yoko Wilkie", "quantity surveyor").
+hobby("Yoko Wilkie", "insect collecting").
+gender("Yoko Wilkie", "female").

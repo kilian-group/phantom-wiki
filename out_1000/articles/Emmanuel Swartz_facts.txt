@@ -1,0 +1,22 @@
+sister("Emmanuel Swartz", "Keisha Mcdonald").
+mother("Emmanuel Swartz", "Skye Swartz").
+father("Emmanuel Swartz", "Heath Swartz").
+son("Emmanuel Swartz", "Blake Swartz").
+son("Emmanuel Swartz", "Ramon Swartz").
+wife("Emmanuel Swartz", "Nanette Swartz").
+friend("Emmanuel Swartz", "Sarah Steadman").
+friend("Emmanuel Swartz", "Glenda Dacosta").
+friend("Emmanuel Swartz", "Nickolas Dacosta").
+friend("Emmanuel Swartz", "Jefferson Murdoch").
+friend("Emmanuel Swartz", "Juan Smart").
+friend("Emmanuel Swartz", "Latisha Smart").
+friend("Emmanuel Swartz", "Isabell Shank").
+friend("Emmanuel Swartz", "Jermaine Wilke").
+friend("Emmanuel Swartz", "Eugene Courson").
+friend("Emmanuel Swartz", "Mac Mounts").
+friend("Emmanuel Swartz", "Macy Booth").
+friend("Emmanuel Swartz", "Larae Kirksey").
+dob("Emmanuel Swartz", "0422-09-25").
+job("Emmanuel Swartz", "financial trader").
+hobby("Emmanuel Swartz", "aerospace").
+gender("Emmanuel Swartz", "male").

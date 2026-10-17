@@ -1,0 +1,19 @@
+sister("Dwain Lizotte", "Reyna Petry").
+sister("Dwain Lizotte", "Windy Mckenna").
+mother("Dwain Lizotte", "Ora Lizotte").
+father("Dwain Lizotte", "Odis Lizotte").
+son("Dwain Lizotte", "Chuck Lizotte").
+son("Dwain Lizotte", "Nathanial Lizotte").
+daughter("Dwain Lizotte", "Hanh Mohan").
+daughter("Dwain Lizotte", "Maranda Lizotte").
+daughter("Dwain Lizotte", "Yoko Wilkie").
+wife("Dwain Lizotte", "Rosina Lizotte").
+friend("Dwain Lizotte", "Weldon Skaggs").
+friend("Dwain Lizotte", "Ofelia Carrell").
+friend("Dwain Lizotte", "Hanh Boutte").
+friend("Dwain Lizotte", "Julia Cormier").
+friend("Dwain Lizotte", "Carey Mckenna").
+dob("Dwain Lizotte", "0269-09-19").
+job("Dwain Lizotte", "music therapist").
+hobby("Dwain Lizotte", "magic").
+gender("Dwain Lizotte", "male").

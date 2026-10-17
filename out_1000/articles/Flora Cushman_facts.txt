@@ -1,0 +1,13 @@
+mother("Flora Cushman", "Connie Cushman").
+father("Flora Cushman", "Eldon Cushman").
+friend("Flora Cushman", "Erick Courson").
+friend("Flora Cushman", "Maurine Layman").
+friend("Flora Cushman", "Rudolf Lai").
+friend("Flora Cushman", "Aldo Paynter").
+friend("Flora Cushman", "Magdalena Cordova").
+friend("Flora Cushman", "Jerald Murray").
+friend("Flora Cushman", "Patricia Towns").
+dob("Flora Cushman", "0548-08-10").
+job("Flora Cushman", "medical technical officer").
+hobby("Flora Cushman", "benchmarking").
+gender("Flora Cushman", "female").

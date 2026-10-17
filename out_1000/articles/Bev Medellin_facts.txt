@@ -1,0 +1,16 @@
+son("Bev Medellin", "Lesley Medellin").
+son("Bev Medellin", "Robt Medellin").
+daughter("Bev Medellin", "Lera Mcpeak").
+husband("Bev Medellin", "Foster Medellin").
+friend("Bev Medellin", "Susie Medellin").
+friend("Bev Medellin", "Jesus Cordova").
+friend("Bev Medellin", "Jimmy Holder").
+friend("Bev Medellin", "Heath Swartz").
+friend("Bev Medellin", "Earle Boutte").
+friend("Bev Medellin", "Lona Corwin").
+friend("Bev Medellin", "Son Corwin").
+friend("Bev Medellin", "Edythe Gilliam").
+dob("Bev Medellin", "0355-01-21").
+job("Bev Medellin", "clinical scientist").
+hobby("Bev Medellin", "ant farming").
+gender("Bev Medellin", "female").

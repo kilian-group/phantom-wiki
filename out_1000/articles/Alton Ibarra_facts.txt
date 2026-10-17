@@ -1,0 +1,17 @@
+sister("Alton Ibarra", "Mireya Ibarra").
+mother("Alton Ibarra", "Nydia Ibarra").
+father("Alton Ibarra", "Jarrod Ibarra").
+daughter("Alton Ibarra", "Aida Ibarra").
+daughter("Alton Ibarra", "Meghan Keyes").
+wife("Alton Ibarra", "Reyna Ibarra").
+friend("Alton Ibarra", "Deanne Gilliam").
+friend("Alton Ibarra", "Levi Fredrick").
+friend("Alton Ibarra", "Gwenn Tyree").
+friend("Alton Ibarra", "Elaine Marr").
+friend("Alton Ibarra", "Gregory Keister").
+friend("Alton Ibarra", "Kanesha Booth").
+friend("Alton Ibarra", "Ignacio Haygood").
+dob("Alton Ibarra", "0376-11-15").
+job("Alton Ibarra", "health visitor").
+hobby("Alton Ibarra", "ant farming").
+gender("Alton Ibarra", "male").

@@ -1,0 +1,11 @@
+daughter("Steve Gossett", "Carolyn Whitford").
+wife("Steve Gossett", "Carlotta Gossett").
+friend("Steve Gossett", "Jeana Chisholm").
+friend("Steve Gossett", "Lynette Fredrick").
+friend("Steve Gossett", "Genesis Alarcon").
+friend("Steve Gossett", "Herbert Storey").
+friend("Steve Gossett", "Jarvis Valladares").
+dob("Steve Gossett", "0271-03-23").
+job("Steve Gossett", "armed forces operational officer").
+hobby("Steve Gossett", "croquet").
+gender("Steve Gossett", "male").

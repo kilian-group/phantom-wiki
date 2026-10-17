@@ -1,0 +1,19 @@
+sister("Lucile Hurt", "Demetra Medellin").
+sister("Lucile Hurt", "Lashanda Salem").
+mother("Lucile Hurt", "Lou Hurt").
+father("Lucile Hurt", "Willie Hurt").
+friend("Lucile Hurt", "Connie Cushman").
+friend("Lucile Hurt", "Holley Fredrick").
+friend("Lucile Hurt", "Justin Putnam").
+friend("Lucile Hurt", "Marvin Putnam").
+friend("Lucile Hurt", "Deandre Capps").
+friend("Lucile Hurt", "Johnna Macias").
+friend("Lucile Hurt", "Jayson Sheridan").
+friend("Lucile Hurt", "Zona Jarrett").
+friend("Lucile Hurt", "Bo Frink").
+friend("Lucile Hurt", "Georgette Haygood").
+friend("Lucile Hurt", "Bert Simons").
+dob("Lucile Hurt", "0402-04-23").
+job("Lucile Hurt", "database administrator").
+hobby("Lucile Hurt", "learning").
+gender("Lucile Hurt", "female").

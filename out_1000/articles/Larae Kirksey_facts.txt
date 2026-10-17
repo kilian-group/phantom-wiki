@@ -1,0 +1,20 @@
+sister("Larae Kirksey", "Dortha Ingle").
+sister("Larae Kirksey", "Paula Lazar").
+mother("Larae Kirksey", "Florence Ingle").
+father("Larae Kirksey", "Elliott Ingle").
+son("Larae Kirksey", "Javier Kirksey").
+daughter("Larae Kirksey", "Anastacia Cordova").
+husband("Larae Kirksey", "Maurice Kirksey").
+friend("Larae Kirksey", "Allie Gillam").
+friend("Larae Kirksey", "Brunilda Linden").
+friend("Larae Kirksey", "Emmanuel Swartz").
+friend("Larae Kirksey", "Kyong Eaves").
+friend("Larae Kirksey", "Jasmine Corwin").
+friend("Larae Kirksey", "Emil Broughton").
+friend("Larae Kirksey", "Addie Shilling").
+friend("Larae Kirksey", "Otto Horan").
+friend("Larae Kirksey", "Thelma Vandenberg").
+dob("Larae Kirksey", "0345-12-21").
+job("Larae Kirksey", "operations geologist").
+hobby("Larae Kirksey", "mahjong").
+gender("Larae Kirksey", "female").

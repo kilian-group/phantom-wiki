@@ -1,0 +1,17 @@
+mother("Eula Hollins", "Miki Peabody").
+father("Eula Hollins", "Vernon Peabody").
+son("Eula Hollins", "Harold Hollins").
+daughter("Eula Hollins", "Renate Gailey").
+daughter("Eula Hollins", "Robbie Hollins").
+husband("Eula Hollins", "Micah Hollins").
+friend("Eula Hollins", "Calvin Holliman").
+friend("Eula Hollins", "Sammy Dunlap").
+friend("Eula Hollins", "Pedro Gordy").
+friend("Eula Hollins", "Tracy Fredrick").
+friend("Eula Hollins", "Demetra Palomo").
+friend("Eula Hollins", "Gena Cook").
+friend("Eula Hollins", "Roger Carreon").
+dob("Eula Hollins", "0382-12-21").
+job("Eula Hollins", "horticultural consultant").
+hobby("Eula Hollins", "geocaching").
+gender("Eula Hollins", "female").

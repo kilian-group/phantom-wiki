@@ -1,0 +1,12 @@
+son("Leda Cormier", "Dion Cormier").
+son("Leda Cormier", "Earle Cormier").
+daughter("Leda Cormier", "Sherry Cormier").
+husband("Leda Cormier", "Foster Cormier").
+friend("Leda Cormier", "Marilyn Nicolas").
+friend("Leda Cormier", "Esteban Schoonmaker").
+friend("Leda Cormier", "Sylvia Palermo").
+friend("Leda Cormier", "Earle Cormier").
+dob("Leda Cormier", "0204-08-23").
+job("Leda Cormier", "museum conservator").
+hobby("Leda Cormier", "herping").
+gender("Leda Cormier", "female").

@@ -1,0 +1,22 @@
+sister("Robby Corwin", "Katherine Corwin").
+sister("Robby Corwin", "Malissa Corwin").
+brother("Robby Corwin", "Colin Corwin").
+mother("Robby Corwin", "Christen Corwin").
+father("Robby Corwin", "Solomon Corwin").
+daughter("Robby Corwin", "Lona Corwin").
+wife("Robby Corwin", "Jo Corwin").
+friend("Robby Corwin", "Kenton Whitford").
+friend("Robby Corwin", "Darren Gilliam").
+friend("Robby Corwin", "Deangelo Marr").
+friend("Robby Corwin", "Ester Yarbrough").
+friend("Robby Corwin", "Bettina Courson").
+friend("Robby Corwin", "Kendrick Bauman").
+friend("Robby Corwin", "Ladawn Basham").
+friend("Robby Corwin", "Florence Ingle").
+friend("Robby Corwin", "Paula Rudolph").
+friend("Robby Corwin", "Gloria Shoulders").
+friend("Robby Corwin", "Eli Younger").
+dob("Robby Corwin", "0401-12-16").
+job("Robby Corwin", "architect").
+hobby("Robby Corwin", "mini golf").
+gender("Robby Corwin", "male").

@@ -1,0 +1,14 @@
+sister("Robyn Forester", "Tyesha Marr").
+mother("Robyn Forester", "Rubye Forester").
+father("Robyn Forester", "Isaias Forester").
+friend("Robyn Forester", "Brianne Layton").
+friend("Robyn Forester", "Eunice Lennox").
+friend("Robyn Forester", "Ashleigh Kell").
+friend("Robyn Forester", "Major Burkhalter").
+friend("Robyn Forester", "Dortha Ingle").
+friend("Robyn Forester", "Christoper Littleton").
+friend("Robyn Forester", "Desmond Dacosta").
+dob("Robyn Forester", "0374-04-27").
+job("Robyn Forester", "technical author").
+hobby("Robyn Forester", "hobby horsing").
+gender("Robyn Forester", "female").

@@ -1,0 +1,18 @@
+sister("Sung Resendez", "Melina Resendez").
+brother("Sung Resendez", "Isaiah Resendez").
+brother("Sung Resendez", "Tyrell Resendez").
+mother("Sung Resendez", "Vita Resendez").
+father("Sung Resendez", "Bryan Resendez").
+daughter("Sung Resendez", "Katharine Resendez").
+daughter("Sung Resendez", "Nora Resendez").
+wife("Sung Resendez", "Rheba Resendez").
+friend("Sung Resendez", "Vita Resendez").
+friend("Sung Resendez", "Lashandra Gilliam").
+friend("Sung Resendez", "Leena Estrella").
+friend("Sung Resendez", "Doyle Valladares").
+friend("Sung Resendez", "Gena Cook").
+friend("Sung Resendez", "Winfred Molina").
+dob("Sung Resendez", "0367-12-29").
+job("Sung Resendez", "drilling engineer").
+hobby("Sung Resendez", "mycology").
+gender("Sung Resendez", "male").

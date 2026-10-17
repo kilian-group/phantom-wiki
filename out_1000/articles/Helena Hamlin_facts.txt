@@ -1,0 +1,18 @@
+sister("Helena Hamlin", "Brianne Layton").
+sister("Helena Hamlin", "Julianne Hamlin").
+brother("Helena Hamlin", "Felix Hamlin").
+mother("Helena Hamlin", "Evette Hamlin").
+father("Helena Hamlin", "Elijah Hamlin").
+friend("Helena Hamlin", "Irvin Shaw").
+friend("Helena Hamlin", "Jeannette Mounts").
+friend("Helena Hamlin", "Malissa Kell").
+friend("Helena Hamlin", "Kent Corso").
+friend("Helena Hamlin", "Wesley Beamon").
+friend("Helena Hamlin", "Monroe Gilliam").
+friend("Helena Hamlin", "Sona Fredrick").
+friend("Helena Hamlin", "Lashandra Bowles").
+friend("Helena Hamlin", "Dustin Sheridan").
+dob("Helena Hamlin", "0369-02-28").
+job("Helena Hamlin", "counselling psychologist").
+hobby("Helena Hamlin", "geocaching").
+gender("Helena Hamlin", "female").

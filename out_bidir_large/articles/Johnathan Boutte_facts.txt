@@ -1,0 +1,12 @@
+mother("Johnathan Boutte", "Hanh Boutte").
+father("Johnathan Boutte", "Kevin Boutte").
+son("Johnathan Boutte", "Craig Boutte").
+wife("Johnathan Boutte", "Marlana Boutte").
+friend("Johnathan Boutte", "Christoper Cormier").
+friend("Johnathan Boutte", "Jeanelle Mcnew").
+friend("Johnathan Boutte", "Rae Mcnew").
+friend("Johnathan Boutte", "Eduardo Earnest").
+dob("Johnathan Boutte", "0292-04-16").
+job("Johnathan Boutte", "print production planner").
+hobby("Johnathan Boutte", "amusement park visiting").
+gender("Johnathan Boutte", "male").

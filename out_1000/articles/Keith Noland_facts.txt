@@ -1,0 +1,16 @@
+son("Keith Noland", "Johnathon Noland").
+daughter("Keith Noland", "Jodi Noland").
+wife("Keith Noland", "Virgina Noland").
+friend("Keith Noland", "Marguerite Putnam").
+friend("Keith Noland", "Zackary Wilkie").
+friend("Keith Noland", "Lora Vanmeter").
+friend("Keith Noland", "Lenora Hayward").
+friend("Keith Noland", "Pansy Cook").
+friend("Keith Noland", "Ginger Chou").
+friend("Keith Noland", "Rolf Osterman").
+friend("Keith Noland", "Angela Younger").
+friend("Keith Noland", "Carlene Corwin").
+dob("Keith Noland", "0379-08-12").
+job("Keith Noland", "banker").
+hobby("Keith Noland", "disc golf").
+gender("Keith Noland", "male").

@@ -1,0 +1,14 @@
+brother("Monty Depriest", "Walter Depriest").
+mother("Monty Depriest", "Leonora Depriest").
+father("Monty Depriest", "Karl Depriest").
+friend("Monty Depriest", "Jame Carty").
+friend("Monty Depriest", "Trudy Lennox").
+friend("Monty Depriest", "Erik Mounts").
+friend("Monty Depriest", "Adah Schram").
+friend("Monty Depriest", "Lindy Dillion").
+friend("Monty Depriest", "Skye Swartz").
+friend("Monty Depriest", "Marcus Lebrun").
+dob("Monty Depriest", "0462-01-23").
+job("Monty Depriest", "data processing manager").
+hobby("Monty Depriest", "ant farming").
+gender("Monty Depriest", "male").

@@ -1,0 +1,15 @@
+mother("Allie Gillam", "Susie Gillam").
+father("Allie Gillam", "Tony Gillam").
+friend("Allie Gillam", "Heath Swartz").
+friend("Allie Gillam", "Dena Morehead").
+friend("Allie Gillam", "Alyssa Salem").
+friend("Allie Gillam", "Manuel Smart").
+friend("Allie Gillam", "Belva Resendez").
+friend("Allie Gillam", "Naomi Lai").
+friend("Allie Gillam", "Ollie Omara").
+friend("Allie Gillam", "Juan Weise").
+friend("Allie Gillam", "Larae Kirksey").
+dob("Allie Gillam", "0474-04-13").
+job("Allie Gillam", "risk manager").
+hobby("Allie Gillam", "automobilism").
+gender("Allie Gillam", "female").

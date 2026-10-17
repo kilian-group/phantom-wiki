@@ -1,0 +1,15 @@
+brother("Almeta Younger", "Eli Younger").
+brother("Almeta Younger", "Raul Younger").
+mother("Almeta Younger", "Delpha Younger").
+father("Almeta Younger", "Rueben Younger").
+friend("Almeta Younger", "Lazaro Hsu").
+friend("Almeta Younger", "Virgie Niles").
+friend("Almeta Younger", "Toni Glass").
+friend("Almeta Younger", "Douglass Resendez").
+friend("Almeta Younger", "Maggie Vanmeter").
+friend("Almeta Younger", "Lloyd Ingalls").
+friend("Almeta Younger", "Sarah Steadman").
+dob("Almeta Younger", "0404-05-25").
+job("Almeta Younger", "designer").
+hobby("Almeta Younger", "ice hockey").
+gender("Almeta Younger", "female").

@@ -1,0 +1,16 @@
+son("Alex Burger", "Bruce Burger").
+daughter("Alex Burger", "Macy Burger").
+wife("Alex Burger", "Graciela Burger").
+friend("Alex Burger", "Nelly Bowles").
+friend("Alex Burger", "Sharron Palomo").
+friend("Alex Burger", "Jan Estrella").
+friend("Alex Burger", "Newton Lasher").
+friend("Alex Burger", "Cleo Peeler").
+friend("Alex Burger", "Derek Valladares").
+friend("Alex Burger", "Crysta Machado").
+friend("Alex Burger", "Reita Pugliese").
+friend("Alex Burger", "Virgina Noland").
+dob("Alex Burger", "0473-10-16").
+job("Alex Burger", "office manager").
+hobby("Alex Burger", "speed skating").
+gender("Alex Burger", "male").

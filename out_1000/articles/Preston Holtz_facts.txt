@@ -1,0 +1,17 @@
+son("Preston Holtz", "Nickolas Holtz").
+wife("Preston Holtz", "Jeana Holtz").
+friend("Preston Holtz", "Jamal Marr").
+friend("Preston Holtz", "Elijah Hamlin").
+friend("Preston Holtz", "Erick Courson").
+friend("Preston Holtz", "Roni Jarrett").
+friend("Preston Holtz", "Belia Mckenna").
+friend("Preston Holtz", "Genesis Alarcon").
+friend("Preston Holtz", "Raleigh Simons").
+friend("Preston Holtz", "Ramon Swartz").
+friend("Preston Holtz", "Dena Morehead").
+friend("Preston Holtz", "Carlotta Gossett").
+friend("Preston Holtz", "Lucienne Gilliam").
+dob("Preston Holtz", "0424-08-24").
+job("Preston Holtz", "forensic scientist").
+hobby("Preston Holtz", "figure skating").
+gender("Preston Holtz", "male").

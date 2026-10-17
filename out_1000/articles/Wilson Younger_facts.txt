@@ -1,0 +1,17 @@
+sister("Wilson Younger", "Dani Dalton").
+mother("Wilson Younger", "Jenniffer Younger").
+father("Wilson Younger", "Eli Younger").
+son("Wilson Younger", "Al Younger").
+son("Wilson Younger", "Cordell Younger").
+daughter("Wilson Younger", "Katina Younger").
+daughter("Wilson Younger", "Zora Morehead").
+wife("Wilson Younger", "Janis Younger").
+friend("Wilson Younger", "Adolph Hollins").
+friend("Wilson Younger", "Ben Sheridan").
+friend("Wilson Younger", "Irvin Shaw").
+friend("Wilson Younger", "Son Sutphin").
+friend("Wilson Younger", "Porter Steadman").
+dob("Wilson Younger", "0431-02-26").
+job("Wilson Younger", "presenter").
+hobby("Wilson Younger", "literature").
+gender("Wilson Younger", "male").

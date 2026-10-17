@@ -1,0 +1,7 @@
+son("Phylis Nicolas", "Carrol Nicolas").
+husband("Phylis Nicolas", "Bradford Nicolas").
+friend("Phylis Nicolas", "Garry Mcnew").
+dob("Phylis Nicolas", "0274-06-06").
+job("Phylis Nicolas", "colour technologist").
+hobby("Phylis Nicolas", "research").
+gender("Phylis Nicolas", "female").

@@ -1,0 +1,17 @@
+daughter("Jacque Greene", "Virgina Noland").
+husband("Jacque Greene", "Hal Greene").
+friend("Jacque Greene", "Nickolas Holtz").
+friend("Jacque Greene", "Truman Holtz").
+friend("Jacque Greene", "Gregory Keister").
+friend("Jacque Greene", "Elbert Layman").
+friend("Jacque Greene", "Freeda Jarrett").
+friend("Jacque Greene", "Jayson Hudgens").
+friend("Jacque Greene", "Javier Basham").
+friend("Jacque Greene", "Ladawn Basham").
+friend("Jacque Greene", "Rayna Kinsella").
+friend("Jacque Greene", "Romona Littleton").
+friend("Jacque Greene", "Raleigh Simons").
+dob("Jacque Greene", "0350-07-23").
+job("Jacque Greene", "TEFL teacher").
+hobby("Jacque Greene", "beekeeping").
+gender("Jacque Greene", "female").

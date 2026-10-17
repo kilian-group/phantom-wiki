@@ -1,0 +1,293 @@
+[
+    {
+        "id": "064ce56c-a96d-40ac-a13e-13feaf0ff317",
+        "question": "Who is the youngest granddaughter of Shelli Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "granddaughter(\"Shelli Beltran\", X)",
+                "dob(X, D)",
+                "\\+ (granddaughter(\"Shelli Beltran\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "bf0041ee-02a2-4517-95a8-a8c9fcc2b88f",
+        "question": "Who is the youngest sister-in-law of Saul Wexler?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "sister_in_law(\"Saul Wexler\", X)",
+                "dob(X, D)",
+                "\\+ (sister_in_law(\"Saul Wexler\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "2f245bcd-102e-4947-8fa7-268c9f8115c8",
+        "question": "Who is the youngest child of Williams Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Myrle Smock"
+        ],
+        "prolog": {
+            "query": [
+                "child(\"Williams Smock\", X)",
+                "dob(X, D)",
+                "\\+ (child(\"Williams Smock\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "f943cce1-cdf5-43ac-b67c-41a0a8e204f0",
+        "question": "Who is the youngest grandchild of Gene Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Myrle Smock"
+        ],
+        "prolog": {
+            "query": [
+                "grandchild(\"Gene Smock\", X)",
+                "dob(X, D)",
+                "\\+ (grandchild(\"Gene Smock\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "3ae8d2b7-6c9d-4512-a7ce-a4c829365018",
+        "question": "Who is the youngest aunt of Johnetta Wang?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeannine Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "aunt(\"Johnetta Wang\", X)",
+                "dob(X, D)",
+                "\\+ (aunt(\"Johnetta Wang\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "6798c1eb-06a8-488e-8617-d0ff62aacf04",
+        "question": "Who is the youngest friend of Alvaro Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Alvaro Smock\", X)",
+                "dob(X, D)",
+                "\\+ (friend(\"Alvaro Smock\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "f4e8e8cc-71e9-4780-904f-104245eca82c",
+        "question": "Who is the youngest great-grandchild of Alvaro Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Myrle Smock"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandchild(\"Alvaro Smock\", X)",
+                "dob(X, D)",
+                "\\+ (great_grandchild(\"Alvaro Smock\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "62a09ef4-8f05-4957-ac50-cd4bd7fa46d7",
+        "question": "Who is the youngest sibling of Isabell Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Gene Smock"
+        ],
+        "prolog": {
+            "query": [
+                "sibling(\"Isabell Smock\", X)",
+                "dob(X, D)",
+                "\\+ (sibling(\"Isabell Smock\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "1bdbeba8-a878-4bfc-aa28-bbfc2cf32caf",
+        "question": "Who is the youngest sister of Gene Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "sister(\"Gene Smock\", X)",
+                "dob(X, D)",
+                "\\+ (sister(\"Gene Smock\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "795b31f2-0ec8-41f5-862d-3ea1d821870f",
+        "question": "Who is the youngest great-granddaughter of Williams Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "great_granddaughter(\"Williams Smock\", X)",
+                "dob(X, D)",
+                "\\+ (great_granddaughter(\"Williams Smock\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 110,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    }
+]

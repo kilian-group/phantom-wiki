@@ -1,0 +1,22 @@
+mother("Jeff Haygood", "Jacque Haygood").
+father("Jeff Haygood", "Ignacio Haygood").
+daughter("Jeff Haygood", "Alexandria Hayward").
+daughter("Jeff Haygood", "Cleo Dangelo").
+daughter("Jeff Haygood", "Lona Geter").
+wife("Jeff Haygood", "Georgette Haygood").
+friend("Jeff Haygood", "Doug Jansen").
+friend("Jeff Haygood", "Gena Brumbaugh").
+friend("Jeff Haygood", "Charley Lively").
+friend("Jeff Haygood", "Judith Lebrun").
+friend("Jeff Haygood", "Mac Goff").
+friend("Jeff Haygood", "Alec Dacosta").
+friend("Jeff Haygood", "Justine Gibbs").
+friend("Jeff Haygood", "Kelley Cheney").
+friend("Jeff Haygood", "Lyman Marr").
+friend("Jeff Haygood", "Lynette Shaw").
+friend("Jeff Haygood", "Kent Corso").
+friend("Jeff Haygood", "Daisy Autry").
+dob("Jeff Haygood", "0452-06-22").
+job("Jeff Haygood", "museum curator").
+hobby("Jeff Haygood", "aerospace").
+gender("Jeff Haygood", "male").

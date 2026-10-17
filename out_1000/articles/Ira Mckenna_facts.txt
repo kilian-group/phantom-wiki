@@ -1,0 +1,14 @@
+sister("Ira Mckenna", "Kimberely Corso").
+brother("Ira Mckenna", "Nevin Mckenna").
+brother("Ira Mckenna", "Porter Mckenna").
+brother("Ira Mckenna", "Rodrigo Mckenna").
+mother("Ira Mckenna", "Dorathy Mckenna").
+father("Ira Mckenna", "Cameron Mckenna").
+friend("Ira Mckenna", "Hal Osterman").
+friend("Ira Mckenna", "Marguerite Lebrun").
+friend("Ira Mckenna", "Virgie Niles").
+friend("Ira Mckenna", "Addie Shilling").
+dob("Ira Mckenna", "0443-04-25").
+job("Ira Mckenna", "accommodation manager").
+hobby("Ira Mckenna", "carrier pigeons").
+gender("Ira Mckenna", "male").

@@ -1,0 +1,17 @@
+daughter("Gregory Keister", "Leena Estrella").
+daughter("Gregory Keister", "Thomasena Marr").
+wife("Gregory Keister", "Vanessa Keister").
+friend("Gregory Keister", "Alexa Mckenna").
+friend("Gregory Keister", "Racquel Wendel").
+friend("Gregory Keister", "Marguerite Lebrun").
+friend("Gregory Keister", "Alton Ibarra").
+friend("Gregory Keister", "Ligia Wylie").
+friend("Gregory Keister", "Harold Waltz").
+friend("Gregory Keister", "Hugh Noland").
+friend("Gregory Keister", "Jacque Greene").
+friend("Gregory Keister", "Kimiko Vogt").
+friend("Gregory Keister", "Brandon Capps").
+dob("Gregory Keister", "0310-08-12").
+job("Gregory Keister", "furniture conservator").
+hobby("Gregory Keister", "learning").
+gender("Gregory Keister", "male").

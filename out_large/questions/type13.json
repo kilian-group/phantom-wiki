@@ -1,0 +1,502 @@
+[
+    {
+        "id": "78f8d822-28f9-489b-bb44-67167c55a37e",
+        "question": "How many friends does Chrissy Mcgough have?",
+        "solution_traces": "[{\"Count_1\": 4}]",
+        "answer": [
+            "4"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(friend(\"Chrissy Mcgough\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "02a9cfab-fed8-4f7c-b9f3-97b5bcc61a71",
+        "question": "How many great-grandfathers does Twila Oberg have?",
+        "solution_traces": "[{\"Count_1\": 1}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(great_grandfather(\"Twila Oberg\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "4a19eea3-4ce1-4588-92ee-2e6fad7e07e5",
+        "question": "How many friends does Colby Narvaez have?",
+        "solution_traces": "[{\"Count_1\": 5}]",
+        "answer": [
+            "5"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(friend(\"Colby Narvaez\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "47a31471-92e1-47a5-9455-fb583cbd4693",
+        "question": "How many daughters-in-law does Chrissy Mcgough have?",
+        "solution_traces": "[{\"Count_1\": 1}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(daughter_in_law(\"Chrissy Mcgough\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "06797f55-4c73-4569-a623-c66edfd5d890",
+        "question": "How many siblings does Marion Wilke have?",
+        "solution_traces": "[{\"Count_1\": 2}]",
+        "answer": [
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sibling(\"Marion Wilke\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "dd14a8ae-58c5-4fbd-b8aa-14aed20d05fe",
+        "question": "How many friends does Mason Oberg have?",
+        "solution_traces": "[{\"Count_1\": 3}]",
+        "answer": [
+            "3"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(friend(\"Mason Oberg\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "9881d566-6729-43f5-a19e-15e48496122e",
+        "question": "How many second aunts does Dorinda Chrisman have?",
+        "solution_traces": "[{\"Count_1\": 1}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(second_aunt(\"Dorinda Chrisman\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "d6657e44-295b-4d2c-a0a2-6f750b25927f",
+        "question": "How many sisters-in-law does Dani Remillard have?",
+        "solution_traces": "[{\"Count_1\": 2}]",
+        "answer": [
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sister_in_law(\"Dani Remillard\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "4a7ef269-8864-4d56-be22-33fa6414db8f",
+        "question": "How many daughters does Marlo Oberg have?",
+        "solution_traces": "[{\"Count_1\": 1}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(daughter(\"Marlo Oberg\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "b448ae8f-a6de-4694-9d98-a4f3ca2d73d6",
+        "question": "How many cousins does Kori Remillard have?",
+        "solution_traces": "[{\"Count_1\": 3}]",
+        "answer": [
+            "3"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(cousin(\"Kori Remillard\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "e5effe33-cb51-4e44-abce-bfff339c522e",
+        "question": "How many children does Lyman Oberg have?",
+        "solution_traces": "[{\"Count_1\": 2}]",
+        "answer": [
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(child(\"Lyman Oberg\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "24c014b7-1894-47f8-a98d-e1a46f45fa2a",
+        "question": "How many friends does Luke Wilke have?",
+        "solution_traces": "[{\"Count_1\": 4}]",
+        "answer": [
+            "4"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(friend(\"Luke Wilke\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "b371b2ff-f093-4364-b2f0-0a6f61f139ce",
+        "question": "How many daughters-in-law does Jon Remillard have?",
+        "solution_traces": "[{\"Count_1\": 2}]",
+        "answer": [
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(daughter_in_law(\"Jon Remillard\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "755b35d7-671d-40b7-9985-bf6a65b2ed13",
+        "question": "How many friends does Cherlyn Oberg have?",
+        "solution_traces": "[{\"Count_1\": 8}]",
+        "answer": [
+            "8"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(friend(\"Cherlyn Oberg\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "8b9423e6-a028-4dbe-bfa8-0edc7b2e19e3",
+        "question": "How many wives does Monte Oberg have?",
+        "solution_traces": "[{\"Count_1\": 1}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(wife(\"Monte Oberg\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "8d38d8d4-179c-44a7-91ec-b285a2129dfb",
+        "question": "How many wives does Demarcus Narvaez have?",
+        "solution_traces": "[{\"Count_1\": 1}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(wife(\"Demarcus Narvaez\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "f2f940cf-8be9-44dd-85e6-4f5c9a479409",
+        "question": "How many granddaughters does Chrissy Mcgough have?",
+        "solution_traces": "[{\"Count_1\": 2}]",
+        "answer": [
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(granddaughter(\"Chrissy Mcgough\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "16ec732d-8e09-4407-aed0-b0e861c0b34c",
+        "question": "How many siblings does Margie Remillard have?",
+        "solution_traces": "[{\"Count_1\": 2}]",
+        "answer": [
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sibling(\"Margie Remillard\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "3dee3d8a-bea3-4df6-b19d-0815280ed7a6",
+        "question": "How many friends does Louann Chrisman have?",
+        "solution_traces": "[{\"Count_1\": 7}]",
+        "answer": [
+            "7"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(friend(\"Louann Chrisman\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    },
+    {
+        "id": "358d8fae-c477-44e9-9ab8-fd4361824279",
+        "question": "How many brothers-in-law does Stacey Wilke have?",
+        "solution_traces": "[{\"Count_1\": 2}]",
+        "answer": [
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(brother_in_law(\"Stacey Wilke\", Y_1)), Count_1)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "<name>_3",
+            "have",
+            "?"
+        ],
+        "type": 13,
+        "difficulty": 1,
+        "is_aggregation_question": true
+    }
+]

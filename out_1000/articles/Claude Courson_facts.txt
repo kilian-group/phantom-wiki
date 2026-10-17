@@ -1,0 +1,19 @@
+sister("Claude Courson", "Mallory Scherer").
+sister("Claude Courson", "Mia Resendez").
+sister("Claude Courson", "Shandi Jarrett").
+brother("Claude Courson", "Erick Courson").
+brother("Claude Courson", "Leslie Courson").
+mother("Claude Courson", "Harriette Courson").
+father("Claude Courson", "Delbert Courson").
+son("Claude Courson", "Lenny Courson").
+son("Claude Courson", "Wesley Courson").
+daughter("Claude Courson", "Trudy Lennox").
+wife("Claude Courson", "Mattie Courson").
+friend("Claude Courson", "Erick Courson").
+friend("Claude Courson", "Derek Valladares").
+friend("Claude Courson", "Yoshiko Niles").
+friend("Claude Courson", "Aaron Bowles").
+dob("Claude Courson", "0423-10-30").
+job("Claude Courson", "chartered certified accountant").
+hobby("Claude Courson", "philately").
+gender("Claude Courson", "male").

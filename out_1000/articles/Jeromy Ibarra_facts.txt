@@ -1,0 +1,14 @@
+son("Jeromy Ibarra", "Jarrod Ibarra").
+wife("Jeromy Ibarra", "Shirley Ibarra").
+friend("Jeromy Ibarra", "Shaunte Gilliam").
+friend("Jeromy Ibarra", "Kieth Shaw").
+friend("Jeromy Ibarra", "Lynetta Mckenna").
+friend("Jeromy Ibarra", "Melodie Suh").
+friend("Jeromy Ibarra", "Charley Weise").
+friend("Jeromy Ibarra", "Loren Littleton").
+friend("Jeromy Ibarra", "Julio Mcdonald").
+friend("Jeromy Ibarra", "Jennette Holliman").
+dob("Jeromy Ibarra", "0317-05-13").
+job("Jeromy Ibarra", "print production planner").
+hobby("Jeromy Ibarra", "reading").
+gender("Jeromy Ibarra", "male").

@@ -1,0 +1,18 @@
+daughter("Carlotta Gossett", "Carolyn Whitford").
+husband("Carlotta Gossett", "Steve Gossett").
+friend("Carlotta Gossett", "Monika Bennet").
+friend("Carlotta Gossett", "Toney Gibbs").
+friend("Carlotta Gossett", "Wilson Donner").
+friend("Carlotta Gossett", "Preston Holtz").
+friend("Carlotta Gossett", "Harry Hudgens").
+friend("Carlotta Gossett", "Theodore Vanmeter").
+friend("Carlotta Gossett", "Madaline Callender").
+friend("Carlotta Gossett", "Evelia Senn").
+friend("Carlotta Gossett", "Jody Valladares").
+friend("Carlotta Gossett", "Freddie Barrows").
+friend("Carlotta Gossett", "Rob Lebrun").
+friend("Carlotta Gossett", "Aida Ibarra").
+dob("Carlotta Gossett", "0269-10-06").
+job("Carlotta Gossett", "educational psychologist").
+hobby("Carlotta Gossett", "figure skating").
+gender("Carlotta Gossett", "female").

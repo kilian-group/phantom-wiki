@@ -1,0 +1,16 @@
+brother("Amanda Broughton", "Emil Broughton").
+brother("Amanda Broughton", "Scotty Broughton").
+mother("Amanda Broughton", "Anna Broughton").
+father("Amanda Broughton", "Darrell Broughton").
+friend("Amanda Broughton", "Allyson Burger").
+friend("Amanda Broughton", "Avery Ballard").
+friend("Amanda Broughton", "Kendrick Jefferson").
+friend("Amanda Broughton", "Harley Simons").
+friend("Amanda Broughton", "Catina Linden").
+friend("Amanda Broughton", "Claudine Bales").
+friend("Amanda Broughton", "Julius Niles").
+friend("Amanda Broughton", "Paula Gerber").
+dob("Amanda Broughton", "0405-11-10").
+job("Amanda Broughton", "environmental manager").
+hobby("Amanda Broughton", "sport stacking").
+gender("Amanda Broughton", "female").

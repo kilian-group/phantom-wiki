@@ -1,0 +1,11 @@
+son("Federico Horan", "Otto Horan").
+daughter("Federico Horan", "Annabell Horan").
+wife("Federico Horan", "Racquel Horan").
+friend("Federico Horan", "Tobias Sanborn").
+friend("Federico Horan", "Alberto Wellington").
+friend("Federico Horan", "Tiffany Mcdonald").
+friend("Federico Horan", "Kory Gibbs").
+dob("Federico Horan", "0442-12-23").
+job("Federico Horan", "architect").
+hobby("Federico Horan", "leaves").
+gender("Federico Horan", "male").

@@ -1,0 +1,13 @@
+mother("Oscar Schram", "Adah Schram").
+father("Oscar Schram", "Mike Schram").
+friend("Oscar Schram", "Bridget Sutphin").
+friend("Oscar Schram", "Karin Machado").
+friend("Oscar Schram", "Drema Schatz").
+friend("Oscar Schram", "Deidra Gilliam").
+friend("Oscar Schram", "Moshe Macias").
+friend("Oscar Schram", "Eva Kell").
+friend("Oscar Schram", "Naomi Lai").
+dob("Oscar Schram", "0441-04-12").
+job("Oscar Schram", "chartered certified accountant").
+hobby("Oscar Schram", "climbing").
+gender("Oscar Schram", "male").

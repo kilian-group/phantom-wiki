@@ -1,0 +1,14 @@
+sister("Tyrone Linares", "Christen Boutte").
+sister("Tyrone Linares", "Lea Plumley").
+mother("Tyrone Linares", "Karla Linares").
+father("Tyrone Linares", "Elijah Linares").
+friend("Tyrone Linares", "Lazaro Hsu").
+friend("Tyrone Linares", "Meghan Keyes").
+friend("Tyrone Linares", "Velia Capps").
+friend("Tyrone Linares", "Lenny Courson").
+friend("Tyrone Linares", "Rubie Upton").
+friend("Tyrone Linares", "Ricardo Runnels").
+dob("Tyrone Linares", "0433-08-29").
+job("Tyrone Linares", "careers information officer").
+hobby("Tyrone Linares", "breakdancing").
+gender("Tyrone Linares", "male").

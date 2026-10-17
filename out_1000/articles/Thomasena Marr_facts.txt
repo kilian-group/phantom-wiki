@@ -1,0 +1,15 @@
+sister("Thomasena Marr", "Leena Estrella").
+mother("Thomasena Marr", "Vanessa Keister").
+father("Thomasena Marr", "Gregory Keister").
+son("Thomasena Marr", "Deangelo Marr").
+son("Thomasena Marr", "Jamal Marr").
+daughter("Thomasena Marr", "Deloris Marr").
+husband("Thomasena Marr", "Dennis Marr").
+friend("Thomasena Marr", "Lester Bauman").
+friend("Thomasena Marr", "Freddie Barrows").
+friend("Thomasena Marr", "Davis Eaves").
+friend("Thomasena Marr", "Kelley Cheney").
+dob("Thomasena Marr", "0339-05-08").
+job("Thomasena Marr", "clinical scientist").
+hobby("Thomasena Marr", "tether car").
+gender("Thomasena Marr", "female").

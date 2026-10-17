@@ -1,0 +1,18 @@
+daughter("Willie Hurt", "Demetra Medellin").
+daughter("Willie Hurt", "Lashanda Salem").
+daughter("Willie Hurt", "Lucile Hurt").
+wife("Willie Hurt", "Lou Hurt").
+friend("Willie Hurt", "Cary Carswell").
+friend("Willie Hurt", "Lora Vogt").
+friend("Willie Hurt", "Cleveland Capps").
+friend("Willie Hurt", "Geraldine Suh").
+friend("Willie Hurt", "Stanford Suh").
+friend("Willie Hurt", "Shauna Weise").
+friend("Willie Hurt", "Noreen Cordova").
+friend("Willie Hurt", "Hiram Smart").
+friend("Willie Hurt", "Kieth Medellin").
+friend("Willie Hurt", "Latisha Smart").
+dob("Willie Hurt", "0374-04-02").
+job("Willie Hurt", "plant breeder").
+hobby("Willie Hurt", "digital hoarding").
+gender("Willie Hurt", "male").

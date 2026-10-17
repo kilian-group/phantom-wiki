@@ -1,0 +1,22 @@
+sister("Tomasa Kell", "Eva Kell").
+sister("Tomasa Kell", "Malissa Kell").
+brother("Tomasa Kell", "Dewitt Kell").
+brother("Tomasa Kell", "Stan Kell").
+mother("Tomasa Kell", "Barbar Kell").
+father("Tomasa Kell", "Felton Kell").
+friend("Tomasa Kell", "Tosha Osborn").
+friend("Tomasa Kell", "Iva Parish").
+friend("Tomasa Kell", "Shawnta Basham").
+friend("Tomasa Kell", "Wilber Storey").
+friend("Tomasa Kell", "Douglass Ingalls").
+friend("Tomasa Kell", "Floyd Cook").
+friend("Tomasa Kell", "Barb Linden").
+friend("Tomasa Kell", "Vicki Ruth").
+friend("Tomasa Kell", "Julius Niles").
+friend("Tomasa Kell", "Antonio Fitch").
+friend("Tomasa Kell", "Lou Dunlap").
+friend("Tomasa Kell", "Nelly Jarrett").
+dob("Tomasa Kell", "0412-03-29").
+job("Tomasa Kell", "midwife").
+hobby("Tomasa Kell", "philately").
+gender("Tomasa Kell", "female").

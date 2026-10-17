@@ -1,0 +1,14 @@
+sister("Renate Gailey", "Robbie Hollins").
+brother("Renate Gailey", "Harold Hollins").
+mother("Renate Gailey", "Eula Hollins").
+father("Renate Gailey", "Micah Hollins").
+daughter("Renate Gailey", "Xiao Gailey").
+husband("Renate Gailey", "Stan Gailey").
+friend("Renate Gailey", "Avery Nolasco").
+friend("Renate Gailey", "Galen Cordova").
+friend("Renate Gailey", "Derek Murchison").
+friend("Renate Gailey", "Raul Younger").
+dob("Renate Gailey", "0405-08-16").
+job("Renate Gailey", "chief of staff").
+hobby("Renate Gailey", "birdwatching").
+gender("Renate Gailey", "female").

@@ -1,0 +1,15 @@
+mother("Roseanna Mckenna", "Karen Mckenna").
+father("Roseanna Mckenna", "Fredrick Mckenna").
+friend("Roseanna Mckenna", "Darin Hollinger").
+friend("Roseanna Mckenna", "Cleo Gregory").
+friend("Roseanna Mckenna", "Susie Gillam").
+friend("Roseanna Mckenna", "Rolf Osterman").
+friend("Roseanna Mckenna", "Alexander Corwin").
+friend("Roseanna Mckenna", "Michaela Corwin").
+friend("Roseanna Mckenna", "Julius Niles").
+friend("Roseanna Mckenna", "Tanner Holliman").
+friend("Roseanna Mckenna", "Zackary Wilkie").
+dob("Roseanna Mckenna", "0521-06-17").
+job("Roseanna Mckenna", "field seismologist").
+hobby("Roseanna Mckenna", "shortwave listening").
+gender("Roseanna Mckenna", "female").

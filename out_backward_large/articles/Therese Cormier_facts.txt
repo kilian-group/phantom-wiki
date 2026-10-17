@@ -1,0 +1,10 @@
+mother("Therese Cormier", "Julia Cormier").
+father("Therese Cormier", "Earle Cormier").
+friend("Therese Cormier", "Geri Woodman").
+friend("Therese Cormier", "Hazel Earnest").
+friend("Therese Cormier", "Mickey Earnest").
+friend("Therese Cormier", "Lorine Wasserman").
+dob("Therese Cormier", "0254-07-10").
+job("Therese Cormier", "fashion designer").
+hobby("Therese Cormier", "scuba diving").
+gender("Therese Cormier", "female").

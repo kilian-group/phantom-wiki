@@ -1,0 +1,12 @@
+sister("Dion Cormier", "Sherry Cormier").
+brother("Dion Cormier", "Earle Cormier").
+mother("Dion Cormier", "Leda Cormier").
+father("Dion Cormier", "Foster Cormier").
+son("Dion Cormier", "Clifford Cormier").
+daughter("Dion Cormier", "Shawnta Saari").
+wife("Dion Cormier", "Ming Cormier").
+friend("Dion Cormier", "Myrle Smock").
+dob("Dion Cormier", "0233-08-20").
+job("Dion Cormier", "historic buildings inspector").
+hobby("Dion Cormier", "microscopy").
+gender("Dion Cormier", "male").

@@ -1,0 +1,17 @@
+brother("Dena Morehead", "Homer Morehead").
+brother("Dena Morehead", "Maynard Morehead").
+mother("Dena Morehead", "Zora Morehead").
+father("Dena Morehead", "Miguel Morehead").
+friend("Dena Morehead", "Preston Holtz").
+friend("Dena Morehead", "Ashely Speaks").
+friend("Dena Morehead", "Micheal Speaks").
+friend("Dena Morehead", "Freeda Jarrett").
+friend("Dena Morehead", "Anastacia Cordova").
+friend("Dena Morehead", "Allie Gillam").
+friend("Dena Morehead", "Frankie Simons").
+friend("Dena Morehead", "Jennie Towns").
+friend("Dena Morehead", "Lucio Townsend").
+dob("Dena Morehead", "0478-03-08").
+job("Dena Morehead", "aid worker").
+hobby("Dena Morehead", "myrmecology").
+gender("Dena Morehead", "female").

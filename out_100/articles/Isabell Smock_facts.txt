@@ -1,0 +1,12 @@
+sister("Isabell Smock", "Deane Smock").
+brother("Isabell Smock", "Aubrey Smock").
+brother("Isabell Smock", "Gene Smock").
+mother("Isabell Smock", "Lannie Smock").
+father("Isabell Smock", "Alvaro Smock").
+friend("Isabell Smock", "Jeannine Wexler").
+friend("Isabell Smock", "Lenore Hackworth").
+friend("Isabell Smock", "Deane Smock").
+dob("Isabell Smock", "0211-01-18").
+job("Isabell Smock", "education administrator").
+hobby("Isabell Smock", "geocaching").
+gender("Isabell Smock", "female").

@@ -1,0 +1,15 @@
+sister("Jana Galvan", "Raina Hamlin").
+brother("Jana Galvan", "Zachariah Galvan").
+mother("Jana Galvan", "Ashleigh Galvan").
+father("Jana Galvan", "Brian Galvan").
+friend("Jana Galvan", "Williams Alessi").
+friend("Jana Galvan", "Daisy Autry").
+friend("Jana Galvan", "Tammy Sutphin").
+friend("Jana Galvan", "Jacinta Simons").
+friend("Jana Galvan", "Matilda Chou").
+friend("Jana Galvan", "Vicente Mccurry").
+friend("Jana Galvan", "Normand Wilke").
+dob("Jana Galvan", "0382-04-14").
+job("Jana Galvan", "medical laboratory scientific officer").
+hobby("Jana Galvan", "car riding").
+gender("Jana Galvan", "female").

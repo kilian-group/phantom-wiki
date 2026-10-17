@@ -1,0 +1,12 @@
+son("Miles Burdette", "Rickie Burdette").
+wife("Miles Burdette", "Oralia Burdette").
+friend("Miles Burdette", "Chance Mahoney").
+friend("Miles Burdette", "Rueben Younger").
+friend("Miles Burdette", "Gerry Shank").
+friend("Miles Burdette", "Tiesha Deville").
+friend("Miles Burdette", "Solomon Shaw").
+friend("Miles Burdette", "Ashleigh Spiller").
+dob("Miles Burdette", "0435-11-24").
+job("Miles Burdette", "textile designer").
+hobby("Miles Burdette", "dowsing").
+gender("Miles Burdette", "male").

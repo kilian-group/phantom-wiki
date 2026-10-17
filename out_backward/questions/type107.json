@@ -1,0 +1,292 @@
+[
+    {
+        "id": "9ce1b592-a927-4c8b-9fd6-26dff75a6f14",
+        "question": "Who has more granddaughters, Daisy Beltran or Dino Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dino Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(granddaughter(\"Daisy Beltran\", X)), C1)",
+                "aggregate_all(count, distinct(granddaughter(\"Dino Beltran\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 107,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "222a6e92-93eb-4c08-b1fb-f9b08327c402",
+        "question": "Who has more siblings, Lannie Smock or Lenore Hackworth?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lenore Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sibling(\"Lannie Smock\", X)), C1)",
+                "aggregate_all(count, distinct(sibling(\"Lenore Hackworth\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 107,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "da1879e3-c89c-41d7-9dfc-ff83d4deb2ef",
+        "question": "Who has more grandsons, Dino Beltran or Alvaro Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Alvaro Smock"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(grandson(\"Dino Beltran\", X)), C1)",
+                "aggregate_all(count, distinct(grandson(\"Alvaro Smock\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 107,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "0d8df46b-9e5b-4bf1-add7-accce23a371d",
+        "question": "Who has more uncles, Ricardo Hackworth or Aida Wang?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(uncle(\"Ricardo Hackworth\", X)), C1)",
+                "aggregate_all(count, distinct(uncle(\"Aida Wang\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 107,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "107405b3-78ca-403b-a6f3-4c6f28b95591",
+        "question": "Who has more great-grandchildren, Williams Smock or Orlando Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Williams Smock"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(great_grandchild(\"Williams Smock\", X)), C1)",
+                "aggregate_all(count, distinct(great_grandchild(\"Orlando Beltran\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 107,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "49368404-cff0-439e-97e2-b2a4a3e2c88c",
+        "question": "Who has more sisters, Jeannine Wexler or Saul Wexler?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jeannine Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sister(\"Jeannine Wexler\", X)), C1)",
+                "aggregate_all(count, distinct(sister(\"Saul Wexler\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 107,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "be21289f-1ee4-4670-9020-ba6eaf5e9d19",
+        "question": "Who has more aunts, Daisy Beltran or Leeann Hackworth?",
+        "solution_traces": "[]",
+        "answer": [
+            "Leeann Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(aunt(\"Daisy Beltran\", X)), C1)",
+                "aggregate_all(count, distinct(aunt(\"Leeann Hackworth\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 107,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "e817b4c7-0c5a-4a83-ab7f-05c3a00a110b",
+        "question": "Who has more fathers-in-law, Aubrey Smock or Shelli Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(father_in_law(\"Aubrey Smock\", X)), C1)",
+                "aggregate_all(count, distinct(father_in_law(\"Shelli Beltran\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 107,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "39043cd3-0786-425a-8a64-89bdb810539f",
+        "question": "Who has more granddaughters, Dominique Smock or Valentina Wexler?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dominique Smock"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(granddaughter(\"Dominique Smock\", X)), C1)",
+                "aggregate_all(count, distinct(granddaughter(\"Valentina Wexler\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 107,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    },
+    {
+        "id": "f7907b5f-942f-4376-9a72-a2289727f1d2",
+        "question": "Who has more siblings, Lannie Smock or Leeann Hackworth?",
+        "solution_traces": "[]",
+        "answer": [
+            "Leeann Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sibling(\"Lannie Smock\", X)), C1)",
+                "aggregate_all(count, distinct(sibling(\"Leeann Hackworth\", Y)), C2)",
+                "C1 > C2"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "comparison_count"
+        ],
+        "type": 107,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_count"
+    }
+]

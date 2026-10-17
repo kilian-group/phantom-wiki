@@ -1,0 +1,10 @@
+mother("Theron Littleton", "Josie Littleton").
+father("Theron Littleton", "Loren Littleton").
+son("Theron Littleton", "Christoper Littleton").
+wife("Theron Littleton", "Edythe Littleton").
+friend("Theron Littleton", "Kelley Cheney").
+friend("Theron Littleton", "Juan Weise").
+dob("Theron Littleton", "0403-06-08").
+job("Theron Littleton", "landscape architect").
+hobby("Theron Littleton", "cricket").
+gender("Theron Littleton", "male").

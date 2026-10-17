@@ -1,0 +1,12 @@
+mother("Madalene Lebrun", "Marguerite Lebrun").
+father("Madalene Lebrun", "Marcus Lebrun").
+friend("Madalene Lebrun", "Winfred Molina").
+friend("Madalene Lebrun", "Evelia Waltz").
+friend("Madalene Lebrun", "Wesley Courson").
+friend("Madalene Lebrun", "Mike Schram").
+friend("Madalene Lebrun", "Gavin Cordova").
+friend("Madalene Lebrun", "Phil Murray").
+dob("Madalene Lebrun", "0425-06-11").
+job("Madalene Lebrun", "therapeutic radiographer").
+hobby("Madalene Lebrun", "die-cast toy").
+gender("Madalene Lebrun", "female").

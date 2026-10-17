@@ -1,0 +1,22 @@
+sister("Georgette Haygood", "Evelia Senn").
+sister("Georgette Haygood", "Kenda Beamon").
+mother("Georgette Haygood", "Karol Beamon").
+father("Georgette Haygood", "Maxwell Beamon").
+daughter("Georgette Haygood", "Alexandria Hayward").
+daughter("Georgette Haygood", "Cleo Dangelo").
+daughter("Georgette Haygood", "Lona Geter").
+husband("Georgette Haygood", "Jeff Haygood").
+friend("Georgette Haygood", "Romona Littleton").
+friend("Georgette Haygood", "Scottie Steadman").
+friend("Georgette Haygood", "Edwina Eaves").
+friend("Georgette Haygood", "Vicki Osterman").
+friend("Georgette Haygood", "Elaine Hsu").
+friend("Georgette Haygood", "Lashandra Gilliam").
+friend("Georgette Haygood", "Lucile Hurt").
+friend("Georgette Haygood", "Delbert Fredrick").
+friend("Georgette Haygood", "Rodney Fordham").
+friend("Georgette Haygood", "Jonathon Callender").
+dob("Georgette Haygood", "0453-12-02").
+job("Georgette Haygood", "drilling engineer").
+hobby("Georgette Haygood", "notaphily").
+gender("Georgette Haygood", "female").

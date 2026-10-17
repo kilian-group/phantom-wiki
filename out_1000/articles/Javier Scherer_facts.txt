@@ -1,0 +1,13 @@
+mother("Javier Scherer", "Mallory Scherer").
+father("Javier Scherer", "Emery Scherer").
+friend("Javier Scherer", "Latisha Murchison").
+friend("Javier Scherer", "Charley Lively").
+friend("Javier Scherer", "Ethan Younger").
+friend("Javier Scherer", "Shirley Dalton").
+friend("Javier Scherer", "Roxy Niles").
+friend("Javier Scherer", "Karina Smart").
+friend("Javier Scherer", "Delbert Fredrick").
+dob("Javier Scherer", "0444-06-27").
+job("Javier Scherer", "land").
+hobby("Javier Scherer", "animal fancy").
+gender("Javier Scherer", "male").

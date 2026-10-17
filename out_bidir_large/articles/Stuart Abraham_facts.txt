@@ -1,0 +1,12 @@
+sister("Stuart Abraham", "Alberta Abraham").
+brother("Stuart Abraham", "Dillon Abraham").
+mother("Stuart Abraham", "Taneka Abraham").
+father("Stuart Abraham", "Oliver Abraham").
+friend("Stuart Abraham", "Yvette Cedillo").
+friend("Stuart Abraham", "Zoraida Palermo").
+friend("Stuart Abraham", "Stefan Henderson").
+friend("Stuart Abraham", "Edythe Earnest").
+dob("Stuart Abraham", "0239-05-21").
+job("Stuart Abraham", "careers adviser").
+hobby("Stuart Abraham", "debate").
+gender("Stuart Abraham", "male").

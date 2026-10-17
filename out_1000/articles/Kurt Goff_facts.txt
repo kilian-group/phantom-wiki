@@ -1,0 +1,13 @@
+son("Kurt Goff", "Kareem Goff").
+daughter("Kurt Goff", "Buffy Mccurry").
+daughter("Kurt Goff", "Shelia Hollins").
+wife("Kurt Goff", "Torrie Goff").
+friend("Kurt Goff", "Gwenn Tyree").
+friend("Kurt Goff", "Rueben Bowles").
+friend("Kurt Goff", "Christen Resendez").
+friend("Kurt Goff", "Roscoe Vanmeter").
+friend("Kurt Goff", "Porter Steadman").
+dob("Kurt Goff", "0314-07-24").
+job("Kurt Goff", "broadcast journalist").
+hobby("Kurt Goff", "ant farming").
+gender("Kurt Goff", "male").

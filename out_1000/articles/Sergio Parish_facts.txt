@@ -1,0 +1,14 @@
+daughter("Sergio Parish", "Maryam Maness").
+wife("Sergio Parish", "Iva Parish").
+friend("Sergio Parish", "Antionette Hamann").
+friend("Sergio Parish", "Jacque Simons").
+friend("Sergio Parish", "Lavern Staten").
+friend("Sergio Parish", "Bertram Wylie").
+friend("Sergio Parish", "Murray Fredrick").
+friend("Sergio Parish", "Bradley Blanton").
+friend("Sergio Parish", "Hayden Fain").
+friend("Sergio Parish", "Anthony Jarrett").
+dob("Sergio Parish", "0467-01-05").
+job("Sergio Parish", "data scientist").
+hobby("Sergio Parish", "herping").
+gender("Sergio Parish", "male").

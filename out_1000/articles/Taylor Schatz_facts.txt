@@ -1,0 +1,17 @@
+daughter("Taylor Schatz", "Dorothea Goff").
+daughter("Taylor Schatz", "Drema Schatz").
+daughter("Taylor Schatz", "Mallory Schatz").
+wife("Taylor Schatz", "Krystyna Schatz").
+friend("Taylor Schatz", "Tim Goff").
+friend("Taylor Schatz", "Sebastian Minnick").
+friend("Taylor Schatz", "Vance Fredrick").
+friend("Taylor Schatz", "Rueben Bowles").
+friend("Taylor Schatz", "Laurence Macias").
+friend("Taylor Schatz", "Jenni Kell").
+friend("Taylor Schatz", "Sung Simons").
+friend("Taylor Schatz", "Fernando Dana").
+friend("Taylor Schatz", "Robbie Hollins").
+dob("Taylor Schatz", "0358-06-23").
+job("Taylor Schatz", "civil engineer").
+hobby("Taylor Schatz", "radio-controlled model playing").
+gender("Taylor Schatz", "male").

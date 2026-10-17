@@ -1,0 +1,11 @@
+daughter("Noreen Booth", "Macy Booth").
+husband("Noreen Booth", "Tommy Booth").
+friend("Noreen Booth", "Edris Best").
+friend("Noreen Booth", "Seymour Simons").
+friend("Noreen Booth", "Virgina Noland").
+friend("Noreen Booth", "Shizuko Sheridan").
+friend("Noreen Booth", "Nico Layman").
+dob("Noreen Booth", "0431-06-04").
+job("Noreen Booth", "clothing technologist").
+hobby("Noreen Booth", "stone collecting").
+gender("Noreen Booth", "female").

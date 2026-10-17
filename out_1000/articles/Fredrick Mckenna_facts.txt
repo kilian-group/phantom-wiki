@@ -1,0 +1,17 @@
+mother("Fredrick Mckenna", "Alexa Mckenna").
+father("Fredrick Mckenna", "Wyatt Mckenna").
+daughter("Fredrick Mckenna", "Roseanna Mckenna").
+wife("Fredrick Mckenna", "Karen Mckenna").
+friend("Fredrick Mckenna", "Terrell Lai").
+friend("Fredrick Mckenna", "Darin Hollinger").
+friend("Fredrick Mckenna", "Lona Corwin").
+friend("Fredrick Mckenna", "Buck Smart").
+friend("Fredrick Mckenna", "Emma Bowles").
+friend("Fredrick Mckenna", "Jamal Marr").
+friend("Fredrick Mckenna", "Gayla Sanborn").
+friend("Fredrick Mckenna", "Felix Hamlin").
+friend("Fredrick Mckenna", "Douglass Resendez").
+dob("Fredrick Mckenna", "0493-01-04").
+job("Fredrick Mckenna", "presenter").
+hobby("Fredrick Mckenna", "microscopy").
+gender("Fredrick Mckenna", "male").

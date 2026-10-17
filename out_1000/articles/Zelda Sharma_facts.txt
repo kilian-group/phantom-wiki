@@ -1,0 +1,14 @@
+daughter("Zelda Sharma", "Sasha Simons").
+husband("Zelda Sharma", "Kevin Sharma").
+friend("Zelda Sharma", "Sarah Steadman").
+friend("Zelda Sharma", "Brock Pugliese").
+friend("Zelda Sharma", "Tyrell Resendez").
+friend("Zelda Sharma", "Nickolas Holtz").
+friend("Zelda Sharma", "Tracey Capps").
+friend("Zelda Sharma", "Carrol Spiller").
+friend("Zelda Sharma", "Rosella Simons").
+friend("Zelda Sharma", "Viva Simons").
+dob("Zelda Sharma", "0379-10-13").
+job("Zelda Sharma", "retail merchandiser").
+hobby("Zelda Sharma", "powerboat racing").
+gender("Zelda Sharma", "female").

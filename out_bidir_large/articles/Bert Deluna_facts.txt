@@ -1,0 +1,7 @@
+daughter("Bert Deluna", "Alycia Cormier").
+wife("Bert Deluna", "Geri Deluna").
+friend("Bert Deluna", "Shawnta Saari").
+dob("Bert Deluna", "0155-04-02").
+job("Bert Deluna", "librarian").
+hobby("Bert Deluna", "cricket").
+gender("Bert Deluna", "male").

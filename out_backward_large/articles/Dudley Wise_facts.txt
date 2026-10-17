@@ -1,0 +1,10 @@
+daughter("Dudley Wise", "Rae Mcnew").
+wife("Dudley Wise", "Jacinta Wise").
+friend("Dudley Wise", "Lorelei Mcnew").
+friend("Dudley Wise", "Rosalinda Francois").
+friend("Dudley Wise", "Reggie Earnest").
+friend("Dudley Wise", "Samantha Earnest").
+dob("Dudley Wise", "0313-03-18").
+job("Dudley Wise", "conservation officer").
+hobby("Dudley Wise", "audiophile").
+gender("Dudley Wise", "male").

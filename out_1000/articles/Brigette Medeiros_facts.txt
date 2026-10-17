@@ -1,0 +1,14 @@
+sister("Brigette Medeiros", "Enid Yarbrough").
+mother("Brigette Medeiros", "Jo Medeiros").
+father("Brigette Medeiros", "Chuck Medeiros").
+friend("Brigette Medeiros", "Rogelio Capps").
+friend("Brigette Medeiros", "Jamie Upton").
+friend("Brigette Medeiros", "Chau Peeler").
+friend("Brigette Medeiros", "Jacques Cordova").
+friend("Brigette Medeiros", "Frankie Simons").
+friend("Brigette Medeiros", "Marguerite Lebrun").
+friend("Brigette Medeiros", "Harold Waltz").
+dob("Brigette Medeiros", "0455-03-17").
+job("Brigette Medeiros", "contracting civil engineer").
+hobby("Brigette Medeiros", "badminton").
+gender("Brigette Medeiros", "female").

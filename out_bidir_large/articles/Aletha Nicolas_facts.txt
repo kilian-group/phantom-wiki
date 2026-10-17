@@ -1,0 +1,10 @@
+sister("Aletha Nicolas", "Rosalinda Francois").
+brother("Aletha Nicolas", "Anthony Nicolas").
+brother("Aletha Nicolas", "Bradford Nicolas").
+mother("Aletha Nicolas", "Cherry Nicolas").
+father("Aletha Nicolas", "Ulysses Nicolas").
+friend("Aletha Nicolas", "Elsy Hornback").
+dob("Aletha Nicolas", "0274-07-08").
+job("Aletha Nicolas", "health and safety inspector").
+hobby("Aletha Nicolas", "archery").
+gender("Aletha Nicolas", "female").

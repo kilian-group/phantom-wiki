@@ -1,0 +1,23 @@
+sister("Kareem Goff", "Buffy Mccurry").
+sister("Kareem Goff", "Shelia Hollins").
+mother("Kareem Goff", "Torrie Goff").
+father("Kareem Goff", "Kurt Goff").
+son("Kareem Goff", "Mac Goff").
+wife("Kareem Goff", "Tianna Goff").
+friend("Kareem Goff", "Christina Smart").
+friend("Kareem Goff", "Kimiko Vogt").
+friend("Kareem Goff", "Addie Shilling").
+friend("Kareem Goff", "Brian Galvan").
+friend("Kareem Goff", "Lynetta Mckenna").
+friend("Kareem Goff", "Trevor Frink").
+friend("Kareem Goff", "Andrew Sutphin").
+friend("Kareem Goff", "Babara Arnold").
+friend("Kareem Goff", "Marlene Ingalls").
+friend("Kareem Goff", "Roderick Simons").
+friend("Kareem Goff", "Katy Flores").
+friend("Kareem Goff", "Logan Swartz").
+friend("Kareem Goff", "Gina Goff").
+dob("Kareem Goff", "0341-05-10").
+job("Kareem Goff", "English as a foreign language teacher").
+hobby("Kareem Goff", "amateur geology").
+gender("Kareem Goff", "male").

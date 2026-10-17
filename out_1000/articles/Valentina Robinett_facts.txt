@@ -1,0 +1,17 @@
+sister("Valentina Robinett", "Fatimah Holtz").
+mother("Valentina Robinett", "Emma Bowles").
+father("Valentina Robinett", "Aaron Bowles").
+daughter("Valentina Robinett", "Deloris Robinett").
+husband("Valentina Robinett", "Aron Robinett").
+friend("Valentina Robinett", "Kieth Shaw").
+friend("Valentina Robinett", "Winnie Harlow").
+friend("Valentina Robinett", "Roman Ruth").
+friend("Valentina Robinett", "Alix Mahoney").
+friend("Valentina Robinett", "Matilda Goff").
+friend("Valentina Robinett", "Wade Lebrun").
+friend("Valentina Robinett", "Charles Levine").
+friend("Valentina Robinett", "Morgan Perrine").
+dob("Valentina Robinett", "0442-04-20").
+job("Valentina Robinett", "camera operator").
+hobby("Valentina Robinett", "longboarding").
+gender("Valentina Robinett", "female").

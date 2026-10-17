@@ -1,0 +1,19 @@
+sister("Lloyd Ingalls", "Earlean Ingalls").
+sister("Lloyd Ingalls", "Marlene Ingalls").
+sister("Lloyd Ingalls", "Sharon Ingalls").
+mother("Lloyd Ingalls", "Gloria Ingalls").
+father("Lloyd Ingalls", "Hershel Ingalls").
+friend("Lloyd Ingalls", "Pearl Hamann").
+friend("Lloyd Ingalls", "Jamel Chou").
+friend("Lloyd Ingalls", "Almeta Younger").
+friend("Lloyd Ingalls", "Katina Younger").
+friend("Lloyd Ingalls", "Johanna Mathes").
+friend("Lloyd Ingalls", "Byron Medellin").
+friend("Lloyd Ingalls", "Oscar Medellin").
+friend("Lloyd Ingalls", "Jodi Noland").
+friend("Lloyd Ingalls", "Jackqueline Kell").
+friend("Lloyd Ingalls", "Tamara Lasher").
+dob("Lloyd Ingalls", "0357-05-17").
+job("Lloyd Ingalls", "copy").
+hobby("Lloyd Ingalls", "kabaddi").
+gender("Lloyd Ingalls", "male").

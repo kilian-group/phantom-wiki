@@ -1,0 +1,18 @@
+sister("Audie Lasher", "Ligia Frink").
+mother("Audie Lasher", "Rena Palm").
+father("Audie Lasher", "Dwight Palm").
+son("Audie Lasher", "Christoper Lasher").
+daughter("Audie Lasher", "Ladawn Basham").
+daughter("Audie Lasher", "Madaline Callender").
+husband("Audie Lasher", "Collin Lasher").
+friend("Audie Lasher", "Bonnie Storey").
+friend("Audie Lasher", "Gerald Hartung").
+friend("Audie Lasher", "Winfred Molina").
+friend("Audie Lasher", "Dennis Littleton").
+friend("Audie Lasher", "Erik Capps").
+friend("Audie Lasher", "Raina Hamlin").
+friend("Audie Lasher", "Felipe Vanmeter").
+dob("Audie Lasher", "0363-06-25").
+job("Audie Lasher", "comptroller").
+hobby("Audie Lasher", "sun bathing").
+gender("Audie Lasher", "female").

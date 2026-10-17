@@ -1,0 +1,13 @@
+daughter("Edris Best", "Edythe Littleton").
+husband("Edris Best", "Luis Best").
+friend("Edris Best", "Harley Simons").
+friend("Edris Best", "Reggie Simons").
+friend("Edris Best", "Ethan Younger").
+friend("Edris Best", "Mireya Ibarra").
+friend("Edris Best", "Noreen Booth").
+friend("Edris Best", "Claudio Winn").
+friend("Edris Best", "Ligia Frink").
+dob("Edris Best", "0376-06-13").
+job("Edris Best", "air cabin crew").
+hobby("Edris Best", "seashell collecting").
+gender("Edris Best", "female").

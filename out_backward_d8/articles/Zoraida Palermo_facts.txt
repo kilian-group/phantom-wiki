@@ -1,0 +1,16 @@
+sister("Zoraida Palermo", "Madelyn Palermo").
+brother("Zoraida Palermo", "Joel Palermo").
+brother("Zoraida Palermo", "Roman Palermo").
+mother("Zoraida Palermo", "Ester Palermo").
+father("Zoraida Palermo", "Francisco Palermo").
+friend("Zoraida Palermo", "Monique Griffiths").
+friend("Zoraida Palermo", "Earle Cormier").
+friend("Zoraida Palermo", "Roxy Mcnew").
+friend("Zoraida Palermo", "Mona Pannell").
+friend("Zoraida Palermo", "Luisa Hornback").
+friend("Zoraida Palermo", "Stuart Abraham").
+friend("Zoraida Palermo", "Tessie Loftus").
+dob("Zoraida Palermo", "0371-01-07").
+job("Zoraida Palermo", "fine artist").
+hobby("Zoraida Palermo", "films").
+gender("Zoraida Palermo", "female").

@@ -1,0 +1,13 @@
+sister("Charles Levine", "Valeria Medellin").
+mother("Charles Levine", "Amberly Levine").
+father("Charles Levine", "Glenn Levine").
+friend("Charles Levine", "Logan Cushman").
+friend("Charles Levine", "Alina Bowles").
+friend("Charles Levine", "Valentina Robinett").
+friend("Charles Levine", "Donnie Mcgough").
+friend("Charles Levine", "Nellie Hamlin").
+friend("Charles Levine", "Lea Cordova").
+dob("Charles Levine", "0370-08-28").
+job("Charles Levine", "therapist").
+hobby("Charles Levine", "mycology").
+gender("Charles Levine", "male").

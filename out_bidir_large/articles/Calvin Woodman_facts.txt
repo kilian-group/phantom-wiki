@@ -1,0 +1,9 @@
+mother("Calvin Woodman", "Geri Woodman").
+father("Calvin Woodman", "Ron Woodman").
+friend("Calvin Woodman", "Elissa Cedillo").
+friend("Calvin Woodman", "Rosalinda Brannan").
+friend("Calvin Woodman", "Sol Cormier").
+dob("Calvin Woodman", "0348-05-23").
+job("Calvin Woodman", "prison officer").
+hobby("Calvin Woodman", "fishkeeping").
+gender("Calvin Woodman", "male").

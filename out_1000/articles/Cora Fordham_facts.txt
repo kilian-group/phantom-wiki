@@ -1,0 +1,13 @@
+mother("Cora Fordham", "Lashawnda Fordham").
+father("Cora Fordham", "Rodney Fordham").
+friend("Cora Fordham", "Miles Fordham").
+friend("Cora Fordham", "Jennie Burger").
+friend("Cora Fordham", "Calvin Carty").
+friend("Cora Fordham", "Gaye Swartz").
+friend("Cora Fordham", "Ginger Chou").
+friend("Cora Fordham", "Tomas Townsend").
+friend("Cora Fordham", "Maynard Latham").
+dob("Cora Fordham", "0548-05-16").
+job("Cora Fordham", "runner").
+hobby("Cora Fordham", "learning").
+gender("Cora Fordham", "female").

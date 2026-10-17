@@ -1,0 +1,21 @@
+brother("Domonique Fordham", "Carlos Noland").
+brother("Domonique Fordham", "Hubert Noland").
+mother("Domonique Fordham", "Flora Noland").
+father("Domonique Fordham", "Hugh Noland").
+son("Domonique Fordham", "Aaron Fordham").
+son("Domonique Fordham", "Mitchell Fordham").
+son("Domonique Fordham", "Sung Fordham").
+daughter("Domonique Fordham", "Kris Fordham").
+husband("Domonique Fordham", "Miles Fordham").
+friend("Domonique Fordham", "Elicia Fordham").
+friend("Domonique Fordham", "Dorathy Mckenna").
+friend("Domonique Fordham", "Rudolf Lai").
+friend("Domonique Fordham", "Melina Simons").
+friend("Domonique Fordham", "Abdul Morehead").
+friend("Domonique Fordham", "Katelyn Corwin").
+friend("Domonique Fordham", "Drema Schatz").
+friend("Domonique Fordham", "Judith Lebrun").
+dob("Domonique Fordham", "0462-11-29").
+job("Domonique Fordham", "chiropractor").
+hobby("Domonique Fordham", "ballroom dancing").
+gender("Domonique Fordham", "female").

@@ -1,0 +1,15 @@
+son("Rochelle Corwin", "Nathan Corwin").
+son("Rochelle Corwin", "Solomon Corwin").
+daughter("Rochelle Corwin", "Bee Corwin").
+daughter("Rochelle Corwin", "Delpha Younger").
+husband("Rochelle Corwin", "Spencer Corwin").
+friend("Rochelle Corwin", "Zora Morehead").
+friend("Rochelle Corwin", "Winfred Molina").
+friend("Rochelle Corwin", "Alvaro Murphey").
+friend("Rochelle Corwin", "Jamel Jarrett").
+friend("Rochelle Corwin", "Cedric Towns").
+friend("Rochelle Corwin", "Homer Morehead").
+dob("Rochelle Corwin", "0349-04-19").
+job("Rochelle Corwin", "commercial art gallery manager").
+hobby("Rochelle Corwin", "audiophile").
+gender("Rochelle Corwin", "female").

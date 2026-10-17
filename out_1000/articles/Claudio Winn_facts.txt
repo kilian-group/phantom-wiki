@@ -1,0 +1,16 @@
+sister("Claudio Winn", "Naomi Lai").
+mother("Claudio Winn", "Rheba Winn").
+father("Claudio Winn", "Brandon Winn").
+friend("Claudio Winn", "Kieth Bigelow").
+friend("Claudio Winn", "Ligia Frink").
+friend("Claudio Winn", "Isaiah Autry").
+friend("Claudio Winn", "Barabara Peeler").
+friend("Claudio Winn", "Edris Best").
+friend("Claudio Winn", "Kennith Towns").
+friend("Claudio Winn", "Christen Boutte").
+friend("Claudio Winn", "Mari Carreon").
+friend("Claudio Winn", "Darren Gilliam").
+dob("Claudio Winn", "0556-08-14").
+job("Claudio Winn", "minerals surveyor").
+hobby("Claudio Winn", "jogging").
+gender("Claudio Winn", "male").

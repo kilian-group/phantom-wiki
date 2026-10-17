@@ -1,0 +1,13 @@
+son("Yoshiko Crain", "Lucas Crain").
+son("Yoshiko Crain", "Thurman Crain").
+daughter("Yoshiko Crain", "Edythe Nicolas").
+daughter("Yoshiko Crain", "Zulema Crain").
+husband("Yoshiko Crain", "Theodore Crain").
+friend("Yoshiko Crain", "Edythe Earnest").
+friend("Yoshiko Crain", "Elwood Decosta").
+friend("Yoshiko Crain", "Craig Boutte").
+friend("Yoshiko Crain", "Rae Mcnew").
+dob("Yoshiko Crain", "0247-02-23").
+job("Yoshiko Crain", "health physicist").
+hobby("Yoshiko Crain", "social studies").
+gender("Yoshiko Crain", "female").

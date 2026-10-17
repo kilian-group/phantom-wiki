@@ -1,0 +1,19 @@
+daughter("Tashina Vandenberg", "Gayla Sanborn").
+husband("Tashina Vandenberg", "Eli Vandenberg").
+friend("Tashina Vandenberg", "Jeannette Mounts").
+friend("Tashina Vandenberg", "Shemika Hirsch").
+friend("Tashina Vandenberg", "Lynetta Mckenna").
+friend("Tashina Vandenberg", "Viva Suh").
+friend("Tashina Vandenberg", "Darin Hollinger").
+friend("Tashina Vandenberg", "Gregory Geter").
+friend("Tashina Vandenberg", "Dortha Ingle").
+friend("Tashina Vandenberg", "Harold Murray").
+friend("Tashina Vandenberg", "Rolf Osterman").
+friend("Tashina Vandenberg", "Ty Mahoney").
+friend("Tashina Vandenberg", "Rheba Resendez").
+friend("Tashina Vandenberg", "Vanessa Broughton").
+friend("Tashina Vandenberg", "Shannon Fredrick").
+dob("Tashina Vandenberg", "0347-11-11").
+job("Tashina Vandenberg", "diagnostic radiographer").
+hobby("Tashina Vandenberg", "benchmarking").
+gender("Tashina Vandenberg", "female").

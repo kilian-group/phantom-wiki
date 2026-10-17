@@ -1,0 +1,14 @@
+son("Mac Mounts", "Erik Mounts").
+wife("Mac Mounts", "Jeannette Mounts").
+friend("Mac Mounts", "Tommy Booth").
+friend("Mac Mounts", "Melina Simons").
+friend("Mac Mounts", "Emmanuel Swartz").
+friend("Mac Mounts", "Spencer Corwin").
+friend("Mac Mounts", "Donnie Dunlap").
+friend("Mac Mounts", "Jefferson Murdoch").
+friend("Mac Mounts", "Goldie Alessi").
+friend("Mac Mounts", "Mattie Courson").
+dob("Mac Mounts", "0436-08-04").
+job("Mac Mounts", "records manager").
+hobby("Mac Mounts", "ant farming").
+gender("Mac Mounts", "male").

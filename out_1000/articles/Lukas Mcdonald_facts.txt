@@ -1,0 +1,14 @@
+sister("Lukas Mcdonald", "Barb Linden").
+mother("Lukas Mcdonald", "Keisha Mcdonald").
+father("Lukas Mcdonald", "Julio Mcdonald").
+daughter("Lukas Mcdonald", "Miki Mcdonald").
+wife("Lukas Mcdonald", "Tiffany Mcdonald").
+friend("Lukas Mcdonald", "Shawnta Plumley").
+friend("Lukas Mcdonald", "Pedro Gordy").
+friend("Lukas Mcdonald", "Fatimah Holtz").
+friend("Lukas Mcdonald", "Rena Palm").
+friend("Lukas Mcdonald", "Racquel Wendel").
+dob("Lukas Mcdonald", "0444-03-17").
+job("Lukas Mcdonald", "sports therapist").
+hobby("Lukas Mcdonald", "teaching").
+gender("Lukas Mcdonald", "male").

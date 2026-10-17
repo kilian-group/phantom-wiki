@@ -1,0 +1,14 @@
+son("Lucio Townsend", "Terrance Townsend").
+wife("Lucio Townsend", "Adella Townsend").
+friend("Lucio Townsend", "Dena Morehead").
+friend("Lucio Townsend", "Janis Younger").
+friend("Lucio Townsend", "Salley Goff").
+friend("Lucio Townsend", "Rogelio Capps").
+friend("Lucio Townsend", "Normand Wilke").
+friend("Lucio Townsend", "Sylvester Hamlin").
+friend("Lucio Townsend", "Mose Jarrett").
+friend("Lucio Townsend", "Lauretta Callender").
+dob("Lucio Townsend", "0472-11-05").
+job("Lucio Townsend", "ergonomist").
+hobby("Lucio Townsend", "knife throwing").
+gender("Lucio Townsend", "male").

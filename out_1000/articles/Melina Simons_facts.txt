@@ -1,0 +1,15 @@
+son("Melina Simons", "Bryon Simons").
+husband("Melina Simons", "Harley Simons").
+friend("Melina Simons", "Deirdre Niles").
+friend("Melina Simons", "Domonique Fordham").
+friend("Melina Simons", "Julianne Hamlin").
+friend("Melina Simons", "Mac Mounts").
+friend("Melina Simons", "Perry Kell").
+friend("Melina Simons", "Lauretta Callender").
+friend("Melina Simons", "Vilma Callender").
+friend("Melina Simons", "Karol Beamon").
+friend("Melina Simons", "Sonny Peeler").
+dob("Melina Simons", "0447-08-20").
+job("Melina Simons", "mechanical engineer").
+hobby("Melina Simons", "trainspotting").
+gender("Melina Simons", "female").

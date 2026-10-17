@@ -1,0 +1,12 @@
+son("Micheal Speaks", "Donny Speaks").
+daughter("Micheal Speaks", "Ashely Speaks").
+wife("Micheal Speaks", "Larue Speaks").
+friend("Micheal Speaks", "Rogelio Mckenna").
+friend("Micheal Speaks", "Logan Swartz").
+friend("Micheal Speaks", "Dena Morehead").
+friend("Micheal Speaks", "Jamal Marr").
+friend("Micheal Speaks", "Leonora Depriest").
+dob("Micheal Speaks", "0400-01-02").
+job("Micheal Speaks", "radiographer").
+hobby("Micheal Speaks", "beekeeping").
+gender("Micheal Speaks", "male").

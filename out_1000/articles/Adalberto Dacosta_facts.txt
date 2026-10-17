@@ -1,0 +1,14 @@
+brother("Adalberto Dacosta", "Nickolas Dacosta").
+mother("Adalberto Dacosta", "Ai Dacosta").
+father("Adalberto Dacosta", "Desmond Dacosta").
+friend("Adalberto Dacosta", "Ricky Carswell").
+friend("Adalberto Dacosta", "Erick Courson").
+friend("Adalberto Dacosta", "Avery Nolasco").
+friend("Adalberto Dacosta", "Deja Bigelow").
+friend("Adalberto Dacosta", "Cleo Peeler").
+friend("Adalberto Dacosta", "Eli Younger").
+friend("Adalberto Dacosta", "Isaiah Resendez").
+dob("Adalberto Dacosta", "0448-04-28").
+job("Adalberto Dacosta", "ceramics designer").
+hobby("Adalberto Dacosta", "deltiology").
+gender("Adalberto Dacosta", "male").

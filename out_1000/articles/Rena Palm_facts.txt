@@ -1,0 +1,20 @@
+sister("Rena Palm", "Scottie Fordham").
+mother("Rena Palm", "Jewell Fordham").
+father("Rena Palm", "Olin Fordham").
+daughter("Rena Palm", "Audie Lasher").
+daughter("Rena Palm", "Ligia Frink").
+husband("Rena Palm", "Dwight Palm").
+friend("Rena Palm", "Trudy Lasher").
+friend("Rena Palm", "Danny Cowart").
+friend("Rena Palm", "Lukas Mcdonald").
+friend("Rena Palm", "Josef Corwin").
+friend("Rena Palm", "Truman Holtz").
+friend("Rena Palm", "Fernando Vandenberg").
+friend("Rena Palm", "Wendell Monday").
+friend("Rena Palm", "Nicky Gordon").
+friend("Rena Palm", "Elisabeth Bauman").
+friend("Rena Palm", "Noelia Lasher").
+dob("Rena Palm", "0333-11-13").
+job("Rena Palm", "social researcher").
+hobby("Rena Palm", "stamp collecting").
+gender("Rena Palm", "female").

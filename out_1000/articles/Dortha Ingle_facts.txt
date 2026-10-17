@@ -1,0 +1,16 @@
+sister("Dortha Ingle", "Larae Kirksey").
+sister("Dortha Ingle", "Paula Lazar").
+mother("Dortha Ingle", "Florence Ingle").
+father("Dortha Ingle", "Elliott Ingle").
+friend("Dortha Ingle", "Davis Eaves").
+friend("Dortha Ingle", "Brendon Dunlap").
+friend("Dortha Ingle", "Robyn Forester").
+friend("Dortha Ingle", "Solomon Strong").
+friend("Dortha Ingle", "Tashina Vandenberg").
+friend("Dortha Ingle", "Emory Layton").
+friend("Dortha Ingle", "Wendell Monday").
+friend("Dortha Ingle", "Emil Wendel").
+dob("Dortha Ingle", "0344-11-16").
+job("Dortha Ingle", "health service manager").
+hobby("Dortha Ingle", "geocaching").
+gender("Dortha Ingle", "female").

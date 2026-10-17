@@ -1,0 +1,13 @@
+mother("Roland Earnest", "Hazel Earnest").
+father("Roland Earnest", "Mickey Earnest").
+son("Roland Earnest", "Benton Earnest").
+daughter("Roland Earnest", "Geri Woodman").
+wife("Roland Earnest", "Maria Earnest").
+friend("Roland Earnest", "Daisy Beltran").
+friend("Roland Earnest", "Amberly Mcnew").
+friend("Roland Earnest", "Merrill Mcnew").
+friend("Roland Earnest", "Carrol Nicolas").
+dob("Roland Earnest", "0285-01-09").
+job("Roland Earnest", "curator").
+hobby("Roland Earnest", "satellite watching").
+gender("Roland Earnest", "male").

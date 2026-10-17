@@ -1,0 +1,12 @@
+brother("Maxwell Henderson", "Milton Henderson").
+brother("Maxwell Henderson", "Stefan Henderson").
+mother("Maxwell Henderson", "Jung Henderson").
+father("Maxwell Henderson", "Marko Henderson").
+friend("Maxwell Henderson", "Cherry Nicolas").
+friend("Maxwell Henderson", "Ulysses Nicolas").
+friend("Maxwell Henderson", "Brian Beltran").
+friend("Maxwell Henderson", "Deane Smock").
+dob("Maxwell Henderson", "0251-06-10").
+job("Maxwell Henderson", "chartered loss adjuster").
+hobby("Maxwell Henderson", "gongoozling").
+gender("Maxwell Henderson", "male").

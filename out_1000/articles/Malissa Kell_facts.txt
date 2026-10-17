@@ -1,0 +1,20 @@
+sister("Malissa Kell", "Eva Kell").
+sister("Malissa Kell", "Tomasa Kell").
+brother("Malissa Kell", "Dewitt Kell").
+brother("Malissa Kell", "Stan Kell").
+mother("Malissa Kell", "Barbar Kell").
+father("Malissa Kell", "Felton Kell").
+friend("Malissa Kell", "Walter Kell").
+friend("Malissa Kell", "Samual Knepper").
+friend("Malissa Kell", "Mason Dangelo").
+friend("Malissa Kell", "Steve Storey").
+friend("Malissa Kell", "Edythe Littleton").
+friend("Malissa Kell", "Gale Dana").
+friend("Malissa Kell", "Toney Gibbs").
+friend("Malissa Kell", "Elijah Hamlin").
+friend("Malissa Kell", "Helena Hamlin").
+friend("Malissa Kell", "Freeda Jarrett").
+dob("Malissa Kell", "0411-01-29").
+job("Malissa Kell", "airline pilot").
+hobby("Malissa Kell", "science and technology studies").
+gender("Malissa Kell", "female").

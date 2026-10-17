@@ -1,0 +1,20 @@
+daughter("Salvador Plumley", "Janey Plumley").
+daughter("Salvador Plumley", "Shawnta Plumley").
+wife("Salvador Plumley", "Lea Plumley").
+friend("Salvador Plumley", "Cordell Younger").
+friend("Salvador Plumley", "Wade Lebrun").
+friend("Salvador Plumley", "Anastasia Keyes").
+friend("Salvador Plumley", "Patrice Dunlap").
+friend("Salvador Plumley", "Patrick Broughton").
+friend("Salvador Plumley", "Alyssa Salem").
+friend("Salvador Plumley", "Vance Fredrick").
+friend("Salvador Plumley", "Hiram Putnam").
+friend("Salvador Plumley", "Rowena Lazar").
+friend("Salvador Plumley", "Milton Littleton").
+friend("Salvador Plumley", "Shelba Simons").
+friend("Salvador Plumley", "Louie Bales").
+friend("Salvador Plumley", "Shante Ruth").
+dob("Salvador Plumley", "0431-06-19").
+job("Salvador Plumley", "audiological scientist").
+hobby("Salvador Plumley", "microscopy").
+gender("Salvador Plumley", "male").

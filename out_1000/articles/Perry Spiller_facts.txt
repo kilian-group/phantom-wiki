@@ -1,0 +1,11 @@
+mother("Perry Spiller", "Ashleigh Spiller").
+father("Perry Spiller", "Carrol Spiller").
+friend("Perry Spiller", "Bradford Oliveira").
+friend("Perry Spiller", "Edmundo Fordham").
+friend("Perry Spiller", "Mitchell Fordham").
+friend("Perry Spiller", "Shelia Carty").
+friend("Perry Spiller", "Ollie Omara").
+dob("Perry Spiller", "0455-10-20").
+job("Perry Spiller", "physiotherapist").
+hobby("Perry Spiller", "aerospace").
+gender("Perry Spiller", "male").

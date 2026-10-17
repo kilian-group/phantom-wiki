@@ -1,0 +1,14 @@
+brother("Evette Knepper", "Collin Lasher").
+brother("Evette Knepper", "Shayne Lasher").
+mother("Evette Knepper", "Sona Lasher").
+father("Evette Knepper", "Newton Lasher").
+son("Evette Knepper", "Laurence Knepper").
+husband("Evette Knepper", "Samual Knepper").
+friend("Evette Knepper", "Sheila Conner").
+friend("Evette Knepper", "Dani Dalton").
+friend("Evette Knepper", "Shante Gilliam").
+friend("Evette Knepper", "Elroy Hamlin").
+dob("Evette Knepper", "0364-04-28").
+job("Evette Knepper", "planning and development surveyor").
+hobby("Evette Knepper", "darts").
+gender("Evette Knepper", "female").

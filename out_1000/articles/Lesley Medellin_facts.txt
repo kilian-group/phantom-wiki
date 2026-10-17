@@ -1,0 +1,10 @@
+sister("Lesley Medellin", "Lera Mcpeak").
+brother("Lesley Medellin", "Robt Medellin").
+mother("Lesley Medellin", "Bev Medellin").
+father("Lesley Medellin", "Foster Medellin").
+friend("Lesley Medellin", "Lea Cordova").
+friend("Lesley Medellin", "Marlene Ingalls").
+dob("Lesley Medellin", "0379-01-10").
+job("Lesley Medellin", "airline pilot").
+hobby("Lesley Medellin", "meditation").
+gender("Lesley Medellin", "male").

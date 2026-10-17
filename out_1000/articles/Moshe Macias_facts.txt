@@ -1,0 +1,18 @@
+brother("Moshe Macias", "Laurence Macias").
+brother("Moshe Macias", "Levi Macias").
+mother("Moshe Macias", "Larue Macias").
+father("Moshe Macias", "Lon Macias").
+friend("Moshe Macias", "Zoraida Sanborn").
+friend("Moshe Macias", "Oscar Schram").
+friend("Moshe Macias", "Cleo Gregory").
+friend("Moshe Macias", "Heather Ingalls").
+friend("Moshe Macias", "Brunilda Linden").
+friend("Moshe Macias", "Edmundo Mcpeak").
+friend("Moshe Macias", "Roger Mcpeak").
+friend("Moshe Macias", "Anderson Fredrick").
+friend("Moshe Macias", "Nickolas Holtz").
+friend("Moshe Macias", "Barabara Wilke").
+dob("Moshe Macias", "0470-08-25").
+job("Moshe Macias", "music tutor").
+hobby("Moshe Macias", "surfing").
+gender("Moshe Macias", "male").

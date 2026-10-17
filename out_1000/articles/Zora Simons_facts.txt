@@ -1,0 +1,19 @@
+sister("Zora Simons", "Heather Ingalls").
+mother("Zora Simons", "Sharon Ingalls").
+father("Zora Simons", "Charlie Ingalls").
+son("Zora Simons", "Luis Simons").
+son("Zora Simons", "Sammie Simons").
+son("Zora Simons", "Timothy Simons").
+daughter("Zora Simons", "Coleen Lively").
+husband("Zora Simons", "Bert Simons").
+friend("Zora Simons", "Tianna Goff").
+friend("Zora Simons", "Hank Gerber").
+friend("Zora Simons", "Goldie Alessi").
+friend("Zora Simons", "Lindy Hudgens").
+friend("Zora Simons", "Laverna Kell").
+friend("Zora Simons", "Magdalena Cordova").
+friend("Zora Simons", "Coleen Lively").
+dob("Zora Simons", "0386-09-19").
+job("Zora Simons", "chief marketing officer").
+hobby("Zora Simons", "rock balancing").
+gender("Zora Simons", "female").

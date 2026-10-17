@@ -1,0 +1,20 @@
+son("Bret Smart", "Drew Smart").
+wife("Bret Smart", "Karina Smart").
+friend("Bret Smart", "Demetra Medellin").
+friend("Bret Smart", "Noel Chisholm").
+friend("Bret Smart", "Erick Courson").
+friend("Bret Smart", "Leslie Courson").
+friend("Bret Smart", "Louis Upton").
+friend("Bret Smart", "Janey Kell").
+friend("Bret Smart", "James Maness").
+friend("Bret Smart", "Stanford Suh").
+friend("Bret Smart", "Veronica Cowart").
+friend("Bret Smart", "Sarah Steadman").
+friend("Bret Smart", "Skye Swartz").
+friend("Bret Smart", "Thomas Flores").
+friend("Bret Smart", "Homer Morehead").
+friend("Bret Smart", "Ruben Corwin").
+dob("Bret Smart", "0343-12-25").
+job("Bret Smart", "personal assistant").
+hobby("Bret Smart", "video game collecting").
+gender("Bret Smart", "male").

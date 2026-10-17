@@ -1,0 +1,10 @@
+son("Major Burkhalter", "Jake Burkhalter").
+daughter("Major Burkhalter", "Alexa Mckenna").
+wife("Major Burkhalter", "Diane Burkhalter").
+friend("Major Burkhalter", "Magdalena Hollinger").
+friend("Major Burkhalter", "Elroy Goff").
+friend("Major Burkhalter", "Robyn Forester").
+dob("Major Burkhalter", "0437-09-12").
+job("Major Burkhalter", "computer games developer").
+hobby("Major Burkhalter", "metal detecting").
+gender("Major Burkhalter", "male").

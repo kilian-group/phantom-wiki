@@ -1,0 +1,15 @@
+sister("Tyesha Marr", "Robyn Forester").
+mother("Tyesha Marr", "Rubye Forester").
+father("Tyesha Marr", "Isaias Forester").
+son("Tyesha Marr", "Lyman Marr").
+son("Tyesha Marr", "Randal Marr").
+husband("Tyesha Marr", "Jamal Marr").
+friend("Tyesha Marr", "Julio Mcgough").
+friend("Tyesha Marr", "Pamala Vanmeter").
+friend("Tyesha Marr", "Andrew Sutphin").
+friend("Tyesha Marr", "Jody Valladares").
+friend("Tyesha Marr", "Lashanda Hartung").
+dob("Tyesha Marr", "0373-12-22").
+job("Tyesha Marr", "diagnostic radiographer").
+hobby("Tyesha Marr", "model united nations").
+gender("Tyesha Marr", "female").

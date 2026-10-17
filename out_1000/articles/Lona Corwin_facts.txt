@@ -1,0 +1,21 @@
+mother("Lona Corwin", "Jo Corwin").
+father("Lona Corwin", "Robby Corwin").
+friend("Lona Corwin", "Krystyna Schatz").
+friend("Lona Corwin", "Vernon Peabody").
+friend("Lona Corwin", "Alyssa Salem").
+friend("Lona Corwin", "Amberly Levine").
+friend("Lona Corwin", "Bev Medellin").
+friend("Lona Corwin", "Carlos Noland").
+friend("Lona Corwin", "Gwenn Tyree").
+friend("Lona Corwin", "Jackie Vandenberg").
+friend("Lona Corwin", "Ashely Speaks").
+friend("Lona Corwin", "Fredrick Mckenna").
+friend("Lona Corwin", "Aldo Paynter").
+friend("Lona Corwin", "Gena Brumbaugh").
+friend("Lona Corwin", "Jerald Murray").
+friend("Lona Corwin", "Faith Linden").
+friend("Lona Corwin", "Ethan Younger").
+dob("Lona Corwin", "0425-05-24").
+job("Lona Corwin", "sports therapist").
+hobby("Lona Corwin", "antiquities").
+gender("Lona Corwin", "female").

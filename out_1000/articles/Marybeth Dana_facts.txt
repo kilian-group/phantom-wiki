@@ -1,0 +1,21 @@
+sister("Marybeth Dana", "Alice Dana").
+sister("Marybeth Dana", "Estella Dana").
+brother("Marybeth Dana", "Gale Dana").
+brother("Marybeth Dana", "Jon Dana").
+mother("Marybeth Dana", "Addie Dana").
+father("Marybeth Dana", "Drew Dana").
+friend("Marybeth Dana", "Mickey Eaves").
+friend("Marybeth Dana", "Tanya Molina").
+friend("Marybeth Dana", "Rogelio Dunlap").
+friend("Marybeth Dana", "Lindy Kavanaugh").
+friend("Marybeth Dana", "Leonora Depriest").
+friend("Marybeth Dana", "Zoraida Sanborn").
+friend("Marybeth Dana", "Maryam Maness").
+friend("Marybeth Dana", "Gregory Geter").
+friend("Marybeth Dana", "Jesus Gregory").
+friend("Marybeth Dana", "Milford Simons").
+friend("Marybeth Dana", "Lakeshia Steadman").
+dob("Marybeth Dana", "0425-12-07").
+job("Marybeth Dana", "diplomatic services operational officer").
+hobby("Marybeth Dana", "satellite watching").
+gender("Marybeth Dana", "female").

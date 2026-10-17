@@ -1,0 +1,12 @@
+daughter("King Dishman", "Sherrie Remillard").
+wife("King Dishman", "Aurelia Dishman").
+friend("King Dishman", "Charley Vandenberg").
+friend("King Dishman", "Luke Wilke").
+friend("King Dishman", "Marion Wilke").
+friend("King Dishman", "Rhoda Narvaez").
+friend("King Dishman", "Jaime Remillard").
+friend("King Dishman", "Justine Remillard").
+dob("King Dishman", "0247-09-28").
+job("King Dishman", "diagnostic radiographer").
+hobby("King Dishman", "benchmarking").
+gender("King Dishman", "male").

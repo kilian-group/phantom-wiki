@@ -1,0 +1,16 @@
+son("Sammy Dunlap", "Donnie Dunlap").
+son("Sammy Dunlap", "Kenton Dunlap").
+daughter("Sammy Dunlap", "Patrice Dunlap").
+wife("Sammy Dunlap", "Katerine Dunlap").
+friend("Sammy Dunlap", "Johanna Sanborn").
+friend("Sammy Dunlap", "Cary Layton").
+friend("Sammy Dunlap", "Royce Callender").
+friend("Sammy Dunlap", "Maurine Wendel").
+friend("Sammy Dunlap", "Brunilda Linden").
+friend("Sammy Dunlap", "Christen Corwin").
+friend("Sammy Dunlap", "Livia Corwin").
+friend("Sammy Dunlap", "Eula Hollins").
+dob("Sammy Dunlap", "0287-09-27").
+job("Sammy Dunlap", "chartered certified accountant").
+hobby("Sammy Dunlap", "ice hockey").
+gender("Sammy Dunlap", "male").

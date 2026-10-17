@@ -1,0 +1,13 @@
+mother("Rowena Lazar", "Paula Lazar").
+father("Rowena Lazar", "Lon Lazar").
+friend("Rowena Lazar", "Keisha Mcdonald").
+friend("Rowena Lazar", "Scottie Steadman").
+friend("Rowena Lazar", "Kyong Eaves").
+friend("Rowena Lazar", "Salvador Plumley").
+friend("Rowena Lazar", "Hope Arteaga").
+friend("Rowena Lazar", "Sang Cheney").
+friend("Rowena Lazar", "Anneliese Pellegrino").
+dob("Rowena Lazar", "0381-11-11").
+job("Rowena Lazar", "herbalist").
+hobby("Rowena Lazar", "horseback riding").
+gender("Rowena Lazar", "female").

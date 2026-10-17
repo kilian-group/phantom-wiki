@@ -1,0 +1,16 @@
+daughter("Gayla Dorn", "Rosalinda Layton").
+husband("Gayla Dorn", "Gerry Dorn").
+friend("Gayla Dorn", "Emma Wellington").
+friend("Gayla Dorn", "Garland Hirsch").
+friend("Gayla Dorn", "Roscoe Lindquist").
+friend("Gayla Dorn", "Mason Dangelo").
+friend("Gayla Dorn", "Maegan Cordova").
+friend("Gayla Dorn", "Tony Gillam").
+friend("Gayla Dorn", "Raleigh Simons").
+friend("Gayla Dorn", "Victor Steadman").
+friend("Gayla Dorn", "Virgina Noland").
+friend("Gayla Dorn", "Tamala Skidmore").
+dob("Gayla Dorn", "0368-08-01").
+job("Gayla Dorn", "contractor").
+hobby("Gayla Dorn", "learning").
+gender("Gayla Dorn", "female").

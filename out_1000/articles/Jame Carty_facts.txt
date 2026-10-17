@@ -1,0 +1,13 @@
+son("Jame Carty", "Calvin Carty").
+daughter("Jame Carty", "Shelia Carty").
+wife("Jame Carty", "Sylvia Carty").
+friend("Jame Carty", "Geraldine Suh").
+friend("Jame Carty", "Georgine Mahoney").
+friend("Jame Carty", "Spencer Corwin").
+friend("Jame Carty", "Ligia Wylie").
+friend("Jame Carty", "Levi Fredrick").
+friend("Jame Carty", "Monty Depriest").
+dob("Jame Carty", "0376-08-20").
+job("Jame Carty", "financial controller").
+hobby("Jame Carty", "magnet fishing").
+gender("Jame Carty", "male").

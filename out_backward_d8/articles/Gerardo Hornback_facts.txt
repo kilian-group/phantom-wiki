@@ -1,0 +1,14 @@
+son("Gerardo Hornback", "Reinaldo Hornback").
+daughter("Gerardo Hornback", "Luisa Hornback").
+wife("Gerardo Hornback", "Karla Hornback").
+friend("Gerardo Hornback", "Ned Cedillo").
+friend("Gerardo Hornback", "Effie Schoonmaker").
+friend("Gerardo Hornback", "Elissa Kovach").
+friend("Gerardo Hornback", "Zoila Mason").
+friend("Gerardo Hornback", "Aida Wang").
+friend("Gerardo Hornback", "Deane Smock").
+friend("Gerardo Hornback", "Geri Deluna").
+dob("Gerardo Hornback", "0192-01-19").
+job("Gerardo Hornback", "economist").
+hobby("Gerardo Hornback", "leaves").
+gender("Gerardo Hornback", "male").

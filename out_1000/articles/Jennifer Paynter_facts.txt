@@ -1,0 +1,15 @@
+sister("Jennifer Paynter", "Aletha Crocker").
+mother("Jennifer Paynter", "Randi Crocker").
+father("Jennifer Paynter", "Donnie Crocker").
+son("Jennifer Paynter", "Aldo Paynter").
+husband("Jennifer Paynter", "Hank Paynter").
+friend("Jennifer Paynter", "Boris Machado").
+friend("Jennifer Paynter", "Maximilian Keyes").
+friend("Jennifer Paynter", "Edythe Gilliam").
+friend("Jennifer Paynter", "Harry Hudgens").
+friend("Jennifer Paynter", "Jeannette Mounts").
+friend("Jennifer Paynter", "Ollie Kell").
+dob("Jennifer Paynter", "0455-04-21").
+job("Jennifer Paynter", "architectural technologist").
+hobby("Jennifer Paynter", "quidditch").
+gender("Jennifer Paynter", "female").

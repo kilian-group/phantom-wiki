@@ -1,0 +1,19 @@
+brother("Levi Macias", "Laurence Macias").
+brother("Levi Macias", "Moshe Macias").
+mother("Levi Macias", "Larue Macias").
+father("Levi Macias", "Lon Macias").
+daughter("Levi Macias", "Laverna Macias").
+wife("Levi Macias", "Lynette Macias").
+friend("Levi Macias", "Dino Layman").
+friend("Levi Macias", "Carol Conner").
+friend("Levi Macias", "Chau Peeler").
+friend("Levi Macias", "Dustin Peeler").
+friend("Levi Macias", "Juanita Dana").
+friend("Levi Macias", "Devon Leclair").
+friend("Levi Macias", "Stevie Joiner").
+friend("Levi Macias", "Amberly Levine").
+friend("Levi Macias", "Byron Medellin").
+dob("Levi Macias", "0471-08-13").
+job("Levi Macias", "horticultural consultant").
+hobby("Levi Macias", "handball").
+gender("Levi Macias", "male").

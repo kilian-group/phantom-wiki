@@ -1,0 +1,13 @@
+brother("Kendrick Bauman", "Gustavo Bauman").
+mother("Kendrick Bauman", "Elisabeth Bauman").
+father("Kendrick Bauman", "Lester Bauman").
+friend("Kendrick Bauman", "Phil Murray").
+friend("Kendrick Bauman", "Brunilda Linden").
+friend("Kendrick Bauman", "Robby Corwin").
+friend("Kendrick Bauman", "Shirley Dalton").
+friend("Kendrick Bauman", "Lenny Courson").
+friend("Kendrick Bauman", "Seth Mounts").
+dob("Kendrick Bauman", "0377-12-08").
+job("Kendrick Bauman", "furniture designer").
+hobby("Kendrick Bauman", "antiquities").
+gender("Kendrick Bauman", "male").

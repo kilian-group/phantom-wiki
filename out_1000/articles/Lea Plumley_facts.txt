@@ -1,0 +1,19 @@
+sister("Lea Plumley", "Christen Boutte").
+brother("Lea Plumley", "Tyrone Linares").
+mother("Lea Plumley", "Karla Linares").
+father("Lea Plumley", "Elijah Linares").
+daughter("Lea Plumley", "Janey Plumley").
+daughter("Lea Plumley", "Shawnta Plumley").
+husband("Lea Plumley", "Salvador Plumley").
+friend("Lea Plumley", "Carlene Corwin").
+friend("Lea Plumley", "Josef Corwin").
+friend("Lea Plumley", "Emanuel Mccall").
+friend("Lea Plumley", "Lura Leclair").
+friend("Lea Plumley", "Avery Ballard").
+friend("Lea Plumley", "Janiece Cordova").
+friend("Lea Plumley", "Catina Linden").
+friend("Lea Plumley", "Katy Flores").
+dob("Lea Plumley", "0428-08-27").
+job("Lea Plumley", "aeronautical engineer").
+hobby("Lea Plumley", "radio-controlled model playing").
+gender("Lea Plumley", "female").

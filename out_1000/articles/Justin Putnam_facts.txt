@@ -1,0 +1,16 @@
+mother("Justin Putnam", "Artie Putnam").
+father("Justin Putnam", "Hiram Putnam").
+son("Justin Putnam", "Marvin Putnam").
+daughter("Justin Putnam", "Lurline Tyree").
+wife("Justin Putnam", "Rosina Putnam").
+friend("Justin Putnam", "Carroll Lindquist").
+friend("Justin Putnam", "Lester Bauman").
+friend("Justin Putnam", "Bonnie Storey").
+friend("Justin Putnam", "Frankie Mahoney").
+friend("Justin Putnam", "Vanessa Broughton").
+friend("Justin Putnam", "Lucile Hurt").
+friend("Justin Putnam", "Graciela Burger").
+dob("Justin Putnam", "0440-08-18").
+job("Justin Putnam", "health and safety adviser").
+hobby("Justin Putnam", "rail transport modelling").
+gender("Justin Putnam", "male").

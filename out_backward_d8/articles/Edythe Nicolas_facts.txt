@@ -1,0 +1,19 @@
+sister("Edythe Nicolas", "Zulema Crain").
+brother("Edythe Nicolas", "Lucas Crain").
+brother("Edythe Nicolas", "Thurman Crain").
+mother("Edythe Nicolas", "Yoshiko Crain").
+father("Edythe Nicolas", "Theodore Crain").
+son("Edythe Nicolas", "Eldon Nicolas").
+daughter("Edythe Nicolas", "Connie Nicolas").
+daughter("Edythe Nicolas", "Lera Brook").
+daughter("Edythe Nicolas", "Marilyn Nicolas").
+husband("Edythe Nicolas", "Anthony Nicolas").
+friend("Edythe Nicolas", "Rosina Lizotte").
+friend("Edythe Nicolas", "Maria Earnest").
+friend("Edythe Nicolas", "Kevin Boutte").
+friend("Edythe Nicolas", "Zoila Mason").
+friend("Edythe Nicolas", "Geri Deluna").
+dob("Edythe Nicolas", "0273-10-10").
+job("Edythe Nicolas", "commercial horticulturist").
+hobby("Edythe Nicolas", "darts").
+gender("Edythe Nicolas", "female").

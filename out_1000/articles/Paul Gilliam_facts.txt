@@ -1,0 +1,12 @@
+brother("Paul Gilliam", "Kareem Gilliam").
+mother("Paul Gilliam", "Edythe Gilliam").
+father("Paul Gilliam", "Monroe Gilliam").
+friend("Paul Gilliam", "Sylvia Gilliam").
+friend("Paul Gilliam", "Christina Smart").
+friend("Paul Gilliam", "Elicia Fordham").
+friend("Paul Gilliam", "Hollis Theriot").
+friend("Paul Gilliam", "Abe Kell").
+dob("Paul Gilliam", "0290-03-09").
+job("Paul Gilliam", "careers information officer").
+hobby("Paul Gilliam", "jurisprudential").
+gender("Paul Gilliam", "male").

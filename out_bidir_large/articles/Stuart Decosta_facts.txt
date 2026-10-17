@@ -1,0 +1,10 @@
+son("Stuart Decosta", "Elwood Decosta").
+son("Stuart Decosta", "Jacques Decosta").
+daughter("Stuart Decosta", "Laurel Decosta").
+daughter("Stuart Decosta", "Margo Brannan").
+wife("Stuart Decosta", "Zoila Decosta").
+friend("Stuart Decosta", "Clayton Shirk").
+dob("Stuart Decosta", "0162-09-10").
+job("Stuart Decosta", "radio producer").
+hobby("Stuart Decosta", "horseshoes").
+gender("Stuart Decosta", "male").

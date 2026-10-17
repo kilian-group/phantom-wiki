@@ -1,0 +1,10 @@
+brother("Goldie Beamon", "Maxwell Beamon").
+mother("Goldie Beamon", "Valentina Beamon").
+father("Goldie Beamon", "Mickey Beamon").
+friend("Goldie Beamon", "Elyse Mahoney").
+friend("Goldie Beamon", "Ashleigh Galvan").
+friend("Goldie Beamon", "Mose Jarrett").
+dob("Goldie Beamon", "0426-02-01").
+job("Goldie Beamon", "analytical chemist").
+hobby("Goldie Beamon", "unicycling").
+gender("Goldie Beamon", "female").

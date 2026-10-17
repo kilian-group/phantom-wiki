@@ -1,0 +1,11 @@
+sister("Hannah Palermo", "Monique Palermo").
+sister("Hannah Palermo", "Rosanna Palermo").
+brother("Hannah Palermo", "Francisco Palermo").
+mother("Hannah Palermo", "Sylvia Palermo").
+father("Hannah Palermo", "Enoch Palermo").
+friend("Hannah Palermo", "Williams Smock").
+friend("Hannah Palermo", "Cherry Nicolas").
+dob("Hannah Palermo", "0339-01-11").
+job("Hannah Palermo", "insurance account manager").
+hobby("Hannah Palermo", "fishkeeping").
+gender("Hannah Palermo", "female").

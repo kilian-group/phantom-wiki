@@ -1,0 +1,13 @@
+daughter("Pansy Sutphin", "Evette Hamlin").
+husband("Pansy Sutphin", "Son Sutphin").
+friend("Pansy Sutphin", "Erik Mounts").
+friend("Pansy Sutphin", "Marlene Ingalls").
+friend("Pansy Sutphin", "Irwin Arteaga").
+friend("Pansy Sutphin", "Nydia Hollins").
+friend("Pansy Sutphin", "Vernon Peabody").
+friend("Pansy Sutphin", "Yoshiko Niles").
+friend("Pansy Sutphin", "Tamara Wylie").
+dob("Pansy Sutphin", "0326-07-08").
+job("Pansy Sutphin", "financial controller").
+hobby("Pansy Sutphin", "table tennis").
+gender("Pansy Sutphin", "female").

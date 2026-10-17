@@ -1,0 +1,16 @@
+sister("Cole Mcnew", "Jeanelle Mcnew").
+brother("Cole Mcnew", "Marcelino Mcnew").
+brother("Cole Mcnew", "Merrill Mcnew").
+mother("Cole Mcnew", "Lorelei Mcnew").
+father("Cole Mcnew", "Don Mcnew").
+son("Cole Mcnew", "Ernesto Mcnew").
+son("Cole Mcnew", "Garry Mcnew").
+son("Cole Mcnew", "Hayden Mcnew").
+wife("Cole Mcnew", "Roxy Mcnew").
+friend("Cole Mcnew", "Ernesto Mcnew").
+friend("Cole Mcnew", "Laverna Kovach").
+friend("Cole Mcnew", "Ricardo Hackworth").
+dob("Cole Mcnew", "0308-06-30").
+job("Cole Mcnew", "games developer").
+hobby("Cole Mcnew", "sea glass collecting").
+gender("Cole Mcnew", "male").

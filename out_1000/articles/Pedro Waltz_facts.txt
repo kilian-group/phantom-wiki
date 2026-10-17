@@ -1,0 +1,13 @@
+sister("Pedro Waltz", "Evelia Waltz").
+sister("Pedro Waltz", "Flora Noland").
+mother("Pedro Waltz", "Madalene Waltz").
+father("Pedro Waltz", "Harold Waltz").
+friend("Pedro Waltz", "Dawn Rinehart").
+friend("Pedro Waltz", "Maurine Layman").
+friend("Pedro Waltz", "Ellis Brumbaugh").
+friend("Pedro Waltz", "Harold Murray").
+friend("Pedro Waltz", "Eldon Cushman").
+dob("Pedro Waltz", "0444-03-20").
+job("Pedro Waltz", "stage manager").
+hobby("Pedro Waltz", "trainspotting").
+gender("Pedro Waltz", "male").

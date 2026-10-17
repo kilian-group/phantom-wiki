@@ -1,0 +1,10 @@
+daughter("Ellis Glass", "Emma Bowles").
+wife("Ellis Glass", "Toni Glass").
+friend("Ellis Glass", "Jarvis Valladares").
+friend("Ellis Glass", "Jo Corwin").
+friend("Ellis Glass", "Michael Goff").
+friend("Ellis Glass", "Meghan Keyes").
+dob("Ellis Glass", "0391-09-12").
+job("Ellis Glass", "bookseller").
+hobby("Ellis Glass", "car riding").
+gender("Ellis Glass", "male").

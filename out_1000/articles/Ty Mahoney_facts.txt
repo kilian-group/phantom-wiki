@@ -1,0 +1,17 @@
+mother("Ty Mahoney", "Georgine Mahoney").
+father("Ty Mahoney", "Jerry Mahoney").
+daughter("Ty Mahoney", "Ashton Mahoney").
+wife("Ty Mahoney", "Elyse Mahoney").
+friend("Ty Mahoney", "Bee Corwin").
+friend("Ty Mahoney", "Shirley Ibarra").
+friend("Ty Mahoney", "Tashina Vandenberg").
+friend("Ty Mahoney", "Tiesha Deville").
+friend("Ty Mahoney", "Gerry Dorn").
+friend("Ty Mahoney", "Winnie Harlow").
+friend("Ty Mahoney", "Janiece Cordova").
+friend("Ty Mahoney", "Cordelia Murray").
+friend("Ty Mahoney", "Latisha Murchison").
+dob("Ty Mahoney", "0410-03-25").
+job("Ty Mahoney", "forest manager").
+hobby("Ty Mahoney", "vehicle restoration").
+gender("Ty Mahoney", "male").

@@ -1,0 +1,12 @@
+sister("Carson Kovach", "Elissa Kovach").
+sister("Carson Kovach", "Laverna Kovach").
+brother("Carson Kovach", "Charlie Kovach").
+mother("Carson Kovach", "Margaret Kovach").
+father("Carson Kovach", "Everett Kovach").
+friend("Carson Kovach", "Marcelino Mcnew").
+friend("Carson Kovach", "Reyna Petry").
+friend("Carson Kovach", "Randell Pannell").
+dob("Carson Kovach", "0284-07-07").
+job("Carson Kovach", "operational investment banker").
+hobby("Carson Kovach", "speedcubing").
+gender("Carson Kovach", "male").

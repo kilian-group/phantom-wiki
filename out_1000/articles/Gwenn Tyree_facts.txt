@@ -1,0 +1,17 @@
+mother("Gwenn Tyree", "Lurline Tyree").
+father("Gwenn Tyree", "Claudio Tyree").
+friend("Gwenn Tyree", "Kimiko Vogt").
+friend("Gwenn Tyree", "Truman Holtz").
+friend("Gwenn Tyree", "Jayson Sheridan").
+friend("Gwenn Tyree", "Gloria Shoulders").
+friend("Gwenn Tyree", "Lona Corwin").
+friend("Gwenn Tyree", "Raul Younger").
+friend("Gwenn Tyree", "Kurt Goff").
+friend("Gwenn Tyree", "Alton Ibarra").
+friend("Gwenn Tyree", "Johanna Mathes").
+friend("Gwenn Tyree", "Lera Dunlap").
+friend("Gwenn Tyree", "Rodney Fordham").
+dob("Gwenn Tyree", "0496-02-10").
+job("Gwenn Tyree", "pilot").
+hobby("Gwenn Tyree", "auto racing").
+gender("Gwenn Tyree", "female").

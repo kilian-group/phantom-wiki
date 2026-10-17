@@ -1,0 +1,24 @@
+sister("Karol Beamon", "Ashleigh Spiller").
+sister("Karol Beamon", "Magdalena Hollinger").
+brother("Karol Beamon", "Donald Autry").
+brother("Karol Beamon", "Isaiah Autry").
+mother("Karol Beamon", "Daisy Autry").
+father("Karol Beamon", "Kelvin Autry").
+daughter("Karol Beamon", "Evelia Senn").
+daughter("Karol Beamon", "Georgette Haygood").
+daughter("Karol Beamon", "Kenda Beamon").
+husband("Karol Beamon", "Maxwell Beamon").
+friend("Karol Beamon", "Susie Gillam").
+friend("Karol Beamon", "Melina Simons").
+friend("Karol Beamon", "Adella Townsend").
+friend("Karol Beamon", "Georgine Mahoney").
+friend("Karol Beamon", "Rolf Osterman").
+friend("Karol Beamon", "Vernon Peabody").
+friend("Karol Beamon", "Deidra Gilliam").
+friend("Karol Beamon", "Hayden Fain").
+friend("Karol Beamon", "Winnie Harlow").
+friend("Karol Beamon", "Samuel Omara").
+dob("Karol Beamon", "0427-07-28").
+job("Karol Beamon", "futures trader").
+hobby("Karol Beamon", "antiquities").
+gender("Karol Beamon", "female").

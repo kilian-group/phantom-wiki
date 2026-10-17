@@ -1,0 +1,11 @@
+son("Clair Brumbaugh", "Wallace Brumbaugh").
+wife("Clair Brumbaugh", "Gena Brumbaugh").
+friend("Clair Brumbaugh", "Gerald Hartung").
+friend("Clair Brumbaugh", "Jennie Towns").
+friend("Clair Brumbaugh", "Cordell Younger").
+friend("Clair Brumbaugh", "Shante Gilliam").
+friend("Clair Brumbaugh", "Addie Shilling").
+dob("Clair Brumbaugh", "0387-06-23").
+job("Clair Brumbaugh", "jewellery designer").
+hobby("Clair Brumbaugh", "rock balancing").
+gender("Clair Brumbaugh", "male").

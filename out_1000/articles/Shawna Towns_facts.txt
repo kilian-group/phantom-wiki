@@ -1,0 +1,10 @@
+brother("Shawna Towns", "Cedric Towns").
+mother("Shawna Towns", "Patricia Towns").
+father("Shawna Towns", "Glen Towns").
+friend("Shawna Towns", "Tomas Townsend").
+friend("Shawna Towns", "Sophie Wilke").
+friend("Shawna Towns", "Latisha Murchison").
+dob("Shawna Towns", "0495-12-18").
+job("Shawna Towns", "television producer").
+hobby("Shawna Towns", "insect collecting").
+gender("Shawna Towns", "female").

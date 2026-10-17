@@ -1,0 +1,15 @@
+sister("Francisco Palermo", "Hannah Palermo").
+sister("Francisco Palermo", "Monique Palermo").
+sister("Francisco Palermo", "Rosanna Palermo").
+mother("Francisco Palermo", "Sylvia Palermo").
+father("Francisco Palermo", "Enoch Palermo").
+son("Francisco Palermo", "Joel Palermo").
+son("Francisco Palermo", "Roman Palermo").
+daughter("Francisco Palermo", "Madelyn Palermo").
+daughter("Francisco Palermo", "Zoraida Palermo").
+wife("Francisco Palermo", "Ester Palermo").
+friend("Francisco Palermo", "Maranda Lizotte").
+dob("Francisco Palermo", "0340-08-15").
+job("Francisco Palermo", "charity fundraiser").
+hobby("Francisco Palermo", "shortwave listening").
+gender("Francisco Palermo", "male").

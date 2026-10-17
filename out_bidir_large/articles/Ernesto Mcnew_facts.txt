@@ -1,0 +1,15 @@
+brother("Ernesto Mcnew", "Garry Mcnew").
+brother("Ernesto Mcnew", "Hayden Mcnew").
+mother("Ernesto Mcnew", "Roxy Mcnew").
+father("Ernesto Mcnew", "Cole Mcnew").
+friend("Ernesto Mcnew", "Marcelino Mcnew").
+friend("Ernesto Mcnew", "Carey Mckenna").
+friend("Ernesto Mcnew", "Mona Pannell").
+friend("Ernesto Mcnew", "Taneka Abraham").
+friend("Ernesto Mcnew", "Ali Schoonmaker").
+friend("Ernesto Mcnew", "Amanda Mcnew").
+friend("Ernesto Mcnew", "Cole Mcnew").
+dob("Ernesto Mcnew", "0336-09-16").
+job("Ernesto Mcnew", "forensic scientist").
+hobby("Ernesto Mcnew", "tea bag collecting").
+gender("Ernesto Mcnew", "male").

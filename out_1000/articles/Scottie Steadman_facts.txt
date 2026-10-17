@@ -1,0 +1,19 @@
+sister("Scottie Steadman", "Matilda Chou").
+mother("Scottie Steadman", "Ginger Chou").
+father("Scottie Steadman", "Jamel Chou").
+son("Scottie Steadman", "Porter Steadman").
+daughter("Scottie Steadman", "Tiffany Mcdonald").
+husband("Scottie Steadman", "Victor Steadman").
+friend("Scottie Steadman", "Irwin Arteaga").
+friend("Scottie Steadman", "Hiram Putnam").
+friend("Scottie Steadman", "Cleveland Capps").
+friend("Scottie Steadman", "Tosha Osborn").
+friend("Scottie Steadman", "Elisabeth Bauman").
+friend("Scottie Steadman", "Georgette Haygood").
+friend("Scottie Steadman", "Nelly Kinsella").
+friend("Scottie Steadman", "Rowena Lazar").
+friend("Scottie Steadman", "Jody Valladares").
+dob("Scottie Steadman", "0410-06-19").
+job("Scottie Steadman", "pension scheme manager").
+hobby("Scottie Steadman", "mineral collecting").
+gender("Scottie Steadman", "female").

@@ -1,0 +1,12 @@
+son("Monroe Gilliam", "Kareem Gilliam").
+son("Monroe Gilliam", "Paul Gilliam").
+wife("Monroe Gilliam", "Edythe Gilliam").
+friend("Monroe Gilliam", "Helena Hamlin").
+friend("Monroe Gilliam", "Olivia Briscoe").
+friend("Monroe Gilliam", "Lance Carreon").
+friend("Monroe Gilliam", "Bryan Resendez").
+friend("Monroe Gilliam", "Judith Holliman").
+dob("Monroe Gilliam", "0264-08-08").
+job("Monroe Gilliam", "sports therapist").
+hobby("Monroe Gilliam", "seashell collecting").
+gender("Monroe Gilliam", "male").

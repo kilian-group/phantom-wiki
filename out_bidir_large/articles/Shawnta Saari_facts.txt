@@ -1,0 +1,13 @@
+brother("Shawnta Saari", "Clifford Cormier").
+mother("Shawnta Saari", "Ming Cormier").
+father("Shawnta Saari", "Dion Cormier").
+son("Shawnta Saari", "Alberto Saari").
+daughter("Shawnta Saari", "Ella Saari").
+husband("Shawnta Saari", "Trevor Saari").
+friend("Shawnta Saari", "Hazel Earnest").
+friend("Shawnta Saari", "Andy Clemons").
+friend("Shawnta Saari", "Bert Deluna").
+dob("Shawnta Saari", "0263-07-16").
+job("Shawnta Saari", "dancer").
+hobby("Shawnta Saari", "shogi").
+gender("Shawnta Saari", "female").

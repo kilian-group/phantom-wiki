@@ -1,0 +1,7 @@
+n,method,total_ms,per_q_ms,successes,retries,peak_mem_mb
+50,backward,96.9,0.485,200,0,0.0
+50,bidirectional_prolog,196.5,0.983,200,0,0.2
+302,backward,266.0,1.33,200,0,0.2
+302,bidirectional_prolog,409.0,2.045,200,0,2.9
+808,backward,1098.7,5.493,200,0,1.7
+808,bidirectional_prolog,1346.9,6.735,200,0,24.3

@@ -1,0 +1,17 @@
+daughter("Lindy Kavanaugh", "Jeana Chisholm").
+husband("Lindy Kavanaugh", "Darwin Kavanaugh").
+friend("Lindy Kavanaugh", "Gayla Sanborn").
+friend("Lindy Kavanaugh", "Jamie Upton").
+friend("Lindy Kavanaugh", "Nicky Gordon").
+friend("Lindy Kavanaugh", "Simon Kell").
+friend("Lindy Kavanaugh", "Sammy Dillion").
+friend("Lindy Kavanaugh", "Darin Hollinger").
+friend("Lindy Kavanaugh", "Doyle Valladares").
+friend("Lindy Kavanaugh", "Pansy Cook").
+friend("Lindy Kavanaugh", "Marybeth Dana").
+friend("Lindy Kavanaugh", "Tim Goff").
+friend("Lindy Kavanaugh", "Shaunte Gilliam").
+dob("Lindy Kavanaugh", "0286-03-04").
+job("Lindy Kavanaugh", "marine scientist").
+hobby("Lindy Kavanaugh", "ant farming").
+gender("Lindy Kavanaugh", "female").

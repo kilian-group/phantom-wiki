@@ -1,0 +1,20 @@
+sister("Rodney Fordham", "Shaunna Fordham").
+brother("Rodney Fordham", "Donald Fordham").
+mother("Rodney Fordham", "Romona Fordham").
+father("Rodney Fordham", "Aaron Fordham").
+daughter("Rodney Fordham", "Cora Fordham").
+wife("Rodney Fordham", "Lashawnda Fordham").
+friend("Rodney Fordham", "Gwenn Tyree").
+friend("Rodney Fordham", "Stacy Strong").
+friend("Rodney Fordham", "Noreen Sanborn").
+friend("Rodney Fordham", "Raina Hamlin").
+friend("Rodney Fordham", "Scottie Fordham").
+friend("Rodney Fordham", "Donald Autry").
+friend("Rodney Fordham", "Georgette Haygood").
+friend("Rodney Fordham", "Stevie Joiner").
+friend("Rodney Fordham", "Tanner Holliman").
+friend("Rodney Fordham", "Jodi Noland").
+dob("Rodney Fordham", "0522-10-25").
+job("Rodney Fordham", "nurse").
+hobby("Rodney Fordham", "swimming").
+gender("Rodney Fordham", "male").

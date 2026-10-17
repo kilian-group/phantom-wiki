@@ -1,0 +1,17 @@
+brother("Jonathan Goff", "Alphonso Goff").
+brother("Jonathan Goff", "Elroy Goff").
+brother("Jonathan Goff", "King Goff").
+brother("Jonathan Goff", "Tim Goff").
+mother("Jonathan Goff", "Dorothea Goff").
+father("Jonathan Goff", "Michael Goff").
+daughter("Jonathan Goff", "Tabetha Hsu").
+wife("Jonathan Goff", "Josette Goff").
+friend("Jonathan Goff", "Logan Cushman").
+friend("Jonathan Goff", "Donny Speaks").
+friend("Jonathan Goff", "Rhea Burnett").
+friend("Jonathan Goff", "Samual Knepper").
+friend("Jonathan Goff", "Sung Simons").
+dob("Jonathan Goff", "0414-03-12").
+job("Jonathan Goff", "nutritional therapist").
+hobby("Jonathan Goff", "satellite watching").
+gender("Jonathan Goff", "male").

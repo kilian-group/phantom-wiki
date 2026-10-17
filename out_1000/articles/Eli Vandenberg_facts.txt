@@ -1,0 +1,20 @@
+sister("Eli Vandenberg", "Amy Wilke").
+sister("Eli Vandenberg", "Thelma Vandenberg").
+brother("Eli Vandenberg", "Charley Vandenberg").
+brother("Eli Vandenberg", "Fernando Vandenberg").
+mother("Eli Vandenberg", "Jackie Vandenberg").
+father("Eli Vandenberg", "Valentin Vandenberg").
+daughter("Eli Vandenberg", "Gayla Sanborn").
+wife("Eli Vandenberg", "Tashina Vandenberg").
+friend("Eli Vandenberg", "Jamison Upton").
+friend("Eli Vandenberg", "Maurine Wendel").
+friend("Eli Vandenberg", "Sofia Eaves").
+friend("Eli Vandenberg", "Christen Corwin").
+friend("Eli Vandenberg", "Katelyn Corwin").
+friend("Eli Vandenberg", "Anderson Fredrick").
+friend("Eli Vandenberg", "Jennie Burger").
+friend("Eli Vandenberg", "Brandon Capps").
+dob("Eli Vandenberg", "0349-03-19").
+job("Eli Vandenberg", "biomedical engineer").
+hobby("Eli Vandenberg", "whale watching").
+gender("Eli Vandenberg", "male").

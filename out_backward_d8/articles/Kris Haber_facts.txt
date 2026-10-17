@@ -1,0 +1,8 @@
+daughter("Kris Haber", "Noelia Henderson").
+husband("Kris Haber", "Caleb Haber").
+friend("Kris Haber", "Johnetta Wang").
+friend("Kris Haber", "Jacinta Wise").
+dob("Kris Haber", "0226-05-19").
+job("Kris Haber", "set designer").
+hobby("Kris Haber", "research").
+gender("Kris Haber", "female").

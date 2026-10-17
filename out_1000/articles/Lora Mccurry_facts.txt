@@ -1,0 +1,9 @@
+mother("Lora Mccurry", "Buffy Mccurry").
+father("Lora Mccurry", "Vicente Mccurry").
+friend("Lora Mccurry", "Cleveland Capps").
+friend("Lora Mccurry", "Mose Jarrett").
+friend("Lora Mccurry", "Josef Corwin").
+dob("Lora Mccurry", "0370-05-21").
+job("Lora Mccurry", "operations geologist").
+hobby("Lora Mccurry", "meditation").
+gender("Lora Mccurry", "female").

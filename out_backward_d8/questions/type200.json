@@ -1,0 +1,429 @@
+[
+    {
+        "id": "ae1bc346-5478-487a-a034-aed6fbacfea3",
+        "question": "Who is the oldest friend of the cousin of the cousin of Rolland Mckenna?",
+        "solution_traces": "[]",
+        "answer": [
+            "Alison Smock",
+            "Annabelle Schoonmaker",
+            "Daniel Brannan",
+            "Edmond Schreiner",
+            "Francisco Palermo",
+            "Lila Petry",
+            "Patsy Cormier",
+            "Tamala Pannell"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (friend(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "friend(Y_2, Y_9)",
+                "cousin(Y_4, Y_2)",
+                "cousin(\"Rolland Mckenna\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 200,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "6b441abe-62ed-4143-9dd0-ea513d87c102",
+        "question": "Who is the oldest friend of the great-grandfather of the grandchild of Dominique Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jacques Decosta"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (friend(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "friend(Y_2, Y_9)",
+                "great_grandfather(Y_4, Y_2)",
+                "grandchild(\"Dominique Smock\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 200,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "0f926671-de3f-41be-899d-2485a9aaf179",
+        "question": "Who is the oldest mother-in-law of the daughter-in-law of the mother of Jeanelle Mcnew?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lorelei Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (mother_in_law(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "mother_in_law(Y_2, Y_9)",
+                "daughter_in_law(Y_4, Y_2)",
+                "mother(\"Jeanelle Mcnew\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 200,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "4511e3ea-12cb-41cf-bcf7-fb0a92f3e978",
+        "question": "Who is the oldest grandchild of the husband of the friend of Maxwell Henderson?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lera Brook"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandchild(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "grandchild(Y_2, Y_9)",
+                "husband(Y_4, Y_2)",
+                "friend(\"Maxwell Henderson\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 200,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "3d633b13-040e-4c02-b47d-d29b2e60c1d5",
+        "question": "Who is the oldest parent of the sibling of the granddaughter of Karla Hornback?",
+        "solution_traces": "[]",
+        "answer": [
+            "Reinaldo Hornback"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (parent(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "parent(Y_2, Y_9)",
+                "sibling(Y_4, Y_2)",
+                "granddaughter(\"Karla Hornback\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 200,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "b37bc0fa-3da1-49ff-9fd1-47fe6d98b2f9",
+        "question": "Who is the oldest grandchild of the nephew of the great-uncle of Lea Levy?",
+        "solution_traces": "[]",
+        "answer": [
+            "Charlie Kovach"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandchild(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "grandchild(Y_2, Y_9)",
+                "nephew(Y_4, Y_2)",
+                "great_uncle(\"Lea Levy\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 200,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "1e454fcc-9552-439e-a6b3-0b3ce93b8615",
+        "question": "Who is the oldest son-in-law of the father-in-law of the father of Charlie Kovach?",
+        "solution_traces": "[]",
+        "answer": [
+            "Everett Kovach"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (son_in_law(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "son_in_law(Y_2, Y_9)",
+                "father_in_law(Y_4, Y_2)",
+                "father(\"Charlie Kovach\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 200,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "3cc836f3-3273-4f27-8805-9c3877cdded8",
+        "question": "Who is the oldest niece of the sister of the husband of Deborah Cormier?",
+        "solution_traces": "[]",
+        "answer": [
+            "Leann Cormier"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (niece(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "niece(Y_2, Y_9)",
+                "sister(Y_4, Y_2)",
+                "husband(\"Deborah Cormier\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 200,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "e1156056-8325-4fdc-ae8f-496c1eb0ea13",
+        "question": "Who is the oldest grandson of the grandparent of the son of Monique Griffiths?",
+        "solution_traces": "[]",
+        "answer": [
+            "Roger Griffiths"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandson(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "grandson(Y_2, Y_9)",
+                "grandparent(Y_4, Y_2)",
+                "son(\"Monique Griffiths\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 200,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "69cb0a9b-b7c0-41f6-a497-3333d6975dac",
+        "question": "Who is the oldest grandparent of the granddaughter of the father of Bruce Mason?",
+        "solution_traces": "[]",
+        "answer": [
+            "Joslyn Mason"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandparent(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "grandparent(Y_2, Y_9)",
+                "granddaughter(Y_4, Y_2)",
+                "father(\"Bruce Mason\", Y_4)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 200,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    }
+]

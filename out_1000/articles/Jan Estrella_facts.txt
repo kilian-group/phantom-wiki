@@ -1,0 +1,16 @@
+son("Jan Estrella", "Lucas Estrella").
+daughter("Jan Estrella", "Luisa Estrella").
+wife("Jan Estrella", "Leena Estrella").
+friend("Jan Estrella", "Stanford Suh").
+friend("Jan Estrella", "Audra Lester").
+friend("Jan Estrella", "Christoper Littleton").
+friend("Jan Estrella", "Geraldine Valladares").
+friend("Jan Estrella", "Paris Brumbaugh").
+friend("Jan Estrella", "Emil Broughton").
+friend("Jan Estrella", "Tracey Medellin").
+friend("Jan Estrella", "Shelly Fredrick").
+friend("Jan Estrella", "Alex Burger").
+dob("Jan Estrella", "0335-05-03").
+job("Jan Estrella", "hospital pharmacist").
+hobby("Jan Estrella", "darts").
+gender("Jan Estrella", "male").

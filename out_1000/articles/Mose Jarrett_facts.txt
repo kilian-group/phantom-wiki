@@ -1,0 +1,22 @@
+sister("Mose Jarrett", "Freeda Jarrett").
+sister("Mose Jarrett", "Zona Jarrett").
+brother("Mose Jarrett", "Jamel Jarrett").
+mother("Mose Jarrett", "Shandi Jarrett").
+father("Mose Jarrett", "Anthony Jarrett").
+daughter("Mose Jarrett", "Buffy Jarrett").
+daughter("Mose Jarrett", "Noreen Jarrett").
+wife("Mose Jarrett", "Babette Jarrett").
+friend("Mose Jarrett", "Wesley Courson").
+friend("Mose Jarrett", "Bess Autry").
+friend("Mose Jarrett", "Goldie Beamon").
+friend("Mose Jarrett", "Lucio Townsend").
+friend("Mose Jarrett", "Lora Mccurry").
+friend("Mose Jarrett", "Deja Gilliam").
+friend("Mose Jarrett", "Tracey Medellin").
+friend("Mose Jarrett", "Verona Medellin").
+friend("Mose Jarrett", "Lashawnda Fordham").
+friend("Mose Jarrett", "Deloris Robinett").
+dob("Mose Jarrett", "0449-06-01").
+job("Mose Jarrett", "engineering geologist").
+hobby("Mose Jarrett", "notaphily").
+gender("Mose Jarrett", "male").

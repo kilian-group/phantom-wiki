@@ -1,0 +1,14 @@
+brother("Dino Beltran", "Orlando Beltran").
+mother("Dino Beltran", "Daisy Beltran").
+father("Dino Beltran", "Brian Beltran").
+daughter("Dino Beltran", "Aida Wang").
+daughter("Dino Beltran", "Jeannine Wexler").
+daughter("Dino Beltran", "Vicki Hackworth").
+wife("Dino Beltran", "Shelli Beltran").
+friend("Dino Beltran", "Leeann Hackworth").
+friend("Dino Beltran", "Ricardo Hackworth").
+friend("Dino Beltran", "Saul Wexler").
+dob("Dino Beltran", "0268-08-09").
+job("Dino Beltran", "sports therapist").
+hobby("Dino Beltran", "dominoes").
+gender("Dino Beltran", "male").

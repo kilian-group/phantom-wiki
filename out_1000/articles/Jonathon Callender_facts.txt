@@ -1,0 +1,16 @@
+sister("Jonathon Callender", "Lauretta Callender").
+sister("Jonathon Callender", "Ofelia Callender").
+sister("Jonathon Callender", "Randi Crocker").
+sister("Jonathon Callender", "Vilma Callender").
+mother("Jonathon Callender", "Madaline Callender").
+father("Jonathon Callender", "Royce Callender").
+friend("Jonathon Callender", "Georgette Haygood").
+friend("Jonathon Callender", "Boris Machado").
+friend("Jonathon Callender", "Eli Younger").
+friend("Jonathon Callender", "Irwin Arteaga").
+friend("Jonathon Callender", "Erick Courson").
+friend("Jonathon Callender", "Louis Upton").
+dob("Jonathon Callender", "0422-03-21").
+job("Jonathon Callender", "politician's assistant").
+hobby("Jonathon Callender", "meditation").
+gender("Jonathon Callender", "male").

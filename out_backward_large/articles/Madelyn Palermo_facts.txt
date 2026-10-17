@@ -1,0 +1,14 @@
+sister("Madelyn Palermo", "Zoraida Palermo").
+brother("Madelyn Palermo", "Joel Palermo").
+brother("Madelyn Palermo", "Roman Palermo").
+mother("Madelyn Palermo", "Ester Palermo").
+father("Madelyn Palermo", "Francisco Palermo").
+friend("Madelyn Palermo", "Rosalinda Brannan").
+friend("Madelyn Palermo", "Craig Boutte").
+friend("Madelyn Palermo", "Hunter Saari").
+friend("Madelyn Palermo", "Garry Mcnew").
+friend("Madelyn Palermo", "Yvette Cedillo").
+dob("Madelyn Palermo", "0368-06-16").
+job("Madelyn Palermo", "research officer").
+hobby("Madelyn Palermo", "volleyball").
+gender("Madelyn Palermo", "female").

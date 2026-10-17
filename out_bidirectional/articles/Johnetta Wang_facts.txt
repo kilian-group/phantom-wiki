@@ -1,0 +1,9 @@
+mother("Johnetta Wang", "Aida Wang").
+father("Johnetta Wang", "Ryan Wang").
+friend("Johnetta Wang", "Saul Wexler").
+friend("Johnetta Wang", "Shelli Beltran").
+friend("Johnetta Wang", "Aida Wang").
+dob("Johnetta Wang", "0324-07-03").
+job("Johnetta Wang", "biomedical scientist").
+hobby("Johnetta Wang", "bus spotting").
+gender("Johnetta Wang", "female").

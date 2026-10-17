@@ -1,0 +1,23 @@
+sister("Leonora Depriest", "Larue Macias").
+sister("Leonora Depriest", "Racquel Horan").
+brother("Leonora Depriest", "Donnie Mcgough").
+brother("Leonora Depriest", "Julio Mcgough").
+brother("Leonora Depriest", "Wilbur Mcgough").
+mother("Leonora Depriest", "Myrl Mcgough").
+father("Leonora Depriest", "Randall Mcgough").
+son("Leonora Depriest", "Monty Depriest").
+son("Leonora Depriest", "Walter Depriest").
+husband("Leonora Depriest", "Karl Depriest").
+friend("Leonora Depriest", "Micheal Speaks").
+friend("Leonora Depriest", "Everett Courson").
+friend("Leonora Depriest", "Noelia Lasher").
+friend("Leonora Depriest", "Anastacia Cordova").
+friend("Leonora Depriest", "Maryann Peeler").
+friend("Leonora Depriest", "Marybeth Dana").
+friend("Leonora Depriest", "Stan Gailey").
+friend("Leonora Depriest", "Edmundo Mcpeak").
+friend("Leonora Depriest", "Hollis Theriot").
+dob("Leonora Depriest", "0434-04-12").
+job("Leonora Depriest", "data scientist").
+hobby("Leonora Depriest", "flower collecting and pressing").
+gender("Leonora Depriest", "female").

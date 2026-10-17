@@ -1,0 +1,6 @@
+mother("Minerva Wilkie", "Yoko Wilkie").
+father("Minerva Wilkie", "Harold Wilkie").
+dob("Minerva Wilkie", "0324-04-23").
+job("Minerva Wilkie", "printmaker").
+hobby("Minerva Wilkie", "rock tumbling").
+gender("Minerva Wilkie", "female").

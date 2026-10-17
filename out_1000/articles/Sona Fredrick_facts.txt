@@ -1,0 +1,20 @@
+sister("Sona Fredrick", "Jana Noland").
+sister("Sona Fredrick", "Lynette Fredrick").
+brother("Sona Fredrick", "Murray Fredrick").
+mother("Sona Fredrick", "Shannon Fredrick").
+father("Sona Fredrick", "Anderson Fredrick").
+friend("Sona Fredrick", "Thaddeus Sanborn").
+friend("Sona Fredrick", "Helena Hamlin").
+friend("Sona Fredrick", "Hyman Layman").
+friend("Sona Fredrick", "Jacques Cordova").
+friend("Sona Fredrick", "Jimmy Holder").
+friend("Sona Fredrick", "Myrl Murray").
+friend("Sona Fredrick", "Boris Machado").
+friend("Sona Fredrick", "Adolph Hollins").
+friend("Sona Fredrick", "Deanne Gilliam").
+friend("Sona Fredrick", "Glenda Dacosta").
+friend("Sona Fredrick", "Johnathon Noland").
+dob("Sona Fredrick", "0402-06-18").
+job("Sona Fredrick", "chemist").
+hobby("Sona Fredrick", "slot car racing").
+gender("Sona Fredrick", "female").

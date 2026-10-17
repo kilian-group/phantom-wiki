@@ -1,0 +1,18 @@
+son("Stacey Wilke", "Luke Wilke").
+son("Stacey Wilke", "Marion Wilke").
+daughter("Stacey Wilke", "Belva Murphey").
+wife("Stacey Wilke", "Amy Wilke").
+friend("Stacey Wilke", "Delbert Courson").
+friend("Stacey Wilke", "Katharine Willoughby").
+friend("Stacey Wilke", "Dwight Palm").
+friend("Stacey Wilke", "Steve Storey").
+friend("Stacey Wilke", "Tiffany Simons").
+friend("Stacey Wilke", "Angela Younger").
+friend("Stacey Wilke", "Stan Gailey").
+friend("Stacey Wilke", "Alec Dacosta").
+friend("Stacey Wilke", "Vada Littleton").
+friend("Stacey Wilke", "Rueben Bowles").
+dob("Stacey Wilke", "0347-02-12").
+job("Stacey Wilke", "broadcast journalist").
+hobby("Stacey Wilke", "climbing").
+gender("Stacey Wilke", "male").

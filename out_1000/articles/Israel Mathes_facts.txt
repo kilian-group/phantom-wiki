@@ -1,0 +1,18 @@
+sister("Israel Mathes", "Latrina Mathes").
+sister("Israel Mathes", "Reita Pugliese").
+sister("Israel Mathes", "Virgie Niles").
+mother("Israel Mathes", "Ella Mathes").
+father("Israel Mathes", "Neal Mathes").
+friend("Israel Mathes", "Stuart Strong").
+friend("Israel Mathes", "Drew Carty").
+friend("Israel Mathes", "Elbert Layman").
+friend("Israel Mathes", "Carroll Lindquist").
+friend("Israel Mathes", "Chris Harlow").
+friend("Israel Mathes", "Rheba Winn").
+friend("Israel Mathes", "Timothy Simons").
+friend("Israel Mathes", "Salley Goff").
+friend("Israel Mathes", "Clement Bennet").
+dob("Israel Mathes", "0381-09-19").
+job("Israel Mathes", "police officer").
+hobby("Israel Mathes", "gongoozling").
+gender("Israel Mathes", "male").

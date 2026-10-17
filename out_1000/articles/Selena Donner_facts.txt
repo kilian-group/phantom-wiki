@@ -1,0 +1,11 @@
+daughter("Selena Donner", "Tracey Medellin").
+husband("Selena Donner", "Wilson Donner").
+friend("Selena Donner", "Erik Fredrick").
+friend("Selena Donner", "Sharika Kell").
+friend("Selena Donner", "Cordelia Murray").
+friend("Selena Donner", "Colin Corwin").
+friend("Selena Donner", "Meghan Keyes").
+dob("Selena Donner", "0413-09-27").
+job("Selena Donner", "minerals surveyor").
+hobby("Selena Donner", "antiquities").
+gender("Selena Donner", "female").

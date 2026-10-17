@@ -1,0 +1,21 @@
+sister("Geri Dana", "Ivette Eaves").
+sister("Geri Dana", "Sofia Eaves").
+brother("Geri Dana", "Denny Eaves").
+brother("Geri Dana", "Foster Eaves").
+brother("Geri Dana", "Mickey Eaves").
+mother("Geri Dana", "Juanita Eaves").
+father("Geri Dana", "Russel Eaves").
+son("Geri Dana", "Drew Dana").
+son("Geri Dana", "Matthew Dana").
+husband("Geri Dana", "Ramiro Dana").
+friend("Geri Dana", "Sofia Eaves").
+friend("Geri Dana", "Manuela Runnels").
+friend("Geri Dana", "Andrea Murchison").
+friend("Geri Dana", "Milford Simons").
+friend("Geri Dana", "Pansy Cook").
+friend("Geri Dana", "Reggie Simons").
+friend("Geri Dana", "Benito Ruth").
+dob("Geri Dana", "0376-11-16").
+job("Geri Dana", "chiropodist").
+hobby("Geri Dana", "insect collecting").
+gender("Geri Dana", "female").

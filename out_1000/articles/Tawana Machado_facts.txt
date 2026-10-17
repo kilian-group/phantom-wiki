@@ -1,0 +1,17 @@
+son("Tawana Machado", "Boris Machado").
+husband("Tawana Machado", "Jonas Machado").
+friend("Tawana Machado", "Zora Morehead").
+friend("Tawana Machado", "Coral Staten").
+friend("Tawana Machado", "Kory Gibbs").
+friend("Tawana Machado", "Carlos Noland").
+friend("Tawana Machado", "Racquel Horan").
+friend("Tawana Machado", "Andres Layton").
+friend("Tawana Machado", "Cary Layton").
+friend("Tawana Machado", "Nelly Jarrett").
+friend("Tawana Machado", "Harley Simons").
+friend("Tawana Machado", "Tomas Townsend").
+friend("Tawana Machado", "Nathan Corwin").
+dob("Tawana Machado", "0439-05-03").
+job("Tawana Machado", "cytogeneticist").
+hobby("Tawana Machado", "pickleball").
+gender("Tawana Machado", "female").

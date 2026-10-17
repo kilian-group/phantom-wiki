@@ -1,0 +1,17 @@
+sister("Walter Kell", "Jeannette Mounts").
+sister("Walter Kell", "Jenni Kell").
+brother("Walter Kell", "Abe Kell").
+mother("Walter Kell", "Kristen Kell").
+father("Walter Kell", "Dewitt Kell").
+daughter("Walter Kell", "Tamara Kell").
+wife("Walter Kell", "Janey Kell").
+friend("Walter Kell", "Wallace Brumbaugh").
+friend("Walter Kell", "Babette Simons").
+friend("Walter Kell", "Dinah Simons").
+friend("Walter Kell", "Lorenz Deville").
+friend("Walter Kell", "Sophie Wilke").
+friend("Walter Kell", "Malissa Kell").
+dob("Walter Kell", "0440-11-29").
+job("Walter Kell", "freight forwarder").
+hobby("Walter Kell", "meditation").
+gender("Walter Kell", "male").

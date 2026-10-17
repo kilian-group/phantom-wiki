@@ -1,0 +1,20 @@
+mother("Mickey Beamon", "Tena Beamon").
+father("Mickey Beamon", "Wesley Beamon").
+son("Mickey Beamon", "Maxwell Beamon").
+daughter("Mickey Beamon", "Goldie Beamon").
+wife("Mickey Beamon", "Valentina Beamon").
+friend("Mickey Beamon", "Ellis Brumbaugh").
+friend("Mickey Beamon", "Antony Machado").
+friend("Mickey Beamon", "Tania Younger").
+friend("Mickey Beamon", "Michael Goff").
+friend("Mickey Beamon", "Lucienne Gilliam").
+friend("Mickey Beamon", "Lera Mcpeak").
+friend("Mickey Beamon", "Pierre Mcpeak").
+friend("Mickey Beamon", "Luisa Estrella").
+friend("Mickey Beamon", "Bettina Courson").
+friend("Mickey Beamon", "Jerrold Harlow").
+friend("Mickey Beamon", "Tabetha Lasher").
+dob("Mickey Beamon", "0395-06-15").
+job("Mickey Beamon", "newspaper journalist").
+hobby("Mickey Beamon", "figure skating").
+gender("Mickey Beamon", "male").

@@ -1,0 +1,11 @@
+son("Hans Fordham", "Olin Fordham").
+wife("Hans Fordham", "Desiree Fordham").
+friend("Hans Fordham", "Charley Weise").
+friend("Hans Fordham", "Grady Valladares").
+friend("Hans Fordham", "Wanda Murray").
+friend("Hans Fordham", "Aaron Bowles").
+friend("Hans Fordham", "Truman Holtz").
+dob("Hans Fordham", "0280-06-08").
+job("Hans Fordham", "ophthalmologist").
+hobby("Hans Fordham", "digital hoarding").
+gender("Hans Fordham", "male").

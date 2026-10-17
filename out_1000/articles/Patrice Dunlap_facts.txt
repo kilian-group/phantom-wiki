@@ -1,0 +1,20 @@
+brother("Patrice Dunlap", "Donnie Dunlap").
+brother("Patrice Dunlap", "Kenton Dunlap").
+mother("Patrice Dunlap", "Katerine Dunlap").
+father("Patrice Dunlap", "Sammy Dunlap").
+friend("Patrice Dunlap", "Connie Cushman").
+friend("Patrice Dunlap", "Daisy Cushman").
+friend("Patrice Dunlap", "Nickolas Holtz").
+friend("Patrice Dunlap", "Delbert Courson").
+friend("Patrice Dunlap", "Kerrie Resendez").
+friend("Patrice Dunlap", "Dorathy Harlow").
+friend("Patrice Dunlap", "Newton Lasher").
+friend("Patrice Dunlap", "Donald Autry").
+friend("Patrice Dunlap", "Sarah Steadman").
+friend("Patrice Dunlap", "Salvador Plumley").
+friend("Patrice Dunlap", "Cordell Younger").
+friend("Patrice Dunlap", "Vita Resendez").
+dob("Patrice Dunlap", "0312-04-24").
+job("Patrice Dunlap", "media planner").
+hobby("Patrice Dunlap", "cooking").
+gender("Patrice Dunlap", "female").

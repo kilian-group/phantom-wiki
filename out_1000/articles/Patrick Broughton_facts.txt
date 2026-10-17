@@ -1,0 +1,22 @@
+son("Patrick Broughton", "Darrell Broughton").
+wife("Patrick Broughton", "Vanessa Broughton").
+friend("Patrick Broughton", "Lynette Gordy").
+friend("Patrick Broughton", "Daisy Cushman").
+friend("Patrick Broughton", "Hubert Noland").
+friend("Patrick Broughton", "Logan Cushman").
+friend("Patrick Broughton", "Dominick Palomo").
+friend("Patrick Broughton", "Myrl Mcgough").
+friend("Patrick Broughton", "Avery Nolasco").
+friend("Patrick Broughton", "Johnathan Klink").
+friend("Patrick Broughton", "Macy Booth").
+friend("Patrick Broughton", "James Maness").
+friend("Patrick Broughton", "Donald Autry").
+friend("Patrick Broughton", "Racquel Wendel").
+friend("Patrick Broughton", "Enedina Cordova").
+friend("Patrick Broughton", "Salvador Plumley").
+friend("Patrick Broughton", "Lance Carreon").
+friend("Patrick Broughton", "Micah Hollins").
+dob("Patrick Broughton", "0348-05-21").
+job("Patrick Broughton", "chief financial officer").
+hobby("Patrick Broughton", "billiards").
+gender("Patrick Broughton", "male").

@@ -1,0 +1,11 @@
+son("Ben Corso", "Kent Corso").
+wife("Ben Corso", "Chante Corso").
+friend("Ben Corso", "Maggie Vanmeter").
+friend("Ben Corso", "Chelsie Peeler").
+friend("Ben Corso", "Earlean Ingalls").
+friend("Ben Corso", "Krystal Joubert").
+friend("Ben Corso", "Nicky Gordon").
+dob("Ben Corso", "0412-03-19").
+job("Ben Corso", "furniture conservator").
+hobby("Ben Corso", "whale watching").
+gender("Ben Corso", "male").

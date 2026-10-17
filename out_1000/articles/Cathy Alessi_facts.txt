@@ -1,0 +1,8 @@
+mother("Cathy Alessi", "Goldie Alessi").
+father("Cathy Alessi", "Williams Alessi").
+friend("Cathy Alessi", "Daisy Autry").
+friend("Cathy Alessi", "Seymour Simons").
+dob("Cathy Alessi", "0436-10-26").
+job("Cathy Alessi", "aid worker").
+hobby("Cathy Alessi", "darts").
+gender("Cathy Alessi", "female").

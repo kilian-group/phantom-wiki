@@ -1,0 +1,442 @@
+[
+    {
+        "id": "95d0fda4-3900-4466-9fca-7f98cb514c40",
+        "question": "Who is the person whose hobby is stone collecting and whose occupation is geoscientist?",
+        "solution_traces": "[]",
+        "answer": [
+            "Chrissy Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(X, \"stone collecting\")",
+                "job(X, \"geoscientist\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "3eec2e85-f24b-43cb-8d4d-8ddcb8f20945",
+        "question": "Who is the person whose occupation is IT trainer and whose date of birth is 0331-03-22?",
+        "solution_traces": "[]",
+        "answer": [
+            "Colby Narvaez"
+        ],
+        "prolog": {
+            "query": [
+                "job(X, \"IT trainer\")",
+                "dob(X, \"0331-03-22\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "5203cf43-8ed5-4ebc-8c2a-2c99260bd46d",
+        "question": "Who is the person whose date of birth is 0277-08-23 and whose occupation is biomedical engineer?",
+        "solution_traces": "[]",
+        "answer": [
+            "Marion Wilke"
+        ],
+        "prolog": {
+            "query": [
+                "dob(X, \"0277-08-23\")",
+                "job(X, \"biomedical engineer\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "1f79e03e-3757-47fb-a04e-94dfd279c695",
+        "question": "Who is the person whose occupation is hospital doctor and whose hobby is herping?",
+        "solution_traces": "[]",
+        "answer": [
+            "Dorinda Chrisman"
+        ],
+        "prolog": {
+            "query": [
+                "job(X, \"hospital doctor\")",
+                "hobby(X, \"herping\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "34a6b58f-b9fe-4ff3-ae47-894ef4b6ec33",
+        "question": "Who is the person whose hobby is vr gaming and whose date of birth is 0301-09-01?",
+        "solution_traces": "[]",
+        "answer": [
+            "Marlo Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(X, \"vr gaming\")",
+                "dob(X, \"0301-09-01\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "2d4f1a96-61fc-47b9-b51e-4ba8d00afa6e",
+        "question": "Who is the person whose date of birth is 0305-04-10 and whose hobby is scouting?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lyman Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "dob(X, \"0305-04-10\")",
+                "hobby(X, \"scouting\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "2eaab6f7-c7ba-4062-9a1b-0d9b5a3a031e",
+        "question": "Who is the person whose occupation is professor emeritus and whose hobby is foraging?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jon Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "job(X, \"professor emeritus\")",
+                "hobby(X, \"foraging\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "7bda7bf4-0acd-40c3-87a5-1c297357cff8",
+        "question": "Who is the person whose occupation is chemist and whose date of birth is 0301-01-28?",
+        "solution_traces": "[]",
+        "answer": [
+            "Monte Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "job(X, \"chemist\")",
+                "dob(X, \"0301-01-28\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "68366f53-527d-455f-b9d9-37982228bdb9",
+        "question": "Who is the person whose hobby is stone collecting and whose occupation is geoscientist?",
+        "solution_traces": "[]",
+        "answer": [
+            "Chrissy Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(X, \"stone collecting\")",
+                "job(X, \"geoscientist\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "51121613-2853-44a3-ab36-0b9d2dee8c20",
+        "question": "Who is the person whose occupation is chartered loss adjuster and whose date of birth is 0349-07-04?",
+        "solution_traces": "[]",
+        "answer": [
+            "Louann Chrisman"
+        ],
+        "prolog": {
+            "query": [
+                "job(X, \"chartered loss adjuster\")",
+                "dob(X, \"0349-07-04\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "c8d0b0f1-b2b5-4c67-bc9a-ec62b4ddc8f1",
+        "question": "Who is the person whose hobby is insect collecting and whose occupation is production engineer?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jackie Vandenberg"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(X, \"insect collecting\")",
+                "job(X, \"production engineer\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "d49be6c2-5c13-4a44-98fa-5c8747e85a14",
+        "question": "Who is the person whose occupation is newspaper journalist and whose hobby is book collecting?",
+        "solution_traces": "[]",
+        "answer": [
+            "Charley Vandenberg"
+        ],
+        "prolog": {
+            "query": [
+                "job(X, \"newspaper journalist\")",
+                "hobby(X, \"book collecting\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "9b6c59f8-3f93-4a2f-8e5e-616324da39ed",
+        "question": "Who is the person whose hobby is stuffed toy collecting and whose occupation is midwife?",
+        "solution_traces": "[]",
+        "answer": [
+            "Celestine Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(X, \"stuffed toy collecting\")",
+                "job(X, \"midwife\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "b786aa6e-b01d-490f-9030-1c26265679b4",
+        "question": "Who is the person whose occupation is environmental manager and whose date of birth is 0275-01-22?",
+        "solution_traces": "[]",
+        "answer": [
+            "Brigida Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "job(X, \"environmental manager\")",
+                "dob(X, \"0275-01-22\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "274c0997-8599-40ce-9ed4-9b93a6ca522e",
+        "question": "Who is the person whose date of birth is 0301-01-28 and whose hobby is herbalism?",
+        "solution_traces": "[]",
+        "answer": [
+            "Monte Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "dob(X, \"0301-01-28\")",
+                "hobby(X, \"herbalism\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "64f44e79-7b2d-4ba0-999e-8eb68d77868c",
+        "question": "Who is the person whose occupation is exhibitions officer and whose hobby is leaves?",
+        "solution_traces": "[]",
+        "answer": [
+            "Sherrie Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "job(X, \"exhibitions officer\")",
+                "hobby(X, \"leaves\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "6e0afabf-e96a-4907-85fc-9a1d7d0616bc",
+        "question": "Who is the person whose hobby is benchmarking and whose date of birth is 0302-09-30?",
+        "solution_traces": "[]",
+        "answer": [
+            "Clyde Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(X, \"benchmarking\")",
+                "dob(X, \"0302-09-30\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "66818fe2-0713-4263-8d10-3a14567043e0",
+        "question": "Who is the person whose hobby is book collecting and whose date of birth is 0260-11-29?",
+        "solution_traces": "[]",
+        "answer": [
+            "Charley Vandenberg"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(X, \"book collecting\")",
+                "dob(X, \"0260-11-29\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "c2fa28b8-f756-47da-8a4f-18065b3179dc",
+        "question": "Who is the person whose hobby is flower collecting and pressing and whose date of birth is 0302-08-17?",
+        "solution_traces": "[]",
+        "answer": [
+            "Kirsten Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(X, \"flower collecting and pressing\")",
+                "dob(X, \"0302-08-17\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    },
+    {
+        "id": "6075a5ed-4174-419a-b1a5-d50940223b69",
+        "question": "Who is the person whose date of birth is 0250-05-14 and whose occupation is charity fundraiser?",
+        "solution_traces": "[]",
+        "answer": [
+            "Abel Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "dob(X, \"0250-05-14\")",
+                "job(X, \"charity fundraiser\")"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "multi_constraint"
+        ],
+        "type": 222,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "multi_constraint"
+    }
+]

@@ -1,0 +1,7 @@
+mother("Shirley Skaggs", "Margot Skaggs").
+father("Shirley Skaggs", "Rosendo Skaggs").
+friend("Shirley Skaggs", "Bryant Bradberry").
+dob("Shirley Skaggs", "0356-03-30").
+job("Shirley Skaggs", "solicitor").
+hobby("Shirley Skaggs", "horseshoes").
+gender("Shirley Skaggs", "female").

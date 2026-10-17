@@ -1,0 +1,16 @@
+mother("Gregory Geter", "Mayra Geter").
+father("Gregory Geter", "Eugene Geter").
+son("Gregory Geter", "Byron Geter").
+wife("Gregory Geter", "Lona Geter").
+friend("Gregory Geter", "Marybeth Dana").
+friend("Gregory Geter", "Alexander Corwin").
+friend("Gregory Geter", "Pierre Mcpeak").
+friend("Gregory Geter", "Jodi Noland").
+friend("Gregory Geter", "Amanda Rinehart").
+friend("Gregory Geter", "Tashina Vandenberg").
+friend("Gregory Geter", "Cary Layton").
+friend("Gregory Geter", "Maggie Vanmeter").
+dob("Gregory Geter", "0487-02-19").
+job("Gregory Geter", "marketing executive").
+hobby("Gregory Geter", "ephemera collecting").
+gender("Gregory Geter", "male").

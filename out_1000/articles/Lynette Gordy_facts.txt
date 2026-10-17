@@ -1,0 +1,9 @@
+mother("Lynette Gordy", "Eunice Gordy").
+father("Lynette Gordy", "Pedro Gordy").
+friend("Lynette Gordy", "Earlean Ingalls").
+friend("Lynette Gordy", "Delma Keyes").
+friend("Lynette Gordy", "Patrick Broughton").
+dob("Lynette Gordy", "0437-02-28").
+job("Lynette Gordy", "armed forces logistics officer").
+hobby("Lynette Gordy", "footbag").
+gender("Lynette Gordy", "female").

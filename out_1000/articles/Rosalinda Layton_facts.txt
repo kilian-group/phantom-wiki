@@ -1,0 +1,13 @@
+mother("Rosalinda Layton", "Gayla Dorn").
+father("Rosalinda Layton", "Gerry Dorn").
+daughter("Rosalinda Layton", "Tashina Layton").
+husband("Rosalinda Layton", "Emory Layton").
+friend("Rosalinda Layton", "Shelia Carty").
+friend("Rosalinda Layton", "Kanesha Booth").
+friend("Rosalinda Layton", "Eliza Ingalls").
+friend("Rosalinda Layton", "Maynard Morehead").
+friend("Rosalinda Layton", "Hubert Noland").
+dob("Rosalinda Layton", "0401-08-06").
+job("Rosalinda Layton", "barista").
+hobby("Rosalinda Layton", "photography").
+gender("Rosalinda Layton", "female").

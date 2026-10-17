@@ -1,0 +1,20 @@
+mother("Christoper Littleton", "Edythe Littleton").
+father("Christoper Littleton", "Theron Littleton").
+son("Christoper Littleton", "Lorenzo Littleton").
+son("Christoper Littleton", "Milton Littleton").
+wife("Christoper Littleton", "Romona Littleton").
+friend("Christoper Littleton", "Raleigh Simons").
+friend("Christoper Littleton", "Christen Corwin").
+friend("Christoper Littleton", "Mallory Schatz").
+friend("Christoper Littleton", "Deirdre Niles").
+friend("Christoper Littleton", "Kareem Gilliam").
+friend("Christoper Littleton", "Lela Correia").
+friend("Christoper Littleton", "Edmundo Mcpeak").
+friend("Christoper Littleton", "Jan Estrella").
+friend("Christoper Littleton", "Robyn Forester").
+friend("Christoper Littleton", "Stacy Strong").
+friend("Christoper Littleton", "Kieth Shaw").
+dob("Christoper Littleton", "0432-10-28").
+job("Christoper Littleton", "licensed conveyancer").
+hobby("Christoper Littleton", "jujitsu").
+gender("Christoper Littleton", "male").

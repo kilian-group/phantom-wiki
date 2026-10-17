@@ -1,0 +1,13 @@
+son("Viva Simons", "Frankie Simons").
+daughter("Viva Simons", "Cherlyn Simons").
+daughter("Viva Simons", "Pearl Hamann").
+husband("Viva Simons", "Roderick Simons").
+friend("Viva Simons", "Zelda Sharma").
+friend("Viva Simons", "Brendon Dunlap").
+friend("Viva Simons", "Flora Noland").
+friend("Viva Simons", "Shelly Fredrick").
+friend("Viva Simons", "Jamie Upton").
+dob("Viva Simons", "0431-06-23").
+job("Viva Simons", "broadcast journalist").
+hobby("Viva Simons", "shooting").
+gender("Viva Simons", "female").

@@ -1,0 +1,14 @@
+daughter("Hal Greene", "Virgina Noland").
+wife("Hal Greene", "Jacque Greene").
+friend("Hal Greene", "Miles Fordham").
+friend("Hal Greene", "Jo Medeiros").
+friend("Hal Greene", "Vernon Joubert").
+friend("Hal Greene", "Naomi Lai").
+friend("Hal Greene", "Bernardo Briscoe").
+friend("Hal Greene", "Tim Goff").
+friend("Hal Greene", "Toney Gibbs").
+friend("Hal Greene", "Foster Medellin").
+dob("Hal Greene", "0349-07-07").
+job("Hal Greene", "printmaker").
+hobby("Hal Greene", "sun bathing").
+gender("Hal Greene", "male").

@@ -1,0 +1,16 @@
+mother("Antionette Hamann", "Pearl Hamann").
+father("Antionette Hamann", "Dennis Hamann").
+friend("Antionette Hamann", "Juanita Eaves").
+friend("Antionette Hamann", "Eli Younger").
+friend("Antionette Hamann", "Josef Corwin").
+friend("Antionette Hamann", "Nathan Corwin").
+friend("Antionette Hamann", "Alina Bowles").
+friend("Antionette Hamann", "Solomon Strong").
+friend("Antionette Hamann", "Walter Depriest").
+friend("Antionette Hamann", "Zachery Upton").
+friend("Antionette Hamann", "Sergio Parish").
+friend("Antionette Hamann", "Viva Suh").
+dob("Antionette Hamann", "0490-11-26").
+job("Antionette Hamann", "geologist").
+hobby("Antionette Hamann", "climbing").
+gender("Antionette Hamann", "female").

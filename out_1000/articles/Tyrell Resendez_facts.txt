@@ -1,0 +1,13 @@
+sister("Tyrell Resendez", "Melina Resendez").
+brother("Tyrell Resendez", "Isaiah Resendez").
+brother("Tyrell Resendez", "Sung Resendez").
+mother("Tyrell Resendez", "Vita Resendez").
+father("Tyrell Resendez", "Bryan Resendez").
+friend("Tyrell Resendez", "Yasmin Gordon").
+friend("Tyrell Resendez", "Laurence Knepper").
+friend("Tyrell Resendez", "Zelda Sharma").
+friend("Tyrell Resendez", "Dani Dalton").
+dob("Tyrell Resendez", "0374-10-02").
+job("Tyrell Resendez", "automotive engineer").
+hobby("Tyrell Resendez", "publishing").
+gender("Tyrell Resendez", "male").

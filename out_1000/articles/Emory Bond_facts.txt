@@ -1,0 +1,10 @@
+daughter("Emory Bond", "Lou Dunlap").
+wife("Emory Bond", "Nikki Bond").
+friend("Emory Bond", "Ricky Carswell").
+friend("Emory Bond", "Jayson Hudgens").
+friend("Emory Bond", "Galen Cordova").
+friend("Emory Bond", "James Arteaga").
+dob("Emory Bond", "0319-09-15").
+job("Emory Bond", "television floor manager").
+hobby("Emory Bond", "teaching").
+gender("Emory Bond", "male").

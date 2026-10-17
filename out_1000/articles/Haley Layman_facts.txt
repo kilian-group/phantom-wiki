@@ -1,0 +1,17 @@
+son("Haley Layman", "Dino Layman").
+son("Haley Layman", "Nico Layman").
+son("Haley Layman", "Taylor Layman").
+husband("Haley Layman", "Elbert Layman").
+friend("Haley Layman", "Yasmin Gordon").
+friend("Haley Layman", "Desiree Fordham").
+friend("Haley Layman", "Bess Autry").
+friend("Haley Layman", "Helga Simons").
+friend("Haley Layman", "Foster Eaves").
+friend("Haley Layman", "Verona Arteaga").
+friend("Haley Layman", "Latrina Mathes").
+friend("Haley Layman", "Bruce Burger").
+friend("Haley Layman", "Babette Jarrett").
+dob("Haley Layman", "0277-12-19").
+job("Haley Layman", "conference centre manager").
+hobby("Haley Layman", "swimming").
+gender("Haley Layman", "female").

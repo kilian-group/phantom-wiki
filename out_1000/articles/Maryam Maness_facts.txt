@@ -1,0 +1,21 @@
+mother("Maryam Maness", "Iva Parish").
+father("Maryam Maness", "Sergio Parish").
+daughter("Maryam Maness", "Rheba Winn").
+husband("Maryam Maness", "James Maness").
+friend("Maryam Maness", "Gavin Cordova").
+friend("Maryam Maness", "Leonora Cordova").
+friend("Maryam Maness", "Edythe Littleton").
+friend("Maryam Maness", "Logan Swartz").
+friend("Maryam Maness", "Marybeth Dana").
+friend("Maryam Maness", "Rolf Osterman").
+friend("Maryam Maness", "Michaela Corwin").
+friend("Maryam Maness", "Desmond Dacosta").
+friend("Maryam Maness", "Lashanda Salem").
+friend("Maryam Maness", "Marguerite Putnam").
+friend("Maryam Maness", "Gayla Sanborn").
+friend("Maryam Maness", "Karl Depriest").
+friend("Maryam Maness", "Brianne Layton").
+dob("Maryam Maness", "0497-12-07").
+job("Maryam Maness", "armed forces technical officer").
+hobby("Maryam Maness", "orienteering").
+gender("Maryam Maness", "female").

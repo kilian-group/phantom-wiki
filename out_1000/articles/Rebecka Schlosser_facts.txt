@@ -1,0 +1,25 @@
+sister("Rebecka Schlosser", "Gayla Holder").
+sister("Rebecka Schlosser", "Lara Jansen").
+sister("Rebecka Schlosser", "Paula Rudolph").
+sister("Rebecka Schlosser", "Wanda Murray").
+mother("Rebecka Schlosser", "Annette Rudolph").
+father("Rebecka Schlosser", "Antwan Rudolph").
+daughter("Rebecka Schlosser", "Goldie Schlosser").
+husband("Rebecka Schlosser", "John Schlosser").
+friend("Rebecka Schlosser", "Bert Simons").
+friend("Rebecka Schlosser", "Freddie Barrows").
+friend("Rebecka Schlosser", "Kevin Sharma").
+friend("Rebecka Schlosser", "Deloris Swartz").
+friend("Rebecka Schlosser", "Jamel Chou").
+friend("Rebecka Schlosser", "Logan Swartz").
+friend("Rebecka Schlosser", "Victor Steadman").
+friend("Rebecka Schlosser", "Janey Plumley").
+friend("Rebecka Schlosser", "Artie Putnam").
+friend("Rebecka Schlosser", "Isabell Shank").
+friend("Rebecka Schlosser", "Dewitt Kell").
+friend("Rebecka Schlosser", "Ladawn Basham").
+friend("Rebecka Schlosser", "Edwina Weise").
+dob("Rebecka Schlosser", "0418-10-11").
+job("Rebecka Schlosser", "applications developer").
+hobby("Rebecka Schlosser", "radio-controlled model playing").
+gender("Rebecka Schlosser", "female").

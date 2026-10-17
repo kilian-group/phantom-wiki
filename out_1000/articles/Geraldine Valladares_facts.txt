@@ -1,0 +1,11 @@
+mother("Geraldine Valladares", "Olivia Briscoe").
+father("Geraldine Valladares", "Bernardo Briscoe").
+son("Geraldine Valladares", "Doyle Valladares").
+husband("Geraldine Valladares", "Grady Valladares").
+friend("Geraldine Valladares", "Emanuel Mccall").
+friend("Geraldine Valladares", "Jan Estrella").
+friend("Geraldine Valladares", "Barbar Kell").
+dob("Geraldine Valladares", "0372-09-21").
+job("Geraldine Valladares", "mudlogger").
+hobby("Geraldine Valladares", "sea glass collecting").
+gender("Geraldine Valladares", "female").

@@ -1,0 +1,17 @@
+sister("Monika Bennet", "Monique Pugliese").
+mother("Monika Bennet", "Reita Pugliese").
+father("Monika Bennet", "Brock Pugliese").
+daughter("Monika Bennet", "Keri Bennet").
+daughter("Monika Bennet", "Ladawn Bennet").
+husband("Monika Bennet", "Clement Bennet").
+friend("Monika Bennet", "Lashandra Gilliam").
+friend("Monika Bennet", "Annabell Horan").
+friend("Monika Bennet", "Nestor Lasher").
+friend("Monika Bennet", "Ofelia Callender").
+friend("Monika Bennet", "Marlene Ingalls").
+friend("Monika Bennet", "Carlotta Gossett").
+friend("Monika Bennet", "Ella Mathes").
+dob("Monika Bennet", "0400-02-11").
+job("Monika Bennet", "theatre stage manager").
+hobby("Monika Bennet", "business").
+gender("Monika Bennet", "female").

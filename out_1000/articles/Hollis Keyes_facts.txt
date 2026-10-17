@@ -1,0 +1,11 @@
+son("Hollis Keyes", "Maximilian Keyes").
+wife("Hollis Keyes", "Delma Keyes").
+friend("Hollis Keyes", "Anderson Fredrick").
+friend("Hollis Keyes", "Racquel Wendel").
+friend("Hollis Keyes", "Floyd Cook").
+friend("Hollis Keyes", "Delpha Younger").
+friend("Hollis Keyes", "Frederic Staten").
+dob("Hollis Keyes", "0375-04-07").
+job("Hollis Keyes", "call centre manager").
+hobby("Hollis Keyes", "hiking/backpacking").
+gender("Hollis Keyes", "male").

@@ -1,0 +1,20 @@
+sister("Catina Linden", "Brunilda Linden").
+sister("Catina Linden", "Genny Burdette").
+sister("Catina Linden", "Patricia Towns").
+brother("Catina Linden", "Augustine Linden").
+brother("Catina Linden", "Emery Linden").
+mother("Catina Linden", "Barb Linden").
+father("Catina Linden", "Jarvis Linden").
+friend("Catina Linden", "Ginger Chou").
+friend("Catina Linden", "Porter Steadman").
+friend("Catina Linden", "Lea Plumley").
+friend("Catina Linden", "Amanda Broughton").
+friend("Catina Linden", "Vernon Joubert").
+friend("Catina Linden", "Charley Weise").
+friend("Catina Linden", "Maurine Wendel").
+friend("Catina Linden", "Cleo Gregory").
+friend("Catina Linden", "Brigette Bales").
+dob("Catina Linden", "0472-01-18").
+job("Catina Linden", "risk manager").
+hobby("Catina Linden", "railway journeys").
+gender("Catina Linden", "female").

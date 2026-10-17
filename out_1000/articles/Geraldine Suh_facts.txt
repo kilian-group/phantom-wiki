@@ -1,0 +1,20 @@
+sister("Geraldine Suh", "Adah Schram").
+sister("Geraldine Suh", "Sharolyn Basham").
+sister("Geraldine Suh", "Shawnta Basham").
+brother("Geraldine Suh", "Winfred Basham").
+mother("Geraldine Suh", "Ladawn Basham").
+father("Geraldine Suh", "Javier Basham").
+daughter("Geraldine Suh", "Melodie Suh").
+daughter("Geraldine Suh", "Viva Suh").
+husband("Geraldine Suh", "Stanford Suh").
+friend("Geraldine Suh", "Newton Lasher").
+friend("Geraldine Suh", "Jacque Simons").
+friend("Geraldine Suh", "Jimmie Smart").
+friend("Geraldine Suh", "Willie Hurt").
+friend("Geraldine Suh", "Ben Sheridan").
+friend("Geraldine Suh", "Jame Carty").
+friend("Geraldine Suh", "Erik Mounts").
+dob("Geraldine Suh", "0424-10-13").
+job("Geraldine Suh", "chartered public finance accountant").
+hobby("Geraldine Suh", "insect collecting").
+gender("Geraldine Suh", "female").

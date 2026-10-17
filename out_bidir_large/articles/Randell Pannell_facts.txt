@@ -1,0 +1,9 @@
+son("Randell Pannell", "Duncan Pannell").
+wife("Randell Pannell", "Tamala Pannell").
+friend("Randell Pannell", "Carson Kovach").
+friend("Randell Pannell", "Lannie Smock").
+friend("Randell Pannell", "Ora Lizotte").
+dob("Randell Pannell", "0207-06-09").
+job("Randell Pannell", "insurance broker").
+hobby("Randell Pannell", "fossicking").
+gender("Randell Pannell", "male").

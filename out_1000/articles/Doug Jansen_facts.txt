@@ -1,0 +1,11 @@
+daughter("Doug Jansen", "Sherrie Jansen").
+daughter("Doug Jansen", "Windy Cowart").
+wife("Doug Jansen", "Lara Jansen").
+friend("Doug Jansen", "Harold Murray").
+friend("Doug Jansen", "Rolf Osterman").
+friend("Doug Jansen", "Roxy Niles").
+friend("Doug Jansen", "Jeff Haygood").
+dob("Doug Jansen", "0402-03-25").
+job("Doug Jansen", "set designer").
+hobby("Doug Jansen", "motorcycling").
+gender("Doug Jansen", "male").

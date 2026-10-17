@@ -1,0 +1,14 @@
+sister("Eli Vandenberg", "Amy Wilke").
+sister("Eli Vandenberg", "Thelma Vandenberg").
+brother("Eli Vandenberg", "Charley Vandenberg").
+mother("Eli Vandenberg", "Jackie Vandenberg").
+father("Eli Vandenberg", "Valentin Vandenberg").
+daughter("Eli Vandenberg", "Anna Vandenberg").
+wife("Eli Vandenberg", "Tashina Vandenberg").
+friend("Eli Vandenberg", "Elroy Mcgough").
+friend("Eli Vandenberg", "Kori Remillard").
+friend("Eli Vandenberg", "Thomas Chrisman").
+dob("Eli Vandenberg", "0257-03-19").
+job("Eli Vandenberg", "civil service fast streamer").
+hobby("Eli Vandenberg", "auto audiophilia").
+gender("Eli Vandenberg", "male").

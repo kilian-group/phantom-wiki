@@ -1,0 +1,16 @@
+sister("Zachariah Galvan", "Jana Galvan").
+sister("Zachariah Galvan", "Raina Hamlin").
+mother("Zachariah Galvan", "Ashleigh Galvan").
+father("Zachariah Galvan", "Brian Galvan").
+friend("Zachariah Galvan", "Belva Resendez").
+friend("Zachariah Galvan", "Avery Nolasco").
+friend("Zachariah Galvan", "Chante Corso").
+friend("Zachariah Galvan", "Valentina Beamon").
+friend("Zachariah Galvan", "Edwina Eaves").
+friend("Zachariah Galvan", "Tania Younger").
+friend("Zachariah Galvan", "Jo Medeiros").
+friend("Zachariah Galvan", "Laurence Macias").
+dob("Zachariah Galvan", "0377-11-03").
+job("Zachariah Galvan", "psychiatric nurse").
+hobby("Zachariah Galvan", "philately").
+gender("Zachariah Galvan", "male").

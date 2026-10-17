@@ -1,0 +1,11 @@
+sister("Hal Ballard", "Lashandra Bowles").
+brother("Hal Ballard", "Major Ballard").
+mother("Hal Ballard", "Kayla Ballard").
+father("Hal Ballard", "Brad Ballard").
+friend("Hal Ballard", "Ressie Capps").
+friend("Hal Ballard", "Sarah Steadman").
+friend("Hal Ballard", "Victor Steadman").
+dob("Hal Ballard", "0442-07-10").
+job("Hal Ballard", "English as a second language teacher").
+hobby("Hal Ballard", "canyoning").
+gender("Hal Ballard", "male").

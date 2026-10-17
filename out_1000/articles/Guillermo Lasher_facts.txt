@@ -1,0 +1,19 @@
+son("Guillermo Lasher", "Jermaine Lasher").
+son("Guillermo Lasher", "Newton Lasher").
+daughter("Guillermo Lasher", "Tabetha Lasher").
+wife("Guillermo Lasher", "Tamara Lasher").
+friend("Guillermo Lasher", "Desmond Lester").
+friend("Guillermo Lasher", "Noreen Cordova").
+friend("Guillermo Lasher", "Paris Cordova").
+friend("Guillermo Lasher", "Jennie Towns").
+friend("Guillermo Lasher", "Julio Mcdonald").
+friend("Guillermo Lasher", "Thomas Flores").
+friend("Guillermo Lasher", "Angela Younger").
+friend("Guillermo Lasher", "Josette Goff").
+friend("Guillermo Lasher", "Sung Fordham").
+friend("Guillermo Lasher", "James Maness").
+friend("Guillermo Lasher", "Teresita Bauman").
+dob("Guillermo Lasher", "0305-08-15").
+job("Guillermo Lasher", "higher education lecturer").
+hobby("Guillermo Lasher", "learning").
+gender("Guillermo Lasher", "male").

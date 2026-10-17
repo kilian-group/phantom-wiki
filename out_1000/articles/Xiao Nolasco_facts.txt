@@ -1,0 +1,13 @@
+mother("Xiao Nolasco", "Tosha Osborn").
+father("Xiao Nolasco", "Randolph Osborn").
+son("Xiao Nolasco", "Avery Nolasco").
+daughter("Xiao Nolasco", "Jackqueline Kell").
+husband("Xiao Nolasco", "Rashad Nolasco").
+friend("Xiao Nolasco", "Shayne Lasher").
+friend("Xiao Nolasco", "Desmond Lester").
+friend("Xiao Nolasco", "Virgina Noland").
+friend("Xiao Nolasco", "Lon Macias").
+dob("Xiao Nolasco", "0335-06-24").
+job("Xiao Nolasco", "embryologist").
+hobby("Xiao Nolasco", "breakdancing").
+gender("Xiao Nolasco", "female").

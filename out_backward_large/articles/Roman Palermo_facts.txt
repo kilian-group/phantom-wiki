@@ -1,0 +1,17 @@
+sister("Roman Palermo", "Madelyn Palermo").
+sister("Roman Palermo", "Zoraida Palermo").
+brother("Roman Palermo", "Joel Palermo").
+mother("Roman Palermo", "Ester Palermo").
+father("Roman Palermo", "Francisco Palermo").
+friend("Roman Palermo", "Spencer Griffiths").
+friend("Roman Palermo", "Zoila Mason").
+friend("Roman Palermo", "Hunter Saari").
+friend("Roman Palermo", "Amanda Mcnew").
+friend("Roman Palermo", "Ora Lizotte").
+friend("Roman Palermo", "Benton Earnest").
+friend("Roman Palermo", "Duncan Pannell").
+friend("Roman Palermo", "Ivory Pannell").
+dob("Roman Palermo", "0366-12-18").
+job("Roman Palermo", "mining engineer").
+hobby("Roman Palermo", "letterboxing").
+gender("Roman Palermo", "male").

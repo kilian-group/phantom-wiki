@@ -1,0 +1,12 @@
+mother("Dominick Palomo", "Sharron Palomo").
+father("Dominick Palomo", "Bryce Palomo").
+friend("Dominick Palomo", "Matthias Lennox").
+friend("Dominick Palomo", "Patty Kell").
+friend("Dominick Palomo", "Cleo Gregory").
+friend("Dominick Palomo", "Emanuel Mccall").
+friend("Dominick Palomo", "Patrick Broughton").
+friend("Dominick Palomo", "Glenn Levine").
+dob("Dominick Palomo", "0463-04-05").
+job("Dominick Palomo", "commercial surveyor").
+hobby("Dominick Palomo", "bowling").
+gender("Dominick Palomo", "male").

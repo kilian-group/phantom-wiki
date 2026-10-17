@@ -1,0 +1,14 @@
+daughter("Magdalena Cordova", "Jodi Cordova").
+husband("Magdalena Cordova", "Fredrick Cordova").
+friend("Magdalena Cordova", "Raleigh Cordova").
+friend("Magdalena Cordova", "Zora Simons").
+friend("Magdalena Cordova", "Major Bales").
+friend("Magdalena Cordova", "Spencer Corwin").
+friend("Magdalena Cordova", "Flora Cushman").
+friend("Magdalena Cordova", "Shelly Fredrick").
+friend("Magdalena Cordova", "Chau Peeler").
+friend("Magdalena Cordova", "Lea Cordova").
+dob("Magdalena Cordova", "0346-10-02").
+job("Magdalena Cordova", "accountant").
+hobby("Magdalena Cordova", "rock balancing").
+gender("Magdalena Cordova", "female").

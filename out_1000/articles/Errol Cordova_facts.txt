@@ -1,0 +1,20 @@
+sister("Errol Cordova", "Lea Cordova").
+sister("Errol Cordova", "Maegan Cordova").
+brother("Errol Cordova", "Ambrose Cordova").
+mother("Errol Cordova", "Enedina Cordova").
+father("Errol Cordova", "Raleigh Cordova").
+son("Errol Cordova", "Gavin Cordova").
+wife("Errol Cordova", "Daisy Cordova").
+friend("Errol Cordova", "Roderick Simons").
+friend("Errol Cordova", "Kyong Eaves").
+friend("Errol Cordova", "Colin Corwin").
+friend("Errol Cordova", "Gina Goff").
+friend("Errol Cordova", "Tianna Goff").
+friend("Errol Cordova", "Lera Mcpeak").
+friend("Errol Cordova", "Nora Noland").
+friend("Errol Cordova", "Juan Weise").
+friend("Errol Cordova", "Manuela Runnels").
+dob("Errol Cordova", "0289-03-29").
+job("Errol Cordova", "race relations officer").
+hobby("Errol Cordova", "stone collecting").
+gender("Errol Cordova", "male").

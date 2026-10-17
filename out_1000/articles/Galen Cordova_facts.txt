@@ -1,0 +1,20 @@
+sister("Galen Cordova", "Janiece Cordova").
+brother("Galen Cordova", "Fredrick Cordova").
+mother("Galen Cordova", "Noreen Cordova").
+father("Galen Cordova", "Frederic Cordova").
+son("Galen Cordova", "Anibal Cordova").
+son("Galen Cordova", "Jacques Cordova").
+son("Galen Cordova", "Jesus Cordova").
+wife("Galen Cordova", "Leonora Cordova").
+friend("Galen Cordova", "Major Bales").
+friend("Galen Cordova", "Renate Gailey").
+friend("Galen Cordova", "Emory Bond").
+friend("Galen Cordova", "Hiram Smart").
+friend("Galen Cordova", "Derek Carswell").
+friend("Galen Cordova", "Randi Crocker").
+friend("Galen Cordova", "Sammy Dillion").
+friend("Galen Cordova", "Carol Conner").
+dob("Galen Cordova", "0350-10-24").
+job("Galen Cordova", "accommodation manager").
+hobby("Galen Cordova", "ticket collecting").
+gender("Galen Cordova", "male").

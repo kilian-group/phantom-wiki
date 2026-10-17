@@ -1,0 +1,24 @@
+sister("Iva Parish", "Lynetta Mckenna").
+brother("Iva Parish", "Michael Mckenna").
+brother("Iva Parish", "Wyatt Mckenna").
+mother("Iva Parish", "Therese Mckenna").
+father("Iva Parish", "Rodrigo Mckenna").
+daughter("Iva Parish", "Maryam Maness").
+husband("Iva Parish", "Sergio Parish").
+friend("Iva Parish", "Maxwell Beamon").
+friend("Iva Parish", "Wesley Beamon").
+friend("Iva Parish", "Enid Dalton").
+friend("Iva Parish", "Tabetha Hsu").
+friend("Iva Parish", "Holley Fredrick").
+friend("Iva Parish", "Jodi Noland").
+friend("Iva Parish", "Marilynn Capps").
+friend("Iva Parish", "Brianne Layton").
+friend("Iva Parish", "Irvin Shaw").
+friend("Iva Parish", "Ladonna Klink").
+friend("Iva Parish", "Roscoe Lindquist").
+friend("Iva Parish", "Tomasa Kell").
+friend("Iva Parish", "Brandon Winn").
+dob("Iva Parish", "0466-10-21").
+job("Iva Parish", "buyer").
+hobby("Iva Parish", "tourism").
+gender("Iva Parish", "female").

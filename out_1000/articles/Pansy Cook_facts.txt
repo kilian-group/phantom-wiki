@@ -1,0 +1,16 @@
+mother("Pansy Cook", "Gena Cook").
+father("Pansy Cook", "Floyd Cook").
+friend("Pansy Cook", "Geri Dana").
+friend("Pansy Cook", "Lera Clement").
+friend("Pansy Cook", "Vicente Mccurry").
+friend("Pansy Cook", "Brigette Keyes").
+friend("Pansy Cook", "Gay Fitch").
+friend("Pansy Cook", "Lindy Kavanaugh").
+friend("Pansy Cook", "Keith Noland").
+friend("Pansy Cook", "Rubie Upton").
+friend("Pansy Cook", "Kurtis Kell").
+friend("Pansy Cook", "Annette Rudolph").
+dob("Pansy Cook", "0472-10-04").
+job("Pansy Cook", "private music teacher").
+hobby("Pansy Cook", "ant farming").
+gender("Pansy Cook", "female").

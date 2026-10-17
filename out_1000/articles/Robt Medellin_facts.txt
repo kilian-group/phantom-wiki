@@ -1,0 +1,18 @@
+sister("Robt Medellin", "Lera Mcpeak").
+brother("Robt Medellin", "Lesley Medellin").
+mother("Robt Medellin", "Bev Medellin").
+father("Robt Medellin", "Foster Medellin").
+son("Robt Medellin", "Kieth Medellin").
+son("Robt Medellin", "Reggie Medellin").
+daughter("Robt Medellin", "Eunice Gordy").
+wife("Robt Medellin", "Valeria Medellin").
+friend("Robt Medellin", "Sung Fordham").
+friend("Robt Medellin", "Sharron Palomo").
+friend("Robt Medellin", "Anita Fain").
+friend("Robt Medellin", "Lon Macias").
+friend("Robt Medellin", "Myrl Murray").
+friend("Robt Medellin", "Jefferson Murdoch").
+dob("Robt Medellin", "0380-03-18").
+job("Robt Medellin", "personnel officer").
+hobby("Robt Medellin", "research").
+gender("Robt Medellin", "male").

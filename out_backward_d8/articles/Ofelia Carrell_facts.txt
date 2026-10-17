@@ -1,0 +1,8 @@
+mother("Ofelia Carrell", "Jona Carrell").
+father("Ofelia Carrell", "Rigoberto Carrell").
+friend("Ofelia Carrell", "Dwain Lizotte").
+friend("Ofelia Carrell", "Cary Etheridge").
+dob("Ofelia Carrell", "0286-06-15").
+job("Ofelia Carrell", "chartered loss adjuster").
+hobby("Ofelia Carrell", "audiophile").
+gender("Ofelia Carrell", "female").

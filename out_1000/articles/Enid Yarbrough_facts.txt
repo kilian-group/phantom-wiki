@@ -1,0 +1,12 @@
+sister("Enid Yarbrough", "Brigette Medeiros").
+mother("Enid Yarbrough", "Jo Medeiros").
+father("Enid Yarbrough", "Chuck Medeiros").
+daughter("Enid Yarbrough", "Dawn Rinehart").
+daughter("Enid Yarbrough", "Ester Yarbrough").
+husband("Enid Yarbrough", "Sammy Yarbrough").
+friend("Enid Yarbrough", "Gustavo Bauman").
+friend("Enid Yarbrough", "Shante Ruth").
+dob("Enid Yarbrough", "0459-08-04").
+job("Enid Yarbrough", "operations geologist").
+hobby("Enid Yarbrough", "teaching").
+gender("Enid Yarbrough", "female").

@@ -1,0 +1,18 @@
+son("Kayla Ballard", "Hal Ballard").
+son("Kayla Ballard", "Major Ballard").
+daughter("Kayla Ballard", "Lashandra Bowles").
+husband("Kayla Ballard", "Brad Ballard").
+friend("Kayla Ballard", "Ashely Speaks").
+friend("Kayla Ballard", "Julianne Hamlin").
+friend("Kayla Ballard", "Stanford Suh").
+friend("Kayla Ballard", "Trevor Frink").
+friend("Kayla Ballard", "Ricardo Runnels").
+friend("Kayla Ballard", "Bridget Sutphin").
+friend("Kayla Ballard", "Jesus Gregory").
+friend("Kayla Ballard", "Blake Swartz").
+friend("Kayla Ballard", "Dixie Murdoch").
+friend("Kayla Ballard", "Tracy Fredrick").
+dob("Kayla Ballard", "0413-09-08").
+job("Kayla Ballard", "editorial assistant").
+hobby("Kayla Ballard", "marching band").
+gender("Kayla Ballard", "female").

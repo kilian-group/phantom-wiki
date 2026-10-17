@@ -1,0 +1,13 @@
+sister("Roscoe Lindquist", "Maria Lindquist").
+mother("Roscoe Lindquist", "Alysa Lindquist").
+father("Roscoe Lindquist", "Carroll Lindquist").
+friend("Roscoe Lindquist", "Iva Parish").
+friend("Roscoe Lindquist", "Mike Schram").
+friend("Roscoe Lindquist", "Romona Littleton").
+friend("Roscoe Lindquist", "Latrina Mathes").
+friend("Roscoe Lindquist", "Artie Putnam").
+friend("Roscoe Lindquist", "Gayla Dorn").
+dob("Roscoe Lindquist", "0404-07-20").
+job("Roscoe Lindquist", "environmental health practitioner").
+hobby("Roscoe Lindquist", "audiophile").
+gender("Roscoe Lindquist", "male").

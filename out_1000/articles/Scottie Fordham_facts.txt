@@ -1,0 +1,14 @@
+sister("Scottie Fordham", "Rena Palm").
+mother("Scottie Fordham", "Jewell Fordham").
+father("Scottie Fordham", "Olin Fordham").
+friend("Scottie Fordham", "Herbert Storey").
+friend("Scottie Fordham", "Jenniffer Younger").
+friend("Scottie Fordham", "Bruce Mathes").
+friend("Scottie Fordham", "Aaron Fordham").
+friend("Scottie Fordham", "Rodney Fordham").
+friend("Scottie Fordham", "Bettina Courson").
+friend("Scottie Fordham", "Jeanelle Resendez").
+dob("Scottie Fordham", "0329-06-17").
+job("Scottie Fordham", "physiotherapist").
+hobby("Scottie Fordham", "entrepreneurship").
+gender("Scottie Fordham", "female").

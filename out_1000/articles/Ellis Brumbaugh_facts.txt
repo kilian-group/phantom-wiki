@@ -1,0 +1,19 @@
+sister("Ellis Brumbaugh", "Cordelia Murray").
+brother("Ellis Brumbaugh", "Paris Brumbaugh").
+mother("Ellis Brumbaugh", "Renate Brumbaugh").
+father("Ellis Brumbaugh", "Wallace Brumbaugh").
+friend("Ellis Brumbaugh", "Eli Younger").
+friend("Ellis Brumbaugh", "Jenniffer Younger").
+friend("Ellis Brumbaugh", "Desmond Dacosta").
+friend("Ellis Brumbaugh", "Kenton Gilliam").
+friend("Ellis Brumbaugh", "Pedro Waltz").
+friend("Ellis Brumbaugh", "Guadalupe Palomo").
+friend("Ellis Brumbaugh", "Belva Murphey").
+friend("Ellis Brumbaugh", "Marion Wilke").
+friend("Ellis Brumbaugh", "Melodie Suh").
+friend("Ellis Brumbaugh", "Noelia Lasher").
+friend("Ellis Brumbaugh", "Mickey Beamon").
+dob("Ellis Brumbaugh", "0448-01-19").
+job("Ellis Brumbaugh", "tourism officer").
+hobby("Ellis Brumbaugh", "tennis").
+gender("Ellis Brumbaugh", "male").

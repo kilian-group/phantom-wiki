@@ -1,0 +1,21 @@
+brother("Jackqueline Kell", "Avery Nolasco").
+mother("Jackqueline Kell", "Xiao Nolasco").
+father("Jackqueline Kell", "Rashad Nolasco").
+son("Jackqueline Kell", "Felton Kell").
+son("Jackqueline Kell", "Perry Kell").
+son("Jackqueline Kell", "Simon Kell").
+daughter("Jackqueline Kell", "Winnie Harlow").
+husband("Jackqueline Kell", "Kurtis Kell").
+friend("Jackqueline Kell", "Laverna Kell").
+friend("Jackqueline Kell", "Kendrick Jefferson").
+friend("Jackqueline Kell", "Lloyd Ingalls").
+friend("Jackqueline Kell", "Thalia Linden").
+friend("Jackqueline Kell", "Amberly Levine").
+friend("Jackqueline Kell", "Eldon Cushman").
+friend("Jackqueline Kell", "Kris Fordham").
+friend("Jackqueline Kell", "Tracy Fredrick").
+friend("Jackqueline Kell", "Fatimah Holtz").
+dob("Jackqueline Kell", "0361-01-07").
+job("Jackqueline Kell", "chartered accountant").
+hobby("Jackqueline Kell", "color guard").
+gender("Jackqueline Kell", "female").

@@ -1,0 +1,13 @@
+son("Tania Younger", "Rueben Younger").
+daughter("Tania Younger", "Angela Younger").
+husband("Tania Younger", "Dan Younger").
+friend("Tania Younger", "Lurline Tyree").
+friend("Tania Younger", "Chelsea Skidmore").
+friend("Tania Younger", "Felix Hamlin").
+friend("Tania Younger", "Zachariah Galvan").
+friend("Tania Younger", "Mickey Beamon").
+friend("Tania Younger", "Dane Murray").
+dob("Tania Younger", "0354-03-19").
+job("Tania Younger", "librarian").
+hobby("Tania Younger", "leaves").
+gender("Tania Younger", "female").

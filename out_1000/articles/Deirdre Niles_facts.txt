@@ -1,0 +1,17 @@
+sister("Deirdre Niles", "Nedra Musick").
+sister("Deirdre Niles", "Nellie Niles").
+sister("Deirdre Niles", "Tabetha Niles").
+sister("Deirdre Niles", "Yoshiko Niles").
+mother("Deirdre Niles", "Virgie Niles").
+father("Deirdre Niles", "Julius Niles").
+friend("Deirdre Niles", "Nelly Smart").
+friend("Deirdre Niles", "Susie Medellin").
+friend("Deirdre Niles", "Karen Mckenna").
+friend("Deirdre Niles", "Christoper Littleton").
+friend("Deirdre Niles", "Melina Simons").
+friend("Deirdre Niles", "Buffy Mccurry").
+friend("Deirdre Niles", "Vernon Peabody").
+dob("Deirdre Niles", "0403-05-06").
+job("Deirdre Niles", "public house manager").
+hobby("Deirdre Niles", "shooting sports").
+gender("Deirdre Niles", "female").

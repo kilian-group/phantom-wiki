@@ -1,0 +1,13 @@
+daughter("Dwight Palm", "Audie Lasher").
+daughter("Dwight Palm", "Ligia Frink").
+wife("Dwight Palm", "Rena Palm").
+friend("Dwight Palm", "Frederic Cordova").
+friend("Dwight Palm", "Leonora Cordova").
+friend("Dwight Palm", "Glen Towns").
+friend("Dwight Palm", "Miki Peabody").
+friend("Dwight Palm", "Stacey Wilke").
+friend("Dwight Palm", "Pamala Vanmeter").
+dob("Dwight Palm", "0334-02-18").
+job("Dwight Palm", "forest manager").
+hobby("Dwight Palm", "fossil hunting").
+gender("Dwight Palm", "male").

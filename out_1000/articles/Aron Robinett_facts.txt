@@ -1,0 +1,15 @@
+daughter("Aron Robinett", "Deloris Robinett").
+wife("Aron Robinett", "Valentina Robinett").
+friend("Aron Robinett", "Rocky Perrine").
+friend("Aron Robinett", "Cary Layton").
+friend("Aron Robinett", "Rory Hamlin").
+friend("Aron Robinett", "Tashina Layton").
+friend("Aron Robinett", "Nevin Mckenna").
+friend("Aron Robinett", "Donnie Crocker").
+friend("Aron Robinett", "Virgie Niles").
+friend("Aron Robinett", "Pierre Mcpeak").
+friend("Aron Robinett", "Nora Noland").
+dob("Aron Robinett", "0443-05-07").
+job("Aron Robinett", "holiday representative").
+hobby("Aron Robinett", "microscopy").
+gender("Aron Robinett", "male").

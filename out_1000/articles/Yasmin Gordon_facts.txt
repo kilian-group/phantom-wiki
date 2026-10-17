@@ -1,0 +1,19 @@
+sister("Yasmin Gordon", "Kanesha Booth").
+sister("Yasmin Gordon", "Kristen Kell").
+mother("Yasmin Gordon", "Aurelia Gordon").
+father("Yasmin Gordon", "Nicky Gordon").
+friend("Yasmin Gordon", "Earle Boutte").
+friend("Yasmin Gordon", "Janey Plumley").
+friend("Yasmin Gordon", "Katharine Resendez").
+friend("Yasmin Gordon", "Paula Gerber").
+friend("Yasmin Gordon", "Tyrell Resendez").
+friend("Yasmin Gordon", "Malik Fredrick").
+friend("Yasmin Gordon", "Sheila Putnam").
+friend("Yasmin Gordon", "Eunice Lennox").
+friend("Yasmin Gordon", "Haley Layman").
+friend("Yasmin Gordon", "Trudy Lennox").
+friend("Yasmin Gordon", "Tosha Osborn").
+dob("Yasmin Gordon", "0410-05-26").
+job("Yasmin Gordon", "teacher").
+hobby("Yasmin Gordon", "shogi").
+gender("Yasmin Gordon", "female").

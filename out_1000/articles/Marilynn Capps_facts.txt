@@ -1,0 +1,13 @@
+son("Marilynn Capps", "Rogelio Capps").
+son("Marilynn Capps", "Vito Capps").
+husband("Marilynn Capps", "Brandon Capps").
+friend("Marilynn Capps", "Elijah Hamlin").
+friend("Marilynn Capps", "Iva Parish").
+friend("Marilynn Capps", "Paula Lazar").
+friend("Marilynn Capps", "Devon Leclair").
+friend("Marilynn Capps", "Tristan Niles").
+friend("Marilynn Capps", "Drew Smart").
+dob("Marilynn Capps", "0352-10-27").
+job("Marilynn Capps", "passenger transport manager").
+hobby("Marilynn Capps", "life science").
+gender("Marilynn Capps", "female").

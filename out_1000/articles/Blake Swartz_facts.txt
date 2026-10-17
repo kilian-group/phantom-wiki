@@ -1,0 +1,16 @@
+brother("Blake Swartz", "Ramon Swartz").
+mother("Blake Swartz", "Nanette Swartz").
+father("Blake Swartz", "Emmanuel Swartz").
+friend("Blake Swartz", "Drew Dana").
+friend("Blake Swartz", "Tristan Niles").
+friend("Blake Swartz", "Wilson Donner").
+friend("Blake Swartz", "Kayla Ballard").
+friend("Blake Swartz", "Katharine Willoughby").
+friend("Blake Swartz", "Theodore Vanmeter").
+friend("Blake Swartz", "Antwan Rudolph").
+friend("Blake Swartz", "Ella Valladares").
+friend("Blake Swartz", "Gerald Hartung").
+dob("Blake Swartz", "0448-08-14").
+job("Blake Swartz", "accountant").
+hobby("Blake Swartz", "rock balancing").
+gender("Blake Swartz", "male").

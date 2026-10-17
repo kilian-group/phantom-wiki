@@ -1,0 +1,14 @@
+mother("Sylvia Palermo", "Blair Etheridge").
+father("Sylvia Palermo", "Cary Etheridge").
+son("Sylvia Palermo", "Francisco Palermo").
+daughter("Sylvia Palermo", "Hannah Palermo").
+daughter("Sylvia Palermo", "Monique Palermo").
+daughter("Sylvia Palermo", "Rosanna Palermo").
+husband("Sylvia Palermo", "Enoch Palermo").
+friend("Sylvia Palermo", "Clayton Shirk").
+friend("Sylvia Palermo", "Leda Cormier").
+friend("Sylvia Palermo", "Jona Carrell").
+dob("Sylvia Palermo", "0313-09-16").
+job("Sylvia Palermo", "forensic scientist").
+hobby("Sylvia Palermo", "bridge").
+gender("Sylvia Palermo", "female").

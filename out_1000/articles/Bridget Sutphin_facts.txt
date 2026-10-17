@@ -1,0 +1,16 @@
+son("Bridget Sutphin", "Andrew Sutphin").
+husband("Bridget Sutphin", "Stefan Sutphin").
+friend("Bridget Sutphin", "James Arteaga").
+friend("Bridget Sutphin", "Jefferson Smart").
+friend("Bridget Sutphin", "Kayla Ballard").
+friend("Bridget Sutphin", "Jamal Marr").
+friend("Bridget Sutphin", "Normand Wilke").
+friend("Bridget Sutphin", "Abe Kell").
+friend("Bridget Sutphin", "Seth Mounts").
+friend("Bridget Sutphin", "Oscar Schram").
+friend("Bridget Sutphin", "Ashleigh Spiller").
+friend("Bridget Sutphin", "Herbert Storey").
+dob("Bridget Sutphin", "0294-05-07").
+job("Bridget Sutphin", "logistics and distribution manager").
+hobby("Bridget Sutphin", "herping").
+gender("Bridget Sutphin", "female").

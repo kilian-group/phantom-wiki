@@ -1,0 +1,15 @@
+sister("Thelma Vandenberg", "Amy Wilke").
+brother("Thelma Vandenberg", "Charley Vandenberg").
+brother("Thelma Vandenberg", "Eli Vandenberg").
+brother("Thelma Vandenberg", "Fernando Vandenberg").
+mother("Thelma Vandenberg", "Jackie Vandenberg").
+father("Thelma Vandenberg", "Valentin Vandenberg").
+friend("Thelma Vandenberg", "Abe Kell").
+friend("Thelma Vandenberg", "Larae Kirksey").
+friend("Thelma Vandenberg", "Rosella Simons").
+friend("Thelma Vandenberg", "Tim Goff").
+friend("Thelma Vandenberg", "Buck Smart").
+dob("Thelma Vandenberg", "0345-04-23").
+job("Thelma Vandenberg", "chartered loss adjuster").
+hobby("Thelma Vandenberg", "gongoozling").
+gender("Thelma Vandenberg", "female").

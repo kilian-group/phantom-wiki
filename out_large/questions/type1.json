@@ -1,0 +1,629 @@
+[
+    {
+        "id": "a5cc01e4-717d-464d-9182-1ce1649875c8",
+        "question": "Who is the sister-in-law of the friend of Chrissy Mcgough?",
+        "solution_traces": "[{\"Y_4\": \"Tashina Vandenberg\", \"Y_2\": \"Thelma Vandenberg\"}, {\"Y_4\": \"Tashina Vandenberg\", \"Y_2\": \"Amy Wilke\"}]",
+        "answer": [
+            "Amy Wilke",
+            "Thelma Vandenberg"
+        ],
+        "prolog": {
+            "query": [
+                "sister_in_law(Y_4, Y_2)",
+                "friend(\"Chrissy Mcgough\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "65caa1ec-3105-4f07-905d-f3dec70b88da",
+        "question": "Who is the friend of the mother-in-law of Colby Narvaez?",
+        "solution_traces": "[{\"Y_4\": \"Cherlyn Oberg\", \"Y_2\": \"Charley Vandenberg\"}, {\"Y_4\": \"Cherlyn Oberg\", \"Y_2\": \"Randall Mcgough\"}, {\"Y_2\": \"Thelma Vandenberg\", \"Y_4\": \"Cherlyn Oberg\"}, {\"Y_2\": \"Richard Oberg\", \"Y_4\": \"Cherlyn Oberg\"}, {\"Y_2\": \"Ophelia Mcgough\", \"Y_4\": \"Cherlyn Oberg\"}, {\"Y_4\": \"Cherlyn Oberg\", \"Y_2\": \"Wanita Remillard\"}, {\"Y_2\": \"Delsie Mcgough\", \"Y_4\": \"Cherlyn Oberg\"}, {\"Y_4\": \"Cherlyn Oberg\", \"Y_2\": \"Sherrie Remillard\"}]",
+        "answer": [
+            "Charley Vandenberg",
+            "Delsie Mcgough",
+            "Ophelia Mcgough",
+            "Randall Mcgough",
+            "Richard Oberg",
+            "Sherrie Remillard",
+            "Thelma Vandenberg",
+            "Wanita Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "friend(Y_4, Y_2)",
+                "mother_in_law(\"Colby Narvaez\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "1af25a3e-1b2c-4f6d-8a8b-89edbb53f164",
+        "question": "Who is the daughter of the daughter-in-law of Chrissy Mcgough?",
+        "solution_traces": "[{\"Y_2\": \"Clara Mcgough\", \"Y_4\": \"Myrl Mcgough\"}, {\"Y_2\": \"Delsie Mcgough\", \"Y_4\": \"Myrl Mcgough\"}]",
+        "answer": [
+            "Clara Mcgough",
+            "Delsie Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "daughter(Y_4, Y_2)",
+                "daughter_in_law(\"Chrissy Mcgough\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "b72e864d-e520-4aa0-bf7b-dbe5b91b7924",
+        "question": "Who is the friend of the granddaughter of Chrissy Mcgough?",
+        "solution_traces": "[{\"Y_4\": \"Delsie Mcgough\", \"Y_2\": \"Jackie Vandenberg\"}, {\"Y_2\": \"Lyman Oberg\", \"Y_4\": \"Clara Mcgough\"}, {\"Y_4\": \"Delsie Mcgough\", \"Y_2\": \"Anna Vandenberg\"}, {\"Y_4\": \"Delsie Mcgough\", \"Y_2\": \"Aurelia Dishman\"}, {\"Y_2\": \"Thomas Chrisman\", \"Y_4\": \"Clara Mcgough\"}, {\"Y_4\": \"Delsie Mcgough\", \"Y_2\": \"Cherlyn Oberg\"}, {\"Y_2\": \"Marlo Oberg\", \"Y_4\": \"Clara Mcgough\"}, {\"Y_2\": \"Marion Wilke\", \"Y_4\": \"Clara Mcgough\"}, {\"Y_4\": \"Clara Mcgough\", \"Y_2\": \"Demarcus Narvaez\"}, {\"Y_4\": \"Clara Mcgough\", \"Y_2\": \"Monte Oberg\"}]",
+        "answer": [
+            "Anna Vandenberg",
+            "Aurelia Dishman",
+            "Cherlyn Oberg",
+            "Demarcus Narvaez",
+            "Jackie Vandenberg",
+            "Lyman Oberg",
+            "Marion Wilke",
+            "Marlo Oberg",
+            "Monte Oberg",
+            "Thomas Chrisman"
+        ],
+        "prolog": {
+            "query": [
+                "friend(Y_4, Y_2)",
+                "granddaughter(\"Chrissy Mcgough\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "86568fe2-4218-4c51-8df7-7c7a1be80074",
+        "question": "Who is the grandparent of the second aunt of Dorinda Chrisman?",
+        "solution_traces": "[{\"Y_2\": \"King Dishman\", \"Y_4\": \"Wanita Remillard\"}, {\"Y_2\": \"Aurelia Dishman\", \"Y_4\": \"Wanita Remillard\"}]",
+        "answer": [
+            "Aurelia Dishman",
+            "King Dishman"
+        ],
+        "prolog": {
+            "query": [
+                "grandparent(Y_4, Y_2)",
+                "second_aunt(\"Dorinda Chrisman\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 6,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "1bdf8134-6194-48ac-9fc9-67901ae3972a",
+        "question": "Who is the grandchild of the father-in-law of Jon Remillard?",
+        "solution_traces": "[{\"Y_4\": \"King Dishman\", \"Y_2\": \"Jude Remillard\"}, {\"Y_4\": \"King Dishman\", \"Y_2\": \"Wanita Remillard\"}, {\"Y_2\": \"Jaime Remillard\", \"Y_4\": \"King Dishman\"}]",
+        "answer": [
+            "Jaime Remillard",
+            "Jude Remillard",
+            "Wanita Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "grandchild(Y_4, Y_2)",
+                "father_in_law(\"Jon Remillard\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 4,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "f67f4dac-f2bd-4fe0-9abd-9ce324c46c12",
+        "question": "Who is the uncle of the cousin of Kori Remillard?",
+        "solution_traces": "[{\"Y_2\": \"Jude Remillard\", \"Y_4\": \"Margie Remillard\"}, {\"Y_2\": \"Jude Remillard\", \"Y_4\": \"Chrissy Remillard\"}, {\"Y_2\": \"Jude Remillard\", \"Y_4\": \"Hunter Remillard\"}]",
+        "answer": [
+            "Jude Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "uncle(Y_4, Y_2)",
+                "cousin(\"Kori Remillard\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 5,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "d9a40321-77eb-49e8-b8d9-92bc3b3cb7d4",
+        "question": "Who is the friend of the husband of Brigida Oberg?",
+        "solution_traces": "[{\"Y_2\": \"Tashina Vandenberg\", \"Y_4\": \"Richard Oberg\"}, {\"Y_4\": \"Richard Oberg\", \"Y_2\": \"Sherrie Remillard\"}, {\"Y_4\": \"Richard Oberg\", \"Y_2\": \"Kori Remillard\"}, {\"Y_4\": \"Richard Oberg\", \"Y_2\": \"Louann Chrisman\"}, {\"Y_4\": \"Richard Oberg\", \"Y_2\": \"Demarcus Narvaez\"}, {\"Y_4\": \"Richard Oberg\", \"Y_2\": \"Cherlyn Oberg\"}]",
+        "answer": [
+            "Cherlyn Oberg",
+            "Demarcus Narvaez",
+            "Kori Remillard",
+            "Louann Chrisman",
+            "Sherrie Remillard",
+            "Tashina Vandenberg"
+        ],
+        "prolog": {
+            "query": [
+                "friend(Y_4, Y_2)",
+                "husband(\"Brigida Oberg\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "aea7a141-43f5-47a9-ab80-163390ade79e",
+        "question": "Who is the mother-in-law of the daughter-in-law of Jon Remillard?",
+        "solution_traces": "[{\"Y_4\": \"Morgan Remillard\", \"Y_2\": \"Sherrie Remillard\"}, {\"Y_2\": \"Sherrie Remillard\", \"Y_4\": \"Tianna Remillard\"}]",
+        "answer": [
+            "Sherrie Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "mother_in_law(Y_4, Y_2)",
+                "daughter_in_law(\"Jon Remillard\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 4,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "3b39cc3e-94ac-4aed-b5d4-2b9a5d26d116",
+        "question": "Who is the cousin of the great-grandchild of King Dishman?",
+        "solution_traces": "[{\"Y_4\": \"Kori Remillard\", \"Y_2\": \"Hunter Remillard\"}, {\"Y_2\": \"Kori Remillard\", \"Y_4\": \"Margie Remillard\"}, {\"Y_4\": \"Kori Remillard\", \"Y_2\": \"Margie Remillard\"}, {\"Y_2\": \"Chrissy Remillard\", \"Y_4\": \"Kori Remillard\"}, {\"Y_2\": \"Kori Remillard\", \"Y_4\": \"Hunter Remillard\"}, {\"Y_2\": \"Kori Remillard\", \"Y_4\": \"Chrissy Remillard\"}]",
+        "answer": [
+            "Chrissy Remillard",
+            "Hunter Remillard",
+            "Kori Remillard",
+            "Margie Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "cousin(Y_4, Y_2)",
+                "great_grandchild(\"King Dishman\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 6,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "89722e64-43b6-40d4-ab1f-60f2adf6e0f0",
+        "question": "Who is the son of the wife of Demarcus Narvaez?",
+        "solution_traces": "[{\"Y_2\": \"Owen Narvaez\", \"Y_4\": \"Rhoda Narvaez\"}]",
+        "answer": [
+            "Owen Narvaez"
+        ],
+        "prolog": {
+            "query": [
+                "son(Y_4, Y_2)",
+                "wife(\"Demarcus Narvaez\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "503a0792-647c-4110-b74b-e29c47a06dc3",
+        "question": "Who is the child of the son-in-law of Monte Oberg?",
+        "solution_traces": "[{\"Y_4\": \"Colby Narvaez\", \"Y_2\": \"Demarcus Narvaez\"}]",
+        "answer": [
+            "Demarcus Narvaez"
+        ],
+        "prolog": {
+            "query": [
+                "child(Y_4, Y_2)",
+                "son_in_law(\"Monte Oberg\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "fe42334c-334d-43e0-a3a5-5433573937c0",
+        "question": "Who is the husband of the friend of Louann Chrisman?",
+        "solution_traces": "[{\"Y_2\": \"Jon Remillard\", \"Y_4\": \"Sherrie Remillard\"}, {\"Y_4\": \"Jackie Vandenberg\", \"Y_2\": \"Valentin Vandenberg\"}]",
+        "answer": [
+            "Jon Remillard",
+            "Valentin Vandenberg"
+        ],
+        "prolog": {
+            "query": [
+                "husband(Y_4, Y_2)",
+                "friend(\"Louann Chrisman\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "339e55dc-1bd6-4280-9305-d809ea0e6f98",
+        "question": "Who is the friend of the mother of Sarah Oberg?",
+        "solution_traces": "[{\"Y_4\": \"Cherlyn Oberg\", \"Y_2\": \"Charley Vandenberg\"}, {\"Y_4\": \"Cherlyn Oberg\", \"Y_2\": \"Randall Mcgough\"}, {\"Y_2\": \"Thelma Vandenberg\", \"Y_4\": \"Cherlyn Oberg\"}, {\"Y_2\": \"Richard Oberg\", \"Y_4\": \"Cherlyn Oberg\"}, {\"Y_2\": \"Ophelia Mcgough\", \"Y_4\": \"Cherlyn Oberg\"}, {\"Y_4\": \"Cherlyn Oberg\", \"Y_2\": \"Wanita Remillard\"}, {\"Y_2\": \"Delsie Mcgough\", \"Y_4\": \"Cherlyn Oberg\"}, {\"Y_4\": \"Cherlyn Oberg\", \"Y_2\": \"Sherrie Remillard\"}]",
+        "answer": [
+            "Charley Vandenberg",
+            "Delsie Mcgough",
+            "Ophelia Mcgough",
+            "Randall Mcgough",
+            "Richard Oberg",
+            "Sherrie Remillard",
+            "Thelma Vandenberg",
+            "Wanita Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "friend(Y_4, Y_2)",
+                "mother(\"Sarah Oberg\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "ad2a1c0d-7a1e-4717-a2c4-c8708b350dff",
+        "question": "Who is the parent of the aunt of Chrissy Remillard?",
+        "solution_traces": "[{\"Y_2\": \"Sherrie Remillard\", \"Y_4\": \"Wanita Remillard\"}, {\"Y_2\": \"Jon Remillard\", \"Y_4\": \"Wanita Remillard\"}]",
+        "answer": [
+            "Jon Remillard",
+            "Sherrie Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "parent(Y_4, Y_2)",
+                "aunt(\"Chrissy Remillard\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "12db2552-75d6-4d5d-8f08-f01423835a40",
+        "question": "Who is the female cousin of the niece of Wanita Remillard?",
+        "solution_traces": "[{\"Y_2\": \"Kori Remillard\", \"Y_4\": \"Margie Remillard\"}, {\"Y_4\": \"Kori Remillard\", \"Y_2\": \"Margie Remillard\"}, {\"Y_2\": \"Kori Remillard\", \"Y_4\": \"Chrissy Remillard\"}, {\"Y_2\": \"Chrissy Remillard\", \"Y_4\": \"Kori Remillard\"}]",
+        "answer": [
+            "Chrissy Remillard",
+            "Kori Remillard",
+            "Margie Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "female_cousin(Y_4, Y_2)",
+                "niece(\"Wanita Remillard\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 5,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "8af2c645-d129-44ad-9624-40cd85104272",
+        "question": "Who is the grandparent of the great-aunt of Celestine Remillard?",
+        "solution_traces": "[{\"Y_2\": \"King Dishman\", \"Y_4\": \"Wanita Remillard\"}, {\"Y_2\": \"Aurelia Dishman\", \"Y_4\": \"Wanita Remillard\"}]",
+        "answer": [
+            "Aurelia Dishman",
+            "King Dishman"
+        ],
+        "prolog": {
+            "query": [
+                "grandparent(Y_4, Y_2)",
+                "great_aunt(\"Celestine Remillard\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 5,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "0a189489-1a90-4ed4-ac03-f8049f0a84ec",
+        "question": "Who is the brother-in-law of the father of Luke Wilke?",
+        "solution_traces": "[{\"Y_4\": \"Stacey Wilke\", \"Y_2\": \"Charley Vandenberg\"}, {\"Y_4\": \"Stacey Wilke\", \"Y_2\": \"Eli Vandenberg\"}]",
+        "answer": [
+            "Charley Vandenberg",
+            "Eli Vandenberg"
+        ],
+        "prolog": {
+            "query": [
+                "brother_in_law(Y_4, Y_2)",
+                "father(\"Luke Wilke\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "de128812-1fca-49a3-b40c-162cb62ada48",
+        "question": "Who is the grandchild of the parent of Lyman Oberg?",
+        "solution_traces": "[{\"Y_4\": \"Richard Oberg\", \"Y_2\": \"Sarah Oberg\"}, {\"Y_4\": \"Richard Oberg\", \"Y_2\": \"Mason Oberg\"}, {\"Y_4\": \"Richard Oberg\", \"Y_2\": \"Amos Oberg\"}, {\"Y_2\": \"Mason Oberg\", \"Y_4\": \"Brigida Oberg\"}, {\"Y_2\": \"Sarah Oberg\", \"Y_4\": \"Brigida Oberg\"}, {\"Y_4\": \"Richard Oberg\", \"Y_2\": \"Luisa Narvaez\"}, {\"Y_2\": \"Twila Oberg\", \"Y_4\": \"Richard Oberg\"}, {\"Y_2\": \"Twila Oberg\", \"Y_4\": \"Brigida Oberg\"}, {\"Y_2\": \"Luisa Narvaez\", \"Y_4\": \"Brigida Oberg\"}, {\"Y_2\": \"Amos Oberg\", \"Y_4\": \"Brigida Oberg\"}]",
+        "answer": [
+            "Amos Oberg",
+            "Luisa Narvaez",
+            "Mason Oberg",
+            "Sarah Oberg",
+            "Twila Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "grandchild(Y_4, Y_2)",
+                "parent(\"Lyman Oberg\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "c09ace54-415c-4ec0-a619-37dc47d77b00",
+        "question": "Who is the female cousin of the friend of Elroy Mcgough?",
+        "solution_traces": "[{\"Y_4\": \"Mai Remillard\", \"Y_2\": \"Dorinda Chrisman\"}, {\"Y_4\": \"Dorinda Chrisman\", \"Y_2\": \"Mai Remillard\"}]",
+        "answer": [
+            "Dorinda Chrisman",
+            "Mai Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "female_cousin(Y_4, Y_2)",
+                "friend(\"Elroy Mcgough\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "difficulty": 4,
+        "is_aggregation_question": false
+    }
+]

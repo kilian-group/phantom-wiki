@@ -1,0 +1,15 @@
+son("Lannie Smock", "Aubrey Smock").
+son("Lannie Smock", "Gene Smock").
+daughter("Lannie Smock", "Deane Smock").
+daughter("Lannie Smock", "Isabell Smock").
+husband("Lannie Smock", "Alvaro Smock").
+friend("Lannie Smock", "Leeann Hackworth").
+friend("Lannie Smock", "Lenore Hackworth").
+friend("Lannie Smock", "Saul Wexler").
+friend("Lannie Smock", "Vicki Hackworth").
+friend("Lannie Smock", "Aubrey Smock").
+friend("Lannie Smock", "Dominique Smock").
+dob("Lannie Smock", "0177-08-24").
+job("Lannie Smock", "music tutor").
+hobby("Lannie Smock", "research").
+gender("Lannie Smock", "female").

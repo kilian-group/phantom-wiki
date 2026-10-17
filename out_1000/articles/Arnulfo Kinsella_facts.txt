@@ -1,0 +1,17 @@
+son("Arnulfo Kinsella", "Kenny Kinsella").
+daughter("Arnulfo Kinsella", "Colette Kinsella").
+wife("Arnulfo Kinsella", "Rayna Kinsella").
+friend("Arnulfo Kinsella", "Edythe Littleton").
+friend("Arnulfo Kinsella", "Otto Arnold").
+friend("Arnulfo Kinsella", "Miki Mcdonald").
+friend("Arnulfo Kinsella", "Shawnta Plumley").
+friend("Arnulfo Kinsella", "Enid Dalton").
+friend("Arnulfo Kinsella", "Katharine Resendez").
+friend("Arnulfo Kinsella", "Tamala Skidmore").
+friend("Arnulfo Kinsella", "Bettina Courson").
+friend("Arnulfo Kinsella", "Trudy Lasher").
+friend("Arnulfo Kinsella", "Isaiah Autry").
+dob("Arnulfo Kinsella", "0441-10-19").
+job("Arnulfo Kinsella", "dramatherapist").
+hobby("Arnulfo Kinsella", "longboarding").
+gender("Arnulfo Kinsella", "male").

@@ -1,0 +1,20 @@
+brother("Drema Jefferson", "Dale Jefferson").
+mother("Drema Jefferson", "Viva Jefferson").
+father("Drema Jefferson", "Kendrick Jefferson").
+friend("Drema Jefferson", "Latisha Murchison").
+friend("Drema Jefferson", "Sherrie Jansen").
+friend("Drema Jefferson", "Hershel Ingalls").
+friend("Drema Jefferson", "Chang Eaves").
+friend("Drema Jefferson", "Ivette Eaves").
+friend("Drema Jefferson", "Darwin Kavanaugh").
+friend("Drema Jefferson", "Katherine Carswell").
+friend("Drema Jefferson", "Cleveland Capps").
+friend("Drema Jefferson", "Donnie Mcgough").
+friend("Drema Jefferson", "Douglass Resendez").
+friend("Drema Jefferson", "Hyman Layman").
+friend("Drema Jefferson", "Leslie Courson").
+friend("Drema Jefferson", "Dale Jefferson").
+dob("Drema Jefferson", "0340-08-24").
+job("Drema Jefferson", "sales executive").
+hobby("Drema Jefferson", "fingerprint collecting").
+gender("Drema Jefferson", "female").

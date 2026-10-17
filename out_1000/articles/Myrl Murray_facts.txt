@@ -1,0 +1,16 @@
+sister("Myrl Murray", "Romona Littleton").
+sister("Myrl Murray", "Susie Gillam").
+brother("Myrl Murray", "Phil Murray").
+mother("Myrl Murray", "Wanda Murray").
+father("Myrl Murray", "Harold Murray").
+friend("Myrl Murray", "Shelba Simons").
+friend("Myrl Murray", "Shizuko Eaves").
+friend("Myrl Murray", "Stevie Joiner").
+friend("Myrl Murray", "Robt Medellin").
+friend("Myrl Murray", "Sona Fredrick").
+friend("Myrl Murray", "Alina Bowles").
+friend("Myrl Murray", "Bess Autry").
+dob("Myrl Murray", "0438-04-25").
+job("Myrl Murray", "warehouse manager").
+hobby("Myrl Murray", "wikipedia editing").
+gender("Myrl Murray", "female").

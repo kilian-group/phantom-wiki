@@ -1,0 +1,24 @@
+sister("Ladawn Basham", "Madaline Callender").
+brother("Ladawn Basham", "Christoper Lasher").
+mother("Ladawn Basham", "Audie Lasher").
+father("Ladawn Basham", "Collin Lasher").
+son("Ladawn Basham", "Winfred Basham").
+daughter("Ladawn Basham", "Adah Schram").
+daughter("Ladawn Basham", "Geraldine Suh").
+daughter("Ladawn Basham", "Sharolyn Basham").
+daughter("Ladawn Basham", "Shawnta Basham").
+husband("Ladawn Basham", "Javier Basham").
+friend("Ladawn Basham", "Rebecka Schlosser").
+friend("Ladawn Basham", "Hershel Ingalls").
+friend("Ladawn Basham", "Sammie Simons").
+friend("Ladawn Basham", "Robby Corwin").
+friend("Ladawn Basham", "Virgie Niles").
+friend("Ladawn Basham", "Ollie Minnick").
+friend("Ladawn Basham", "Amy Smart").
+friend("Ladawn Basham", "Kip Murdoch").
+friend("Ladawn Basham", "Jacque Greene").
+friend("Ladawn Basham", "Rogelio Mckenna").
+dob("Ladawn Basham", "0394-05-01").
+job("Ladawn Basham", "dentist").
+hobby("Ladawn Basham", "microscopy").
+gender("Ladawn Basham", "female").

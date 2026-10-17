@@ -1,0 +1,329 @@
+[
+    {
+        "id": "b8e0e7b9-308d-4783-9db5-a0ef23436c0e",
+        "question": "Who is the cousin of Rolland Mckenna?",
+        "solution_traces": "[{\"Y_2\": \"Yoko Wilkie\"}, {\"Y_2\": \"Nathanial Lizotte\"}, {\"Y_2\": \"Hanh Mohan\"}, {\"Y_2\": \"Chuck Lizotte\"}, {\"Y_2\": \"Maranda Lizotte\"}, {\"Y_2\": \"Lila Petry\"}]",
+        "answer": [
+            "Chuck Lizotte",
+            "Hanh Mohan",
+            "Lila Petry",
+            "Maranda Lizotte",
+            "Nathanial Lizotte",
+            "Yoko Wilkie"
+        ],
+        "prolog": {
+            "query": [
+                "cousin(\"Rolland Mckenna\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "7bd38521-08db-4bf2-b721-940c695e2e6d",
+        "question": "Who is the friend of Liane Schoonmaker?",
+        "solution_traces": "[{\"Y_2\": \"Alison Smock\"}, {\"Y_2\": \"Chelsie Bradberry\"}, {\"Y_2\": \"Gene Smock\"}, {\"Y_2\": \"Alberto Saari\"}]",
+        "answer": [
+            "Alberto Saari",
+            "Alison Smock",
+            "Chelsie Bradberry",
+            "Gene Smock"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Liane Schoonmaker\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "081a5ec4-30f4-4a60-b0d9-510c15002b87",
+        "question": "Who is the grandchild of Dominique Smock?",
+        "solution_traces": "[{\"Y_2\": \"Myrle Smock\"}, {\"Y_2\": \"Shelli Beltran\"}]",
+        "answer": [
+            "Myrle Smock",
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "grandchild(\"Dominique Smock\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "0b2128bf-e006-467f-88be-e455f7e5bcc9",
+        "question": "Who is the friend of Daniel Brannan?",
+        "solution_traces": "[{\"Y_2\": \"Jeannine Skaggs\"}, {\"Y_2\": \"Hanh Mohan\"}, {\"Y_2\": \"Duncan Pannell\"}]",
+        "answer": [
+            "Duncan Pannell",
+            "Hanh Mohan",
+            "Jeannine Skaggs"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Daniel Brannan\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "1cbce710-ddbb-470a-ab9d-0d303fe5a76c",
+        "question": "Who is the mother of Jeanelle Mcnew?",
+        "solution_traces": "[{\"Y_2\": \"Lorelei Mcnew\"}]",
+        "answer": [
+            "Lorelei Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "mother(\"Jeanelle Mcnew\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "2ddd862a-c352-4168-84c6-778fbc5e174e",
+        "question": "Who is the niece of Lea Levy?",
+        "solution_traces": "[{\"Y_2\": \"Laverna Kovach\"}, {\"Y_2\": \"Elissa Kovach\"}]",
+        "answer": [
+            "Elissa Kovach",
+            "Laverna Kovach"
+        ],
+        "prolog": {
+            "query": [
+                "niece(\"Lea Levy\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "44f7faaa-d03f-436e-af21-e3cf8c279575",
+        "question": "Who is the friend of Maxwell Henderson?",
+        "solution_traces": "[{\"Y_2\": \"Brian Beltran\"}, {\"Y_2\": \"Deane Smock\"}, {\"Y_2\": \"Ulysses Nicolas\"}, {\"Y_2\": \"Cherry Nicolas\"}]",
+        "answer": [
+            "Brian Beltran",
+            "Cherry Nicolas",
+            "Deane Smock",
+            "Ulysses Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Maxwell Henderson\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "4947a403-2d70-43e1-a694-fdfc1ffc428b",
+        "question": "Who is the son-in-law of Kris Haber?",
+        "solution_traces": "[{\"Y_2\": \"Stefan Henderson\"}]",
+        "answer": [
+            "Stefan Henderson"
+        ],
+        "prolog": {
+            "query": [
+                "son_in_law(\"Kris Haber\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "757690e6-2532-4bb7-9e86-ce67182c88c0",
+        "question": "Who is the granddaughter of Karla Hornback?",
+        "solution_traces": "[{\"Y_2\": \"Lorine Wasserman\"}, {\"Y_2\": \"Shirleen Abraham\"}]",
+        "answer": [
+            "Lorine Wasserman",
+            "Shirleen Abraham"
+        ],
+        "prolog": {
+            "query": [
+                "granddaughter(\"Karla Hornback\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "54228130-e6d8-4ec0-b9b4-0e760faeb668",
+        "question": "Who is the parent of Shelli Beltran?",
+        "solution_traces": "[{\"Y_2\": \"Alison Smock\"}, {\"Y_2\": \"Williams Smock\"}]",
+        "answer": [
+            "Alison Smock",
+            "Williams Smock"
+        ],
+        "prolog": {
+            "query": [
+                "parent(\"Shelli Beltran\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    }
+]

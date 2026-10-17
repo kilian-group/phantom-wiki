@@ -1,0 +1,20 @@
+sister("Ligia Frink", "Audie Lasher").
+mother("Ligia Frink", "Rena Palm").
+father("Ligia Frink", "Dwight Palm").
+son("Ligia Frink", "Bo Frink").
+husband("Ligia Frink", "Trevor Frink").
+friend("Ligia Frink", "Alexandria Hayward").
+friend("Ligia Frink", "Curt Cowart").
+friend("Ligia Frink", "Edris Best").
+friend("Ligia Frink", "Heath Swartz").
+friend("Ligia Frink", "Vicki Osterman").
+friend("Ligia Frink", "Vita Resendez").
+friend("Ligia Frink", "Lucienne Gilliam").
+friend("Ligia Frink", "Erik Capps").
+friend("Ligia Frink", "Donny Speaks").
+friend("Ligia Frink", "Claudio Winn").
+friend("Ligia Frink", "Max Bauman").
+dob("Ligia Frink", "0365-12-13").
+job("Ligia Frink", "chemist").
+hobby("Ligia Frink", "geography").
+gender("Ligia Frink", "female").

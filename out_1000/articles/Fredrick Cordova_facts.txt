@@ -1,0 +1,16 @@
+sister("Fredrick Cordova", "Janiece Cordova").
+brother("Fredrick Cordova", "Galen Cordova").
+mother("Fredrick Cordova", "Noreen Cordova").
+father("Fredrick Cordova", "Frederic Cordova").
+daughter("Fredrick Cordova", "Jodi Cordova").
+wife("Fredrick Cordova", "Magdalena Cordova").
+friend("Fredrick Cordova", "Earlean Ingalls").
+friend("Fredrick Cordova", "Edwina Eaves").
+friend("Fredrick Cordova", "Ella Mathes").
+friend("Fredrick Cordova", "Alysa Lindquist").
+friend("Fredrick Cordova", "Lenora Hayward").
+friend("Fredrick Cordova", "Ai Cordova").
+dob("Fredrick Cordova", "0346-12-26").
+job("Fredrick Cordova", "proofreader").
+hobby("Fredrick Cordova", "architecture").
+gender("Fredrick Cordova", "male").

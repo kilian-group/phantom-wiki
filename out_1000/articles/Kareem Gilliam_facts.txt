@@ -1,0 +1,17 @@
+brother("Kareem Gilliam", "Paul Gilliam").
+mother("Kareem Gilliam", "Edythe Gilliam").
+father("Kareem Gilliam", "Monroe Gilliam").
+son("Kareem Gilliam", "Kenton Gilliam").
+wife("Kareem Gilliam", "Shaunte Gilliam").
+friend("Kareem Gilliam", "Vada Littleton").
+friend("Kareem Gilliam", "Johnathon Noland").
+friend("Kareem Gilliam", "Tracey Capps").
+friend("Kareem Gilliam", "Trudy Lasher").
+friend("Kareem Gilliam", "Chelsie Peeler").
+friend("Kareem Gilliam", "Lea Cordova").
+friend("Kareem Gilliam", "Christoper Littleton").
+friend("Kareem Gilliam", "Gerald Hartung").
+dob("Kareem Gilliam", "0287-11-20").
+job("Kareem Gilliam", "geochemist").
+hobby("Kareem Gilliam", "stone collecting").
+gender("Kareem Gilliam", "male").

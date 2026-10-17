@@ -1,0 +1,293 @@
+[
+    {
+        "id": "6575685d-6328-4d4a-a284-a7d5eff6c696",
+        "question": "Who is the oldest nephew of Jeanelle Mcnew?",
+        "solution_traces": "[]",
+        "answer": [
+            "Garry Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "nephew(\"Jeanelle Mcnew\", X)",
+                "dob(X, D)",
+                "\\+ (nephew(\"Jeanelle Mcnew\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "147fa2d3-ceb0-41cf-8d71-f62501b08ca4",
+        "question": "Who is the oldest grandchild of Kris Haber?",
+        "solution_traces": "[]",
+        "answer": [
+            "Goldie Henderson",
+            "Lorelei Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "grandchild(\"Kris Haber\", X)",
+                "dob(X, D)",
+                "\\+ (grandchild(\"Kris Haber\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "bca45465-dc6d-4dab-8d21-21e95ae81624",
+        "question": "Who is the oldest sister-in-law of Ester Kovach?",
+        "solution_traces": "[]",
+        "answer": [
+            "Elissa Kovach"
+        ],
+        "prolog": {
+            "query": [
+                "sister_in_law(\"Ester Kovach\", X)",
+                "dob(X, D)",
+                "\\+ (sister_in_law(\"Ester Kovach\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "604cc98a-4ae1-4155-a3f0-54a43f4f8db6",
+        "question": "Who is the oldest child of Monique Griffiths?",
+        "solution_traces": "[]",
+        "answer": [
+            "Roger Griffiths"
+        ],
+        "prolog": {
+            "query": [
+                "child(\"Monique Griffiths\", X)",
+                "dob(X, D)",
+                "\\+ (child(\"Monique Griffiths\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "99143ec1-048b-4eff-9c15-1ad611d3b806",
+        "question": "Who is the oldest grandchild of Theodore Crain?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lera Brook"
+        ],
+        "prolog": {
+            "query": [
+                "grandchild(\"Theodore Crain\", X)",
+                "dob(X, D)",
+                "\\+ (grandchild(\"Theodore Crain\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "33affc7d-7c41-4567-b809-fdae0f3ed0f9",
+        "question": "Who is the oldest great-granddaughter of Brian Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Leeann Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "great_granddaughter(\"Brian Beltran\", X)",
+                "dob(X, D)",
+                "\\+ (great_granddaughter(\"Brian Beltran\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "0e9c8eb4-2384-40d1-8079-8d1a88af9cc7",
+        "question": "Who is the oldest friend of Christoper Cormier?",
+        "solution_traces": "[]",
+        "answer": [
+            "Orlando Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Christoper Cormier\", X)",
+                "dob(X, D)",
+                "\\+ (friend(\"Christoper Cormier\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "6bbd5646-d94a-4b46-bba9-ede562d5993d",
+        "question": "Who is the oldest daughter-in-law of Don Mcnew?",
+        "solution_traces": "[]",
+        "answer": [
+            "Roxy Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "daughter_in_law(\"Don Mcnew\", X)",
+                "dob(X, D)",
+                "\\+ (daughter_in_law(\"Don Mcnew\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "783a2fb3-b318-4b91-a20c-ef0a17389cd8",
+        "question": "Who is the oldest aunt of Abraham Decosta?",
+        "solution_traces": "[]",
+        "answer": [
+            "Laurel Decosta"
+        ],
+        "prolog": {
+            "query": [
+                "aunt(\"Abraham Decosta\", X)",
+                "dob(X, D)",
+                "\\+ (aunt(\"Abraham Decosta\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "534ffd61-ae7d-4c23-900c-30d29062b2dd",
+        "question": "Who is the oldest child of Lannie Smock?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aubrey Smock"
+        ],
+        "prolog": {
+            "query": [
+                "child(\"Lannie Smock\", X)",
+                "dob(X, D)",
+                "\\+ (child(\"Lannie Smock\", Y), dob(Y, D2), Y \\= X, D2 @< D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_oldest"
+        ],
+        "type": 223,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    }
+]

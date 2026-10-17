@@ -1,0 +1,13 @@
+son("Landon Dillion", "Sammy Dillion").
+daughter("Landon Dillion", "Tamara Lasher").
+daughter("Landon Dillion", "Viva Jefferson").
+wife("Landon Dillion", "Lindy Dillion").
+friend("Landon Dillion", "Evelia Waltz").
+friend("Landon Dillion", "Flora Noland").
+friend("Landon Dillion", "Morgan Perrine").
+friend("Landon Dillion", "Ryan Bowles").
+friend("Landon Dillion", "Levi Kell").
+dob("Landon Dillion", "0281-01-08").
+job("Landon Dillion", "technical sales engineer").
+hobby("Landon Dillion", "stamp collecting").
+gender("Landon Dillion", "male").

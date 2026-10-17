@@ -1,0 +1,16 @@
+sister("Donny Speaks", "Ashely Speaks").
+mother("Donny Speaks", "Larue Speaks").
+father("Donny Speaks", "Micheal Speaks").
+friend("Donny Speaks", "Freeda Jarrett").
+friend("Donny Speaks", "Kristen Kell").
+friend("Donny Speaks", "Ligia Frink").
+friend("Donny Speaks", "Jamie Bellows").
+friend("Donny Speaks", "Keisha Mcdonald").
+friend("Donny Speaks", "Tiffany Mcdonald").
+friend("Donny Speaks", "Fernando Dana").
+friend("Donny Speaks", "Jonathan Goff").
+friend("Donny Speaks", "Ollie Minnick").
+dob("Donny Speaks", "0425-03-16").
+job("Donny Speaks", "risk manager").
+hobby("Donny Speaks", "storm chasing").
+gender("Donny Speaks", "male").

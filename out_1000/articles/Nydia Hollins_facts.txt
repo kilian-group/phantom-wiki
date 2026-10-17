@@ -1,0 +1,12 @@
+daughter("Nydia Hollins", "Lavern Staten").
+husband("Nydia Hollins", "Harold Hollins").
+friend("Nydia Hollins", "Brad Ballard").
+friend("Nydia Hollins", "Randall Mcgough").
+friend("Nydia Hollins", "Pansy Sutphin").
+friend("Nydia Hollins", "Shizuko Sheridan").
+friend("Nydia Hollins", "Erick Courson").
+friend("Nydia Hollins", "Davis Eaves").
+dob("Nydia Hollins", "0407-08-10").
+job("Nydia Hollins", "education officer").
+hobby("Nydia Hollins", "herping").
+gender("Nydia Hollins", "female").

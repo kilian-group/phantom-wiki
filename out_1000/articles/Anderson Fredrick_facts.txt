@@ -1,0 +1,21 @@
+sister("Anderson Fredrick", "Odelia Fredrick").
+brother("Anderson Fredrick", "Malik Fredrick").
+mother("Anderson Fredrick", "Holley Fredrick").
+father("Anderson Fredrick", "Erik Fredrick").
+son("Anderson Fredrick", "Murray Fredrick").
+daughter("Anderson Fredrick", "Jana Noland").
+daughter("Anderson Fredrick", "Lynette Fredrick").
+daughter("Anderson Fredrick", "Sona Fredrick").
+wife("Anderson Fredrick", "Shannon Fredrick").
+friend("Anderson Fredrick", "Harold Waltz").
+friend("Anderson Fredrick", "Donnie Mcgough").
+friend("Anderson Fredrick", "Eli Vandenberg").
+friend("Anderson Fredrick", "Moshe Macias").
+friend("Anderson Fredrick", "James Maness").
+friend("Anderson Fredrick", "Gavin Cordova").
+friend("Anderson Fredrick", "Torrie Goff").
+friend("Anderson Fredrick", "Hollis Keyes").
+dob("Anderson Fredrick", "0376-11-26").
+job("Anderson Fredrick", "patent examiner").
+hobby("Anderson Fredrick", "noodling").
+gender("Anderson Fredrick", "male").

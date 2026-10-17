@@ -1,0 +1,17 @@
+sister("Hosea Hamlin", "Goldie Alessi").
+sister("Hosea Hamlin", "Nellie Hamlin").
+sister("Hosea Hamlin", "Shizuko Sheridan").
+brother("Hosea Hamlin", "Elroy Hamlin").
+brother("Hosea Hamlin", "Sylvester Hamlin").
+mother("Hosea Hamlin", "Raina Hamlin").
+father("Hosea Hamlin", "Felix Hamlin").
+daughter("Hosea Hamlin", "Coral Monday").
+wife("Hosea Hamlin", "Tamala Hamlin").
+friend("Hosea Hamlin", "Jerrold Harlow").
+friend("Hosea Hamlin", "Madaline Callender").
+friend("Hosea Hamlin", "Frederic Staten").
+friend("Hosea Hamlin", "Steven Prater").
+dob("Hosea Hamlin", "0401-12-08").
+job("Hosea Hamlin", "race relations officer").
+hobby("Hosea Hamlin", "squash").
+gender("Hosea Hamlin", "male").

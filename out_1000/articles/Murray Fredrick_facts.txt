@@ -1,0 +1,17 @@
+sister("Murray Fredrick", "Jana Noland").
+sister("Murray Fredrick", "Lynette Fredrick").
+sister("Murray Fredrick", "Sona Fredrick").
+mother("Murray Fredrick", "Shannon Fredrick").
+father("Murray Fredrick", "Anderson Fredrick").
+friend("Murray Fredrick", "Shaunna Fordham").
+friend("Murray Fredrick", "Fatimah Holtz").
+friend("Murray Fredrick", "Johnna Macias").
+friend("Murray Fredrick", "Maggie Vanmeter").
+friend("Murray Fredrick", "Sergio Parish").
+friend("Murray Fredrick", "Aletha Crocker").
+friend("Murray Fredrick", "Lea Cordova").
+friend("Murray Fredrick", "Jody Valladares").
+dob("Murray Fredrick", "0409-01-04").
+job("Murray Fredrick", "copy").
+hobby("Murray Fredrick", "vintage cars").
+gender("Murray Fredrick", "male").

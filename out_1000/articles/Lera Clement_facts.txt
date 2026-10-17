@@ -1,0 +1,11 @@
+daughter("Lera Clement", "Germaine Mahoney").
+daughter("Lera Clement", "Juanita Eaves").
+husband("Lera Clement", "Bill Clement").
+friend("Lera Clement", "Ai Dacosta").
+friend("Lera Clement", "Romona Fordham").
+friend("Lera Clement", "Raymond Carty").
+friend("Lera Clement", "Pansy Cook").
+dob("Lera Clement", "0324-05-03").
+job("Lera Clement", "financial adviser").
+hobby("Lera Clement", "sea glass collecting").
+gender("Lera Clement", "female").

@@ -1,0 +1,14 @@
+mother("Neal Mathes", "Johanna Mathes").
+father("Neal Mathes", "Bruce Mathes").
+son("Neal Mathes", "Israel Mathes").
+daughter("Neal Mathes", "Latrina Mathes").
+daughter("Neal Mathes", "Reita Pugliese").
+daughter("Neal Mathes", "Virgie Niles").
+wife("Neal Mathes", "Ella Mathes").
+friend("Neal Mathes", "Tanner Holliman").
+friend("Neal Mathes", "Deandre Capps").
+friend("Neal Mathes", "Manuela Runnels").
+dob("Neal Mathes", "0347-11-26").
+job("Neal Mathes", "industrial designer").
+hobby("Neal Mathes", "debate").
+gender("Neal Mathes", "male").

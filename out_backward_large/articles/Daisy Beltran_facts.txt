@@ -1,0 +1,12 @@
+son("Daisy Beltran", "Dino Beltran").
+son("Daisy Beltran", "Orlando Beltran").
+husband("Daisy Beltran", "Brian Beltran").
+friend("Daisy Beltran", "Jeanelle Mcnew").
+friend("Daisy Beltran", "Jung Henderson").
+friend("Daisy Beltran", "Roland Earnest").
+friend("Daisy Beltran", "Aurelio Wasserman").
+friend("Daisy Beltran", "Alvaro Smock").
+dob("Daisy Beltran", "0241-09-21").
+job("Daisy Beltran", "warehouse manager").
+hobby("Daisy Beltran", "photography").
+gender("Daisy Beltran", "female").

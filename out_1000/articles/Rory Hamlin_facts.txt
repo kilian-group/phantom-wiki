@@ -1,0 +1,14 @@
+son("Rory Hamlin", "Elijah Hamlin").
+wife("Rory Hamlin", "Dorathy Hamlin").
+friend("Rory Hamlin", "Emery Scherer").
+friend("Rory Hamlin", "Leslie Courson").
+friend("Rory Hamlin", "Manuela Runnels").
+friend("Rory Hamlin", "Charissa Boutte").
+friend("Rory Hamlin", "Jarrod Ibarra").
+friend("Rory Hamlin", "Romona Fordham").
+friend("Rory Hamlin", "Aron Robinett").
+friend("Rory Hamlin", "Ardath Skidmore").
+dob("Rory Hamlin", "0318-10-11").
+job("Rory Hamlin", "music therapist").
+hobby("Rory Hamlin", "pinball").
+gender("Rory Hamlin", "male").

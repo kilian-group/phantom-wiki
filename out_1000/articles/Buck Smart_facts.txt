@@ -1,0 +1,17 @@
+mother("Buck Smart", "Latisha Smart").
+father("Buck Smart", "Jimmie Smart").
+son("Buck Smart", "Juan Smart").
+son("Buck Smart", "Manuel Smart").
+daughter("Buck Smart", "Nelly Smart").
+wife("Buck Smart", "Jaclyn Smart").
+friend("Buck Smart", "Major Ballard").
+friend("Buck Smart", "Thelma Vandenberg").
+friend("Buck Smart", "Fredrick Mckenna").
+friend("Buck Smart", "Gayla Holder").
+friend("Buck Smart", "Roman Ruth").
+friend("Buck Smart", "Estella Dana").
+friend("Buck Smart", "Desmond Dacosta").
+dob("Buck Smart", "0455-05-10").
+job("Buck Smart", "maintenance engineer").
+hobby("Buck Smart", "history").
+gender("Buck Smart", "male").

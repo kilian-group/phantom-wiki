@@ -1,0 +1,18 @@
+mother("Felipe Vanmeter", "Lora Vanmeter").
+father("Felipe Vanmeter", "Denny Vanmeter").
+son("Felipe Vanmeter", "Roscoe Vanmeter").
+daughter("Felipe Vanmeter", "Niki Vanmeter").
+wife("Felipe Vanmeter", "Maggie Vanmeter").
+friend("Felipe Vanmeter", "Pamala Vanmeter").
+friend("Felipe Vanmeter", "Audie Lasher").
+friend("Felipe Vanmeter", "Charley Weise").
+friend("Felipe Vanmeter", "Gloria Ingalls").
+friend("Felipe Vanmeter", "Lance Carreon").
+friend("Felipe Vanmeter", "Roger Carreon").
+friend("Felipe Vanmeter", "Mac Goff").
+friend("Felipe Vanmeter", "Chelsea Skidmore").
+friend("Felipe Vanmeter", "Kanesha Booth").
+dob("Felipe Vanmeter", "0464-08-28").
+job("Felipe Vanmeter", "television production assistant").
+hobby("Felipe Vanmeter", "baseball").
+gender("Felipe Vanmeter", "male").

@@ -1,0 +1,13 @@
+daughter("Kerrie Resendez", "Belva Resendez").
+husband("Kerrie Resendez", "Keith Resendez").
+friend("Kerrie Resendez", "Maurine Layman").
+friend("Kerrie Resendez", "Diane Burkhalter").
+friend("Kerrie Resendez", "Shamika Mahoney").
+friend("Kerrie Resendez", "Krystyna Schatz").
+friend("Kerrie Resendez", "Johanna Mathes").
+friend("Kerrie Resendez", "Patrice Dunlap").
+friend("Kerrie Resendez", "Shelly Donner").
+dob("Kerrie Resendez", "0484-12-16").
+job("Kerrie Resendez", "community development worker").
+hobby("Kerrie Resendez", "judo").
+gender("Kerrie Resendez", "female").

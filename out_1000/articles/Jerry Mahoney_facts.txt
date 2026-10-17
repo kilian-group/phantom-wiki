@@ -1,0 +1,18 @@
+sister("Jerry Mahoney", "Alix Mahoney").
+sister("Jerry Mahoney", "Lynda Mahoney").
+brother("Jerry Mahoney", "Dan Mahoney").
+mother("Jerry Mahoney", "Germaine Mahoney").
+father("Jerry Mahoney", "Frankie Mahoney").
+son("Jerry Mahoney", "Ty Mahoney").
+wife("Jerry Mahoney", "Georgine Mahoney").
+friend("Jerry Mahoney", "Devon Leclair").
+friend("Jerry Mahoney", "Chuck Medeiros").
+friend("Jerry Mahoney", "Johanna Sanborn").
+friend("Jerry Mahoney", "Rogelio Mckenna").
+friend("Jerry Mahoney", "Lea Cordova").
+friend("Jerry Mahoney", "Jacinta Simons").
+friend("Jerry Mahoney", "Ivette Eaves").
+dob("Jerry Mahoney", "0380-10-20").
+job("Jerry Mahoney", "therapist").
+hobby("Jerry Mahoney", "geography").
+gender("Jerry Mahoney", "male").

@@ -1,0 +1,16 @@
+son("Shamika Mahoney", "Frankie Mahoney").
+husband("Shamika Mahoney", "Chance Mahoney").
+friend("Shamika Mahoney", "Miguel Morehead").
+friend("Shamika Mahoney", "Darren Gilliam").
+friend("Shamika Mahoney", "Scotty Broughton").
+friend("Shamika Mahoney", "Jaclyn Smart").
+friend("Shamika Mahoney", "Sung Fordham").
+friend("Shamika Mahoney", "Cary Carswell").
+friend("Shamika Mahoney", "Rhonda Wilke").
+friend("Shamika Mahoney", "Kerrie Resendez").
+friend("Shamika Mahoney", "Taylor Layman").
+friend("Shamika Mahoney", "Earlean Ingalls").
+dob("Shamika Mahoney", "0323-02-07").
+job("Shamika Mahoney", "amenity horticulturist").
+hobby("Shamika Mahoney", "vr gaming").
+gender("Shamika Mahoney", "female").

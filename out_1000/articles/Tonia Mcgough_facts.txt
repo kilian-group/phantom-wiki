@@ -1,0 +1,15 @@
+son("Tonia Mcgough", "Danilo Mcgough").
+husband("Tonia Mcgough", "Donnie Mcgough").
+friend("Tonia Mcgough", "Bernie Layton").
+friend("Tonia Mcgough", "Eunice Lennox").
+friend("Tonia Mcgough", "Shawnta Basham").
+friend("Tonia Mcgough", "Julio Mcdonald").
+friend("Tonia Mcgough", "Alphonso Goff").
+friend("Tonia Mcgough", "Logan Cushman").
+friend("Tonia Mcgough", "Rocky Perrine").
+friend("Tonia Mcgough", "Luisa Estrella").
+friend("Tonia Mcgough", "Rudolf Sanborn").
+dob("Tonia Mcgough", "0442-06-26").
+job("Tonia Mcgough", "interpreter").
+hobby("Tonia Mcgough", "radio-controlled model playing").
+gender("Tonia Mcgough", "female").

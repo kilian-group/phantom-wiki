@@ -1,0 +1,18 @@
+sister("Jeannette Mounts", "Jenni Kell").
+brother("Jeannette Mounts", "Abe Kell").
+brother("Jeannette Mounts", "Walter Kell").
+mother("Jeannette Mounts", "Kristen Kell").
+father("Jeannette Mounts", "Dewitt Kell").
+son("Jeannette Mounts", "Erik Mounts").
+husband("Jeannette Mounts", "Mac Mounts").
+friend("Jeannette Mounts", "Jennifer Paynter").
+friend("Jeannette Mounts", "Milton Littleton").
+friend("Jeannette Mounts", "Timothy Simons").
+friend("Jeannette Mounts", "Oralia Burdette").
+friend("Jeannette Mounts", "Deangelo Marr").
+friend("Jeannette Mounts", "Tashina Vandenberg").
+friend("Jeannette Mounts", "Helena Hamlin").
+dob("Jeannette Mounts", "0436-10-24").
+job("Jeannette Mounts", "illustrator").
+hobby("Jeannette Mounts", "weightlifting").
+gender("Jeannette Mounts", "female").

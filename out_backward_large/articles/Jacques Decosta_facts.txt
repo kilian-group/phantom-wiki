@@ -1,0 +1,11 @@
+sister("Jacques Decosta", "Laurel Decosta").
+sister("Jacques Decosta", "Margo Brannan").
+brother("Jacques Decosta", "Elwood Decosta").
+mother("Jacques Decosta", "Zoila Decosta").
+father("Jacques Decosta", "Stuart Decosta").
+friend("Jacques Decosta", "Alvaro Smock").
+friend("Jacques Decosta", "Adolph Brannan").
+dob("Jacques Decosta", "0183-08-20").
+job("Jacques Decosta", "comptroller").
+hobby("Jacques Decosta", "sea glass collecting").
+gender("Jacques Decosta", "male").

@@ -1,0 +1,20 @@
+son("Shante Ruth", "Benito Ruth").
+daughter("Shante Ruth", "Brigette Bales").
+daughter("Shante Ruth", "Jann Ruth").
+daughter("Shante Ruth", "Vicki Ruth").
+husband("Shante Ruth", "Roman Ruth").
+friend("Shante Ruth", "Salvador Plumley").
+friend("Shante Ruth", "Shirley Dalton").
+friend("Shante Ruth", "Adolph Hollins").
+friend("Shante Ruth", "Katerine Dunlap").
+friend("Shante Ruth", "Leeann Blanton").
+friend("Shante Ruth", "Enid Yarbrough").
+friend("Shante Ruth", "Olin Fordham").
+friend("Shante Ruth", "Tabetha Lasher").
+friend("Shante Ruth", "Lorenzo Littleton").
+friend("Shante Ruth", "Paula Rudolph").
+friend("Shante Ruth", "Claudine Bales").
+dob("Shante Ruth", "0308-02-05").
+job("Shante Ruth", "press sub").
+hobby("Shante Ruth", "research").
+gender("Shante Ruth", "female").

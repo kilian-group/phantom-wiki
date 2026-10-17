@@ -1,0 +1,17 @@
+sister("Wyatt Mckenna", "Iva Parish").
+sister("Wyatt Mckenna", "Lynetta Mckenna").
+brother("Wyatt Mckenna", "Michael Mckenna").
+mother("Wyatt Mckenna", "Therese Mckenna").
+father("Wyatt Mckenna", "Rodrigo Mckenna").
+son("Wyatt Mckenna", "Fredrick Mckenna").
+wife("Wyatt Mckenna", "Alexa Mckenna").
+friend("Wyatt Mckenna", "Jesus Cordova").
+friend("Wyatt Mckenna", "Verona Arteaga").
+friend("Wyatt Mckenna", "Amy Smart").
+friend("Wyatt Mckenna", "Tashina Layton").
+friend("Wyatt Mckenna", "Maurine Layman").
+friend("Wyatt Mckenna", "Michael Mckenna").
+dob("Wyatt Mckenna", "0463-04-19").
+job("Wyatt Mckenna", "chartered loss adjuster").
+hobby("Wyatt Mckenna", "sea glass collecting").
+gender("Wyatt Mckenna", "male").

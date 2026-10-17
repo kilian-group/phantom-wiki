@@ -1,0 +1,24 @@
+sister("Amy Wilke", "Thelma Vandenberg").
+brother("Amy Wilke", "Charley Vandenberg").
+brother("Amy Wilke", "Eli Vandenberg").
+brother("Amy Wilke", "Fernando Vandenberg").
+mother("Amy Wilke", "Jackie Vandenberg").
+father("Amy Wilke", "Valentin Vandenberg").
+son("Amy Wilke", "Luke Wilke").
+son("Amy Wilke", "Marion Wilke").
+daughter("Amy Wilke", "Belva Murphey").
+husband("Amy Wilke", "Stacey Wilke").
+friend("Amy Wilke", "Jayson Sheridan").
+friend("Amy Wilke", "Wesley Courson").
+friend("Amy Wilke", "Rheba Winn").
+friend("Amy Wilke", "Viva Jefferson").
+friend("Amy Wilke", "Charlie Ingalls").
+friend("Amy Wilke", "Felton Dana").
+friend("Amy Wilke", "Conrad Molina").
+friend("Amy Wilke", "Aida Ibarra").
+friend("Amy Wilke", "Drew Smart").
+friend("Amy Wilke", "Tracey Capps").
+dob("Amy Wilke", "0347-06-20").
+job("Amy Wilke", "fine artist").
+hobby("Amy Wilke", "research").
+gender("Amy Wilke", "female").

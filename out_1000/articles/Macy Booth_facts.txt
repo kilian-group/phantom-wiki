@@ -1,0 +1,16 @@
+mother("Macy Booth", "Noreen Booth").
+father("Macy Booth", "Tommy Booth").
+friend("Macy Booth", "Tamara Kell").
+friend("Macy Booth", "Racquel Wendel").
+friend("Macy Booth", "Bernardo Briscoe").
+friend("Macy Booth", "Emmanuel Swartz").
+friend("Macy Booth", "Josef Corwin").
+friend("Macy Booth", "Patrick Broughton").
+friend("Macy Booth", "Hugh Noland").
+friend("Macy Booth", "Natalie Ballard").
+friend("Macy Booth", "Evette Hamlin").
+friend("Macy Booth", "Eunice Lennox").
+dob("Macy Booth", "0461-06-15").
+job("Macy Booth", "outdoor activities manager").
+hobby("Macy Booth", "gongoozling").
+gender("Macy Booth", "female").

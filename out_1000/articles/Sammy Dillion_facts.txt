@@ -1,0 +1,17 @@
+sister("Sammy Dillion", "Tamara Lasher").
+sister("Sammy Dillion", "Viva Jefferson").
+mother("Sammy Dillion", "Lindy Dillion").
+father("Sammy Dillion", "Landon Dillion").
+friend("Sammy Dillion", "Galen Cordova").
+friend("Sammy Dillion", "Olivia Briscoe").
+friend("Sammy Dillion", "Oralia Burdette").
+friend("Sammy Dillion", "Boris Machado").
+friend("Sammy Dillion", "Jenniffer Younger").
+friend("Sammy Dillion", "Annabell Molina").
+friend("Sammy Dillion", "Harold Hollins").
+friend("Sammy Dillion", "Lindy Kavanaugh").
+friend("Sammy Dillion", "Elbert Layman").
+dob("Sammy Dillion", "0308-06-12").
+job("Sammy Dillion", "geophysicist").
+hobby("Sammy Dillion", "research").
+gender("Sammy Dillion", "male").

@@ -1,0 +1,16 @@
+sister("Mallory Scherer", "Mia Resendez").
+sister("Mallory Scherer", "Shandi Jarrett").
+brother("Mallory Scherer", "Claude Courson").
+brother("Mallory Scherer", "Erick Courson").
+brother("Mallory Scherer", "Leslie Courson").
+mother("Mallory Scherer", "Harriette Courson").
+father("Mallory Scherer", "Delbert Courson").
+son("Mallory Scherer", "Javier Scherer").
+husband("Mallory Scherer", "Emery Scherer").
+friend("Mallory Scherer", "Wallace Brumbaugh").
+friend("Mallory Scherer", "Georgine Mahoney").
+friend("Mallory Scherer", "Ryan Bowles").
+dob("Mallory Scherer", "0421-04-22").
+job("Mallory Scherer", "surveyor").
+hobby("Mallory Scherer", "shopping").
+gender("Mallory Scherer", "female").

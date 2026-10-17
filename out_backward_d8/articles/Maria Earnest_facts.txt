@@ -1,0 +1,8 @@
+son("Maria Earnest", "Benton Earnest").
+daughter("Maria Earnest", "Geri Woodman").
+husband("Maria Earnest", "Roland Earnest").
+friend("Maria Earnest", "Edythe Nicolas").
+dob("Maria Earnest", "0285-09-04").
+job("Maria Earnest", "minerals surveyor").
+hobby("Maria Earnest", "flower collecting and pressing").
+gender("Maria Earnest", "female").

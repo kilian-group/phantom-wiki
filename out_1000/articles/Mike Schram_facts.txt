@@ -1,0 +1,14 @@
+son("Mike Schram", "Oscar Schram").
+wife("Mike Schram", "Adah Schram").
+friend("Mike Schram", "Jackqueline Hollinger").
+friend("Mike Schram", "Seymour Simons").
+friend("Mike Schram", "Porter Steadman").
+friend("Mike Schram", "Madalene Lebrun").
+friend("Mike Schram", "Kenton Dunlap").
+friend("Mike Schram", "Luisa Oliveira").
+friend("Mike Schram", "Clay Vogt").
+friend("Mike Schram", "Roscoe Lindquist").
+dob("Mike Schram", "0415-03-10").
+job("Mike Schram", "geologist").
+hobby("Mike Schram", "seashell collecting").
+gender("Mike Schram", "male").

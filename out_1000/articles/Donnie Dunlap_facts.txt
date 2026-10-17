@@ -1,0 +1,22 @@
+sister("Donnie Dunlap", "Patrice Dunlap").
+brother("Donnie Dunlap", "Kenton Dunlap").
+mother("Donnie Dunlap", "Katerine Dunlap").
+father("Donnie Dunlap", "Sammy Dunlap").
+son("Donnie Dunlap", "Brendon Dunlap").
+daughter("Donnie Dunlap", "Deidra Gilliam").
+wife("Donnie Dunlap", "Lera Dunlap").
+friend("Donnie Dunlap", "Clay Vogt").
+friend("Donnie Dunlap", "Felix Hamlin").
+friend("Donnie Dunlap", "Vernon Joubert").
+friend("Donnie Dunlap", "Kristen Kell").
+friend("Donnie Dunlap", "Kurtis Kell").
+friend("Donnie Dunlap", "Mac Mounts").
+friend("Donnie Dunlap", "Gustavo Bauman").
+friend("Donnie Dunlap", "Janiece Cordova").
+friend("Donnie Dunlap", "Phil Murray").
+friend("Donnie Dunlap", "Roman Ruth").
+friend("Donnie Dunlap", "Janey Plumley").
+dob("Donnie Dunlap", "0316-04-24").
+job("Donnie Dunlap", "retail manager").
+hobby("Donnie Dunlap", "flower collecting and pressing").
+gender("Donnie Dunlap", "male").

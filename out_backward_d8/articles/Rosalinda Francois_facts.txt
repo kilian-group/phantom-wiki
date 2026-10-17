@@ -1,0 +1,16 @@
+sister("Rosalinda Francois", "Aletha Nicolas").
+brother("Rosalinda Francois", "Anthony Nicolas").
+brother("Rosalinda Francois", "Bradford Nicolas").
+mother("Rosalinda Francois", "Cherry Nicolas").
+father("Rosalinda Francois", "Ulysses Nicolas").
+daughter("Rosalinda Francois", "Sha Langley").
+husband("Rosalinda Francois", "Preston Francois").
+friend("Rosalinda Francois", "Edmond Schreiner").
+friend("Rosalinda Francois", "Aurelio Wasserman").
+friend("Rosalinda Francois", "Craig Boutte").
+friend("Rosalinda Francois", "Lauretta Mason").
+friend("Rosalinda Francois", "Dudley Wise").
+dob("Rosalinda Francois", "0268-01-19").
+job("Rosalinda Francois", "human resources officer").
+hobby("Rosalinda Francois", "leaves").
+gender("Rosalinda Francois", "female").

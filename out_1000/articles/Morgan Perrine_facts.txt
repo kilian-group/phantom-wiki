@@ -1,0 +1,19 @@
+daughter("Morgan Perrine", "Alina Bowles").
+daughter("Morgan Perrine", "Leeann Blanton").
+husband("Morgan Perrine", "Rocky Perrine").
+friend("Morgan Perrine", "Rosina Putnam").
+friend("Morgan Perrine", "Valentina Robinett").
+friend("Morgan Perrine", "Jamison Upton").
+friend("Morgan Perrine", "Landon Dillion").
+friend("Morgan Perrine", "Ricardo Runnels").
+friend("Morgan Perrine", "Veronica Cowart").
+friend("Morgan Perrine", "Drew Dana").
+friend("Morgan Perrine", "Bee Corwin").
+friend("Morgan Perrine", "Deshawn Medellin").
+friend("Morgan Perrine", "Erik Fredrick").
+friend("Morgan Perrine", "Madalene Waltz").
+friend("Morgan Perrine", "Alina Bowles").
+dob("Morgan Perrine", "0379-04-06").
+job("Morgan Perrine", "ergonomist").
+hobby("Morgan Perrine", "animation").
+gender("Morgan Perrine", "female").

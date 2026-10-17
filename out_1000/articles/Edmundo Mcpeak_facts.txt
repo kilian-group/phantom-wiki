@@ -1,0 +1,17 @@
+son("Edmundo Mcpeak", "Pierre Mcpeak").
+son("Edmundo Mcpeak", "Roger Mcpeak").
+wife("Edmundo Mcpeak", "Lera Mcpeak").
+friend("Edmundo Mcpeak", "Mitchell Fordham").
+friend("Edmundo Mcpeak", "Leonora Depriest").
+friend("Edmundo Mcpeak", "Moshe Macias").
+friend("Edmundo Mcpeak", "Shauna Weise").
+friend("Edmundo Mcpeak", "Christoper Littleton").
+friend("Edmundo Mcpeak", "Hershel Ingalls").
+friend("Edmundo Mcpeak", "Shelba Simons").
+friend("Edmundo Mcpeak", "Cedric Shoulders").
+friend("Edmundo Mcpeak", "Karla Linares").
+friend("Edmundo Mcpeak", "Marcus Lebrun").
+dob("Edmundo Mcpeak", "0380-03-20").
+job("Edmundo Mcpeak", "contracting civil engineer").
+hobby("Edmundo Mcpeak", "beekeeping").
+gender("Edmundo Mcpeak", "male").

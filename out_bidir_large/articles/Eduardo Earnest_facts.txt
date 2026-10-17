@@ -1,0 +1,16 @@
+sister("Eduardo Earnest", "Cherise Earnest").
+sister("Eduardo Earnest", "Edythe Earnest").
+brother("Eduardo Earnest", "Reggie Earnest").
+mother("Eduardo Earnest", "Samantha Earnest").
+father("Eduardo Earnest", "Benton Earnest").
+friend("Eduardo Earnest", "Samantha Earnest").
+friend("Eduardo Earnest", "Domonique Cedillo").
+friend("Eduardo Earnest", "Elissa Kovach").
+friend("Eduardo Earnest", "Johnathan Boutte").
+friend("Eduardo Earnest", "Jeana Clemons").
+friend("Eduardo Earnest", "Rufus Brook").
+friend("Eduardo Earnest", "Duncan Pannell").
+dob("Eduardo Earnest", "0347-03-03").
+job("Eduardo Earnest", "sports administrator").
+hobby("Eduardo Earnest", "shuffleboard").
+gender("Eduardo Earnest", "male").

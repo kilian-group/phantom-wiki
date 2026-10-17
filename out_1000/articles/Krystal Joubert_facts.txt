@@ -1,0 +1,19 @@
+sister("Krystal Joubert", "Rubie Upton").
+brother("Krystal Joubert", "Jamison Upton").
+mother("Krystal Joubert", "Jann Upton").
+father("Krystal Joubert", "Zachery Upton").
+daughter("Krystal Joubert", "Chelsie Wilkie").
+daughter("Krystal Joubert", "Harriette Courson").
+husband("Krystal Joubert", "Vernon Joubert").
+friend("Krystal Joubert", "Ben Corso").
+friend("Krystal Joubert", "Olin Fordham").
+friend("Krystal Joubert", "Samuel Omara").
+friend("Krystal Joubert", "Evelia Senn").
+friend("Krystal Joubert", "Maybelle Lester").
+friend("Krystal Joubert", "Heather Ingalls").
+friend("Krystal Joubert", "Addie Shilling").
+friend("Krystal Joubert", "Wade Sheridan").
+dob("Krystal Joubert", "0364-07-05").
+job("Krystal Joubert", "medical laboratory scientific officer").
+hobby("Krystal Joubert", "ballet dancing").
+gender("Krystal Joubert", "female").

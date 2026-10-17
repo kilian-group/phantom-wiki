@@ -1,0 +1,12 @@
+mother("Terrance Townsend", "Adella Townsend").
+father("Terrance Townsend", "Lucio Townsend").
+son("Terrance Townsend", "Tomas Townsend").
+wife("Terrance Townsend", "Gwendolyn Townsend").
+friend("Terrance Townsend", "Miguel Carreon").
+friend("Terrance Townsend", "Sheila Putnam").
+friend("Terrance Townsend", "Hershel Shilling").
+friend("Terrance Townsend", "Faith Linden").
+dob("Terrance Townsend", "0499-04-05").
+job("Terrance Townsend", "bookseller").
+hobby("Terrance Townsend", "fossicking").
+gender("Terrance Townsend", "male").

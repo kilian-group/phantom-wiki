@@ -1,0 +1,14 @@
+daughter("Alvaro Murphey", "Myrl Mcgough").
+wife("Alvaro Murphey", "Belva Murphey").
+friend("Alvaro Murphey", "Taylor Layman").
+friend("Alvaro Murphey", "Trudy Lasher").
+friend("Alvaro Murphey", "Ai Cordova").
+friend("Alvaro Murphey", "Annette Rudolph").
+friend("Alvaro Murphey", "Susie Gillam").
+friend("Alvaro Murphey", "Rochelle Corwin").
+friend("Alvaro Murphey", "Byron Medellin").
+friend("Alvaro Murphey", "Dixie Murdoch").
+dob("Alvaro Murphey", "0379-02-19").
+job("Alvaro Murphey", "network engineer").
+hobby("Alvaro Murphey", "softball").
+gender("Alvaro Murphey", "male").

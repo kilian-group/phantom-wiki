@@ -1,0 +1,17 @@
+sister("Raul Younger", "Almeta Younger").
+brother("Raul Younger", "Eli Younger").
+mother("Raul Younger", "Delpha Younger").
+father("Raul Younger", "Rueben Younger").
+friend("Raul Younger", "Renate Gailey").
+friend("Raul Younger", "Meghan Keyes").
+friend("Raul Younger", "Scotty Gilliam").
+friend("Raul Younger", "Karina Smart").
+friend("Raul Younger", "Luisa Oliveira").
+friend("Raul Younger", "Gwenn Tyree").
+friend("Raul Younger", "Cortez Kinsella").
+friend("Raul Younger", "Doyle Valladares").
+friend("Raul Younger", "Patsy Murray").
+dob("Raul Younger", "0403-05-09").
+job("Raul Younger", "drilling engineer").
+hobby("Raul Younger", "philately").
+gender("Raul Younger", "male").

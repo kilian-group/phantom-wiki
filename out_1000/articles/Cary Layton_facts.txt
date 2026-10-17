@@ -1,0 +1,22 @@
+sister("Cary Layton", "Larue Speaks").
+sister("Cary Layton", "Lera Carty").
+brother("Cary Layton", "Andres Layton").
+brother("Cary Layton", "Bryan Layton").
+brother("Cary Layton", "Emory Layton").
+mother("Cary Layton", "Brianne Layton").
+father("Cary Layton", "Bernie Layton").
+friend("Cary Layton", "Elbert Layman").
+friend("Cary Layton", "Miles Corso").
+friend("Cary Layton", "Ofelia Callender").
+friend("Cary Layton", "Gregory Geter").
+friend("Cary Layton", "Lona Geter").
+friend("Cary Layton", "Emery Linden").
+friend("Cary Layton", "Tawana Machado").
+friend("Cary Layton", "Sammy Dunlap").
+friend("Cary Layton", "Levi Fredrick").
+friend("Cary Layton", "Aron Robinett").
+friend("Cary Layton", "Eunice Prater").
+dob("Cary Layton", "0396-11-16").
+job("Cary Layton", "neurosurgeon").
+hobby("Cary Layton", "esports").
+gender("Cary Layton", "male").

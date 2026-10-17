@@ -1,0 +1,11 @@
+mother("Olin Machado", "Karin Machado").
+father("Olin Machado", "Boris Machado").
+son("Olin Machado", "Antony Machado").
+wife("Olin Machado", "Crysta Machado").
+friend("Olin Machado", "Tamara Wylie").
+friend("Olin Machado", "Lashawnda Fordham").
+friend("Olin Machado", "Chelsie Peeler").
+dob("Olin Machado", "0494-12-20").
+job("Olin Machado", "air cabin crew").
+hobby("Olin Machado", "fishkeeping").
+gender("Olin Machado", "male").

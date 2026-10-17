@@ -1,0 +1,9 @@
+mother("Valentina Wexler", "Jeannine Wexler").
+father("Valentina Wexler", "Saul Wexler").
+friend("Valentina Wexler", "Alison Smock").
+friend("Valentina Wexler", "Alvaro Smock").
+friend("Valentina Wexler", "Orlando Beltran").
+dob("Valentina Wexler", "0326-06-13").
+job("Valentina Wexler", "police officer").
+hobby("Valentina Wexler", "meditation").
+gender("Valentina Wexler", "female").

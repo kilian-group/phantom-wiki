@@ -1,0 +1,16 @@
+sister("Dewitt Kell", "Eva Kell").
+sister("Dewitt Kell", "Malissa Kell").
+sister("Dewitt Kell", "Tomasa Kell").
+brother("Dewitt Kell", "Stan Kell").
+mother("Dewitt Kell", "Barbar Kell").
+father("Dewitt Kell", "Felton Kell").
+son("Dewitt Kell", "Abe Kell").
+son("Dewitt Kell", "Walter Kell").
+daughter("Dewitt Kell", "Jeannette Mounts").
+daughter("Dewitt Kell", "Jenni Kell").
+wife("Dewitt Kell", "Kristen Kell").
+friend("Dewitt Kell", "Rebecka Schlosser").
+dob("Dewitt Kell", "0412-09-22").
+job("Dewitt Kell", "radiographer").
+hobby("Dewitt Kell", "jurisprudential").
+gender("Dewitt Kell", "male").

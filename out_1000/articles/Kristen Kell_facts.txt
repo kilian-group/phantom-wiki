@@ -1,0 +1,20 @@
+sister("Kristen Kell", "Kanesha Booth").
+sister("Kristen Kell", "Yasmin Gordon").
+mother("Kristen Kell", "Aurelia Gordon").
+father("Kristen Kell", "Nicky Gordon").
+son("Kristen Kell", "Abe Kell").
+son("Kristen Kell", "Walter Kell").
+daughter("Kristen Kell", "Jeannette Mounts").
+daughter("Kristen Kell", "Jenni Kell").
+husband("Kristen Kell", "Dewitt Kell").
+friend("Kristen Kell", "Christoper Lasher").
+friend("Kristen Kell", "Emil Wendel").
+friend("Kristen Kell", "Donnie Dunlap").
+friend("Kristen Kell", "Lou Dunlap").
+friend("Kristen Kell", "Beatriz Theriot").
+friend("Kristen Kell", "Donny Speaks").
+friend("Kristen Kell", "Dorathy Harlow").
+dob("Kristen Kell", "0411-08-08").
+job("Kristen Kell", "geneticist").
+hobby("Kristen Kell", "baton twirling").
+gender("Kristen Kell", "female").

@@ -1,0 +1,13 @@
+son("Mona Pannell", "Lanny Pannell").
+husband("Mona Pannell", "Duncan Pannell").
+friend("Mona Pannell", "Yvette Cedillo").
+friend("Mona Pannell", "Zoraida Palermo").
+friend("Mona Pannell", "Elissa Kovach").
+friend("Mona Pannell", "Valentina Wexler").
+friend("Mona Pannell", "Sol Cormier").
+friend("Mona Pannell", "Ernesto Mcnew").
+friend("Mona Pannell", "Ivory Pannell").
+dob("Mona Pannell", "0231-08-24").
+job("Mona Pannell", "teaching laboratory technician").
+hobby("Mona Pannell", "metal detecting").
+gender("Mona Pannell", "female").

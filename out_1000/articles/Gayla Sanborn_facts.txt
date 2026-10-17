@@ -1,0 +1,21 @@
+mother("Gayla Sanborn", "Tashina Vandenberg").
+father("Gayla Sanborn", "Eli Vandenberg").
+son("Gayla Sanborn", "Rudolf Sanborn").
+husband("Gayla Sanborn", "Tobias Sanborn").
+friend("Gayla Sanborn", "Elijah Hamlin").
+friend("Gayla Sanborn", "Christen Resendez").
+friend("Gayla Sanborn", "Fredrick Mckenna").
+friend("Gayla Sanborn", "Maryam Maness").
+friend("Gayla Sanborn", "Magdalena Hollinger").
+friend("Gayla Sanborn", "Goldie Schlosser").
+friend("Gayla Sanborn", "Lashanda Hartung").
+friend("Gayla Sanborn", "Phylis Cook").
+friend("Gayla Sanborn", "Jasmine Corwin").
+friend("Gayla Sanborn", "Mari Carreon").
+friend("Gayla Sanborn", "Miguel Morehead").
+friend("Gayla Sanborn", "Ladawn Bennet").
+friend("Gayla Sanborn", "Lindy Kavanaugh").
+dob("Gayla Sanborn", "0373-04-07").
+job("Gayla Sanborn", "astronomer").
+hobby("Gayla Sanborn", "base jumping").
+gender("Gayla Sanborn", "female").

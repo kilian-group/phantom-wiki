@@ -1,0 +1,21 @@
+brother("Deidra Gilliam", "Brendon Dunlap").
+mother("Deidra Gilliam", "Lera Dunlap").
+father("Deidra Gilliam", "Donnie Dunlap").
+son("Deidra Gilliam", "Scotty Gilliam").
+daughter("Deidra Gilliam", "Anna Broughton").
+daughter("Deidra Gilliam", "Jenny Gilliam").
+daughter("Deidra Gilliam", "Vada Littleton").
+husband("Deidra Gilliam", "Darren Gilliam").
+friend("Deidra Gilliam", "Alyssa Salem").
+friend("Deidra Gilliam", "Verona Medellin").
+friend("Deidra Gilliam", "Tashina Layton").
+friend("Deidra Gilliam", "Oscar Schram").
+friend("Deidra Gilliam", "Karol Beamon").
+friend("Deidra Gilliam", "Drew Dana").
+friend("Deidra Gilliam", "Karla Linares").
+friend("Deidra Gilliam", "Son Corwin").
+friend("Deidra Gilliam", "Melina Resendez").
+dob("Deidra Gilliam", "0345-11-07").
+job("Deidra Gilliam", "medical secretary").
+hobby("Deidra Gilliam", "audiophile").
+gender("Deidra Gilliam", "female").

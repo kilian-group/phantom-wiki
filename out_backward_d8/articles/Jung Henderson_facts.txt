@@ -1,0 +1,13 @@
+son("Jung Henderson", "Maxwell Henderson").
+son("Jung Henderson", "Milton Henderson").
+son("Jung Henderson", "Stefan Henderson").
+husband("Jung Henderson", "Marko Henderson").
+friend("Jung Henderson", "Alberta Abraham").
+friend("Jung Henderson", "Monique Palermo").
+friend("Jung Henderson", "Daisy Beltran").
+friend("Jung Henderson", "Amberly Mcnew").
+friend("Jung Henderson", "Don Mcnew").
+dob("Jung Henderson", "0225-04-26").
+job("Jung Henderson", "clinical molecular geneticist").
+hobby("Jung Henderson", "pinball").
+gender("Jung Henderson", "female").

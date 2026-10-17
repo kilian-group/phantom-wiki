@@ -1,0 +1,24 @@
+sister("Shannon Fredrick", "Maryann Oliveira").
+sister("Shannon Fredrick", "Maybelle Oliveira").
+mother("Shannon Fredrick", "Luisa Oliveira").
+father("Shannon Fredrick", "Bradford Oliveira").
+son("Shannon Fredrick", "Murray Fredrick").
+daughter("Shannon Fredrick", "Jana Noland").
+daughter("Shannon Fredrick", "Lynette Fredrick").
+daughter("Shannon Fredrick", "Sona Fredrick").
+husband("Shannon Fredrick", "Anderson Fredrick").
+friend("Shannon Fredrick", "Tashina Vandenberg").
+friend("Shannon Fredrick", "Gena Shaw").
+friend("Shannon Fredrick", "Gerry Dorn").
+friend("Shannon Fredrick", "Abe Kell").
+friend("Shannon Fredrick", "Rolf Booth").
+friend("Shannon Fredrick", "Edwina Weise").
+friend("Shannon Fredrick", "Joanne Storey").
+friend("Shannon Fredrick", "Adrianna Gregory").
+friend("Shannon Fredrick", "Sammie Simons").
+friend("Shannon Fredrick", "Matilda Goff").
+friend("Shannon Fredrick", "Shelia Hollins").
+dob("Shannon Fredrick", "0374-09-10").
+job("Shannon Fredrick", "solicitor").
+hobby("Shannon Fredrick", "birdwatching").
+gender("Shannon Fredrick", "female").

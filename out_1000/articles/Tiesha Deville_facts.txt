@@ -1,0 +1,13 @@
+son("Tiesha Deville", "Martin Deville").
+daughter("Tiesha Deville", "Chrissy Mcgough").
+husband("Tiesha Deville", "Lorenz Deville").
+friend("Tiesha Deville", "Mattie Courson").
+friend("Tiesha Deville", "Ella Valladares").
+friend("Tiesha Deville", "Miles Burdette").
+friend("Tiesha Deville", "Ty Mahoney").
+friend("Tiesha Deville", "Lura Leclair").
+friend("Tiesha Deville", "Scotty Gilliam").
+dob("Tiesha Deville", "0353-08-17").
+job("Tiesha Deville", "diplomatic services operational officer").
+hobby("Tiesha Deville", "butterfly watching").
+gender("Tiesha Deville", "female").

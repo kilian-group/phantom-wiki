@@ -1,0 +1,16 @@
+mother("Frederic Cordova", "Manda Cordova").
+father("Frederic Cordova", "Ambrose Cordova").
+son("Frederic Cordova", "Fredrick Cordova").
+son("Frederic Cordova", "Galen Cordova").
+daughter("Frederic Cordova", "Janiece Cordova").
+wife("Frederic Cordova", "Noreen Cordova").
+friend("Frederic Cordova", "Freddie Barrows").
+friend("Frederic Cordova", "Marguerite Lebrun").
+friend("Frederic Cordova", "Devon Leclair").
+friend("Frederic Cordova", "Steven Prater").
+friend("Frederic Cordova", "Tosha Osborn").
+friend("Frederic Cordova", "Dwight Palm").
+dob("Frederic Cordova", "0319-08-27").
+job("Frederic Cordova", "agricultural engineer").
+hobby("Frederic Cordova", "railway studies").
+gender("Frederic Cordova", "male").

@@ -1,0 +1,14 @@
+sister("Paris Brumbaugh", "Cordelia Murray").
+brother("Paris Brumbaugh", "Ellis Brumbaugh").
+mother("Paris Brumbaugh", "Renate Brumbaugh").
+father("Paris Brumbaugh", "Wallace Brumbaugh").
+friend("Paris Brumbaugh", "Brendon Dunlap").
+friend("Paris Brumbaugh", "Graciela Burger").
+friend("Paris Brumbaugh", "Anita Fain").
+friend("Paris Brumbaugh", "Jan Estrella").
+friend("Paris Brumbaugh", "Sammy Yarbrough").
+friend("Paris Brumbaugh", "Mattie Courson").
+dob("Paris Brumbaugh", "0442-07-03").
+job("Paris Brumbaugh", "database administrator").
+hobby("Paris Brumbaugh", "fishkeeping").
+gender("Paris Brumbaugh", "male").

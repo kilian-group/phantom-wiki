@@ -1,0 +1,13 @@
+mother("Lera Dunlap", "Ollie Minnick").
+father("Lera Dunlap", "Sebastian Minnick").
+son("Lera Dunlap", "Brendon Dunlap").
+daughter("Lera Dunlap", "Deidra Gilliam").
+husband("Lera Dunlap", "Donnie Dunlap").
+friend("Lera Dunlap", "Gwenn Tyree").
+friend("Lera Dunlap", "Chris Harlow").
+friend("Lera Dunlap", "Eli Younger").
+friend("Lera Dunlap", "Nora Resendez").
+dob("Lera Dunlap", "0313-11-18").
+job("Lera Dunlap", "personal assistant").
+hobby("Lera Dunlap", "skiing").
+gender("Lera Dunlap", "female").

@@ -16,7 +16,7 @@ def test_get_articles():
     article_dir = os.path.join("test_out", "articles")
     os.makedirs(article_dir, exist_ok=True)
     print(f"Saving articles to: {article_dir}")
-    articles = get_articles(db, db.get_person_names())
+    articles = get_articles(db, db.get_person_names(), num_procs=1)
     # save the articles to a file
     for name, article in articles.items():
         with open(os.path.join(article_dir, f"{name}.txt"), "w") as file:

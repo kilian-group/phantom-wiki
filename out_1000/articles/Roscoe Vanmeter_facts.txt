@@ -1,0 +1,20 @@
+sister("Roscoe Vanmeter", "Niki Vanmeter").
+mother("Roscoe Vanmeter", "Maggie Vanmeter").
+father("Roscoe Vanmeter", "Felipe Vanmeter").
+friend("Roscoe Vanmeter", "Maegan Cordova").
+friend("Roscoe Vanmeter", "Roderick Simons").
+friend("Roscoe Vanmeter", "Logan Swartz").
+friend("Roscoe Vanmeter", "Thomas Flores").
+friend("Roscoe Vanmeter", "Jasmine Corwin").
+friend("Roscoe Vanmeter", "Kurt Goff").
+friend("Roscoe Vanmeter", "Maranda Goff").
+friend("Roscoe Vanmeter", "Eunice Gordy").
+friend("Roscoe Vanmeter", "Erik Fredrick").
+friend("Roscoe Vanmeter", "Velia Capps").
+friend("Roscoe Vanmeter", "Marion Wilke").
+friend("Roscoe Vanmeter", "Jayson Sheridan").
+friend("Roscoe Vanmeter", "Paul Dame").
+dob("Roscoe Vanmeter", "0487-05-15").
+job("Roscoe Vanmeter", "make").
+hobby("Roscoe Vanmeter", "astronomy").
+gender("Roscoe Vanmeter", "male").

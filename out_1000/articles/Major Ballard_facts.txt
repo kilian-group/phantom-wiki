@@ -1,0 +1,13 @@
+sister("Major Ballard", "Lashandra Bowles").
+brother("Major Ballard", "Hal Ballard").
+mother("Major Ballard", "Kayla Ballard").
+father("Major Ballard", "Brad Ballard").
+friend("Major Ballard", "Trudy Lasher").
+friend("Major Ballard", "Derek Valladares").
+friend("Major Ballard", "Drema Schatz").
+friend("Major Ballard", "Hank Gerber").
+friend("Major Ballard", "Buck Smart").
+dob("Major Ballard", "0443-06-25").
+job("Major Ballard", "horticultural therapist").
+hobby("Major Ballard", "wikipedia editing").
+gender("Major Ballard", "male").

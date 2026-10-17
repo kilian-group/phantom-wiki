@@ -1,0 +1,16 @@
+mother("Debora Murray", "Patsy Murray").
+father("Debora Murray", "Dane Murray").
+friend("Debora Murray", "Freddie Barrows").
+friend("Debora Murray", "Mari Carreon").
+friend("Debora Murray", "Monique Pugliese").
+friend("Debora Murray", "Flora Noland").
+friend("Debora Murray", "Sharron Palomo").
+friend("Debora Murray", "Chelsea Skidmore").
+friend("Debora Murray", "Stuart Strong").
+friend("Debora Murray", "Emory Layton").
+friend("Debora Murray", "Genesis Alarcon").
+friend("Debora Murray", "Maryann Peeler").
+dob("Debora Murray", "0498-12-23").
+job("Debora Murray", "forest manager").
+hobby("Debora Murray", "fusilately").
+gender("Debora Murray", "female").

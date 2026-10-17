@@ -1,0 +1,7 @@
+son("Dominique Smock", "Williams Smock").
+husband("Dominique Smock", "Gene Smock").
+friend("Dominique Smock", "Margo Brannan").
+dob("Dominique Smock", "0207-09-08").
+job("Dominique Smock", "retail manager").
+hobby("Dominique Smock", "tether car").
+gender("Dominique Smock", "female").

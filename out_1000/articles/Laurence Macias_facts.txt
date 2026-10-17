@@ -1,0 +1,19 @@
+brother("Laurence Macias", "Levi Macias").
+brother("Laurence Macias", "Moshe Macias").
+mother("Laurence Macias", "Larue Macias").
+father("Laurence Macias", "Lon Macias").
+son("Laurence Macias", "Brent Macias").
+wife("Laurence Macias", "Johnna Macias").
+friend("Laurence Macias", "Luke Wilke").
+friend("Laurence Macias", "Zachariah Galvan").
+friend("Laurence Macias", "Jenni Kell").
+friend("Laurence Macias", "Samuel Omara").
+friend("Laurence Macias", "Bonnie Storey").
+friend("Laurence Macias", "Desmond Lester").
+friend("Laurence Macias", "Taylor Schatz").
+friend("Laurence Macias", "Stevie Joiner").
+friend("Laurence Macias", "Nelly Smart").
+dob("Laurence Macias", "0468-08-30").
+job("Laurence Macias", "IT trainer").
+hobby("Laurence Macias", "figure skating").
+gender("Laurence Macias", "male").

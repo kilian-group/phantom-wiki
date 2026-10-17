@@ -1,0 +1,15 @@
+sister("Edwina Eaves", "Karla Linares").
+brother("Edwina Eaves", "Chang Eaves").
+brother("Edwina Eaves", "Davis Eaves").
+mother("Edwina Eaves", "Buffy Eaves").
+father("Edwina Eaves", "Denny Eaves").
+friend("Edwina Eaves", "Marguerite Lebrun").
+friend("Edwina Eaves", "Jo Medeiros").
+friend("Edwina Eaves", "Zachariah Galvan").
+friend("Edwina Eaves", "Georgette Haygood").
+friend("Edwina Eaves", "Joanne Storey").
+friend("Edwina Eaves", "Fredrick Cordova").
+dob("Edwina Eaves", "0398-09-10").
+job("Edwina Eaves", "proofreader").
+hobby("Edwina Eaves", "antiquities").
+gender("Edwina Eaves", "female").

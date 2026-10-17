@@ -1,0 +1,8 @@
+mother("Amberly Mcnew", "Rae Mcnew").
+father("Amberly Mcnew", "Haywood Mcnew").
+friend("Amberly Mcnew", "Jung Henderson").
+friend("Amberly Mcnew", "Roland Earnest").
+dob("Amberly Mcnew", "0369-04-29").
+job("Amberly Mcnew", "clinical embryologist").
+hobby("Amberly Mcnew", "gongoozling").
+gender("Amberly Mcnew", "female").

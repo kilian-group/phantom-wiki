@@ -1,0 +1,16 @@
+son("Shaunte Gilliam", "Kenton Gilliam").
+husband("Shaunte Gilliam", "Kareem Gilliam").
+friend("Shaunte Gilliam", "Lindy Kavanaugh").
+friend("Shaunte Gilliam", "Lashawnda Fordham").
+friend("Shaunte Gilliam", "Millard Fordham").
+friend("Shaunte Gilliam", "Zachery Upton").
+friend("Shaunte Gilliam", "Seth Mounts").
+friend("Shaunte Gilliam", "Rudolf Lai").
+friend("Shaunte Gilliam", "Bo Frink").
+friend("Shaunte Gilliam", "Cherlyn Simons").
+friend("Shaunte Gilliam", "Salley Goff").
+friend("Shaunte Gilliam", "Jeromy Ibarra").
+dob("Shaunte Gilliam", "0285-11-10").
+job("Shaunte Gilliam", "ship broker").
+hobby("Shaunte Gilliam", "ballroom dancing").
+gender("Shaunte Gilliam", "female").

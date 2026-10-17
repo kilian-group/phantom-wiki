@@ -1,0 +1,15 @@
+son("Victor Steadman", "Porter Steadman").
+daughter("Victor Steadman", "Tiffany Mcdonald").
+wife("Victor Steadman", "Scottie Steadman").
+friend("Victor Steadman", "Avery Ballard").
+friend("Victor Steadman", "Hal Ballard").
+friend("Victor Steadman", "Rueben Bowles").
+friend("Victor Steadman", "Zachary Theriot").
+friend("Victor Steadman", "Belva Murphey").
+friend("Victor Steadman", "Gayla Dorn").
+friend("Victor Steadman", "Cleo Peeler").
+friend("Victor Steadman", "Rebecka Schlosser").
+dob("Victor Steadman", "0414-08-16").
+job("Victor Steadman", "horticulturist").
+hobby("Victor Steadman", "frisbee").
+gender("Victor Steadman", "male").

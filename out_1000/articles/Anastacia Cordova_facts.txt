@@ -1,0 +1,23 @@
+brother("Anastacia Cordova", "Javier Kirksey").
+mother("Anastacia Cordova", "Larae Kirksey").
+father("Anastacia Cordova", "Maurice Kirksey").
+daughter("Anastacia Cordova", "Chelsie Peeler").
+husband("Anastacia Cordova", "Anibal Cordova").
+friend("Anastacia Cordova", "Cortez Kinsella").
+friend("Anastacia Cordova", "Nelly Kinsella").
+friend("Anastacia Cordova", "Gayla Holder").
+friend("Anastacia Cordova", "Kevin Sharma").
+friend("Anastacia Cordova", "Dena Morehead").
+friend("Anastacia Cordova", "Zora Morehead").
+friend("Anastacia Cordova", "Gina Goff").
+friend("Anastacia Cordova", "Nickolas Dacosta").
+friend("Anastacia Cordova", "Scotty Correia").
+friend("Anastacia Cordova", "Vada Littleton").
+friend("Anastacia Cordova", "Alyssa Salem").
+friend("Anastacia Cordova", "Leonora Depriest").
+friend("Anastacia Cordova", "Melodie Suh").
+friend("Anastacia Cordova", "Juan Weise").
+dob("Anastacia Cordova", "0379-07-17").
+job("Anastacia Cordova", "engineering geologist").
+hobby("Anastacia Cordova", "whale watching").
+gender("Anastacia Cordova", "female").

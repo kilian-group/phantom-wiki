@@ -1,0 +1,11 @@
+sister("Nora Resendez", "Katharine Resendez").
+mother("Nora Resendez", "Rheba Resendez").
+father("Nora Resendez", "Sung Resendez").
+friend("Nora Resendez", "Lera Dunlap").
+friend("Nora Resendez", "Carlos Noland").
+friend("Nora Resendez", "Max Bauman").
+friend("Nora Resendez", "Samuel Omara").
+dob("Nora Resendez", "0393-04-09").
+job("Nora Resendez", "hydrogeologist").
+hobby("Nora Resendez", "model racing").
+gender("Nora Resendez", "female").

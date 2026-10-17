@@ -1,0 +1,22 @@
+son("Jenniffer Younger", "Wilson Younger").
+daughter("Jenniffer Younger", "Dani Dalton").
+husband("Jenniffer Younger", "Eli Younger").
+friend("Jenniffer Younger", "Gayla Mccall").
+friend("Jenniffer Younger", "Nikki Bond").
+friend("Jenniffer Younger", "Bertram Wylie").
+friend("Jenniffer Younger", "Hiram Smart").
+friend("Jenniffer Younger", "Lashawnda Fordham").
+friend("Jenniffer Younger", "Sammy Dillion").
+friend("Jenniffer Younger", "Scottie Fordham").
+friend("Jenniffer Younger", "Mayra Geter").
+friend("Jenniffer Younger", "Ellis Brumbaugh").
+friend("Jenniffer Younger", "Harold Murray").
+friend("Jenniffer Younger", "Josie Littleton").
+friend("Jenniffer Younger", "Phylis Cook").
+friend("Jenniffer Younger", "Myra Eaves").
+friend("Jenniffer Younger", "Boris Machado").
+friend("Jenniffer Younger", "Eli Younger").
+dob("Jenniffer Younger", "0403-01-13").
+job("Jenniffer Younger", "clinical research associate").
+hobby("Jenniffer Younger", "fossil hunting").
+gender("Jenniffer Younger", "female").

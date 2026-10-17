@@ -1,0 +1,8 @@
+sister("Goldie Henderson", "Lorelei Mcnew").
+mother("Goldie Henderson", "Noelia Henderson").
+father("Goldie Henderson", "Stefan Henderson").
+friend("Goldie Henderson", "Gene Smock").
+dob("Goldie Henderson", "0279-09-05").
+job("Goldie Henderson", "dance movement psychotherapist").
+hobby("Goldie Henderson", "herping").
+gender("Goldie Henderson", "female").

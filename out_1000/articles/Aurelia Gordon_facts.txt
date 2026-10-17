@@ -1,0 +1,15 @@
+daughter("Aurelia Gordon", "Kanesha Booth").
+daughter("Aurelia Gordon", "Kristen Kell").
+daughter("Aurelia Gordon", "Yasmin Gordon").
+husband("Aurelia Gordon", "Nicky Gordon").
+friend("Aurelia Gordon", "Dave Alarcon").
+friend("Aurelia Gordon", "Emerson Willoughby").
+friend("Aurelia Gordon", "Kent Corso").
+friend("Aurelia Gordon", "Noelia Lasher").
+friend("Aurelia Gordon", "Tena Beamon").
+friend("Aurelia Gordon", "Hubert Noland").
+friend("Aurelia Gordon", "Ben Sheridan").
+dob("Aurelia Gordon", "0384-10-23").
+job("Aurelia Gordon", "clothing technologist").
+hobby("Aurelia Gordon", "marbles").
+gender("Aurelia Gordon", "female").

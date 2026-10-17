@@ -1,0 +1,16 @@
+sister("Jerald Murray", "Jo Murray").
+brother("Jerald Murray", "Dane Murray").
+brother("Jerald Murray", "Jorge Murray").
+mother("Jerald Murray", "Cordelia Murray").
+father("Jerald Murray", "Phil Murray").
+friend("Jerald Murray", "Austin Boutte").
+friend("Jerald Murray", "Lona Corwin").
+friend("Jerald Murray", "Flora Cushman").
+friend("Jerald Murray", "Avery Ballard").
+friend("Jerald Murray", "Anibal Cordova").
+friend("Jerald Murray", "Melvin Peeler").
+friend("Jerald Murray", "Gayla Holder").
+dob("Jerald Murray", "0467-06-03").
+job("Jerald Murray", "trading standards officer").
+hobby("Jerald Murray", "aircraft spotting").
+gender("Jerald Murray", "male").

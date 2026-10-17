@@ -1,0 +1,16 @@
+mother("Ollie Minnick", "Darby Latham").
+father("Ollie Minnick", "Maynard Latham").
+daughter("Ollie Minnick", "Lera Dunlap").
+husband("Ollie Minnick", "Sebastian Minnick").
+friend("Ollie Minnick", "Walter Depriest").
+friend("Ollie Minnick", "Donny Speaks").
+friend("Ollie Minnick", "Lindy Hudgens").
+friend("Ollie Minnick", "Ladawn Basham").
+friend("Ollie Minnick", "Darin Hollinger").
+friend("Ollie Minnick", "Enedina Cordova").
+friend("Ollie Minnick", "Tiffany Mcdonald").
+friend("Ollie Minnick", "Herbert Dana").
+dob("Ollie Minnick", "0281-07-14").
+job("Ollie Minnick", "development worker").
+hobby("Ollie Minnick", "exhibition drill").
+gender("Ollie Minnick", "female").

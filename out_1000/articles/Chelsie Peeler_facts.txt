@@ -1,0 +1,23 @@
+mother("Chelsie Peeler", "Anastacia Cordova").
+father("Chelsie Peeler", "Anibal Cordova").
+daughter("Chelsie Peeler", "Cleo Peeler").
+daughter("Chelsie Peeler", "Maybelle Lester").
+daughter("Chelsie Peeler", "Rayna Kinsella").
+husband("Chelsie Peeler", "Melvin Peeler").
+friend("Chelsie Peeler", "Nathan Corwin").
+friend("Chelsie Peeler", "Olin Machado").
+friend("Chelsie Peeler", "Carolyn Whitford").
+friend("Chelsie Peeler", "Kareem Gilliam").
+friend("Chelsie Peeler", "Tracey Capps").
+friend("Chelsie Peeler", "Lorenz Deville").
+friend("Chelsie Peeler", "Sophie Wilke").
+friend("Chelsie Peeler", "Buffy Jarrett").
+friend("Chelsie Peeler", "Sharika Kell").
+friend("Chelsie Peeler", "Ben Corso").
+friend("Chelsie Peeler", "Maggie Vanmeter").
+friend("Chelsie Peeler", "Nydia Willoughby").
+friend("Chelsie Peeler", "Ai Cordova").
+dob("Chelsie Peeler", "0408-02-05").
+job("Chelsie Peeler", "communications engineer").
+hobby("Chelsie Peeler", "aerospace").
+gender("Chelsie Peeler", "female").

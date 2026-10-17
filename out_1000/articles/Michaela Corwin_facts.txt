@@ -1,0 +1,15 @@
+son("Michaela Corwin", "Ruben Corwin").
+husband("Michaela Corwin", "Son Corwin").
+friend("Michaela Corwin", "Aaron Bowles").
+friend("Michaela Corwin", "Zoraida Sanborn").
+friend("Michaela Corwin", "Randolph Osborn").
+friend("Michaela Corwin", "Maryam Maness").
+friend("Michaela Corwin", "Roseanna Mckenna").
+friend("Michaela Corwin", "Gena Brumbaugh").
+friend("Michaela Corwin", "Jacque Simons").
+friend("Michaela Corwin", "Timothy Simons").
+friend("Michaela Corwin", "Fernando Dana").
+dob("Michaela Corwin", "0399-10-22").
+job("Michaela Corwin", "sales promotion account executive").
+hobby("Michaela Corwin", "croquet").
+gender("Michaela Corwin", "female").

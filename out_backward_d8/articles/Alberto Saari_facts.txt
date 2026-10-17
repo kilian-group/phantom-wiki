@@ -1,0 +1,13 @@
+sister("Alberto Saari", "Ella Saari").
+mother("Alberto Saari", "Shawnta Saari").
+father("Alberto Saari", "Trevor Saari").
+friend("Alberto Saari", "Leann Cormier").
+friend("Alberto Saari", "Trevor Saari").
+friend("Alberto Saari", "Liane Schoonmaker").
+friend("Alberto Saari", "Tessie Loftus").
+friend("Alberto Saari", "Craig Boutte").
+friend("Alberto Saari", "Lenore Hackworth").
+dob("Alberto Saari", "0289-06-06").
+job("Alberto Saari", "clinical biochemist").
+hobby("Alberto Saari", "social studies").
+gender("Alberto Saari", "male").

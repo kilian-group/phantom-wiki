@@ -1,0 +1,29 @@
+sister("Phil Murray", "Myrl Murray").
+sister("Phil Murray", "Romona Littleton").
+sister("Phil Murray", "Susie Gillam").
+mother("Phil Murray", "Wanda Murray").
+father("Phil Murray", "Harold Murray").
+son("Phil Murray", "Dane Murray").
+son("Phil Murray", "Jerald Murray").
+son("Phil Murray", "Jorge Murray").
+daughter("Phil Murray", "Jo Murray").
+wife("Phil Murray", "Cordelia Murray").
+friend("Phil Murray", "Georgina Lebrun").
+friend("Phil Murray", "Madalene Lebrun").
+friend("Phil Murray", "Torrie Goff").
+friend("Phil Murray", "Donnie Dunlap").
+friend("Phil Murray", "Nelly Smart").
+friend("Phil Murray", "Alina Bowles").
+friend("Phil Murray", "Lon Macias").
+friend("Phil Murray", "Julianne Hamlin").
+friend("Phil Murray", "Ashleigh Kell").
+friend("Phil Murray", "Jerrold Harlow").
+friend("Phil Murray", "Kendrick Bauman").
+friend("Phil Murray", "Shayne Lasher").
+friend("Phil Murray", "Tabetha Lasher").
+friend("Phil Murray", "Graciela Weise").
+friend("Phil Murray", "Annmarie Kinsella").
+dob("Phil Murray", "0443-02-27").
+job("Phil Murray", "nature conservation officer").
+hobby("Phil Murray", "people-watching").
+gender("Phil Murray", "male").

@@ -1,0 +1,19 @@
+mother("Rheba Resendez", "Lura Leclair").
+father("Rheba Resendez", "Devon Leclair").
+daughter("Rheba Resendez", "Katharine Resendez").
+daughter("Rheba Resendez", "Nora Resendez").
+husband("Rheba Resendez", "Sung Resendez").
+friend("Rheba Resendez", "Nelly Smart").
+friend("Rheba Resendez", "Deloris Marr").
+friend("Rheba Resendez", "Ester Yarbrough").
+friend("Rheba Resendez", "Kenneth Rinehart").
+friend("Rheba Resendez", "Tashina Vandenberg").
+friend("Rheba Resendez", "Kent Corso").
+friend("Rheba Resendez", "Charlie Ingalls").
+friend("Rheba Resendez", "Ignacio Barrows").
+friend("Rheba Resendez", "Tiffany Simons").
+friend("Rheba Resendez", "Roger Carreon").
+dob("Rheba Resendez", "0368-12-19").
+job("Rheba Resendez", "doctor").
+hobby("Rheba Resendez", "reading").
+gender("Rheba Resendez", "female").

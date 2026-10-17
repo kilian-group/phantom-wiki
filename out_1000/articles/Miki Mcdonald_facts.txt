@@ -1,0 +1,13 @@
+mother("Miki Mcdonald", "Tiffany Mcdonald").
+father("Miki Mcdonald", "Lukas Mcdonald").
+friend("Miki Mcdonald", "Jeana Chisholm").
+friend("Miki Mcdonald", "Iluminada Capps").
+friend("Miki Mcdonald", "Hershel Shilling").
+friend("Miki Mcdonald", "Maurine Layman").
+friend("Miki Mcdonald", "Darin Hollinger").
+friend("Miki Mcdonald", "Vaughn Dangelo").
+friend("Miki Mcdonald", "Arnulfo Kinsella").
+dob("Miki Mcdonald", "0476-09-10").
+job("Miki Mcdonald", "insurance risk surveyor").
+hobby("Miki Mcdonald", "audiophile").
+gender("Miki Mcdonald", "female").

@@ -1,0 +1,14 @@
+sister("Susie Medellin", "Latisha Smart").
+sister("Susie Medellin", "Pamala Medellin").
+mother("Susie Medellin", "Demetra Medellin").
+father("Susie Medellin", "Reggie Medellin").
+friend("Susie Medellin", "Stefan Sutphin").
+friend("Susie Medellin", "Herbert Dana").
+friend("Susie Medellin", "Vicente Mccurry").
+friend("Susie Medellin", "Deirdre Niles").
+friend("Susie Medellin", "Bev Medellin").
+friend("Susie Medellin", "Ligia Wylie").
+dob("Susie Medellin", "0440-04-09").
+job("Susie Medellin", "plant breeder").
+hobby("Susie Medellin", "table football").
+gender("Susie Medellin", "female").

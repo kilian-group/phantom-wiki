@@ -1,0 +1,11 @@
+daughter("Darwin Kavanaugh", "Jeana Chisholm").
+wife("Darwin Kavanaugh", "Lindy Kavanaugh").
+friend("Darwin Kavanaugh", "Tamara Kell").
+friend("Darwin Kavanaugh", "Drema Jefferson").
+friend("Darwin Kavanaugh", "Melvin Peeler").
+friend("Darwin Kavanaugh", "Jon Dana").
+friend("Darwin Kavanaugh", "Dan Younger").
+dob("Darwin Kavanaugh", "0287-07-13").
+job("Darwin Kavanaugh", "armed forces training and education officer").
+hobby("Darwin Kavanaugh", "magnet fishing").
+gender("Darwin Kavanaugh", "male").

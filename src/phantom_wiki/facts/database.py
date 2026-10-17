@@ -83,28 +83,32 @@ class Database:
         attributes = [decode(result["X"]) for result in self.prolog.query("attribute(X)")]
         return attributes
 
-    def batch_query(self, queries: list[str], multi_threading: bool = False) -> list[list[dict]]:
-        """Queries the Prolog database with multiple queries. If multi_threading
-         is true, then this function leverages multi processors.
+    def batch_query(self, queries: list[str], num_procs: int = 1) -> list[list[dict]]:
+        """Queries the Prolog database with multiple queries.
 
         Args:
             queries: List of Prolog query strings
+            num_procs: Number of worker processes. 1 (default) runs serially; values >1
+                use multiprocessing.Pool(processes=num_procs) to parallelize queries.
+                Batches smaller than 32 queries always run serially regardless of
+                ``num_procs`` — Pool fork/teardown overhead dominates at that size.
 
         Returns:
-            List of results for each query
+            List of results for each query, in the same order as ``queries``.
         """
-        if multi_threading:
-            with Pool() as pool:
+        if num_procs > 1 and len(queries) >= 32:
+            with Pool(processes=num_procs) as pool:
                 results = []
                 for result in tqdm(
                     pool.imap(self.query, queries), total=len(queries), desc="Querying the database"
                 ):
                     results.append(result)
-
-        else:
+        elif len(queries) >= 32:
             results = []
             for q in tqdm(queries, desc="Querying the database"):
                 results.append(self.query(q))
+        else:
+            results = [self.query(q) for q in queries]
 
         return results
 

@@ -1,0 +1,9 @@
+brother("Roger Griffiths", "Hilton Griffiths").
+mother("Roger Griffiths", "Monique Griffiths").
+father("Roger Griffiths", "Spencer Griffiths").
+friend("Roger Griffiths", "Marcelino Mcnew").
+friend("Roger Griffiths", "Edmond Schreiner").
+dob("Roger Griffiths", "0313-04-21").
+job("Roger Griffiths", "outdoor activities manager").
+hobby("Roger Griffiths", "mineral collecting").
+gender("Roger Griffiths", "male").

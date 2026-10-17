@@ -1,0 +1,12 @@
+mother("Darby Latham", "Lela Correia").
+father("Darby Latham", "Scotty Correia").
+daughter("Darby Latham", "Ollie Minnick").
+husband("Darby Latham", "Maynard Latham").
+friend("Darby Latham", "Chris Harlow").
+friend("Darby Latham", "Kurtis Eaves").
+friend("Darby Latham", "Rob Eaves").
+friend("Darby Latham", "Brock Pugliese").
+dob("Darby Latham", "0255-10-18").
+job("Darby Latham", "comptroller").
+hobby("Darby Latham", "antiquities").
+gender("Darby Latham", "female").

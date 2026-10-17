@@ -1,0 +1,17 @@
+sister("Otto Horan", "Annabell Horan").
+mother("Otto Horan", "Racquel Horan").
+father("Otto Horan", "Federico Horan").
+friend("Otto Horan", "Erick Courson").
+friend("Otto Horan", "Rolf Booth").
+friend("Otto Horan", "Lora Vanmeter").
+friend("Otto Horan", "Maggie Vanmeter").
+friend("Otto Horan", "Graham Weise").
+friend("Otto Horan", "Juan Weise").
+friend("Otto Horan", "Larae Kirksey").
+friend("Otto Horan", "Reggie Simons").
+friend("Otto Horan", "Meghan Keyes").
+friend("Otto Horan", "Antonio Fitch").
+dob("Otto Horan", "0468-06-11").
+job("Otto Horan", "veterinary surgeon").
+hobby("Otto Horan", "horsemanship").
+gender("Otto Horan", "male").

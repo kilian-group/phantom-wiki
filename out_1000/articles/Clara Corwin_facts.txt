@@ -1,0 +1,14 @@
+son("Clara Corwin", "Son Corwin").
+husband("Clara Corwin", "Nathan Corwin").
+friend("Clara Corwin", "Winfred Molina").
+friend("Clara Corwin", "Xiao Gailey").
+friend("Clara Corwin", "Boris Gilliam").
+friend("Clara Corwin", "Pierre Mcpeak").
+friend("Clara Corwin", "Iluminada Capps").
+friend("Clara Corwin", "Fernando Vandenberg").
+friend("Clara Corwin", "Royce Callender").
+friend("Clara Corwin", "Russel Eaves").
+dob("Clara Corwin", "0378-11-08").
+job("Clara Corwin", "dietitian").
+hobby("Clara Corwin", "freestyle football").
+gender("Clara Corwin", "female").

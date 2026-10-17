@@ -1,0 +1,13 @@
+sister("Marion Wilke", "Belva Murphey").
+brother("Marion Wilke", "Luke Wilke").
+mother("Marion Wilke", "Amy Wilke").
+father("Marion Wilke", "Stacey Wilke").
+friend("Marion Wilke", "Tashina Vandenberg").
+friend("Marion Wilke", "Hunter Remillard").
+friend("Marion Wilke", "King Dishman").
+friend("Marion Wilke", "Willie Remillard").
+friend("Marion Wilke", "Clara Mcgough").
+dob("Marion Wilke", "0277-08-23").
+job("Marion Wilke", "biomedical engineer").
+hobby("Marion Wilke", "whale watching").
+gender("Marion Wilke", "male").

@@ -1,0 +1,20 @@
+daughter("Kenneth Rinehart", "Amanda Rinehart").
+wife("Kenneth Rinehart", "Dawn Rinehart").
+friend("Kenneth Rinehart", "Donnie Mcgough").
+friend("Kenneth Rinehart", "Randall Mcgough").
+friend("Kenneth Rinehart", "Bernie Layton").
+friend("Kenneth Rinehart", "Jamel Jarrett").
+friend("Kenneth Rinehart", "Sharika Kell").
+friend("Kenneth Rinehart", "Dave Alarcon").
+friend("Kenneth Rinehart", "Grady Valladares").
+friend("Kenneth Rinehart", "Lorenzo Littleton").
+friend("Kenneth Rinehart", "Tiffany Simons").
+friend("Kenneth Rinehart", "Chance Mahoney").
+friend("Kenneth Rinehart", "Irwin Dalton").
+friend("Kenneth Rinehart", "Rheba Resendez").
+friend("Kenneth Rinehart", "Lou Hurt").
+friend("Kenneth Rinehart", "Sharron Palomo").
+dob("Kenneth Rinehart", "0481-09-03").
+job("Kenneth Rinehart", "museum exhibitions officer").
+hobby("Kenneth Rinehart", "disc golf").
+gender("Kenneth Rinehart", "male").

@@ -1,0 +1,16 @@
+sister("Alix Mahoney", "Lynda Mahoney").
+brother("Alix Mahoney", "Dan Mahoney").
+brother("Alix Mahoney", "Jerry Mahoney").
+mother("Alix Mahoney", "Germaine Mahoney").
+father("Alix Mahoney", "Frankie Mahoney").
+friend("Alix Mahoney", "Vicki Osterman").
+friend("Alix Mahoney", "Roger Mcpeak").
+friend("Alix Mahoney", "Valentina Robinett").
+friend("Alix Mahoney", "Solomon Strong").
+friend("Alix Mahoney", "Denny Vanmeter").
+friend("Alix Mahoney", "Aldo Paynter").
+friend("Alix Mahoney", "Adella Townsend").
+dob("Alix Mahoney", "0378-05-14").
+job("Alix Mahoney", "sports coach").
+hobby("Alix Mahoney", "stone collecting").
+gender("Alix Mahoney", "female").

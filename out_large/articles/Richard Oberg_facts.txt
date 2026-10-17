@@ -1,0 +1,17 @@
+brother("Richard Oberg", "Bryce Oberg").
+mother("Richard Oberg", "Renate Oberg").
+father("Richard Oberg", "Abel Oberg").
+son("Richard Oberg", "Clyde Oberg").
+son("Richard Oberg", "Lyman Oberg").
+son("Richard Oberg", "Monte Oberg").
+wife("Richard Oberg", "Brigida Oberg").
+friend("Richard Oberg", "Kori Remillard").
+friend("Richard Oberg", "Louann Chrisman").
+friend("Richard Oberg", "Sherrie Remillard").
+friend("Richard Oberg", "Tashina Vandenberg").
+friend("Richard Oberg", "Cherlyn Oberg").
+friend("Richard Oberg", "Demarcus Narvaez").
+dob("Richard Oberg", "0277-09-28").
+job("Richard Oberg", "music tutor").
+hobby("Richard Oberg", "surfing").
+gender("Richard Oberg", "male").

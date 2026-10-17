@@ -1,0 +1,17 @@
+mother("Jarrod Ibarra", "Shirley Ibarra").
+father("Jarrod Ibarra", "Jeromy Ibarra").
+son("Jarrod Ibarra", "Alton Ibarra").
+daughter("Jarrod Ibarra", "Mireya Ibarra").
+wife("Jarrod Ibarra", "Nydia Ibarra").
+friend("Jarrod Ibarra", "Ester Yarbrough").
+friend("Jarrod Ibarra", "Luke Wilke").
+friend("Jarrod Ibarra", "Zoraida Sanborn").
+friend("Jarrod Ibarra", "Rory Hamlin").
+friend("Jarrod Ibarra", "Freeda Jarrett").
+friend("Jarrod Ibarra", "Phylis Courson").
+friend("Jarrod Ibarra", "Rogelio Mckenna").
+friend("Jarrod Ibarra", "Tiffany Mcdonald").
+dob("Jarrod Ibarra", "0348-08-26").
+job("Jarrod Ibarra", "clothing technologist").
+hobby("Jarrod Ibarra", "auto audiophilia").
+gender("Jarrod Ibarra", "male").

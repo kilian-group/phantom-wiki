@@ -1,0 +1,14 @@
+mother("Maranda Goff", "Salley Goff").
+father("Maranda Goff", "Alphonso Goff").
+friend("Maranda Goff", "Edythe Gilliam").
+friend("Maranda Goff", "Nikki Bond").
+friend("Maranda Goff", "Kanesha Booth").
+friend("Maranda Goff", "Lynetta Mckenna").
+friend("Maranda Goff", "Roscoe Vanmeter").
+friend("Maranda Goff", "Dale Jefferson").
+friend("Maranda Goff", "Addie Dana").
+friend("Maranda Goff", "Edythe Osterman").
+dob("Maranda Goff", "0441-06-16").
+job("Maranda Goff", "electronics engineer").
+hobby("Maranda Goff", "microscopy").
+gender("Maranda Goff", "female").

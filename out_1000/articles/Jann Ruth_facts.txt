@@ -1,0 +1,16 @@
+sister("Jann Ruth", "Brigette Bales").
+sister("Jann Ruth", "Vicki Ruth").
+brother("Jann Ruth", "Benito Ruth").
+mother("Jann Ruth", "Shante Ruth").
+father("Jann Ruth", "Roman Ruth").
+friend("Jann Ruth", "Jon Dana").
+friend("Jann Ruth", "Kenton Dunlap").
+friend("Jann Ruth", "Kieth Medellin").
+friend("Jann Ruth", "Valentina Beamon").
+friend("Jann Ruth", "Paris Cordova").
+friend("Jann Ruth", "Luis Best").
+friend("Jann Ruth", "Barb Linden").
+dob("Jann Ruth", "0337-10-03").
+job("Jann Ruth", "chief technology officer").
+hobby("Jann Ruth", "notaphily").
+gender("Jann Ruth", "female").

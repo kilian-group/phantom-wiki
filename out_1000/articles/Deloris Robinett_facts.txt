@@ -1,0 +1,13 @@
+mother("Deloris Robinett", "Valentina Robinett").
+father("Deloris Robinett", "Aron Robinett").
+friend("Deloris Robinett", "Romelia Bowles").
+friend("Deloris Robinett", "Amanda Rinehart").
+friend("Deloris Robinett", "Mose Jarrett").
+friend("Deloris Robinett", "Tamara Lasher").
+friend("Deloris Robinett", "Jesus Cordova").
+friend("Deloris Robinett", "Maegan Cordova").
+friend("Deloris Robinett", "Antony Machado").
+dob("Deloris Robinett", "0472-09-24").
+job("Deloris Robinett", "advertising account planner").
+hobby("Deloris Robinett", "knife throwing").
+gender("Deloris Robinett", "female").

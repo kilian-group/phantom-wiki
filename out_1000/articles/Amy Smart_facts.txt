@@ -1,0 +1,15 @@
+son("Amy Smart", "Jefferson Smart").
+daughter("Amy Smart", "Dixie Murdoch").
+husband("Amy Smart", "Drew Smart").
+friend("Amy Smart", "Dino Donner").
+friend("Amy Smart", "Jana Noland").
+friend("Amy Smart", "Leeann Blanton").
+friend("Amy Smart", "Winnie Harlow").
+friend("Amy Smart", "Wyatt Mckenna").
+friend("Amy Smart", "Ladawn Basham").
+friend("Amy Smart", "Mack Storey").
+friend("Amy Smart", "Heather Ingalls").
+dob("Amy Smart", "0373-07-01").
+job("Amy Smart", "podiatrist").
+hobby("Amy Smart", "deltiology").
+gender("Amy Smart", "female").

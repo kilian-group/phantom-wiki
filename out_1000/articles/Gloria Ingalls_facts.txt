@@ -1,0 +1,14 @@
+son("Gloria Ingalls", "Lloyd Ingalls").
+daughter("Gloria Ingalls", "Earlean Ingalls").
+daughter("Gloria Ingalls", "Marlene Ingalls").
+daughter("Gloria Ingalls", "Sharon Ingalls").
+husband("Gloria Ingalls", "Hershel Ingalls").
+friend("Gloria Ingalls", "Edythe Osterman").
+friend("Gloria Ingalls", "Velia Capps").
+friend("Gloria Ingalls", "Raina Hamlin").
+friend("Gloria Ingalls", "Felipe Vanmeter").
+friend("Gloria Ingalls", "Harold Murray").
+dob("Gloria Ingalls", "0332-11-05").
+job("Gloria Ingalls", "multimedia programmer").
+hobby("Gloria Ingalls", "geocaching").
+gender("Gloria Ingalls", "female").

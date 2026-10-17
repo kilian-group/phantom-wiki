@@ -1,0 +1,20 @@
+sister("Larue Speaks", "Lera Carty").
+brother("Larue Speaks", "Andres Layton").
+brother("Larue Speaks", "Bryan Layton").
+brother("Larue Speaks", "Cary Layton").
+brother("Larue Speaks", "Emory Layton").
+mother("Larue Speaks", "Brianne Layton").
+father("Larue Speaks", "Bernie Layton").
+son("Larue Speaks", "Donny Speaks").
+daughter("Larue Speaks", "Ashely Speaks").
+husband("Larue Speaks", "Micheal Speaks").
+friend("Larue Speaks", "Veronica Cowart").
+friend("Larue Speaks", "Jimmie Smart").
+friend("Larue Speaks", "Claudio Tyree").
+friend("Larue Speaks", "Brandon Capps").
+friend("Larue Speaks", "Randal Marr").
+friend("Larue Speaks", "Barabara Wilke").
+dob("Larue Speaks", "0400-09-18").
+job("Larue Speaks", "adult guidance worker").
+hobby("Larue Speaks", "digital hoarding").
+gender("Larue Speaks", "female").

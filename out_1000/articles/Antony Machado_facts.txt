@@ -1,0 +1,16 @@
+mother("Antony Machado", "Crysta Machado").
+father("Antony Machado", "Olin Machado").
+friend("Antony Machado", "Matilda Goff").
+friend("Antony Machado", "Vernon Peabody").
+friend("Antony Machado", "Roxy Niles").
+friend("Antony Machado", "Lashanda Salem").
+friend("Antony Machado", "Deloris Robinett").
+friend("Antony Machado", "James Maness").
+friend("Antony Machado", "Mickey Beamon").
+friend("Antony Machado", "Andrew Sutphin").
+friend("Antony Machado", "Cleo Peeler").
+friend("Antony Machado", "Davis Eaves").
+dob("Antony Machado", "0520-09-03").
+job("Antony Machado", "phytotherapist").
+hobby("Antony Machado", "architecture").
+gender("Antony Machado", "male").

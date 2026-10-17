@@ -1,0 +1,13 @@
+mother("Ester Palermo", "Tessie Loftus").
+father("Ester Palermo", "Malik Loftus").
+son("Ester Palermo", "Joel Palermo").
+son("Ester Palermo", "Roman Palermo").
+daughter("Ester Palermo", "Madelyn Palermo").
+daughter("Ester Palermo", "Zoraida Palermo").
+husband("Ester Palermo", "Francisco Palermo").
+friend("Ester Palermo", "Dwayne Langley").
+friend("Ester Palermo", "Reyna Petry").
+dob("Ester Palermo", "0337-06-12").
+job("Ester Palermo", "charity officer").
+hobby("Ester Palermo", "bus spotting").
+gender("Ester Palermo", "female").

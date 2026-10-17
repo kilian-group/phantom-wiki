@@ -1,0 +1,14 @@
+sister("Teresita Bauman", "Dorathy Mckenna").
+brother("Teresita Bauman", "Max Bauman").
+mother("Teresita Bauman", "Delores Bauman").
+father("Teresita Bauman", "Gustavo Bauman").
+friend("Teresita Bauman", "Guillermo Lasher").
+friend("Teresita Bauman", "Bert Simons").
+friend("Teresita Bauman", "Irwin Dalton").
+friend("Teresita Bauman", "Zora Morehead").
+friend("Teresita Bauman", "Alphonso Goff").
+friend("Teresita Bauman", "Derek Carswell").
+dob("Teresita Bauman", "0414-03-11").
+job("Teresita Bauman", "sub").
+hobby("Teresita Bauman", "hiking/backpacking").
+gender("Teresita Bauman", "female").

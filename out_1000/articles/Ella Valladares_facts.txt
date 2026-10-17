@@ -1,0 +1,15 @@
+son("Ella Valladares", "Jarvis Valladares").
+husband("Ella Valladares", "Doyle Valladares").
+friend("Ella Valladares", "Dalton Arnold").
+friend("Ella Valladares", "Blake Swartz").
+friend("Ella Valladares", "Keisha Mcdonald").
+friend("Ella Valladares", "Katherine Corwin").
+friend("Ella Valladares", "Brandon Capps").
+friend("Ella Valladares", "Normand Wilke").
+friend("Ella Valladares", "Tiesha Deville").
+friend("Ella Valladares", "Brian Galvan").
+friend("Ella Valladares", "Stanford Suh").
+dob("Ella Valladares", "0401-03-13").
+job("Ella Valladares", "advertising copywriter").
+hobby("Ella Valladares", "satellite watching").
+gender("Ella Valladares", "female").

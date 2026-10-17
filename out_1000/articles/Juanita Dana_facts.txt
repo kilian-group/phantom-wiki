@@ -1,0 +1,17 @@
+son("Juanita Dana", "Herbert Dana").
+husband("Juanita Dana", "Felton Dana").
+friend("Juanita Dana", "Al Younger").
+friend("Juanita Dana", "Edythe Gilliam").
+friend("Juanita Dana", "Valeria Medellin").
+friend("Juanita Dana", "Aaron Bowles").
+friend("Juanita Dana", "Coral Putnam").
+friend("Juanita Dana", "Nickolas Holtz").
+friend("Juanita Dana", "Levi Macias").
+friend("Juanita Dana", "Bess Autry").
+friend("Juanita Dana", "Maxwell Beamon").
+friend("Juanita Dana", "Curt Cowart").
+friend("Juanita Dana", "Chang Eaves").
+dob("Juanita Dana", "0424-05-16").
+job("Juanita Dana", "media planner").
+hobby("Juanita Dana", "cribbage").
+gender("Juanita Dana", "female").

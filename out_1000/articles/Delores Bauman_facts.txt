@@ -1,0 +1,11 @@
+son("Delores Bauman", "Max Bauman").
+daughter("Delores Bauman", "Dorathy Mckenna").
+daughter("Delores Bauman", "Teresita Bauman").
+husband("Delores Bauman", "Gustavo Bauman").
+friend("Delores Bauman", "Rickie Burdette").
+friend("Delores Bauman", "Paula Gerber").
+friend("Delores Bauman", "Dino Donner").
+dob("Delores Bauman", "0377-05-02").
+job("Delores Bauman", "control and instrumentation engineer").
+hobby("Delores Bauman", "fencing").
+gender("Delores Bauman", "female").

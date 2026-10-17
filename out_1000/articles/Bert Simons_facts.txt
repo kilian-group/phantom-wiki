@@ -1,0 +1,17 @@
+son("Bert Simons", "Luis Simons").
+son("Bert Simons", "Sammie Simons").
+son("Bert Simons", "Timothy Simons").
+daughter("Bert Simons", "Coleen Lively").
+wife("Bert Simons", "Zora Simons").
+friend("Bert Simons", "Meghan Keyes").
+friend("Bert Simons", "Lucile Hurt").
+friend("Bert Simons", "Evette Hamlin").
+friend("Bert Simons", "Nydia Monday").
+friend("Bert Simons", "Jamie Upton").
+friend("Bert Simons", "Felton Kell").
+friend("Bert Simons", "Teresita Bauman").
+friend("Bert Simons", "Rebecka Schlosser").
+dob("Bert Simons", "0386-12-27").
+job("Bert Simons", "journalist").
+hobby("Bert Simons", "baking").
+gender("Bert Simons", "male").

@@ -1,0 +1,19 @@
+daughter("Ollie Omara", "Trudy Lasher").
+husband("Ollie Omara", "Samuel Omara").
+friend("Ollie Omara", "Tabetha Lasher").
+friend("Ollie Omara", "Charley Weise").
+friend("Ollie Omara", "Perry Spiller").
+friend("Ollie Omara", "Allie Gillam").
+friend("Ollie Omara", "Gena Cook").
+friend("Ollie Omara", "Jacinta Simons").
+friend("Ollie Omara", "Ginger Chou").
+friend("Ollie Omara", "Hal Osterman").
+friend("Ollie Omara", "Levi Fredrick").
+friend("Ollie Omara", "Sylvia Carty").
+friend("Ollie Omara", "Lenny Courson").
+friend("Ollie Omara", "Lindy Hudgens").
+friend("Ollie Omara", "Kieth Bigelow").
+dob("Ollie Omara", "0372-11-06").
+job("Ollie Omara", "visual merchandiser").
+hobby("Ollie Omara", "stone collecting").
+gender("Ollie Omara", "female").

@@ -1,0 +1,18 @@
+sister("Benito Ruth", "Brigette Bales").
+sister("Benito Ruth", "Jann Ruth").
+sister("Benito Ruth", "Vicki Ruth").
+mother("Benito Ruth", "Shante Ruth").
+father("Benito Ruth", "Roman Ruth").
+friend("Benito Ruth", "Geri Dana").
+friend("Benito Ruth", "Abdul Morehead").
+friend("Benito Ruth", "Katherine Corwin").
+friend("Benito Ruth", "Marcus Lebrun").
+friend("Benito Ruth", "Ella Mathes").
+friend("Benito Ruth", "Ashleigh Kell").
+friend("Benito Ruth", "Carroll Lindquist").
+friend("Benito Ruth", "Paula Rudolph").
+friend("Benito Ruth", "Adella Townsend").
+dob("Benito Ruth", "0334-11-11").
+job("Benito Ruth", "materials engineer").
+hobby("Benito Ruth", "aerospace").
+gender("Benito Ruth", "male").

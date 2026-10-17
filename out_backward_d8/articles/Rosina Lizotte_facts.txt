@@ -1,0 +1,12 @@
+son("Rosina Lizotte", "Chuck Lizotte").
+son("Rosina Lizotte", "Nathanial Lizotte").
+daughter("Rosina Lizotte", "Hanh Mohan").
+daughter("Rosina Lizotte", "Maranda Lizotte").
+daughter("Rosina Lizotte", "Yoko Wilkie").
+husband("Rosina Lizotte", "Dwain Lizotte").
+friend("Rosina Lizotte", "Myrle Smock").
+friend("Rosina Lizotte", "Edythe Nicolas").
+dob("Rosina Lizotte", "0266-10-24").
+job("Rosina Lizotte", "tourism officer").
+hobby("Rosina Lizotte", "research").
+gender("Rosina Lizotte", "female").

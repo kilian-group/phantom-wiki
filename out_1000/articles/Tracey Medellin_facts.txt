@@ -1,0 +1,13 @@
+mother("Tracey Medellin", "Selena Donner").
+father("Tracey Medellin", "Wilson Donner").
+son("Tracey Medellin", "Deshawn Medellin").
+husband("Tracey Medellin", "Oscar Medellin").
+friend("Tracey Medellin", "Jan Estrella").
+friend("Tracey Medellin", "Jo Medeiros").
+friend("Tracey Medellin", "Mose Jarrett").
+friend("Tracey Medellin", "Helga Simons").
+friend("Tracey Medellin", "Logan Swartz").
+dob("Tracey Medellin", "0437-10-16").
+job("Tracey Medellin", "education administrator").
+hobby("Tracey Medellin", "wrestling").
+gender("Tracey Medellin", "female").

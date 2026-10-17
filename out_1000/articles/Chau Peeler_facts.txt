@@ -1,0 +1,17 @@
+son("Chau Peeler", "Dustin Peeler").
+son("Chau Peeler", "Melvin Peeler").
+husband("Chau Peeler", "Sonny Peeler").
+friend("Chau Peeler", "Magdalena Cordova").
+friend("Chau Peeler", "Colin Corwin").
+friend("Chau Peeler", "Lera Mcpeak").
+friend("Chau Peeler", "Jana Noland").
+friend("Chau Peeler", "Dino Bowles").
+friend("Chau Peeler", "Toni Glass").
+friend("Chau Peeler", "Brigette Medeiros").
+friend("Chau Peeler", "Levi Macias").
+friend("Chau Peeler", "Patty Kell").
+friend("Chau Peeler", "Rudy Runnels").
+dob("Chau Peeler", "0373-06-25").
+job("Chau Peeler", "librarian").
+hobby("Chau Peeler", "ant farming").
+gender("Chau Peeler", "female").

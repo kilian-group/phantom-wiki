@@ -1,0 +1,12 @@
+son("Guadalupe Palomo", "Bryce Palomo").
+wife("Guadalupe Palomo", "Demetra Palomo").
+friend("Guadalupe Palomo", "Deloris Marr").
+friend("Guadalupe Palomo", "Gabriele Wilke").
+friend("Guadalupe Palomo", "Rolf Booth").
+friend("Guadalupe Palomo", "Ellis Brumbaugh").
+friend("Guadalupe Palomo", "Sharon Ingalls").
+friend("Guadalupe Palomo", "Johanna Mathes").
+dob("Guadalupe Palomo", "0411-12-19").
+job("Guadalupe Palomo", "scientist").
+hobby("Guadalupe Palomo", "weightlifting").
+gender("Guadalupe Palomo", "male").

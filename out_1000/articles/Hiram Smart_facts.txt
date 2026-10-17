@@ -1,0 +1,13 @@
+mother("Hiram Smart", "Lynelle Smart").
+father("Hiram Smart", "Juan Smart").
+friend("Hiram Smart", "Willie Hurt").
+friend("Hiram Smart", "Charley Vandenberg").
+friend("Hiram Smart", "Matthias Lennox").
+friend("Hiram Smart", "Stan Kell").
+friend("Hiram Smart", "Galen Cordova").
+friend("Hiram Smart", "Jenniffer Younger").
+friend("Hiram Smart", "Lou Dunlap").
+dob("Hiram Smart", "0506-05-18").
+job("Hiram Smart", "mudlogger").
+hobby("Hiram Smart", "groundhopping").
+gender("Hiram Smart", "male").

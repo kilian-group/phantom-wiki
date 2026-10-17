@@ -1,0 +1,10 @@
+son("Tamala Pannell", "Duncan Pannell").
+husband("Tamala Pannell", "Randell Pannell").
+friend("Tamala Pannell", "Yoko Wilkie").
+friend("Tamala Pannell", "Benton Earnest").
+friend("Tamala Pannell", "Cherise Earnest").
+friend("Tamala Pannell", "Mickey Earnest").
+dob("Tamala Pannell", "0208-02-03").
+job("Tamala Pannell", "museum exhibitions officer").
+hobby("Tamala Pannell", "learning").
+gender("Tamala Pannell", "female").

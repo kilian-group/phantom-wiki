@@ -1,0 +1,19 @@
+daughter("Lura Leclair", "Rheba Resendez").
+husband("Lura Leclair", "Devon Leclair").
+friend("Lura Leclair", "Evette Gibbs").
+friend("Lura Leclair", "Coral Putnam").
+friend("Lura Leclair", "Tiesha Deville").
+friend("Lura Leclair", "Raymond Carty").
+friend("Lura Leclair", "Elbert Layman").
+friend("Lura Leclair", "Tamara Kell").
+friend("Lura Leclair", "Dale Jefferson").
+friend("Lura Leclair", "Thalia Linden").
+friend("Lura Leclair", "Germaine Mahoney").
+friend("Lura Leclair", "Janey Plumley").
+friend("Lura Leclair", "Lea Plumley").
+friend("Lura Leclair", "Mari Carreon").
+friend("Lura Leclair", "Georgina Lebrun").
+dob("Lura Leclair", "0345-05-02").
+job("Lura Leclair", "government social research officer").
+hobby("Lura Leclair", "metal detecting").
+gender("Lura Leclair", "female").

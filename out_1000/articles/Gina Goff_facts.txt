@@ -1,0 +1,14 @@
+daughter("Gina Goff", "Clementine Goff").
+husband("Gina Goff", "King Goff").
+friend("Gina Goff", "Kareem Goff").
+friend("Gina Goff", "Dave Alarcon").
+friend("Gina Goff", "Kent Corso").
+friend("Gina Goff", "Maurine Wendel").
+friend("Gina Goff", "Anastacia Cordova").
+friend("Gina Goff", "Errol Cordova").
+friend("Gina Goff", "Goldie Schlosser").
+friend("Gina Goff", "Enid Dalton").
+dob("Gina Goff", "0415-12-12").
+job("Gina Goff", "systems developer").
+hobby("Gina Goff", "philately").
+gender("Gina Goff", "female").

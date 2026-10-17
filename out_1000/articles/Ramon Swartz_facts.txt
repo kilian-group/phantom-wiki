@@ -1,0 +1,22 @@
+brother("Ramon Swartz", "Blake Swartz").
+mother("Ramon Swartz", "Nanette Swartz").
+father("Ramon Swartz", "Emmanuel Swartz").
+daughter("Ramon Swartz", "Gaye Swartz").
+wife("Ramon Swartz", "Damaris Swartz").
+friend("Ramon Swartz", "Thalia Linden").
+friend("Ramon Swartz", "Shizuko Eaves").
+friend("Ramon Swartz", "Crysta Machado").
+friend("Ramon Swartz", "Maynard Morehead").
+friend("Ramon Swartz", "Shirley Dalton").
+friend("Ramon Swartz", "Jennette Holliman").
+friend("Ramon Swartz", "Evelia Waltz").
+friend("Ramon Swartz", "Preston Holtz").
+friend("Ramon Swartz", "Maria Lindquist").
+friend("Ramon Swartz", "Porter Mckenna").
+friend("Ramon Swartz", "Ignacio Haygood").
+friend("Ramon Swartz", "Paula Rudolph").
+friend("Ramon Swartz", "Luis Simons").
+dob("Ramon Swartz", "0450-03-15").
+job("Ramon Swartz", "proofreader").
+hobby("Ramon Swartz", "martial arts").
+gender("Ramon Swartz", "male").

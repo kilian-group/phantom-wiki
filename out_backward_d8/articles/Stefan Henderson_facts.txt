@@ -1,0 +1,12 @@
+brother("Stefan Henderson", "Maxwell Henderson").
+brother("Stefan Henderson", "Milton Henderson").
+mother("Stefan Henderson", "Jung Henderson").
+father("Stefan Henderson", "Marko Henderson").
+daughter("Stefan Henderson", "Goldie Henderson").
+daughter("Stefan Henderson", "Lorelei Mcnew").
+wife("Stefan Henderson", "Noelia Henderson").
+friend("Stefan Henderson", "Stuart Abraham").
+dob("Stefan Henderson", "0249-01-06").
+job("Stefan Henderson", "architect").
+hobby("Stefan Henderson", "metal detecting").
+gender("Stefan Henderson", "male").

@@ -1,0 +1,13 @@
+sister("Babette Simons", "Naomi Bellows").
+brother("Babette Simons", "Seymour Simons").
+mother("Babette Simons", "Marcelina Simons").
+father("Babette Simons", "Bryon Simons").
+friend("Babette Simons", "Chance Mahoney").
+friend("Babette Simons", "Walter Kell").
+friend("Babette Simons", "Denny Vanmeter").
+friend("Babette Simons", "Donald Autry").
+friend("Babette Simons", "Jodi Cordova").
+dob("Babette Simons", "0498-05-18").
+job("Babette Simons", "engineer").
+hobby("Babette Simons", "people-watching").
+gender("Babette Simons", "female").

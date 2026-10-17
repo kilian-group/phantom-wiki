@@ -1,0 +1,14 @@
+daughter("Noel Chisholm", "Amberly Levine").
+wife("Noel Chisholm", "Jeana Chisholm").
+friend("Noel Chisholm", "Wm Salem").
+friend("Noel Chisholm", "Paul Dame").
+friend("Noel Chisholm", "Mattie Courson").
+friend("Noel Chisholm", "Johnathan Klink").
+friend("Noel Chisholm", "Perry Kell").
+friend("Noel Chisholm", "Laurence Knepper").
+friend("Noel Chisholm", "Patsy Murray").
+friend("Noel Chisholm", "Bret Smart").
+dob("Noel Chisholm", "0316-10-18").
+job("Noel Chisholm", "editorial assistant").
+hobby("Noel Chisholm", "marbles").
+gender("Noel Chisholm", "male").

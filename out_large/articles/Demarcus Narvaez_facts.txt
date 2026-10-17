@@ -1,0 +1,15 @@
+mother("Demarcus Narvaez", "Luisa Narvaez").
+father("Demarcus Narvaez", "Colby Narvaez").
+son("Demarcus Narvaez", "Owen Narvaez").
+wife("Demarcus Narvaez", "Rhoda Narvaez").
+friend("Demarcus Narvaez", "Richard Oberg").
+friend("Demarcus Narvaez", "Jon Remillard").
+friend("Demarcus Narvaez", "Kori Remillard").
+friend("Demarcus Narvaez", "Morgan Remillard").
+friend("Demarcus Narvaez", "Wanita Remillard").
+friend("Demarcus Narvaez", "Clara Mcgough").
+friend("Demarcus Narvaez", "Stacey Wilke").
+dob("Demarcus Narvaez", "0358-04-15").
+job("Demarcus Narvaez", "associate professor").
+hobby("Demarcus Narvaez", "audiophile").
+gender("Demarcus Narvaez", "male").

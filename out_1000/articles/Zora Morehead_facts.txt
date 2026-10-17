@@ -1,0 +1,24 @@
+sister("Zora Morehead", "Katina Younger").
+brother("Zora Morehead", "Al Younger").
+brother("Zora Morehead", "Cordell Younger").
+mother("Zora Morehead", "Janis Younger").
+father("Zora Morehead", "Wilson Younger").
+son("Zora Morehead", "Homer Morehead").
+son("Zora Morehead", "Maynard Morehead").
+daughter("Zora Morehead", "Dena Morehead").
+husband("Zora Morehead", "Miguel Morehead").
+friend("Zora Morehead", "Jacinta Gilliam").
+friend("Zora Morehead", "Zachary Theriot").
+friend("Zora Morehead", "Belva Murphey").
+friend("Zora Morehead", "Randall Mcgough").
+friend("Zora Morehead", "Teresita Bauman").
+friend("Zora Morehead", "Melodie Suh").
+friend("Zora Morehead", "Anastacia Cordova").
+friend("Zora Morehead", "Crysta Machado").
+friend("Zora Morehead", "Katelyn Corwin").
+friend("Zora Morehead", "Rochelle Corwin").
+friend("Zora Morehead", "Tawana Machado").
+dob("Zora Morehead", "0452-09-06").
+job("Zora Morehead", "marketing executive").
+hobby("Zora Morehead", "longboarding").
+gender("Zora Morehead", "female").

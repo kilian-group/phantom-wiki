@@ -1,0 +1,13 @@
+son("Annita Mckenna", "Carmine Mckenna").
+husband("Annita Mckenna", "Michael Mckenna").
+friend("Annita Mckenna", "Sammie Simons").
+friend("Annita Mckenna", "Shannon Flores").
+friend("Annita Mckenna", "Lazaro Hsu").
+friend("Annita Mckenna", "Michael Goff").
+friend("Annita Mckenna", "Tianna Goff").
+friend("Annita Mckenna", "Andre Bowles").
+friend("Annita Mckenna", "Amanda Rinehart").
+dob("Annita Mckenna", "0467-03-18").
+job("Annita Mckenna", "gaffer").
+hobby("Annita Mckenna", "fishkeeping").
+gender("Annita Mckenna", "female").

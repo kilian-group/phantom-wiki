@@ -1,0 +1,10 @@
+son("Grady Valladares", "Doyle Valladares").
+wife("Grady Valladares", "Geraldine Valladares").
+friend("Grady Valladares", "Jacque Simons").
+friend("Grady Valladares", "Dawn Rinehart").
+friend("Grady Valladares", "Kenneth Rinehart").
+friend("Grady Valladares", "Hans Fordham").
+dob("Grady Valladares", "0374-07-15").
+job("Grady Valladares", "technical sales engineer").
+hobby("Grady Valladares", "aerospace").
+gender("Grady Valladares", "male").

@@ -1,0 +1,10 @@
+brother("Elissa Cedillo", "Adalberto Cedillo").
+brother("Elissa Cedillo", "Ron Cedillo").
+mother("Elissa Cedillo", "Domonique Cedillo").
+father("Elissa Cedillo", "Kasey Cedillo").
+friend("Elissa Cedillo", "Eula Crain").
+friend("Elissa Cedillo", "Calvin Woodman").
+dob("Elissa Cedillo", "0295-04-26").
+job("Elissa Cedillo", "statistician").
+hobby("Elissa Cedillo", "dog walking").
+gender("Elissa Cedillo", "female").

@@ -1,0 +1,20 @@
+sister("Latisha Smart", "Pamala Medellin").
+sister("Latisha Smart", "Susie Medellin").
+mother("Latisha Smart", "Demetra Medellin").
+father("Latisha Smart", "Reggie Medellin").
+son("Latisha Smart", "Buck Smart").
+husband("Latisha Smart", "Jimmie Smart").
+friend("Latisha Smart", "Willie Hurt").
+friend("Latisha Smart", "Sharron Palomo").
+friend("Latisha Smart", "Isaias Forester").
+friend("Latisha Smart", "Shandi Jarrett").
+friend("Latisha Smart", "Collin Lasher").
+friend("Latisha Smart", "Trevor Frink").
+friend("Latisha Smart", "Barb Linden").
+friend("Latisha Smart", "Emmanuel Swartz").
+friend("Latisha Smart", "Sarah Steadman").
+friend("Latisha Smart", "Jennette Holliman").
+dob("Latisha Smart", "0433-03-25").
+job("Latisha Smart", "health promotion specialist").
+hobby("Latisha Smart", "cheerleading").
+gender("Latisha Smart", "female").

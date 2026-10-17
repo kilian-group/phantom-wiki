@@ -1,0 +1,17 @@
+mother("Karin Machado", "Katelyn Corwin").
+father("Karin Machado", "Josef Corwin").
+son("Karin Machado", "Olin Machado").
+husband("Karin Machado", "Boris Machado").
+friend("Karin Machado", "Lucienne Gilliam").
+friend("Karin Machado", "Tracy Fredrick").
+friend("Karin Machado", "Carmine Mckenna").
+friend("Karin Machado", "Dave Alarcon").
+friend("Karin Machado", "Michael Mckenna").
+friend("Karin Machado", "Oscar Schram").
+friend("Karin Machado", "Lenora Hayward").
+friend("Karin Machado", "Anastasia Eaves").
+friend("Karin Machado", "Myra Eaves").
+dob("Karin Machado", "0469-01-15").
+job("Karin Machado", "airline pilot").
+hobby("Karin Machado", "frisbee").
+gender("Karin Machado", "female").

@@ -1,0 +1,521 @@
+[
+    {
+        "id": "44754f66-7064-4174-b47d-ee1a73a2c547",
+        "question": "What is the occupation of the male cousin of Lila Petry?",
+        "solution_traces": "[{\"Y_2\": \"sports coach\", \"Y_3\": \"Nathanial Lizotte\"}, {\"Y_3\": \"Chuck Lizotte\", \"Y_2\": \"midwife\"}, {\"Y_2\": \"advice worker\", \"Y_3\": \"Rolland Mckenna\"}, {\"Y_3\": \"Lucas Mckenna\", \"Y_2\": \"financial manager\"}]",
+        "answer": [
+            "advice worker",
+            "financial manager",
+            "midwife",
+            "sports coach"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "male_cousin(\"Lila Petry\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Rolland Mckenna",
+            "answer_position": "tail",
+            "answer_slot_index": 2,
+            "polarity": "same_side",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 8
+        }
+    },
+    {
+        "id": "bcc98b32-7548-495d-9e21-ccbb5f5026ad",
+        "question": "What is the date of birth of the great-grandmother of Aida Wang?",
+        "solution_traces": "[{\"Y_2\": \"0207-09-08\", \"Y_3\": \"Dominique Smock\"}]",
+        "answer": [
+            "0207-09-08"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "great_grandmother(\"Aida Wang\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Dominique Smock",
+            "answer_position": "tail",
+            "answer_slot_index": 2,
+            "polarity": "same_side",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "7e752426-a5bb-4619-8e42-612345a973ea",
+        "question": "What is the date of birth of the great-granddaughter of Jung Henderson?",
+        "solution_traces": "[{\"Y_2\": \"0305-06-19\", \"Y_3\": \"Jeanelle Mcnew\"}]",
+        "answer": [
+            "0305-06-19"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "great_granddaughter(\"Jung Henderson\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Jeanelle Mcnew",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "43b574d6-7c16-4660-a951-54b9702eb3f9",
+        "question": "What is the hobby of the son of Jung Henderson?",
+        "solution_traces": "[{\"Y_3\": \"Maxwell Henderson\", \"Y_2\": \"gongoozling\"}, {\"Y_3\": \"Stefan Henderson\", \"Y_2\": \"metal detecting\"}, {\"Y_2\": \"car riding\", \"Y_3\": \"Milton Henderson\"}]",
+        "answer": [
+            "car riding",
+            "gongoozling",
+            "metal detecting"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "son(\"Jung Henderson\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Maxwell Henderson",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 3
+        }
+    },
+    {
+        "id": "0ffb5c47-816b-4fde-8af3-f552728a4102",
+        "question": "What is the occupation of the parent of Reinaldo Hornback?",
+        "solution_traces": "[{\"Y_2\": \"editorial assistant\", \"Y_3\": \"Karla Hornback\"}, {\"Y_2\": \"economist\", \"Y_3\": \"Gerardo Hornback\"}]",
+        "answer": [
+            "economist",
+            "editorial assistant"
+        ],
+        "prolog": {
+            "query": [
+                "job(Y_3, Y_2)",
+                "parent(\"Reinaldo Hornback\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Karla Hornback",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    },
+    {
+        "id": "e11b8387-0fd6-45a2-88a1-526d6c56895d",
+        "question": "What is the hobby of the great-grandchild of Zoila Decosta?",
+        "solution_traces": "[{\"Y_2\": \"martial arts\", \"Y_3\": \"Lea Levy\"}, {\"Y_3\": \"Daniel Brannan\", \"Y_2\": \"chess\"}, {\"Y_2\": \"flower collecting and pressing\", \"Y_3\": \"Margaret Kovach\"}]",
+        "answer": [
+            "chess",
+            "flower collecting and pressing",
+            "martial arts"
+        ],
+        "prolog": {
+            "query": [
+                "hobby(Y_3, Y_2)",
+                "great_grandchild(\"Zoila Decosta\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Lea Levy",
+            "answer_position": "tail",
+            "answer_slot_index": 2,
+            "polarity": "same_side",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 3
+        }
+    },
+    {
+        "id": "fa2a53bf-a12e-4a1b-969f-bbf0372fd648",
+        "question": "What is the date of birth of the husband of Ester Kovach?",
+        "solution_traces": "[{\"Y_2\": \"0277-07-02\", \"Y_3\": \"Charlie Kovach\"}]",
+        "answer": [
+            "0277-07-02"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "husband(\"Ester Kovach\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Charlie Kovach",
+            "answer_position": "tail",
+            "answer_slot_index": 2,
+            "polarity": "same_side",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "ab20b9aa-03e6-4329-8020-e403a321a60d",
+        "question": "What is the date of birth of the parent of Leann Cormier?",
+        "solution_traces": "[{\"Y_2\": \"0262-06-04\", \"Y_3\": \"Deborah Cormier\"}, {\"Y_3\": \"Clifford Cormier\", \"Y_2\": \"0258-09-07\"}]",
+        "answer": [
+            "0258-09-07",
+            "0262-06-04"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "parent(\"Leann Cormier\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Deborah Cormier",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    },
+    {
+        "id": "bcc4ae72-03a6-4132-9ea3-114a0c0ad1b2",
+        "question": "What is the date of birth of the wife of Spencer Griffiths?",
+        "solution_traces": "[{\"Y_2\": \"0287-04-22\", \"Y_3\": \"Monique Griffiths\"}]",
+        "answer": [
+            "0287-04-22"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "wife(\"Spencer Griffiths\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Monique Griffiths",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    },
+    {
+        "id": "178d9af4-87d0-43ae-8d41-0a2981a1b9e5",
+        "question": "What is the date of birth of the son of Joslyn Mason?",
+        "solution_traces": "[{\"Y_3\": \"Bruce Mason\", \"Y_2\": \"0286-10-11\"}]",
+        "answer": [
+            "0286-10-11"
+        ],
+        "prolog": {
+            "query": [
+                "dob(Y_3, Y_2)",
+                "son(\"Joslyn Mason\", Y_3)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "What is",
+            "the",
+            "<attribute_name>_3",
+            "of",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "?"
+        ],
+        "type": 3,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "middle",
+            "anchor_slot_index": 1,
+            "anchor_person": "Bruce Mason",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 2,
+            "chain_variables": [
+                "<name>_5",
+                "Y_3",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 1
+        }
+    }
+]

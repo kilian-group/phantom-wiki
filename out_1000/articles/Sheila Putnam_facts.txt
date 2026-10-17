@@ -1,0 +1,17 @@
+sister("Sheila Putnam", "Katherine Carswell").
+sister("Sheila Putnam", "Lora Vogt").
+sister("Sheila Putnam", "Marguerite Putnam").
+mother("Sheila Putnam", "Coral Putnam").
+father("Sheila Putnam", "Marvin Putnam").
+friend("Sheila Putnam", "Erick Courson").
+friend("Sheila Putnam", "Yasmin Gordon").
+friend("Sheila Putnam", "Adah Schram").
+friend("Sheila Putnam", "Terrance Townsend").
+friend("Sheila Putnam", "Anastasia Eaves").
+friend("Sheila Putnam", "Rolf Osterman").
+friend("Sheila Putnam", "Edmundo Fordham").
+friend("Sheila Putnam", "Ricky Carswell").
+dob("Sheila Putnam", "0494-03-15").
+job("Sheila Putnam", "clinical biochemist").
+hobby("Sheila Putnam", "hunting").
+gender("Sheila Putnam", "female").

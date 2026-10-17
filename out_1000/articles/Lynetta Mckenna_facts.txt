@@ -1,0 +1,19 @@
+sister("Lynetta Mckenna", "Iva Parish").
+brother("Lynetta Mckenna", "Michael Mckenna").
+brother("Lynetta Mckenna", "Wyatt Mckenna").
+mother("Lynetta Mckenna", "Therese Mckenna").
+father("Lynetta Mckenna", "Rodrigo Mckenna").
+friend("Lynetta Mckenna", "Miles Corso").
+friend("Lynetta Mckenna", "Trevor Frink").
+friend("Lynetta Mckenna", "Bridget Lester").
+friend("Lynetta Mckenna", "Kareem Goff").
+friend("Lynetta Mckenna", "Maranda Goff").
+friend("Lynetta Mckenna", "Tabetha Hsu").
+friend("Lynetta Mckenna", "Jeromy Ibarra").
+friend("Lynetta Mckenna", "Wm Salem").
+friend("Lynetta Mckenna", "Kris Fordham").
+friend("Lynetta Mckenna", "Tashina Vandenberg").
+dob("Lynetta Mckenna", "0469-04-01").
+job("Lynetta Mckenna", "textile designer").
+hobby("Lynetta Mckenna", "people-watching").
+gender("Lynetta Mckenna", "female").

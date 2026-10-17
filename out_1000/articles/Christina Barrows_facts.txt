@@ -1,0 +1,19 @@
+sister("Christina Barrows", "Helga Simons").
+brother("Christina Barrows", "Harley Simons").
+mother("Christina Barrows", "Dinah Simons").
+father("Christina Barrows", "Luis Simons").
+son("Christina Barrows", "Ignacio Barrows").
+husband("Christina Barrows", "Freddie Barrows").
+friend("Christina Barrows", "Ramiro Dana").
+friend("Christina Barrows", "Bruce Burger").
+friend("Christina Barrows", "Lurline Tyree").
+friend("Christina Barrows", "Rhonda Theriot").
+friend("Christina Barrows", "Vanessa Keister").
+friend("Christina Barrows", "Donnie Mcgough").
+friend("Christina Barrows", "Rhonda Wilke").
+friend("Christina Barrows", "Leslie Courson").
+friend("Christina Barrows", "Winnie Harlow").
+dob("Christina Barrows", "0440-02-25").
+job("Christina Barrows", "music tutor").
+hobby("Christina Barrows", "book folding").
+gender("Christina Barrows", "female").

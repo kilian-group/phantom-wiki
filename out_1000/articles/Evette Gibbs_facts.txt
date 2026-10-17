@@ -1,0 +1,16 @@
+sister("Evette Gibbs", "Lucienne Gilliam").
+brother("Evette Gibbs", "Kory Gibbs").
+mother("Evette Gibbs", "Justine Gibbs").
+father("Evette Gibbs", "Toney Gibbs").
+friend("Evette Gibbs", "Shante Gilliam").
+friend("Evette Gibbs", "Edmundo Fordham").
+friend("Evette Gibbs", "Zoraida Sanborn").
+friend("Evette Gibbs", "Jamison Upton").
+friend("Evette Gibbs", "Michael Mckenna").
+friend("Evette Gibbs", "Derek Murchison").
+friend("Evette Gibbs", "Dalton Arnold").
+friend("Evette Gibbs", "Lura Leclair").
+dob("Evette Gibbs", "0323-07-16").
+job("Evette Gibbs", "engineering geologist").
+hobby("Evette Gibbs", "kabaddi").
+gender("Evette Gibbs", "female").

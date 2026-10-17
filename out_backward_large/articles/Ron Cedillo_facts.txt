@@ -1,0 +1,13 @@
+sister("Ron Cedillo", "Elissa Cedillo").
+brother("Ron Cedillo", "Adalberto Cedillo").
+mother("Ron Cedillo", "Domonique Cedillo").
+father("Ron Cedillo", "Kasey Cedillo").
+son("Ron Cedillo", "Jimmy Cedillo").
+son("Ron Cedillo", "Murray Cedillo").
+daughter("Ron Cedillo", "Yvette Cedillo").
+wife("Ron Cedillo", "Lucienne Cedillo").
+friend("Ron Cedillo", "Leeann Hackworth").
+dob("Ron Cedillo", "0303-03-21").
+job("Ron Cedillo", "optometrist").
+hobby("Ron Cedillo", "people-watching").
+gender("Ron Cedillo", "male").

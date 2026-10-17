@@ -1,0 +1,10 @@
+mother("Elaine Hsu", "Tabetha Hsu").
+father("Elaine Hsu", "Lazaro Hsu").
+friend("Elaine Hsu", "Alisha Fredrick").
+friend("Elaine Hsu", "Georgette Haygood").
+friend("Elaine Hsu", "Keith Murchison").
+friend("Elaine Hsu", "Homer Morehead").
+dob("Elaine Hsu", "0466-03-26").
+job("Elaine Hsu", "occupational hygienist").
+hobby("Elaine Hsu", "audiophile").
+gender("Elaine Hsu", "female").

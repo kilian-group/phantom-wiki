@@ -1,0 +1,18 @@
+mother("Russel Eaves", "Anastasia Eaves").
+father("Russel Eaves", "Kurtis Eaves").
+son("Russel Eaves", "Denny Eaves").
+son("Russel Eaves", "Foster Eaves").
+son("Russel Eaves", "Mickey Eaves").
+daughter("Russel Eaves", "Geri Dana").
+daughter("Russel Eaves", "Ivette Eaves").
+daughter("Russel Eaves", "Sofia Eaves").
+wife("Russel Eaves", "Juanita Eaves").
+friend("Russel Eaves", "Clara Corwin").
+friend("Russel Eaves", "Tamala Skidmore").
+friend("Russel Eaves", "Jayson Sheridan").
+friend("Russel Eaves", "Tonia Bauman").
+friend("Russel Eaves", "Goldie Schlosser").
+dob("Russel Eaves", "0348-05-21").
+job("Russel Eaves", "retail banker").
+hobby("Russel Eaves", "ballet dancing").
+gender("Russel Eaves", "male").

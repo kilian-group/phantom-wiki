@@ -1,0 +1,17 @@
+sister("Marion Wilke", "Belva Murphey").
+brother("Marion Wilke", "Luke Wilke").
+mother("Marion Wilke", "Amy Wilke").
+father("Marion Wilke", "Stacey Wilke").
+daughter("Marion Wilke", "Sophie Wilke").
+wife("Marion Wilke", "Barabara Wilke").
+friend("Marion Wilke", "Roscoe Vanmeter").
+friend("Marion Wilke", "Samuel Omara").
+friend("Marion Wilke", "Nelly Kinsella").
+friend("Marion Wilke", "Ellis Brumbaugh").
+friend("Marion Wilke", "Lucienne Gilliam").
+friend("Marion Wilke", "Cary Carswell").
+friend("Marion Wilke", "Brent Macias").
+dob("Marion Wilke", "0369-08-23").
+job("Marion Wilke", "psychotherapist").
+hobby("Marion Wilke", "mycology").
+gender("Marion Wilke", "male").

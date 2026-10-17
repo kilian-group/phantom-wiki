@@ -1,0 +1,29 @@
+sister("Ella Mathes", "Jennette Holliman").
+sister("Ella Mathes", "Nydia Ibarra").
+sister("Ella Mathes", "Vita Resendez").
+brother("Ella Mathes", "Tanner Holliman").
+mother("Ella Mathes", "Judith Holliman").
+father("Ella Mathes", "Calvin Holliman").
+son("Ella Mathes", "Israel Mathes").
+daughter("Ella Mathes", "Latrina Mathes").
+daughter("Ella Mathes", "Reita Pugliese").
+daughter("Ella Mathes", "Virgie Niles").
+husband("Ella Mathes", "Neal Mathes").
+friend("Ella Mathes", "Monika Bennet").
+friend("Ella Mathes", "Connie Cushman").
+friend("Ella Mathes", "Rueben Bowles").
+friend("Ella Mathes", "Almeta Forester").
+friend("Ella Mathes", "Paul Dame").
+friend("Ella Mathes", "Fredrick Cordova").
+friend("Ella Mathes", "Maegan Cordova").
+friend("Ella Mathes", "Benito Ruth").
+friend("Ella Mathes", "Buffy Eaves").
+friend("Ella Mathes", "Denny Eaves").
+friend("Ella Mathes", "Gale Dana").
+friend("Ella Mathes", "Janey Plumley").
+friend("Ella Mathes", "Jonas Machado").
+friend("Ella Mathes", "Judith Lebrun").
+dob("Ella Mathes", "0348-01-13").
+job("Ella Mathes", "cytogeneticist").
+hobby("Ella Mathes", "sea glass collecting").
+gender("Ella Mathes", "female").

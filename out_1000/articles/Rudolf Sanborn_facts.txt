@@ -1,0 +1,16 @@
+mother("Rudolf Sanborn", "Gayla Sanborn").
+father("Rudolf Sanborn", "Tobias Sanborn").
+son("Rudolf Sanborn", "Thaddeus Sanborn").
+wife("Rudolf Sanborn", "Zoraida Sanborn").
+friend("Rudolf Sanborn", "Tonia Mcgough").
+friend("Rudolf Sanborn", "Irvin Shaw").
+friend("Rudolf Sanborn", "Samuel Omara").
+friend("Rudolf Sanborn", "Jackqueline Hollinger").
+friend("Rudolf Sanborn", "Barb Linden").
+friend("Rudolf Sanborn", "Crysta Machado").
+friend("Rudolf Sanborn", "Maynard Latham").
+friend("Rudolf Sanborn", "Lera Mcpeak").
+dob("Rudolf Sanborn", "0397-08-16").
+job("Rudolf Sanborn", "software engineer").
+hobby("Rudolf Sanborn", "people-watching").
+gender("Rudolf Sanborn", "male").

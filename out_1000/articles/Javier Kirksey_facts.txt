@@ -1,0 +1,12 @@
+sister("Javier Kirksey", "Anastacia Cordova").
+mother("Javier Kirksey", "Larae Kirksey").
+father("Javier Kirksey", "Maurice Kirksey").
+friend("Javier Kirksey", "Tianna Goff").
+friend("Javier Kirksey", "Dennis Marr").
+friend("Javier Kirksey", "Stacy Strong").
+friend("Javier Kirksey", "Julianne Hamlin").
+friend("Javier Kirksey", "Therese Mckenna").
+dob("Javier Kirksey", "0379-07-17").
+job("Javier Kirksey", "chemist").
+hobby("Javier Kirksey", "benchmarking").
+gender("Javier Kirksey", "male").

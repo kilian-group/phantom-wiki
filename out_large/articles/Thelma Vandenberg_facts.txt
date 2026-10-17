@@ -1,0 +1,16 @@
+sister("Thelma Vandenberg", "Amy Wilke").
+brother("Thelma Vandenberg", "Charley Vandenberg").
+brother("Thelma Vandenberg", "Eli Vandenberg").
+mother("Thelma Vandenberg", "Jackie Vandenberg").
+father("Thelma Vandenberg", "Valentin Vandenberg").
+friend("Thelma Vandenberg", "Cherlyn Oberg").
+friend("Thelma Vandenberg", "Clyde Oberg").
+friend("Thelma Vandenberg", "Rhoda Narvaez").
+friend("Thelma Vandenberg", "Louann Chrisman").
+friend("Thelma Vandenberg", "Margie Remillard").
+friend("Thelma Vandenberg", "Jackie Vandenberg").
+friend("Thelma Vandenberg", "Ophelia Mcgough").
+dob("Thelma Vandenberg", "0253-04-23").
+job("Thelma Vandenberg", "trading standards officer").
+hobby("Thelma Vandenberg", "herping").
+gender("Thelma Vandenberg", "female").

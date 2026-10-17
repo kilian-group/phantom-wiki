@@ -1,0 +1,24 @@
+sister("Denny Eaves", "Geri Dana").
+sister("Denny Eaves", "Ivette Eaves").
+sister("Denny Eaves", "Sofia Eaves").
+brother("Denny Eaves", "Foster Eaves").
+brother("Denny Eaves", "Mickey Eaves").
+mother("Denny Eaves", "Juanita Eaves").
+father("Denny Eaves", "Russel Eaves").
+son("Denny Eaves", "Chang Eaves").
+son("Denny Eaves", "Davis Eaves").
+daughter("Denny Eaves", "Edwina Eaves").
+daughter("Denny Eaves", "Karla Linares").
+wife("Denny Eaves", "Buffy Eaves").
+friend("Denny Eaves", "Ella Mathes").
+friend("Denny Eaves", "Noreen Sanborn").
+friend("Denny Eaves", "Thaddeus Sanborn").
+friend("Denny Eaves", "Felix Hamlin").
+friend("Denny Eaves", "Danny Cowart").
+friend("Denny Eaves", "Wanda Murray").
+friend("Denny Eaves", "Dennis Hamann").
+friend("Denny Eaves", "Barb Linden").
+dob("Denny Eaves", "0373-01-19").
+job("Denny Eaves", "physiotherapist").
+hobby("Denny Eaves", "literature").
+gender("Denny Eaves", "male").

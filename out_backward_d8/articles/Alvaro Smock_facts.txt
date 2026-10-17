@@ -1,0 +1,12 @@
+son("Alvaro Smock", "Aubrey Smock").
+son("Alvaro Smock", "Gene Smock").
+daughter("Alvaro Smock", "Deane Smock").
+daughter("Alvaro Smock", "Isabell Smock").
+wife("Alvaro Smock", "Lannie Smock").
+friend("Alvaro Smock", "Daisy Beltran").
+friend("Alvaro Smock", "Murray Cedillo").
+friend("Alvaro Smock", "Jacques Decosta").
+dob("Alvaro Smock", "0177-07-12").
+job("Alvaro Smock", "osteopath").
+hobby("Alvaro Smock", "biology").
+gender("Alvaro Smock", "male").

@@ -1,0 +1,11 @@
+mother("Dwayne Langley", "Sha Langley").
+father("Dwayne Langley", "Barney Langley").
+friend("Dwayne Langley", "Thurman Crain").
+friend("Dwayne Langley", "Ester Palermo").
+friend("Dwayne Langley", "Jona Carrell").
+friend("Dwayne Langley", "Freddy Shirk").
+friend("Dwayne Langley", "Leeann Hackworth").
+dob("Dwayne Langley", "0322-07-02").
+job("Dwayne Langley", "adult nurse").
+hobby("Dwayne Langley", "kart racing").
+gender("Dwayne Langley", "male").

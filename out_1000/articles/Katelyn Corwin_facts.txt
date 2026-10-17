@@ -1,0 +1,12 @@
+daughter("Katelyn Corwin", "Karin Machado").
+husband("Katelyn Corwin", "Josef Corwin").
+friend("Katelyn Corwin", "Zora Morehead").
+friend("Katelyn Corwin", "Domonique Fordham").
+friend("Katelyn Corwin", "Eli Vandenberg").
+friend("Katelyn Corwin", "Sylvester Hamlin").
+friend("Katelyn Corwin", "Harley Simons").
+friend("Katelyn Corwin", "Gaye Swartz").
+dob("Katelyn Corwin", "0438-12-01").
+job("Katelyn Corwin", "waste management officer").
+hobby("Katelyn Corwin", "video game collecting").
+gender("Katelyn Corwin", "female").

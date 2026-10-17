@@ -1,0 +1,12 @@
+daughter("Kieth Bigelow", "Tonia Bauman").
+wife("Kieth Bigelow", "Deja Bigelow").
+friend("Kieth Bigelow", "Ollie Omara").
+friend("Kieth Bigelow", "Goldie Schlosser").
+friend("Kieth Bigelow", "Romona Littleton").
+friend("Kieth Bigelow", "Clementine Goff").
+friend("Kieth Bigelow", "Coral Staten").
+friend("Kieth Bigelow", "Claudio Winn").
+dob("Kieth Bigelow", "0377-10-10").
+job("Kieth Bigelow", "surgeon").
+hobby("Kieth Bigelow", "coin collecting").
+gender("Kieth Bigelow", "male").

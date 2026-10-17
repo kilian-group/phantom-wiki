@@ -1,0 +1,16 @@
+daughter("Emma Wellington", "Mozelle Mounts").
+husband("Emma Wellington", "Alberto Wellington").
+friend("Emma Wellington", "Katharine Willoughby").
+friend("Emma Wellington", "Lauretta Callender").
+friend("Emma Wellington", "Gwendolyn Townsend").
+friend("Emma Wellington", "Nanette Swartz").
+friend("Emma Wellington", "Torrie Goff").
+friend("Emma Wellington", "Kory Gibbs").
+friend("Emma Wellington", "Ricky Carswell").
+friend("Emma Wellington", "Jackie Vandenberg").
+friend("Emma Wellington", "Ben Sheridan").
+friend("Emma Wellington", "Gayla Dorn").
+dob("Emma Wellington", "0436-02-26").
+job("Emma Wellington", "pharmacist").
+hobby("Emma Wellington", "life science").
+gender("Emma Wellington", "female").

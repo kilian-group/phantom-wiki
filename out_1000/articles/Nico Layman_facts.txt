@@ -1,0 +1,16 @@
+brother("Nico Layman", "Dino Layman").
+brother("Nico Layman", "Taylor Layman").
+mother("Nico Layman", "Haley Layman").
+father("Nico Layman", "Elbert Layman").
+son("Nico Layman", "Hyman Layman").
+daughter("Nico Layman", "Jann Upton").
+daughter("Nico Layman", "Maurine Layman").
+wife("Nico Layman", "Essie Layman").
+friend("Nico Layman", "Noreen Booth").
+friend("Nico Layman", "Graham Weise").
+friend("Nico Layman", "Malissa Corwin").
+friend("Nico Layman", "Pamala Medellin").
+dob("Nico Layman", "0312-07-06").
+job("Nico Layman", "architectural technologist").
+hobby("Nico Layman", "shogi").
+gender("Nico Layman", "male").

@@ -1,0 +1,19 @@
+sister("Winfred Basham", "Adah Schram").
+sister("Winfred Basham", "Geraldine Suh").
+sister("Winfred Basham", "Sharolyn Basham").
+sister("Winfred Basham", "Shawnta Basham").
+mother("Winfred Basham", "Ladawn Basham").
+father("Winfred Basham", "Javier Basham").
+friend("Winfred Basham", "Cleo Peeler").
+friend("Winfred Basham", "Doyle Valladares").
+friend("Winfred Basham", "Nanette Swartz").
+friend("Winfred Basham", "Al Younger").
+friend("Winfred Basham", "Brigette Keyes").
+friend("Winfred Basham", "Meghan Keyes").
+friend("Winfred Basham", "Bradford Oliveira").
+friend("Winfred Basham", "Dawn Rinehart").
+friend("Winfred Basham", "Rogelio Mckenna").
+dob("Winfred Basham", "0418-02-24").
+job("Winfred Basham", "commercial art gallery manager").
+hobby("Winfred Basham", "video game collecting").
+gender("Winfred Basham", "male").

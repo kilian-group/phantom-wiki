@@ -1,0 +1,14 @@
+brother("Lyman Marr", "Randal Marr").
+mother("Lyman Marr", "Tyesha Marr").
+father("Lyman Marr", "Jamal Marr").
+daughter("Lyman Marr", "Rhonda Theriot").
+wife("Lyman Marr", "Elaine Marr").
+friend("Lyman Marr", "Johnna Macias").
+friend("Lyman Marr", "Jeff Haygood").
+friend("Lyman Marr", "Renate Brumbaugh").
+friend("Lyman Marr", "Ivette Eaves").
+friend("Lyman Marr", "Glenn Levine").
+dob("Lyman Marr", "0403-04-17").
+job("Lyman Marr", "phytotherapist").
+hobby("Lyman Marr", "coin collecting").
+gender("Lyman Marr", "male").

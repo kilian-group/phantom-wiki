@@ -1,0 +1,17 @@
+son("Pamala Vanmeter", "Denny Vanmeter").
+husband("Pamala Vanmeter", "Theodore Vanmeter").
+friend("Pamala Vanmeter", "Dwight Palm").
+friend("Pamala Vanmeter", "Carlene Corwin").
+friend("Pamala Vanmeter", "Gayla Mccall").
+friend("Pamala Vanmeter", "Shirley Ibarra").
+friend("Pamala Vanmeter", "Mitchell Fordham").
+friend("Pamala Vanmeter", "Nora Noland").
+friend("Pamala Vanmeter", "Lurline Tyree").
+friend("Pamala Vanmeter", "Sammy Yarbrough").
+friend("Pamala Vanmeter", "Tyesha Marr").
+friend("Pamala Vanmeter", "Kanesha Booth").
+friend("Pamala Vanmeter", "Felipe Vanmeter").
+dob("Pamala Vanmeter", "0413-10-15").
+job("Pamala Vanmeter", "public librarian").
+hobby("Pamala Vanmeter", "backgammon").
+gender("Pamala Vanmeter", "female").

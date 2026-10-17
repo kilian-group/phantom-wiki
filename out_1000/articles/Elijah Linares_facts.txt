@@ -1,0 +1,13 @@
+son("Elijah Linares", "Tyrone Linares").
+daughter("Elijah Linares", "Christen Boutte").
+daughter("Elijah Linares", "Lea Plumley").
+wife("Elijah Linares", "Karla Linares").
+friend("Elijah Linares", "Jennette Holliman").
+friend("Elijah Linares", "Matthias Lennox").
+friend("Elijah Linares", "Nelly Jarrett").
+friend("Elijah Linares", "Randolph Osborn").
+friend("Elijah Linares", "Bridget Lester").
+dob("Elijah Linares", "0405-01-11").
+job("Elijah Linares", "administrator").
+hobby("Elijah Linares", "public transport riding").
+gender("Elijah Linares", "male").

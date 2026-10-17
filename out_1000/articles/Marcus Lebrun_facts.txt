@@ -1,0 +1,19 @@
+sister("Marcus Lebrun", "Hope Arteaga").
+mother("Marcus Lebrun", "Judith Lebrun").
+father("Marcus Lebrun", "Rob Lebrun").
+daughter("Marcus Lebrun", "Madalene Lebrun").
+wife("Marcus Lebrun", "Marguerite Lebrun").
+friend("Marcus Lebrun", "Edmundo Mcpeak").
+friend("Marcus Lebrun", "Juan Smart").
+friend("Marcus Lebrun", "Lou Hurt").
+friend("Marcus Lebrun", "Johnna Macias").
+friend("Marcus Lebrun", "Monty Depriest").
+friend("Marcus Lebrun", "Jamel Jarrett").
+friend("Marcus Lebrun", "Harold Murray").
+friend("Marcus Lebrun", "Cherlyn Simons").
+friend("Marcus Lebrun", "Benito Ruth").
+friend("Marcus Lebrun", "Janis Younger").
+dob("Marcus Lebrun", "0397-03-05").
+job("Marcus Lebrun", "mental health nurse").
+hobby("Marcus Lebrun", "digital hoarding").
+gender("Marcus Lebrun", "male").

@@ -1,0 +1,8 @@
+son("Kevin Boutte", "Johnathan Boutte").
+wife("Kevin Boutte", "Hanh Boutte").
+friend("Kevin Boutte", "Edythe Nicolas").
+friend("Kevin Boutte", "Theodore Crain").
+dob("Kevin Boutte", "0264-08-18").
+job("Kevin Boutte", "contracting civil engineer").
+hobby("Kevin Boutte", "rowing").
+gender("Kevin Boutte", "male").

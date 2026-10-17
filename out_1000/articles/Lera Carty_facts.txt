@@ -1,0 +1,22 @@
+sister("Lera Carty", "Larue Speaks").
+brother("Lera Carty", "Andres Layton").
+brother("Lera Carty", "Bryan Layton").
+brother("Lera Carty", "Cary Layton").
+brother("Lera Carty", "Emory Layton").
+mother("Lera Carty", "Brianne Layton").
+father("Lera Carty", "Bernie Layton").
+son("Lera Carty", "Drew Carty").
+son("Lera Carty", "Raymond Carty").
+husband("Lera Carty", "Calvin Carty").
+friend("Lera Carty", "Jamie Bellows").
+friend("Lera Carty", "Lakeshia Steadman").
+friend("Lera Carty", "Pierre Mcpeak").
+friend("Lera Carty", "Carlos Noland").
+friend("Lera Carty", "Marguerite Putnam").
+friend("Lera Carty", "Amanda Rinehart").
+friend("Lera Carty", "Tamala Skidmore").
+friend("Lera Carty", "Lynette Macias").
+dob("Lera Carty", "0396-11-21").
+job("Lera Carty", "energy engineer").
+hobby("Lera Carty", "volleyball").
+gender("Lera Carty", "female").

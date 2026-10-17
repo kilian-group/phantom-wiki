@@ -1,0 +1,14 @@
+sister("Anthony Nicolas", "Aletha Nicolas").
+sister("Anthony Nicolas", "Rosalinda Francois").
+brother("Anthony Nicolas", "Bradford Nicolas").
+mother("Anthony Nicolas", "Cherry Nicolas").
+father("Anthony Nicolas", "Ulysses Nicolas").
+son("Anthony Nicolas", "Eldon Nicolas").
+daughter("Anthony Nicolas", "Connie Nicolas").
+daughter("Anthony Nicolas", "Lera Brook").
+daughter("Anthony Nicolas", "Marilyn Nicolas").
+wife("Anthony Nicolas", "Edythe Nicolas").
+dob("Anthony Nicolas", "0272-06-08").
+job("Anthony Nicolas", "medical secretary").
+hobby("Anthony Nicolas", "reading").
+gender("Anthony Nicolas", "male").

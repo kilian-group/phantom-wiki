@@ -1,0 +1,13 @@
+daughter("Audra Lester", "Bridget Lester").
+husband("Audra Lester", "Cedrick Lester").
+friend("Audra Lester", "Wallace Brumbaugh").
+friend("Audra Lester", "Gerald Hartung").
+friend("Audra Lester", "Shawnta Plumley").
+friend("Audra Lester", "Alyssa Salem").
+friend("Audra Lester", "Jan Estrella").
+friend("Audra Lester", "Shawna Sheridan").
+friend("Audra Lester", "Erick Courson").
+dob("Audra Lester", "0461-12-12").
+job("Audra Lester", "public relations account executive").
+hobby("Audra Lester", "trade fair visiting").
+gender("Audra Lester", "female").

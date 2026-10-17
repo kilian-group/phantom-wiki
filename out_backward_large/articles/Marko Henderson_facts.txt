@@ -1,0 +1,11 @@
+son("Marko Henderson", "Maxwell Henderson").
+son("Marko Henderson", "Milton Henderson").
+son("Marko Henderson", "Stefan Henderson").
+wife("Marko Henderson", "Jung Henderson").
+friend("Marko Henderson", "Sha Langley").
+friend("Marko Henderson", "Zulema Crain").
+friend("Marko Henderson", "Ming Cormier").
+dob("Marko Henderson", "0225-01-07").
+job("Marko Henderson", "equality and diversity officer").
+hobby("Marko Henderson", "volleyball").
+gender("Marko Henderson", "male").

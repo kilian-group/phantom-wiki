@@ -1,0 +1,19 @@
+sister("Nathan Corwin", "Bee Corwin").
+sister("Nathan Corwin", "Delpha Younger").
+brother("Nathan Corwin", "Solomon Corwin").
+mother("Nathan Corwin", "Rochelle Corwin").
+father("Nathan Corwin", "Spencer Corwin").
+son("Nathan Corwin", "Son Corwin").
+wife("Nathan Corwin", "Clara Corwin").
+friend("Nathan Corwin", "Tawana Machado").
+friend("Nathan Corwin", "Buffy Mccurry").
+friend("Nathan Corwin", "Aida Ibarra").
+friend("Nathan Corwin", "Katharine Resendez").
+friend("Nathan Corwin", "James Maness").
+friend("Nathan Corwin", "Maggie Vanmeter").
+friend("Nathan Corwin", "Chelsie Peeler").
+friend("Nathan Corwin", "Antionette Hamann").
+dob("Nathan Corwin", "0377-09-30").
+job("Nathan Corwin", "tax adviser").
+hobby("Nathan Corwin", "ultimate frisbee").
+gender("Nathan Corwin", "male").

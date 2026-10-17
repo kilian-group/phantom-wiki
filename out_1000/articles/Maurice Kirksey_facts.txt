@@ -1,0 +1,8 @@
+son("Maurice Kirksey", "Javier Kirksey").
+daughter("Maurice Kirksey", "Anastacia Cordova").
+wife("Maurice Kirksey", "Larae Kirksey").
+friend("Maurice Kirksey", "Ladawn Bennet").
+dob("Maurice Kirksey", "0347-12-28").
+job("Maurice Kirksey", "jewellery designer").
+hobby("Maurice Kirksey", "meditation").
+gender("Maurice Kirksey", "male").

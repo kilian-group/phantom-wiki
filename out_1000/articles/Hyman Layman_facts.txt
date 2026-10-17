@@ -1,0 +1,16 @@
+sister("Hyman Layman", "Jann Upton").
+sister("Hyman Layman", "Maurine Layman").
+mother("Hyman Layman", "Essie Layman").
+father("Hyman Layman", "Nico Layman").
+friend("Hyman Layman", "Drema Jefferson").
+friend("Hyman Layman", "Charley Weise").
+friend("Hyman Layman", "Isaiah Autry").
+friend("Hyman Layman", "Timothy Simons").
+friend("Hyman Layman", "Skye Swartz").
+friend("Hyman Layman", "Sona Fredrick").
+friend("Hyman Layman", "Dawn Rinehart").
+friend("Hyman Layman", "Iluminada Capps").
+dob("Hyman Layman", "0337-01-27").
+job("Hyman Layman", "learning mentor").
+hobby("Hyman Layman", "magnet fishing").
+gender("Hyman Layman", "male").

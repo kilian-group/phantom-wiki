@@ -1,0 +1,14 @@
+sister("Adrianna Gregory", "Patsy Murray").
+mother("Adrianna Gregory", "Cleo Gregory").
+father("Adrianna Gregory", "Jesus Gregory").
+friend("Adrianna Gregory", "Shannon Fredrick").
+friend("Adrianna Gregory", "Larue Macias").
+friend("Adrianna Gregory", "Essie Layman").
+friend("Adrianna Gregory", "Keith Resendez").
+friend("Adrianna Gregory", "Mozelle Mounts").
+friend("Adrianna Gregory", "Samual Knepper").
+friend("Adrianna Gregory", "Stanford Suh").
+dob("Adrianna Gregory", "0475-08-08").
+job("Adrianna Gregory", "insurance broker").
+hobby("Adrianna Gregory", "insect collecting").
+gender("Adrianna Gregory", "female").

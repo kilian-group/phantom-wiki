@@ -1,0 +1,17 @@
+sister("Benton Earnest", "Geri Woodman").
+mother("Benton Earnest", "Maria Earnest").
+father("Benton Earnest", "Roland Earnest").
+son("Benton Earnest", "Eduardo Earnest").
+son("Benton Earnest", "Reggie Earnest").
+daughter("Benton Earnest", "Cherise Earnest").
+daughter("Benton Earnest", "Edythe Earnest").
+wife("Benton Earnest", "Samantha Earnest").
+friend("Benton Earnest", "Geri Woodman").
+friend("Benton Earnest", "Tamala Pannell").
+friend("Benton Earnest", "Monique Palermo").
+friend("Benton Earnest", "Roman Palermo").
+friend("Benton Earnest", "Haywood Mcnew").
+dob("Benton Earnest", "0316-05-28").
+job("Benton Earnest", "futures trader").
+hobby("Benton Earnest", "business").
+gender("Benton Earnest", "male").

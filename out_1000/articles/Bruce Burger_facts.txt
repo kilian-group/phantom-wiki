@@ -1,0 +1,19 @@
+sister("Bruce Burger", "Macy Burger").
+mother("Bruce Burger", "Graciela Burger").
+father("Bruce Burger", "Alex Burger").
+daughter("Bruce Burger", "Allyson Burger").
+wife("Bruce Burger", "Jennie Burger").
+friend("Bruce Burger", "Sheena Dame").
+friend("Bruce Burger", "Haley Layman").
+friend("Bruce Burger", "Laverna Kell").
+friend("Bruce Burger", "Ashleigh Spiller").
+friend("Bruce Burger", "Rudy Runnels").
+friend("Bruce Burger", "Anibal Cordova").
+friend("Bruce Burger", "Sonny Peeler").
+friend("Bruce Burger", "Christina Barrows").
+friend("Bruce Burger", "Frederic Staten").
+friend("Bruce Burger", "Deanne Gilliam").
+dob("Bruce Burger", "0505-05-13").
+job("Bruce Burger", "newspaper journalist").
+hobby("Bruce Burger", "flower collecting and pressing").
+gender("Bruce Burger", "male").

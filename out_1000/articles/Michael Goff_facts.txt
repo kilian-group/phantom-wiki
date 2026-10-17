@@ -1,0 +1,25 @@
+sister("Michael Goff", "Marguerite Lebrun").
+mother("Michael Goff", "Matilda Goff").
+father("Michael Goff", "Mac Goff").
+son("Michael Goff", "Alphonso Goff").
+son("Michael Goff", "Elroy Goff").
+son("Michael Goff", "Jonathan Goff").
+son("Michael Goff", "King Goff").
+son("Michael Goff", "Tim Goff").
+wife("Michael Goff", "Dorothea Goff").
+friend("Michael Goff", "Aida Ibarra").
+friend("Michael Goff", "Karina Smart").
+friend("Michael Goff", "Delbert Fredrick").
+friend("Michael Goff", "Harold Waltz").
+friend("Michael Goff", "Ellis Glass").
+friend("Michael Goff", "Isaias Forester").
+friend("Michael Goff", "Jayson Hudgens").
+friend("Michael Goff", "Annita Mckenna").
+friend("Michael Goff", "Donald Autry").
+friend("Michael Goff", "Mickey Beamon").
+friend("Michael Goff", "Jimmy Holder").
+friend("Michael Goff", "Christen Boutte").
+dob("Michael Goff", "0387-12-26").
+job("Michael Goff", "primary school teacher").
+hobby("Michael Goff", "psychology").
+gender("Michael Goff", "male").

@@ -1,0 +1,22 @@
+mother("Tamala Skidmore", "Anita Fain").
+father("Tamala Skidmore", "Hayden Fain").
+daughter("Tamala Skidmore", "Ardath Skidmore").
+daughter("Tamala Skidmore", "Chelsea Skidmore").
+daughter("Tamala Skidmore", "Velia Capps").
+husband("Tamala Skidmore", "Benito Skidmore").
+friend("Tamala Skidmore", "Gayla Dorn").
+friend("Tamala Skidmore", "Lera Carty").
+friend("Tamala Skidmore", "Dorathy Harlow").
+friend("Tamala Skidmore", "Arnulfo Kinsella").
+friend("Tamala Skidmore", "Cleo Peeler").
+friend("Tamala Skidmore", "Veronica Cowart").
+friend("Tamala Skidmore", "Russel Eaves").
+friend("Tamala Skidmore", "Harold Hollins").
+friend("Tamala Skidmore", "Clement Bennet").
+friend("Tamala Skidmore", "Lashanda Salem").
+friend("Tamala Skidmore", "Hiram Putnam").
+friend("Tamala Skidmore", "Ricky Carswell").
+dob("Tamala Skidmore", "0347-09-02").
+job("Tamala Skidmore", "English as a foreign language teacher").
+hobby("Tamala Skidmore", "physics").
+gender("Tamala Skidmore", "female").

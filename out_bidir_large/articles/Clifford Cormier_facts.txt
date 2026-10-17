@@ -1,0 +1,10 @@
+sister("Clifford Cormier", "Shawnta Saari").
+mother("Clifford Cormier", "Ming Cormier").
+father("Clifford Cormier", "Dion Cormier").
+daughter("Clifford Cormier", "Leann Cormier").
+wife("Clifford Cormier", "Deborah Cormier").
+friend("Clifford Cormier", "Quincy Pannell").
+dob("Clifford Cormier", "0258-09-07").
+job("Clifford Cormier", "fitness centre manager").
+hobby("Clifford Cormier", "meditation").
+gender("Clifford Cormier", "male").

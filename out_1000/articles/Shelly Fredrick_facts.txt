@@ -1,0 +1,16 @@
+son("Shelly Fredrick", "Delbert Fredrick").
+son("Shelly Fredrick", "Levi Fredrick").
+daughter("Shelly Fredrick", "Kelley Cheney").
+husband("Shelly Fredrick", "Malik Fredrick").
+friend("Shelly Fredrick", "Amanda Rinehart").
+friend("Shelly Fredrick", "Jan Estrella").
+friend("Shelly Fredrick", "Graham Weise").
+friend("Shelly Fredrick", "Lenora Hayward").
+friend("Shelly Fredrick", "Magdalena Cordova").
+friend("Shelly Fredrick", "Viva Simons").
+friend("Shelly Fredrick", "Tomas Townsend").
+friend("Shelly Fredrick", "Micah Hollins").
+dob("Shelly Fredrick", "0374-01-17").
+job("Shelly Fredrick", "TEFL teacher").
+hobby("Shelly Fredrick", "trade fair visiting").
+gender("Shelly Fredrick", "female").

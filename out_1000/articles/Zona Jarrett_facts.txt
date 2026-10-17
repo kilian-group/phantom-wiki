@@ -1,0 +1,15 @@
+sister("Zona Jarrett", "Freeda Jarrett").
+brother("Zona Jarrett", "Jamel Jarrett").
+brother("Zona Jarrett", "Mose Jarrett").
+mother("Zona Jarrett", "Shandi Jarrett").
+father("Zona Jarrett", "Anthony Jarrett").
+friend("Zona Jarrett", "Lenora Hayward").
+friend("Zona Jarrett", "Abdul Morehead").
+friend("Zona Jarrett", "Lucile Hurt").
+friend("Zona Jarrett", "Tamara Wylie").
+friend("Zona Jarrett", "Verona Medellin").
+friend("Zona Jarrett", "Gerry Dorn").
+dob("Zona Jarrett", "0448-03-21").
+job("Zona Jarrett", "ophthalmologist").
+hobby("Zona Jarrett", "hiking/backpacking").
+gender("Zona Jarrett", "female").

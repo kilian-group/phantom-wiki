@@ -1,0 +1,419 @@
+[
+    {
+        "id": "1b03c5d6-6218-433e-9d64-d7dbb7910f8a",
+        "question": "Who is the friend of the male cousin of the person whose occupation is advice worker?",
+        "solution_traces": "[{\"Y_2\": \"Lila Petry\", \"Y_6\": \"Rolland Mckenna\", \"Y_4\": \"Chuck Lizotte\"}, {\"Y_2\": \"Harold Wilkie\", \"Y_6\": \"Rolland Mckenna\", \"Y_4\": \"Chuck Lizotte\"}, {\"Y_4\": \"Nathanial Lizotte\", \"Y_2\": \"Quincy Pannell\", \"Y_6\": \"Rolland Mckenna\"}, {\"Y_4\": \"Nathanial Lizotte\", \"Y_6\": \"Rolland Mckenna\", \"Y_2\": \"Alison Smock\"}, {\"Y_6\": \"Rolland Mckenna\", \"Y_2\": \"Lenore Hackworth\", \"Y_4\": \"Chuck Lizotte\"}, {\"Y_4\": \"Nathanial Lizotte\", \"Y_6\": \"Rolland Mckenna\", \"Y_2\": \"Marcelino Mcnew\"}]",
+        "answer": [
+            "Alison Smock",
+            "Harold Wilkie",
+            "Lenore Hackworth",
+            "Lila Petry",
+            "Marcelino Mcnew",
+            "Quincy Pannell"
+        ],
+        "prolog": {
+            "query": [
+                "friend(Y_4, Y_2)",
+                "male_cousin(Y_6, Y_4)",
+                "job(Y_6, \"advice worker\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "c62e2ab3-b39d-4f8d-a529-65b7197e9ead",
+        "question": "Who is the friend of the great-grandchild of the person whose date of birth is 0207-09-08?",
+        "solution_traces": "[{\"Y_4\": \"Vicki Hackworth\", \"Y_6\": \"Dominique Smock\", \"Y_2\": \"Ora Lizotte\"}, {\"Y_4\": \"Vicki Hackworth\", \"Y_6\": \"Dominique Smock\", \"Y_2\": \"Yvette Cedillo\"}, {\"Y_4\": \"Aida Wang\", \"Y_2\": \"Ora Lizotte\", \"Y_6\": \"Dominique Smock\"}, {\"Y_4\": \"Aida Wang\", \"Y_6\": \"Dominique Smock\", \"Y_2\": \"Gerardo Hornback\"}, {\"Y_4\": \"Aida Wang\", \"Y_2\": \"Garry Mcnew\", \"Y_6\": \"Dominique Smock\"}, {\"Y_4\": \"Aida Wang\", \"Y_6\": \"Dominique Smock\", \"Y_2\": \"Taneka Abraham\"}, {\"Y_4\": \"Vicki Hackworth\", \"Y_6\": \"Dominique Smock\", \"Y_2\": \"Cherry Nicolas\"}, {\"Y_4\": \"Aida Wang\", \"Y_6\": \"Dominique Smock\", \"Y_2\": \"Harold Wilkie\"}]",
+        "answer": [
+            "Cherry Nicolas",
+            "Garry Mcnew",
+            "Gerardo Hornback",
+            "Harold Wilkie",
+            "Ora Lizotte",
+            "Taneka Abraham",
+            "Yvette Cedillo"
+        ],
+        "prolog": {
+            "query": [
+                "friend(Y_4, Y_2)",
+                "great_grandchild(Y_6, Y_4)",
+                "dob(Y_6, \"0207-09-08\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "26fa40cc-9d88-40c1-9df1-2b1d186a5664",
+        "question": "Who is the great-grandchild of the great-grandfather of the person whose date of birth is 0305-06-19?",
+        "solution_traces": "[{\"Y_4\": \"Marko Henderson\", \"Y_6\": \"Jeanelle Mcnew\", \"Y_2\": \"Merrill Mcnew\"}, {\"Y_4\": \"Caleb Haber\", \"Y_2\": \"Cole Mcnew\", \"Y_6\": \"Jeanelle Mcnew\"}, {\"Y_4\": \"Marko Henderson\", \"Y_2\": \"Cole Mcnew\", \"Y_6\": \"Jeanelle Mcnew\"}, {\"Y_4\": \"Caleb Haber\", \"Y_2\": \"Marcelino Mcnew\", \"Y_6\": \"Jeanelle Mcnew\"}, {\"Y_4\": \"Caleb Haber\", \"Y_6\": \"Jeanelle Mcnew\", \"Y_2\": \"Merrill Mcnew\"}, {\"Y_4\": \"Marko Henderson\", \"Y_2\": \"Jeanelle Mcnew\", \"Y_6\": \"Jeanelle Mcnew\"}, {\"Y_4\": \"Marko Henderson\", \"Y_2\": \"Marcelino Mcnew\", \"Y_6\": \"Jeanelle Mcnew\"}, {\"Y_4\": \"Caleb Haber\", \"Y_2\": \"Jeanelle Mcnew\", \"Y_6\": \"Jeanelle Mcnew\"}]",
+        "answer": [
+            "Cole Mcnew",
+            "Jeanelle Mcnew",
+            "Marcelino Mcnew",
+            "Merrill Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandchild(Y_4, Y_2)",
+                "great_grandfather(Y_6, Y_4)",
+                "dob(Y_6, \"0305-06-19\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 1,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "7c2b7b2e-4709-402f-a5e6-601191a2d941",
+        "question": "Who is the wife of the sibling of the person whose hobby is gongoozling?",
+        "solution_traces": "[{\"Y_4\": \"Stefan Henderson\", \"Y_6\": \"Maxwell Henderson\", \"Y_2\": \"Noelia Henderson\"}]",
+        "answer": [
+            "Noelia Henderson"
+        ],
+        "prolog": {
+            "query": [
+                "wife(Y_4, Y_2)",
+                "sibling(Y_6, Y_4)",
+                "hobby(Y_6, \"gongoozling\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "551a76df-7c89-475d-b096-454fd4a7802e",
+        "question": "Who is the parent of the child of the person whose occupation is editorial assistant?",
+        "solution_traces": "[{\"Y_2\": \"Karla Hornback\", \"Y_4\": \"Luisa Hornback\", \"Y_6\": \"Karla Hornback\"}, {\"Y_4\": \"Abraham Decosta\", \"Y_6\": \"Elwood Decosta\", \"Y_2\": \"Elwood Decosta\"}, {\"Y_2\": \"Gerardo Hornback\", \"Y_6\": \"Karla Hornback\", \"Y_4\": \"Reinaldo Hornback\"}, {\"Y_2\": \"Gerardo Hornback\", \"Y_4\": \"Luisa Hornback\", \"Y_6\": \"Karla Hornback\"}, {\"Y_4\": \"Abraham Decosta\", \"Y_6\": \"Elwood Decosta\", \"Y_2\": \"Niesha Decosta\"}, {\"Y_2\": \"Karla Hornback\", \"Y_6\": \"Karla Hornback\", \"Y_4\": \"Reinaldo Hornback\"}]",
+        "answer": [
+            "Elwood Decosta",
+            "Gerardo Hornback",
+            "Karla Hornback",
+            "Niesha Decosta"
+        ],
+        "prolog": {
+            "query": [
+                "parent(Y_4, Y_2)",
+                "child(Y_6, Y_4)",
+                "job(Y_6, \"editorial assistant\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "a908c1d0-690b-4839-bfd2-de4cbb08d9e3",
+        "question": "Who is the grandchild of the great-grandparent of the person whose hobby is martial arts?",
+        "solution_traces": "[{\"Y_4\": \"Stuart Decosta\", \"Y_6\": \"Lea Levy\", \"Y_2\": \"Adolph Brannan\"}, {\"Y_4\": \"Deborah Brannan\", \"Y_6\": \"Lea Levy\", \"Y_2\": \"Adolph Brannan\"}, {\"Y_6\": \"Lea Levy\", \"Y_2\": \"Abraham Decosta\", \"Y_4\": \"Zoila Decosta\"}, {\"Y_6\": \"Lea Levy\", \"Y_2\": \"Adolph Brannan\", \"Y_4\": \"Zoila Decosta\"}, {\"Y_6\": \"Lea Levy\", \"Y_4\": \"Casey Brannan\", \"Y_2\": \"Adolph Brannan\"}, {\"Y_4\": \"Stuart Decosta\", \"Y_6\": \"Lea Levy\", \"Y_2\": \"Abraham Decosta\"}]",
+        "answer": [
+            "Abraham Decosta",
+            "Adolph Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "grandchild(Y_4, Y_2)",
+                "great_grandparent(Y_6, Y_4)",
+                "hobby(Y_6, \"martial arts\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "7ce70638-8925-47a2-8f86-21ef144abdc3",
+        "question": "Who is the great-grandparent of the aunt of the person whose date of birth is 0277-07-02?",
+        "solution_traces": "[{\"Y_6\": \"Charlie Kovach\", \"Y_2\": \"Zoila Decosta\", \"Y_4\": \"Lea Levy\"}, {\"Y_6\": \"Charlie Kovach\", \"Y_2\": \"Casey Brannan\", \"Y_4\": \"Lea Levy\"}, {\"Y_2\": \"Deborah Brannan\", \"Y_6\": \"Charlie Kovach\", \"Y_4\": \"Lea Levy\"}, {\"Y_6\": \"Charlie Kovach\", \"Y_2\": \"Stuart Decosta\", \"Y_4\": \"Lea Levy\"}]",
+        "answer": [
+            "Casey Brannan",
+            "Deborah Brannan",
+            "Stuart Decosta",
+            "Zoila Decosta"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandparent(Y_4, Y_2)",
+                "aunt(Y_6, Y_4)",
+                "dob(Y_6, \"0277-07-02\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "164ffc84-872e-4db9-bd39-b8e57c2261ee",
+        "question": "Who is the great-grandparent of the child of the person whose date of birth is 0262-06-04?",
+        "solution_traces": "[{\"Y_6\": \"Deborah Cormier\", \"Y_4\": \"Leann Cormier\", \"Y_2\": \"Andy Clemons\"}, {\"Y_6\": \"Deborah Cormier\", \"Y_4\": \"Leann Cormier\", \"Y_2\": \"Leda Cormier\"}, {\"Y_2\": \"Foster Cormier\", \"Y_6\": \"Deborah Cormier\", \"Y_4\": \"Leann Cormier\"}, {\"Y_2\": \"Jeana Clemons\", \"Y_6\": \"Deborah Cormier\", \"Y_4\": \"Leann Cormier\"}]",
+        "answer": [
+            "Andy Clemons",
+            "Foster Cormier",
+            "Jeana Clemons",
+            "Leda Cormier"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandparent(Y_4, Y_2)",
+                "child(Y_6, Y_4)",
+                "dob(Y_6, \"0262-06-04\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "23d2552a-fe7b-464d-8e66-8a18e26825de",
+        "question": "Who is the husband of the mother-in-law of the person whose date of birth is 0287-04-22?",
+        "solution_traces": "[{\"Y_6\": \"Monique Griffiths\", \"Y_4\": \"Olivia Griffiths\", \"Y_2\": \"Elton Griffiths\"}]",
+        "answer": [
+            "Elton Griffiths"
+        ],
+        "prolog": {
+            "query": [
+                "husband(Y_4, Y_2)",
+                "mother_in_law(Y_6, Y_4)",
+                "dob(Y_6, \"0287-04-22\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "a9bd8157-8593-458c-a799-726542140b87",
+        "question": "Who is the grandchild of the father-in-law of the person whose date of birth is 0286-10-11?",
+        "solution_traces": "[{\"Y_6\": \"Bruce Mason\", \"Y_4\": \"Elton Griffiths\", \"Y_2\": \"Hilton Griffiths\"}, {\"Y_2\": \"Craig Boutte\", \"Y_6\": \"Bruce Mason\", \"Y_4\": \"Elton Griffiths\"}, {\"Y_6\": \"Bruce Mason\", \"Y_4\": \"Elton Griffiths\", \"Y_2\": \"Zoila Mason\"}, {\"Y_6\": \"Bruce Mason\", \"Y_4\": \"Elton Griffiths\", \"Y_2\": \"Roger Griffiths\"}]",
+        "answer": [
+            "Craig Boutte",
+            "Hilton Griffiths",
+            "Roger Griffiths",
+            "Zoila Mason"
+        ],
+        "prolog": {
+            "query": [
+                "grandchild(Y_4, Y_2)",
+                "father_in_law(Y_6, Y_4)",
+                "dob(Y_6, \"0286-10-11\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false
+    }
+]

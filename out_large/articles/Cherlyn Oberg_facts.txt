@@ -1,0 +1,15 @@
+daughter("Cherlyn Oberg", "Luisa Narvaez").
+daughter("Cherlyn Oberg", "Sarah Oberg").
+husband("Cherlyn Oberg", "Monte Oberg").
+friend("Cherlyn Oberg", "Richard Oberg").
+friend("Cherlyn Oberg", "Sherrie Remillard").
+friend("Cherlyn Oberg", "Wanita Remillard").
+friend("Cherlyn Oberg", "Charley Vandenberg").
+friend("Cherlyn Oberg", "Delsie Mcgough").
+friend("Cherlyn Oberg", "Ophelia Mcgough").
+friend("Cherlyn Oberg", "Randall Mcgough").
+friend("Cherlyn Oberg", "Thelma Vandenberg").
+dob("Cherlyn Oberg", "0302-06-08").
+job("Cherlyn Oberg", "computer games developer").
+hobby("Cherlyn Oberg", "knife throwing").
+gender("Cherlyn Oberg", "female").

@@ -1,0 +1,12 @@
+son("Emery Scherer", "Javier Scherer").
+wife("Emery Scherer", "Mallory Scherer").
+friend("Emery Scherer", "Paris Cordova").
+friend("Emery Scherer", "Fernando Dana").
+friend("Emery Scherer", "Lela Correia").
+friend("Emery Scherer", "Pedro Gordy").
+friend("Emery Scherer", "Luisa Estrella").
+friend("Emery Scherer", "Rory Hamlin").
+dob("Emery Scherer", "0418-02-28").
+job("Emery Scherer", "aid worker").
+hobby("Emery Scherer", "metal detecting").
+gender("Emery Scherer", "male").

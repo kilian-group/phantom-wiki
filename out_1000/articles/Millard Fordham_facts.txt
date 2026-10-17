@@ -1,0 +1,19 @@
+brother("Millard Fordham", "Miles Fordham").
+mother("Millard Fordham", "Elicia Fordham").
+father("Millard Fordham", "Edmundo Fordham").
+friend("Millard Fordham", "Cleveland Capps").
+friend("Millard Fordham", "Brent Macias").
+friend("Millard Fordham", "Jamel Jarrett").
+friend("Millard Fordham", "Nicky Gordon").
+friend("Millard Fordham", "Jodi Cordova").
+friend("Millard Fordham", "Danny Cowart").
+friend("Millard Fordham", "Lakeshia Steadman").
+friend("Millard Fordham", "Edythe Osterman").
+friend("Millard Fordham", "Boris Machado").
+friend("Millard Fordham", "Katina Younger").
+friend("Millard Fordham", "Shaunte Gilliam").
+friend("Millard Fordham", "Pedro Gordy").
+dob("Millard Fordham", "0464-03-03").
+job("Millard Fordham", "exhibition designer").
+hobby("Millard Fordham", "picnicking").
+gender("Millard Fordham", "male").

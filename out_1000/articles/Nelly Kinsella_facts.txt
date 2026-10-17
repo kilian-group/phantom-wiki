@@ -1,0 +1,17 @@
+brother("Nelly Kinsella", "Cortez Kinsella").
+mother("Nelly Kinsella", "Annmarie Kinsella").
+father("Nelly Kinsella", "Kenny Kinsella").
+friend("Nelly Kinsella", "Patsy Murray").
+friend("Nelly Kinsella", "Sasha Simons").
+friend("Nelly Kinsella", "Scottie Steadman").
+friend("Nelly Kinsella", "Lon Macias").
+friend("Nelly Kinsella", "Marion Wilke").
+friend("Nelly Kinsella", "Jamie Upton").
+friend("Nelly Kinsella", "Mattie Courson").
+friend("Nelly Kinsella", "Maxwell Beamon").
+friend("Nelly Kinsella", "Valentina Beamon").
+friend("Nelly Kinsella", "Anastacia Cordova").
+dob("Nelly Kinsella", "0494-12-25").
+job("Nelly Kinsella", "training and development officer").
+hobby("Nelly Kinsella", "button collecting").
+gender("Nelly Kinsella", "female").

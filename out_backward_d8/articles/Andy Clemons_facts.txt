@@ -1,0 +1,10 @@
+daughter("Andy Clemons", "Ming Cormier").
+wife("Andy Clemons", "Jeana Clemons").
+friend("Andy Clemons", "Shawnta Saari").
+friend("Andy Clemons", "Rufus Brook").
+friend("Andy Clemons", "Lila Petry").
+friend("Andy Clemons", "Valentina Wexler").
+dob("Andy Clemons", "0203-08-06").
+job("Andy Clemons", "music therapist").
+hobby("Andy Clemons", "flying disc").
+gender("Andy Clemons", "male").

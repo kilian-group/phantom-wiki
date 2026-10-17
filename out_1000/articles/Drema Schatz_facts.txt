@@ -1,0 +1,15 @@
+sister("Drema Schatz", "Dorothea Goff").
+sister("Drema Schatz", "Mallory Schatz").
+mother("Drema Schatz", "Krystyna Schatz").
+father("Drema Schatz", "Taylor Schatz").
+friend("Drema Schatz", "Domonique Fordham").
+friend("Drema Schatz", "Major Ballard").
+friend("Drema Schatz", "Calvin Carty").
+friend("Drema Schatz", "Tosha Osborn").
+friend("Drema Schatz", "Jake Burkhalter").
+friend("Drema Schatz", "Oscar Schram").
+friend("Drema Schatz", "Frankie Mahoney").
+dob("Drema Schatz", "0388-10-14").
+job("Drema Schatz", "corporate treasurer").
+hobby("Drema Schatz", "rugby league football").
+gender("Drema Schatz", "female").

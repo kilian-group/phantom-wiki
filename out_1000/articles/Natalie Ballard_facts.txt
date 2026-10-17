@@ -1,0 +1,12 @@
+son("Natalie Ballard", "Brad Ballard").
+husband("Natalie Ballard", "Avery Ballard").
+friend("Natalie Ballard", "Tashina Layton").
+friend("Natalie Ballard", "Macy Booth").
+friend("Natalie Ballard", "Dane Murray").
+friend("Natalie Ballard", "Judith Lebrun").
+friend("Natalie Ballard", "Brigette Keyes").
+friend("Natalie Ballard", "Romona Fordham").
+dob("Natalie Ballard", "0383-06-24").
+job("Natalie Ballard", "paramedic").
+hobby("Natalie Ballard", "horseshoes").
+gender("Natalie Ballard", "female").

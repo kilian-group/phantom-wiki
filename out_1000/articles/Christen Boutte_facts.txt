@@ -1,0 +1,18 @@
+sister("Christen Boutte", "Lea Plumley").
+brother("Christen Boutte", "Tyrone Linares").
+mother("Christen Boutte", "Karla Linares").
+father("Christen Boutte", "Elijah Linares").
+son("Christen Boutte", "Austin Boutte").
+daughter("Christen Boutte", "Charissa Boutte").
+daughter("Christen Boutte", "Vicki Osterman").
+husband("Christen Boutte", "Earle Boutte").
+friend("Christen Boutte", "Nicholle Dana").
+friend("Christen Boutte", "Miguel Morehead").
+friend("Christen Boutte", "Michael Goff").
+friend("Christen Boutte", "Lou Dunlap").
+friend("Christen Boutte", "Claudio Winn").
+friend("Christen Boutte", "Susie Gillam").
+dob("Christen Boutte", "0429-08-01").
+job("Christen Boutte", "orthoptist").
+hobby("Christen Boutte", "shortwave listening").
+gender("Christen Boutte", "female").

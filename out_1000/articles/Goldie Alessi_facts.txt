@@ -1,0 +1,23 @@
+sister("Goldie Alessi", "Nellie Hamlin").
+sister("Goldie Alessi", "Shizuko Sheridan").
+brother("Goldie Alessi", "Elroy Hamlin").
+brother("Goldie Alessi", "Hosea Hamlin").
+brother("Goldie Alessi", "Sylvester Hamlin").
+mother("Goldie Alessi", "Raina Hamlin").
+father("Goldie Alessi", "Felix Hamlin").
+daughter("Goldie Alessi", "Cathy Alessi").
+husband("Goldie Alessi", "Williams Alessi").
+friend("Goldie Alessi", "Eva Kell").
+friend("Goldie Alessi", "Mac Mounts").
+friend("Goldie Alessi", "Curt Cowart").
+friend("Goldie Alessi", "Lorenzo Littleton").
+friend("Goldie Alessi", "Zora Simons").
+friend("Goldie Alessi", "Shaunna Fordham").
+friend("Goldie Alessi", "Iluminada Capps").
+friend("Goldie Alessi", "Lon Macias").
+friend("Goldie Alessi", "Martin Deville").
+friend("Goldie Alessi", "Dorathy Hamlin").
+dob("Goldie Alessi", "0408-01-27").
+job("Goldie Alessi", "veterinary surgeon").
+hobby("Goldie Alessi", "animation").
+gender("Goldie Alessi", "female").

@@ -1,0 +1,10 @@
+mother("Twila Oberg", "Marlo Oberg").
+father("Twila Oberg", "Clyde Oberg").
+friend("Twila Oberg", "Morgan Remillard").
+friend("Twila Oberg", "Charley Vandenberg").
+friend("Twila Oberg", "Myrl Mcgough").
+friend("Twila Oberg", "Marlo Oberg").
+dob("Twila Oberg", "0329-06-22").
+job("Twila Oberg", "government social research officer").
+hobby("Twila Oberg", "mineral collecting").
+gender("Twila Oberg", "female").

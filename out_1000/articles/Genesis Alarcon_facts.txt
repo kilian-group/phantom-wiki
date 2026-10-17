@@ -1,0 +1,18 @@
+daughter("Genesis Alarcon", "Chante Corso").
+husband("Genesis Alarcon", "Dave Alarcon").
+friend("Genesis Alarcon", "Debora Murray").
+friend("Genesis Alarcon", "Patricia Towns").
+friend("Genesis Alarcon", "Thomas Flores").
+friend("Genesis Alarcon", "Carlene Corwin").
+friend("Genesis Alarcon", "Colin Corwin").
+friend("Genesis Alarcon", "Hope Arteaga").
+friend("Genesis Alarcon", "Steve Gossett").
+friend("Genesis Alarcon", "Maybelle Oliveira").
+friend("Genesis Alarcon", "Leeann Blanton").
+friend("Genesis Alarcon", "Preston Holtz").
+friend("Genesis Alarcon", "Nelly Theriot").
+friend("Genesis Alarcon", "Wilbur Mcgough").
+dob("Genesis Alarcon", "0380-10-02").
+job("Genesis Alarcon", "bonds trader").
+hobby("Genesis Alarcon", "stuffed toy collecting").
+gender("Genesis Alarcon", "female").

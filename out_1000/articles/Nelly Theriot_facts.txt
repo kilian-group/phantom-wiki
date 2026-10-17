@@ -1,0 +1,11 @@
+son("Nelly Theriot", "Hollis Theriot").
+husband("Nelly Theriot", "Zachary Theriot").
+friend("Nelly Theriot", "Chrissy Mcgough").
+friend("Nelly Theriot", "Alysa Lindquist").
+friend("Nelly Theriot", "Genesis Alarcon").
+friend("Nelly Theriot", "Beatriz Theriot").
+friend("Nelly Theriot", "Deandre Capps").
+dob("Nelly Theriot", "0411-07-19").
+job("Nelly Theriot", "office manager").
+hobby("Nelly Theriot", "mathematics").
+gender("Nelly Theriot", "female").

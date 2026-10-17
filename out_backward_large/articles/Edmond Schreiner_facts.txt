@@ -1,0 +1,10 @@
+daughter("Edmond Schreiner", "Ashely Kee").
+wife("Edmond Schreiner", "Kristi Schreiner").
+friend("Edmond Schreiner", "Roger Griffiths").
+friend("Edmond Schreiner", "Shelli Beltran").
+friend("Edmond Schreiner", "Rosalinda Francois").
+friend("Edmond Schreiner", "Lucas Mckenna").
+dob("Edmond Schreiner", "0205-10-24").
+job("Edmond Schreiner", "neurosurgeon").
+hobby("Edmond Schreiner", "vintage clothing").
+gender("Edmond Schreiner", "male").

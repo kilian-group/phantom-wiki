@@ -1,0 +1,12 @@
+son("Essie Layman", "Hyman Layman").
+daughter("Essie Layman", "Jann Upton").
+daughter("Essie Layman", "Maurine Layman").
+husband("Essie Layman", "Nico Layman").
+friend("Essie Layman", "Werner Kell").
+friend("Essie Layman", "Adrianna Gregory").
+friend("Essie Layman", "Brandon Capps").
+friend("Essie Layman", "Paul Dame").
+dob("Essie Layman", "0313-12-17").
+job("Essie Layman", "translator").
+hobby("Essie Layman", "vintage clothing").
+gender("Essie Layman", "female").

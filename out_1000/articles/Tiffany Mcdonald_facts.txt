@@ -1,0 +1,17 @@
+brother("Tiffany Mcdonald", "Porter Steadman").
+mother("Tiffany Mcdonald", "Scottie Steadman").
+father("Tiffany Mcdonald", "Victor Steadman").
+daughter("Tiffany Mcdonald", "Miki Mcdonald").
+husband("Tiffany Mcdonald", "Lukas Mcdonald").
+friend("Tiffany Mcdonald", "Austin Boutte").
+friend("Tiffany Mcdonald", "Jarrod Ibarra").
+friend("Tiffany Mcdonald", "Ollie Minnick").
+friend("Tiffany Mcdonald", "Avery Ballard").
+friend("Tiffany Mcdonald", "Federico Horan").
+friend("Tiffany Mcdonald", "Brian Galvan").
+friend("Tiffany Mcdonald", "Donny Speaks").
+friend("Tiffany Mcdonald", "Wesley Courson").
+dob("Tiffany Mcdonald", "0444-12-12").
+job("Tiffany Mcdonald", "theatre director").
+hobby("Tiffany Mcdonald", "finance").
+gender("Tiffany Mcdonald", "female").

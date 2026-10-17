@@ -1,0 +1,17 @@
+brother("Felton Dana", "Fernando Dana").
+mother("Felton Dana", "Nicholle Dana").
+father("Felton Dana", "Matthew Dana").
+son("Felton Dana", "Herbert Dana").
+wife("Felton Dana", "Juanita Dana").
+friend("Felton Dana", "Shirley Dalton").
+friend("Felton Dana", "Amy Wilke").
+friend("Felton Dana", "Julio Mcgough").
+friend("Felton Dana", "Leslie Courson").
+friend("Felton Dana", "Vernon Joubert").
+friend("Felton Dana", "Randolph Osborn").
+friend("Felton Dana", "Elisabeth Bauman").
+friend("Felton Dana", "Jake Burkhalter").
+dob("Felton Dana", "0425-01-02").
+job("Felton Dana", "animator").
+hobby("Felton Dana", "vehicle restoration").
+gender("Felton Dana", "male").

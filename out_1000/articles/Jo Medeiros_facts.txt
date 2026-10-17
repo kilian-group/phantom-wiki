@@ -1,0 +1,20 @@
+sister("Jo Medeiros", "Stacy Strong").
+mother("Jo Medeiros", "Ressie Capps").
+father("Jo Medeiros", "Cleveland Capps").
+daughter("Jo Medeiros", "Brigette Medeiros").
+daughter("Jo Medeiros", "Enid Yarbrough").
+husband("Jo Medeiros", "Chuck Medeiros").
+friend("Jo Medeiros", "Nellie Hamlin").
+friend("Jo Medeiros", "Zachariah Galvan").
+friend("Jo Medeiros", "Rolf Booth").
+friend("Jo Medeiros", "Cleo Peeler").
+friend("Jo Medeiros", "Edwina Eaves").
+friend("Jo Medeiros", "Christina Smart").
+friend("Jo Medeiros", "Tracey Medellin").
+friend("Jo Medeiros", "Hal Greene").
+friend("Jo Medeiros", "Maryann Oliveira").
+friend("Jo Medeiros", "Lora Vogt").
+dob("Jo Medeiros", "0431-10-02").
+job("Jo Medeiros", "radio producer").
+hobby("Jo Medeiros", "ant farming").
+gender("Jo Medeiros", "female").

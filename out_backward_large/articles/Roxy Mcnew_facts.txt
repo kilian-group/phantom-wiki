@@ -1,0 +1,10 @@
+son("Roxy Mcnew", "Ernesto Mcnew").
+son("Roxy Mcnew", "Garry Mcnew").
+son("Roxy Mcnew", "Hayden Mcnew").
+husband("Roxy Mcnew", "Cole Mcnew").
+friend("Roxy Mcnew", "Zoraida Palermo").
+friend("Roxy Mcnew", "Nada Shirk").
+dob("Roxy Mcnew", "0308-04-09").
+job("Roxy Mcnew", "regulatory affairs officer").
+hobby("Roxy Mcnew", "photography").
+gender("Roxy Mcnew", "female").

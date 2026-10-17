@@ -1,0 +1,23 @@
+sister("Karla Linares", "Edwina Eaves").
+brother("Karla Linares", "Chang Eaves").
+brother("Karla Linares", "Davis Eaves").
+mother("Karla Linares", "Buffy Eaves").
+father("Karla Linares", "Denny Eaves").
+son("Karla Linares", "Tyrone Linares").
+daughter("Karla Linares", "Christen Boutte").
+daughter("Karla Linares", "Lea Plumley").
+husband("Karla Linares", "Elijah Linares").
+friend("Karla Linares", "Coral Staten").
+friend("Karla Linares", "Deidra Gilliam").
+friend("Karla Linares", "Edmundo Mcpeak").
+friend("Karla Linares", "Cary Carswell").
+friend("Karla Linares", "Ben Sheridan").
+friend("Karla Linares", "Jayson Hudgens").
+friend("Karla Linares", "Bo Frink").
+friend("Karla Linares", "Cleo Dangelo").
+friend("Karla Linares", "Adella Townsend").
+friend("Karla Linares", "Barb Linden").
+dob("Karla Linares", "0403-07-16").
+job("Karla Linares", "bonds trader").
+hobby("Karla Linares", "sport stacking").
+gender("Karla Linares", "female").

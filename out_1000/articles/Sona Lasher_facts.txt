@@ -1,0 +1,15 @@
+son("Sona Lasher", "Collin Lasher").
+son("Sona Lasher", "Shayne Lasher").
+daughter("Sona Lasher", "Evette Knepper").
+husband("Sona Lasher", "Newton Lasher").
+friend("Sona Lasher", "Trudy Lasher").
+friend("Sona Lasher", "Luther Peeler").
+friend("Sona Lasher", "Curt Cowart").
+friend("Sona Lasher", "Clementine Goff").
+friend("Sona Lasher", "Rob Lebrun").
+friend("Sona Lasher", "Coral Monday").
+friend("Sona Lasher", "Kimberely Corso").
+dob("Sona Lasher", "0332-12-27").
+job("Sona Lasher", "commercial surveyor").
+hobby("Sona Lasher", "coin collecting").
+gender("Sona Lasher", "female").

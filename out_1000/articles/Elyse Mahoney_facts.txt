@@ -1,0 +1,14 @@
+daughter("Elyse Mahoney", "Ashton Mahoney").
+husband("Elyse Mahoney", "Ty Mahoney").
+friend("Elyse Mahoney", "Germaine Mahoney").
+friend("Elyse Mahoney", "Cordell Younger").
+friend("Elyse Mahoney", "Gerry Shank").
+friend("Elyse Mahoney", "Lauren Strong").
+friend("Elyse Mahoney", "Elijah Hamlin").
+friend("Elyse Mahoney", "Gene Burnett").
+friend("Elyse Mahoney", "Nicky Gordon").
+friend("Elyse Mahoney", "Goldie Beamon").
+dob("Elyse Mahoney", "0408-10-19").
+job("Elyse Mahoney", "toxicologist").
+hobby("Elyse Mahoney", "groundhopping").
+gender("Elyse Mahoney", "female").

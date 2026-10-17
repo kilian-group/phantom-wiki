@@ -1,0 +1,18 @@
+brother("Tamara Wylie", "Byron Medellin").
+brother("Tamara Wylie", "Oscar Medellin").
+mother("Tamara Wylie", "Verona Medellin").
+father("Tamara Wylie", "Kieth Medellin").
+daughter("Tamara Wylie", "Ligia Wylie").
+husband("Tamara Wylie", "Bertram Wylie").
+friend("Tamara Wylie", "Stephan Prater").
+friend("Tamara Wylie", "Pansy Sutphin").
+friend("Tamara Wylie", "Zona Jarrett").
+friend("Tamara Wylie", "Jerrold Harlow").
+friend("Tamara Wylie", "Jewell Fordham").
+friend("Tamara Wylie", "Douglass Ingalls").
+friend("Tamara Wylie", "Ethan Younger").
+friend("Tamara Wylie", "Olin Machado").
+dob("Tamara Wylie", "0435-01-25").
+job("Tamara Wylie", "economist").
+hobby("Tamara Wylie", "jukskei").
+gender("Tamara Wylie", "female").

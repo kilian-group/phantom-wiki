@@ -1,0 +1,10 @@
+mother("Marcel Brannan", "Deborah Brannan").
+father("Marcel Brannan", "Casey Brannan").
+son("Marcel Brannan", "Adolph Brannan").
+wife("Marcel Brannan", "Margo Brannan").
+friend("Marcel Brannan", "Rosalinda Brannan").
+friend("Marcel Brannan", "Aurelio Wasserman").
+dob("Marcel Brannan", "0195-07-20").
+job("Marcel Brannan", "chartered public finance accountant").
+hobby("Marcel Brannan", "microscopy").
+gender("Marcel Brannan", "male").

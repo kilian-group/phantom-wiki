@@ -1,0 +1,479 @@
+[
+    {
+        "id": "47fe432b-2630-4a48-b597-415d91112bfb",
+        "question": "Who is the cousin of Maranda Lizotte?",
+        "solution_traces": "[{\"Y_2\": \"Rolland Mckenna\"}, {\"Y_2\": \"Lucas Mckenna\"}, {\"Y_2\": \"Lila Petry\"}]",
+        "answer": [
+            "Lila Petry",
+            "Lucas Mckenna",
+            "Rolland Mckenna"
+        ],
+        "prolog": {
+            "query": [
+                "cousin(\"Maranda Lizotte\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Rolland Mckenna",
+            "answer_position": "tail",
+            "answer_slot_index": 1,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 6
+        }
+    },
+    {
+        "id": "02e5665d-db44-4b23-b000-f422aa494284",
+        "question": "Who is the parent of Craig Boutte?",
+        "solution_traces": "[{\"Y_2\": \"Johnathan Boutte\"}, {\"Y_2\": \"Marlana Boutte\"}]",
+        "answer": [
+            "Johnathan Boutte",
+            "Marlana Boutte"
+        ],
+        "prolog": {
+            "query": [
+                "parent(\"Craig Boutte\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Johnathan Boutte",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    },
+    {
+        "id": "296cc7cc-255d-4bcb-9592-11817032118c",
+        "question": "Who is the friend of Hanh Mohan?",
+        "solution_traces": "[{\"Y_2\": \"Daniel Brannan\"}, {\"Y_2\": \"Zulema Crain\"}, {\"Y_2\": \"Thurman Crain\"}, {\"Y_2\": \"Weldon Skaggs\"}, {\"Y_2\": \"Leann Cormier\"}, {\"Y_2\": \"Effie Schoonmaker\"}, {\"Y_2\": \"Rolland Mckenna\"}]",
+        "answer": [
+            "Daniel Brannan",
+            "Effie Schoonmaker",
+            "Leann Cormier",
+            "Rolland Mckenna",
+            "Thurman Crain",
+            "Weldon Skaggs",
+            "Zulema Crain"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Hanh Mohan\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Daniel Brannan",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 7
+        }
+    },
+    {
+        "id": "a2a81c31-9d30-41ac-965a-3d912597d7d8",
+        "question": "Who is the brother-in-law of Preston Francois?",
+        "solution_traces": "[{\"Y_2\": \"Anthony Nicolas\"}, {\"Y_2\": \"Bradford Nicolas\"}]",
+        "answer": [
+            "Anthony Nicolas",
+            "Bradford Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "brother_in_law(\"Preston Francois\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Bradford Nicolas",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 4
+        }
+    },
+    {
+        "id": "bd966c71-feb7-4b1a-b9ac-43283c7928d5",
+        "question": "Who is the second uncle of Hayden Mcnew?",
+        "solution_traces": "[{\"Y_2\": \"Milton Henderson\"}, {\"Y_2\": \"Maxwell Henderson\"}]",
+        "answer": [
+            "Maxwell Henderson",
+            "Milton Henderson"
+        ],
+        "prolog": {
+            "query": [
+                "second_uncle(\"Hayden Mcnew\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Maxwell Henderson",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 4
+        }
+    },
+    {
+        "id": "70d253f1-6409-49cd-b3f6-9d6bd68c91c1",
+        "question": "Who is the grandparent of Margot Skaggs?",
+        "solution_traces": "[{\"Y_2\": \"Dwain Lizotte\"}, {\"Y_2\": \"Rosina Lizotte\"}]",
+        "answer": [
+            "Dwain Lizotte",
+            "Rosina Lizotte"
+        ],
+        "prolog": {
+            "query": [
+                "grandparent(\"Margot Skaggs\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Dwain Lizotte",
+            "answer_position": "tail",
+            "answer_slot_index": 1,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    },
+    {
+        "id": "16724ed7-647e-4b76-92bc-2b0dda88a065",
+        "question": "Who is the parent of Jeannine Wexler?",
+        "solution_traces": "[{\"Y_2\": \"Dino Beltran\"}, {\"Y_2\": \"Shelli Beltran\"}]",
+        "answer": [
+            "Dino Beltran",
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "parent(\"Jeannine Wexler\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Shelli Beltran",
+            "answer_position": "tail",
+            "answer_slot_index": 1,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    },
+    {
+        "id": "bd965c33-a3e5-4d03-a7ff-ce044f052a1e",
+        "question": "Who is the second aunt of Monique Palermo?",
+        "solution_traces": "[{\"Y_2\": \"Jona Carrell\"}, {\"Y_2\": \"Liane Schoonmaker\"}, {\"Y_2\": \"Annabelle Schoonmaker\"}]",
+        "answer": [
+            "Annabelle Schoonmaker",
+            "Jona Carrell",
+            "Liane Schoonmaker"
+        ],
+        "prolog": {
+            "query": [
+                "second_aunt(\"Monique Palermo\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Jona Carrell",
+            "answer_position": "tail",
+            "answer_slot_index": 1,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 6
+        }
+    },
+    {
+        "id": "0a62e38d-a55c-4b43-ba03-86b0236f78db",
+        "question": "Who is the father of Laura Kovach?",
+        "solution_traces": "[{\"Y_2\": \"Charlie Kovach\"}]",
+        "answer": [
+            "Charlie Kovach"
+        ],
+        "prolog": {
+            "query": [
+                "father(\"Laura Kovach\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Charlie Kovach",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "c2c29b2d-e3fa-47ca-ab94-e2e753ed4439",
+        "question": "Who is the sibling of Monique Palermo?",
+        "solution_traces": "[{\"Y_2\": \"Francisco Palermo\"}, {\"Y_2\": \"Rosanna Palermo\"}, {\"Y_2\": \"Hannah Palermo\"}]",
+        "answer": [
+            "Francisco Palermo",
+            "Hannah Palermo",
+            "Rosanna Palermo"
+        ],
+        "prolog": {
+            "query": [
+                "sibling(\"Monique Palermo\", Y_2)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 0,
+            "composite": 1,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Rosanna Palermo",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "<name>_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 6
+        }
+    }
+]

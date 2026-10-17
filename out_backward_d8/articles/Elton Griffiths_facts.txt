@@ -1,0 +1,11 @@
+son("Elton Griffiths", "Spencer Griffiths").
+daughter("Elton Griffiths", "Lauretta Mason").
+daughter("Elton Griffiths", "Marlana Boutte").
+wife("Elton Griffiths", "Olivia Griffiths").
+friend("Elton Griffiths", "Lila Petry").
+friend("Elton Griffiths", "Windy Mckenna").
+friend("Elton Griffiths", "Enoch Palermo").
+dob("Elton Griffiths", "0264-12-04").
+job("Elton Griffiths", "hospital doctor").
+hobby("Elton Griffiths", "vr gaming").
+gender("Elton Griffiths", "male").

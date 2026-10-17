@@ -1,0 +1,19 @@
+son("Latisha Murchison", "Keith Murchison").
+husband("Latisha Murchison", "Derek Murchison").
+friend("Latisha Murchison", "Harley Simons").
+friend("Latisha Murchison", "Sung Simons").
+friend("Latisha Murchison", "Shawna Towns").
+friend("Latisha Murchison", "Ty Mahoney").
+friend("Latisha Murchison", "Eli Younger").
+friend("Latisha Murchison", "Josef Corwin").
+friend("Latisha Murchison", "Maynard Latham").
+friend("Latisha Murchison", "Nelly Smart").
+friend("Latisha Murchison", "Kieth Shaw").
+friend("Latisha Murchison", "Javier Scherer").
+friend("Latisha Murchison", "Johnathan Klink").
+friend("Latisha Murchison", "Drema Jefferson").
+friend("Latisha Murchison", "Elliott Ingle").
+dob("Latisha Murchison", "0330-11-18").
+job("Latisha Murchison", "brewing technologist").
+hobby("Latisha Murchison", "cornhole").
+gender("Latisha Murchison", "female").

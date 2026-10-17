@@ -1,0 +1,8 @@
+brother("Hilton Griffiths", "Roger Griffiths").
+mother("Hilton Griffiths", "Monique Griffiths").
+father("Hilton Griffiths", "Spencer Griffiths").
+friend("Hilton Griffiths", "Gene Smock").
+dob("Hilton Griffiths", "0314-02-19").
+job("Hilton Griffiths", "electronics engineer").
+hobby("Hilton Griffiths", "mini golf").
+gender("Hilton Griffiths", "male").

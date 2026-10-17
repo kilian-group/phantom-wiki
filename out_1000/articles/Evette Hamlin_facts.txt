@@ -1,0 +1,20 @@
+mother("Evette Hamlin", "Pansy Sutphin").
+father("Evette Hamlin", "Son Sutphin").
+son("Evette Hamlin", "Felix Hamlin").
+daughter("Evette Hamlin", "Brianne Layton").
+daughter("Evette Hamlin", "Helena Hamlin").
+daughter("Evette Hamlin", "Julianne Hamlin").
+husband("Evette Hamlin", "Elijah Hamlin").
+friend("Evette Hamlin", "Freeda Jarrett").
+friend("Evette Hamlin", "Macy Booth").
+friend("Evette Hamlin", "Adah Schram").
+friend("Evette Hamlin", "Desiree Fordham").
+friend("Evette Hamlin", "Bert Simons").
+friend("Evette Hamlin", "Clementine Goff").
+friend("Evette Hamlin", "Mallory Schatz").
+friend("Evette Hamlin", "Tim Goff").
+friend("Evette Hamlin", "Anna Broughton").
+dob("Evette Hamlin", "0346-09-05").
+job("Evette Hamlin", "public house manager").
+hobby("Evette Hamlin", "sea glass collecting").
+gender("Evette Hamlin", "female").

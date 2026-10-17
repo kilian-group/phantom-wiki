@@ -1,0 +1,19 @@
+mother("Beatriz Theriot", "Rhonda Theriot").
+father("Beatriz Theriot", "Hollis Theriot").
+friend("Beatriz Theriot", "Nelly Theriot").
+friend("Beatriz Theriot", "Drew Carty").
+friend("Beatriz Theriot", "Dino Layman").
+friend("Beatriz Theriot", "Alysa Lindquist").
+friend("Beatriz Theriot", "Kristen Kell").
+friend("Beatriz Theriot", "Melodie Suh").
+friend("Beatriz Theriot", "Trevor Frink").
+friend("Beatriz Theriot", "Eugene Geter").
+friend("Beatriz Theriot", "Mason Dangelo").
+friend("Beatriz Theriot", "Dustin Peeler").
+friend("Beatriz Theriot", "Spencer Corwin").
+friend("Beatriz Theriot", "Lavern Staten").
+friend("Beatriz Theriot", "Mallory Schatz").
+dob("Beatriz Theriot", "0467-02-04").
+job("Beatriz Theriot", "training and development officer").
+hobby("Beatriz Theriot", "blacksmithing").
+gender("Beatriz Theriot", "female").

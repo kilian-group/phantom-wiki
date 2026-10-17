@@ -1,0 +1,15 @@
+mother("Eunice Lennox", "Trudy Lennox").
+father("Eunice Lennox", "Matthias Lennox").
+friend("Eunice Lennox", "Nelly Jarrett").
+friend("Eunice Lennox", "Erik Mounts").
+friend("Eunice Lennox", "Levi Kell").
+friend("Eunice Lennox", "Macy Booth").
+friend("Eunice Lennox", "Yasmin Gordon").
+friend("Eunice Lennox", "Kent Corso").
+friend("Eunice Lennox", "Katherine Carswell").
+friend("Eunice Lennox", "Robyn Forester").
+friend("Eunice Lennox", "Tonia Mcgough").
+dob("Eunice Lennox", "0474-11-04").
+job("Eunice Lennox", "radio broadcast assistant").
+hobby("Eunice Lennox", "research").
+gender("Eunice Lennox", "female").

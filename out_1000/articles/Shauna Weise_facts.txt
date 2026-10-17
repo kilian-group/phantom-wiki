@@ -1,0 +1,18 @@
+sister("Shauna Weise", "Racquel Wendel").
+mother("Shauna Weise", "Maurine Wendel").
+father("Shauna Weise", "Emil Wendel").
+son("Shauna Weise", "Charley Weise").
+daughter("Shauna Weise", "Graciela Weise").
+daughter("Shauna Weise", "Samatha Weise").
+husband("Shauna Weise", "Graham Weise").
+friend("Shauna Weise", "Pablo Cook").
+friend("Shauna Weise", "Edmundo Mcpeak").
+friend("Shauna Weise", "Willie Hurt").
+friend("Shauna Weise", "Laverna Kell").
+friend("Shauna Weise", "Donnie Crocker").
+friend("Shauna Weise", "Mayra Geter").
+friend("Shauna Weise", "Samatha Weise").
+dob("Shauna Weise", "0482-06-12").
+job("Shauna Weise", "health service manager").
+hobby("Shauna Weise", "pickleball").
+gender("Shauna Weise", "female").

@@ -1,0 +1,16 @@
+mother("Charlie Ingalls", "Eliza Ingalls").
+father("Charlie Ingalls", "Douglass Ingalls").
+daughter("Charlie Ingalls", "Heather Ingalls").
+daughter("Charlie Ingalls", "Zora Simons").
+wife("Charlie Ingalls", "Sharon Ingalls").
+friend("Charlie Ingalls", "Carlene Corwin").
+friend("Charlie Ingalls", "Judith Lebrun").
+friend("Charlie Ingalls", "Rheba Resendez").
+friend("Charlie Ingalls", "Lera Mcpeak").
+friend("Charlie Ingalls", "Amy Wilke").
+friend("Charlie Ingalls", "Vilma Callender").
+friend("Charlie Ingalls", "Edwina Weise").
+dob("Charlie Ingalls", "0361-09-11").
+job("Charlie Ingalls", "editor").
+hobby("Charlie Ingalls", "meditation").
+gender("Charlie Ingalls", "male").

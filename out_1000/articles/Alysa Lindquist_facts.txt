@@ -1,0 +1,20 @@
+sister("Alysa Lindquist", "Barbar Kell").
+sister("Alysa Lindquist", "Ladonna Klink").
+mother("Alysa Lindquist", "Ilona Klink").
+father("Alysa Lindquist", "Johnathan Klink").
+son("Alysa Lindquist", "Roscoe Lindquist").
+daughter("Alysa Lindquist", "Maria Lindquist").
+husband("Alysa Lindquist", "Carroll Lindquist").
+friend("Alysa Lindquist", "Dorathy Harlow").
+friend("Alysa Lindquist", "Fredrick Cordova").
+friend("Alysa Lindquist", "Donald Fordham").
+friend("Alysa Lindquist", "Romelia Bowles").
+friend("Alysa Lindquist", "Beatriz Theriot").
+friend("Alysa Lindquist", "Leena Estrella").
+friend("Alysa Lindquist", "Nelly Theriot").
+friend("Alysa Lindquist", "Addie Shilling").
+friend("Alysa Lindquist", "Elbert Layman").
+dob("Alysa Lindquist", "0380-07-10").
+job("Alysa Lindquist", "animal nutritionist").
+hobby("Alysa Lindquist", "fishkeeping").
+gender("Alysa Lindquist", "female").

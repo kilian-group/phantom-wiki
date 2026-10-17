@@ -1,0 +1,20 @@
+sister("Flora Noland", "Evelia Waltz").
+brother("Flora Noland", "Pedro Waltz").
+mother("Flora Noland", "Madalene Waltz").
+father("Flora Noland", "Harold Waltz").
+son("Flora Noland", "Carlos Noland").
+son("Flora Noland", "Hubert Noland").
+daughter("Flora Noland", "Domonique Fordham").
+husband("Flora Noland", "Hugh Noland").
+friend("Flora Noland", "Hershel Shilling").
+friend("Flora Noland", "Jerrold Harlow").
+friend("Flora Noland", "Landon Dillion").
+friend("Flora Noland", "Jacques Cordova").
+friend("Flora Noland", "Debora Murray").
+friend("Flora Noland", "Rosella Simons").
+friend("Flora Noland", "Viva Simons").
+friend("Flora Noland", "Kurtis Eaves").
+dob("Flora Noland", "0436-11-17").
+job("Flora Noland", "optician").
+hobby("Flora Noland", "sports memorabilia").
+gender("Flora Noland", "female").

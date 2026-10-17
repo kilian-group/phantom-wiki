@@ -1,0 +1,14 @@
+son("Kendrick Jefferson", "Dale Jefferson").
+daughter("Kendrick Jefferson", "Drema Jefferson").
+wife("Kendrick Jefferson", "Viva Jefferson").
+friend("Kendrick Jefferson", "Marcelina Simons").
+friend("Kendrick Jefferson", "Amanda Broughton").
+friend("Kendrick Jefferson", "Eunice Gordy").
+friend("Kendrick Jefferson", "Marvin Putnam").
+friend("Kendrick Jefferson", "Jackqueline Kell").
+friend("Kendrick Jefferson", "Johnathan Klink").
+friend("Kendrick Jefferson", "Gustavo Bauman").
+dob("Kendrick Jefferson", "0314-02-04").
+job("Kendrick Jefferson", "firefighter").
+hobby("Kendrick Jefferson", "stone skipping").
+gender("Kendrick Jefferson", "male").

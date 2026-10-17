@@ -1,0 +1,20 @@
+sister("Lynette Fredrick", "Jana Noland").
+sister("Lynette Fredrick", "Sona Fredrick").
+brother("Lynette Fredrick", "Murray Fredrick").
+mother("Lynette Fredrick", "Shannon Fredrick").
+father("Lynette Fredrick", "Anderson Fredrick").
+friend("Lynette Fredrick", "Hayden Fain").
+friend("Lynette Fredrick", "Nellie Hamlin").
+friend("Lynette Fredrick", "Keith Resendez").
+friend("Lynette Fredrick", "Taylor Layman").
+friend("Lynette Fredrick", "Viva Suh").
+friend("Lynette Fredrick", "Enedina Cordova").
+friend("Lynette Fredrick", "Cedric Shoulders").
+friend("Lynette Fredrick", "Delpha Younger").
+friend("Lynette Fredrick", "Rob Lebrun").
+friend("Lynette Fredrick", "Steve Gossett").
+friend("Lynette Fredrick", "Justine Gibbs").
+dob("Lynette Fredrick", "0405-05-04").
+job("Lynette Fredrick", "tree surgeon").
+hobby("Lynette Fredrick", "radio-controlled model playing").
+gender("Lynette Fredrick", "female").

@@ -1,0 +1,379 @@
+[
+    {
+        "id": "62abd153-4569-474b-a267-7d601481f3e1",
+        "question": "Who is the cousin of the cousin of Rolland Mckenna?",
+        "solution_traces": "[{\"Y_4\": \"Lila Petry\", \"Y_2\": \"Yoko Wilkie\"}, {\"Y_4\": \"Nathanial Lizotte\", \"Y_2\": \"Rolland Mckenna\"}, {\"Y_4\": \"Lila Petry\", \"Y_2\": \"Lucas Mckenna\"}, {\"Y_4\": \"Lila Petry\", \"Y_2\": \"Hanh Mohan\"}, {\"Y_2\": \"Lila Petry\", \"Y_4\": \"Chuck Lizotte\"}, {\"Y_2\": \"Lila Petry\", \"Y_4\": \"Yoko Wilkie\"}, {\"Y_4\": \"Nathanial Lizotte\", \"Y_2\": \"Lucas Mckenna\"}, {\"Y_2\": \"Lucas Mckenna\", \"Y_4\": \"Hanh Mohan\"}, {\"Y_4\": \"Nathanial Lizotte\", \"Y_2\": \"Lila Petry\"}, {\"Y_2\": \"Lucas Mckenna\", \"Y_4\": \"Chuck Lizotte\"}, {\"Y_4\": \"Maranda Lizotte\", \"Y_2\": \"Rolland Mckenna\"}, {\"Y_2\": \"Lucas Mckenna\", \"Y_4\": \"Yoko Wilkie\"}, {\"Y_2\": \"Maranda Lizotte\", \"Y_4\": \"Lila Petry\"}, {\"Y_2\": \"Rolland Mckenna\", \"Y_4\": \"Hanh Mohan\"}, {\"Y_2\": \"Lila Petry\", \"Y_4\": \"Hanh Mohan\"}, {\"Y_4\": \"Lila Petry\", \"Y_2\": \"Chuck Lizotte\"}, {\"Y_2\": \"Rolland Mckenna\", \"Y_4\": \"Chuck Lizotte\"}, {\"Y_2\": \"Lucas Mckenna\", \"Y_4\": \"Maranda Lizotte\"}, {\"Y_2\": \"Rolland Mckenna\", \"Y_4\": \"Yoko Wilkie\"}, {\"Y_4\": \"Maranda Lizotte\", \"Y_2\": \"Lila Petry\"}, {\"Y_4\": \"Lila Petry\", \"Y_2\": \"Nathanial Lizotte\"}, {\"Y_4\": \"Lila Petry\", \"Y_2\": \"Rolland Mckenna\"}]",
+        "answer": [
+            "Chuck Lizotte",
+            "Hanh Mohan",
+            "Lila Petry",
+            "Lucas Mckenna",
+            "Maranda Lizotte",
+            "Nathanial Lizotte",
+            "Rolland Mckenna",
+            "Yoko Wilkie"
+        ],
+        "prolog": {
+            "query": [
+                "cousin(Y_4, Y_2)",
+                "cousin(\"Rolland Mckenna\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "11da3f6c-cb84-460c-9747-eae6a12313a5",
+        "question": "Who is the son of the parent of Johnathan Boutte?",
+        "solution_traces": "[{\"Y_2\": \"Johnathan Boutte\", \"Y_4\": \"Kevin Boutte\"}, {\"Y_4\": \"Hanh Boutte\", \"Y_2\": \"Johnathan Boutte\"}]",
+        "answer": [
+            "Johnathan Boutte"
+        ],
+        "prolog": {
+            "query": [
+                "son(Y_4, Y_2)",
+                "parent(\"Johnathan Boutte\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "94b574cb-0df0-40de-94d8-01160a5af37b",
+        "question": "Who is the sister of the friend of Daniel Brannan?",
+        "solution_traces": "[{\"Y_2\": \"Maranda Lizotte\", \"Y_4\": \"Hanh Mohan\"}, {\"Y_2\": \"Yoko Wilkie\", \"Y_4\": \"Hanh Mohan\"}]",
+        "answer": [
+            "Maranda Lizotte",
+            "Yoko Wilkie"
+        ],
+        "prolog": {
+            "query": [
+                "sister(Y_4, Y_2)",
+                "friend(\"Daniel Brannan\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "5ed8f48f-9f91-4ddc-8fab-380eb92c0186",
+        "question": "Who is the cousin of the niece of Bradford Nicolas?",
+        "solution_traces": "[{\"Y_2\": \"Carrol Nicolas\", \"Y_4\": \"Lera Brook\"}, {\"Y_4\": \"Marilyn Nicolas\", \"Y_2\": \"Sha Langley\"}, {\"Y_2\": \"Lera Brook\", \"Y_4\": \"Sha Langley\"}, {\"Y_4\": \"Connie Nicolas\", \"Y_2\": \"Sha Langley\"}, {\"Y_4\": \"Lera Brook\", \"Y_2\": \"Sha Langley\"}, {\"Y_2\": \"Carrol Nicolas\", \"Y_4\": \"Marilyn Nicolas\"}, {\"Y_2\": \"Rubye Crain\", \"Y_4\": \"Marilyn Nicolas\"}, {\"Y_2\": \"Rubye Crain\", \"Y_4\": \"Connie Nicolas\"}, {\"Y_2\": \"Eldon Nicolas\", \"Y_4\": \"Sha Langley\"}, {\"Y_4\": \"Sha Langley\", \"Y_2\": \"Marilyn Nicolas\"}, {\"Y_4\": \"Sha Langley\", \"Y_2\": \"Carrol Nicolas\"}, {\"Y_4\": \"Sha Langley\", \"Y_2\": \"Connie Nicolas\"}, {\"Y_2\": \"Carrol Nicolas\", \"Y_4\": \"Connie Nicolas\"}, {\"Y_2\": \"Rubye Crain\", \"Y_4\": \"Lera Brook\"}]",
+        "answer": [
+            "Carrol Nicolas",
+            "Connie Nicolas",
+            "Eldon Nicolas",
+            "Lera Brook",
+            "Marilyn Nicolas",
+            "Rubye Crain",
+            "Sha Langley"
+        ],
+        "prolog": {
+            "query": [
+                "cousin(Y_4, Y_2)",
+                "niece(\"Bradford Nicolas\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "468f696f-67f4-4472-a7ef-2af8759c4640",
+        "question": "Who is the husband of the friend of Maxwell Henderson?",
+        "solution_traces": "[{\"Y_2\": \"Ulysses Nicolas\", \"Y_4\": \"Cherry Nicolas\"}]",
+        "answer": [
+            "Ulysses Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "husband(Y_4, Y_2)",
+                "friend(\"Maxwell Henderson\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "b2672c58-7f4d-45ff-aa36-b24753db0565",
+        "question": "Who is the cousin of the nephew of Dwain Lizotte?",
+        "solution_traces": "[{\"Y_4\": \"Lucas Mckenna\", \"Y_2\": \"Lila Petry\"}, {\"Y_4\": \"Rolland Mckenna\", \"Y_2\": \"Lila Petry\"}, {\"Y_2\": \"Maranda Lizotte\", \"Y_4\": \"Lucas Mckenna\"}, {\"Y_2\": \"Maranda Lizotte\", \"Y_4\": \"Rolland Mckenna\"}, {\"Y_4\": \"Lucas Mckenna\", \"Y_2\": \"Nathanial Lizotte\"}, {\"Y_4\": \"Rolland Mckenna\", \"Y_2\": \"Nathanial Lizotte\"}, {\"Y_2\": \"Hanh Mohan\", \"Y_4\": \"Lucas Mckenna\"}, {\"Y_4\": \"Rolland Mckenna\", \"Y_2\": \"Hanh Mohan\"}, {\"Y_4\": \"Rolland Mckenna\", \"Y_2\": \"Yoko Wilkie\"}, {\"Y_4\": \"Rolland Mckenna\", \"Y_2\": \"Chuck Lizotte\"}, {\"Y_2\": \"Chuck Lizotte\", \"Y_4\": \"Lucas Mckenna\"}, {\"Y_2\": \"Yoko Wilkie\", \"Y_4\": \"Lucas Mckenna\"}]",
+        "answer": [
+            "Chuck Lizotte",
+            "Hanh Mohan",
+            "Lila Petry",
+            "Maranda Lizotte",
+            "Nathanial Lizotte",
+            "Yoko Wilkie"
+        ],
+        "prolog": {
+            "query": [
+                "cousin(Y_4, Y_2)",
+                "nephew(\"Dwain Lizotte\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "03aae3ea-d9d1-43fe-a779-fa2ff7b48ae4",
+        "question": "Who is the great-granddaughter of the parent of Shelli Beltran?",
+        "solution_traces": "[{\"Y_4\": \"Alison Smock\", \"Y_2\": \"Valentina Wexler\"}, {\"Y_4\": \"Williams Smock\", \"Y_2\": \"Lenore Hackworth\"}, {\"Y_2\": \"Johnetta Wang\", \"Y_4\": \"Williams Smock\"}, {\"Y_4\": \"Alison Smock\", \"Y_2\": \"Leeann Hackworth\"}, {\"Y_4\": \"Alison Smock\", \"Y_2\": \"Lenore Hackworth\"}, {\"Y_4\": \"Alison Smock\", \"Y_2\": \"Johnetta Wang\"}, {\"Y_4\": \"Williams Smock\", \"Y_2\": \"Leeann Hackworth\"}, {\"Y_4\": \"Williams Smock\", \"Y_2\": \"Valentina Wexler\"}]",
+        "answer": [
+            "Johnetta Wang",
+            "Leeann Hackworth",
+            "Lenore Hackworth",
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "great_granddaughter(Y_4, Y_2)",
+                "parent(\"Shelli Beltran\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "49b5fef3-ee4d-4a3f-ad11-f5c067c8bfb4",
+        "question": "Who is the granddaughter of the niece of Jona Carrell?",
+        "solution_traces": "[{\"Y_2\": \"Monique Palermo\", \"Y_4\": \"Blair Etheridge\"}, {\"Y_4\": \"Blair Etheridge\", \"Y_2\": \"Rosanna Palermo\"}, {\"Y_4\": \"Blair Etheridge\", \"Y_2\": \"Hannah Palermo\"}]",
+        "answer": [
+            "Hannah Palermo",
+            "Monique Palermo",
+            "Rosanna Palermo"
+        ],
+        "prolog": {
+            "query": [
+                "granddaughter(Y_4, Y_2)",
+                "niece(\"Jona Carrell\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "66973c72-4d1f-4232-8931-12a425f9e211",
+        "question": "Who is the father-in-law of the father of Charlie Kovach?",
+        "solution_traces": "[{\"Y_4\": \"Everett Kovach\", \"Y_2\": \"Adolph Brannan\"}]",
+        "answer": [
+            "Adolph Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "father_in_law(Y_4, Y_2)",
+                "father(\"Charlie Kovach\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false
+    },
+    {
+        "id": "039b87c4-e920-4898-822a-6a2277366220",
+        "question": "Who is the child of the sibling of Rosanna Palermo?",
+        "solution_traces": "[{\"Y_4\": \"Francisco Palermo\", \"Y_2\": \"Joel Palermo\"}, {\"Y_4\": \"Francisco Palermo\", \"Y_2\": \"Zoraida Palermo\"}, {\"Y_4\": \"Francisco Palermo\", \"Y_2\": \"Roman Palermo\"}, {\"Y_4\": \"Francisco Palermo\", \"Y_2\": \"Madelyn Palermo\"}]",
+        "answer": [
+            "Joel Palermo",
+            "Madelyn Palermo",
+            "Roman Palermo",
+            "Zoraida Palermo"
+        ],
+        "prolog": {
+            "query": [
+                "child(Y_4, Y_2)",
+                "sibling(\"Rosanna Palermo\", Y_4)"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "<name>_6",
+            "?"
+        ],
+        "type": 1,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false
+    }
+]

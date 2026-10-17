@@ -1,0 +1,19 @@
+sister("Marguerite Putnam", "Katherine Carswell").
+sister("Marguerite Putnam", "Lora Vogt").
+sister("Marguerite Putnam", "Sheila Putnam").
+mother("Marguerite Putnam", "Coral Putnam").
+father("Marguerite Putnam", "Marvin Putnam").
+friend("Marguerite Putnam", "Stacy Strong").
+friend("Marguerite Putnam", "Brianne Layton").
+friend("Marguerite Putnam", "Lera Carty").
+friend("Marguerite Putnam", "Maryam Maness").
+friend("Marguerite Putnam", "Amos Hollinger").
+friend("Marguerite Putnam", "Charley Weise").
+friend("Marguerite Putnam", "Cleo Peeler").
+friend("Marguerite Putnam", "Matilda Chou").
+friend("Marguerite Putnam", "Mireya Ibarra").
+friend("Marguerite Putnam", "Keith Noland").
+dob("Marguerite Putnam", "0493-03-11").
+job("Marguerite Putnam", "chemical engineer").
+hobby("Marguerite Putnam", "wikipedia editing").
+gender("Marguerite Putnam", "female").

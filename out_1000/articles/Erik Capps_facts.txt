@@ -1,0 +1,16 @@
+son("Erik Capps", "Brandon Capps").
+wife("Erik Capps", "Tracey Capps").
+friend("Erik Capps", "Ilona Klink").
+friend("Erik Capps", "Garrett Bauman").
+friend("Erik Capps", "Audie Lasher").
+friend("Erik Capps", "Bo Frink").
+friend("Erik Capps", "Ligia Frink").
+friend("Erik Capps", "Darin Hollinger").
+friend("Erik Capps", "Loren Littleton").
+friend("Erik Capps", "Lorenzo Littleton").
+friend("Erik Capps", "Desmond Dacosta").
+friend("Erik Capps", "Shaunna Fordham").
+dob("Erik Capps", "0321-06-28").
+job("Erik Capps", "surgeon").
+hobby("Erik Capps", "rughooking").
+gender("Erik Capps", "male").

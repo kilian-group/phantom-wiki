@@ -1,0 +1,8 @@
+son("Joslyn Mason", "Bruce Mason").
+husband("Joslyn Mason", "Clarence Mason").
+friend("Joslyn Mason", "Harold Wilkie").
+friend("Joslyn Mason", "Geri Woodman").
+dob("Joslyn Mason", "0249-10-17").
+job("Joslyn Mason", "chief executive officer").
+hobby("Joslyn Mason", "aerospace").
+gender("Joslyn Mason", "female").

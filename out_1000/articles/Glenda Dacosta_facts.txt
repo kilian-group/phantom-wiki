@@ -1,0 +1,17 @@
+mother("Glenda Dacosta", "Vada Littleton").
+father("Glenda Dacosta", "Dennis Littleton").
+son("Glenda Dacosta", "Desmond Dacosta").
+son("Glenda Dacosta", "Ricardo Dacosta").
+husband("Glenda Dacosta", "Alec Dacosta").
+friend("Glenda Dacosta", "Jacinta Gilliam").
+friend("Glenda Dacosta", "Sona Fredrick").
+friend("Glenda Dacosta", "Addie Shilling").
+friend("Glenda Dacosta", "Trudy Lennox").
+friend("Glenda Dacosta", "Nestor Lasher").
+friend("Glenda Dacosta", "Tena Beamon").
+friend("Glenda Dacosta", "Emmanuel Swartz").
+friend("Glenda Dacosta", "Anna Broughton").
+dob("Glenda Dacosta", "0397-08-08").
+job("Glenda Dacosta", "sound technician").
+hobby("Glenda Dacosta", "fishing").
+gender("Glenda Dacosta", "female").

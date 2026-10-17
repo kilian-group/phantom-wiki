@@ -1,0 +1,16 @@
+mother("Ruben Corwin", "Michaela Corwin").
+father("Ruben Corwin", "Son Corwin").
+friend("Ruben Corwin", "Sebastian Minnick").
+friend("Ruben Corwin", "Bret Smart").
+friend("Ruben Corwin", "Fatimah Holtz").
+friend("Ruben Corwin", "Gerry Shank").
+friend("Ruben Corwin", "Shizuko Sheridan").
+friend("Ruben Corwin", "Delbert Courson").
+friend("Ruben Corwin", "Jenni Kell").
+friend("Ruben Corwin", "Ashleigh Spiller").
+friend("Ruben Corwin", "Freddie Barrows").
+friend("Ruben Corwin", "Lynda Mahoney").
+dob("Ruben Corwin", "0428-01-03").
+job("Ruben Corwin", "early years teacher").
+hobby("Ruben Corwin", "mineral collecting").
+gender("Ruben Corwin", "male").

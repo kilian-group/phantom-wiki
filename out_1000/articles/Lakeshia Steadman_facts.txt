@@ -1,0 +1,21 @@
+daughter("Lakeshia Steadman", "Sarah Steadman").
+husband("Lakeshia Steadman", "Porter Steadman").
+friend("Lakeshia Steadman", "Louie Bales").
+friend("Lakeshia Steadman", "Rickie Burdette").
+friend("Lakeshia Steadman", "Edythe Osterman").
+friend("Lakeshia Steadman", "Estella Dana").
+friend("Lakeshia Steadman", "Fernando Dana").
+friend("Lakeshia Steadman", "Ivette Eaves").
+friend("Lakeshia Steadman", "Marybeth Dana").
+friend("Lakeshia Steadman", "Verona Medellin").
+friend("Lakeshia Steadman", "Hugh Noland").
+friend("Lakeshia Steadman", "Millard Fordham").
+friend("Lakeshia Steadman", "Lashandra Bowles").
+friend("Lakeshia Steadman", "Danilo Mcgough").
+friend("Lakeshia Steadman", "Lera Carty").
+friend("Lakeshia Steadman", "Mayra Geter").
+friend("Lakeshia Steadman", "Romona Littleton").
+dob("Lakeshia Steadman", "0439-03-25").
+job("Lakeshia Steadman", "social research officer").
+hobby("Lakeshia Steadman", "ballet dancing").
+gender("Lakeshia Steadman", "female").

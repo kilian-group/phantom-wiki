@@ -1,0 +1,11 @@
+mother("Tomas Townsend", "Gwendolyn Townsend").
+father("Tomas Townsend", "Terrance Townsend").
+friend("Tomas Townsend", "Tawana Machado").
+friend("Tomas Townsend", "Manuel Smart").
+friend("Tomas Townsend", "Cora Fordham").
+friend("Tomas Townsend", "Shelly Fredrick").
+friend("Tomas Townsend", "Shawna Towns").
+dob("Tomas Townsend", "0530-07-23").
+job("Tomas Townsend", "photographer").
+hobby("Tomas Townsend", "benchmarking").
+gender("Tomas Townsend", "male").

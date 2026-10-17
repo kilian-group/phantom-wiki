@@ -1,0 +1,19 @@
+brother("Rolf Booth", "Tommy Booth").
+mother("Rolf Booth", "Kanesha Booth").
+father("Rolf Booth", "Preston Booth").
+friend("Rolf Booth", "Maggie Vanmeter").
+friend("Rolf Booth", "Ofelia Callender").
+friend("Rolf Booth", "Josie Littleton").
+friend("Rolf Booth", "Sherrie Jansen").
+friend("Rolf Booth", "Enid Dalton").
+friend("Rolf Booth", "Darren Gilliam").
+friend("Rolf Booth", "Shannon Fredrick").
+friend("Rolf Booth", "Guadalupe Palomo").
+friend("Rolf Booth", "Ardath Skidmore").
+friend("Rolf Booth", "Jo Medeiros").
+friend("Rolf Booth", "Otto Horan").
+friend("Rolf Booth", "Sophie Wilke").
+dob("Rolf Booth", "0434-05-21").
+job("Rolf Booth", "development worker").
+hobby("Rolf Booth", "trade fair visiting").
+gender("Rolf Booth", "male").

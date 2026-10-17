@@ -1,0 +1,611 @@
+[
+    {
+        "id": "744821b3-a153-4a0c-87f2-6a25caa39796",
+        "question": "Who is the daughter-in-law of the person whose hobby is stone collecting?",
+        "solution_traces": "[{\"Y_4\": \"Chrissy Mcgough\", \"Y_2\": \"Myrl Mcgough\"}]",
+        "answer": [
+            "Myrl Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "daughter_in_law(Y_4, Y_2)",
+                "hobby(Y_4, \"stone collecting\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "0900935b-09ed-43a4-9185-6f2aab0fca28",
+        "question": "Who is the friend of the person whose occupation is IT trainer?",
+        "solution_traces": "[{\"Y_4\": \"Colby Narvaez\", \"Y_2\": \"Louann Chrisman\"}, {\"Y_4\": \"Colby Narvaez\", \"Y_2\": \"Charley Vandenberg\"}, {\"Y_4\": \"Colby Narvaez\", \"Y_2\": \"Jackie Vandenberg\"}, {\"Y_4\": \"Colby Narvaez\", \"Y_2\": \"Elroy Mcgough\"}, {\"Y_2\": \"Jaime Remillard\", \"Y_4\": \"Colby Narvaez\"}]",
+        "answer": [
+            "Charley Vandenberg",
+            "Elroy Mcgough",
+            "Jackie Vandenberg",
+            "Jaime Remillard",
+            "Louann Chrisman"
+        ],
+        "prolog": {
+            "query": [
+                "friend(Y_4, Y_2)",
+                "job(Y_4, \"IT trainer\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "2d8c5c4d-545a-4b3d-b26e-1cdba7fcf989",
+        "question": "Who is the daughter of the person whose hobby is stone collecting?",
+        "solution_traces": "[{\"Y_2\": \"Ophelia Mcgough\", \"Y_4\": \"Chrissy Mcgough\"}]",
+        "answer": [
+            "Ophelia Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "daughter(Y_4, Y_2)",
+                "hobby(Y_4, \"stone collecting\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "d99b5e33-b126-436a-b1fc-a621439d50ee",
+        "question": "Who is the friend of the person whose occupation is geoscientist?",
+        "solution_traces": "[{\"Y_4\": \"Chrissy Mcgough\", \"Y_2\": \"Sherrie Remillard\"}, {\"Y_2\": \"Tashina Vandenberg\", \"Y_4\": \"Chrissy Mcgough\"}, {\"Y_4\": \"Chrissy Mcgough\", \"Y_2\": \"Mason Oberg\"}, {\"Y_4\": \"Chrissy Mcgough\", \"Y_2\": \"Kirsten Oberg\"}]",
+        "answer": [
+            "Kirsten Oberg",
+            "Mason Oberg",
+            "Sherrie Remillard",
+            "Tashina Vandenberg"
+        ],
+        "prolog": {
+            "query": [
+                "friend(Y_4, Y_2)",
+                "job(Y_4, \"geoscientist\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "7540051f-f8c9-47a1-b76b-7580e423fc63",
+        "question": "Who is the female cousin of the person whose hobby is herping?",
+        "solution_traces": "[{\"Y_4\": \"Dorinda Chrisman\", \"Y_2\": \"Mai Remillard\"}]",
+        "answer": [
+            "Mai Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "female_cousin(Y_4, Y_2)",
+                "hobby(Y_4, \"herping\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 4,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "78d56992-2263-41d8-8c2a-2fe755a2ae6d",
+        "question": "Who is the son of the person whose occupation is professor emeritus?",
+        "solution_traces": "[{\"Y_2\": \"Jaime Remillard\", \"Y_4\": \"Jon Remillard\"}, {\"Y_2\": \"Jude Remillard\", \"Y_4\": \"Jon Remillard\"}]",
+        "answer": [
+            "Jaime Remillard",
+            "Jude Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "son(Y_4, Y_2)",
+                "job(Y_4, \"professor emeritus\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "2ed55381-a3a6-4f50-aa73-4492922b99d7",
+        "question": "Who is the cousin of the person whose occupation is scientist?",
+        "solution_traces": "[{\"Y_4\": \"Kori Remillard\", \"Y_2\": \"Hunter Remillard\"}, {\"Y_4\": \"Kori Remillard\", \"Y_2\": \"Margie Remillard\"}, {\"Y_2\": \"Chrissy Remillard\", \"Y_4\": \"Kori Remillard\"}]",
+        "answer": [
+            "Chrissy Remillard",
+            "Hunter Remillard",
+            "Margie Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "cousin(Y_4, Y_2)",
+                "job(Y_4, \"scientist\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 4,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "95543d58-0a60-4d2c-8f86-cf982fc67b8c",
+        "question": "Who is the friend of the person whose date of birth is 0275-01-22?",
+        "solution_traces": "[{\"Y_4\": \"Brigida Oberg\", \"Y_2\": \"Kori Remillard\"}, {\"Y_2\": \"Jackie Vandenberg\", \"Y_4\": \"Brigida Oberg\"}, {\"Y_2\": \"Tianna Remillard\", \"Y_4\": \"Brigida Oberg\"}, {\"Y_4\": \"Brigida Oberg\", \"Y_2\": \"Renate Oberg\"}, {\"Y_2\": \"Jaime Remillard\", \"Y_4\": \"Brigida Oberg\"}, {\"Y_2\": \"Alvaro Murphey\", \"Y_4\": \"Brigida Oberg\"}]",
+        "answer": [
+            "Alvaro Murphey",
+            "Jackie Vandenberg",
+            "Jaime Remillard",
+            "Kori Remillard",
+            "Renate Oberg",
+            "Tianna Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "friend(Y_4, Y_2)",
+                "dob(Y_4, \"0275-01-22\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "f377fbaa-371b-473b-a711-fe85592e1550",
+        "question": "Who is the granddaughter of the person whose occupation is professor emeritus?",
+        "solution_traces": "[{\"Y_2\": \"Chrissy Remillard\", \"Y_4\": \"Jon Remillard\"}, {\"Y_2\": \"Margie Remillard\", \"Y_4\": \"Jon Remillard\"}, {\"Y_2\": \"Kori Remillard\", \"Y_4\": \"Jon Remillard\"}]",
+        "answer": [
+            "Chrissy Remillard",
+            "Kori Remillard",
+            "Margie Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "granddaughter(Y_4, Y_2)",
+                "job(Y_4, \"professor emeritus\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "b2b382e1-8d8a-4b89-99ea-fb6a093b4eb5",
+        "question": "Who is the son-in-law of the person whose occupation is diagnostic radiographer?",
+        "solution_traces": "[{\"Y_2\": \"Jon Remillard\", \"Y_4\": \"King Dishman\"}]",
+        "answer": [
+            "Jon Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "son_in_law(Y_4, Y_2)",
+                "job(Y_4, \"diagnostic radiographer\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "638d2d1c-66c3-4af0-b4a4-624bc5441d8d",
+        "question": "Who is the mother of the person whose date of birth is 0358-04-15?",
+        "solution_traces": "[{\"Y_4\": \"Demarcus Narvaez\", \"Y_2\": \"Luisa Narvaez\"}]",
+        "answer": [
+            "Luisa Narvaez"
+        ],
+        "prolog": {
+            "query": [
+                "mother(Y_4, Y_2)",
+                "dob(Y_4, \"0358-04-15\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "09f9f96a-82d6-4159-994e-85d1e825a8f9",
+        "question": "Who is the sibling of the person whose hobby is herbalism?",
+        "solution_traces": "[{\"Y_2\": \"Lyman Oberg\", \"Y_4\": \"Monte Oberg\"}, {\"Y_2\": \"Clyde Oberg\", \"Y_4\": \"Monte Oberg\"}]",
+        "answer": [
+            "Clyde Oberg",
+            "Lyman Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "sibling(Y_4, Y_2)",
+                "hobby(Y_4, \"herbalism\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "534a4592-6704-48be-88aa-01cd952ffb0a",
+        "question": "Who is the father of the person whose hobby is gongoozling?",
+        "solution_traces": "[{\"Y_4\": \"Louann Chrisman\", \"Y_2\": \"Hunter Remillard\"}]",
+        "answer": [
+            "Hunter Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "father(Y_4, Y_2)",
+                "hobby(Y_4, \"gongoozling\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "d246b41e-13af-4a58-aaa2-cc3cc2756e48",
+        "question": "Who is the female cousin of the person whose date of birth is 0328-04-20?",
+        "solution_traces": "[{\"Y_2\": \"Twila Oberg\", \"Y_4\": \"Sarah Oberg\"}]",
+        "answer": [
+            "Twila Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "female_cousin(Y_4, Y_2)",
+                "dob(Y_4, \"0328-04-20\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 4,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "faddce71-dacb-45bd-9779-304231138473",
+        "question": "Who is the sibling of the person whose occupation is veterinary surgeon?",
+        "solution_traces": "[{\"Y_4\": \"Chrissy Remillard\", \"Y_2\": \"Margie Remillard\"}, {\"Y_4\": \"Chrissy Remillard\", \"Y_2\": \"Hunter Remillard\"}]",
+        "answer": [
+            "Hunter Remillard",
+            "Margie Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "sibling(Y_4, Y_2)",
+                "job(Y_4, \"veterinary surgeon\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "cb914cbf-e294-4b60-9f95-38fd7421b290",
+        "question": "Who is the friend of the person whose occupation is radiographer?",
+        "solution_traces": "[{\"Y_2\": \"Demarcus Narvaez\", \"Y_4\": \"Wanita Remillard\"}, {\"Y_2\": \"Cherlyn Oberg\", \"Y_4\": \"Wanita Remillard\"}, {\"Y_2\": \"Ophelia Mcgough\", \"Y_4\": \"Wanita Remillard\"}, {\"Y_2\": \"Alvaro Murphey\", \"Y_4\": \"Wanita Remillard\"}]",
+        "answer": [
+            "Alvaro Murphey",
+            "Cherlyn Oberg",
+            "Demarcus Narvaez",
+            "Ophelia Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "friend(Y_4, Y_2)",
+                "job(Y_4, \"radiographer\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "159dfa92-29e2-4f30-af54-0e69b4ad00d2",
+        "question": "Who is the great-aunt of the person whose hobby is stuffed toy collecting?",
+        "solution_traces": "[{\"Y_4\": \"Celestine Remillard\", \"Y_2\": \"Wanita Remillard\"}]",
+        "answer": [
+            "Wanita Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "great_aunt(Y_4, Y_2)",
+                "hobby(Y_4, \"stuffed toy collecting\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 4,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "c27afff2-9f0e-43e3-91d2-a19f78917354",
+        "question": "Who is the uncle of the person whose occupation is firefighter?",
+        "solution_traces": "[{\"Y_4\": \"Luke Wilke\", \"Y_2\": \"Charley Vandenberg\"}, {\"Y_4\": \"Luke Wilke\", \"Y_2\": \"Eli Vandenberg\"}]",
+        "answer": [
+            "Charley Vandenberg",
+            "Eli Vandenberg"
+        ],
+        "prolog": {
+            "query": [
+                "uncle(Y_4, Y_2)",
+                "job(Y_4, \"firefighter\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "e7920e02-f9ee-4618-87e9-4a33aed4db22",
+        "question": "Who is the uncle of the person whose date of birth is 0305-04-10?",
+        "solution_traces": "[{\"Y_2\": \"Bryce Oberg\", \"Y_4\": \"Lyman Oberg\"}]",
+        "answer": [
+            "Bryce Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "uncle(Y_4, Y_2)",
+                "dob(Y_4, \"0305-04-10\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 3,
+        "is_aggregation_question": false
+    },
+    {
+        "id": "cb5f08d4-4112-423e-92ee-b0fa4c664d29",
+        "question": "Who is the friend of the person whose hobby is photography?",
+        "solution_traces": "[{\"Y_2\": \"Dorinda Chrisman\", \"Y_4\": \"Elroy Mcgough\"}, {\"Y_4\": \"Elroy Mcgough\", \"Y_2\": \"Eli Vandenberg\"}, {\"Y_2\": \"Colby Narvaez\", \"Y_4\": \"Elroy Mcgough\"}, {\"Y_4\": \"Elroy Mcgough\", \"Y_2\": \"Rhoda Narvaez\"}, {\"Y_2\": \"Mai Remillard\", \"Y_4\": \"Elroy Mcgough\"}, {\"Y_2\": \"Sherrie Remillard\", \"Y_4\": \"Elroy Mcgough\"}, {\"Y_4\": \"Elroy Mcgough\", \"Y_2\": \"Charley Vandenberg\"}]",
+        "answer": [
+            "Charley Vandenberg",
+            "Colby Narvaez",
+            "Dorinda Chrisman",
+            "Eli Vandenberg",
+            "Mai Remillard",
+            "Rhoda Narvaez",
+            "Sherrie Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "friend(Y_4, Y_2)",
+                "hobby(Y_4, \"photography\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 2,
+        "difficulty": 2,
+        "is_aggregation_question": false
+    }
+]

@@ -1,0 +1,15 @@
+son("Trevor Frink", "Bo Frink").
+wife("Trevor Frink", "Ligia Frink").
+friend("Trevor Frink", "Porter Steadman").
+friend("Trevor Frink", "Kareem Goff").
+friend("Trevor Frink", "Latisha Smart").
+friend("Trevor Frink", "Kayla Ballard").
+friend("Trevor Frink", "Beatriz Theriot").
+friend("Trevor Frink", "Wade Sheridan").
+friend("Trevor Frink", "Brandon Winn").
+friend("Trevor Frink", "Lynetta Mckenna").
+friend("Trevor Frink", "Javier Basham").
+dob("Trevor Frink", "0366-02-23").
+job("Trevor Frink", "learning mentor").
+hobby("Trevor Frink", "tennis").
+gender("Trevor Frink", "male").

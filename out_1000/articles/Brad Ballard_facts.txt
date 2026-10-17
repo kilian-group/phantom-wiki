@@ -1,0 +1,16 @@
+mother("Brad Ballard", "Natalie Ballard").
+father("Brad Ballard", "Avery Ballard").
+son("Brad Ballard", "Hal Ballard").
+son("Brad Ballard", "Major Ballard").
+daughter("Brad Ballard", "Lashandra Bowles").
+wife("Brad Ballard", "Kayla Ballard").
+friend("Brad Ballard", "Nickolas Holtz").
+friend("Brad Ballard", "Laverna Kell").
+friend("Brad Ballard", "Olin Fordham").
+friend("Brad Ballard", "Dustin Peeler").
+friend("Brad Ballard", "Nydia Hollins").
+friend("Brad Ballard", "Brigette Keyes").
+dob("Brad Ballard", "0415-06-16").
+job("Brad Ballard", "osteopath").
+hobby("Brad Ballard", "long-distance running").
+gender("Brad Ballard", "male").

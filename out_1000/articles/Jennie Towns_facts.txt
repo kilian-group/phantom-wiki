@@ -1,0 +1,14 @@
+son("Jennie Towns", "Kennith Towns").
+husband("Jennie Towns", "Cedric Towns").
+friend("Jennie Towns", "Christen Corwin").
+friend("Jennie Towns", "Dena Morehead").
+friend("Jennie Towns", "Lashandra Gilliam").
+friend("Jennie Towns", "Delbert Courson").
+friend("Jennie Towns", "Guillermo Lasher").
+friend("Jennie Towns", "Darin Hollinger").
+friend("Jennie Towns", "Clair Brumbaugh").
+friend("Jennie Towns", "Marlene Ingalls").
+dob("Jennie Towns", "0504-04-16").
+job("Jennie Towns", "airline pilot").
+hobby("Jennie Towns", "volleyball").
+gender("Jennie Towns", "female").

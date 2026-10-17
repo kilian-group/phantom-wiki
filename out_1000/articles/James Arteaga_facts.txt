@@ -1,0 +1,16 @@
+sister("James Arteaga", "Verona Arteaga").
+mother("James Arteaga", "Hope Arteaga").
+father("James Arteaga", "Irwin Arteaga").
+friend("James Arteaga", "Emory Bond").
+friend("James Arteaga", "Ricky Carswell").
+friend("James Arteaga", "Ryan Bowles").
+friend("James Arteaga", "Myrl Mcgough").
+friend("James Arteaga", "Dorathy Hamlin").
+friend("James Arteaga", "Bridget Sutphin").
+friend("James Arteaga", "Cedrick Lester").
+friend("James Arteaga", "Claudine Bales").
+friend("James Arteaga", "Genny Burdette").
+dob("James Arteaga", "0429-01-10").
+job("James Arteaga", "emergency planning officer").
+hobby("James Arteaga", "botany").
+gender("James Arteaga", "male").

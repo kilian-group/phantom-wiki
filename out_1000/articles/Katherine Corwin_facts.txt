@@ -1,0 +1,16 @@
+sister("Katherine Corwin", "Malissa Corwin").
+brother("Katherine Corwin", "Colin Corwin").
+brother("Katherine Corwin", "Robby Corwin").
+mother("Katherine Corwin", "Christen Corwin").
+father("Katherine Corwin", "Solomon Corwin").
+friend("Katherine Corwin", "Lera Mcpeak").
+friend("Katherine Corwin", "Fernando Vandenberg").
+friend("Katherine Corwin", "Julio Mcgough").
+friend("Katherine Corwin", "Sheena Dame").
+friend("Katherine Corwin", "Ella Valladares").
+friend("Katherine Corwin", "Veronica Cowart").
+friend("Katherine Corwin", "Benito Ruth").
+dob("Katherine Corwin", "0404-07-09").
+job("Katherine Corwin", "astronomer").
+hobby("Katherine Corwin", "audiophile").
+gender("Katherine Corwin", "female").

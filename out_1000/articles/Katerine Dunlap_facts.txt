@@ -1,0 +1,12 @@
+son("Katerine Dunlap", "Donnie Dunlap").
+son("Katerine Dunlap", "Kenton Dunlap").
+daughter("Katerine Dunlap", "Patrice Dunlap").
+husband("Katerine Dunlap", "Sammy Dunlap").
+friend("Katerine Dunlap", "Virgina Noland").
+friend("Katerine Dunlap", "Cary Carswell").
+friend("Katerine Dunlap", "Nevin Mckenna").
+friend("Katerine Dunlap", "Shante Ruth").
+dob("Katerine Dunlap", "0287-12-24").
+job("Katerine Dunlap", "maintenance engineer").
+hobby("Katerine Dunlap", "ant farming").
+gender("Katerine Dunlap", "female").

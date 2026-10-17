@@ -1,0 +1,14 @@
+sister("Randall Mcgough", "Ophelia Mcgough").
+mother("Randall Mcgough", "Chrissy Mcgough").
+father("Randall Mcgough", "Elroy Mcgough").
+daughter("Randall Mcgough", "Clara Mcgough").
+daughter("Randall Mcgough", "Delsie Mcgough").
+wife("Randall Mcgough", "Myrl Mcgough").
+friend("Randall Mcgough", "Cherlyn Oberg").
+friend("Randall Mcgough", "Sarah Oberg").
+friend("Randall Mcgough", "Aurelia Dishman").
+friend("Randall Mcgough", "Luke Wilke").
+dob("Randall Mcgough", "0317-09-07").
+job("Randall Mcgough", "careers information officer").
+hobby("Randall Mcgough", "fishkeeping").
+gender("Randall Mcgough", "male").

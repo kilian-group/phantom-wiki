@@ -1,0 +1,14 @@
+son("Douglass Resendez", "Salvatore Resendez").
+daughter("Douglass Resendez", "Christen Resendez").
+wife("Douglass Resendez", "Mia Resendez").
+friend("Douglass Resendez", "Fredrick Mckenna").
+friend("Douglass Resendez", "Drema Jefferson").
+friend("Douglass Resendez", "Grant Lasher").
+friend("Douglass Resendez", "Dalton Arnold").
+friend("Douglass Resendez", "Almeta Younger").
+friend("Douglass Resendez", "Lance Carreon").
+friend("Douglass Resendez", "Hershel Shilling").
+dob("Douglass Resendez", "0426-10-23").
+job("Douglass Resendez", "general practice doctor").
+hobby("Douglass Resendez", "paragliding").
+gender("Douglass Resendez", "male").

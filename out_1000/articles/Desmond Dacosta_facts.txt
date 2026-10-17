@@ -1,0 +1,19 @@
+brother("Desmond Dacosta", "Ricardo Dacosta").
+mother("Desmond Dacosta", "Glenda Dacosta").
+father("Desmond Dacosta", "Alec Dacosta").
+son("Desmond Dacosta", "Adalberto Dacosta").
+son("Desmond Dacosta", "Nickolas Dacosta").
+wife("Desmond Dacosta", "Ai Dacosta").
+friend("Desmond Dacosta", "Lucienne Gilliam").
+friend("Desmond Dacosta", "Buck Smart").
+friend("Desmond Dacosta", "Erik Capps").
+friend("Desmond Dacosta", "Robyn Forester").
+friend("Desmond Dacosta", "Babette Jarrett").
+friend("Desmond Dacosta", "Erick Courson").
+friend("Desmond Dacosta", "Maryam Maness").
+friend("Desmond Dacosta", "Ellis Brumbaugh").
+friend("Desmond Dacosta", "Maximilian Keyes").
+dob("Desmond Dacosta", "0424-12-05").
+job("Desmond Dacosta", "warehouse manager").
+hobby("Desmond Dacosta", "meditation").
+gender("Desmond Dacosta", "male").

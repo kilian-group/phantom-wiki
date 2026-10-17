@@ -1,0 +1,10 @@
+son("Brian Beltran", "Dino Beltran").
+son("Brian Beltran", "Orlando Beltran").
+wife("Brian Beltran", "Daisy Beltran").
+friend("Brian Beltran", "Maxwell Henderson").
+friend("Brian Beltran", "Ashely Kee").
+friend("Brian Beltran", "Pasquale Levy").
+dob("Brian Beltran", "0237-07-27").
+job("Brian Beltran", "oncologist").
+hobby("Brian Beltran", "dolls").
+gender("Brian Beltran", "male").

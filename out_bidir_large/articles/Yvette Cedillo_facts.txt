@@ -1,0 +1,14 @@
+brother("Yvette Cedillo", "Jimmy Cedillo").
+brother("Yvette Cedillo", "Murray Cedillo").
+mother("Yvette Cedillo", "Lucienne Cedillo").
+father("Yvette Cedillo", "Ron Cedillo").
+friend("Yvette Cedillo", "Madelyn Palermo").
+friend("Yvette Cedillo", "Vicki Hackworth").
+friend("Yvette Cedillo", "Ming Cormier").
+friend("Yvette Cedillo", "Caleb Haber").
+friend("Yvette Cedillo", "Mona Pannell").
+friend("Yvette Cedillo", "Stuart Abraham").
+dob("Yvette Cedillo", "0324-03-05").
+job("Yvette Cedillo", "advertising art director").
+hobby("Yvette Cedillo", "archaeology").
+gender("Yvette Cedillo", "female").

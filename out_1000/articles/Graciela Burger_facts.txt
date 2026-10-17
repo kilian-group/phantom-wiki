@@ -1,0 +1,15 @@
+sister("Graciela Burger", "Coral Putnam").
+mother("Graciela Burger", "Lashandra Bowles").
+father("Graciela Burger", "Rueben Bowles").
+son("Graciela Burger", "Bruce Burger").
+daughter("Graciela Burger", "Macy Burger").
+husband("Graciela Burger", "Alex Burger").
+friend("Graciela Burger", "Justin Putnam").
+friend("Graciela Burger", "Harry Hudgens").
+friend("Graciela Burger", "Maegan Cordova").
+friend("Graciela Burger", "Paris Brumbaugh").
+friend("Graciela Burger", "Nikki Bond").
+dob("Graciela Burger", "0471-07-23").
+job("Graciela Burger", "estate agent").
+hobby("Graciela Burger", "travel").
+gender("Graciela Burger", "female").

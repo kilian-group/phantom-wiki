@@ -1,0 +1,11 @@
+son("Zoila Decosta", "Elwood Decosta").
+son("Zoila Decosta", "Jacques Decosta").
+daughter("Zoila Decosta", "Laurel Decosta").
+daughter("Zoila Decosta", "Margo Brannan").
+husband("Zoila Decosta", "Stuart Decosta").
+friend("Zoila Decosta", "Margot Skaggs").
+friend("Zoila Decosta", "Kasey Cedillo").
+dob("Zoila Decosta", "0159-09-14").
+job("Zoila Decosta", "database administrator").
+hobby("Zoila Decosta", "flying disc").
+gender("Zoila Decosta", "female").

@@ -1,0 +1,17 @@
+brother("Kelley Cheney", "Delbert Fredrick").
+brother("Kelley Cheney", "Levi Fredrick").
+mother("Kelley Cheney", "Shelly Fredrick").
+father("Kelley Cheney", "Malik Fredrick").
+daughter("Kelley Cheney", "Kimberely Cheney").
+husband("Kelley Cheney", "Sang Cheney").
+friend("Kelley Cheney", "Thomasena Marr").
+friend("Kelley Cheney", "Ilona Klink").
+friend("Kelley Cheney", "Jeff Haygood").
+friend("Kelley Cheney", "Theron Littleton").
+friend("Kelley Cheney", "Jacque Simons").
+friend("Kelley Cheney", "Heath Swartz").
+friend("Kelley Cheney", "Lynelle Smart").
+dob("Kelley Cheney", "0402-01-24").
+job("Kelley Cheney", "set designer").
+hobby("Kelley Cheney", "museum visiting").
+gender("Kelley Cheney", "female").

@@ -1,0 +1,20 @@
+mother("Kurtis Kell", "Patty Kell").
+father("Kurtis Kell", "Werner Kell").
+son("Kurtis Kell", "Felton Kell").
+son("Kurtis Kell", "Perry Kell").
+son("Kurtis Kell", "Simon Kell").
+daughter("Kurtis Kell", "Winnie Harlow").
+wife("Kurtis Kell", "Jackqueline Kell").
+friend("Kurtis Kell", "Cameron Mckenna").
+friend("Kurtis Kell", "Samatha Weise").
+friend("Kurtis Kell", "Pansy Cook").
+friend("Kurtis Kell", "Shizuko Eaves").
+friend("Kurtis Kell", "Roger Carreon").
+friend("Kurtis Kell", "Donnie Dunlap").
+friend("Kurtis Kell", "Alyssa Salem").
+friend("Kurtis Kell", "Demetra Medellin").
+friend("Kurtis Kell", "Brandon Capps").
+dob("Kurtis Kell", "0357-08-14").
+job("Kurtis Kell", "environmental education officer").
+hobby("Kurtis Kell", "bus riding").
+gender("Kurtis Kell", "male").

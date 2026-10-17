@@ -1,0 +1,17 @@
+sister("Skye Swartz", "Shannon Flores").
+mother("Skye Swartz", "Claudine Bales").
+father("Skye Swartz", "Louie Bales").
+son("Skye Swartz", "Emmanuel Swartz").
+daughter("Skye Swartz", "Keisha Mcdonald").
+husband("Skye Swartz", "Heath Swartz").
+friend("Skye Swartz", "Bret Smart").
+friend("Skye Swartz", "Barabara Wilke").
+friend("Skye Swartz", "Monty Depriest").
+friend("Skye Swartz", "Hyman Layman").
+friend("Skye Swartz", "Elisabeth Bauman").
+friend("Skye Swartz", "Rogelio Mckenna").
+friend("Skye Swartz", "Viva Jefferson").
+dob("Skye Swartz", "0392-12-05").
+job("Skye Swartz", "arts administrator").
+hobby("Skye Swartz", "herping").
+gender("Skye Swartz", "female").

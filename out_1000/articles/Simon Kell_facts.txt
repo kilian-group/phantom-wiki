@@ -1,0 +1,14 @@
+sister("Simon Kell", "Winnie Harlow").
+brother("Simon Kell", "Felton Kell").
+brother("Simon Kell", "Perry Kell").
+mother("Simon Kell", "Jackqueline Kell").
+father("Simon Kell", "Kurtis Kell").
+friend("Simon Kell", "Charley Weise").
+friend("Simon Kell", "Jennette Holliman").
+friend("Simon Kell", "Dixie Murdoch").
+friend("Simon Kell", "Lindy Kavanaugh").
+friend("Simon Kell", "Chauncey Wilkie").
+dob("Simon Kell", "0381-12-06").
+job("Simon Kell", "statistician").
+hobby("Simon Kell", "climbing").
+gender("Simon Kell", "male").

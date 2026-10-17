@@ -1,0 +1,15 @@
+sister("Brigette Keyes", "Anastasia Keyes").
+mother("Brigette Keyes", "Meghan Keyes").
+father("Brigette Keyes", "Maximilian Keyes").
+friend("Brigette Keyes", "Brad Ballard").
+friend("Brigette Keyes", "Natalie Ballard").
+friend("Brigette Keyes", "Shizuko Sheridan").
+friend("Brigette Keyes", "Porter Mckenna").
+friend("Brigette Keyes", "Winfred Basham").
+friend("Brigette Keyes", "Bradford Hayward").
+friend("Brigette Keyes", "Pansy Cook").
+friend("Brigette Keyes", "Davis Eaves").
+dob("Brigette Keyes", "0429-02-22").
+job("Brigette Keyes", "special effects artist").
+hobby("Brigette Keyes", "book folding").
+gender("Brigette Keyes", "female").

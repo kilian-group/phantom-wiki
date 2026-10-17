@@ -1,0 +1,14 @@
+brother("Garry Mcnew", "Ernesto Mcnew").
+brother("Garry Mcnew", "Hayden Mcnew").
+mother("Garry Mcnew", "Roxy Mcnew").
+father("Garry Mcnew", "Cole Mcnew").
+friend("Garry Mcnew", "Phylis Nicolas").
+friend("Garry Mcnew", "Rosendo Skaggs").
+friend("Garry Mcnew", "Cherise Earnest").
+friend("Garry Mcnew", "Madelyn Palermo").
+friend("Garry Mcnew", "Lauretta Mason").
+friend("Garry Mcnew", "Aida Wang").
+dob("Garry Mcnew", "0333-09-23").
+job("Garry Mcnew", "pharmacologist").
+hobby("Garry Mcnew", "model aircraft").
+gender("Garry Mcnew", "male").

@@ -1,0 +1,11 @@
+daughter("Lynette Macias", "Laverna Macias").
+husband("Lynette Macias", "Levi Macias").
+friend("Lynette Macias", "Lera Carty").
+friend("Lynette Macias", "Maurine Layman").
+friend("Lynette Macias", "Jacque Haygood").
+friend("Lynette Macias", "Raleigh Simons").
+friend("Lynette Macias", "Gwendolyn Townsend").
+dob("Lynette Macias", "0468-12-26").
+job("Lynette Macias", "chemist").
+hobby("Lynette Macias", "herbalism").
+gender("Lynette Macias", "female").

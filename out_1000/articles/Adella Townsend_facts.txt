@@ -1,0 +1,18 @@
+son("Adella Townsend", "Terrance Townsend").
+husband("Adella Townsend", "Lucio Townsend").
+friend("Adella Townsend", "Benito Ruth").
+friend("Adella Townsend", "Alix Mahoney").
+friend("Adella Townsend", "Karla Linares").
+friend("Adella Townsend", "Homer Morehead").
+friend("Adella Townsend", "Dorothea Goff").
+friend("Adella Townsend", "Roger Mcpeak").
+friend("Adella Townsend", "Ricky Carswell").
+friend("Adella Townsend", "Dino Layman").
+friend("Adella Townsend", "Nevin Mckenna").
+friend("Adella Townsend", "Karol Beamon").
+friend("Adella Townsend", "Maurine Wendel").
+friend("Adella Townsend", "Jacinta Simons").
+dob("Adella Townsend", "0470-02-17").
+job("Adella Townsend", "chiropractor").
+hobby("Adella Townsend", "vr gaming").
+gender("Adella Townsend", "female").

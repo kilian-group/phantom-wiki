@@ -1,0 +1,21 @@
+mother("Denny Vanmeter", "Pamala Vanmeter").
+father("Denny Vanmeter", "Theodore Vanmeter").
+son("Denny Vanmeter", "Felipe Vanmeter").
+wife("Denny Vanmeter", "Lora Vanmeter").
+friend("Denny Vanmeter", "James Maness").
+friend("Denny Vanmeter", "Karen Mckenna").
+friend("Denny Vanmeter", "Gena Brumbaugh").
+friend("Denny Vanmeter", "Paula Rudolph").
+friend("Denny Vanmeter", "Babette Simons").
+friend("Denny Vanmeter", "Alix Mahoney").
+friend("Denny Vanmeter", "Drew Dana").
+friend("Denny Vanmeter", "Kieth Medellin").
+friend("Denny Vanmeter", "Connie Cushman").
+friend("Denny Vanmeter", "Bradley Blanton").
+friend("Denny Vanmeter", "Romelia Bowles").
+friend("Denny Vanmeter", "Roni Jarrett").
+friend("Denny Vanmeter", "Levi Kell").
+dob("Denny Vanmeter", "0440-01-03").
+job("Denny Vanmeter", "clinical biochemist").
+hobby("Denny Vanmeter", "fossil hunting").
+gender("Denny Vanmeter", "male").

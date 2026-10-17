@@ -1,0 +1,15 @@
+sister("Isaiah Resendez", "Melina Resendez").
+brother("Isaiah Resendez", "Sung Resendez").
+brother("Isaiah Resendez", "Tyrell Resendez").
+mother("Isaiah Resendez", "Vita Resendez").
+father("Isaiah Resendez", "Bryan Resendez").
+friend("Isaiah Resendez", "Nedra Musick").
+friend("Isaiah Resendez", "Adalberto Dacosta").
+friend("Isaiah Resendez", "Justine Gibbs").
+friend("Isaiah Resendez", "Amberly Levine").
+friend("Isaiah Resendez", "Artie Putnam").
+friend("Isaiah Resendez", "Buffy Eaves").
+dob("Isaiah Resendez", "0372-06-28").
+job("Isaiah Resendez", "health visitor").
+hobby("Isaiah Resendez", "model aircraft").
+gender("Isaiah Resendez", "male").

@@ -1,0 +1,20 @@
+mother("Annette Rudolph", "Andrea Murchison").
+father("Annette Rudolph", "Keith Murchison").
+daughter("Annette Rudolph", "Gayla Holder").
+daughter("Annette Rudolph", "Lara Jansen").
+daughter("Annette Rudolph", "Paula Rudolph").
+daughter("Annette Rudolph", "Rebecka Schlosser").
+daughter("Annette Rudolph", "Wanda Murray").
+husband("Annette Rudolph", "Antwan Rudolph").
+friend("Annette Rudolph", "Pansy Cook").
+friend("Annette Rudolph", "Alphonso Goff").
+friend("Annette Rudolph", "Miki Peabody").
+friend("Annette Rudolph", "Lynelle Smart").
+friend("Annette Rudolph", "Vito Capps").
+friend("Annette Rudolph", "Alvaro Murphey").
+friend("Annette Rudolph", "Christen Weise").
+friend("Annette Rudolph", "Barabara Peeler").
+dob("Annette Rudolph", "0385-02-18").
+job("Annette Rudolph", "dietitian").
+hobby("Annette Rudolph", "meditation").
+gender("Annette Rudolph", "female").

@@ -1,0 +1,8 @@
+son("Hanh Boutte", "Johnathan Boutte").
+husband("Hanh Boutte", "Kevin Boutte").
+friend("Hanh Boutte", "Dwain Lizotte").
+friend("Hanh Boutte", "Rolland Mckenna").
+dob("Hanh Boutte", "0261-03-02").
+job("Hanh Boutte", "learning disability nurse").
+hobby("Hanh Boutte", "martial arts").
+gender("Hanh Boutte", "female").

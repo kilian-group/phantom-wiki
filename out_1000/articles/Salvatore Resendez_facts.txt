@@ -1,0 +1,13 @@
+sister("Salvatore Resendez", "Christen Resendez").
+mother("Salvatore Resendez", "Mia Resendez").
+father("Salvatore Resendez", "Douglass Resendez").
+son("Salvatore Resendez", "Keith Resendez").
+wife("Salvatore Resendez", "Jeanelle Resendez").
+friend("Salvatore Resendez", "Jamie Bellows").
+friend("Salvatore Resendez", "Kennith Towns").
+friend("Salvatore Resendez", "Reggie Medellin").
+friend("Salvatore Resendez", "Erik Fredrick").
+dob("Salvatore Resendez", "0453-02-03").
+job("Salvatore Resendez", "banker").
+hobby("Salvatore Resendez", "fishing").
+gender("Salvatore Resendez", "male").

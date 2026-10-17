@@ -1,0 +1,14 @@
+daughter("Clement Bennet", "Keri Bennet").
+daughter("Clement Bennet", "Ladawn Bennet").
+wife("Clement Bennet", "Monika Bennet").
+friend("Clement Bennet", "Israel Mathes").
+friend("Clement Bennet", "Toni Glass").
+friend("Clement Bennet", "Tamala Skidmore").
+friend("Clement Bennet", "Belia Mckenna").
+friend("Clement Bennet", "Sammie Simons").
+friend("Clement Bennet", "Shelba Simons").
+friend("Clement Bennet", "Lance Carreon").
+dob("Clement Bennet", "0402-10-02").
+job("Clement Bennet", "secondary school teacher").
+hobby("Clement Bennet", "orienteering").
+gender("Clement Bennet", "male").

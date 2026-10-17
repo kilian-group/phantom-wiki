@@ -1,0 +1,24 @@
+sister("Racquel Horan", "Larue Macias").
+sister("Racquel Horan", "Leonora Depriest").
+brother("Racquel Horan", "Donnie Mcgough").
+brother("Racquel Horan", "Julio Mcgough").
+brother("Racquel Horan", "Wilbur Mcgough").
+mother("Racquel Horan", "Myrl Mcgough").
+father("Racquel Horan", "Randall Mcgough").
+son("Racquel Horan", "Otto Horan").
+daughter("Racquel Horan", "Annabell Horan").
+husband("Racquel Horan", "Federico Horan").
+friend("Racquel Horan", "Viva Suh").
+friend("Racquel Horan", "Frankie Peeler").
+friend("Racquel Horan", "Maryann Peeler").
+friend("Racquel Horan", "Loren Littleton").
+friend("Racquel Horan", "Katy Flores").
+friend("Racquel Horan", "Tawana Machado").
+friend("Racquel Horan", "Nedra Musick").
+friend("Racquel Horan", "Maynard Latham").
+friend("Racquel Horan", "Sharron Palomo").
+friend("Racquel Horan", "Gabriele Wilke").
+dob("Racquel Horan", "0438-05-08").
+job("Racquel Horan", "research scientist").
+hobby("Racquel Horan", "history").
+gender("Racquel Horan", "female").

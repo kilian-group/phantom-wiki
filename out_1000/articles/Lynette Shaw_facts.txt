@@ -1,0 +1,9 @@
+son("Lynette Shaw", "Solomon Shaw").
+husband("Lynette Shaw", "Irvin Shaw").
+friend("Lynette Shaw", "Jeff Haygood").
+friend("Lynette Shaw", "Vanessa Keister").
+friend("Lynette Shaw", "Kieth Shaw").
+dob("Lynette Shaw", "0475-08-02").
+job("Lynette Shaw", "medical technical officer").
+hobby("Lynette Shaw", "insect collecting").
+gender("Lynette Shaw", "female").

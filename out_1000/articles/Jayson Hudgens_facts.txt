@@ -1,0 +1,16 @@
+mother("Jayson Hudgens", "Lindy Hudgens").
+father("Jayson Hudgens", "Harry Hudgens").
+friend("Jayson Hudgens", "Christoper Lasher").
+friend("Jayson Hudgens", "Kennith Towns").
+friend("Jayson Hudgens", "Karla Linares").
+friend("Jayson Hudgens", "Alexander Corwin").
+friend("Jayson Hudgens", "Michael Goff").
+friend("Jayson Hudgens", "Torrie Goff").
+friend("Jayson Hudgens", "Emory Bond").
+friend("Jayson Hudgens", "Amberly Levine").
+friend("Jayson Hudgens", "Jacque Greene").
+friend("Jayson Hudgens", "Derek Carswell").
+dob("Jayson Hudgens", "0498-09-08").
+job("Jayson Hudgens", "programme researcher").
+hobby("Jayson Hudgens", "shogi").
+gender("Jayson Hudgens", "male").

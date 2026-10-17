@@ -1,0 +1,14 @@
+sister("Delbert Fredrick", "Kelley Cheney").
+brother("Delbert Fredrick", "Levi Fredrick").
+mother("Delbert Fredrick", "Shelly Fredrick").
+father("Delbert Fredrick", "Malik Fredrick").
+friend("Delbert Fredrick", "Vito Capps").
+friend("Delbert Fredrick", "Javier Scherer").
+friend("Delbert Fredrick", "Earle Harlow").
+friend("Delbert Fredrick", "Georgette Haygood").
+friend("Delbert Fredrick", "Heath Swartz").
+friend("Delbert Fredrick", "Michael Goff").
+dob("Delbert Fredrick", "0404-03-19").
+job("Delbert Fredrick", "contractor").
+hobby("Delbert Fredrick", "learning").
+gender("Delbert Fredrick", "male").

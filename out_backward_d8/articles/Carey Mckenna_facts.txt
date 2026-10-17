@@ -1,0 +1,10 @@
+son("Carey Mckenna", "Lucas Mckenna").
+son("Carey Mckenna", "Rolland Mckenna").
+wife("Carey Mckenna", "Windy Mckenna").
+friend("Carey Mckenna", "Dwain Lizotte").
+friend("Carey Mckenna", "Dino Beltran").
+friend("Carey Mckenna", "Ernesto Mcnew").
+dob("Carey Mckenna", "0270-10-18").
+job("Carey Mckenna", "radiographer").
+hobby("Carey Mckenna", "fusilately").
+gender("Carey Mckenna", "male").

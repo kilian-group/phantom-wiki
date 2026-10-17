@@ -1,0 +1,12 @@
+mother("Anna Vandenberg", "Tashina Vandenberg").
+father("Anna Vandenberg", "Eli Vandenberg").
+friend("Anna Vandenberg", "Delsie Mcgough").
+friend("Anna Vandenberg", "Ophelia Mcgough").
+friend("Anna Vandenberg", "Kirsten Oberg").
+friend("Anna Vandenberg", "Morgan Remillard").
+friend("Anna Vandenberg", "Sherrie Remillard").
+friend("Anna Vandenberg", "Alvaro Murphey").
+dob("Anna Vandenberg", "0281-04-07").
+job("Anna Vandenberg", "fine artist").
+hobby("Anna Vandenberg", "research").
+gender("Anna Vandenberg", "female").

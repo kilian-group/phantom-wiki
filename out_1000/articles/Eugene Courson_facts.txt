@@ -1,0 +1,9 @@
+mother("Eugene Courson", "Bettina Courson").
+father("Eugene Courson", "Everett Courson").
+friend("Eugene Courson", "Emmanuel Swartz").
+friend("Eugene Courson", "Julio Mcdonald").
+friend("Eugene Courson", "Tabetha Niles").
+dob("Eugene Courson", "0507-06-26").
+job("Eugene Courson", "tax inspector").
+hobby("Eugene Courson", "meditation").
+gender("Eugene Courson", "male").

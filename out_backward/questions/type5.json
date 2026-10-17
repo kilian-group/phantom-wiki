@@ -1,0 +1,360 @@
+[
+    {
+        "id": "44cdbdb4-d870-4635-a0a0-2a4a51777c7c",
+        "question": "How many cousins does the niece of Jeannine Wexler have?",
+        "solution_traces": "[{\"Y_3\": \"Johnetta Wang\", \"Count_1\": 3}, {\"Y_3\": \"Lenore Hackworth\", \"Count_1\": 2}, {\"Count_1\": 2, \"Y_3\": \"Leeann Hackworth\"}]",
+        "answer": [
+            "2",
+            "3"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(cousin(Y_3, Y_1)), Count_1)",
+                "niece(\"Jeannine Wexler\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "b1cbc61f-a9f1-4451-8163-f6eae08c117d",
+        "question": "How many children does the parent of Vicki Hackworth have?",
+        "solution_traces": "[{\"Count_1\": 3, \"Y_3\": \"Shelli Beltran\"}, {\"Count_1\": 3, \"Y_3\": \"Dino Beltran\"}]",
+        "answer": [
+            "3"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(child(Y_3, Y_1)), Count_1)",
+                "parent(\"Vicki Hackworth\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "fa19649c-0c83-4a89-b890-ea185c259cf5",
+        "question": "How many aunts does the friend of Saul Wexler have?",
+        "solution_traces": "[{\"Count_1\": 0, \"Y_3\": \"Daisy Beltran\"}, {\"Count_1\": 0, \"Y_3\": \"Dino Beltran\"}, {\"Count_1\": 0, \"Y_3\": \"Alison Smock\"}, {\"Count_1\": 0, \"Y_3\": \"Lannie Smock\"}, {\"Y_3\": \"Johnetta Wang\", \"Count_1\": 2}, {\"Y_3\": \"Lenore Hackworth\", \"Count_1\": 2}]",
+        "answer": [
+            "0",
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(aunt(Y_3, Y_1)), Count_1)",
+                "friend(\"Saul Wexler\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "18731959-d1ba-492d-b292-640bea533c5b",
+        "question": "How many sisters-in-law does the son-in-law of Dino Beltran have?",
+        "solution_traces": "[{\"Count_1\": 2, \"Y_3\": \"Ricardo Hackworth\"}, {\"Y_3\": \"Ryan Wang\", \"Count_1\": 2}, {\"Count_1\": 2, \"Y_3\": \"Saul Wexler\"}]",
+        "answer": [
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sister_in_law(Y_3, Y_1)), Count_1)",
+                "son_in_law(\"Dino Beltran\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "8e5e4679-1a74-4135-aa30-60166cc5345a",
+        "question": "How many sisters does the friend of Deane Smock have?",
+        "solution_traces": "[{\"Count_1\": 0, \"Y_3\": \"Alison Smock\"}, {\"Count_1\": 1, \"Y_3\": \"Shelli Beltran\"}, {\"Count_1\": 2, \"Y_3\": \"Gene Smock\"}, {\"Y_3\": \"Isabell Smock\", \"Count_1\": 1}]",
+        "answer": [
+            "0",
+            "1",
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(sister(Y_3, Y_1)), Count_1)",
+                "friend(\"Deane Smock\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "ea59d053-5937-4c0f-adfa-532a694c27a6",
+        "question": "How many grandchildren does the brother of Isabell Smock have?",
+        "solution_traces": "[{\"Count_1\": 0, \"Y_3\": \"Aubrey Smock\"}, {\"Count_1\": 2, \"Y_3\": \"Gene Smock\"}]",
+        "answer": [
+            "0",
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(grandchild(Y_3, Y_1)), Count_1)",
+                "brother(\"Isabell Smock\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "2faaa2eb-17a3-41d9-8771-b9c565928e52",
+        "question": "How many nephews does the child of Alvaro Smock have?",
+        "solution_traces": "[{\"Count_1\": 1, \"Y_3\": \"Deane Smock\"}, {\"Count_1\": 1, \"Y_3\": \"Aubrey Smock\"}, {\"Y_3\": \"Isabell Smock\", \"Count_1\": 1}, {\"Count_1\": 0, \"Y_3\": \"Gene Smock\"}]",
+        "answer": [
+            "0",
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(nephew(Y_3, Y_1)), Count_1)",
+                "child(\"Alvaro Smock\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "0598f668-bff7-4478-93d7-f033e30e3ec5",
+        "question": "How many granddaughters does the friend of Ricardo Hackworth have?",
+        "solution_traces": "[{\"Count_1\": 0, \"Y_3\": \"Myrle Smock\"}, {\"Count_1\": 4, \"Y_3\": \"Dino Beltran\"}, {\"Count_1\": 2, \"Y_3\": \"Gene Smock\"}, {\"Count_1\": 2, \"Y_3\": \"Dominique Smock\"}]",
+        "answer": [
+            "0",
+            "2",
+            "4"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(granddaughter(Y_3, Y_1)), Count_1)",
+                "friend(\"Ricardo Hackworth\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "315d7de5-1972-4e14-bb7c-fd670fa1b9ff",
+        "question": "How many granddaughters does the mother-in-law of Saul Wexler have?",
+        "solution_traces": "[{\"Y_3\": \"Shelli Beltran\", \"Count_1\": 4}]",
+        "answer": [
+            "4"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(granddaughter(Y_3, Y_1)), Count_1)",
+                "mother_in_law(\"Saul Wexler\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "9337e86f-d249-4293-bb7e-e89189cf193d",
+        "question": "How many grandfathers does the daughter of Ryan Wang have?",
+        "solution_traces": "[{\"Count_1\": 1, \"Y_3\": \"Johnetta Wang\"}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(grandfather(Y_3, Y_1)), Count_1)",
+                "daughter(\"Ryan Wang\", Y_3)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "<name>_5",
+            "have",
+            "?"
+        ],
+        "type": 5,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": true
+    }
+]

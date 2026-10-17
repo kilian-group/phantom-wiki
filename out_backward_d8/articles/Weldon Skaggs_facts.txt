@@ -1,0 +1,11 @@
+son("Weldon Skaggs", "Rosendo Skaggs").
+daughter("Weldon Skaggs", "Hoa Skaggs").
+wife("Weldon Skaggs", "Jeannine Skaggs").
+friend("Weldon Skaggs", "Clayton Shirk").
+friend("Weldon Skaggs", "Jame Shirk").
+friend("Weldon Skaggs", "Dwain Lizotte").
+friend("Weldon Skaggs", "Hanh Mohan").
+dob("Weldon Skaggs", "0306-02-25").
+job("Weldon Skaggs", "insurance account manager").
+hobby("Weldon Skaggs", "insect collecting").
+gender("Weldon Skaggs", "male").

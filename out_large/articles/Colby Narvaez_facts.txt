@@ -1,0 +1,11 @@
+son("Colby Narvaez", "Demarcus Narvaez").
+wife("Colby Narvaez", "Luisa Narvaez").
+friend("Colby Narvaez", "Jaime Remillard").
+friend("Colby Narvaez", "Louann Chrisman").
+friend("Colby Narvaez", "Charley Vandenberg").
+friend("Colby Narvaez", "Elroy Mcgough").
+friend("Colby Narvaez", "Jackie Vandenberg").
+dob("Colby Narvaez", "0331-03-22").
+job("Colby Narvaez", "IT trainer").
+hobby("Colby Narvaez", "figure skating").
+gender("Colby Narvaez", "male").

@@ -1,0 +1,18 @@
+sister("Rueben Younger", "Angela Younger").
+mother("Rueben Younger", "Tania Younger").
+father("Rueben Younger", "Dan Younger").
+son("Rueben Younger", "Eli Younger").
+son("Rueben Younger", "Raul Younger").
+daughter("Rueben Younger", "Almeta Younger").
+wife("Rueben Younger", "Delpha Younger").
+friend("Rueben Younger", "Kenton Whitford").
+friend("Rueben Younger", "Jennie Burger").
+friend("Rueben Younger", "Jermaine Wilke").
+friend("Rueben Younger", "Lora Vanmeter").
+friend("Rueben Younger", "Amos Hollinger").
+friend("Rueben Younger", "Kennith Towns").
+friend("Rueben Younger", "Miles Burdette").
+dob("Rueben Younger", "0377-05-18").
+job("Rueben Younger", "forest manager").
+hobby("Rueben Younger", "ant farming").
+gender("Rueben Younger", "male").

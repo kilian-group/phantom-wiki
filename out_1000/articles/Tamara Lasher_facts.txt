@@ -1,0 +1,19 @@
+sister("Tamara Lasher", "Viva Jefferson").
+brother("Tamara Lasher", "Sammy Dillion").
+mother("Tamara Lasher", "Lindy Dillion").
+father("Tamara Lasher", "Landon Dillion").
+son("Tamara Lasher", "Jermaine Lasher").
+son("Tamara Lasher", "Newton Lasher").
+daughter("Tamara Lasher", "Tabetha Lasher").
+husband("Tamara Lasher", "Guillermo Lasher").
+friend("Tamara Lasher", "Cleo Peeler").
+friend("Tamara Lasher", "Janiece Cordova").
+friend("Tamara Lasher", "Lloyd Ingalls").
+friend("Tamara Lasher", "Chang Eaves").
+friend("Tamara Lasher", "Stevie Joiner").
+friend("Tamara Lasher", "Deloris Robinett").
+friend("Tamara Lasher", "Lora Vogt").
+dob("Tamara Lasher", "0305-01-02").
+job("Tamara Lasher", "paediatric nurse").
+hobby("Tamara Lasher", "meditation").
+gender("Tamara Lasher", "female").

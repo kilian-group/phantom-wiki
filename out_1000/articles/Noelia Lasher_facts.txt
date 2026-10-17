@@ -1,0 +1,17 @@
+son("Noelia Lasher", "Grant Lasher").
+husband("Noelia Lasher", "Shayne Lasher").
+friend("Noelia Lasher", "Rena Palm").
+friend("Noelia Lasher", "Annmarie Kinsella").
+friend("Noelia Lasher", "Ellis Brumbaugh").
+friend("Noelia Lasher", "Chang Eaves").
+friend("Noelia Lasher", "Manuel Smart").
+friend("Noelia Lasher", "Hugh Noland").
+friend("Noelia Lasher", "Hollis Theriot").
+friend("Noelia Lasher", "Karl Depriest").
+friend("Noelia Lasher", "Leonora Depriest").
+friend("Noelia Lasher", "Aurelia Gordon").
+friend("Noelia Lasher", "Karen Mckenna").
+dob("Noelia Lasher", "0366-02-21").
+job("Noelia Lasher", "rural practice surveyor").
+hobby("Noelia Lasher", "beach volleyball").
+gender("Noelia Lasher", "female").

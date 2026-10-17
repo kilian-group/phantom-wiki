@@ -1,0 +1,13 @@
+son("Harry Hudgens", "Jayson Hudgens").
+wife("Harry Hudgens", "Lindy Hudgens").
+friend("Harry Hudgens", "Jennifer Paynter").
+friend("Harry Hudgens", "Cedrick Lester").
+friend("Harry Hudgens", "Tiffany Simons").
+friend("Harry Hudgens", "Carlotta Gossett").
+friend("Harry Hudgens", "Graciela Burger").
+friend("Harry Hudgens", "Hiram Putnam").
+friend("Harry Hudgens", "Almeta Forester").
+dob("Harry Hudgens", "0475-10-08").
+job("Harry Hudgens", "child psychotherapist").
+hobby("Harry Hudgens", "perfume").
+gender("Harry Hudgens", "male").

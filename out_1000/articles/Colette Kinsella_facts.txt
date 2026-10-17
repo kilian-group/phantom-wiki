@@ -1,0 +1,10 @@
+brother("Colette Kinsella", "Kenny Kinsella").
+mother("Colette Kinsella", "Rayna Kinsella").
+father("Colette Kinsella", "Arnulfo Kinsella").
+friend("Colette Kinsella", "Alisha Fredrick").
+friend("Colette Kinsella", "Shawna Sheridan").
+friend("Colette Kinsella", "Alexandria Hayward").
+dob("Colette Kinsella", "0467-09-21").
+job("Colette Kinsella", "product manager").
+hobby("Colette Kinsella", "rock balancing").
+gender("Colette Kinsella", "female").

@@ -1,0 +1,12 @@
+daughter("Ricardo Hackworth", "Leeann Hackworth").
+daughter("Ricardo Hackworth", "Lenore Hackworth").
+wife("Ricardo Hackworth", "Vicki Hackworth").
+friend("Ricardo Hackworth", "Cole Mcnew").
+friend("Ricardo Hackworth", "Kirk Petry").
+friend("Ricardo Hackworth", "Margo Brannan").
+friend("Ricardo Hackworth", "Craig Boutte").
+friend("Ricardo Hackworth", "Myrle Smock").
+dob("Ricardo Hackworth", "0293-02-24").
+job("Ricardo Hackworth", "clinical research associate").
+hobby("Ricardo Hackworth", "dairy farming").
+gender("Ricardo Hackworth", "male").

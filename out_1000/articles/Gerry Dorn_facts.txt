@@ -1,0 +1,17 @@
+daughter("Gerry Dorn", "Rosalinda Layton").
+wife("Gerry Dorn", "Gayla Dorn").
+friend("Gerry Dorn", "Zona Jarrett").
+friend("Gerry Dorn", "Jerrold Harlow").
+friend("Gerry Dorn", "Newton Lasher").
+friend("Gerry Dorn", "Valentina Beamon").
+friend("Gerry Dorn", "Major Bales").
+friend("Gerry Dorn", "Rickie Burdette").
+friend("Gerry Dorn", "Ty Mahoney").
+friend("Gerry Dorn", "King Goff").
+friend("Gerry Dorn", "Drew Smart").
+friend("Gerry Dorn", "Shannon Fredrick").
+friend("Gerry Dorn", "Lorenz Deville").
+dob("Gerry Dorn", "0372-10-13").
+job("Gerry Dorn", "furniture conservator").
+hobby("Gerry Dorn", "animal fancy").
+gender("Gerry Dorn", "male").

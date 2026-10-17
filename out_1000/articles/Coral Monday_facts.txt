@@ -1,0 +1,14 @@
+mother("Coral Monday", "Tamala Hamlin").
+father("Coral Monday", "Hosea Hamlin").
+daughter("Coral Monday", "Gena Shaw").
+daughter("Coral Monday", "Nydia Monday").
+husband("Coral Monday", "Wendell Monday").
+friend("Coral Monday", "Sona Lasher").
+friend("Coral Monday", "Mireya Ibarra").
+friend("Coral Monday", "Ricky Musick").
+friend("Coral Monday", "Katherine Carswell").
+friend("Coral Monday", "Karl Depriest").
+dob("Coral Monday", "0426-06-26").
+job("Coral Monday", "control and instrumentation engineer").
+hobby("Coral Monday", "dominoes").
+gender("Coral Monday", "female").

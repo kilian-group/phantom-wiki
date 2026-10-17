@@ -1,0 +1,13 @@
+sister("Windy Cowart", "Sherrie Jansen").
+mother("Windy Cowart", "Lara Jansen").
+father("Windy Cowart", "Doug Jansen").
+son("Windy Cowart", "Danny Cowart").
+daughter("Windy Cowart", "Veronica Cowart").
+husband("Windy Cowart", "Curt Cowart").
+friend("Windy Cowart", "Rogelio Dunlap").
+friend("Windy Cowart", "Shelly Donner").
+friend("Windy Cowart", "Bradley Blanton").
+dob("Windy Cowart", "0427-03-08").
+job("Windy Cowart", "television production assistant").
+hobby("Windy Cowart", "meteorology").
+gender("Windy Cowart", "female").

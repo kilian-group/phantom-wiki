@@ -1,0 +1,21 @@
+sister("Harold Hollins", "Renate Gailey").
+sister("Harold Hollins", "Robbie Hollins").
+mother("Harold Hollins", "Eula Hollins").
+father("Harold Hollins", "Micah Hollins").
+daughter("Harold Hollins", "Lavern Staten").
+wife("Harold Hollins", "Nydia Hollins").
+friend("Harold Hollins", "Nelly Smart").
+friend("Harold Hollins", "Ardath Carswell").
+friend("Harold Hollins", "Tamala Skidmore").
+friend("Harold Hollins", "Chauncey Wilkie").
+friend("Harold Hollins", "Ashleigh Kell").
+friend("Harold Hollins", "Kristie Harlow").
+friend("Harold Hollins", "Lora Vanmeter").
+friend("Harold Hollins", "Aletha Crocker").
+friend("Harold Hollins", "Sammy Dillion").
+friend("Harold Hollins", "Frankie Peeler").
+friend("Harold Hollins", "Charley Lively").
+dob("Harold Hollins", "0408-04-23").
+job("Harold Hollins", "airline pilot").
+hobby("Harold Hollins", "button collecting").
+gender("Harold Hollins", "male").

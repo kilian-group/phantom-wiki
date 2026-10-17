@@ -1,0 +1,17 @@
+sister("Helga Simons", "Christina Barrows").
+brother("Helga Simons", "Harley Simons").
+mother("Helga Simons", "Dinah Simons").
+father("Helga Simons", "Luis Simons").
+friend("Helga Simons", "Tanya Molina").
+friend("Helga Simons", "Meghan Keyes").
+friend("Helga Simons", "Jacinta Gilliam").
+friend("Helga Simons", "Tracey Medellin").
+friend("Helga Simons", "Hollis Theriot").
+friend("Helga Simons", "Calvin Carty").
+friend("Helga Simons", "Shawna Sheridan").
+friend("Helga Simons", "Haley Layman").
+friend("Helga Simons", "Katharine Willoughby").
+dob("Helga Simons", "0440-03-15").
+job("Helga Simons", "manufacturing systems engineer").
+hobby("Helga Simons", "tennis polo").
+gender("Helga Simons", "female").

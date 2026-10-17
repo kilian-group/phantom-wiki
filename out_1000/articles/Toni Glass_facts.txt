@@ -1,0 +1,14 @@
+daughter("Toni Glass", "Emma Bowles").
+husband("Toni Glass", "Ellis Glass").
+friend("Toni Glass", "Irvin Shaw").
+friend("Toni Glass", "Paul Dame").
+friend("Toni Glass", "Winnie Harlow").
+friend("Toni Glass", "Chau Peeler").
+friend("Toni Glass", "Matthew Dana").
+friend("Toni Glass", "Almeta Younger").
+friend("Toni Glass", "Clement Bennet").
+friend("Toni Glass", "Fatimah Holtz").
+dob("Toni Glass", "0388-06-24").
+job("Toni Glass", "management consultant").
+hobby("Toni Glass", "fishkeeping").
+gender("Toni Glass", "female").

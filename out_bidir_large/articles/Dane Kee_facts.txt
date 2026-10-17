@@ -1,0 +1,9 @@
+daughter("Dane Kee", "Ivory Pannell").
+wife("Dane Kee", "Ashely Kee").
+friend("Dane Kee", "Hayden Mcnew").
+friend("Dane Kee", "Hoa Skaggs").
+friend("Dane Kee", "Lucas Mckenna").
+dob("Dane Kee", "0232-07-25").
+job("Dane Kee", "therapeutic radiographer").
+hobby("Dane Kee", "fitness").
+gender("Dane Kee", "male").

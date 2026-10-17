@@ -1,0 +1,8 @@
+daughter("Damaris Swartz", "Gaye Swartz").
+husband("Damaris Swartz", "Ramon Swartz").
+friend("Damaris Swartz", "Reggie Medellin").
+friend("Damaris Swartz", "Amos Hollinger").
+dob("Damaris Swartz", "0450-10-17").
+job("Damaris Swartz", "arboriculturist").
+hobby("Damaris Swartz", "geocaching").
+gender("Damaris Swartz", "female").

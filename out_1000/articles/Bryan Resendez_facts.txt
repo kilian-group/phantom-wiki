@@ -1,0 +1,17 @@
+son("Bryan Resendez", "Isaiah Resendez").
+son("Bryan Resendez", "Sung Resendez").
+son("Bryan Resendez", "Tyrell Resendez").
+daughter("Bryan Resendez", "Melina Resendez").
+wife("Bryan Resendez", "Vita Resendez").
+friend("Bryan Resendez", "Monroe Gilliam").
+friend("Bryan Resendez", "Foster Medellin").
+friend("Bryan Resendez", "Rhonda Wilke").
+friend("Bryan Resendez", "Abe Kell").
+friend("Bryan Resendez", "Josie Littleton").
+friend("Bryan Resendez", "Augustine Linden").
+friend("Bryan Resendez", "Al Younger").
+friend("Bryan Resendez", "Judith Lebrun").
+dob("Bryan Resendez", "0344-03-14").
+job("Bryan Resendez", "medical technical officer").
+hobby("Bryan Resendez", "topiary").
+gender("Bryan Resendez", "male").

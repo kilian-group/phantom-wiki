@@ -1,0 +1,15 @@
+daughter("Cleo Gregory", "Adrianna Gregory").
+daughter("Cleo Gregory", "Patsy Murray").
+husband("Cleo Gregory", "Jesus Gregory").
+friend("Cleo Gregory", "Catina Linden").
+friend("Cleo Gregory", "Timothy Shoulders").
+friend("Cleo Gregory", "Judith Holliman").
+friend("Cleo Gregory", "Juan Smart").
+friend("Cleo Gregory", "Dominick Palomo").
+friend("Cleo Gregory", "Stuart Strong").
+friend("Cleo Gregory", "Moshe Macias").
+friend("Cleo Gregory", "Roseanna Mckenna").
+dob("Cleo Gregory", "0449-11-24").
+job("Cleo Gregory", "advertising copywriter").
+hobby("Cleo Gregory", "mineral collecting").
+gender("Cleo Gregory", "female").

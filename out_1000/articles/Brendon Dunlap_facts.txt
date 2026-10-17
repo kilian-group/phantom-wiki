@@ -1,0 +1,17 @@
+sister("Brendon Dunlap", "Deidra Gilliam").
+mother("Brendon Dunlap", "Lera Dunlap").
+father("Brendon Dunlap", "Donnie Dunlap").
+son("Brendon Dunlap", "Rogelio Dunlap").
+wife("Brendon Dunlap", "Lou Dunlap").
+friend("Brendon Dunlap", "Tracy Fredrick").
+friend("Brendon Dunlap", "Andres Layton").
+friend("Brendon Dunlap", "Cameron Mckenna").
+friend("Brendon Dunlap", "Dortha Ingle").
+friend("Brendon Dunlap", "Paris Brumbaugh").
+friend("Brendon Dunlap", "Lashanda Hartung").
+friend("Brendon Dunlap", "Viva Simons").
+friend("Brendon Dunlap", "Brunilda Linden").
+dob("Brendon Dunlap", "0349-10-08").
+job("Brendon Dunlap", "automotive engineer").
+hobby("Brendon Dunlap", "vr gaming").
+gender("Brendon Dunlap", "male").

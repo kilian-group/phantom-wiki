@@ -1,0 +1,9 @@
+mother("Mai Remillard", "Justine Remillard").
+father("Mai Remillard", "Willie Remillard").
+friend("Mai Remillard", "Elroy Mcgough").
+friend("Mai Remillard", "Kirsten Oberg").
+friend("Mai Remillard", "Jon Remillard").
+dob("Mai Remillard", "0382-10-12").
+job("Mai Remillard", "diplomatic services operational officer").
+hobby("Mai Remillard", "butterfly watching").
+gender("Mai Remillard", "female").

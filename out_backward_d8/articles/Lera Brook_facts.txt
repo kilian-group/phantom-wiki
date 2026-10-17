@@ -1,0 +1,12 @@
+sister("Lera Brook", "Connie Nicolas").
+sister("Lera Brook", "Marilyn Nicolas").
+brother("Lera Brook", "Eldon Nicolas").
+mother("Lera Brook", "Edythe Nicolas").
+father("Lera Brook", "Anthony Nicolas").
+son("Lera Brook", "Errol Brook").
+husband("Lera Brook", "Rufus Brook").
+friend("Lera Brook", "Elissa Kovach").
+dob("Lera Brook", "0294-01-23").
+job("Lera Brook", "community education officer").
+hobby("Lera Brook", "ant farming").
+gender("Lera Brook", "female").

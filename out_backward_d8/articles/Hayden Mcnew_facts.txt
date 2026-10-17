@@ -1,0 +1,10 @@
+brother("Hayden Mcnew", "Ernesto Mcnew").
+brother("Hayden Mcnew", "Garry Mcnew").
+mother("Hayden Mcnew", "Roxy Mcnew").
+father("Hayden Mcnew", "Cole Mcnew").
+friend("Hayden Mcnew", "Dane Kee").
+friend("Hayden Mcnew", "Jona Carrell").
+dob("Hayden Mcnew", "0335-10-03").
+job("Hayden Mcnew", "paediatric nurse").
+hobby("Hayden Mcnew", "figure skating").
+gender("Hayden Mcnew", "male").

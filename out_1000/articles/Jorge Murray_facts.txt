@@ -1,0 +1,14 @@
+sister("Jorge Murray", "Jo Murray").
+brother("Jorge Murray", "Dane Murray").
+brother("Jorge Murray", "Jerald Murray").
+mother("Jorge Murray", "Cordelia Murray").
+father("Jorge Murray", "Phil Murray").
+friend("Jorge Murray", "Roderick Simons").
+friend("Jorge Murray", "Chance Mahoney").
+friend("Jorge Murray", "Ladawn Bennet").
+friend("Jorge Murray", "Nedra Musick").
+friend("Jorge Murray", "Kieth Shaw").
+dob("Jorge Murray", "0474-12-03").
+job("Jorge Murray", "retail buyer").
+hobby("Jorge Murray", "amateur geology").
+gender("Jorge Murray", "male").

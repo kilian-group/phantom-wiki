@@ -1,0 +1,15 @@
+sister("Raleigh Simons", "Shelba Simons").
+brother("Raleigh Simons", "Roderick Simons").
+brother("Raleigh Simons", "Sung Simons").
+mother("Raleigh Simons", "Sasha Simons").
+father("Raleigh Simons", "Sammie Simons").
+friend("Raleigh Simons", "Jacque Greene").
+friend("Raleigh Simons", "Preston Holtz").
+friend("Raleigh Simons", "Lynette Macias").
+friend("Raleigh Simons", "Gayla Dorn").
+friend("Raleigh Simons", "Carmine Mckenna").
+friend("Raleigh Simons", "Christoper Littleton").
+dob("Raleigh Simons", "0432-03-16").
+job("Raleigh Simons", "psychiatrist").
+hobby("Raleigh Simons", "animal fancy").
+gender("Raleigh Simons", "male").

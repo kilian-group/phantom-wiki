@@ -1,0 +1,7 @@
+son("Brian Beltran", "Dino Beltran").
+son("Brian Beltran", "Orlando Beltran").
+wife("Brian Beltran", "Daisy Beltran").
+dob("Brian Beltran", "0237-07-27").
+job("Brian Beltran", "oncologist").
+hobby("Brian Beltran", "dolls").
+gender("Brian Beltran", "male").

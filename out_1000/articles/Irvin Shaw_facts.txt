@@ -1,0 +1,19 @@
+mother("Irvin Shaw", "Gena Shaw").
+father("Irvin Shaw", "Kieth Shaw").
+son("Irvin Shaw", "Solomon Shaw").
+wife("Irvin Shaw", "Lynette Shaw").
+friend("Irvin Shaw", "Jamison Upton").
+friend("Irvin Shaw", "Elisabeth Bauman").
+friend("Irvin Shaw", "Iva Parish").
+friend("Irvin Shaw", "Paula Lazar").
+friend("Irvin Shaw", "Seymour Simons").
+friend("Irvin Shaw", "Wilson Younger").
+friend("Irvin Shaw", "Johanna Mathes").
+friend("Irvin Shaw", "Toni Glass").
+friend("Irvin Shaw", "Brent Macias").
+friend("Irvin Shaw", "Rudolf Sanborn").
+friend("Irvin Shaw", "Helena Hamlin").
+dob("Irvin Shaw", "0475-10-14").
+job("Irvin Shaw", "camera operator").
+hobby("Irvin Shaw", "cricket").
+gender("Irvin Shaw", "male").

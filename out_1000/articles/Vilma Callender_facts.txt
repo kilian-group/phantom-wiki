@@ -1,0 +1,19 @@
+sister("Vilma Callender", "Lauretta Callender").
+sister("Vilma Callender", "Ofelia Callender").
+sister("Vilma Callender", "Randi Crocker").
+brother("Vilma Callender", "Jonathon Callender").
+mother("Vilma Callender", "Madaline Callender").
+father("Vilma Callender", "Royce Callender").
+friend("Vilma Callender", "Charlie Ingalls").
+friend("Vilma Callender", "Floyd Cook").
+friend("Vilma Callender", "Melina Simons").
+friend("Vilma Callender", "Sharon Ingalls").
+friend("Vilma Callender", "Conrad Molina").
+friend("Vilma Callender", "Kory Gibbs").
+friend("Vilma Callender", "Deshawn Medellin").
+friend("Vilma Callender", "Coral Putnam").
+friend("Vilma Callender", "Phylis Courson").
+dob("Vilma Callender", "0416-03-07").
+job("Vilma Callender", "professor emeritus").
+hobby("Vilma Callender", "skydiving").
+gender("Vilma Callender", "female").

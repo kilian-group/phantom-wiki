@@ -1,0 +1,7 @@
+daughter("Rigoberto Carrell", "Ofelia Carrell").
+wife("Rigoberto Carrell", "Jona Carrell").
+friend("Rigoberto Carrell", "Bryant Bradberry").
+dob("Rigoberto Carrell", "0263-02-06").
+job("Rigoberto Carrell", "bookseller").
+hobby("Rigoberto Carrell", "knife collecting").
+gender("Rigoberto Carrell", "male").

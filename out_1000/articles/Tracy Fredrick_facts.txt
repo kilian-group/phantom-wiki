@@ -1,0 +1,18 @@
+brother("Tracy Fredrick", "Erik Fredrick").
+mother("Tracy Fredrick", "Alisha Fredrick").
+father("Tracy Fredrick", "Vance Fredrick").
+friend("Tracy Fredrick", "Kayla Ballard").
+friend("Tracy Fredrick", "Ilona Klink").
+friend("Tracy Fredrick", "Jackqueline Kell").
+friend("Tracy Fredrick", "Dorathy Mckenna").
+friend("Tracy Fredrick", "Sheila Conner").
+friend("Tracy Fredrick", "Cortez Kinsella").
+friend("Tracy Fredrick", "Boris Machado").
+friend("Tracy Fredrick", "Karin Machado").
+friend("Tracy Fredrick", "Eula Hollins").
+friend("Tracy Fredrick", "Reita Pugliese").
+friend("Tracy Fredrick", "Brendon Dunlap").
+dob("Tracy Fredrick", "0345-06-01").
+job("Tracy Fredrick", "police officer").
+hobby("Tracy Fredrick", "sociology").
+gender("Tracy Fredrick", "female").

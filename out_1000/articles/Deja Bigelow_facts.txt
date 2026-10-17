@@ -1,0 +1,15 @@
+daughter("Deja Bigelow", "Tonia Bauman").
+husband("Deja Bigelow", "Kieth Bigelow").
+friend("Deja Bigelow", "Tonia Bauman").
+friend("Deja Bigelow", "Lindy Dillion").
+friend("Deja Bigelow", "Newton Lasher").
+friend("Deja Bigelow", "Jody Valladares").
+friend("Deja Bigelow", "Dalton Arnold").
+friend("Deja Bigelow", "Tanya Molina").
+friend("Deja Bigelow", "Adalberto Dacosta").
+friend("Deja Bigelow", "Demetra Palomo").
+friend("Deja Bigelow", "Martin Deville").
+dob("Deja Bigelow", "0371-06-04").
+job("Deja Bigelow", "lecturer").
+hobby("Deja Bigelow", "surfing").
+gender("Deja Bigelow", "female").

@@ -1,0 +1,20 @@
+sister("Foster Eaves", "Geri Dana").
+sister("Foster Eaves", "Ivette Eaves").
+sister("Foster Eaves", "Sofia Eaves").
+brother("Foster Eaves", "Denny Eaves").
+brother("Foster Eaves", "Mickey Eaves").
+mother("Foster Eaves", "Juanita Eaves").
+father("Foster Eaves", "Russel Eaves").
+son("Foster Eaves", "Rob Eaves").
+wife("Foster Eaves", "Kyong Eaves").
+friend("Foster Eaves", "Avery Ballard").
+friend("Foster Eaves", "Ardath Skidmore").
+friend("Foster Eaves", "Deandre Capps").
+friend("Foster Eaves", "Haley Layman").
+friend("Foster Eaves", "Zackary Wilkie").
+friend("Foster Eaves", "Pablo Cook").
+friend("Foster Eaves", "Pearl Hamann").
+dob("Foster Eaves", "0379-08-10").
+job("Foster Eaves", "computer games developer").
+hobby("Foster Eaves", "metal detecting").
+gender("Foster Eaves", "male").

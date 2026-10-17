@@ -1,0 +1,15 @@
+sister("Monique Pugliese", "Monika Bennet").
+mother("Monique Pugliese", "Reita Pugliese").
+father("Monique Pugliese", "Brock Pugliese").
+friend("Monique Pugliese", "Pamala Medellin").
+friend("Monique Pugliese", "Jennie Burger").
+friend("Monique Pugliese", "Son Sutphin").
+friend("Monique Pugliese", "Ladonna Klink").
+friend("Monique Pugliese", "Winnie Harlow").
+friend("Monique Pugliese", "Debora Murray").
+friend("Monique Pugliese", "Ginger Chou").
+friend("Monique Pugliese", "Katharine Resendez").
+dob("Monique Pugliese", "0401-09-21").
+job("Monique Pugliese", "biomedical engineer").
+hobby("Monique Pugliese", "darts").
+gender("Monique Pugliese", "female").

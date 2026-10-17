@@ -1,0 +1,13 @@
+daughter("Lashanda Hartung", "Dinah Simons").
+husband("Lashanda Hartung", "Gerald Hartung").
+friend("Lashanda Hartung", "Mallory Schatz").
+friend("Lashanda Hartung", "Brendon Dunlap").
+friend("Lashanda Hartung", "Christina Smart").
+friend("Lashanda Hartung", "Tyesha Marr").
+friend("Lashanda Hartung", "Gayla Sanborn").
+friend("Lashanda Hartung", "Maegan Cordova").
+friend("Lashanda Hartung", "Patsy Murray").
+dob("Lashanda Hartung", "0388-04-17").
+job("Lashanda Hartung", "accommodation manager").
+hobby("Lashanda Hartung", "shortwave listening").
+gender("Lashanda Hartung", "female").

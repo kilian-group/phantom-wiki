@@ -1,0 +1,27 @@
+son("Dino Donner", "Wilson Donner").
+wife("Dino Donner", "Shelly Donner").
+friend("Dino Donner", "Dixie Murdoch").
+friend("Dino Donner", "Manuel Smart").
+friend("Dino Donner", "Nora Noland").
+friend("Dino Donner", "Odelia Fredrick").
+friend("Dino Donner", "Dorathy Hamlin").
+friend("Dino Donner", "Delores Bauman").
+friend("Dino Donner", "Collin Lasher").
+friend("Dino Donner", "Alexandria Hayward").
+friend("Dino Donner", "Charley Weise").
+friend("Dino Donner", "Magdalena Hollinger").
+friend("Dino Donner", "Enedina Cordova").
+friend("Dino Donner", "Stefan Sutphin").
+friend("Dino Donner", "Bernardo Briscoe").
+friend("Dino Donner", "Gerald Hartung").
+friend("Dino Donner", "Harley Simons").
+friend("Dino Donner", "Chance Mahoney").
+friend("Dino Donner", "Chang Eaves").
+friend("Dino Donner", "Ethan Younger").
+friend("Dino Donner", "Malissa Corwin").
+friend("Dino Donner", "Buffy Mccurry").
+friend("Dino Donner", "Amy Smart").
+dob("Dino Donner", "0382-01-23").
+job("Dino Donner", "catering manager").
+hobby("Dino Donner", "stamp collecting").
+gender("Dino Donner", "male").

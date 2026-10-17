@@ -1,0 +1,17 @@
+sister("Katharine Resendez", "Nora Resendez").
+mother("Katharine Resendez", "Rheba Resendez").
+father("Katharine Resendez", "Sung Resendez").
+friend("Katharine Resendez", "Monique Pugliese").
+friend("Katharine Resendez", "Patty Kell").
+friend("Katharine Resendez", "Seth Mounts").
+friend("Katharine Resendez", "Yasmin Gordon").
+friend("Katharine Resendez", "Madaline Callender").
+friend("Katharine Resendez", "Herbert Storey").
+friend("Katharine Resendez", "Arnulfo Kinsella").
+friend("Katharine Resendez", "Christen Corwin").
+friend("Katharine Resendez", "Nathan Corwin").
+friend("Katharine Resendez", "Georgina Lebrun").
+dob("Katharine Resendez", "0393-04-09").
+job("Katharine Resendez", "animal nutritionist").
+hobby("Katharine Resendez", "geocaching").
+gender("Katharine Resendez", "female").

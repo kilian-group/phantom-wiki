@@ -1,0 +1,13 @@
+sister("Reyna Petry", "Windy Mckenna").
+brother("Reyna Petry", "Dwain Lizotte").
+mother("Reyna Petry", "Ora Lizotte").
+father("Reyna Petry", "Odis Lizotte").
+daughter("Reyna Petry", "Lila Petry").
+husband("Reyna Petry", "Kirk Petry").
+friend("Reyna Petry", "Ester Palermo").
+friend("Reyna Petry", "Carson Kovach").
+friend("Reyna Petry", "Charlie Kovach").
+dob("Reyna Petry", "0264-01-28").
+job("Reyna Petry", "immunologist").
+hobby("Reyna Petry", "microscopy").
+gender("Reyna Petry", "female").

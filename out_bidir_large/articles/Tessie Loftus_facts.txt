@@ -1,0 +1,10 @@
+daughter("Tessie Loftus", "Ester Palermo").
+husband("Tessie Loftus", "Malik Loftus").
+friend("Tessie Loftus", "Zoraida Palermo").
+friend("Tessie Loftus", "Spencer Griffiths").
+friend("Tessie Loftus", "Alberto Saari").
+friend("Tessie Loftus", "Harold Wilkie").
+dob("Tessie Loftus", "0313-01-17").
+job("Tessie Loftus", "chief technology officer").
+hobby("Tessie Loftus", "perfume").
+gender("Tessie Loftus", "female").

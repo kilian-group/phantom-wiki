@@ -1,0 +1,20 @@
+brother("Keisha Mcdonald", "Emmanuel Swartz").
+mother("Keisha Mcdonald", "Skye Swartz").
+father("Keisha Mcdonald", "Heath Swartz").
+son("Keisha Mcdonald", "Lukas Mcdonald").
+daughter("Keisha Mcdonald", "Barb Linden").
+husband("Keisha Mcdonald", "Julio Mcdonald").
+friend("Keisha Mcdonald", "Solomon Corwin").
+friend("Keisha Mcdonald", "Amberly Levine").
+friend("Keisha Mcdonald", "Harold Waltz").
+friend("Keisha Mcdonald", "Donny Speaks").
+friend("Keisha Mcdonald", "Ollie Kell").
+friend("Keisha Mcdonald", "Tena Beamon").
+friend("Keisha Mcdonald", "Rowena Lazar").
+friend("Keisha Mcdonald", "Ella Valladares").
+friend("Keisha Mcdonald", "Bryon Simons").
+friend("Keisha Mcdonald", "Cedric Towns").
+dob("Keisha Mcdonald", "0417-01-25").
+job("Keisha Mcdonald", "pathologist").
+hobby("Keisha Mcdonald", "literature").
+gender("Keisha Mcdonald", "female").

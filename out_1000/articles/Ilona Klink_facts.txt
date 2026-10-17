@@ -1,0 +1,18 @@
+daughter("Ilona Klink", "Alysa Lindquist").
+daughter("Ilona Klink", "Barbar Kell").
+daughter("Ilona Klink", "Ladonna Klink").
+husband("Ilona Klink", "Johnathan Klink").
+friend("Ilona Klink", "Marilyn Sutphin").
+friend("Ilona Klink", "Gena Cook").
+friend("Ilona Klink", "Hugh Noland").
+friend("Ilona Klink", "Kelley Cheney").
+friend("Ilona Klink", "Tracy Fredrick").
+friend("Ilona Klink", "Erik Capps").
+friend("Ilona Klink", "Zoraida Sanborn").
+friend("Ilona Klink", "Harriette Courson").
+friend("Ilona Klink", "Taylor Layman").
+friend("Ilona Klink", "Earle Harlow").
+dob("Ilona Klink", "0356-08-03").
+job("Ilona Klink", "public affairs consultant").
+hobby("Ilona Klink", "business").
+gender("Ilona Klink", "female").

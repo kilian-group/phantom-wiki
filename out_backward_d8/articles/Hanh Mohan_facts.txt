@@ -1,0 +1,19 @@
+sister("Hanh Mohan", "Maranda Lizotte").
+sister("Hanh Mohan", "Yoko Wilkie").
+brother("Hanh Mohan", "Chuck Lizotte").
+brother("Hanh Mohan", "Nathanial Lizotte").
+mother("Hanh Mohan", "Rosina Lizotte").
+father("Hanh Mohan", "Dwain Lizotte").
+daughter("Hanh Mohan", "Margot Skaggs").
+husband("Hanh Mohan", "Jarrod Mohan").
+friend("Hanh Mohan", "Rolland Mckenna").
+friend("Hanh Mohan", "Weldon Skaggs").
+friend("Hanh Mohan", "Effie Schoonmaker").
+friend("Hanh Mohan", "Daniel Brannan").
+friend("Hanh Mohan", "Leann Cormier").
+friend("Hanh Mohan", "Thurman Crain").
+friend("Hanh Mohan", "Zulema Crain").
+dob("Hanh Mohan", "0293-04-14").
+job("Hanh Mohan", "medical secretary").
+hobby("Hanh Mohan", "story writing").
+gender("Hanh Mohan", "female").

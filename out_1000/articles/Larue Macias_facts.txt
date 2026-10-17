@@ -1,0 +1,21 @@
+sister("Larue Macias", "Leonora Depriest").
+sister("Larue Macias", "Racquel Horan").
+brother("Larue Macias", "Donnie Mcgough").
+brother("Larue Macias", "Julio Mcgough").
+brother("Larue Macias", "Wilbur Mcgough").
+mother("Larue Macias", "Myrl Mcgough").
+father("Larue Macias", "Randall Mcgough").
+son("Larue Macias", "Laurence Macias").
+son("Larue Macias", "Levi Macias").
+son("Larue Macias", "Moshe Macias").
+husband("Larue Macias", "Lon Macias").
+friend("Larue Macias", "Sophie Wilke").
+friend("Larue Macias", "Newton Pellegrino").
+friend("Larue Macias", "Paula Lazar").
+friend("Larue Macias", "Adrianna Gregory").
+friend("Larue Macias", "Emma Bowles").
+friend("Larue Macias", "Barabara Wilke").
+dob("Larue Macias", "0440-09-23").
+job("Larue Macias", "barrister's clerk").
+hobby("Larue Macias", "benchmarking").
+gender("Larue Macias", "female").

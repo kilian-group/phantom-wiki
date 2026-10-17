@@ -1,0 +1,16 @@
+sister("Demetra Medellin", "Lashanda Salem").
+sister("Demetra Medellin", "Lucile Hurt").
+mother("Demetra Medellin", "Lou Hurt").
+father("Demetra Medellin", "Willie Hurt").
+daughter("Demetra Medellin", "Latisha Smart").
+daughter("Demetra Medellin", "Pamala Medellin").
+daughter("Demetra Medellin", "Susie Medellin").
+husband("Demetra Medellin", "Reggie Medellin").
+friend("Demetra Medellin", "Kurtis Kell").
+friend("Demetra Medellin", "Devon Leclair").
+friend("Demetra Medellin", "Sebastian Minnick").
+friend("Demetra Medellin", "Bret Smart").
+dob("Demetra Medellin", "0406-03-19").
+job("Demetra Medellin", "best boy").
+hobby("Demetra Medellin", "cycling").
+gender("Demetra Medellin", "female").

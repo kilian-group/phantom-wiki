@@ -1,0 +1,10 @@
+son("Sol Cormier", "Christoper Cormier").
+wife("Sol Cormier", "Patsy Cormier").
+friend("Sol Cormier", "Jeanelle Mcnew").
+friend("Sol Cormier", "Calvin Woodman").
+friend("Sol Cormier", "Mona Pannell").
+friend("Sol Cormier", "Kasey Cedillo").
+dob("Sol Cormier", "0153-07-18").
+job("Sol Cormier", "intelligence analyst").
+hobby("Sol Cormier", "table tennis").
+gender("Sol Cormier", "male").

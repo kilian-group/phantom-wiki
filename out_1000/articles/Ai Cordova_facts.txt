@@ -1,0 +1,16 @@
+son("Ai Cordova", "Paris Cordova").
+husband("Ai Cordova", "Jesus Cordova").
+friend("Ai Cordova", "Chelsie Peeler").
+friend("Ai Cordova", "Fredrick Cordova").
+friend("Ai Cordova", "Jesus Gregory").
+friend("Ai Cordova", "Hal Osterman").
+friend("Ai Cordova", "Tim Goff").
+friend("Ai Cordova", "Glenn Levine").
+friend("Ai Cordova", "Levi Fredrick").
+friend("Ai Cordova", "Alvaro Murphey").
+friend("Ai Cordova", "Dorathy Mckenna").
+friend("Ai Cordova", "Aletha Crocker").
+dob("Ai Cordova", "0385-12-19").
+job("Ai Cordova", "arts administrator").
+hobby("Ai Cordova", "archaeology").
+gender("Ai Cordova", "female").

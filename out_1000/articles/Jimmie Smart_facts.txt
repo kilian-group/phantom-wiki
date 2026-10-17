@@ -1,0 +1,18 @@
+mother("Jimmie Smart", "Christina Smart").
+father("Jimmie Smart", "Jefferson Smart").
+son("Jimmie Smart", "Buck Smart").
+wife("Jimmie Smart", "Latisha Smart").
+friend("Jimmie Smart", "Alisha Fredrick").
+friend("Jimmie Smart", "Dino Bowles").
+friend("Jimmie Smart", "Larue Speaks").
+friend("Jimmie Smart", "Eva Kell").
+friend("Jimmie Smart", "Sharika Kell").
+friend("Jimmie Smart", "Geraldine Suh").
+friend("Jimmie Smart", "Jackqueline Hollinger").
+friend("Jimmie Smart", "Shawnta Plumley").
+friend("Jimmie Smart", "Bee Corwin").
+friend("Jimmie Smart", "Gay Fitch").
+dob("Jimmie Smart", "0430-12-11").
+job("Jimmie Smart", "training and development officer").
+hobby("Jimmie Smart", "benchmarking").
+gender("Jimmie Smart", "male").

@@ -1,0 +1,382 @@
+[
+    {
+        "id": "b2014228-a36a-4a30-8f8c-f4b568d6b565",
+        "question": "Who is the youngest cousin of the cousin of Rolland Mckenna?",
+        "solution_traces": "[]",
+        "answer": [
+            "Rolland Mckenna"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (cousin(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "cousin(Y_2, Y_9)",
+                "cousin(\"Rolland Mckenna\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 209,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "2c1fd2ca-2203-48a0-9a9a-55c3a62f059b",
+        "question": "Who is the youngest son of the parent of Johnathan Boutte?",
+        "solution_traces": "[]",
+        "answer": [
+            "Johnathan Boutte"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (son(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "son(Y_2, Y_9)",
+                "parent(\"Johnathan Boutte\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 209,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "81b79ce1-0b4c-4ad3-9a63-bb524d49bfa7",
+        "question": "Who is the youngest sister of the friend of Daniel Brannan?",
+        "solution_traces": "[]",
+        "answer": [
+            "Yoko Wilkie"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "sister(Y_2, Y_9)",
+                "friend(\"Daniel Brannan\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 209,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "ba19eef7-c41b-4449-8233-42733eb96ce5",
+        "question": "Who is the youngest cousin of the niece of Bradford Nicolas?",
+        "solution_traces": "[]",
+        "answer": [
+            "Carrol Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (cousin(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "cousin(Y_2, Y_9)",
+                "niece(\"Bradford Nicolas\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 209,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "da317921-d3de-42c3-9799-8c826841b14f",
+        "question": "Who is the youngest husband of the friend of Maxwell Henderson?",
+        "solution_traces": "[]",
+        "answer": [
+            "Ulysses Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (husband(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "husband(Y_2, Y_9)",
+                "friend(\"Maxwell Henderson\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 209,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "f2eb343b-0d88-4686-b6a2-ae4a5b802c31",
+        "question": "Who is the youngest cousin of the nephew of Dwain Lizotte?",
+        "solution_traces": "[]",
+        "answer": [
+            "Yoko Wilkie"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (cousin(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "cousin(Y_2, Y_9)",
+                "nephew(\"Dwain Lizotte\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 209,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "c260ee02-b474-4f6d-8112-49257a6adbde",
+        "question": "Who is the youngest great-granddaughter of the parent of Shelli Beltran?",
+        "solution_traces": "[]",
+        "answer": [
+            "Valentina Wexler"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (great_granddaughter(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "great_granddaughter(Y_2, Y_9)",
+                "parent(\"Shelli Beltran\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 209,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "c35bdbc0-715e-4a24-aad7-1950302e55ce",
+        "question": "Who is the youngest granddaughter of the niece of Jona Carrell?",
+        "solution_traces": "[]",
+        "answer": [
+            "Monique Palermo"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (granddaughter(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "granddaughter(Y_2, Y_9)",
+                "niece(\"Jona Carrell\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 209,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "44ea58b8-627a-4c3a-881a-bfbb9ad1eaa1",
+        "question": "Who is the youngest father-in-law of the father of Charlie Kovach?",
+        "solution_traces": "[]",
+        "answer": [
+            "Adolph Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (father_in_law(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "father_in_law(Y_2, Y_9)",
+                "father(\"Charlie Kovach\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 209,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "069a126f-41a0-4c50-852f-6ab77859cc1d",
+        "question": "Who is the youngest child of the sibling of Rosanna Palermo?",
+        "solution_traces": "[]",
+        "answer": [
+            "Zoraida Palermo"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (child(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @> SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "child(Y_2, Y_9)",
+                "sibling(\"Rosanna Palermo\", Y_2)"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the youngest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "<name>_4",
+            "?"
+        ],
+        "type": 209,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    }
+]

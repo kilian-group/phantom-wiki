@@ -1,0 +1,22 @@
+sister("Charley Weise", "Graciela Weise").
+sister("Charley Weise", "Samatha Weise").
+mother("Charley Weise", "Shauna Weise").
+father("Charley Weise", "Graham Weise").
+friend("Charley Weise", "Gena Cook").
+friend("Charley Weise", "Sasha Simons").
+friend("Charley Weise", "Catina Linden").
+friend("Charley Weise", "Jeromy Ibarra").
+friend("Charley Weise", "Ricky Musick").
+friend("Charley Weise", "Dino Donner").
+friend("Charley Weise", "Oscar Medellin").
+friend("Charley Weise", "Fatimah Holtz").
+friend("Charley Weise", "Marguerite Putnam").
+friend("Charley Weise", "Hyman Layman").
+friend("Charley Weise", "Simon Kell").
+friend("Charley Weise", "Felipe Vanmeter").
+friend("Charley Weise", "Hans Fordham").
+friend("Charley Weise", "Ollie Omara").
+dob("Charley Weise", "0507-12-03").
+job("Charley Weise", "commissioning editor").
+hobby("Charley Weise", "geocaching").
+gender("Charley Weise", "male").

@@ -1,0 +1,21 @@
+sister("Lea Cordova", "Maegan Cordova").
+brother("Lea Cordova", "Ambrose Cordova").
+brother("Lea Cordova", "Errol Cordova").
+mother("Lea Cordova", "Enedina Cordova").
+father("Lea Cordova", "Raleigh Cordova").
+friend("Lea Cordova", "Magdalena Cordova").
+friend("Lea Cordova", "Jerry Mahoney").
+friend("Lea Cordova", "Robbie Hollins").
+friend("Lea Cordova", "Mireya Ibarra").
+friend("Lea Cordova", "Kareem Gilliam").
+friend("Lea Cordova", "Charles Levine").
+friend("Lea Cordova", "Lesley Medellin").
+friend("Lea Cordova", "Murray Fredrick").
+friend("Lea Cordova", "Belva Murphey").
+friend("Lea Cordova", "Freeda Jarrett").
+friend("Lea Cordova", "Kanesha Booth").
+friend("Lea Cordova", "Samual Knepper").
+dob("Lea Cordova", "0282-09-03").
+job("Lea Cordova", "clinical embryologist").
+hobby("Lea Cordova", "trainspotting").
+gender("Lea Cordova", "female").

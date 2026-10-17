@@ -1,0 +1,17 @@
+sister("Max Bauman", "Dorathy Mckenna").
+sister("Max Bauman", "Teresita Bauman").
+mother("Max Bauman", "Delores Bauman").
+father("Max Bauman", "Gustavo Bauman").
+son("Max Bauman", "Garrett Bauman").
+daughter("Max Bauman", "Lora Vanmeter").
+wife("Max Bauman", "Tonia Bauman").
+friend("Max Bauman", "Michael Mckenna").
+friend("Max Bauman", "Ligia Frink").
+friend("Max Bauman", "Ricardo Runnels").
+friend("Max Bauman", "Harley Simons").
+friend("Max Bauman", "Judith Lebrun").
+friend("Max Bauman", "Nora Resendez").
+dob("Max Bauman", "0405-04-01").
+job("Max Bauman", "financial manager").
+hobby("Max Bauman", "herping").
+gender("Max Bauman", "male").

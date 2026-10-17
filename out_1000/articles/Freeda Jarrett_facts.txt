@@ -1,0 +1,21 @@
+sister("Freeda Jarrett", "Zona Jarrett").
+brother("Freeda Jarrett", "Jamel Jarrett").
+brother("Freeda Jarrett", "Mose Jarrett").
+mother("Freeda Jarrett", "Shandi Jarrett").
+father("Freeda Jarrett", "Anthony Jarrett").
+friend("Freeda Jarrett", "Malissa Kell").
+friend("Freeda Jarrett", "Lea Cordova").
+friend("Freeda Jarrett", "Sonny Peeler").
+friend("Freeda Jarrett", "Sasha Simons").
+friend("Freeda Jarrett", "Dena Morehead").
+friend("Freeda Jarrett", "Jarrod Ibarra").
+friend("Freeda Jarrett", "Karina Smart").
+friend("Freeda Jarrett", "Jacque Greene").
+friend("Freeda Jarrett", "Ardath Carswell").
+friend("Freeda Jarrett", "Bryan Layton").
+friend("Freeda Jarrett", "Donny Speaks").
+friend("Freeda Jarrett", "Evette Hamlin").
+dob("Freeda Jarrett", "0450-06-08").
+job("Freeda Jarrett", "land surveyor").
+hobby("Freeda Jarrett", "go").
+gender("Freeda Jarrett", "female").

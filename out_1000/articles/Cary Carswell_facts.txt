@@ -1,0 +1,12 @@
+mother("Cary Carswell", "Ardath Carswell").
+father("Cary Carswell", "Derek Carswell").
+friend("Cary Carswell", "Marion Wilke").
+friend("Cary Carswell", "Rickie Burdette").
+friend("Cary Carswell", "Karla Linares").
+friend("Cary Carswell", "Shamika Mahoney").
+friend("Cary Carswell", "Katerine Dunlap").
+friend("Cary Carswell", "Willie Hurt").
+dob("Cary Carswell", "0548-07-08").
+job("Cary Carswell", "neurosurgeon").
+hobby("Cary Carswell", "linguistics").
+gender("Cary Carswell", "male").

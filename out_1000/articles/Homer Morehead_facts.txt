@@ -1,0 +1,19 @@
+sister("Homer Morehead", "Dena Morehead").
+brother("Homer Morehead", "Maynard Morehead").
+mother("Homer Morehead", "Zora Morehead").
+father("Homer Morehead", "Miguel Morehead").
+friend("Homer Morehead", "Rochelle Corwin").
+friend("Homer Morehead", "Elaine Hsu").
+friend("Homer Morehead", "Edythe Gilliam").
+friend("Homer Morehead", "Bret Smart").
+friend("Homer Morehead", "Nelly Smart").
+friend("Homer Morehead", "Ressie Capps").
+friend("Homer Morehead", "Karen Mckenna").
+friend("Homer Morehead", "Lona Geter").
+friend("Homer Morehead", "Danny Cowart").
+friend("Homer Morehead", "Adella Townsend").
+friend("Homer Morehead", "Bill Clement").
+dob("Homer Morehead", "0475-02-22").
+job("Homer Morehead", "race relations officer").
+hobby("Homer Morehead", "sea glass collecting").
+gender("Homer Morehead", "male").

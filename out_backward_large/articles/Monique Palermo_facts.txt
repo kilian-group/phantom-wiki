@@ -1,0 +1,13 @@
+sister("Monique Palermo", "Hannah Palermo").
+sister("Monique Palermo", "Rosanna Palermo").
+brother("Monique Palermo", "Francisco Palermo").
+mother("Monique Palermo", "Sylvia Palermo").
+father("Monique Palermo", "Enoch Palermo").
+friend("Monique Palermo", "Williams Smock").
+friend("Monique Palermo", "Jung Henderson").
+friend("Monique Palermo", "Ulysses Nicolas").
+friend("Monique Palermo", "Benton Earnest").
+dob("Monique Palermo", "0341-01-09").
+job("Monique Palermo", "operations geologist").
+hobby("Monique Palermo", "shooting").
+gender("Monique Palermo", "female").

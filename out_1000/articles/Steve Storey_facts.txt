@@ -1,0 +1,14 @@
+son("Steve Storey", "Herbert Storey").
+son("Steve Storey", "Mack Storey").
+daughter("Steve Storey", "Daisy Autry").
+wife("Steve Storey", "Joanne Storey").
+friend("Steve Storey", "Alice Dana").
+friend("Steve Storey", "Foster Medellin").
+friend("Steve Storey", "Stacey Wilke").
+friend("Steve Storey", "Laverna Kell").
+friend("Steve Storey", "Malissa Kell").
+friend("Steve Storey", "Jermaine Lasher").
+dob("Steve Storey", "0378-06-10").
+job("Steve Storey", "secretary").
+hobby("Steve Storey", "crystals").
+gender("Steve Storey", "male").

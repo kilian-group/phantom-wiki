@@ -1,0 +1,12 @@
+son("Glen Towns", "Cedric Towns").
+daughter("Glen Towns", "Shawna Towns").
+wife("Glen Towns", "Patricia Towns").
+friend("Glen Towns", "Louie Bales").
+friend("Glen Towns", "Janey Plumley").
+friend("Glen Towns", "Miki Peabody").
+friend("Glen Towns", "Dorathy Hamlin").
+friend("Glen Towns", "Dwight Palm").
+dob("Glen Towns", "0472-08-21").
+job("Glen Towns", "engineering geologist").
+hobby("Glen Towns", "photography").
+gender("Glen Towns", "male").

@@ -1,0 +1,9 @@
+sister("Celestine Remillard", "Louann Chrisman").
+brother("Celestine Remillard", "Willie Remillard").
+mother("Celestine Remillard", "Dani Remillard").
+father("Celestine Remillard", "Hunter Remillard").
+friend("Celestine Remillard", "Aurelia Dishman").
+dob("Celestine Remillard", "0353-09-20").
+job("Celestine Remillard", "midwife").
+hobby("Celestine Remillard", "stuffed toy collecting").
+gender("Celestine Remillard", "female").

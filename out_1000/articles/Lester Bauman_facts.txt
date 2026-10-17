@@ -1,0 +1,14 @@
+son("Lester Bauman", "Gustavo Bauman").
+son("Lester Bauman", "Kendrick Bauman").
+wife("Lester Bauman", "Elisabeth Bauman").
+friend("Lester Bauman", "Paris Cordova").
+friend("Lester Bauman", "Mickey Eaves").
+friend("Lester Bauman", "Rob Eaves").
+friend("Lester Bauman", "Irwin Dalton").
+friend("Lester Bauman", "Justin Putnam").
+friend("Lester Bauman", "Thomasena Marr").
+friend("Lester Bauman", "Preston Booth").
+dob("Lester Bauman", "0353-05-28").
+job("Lester Bauman", "TEFL teacher").
+hobby("Lester Bauman", "microscopy").
+gender("Lester Bauman", "male").

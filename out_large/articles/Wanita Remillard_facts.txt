@@ -1,0 +1,12 @@
+brother("Wanita Remillard", "Jaime Remillard").
+brother("Wanita Remillard", "Jude Remillard").
+mother("Wanita Remillard", "Sherrie Remillard").
+father("Wanita Remillard", "Jon Remillard").
+friend("Wanita Remillard", "Alvaro Murphey").
+friend("Wanita Remillard", "Ophelia Mcgough").
+friend("Wanita Remillard", "Cherlyn Oberg").
+friend("Wanita Remillard", "Demarcus Narvaez").
+dob("Wanita Remillard", "0299-11-29").
+job("Wanita Remillard", "radiographer").
+hobby("Wanita Remillard", "button collecting").
+gender("Wanita Remillard", "female").

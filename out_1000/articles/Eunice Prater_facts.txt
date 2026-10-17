@@ -1,0 +1,12 @@
+mother("Eunice Prater", "Iluminada Capps").
+father("Eunice Prater", "Vito Capps").
+son("Eunice Prater", "Steven Prater").
+husband("Eunice Prater", "Stephan Prater").
+friend("Eunice Prater", "Cary Layton").
+friend("Eunice Prater", "Diane Burkhalter").
+friend("Eunice Prater", "Hector Autry").
+friend("Eunice Prater", "Darren Gilliam").
+dob("Eunice Prater", "0413-07-14").
+job("Eunice Prater", "therapeutic radiographer").
+hobby("Eunice Prater", "research").
+gender("Eunice Prater", "female").

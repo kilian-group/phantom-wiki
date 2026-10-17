@@ -1,0 +1,12 @@
+son("Dennis Marr", "Deangelo Marr").
+son("Dennis Marr", "Jamal Marr").
+daughter("Dennis Marr", "Deloris Marr").
+wife("Dennis Marr", "Thomasena Marr").
+friend("Dennis Marr", "Randall Mcgough").
+friend("Dennis Marr", "Javier Kirksey").
+friend("Dennis Marr", "Jamel Chou").
+friend("Dennis Marr", "Bertram Wylie").
+dob("Dennis Marr", "0346-05-01").
+job("Dennis Marr", "television producer").
+hobby("Dennis Marr", "billiards").
+gender("Dennis Marr", "male").

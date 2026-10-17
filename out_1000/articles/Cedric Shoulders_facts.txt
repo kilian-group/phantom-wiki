@@ -1,0 +1,12 @@
+son("Cedric Shoulders", "Timothy Shoulders").
+wife("Cedric Shoulders", "Gloria Shoulders").
+friend("Cedric Shoulders", "Al Younger").
+friend("Cedric Shoulders", "Tanner Holliman").
+friend("Cedric Shoulders", "Edmundo Mcpeak").
+friend("Cedric Shoulders", "Lynette Fredrick").
+friend("Cedric Shoulders", "Chauncey Wilkie").
+friend("Cedric Shoulders", "Keith Murchison").
+dob("Cedric Shoulders", "0489-01-12").
+job("Cedric Shoulders", "surveyor").
+hobby("Cedric Shoulders", "shortwave listening").
+gender("Cedric Shoulders", "male").

@@ -1,0 +1,8 @@
+son("Oliver Abraham", "Dillon Abraham").
+son("Oliver Abraham", "Stuart Abraham").
+daughter("Oliver Abraham", "Alberta Abraham").
+wife("Oliver Abraham", "Taneka Abraham").
+dob("Oliver Abraham", "0213-12-20").
+job("Oliver Abraham", "geologist").
+hobby("Oliver Abraham", "wikipedia editing").
+gender("Oliver Abraham", "male").

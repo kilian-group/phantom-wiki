@@ -1,0 +1,18 @@
+daughter("Iluminada Capps", "Eunice Prater").
+husband("Iluminada Capps", "Vito Capps").
+friend("Iluminada Capps", "Goldie Alessi").
+friend("Iluminada Capps", "Christen Resendez").
+friend("Iluminada Capps", "Hyman Layman").
+friend("Iluminada Capps", "Louis Upton").
+friend("Iluminada Capps", "Maria Lindquist").
+friend("Iluminada Capps", "Nydia Willoughby").
+friend("Iluminada Capps", "Bo Frink").
+friend("Iluminada Capps", "Jamie Bellows").
+friend("Iluminada Capps", "Miki Mcdonald").
+friend("Iluminada Capps", "Estella Dana").
+friend("Iluminada Capps", "Clara Corwin").
+friend("Iluminada Capps", "Lashawnda Fordham").
+dob("Iluminada Capps", "0385-07-12").
+job("Iluminada Capps", "theatre director").
+hobby("Iluminada Capps", "pole dancing").
+gender("Iluminada Capps", "female").

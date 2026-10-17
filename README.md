@@ -43,20 +43,20 @@ import phantom_wiki as pw
 pw.generate_dataset(
     output_dir="/path/to/output",
     seed=1,
-    use_multithreading=True,
+    num_multiprocesses=4,
 )
 ```
 
 2. In a terminal:
 
 ```bash
-phantom-wiki-generate -od "/path/to/output" --seed 1 --use-multithreading
+phantom-wiki-generate -od "/path/to/output" --seed 1 --num-multiprocesses 4
 ```
 
 (You can also use the shorthand alias `pw-generate`.)
 
 > \[!NOTE\]
-> We do not support `--use-multithreading` on macOS yet, so you should skip this flag (or set it to `False`).
+> `--num-multiprocesses > 1` is not supported on macOS yet, so you should leave it at the default (`1`) there.
 
 The following generation script creates datasets of various sizes with random generation seed 1:
 

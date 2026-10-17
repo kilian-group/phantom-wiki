@@ -1,0 +1,11 @@
+sister("Robbie Hollins", "Renate Gailey").
+brother("Robbie Hollins", "Harold Hollins").
+mother("Robbie Hollins", "Eula Hollins").
+father("Robbie Hollins", "Micah Hollins").
+friend("Robbie Hollins", "Taylor Schatz").
+friend("Robbie Hollins", "Fatimah Holtz").
+friend("Robbie Hollins", "Lea Cordova").
+dob("Robbie Hollins", "0409-09-07").
+job("Robbie Hollins", "operational researcher").
+hobby("Robbie Hollins", "notaphily").
+gender("Robbie Hollins", "female").

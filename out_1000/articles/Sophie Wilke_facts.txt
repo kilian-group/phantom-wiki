@@ -1,0 +1,16 @@
+mother("Sophie Wilke", "Barabara Wilke").
+father("Sophie Wilke", "Marion Wilke").
+friend("Sophie Wilke", "Rolf Booth").
+friend("Sophie Wilke", "Walter Kell").
+friend("Sophie Wilke", "Chelsie Peeler").
+friend("Sophie Wilke", "Edythe Littleton").
+friend("Sophie Wilke", "Sherrie Jansen").
+friend("Sophie Wilke", "Shawna Towns").
+friend("Sophie Wilke", "Sofia Eaves").
+friend("Sophie Wilke", "Larue Macias").
+friend("Sophie Wilke", "Normand Wilke").
+friend("Sophie Wilke", "Rhonda Wilke").
+dob("Sophie Wilke", "0398-12-23").
+job("Sophie Wilke", "secretary").
+hobby("Sophie Wilke", "record collecting").
+gender("Sophie Wilke", "female").

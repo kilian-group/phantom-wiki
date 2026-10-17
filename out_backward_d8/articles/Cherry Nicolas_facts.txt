@@ -1,0 +1,13 @@
+son("Cherry Nicolas", "Anthony Nicolas").
+son("Cherry Nicolas", "Bradford Nicolas").
+daughter("Cherry Nicolas", "Aletha Nicolas").
+daughter("Cherry Nicolas", "Rosalinda Francois").
+husband("Cherry Nicolas", "Ulysses Nicolas").
+friend("Cherry Nicolas", "Hannah Palermo").
+friend("Cherry Nicolas", "Vicki Hackworth").
+friend("Cherry Nicolas", "Ella Saari").
+friend("Cherry Nicolas", "Maxwell Henderson").
+dob("Cherry Nicolas", "0245-08-28").
+job("Cherry Nicolas", "print production planner").
+hobby("Cherry Nicolas", "religious studies").
+gender("Cherry Nicolas", "female").

@@ -1,0 +1,16 @@
+sister("Hunter Remillard", "Chrissy Remillard").
+sister("Hunter Remillard", "Margie Remillard").
+mother("Hunter Remillard", "Morgan Remillard").
+father("Hunter Remillard", "Jaime Remillard").
+son("Hunter Remillard", "Willie Remillard").
+daughter("Hunter Remillard", "Celestine Remillard").
+daughter("Hunter Remillard", "Louann Chrisman").
+wife("Hunter Remillard", "Dani Remillard").
+friend("Hunter Remillard", "Morgan Remillard").
+friend("Hunter Remillard", "Sherrie Remillard").
+friend("Hunter Remillard", "Belva Murphey").
+friend("Hunter Remillard", "Marion Wilke").
+dob("Hunter Remillard", "0321-09-02").
+job("Hunter Remillard", "paediatric nurse").
+hobby("Hunter Remillard", "research").
+gender("Hunter Remillard", "male").

@@ -1,0 +1,19 @@
+sister("Ashleigh Spiller", "Karol Beamon").
+sister("Ashleigh Spiller", "Magdalena Hollinger").
+brother("Ashleigh Spiller", "Donald Autry").
+brother("Ashleigh Spiller", "Isaiah Autry").
+mother("Ashleigh Spiller", "Daisy Autry").
+father("Ashleigh Spiller", "Kelvin Autry").
+son("Ashleigh Spiller", "Perry Spiller").
+husband("Ashleigh Spiller", "Carrol Spiller").
+friend("Ashleigh Spiller", "Bridget Sutphin").
+friend("Ashleigh Spiller", "Brunilda Linden").
+friend("Ashleigh Spiller", "Miles Burdette").
+friend("Ashleigh Spiller", "Ruben Corwin").
+friend("Ashleigh Spiller", "Gay Fitch").
+friend("Ashleigh Spiller", "Bruce Burger").
+friend("Ashleigh Spiller", "Johanna Sanborn").
+dob("Ashleigh Spiller", "0423-10-11").
+job("Ashleigh Spiller", "meteorologist").
+hobby("Ashleigh Spiller", "beach volleyball").
+gender("Ashleigh Spiller", "female").

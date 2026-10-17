@@ -1,0 +1,11 @@
+son("Wade Lebrun", "Rob Lebrun").
+wife("Wade Lebrun", "Georgina Lebrun").
+friend("Wade Lebrun", "Toney Gibbs").
+friend("Wade Lebrun", "Valentina Robinett").
+friend("Wade Lebrun", "Dustin Peeler").
+friend("Wade Lebrun", "Davis Eaves").
+friend("Wade Lebrun", "Salvador Plumley").
+dob("Wade Lebrun", "0346-04-12").
+job("Wade Lebrun", "drilling engineer").
+hobby("Wade Lebrun", "birdwatching").
+gender("Wade Lebrun", "male").

@@ -1,0 +1,474 @@
+[
+    {
+        "id": "c94ee4f7-27db-4f0b-a69a-da43cb0c0a58",
+        "question": "Who is the oldest child of the friend of the male cousin of the person whose occupation is advice worker?",
+        "solution_traces": "[]",
+        "answer": [
+            "Minerva Wilkie",
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (child(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "child(Y_2, Y_9)",
+                "friend(Y_4, Y_2)",
+                "male_cousin(Y_6, Y_4)",
+                "job(Y_6, \"advice worker\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 196,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "8abab6a7-e4e7-4107-9788-436d5a51be69",
+        "question": "Who is the oldest daughter of the husband of the friend of the person whose hobby is audiophile?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aida Wang",
+            "Alberta Abraham",
+            "Cherise Earnest",
+            "Jeanelle Mcnew",
+            "Lauretta Mason",
+            "Lera Brook",
+            "Margaret Kovach",
+            "Sha Langley",
+            "Sherry Cormier",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (daughter(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "daughter(Y_2, Y_9)",
+                "husband(Y_4, Y_2)",
+                "friend(Y_6, Y_4)",
+                "hobby(Y_6, \"audiophile\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 196,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "1d285aaf-dec0-4d51-a2f9-a2b5c9c324f3",
+        "question": "Who is the oldest aunt of the great-grandchild of the father of the person whose occupation is telecommunications researcher?",
+        "solution_traces": "[]",
+        "answer": [
+            "Elissa Kovach"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (aunt(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "aunt(Y_2, Y_9)",
+                "great_grandchild(Y_4, Y_2)",
+                "father(Y_6, Y_4)",
+                "job(Y_6, \"telecommunications researcher\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 196,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 1,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "52c7a16d-14f5-404b-9874-31b6b3543da8",
+        "question": "Who is the oldest parent of the child of the wife of the person whose occupation is music therapist?",
+        "solution_traces": "[]",
+        "answer": [
+            "Andy Clemons",
+            "Rosina Lizotte"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (parent(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "parent(Y_2, Y_9)",
+                "child(Y_4, Y_2)",
+                "wife(Y_6, Y_4)",
+                "job(Y_6, \"music therapist\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 196,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "2b87ec79-c85e-4816-a7f8-7f3e44790576",
+        "question": "Who is the oldest son-in-law of the grandchild of the great-grandparent of the person whose hobby is martial arts?",
+        "solution_traces": "[]",
+        "answer": [
+            "Everett Kovach"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (son_in_law(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "son_in_law(Y_2, Y_9)",
+                "grandchild(Y_4, Y_2)",
+                "great_grandparent(Y_6, Y_4)",
+                "hobby(Y_6, \"martial arts\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 196,
+        "reasoning_steps": 8,
+        "difficulty": {
+            "hops": 8,
+            "constraints": 1,
+            "composite": 9,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "6a1f6e87-2af2-4129-aee1-64ad41e2a4e8",
+        "question": "Who is the oldest sister of the sibling of the sister-in-law of the person whose occupation is commercial horticulturist?",
+        "solution_traces": "[]",
+        "answer": [
+            "Aletha Nicolas",
+            "Rosalinda Francois"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (sister(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "sister(Y_2, Y_9)",
+                "sibling(Y_4, Y_2)",
+                "sister_in_law(Y_6, Y_4)",
+                "job(Y_6, \"commercial horticulturist\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 196,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "f6498eaf-858f-44dc-9195-22d2227df240",
+        "question": "Who is the oldest uncle of the brother of the sister-in-law of the person whose occupation is oceanographer?",
+        "solution_traces": "[]",
+        "answer": [
+            "Earle Cormier"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (uncle(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "uncle(Y_2, Y_9)",
+                "brother(Y_4, Y_2)",
+                "sister_in_law(Y_6, Y_4)",
+                "job(Y_6, \"oceanographer\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 196,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 1,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "c22f37ba-1359-48b4-9350-a5a530858824",
+        "question": "Who is the oldest wife of the husband of the wife of the person whose hobby is fusilately?",
+        "solution_traces": "[]",
+        "answer": [
+            "Windy Mckenna"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (wife(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "wife(Y_2, Y_9)",
+                "husband(Y_4, Y_2)",
+                "wife(Y_6, Y_4)",
+                "hobby(Y_6, \"fusilately\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 196,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 1,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "0a399058-7683-4ba0-92ac-9bb6a90b6957",
+        "question": "Who is the oldest grandchild of the brother of the child of the person whose hobby is dolls?",
+        "solution_traces": "[]",
+        "answer": [
+            "Leeann Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (grandchild(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "grandchild(Y_2, Y_9)",
+                "brother(Y_4, Y_2)",
+                "child(Y_6, Y_4)",
+                "hobby(Y_6, \"dolls\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 196,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 1,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    },
+    {
+        "id": "7c8d9f43-c707-4a62-9b45-574dd11d3500",
+        "question": "Who is the oldest friend of the great-grandson of the friend of the person whose date of birth is 0356-03-30?",
+        "solution_traces": "[]",
+        "answer": [
+            "Ali Schoonmaker"
+        ],
+        "prolog": {
+            "query": [
+                "\\+ (friend(Y_2, SupZ_8), dob(SupZ_8, SupD2_8), SupZ_8 \\= Y_9, SupD2_8 @< SupD_8)",
+                "dob(Y_9, SupD_8)",
+                "friend(Y_2, Y_9)",
+                "great_grandson(Y_4, Y_2)",
+                "friend(Y_6, Y_4)",
+                "dob(Y_6, \"0356-03-30\")"
+            ],
+            "answer": "Y_9"
+        },
+        "template": [
+            "Who is",
+            "the oldest",
+            "<relation>_9",
+            "of",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "?"
+        ],
+        "type": 196,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 1,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_oldest"
+    }
+]

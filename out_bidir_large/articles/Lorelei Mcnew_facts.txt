@@ -1,0 +1,13 @@
+sister("Lorelei Mcnew", "Goldie Henderson").
+mother("Lorelei Mcnew", "Noelia Henderson").
+father("Lorelei Mcnew", "Stefan Henderson").
+son("Lorelei Mcnew", "Cole Mcnew").
+son("Lorelei Mcnew", "Marcelino Mcnew").
+son("Lorelei Mcnew", "Merrill Mcnew").
+daughter("Lorelei Mcnew", "Jeanelle Mcnew").
+husband("Lorelei Mcnew", "Don Mcnew").
+friend("Lorelei Mcnew", "Dudley Wise").
+dob("Lorelei Mcnew", "0279-09-05").
+job("Lorelei Mcnew", "town planner").
+hobby("Lorelei Mcnew", "flying model planes").
+gender("Lorelei Mcnew", "female").

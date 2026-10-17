@@ -1,0 +1,15 @@
+mother("Babara Arnold", "Naomi Bellows").
+father("Babara Arnold", "Jamie Bellows").
+son("Babara Arnold", "Dalton Arnold").
+husband("Babara Arnold", "Otto Arnold").
+friend("Babara Arnold", "Harley Simons").
+friend("Babara Arnold", "Porter Steadman").
+friend("Babara Arnold", "Christen Corwin").
+friend("Babara Arnold", "Miguel Morehead").
+friend("Babara Arnold", "Toshiko Younger").
+friend("Babara Arnold", "Kareem Goff").
+friend("Babara Arnold", "Dorathy Mckenna").
+dob("Babara Arnold", "0528-11-19").
+job("Babara Arnold", "industrial designer").
+hobby("Babara Arnold", "leaves").
+gender("Babara Arnold", "female").

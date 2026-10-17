@@ -1,0 +1,15 @@
+sister("Levi Fredrick", "Kelley Cheney").
+brother("Levi Fredrick", "Delbert Fredrick").
+mother("Levi Fredrick", "Shelly Fredrick").
+father("Levi Fredrick", "Malik Fredrick").
+friend("Levi Fredrick", "Kimiko Vogt").
+friend("Levi Fredrick", "Cary Layton").
+friend("Levi Fredrick", "Jame Carty").
+friend("Levi Fredrick", "Jake Burkhalter").
+friend("Levi Fredrick", "Ollie Omara").
+friend("Levi Fredrick", "Ai Cordova").
+friend("Levi Fredrick", "Alton Ibarra").
+dob("Levi Fredrick", "0405-04-04").
+job("Levi Fredrick", "warehouse manager").
+hobby("Levi Fredrick", "exhibition drill").
+gender("Levi Fredrick", "male").

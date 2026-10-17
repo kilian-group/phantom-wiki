@@ -1,0 +1,24 @@
+sister("Dorathy Mckenna", "Teresita Bauman").
+brother("Dorathy Mckenna", "Max Bauman").
+mother("Dorathy Mckenna", "Delores Bauman").
+father("Dorathy Mckenna", "Gustavo Bauman").
+son("Dorathy Mckenna", "Ira Mckenna").
+son("Dorathy Mckenna", "Nevin Mckenna").
+son("Dorathy Mckenna", "Porter Mckenna").
+son("Dorathy Mckenna", "Rodrigo Mckenna").
+daughter("Dorathy Mckenna", "Kimberely Corso").
+husband("Dorathy Mckenna", "Cameron Mckenna").
+friend("Dorathy Mckenna", "Therese Mckenna").
+friend("Dorathy Mckenna", "Jacque Haygood").
+friend("Dorathy Mckenna", "Ai Cordova").
+friend("Dorathy Mckenna", "Lon Lazar").
+friend("Dorathy Mckenna", "Babara Arnold").
+friend("Dorathy Mckenna", "Jo Corwin").
+friend("Dorathy Mckenna", "Amberly Levine").
+friend("Dorathy Mckenna", "Domonique Fordham").
+friend("Dorathy Mckenna", "Tracy Fredrick").
+friend("Dorathy Mckenna", "Zachary Theriot").
+dob("Dorathy Mckenna", "0415-02-04").
+job("Dorathy Mckenna", "warehouse manager").
+hobby("Dorathy Mckenna", "scouting").
+gender("Dorathy Mckenna", "female").

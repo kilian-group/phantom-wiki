@@ -1,0 +1,16 @@
+sister("Martin Deville", "Chrissy Mcgough").
+mother("Martin Deville", "Tiesha Deville").
+father("Martin Deville", "Lorenz Deville").
+friend("Martin Deville", "Goldie Alessi").
+friend("Martin Deville", "Deja Bigelow").
+friend("Martin Deville", "Andrea Murchison").
+friend("Martin Deville", "Doyle Valladares").
+friend("Martin Deville", "Irwin Arteaga").
+friend("Martin Deville", "Roxy Niles").
+friend("Martin Deville", "Stevie Joiner").
+friend("Martin Deville", "Maynard Latham").
+friend("Martin Deville", "Byron Medellin").
+dob("Martin Deville", "0383-02-06").
+job("Martin Deville", "optometrist").
+hobby("Martin Deville", "benchmarking").
+gender("Martin Deville", "male").

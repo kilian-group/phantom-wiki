@@ -1,0 +1,9 @@
+daughter("Chelsie Bradberry", "Maurine Shirk").
+husband("Chelsie Bradberry", "Bryant Bradberry").
+friend("Chelsie Bradberry", "Alison Smock").
+friend("Chelsie Bradberry", "Earle Cormier").
+friend("Chelsie Bradberry", "Liane Schoonmaker").
+dob("Chelsie Bradberry", "0191-10-28").
+job("Chelsie Bradberry", "call centre manager").
+hobby("Chelsie Bradberry", "ant farming").
+gender("Chelsie Bradberry", "female").

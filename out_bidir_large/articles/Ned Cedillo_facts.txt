@@ -1,0 +1,11 @@
+son("Ned Cedillo", "Kasey Cedillo").
+wife("Ned Cedillo", "Bee Cedillo").
+friend("Ned Cedillo", "Reinaldo Hornback").
+friend("Ned Cedillo", "Pasquale Levy").
+friend("Ned Cedillo", "Lannie Smock").
+friend("Ned Cedillo", "Orlando Beltran").
+friend("Ned Cedillo", "Gerardo Hornback").
+dob("Ned Cedillo", "0249-07-28").
+job("Ned Cedillo", "travel agency manager").
+hobby("Ned Cedillo", "dairy farming").
+gender("Ned Cedillo", "male").

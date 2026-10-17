@@ -1,0 +1,16 @@
+brother("Belva Murphey", "Luke Wilke").
+brother("Belva Murphey", "Marion Wilke").
+mother("Belva Murphey", "Amy Wilke").
+father("Belva Murphey", "Stacey Wilke").
+daughter("Belva Murphey", "Myrl Mcgough").
+husband("Belva Murphey", "Alvaro Murphey").
+friend("Belva Murphey", "Ophelia Mcgough").
+friend("Belva Murphey", "Stacey Wilke").
+friend("Belva Murphey", "Hunter Remillard").
+friend("Belva Murphey", "Jaime Remillard").
+friend("Belva Murphey", "Morgan Remillard").
+friend("Belva Murphey", "Thomas Chrisman").
+dob("Belva Murphey", "0283-07-02").
+job("Belva Murphey", "psychiatric nurse").
+hobby("Belva Murphey", "science and technology studies").
+gender("Belva Murphey", "female").

@@ -1,0 +1,7 @@
+daughter("Ryan Wang", "Johnetta Wang").
+wife("Ryan Wang", "Aida Wang").
+friend("Ryan Wang", "Noelia Henderson").
+dob("Ryan Wang", "0292-03-17").
+job("Ryan Wang", "chief of staff").
+hobby("Ryan Wang", "fossil hunting").
+gender("Ryan Wang", "male").

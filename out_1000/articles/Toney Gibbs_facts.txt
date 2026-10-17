@@ -1,0 +1,20 @@
+son("Toney Gibbs", "Kory Gibbs").
+daughter("Toney Gibbs", "Evette Gibbs").
+daughter("Toney Gibbs", "Lucienne Gilliam").
+wife("Toney Gibbs", "Justine Gibbs").
+friend("Toney Gibbs", "Amberly Levine").
+friend("Toney Gibbs", "Reggie Medellin").
+friend("Toney Gibbs", "Hal Greene").
+friend("Toney Gibbs", "Derek Carswell").
+friend("Toney Gibbs", "Jamal Marr").
+friend("Toney Gibbs", "Malissa Kell").
+friend("Toney Gibbs", "Lindy Dillion").
+friend("Toney Gibbs", "Claudine Bales").
+friend("Toney Gibbs", "Ivette Eaves").
+friend("Toney Gibbs", "Wade Lebrun").
+friend("Toney Gibbs", "Carlotta Gossett").
+friend("Toney Gibbs", "Maximilian Keyes").
+dob("Toney Gibbs", "0294-11-24").
+job("Toney Gibbs", "presenter").
+hobby("Toney Gibbs", "mycology").
+gender("Toney Gibbs", "male").

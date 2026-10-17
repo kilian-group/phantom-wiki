@@ -1,0 +1,15 @@
+sister("Markus Gilliam", "Jacinta Gilliam").
+brother("Markus Gilliam", "Boris Gilliam").
+brother("Markus Gilliam", "Darren Gilliam").
+brother("Markus Gilliam", "Hershel Gilliam").
+brother("Markus Gilliam", "Jermaine Gilliam").
+mother("Markus Gilliam", "Lucienne Gilliam").
+father("Markus Gilliam", "Kenton Gilliam").
+friend("Markus Gilliam", "Jodi Noland").
+friend("Markus Gilliam", "Myrl Mcgough").
+friend("Markus Gilliam", "Lindy Dillion").
+friend("Markus Gilliam", "Audra Carreon").
+dob("Markus Gilliam", "0342-10-12").
+job("Markus Gilliam", "social worker").
+hobby("Markus Gilliam", "roundnet").
+gender("Markus Gilliam", "male").

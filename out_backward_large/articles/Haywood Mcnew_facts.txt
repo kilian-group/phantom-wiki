@@ -1,0 +1,10 @@
+mother("Haywood Mcnew", "Amanda Mcnew").
+father("Haywood Mcnew", "Merrill Mcnew").
+daughter("Haywood Mcnew", "Amberly Mcnew").
+wife("Haywood Mcnew", "Rae Mcnew").
+friend("Haywood Mcnew", "Benton Earnest").
+friend("Haywood Mcnew", "Lauretta Mason").
+dob("Haywood Mcnew", "0340-12-18").
+job("Haywood Mcnew", "research officer").
+hobby("Haywood Mcnew", "fossil hunting").
+gender("Haywood Mcnew", "male").

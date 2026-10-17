@@ -1,0 +1,17 @@
+daughter("Donnie Crocker", "Aletha Crocker").
+daughter("Donnie Crocker", "Jennifer Paynter").
+wife("Donnie Crocker", "Randi Crocker").
+friend("Donnie Crocker", "Shauna Weise").
+friend("Donnie Crocker", "Buffy Eaves").
+friend("Donnie Crocker", "Miles Fordham").
+friend("Donnie Crocker", "Aron Robinett").
+friend("Donnie Crocker", "Nickolas Holtz").
+friend("Donnie Crocker", "Gena Shaw").
+friend("Donnie Crocker", "Ollie Kell").
+friend("Donnie Crocker", "Gustavo Bauman").
+friend("Donnie Crocker", "James Maness").
+friend("Donnie Crocker", "Desiree Fordham").
+dob("Donnie Crocker", "0425-07-12").
+job("Donnie Crocker", "electronics engineer").
+hobby("Donnie Crocker", "meditation").
+gender("Donnie Crocker", "male").

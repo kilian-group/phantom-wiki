@@ -1,0 +1,18 @@
+mother("Doyle Valladares", "Geraldine Valladares").
+father("Doyle Valladares", "Grady Valladares").
+son("Doyle Valladares", "Jarvis Valladares").
+wife("Doyle Valladares", "Ella Valladares").
+friend("Doyle Valladares", "Frankie Mahoney").
+friend("Doyle Valladares", "Raul Younger").
+friend("Doyle Valladares", "Micah Hollins").
+friend("Doyle Valladares", "Sung Resendez").
+friend("Doyle Valladares", "Lindy Kavanaugh").
+friend("Doyle Valladares", "Cedric Wilke").
+friend("Doyle Valladares", "Martin Deville").
+friend("Doyle Valladares", "Andres Layton").
+friend("Doyle Valladares", "Tosha Osborn").
+friend("Doyle Valladares", "Winfred Basham").
+dob("Doyle Valladares", "0406-09-17").
+job("Doyle Valladares", "chartered legal executive").
+hobby("Doyle Valladares", "geocaching").
+gender("Doyle Valladares", "male").

@@ -1,0 +1,11 @@
+son("Barabara Peeler", "Luther Peeler").
+husband("Barabara Peeler", "Frankie Peeler").
+friend("Barabara Peeler", "Annette Rudolph").
+friend("Barabara Peeler", "Kenton Whitford").
+friend("Barabara Peeler", "Bradford Oliveira").
+friend("Barabara Peeler", "Claudio Winn").
+friend("Barabara Peeler", "Olin Fordham").
+dob("Barabara Peeler", "0331-07-17").
+job("Barabara Peeler", "retail merchandiser").
+hobby("Barabara Peeler", "sports science").
+gender("Barabara Peeler", "female").

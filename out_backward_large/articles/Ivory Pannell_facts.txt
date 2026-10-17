@@ -1,0 +1,12 @@
+mother("Ivory Pannell", "Ashely Kee").
+father("Ivory Pannell", "Dane Kee").
+son("Ivory Pannell", "Ian Pannell").
+husband("Ivory Pannell", "Lanny Pannell").
+friend("Ivory Pannell", "Mona Pannell").
+friend("Ivory Pannell", "Roman Palermo").
+friend("Ivory Pannell", "Maurine Shirk").
+friend("Ivory Pannell", "Caleb Haber").
+dob("Ivory Pannell", "0257-12-23").
+job("Ivory Pannell", "historic buildings inspector").
+hobby("Ivory Pannell", "rock climbing").
+gender("Ivory Pannell", "female").

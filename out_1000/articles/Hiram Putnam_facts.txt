@@ -1,0 +1,14 @@
+son("Hiram Putnam", "Justin Putnam").
+wife("Hiram Putnam", "Artie Putnam").
+friend("Hiram Putnam", "Tamala Skidmore").
+friend("Hiram Putnam", "Julio Mcgough").
+friend("Hiram Putnam", "Harry Hudgens").
+friend("Hiram Putnam", "Ignacio Haygood").
+friend("Hiram Putnam", "Scottie Steadman").
+friend("Hiram Putnam", "Salvador Plumley").
+friend("Hiram Putnam", "Tabetha Niles").
+friend("Hiram Putnam", "Derek Carswell").
+dob("Hiram Putnam", "0414-03-02").
+job("Hiram Putnam", "contracting civil engineer").
+hobby("Hiram Putnam", "sea glass collecting").
+gender("Hiram Putnam", "male").

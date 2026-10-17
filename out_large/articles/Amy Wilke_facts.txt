@@ -1,0 +1,18 @@
+sister("Amy Wilke", "Thelma Vandenberg").
+brother("Amy Wilke", "Charley Vandenberg").
+brother("Amy Wilke", "Eli Vandenberg").
+mother("Amy Wilke", "Jackie Vandenberg").
+father("Amy Wilke", "Valentin Vandenberg").
+son("Amy Wilke", "Luke Wilke").
+son("Amy Wilke", "Marion Wilke").
+daughter("Amy Wilke", "Belva Murphey").
+husband("Amy Wilke", "Stacey Wilke").
+friend("Amy Wilke", "Clyde Oberg").
+friend("Amy Wilke", "Marlo Oberg").
+friend("Amy Wilke", "Owen Narvaez").
+friend("Amy Wilke", "Aurelia Dishman").
+friend("Amy Wilke", "Tianna Remillard").
+dob("Amy Wilke", "0255-06-20").
+job("Amy Wilke", "network engineer").
+hobby("Amy Wilke", "softball").
+gender("Amy Wilke", "female").

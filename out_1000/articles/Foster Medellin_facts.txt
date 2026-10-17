@@ -1,0 +1,17 @@
+son("Foster Medellin", "Lesley Medellin").
+son("Foster Medellin", "Robt Medellin").
+daughter("Foster Medellin", "Lera Mcpeak").
+wife("Foster Medellin", "Bev Medellin").
+friend("Foster Medellin", "Hal Greene").
+friend("Foster Medellin", "Virgina Noland").
+friend("Foster Medellin", "Alina Bowles").
+friend("Foster Medellin", "Steve Storey").
+friend("Foster Medellin", "Cortez Kinsella").
+friend("Foster Medellin", "Reggie Simons").
+friend("Foster Medellin", "Thalia Linden").
+friend("Foster Medellin", "Bryan Resendez").
+friend("Foster Medellin", "Scotty Broughton").
+dob("Foster Medellin", "0355-08-02").
+job("Foster Medellin", "ambulance person").
+hobby("Foster Medellin", "frisbee").
+gender("Foster Medellin", "male").

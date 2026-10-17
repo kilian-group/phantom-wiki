@@ -1,0 +1,14 @@
+son("Logan Cushman", "Eldon Cushman").
+wife("Logan Cushman", "Daisy Cushman").
+friend("Logan Cushman", "Zachary Theriot").
+friend("Logan Cushman", "Tonia Mcgough").
+friend("Logan Cushman", "Gwendolyn Townsend").
+friend("Logan Cushman", "Jonathan Goff").
+friend("Logan Cushman", "Melina Resendez").
+friend("Logan Cushman", "Patrick Broughton").
+friend("Logan Cushman", "Charles Levine").
+friend("Logan Cushman", "Glenn Levine").
+dob("Logan Cushman", "0489-10-28").
+job("Logan Cushman", "sport and exercise psychologist").
+hobby("Logan Cushman", "magic").
+gender("Logan Cushman", "male").

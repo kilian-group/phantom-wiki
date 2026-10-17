@@ -1,0 +1,15 @@
+son("Lindy Dillion", "Sammy Dillion").
+daughter("Lindy Dillion", "Tamara Lasher").
+daughter("Lindy Dillion", "Viva Jefferson").
+husband("Lindy Dillion", "Landon Dillion").
+friend("Lindy Dillion", "Christen Weise").
+friend("Lindy Dillion", "Markus Gilliam").
+friend("Lindy Dillion", "Toney Gibbs").
+friend("Lindy Dillion", "Lucas Estrella").
+friend("Lindy Dillion", "Monty Depriest").
+friend("Lindy Dillion", "Ashleigh Galvan").
+friend("Lindy Dillion", "Deja Bigelow").
+dob("Lindy Dillion", "0282-12-15").
+job("Lindy Dillion", "exhibitions officer").
+hobby("Lindy Dillion", "shoes").
+gender("Lindy Dillion", "female").

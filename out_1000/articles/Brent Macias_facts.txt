@@ -1,0 +1,16 @@
+mother("Brent Macias", "Johnna Macias").
+father("Brent Macias", "Laurence Macias").
+friend("Brent Macias", "Marion Wilke").
+friend("Brent Macias", "Irvin Shaw").
+friend("Brent Macias", "Jayson Sheridan").
+friend("Brent Macias", "Jo Murray").
+friend("Brent Macias", "Marcelina Simons").
+friend("Brent Macias", "Oralia Burdette").
+friend("Brent Macias", "Angela Younger").
+friend("Brent Macias", "Erik Fredrick").
+friend("Brent Macias", "Millard Fordham").
+friend("Brent Macias", "Randal Marr").
+dob("Brent Macias", "0494-08-16").
+job("Brent Macias", "clinical research associate").
+hobby("Brent Macias", "kart racing").
+gender("Brent Macias", "male").

@@ -1,0 +1,7 @@
+mother("Errol Brook", "Lera Brook").
+father("Errol Brook", "Rufus Brook").
+friend("Errol Brook", "Laverna Kovach").
+dob("Errol Brook", "0321-08-06").
+job("Errol Brook", "journalist").
+hobby("Errol Brook", "backgammon").
+gender("Errol Brook", "male").

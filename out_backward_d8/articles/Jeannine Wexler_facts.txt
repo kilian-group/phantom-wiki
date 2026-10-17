@@ -1,0 +1,10 @@
+sister("Jeannine Wexler", "Aida Wang").
+sister("Jeannine Wexler", "Vicki Hackworth").
+mother("Jeannine Wexler", "Shelli Beltran").
+father("Jeannine Wexler", "Dino Beltran").
+daughter("Jeannine Wexler", "Valentina Wexler").
+husband("Jeannine Wexler", "Saul Wexler").
+dob("Jeannine Wexler", "0299-06-11").
+job("Jeannine Wexler", "early years teacher").
+hobby("Jeannine Wexler", "trainspotting").
+gender("Jeannine Wexler", "female").

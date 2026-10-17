@@ -1,0 +1,14 @@
+daughter("Rocky Perrine", "Alina Bowles").
+daughter("Rocky Perrine", "Leeann Blanton").
+wife("Rocky Perrine", "Morgan Perrine").
+friend("Rocky Perrine", "Annabell Horan").
+friend("Rocky Perrine", "Tonia Mcgough").
+friend("Rocky Perrine", "Shelia Carty").
+friend("Rocky Perrine", "Eva Kell").
+friend("Rocky Perrine", "Derek Murchison").
+friend("Rocky Perrine", "Salley Goff").
+friend("Rocky Perrine", "Aron Robinett").
+dob("Rocky Perrine", "0378-07-13").
+job("Rocky Perrine", "facilities manager").
+hobby("Rocky Perrine", "ant-keeping").
+gender("Rocky Perrine", "male").

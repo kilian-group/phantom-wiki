@@ -1,0 +1,13 @@
+son("Delma Keyes", "Maximilian Keyes").
+husband("Delma Keyes", "Hollis Keyes").
+friend("Delma Keyes", "Lynette Gordy").
+friend("Delma Keyes", "Artie Putnam").
+friend("Delma Keyes", "Leeann Blanton").
+friend("Delma Keyes", "Sharika Kell").
+friend("Delma Keyes", "Collin Lasher").
+friend("Delma Keyes", "Torrie Goff").
+friend("Delma Keyes", "Winfred Molina").
+dob("Delma Keyes", "0375-02-28").
+job("Delma Keyes", "toxicologist").
+hobby("Delma Keyes", "meditation").
+gender("Delma Keyes", "female").

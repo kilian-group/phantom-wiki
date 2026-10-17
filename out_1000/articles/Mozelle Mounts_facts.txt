@@ -1,0 +1,16 @@
+mother("Mozelle Mounts", "Emma Wellington").
+father("Mozelle Mounts", "Alberto Wellington").
+son("Mozelle Mounts", "Seth Mounts").
+husband("Mozelle Mounts", "Erik Mounts").
+friend("Mozelle Mounts", "Ambrose Cordova").
+friend("Mozelle Mounts", "Adrianna Gregory").
+friend("Mozelle Mounts", "Kennith Towns").
+friend("Mozelle Mounts", "Matthew Dana").
+friend("Mozelle Mounts", "Dan Younger").
+friend("Mozelle Mounts", "Tanner Holliman").
+friend("Mozelle Mounts", "Erik Fredrick").
+friend("Mozelle Mounts", "Stacy Strong").
+dob("Mozelle Mounts", "0465-02-21").
+job("Mozelle Mounts", "archaeologist").
+hobby("Mozelle Mounts", "beekeeping").
+gender("Mozelle Mounts", "female").

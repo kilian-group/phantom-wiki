@@ -1,0 +1,23 @@
+sister("Felix Hamlin", "Brianne Layton").
+sister("Felix Hamlin", "Helena Hamlin").
+sister("Felix Hamlin", "Julianne Hamlin").
+mother("Felix Hamlin", "Evette Hamlin").
+father("Felix Hamlin", "Elijah Hamlin").
+son("Felix Hamlin", "Elroy Hamlin").
+son("Felix Hamlin", "Hosea Hamlin").
+son("Felix Hamlin", "Sylvester Hamlin").
+daughter("Felix Hamlin", "Goldie Alessi").
+daughter("Felix Hamlin", "Nellie Hamlin").
+daughter("Felix Hamlin", "Shizuko Sheridan").
+wife("Felix Hamlin", "Raina Hamlin").
+friend("Felix Hamlin", "Jerrold Harlow").
+friend("Felix Hamlin", "Patty Kell").
+friend("Felix Hamlin", "Fredrick Mckenna").
+friend("Felix Hamlin", "Denny Eaves").
+friend("Felix Hamlin", "Tania Younger").
+friend("Felix Hamlin", "Roxy Niles").
+friend("Felix Hamlin", "Donnie Dunlap").
+dob("Felix Hamlin", "0373-05-07").
+job("Felix Hamlin", "publishing copy").
+hobby("Felix Hamlin", "railway modelling").
+gender("Felix Hamlin", "male").

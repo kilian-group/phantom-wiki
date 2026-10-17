@@ -1,0 +1,20 @@
+sister("Vicki Osterman", "Charissa Boutte").
+brother("Vicki Osterman", "Austin Boutte").
+mother("Vicki Osterman", "Christen Boutte").
+father("Vicki Osterman", "Earle Boutte").
+son("Vicki Osterman", "Rolf Osterman").
+daughter("Vicki Osterman", "Edythe Osterman").
+husband("Vicki Osterman", "Hal Osterman").
+friend("Vicki Osterman", "Annabell Horan").
+friend("Vicki Osterman", "Laverna Macias").
+friend("Vicki Osterman", "Theodore Vanmeter").
+friend("Vicki Osterman", "Jewell Fordham").
+friend("Vicki Osterman", "Ligia Frink").
+friend("Vicki Osterman", "Georgette Haygood").
+friend("Vicki Osterman", "Elliott Ingle").
+friend("Vicki Osterman", "Marcelina Simons").
+friend("Vicki Osterman", "Alix Mahoney").
+dob("Vicki Osterman", "0457-07-06").
+job("Vicki Osterman", "intelligence analyst").
+hobby("Vicki Osterman", "axe throwing").
+gender("Vicki Osterman", "female").

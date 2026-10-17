@@ -1,0 +1,14 @@
+daughter("Karen Mckenna", "Roseanna Mckenna").
+husband("Karen Mckenna", "Fredrick Mckenna").
+friend("Karen Mckenna", "Noelia Lasher").
+friend("Karen Mckenna", "Anibal Cordova").
+friend("Karen Mckenna", "Chance Mahoney").
+friend("Karen Mckenna", "Homer Morehead").
+friend("Karen Mckenna", "Deirdre Niles").
+friend("Karen Mckenna", "Lashawnda Fordham").
+friend("Karen Mckenna", "Katherine Carswell").
+friend("Karen Mckenna", "Denny Vanmeter").
+dob("Karen Mckenna", "0494-03-24").
+job("Karen Mckenna", "teaching laboratory technician").
+hobby("Karen Mckenna", "auto audiophilia").
+gender("Karen Mckenna", "female").

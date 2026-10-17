@@ -1,0 +1,12 @@
+sister("Charissa Boutte", "Vicki Osterman").
+brother("Charissa Boutte", "Austin Boutte").
+mother("Charissa Boutte", "Christen Boutte").
+father("Charissa Boutte", "Earle Boutte").
+friend("Charissa Boutte", "Nicholle Dana").
+friend("Charissa Boutte", "Buffy Mccurry").
+friend("Charissa Boutte", "Elaine Marr").
+friend("Charissa Boutte", "Rory Hamlin").
+dob("Charissa Boutte", "0460-01-10").
+job("Charissa Boutte", "forensic scientist").
+hobby("Charissa Boutte", "mathematics").
+gender("Charissa Boutte", "female").

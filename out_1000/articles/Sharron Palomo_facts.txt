@@ -1,0 +1,20 @@
+mother("Sharron Palomo", "Leeann Blanton").
+father("Sharron Palomo", "Bradley Blanton").
+son("Sharron Palomo", "Dominick Palomo").
+husband("Sharron Palomo", "Bryce Palomo").
+friend("Sharron Palomo", "Kenneth Rinehart").
+friend("Sharron Palomo", "Racquel Horan").
+friend("Sharron Palomo", "Levi Kell").
+friend("Sharron Palomo", "Bo Frink").
+friend("Sharron Palomo", "Manuela Runnels").
+friend("Sharron Palomo", "Andrea Murchison").
+friend("Sharron Palomo", "Debora Murray").
+friend("Sharron Palomo", "Emil Broughton").
+friend("Sharron Palomo", "Jeana Chisholm").
+friend("Sharron Palomo", "Latisha Smart").
+friend("Sharron Palomo", "Robt Medellin").
+friend("Sharron Palomo", "Alex Burger").
+dob("Sharron Palomo", "0434-08-28").
+job("Sharron Palomo", "psychiatrist").
+hobby("Sharron Palomo", "snowboarding").
+gender("Sharron Palomo", "female").

@@ -1,0 +1,17 @@
+sister("Shelli Beltran", "Myrle Smock").
+mother("Shelli Beltran", "Alison Smock").
+father("Shelli Beltran", "Williams Smock").
+daughter("Shelli Beltran", "Aida Wang").
+daughter("Shelli Beltran", "Jeannine Wexler").
+daughter("Shelli Beltran", "Vicki Hackworth").
+husband("Shelli Beltran", "Dino Beltran").
+friend("Shelli Beltran", "Aida Wang").
+friend("Shelli Beltran", "Deane Smock").
+friend("Shelli Beltran", "Gene Smock").
+friend("Shelli Beltran", "Johnetta Wang").
+friend("Shelli Beltran", "Leeann Hackworth").
+friend("Shelli Beltran", "Ryan Wang").
+dob("Shelli Beltran", "0268-03-07").
+job("Shelli Beltran", "actuary").
+hobby("Shelli Beltran", "finance").
+gender("Shelli Beltran", "female").

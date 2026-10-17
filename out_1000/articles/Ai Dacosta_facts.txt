@@ -1,0 +1,15 @@
+son("Ai Dacosta", "Adalberto Dacosta").
+son("Ai Dacosta", "Nickolas Dacosta").
+husband("Ai Dacosta", "Desmond Dacosta").
+friend("Ai Dacosta", "Eldon Cushman").
+friend("Ai Dacosta", "Chrissy Mcgough").
+friend("Ai Dacosta", "Elijah Hamlin").
+friend("Ai Dacosta", "Eva Kell").
+friend("Ai Dacosta", "Loren Littleton").
+friend("Ai Dacosta", "Lera Clement").
+friend("Ai Dacosta", "Enid Dalton").
+friend("Ai Dacosta", "Janis Younger").
+dob("Ai Dacosta", "0420-11-12").
+job("Ai Dacosta", "speech and language therapist").
+hobby("Ai Dacosta", "digital hoarding").
+gender("Ai Dacosta", "female").

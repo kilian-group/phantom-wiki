@@ -1,0 +1,14 @@
+sister("Earle Cormier", "Sherry Cormier").
+brother("Earle Cormier", "Dion Cormier").
+mother("Earle Cormier", "Leda Cormier").
+father("Earle Cormier", "Foster Cormier").
+daughter("Earle Cormier", "Therese Cormier").
+wife("Earle Cormier", "Julia Cormier").
+friend("Earle Cormier", "Leda Cormier").
+friend("Earle Cormier", "Zoraida Palermo").
+friend("Earle Cormier", "Chelsie Bradberry").
+friend("Earle Cormier", "Monique Griffiths").
+dob("Earle Cormier", "0228-12-24").
+job("Earle Cormier", "chief marketing officer").
+hobby("Earle Cormier", "reading").
+gender("Earle Cormier", "male").

@@ -1,0 +1,13 @@
+sister("Rubie Upton", "Krystal Joubert").
+brother("Rubie Upton", "Jamison Upton").
+mother("Rubie Upton", "Jann Upton").
+father("Rubie Upton", "Zachery Upton").
+friend("Rubie Upton", "Randolph Osborn").
+friend("Rubie Upton", "Lon Lazar").
+friend("Rubie Upton", "Pansy Cook").
+friend("Rubie Upton", "Tyrone Linares").
+friend("Rubie Upton", "Leslie Courson").
+dob("Rubie Upton", "0366-03-16").
+job("Rubie Upton", "general practice doctor").
+hobby("Rubie Upton", "magnet fishing").
+gender("Rubie Upton", "female").

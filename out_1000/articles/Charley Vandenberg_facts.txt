@@ -1,0 +1,18 @@
+sister("Charley Vandenberg", "Amy Wilke").
+sister("Charley Vandenberg", "Thelma Vandenberg").
+brother("Charley Vandenberg", "Eli Vandenberg").
+brother("Charley Vandenberg", "Fernando Vandenberg").
+mother("Charley Vandenberg", "Jackie Vandenberg").
+father("Charley Vandenberg", "Valentin Vandenberg").
+friend("Charley Vandenberg", "Ashely Speaks").
+friend("Charley Vandenberg", "Elijah Hamlin").
+friend("Charley Vandenberg", "Jermaine Lasher").
+friend("Charley Vandenberg", "Jodi Cordova").
+friend("Charley Vandenberg", "Dennis Littleton").
+friend("Charley Vandenberg", "Rogelio Dunlap").
+friend("Charley Vandenberg", "Hiram Smart").
+friend("Charley Vandenberg", "Tracey Capps").
+dob("Charley Vandenberg", "0352-11-29").
+job("Charley Vandenberg", "civil service fast streamer").
+hobby("Charley Vandenberg", "auto audiophilia").
+gender("Charley Vandenberg", "male").

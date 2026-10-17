@@ -1,0 +1,12 @@
+sister("Bradford Nicolas", "Aletha Nicolas").
+sister("Bradford Nicolas", "Rosalinda Francois").
+brother("Bradford Nicolas", "Anthony Nicolas").
+mother("Bradford Nicolas", "Cherry Nicolas").
+father("Bradford Nicolas", "Ulysses Nicolas").
+son("Bradford Nicolas", "Carrol Nicolas").
+wife("Bradford Nicolas", "Phylis Nicolas").
+friend("Bradford Nicolas", "Lenore Hackworth").
+dob("Bradford Nicolas", "0276-06-18").
+job("Bradford Nicolas", "civil service administrator").
+hobby("Bradford Nicolas", "snowmobiling").
+gender("Bradford Nicolas", "male").

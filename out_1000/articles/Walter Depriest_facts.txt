@@ -1,0 +1,15 @@
+brother("Walter Depriest", "Monty Depriest").
+mother("Walter Depriest", "Leonora Depriest").
+father("Walter Depriest", "Karl Depriest").
+friend("Walter Depriest", "Eva Kell").
+friend("Walter Depriest", "Stanford Suh").
+friend("Walter Depriest", "Enedina Cordova").
+friend("Walter Depriest", "Antionette Hamann").
+friend("Walter Depriest", "Marguerite Lebrun").
+friend("Walter Depriest", "Ollie Minnick").
+friend("Walter Depriest", "Benjamin Crittenden").
+friend("Walter Depriest", "Stacy Strong").
+dob("Walter Depriest", "0462-10-01").
+job("Walter Depriest", "forensic psychologist").
+hobby("Walter Depriest", "metal detecting").
+gender("Walter Depriest", "male").

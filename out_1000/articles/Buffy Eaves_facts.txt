@@ -1,0 +1,16 @@
+son("Buffy Eaves", "Chang Eaves").
+son("Buffy Eaves", "Davis Eaves").
+daughter("Buffy Eaves", "Edwina Eaves").
+daughter("Buffy Eaves", "Karla Linares").
+husband("Buffy Eaves", "Denny Eaves").
+friend("Buffy Eaves", "Frankie Mahoney").
+friend("Buffy Eaves", "Ella Mathes").
+friend("Buffy Eaves", "Isaiah Resendez").
+friend("Buffy Eaves", "Emory Layton").
+friend("Buffy Eaves", "Laverna Kell").
+friend("Buffy Eaves", "Donnie Crocker").
+friend("Buffy Eaves", "Lon Lazar").
+dob("Buffy Eaves", "0371-12-06").
+job("Buffy Eaves", "electrical engineer").
+hobby("Buffy Eaves", "vinyl records").
+gender("Buffy Eaves", "female").

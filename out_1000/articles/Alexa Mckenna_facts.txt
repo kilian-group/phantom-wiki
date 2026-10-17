@@ -1,0 +1,16 @@
+brother("Alexa Mckenna", "Jake Burkhalter").
+mother("Alexa Mckenna", "Diane Burkhalter").
+father("Alexa Mckenna", "Major Burkhalter").
+son("Alexa Mckenna", "Fredrick Mckenna").
+husband("Alexa Mckenna", "Wyatt Mckenna").
+friend("Alexa Mckenna", "Veronica Cowart").
+friend("Alexa Mckenna", "Julio Mcdonald").
+friend("Alexa Mckenna", "Kory Gibbs").
+friend("Alexa Mckenna", "Scotty Gilliam").
+friend("Alexa Mckenna", "Evelia Waltz").
+friend("Alexa Mckenna", "Gregory Keister").
+friend("Alexa Mckenna", "Leena Estrella").
+dob("Alexa Mckenna", "0464-11-20").
+job("Alexa Mckenna", "herpetologist").
+hobby("Alexa Mckenna", "role-playing games").
+gender("Alexa Mckenna", "female").

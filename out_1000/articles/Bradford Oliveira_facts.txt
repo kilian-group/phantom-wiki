@@ -1,0 +1,14 @@
+daughter("Bradford Oliveira", "Maryann Oliveira").
+daughter("Bradford Oliveira", "Maybelle Oliveira").
+daughter("Bradford Oliveira", "Shannon Fredrick").
+wife("Bradford Oliveira", "Luisa Oliveira").
+friend("Bradford Oliveira", "Thaddeus Sanborn").
+friend("Bradford Oliveira", "Winfred Basham").
+friend("Bradford Oliveira", "Herbert Storey").
+friend("Bradford Oliveira", "Perry Spiller").
+friend("Bradford Oliveira", "Barabara Peeler").
+friend("Bradford Oliveira", "Brunilda Linden").
+dob("Bradford Oliveira", "0345-01-24").
+job("Bradford Oliveira", "race relations officer").
+hobby("Bradford Oliveira", "powerboat racing").
+gender("Bradford Oliveira", "male").

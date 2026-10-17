@@ -1,0 +1,9 @@
+son("Clarence Mason", "Bruce Mason").
+wife("Clarence Mason", "Joslyn Mason").
+friend("Clarence Mason", "Ron Woodman").
+friend("Clarence Mason", "Blair Etheridge").
+friend("Clarence Mason", "Jules Levy").
+dob("Clarence Mason", "0252-09-27").
+job("Clarence Mason", "network engineer").
+hobby("Clarence Mason", "cycling").
+gender("Clarence Mason", "male").

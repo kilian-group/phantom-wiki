@@ -1,0 +1,13 @@
+son("Rhoda Narvaez", "Owen Narvaez").
+husband("Rhoda Narvaez", "Demarcus Narvaez").
+friend("Rhoda Narvaez", "Jaime Remillard").
+friend("Rhoda Narvaez", "King Dishman").
+friend("Rhoda Narvaez", "Elroy Mcgough").
+friend("Rhoda Narvaez", "Thelma Vandenberg").
+friend("Rhoda Narvaez", "Luisa Narvaez").
+friend("Rhoda Narvaez", "Lyman Oberg").
+friend("Rhoda Narvaez", "Owen Narvaez").
+dob("Rhoda Narvaez", "0362-09-25").
+job("Rhoda Narvaez", "data processing manager").
+hobby("Rhoda Narvaez", "ant farming").
+gender("Rhoda Narvaez", "female").

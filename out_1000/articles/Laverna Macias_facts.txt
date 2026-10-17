@@ -1,0 +1,10 @@
+mother("Laverna Macias", "Lynette Macias").
+father("Laverna Macias", "Levi Macias").
+friend("Laverna Macias", "Miles Corso").
+friend("Laverna Macias", "Jacinta Simons").
+friend("Laverna Macias", "Vicki Osterman").
+friend("Laverna Macias", "Virgie Niles").
+dob("Laverna Macias", "0499-06-29").
+job("Laverna Macias", "associate professor").
+hobby("Laverna Macias", "audiophile").
+gender("Laverna Macias", "female").

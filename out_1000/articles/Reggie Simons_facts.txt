@@ -1,0 +1,18 @@
+sister("Reggie Simons", "Gena Cook").
+sister("Reggie Simons", "Jacque Simons").
+brother("Reggie Simons", "Milford Simons").
+mother("Reggie Simons", "Jacinta Simons").
+father("Reggie Simons", "Timothy Simons").
+friend("Reggie Simons", "Porter Steadman").
+friend("Reggie Simons", "Gale Dana").
+friend("Reggie Simons", "Geri Dana").
+friend("Reggie Simons", "Reyna Ibarra").
+friend("Reggie Simons", "Foster Medellin").
+friend("Reggie Simons", "Deloris Marr").
+friend("Reggie Simons", "Normand Wilke").
+friend("Reggie Simons", "Otto Horan").
+friend("Reggie Simons", "Edris Best").
+dob("Reggie Simons", "0433-10-10").
+job("Reggie Simons", "toxicologist").
+hobby("Reggie Simons", "stone collecting").
+gender("Reggie Simons", "male").

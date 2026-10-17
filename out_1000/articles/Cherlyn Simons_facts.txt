@@ -1,0 +1,16 @@
+sister("Cherlyn Simons", "Pearl Hamann").
+brother("Cherlyn Simons", "Frankie Simons").
+mother("Cherlyn Simons", "Viva Simons").
+father("Cherlyn Simons", "Roderick Simons").
+friend("Cherlyn Simons", "Lazaro Hsu").
+friend("Cherlyn Simons", "Marcus Lebrun").
+friend("Cherlyn Simons", "Shaunte Gilliam").
+friend("Cherlyn Simons", "Glenn Levine").
+friend("Cherlyn Simons", "Zachary Theriot").
+friend("Cherlyn Simons", "Tashina Layton").
+friend("Cherlyn Simons", "Elbert Layman").
+friend("Cherlyn Simons", "Kristie Harlow").
+dob("Cherlyn Simons", "0458-06-03").
+job("Cherlyn Simons", "magazine journalist").
+hobby("Cherlyn Simons", "car riding").
+gender("Cherlyn Simons", "female").

@@ -1,0 +1,15 @@
+daughter("Anneliese Pellegrino", "Manda Cordova").
+husband("Anneliese Pellegrino", "Newton Pellegrino").
+friend("Anneliese Pellegrino", "Rowena Lazar").
+friend("Anneliese Pellegrino", "Jacinta Simons").
+friend("Anneliese Pellegrino", "Dan Mahoney").
+friend("Anneliese Pellegrino", "Georgine Mahoney").
+friend("Anneliese Pellegrino", "Pauletta Morehead").
+friend("Anneliese Pellegrino", "Macy Burger").
+friend("Anneliese Pellegrino", "Rubye Forester").
+friend("Anneliese Pellegrino", "Anthony Jarrett").
+friend("Anneliese Pellegrino", "Chauncey Wilkie").
+dob("Anneliese Pellegrino", "0263-05-11").
+job("Anneliese Pellegrino", "editor").
+hobby("Anneliese Pellegrino", "slot car racing").
+gender("Anneliese Pellegrino", "female").

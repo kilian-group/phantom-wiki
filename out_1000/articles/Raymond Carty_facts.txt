@@ -1,0 +1,11 @@
+brother("Raymond Carty", "Drew Carty").
+mother("Raymond Carty", "Lera Carty").
+father("Raymond Carty", "Calvin Carty").
+friend("Raymond Carty", "Gloria Shoulders").
+friend("Raymond Carty", "Lera Clement").
+friend("Raymond Carty", "Lura Leclair").
+friend("Raymond Carty", "Jeana Chisholm").
+dob("Raymond Carty", "0422-07-01").
+job("Raymond Carty", "insurance account manager").
+hobby("Raymond Carty", "meteorology").
+gender("Raymond Carty", "male").

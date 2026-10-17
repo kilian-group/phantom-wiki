@@ -1,0 +1,522 @@
+[
+    {
+        "id": "f258a213-8deb-4514-a202-42f2afd0ba80",
+        "question": "Who is the niece of the person whose hobby is trainspotting?",
+        "solution_traces": "[{\"Y_4\": \"Jeannine Wexler\", \"Y_2\": \"Leeann Hackworth\"}, {\"Y_2\": \"Lenore Hackworth\", \"Y_4\": \"Jeannine Wexler\"}, {\"Y_4\": \"Jeannine Wexler\", \"Y_2\": \"Johnetta Wang\"}]",
+        "answer": [
+            "Johnetta Wang",
+            "Leeann Hackworth",
+            "Lenore Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "niece(Y_4, Y_2)",
+                "hobby(Y_4, \"trainspotting\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 1,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Jeannine Wexler",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 6
+        }
+    },
+    {
+        "id": "d6dcaef3-df4b-425f-a401-3baacca2ad42",
+        "question": "Who is the parent of the person whose date of birth is 0325-11-20?",
+        "solution_traces": "[{\"Y_2\": \"Vicki Hackworth\", \"Y_4\": \"Lenore Hackworth\"}, {\"Y_2\": \"Ricardo Hackworth\", \"Y_4\": \"Lenore Hackworth\"}]",
+        "answer": [
+            "Ricardo Hackworth",
+            "Vicki Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "parent(Y_4, Y_2)",
+                "dob(Y_4, \"0325-11-20\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Vicki Hackworth",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    },
+    {
+        "id": "494b66e9-a8f5-4642-a3a8-b434775c0847",
+        "question": "Who is the friend of the person whose date of birth is 0301-10-24?",
+        "solution_traces": "[{\"Y_4\": \"Saul Wexler\", \"Y_2\": \"Daisy Beltran\"}, {\"Y_4\": \"Saul Wexler\", \"Y_2\": \"Lenore Hackworth\"}, {\"Y_4\": \"Saul Wexler\", \"Y_2\": \"Lannie Smock\"}, {\"Y_4\": \"Saul Wexler\", \"Y_2\": \"Johnetta Wang\"}, {\"Y_4\": \"Saul Wexler\", \"Y_2\": \"Alison Smock\"}, {\"Y_4\": \"Saul Wexler\", \"Y_2\": \"Dino Beltran\"}]",
+        "answer": [
+            "Alison Smock",
+            "Daisy Beltran",
+            "Dino Beltran",
+            "Johnetta Wang",
+            "Lannie Smock",
+            "Lenore Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "friend(Y_4, Y_2)",
+                "dob(Y_4, \"0301-10-24\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Saul Wexler",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 6
+        }
+    },
+    {
+        "id": "20b23c28-1287-416f-8a58-29a09624492d",
+        "question": "Who is the son-in-law of the person whose occupation is theatre manager?",
+        "solution_traces": "[{\"Y_4\": \"Williams Smock\", \"Y_2\": \"Dino Beltran\"}]",
+        "answer": [
+            "Dino Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "son_in_law(Y_4, Y_2)",
+                "job(Y_4, \"theatre manager\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Dino Beltran",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 3
+        }
+    },
+    {
+        "id": "aff1d32f-68a1-4de9-bf58-54d8363d32a2",
+        "question": "Who is the friend of the person whose date of birth is 0204-03-12?",
+        "solution_traces": "[{\"Y_4\": \"Deane Smock\", \"Y_2\": \"Gene Smock\"}, {\"Y_4\": \"Deane Smock\", \"Y_2\": \"Alison Smock\"}, {\"Y_4\": \"Deane Smock\", \"Y_2\": \"Shelli Beltran\"}, {\"Y_4\": \"Deane Smock\", \"Y_2\": \"Isabell Smock\"}]",
+        "answer": [
+            "Alison Smock",
+            "Gene Smock",
+            "Isabell Smock",
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "friend(Y_4, Y_2)",
+                "dob(Y_4, \"0204-03-12\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Deane Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 4
+        }
+    },
+    {
+        "id": "cb2c9edc-35e6-4f3f-bd7e-3a9b6a995fbf",
+        "question": "Who is the great-aunt of the person whose occupation is barrister's clerk?",
+        "solution_traces": "[{\"Y_4\": \"Myrle Smock\", \"Y_2\": \"Deane Smock\"}, {\"Y_4\": \"Myrle Smock\", \"Y_2\": \"Isabell Smock\"}]",
+        "answer": [
+            "Deane Smock",
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "great_aunt(Y_4, Y_2)",
+                "job(Y_4, \"barrister's clerk\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Isabell Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 4
+        }
+    },
+    {
+        "id": "1ec2a80c-262b-400c-927b-b3136f156b5f",
+        "question": "Who is the child of the person whose hobby is biology?",
+        "solution_traces": "[{\"Y_4\": \"Alvaro Smock\", \"Y_2\": \"Deane Smock\"}, {\"Y_4\": \"Alvaro Smock\", \"Y_2\": \"Isabell Smock\"}, {\"Y_4\": \"Alvaro Smock\", \"Y_2\": \"Gene Smock\"}, {\"Y_4\": \"Alvaro Smock\", \"Y_2\": \"Aubrey Smock\"}]",
+        "answer": [
+            "Aubrey Smock",
+            "Deane Smock",
+            "Gene Smock",
+            "Isabell Smock"
+        ],
+        "prolog": {
+            "query": [
+                "child(Y_4, Y_2)",
+                "hobby(Y_4, \"biology\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Alvaro Smock",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 4
+        }
+    },
+    {
+        "id": "d23f8b11-8a55-4b83-95b1-1e28707108de",
+        "question": "Who is the friend of the person whose occupation is retail manager?",
+        "solution_traces": "[{\"Y_2\": \"Lannie Smock\", \"Y_4\": \"Dominique Smock\"}, {\"Y_2\": \"Aida Wang\", \"Y_4\": \"Dominique Smock\"}, {\"Y_2\": \"Leeann Hackworth\", \"Y_4\": \"Dominique Smock\"}, {\"Y_2\": \"Ricardo Hackworth\", \"Y_4\": \"Dominique Smock\"}, {\"Y_4\": \"Dominique Smock\", \"Y_2\": \"Aubrey Smock\"}]",
+        "answer": [
+            "Aida Wang",
+            "Aubrey Smock",
+            "Lannie Smock",
+            "Leeann Hackworth",
+            "Ricardo Hackworth"
+        ],
+        "prolog": {
+            "query": [
+                "friend(Y_4, Y_2)",
+                "job(Y_4, \"retail manager\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Ricardo Hackworth",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 5
+        }
+    },
+    {
+        "id": "40efdb69-1bb7-4c46-8454-ec78854b4105",
+        "question": "Who is the mother-in-law of the person whose occupation is occupational therapist?",
+        "solution_traces": "[{\"Y_4\": \"Saul Wexler\", \"Y_2\": \"Shelli Beltran\"}]",
+        "answer": [
+            "Shelli Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "mother_in_law(Y_4, Y_2)",
+                "job(Y_4, \"occupational therapist\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 1,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "start",
+            "anchor_slot_index": 0,
+            "anchor_person": "Saul Wexler",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "same",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 1
+        }
+    },
+    {
+        "id": "45c60167-bb15-49a6-9f64-15566facce87",
+        "question": "Who is the parent of the person whose date of birth is 0324-07-03?",
+        "solution_traces": "[{\"Y_4\": \"Johnetta Wang\", \"Y_2\": \"Ryan Wang\"}, {\"Y_4\": \"Johnetta Wang\", \"Y_2\": \"Aida Wang\"}]",
+        "answer": [
+            "Aida Wang",
+            "Ryan Wang"
+        ],
+        "prolog": {
+            "query": [
+                "parent(Y_4, Y_2)",
+                "dob(Y_4, \"0324-07-03\")"
+            ],
+            "answer": "Y_2"
+        },
+        "template": [
+            "Who is",
+            "the",
+            "<relation>_3",
+            "of",
+            "the person whose",
+            "<attribute_name>_5",
+            "is",
+            "<attribute_value>_5",
+            "?"
+        ],
+        "type": 0,
+        "reasoning_steps": 1,
+        "difficulty": {
+            "hops": 1,
+            "constraints": 1,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "sampling_metadata": {
+            "method": "bidirectional",
+            "anchor_position": "end",
+            "anchor_slot_index": 1,
+            "anchor_person": "Ryan Wang",
+            "answer_position": "head",
+            "answer_slot_index": 0,
+            "polarity": "opposite",
+            "chain_length": 1,
+            "chain_variables": [
+                "Y_4",
+                "Y_2"
+            ],
+            "prolog_solutions_found": 2
+        }
+    }
+]

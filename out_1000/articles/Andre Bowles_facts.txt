@@ -1,0 +1,12 @@
+son("Andre Bowles", "Aaron Bowles").
+son("Andre Bowles", "Ryan Bowles").
+wife("Andre Bowles", "Nelly Bowles").
+friend("Andre Bowles", "Emory Layton").
+friend("Andre Bowles", "Annita Mckenna").
+friend("Andre Bowles", "Desiree Fordham").
+friend("Andre Bowles", "Jacinta Simons").
+friend("Andre Bowles", "Vance Fredrick").
+dob("Andre Bowles", "0390-09-27").
+job("Andre Bowles", "restaurant manager").
+hobby("Andre Bowles", "fishing").
+gender("Andre Bowles", "male").

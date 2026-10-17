@@ -1,0 +1,18 @@
+sister("Coral Putnam", "Graciela Burger").
+mother("Coral Putnam", "Lashandra Bowles").
+father("Coral Putnam", "Rueben Bowles").
+daughter("Coral Putnam", "Katherine Carswell").
+daughter("Coral Putnam", "Lora Vogt").
+daughter("Coral Putnam", "Marguerite Putnam").
+daughter("Coral Putnam", "Sheila Putnam").
+husband("Coral Putnam", "Marvin Putnam").
+friend("Coral Putnam", "Vilma Callender").
+friend("Coral Putnam", "Maryann Peeler").
+friend("Coral Putnam", "Juanita Dana").
+friend("Coral Putnam", "Carolyn Whitford").
+friend("Coral Putnam", "Lura Leclair").
+friend("Coral Putnam", "Kris Fordham").
+dob("Coral Putnam", "0466-09-02").
+job("Coral Putnam", "passenger transport manager").
+hobby("Coral Putnam", "cartophily").
+gender("Coral Putnam", "female").

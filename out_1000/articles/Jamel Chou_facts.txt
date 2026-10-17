@@ -1,0 +1,16 @@
+daughter("Jamel Chou", "Matilda Chou").
+daughter("Jamel Chou", "Scottie Steadman").
+wife("Jamel Chou", "Ginger Chou").
+friend("Jamel Chou", "Lazaro Hsu").
+friend("Jamel Chou", "Maynard Latham").
+friend("Jamel Chou", "Holley Fredrick").
+friend("Jamel Chou", "Leeann Blanton").
+friend("Jamel Chou", "Dennis Marr").
+friend("Jamel Chou", "Tracey Capps").
+friend("Jamel Chou", "Rebecka Schlosser").
+friend("Jamel Chou", "Kevin Sharma").
+friend("Jamel Chou", "Lloyd Ingalls").
+dob("Jamel Chou", "0384-02-19").
+job("Jamel Chou", "civil service administrator").
+hobby("Jamel Chou", "baseball").
+gender("Jamel Chou", "male").

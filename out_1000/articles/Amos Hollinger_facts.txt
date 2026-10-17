@@ -1,0 +1,14 @@
+mother("Amos Hollinger", "Jackqueline Hollinger").
+father("Amos Hollinger", "Darin Hollinger").
+daughter("Amos Hollinger", "Maurine Wendel").
+wife("Amos Hollinger", "Magdalena Hollinger").
+friend("Amos Hollinger", "Earlean Ingalls").
+friend("Amos Hollinger", "Damaris Swartz").
+friend("Amos Hollinger", "Rueben Younger").
+friend("Amos Hollinger", "Lou Dunlap").
+friend("Amos Hollinger", "Marguerite Putnam").
+friend("Amos Hollinger", "Fernando Vandenberg").
+dob("Amos Hollinger", "0423-06-13").
+job("Amos Hollinger", "legal executive").
+hobby("Amos Hollinger", "amateur astronomy").
+gender("Amos Hollinger", "male").

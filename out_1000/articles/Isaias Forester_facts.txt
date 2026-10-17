@@ -1,0 +1,14 @@
+mother("Isaias Forester", "Almeta Forester").
+father("Isaias Forester", "Ricky Forester").
+daughter("Isaias Forester", "Robyn Forester").
+daughter("Isaias Forester", "Tyesha Marr").
+wife("Isaias Forester", "Rubye Forester").
+friend("Isaias Forester", "Ivette Eaves").
+friend("Isaias Forester", "Michael Goff").
+friend("Isaias Forester", "Edythe Gilliam").
+friend("Isaias Forester", "Latisha Smart").
+friend("Isaias Forester", "Roger Mcpeak").
+dob("Isaias Forester", "0348-06-18").
+job("Isaias Forester", "public affairs consultant").
+hobby("Isaias Forester", "rock balancing").
+gender("Isaias Forester", "male").

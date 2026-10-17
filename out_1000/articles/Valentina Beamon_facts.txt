@@ -1,0 +1,14 @@
+son("Valentina Beamon", "Maxwell Beamon").
+daughter("Valentina Beamon", "Goldie Beamon").
+husband("Valentina Beamon", "Mickey Beamon").
+friend("Valentina Beamon", "Nelly Kinsella").
+friend("Valentina Beamon", "Jann Ruth").
+friend("Valentina Beamon", "Shawnta Plumley").
+friend("Valentina Beamon", "Tabetha Hsu").
+friend("Valentina Beamon", "Gerry Dorn").
+friend("Valentina Beamon", "Zachariah Galvan").
+friend("Valentina Beamon", "Leslie Courson").
+dob("Valentina Beamon", "0397-09-05").
+job("Valentina Beamon", "senior tax professional").
+hobby("Valentina Beamon", "benchmarking").
+gender("Valentina Beamon", "female").

@@ -1,0 +1,17 @@
+son("Elbert Layman", "Dino Layman").
+son("Elbert Layman", "Nico Layman").
+son("Elbert Layman", "Taylor Layman").
+wife("Elbert Layman", "Haley Layman").
+friend("Elbert Layman", "Alysa Lindquist").
+friend("Elbert Layman", "Eva Kell").
+friend("Elbert Layman", "Sammy Dillion").
+friend("Elbert Layman", "Cherlyn Simons").
+friend("Elbert Layman", "Israel Mathes").
+friend("Elbert Layman", "Lura Leclair").
+friend("Elbert Layman", "Tabetha Niles").
+friend("Elbert Layman", "Jacque Greene").
+friend("Elbert Layman", "Cary Layton").
+dob("Elbert Layman", "0280-07-27").
+job("Elbert Layman", "advertising account executive").
+hobby("Elbert Layman", "learning").
+gender("Elbert Layman", "male").

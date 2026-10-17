@@ -1,0 +1,14 @@
+son("Roger Carreon", "Miguel Carreon").
+daughter("Roger Carreon", "Livia Corwin").
+wife("Roger Carreon", "Audra Carreon").
+friend("Roger Carreon", "Eula Hollins").
+friend("Roger Carreon", "Rheba Resendez").
+friend("Roger Carreon", "Wm Salem").
+friend("Roger Carreon", "Kurtis Kell").
+friend("Roger Carreon", "Felipe Vanmeter").
+friend("Roger Carreon", "Niki Vanmeter").
+friend("Roger Carreon", "Nydia Willoughby").
+dob("Roger Carreon", "0296-10-04").
+job("Roger Carreon", "broadcast engineer").
+hobby("Roger Carreon", "slot car racing").
+gender("Roger Carreon", "male").

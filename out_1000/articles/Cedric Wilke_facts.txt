@@ -1,0 +1,19 @@
+brother("Cedric Wilke", "Jermaine Wilke").
+mother("Cedric Wilke", "Gabriele Wilke").
+father("Cedric Wilke", "Luke Wilke").
+son("Cedric Wilke", "Normand Wilke").
+wife("Cedric Wilke", "Rhonda Wilke").
+friend("Cedric Wilke", "Tashina Layton").
+friend("Cedric Wilke", "Byron Geter").
+friend("Cedric Wilke", "Darin Hollinger").
+friend("Cedric Wilke", "Andrew Sutphin").
+friend("Cedric Wilke", "Doyle Valladares").
+friend("Cedric Wilke", "Kevin Sharma").
+friend("Cedric Wilke", "Estella Dana").
+friend("Cedric Wilke", "Amberly Levine").
+friend("Cedric Wilke", "Amanda Rinehart").
+friend("Cedric Wilke", "Addie Shilling").
+dob("Cedric Wilke", "0395-04-14").
+job("Cedric Wilke", "animal nutritionist").
+hobby("Cedric Wilke", "lacrosse").
+gender("Cedric Wilke", "male").

@@ -1,0 +1,13 @@
+son("Phylis Cook", "Floyd Cook").
+husband("Phylis Cook", "Pablo Cook").
+friend("Phylis Cook", "Augustine Linden").
+friend("Phylis Cook", "Jenniffer Younger").
+friend("Phylis Cook", "Gayla Sanborn").
+friend("Phylis Cook", "Aldo Paynter").
+friend("Phylis Cook", "Donald Autry").
+friend("Phylis Cook", "Luther Peeler").
+friend("Phylis Cook", "Tammy Sutphin").
+dob("Phylis Cook", "0407-03-27").
+job("Phylis Cook", "web designer").
+hobby("Phylis Cook", "bowling").
+gender("Phylis Cook", "female").

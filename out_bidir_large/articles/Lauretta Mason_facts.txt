@@ -1,0 +1,13 @@
+sister("Lauretta Mason", "Marlana Boutte").
+brother("Lauretta Mason", "Spencer Griffiths").
+mother("Lauretta Mason", "Olivia Griffiths").
+father("Lauretta Mason", "Elton Griffiths").
+daughter("Lauretta Mason", "Zoila Mason").
+husband("Lauretta Mason", "Bruce Mason").
+friend("Lauretta Mason", "Garry Mcnew").
+friend("Lauretta Mason", "Haywood Mcnew").
+friend("Lauretta Mason", "Rosalinda Francois").
+dob("Lauretta Mason", "0289-07-10").
+job("Lauretta Mason", "oceanographer").
+hobby("Lauretta Mason", "book collecting").
+gender("Lauretta Mason", "female").

@@ -1,0 +1,17 @@
+sister("Nelly Jarrett", "Lindy Hudgens").
+mother("Nelly Jarrett", "Roni Jarrett").
+father("Nelly Jarrett", "Jamel Jarrett").
+friend("Nelly Jarrett", "Tomasa Kell").
+friend("Nelly Jarrett", "Nevin Mckenna").
+friend("Nelly Jarrett", "Samual Knepper").
+friend("Nelly Jarrett", "Julio Mcdonald").
+friend("Nelly Jarrett", "Elijah Linares").
+friend("Nelly Jarrett", "Tawana Machado").
+friend("Nelly Jarrett", "Demetra Palomo").
+friend("Nelly Jarrett", "Nickolas Holtz").
+friend("Nelly Jarrett", "Eunice Lennox").
+friend("Nelly Jarrett", "Everett Courson").
+dob("Nelly Jarrett", "0467-09-19").
+job("Nelly Jarrett", "animal technologist").
+hobby("Nelly Jarrett", "insect collecting").
+gender("Nelly Jarrett", "female").

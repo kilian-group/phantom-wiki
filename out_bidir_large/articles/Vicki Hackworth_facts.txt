@@ -1,0 +1,14 @@
+sister("Vicki Hackworth", "Aida Wang").
+sister("Vicki Hackworth", "Jeannine Wexler").
+mother("Vicki Hackworth", "Shelli Beltran").
+father("Vicki Hackworth", "Dino Beltran").
+daughter("Vicki Hackworth", "Leeann Hackworth").
+daughter("Vicki Hackworth", "Lenore Hackworth").
+husband("Vicki Hackworth", "Ricardo Hackworth").
+friend("Vicki Hackworth", "Cherry Nicolas").
+friend("Vicki Hackworth", "Ora Lizotte").
+friend("Vicki Hackworth", "Yvette Cedillo").
+dob("Vicki Hackworth", "0295-05-30").
+job("Vicki Hackworth", "sound technician").
+hobby("Vicki Hackworth", "wikipedia editing").
+gender("Vicki Hackworth", "female").

@@ -1,0 +1,14 @@
+sister("Naomi Bellows", "Babette Simons").
+brother("Naomi Bellows", "Seymour Simons").
+mother("Naomi Bellows", "Marcelina Simons").
+father("Naomi Bellows", "Bryon Simons").
+daughter("Naomi Bellows", "Babara Arnold").
+husband("Naomi Bellows", "Jamie Bellows").
+friend("Naomi Bellows", "Heath Swartz").
+friend("Naomi Bellows", "Brian Galvan").
+friend("Naomi Bellows", "Ashleigh Kell").
+friend("Naomi Bellows", "Aletha Crocker").
+dob("Naomi Bellows", "0505-10-08").
+job("Naomi Bellows", "fisheries officer").
+hobby("Naomi Bellows", "mathematics").
+gender("Naomi Bellows", "female").

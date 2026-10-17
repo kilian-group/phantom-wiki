@@ -1,0 +1,19 @@
+sister("Shelia Hollins", "Buffy Mccurry").
+brother("Shelia Hollins", "Kareem Goff").
+mother("Shelia Hollins", "Torrie Goff").
+father("Shelia Hollins", "Kurt Goff").
+son("Shelia Hollins", "Micah Hollins").
+husband("Shelia Hollins", "Adolph Hollins").
+friend("Shelia Hollins", "Vada Littleton").
+friend("Shelia Hollins", "Lera Mcpeak").
+friend("Shelia Hollins", "Pedro Gordy").
+friend("Shelia Hollins", "Shannon Fredrick").
+friend("Shelia Hollins", "Ester Yarbrough").
+friend("Shelia Hollins", "Kieth Shaw").
+friend("Shelia Hollins", "Alberto Wellington").
+friend("Shelia Hollins", "Evelia Senn").
+friend("Shelia Hollins", "Delpha Younger").
+dob("Shelia Hollins", "0348-04-16").
+job("Shelia Hollins", "office manager").
+hobby("Shelia Hollins", "butterfly watching").
+gender("Shelia Hollins", "female").

@@ -1,0 +1,17 @@
+mother("Bo Frink", "Ligia Frink").
+father("Bo Frink", "Trevor Frink").
+friend("Bo Frink", "Kenda Beamon").
+friend("Bo Frink", "Frankie Peeler").
+friend("Bo Frink", "Janiece Cordova").
+friend("Bo Frink", "Patsy Murray").
+friend("Bo Frink", "Karla Linares").
+friend("Bo Frink", "Shaunte Gilliam").
+friend("Bo Frink", "Lucile Hurt").
+friend("Bo Frink", "Jana Noland").
+friend("Bo Frink", "Sharron Palomo").
+friend("Bo Frink", "Erik Capps").
+friend("Bo Frink", "Iluminada Capps").
+dob("Bo Frink", "0390-06-08").
+job("Bo Frink", "teacher").
+hobby("Bo Frink", "photography").
+gender("Bo Frink", "male").

@@ -1,0 +1,15 @@
+mother("Andrew Sutphin", "Bridget Sutphin").
+father("Andrew Sutphin", "Stefan Sutphin").
+daughter("Andrew Sutphin", "Leonora Cordova").
+daughter("Andrew Sutphin", "Marilyn Sutphin").
+wife("Andrew Sutphin", "Tammy Sutphin").
+friend("Andrew Sutphin", "Eliza Ingalls").
+friend("Andrew Sutphin", "Antony Machado").
+friend("Andrew Sutphin", "Kareem Goff").
+friend("Andrew Sutphin", "Bertram Wylie").
+friend("Andrew Sutphin", "Tyesha Marr").
+friend("Andrew Sutphin", "Cedric Wilke").
+dob("Andrew Sutphin", "0321-01-06").
+job("Andrew Sutphin", "civil service fast streamer").
+hobby("Andrew Sutphin", "skydiving").
+gender("Andrew Sutphin", "male").

@@ -1,0 +1,20 @@
+daughter("Isabell Shank", "Almeta Forester").
+husband("Isabell Shank", "Gerry Shank").
+friend("Isabell Shank", "Myrl Mcgough").
+friend("Isabell Shank", "Rheba Winn").
+friend("Isabell Shank", "Desiree Fordham").
+friend("Isabell Shank", "Ofelia Callender").
+friend("Isabell Shank", "Teddy Senn").
+friend("Isabell Shank", "Harold Murray").
+friend("Isabell Shank", "Rebecka Schlosser").
+friend("Isabell Shank", "Harley Simons").
+friend("Isabell Shank", "Marlene Ingalls").
+friend("Isabell Shank", "Rosella Simons").
+friend("Isabell Shank", "Emmanuel Swartz").
+friend("Isabell Shank", "Timothy Shoulders").
+friend("Isabell Shank", "Rob Eaves").
+friend("Isabell Shank", "Calvin Holliman").
+dob("Isabell Shank", "0292-01-12").
+job("Isabell Shank", "aeronautical engineer").
+hobby("Isabell Shank", "lotology").
+gender("Isabell Shank", "female").

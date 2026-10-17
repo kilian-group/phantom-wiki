@@ -1,0 +1,292 @@
+[
+    {
+        "id": "ef480b23-34a2-4228-a933-4f7c00343154",
+        "question": "Who has the most grandchildren among the great-grandchildren of Jung Henderson?",
+        "solution_traces": "[]",
+        "answer": [
+            "Merrill Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandchild(\"Jung Henderson\", X)",
+                "aggregate_all(count, distinct(grandchild(X, Z)), C)",
+                "\\+ (great_grandchild(\"Jung Henderson\", Y), Y \\= X, aggregate_all(count, distinct(grandchild(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "1072e66f-7690-474d-8f3d-8b4c09e97b3a",
+        "question": "Who has the most uncles among the friends of Elwood Decosta?",
+        "solution_traces": "[]",
+        "answer": [
+            "Marilyn Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Elwood Decosta\", X)",
+                "aggregate_all(count, distinct(uncle(X, Z)), C)",
+                "\\+ (friend(\"Elwood Decosta\", Y), Y \\= X, aggregate_all(count, distinct(uncle(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "3e6a3421-4a29-4eb0-b191-f1464db371dc",
+        "question": "Who has the most grandfathers among the friends of Lila Petry?",
+        "solution_traces": "[]",
+        "answer": [
+            "Chuck Lizotte"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Lila Petry\", X)",
+                "aggregate_all(count, distinct(grandfather(X, Z)), C)",
+                "\\+ (friend(\"Lila Petry\", Y), Y \\= X, aggregate_all(count, distinct(grandfather(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 3,
+        "difficulty": {
+            "hops": 3,
+            "constraints": 0,
+            "composite": 3,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "03b9cfd0-1690-4477-b6e5-d80e2cf0fbdc",
+        "question": "Who has the most second uncles among the friends of Jona Carrell?",
+        "solution_traces": "[]",
+        "answer": [
+            "Hayden Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Jona Carrell\", X)",
+                "aggregate_all(count, distinct(second_uncle(X, Z)), C)",
+                "\\+ (friend(\"Jona Carrell\", Y), Y \\= X, aggregate_all(count, distinct(second_uncle(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "64e4f9ee-8848-48f1-a13c-23249f7657e7",
+        "question": "Who has the most friends among the great-grandparents of Elissa Kovach?",
+        "solution_traces": "[]",
+        "answer": [
+            "Margo Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandparent(\"Elissa Kovach\", X)",
+                "aggregate_all(count, distinct(friend(X, Z)), C)",
+                "\\+ (great_grandparent(\"Elissa Kovach\", Y), Y \\= X, aggregate_all(count, distinct(friend(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "381f36b1-1d14-41ba-8230-a95b185b0106",
+        "question": "Who has the most friends among the great-grandsons of Caleb Haber?",
+        "solution_traces": "[]",
+        "answer": [
+            "Marcelino Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandson(\"Caleb Haber\", X)",
+                "aggregate_all(count, distinct(friend(X, Z)), C)",
+                "\\+ (great_grandson(\"Caleb Haber\", Y), Y \\= X, aggregate_all(count, distinct(friend(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "e6da087a-9a81-4dc3-a307-96177880d8e9",
+        "question": "Who has the most aunts among the great-grandchildren of Ulysses Nicolas?",
+        "solution_traces": "[]",
+        "answer": [
+            "Errol Brook"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandchild(\"Ulysses Nicolas\", X)",
+                "aggregate_all(count, distinct(aunt(X, Z)), C)",
+                "\\+ (great_grandchild(\"Ulysses Nicolas\", Y), Y \\= X, aggregate_all(count, distinct(aunt(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "8cd7eda0-3acd-43b5-a29f-de68b2abaf07",
+        "question": "Who has the most cousins among the friends of Reggie Earnest?",
+        "solution_traces": "[]",
+        "answer": [
+            "Lucas Mckenna"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Reggie Earnest\", X)",
+                "aggregate_all(count, distinct(cousin(X, Z)), C)",
+                "\\+ (friend(\"Reggie Earnest\", Y), Y \\= X, aggregate_all(count, distinct(cousin(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "69bd557a-377e-4c93-aa5f-681bbfbfe6cc",
+        "question": "Who has the most children among the siblings of Lauretta Mason?",
+        "solution_traces": "[]",
+        "answer": [
+            "Spencer Griffiths"
+        ],
+        "prolog": {
+            "query": [
+                "sibling(\"Lauretta Mason\", X)",
+                "aggregate_all(count, distinct(child(X, Z)), C)",
+                "\\+ (sibling(\"Lauretta Mason\", Y), Y \\= X, aggregate_all(count, distinct(child(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 2,
+        "difficulty": {
+            "hops": 2,
+            "constraints": 0,
+            "composite": 2,
+            "level": "trivial"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    },
+    {
+        "id": "73051e70-fc7b-4aca-b33d-92fa21c459db",
+        "question": "Who has the most great-uncles among the friends of Liane Schoonmaker?",
+        "solution_traces": "[]",
+        "answer": [
+            "Alberto Saari"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Liane Schoonmaker\", X)",
+                "aggregate_all(count, distinct(great_uncle(X, Z)), C)",
+                "\\+ (friend(\"Liane Schoonmaker\", Y), Y \\= X, aggregate_all(count, distinct(great_uncle(Y, W)), C2), C2 > C)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_most"
+        ],
+        "type": 111,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": false,
+        "question_category": "superlative_most"
+    }
+]

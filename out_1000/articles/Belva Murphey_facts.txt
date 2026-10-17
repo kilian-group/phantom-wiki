@@ -1,0 +1,22 @@
+brother("Belva Murphey", "Luke Wilke").
+brother("Belva Murphey", "Marion Wilke").
+mother("Belva Murphey", "Amy Wilke").
+father("Belva Murphey", "Stacey Wilke").
+daughter("Belva Murphey", "Myrl Mcgough").
+husband("Belva Murphey", "Alvaro Murphey").
+friend("Belva Murphey", "Donald Autry").
+friend("Belva Murphey", "Janiece Cordova").
+friend("Belva Murphey", "Lea Cordova").
+friend("Belva Murphey", "Antwan Rudolph").
+friend("Belva Murphey", "Ellis Brumbaugh").
+friend("Belva Murphey", "Victor Steadman").
+friend("Belva Murphey", "Zora Morehead").
+friend("Belva Murphey", "Anna Broughton").
+friend("Belva Murphey", "Jenny Gilliam").
+friend("Belva Murphey", "Wilson Donner").
+friend("Belva Murphey", "Jana Noland").
+friend("Belva Murphey", "Jamal Marr").
+dob("Belva Murphey", "0375-07-02").
+job("Belva Murphey", "geoscientist").
+hobby("Belva Murphey", "stone collecting").
+gender("Belva Murphey", "female").

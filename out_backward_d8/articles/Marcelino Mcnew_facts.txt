@@ -1,0 +1,15 @@
+sister("Marcelino Mcnew", "Jeanelle Mcnew").
+brother("Marcelino Mcnew", "Cole Mcnew").
+brother("Marcelino Mcnew", "Merrill Mcnew").
+mother("Marcelino Mcnew", "Lorelei Mcnew").
+father("Marcelino Mcnew", "Don Mcnew").
+friend("Marcelino Mcnew", "Nathanial Lizotte").
+friend("Marcelino Mcnew", "Carson Kovach").
+friend("Marcelino Mcnew", "Roger Griffiths").
+friend("Marcelino Mcnew", "Lannie Smock").
+friend("Marcelino Mcnew", "Foster Cormier").
+friend("Marcelino Mcnew", "Ernesto Mcnew").
+dob("Marcelino Mcnew", "0311-12-14").
+job("Marcelino Mcnew", "print production planner").
+hobby("Marcelino Mcnew", "ant farming").
+gender("Marcelino Mcnew", "male").

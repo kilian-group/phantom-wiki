@@ -1,0 +1,16 @@
+sister("Mitchell Fordham", "Kris Fordham").
+brother("Mitchell Fordham", "Aaron Fordham").
+brother("Mitchell Fordham", "Sung Fordham").
+mother("Mitchell Fordham", "Domonique Fordham").
+father("Mitchell Fordham", "Miles Fordham").
+friend("Mitchell Fordham", "Shizuko Sheridan").
+friend("Mitchell Fordham", "Pamala Vanmeter").
+friend("Mitchell Fordham", "Perry Spiller").
+friend("Mitchell Fordham", "Jacinta Simons").
+friend("Mitchell Fordham", "Eli Younger").
+friend("Mitchell Fordham", "Livia Corwin").
+friend("Mitchell Fordham", "Edmundo Mcpeak").
+dob("Mitchell Fordham", "0491-11-08").
+job("Mitchell Fordham", "IT consultant").
+hobby("Mitchell Fordham", "esports").
+gender("Mitchell Fordham", "male").

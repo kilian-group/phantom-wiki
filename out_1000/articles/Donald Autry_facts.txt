@@ -1,0 +1,25 @@
+sister("Donald Autry", "Ashleigh Spiller").
+sister("Donald Autry", "Karol Beamon").
+sister("Donald Autry", "Magdalena Hollinger").
+brother("Donald Autry", "Isaiah Autry").
+mother("Donald Autry", "Daisy Autry").
+father("Donald Autry", "Kelvin Autry").
+son("Donald Autry", "Hector Autry").
+wife("Donald Autry", "Bess Autry").
+friend("Donald Autry", "Babette Simons").
+friend("Donald Autry", "Kevin Sharma").
+friend("Donald Autry", "Phylis Cook").
+friend("Donald Autry", "Rosella Simons").
+friend("Donald Autry", "Michael Goff").
+friend("Donald Autry", "Patrice Dunlap").
+friend("Donald Autry", "Patrick Broughton").
+friend("Donald Autry", "Eldon Cushman").
+friend("Donald Autry", "Rodney Fordham").
+friend("Donald Autry", "Belva Murphey").
+friend("Donald Autry", "Chrissy Mcgough").
+friend("Donald Autry", "Louis Upton").
+friend("Donald Autry", "Tonia Bauman").
+dob("Donald Autry", "0424-12-29").
+job("Donald Autry", "gaffer").
+hobby("Donald Autry", "carrier pigeons").
+gender("Donald Autry", "male").

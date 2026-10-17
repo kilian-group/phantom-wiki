@@ -1,0 +1,16 @@
+son("Chance Mahoney", "Frankie Mahoney").
+wife("Chance Mahoney", "Shamika Mahoney").
+friend("Chance Mahoney", "Dino Donner").
+friend("Chance Mahoney", "Kenneth Rinehart").
+friend("Chance Mahoney", "Dorathy Hamlin").
+friend("Chance Mahoney", "Maurine Layman").
+friend("Chance Mahoney", "Karen Mckenna").
+friend("Chance Mahoney", "Jorge Murray").
+friend("Chance Mahoney", "Josie Littleton").
+friend("Chance Mahoney", "Babette Simons").
+friend("Chance Mahoney", "Barb Linden").
+friend("Chance Mahoney", "Miles Burdette").
+dob("Chance Mahoney", "0324-05-08").
+job("Chance Mahoney", "therapist").
+hobby("Chance Mahoney", "butterfly watching").
+gender("Chance Mahoney", "male").

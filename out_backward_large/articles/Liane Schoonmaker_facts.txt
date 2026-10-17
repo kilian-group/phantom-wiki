@@ -1,0 +1,14 @@
+sister("Liane Schoonmaker", "Annabelle Schoonmaker").
+sister("Liane Schoonmaker", "Jona Carrell").
+brother("Liane Schoonmaker", "Anibal Schoonmaker").
+brother("Liane Schoonmaker", "Esteban Schoonmaker").
+mother("Liane Schoonmaker", "Robyn Schoonmaker").
+father("Liane Schoonmaker", "Ali Schoonmaker").
+friend("Liane Schoonmaker", "Chelsie Bradberry").
+friend("Liane Schoonmaker", "Alison Smock").
+friend("Liane Schoonmaker", "Gene Smock").
+friend("Liane Schoonmaker", "Alberto Saari").
+dob("Liane Schoonmaker", "0262-07-13").
+job("Liane Schoonmaker", "chemist").
+hobby("Liane Schoonmaker", "stamp collecting").
+gender("Liane Schoonmaker", "female").

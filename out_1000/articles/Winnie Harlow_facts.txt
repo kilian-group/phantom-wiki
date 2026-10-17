@@ -1,0 +1,21 @@
+brother("Winnie Harlow", "Felton Kell").
+brother("Winnie Harlow", "Perry Kell").
+brother("Winnie Harlow", "Simon Kell").
+mother("Winnie Harlow", "Jackqueline Kell").
+father("Winnie Harlow", "Kurtis Kell").
+son("Winnie Harlow", "Chris Harlow").
+daughter("Winnie Harlow", "Dorathy Harlow").
+husband("Winnie Harlow", "Jerrold Harlow").
+friend("Winnie Harlow", "Karol Beamon").
+friend("Winnie Harlow", "Rayna Kinsella").
+friend("Winnie Harlow", "Christina Barrows").
+friend("Winnie Harlow", "Ty Mahoney").
+friend("Winnie Harlow", "Shirley Dalton").
+friend("Winnie Harlow", "Monique Pugliese").
+friend("Winnie Harlow", "Amy Smart").
+friend("Winnie Harlow", "Toni Glass").
+friend("Winnie Harlow", "Valentina Robinett").
+dob("Winnie Harlow", "0385-12-30").
+job("Winnie Harlow", "youth worker").
+hobby("Winnie Harlow", "aircraft spotting").
+gender("Winnie Harlow", "female").

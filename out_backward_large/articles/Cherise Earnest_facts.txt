@@ -1,0 +1,13 @@
+sister("Cherise Earnest", "Edythe Earnest").
+brother("Cherise Earnest", "Eduardo Earnest").
+brother("Cherise Earnest", "Reggie Earnest").
+mother("Cherise Earnest", "Samantha Earnest").
+father("Cherise Earnest", "Benton Earnest").
+friend("Cherise Earnest", "Tamala Pannell").
+friend("Cherise Earnest", "Charlie Kovach").
+friend("Cherise Earnest", "Garry Mcnew").
+friend("Cherise Earnest", "Rolland Mckenna").
+dob("Cherise Earnest", "0341-10-15").
+job("Cherise Earnest", "web designer").
+hobby("Cherise Earnest", "dolls").
+gender("Cherise Earnest", "female").

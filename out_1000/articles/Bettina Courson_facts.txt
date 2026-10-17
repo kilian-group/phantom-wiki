@@ -1,0 +1,11 @@
+son("Bettina Courson", "Eugene Courson").
+husband("Bettina Courson", "Everett Courson").
+friend("Bettina Courson", "Scottie Fordham").
+friend("Bettina Courson", "Mickey Beamon").
+friend("Bettina Courson", "Arnulfo Kinsella").
+friend("Bettina Courson", "Robby Corwin").
+friend("Bettina Courson", "Sylvia Gilliam").
+dob("Bettina Courson", "0477-10-10").
+job("Bettina Courson", "programme researcher").
+hobby("Bettina Courson", "aircraft spotting").
+gender("Bettina Courson", "female").

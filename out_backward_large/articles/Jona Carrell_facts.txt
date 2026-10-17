@@ -1,0 +1,15 @@
+sister("Jona Carrell", "Annabelle Schoonmaker").
+sister("Jona Carrell", "Liane Schoonmaker").
+brother("Jona Carrell", "Anibal Schoonmaker").
+brother("Jona Carrell", "Esteban Schoonmaker").
+mother("Jona Carrell", "Robyn Schoonmaker").
+father("Jona Carrell", "Ali Schoonmaker").
+daughter("Jona Carrell", "Ofelia Carrell").
+husband("Jona Carrell", "Rigoberto Carrell").
+friend("Jona Carrell", "Sylvia Palermo").
+friend("Jona Carrell", "Hayden Mcnew").
+friend("Jona Carrell", "Dwayne Langley").
+dob("Jona Carrell", "0263-06-16").
+job("Jona Carrell", "environmental education officer").
+hobby("Jona Carrell", "phillumeny").
+gender("Jona Carrell", "female").

@@ -1,0 +1,18 @@
+mother("Kenton Gilliam", "Shaunte Gilliam").
+father("Kenton Gilliam", "Kareem Gilliam").
+son("Kenton Gilliam", "Boris Gilliam").
+son("Kenton Gilliam", "Darren Gilliam").
+son("Kenton Gilliam", "Hershel Gilliam").
+son("Kenton Gilliam", "Jermaine Gilliam").
+son("Kenton Gilliam", "Markus Gilliam").
+daughter("Kenton Gilliam", "Jacinta Gilliam").
+wife("Kenton Gilliam", "Lucienne Gilliam").
+friend("Kenton Gilliam", "Leslie Courson").
+friend("Kenton Gilliam", "Tamara Kell").
+friend("Kenton Gilliam", "Collin Lasher").
+friend("Kenton Gilliam", "Ellis Brumbaugh").
+friend("Kenton Gilliam", "Janis Younger").
+dob("Kenton Gilliam", "0319-03-23").
+job("Kenton Gilliam", "immigration officer").
+hobby("Kenton Gilliam", "breakdancing").
+gender("Kenton Gilliam", "male").

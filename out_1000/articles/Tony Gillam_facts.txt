@@ -1,0 +1,12 @@
+daughter("Tony Gillam", "Allie Gillam").
+wife("Tony Gillam", "Susie Gillam").
+friend("Tony Gillam", "Buffy Mccurry").
+friend("Tony Gillam", "Aida Ibarra").
+friend("Tony Gillam", "Stacy Strong").
+friend("Tony Gillam", "Rhonda Wilke").
+friend("Tony Gillam", "Andres Layton").
+friend("Tony Gillam", "Gayla Dorn").
+dob("Tony Gillam", "0437-04-10").
+job("Tony Gillam", "medical illustrator").
+hobby("Tony Gillam", "research").
+gender("Tony Gillam", "male").

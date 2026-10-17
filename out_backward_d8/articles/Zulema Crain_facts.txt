@@ -1,0 +1,13 @@
+sister("Zulema Crain", "Edythe Nicolas").
+brother("Zulema Crain", "Lucas Crain").
+brother("Zulema Crain", "Thurman Crain").
+mother("Zulema Crain", "Yoshiko Crain").
+father("Zulema Crain", "Theodore Crain").
+friend("Zulema Crain", "Hanh Mohan").
+friend("Zulema Crain", "Annabelle Schoonmaker").
+friend("Zulema Crain", "Jules Levy").
+friend("Zulema Crain", "Marko Henderson").
+dob("Zulema Crain", "0279-12-05").
+job("Zulema Crain", "hospital doctor").
+hobby("Zulema Crain", "mineral collecting").
+gender("Zulema Crain", "female").

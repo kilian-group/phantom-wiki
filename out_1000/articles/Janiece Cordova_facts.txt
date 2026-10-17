@@ -1,0 +1,25 @@
+brother("Janiece Cordova", "Fredrick Cordova").
+brother("Janiece Cordova", "Galen Cordova").
+mother("Janiece Cordova", "Noreen Cordova").
+father("Janiece Cordova", "Frederic Cordova").
+friend("Janiece Cordova", "Lea Plumley").
+friend("Janiece Cordova", "Ty Mahoney").
+friend("Janiece Cordova", "Spencer Corwin").
+friend("Janiece Cordova", "Devon Leclair").
+friend("Janiece Cordova", "Johanna Mathes").
+friend("Janiece Cordova", "Judith Holliman").
+friend("Janiece Cordova", "Donnie Dunlap").
+friend("Janiece Cordova", "Sammy Yarbrough").
+friend("Janiece Cordova", "Belva Murphey").
+friend("Janiece Cordova", "Donnie Mcgough").
+friend("Janiece Cordova", "Johanna Sanborn").
+friend("Janiece Cordova", "Therese Mckenna").
+friend("Janiece Cordova", "Bo Frink").
+friend("Janiece Cordova", "Tamara Lasher").
+friend("Janiece Cordova", "Daisy Autry").
+friend("Janiece Cordova", "Isaiah Autry").
+friend("Janiece Cordova", "Juan Weise").
+dob("Janiece Cordova", "0349-06-22").
+job("Janiece Cordova", "horticulturist").
+hobby("Janiece Cordova", "baking").
+gender("Janiece Cordova", "female").

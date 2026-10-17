@@ -1,0 +1,6 @@
+son("Deborah Brannan", "Marcel Brannan").
+husband("Deborah Brannan", "Casey Brannan").
+dob("Deborah Brannan", "0160-02-03").
+job("Deborah Brannan", "public relations account executive").
+hobby("Deborah Brannan", "radio-controlled model playing").
+gender("Deborah Brannan", "female").

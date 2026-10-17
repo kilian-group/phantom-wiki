@@ -1,0 +1,13 @@
+daughter("Elliott Ingle", "Dortha Ingle").
+daughter("Elliott Ingle", "Larae Kirksey").
+daughter("Elliott Ingle", "Paula Lazar").
+wife("Elliott Ingle", "Florence Ingle").
+friend("Elliott Ingle", "Latisha Murchison").
+friend("Elliott Ingle", "Charley Lively").
+friend("Elliott Ingle", "Vicki Osterman").
+friend("Elliott Ingle", "Annabell Horan").
+friend("Elliott Ingle", "Everett Courson").
+dob("Elliott Ingle", "0317-08-12").
+job("Elliott Ingle", "immigration officer").
+hobby("Elliott Ingle", "finance").
+gender("Elliott Ingle", "male").

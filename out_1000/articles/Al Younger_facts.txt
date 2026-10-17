@@ -1,0 +1,17 @@
+sister("Al Younger", "Katina Younger").
+sister("Al Younger", "Zora Morehead").
+brother("Al Younger", "Cordell Younger").
+mother("Al Younger", "Janis Younger").
+father("Al Younger", "Wilson Younger").
+son("Al Younger", "Ethan Younger").
+wife("Al Younger", "Toshiko Younger").
+friend("Al Younger", "Bryan Resendez").
+friend("Al Younger", "Jennette Holliman").
+friend("Al Younger", "Winfred Basham").
+friend("Al Younger", "Cedric Shoulders").
+friend("Al Younger", "Roman Ruth").
+friend("Al Younger", "Juanita Dana").
+dob("Al Younger", "0456-02-01").
+job("Al Younger", "merchant navy officer").
+hobby("Al Younger", "antiquities").
+gender("Al Younger", "male").

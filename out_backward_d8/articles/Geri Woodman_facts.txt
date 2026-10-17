@@ -1,0 +1,12 @@
+brother("Geri Woodman", "Benton Earnest").
+mother("Geri Woodman", "Maria Earnest").
+father("Geri Woodman", "Roland Earnest").
+son("Geri Woodman", "Calvin Woodman").
+husband("Geri Woodman", "Ron Woodman").
+friend("Geri Woodman", "Joslyn Mason").
+friend("Geri Woodman", "Therese Cormier").
+friend("Geri Woodman", "Benton Earnest").
+dob("Geri Woodman", "0315-01-26").
+job("Geri Woodman", "homeopath").
+hobby("Geri Woodman", "kart racing").
+gender("Geri Woodman", "female").

@@ -1,0 +1,16 @@
+son("Mari Carreon", "Lance Carreon").
+husband("Mari Carreon", "Miguel Carreon").
+friend("Mari Carreon", "Lura Leclair").
+friend("Mari Carreon", "Hershel Gilliam").
+friend("Mari Carreon", "Gayla Sanborn").
+friend("Mari Carreon", "Harriette Courson").
+friend("Mari Carreon", "Cameron Mckenna").
+friend("Mari Carreon", "Claudio Winn").
+friend("Mari Carreon", "Christen Weise").
+friend("Mari Carreon", "Debora Murray").
+friend("Mari Carreon", "Jon Dana").
+friend("Mari Carreon", "Alexander Corwin").
+dob("Mari Carreon", "0331-07-25").
+job("Mari Carreon", "pharmacist").
+hobby("Mari Carreon", "engineering").
+gender("Mari Carreon", "female").

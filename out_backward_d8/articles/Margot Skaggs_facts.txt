@@ -1,0 +1,13 @@
+mother("Margot Skaggs", "Hanh Mohan").
+father("Margot Skaggs", "Jarrod Mohan").
+daughter("Margot Skaggs", "Shirley Skaggs").
+husband("Margot Skaggs", "Rosendo Skaggs").
+friend("Margot Skaggs", "Adalberto Cedillo").
+friend("Margot Skaggs", "Laurel Decosta").
+friend("Margot Skaggs", "Zoila Decosta").
+friend("Margot Skaggs", "Bruce Mason").
+friend("Margot Skaggs", "Harold Wilkie").
+dob("Margot Skaggs", "0328-02-10").
+job("Margot Skaggs", "programme researcher").
+hobby("Margot Skaggs", "shooting").
+gender("Margot Skaggs", "female").

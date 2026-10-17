@@ -1,0 +1,8 @@
+daughter("Ester Kovach", "Laura Kovach").
+husband("Ester Kovach", "Charlie Kovach").
+friend("Ester Kovach", "Preston Francois").
+friend("Ester Kovach", "Duncan Pannell").
+dob("Ester Kovach", "0277-05-15").
+job("Ester Kovach", "product designer").
+hobby("Ester Kovach", "vehicle restoration").
+gender("Ester Kovach", "female").

@@ -1,0 +1,16 @@
+sister("Ladonna Klink", "Alysa Lindquist").
+sister("Ladonna Klink", "Barbar Kell").
+mother("Ladonna Klink", "Ilona Klink").
+father("Ladonna Klink", "Johnathan Klink").
+friend("Ladonna Klink", "Iva Parish").
+friend("Ladonna Klink", "Cedric Towns").
+friend("Ladonna Klink", "Irwin Arteaga").
+friend("Ladonna Klink", "Monique Pugliese").
+friend("Ladonna Klink", "Nydia Ibarra").
+friend("Ladonna Klink", "Stevie Joiner").
+friend("Ladonna Klink", "Ester Yarbrough").
+friend("Ladonna Klink", "Noreen Jarrett").
+dob("Ladonna Klink", "0386-10-02").
+job("Ladonna Klink", "broadcast journalist").
+hobby("Ladonna Klink", "gymnastics").
+gender("Ladonna Klink", "female").

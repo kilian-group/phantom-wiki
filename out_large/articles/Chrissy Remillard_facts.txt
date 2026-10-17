@@ -1,0 +1,12 @@
+sister("Chrissy Remillard", "Margie Remillard").
+brother("Chrissy Remillard", "Hunter Remillard").
+mother("Chrissy Remillard", "Morgan Remillard").
+father("Chrissy Remillard", "Jaime Remillard").
+friend("Chrissy Remillard", "Jackie Vandenberg").
+friend("Chrissy Remillard", "Stacey Wilke").
+friend("Chrissy Remillard", "Valentin Vandenberg").
+friend("Chrissy Remillard", "Kirsten Oberg").
+dob("Chrissy Remillard", "0324-06-28").
+job("Chrissy Remillard", "veterinary surgeon").
+hobby("Chrissy Remillard", "horsemanship").
+gender("Chrissy Remillard", "female").

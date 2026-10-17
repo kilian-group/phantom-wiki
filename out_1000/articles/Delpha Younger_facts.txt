@@ -1,0 +1,21 @@
+sister("Delpha Younger", "Bee Corwin").
+brother("Delpha Younger", "Nathan Corwin").
+brother("Delpha Younger", "Solomon Corwin").
+mother("Delpha Younger", "Rochelle Corwin").
+father("Delpha Younger", "Spencer Corwin").
+son("Delpha Younger", "Eli Younger").
+son("Delpha Younger", "Raul Younger").
+daughter("Delpha Younger", "Almeta Younger").
+husband("Delpha Younger", "Rueben Younger").
+friend("Delpha Younger", "Shelia Hollins").
+friend("Delpha Younger", "Hollis Keyes").
+friend("Delpha Younger", "Lynette Fredrick").
+friend("Delpha Younger", "Romelia Bowles").
+friend("Delpha Younger", "Raina Hamlin").
+friend("Delpha Younger", "Shawna Sheridan").
+friend("Delpha Younger", "Lenny Courson").
+friend("Delpha Younger", "Tonia Bauman").
+dob("Delpha Younger", "0378-12-02").
+job("Delpha Younger", "hydrogeologist").
+hobby("Delpha Younger", "action figure").
+gender("Delpha Younger", "female").

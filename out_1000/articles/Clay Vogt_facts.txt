@@ -1,0 +1,15 @@
+daughter("Clay Vogt", "Kimiko Vogt").
+wife("Clay Vogt", "Lora Vogt").
+friend("Clay Vogt", "Tracey Capps").
+friend("Clay Vogt", "Elijah Hamlin").
+friend("Clay Vogt", "Emory Layton").
+friend("Clay Vogt", "Dino Layman").
+friend("Clay Vogt", "Seth Mounts").
+friend("Clay Vogt", "Theodore Vanmeter").
+friend("Clay Vogt", "Mike Schram").
+friend("Clay Vogt", "Donnie Dunlap").
+friend("Clay Vogt", "Erik Fredrick").
+dob("Clay Vogt", "0501-09-06").
+job("Clay Vogt", "farm manager").
+hobby("Clay Vogt", "stuffed toy collecting").
+gender("Clay Vogt", "male").

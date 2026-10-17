@@ -1,0 +1,16 @@
+mother("Coral Staten", "Lavern Staten").
+father("Coral Staten", "Frederic Staten").
+friend("Coral Staten", "Devon Leclair").
+friend("Coral Staten", "Vita Resendez").
+friend("Coral Staten", "Anita Fain").
+friend("Coral Staten", "Stacy Strong").
+friend("Coral Staten", "Kieth Bigelow").
+friend("Coral Staten", "Newton Lasher").
+friend("Coral Staten", "Maurine Wendel").
+friend("Coral Staten", "Veronica Cowart").
+friend("Coral Staten", "Karla Linares").
+friend("Coral Staten", "Tawana Machado").
+dob("Coral Staten", "0470-11-27").
+job("Coral Staten", "media buyer").
+hobby("Coral Staten", "amateur astronomy").
+gender("Coral Staten", "female").

@@ -1,0 +1,18 @@
+mother("Spencer Corwin", "Livia Corwin").
+father("Spencer Corwin", "Alexander Corwin").
+son("Spencer Corwin", "Nathan Corwin").
+son("Spencer Corwin", "Solomon Corwin").
+daughter("Spencer Corwin", "Bee Corwin").
+daughter("Spencer Corwin", "Delpha Younger").
+wife("Spencer Corwin", "Rochelle Corwin").
+friend("Spencer Corwin", "Oscar Medellin").
+friend("Spencer Corwin", "Pierre Mcpeak").
+friend("Spencer Corwin", "Beatriz Theriot").
+friend("Spencer Corwin", "Jame Carty").
+friend("Spencer Corwin", "Mac Mounts").
+friend("Spencer Corwin", "Janiece Cordova").
+friend("Spencer Corwin", "Magdalena Cordova").
+dob("Spencer Corwin", "0351-03-06").
+job("Spencer Corwin", "electrical engineer").
+hobby("Spencer Corwin", "video game collecting").
+gender("Spencer Corwin", "male").

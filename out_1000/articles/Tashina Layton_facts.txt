@@ -1,0 +1,17 @@
+mother("Tashina Layton", "Rosalinda Layton").
+father("Tashina Layton", "Emory Layton").
+friend("Tashina Layton", "Wyatt Mckenna").
+friend("Tashina Layton", "Cherlyn Simons").
+friend("Tashina Layton", "Tiffany Simons").
+friend("Tashina Layton", "Myra Eaves").
+friend("Tashina Layton", "Melina Resendez").
+friend("Tashina Layton", "Deidra Gilliam").
+friend("Tashina Layton", "Rogelio Dunlap").
+friend("Tashina Layton", "Lashawnda Fordham").
+friend("Tashina Layton", "Aron Robinett").
+friend("Tashina Layton", "Natalie Ballard").
+friend("Tashina Layton", "Cedric Wilke").
+dob("Tashina Layton", "0431-02-16").
+job("Tashina Layton", "museum education officer").
+hobby("Tashina Layton", "sociology").
+gender("Tashina Layton", "female").

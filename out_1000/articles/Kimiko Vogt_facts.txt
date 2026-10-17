@@ -1,0 +1,13 @@
+mother("Kimiko Vogt", "Lora Vogt").
+father("Kimiko Vogt", "Clay Vogt").
+friend("Kimiko Vogt", "Gregory Keister").
+friend("Kimiko Vogt", "Desiree Fordham").
+friend("Kimiko Vogt", "Adolph Hollins").
+friend("Kimiko Vogt", "Dorothea Goff").
+friend("Kimiko Vogt", "Kareem Goff").
+friend("Kimiko Vogt", "Levi Fredrick").
+friend("Kimiko Vogt", "Gwenn Tyree").
+dob("Kimiko Vogt", "0523-05-31").
+job("Kimiko Vogt", "chartered public finance accountant").
+hobby("Kimiko Vogt", "flower collecting and pressing").
+gender("Kimiko Vogt", "female").

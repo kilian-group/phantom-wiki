@@ -1,0 +1,16 @@
+daughter("Tammy Sutphin", "Leonora Cordova").
+daughter("Tammy Sutphin", "Marilyn Sutphin").
+husband("Tammy Sutphin", "Andrew Sutphin").
+friend("Tammy Sutphin", "Phylis Cook").
+friend("Tammy Sutphin", "Ramiro Dana").
+friend("Tammy Sutphin", "Keri Bennet").
+friend("Tammy Sutphin", "Deanne Gilliam").
+friend("Tammy Sutphin", "Cleveland Capps").
+friend("Tammy Sutphin", "Jana Galvan").
+friend("Tammy Sutphin", "Viva Suh").
+friend("Tammy Sutphin", "Rudy Runnels").
+friend("Tammy Sutphin", "Cleo Peeler").
+dob("Tammy Sutphin", "0321-07-27").
+job("Tammy Sutphin", "heritage manager").
+hobby("Tammy Sutphin", "parkour").
+gender("Tammy Sutphin", "female").

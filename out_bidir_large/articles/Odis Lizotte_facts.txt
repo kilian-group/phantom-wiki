@@ -1,0 +1,8 @@
+son("Odis Lizotte", "Dwain Lizotte").
+daughter("Odis Lizotte", "Reyna Petry").
+daughter("Odis Lizotte", "Windy Mckenna").
+wife("Odis Lizotte", "Ora Lizotte").
+dob("Odis Lizotte", "0240-02-05").
+job("Odis Lizotte", "trading standards officer").
+hobby("Odis Lizotte", "ephemera collecting").
+gender("Odis Lizotte", "male").

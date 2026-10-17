@@ -1,0 +1,16 @@
+daughter("Jamie Bellows", "Babara Arnold").
+wife("Jamie Bellows", "Naomi Bellows").
+friend("Jamie Bellows", "Janis Younger").
+friend("Jamie Bellows", "Miguel Morehead").
+friend("Jamie Bellows", "Amanda Rinehart").
+friend("Jamie Bellows", "Iluminada Capps").
+friend("Jamie Bellows", "Donnie Mcgough").
+friend("Jamie Bellows", "Zoraida Sanborn").
+friend("Jamie Bellows", "Bryan Layton").
+friend("Jamie Bellows", "Donny Speaks").
+friend("Jamie Bellows", "Lera Carty").
+friend("Jamie Bellows", "Salvatore Resendez").
+dob("Jamie Bellows", "0503-03-06").
+job("Jamie Bellows", "insurance account manager").
+hobby("Jamie Bellows", "mini golf").
+gender("Jamie Bellows", "male").

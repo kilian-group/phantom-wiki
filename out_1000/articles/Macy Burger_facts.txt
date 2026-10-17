@@ -1,0 +1,12 @@
+brother("Macy Burger", "Bruce Burger").
+mother("Macy Burger", "Graciela Burger").
+father("Macy Burger", "Alex Burger").
+friend("Macy Burger", "Joanne Storey").
+friend("Macy Burger", "Mayra Geter").
+friend("Macy Burger", "Anneliese Pellegrino").
+friend("Macy Burger", "Luis Simons").
+friend("Macy Burger", "Tanner Holliman").
+dob("Macy Burger", "0500-10-14").
+job("Macy Burger", "chemist").
+hobby("Macy Burger", "butterfly watching").
+gender("Macy Burger", "female").

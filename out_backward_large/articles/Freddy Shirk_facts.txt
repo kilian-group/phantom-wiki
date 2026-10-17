@@ -1,0 +1,8 @@
+mother("Freddy Shirk", "Mercedes Shirk").
+father("Freddy Shirk", "Darin Shirk").
+friend("Freddy Shirk", "Dwayne Langley").
+friend("Freddy Shirk", "Marilyn Nicolas").
+dob("Freddy Shirk", "0287-04-28").
+job("Freddy Shirk", "research officer").
+hobby("Freddy Shirk", "sports memorabilia").
+gender("Freddy Shirk", "male").

@@ -1,0 +1,7 @@
+daughter("Saul Wexler", "Valentina Wexler").
+wife("Saul Wexler", "Jeannine Wexler").
+friend("Saul Wexler", "Jules Levy").
+dob("Saul Wexler", "0301-10-24").
+job("Saul Wexler", "occupational therapist").
+hobby("Saul Wexler", "sociology").
+gender("Saul Wexler", "male").

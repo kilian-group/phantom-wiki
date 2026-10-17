@@ -1,0 +1,21 @@
+mother("Heath Swartz", "Deloris Swartz").
+father("Heath Swartz", "Logan Swartz").
+son("Heath Swartz", "Emmanuel Swartz").
+daughter("Heath Swartz", "Keisha Mcdonald").
+wife("Heath Swartz", "Skye Swartz").
+friend("Heath Swartz", "Gale Dana").
+friend("Heath Swartz", "Abdul Morehead").
+friend("Heath Swartz", "Shirley Ibarra").
+friend("Heath Swartz", "Bev Medellin").
+friend("Heath Swartz", "Delbert Fredrick").
+friend("Heath Swartz", "Kelley Cheney").
+friend("Heath Swartz", "Hollis Theriot").
+friend("Heath Swartz", "Dino Layman").
+friend("Heath Swartz", "Kanesha Booth").
+friend("Heath Swartz", "Ligia Frink").
+friend("Heath Swartz", "Allie Gillam").
+friend("Heath Swartz", "Naomi Bellows").
+dob("Heath Swartz", "0395-08-05").
+job("Heath Swartz", "public affairs consultant").
+hobby("Heath Swartz", "sports science").
+gender("Heath Swartz", "male").

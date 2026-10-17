@@ -1,0 +1,15 @@
+sister("Shannon Flores", "Skye Swartz").
+mother("Shannon Flores", "Claudine Bales").
+father("Shannon Flores", "Louie Bales").
+daughter("Shannon Flores", "Katy Flores").
+husband("Shannon Flores", "Thomas Flores").
+friend("Shannon Flores", "Bee Corwin").
+friend("Shannon Flores", "Maximilian Keyes").
+friend("Shannon Flores", "Anna Broughton").
+friend("Shannon Flores", "Buffy Jarrett").
+friend("Shannon Flores", "Annita Mckenna").
+friend("Shannon Flores", "Julio Mcdonald").
+dob("Shannon Flores", "0395-05-03").
+job("Shannon Flores", "wellsite geologist").
+hobby("Shannon Flores", "bridge").
+gender("Shannon Flores", "female").

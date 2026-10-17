@@ -1,0 +1,18 @@
+mother("Kennith Towns", "Jennie Towns").
+father("Kennith Towns", "Cedric Towns").
+friend("Kennith Towns", "Jonas Machado").
+friend("Kennith Towns", "Rueben Younger").
+friend("Kennith Towns", "Ricardo Dacosta").
+friend("Kennith Towns", "Deshawn Medellin").
+friend("Kennith Towns", "Lon Macias").
+friend("Kennith Towns", "Buffy Jarrett").
+friend("Kennith Towns", "Jayson Hudgens").
+friend("Kennith Towns", "Salvatore Resendez").
+friend("Kennith Towns", "Mozelle Mounts").
+friend("Kennith Towns", "Claudio Winn").
+friend("Kennith Towns", "Curt Cowart").
+friend("Kennith Towns", "Brunilda Linden").
+dob("Kennith Towns", "0533-06-10").
+job("Kennith Towns", "environmental manager").
+hobby("Kennith Towns", "backpacking").
+gender("Kennith Towns", "male").

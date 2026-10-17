@@ -1,0 +1,20 @@
+mother("Johanna Mathes", "Carolyn Whitford").
+father("Johanna Mathes", "Kenton Whitford").
+son("Johanna Mathes", "Neal Mathes").
+husband("Johanna Mathes", "Bruce Mathes").
+friend("Johanna Mathes", "Lynelle Smart").
+friend("Johanna Mathes", "Kimberely Cheney").
+friend("Johanna Mathes", "Guadalupe Palomo").
+friend("Johanna Mathes", "Gwenn Tyree").
+friend("Johanna Mathes", "Irvin Shaw").
+friend("Johanna Mathes", "Raina Hamlin").
+friend("Johanna Mathes", "Sylvester Hamlin").
+friend("Johanna Mathes", "Kerrie Resendez").
+friend("Johanna Mathes", "Jake Burkhalter").
+friend("Johanna Mathes", "Janiece Cordova").
+friend("Johanna Mathes", "Lloyd Ingalls").
+friend("Johanna Mathes", "Marcelina Simons").
+dob("Johanna Mathes", "0322-11-01").
+job("Johanna Mathes", "pension scheme manager").
+hobby("Johanna Mathes", "audiophile").
+gender("Johanna Mathes", "female").

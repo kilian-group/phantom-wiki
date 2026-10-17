@@ -1,0 +1,23 @@
+sister("Nydia Ibarra", "Ella Mathes").
+sister("Nydia Ibarra", "Jennette Holliman").
+sister("Nydia Ibarra", "Vita Resendez").
+brother("Nydia Ibarra", "Tanner Holliman").
+mother("Nydia Ibarra", "Judith Holliman").
+father("Nydia Ibarra", "Calvin Holliman").
+son("Nydia Ibarra", "Alton Ibarra").
+daughter("Nydia Ibarra", "Mireya Ibarra").
+husband("Nydia Ibarra", "Jarrod Ibarra").
+friend("Nydia Ibarra", "Antonio Fitch").
+friend("Nydia Ibarra", "Boris Gilliam").
+friend("Nydia Ibarra", "Reggie Medellin").
+friend("Nydia Ibarra", "Ladonna Klink").
+friend("Nydia Ibarra", "Newton Lasher").
+friend("Nydia Ibarra", "Odette Senn").
+friend("Nydia Ibarra", "Coleen Lively").
+friend("Nydia Ibarra", "Hershel Ingalls").
+friend("Nydia Ibarra", "Eli Younger").
+friend("Nydia Ibarra", "Mireya Ibarra").
+dob("Nydia Ibarra", "0347-01-20").
+job("Nydia Ibarra", "seismic interpreter").
+hobby("Nydia Ibarra", "linguistics").
+gender("Nydia Ibarra", "female").

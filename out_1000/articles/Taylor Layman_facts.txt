@@ -1,0 +1,15 @@
+brother("Taylor Layman", "Dino Layman").
+brother("Taylor Layman", "Nico Layman").
+mother("Taylor Layman", "Haley Layman").
+father("Taylor Layman", "Elbert Layman").
+friend("Taylor Layman", "Ilona Klink").
+friend("Taylor Layman", "Frankie Peeler").
+friend("Taylor Layman", "Shamika Mahoney").
+friend("Taylor Layman", "Latrina Mathes").
+friend("Taylor Layman", "Lynette Fredrick").
+friend("Taylor Layman", "Alvaro Murphey").
+friend("Taylor Layman", "Chauncey Wilkie").
+dob("Taylor Layman", "0314-05-02").
+job("Taylor Layman", "animal nutritionist").
+hobby("Taylor Layman", "coin collecting").
+gender("Taylor Layman", "male").

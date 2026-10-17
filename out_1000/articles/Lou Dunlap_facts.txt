@@ -1,0 +1,14 @@
+mother("Lou Dunlap", "Nikki Bond").
+father("Lou Dunlap", "Emory Bond").
+son("Lou Dunlap", "Rogelio Dunlap").
+husband("Lou Dunlap", "Brendon Dunlap").
+friend("Lou Dunlap", "Hiram Smart").
+friend("Lou Dunlap", "Jefferson Smart").
+friend("Lou Dunlap", "Kristen Kell").
+friend("Lou Dunlap", "Tomasa Kell").
+friend("Lou Dunlap", "Amos Hollinger").
+friend("Lou Dunlap", "Christen Boutte").
+dob("Lou Dunlap", "0348-10-13").
+job("Lou Dunlap", "astronomer").
+hobby("Lou Dunlap", "microbiology").
+gender("Lou Dunlap", "female").

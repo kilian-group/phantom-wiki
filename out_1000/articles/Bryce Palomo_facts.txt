@@ -1,0 +1,11 @@
+mother("Bryce Palomo", "Demetra Palomo").
+father("Bryce Palomo", "Guadalupe Palomo").
+son("Bryce Palomo", "Dominick Palomo").
+wife("Bryce Palomo", "Sharron Palomo").
+friend("Bryce Palomo", "Kanesha Booth").
+friend("Bryce Palomo", "Sharika Kell").
+friend("Bryce Palomo", "Curt Cowart").
+dob("Bryce Palomo", "0435-03-23").
+job("Bryce Palomo", "learning disability nurse").
+hobby("Bryce Palomo", "air hockey").
+gender("Bryce Palomo", "male").

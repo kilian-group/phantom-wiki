@@ -1,0 +1,17 @@
+brother("Clyde Oberg", "Lyman Oberg").
+brother("Clyde Oberg", "Monte Oberg").
+mother("Clyde Oberg", "Brigida Oberg").
+father("Clyde Oberg", "Richard Oberg").
+daughter("Clyde Oberg", "Twila Oberg").
+wife("Clyde Oberg", "Marlo Oberg").
+friend("Clyde Oberg", "Morgan Remillard").
+friend("Clyde Oberg", "Tianna Remillard").
+friend("Clyde Oberg", "Amy Wilke").
+friend("Clyde Oberg", "Jackie Vandenberg").
+friend("Clyde Oberg", "Ophelia Mcgough").
+friend("Clyde Oberg", "Thelma Vandenberg").
+friend("Clyde Oberg", "Amos Oberg").
+dob("Clyde Oberg", "0302-09-30").
+job("Clyde Oberg", "barrister's clerk").
+hobby("Clyde Oberg", "benchmarking").
+gender("Clyde Oberg", "male").

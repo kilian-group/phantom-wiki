@@ -1,0 +1,7 @@
+daughter("Kristi Schreiner", "Ashely Kee").
+husband("Kristi Schreiner", "Edmond Schreiner").
+friend("Kristi Schreiner", "Patsy Cormier").
+dob("Kristi Schreiner", "0203-03-20").
+job("Kristi Schreiner", "meteorologist").
+hobby("Kristi Schreiner", "auto audiophilia").
+gender("Kristi Schreiner", "female").

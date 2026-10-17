@@ -1,0 +1,16 @@
+mother("Wilson Donner", "Shelly Donner").
+father("Wilson Donner", "Dino Donner").
+daughter("Wilson Donner", "Tracey Medellin").
+wife("Wilson Donner", "Selena Donner").
+friend("Wilson Donner", "Donald Fordham").
+friend("Wilson Donner", "Vito Capps").
+friend("Wilson Donner", "Belva Murphey").
+friend("Wilson Donner", "Nydia Monday").
+friend("Wilson Donner", "Blake Swartz").
+friend("Wilson Donner", "Claudine Bales").
+friend("Wilson Donner", "Carlotta Gossett").
+friend("Wilson Donner", "Alyssa Salem").
+dob("Wilson Donner", "0412-03-20").
+job("Wilson Donner", "archaeologist").
+hobby("Wilson Donner", "video gaming").
+gender("Wilson Donner", "male").

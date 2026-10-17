@@ -1,0 +1,10 @@
+brother("Alberta Abraham", "Dillon Abraham").
+brother("Alberta Abraham", "Stuart Abraham").
+mother("Alberta Abraham", "Taneka Abraham").
+father("Alberta Abraham", "Oliver Abraham").
+friend("Alberta Abraham", "Annabelle Schoonmaker").
+friend("Alberta Abraham", "Jung Henderson").
+dob("Alberta Abraham", "0241-01-22").
+job("Alberta Abraham", "human resources officer").
+hobby("Alberta Abraham", "mini golf").
+gender("Alberta Abraham", "female").

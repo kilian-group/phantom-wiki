@@ -1,0 +1,16 @@
+daughter("Lashawnda Fordham", "Cora Fordham").
+husband("Lashawnda Fordham", "Rodney Fordham").
+friend("Lashawnda Fordham", "Ricky Carswell").
+friend("Lashawnda Fordham", "Iluminada Capps").
+friend("Lashawnda Fordham", "Sylvester Hamlin").
+friend("Lashawnda Fordham", "Tashina Layton").
+friend("Lashawnda Fordham", "Mose Jarrett").
+friend("Lashawnda Fordham", "Karen Mckenna").
+friend("Lashawnda Fordham", "Estella Dana").
+friend("Lashawnda Fordham", "Jenniffer Younger").
+friend("Lashawnda Fordham", "Olin Machado").
+friend("Lashawnda Fordham", "Shaunte Gilliam").
+dob("Lashawnda Fordham", "0522-12-05").
+job("Lashawnda Fordham", "sports development officer").
+hobby("Lashawnda Fordham", "metal detecting").
+gender("Lashawnda Fordham", "female").

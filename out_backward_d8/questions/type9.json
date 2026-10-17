@@ -1,0 +1,396 @@
+[
+    {
+        "id": "b0f6072e-2255-48d8-8fa6-14ff716a45bd",
+        "question": "How many friends does the cousin of the cousin of Rolland Mckenna have?",
+        "solution_traces": "[{\"Count_1\": 1, \"Y_5\": \"Lila Petry\", \"Y_3\": \"Yoko Wilkie\"}, {\"Y_5\": \"Hanh Mohan\", \"Count_1\": 3, \"Y_3\": \"Lucas Mckenna\"}, {\"Y_5\": \"Lila Petry\", \"Count_1\": 3, \"Y_3\": \"Chuck Lizotte\"}, {\"Y_5\": \"Hanh Mohan\", \"Y_3\": \"Lila Petry\", \"Count_1\": 4}, {\"Count_1\": 3, \"Y_5\": \"Maranda Lizotte\", \"Y_3\": \"Lucas Mckenna\"}, {\"Y_5\": \"Yoko Wilkie\", \"Y_3\": \"Rolland Mckenna\", \"Count_1\": 4}, {\"Y_5\": \"Hanh Mohan\", \"Y_3\": \"Rolland Mckenna\", \"Count_1\": 4}, {\"Y_3\": \"Rolland Mckenna\", \"Y_5\": \"Lila Petry\", \"Count_1\": 4}, {\"Y_3\": \"Rolland Mckenna\", \"Y_5\": \"Nathanial Lizotte\", \"Count_1\": 4}, {\"Y_5\": \"Yoko Wilkie\", \"Y_3\": \"Lila Petry\", \"Count_1\": 4}, {\"Y_3\": \"Lila Petry\", \"Y_5\": \"Nathanial Lizotte\", \"Count_1\": 4}, {\"Y_5\": \"Yoko Wilkie\", \"Count_1\": 3, \"Y_3\": \"Lucas Mckenna\"}, {\"Count_1\": 3, \"Y_5\": \"Lila Petry\", \"Y_3\": \"Lucas Mckenna\"}, {\"Y_3\": \"Nathanial Lizotte\", \"Y_5\": \"Lila Petry\", \"Count_1\": 3}, {\"Count_1\": 3, \"Y_5\": \"Nathanial Lizotte\", \"Y_3\": \"Lucas Mckenna\"}, {\"Count_1\": 1, \"Y_5\": \"Lila Petry\", \"Y_3\": \"Maranda Lizotte\"}, {\"Y_3\": \"Lila Petry\", \"Y_5\": \"Maranda Lizotte\", \"Count_1\": 4}, {\"Y_5\": \"Chuck Lizotte\", \"Y_3\": \"Rolland Mckenna\", \"Count_1\": 4}, {\"Count_1\": 7, \"Y_5\": \"Lila Petry\", \"Y_3\": \"Hanh Mohan\"}, {\"Y_3\": \"Rolland Mckenna\", \"Y_5\": \"Maranda Lizotte\", \"Count_1\": 4}, {\"Y_5\": \"Chuck Lizotte\", \"Y_3\": \"Lila Petry\", \"Count_1\": 4}, {\"Y_5\": \"Chuck Lizotte\", \"Count_1\": 3, \"Y_3\": \"Lucas Mckenna\"}]",
+        "answer": [
+            "1",
+            "3",
+            "4",
+            "7"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(friend(Y_3, Y_1)), Count_1)",
+                "cousin(Y_5, Y_3)",
+                "cousin(\"Rolland Mckenna\", Y_5)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "have",
+            "?"
+        ],
+        "type": 9,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "48bb7529-4f92-4967-963b-7df8b703d1b6",
+        "question": "How many friends does the great-grandfather of the grandchild of Dominique Smock have?",
+        "solution_traces": "[{\"Y_5\": \"Shelli Beltran\", \"Y_3\": \"Alvaro Smock\", \"Count_1\": 3}, {\"Count_1\": 3, \"Y_3\": \"Alvaro Smock\", \"Y_5\": \"Myrle Smock\"}]",
+        "answer": [
+            "3"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(friend(Y_3, Y_1)), Count_1)",
+                "great_grandfather(Y_5, Y_3)",
+                "grandchild(\"Dominique Smock\", Y_5)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "have",
+            "?"
+        ],
+        "type": 9,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 0,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "ebdc2403-e6c3-45f0-8f2d-8271bf13008b",
+        "question": "How many mothers-in-law does the daughter-in-law of the mother of Jeanelle Mcnew have?",
+        "solution_traces": "[{\"Count_1\": 1, \"Y_5\": \"Lorelei Mcnew\", \"Y_3\": \"Roxy Mcnew\"}, {\"Y_5\": \"Lorelei Mcnew\", \"Count_1\": 1, \"Y_3\": \"Amanda Mcnew\"}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(mother_in_law(Y_3, Y_1)), Count_1)",
+                "daughter_in_law(Y_5, Y_3)",
+                "mother(\"Jeanelle Mcnew\", Y_5)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "have",
+            "?"
+        ],
+        "type": 9,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "4cbde56b-b63f-43ea-8ed4-280ecdee0328",
+        "question": "How many grandchildren does the husband of the friend of Maxwell Henderson have?",
+        "solution_traces": "[{\"Count_1\": 6, \"Y_5\": \"Cherry Nicolas\", \"Y_3\": \"Ulysses Nicolas\"}]",
+        "answer": [
+            "6"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(grandchild(Y_3, Y_1)), Count_1)",
+                "husband(Y_5, Y_3)",
+                "friend(\"Maxwell Henderson\", Y_5)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "have",
+            "?"
+        ],
+        "type": 9,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "ed35cc29-7ded-4f83-9af5-882f12f1ed91",
+        "question": "How many parents does the sibling of the granddaughter of Karla Hornback have?",
+        "solution_traces": "[{\"Y_3\": \"Shirleen Abraham\", \"Count_1\": 2, \"Y_5\": \"Lorine Wasserman\"}, {\"Count_1\": 2, \"Y_5\": \"Shirleen Abraham\", \"Y_3\": \"Lorine Wasserman\"}]",
+        "answer": [
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(parent(Y_3, Y_1)), Count_1)",
+                "sibling(Y_5, Y_3)",
+                "granddaughter(\"Karla Hornback\", Y_5)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "have",
+            "?"
+        ],
+        "type": 9,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 0,
+            "composite": 4,
+            "level": "easy"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "88d2be67-ab84-4c0c-84f1-87176bd55e98",
+        "question": "How many grandchildren does the nephew of the great-uncle of Lea Levy have?",
+        "solution_traces": "[{\"Count_1\": 5, \"Y_3\": \"Adolph Brannan\", \"Y_5\": \"Jacques Decosta\"}, {\"Y_5\": \"Elwood Decosta\", \"Y_3\": \"Adolph Brannan\", \"Count_1\": 5}, {\"Y_3\": \"Abraham Decosta\", \"Count_1\": 0, \"Y_5\": \"Jacques Decosta\"}]",
+        "answer": [
+            "0",
+            "5"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(grandchild(Y_3, Y_1)), Count_1)",
+                "nephew(Y_5, Y_3)",
+                "great_uncle(\"Lea Levy\", Y_5)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "have",
+            "?"
+        ],
+        "type": 9,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "f455ff5f-c838-4065-9aca-26927d9a3745",
+        "question": "How many sons-in-law does the father-in-law of the father of Charlie Kovach have?",
+        "solution_traces": "[{\"Y_3\": \"Adolph Brannan\", \"Y_5\": \"Everett Kovach\", \"Count_1\": 2}]",
+        "answer": [
+            "2"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(son_in_law(Y_3, Y_1)), Count_1)",
+                "father_in_law(Y_5, Y_3)",
+                "father(\"Charlie Kovach\", Y_5)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "have",
+            "?"
+        ],
+        "type": 9,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 0,
+            "composite": 7,
+            "level": "medium"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "e29f864a-f691-4e68-a818-c383d41e7d5e",
+        "question": "How many nieces does the sister of the husband of Deborah Cormier have?",
+        "solution_traces": "[{\"Count_1\": 1, \"Y_3\": \"Shawnta Saari\", \"Y_5\": \"Clifford Cormier\"}]",
+        "answer": [
+            "1"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(niece(Y_3, Y_1)), Count_1)",
+                "sister(Y_5, Y_3)",
+                "husband(\"Deborah Cormier\", Y_5)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "have",
+            "?"
+        ],
+        "type": 9,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "04cea8bf-9783-4325-bcde-b659ade252f3",
+        "question": "How many grandsons does the grandparent of the son of Monique Griffiths have?",
+        "solution_traces": "[{\"Y_5\": \"Roger Griffiths\", \"Y_3\": \"Olivia Griffiths\", \"Count_1\": 3}, {\"Y_5\": \"Hilton Griffiths\", \"Count_1\": 3, \"Y_3\": \"Elton Griffiths\"}, {\"Y_5\": \"Hilton Griffiths\", \"Y_3\": \"Olivia Griffiths\", \"Count_1\": 3}, {\"Y_5\": \"Roger Griffiths\", \"Count_1\": 3, \"Y_3\": \"Elton Griffiths\"}]",
+        "answer": [
+            "3"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(grandson(Y_3, Y_1)), Count_1)",
+                "grandparent(Y_5, Y_3)",
+                "son(\"Monique Griffiths\", Y_5)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "have",
+            "?"
+        ],
+        "type": 9,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": true
+    },
+    {
+        "id": "88a56331-a95b-46ea-ae16-64d3206ddcaf",
+        "question": "How many grandparents does the granddaughter of the father of Bruce Mason have?",
+        "solution_traces": "[{\"Y_3\": \"Zoila Mason\", \"Y_5\": \"Clarence Mason\", \"Count_1\": 4}]",
+        "answer": [
+            "4"
+        ],
+        "prolog": {
+            "query": [
+                "aggregate_all(count, distinct(grandparent(Y_3, Y_1)), Count_1)",
+                "granddaughter(Y_5, Y_3)",
+                "father(\"Bruce Mason\", Y_5)"
+            ],
+            "answer": "Count_1"
+        },
+        "template": [
+            "How many",
+            "<relation_plural>_2",
+            "does",
+            "the",
+            "<relation>_4",
+            "of",
+            "the",
+            "<relation>_6",
+            "of",
+            "<name>_7",
+            "have",
+            "?"
+        ],
+        "type": 9,
+        "reasoning_steps": 5,
+        "difficulty": {
+            "hops": 5,
+            "constraints": 0,
+            "composite": 5,
+            "level": "medium"
+        },
+        "is_aggregation_question": true
+    }
+]

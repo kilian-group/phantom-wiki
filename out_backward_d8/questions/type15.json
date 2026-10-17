@@ -1,0 +1,572 @@
+[
+    {
+        "id": "ce4c904e-0a16-4c8a-ab2c-407dc45cee32",
+        "question": "Who is younger, the friend of the great-grandchild of the person whose date of birth is 0207-09-08 or the friend of the male cousin of the person whose occupation is advice worker?",
+        "solution_traces": "[]",
+        "answer": [
+            "Harold Wilkie"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "friend(Y_4, Y_2)",
+                "great_grandchild(Y_6, Y_4)",
+                "dob(Y_6, \"0207-09-08\")",
+                "friend(Y_12, Y_10)",
+                "male_cousin(Y_14, Y_12)",
+                "job(Y_14, \"advice worker\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 15,
+        "reasoning_steps": 8,
+        "difficulty": {
+            "hops": 8,
+            "constraints": 2,
+            "composite": 10,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "426e3b82-1055-462a-9754-9386650f6daf",
+        "question": "Who is younger, the wife of the sibling of the person whose hobby is gongoozling or the great-grandchild of the great-grandfather of the person whose date of birth is 0305-06-19?",
+        "solution_traces": "[]",
+        "answer": [
+            "Cole Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "wife(Y_4, Y_2)",
+                "sibling(Y_6, Y_4)",
+                "hobby(Y_6, \"gongoozling\")",
+                "great_grandchild(Y_12, Y_10)",
+                "great_grandfather(Y_14, Y_12)",
+                "dob(Y_14, \"0305-06-19\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 15,
+        "reasoning_steps": 9,
+        "difficulty": {
+            "hops": 9,
+            "constraints": 2,
+            "composite": 11,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "2efb2f54-8fe9-4e05-9d6b-9d6b4f67c0bc",
+        "question": "Who is younger, the grandchild of the great-grandparent of the person whose hobby is martial arts or the parent of the child of the person whose occupation is editorial assistant?",
+        "solution_traces": "[]",
+        "answer": [
+            "Adolph Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "grandchild(Y_4, Y_2)",
+                "great_grandparent(Y_6, Y_4)",
+                "hobby(Y_6, \"martial arts\")",
+                "parent(Y_12, Y_10)",
+                "child(Y_14, Y_12)",
+                "job(Y_14, \"editorial assistant\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 15,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 2,
+            "composite": 9,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "a02a4246-1f7e-4432-ad90-2020ea2046d8",
+        "question": "Who is younger, the great-grandparent of the child of the person whose date of birth is 0262-06-04 or the great-grandparent of the aunt of the person whose date of birth is 0277-07-02?",
+        "solution_traces": "[]",
+        "answer": [
+            "Foster Cormier"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "great_grandparent(Y_4, Y_2)",
+                "child(Y_6, Y_4)",
+                "dob(Y_6, \"0262-06-04\")",
+                "great_grandparent(Y_12, Y_10)",
+                "aunt(Y_14, Y_12)",
+                "dob(Y_14, \"0277-07-02\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 15,
+        "reasoning_steps": 9,
+        "difficulty": {
+            "hops": 9,
+            "constraints": 2,
+            "composite": 11,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "f32ed2e1-bf29-48a3-a361-440bc10a9111",
+        "question": "Who is younger, the grandchild of the father-in-law of the person whose date of birth is 0286-10-11 or the husband of the mother-in-law of the person whose date of birth is 0287-04-22?",
+        "solution_traces": "[]",
+        "answer": [
+            "Craig Boutte"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "grandchild(Y_4, Y_2)",
+                "father_in_law(Y_6, Y_4)",
+                "dob(Y_6, \"0286-10-11\")",
+                "husband(Y_12, Y_10)",
+                "mother_in_law(Y_14, Y_12)",
+                "dob(Y_14, \"0287-04-22\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 15,
+        "reasoning_steps": 10,
+        "difficulty": {
+            "hops": 10,
+            "constraints": 2,
+            "composite": 12,
+            "level": "extreme"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "9f31fa5f-3307-417d-ba40-3ab13757b9a7",
+        "question": "Who is younger, the friend of the sibling of the person whose occupation is quantity surveyor or the brother of the child of the person whose hobby is dolls?",
+        "solution_traces": "[]",
+        "answer": [
+            "Orlando Beltran"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "friend(Y_4, Y_2)",
+                "sibling(Y_6, Y_4)",
+                "job(Y_6, \"quantity surveyor\")",
+                "brother(Y_12, Y_10)",
+                "child(Y_14, Y_12)",
+                "hobby(Y_14, \"dolls\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 15,
+        "reasoning_steps": 4,
+        "difficulty": {
+            "hops": 4,
+            "constraints": 2,
+            "composite": 6,
+            "level": "medium"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "b452d871-420a-4a58-ac4e-67f3a8f0e287",
+        "question": "Who is younger, the brother of the sister-in-law of the person whose occupation is regulatory affairs officer or the great-grandparent of the sibling of the person whose hobby is tea bag collecting?",
+        "solution_traces": "[]",
+        "answer": [
+            "Cole Mcnew"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "brother(Y_4, Y_2)",
+                "sister_in_law(Y_6, Y_4)",
+                "job(Y_6, \"regulatory affairs officer\")",
+                "great_grandparent(Y_12, Y_10)",
+                "sibling(Y_14, Y_12)",
+                "hobby(Y_14, \"tea bag collecting\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 15,
+        "reasoning_steps": 8,
+        "difficulty": {
+            "hops": 8,
+            "constraints": 2,
+            "composite": 10,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "19a45a0d-2722-43f6-bb1c-faac9251ccb3",
+        "question": "Who is younger, the parent of the sibling of the person whose occupation is chemist or the friend of the sister-in-law of the person whose date of birth is 0259-07-27?",
+        "solution_traces": "[]",
+        "answer": [
+            "Ulysses Nicolas"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "parent(Y_4, Y_2)",
+                "sibling(Y_6, Y_4)",
+                "job(Y_6, \"chemist\")",
+                "friend(Y_12, Y_10)",
+                "sister_in_law(Y_14, Y_12)",
+                "dob(Y_14, \"0259-07-27\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 15,
+        "reasoning_steps": 6,
+        "difficulty": {
+            "hops": 6,
+            "constraints": 2,
+            "composite": 8,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "294498a1-3541-4674-89d9-52a1e541cbd1",
+        "question": "Who is younger, the nephew of the sister-in-law of the person whose occupation is immigration officer or the friend of the brother of the person whose occupation is chemist?",
+        "solution_traces": "[]",
+        "answer": [
+            "Margo Brannan"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "nephew(Y_4, Y_2)",
+                "sister_in_law(Y_6, Y_4)",
+                "job(Y_6, \"immigration officer\")",
+                "friend(Y_12, Y_10)",
+                "brother(Y_14, Y_12)",
+                "job(Y_14, \"chemist\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 15,
+        "reasoning_steps": 7,
+        "difficulty": {
+            "hops": 7,
+            "constraints": 2,
+            "composite": 9,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    },
+    {
+        "id": "f120171f-8573-4bbf-9bf2-109755979b36",
+        "question": "Who is younger, the child of the father-in-law of the person whose occupation is chartered public finance accountant or the aunt of the sister-in-law of the person whose date of birth is 0296-07-06?",
+        "solution_traces": "[]",
+        "answer": [
+            "Reyna Petry"
+        ],
+        "prolog": {
+            "query": [
+                "CmpDL_8 @< CmpDR_8",
+                "dob(Y_2, CmpDL_8)",
+                "dob(Y_10, CmpDR_8)",
+                "child(Y_4, Y_2)",
+                "father_in_law(Y_6, Y_4)",
+                "job(Y_6, \"chartered public finance accountant\")",
+                "aunt(Y_12, Y_10)",
+                "sister_in_law(Y_14, Y_12)",
+                "dob(Y_14, \"0296-07-06\")"
+            ],
+            "answer": "('Y_2', 'Y_10')"
+        },
+        "template": [
+            "Who is younger,",
+            "the",
+            "<relation>_3",
+            "of",
+            "the",
+            "<relation>_5",
+            "of",
+            "the person whose",
+            "<attribute_name>_7",
+            "is",
+            "<attribute_value>_7",
+            "or",
+            "the",
+            "<relation>_11",
+            "of",
+            "the",
+            "<relation>_13",
+            "of",
+            "the person whose",
+            "<attribute_name>_15",
+            "is",
+            "<attribute_value>_15",
+            "?"
+        ],
+        "type": 15,
+        "reasoning_steps": 9,
+        "difficulty": {
+            "hops": 9,
+            "constraints": 2,
+            "composite": 11,
+            "level": "hard"
+        },
+        "is_aggregation_question": false,
+        "question_category": "comparison_age_younger"
+    }
+]

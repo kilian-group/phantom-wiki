@@ -1,0 +1,13 @@
+brother("Maria Lindquist", "Roscoe Lindquist").
+mother("Maria Lindquist", "Alysa Lindquist").
+father("Maria Lindquist", "Carroll Lindquist").
+friend("Maria Lindquist", "Ramon Swartz").
+friend("Maria Lindquist", "Toshiko Younger").
+friend("Maria Lindquist", "Virgie Niles").
+friend("Maria Lindquist", "Antonio Fitch").
+friend("Maria Lindquist", "Lela Correia").
+friend("Maria Lindquist", "Iluminada Capps").
+dob("Maria Lindquist", "0410-06-04").
+job("Maria Lindquist", "biomedical scientist").
+hobby("Maria Lindquist", "social studies").
+gender("Maria Lindquist", "female").

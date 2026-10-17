@@ -1,0 +1,20 @@
+son("Karina Smart", "Drew Smart").
+husband("Karina Smart", "Bret Smart").
+friend("Karina Smart", "Manuel Smart").
+friend("Karina Smart", "Pamala Medellin").
+friend("Karina Smart", "Elaine Marr").
+friend("Karina Smart", "Freeda Jarrett").
+friend("Karina Smart", "Javier Scherer").
+friend("Karina Smart", "Rogelio Mckenna").
+friend("Karina Smart", "Dale Jefferson").
+friend("Karina Smart", "Sharolyn Basham").
+friend("Karina Smart", "Lorenzo Littleton").
+friend("Karina Smart", "Shelba Simons").
+friend("Karina Smart", "Raul Younger").
+friend("Karina Smart", "Judith Lebrun").
+friend("Karina Smart", "Michael Goff").
+friend("Karina Smart", "Paula Gerber").
+dob("Karina Smart", "0344-12-19").
+job("Karina Smart", "embryologist").
+hobby("Karina Smart", "leaves").
+gender("Karina Smart", "female").

@@ -1,0 +1,12 @@
+sister("Reinaldo Hornback", "Luisa Hornback").
+mother("Reinaldo Hornback", "Karla Hornback").
+father("Reinaldo Hornback", "Gerardo Hornback").
+daughter("Reinaldo Hornback", "Lorine Wasserman").
+daughter("Reinaldo Hornback", "Shirleen Abraham").
+wife("Reinaldo Hornback", "Elsy Hornback").
+friend("Reinaldo Hornback", "Thurman Crain").
+friend("Reinaldo Hornback", "Ned Cedillo").
+dob("Reinaldo Hornback", "0221-09-19").
+job("Reinaldo Hornback", "soil scientist").
+hobby("Reinaldo Hornback", "kart racing").
+gender("Reinaldo Hornback", "male").

@@ -1,0 +1,14 @@
+daughter("Bradley Blanton", "Sharron Palomo").
+wife("Bradley Blanton", "Leeann Blanton").
+friend("Bradley Blanton", "Nellie Hamlin").
+friend("Bradley Blanton", "Denny Vanmeter").
+friend("Bradley Blanton", "Sergio Parish").
+friend("Bradley Blanton", "Jimmy Holder").
+friend("Bradley Blanton", "Windy Cowart").
+friend("Bradley Blanton", "Davis Eaves").
+friend("Bradley Blanton", "Pauletta Morehead").
+friend("Bradley Blanton", "Annabell Molina").
+dob("Bradley Blanton", "0408-02-08").
+job("Bradley Blanton", "minerals surveyor").
+hobby("Bradley Blanton", "speedcubing").
+gender("Bradley Blanton", "male").

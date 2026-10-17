@@ -1,0 +1,14 @@
+sister("Katharine Willoughby", "Belia Mckenna").
+mother("Katharine Willoughby", "Nydia Willoughby").
+father("Katharine Willoughby", "Emerson Willoughby").
+friend("Katharine Willoughby", "Carrol Spiller").
+friend("Katharine Willoughby", "Helga Simons").
+friend("Katharine Willoughby", "Blake Swartz").
+friend("Katharine Willoughby", "Ricky Musick").
+friend("Katharine Willoughby", "Donald Fordham").
+friend("Katharine Willoughby", "Stacey Wilke").
+friend("Katharine Willoughby", "Emma Wellington").
+dob("Katharine Willoughby", "0444-03-27").
+job("Katharine Willoughby", "sales promotion account executive").
+hobby("Katharine Willoughby", "ant farming").
+gender("Katharine Willoughby", "female").

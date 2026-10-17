@@ -1,0 +1,462 @@
+[
+    {
+        "id": "16674348-fff2-44e9-8308-fe246aa15792",
+        "question": "Who is the youngest grandparent of Chrissy Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jon Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "grandparent(\"Chrissy Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (grandparent(\"Chrissy Remillard\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "b94f5ed2-23c4-4e15-b03e-ec28c34401b5",
+        "question": "Who is the youngest daughter of Jaime Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Chrissy Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "daughter(\"Jaime Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (daughter(\"Jaime Remillard\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "ef773652-f721-4a38-baef-4dde03e69160",
+        "question": "Who is the youngest sibling of Lyman Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Clyde Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "sibling(\"Lyman Oberg\", X)",
+                "dob(X, D)",
+                "\\+ (sibling(\"Lyman Oberg\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "27a5f7b2-89e3-47cb-bc4d-3a33ec73e030",
+        "question": "Who is the youngest child of Monte Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Luisa Narvaez"
+        ],
+        "prolog": {
+            "query": [
+                "child(\"Monte Oberg\", X)",
+                "dob(X, D)",
+                "\\+ (child(\"Monte Oberg\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "00bef163-0245-449b-bfb9-3e24e8b40a43",
+        "question": "Who is the youngest great-granddaughter of Sherrie Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Celestine Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "great_granddaughter(\"Sherrie Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (great_granddaughter(\"Sherrie Remillard\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 4,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "26ddc82d-e688-4e14-b1db-d93efbfb4c48",
+        "question": "Who is the youngest nephew of Clyde Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Amos Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "nephew(\"Clyde Oberg\", X)",
+                "dob(X, D)",
+                "\\+ (nephew(\"Clyde Oberg\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "fa8cff07-6b78-4521-a3ba-91550d74e0f4",
+        "question": "Who is the youngest niece of Jude Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Chrissy Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "niece(\"Jude Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (niece(\"Jude Remillard\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "f3bec0f7-911d-4b9d-b166-14507ffd0883",
+        "question": "Who is the youngest great-grandparent of Willie Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Jon Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandparent(\"Willie Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (great_grandparent(\"Willie Remillard\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 4,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "9bd8ecf0-5228-418e-aee2-6b7faa6136be",
+        "question": "Who is the youngest son of Valentin Vandenberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Charley Vandenberg"
+        ],
+        "prolog": {
+            "query": [
+                "son(\"Valentin Vandenberg\", X)",
+                "dob(X, D)",
+                "\\+ (son(\"Valentin Vandenberg\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "01f51d28-6214-475d-9260-9faad1eb8652",
+        "question": "Who is the youngest great-grandchild of Jon Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Celestine Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "great_grandchild(\"Jon Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (great_grandchild(\"Jon Remillard\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 4,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "fc8bf5c4-05e9-4bde-912e-229b84591003",
+        "question": "Who is the youngest niece of Ophelia Mcgough?",
+        "solution_traces": "[]",
+        "answer": [
+            "Delsie Mcgough"
+        ],
+        "prolog": {
+            "query": [
+                "niece(\"Ophelia Mcgough\", X)",
+                "dob(X, D)",
+                "\\+ (niece(\"Ophelia Mcgough\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "bf91bbc6-f1e4-4179-836b-0b73992c9d2d",
+        "question": "Who is the youngest grandchild of Jaime Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Celestine Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "grandchild(\"Jaime Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (grandchild(\"Jaime Remillard\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "ca69417f-adbf-411c-8f69-3b107118e140",
+        "question": "Who is the youngest sibling of Jude Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Wanita Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "sibling(\"Jude Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (sibling(\"Jude Remillard\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "61c4dc07-39fe-4147-a5c9-58b7bf0aad74",
+        "question": "Who is the youngest grandparent of Demarcus Narvaez?",
+        "solution_traces": "[]",
+        "answer": [
+            "Cherlyn Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "grandparent(\"Demarcus Narvaez\", X)",
+                "dob(X, D)",
+                "\\+ (grandparent(\"Demarcus Narvaez\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "6d4f9199-3e59-4af7-b337-b79ec7bf0ac9",
+        "question": "Who is the youngest daughter-in-law of Richard Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Kirsten Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "daughter_in_law(\"Richard Oberg\", X)",
+                "dob(X, D)",
+                "\\+ (daughter_in_law(\"Richard Oberg\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "32366fe8-0b6c-4eb4-8de9-745270dea465",
+        "question": "Who is the youngest brother of Belva Murphey?",
+        "solution_traces": "[]",
+        "answer": [
+            "Luke Wilke"
+        ],
+        "prolog": {
+            "query": [
+                "brother(\"Belva Murphey\", X)",
+                "dob(X, D)",
+                "\\+ (brother(\"Belva Murphey\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "b44cf818-6a7b-448c-94b2-4b50cb552fd3",
+        "question": "Who is the youngest child of Monte Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Luisa Narvaez"
+        ],
+        "prolog": {
+            "query": [
+                "child(\"Monte Oberg\", X)",
+                "dob(X, D)",
+                "\\+ (child(\"Monte Oberg\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "83f6ff2d-d12b-4768-a2c1-e68645bf3cf2",
+        "question": "Who is the youngest friend of Wanita Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Demarcus Narvaez"
+        ],
+        "prolog": {
+            "query": [
+                "friend(\"Wanita Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (friend(\"Wanita Remillard\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "8f2635f2-8970-4aee-b41c-67c3a1e9ab92",
+        "question": "Who is the youngest daughter of Hunter Remillard?",
+        "solution_traces": "[]",
+        "answer": [
+            "Celestine Remillard"
+        ],
+        "prolog": {
+            "query": [
+                "daughter(\"Hunter Remillard\", X)",
+                "dob(X, D)",
+                "\\+ (daughter(\"Hunter Remillard\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 2,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    },
+    {
+        "id": "c55d3b72-3b9b-4620-b3a8-2a7e653257ef",
+        "question": "Who is the youngest daughter-in-law of Brigida Oberg?",
+        "solution_traces": "[]",
+        "answer": [
+            "Kirsten Oberg"
+        ],
+        "prolog": {
+            "query": [
+                "daughter_in_law(\"Brigida Oberg\", X)",
+                "dob(X, D)",
+                "\\+ (daughter_in_law(\"Brigida Oberg\", Y), dob(Y, D2), Y \\= X, D2 @> D)"
+            ],
+            "answer": "X"
+        },
+        "template": [
+            "superlative_youngest"
+        ],
+        "type": 224,
+        "difficulty": 3,
+        "is_aggregation_question": false,
+        "question_category": "superlative_youngest"
+    }
+]
