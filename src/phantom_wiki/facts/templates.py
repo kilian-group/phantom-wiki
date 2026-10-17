@@ -534,9 +534,12 @@ def _build_comparison_mc_n_templates(
     dob_l_var = f"CmpDL_{depth}_{n}"
     dob_r_var = f"CmpDR_{depth}_{n}"
 
-    age_subtype = f"comparison_age_mc{n}"
-    younger_subtype = f"comparison_age_younger_mc{n}"
-    born_first_subtype = f"comparison_born_first_mc{n}"
+    phrasings = [
+        (f"comparison_age_mc{n}", ["Who is older,"]),
+        (f"comparison_age_younger_mc{n}", ["Who is younger,"]),
+        (f"comparison_born_first_mc{n}", ["Who was born first,"]),
+    ]
+    pair_idx = 0
 
     for rc_frag in rc_fragments:
         if _count_hops(rc_frag) == 0:
@@ -554,13 +557,10 @@ def _build_comparison_mc_n_templates(
                 + rc_frag.p_fragment
                 + mc_frag.p_fragment
             )
-            for subtype, prefix in [
-                (age_subtype, ["Who is older,"]),
-                (younger_subtype, ["Who is younger,"]),
-                (born_first_subtype, ["Who was born first,"]),
-            ]:
-                q = prefix + rc_frag.q_fragment + ["or"] + mc_frag.q_fragment + ["?"]
-                templates.append((q, age_query, (rc_var, mc_var), subtype))
+            subtype, prefix = phrasings[pair_idx % len(phrasings)]
+            pair_idx += 1
+            q = prefix + rc_frag.q_fragment + ["or"] + mc_frag.q_fragment + ["?"]
+            templates.append((q, age_query, (rc_var, mc_var), subtype))
 
             # Also mc on the left, rc on the right (reversed)
             age_query_rev = (
@@ -570,13 +570,10 @@ def _build_comparison_mc_n_templates(
                 + mc_frag.p_fragment
                 + rc_frag.p_fragment
             )
-            for subtype, prefix in [
-                (age_subtype, ["Who is older,"]),
-                (younger_subtype, ["Who is younger,"]),
-                (born_first_subtype, ["Who was born first,"]),
-            ]:
-                q = prefix + mc_frag.q_fragment + ["or"] + rc_frag.q_fragment + ["?"]
-                templates.append((q, age_query_rev, (mc_var, rc_var), subtype))
+            subtype, prefix = phrasings[pair_idx % len(phrasings)]
+            pair_idx += 1
+            q = prefix + mc_frag.q_fragment + ["or"] + rc_frag.q_fragment + ["?"]
+            templates.append((q, age_query_rev, (mc_var, rc_var), subtype))
 
     return templates
 
@@ -648,19 +645,28 @@ def _build_superlative_mc_n_templates(
     return templates
 
 
+_COMPARISON_AGE_PHRASINGS = [
+    (COMPARISON_AGE_SUBTYPE, ["Who is older,"]),
+    (COMPARISON_AGE_YOUNGER_SUBTYPE, ["Who is younger,"]),
+    (COMPARISON_BORN_FIRST_SUBTYPE, ["Who was born first,"]),
+]
+
+
 def _build_comparison_templates(
     grammar: CFG, rc_fragments: list["Fragment"], depth: int
 ) -> list[tuple]:
     """Build comparison question templates from pairs of R_c fragments.
 
-    Comparison types:
-    - "Who is older, R_c or R_c?" (age comparison)
-    - "Who is younger, R_c or R_c?" (age comparison, reversed)
-    - "Who was born first, R_c or R_c?" (same as older)
-    - "Who has more RN_p, R_c or R_c?" (count comparison)
-    - "Who has fewer RN_p, R_c or R_c?" (count comparison, reversed)
+    For each ``(left, right)`` R_c pair, emits ONE phrasing chosen round-robin
+    from older / younger / born-first. The three phrasings encode the same
+    DOB-comparison question with different surface forms; emitting all three
+    per pair triples template volume without adding logical diversity.
+
+    The round-robin assignment is deterministic (counter mod 3), so each
+    phrasing receives ~1/3 of pairs.
     """
     templates = []
+    pair_idx = 0
 
     for left_frag in rc_fragments:
         # Renumber right operand to avoid variable collisions with left
@@ -669,7 +675,6 @@ def _build_comparison_templates(
             left_var = _get_person_var(left_frag)
             right_var = _get_person_var(right_frag)
 
-            # Age comparisons: older, younger, born first
             # Query: chain queries + dob lookups + comparison
             # After reversal in get_answer, execution order is:
             # chains -> dob lookups -> comparison
@@ -682,15 +687,11 @@ def _build_comparison_templates(
                 + right_frag.p_fragment
             )
 
-            for subtype, prefix in [
-                (COMPARISON_AGE_SUBTYPE, ["Who is older,"]),
-                (COMPARISON_AGE_YOUNGER_SUBTYPE, ["Who is younger,"]),
-                (COMPARISON_BORN_FIRST_SUBTYPE, ["Who was born first,"]),
-            ]:
-                q = prefix + left_frag.q_fragment + ["or"] + right_frag.q_fragment + ["?"]
-                # answer_info encodes left/right vars for answer extraction
-                answer_info = (left_var, right_var)
-                templates.append((q, age_query, answer_info, subtype))
+            subtype, prefix = _COMPARISON_AGE_PHRASINGS[pair_idx % len(_COMPARISON_AGE_PHRASINGS)]
+            pair_idx += 1
+            q = prefix + left_frag.q_fragment + ["or"] + right_frag.q_fragment + ["?"]
+            answer_info = (left_var, right_var)
+            templates.append((q, age_query, answer_info, subtype))
 
     return templates
 

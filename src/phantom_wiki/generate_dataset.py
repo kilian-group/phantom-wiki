@@ -565,9 +565,15 @@ def generate_dataset(
         # Only generate extended variants whose high-level qtype is also in
         # parsed_qtypes — so e.g. dropping ``comparison_age`` from
         # --question-types skips "Who is older, A or B?" too.
+        # Exclude "comparison_age": the CFG composer (`_build_comparison_templates`)
+        # already covers the 0-hop "Who is older, NameA or NameB?" case via the
+        # `(R_c → N) × (R_c → N)` pair, AND covers younger/born-first phrasings
+        # the legacy sampler doesn't emit. Keeping legacy here would duplicate the
+        # 0-hop "older" form.
         legacy_qtypes_to_run = [
             t for t in extended_question_types
             if extended_question_category[t] in parsed_qtypes
+            and t != "comparison_age"
         ]
         blue("Generating extended question types")
         for qtype in legacy_qtypes_to_run:
